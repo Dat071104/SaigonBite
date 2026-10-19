@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title %}{{ title }} - SaigonBite{% endblock %}
+{% block content %}
+<h1>{{ code }} - {{ title }}</h1>
+<div class="flash error">{{ message }}</div>
+<p><a class="btn secondary" href="{{ url_for('main.home') }}">Back to the home page</a></p>
+{% endblock %}

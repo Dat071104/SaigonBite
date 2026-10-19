@@ -1,5 +1,13 @@
 {% extends "base.html" %}
+{% block title %}SaigonBite - Home{% endblock %}
 {% block content %}
 <h1>SaigonBite</h1>
 <p>Online food delivery hub platform. Iteration 1 build.</p>
+{% if not current_user.is_authenticated %}
+  <p><a class="btn" href="{{ url_for('auth.login') }}">Log in to place an order</a></p>
+{% elif current_user.role.value == 'CUSTOMER' %}
+  <p><a class="btn" href="{{ url_for('order.choose_hub') }}">Place an order</a></p>
+{% else %}
+  <p class="muted">You are logged in as {{ current_user.role.value }}. This role has no screens in Iteration 1.</p>
+{% endif %}
 {% endblock %}

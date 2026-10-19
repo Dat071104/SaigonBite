@@ -21,3 +21,4 @@ input[type=number] { width: 5rem; }
 .ok { color: var(--ok); font-weight: 600; }
 .total-row td { font-weight: 700; }
 .muted { color: var(--muted); }
+.topbar button.secondary-link { background: transparent; border: 1px solid #fff; padding: 4px 12px; margin-left: 12px; font-size: .9rem; }

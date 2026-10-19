@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Log in - SaigonBite{% endblock %}
+{% block content %}
+<h1>Log in</h1>
+{% if error %}<div class="flash error">{{ error }}</div>{% endif %}
+<form method="post" action="{{ url_for('auth.login') }}">
+  <input type="hidden" name="next" value="{{ next }}">
+  <p><label>Username<br><input type="text" name="username" value="{{ username }}" autofocus required></label></p>
+  <p><label>Password<br><input type="password" name="password" required></label></p>
+  <p><button type="submit">Log in</button></p>
+</form>
+{% endblock %}

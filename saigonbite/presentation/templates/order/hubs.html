@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Choose a hub - SaigonBite{% endblock %}
+{% block content %}
+<h1>Choose a hub</h1>
+{% if error %}<div class="flash error">{{ error }}</div>{% endif %}
+{% for hub in hubs %}
+<div class="card">
+  <h2>{{ hub.name }}</h2>
+  <p class="muted">{{ hub.address_text }}</p>
+  <p>Delivery fee: {{ hub.delivery_fee_flat|vnd }} (flat)</p>
+  <a class="btn" href="{{ url_for('order.choose_items', hub_id=hub.id) }}">Order from this hub</a>
+</div>
+{% else %}
+<p>No hubs are open right now.</p>
+{% endfor %}
+{% endblock %}
