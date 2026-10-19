@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2500" height="986" viewBox="-20 0 1850 730">
+<defs><marker id="ab" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#004387"/></marker><marker id="ar" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#B03A2E"/></marker></defs>
+<rect x="-20" y="0" width="1850" height="730" fill="#FFFFFF"/>
+<text x="4" y="30" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="bold" fill="#004387">Part E: Cancel order (separate activity, analysed only, A-08)</text>
+<rect x="-20" y="44" width="1850" height="200" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<rect x="-20" y="44" width="110" height="200" fill="#004387" stroke="#004387" stroke-width="3"/>
+<text transform="translate(45.0,144.0) rotate(-90)" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="bold" fill="#FFFFFF" text-anchor="middle"><tspan x="0" dy="10.0">Customer</tspan></text>
+<rect x="-20" y="244" width="1850" height="370" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<rect x="-20" y="244" width="110" height="370" fill="#004387" stroke="#004387" stroke-width="3"/>
+<text transform="translate(45.0,429.0) rotate(-90)" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="bold" fill="#FFFFFF" text-anchor="middle"><tspan x="0" dy="10.0">OFDH platform</tspan></text>
+<path d="M172.0,144.0 L295.0,144.0" fill="none" stroke="#004387" stroke-width="3" marker-end="url(#ab)" stroke-linejoin="round"/>
+<path d="M430.0,194.0 L430.0,288.0" fill="none" stroke="#004387" stroke-width="3" marker-end="url(#ab)" stroke-linejoin="round"/>
+<path d="M524.0,344.0 L615.0,344.0" fill="none" stroke="#004387" stroke-width="3" marker-end="url(#ab)" stroke-linejoin="round"/>
+<path d="M945.0,344.0 L1310.0,344.0" fill="none" stroke="#004387" stroke-width="3" marker-end="url(#ab)" stroke-linejoin="round"/>
+<path d="M780.0,409.0 L780.0,484.0" fill="none" stroke="#B03A2E" stroke-width="3" marker-end="url(#ar)" stroke-linejoin="round"/>
+<path d="M1650.0,344.0 L1728.0,344.0" fill="none" stroke="#004387" stroke-width="3" marker-end="url(#ab)" stroke-linejoin="round"/>
+<path d="M930.0,534.0 L1018.0,534.0" fill="none" stroke="#B03A2E" stroke-width="3" marker-end="url(#ar)" stroke-linejoin="round"/>
+<circle cx="150" cy="144" r="22.0" fill="#004387"/>
+<polygon points="295.0,94.0 565.0,94.0 565.0,194.0 295.0,194.0 325.0,144" fill="#DCDCDC" stroke="#004387" stroke-width="3" stroke-linejoin="round"/><text x="445.0" y="137.3" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1B1B1B" text-anchor="middle" font-weight="normal"><tspan x="445.0" dy="0">Customer</tspan><tspan x="445.0" dy="33">requests cancel</tspan></text>
+<rect x="336.0" y="288.0" width="188" height="112" rx="26" fill="#DCDCDC" stroke="#004387" stroke-width="3"/><text x="430" y="337.3" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1B1B1B" text-anchor="middle" font-weight="normal"><tspan x="430" dy="0">Check order</tspan><tspan x="430" dy="33">state</tspan></text>
+<polygon points="780,279.0 945.0,344 780,409.0 615.0,344" fill="#DCDCDC" stroke="#004387" stroke-width="3"/><text x="780" y="337.8" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1B1B1B" text-anchor="middle" font-weight="normal"><tspan x="780" dy="0">Still</tspan><tspan x="780" dy="32">cancellable?</tspan></text>
+<rect x="1310.0" y="270.0" width="340" height="148" rx="26" fill="#DCDCDC" stroke="#004387" stroke-width="3"/><text x="1480" y="304.3" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1B1B1B" text-anchor="middle" font-weight="normal"><tspan x="1480" dy="0">Cancel order:</tspan><tspan x="1480" dy="33">void COD, online</tspan><tspan x="1480" dy="33">→ REFUND_PENDING,</tspan><tspan x="1480" dy="33">notify hub</tspan></text>
+<circle cx="1750" cy="344" r="22.0" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><circle cx="1750" cy="344" r="14.0" fill="#004387"/>
+<rect x="630.0" y="484.0" width="300" height="100" rx="26" fill="#DCDCDC" stroke="#B03A2E" stroke-width="3"/><text x="780" y="527.3" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1B1B1B" text-anchor="middle" font-weight="normal"><tspan x="780" dy="0">Refuse cancellation:</tspan><tspan x="780" dy="33">cooking has started</tspan></text>
+<circle cx="1040" cy="534" r="22.0" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><circle cx="1040" cy="534" r="14.0" fill="#004387"/>
+<text x="1127.5" y="304.0" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="bold" fill="#004387" text-anchor="middle" stroke="#E7F0F6" stroke-width="7" stroke-linejoin="round" paint-order="stroke"><tspan x="1127.5" dy="0">[state = PLACED</tspan><tspan x="1127.5" dy="30">or CONFIRMED]</tspan></text>
+<text x="792.0" y="455.8" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="bold" fill="#B03A2E" text-anchor="start" stroke="#E7F0F6" stroke-width="7" stroke-linejoin="round" paint-order="stroke"><tspan x="792.0" dy="0">[PREPARING or later]</tspan></text>
+<text x="104" y="646" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387">Owner: Quan 523K0049 · AI-assisted (see Appendix A)</text>
+<path d="M104,673 L150,673" stroke="#B03A2E" stroke-width="3" marker-end="url(#ar)"/>
+<text x="162" y="682" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387">Red = failure or exception path</text>
+<rect x="604.234375" y="658" width="40" height="26" rx="8" fill="#DCDCDC" stroke="#004387" stroke-width="2"/>
+<text x="656.234375" y="682" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387">Grey = in the business process, not built in this release (A-08, A-09)</text>
+<circle cx="118" cy="709" r="14" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><path d="M109.6,700.6 L126.4,717.4 M109.6,717.4 L126.4,700.6" stroke="#004387" stroke-width="4"/>
+<text x="144" y="718" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387">Flow final: this path ends</text>
+<circle cx="526.234375" cy="709" r="14" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><circle cx="526.234375" cy="709" r="6" fill="#004387"/>
+<text x="552.234375" y="718" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387">Activity final: the whole activity ends</text>
+</svg>

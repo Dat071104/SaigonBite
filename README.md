@@ -1,9 +1,21 @@
-# SaigonBite - Iteration 1 build
+# SaigonBite – Online Food Delivery Hub Platform
 
-Online food delivery hub platform (course project, RAD Sem01 2026-27). This repository holds the
-**Iteration 1 increment**: a persisted cash-on-delivery (COD) order for one hub (UC-01 subset) on a runnable skeleton.
+Course project for Requirements Analysis and Design (RAD), Sem01 2026-27, Team02.
+SaigonBite runs cloud kitchens across several hubs; this platform spreads lunch-hour orders across hubs,
+tracks delivery and cash, and reports from one shared order record.
 
-> AI-assisted build (Claude, 19/10/2026). Not yet reviewed line by line by Dat and Quan, and not yet run on a second machine.
+| Member | Student ID | Use cases |
+|---|---|---|
+| Nguyen Thanh Dat | 722I0004 | UC-01 Place an order, UC-03 Manage hubs and kitchen capacity |
+| Le Minh Quan | 523K0049 | UC-02 Deliver an order, UC-04 Produce management reports |
+
+**Status:** Iteration 1 increment (tag [`i1-evidence`](https://github.com/Dat071104/SaigonBite/tree/i1-evidence)): a persisted cash-on-delivery (COD) order
+for one hub (UC-01 subset) on a runnable skeleton, 81 pytest tests.
+
+> The Iteration 1 code was generated with AI assistance (Claude, 19/10/2026) and is being reviewed by the team;
+> see Appendix A of the proposal.
+
+**Documents:** [Part 1 proposal, slides and business process](docs/part1/) · [Iteration 1 analysis](docs/i1/)
 
 Stack: Python 3.12 or later (tested on 3.13), Flask + Jinja2, sqlite3 data-access objects with hand-written SQL (no ORM),
 SQLite, Flask-Login, pytest. One application, one database file.
@@ -84,7 +96,8 @@ Double-clicking "Confirm order" creates one order.
 | Data access | DAO | `saigonbite/data_access/` (`HubDAO`, `CustomerDAO`, `UserDAO`, `OrderDAO`, `PaymentDAO`) |
 
 Other files: `db/schema.sql`, `db/seed.sql`, `init_db.py`, `app.py` (entry point for `flask run`), `tests/`,
-`docs/i1/` (UC-01 subset description, domain model v1, Order state machine v1, SSD, CRUD inventory v1).
+`docs/i1/` (UC-01 subset description, domain model v1, Order state machine v1, SSD, CRUD inventory v1),
+`docs/part1/` (Part 1 proposal, slides and business process diagram).
 
 ## What Iteration 1 covers
 

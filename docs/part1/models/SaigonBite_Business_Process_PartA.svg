@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2500" height="986" viewBox="-20 0 2135 842">
+<defs><marker id="ab" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#004387"/></marker><marker id="ar" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#B03A2E"/></marker></defs>
+<rect x="-20" y="0" width="2135" height="842" fill="#FFFFFF"/>
+<text x="4" y="30" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="bold" fill="#004387">Part A: Order, quote and payment</text>
+<rect x="-20" y="44" width="2135" height="392" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<rect x="-20" y="44" width="110" height="392" fill="#004387" stroke="#004387" stroke-width="3"/>
+<text transform="translate(45.0,240.0) rotate(-90)" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="bold" fill="#FFFFFF" text-anchor="middle"><tspan x="0" dy="10.0">Customer</tspan></text>
+<rect x="-20" y="436" width="2135" height="290" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<rect x="-20" y="436" width="110" height="290" fill="#004387" stroke="#004387" stroke-width="3"/>
+<text transform="translate(45.0,581.0) rotate(-90)" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="bold" fill="#FFFFFF" text-anchor="middle"><tspan x="0" dy="10.0">OFDH platform</tspan></text>
+<path d="M152.0,164.0 L203.0,164.0" fill="none" stroke="#004387" stroke-width="3" marker-end="url(#ab)" stroke-linejoin="round"/>
+<path d="M247.0,164.0 L281.0,164.0" fill="none" stroke="#004387" stroke-width="3" marker-end="url(#ab)" stroke-linejoin="round"/>
+<path d="M469.0,164.0 L650.0,164.0 L650.0,461.0" fill="none" stroke="#004387" stroke-width="3" marker-end="url(#ab)" stroke-linejoin="round"/>
+<path d="M535.0,526.0 L319.0,526.0" fill="none" stroke="#B03A2E" stroke-width="3" marker-end="url(#ar)" stroke-linejoin="round"/>
+<path d="M225.0,470.0 L225.0,186.0" fill="none" stroke="#004387" stroke-width="3" marker-end="url(#ab)" stroke-linejoin="round"/>
+<path d="M765.0,526.0 L916.0,526.0" fill="none" stroke="#004387" stroke-width="3" marker-end="url(#ab)" stroke-linejoin="round"/>
+<path d="M1010.0,470.0 L1010.0,220.0" fill="none" stroke="#004387" stroke-width="3" marker-end="url(#ab)" stroke-linejoin="round"/>
+<path d="M1104.0,164.0 L1218.0,164.0" fill="none" stroke="#004387" stroke-width="3" marker-end="url(#ab)" stroke-linejoin="round"/>
+<path d="M1262.0,164.0 L1315.0,164.0" fill="none" stroke="#004387" stroke-width="3" marker-end="url(#ab)" stroke-linejoin="round"/>
+<path d="M1430.0,229.0 L1430.0,461.0" fill="none" stroke="#004387" stroke-width="3" marker-end="url(#ab)" stroke-linejoin="round"/>
+<path d="M1315.0,526.0 L1240.0,526.0 L1240.0,186.0" fill="none" stroke="#B03A2E" stroke-width="3" marker-end="url(#ar)" stroke-linejoin="round"/>
+<path d="M1545.0,164.0 L1690.0,164.0 L1690.0,504.0" fill="none" stroke="#004387" stroke-width="3" marker-end="url(#ab)" stroke-linejoin="round"/>
+<path d="M1545.0,526.0 L1668.0,526.0" fill="none" stroke="#004387" stroke-width="3" marker-end="url(#ab)" stroke-linejoin="round"/>
+<path d="M1712.0,526.0 L1836.0,526.0" fill="none" stroke="#004387" stroke-width="3" marker-end="url(#ab)" stroke-linejoin="round"/>
+<path d="M1900.0,243.0 L1930.0,243.0 L1930.0,582.0" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 7" stroke-linejoin="round"/>
+<path d="M1930.0,582.0 L1930.0,658.0" fill="none" stroke="#004387" stroke-width="3" marker-end="url(#ab)" stroke-linejoin="round"/>
+<circle cx="130" cy="164" r="22.0" fill="#004387"/>
+<polygon points="225,142.0 247.0,164 225,186.0 203.0,164" fill="#FFFFFF" stroke="#004387" stroke-width="3"/>
+<rect x="281.0" y="108.0" width="188" height="112" rx="26" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><text x="375" y="140.8" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1B1B1B" text-anchor="middle" font-weight="normal"><tspan x="375" dy="0">Browse and</tspan><tspan x="375" dy="33">pick a hub,</tspan><tspan x="375" dy="33">add items</tspan></text>
+<rect x="131.0" y="470.0" width="188" height="112" rx="26" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><text x="225" y="519.3" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1B1B1B" text-anchor="middle" font-weight="normal"><tspan x="225" dy="0">Suggest a</tspan><tspan x="225" dy="33">quieter hub</tspan></text>
+<polygon points="650,461.0 765.0,526 650,591.0 535.0,526" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><text x="650" y="535.8" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1B1B1B" text-anchor="middle" font-weight="normal"><tspan x="650" dy="0">Hub busy?</tspan></text>
+<rect x="916.0" y="470.0" width="188" height="112" rx="26" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><text x="1010" y="502.8" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1B1B1B" text-anchor="middle" font-weight="normal"><tspan x="1010" dy="0">Quote price:</tspan><tspan x="1010" dy="33">fee and</tspan><tspan x="1010" dy="33">voucher</tspan></text>
+<rect x="916.0" y="108.0" width="188" height="112" rx="26" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><text x="1010" y="140.8" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1B1B1B" text-anchor="middle" font-weight="normal"><tspan x="1010" dy="0">Check quote,</tspan><tspan x="1010" dy="33">choose</tspan><tspan x="1010" dy="33">payment</tspan></text>
+<polygon points="1240,142.0 1262.0,164 1240,186.0 1218.0,164" fill="#FFFFFF" stroke="#004387" stroke-width="3"/>
+<polygon points="1430,99.0 1545.0,164 1430,229.0 1315.0,164" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><text x="1430" y="157.8" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1B1B1B" text-anchor="middle" font-weight="normal"><tspan x="1430" dy="0">Payment</tspan><tspan x="1430" dy="32">method?</tspan></text>
+<polygon points="1430,461.0 1545.0,526 1430,591.0 1315.0,526" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><text x="1430" y="519.8" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1B1B1B" text-anchor="middle" font-weight="normal"><tspan x="1430" dy="0">Stub</tspan><tspan x="1430" dy="32">paid?</tspan></text>
+<polygon points="1690,504.0 1712.0,526 1690,548.0 1668.0,526" fill="#FFFFFF" stroke="#004387" stroke-width="3"/>
+<rect x="1836.0" y="470.0" width="188" height="112" rx="26" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><text x="1930" y="502.8" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1B1B1B" text-anchor="middle" font-weight="normal"><tspan x="1930" dy="0">Create order</tspan><tspan x="1930" dy="33">(PLACED),</tspan><tspan x="1930" dy="33">notify hub</tspan></text>
+<polygon points="1715.0,243.0 2061.0,243.0 2085.0,267.0 2085.0,425.0 1715.0,425.0" fill="#FFFBE6" stroke="#004387" stroke-width="2.5"/><path d="M2061.0,243.0 L2061.0,267.0 L2085.0,267.0" fill="none" stroke="#004387" stroke-width="2.5"/><text x="1892" y="277.8" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1B1B1B" text-anchor="middle" font-weight="normal"><tspan x="1892" dy="0">While the order is</tspan><tspan x="1892" dy="33">PLACED or CONFIRMED</tspan><tspan x="1892" dy="33">the customer may</tspan><tspan x="1892" dy="33">cancel; see Figure 1e</tspan><tspan x="1892" dy="33">(Cancel order)</tspan></text>
+<circle cx="1930.0" cy="682.0" r="24" fill="#FFFFFF" stroke="#004387" stroke-width="3"/>
+<text x="1930.0" y="691.0" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="bold" fill="#004387" text-anchor="middle">A1</text>
+<text x="427.0" y="516.0" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="bold" fill="#B03A2E" text-anchor="middle" stroke="#E7F0F6" stroke-width="7" stroke-linejoin="round" paint-order="stroke"><tspan x="427.0" dy="0">[busy]</tspan></text>
+<text x="840.5" y="516.0" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="bold" fill="#004387" text-anchor="middle" stroke="#E7F0F6" stroke-width="7" stroke-linejoin="round" paint-order="stroke"><tspan x="840.5" dy="0">[not busy]</tspan></text>
+<text x="1442.0" y="354.3" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="bold" fill="#004387" text-anchor="start" stroke="#E7F0F6" stroke-width="7" stroke-linejoin="round" paint-order="stroke"><tspan x="1442.0" dy="0">[online]</tspan></text>
+<text x="1226.0" y="312.0" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="bold" fill="#B03A2E" text-anchor="end" stroke="#E7F0F6" stroke-width="7" stroke-linejoin="round" paint-order="stroke"><tspan x="1226.0" dy="0">[stub failed:</tspan><tspan x="1226.0" dy="30">retry or COD]</tspan></text>
+<text x="1617.5" y="154.0" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="bold" fill="#004387" text-anchor="middle" stroke="#E7F0F6" stroke-width="7" stroke-linejoin="round" paint-order="stroke"><tspan x="1617.5" dy="0">[COD]</tspan></text>
+<text x="1606.5" y="516.0" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="bold" fill="#004387" text-anchor="middle" stroke="#E7F0F6" stroke-width="7" stroke-linejoin="round" paint-order="stroke"><tspan x="1606.5" dy="0">[paid]</tspan></text>
+<text x="104" y="758" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387">Owner: Quan 523K0049 · AI-assisted (see Appendix A)</text>
+<text x="2091" y="758" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387" text-anchor="end">Connectors: A1 continues in Part B</text>
+<path d="M104,785 L150,785" stroke="#B03A2E" stroke-width="3" marker-end="url(#ar)"/>
+<text x="162" y="794" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387">Red = failure or exception path</text>
+<rect x="604.234375" y="770" width="40" height="26" rx="8" fill="#DCDCDC" stroke="#004387" stroke-width="2"/>
+<text x="656.234375" y="794" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387">Grey = in the business process, not built in this release (A-08, A-09)</text>
+<circle cx="118" cy="821" r="14" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><path d="M109.6,812.6 L126.4,829.4 M109.6,829.4 L126.4,812.6" stroke="#004387" stroke-width="4"/>
+<text x="144" y="830" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387">Flow final: this path ends</text>
+<circle cx="526.234375" cy="821" r="14" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><circle cx="526.234375" cy="821" r="6" fill="#004387"/>
+<text x="552.234375" y="830" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387">Activity final: the whole activity ends</text>
+</svg>
