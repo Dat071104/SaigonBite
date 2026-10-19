@@ -22,4 +22,4 @@ UML activity diagram with swimlanes. The editable source is [models/SaigonBite_B
 | [D](models/SaigonBite_Business_Process_PartD.svg) | Receipt, failed delivery, refund and reports |
 | [E](models/SaigonBite_Business_Process_PartE.svg) | Cancel order (separate activity, analysed only) |
 
-Owner: Quan 523K0049. AI-assisted; see Appendix A of the proposal.
+Owner: Dat 722I0004. AI-assisted; see Appendix A of the proposal.
