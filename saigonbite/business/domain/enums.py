@@ -28,6 +28,7 @@ class PaymentState(str, Enum):
     FAILED = "FAILED"
     VOIDED = "VOIDED"
     REFUND_PENDING = "REFUND_PENDING"
+    REFUNDED = "REFUNDED"
 
 
 class Role(str, Enum):

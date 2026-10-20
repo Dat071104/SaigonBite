@@ -18,7 +18,7 @@ MAX_QUANTITY = 99
 # the remaining transitions are the planned ones and are used from Iteration 2 on.
 ALLOWED_TRANSITIONS: dict[OrderState, frozenset[OrderState]] = {
     OrderState.PLACED: frozenset({OrderState.CONFIRMED, OrderState.REJECTED, OrderState.CANCELLED}),
-    OrderState.CONFIRMED: frozenset({OrderState.PREPARING}),
+    OrderState.CONFIRMED: frozenset({OrderState.PREPARING, OrderState.CANCELLED}),
     OrderState.PREPARING: frozenset({OrderState.READY}),
     OrderState.READY: frozenset({OrderState.OUT_FOR_DELIVERY}),
     OrderState.OUT_FOR_DELIVERY: frozenset({OrderState.DELIVERED, OrderState.DELIVERY_FAILED}),

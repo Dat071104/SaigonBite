@@ -2,6 +2,7 @@
 {% block title %}Your quote - SaigonBite{% endblock %}
 {% block content %}
 <h1>Your quote</h1>
+{% if notice %}<div class="flash error" id="quote-changed">{{ notice }}</div>{% endif %}
 <p>{{ quote.hub.name }}<br><span class="muted">Deliver to: {{ quote.address.full_address }}</span></p>
 <table id="quote-table">
   <thead><tr><th>Item</th><th class="num">Unit price</th><th class="num">Qty</th><th class="num">Line total</th></tr></thead>
@@ -19,6 +20,7 @@
   <input type="hidden" name="hub_id" value="{{ quote.hub.id }}">
   <input type="hidden" name="address_id" value="{{ quote.address.id }}">
   <input type="hidden" name="idempotency_token" value="{{ idempotency_token }}">
+  <input type="hidden" name="quoted_total" value="{{ quote.total }}">
   {% for item_id, qty in quantities.items() %}
     <input type="hidden" name="qty_{{ item_id }}" value="{{ qty }}">
   {% endfor %}

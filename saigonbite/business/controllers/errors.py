@@ -15,3 +15,12 @@ class AuthorizationError(BusinessError):
 
 class NotFoundError(BusinessError):
     """The requested record does not exist."""
+
+
+class QuoteChangedError(BusinessError):
+    """The re-priced total differs from the total the customer saw. No order is written;
+    the View shows the new quote so the customer can confirm again."""
+
+    def __init__(self, quote):
+        super().__init__("The price changed since your quote. Please check the new total and confirm again.")
+        self.quote = quote

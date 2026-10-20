@@ -8,12 +8,14 @@ tracks delivery and cash, and reports from one shared order record.
 |---|---|---|
 | Nguyen Thanh Dat | 722I0004 | UC-01 Place an order, UC-03 Manage hubs and kitchen capacity |
 | Le Minh Quan | 523K0049 | UC-02 Deliver an order, UC-04 Produce management reports |
+| Quan | (ID to be added) | UC-07 Confirm or reject an incoming order, UC-14 Manage brands and menu items (joins from Iteration 2) |
 
 **Status:** Iteration 1 increment (tag [`i1-evidence`](https://github.com/Dat071104/SaigonBite/tree/i1-evidence)): a persisted cash-on-delivery (COD) order
-for one hub (UC-01 subset) on a runnable skeleton, 81 pytest tests.
+for one hub (UC-01 subset) on a runnable skeleton. 89 pytest tests after the team review of 20/10.
 
-> The Iteration 1 code was generated with AI assistance (Claude, 19/10/2026) and is being reviewed by the team;
-> see Appendix A of the proposal.
+> The Iteration 1 code was generated with AI assistance (Claude, 19/10/2026) and reviewed by the team on 20/10/2026.
+> The review found two defects that the tests did not catch (a price change between quote and confirm was charged
+> without asking; an archived hub disappeared from order history). Both are fixed and tested. See Appendix A of the proposal.
 
 **Documents:** [Part 1 proposal, slides and business process](docs/part1/) · [Iteration 1 analysis](docs/i1/)
 
@@ -53,7 +55,7 @@ The four steps are: (1) create and activate the virtual environment, (2) install
 
 ```
 docker compose up --build -d                  # build and start, then open http://127.0.0.1:5000/
-docker compose --profile test run --rm tests  # run the 81 tests inside the container
+docker compose --profile test run --rm tests  # run the tests inside the container
 docker compose down                           # stop (add -v to delete the database volume and reseed next start)
 ```
 
@@ -91,7 +93,8 @@ not carried by one hub, so the "item not available" rule can be tried by hand.
 1. Log in as `customer` / `dev-customer`.
 2. Choose a hub, enter quantities (leave a blank for items you do not want), choose the address, press "See the quote".
 3. The quote shows item subtotal, flat delivery fee and total. Press "Confirm order".
-4. The confirmation shows the order ID and total. The order is saved with state `PLACED` and a COD payment in state `PENDING`.
+4. If a price changed after the quote, the new quote is shown and nothing is saved until you confirm it again.
+5. The confirmation shows the order ID and total. The order is saved with state `PLACED` and a COD payment in state `PENDING`.
 
 Try an empty cart, a quantity of 0 or -1, or a missing address: a message appears and no order is created.
 Double-clicking "Confirm order" creates one order.

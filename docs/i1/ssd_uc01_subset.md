@@ -1,4 +1,4 @@
-> AI-assisted draft (Claude), to be reviewed by Dat and Quan.
+> AI-assisted (Claude); reviewed and corrected by the team in October 2026.
 
 # System sequence diagram - UC-01 subset (COD, one hub)
 

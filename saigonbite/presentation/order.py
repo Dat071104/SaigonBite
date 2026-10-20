@@ -7,7 +7,7 @@ import uuid
 from flask import Blueprint, redirect, render_template, request, url_for
 from flask_login import current_user
 
-from saigonbite.business.controllers import PlaceOrderController, ValidationError
+from saigonbite.business.controllers import PlaceOrderController, QuoteChangedError, ValidationError
 from saigonbite.business.domain import Role
 from saigonbite.presentation.auth import role_required
 from saigonbite.presentation.db import get_db
@@ -57,8 +57,12 @@ def quote():
         if not hub_id:
             return render_template("order/hubs.html", hubs=_controller().list_hubs(), error=str(exc)), 400
         return _render_menu(hub_id, str(exc), quantities, address_id, 400)
-    return render_template("order/quote.html", quote=q, quantities=quantities,
-                           idempotency_token=uuid.uuid4().hex)
+    return _render_quote(q, quantities, None, 200)
+
+
+def _render_quote(q, quantities: dict[int, str], notice: str | None, status: int):
+    return render_template("order/quote.html", quote=q, quantities=quantities, notice=notice,
+                           idempotency_token=uuid.uuid4().hex), status
 
 
 @bp.post("/confirm")
@@ -69,7 +73,10 @@ def confirm():
     quantities = _read_quantities(request.form)
     try:
         result = _controller().confirm_order(current_user.account.id, hub_id, address_id, quantities,
-                                             request.form.get("idempotency_token", ""))
+                                             request.form.get("idempotency_token", ""),
+                                             request.form.get("quoted_total", type=int))
+    except QuoteChangedError as exc:
+        return _render_quote(exc.quote, quantities, str(exc), 409)
     except ValidationError as exc:
         if not hub_id:
             return render_template("order/hubs.html", hubs=_controller().list_hubs(), error=str(exc)), 400

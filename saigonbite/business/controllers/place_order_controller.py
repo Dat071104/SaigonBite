@@ -3,7 +3,7 @@
     listHubs        -> list_hubs()
     selectHub       -> select_hub(user_id, hub_id)
     requestQuote    -> request_quote(user_id, hub_id, address_id, quantities)
-    confirmOrder    -> confirm_order(user_id, hub_id, address_id, quantities, idempotency_token)
+    confirmOrder    -> confirm_order(user_id, hub_id, address_id, quantities, idempotency_token, quoted_total)
     viewConfirmation-> get_confirmation(user_id, order_id)
 
 All rules are enforced here, on the server, whatever the browser sent.
@@ -20,7 +20,7 @@ from saigonbite.business.domain import (MAX_QUANTITY, Address, Customer, Hub, Hu
 from saigonbite.data_access import (CustomerDAO, HubDAO, OrderDAO, PaymentDAO, UserDAO,
                                     immediate_transaction)
 
-from .errors import AuthorizationError, NotFoundError, ValidationError
+from .errors import AuthorizationError, NotFoundError, QuoteChangedError, ValidationError
 
 
 @dataclass
@@ -70,10 +70,13 @@ class PlaceOrderController:
         return self._build_quote(customer, hub_id, address_id, quantities)
 
     def confirm_order(self, user_id: int, hub_id: int, address_id: Optional[int],
-                      quantities: Mapping[int, str], idempotency_token: str) -> OrderConfirmation:
+                      quantities: Mapping[int, str], idempotency_token: str,
+                      quoted_total: Optional[int] = None) -> OrderConfirmation:
         """Create Order(PLACED) + OrderLines + Payment(COD, PENDING) in ONE transaction (AC-4).
 
         A repeated call with the same token returns the first order and writes nothing (AC-7).
+        quoted_total is the total the customer saw on the quote page. It is only compared, never
+        used as a price: if the re-priced total differs, QuoteChangedError carries the new quote.
         """
         customer = self._require_customer(user_id)
         token = (idempotency_token or "").strip()
@@ -89,6 +92,8 @@ class PlaceOrderController:
 
             # Re-validate and re-price inside the write lock: never trust the quote page.
             quote = self._build_quote(customer, hub_id, address_id, quantities)
+            if quoted_total is not None and quoted_total != quote.total:
+                raise QuoteChangedError(quote)
             now = _now()
             order = Order.place(customer.id, quote, token, now)
             order.id = self.orders.insert(order)
@@ -157,7 +162,7 @@ class PlaceOrderController:
 
     def _confirmation(self, order: Order, created: bool) -> OrderConfirmation:
         payment = self.payments.get_by_order_id(order.id)
-        hub = self.hubs.get(order.hub_id)
+        hub = self.hubs.get_including_archived(order.hub_id)
         customer_addresses = self.customers.list_addresses(order.customer_id)
         address = next(a for a in customer_addresses if a.id == order.address_id)
         return OrderConfirmation(order=order, payment=payment, hub=hub, address=address, created=created)

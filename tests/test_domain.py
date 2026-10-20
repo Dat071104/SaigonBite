@@ -41,3 +41,9 @@ def test_T_DOM_04_invalid_transition_raises_and_keeps_the_state():
 def test_T_DOM_05_order_total_is_lines_plus_delivery_fee():
     order = _order()
     assert order.item_subtotal == 30000 and order.total == 45000
+
+
+@pytest.mark.parametrize("start,allowed", [(OrderState.PLACED, True), (OrderState.CONFIRMED, True),
+                                           (OrderState.PREPARING, False), (OrderState.READY, False)])
+def test_T_DOM_05_customer_may_cancel_only_before_cooking_starts(start, allowed):
+    assert _order(start).can_move_to(OrderState.CANCELLED) is allowed

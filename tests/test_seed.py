@@ -54,7 +54,7 @@ def test_T_SEED_05_schema_states_equal_python_enums():
     assert set(re.findall(r"'([A-Z_]+)'", orders_block)) == {s.value for s in OrderState}
     payment_block = sql[sql.index("CREATE TABLE payment"):sql.index("CREATE INDEX")]
     assert {s.value for s in PaymentState} <= set(re.findall(r"'([A-Z_]+)'", payment_block))
-    assert {s.value for s in PaymentState} == {"PENDING", "PAID", "FAILED", "VOIDED", "REFUND_PENDING"}
+    assert {s.value for s in PaymentState} == {"PENDING", "PAID", "FAILED", "VOIDED", "REFUND_PENDING", "REFUNDED"}
 
 
 def test_T_SEED_06_order_states_are_exactly_the_frozen_nine():

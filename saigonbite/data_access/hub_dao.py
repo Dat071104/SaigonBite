@@ -24,6 +24,11 @@ class HubDAO:
             f"SELECT {_HUB_COLUMNS} FROM hub WHERE id = ? AND archived_at IS NULL", (hub_id,)).fetchone()
         return Hub(**dict(row)) if row else None
 
+    def get_including_archived(self, hub_id: int) -> Optional[Hub]:
+        """Return the hub even if archived: order history must keep showing where it was placed."""
+        row = self.conn.execute(f"SELECT {_HUB_COLUMNS} FROM hub WHERE id = ?", (hub_id,)).fetchone()
+        return Hub(**dict(row)) if row else None
+
     def list_menu(self, hub_id: int) -> list[HubMenuItem]:
         """All menu items the hub carries, with their availability flag."""
         rows = self.conn.execute(

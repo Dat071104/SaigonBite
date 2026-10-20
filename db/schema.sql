@@ -97,7 +97,7 @@ CREATE TABLE payment (
     id          INTEGER PRIMARY KEY,
     order_id    INTEGER NOT NULL UNIQUE REFERENCES orders(id),
     method      TEXT    NOT NULL CHECK (method IN ('COD', 'ONLINE')),
-    state       TEXT    NOT NULL CHECK (state IN ('PENDING', 'PAID', 'FAILED', 'VOIDED', 'REFUND_PENDING')),
+    state       TEXT    NOT NULL CHECK (state IN ('PENDING', 'PAID', 'FAILED', 'VOIDED', 'REFUND_PENDING', 'REFUNDED')),
     amount      INTEGER NOT NULL CHECK (amount >= 0),
     created_at  TEXT    NOT NULL
 );
