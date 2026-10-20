@@ -44,10 +44,6 @@
 <text x="3234" y="954" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387" text-anchor="start">Connectors: B1 comes from Part B; C1, C2, C3 continue in Part D</text>
 <path d="M3234,873 L3280,873" stroke="#B03A2E" stroke-width="3" marker-end="url(#ar)"/>
 <text x="3292" y="882" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387">Red = failure or exception path</text>
-<rect x="3734.234375" y="858" width="40" height="26" rx="8" fill="#DCDCDC" stroke="#004387" stroke-width="2"/>
-<text x="3786.234375" y="882" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387">Grey = in the business process, not built in this release</text>
 <circle cx="3248" cy="909" r="14" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><path d="M3239.6,900.6 L3256.4,917.4 M3239.6,917.4 L3256.4,900.6" stroke="#004387" stroke-width="4"/>
 <text x="3274" y="918" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387">Flow final: this path ends</text>
-<circle cx="3656.234375" cy="909" r="14" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><circle cx="3656.234375" cy="909" r="6" fill="#004387"/>
-<text x="3682.234375" y="918" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387">Activity final: the whole activity ends</text>
 </svg>

@@ -49,10 +49,4 @@
 <text x="2091" y="758" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387" text-anchor="end">Connectors: A1 continues in Part B</text>
 <path d="M104,785 L150,785" stroke="#B03A2E" stroke-width="3" marker-end="url(#ar)"/>
 <text x="162" y="794" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387">Red = failure or exception path</text>
-<rect x="604.234375" y="770" width="40" height="26" rx="8" fill="#DCDCDC" stroke="#004387" stroke-width="2"/>
-<text x="656.234375" y="794" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387">Grey = in the business process, not built in this release</text>
-<circle cx="118" cy="821" r="14" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><path d="M109.6,812.6 L126.4,829.4 M109.6,829.4 L126.4,812.6" stroke="#004387" stroke-width="4"/>
-<text x="144" y="830" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387">Flow final: this path ends</text>
-<circle cx="526.234375" cy="821" r="14" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><circle cx="526.234375" cy="821" r="6" fill="#004387"/>
-<text x="552.234375" y="830" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387">Activity final: the whole activity ends</text>
 </svg>

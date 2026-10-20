@@ -19,7 +19,7 @@
 <polygon points="295.0,94.0 565.0,94.0 565.0,194.0 295.0,194.0 325.0,144" fill="#DCDCDC" stroke="#004387" stroke-width="3" stroke-linejoin="round"/><text x="445.0" y="137.3" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1B1B1B" text-anchor="middle" font-weight="normal"><tspan x="445.0" dy="0">Customer</tspan><tspan x="445.0" dy="33">requests cancel</tspan></text>
 <rect x="336.0" y="288.0" width="188" height="112" rx="26" fill="#DCDCDC" stroke="#004387" stroke-width="3"/><text x="430" y="337.3" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1B1B1B" text-anchor="middle" font-weight="normal"><tspan x="430" dy="0">Check order</tspan><tspan x="430" dy="33">state</tspan></text>
 <polygon points="780,279.0 945.0,344 780,409.0 615.0,344" fill="#DCDCDC" stroke="#004387" stroke-width="3"/><text x="780" y="337.8" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1B1B1B" text-anchor="middle" font-weight="normal"><tspan x="780" dy="0">Still</tspan><tspan x="780" dy="32">cancellable?</tspan></text>
-<rect x="1310.0" y="270.0" width="340" height="148" rx="26" fill="#DCDCDC" stroke="#004387" stroke-width="3"/><text x="1480" y="304.3" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1B1B1B" text-anchor="middle" font-weight="normal"><tspan x="1480" dy="0">Cancel order:</tspan><tspan x="1480" dy="33">void COD, refund</tspan><tspan x="1480" dy="33">online in full,</tspan><tspan x="1480" dy="33">notify hub</tspan></text>
+<rect x="1310.0" y="270.0" width="340" height="148" rx="26" fill="#DCDCDC" stroke="#004387" stroke-width="3"/><text x="1480" y="320.8" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1B1B1B" text-anchor="middle" font-weight="normal"><tspan x="1480" dy="0">Cancel order: void</tspan><tspan x="1480" dy="33">COD; online refund</tspan><tspan x="1480" dy="33">owed, notify hub</tspan></text>
 <circle cx="1750" cy="344" r="22.0" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><circle cx="1750" cy="344" r="14.0" fill="#004387"/>
 <rect x="630.0" y="484.0" width="300" height="100" rx="26" fill="#DCDCDC" stroke="#B03A2E" stroke-width="3"/><text x="780" y="527.3" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1B1B1B" text-anchor="middle" font-weight="normal"><tspan x="780" dy="0">Refuse: too late</tspan><tspan x="780" dy="33">to cancel</tspan></text>
 <circle cx="1040" cy="534" r="22.0" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><circle cx="1040" cy="534" r="14.0" fill="#004387"/>
@@ -29,9 +29,7 @@
 <path d="M104,673 L150,673" stroke="#B03A2E" stroke-width="3" marker-end="url(#ar)"/>
 <text x="162" y="682" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387">Red = failure or exception path</text>
 <rect x="604.234375" y="658" width="40" height="26" rx="8" fill="#DCDCDC" stroke="#004387" stroke-width="2"/>
-<text x="656.234375" y="682" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387">Grey = in the business process, not built in this release</text>
-<circle cx="118" cy="709" r="14" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><path d="M109.6,700.6 L126.4,717.4 M109.6,717.4 L126.4,700.6" stroke="#004387" stroke-width="4"/>
-<text x="144" y="718" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387">Flow final: this path ends</text>
-<circle cx="526.234375" cy="709" r="14" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><circle cx="526.234375" cy="709" r="6" fill="#004387"/>
-<text x="552.234375" y="718" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387">Activity final: the whole activity ends</text>
+<text x="656.234375" y="682" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387">Grey = in the business process, not built in this release (includes paying out refunds owed)</text>
+<circle cx="118" cy="709" r="14" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><circle cx="118" cy="709" r="6" fill="#004387"/>
+<text x="144" y="718" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387">Activity final: the whole activity ends</text>
 </svg>
