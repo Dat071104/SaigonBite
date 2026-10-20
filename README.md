@@ -8,10 +8,10 @@ tracks delivery and cash, and reports from one shared order record.
 |---|---|---|
 | Nguyen Thanh Dat | 722I0004 | UC-01 Place an order, UC-03 Manage hubs and kitchen capacity |
 | Le Minh Quan | 523K0049 | UC-02 Deliver an order, UC-04 Produce management reports |
-| Quan | (ID to be added) | UC-07 Confirm or reject an incoming order, UC-14 Manage brands and menu items (joins from Iteration 2) |
+| Quan | (ID to be added) | UC-05 Confirm or reject an incoming order, UC-06 Manage brands and menu items (joins from Iteration 2) |
 
 **Status:** Iteration 1 increment (tag [`i1-evidence`](https://github.com/Dat071104/SaigonBite/tree/i1-evidence)): a persisted cash-on-delivery (COD) order
-for one hub (UC-01 subset) on a runnable skeleton. 89 pytest tests after the team review of 20/10.
+for one hub (UC-01 subset) on a runnable skeleton. 90 pytest tests after the team review of 20/10.
 
 > The Iteration 1 code was generated with AI assistance (Claude, 19/10/2026) and reviewed by the team on 20/10/2026.
 > The review found two defects that the tests did not catch (a price change between quote and confirm was charged
@@ -109,7 +109,7 @@ Double-clicking "Confirm order" creates one order.
 | Data access | DAO | `saigonbite/data_access/` (`HubDAO`, `CustomerDAO`, `UserDAO`, `OrderDAO`, `PaymentDAO`) |
 
 Other files: `db/schema.sql`, `db/seed.sql`, `init_db.py`, `app.py` (entry point for `flask run`), `tests/`,
-`docs/i1/` (UC-01 subset description, domain model v1, Order state machine v1, SSD, CRUD inventory v1),
+`docs/i1/` (UC-01 subset description and activity diagram, domain model v1, Order state machine v1, SSD, CRUD inventory v1),
 `docs/part1/` (Part 1 proposal, slides and business process diagram).
 
 ## What Iteration 1 covers

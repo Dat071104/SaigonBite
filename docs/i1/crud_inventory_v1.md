@@ -8,7 +8,7 @@ the "Planned" columns follow the team plan (section 3.4) and the open lecturer q
 | Class | Table | Create | Read | Update | Delete / archive | Built in I1 |
 |---|---|---|---|---|---|---|
 | Hub | `hub` | UC-03 (I2) | UC-01 (`HubDAO.list_active`, `HubDAO.get`), UC-03, UC-04 | UC-03 (I2) | UC-03 archive with guard "no active orders" (`archived_at`, I2) | Read only |
-| Order | `orders` | UC-01 (`OrderDAO.insert`) | UC-01 confirmation (`OrderDAO.get_by_id`, `OrderDAO.get_by_token`), UC-02, UC-04 | UC-07, kitchen board, UC-02, Cancel order (state change only) | Archive old orders (`archived_at`, analysed) | Create, read |
+| Order | `orders` | UC-01 (`OrderDAO.insert`) | UC-01 confirmation (`OrderDAO.get_by_id`, `OrderDAO.get_by_token`), UC-02, UC-04 | UC-05, kitchen board, UC-02, Cancel order (state change only) | Archive old orders (`archived_at`, analysed) | Create, read |
 | OrderLine | `order_line` | UC-01 (`OrderDAO.insert`) | UC-01, UC-04 | Edit order (analysed) | Follows Order | Create, read |
 | Payment | `payment` | UC-01 (`PaymentDAO.insert`, COD / `PENDING`) | UC-01 confirmation, UC-04 | UC-02 (`PAID`), reject and failure rules (`VOIDED`, `REFUND_PENDING`) | Follows Order | Create, read |
 | Customer (`LocalCustomer`, `TouristCustomer`) | `customer` | Register customer (analysed) | UC-01 (`CustomerDAO.get_by_user_id`) | Register customer | Deactivate (analysed) | Seed + read |

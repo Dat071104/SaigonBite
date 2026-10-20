@@ -3,7 +3,7 @@
 # UC-01 Place an order - Iteration 1 subset
 
 Owner: Dat (722I0004). Actor: Customer. Built 19/10/2026 (I1 day D3) as the first increment.
-Names in this file are the names used in `db/schema.sql` and the Python code (AC-9).
+Names in this file are the names used in `db/schema.sql` and the Python code (AC-9). Activity diagram: `activity_uc01_subset.md`.
 
 ## 1. Scope of the subset
 
@@ -69,7 +69,7 @@ Failure (any rule below is broken):
 | 5 | Customer | Enters quantities, chooses the delivery address and asks for the quote. | `requestQuote` |
 | 6 | System | Validates (section 6), prices the cart and shows item subtotal, delivery fee and total with a fresh idempotency token. | `requestQuote` (response) |
 | 7 | Customer | Confirms the order. | `confirmOrder` |
-| 8 | System | Re-validates, then in one transaction creates Order `PLACED`, its OrderLines and Payment `COD` / `PENDING`. | `confirmOrder` |
+| 8 | System | Re-validates and re-prices; if the total still matches the quote, creates in one transaction Order `PLACED`, its OrderLines and Payment `COD` / `PENDING`. | `confirmOrder` |
 | 9 | System | Shows the confirmation with the order ID and total. | `viewConfirmation` |
 
 ## 6. Exceptions
@@ -87,6 +87,7 @@ Failure (any rule below is broken):
 | E-09 | 7 | Same token submitted again | First order is shown; nothing new written | `test_T_UC01_30`, `_34` |
 | E-10 | 7 | Token missing | "This order form has expired" | `test_T_UC01_23` |
 | E-11 | 8 | Database error while saving | Transaction rolled back; nothing written | `test_T_UC01_13` |
+| E-12 | 8 | A price, fee or item changed after the quote, so the re-priced total differs from the total the customer saw | New quote shown (HTTP 409), "The price changed since your quote"; nothing written until the customer confirms again | `test_T_UC01_50`, `_51` |
 
 ## 7. Traceability to the I1 acceptance criteria
 
@@ -103,6 +104,7 @@ Failure (any rule below is broken):
 
 ## 8. Open points for review
 
-- Quote and confirm re-price from the database; if a price changes between the two pages the customer sees the new total on the confirmation only. A "price changed" warning is not built.
+- Closed in the review of 20/10: a price change between quote and confirm was saved without asking the customer (all 81 tests passed). Confirm now compares the totals and shows the new quote (E-12).
+- Closed in the review of 20/10: the confirmation page lost the hub name once a hub was archived; history now reads archived hubs too (`test_T_UC01_52`).
 - CSRF protection is not part of I1 (the stack has no form library); the idempotency token is not a CSRF token.
 - The upper quantity limit of 99 is a team default, not a client rule.

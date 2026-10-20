@@ -11,7 +11,7 @@ from saigonbite import data_access
 
 DOCS = os.path.join(ROOT, "docs", "i1")
 DOC_FILES = ["uc01_subset_description.md", "domain_model_v1.md", "order_state_machine_v1.md",
-             "ssd_uc01_subset.md", "crud_inventory_v1.md"]
+             "ssd_uc01_subset.md", "crud_inventory_v1.md", "activity_uc01_subset.md"]
 AI_HEADER = "AI-assisted (Claude)"
 
 

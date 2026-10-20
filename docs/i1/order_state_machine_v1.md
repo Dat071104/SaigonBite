@@ -30,12 +30,12 @@ stateDiagram-v2
 | From | To | Trigger | Actor | Use case | Built in I1? |
 |---|---|---|---|---|---|
 | (start) | `PLACED` | Customer confirms a valid quote | Customer | UC-01 | Yes |
-| `PLACED` | `CONFIRMED` | Kitchen confirms | Kitchen staff | UC-07 | No (I2) |
-| `PLACED` | `REJECTED` | Kitchen rejects (for example an item ran out) | Kitchen staff | UC-07 | No (I2) |
+| `PLACED` | `CONFIRMED` | Kitchen confirms | Kitchen staff | UC-05 | No (I2) |
+| `PLACED` | `REJECTED` | Kitchen rejects (for example an item ran out) | Kitchen staff | UC-05 | No (I2) |
 | `PLACED` | `CANCELLED` | Customer cancels before cooking starts | Customer | Cancel order (analysed) | No |
 | `CONFIRMED` | `CANCELLED` | Customer cancels before cooking starts | Customer | Cancel order (analysed) | No |
-| `CONFIRMED` | `PREPARING` | Kitchen starts cooking | Kitchen staff | Kitchen board (UC-08, supporting) | No (I2) |
-| `PREPARING` | `READY` | Kitchen marks ready | Kitchen staff | Kitchen board (UC-08, supporting) | No (I2) |
+| `CONFIRMED` | `PREPARING` | Kitchen starts cooking | Kitchen staff | Kitchen board (supporting) | No (I2) |
+| `PREPARING` | `READY` | Kitchen marks ready | Kitchen staff | Kitchen board (supporting) | No (I2) |
 | `READY` | `OUT_FOR_DELIVERY` | Shipper picks up (Delivery becomes PICKED_UP) | Shipper | UC-02 | No (I3) |
 | `OUT_FOR_DELIVERY` | `DELIVERED` | Shipper confirms hand-over | Shipper | UC-02 | No (I3) |
 | `OUT_FOR_DELIVERY` | `DELIVERY_FAILED` | Shipper reports failure | Shipper | UC-02 | No (I3) |
@@ -58,8 +58,8 @@ The busy-hub rule from I2 counts orders in `ACTIVE_ORDER_STATES` = `PLACED`, `CO
 | `PENDING` | Payment created, money not yet confirmed | UC-01 on confirm | Yes (COD) |
 | `PAID` | COD: shipper confirmed the cash was collected | UC-02 | No |
 | `FAILED` | Online payment failed | Online stub | No |
-| `VOIDED` | COD order rejected, cancelled or failed: nothing to collect | UC-07, Cancel order, UC-02 | No |
-| `REFUND_PENDING` | Online order rejected, cancelled or failed: the money is owed back by policy, no approval needed | UC-07, Cancel order, UC-02 | No |
+| `VOIDED` | COD order rejected, cancelled or failed: nothing to collect | UC-05, Cancel order, UC-02 | No |
+| `REFUND_PENDING` | Online order rejected, cancelled or failed: the money is owed back by policy, no approval needed | UC-05, Cancel order, UC-02 | No |
 | `REFUNDED` | The refund was paid (automatic refund, or a complaint refund approved by office staff) | Refund (deferred) | No |
 
 Refund policy (proposed default, A-06 and client question 3): a rejected, cancelled or failed online order is refunded in full without a decision. Only a complaint goes to office staff; if they deny it, the payment stays `PAID` and the customer is told the reason.
