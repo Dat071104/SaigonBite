@@ -24,14 +24,12 @@
 <path d="M4884.0,139.0 L4988.0,139.0" fill="none" stroke="#004387" stroke-width="3" marker-end="url(#ab)" stroke-linejoin="round"/>
 <path d="M4470.0,74.0 L4470.0,52.0 L5010.0,52.0 L5010.0,117.0" fill="none" stroke="#004387" stroke-width="3" marker-end="url(#ab)" stroke-linejoin="round"/>
 <path d="M4470.0,204.0 L4470.0,253.0" fill="none" stroke="#B03A2E" stroke-width="3" marker-end="url(#ar)" stroke-linejoin="round"/>
-<path d="M4564.0,309.0 L4850.0,309.0 L4850.0,771.0 L5228.0,771.0" fill="none" stroke="#B03A2E" stroke-width="3" marker-end="url(#ar)" stroke-linejoin="round"/>
-<path d="M5250.0,502.0 L5250.0,527.0" fill="none" stroke="#004387" stroke-width="3" marker-end="url(#ab)" stroke-linejoin="round"/>
-<path d="M5365.0,579.0 L5488.0,579.0" fill="none" stroke="#004387" stroke-width="3" marker-end="url(#ab)" stroke-linejoin="round"/>
-<path d="M5250.0,631.0 L5250.0,749.0" fill="none" stroke="#004387" stroke-width="3" marker-end="url(#ab)" stroke-linejoin="round"/>
-<path d="M5250.0,793.0 L5250.0,821.0" fill="none" stroke="#004387" stroke-width="3" marker-end="url(#ab)" stroke-linejoin="round"/>
-<path d="M5395.0,886.0 L5566.0,886.0" fill="none" stroke="#004387" stroke-width="3" marker-end="url(#ab)" stroke-linejoin="round"/>
-<path d="M5754.0,886.0 L5848.0,886.0" fill="none" stroke="#004387" stroke-width="3" marker-end="url(#ab)" stroke-linejoin="round"/>
-<path d="M5105.0,886.0 L4932.0,886.0" fill="none" stroke="#B03A2E" stroke-width="3" marker-end="url(#ar)" stroke-linejoin="round"/>
+<path d="M4564.0,309.0 L4850.0,309.0 L4850.0,661.0 L5250.0,661.0 L5250.0,706.0" fill="none" stroke="#B03A2E" stroke-width="3" marker-end="url(#ar)" stroke-linejoin="round"/>
+<path d="M5435.0,447.0 L5538.0,447.0" fill="none" stroke="#004387" stroke-width="3" marker-end="url(#ab)" stroke-linejoin="round"/>
+<path d="M5395.0,771.0 L5566.0,771.0" fill="none" stroke="#004387" stroke-width="3" marker-end="url(#ab)" stroke-linejoin="round"/>
+<path d="M5754.0,771.0 L5848.0,771.0" fill="none" stroke="#004387" stroke-width="3" marker-end="url(#ab)" stroke-linejoin="round"/>
+<path d="M5105.0,771.0 L4974.0,771.0" fill="none" stroke="#B03A2E" stroke-width="3" marker-end="url(#ar)" stroke-linejoin="round"/>
+<path d="M4880.0,827.0 L4880.0,864.0" fill="none" stroke="#B03A2E" stroke-width="3" marker-end="url(#ar)" stroke-linejoin="round"/>
 <path d="M4097.0,771.0 L4185.0,771.0" fill="none" stroke="#004387" stroke-width="3" marker-end="url(#ab)" stroke-linejoin="round"/>
 <path d="M4445.0,771.0 L4533.0,771.0" fill="none" stroke="#004387" stroke-width="3" marker-end="url(#ab)" stroke-linejoin="round"/>
 <path d="M4315.0,842.0 L4315.0,827.0" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 7" stroke-linejoin="round"/>
@@ -42,14 +40,13 @@
 <rect x="4696.0" y="83.0" width="188" height="112" rx="26" fill="#DCDCDC" stroke="#004387" stroke-width="3"/><text x="4790" y="132.3" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1B1B1B" text-anchor="middle" font-weight="normal"><tspan x="4790" dy="0">Rate food</tspan><tspan x="4790" dy="33">and delivery</tspan></text>
 <circle cx="5010" cy="139" r="22.0" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><path d="M4996.8,125.8 L5023.2,152.2 M4996.8,152.2 L5023.2,125.8" stroke="#004387" stroke-width="4"/>
 <rect x="4376.0" y="253.0" width="188" height="112" rx="26" fill="#DCDCDC" stroke="#B03A2E" stroke-width="3"/><text x="4470" y="302.3" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1B1B1B" text-anchor="middle" font-weight="normal"><tspan x="4470" dy="0">Submit</tspan><tspan x="4470" dy="33">complaint</tspan></text>
-<rect x="5065.0" y="392.0" width="370" height="110" rx="26" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><text x="5250" y="423.8" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1B1B1B" text-anchor="middle" font-weight="normal"><tspan x="5250" dy="0">Mark DELIVERY_FAILED:</tspan><tspan x="5250" dy="33">void COD, online</tspan><tspan x="5250" dy="33">→ REFUND_PENDING</tspan></text>
-<polygon points="5250,527.0 5365.0,579 5250,631.0 5135.0,579" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><text x="5250" y="572.8" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1B1B1B" text-anchor="middle" font-weight="normal"><tspan x="5250" dy="0">COD</tspan><tspan x="5250" dy="32">order?</tspan></text>
-<circle cx="5510" cy="579" r="22.0" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><path d="M5496.8,565.8 L5523.2,592.2 M5496.8,592.2 L5523.2,565.8" stroke="#004387" stroke-width="4"/>
-<polygon points="5250,749.0 5272.0,771 5250,793.0 5228.0,771" fill="#FFFFFF" stroke="#004387" stroke-width="3"/>
-<polygon points="5250,821.0 5395.0,886 5250,951.0 5105.0,886" fill="#DCDCDC" stroke="#004387" stroke-width="3"/><text x="5250" y="879.8" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1B1B1B" text-anchor="middle" font-weight="normal"><tspan x="5250" dy="0">Refund</tspan><tspan x="5250" dy="32">approved?</tspan></text>
-<rect x="5566.0" y="830.0" width="188" height="112" rx="26" fill="#DCDCDC" stroke="#004387" stroke-width="3"/><text x="5660" y="862.8" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1B1B1B" text-anchor="middle" font-weight="normal"><tspan x="5660" dy="0">Refund</tspan><tspan x="5660" dy="33">online or</tspan><tspan x="5660" dy="33">in cash</tspan></text>
-<circle cx="5870" cy="886" r="22.0" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><path d="M5856.8,872.8 L5883.2,899.2 M5856.8,899.2 L5883.2,872.8" stroke="#004387" stroke-width="4"/>
-<circle cx="4910" cy="886" r="22.0" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><path d="M4896.8,872.8 L4923.2,899.2 M4896.8,899.2 L4923.2,872.8" stroke="#004387" stroke-width="4"/>
+<rect x="5065.0" y="392.0" width="370" height="110" rx="26" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><text x="5250" y="423.8" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1B1B1B" text-anchor="middle" font-weight="normal"><tspan x="5250" dy="0">Mark DELIVERY_FAILED:</tspan><tspan x="5250" dy="33">void COD, refund</tspan><tspan x="5250" dy="33">online in full</tspan></text>
+<circle cx="5560" cy="447" r="22.0" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><path d="M5546.8,433.8 L5573.2,460.2 M5546.8,460.2 L5573.2,433.8" stroke="#004387" stroke-width="4"/>
+<polygon points="5250,706.0 5395.0,771 5250,836.0 5105.0,771" fill="#DCDCDC" stroke="#004387" stroke-width="3"/><text x="5250" y="764.8" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1B1B1B" text-anchor="middle" font-weight="normal"><tspan x="5250" dy="0">Refund</tspan><tspan x="5250" dy="32">approved?</tspan></text>
+<rect x="5566.0" y="715.0" width="188" height="112" rx="26" fill="#DCDCDC" stroke="#004387" stroke-width="3"/><text x="5660" y="747.8" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1B1B1B" text-anchor="middle" font-weight="normal"><tspan x="5660" dy="0">Refund</tspan><tspan x="5660" dy="33">online or</tspan><tspan x="5660" dy="33">in cash</tspan></text>
+<circle cx="5870" cy="771" r="22.0" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><path d="M5856.8,757.8 L5883.2,784.2 M5856.8,784.2 L5883.2,757.8" stroke="#004387" stroke-width="4"/>
+<rect x="4786.0" y="715.0" width="188" height="112" rx="26" fill="#DCDCDC" stroke="#B03A2E" stroke-width="3"/><text x="4880" y="764.3" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1B1B1B" text-anchor="middle" font-weight="normal"><tspan x="4880" dy="0">Tell customer</tspan><tspan x="4880" dy="33">the reason</tspan></text>
+<circle cx="4880" cy="886" r="22.0" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><path d="M4866.8,872.8 L4893.2,899.2 M4866.8,899.2 L4893.2,872.8" stroke="#004387" stroke-width="4"/>
 <circle cx="4075" cy="771" r="22.0" fill="#004387"/>
 <rect x="4185.0" y="715.0" width="260" height="112" rx="26" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><text x="4315" y="747.8" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1B1B1B" text-anchor="middle" font-weight="normal"><tspan x="4315" dy="0">Read sales,</tspan><tspan x="4315" dy="33">workload and</tspan><tspan x="4315" dy="33">delivery reports</tspan></text>
 <circle cx="4555" cy="771" r="22.0" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><circle cx="4555" cy="771" r="14.0" fill="#004387"/>
@@ -63,16 +60,14 @@
 <text x="4640.5" y="129.0" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="bold" fill="#004387" text-anchor="middle" stroke="#E7F0F6" stroke-width="7" stroke-linejoin="round" paint-order="stroke"><tspan x="4640.5" dy="0">[rate it]</tspan></text>
 <text x="5022.0" y="93.8" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="bold" fill="#004387" text-anchor="start" stroke="#E7F0F6" stroke-width="7" stroke-linejoin="round" paint-order="stroke"><tspan x="5022.0" dy="0">[no feedback]</tspan></text>
 <text x="4458.0" y="237.8" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="bold" fill="#B03A2E" text-anchor="end" stroke="#E7F0F6" stroke-width="7" stroke-linejoin="round" paint-order="stroke"><tspan x="4458.0" dy="0">[wrong or late order]</tspan></text>
-<text x="5426.5" y="569.0" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="bold" fill="#004387" text-anchor="middle" stroke="#E7F0F6" stroke-width="7" stroke-linejoin="round" paint-order="stroke"><tspan x="5426.5" dy="0">[COD]</tspan></text>
-<text x="5262.0" y="675.7" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="bold" fill="#004387" text-anchor="start" stroke="#E7F0F6" stroke-width="7" stroke-linejoin="round" paint-order="stroke"><tspan x="5262.0" dy="0">[paid online]</tspan></text>
-<text x="5480.5" y="876.0" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="bold" fill="#004387" text-anchor="middle" stroke="#E7F0F6" stroke-width="7" stroke-linejoin="round" paint-order="stroke"><tspan x="5480.5" dy="0">[approved]</tspan></text>
-<text x="5018.5" y="876.0" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="bold" fill="#B03A2E" text-anchor="middle" stroke="#E7F0F6" stroke-width="7" stroke-linejoin="round" paint-order="stroke"><tspan x="5018.5" dy="0">[denied]</tspan></text>
+<text x="5480.5" y="761.0" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="bold" fill="#004387" text-anchor="middle" stroke="#E7F0F6" stroke-width="7" stroke-linejoin="round" paint-order="stroke"><tspan x="5480.5" dy="0">[approved]</tspan></text>
+<text x="5039.5" y="761.0" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="bold" fill="#B03A2E" text-anchor="middle" stroke="#E7F0F6" stroke-width="7" stroke-linejoin="round" paint-order="stroke"><tspan x="5039.5" dy="0">[denied]</tspan></text>
 <text x="4020" y="991" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387">Owner: Dat 722I0004 · AI-assisted (see Appendix A)</text>
 <text x="5896" y="991" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387" text-anchor="end">Connectors: C1, C2, C3 come from Part C</text>
 <path d="M4020,1018 L4066,1018" stroke="#B03A2E" stroke-width="3" marker-end="url(#ar)"/>
 <text x="4078" y="1027" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387">Red = failure or exception path</text>
 <rect x="4520.234375" y="1003" width="40" height="26" rx="8" fill="#DCDCDC" stroke="#004387" stroke-width="2"/>
-<text x="4572.234375" y="1027" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387">Grey = in the business process, not built in this release (A-08, A-09)</text>
+<text x="4572.234375" y="1027" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387">Grey = in the business process, not built in this release</text>
 <circle cx="4034" cy="1054" r="14" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><path d="M4025.6,1045.6 L4042.4,1062.4 M4025.6,1062.4 L4042.4,1045.6" stroke="#004387" stroke-width="4"/>
 <text x="4060" y="1063" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387">Flow final: this path ends</text>
 <circle cx="4442.234375" cy="1054" r="14" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><circle cx="4442.234375" cy="1054" r="6" fill="#004387"/>

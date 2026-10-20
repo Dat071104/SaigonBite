@@ -29,7 +29,7 @@
 <polygon points="2630,622.0 2652.0,644 2630,666.0 2608.0,644" fill="#FFFFFF" stroke="#004387" stroke-width="3"/>
 <polygon points="2960,579.0 3075.0,644 2960,709.0 2845.0,644" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><text x="2960" y="637.8" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1B1B1B" text-anchor="middle" font-weight="normal"><tspan x="2960" dy="0">Confirm</tspan><tspan x="2960" dy="32">order?</tspan></text>
 <polygon points="2960,452.0 2982.0,474 2960,496.0 2938.0,474" fill="#FFFFFF" stroke="#004387" stroke-width="3"/>
-<rect x="3130.0" y="414.0" width="320" height="120" rx="26" fill="#FBEDEB" stroke="#B03A2E" stroke-width="3"/><text x="3290" y="450.8" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1B1B1B" text-anchor="middle" font-weight="normal"><tspan x="3290" dy="0">Reject order:</tspan><tspan x="3290" dy="33">void COD, online</tspan><tspan x="3290" dy="33">→ REFUND_PENDING</tspan></text>
+<rect x="3130.0" y="414.0" width="320" height="120" rx="26" fill="#FBEDEB" stroke="#B03A2E" stroke-width="3"/><text x="3290" y="450.8" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1B1B1B" text-anchor="middle" font-weight="normal"><tspan x="3290" dy="0">Reject order:</tspan><tspan x="3290" dy="33">void COD, refund</tspan><tspan x="3290" dy="33">online in full</tspan></text>
 <circle cx="3540" cy="474" r="22.0" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><circle cx="3540" cy="474" r="14.0" fill="#004387"/>
 <rect x="3236.0" y="588.0" width="188" height="112" rx="26" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><text x="3330" y="637.3" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1B1B1B" text-anchor="middle" font-weight="normal"><tspan x="3330" dy="0">Prepare food,</tspan><tspan x="3330" dy="33">mark READY</tspan></text>
 <circle cx="2055.0" cy="644.0" r="24" fill="#FFFFFF" stroke="#004387" stroke-width="3"/>
@@ -47,7 +47,7 @@
 <path d="M2029,893 L2075,893" stroke="#B03A2E" stroke-width="3" marker-end="url(#ar)"/>
 <text x="2087" y="902" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387">Red = failure or exception path</text>
 <rect x="2529.234375" y="878" width="40" height="26" rx="8" fill="#DCDCDC" stroke="#004387" stroke-width="2"/>
-<text x="2581.234375" y="902" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387">Grey = in the business process, not built in this release (A-08, A-09)</text>
+<text x="2581.234375" y="902" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387">Grey = in the business process, not built in this release</text>
 <circle cx="2043" cy="929" r="14" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><path d="M2034.6,920.6 L2051.4,937.4 M2034.6,937.4 L2051.4,920.6" stroke="#004387" stroke-width="4"/>
 <text x="2069" y="938" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#004387">Flow final: this path ends</text>
 <circle cx="2451.234375" cy="929" r="14" fill="#FFFFFF" stroke="#004387" stroke-width="3"/><circle cx="2451.234375" cy="929" r="6" fill="#004387"/>
