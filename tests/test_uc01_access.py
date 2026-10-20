@@ -72,6 +72,17 @@ def test_T_UC01_46_login_redirects_back_to_the_requested_page_but_only_on_this_s
     assert resp.headers["Location"] == f"/order/hubs/{HUB_D1}"
 
 
+def test_T_UC01_46b_login_never_returns_to_a_form_only_page(client):
+    # Deploy test X-01: logout on the quote page, Back + reload, log in again -> was a raw 405.
+    resp = client.get("/order/quote")
+    assert resp.status_code == 405
+    assert "Page expired" in resp.get_data(as_text=True)
+    resp = client.post("/login", data={"username": "customer", "password": DEMO_PASSWORD,
+                                       "next": "/order/quote"})
+    assert resp.headers["Location"] == "/order/hubs"
+    assert client.get(resp.headers["Location"]).status_code == 200
+
+
 def test_T_UC01_47_logout_ends_the_session(customer_client):
     assert customer_client.get("/order/hubs").status_code == 200
     customer_client.post("/logout")

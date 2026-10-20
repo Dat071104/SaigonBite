@@ -2,8 +2,9 @@
 from functools import wraps
 from urllib.parse import urlparse
 
-from flask import Blueprint, abort, flash, redirect, render_template, request, url_for
+from flask import Blueprint, abort, current_app, flash, redirect, render_template, request, url_for
 from flask_login import LoginManager, UserMixin, current_user, login_user, logout_user
+from werkzeug.exceptions import HTTPException
 
 from saigonbite.business.controllers import AuthController
 from saigonbite.business.domain import Role, UserAccount
@@ -58,10 +59,21 @@ def role_required(*roles: Role):
 
 
 def _safe_next(target: str | None) -> str | None:
-    """Accept only same-site relative paths for the post-login redirect."""
-    if target and target.startswith("/") and not target.startswith("//") and not urlparse(target).netloc:
-        return target
-    return None
+    """Accept only same-site relative paths that a browser can open with GET.
+
+    A form-only page such as /order/quote cannot be reopened after login (it would show 405),
+    so the user goes to the default page instead.
+    """
+    if not target or not target.startswith("/") or target.startswith("//"):
+        return None
+    parts = urlparse(target)
+    if parts.netloc:
+        return None
+    try:
+        current_app.url_map.bind("localhost").match(parts.path, method="GET")
+    except HTTPException:
+        return None
+    return target
 
 
 @bp.route("/login", methods=["GET", "POST"])

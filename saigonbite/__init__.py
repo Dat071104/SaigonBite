@@ -67,4 +67,9 @@ def create_app(test_config: dict | None = None) -> Flask:
         return render_template("error.html", code=404, title="Not found",
                                message="This page does not exist."), 404
 
+    @app.errorhandler(405)
+    def _method_not_allowed(_exc):
+        return render_template("error.html", code=405, title="Page expired",
+                               message="This page only opens from the order form. Start the order again."), 405
+
     return app
