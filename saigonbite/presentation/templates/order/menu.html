@@ -1,42 +1,64 @@
 {% extends "base.html" %}
-{% block title %}{{ view.hub.name }} - SaigonBite{% endblock %}
+{% block title %}{{ view.hub.name }} · SaigonBite{% endblock %}
 {% block content %}
-<h1>{{ view.hub.name }}</h1>
-<p class="muted">{{ view.hub.address_text }}</p>
-{% if error %}<div class="flash error" id="form-error">{{ error }}</div>{% endif %}
-<form method="post" action="{{ url_for('order.quote') }}">
+{% set step = 2 %}{% include "order/_steps.html" %}
+<div class="page-head">
+  <h1>{{ view.hub.name }}</h1>
+  <p class="muted">{{ view.hub.address_text }} · delivery fee <span class="price">{{ view.hub.delivery_fee_flat|vnd }}</span></p>
+</div>
+{% if error %}<div class="flash error" id="form-error" role="alert">{{ error }}</div>{% endif %}
+<form method="post" action="{{ url_for('order.quote') }}" data-menu-form>
   <input type="hidden" name="hub_id" value="{{ view.hub.id }}">
-  <table>
-    <thead><tr><th>Brand</th><th>Item</th><th class="num">Price</th><th>Quantity</th></tr></thead>
-    <tbody>
-    {% for entry in view.menu %}
-      <tr>
-        <td>{{ entry.item.brand_name }}</td>
-        <td>{{ entry.item.name }}<br><span class="muted">{{ entry.item.description }}</span></td>
-        <td class="num">{{ entry.item.price|vnd }}</td>
-        <td>
-          {% if entry.is_available %}
-            <input type="number" name="qty_{{ entry.item.id }}" value="{{ quantities.get(entry.item.id, '') }}" placeholder="0">
-          {% else %}
-            <span class="muted">Sold out</span>
-          {% endif %}
-        </td>
-      </tr>
-    {% endfor %}
-    </tbody>
-  </table>
-  <p>
-    <label>Delivery address<br>
-      <select name="address_id">
-        <option value="">-- choose an address --</option>
+  {% for brand, entries in groups %}
+  <section class="brand-group" aria-labelledby="brand-{{ loop.index }}">
+    <h2 id="brand-{{ loop.index }}">{{ brand }}</h2>
+    <ul class="items">
+      {% for entry in entries %}
+      {% set item = entry.item %}
+      {% if entry.is_available %}
+      <li class="item">
+        <div>
+          <p class="name" id="item-{{ item.id }}">{{ item.name }}</p>
+          <p class="desc">{{ item.description }}</p>
+          <p class="price">{{ item.price|vnd }}</p>
+        </div>
+        <div class="qty">
+          <button type="button" class="secondary" data-step="-1" aria-label="One less {{ item.name }}" hidden>&minus;</button>
+          <input type="number" name="qty_{{ item.id }}" value="{{ quantities.get(item.id, '') }}" min="0" max="99" step="1" inputmode="numeric" placeholder="0" aria-labelledby="item-{{ item.id }}" data-qty data-price="{{ item.price }}">
+          <button type="button" class="secondary" data-step="1" aria-label="One more {{ item.name }}" hidden>+</button>
+        </div>
+      </li>
+      {% else %}
+      <li class="item soldout">
+        <div>
+          <p class="name">{{ item.name }}</p>
+          <p class="desc">{{ item.description }}</p>
+        </div>
+        <span class="soldout-label">Sold out</span>
+      </li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+  </section>
+  {% endfor %}
+
+  <div class="panel" style="margin-top:32px">
+    <div class="field">
+      <label for="address_id">Deliver to</label>
+      <select id="address_id" name="address_id">
+        <option value="">Choose an address</option>
         {% for a in view.addresses %}
-          <option value="{{ a.id }}" {% if selected_address_id == a.id %}selected{% endif %}>{{ a.label }}: {{ a.full_address }}</option>
+          <option value="{{ a.id }}" {% if selected_address_id == a.id or (not error and not selected_address_id and view.addresses|length == 1) %}selected{% endif %}>{{ a.label }}: {{ a.full_address }}</option>
         {% endfor %}
       </select>
-    </label>
-  </p>
-  <p>Payment: cash on delivery (COD). Leave a quantity blank to skip an item.</p>
-  <p><button type="submit">See the quote</button>
-     <a class="btn secondary" href="{{ url_for('order.choose_hub') }}">Change hub</a></p>
+    </div>
+    <p>You pay the driver in cash when the food arrives.</p>
+  </div>
+
+  <div class="summary-bar">
+    <p data-summary hidden><span class="count" data-count>0 items</span> · <span class="subtotal price" data-subtotal>0 VND</span></p>
+    <button type="submit">See the quote</button>
+  </div>
 </form>
+<div class="actions"><a class="btn link" href="{{ url_for('order.choose_hub') }}">Choose another hub</a></div>
 {% endblock %}

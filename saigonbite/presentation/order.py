@@ -29,8 +29,11 @@ def _render_menu(hub_id: int, error: str | None, quantities: dict[int, str], add
         view = _controller().select_hub(current_user.account.id, hub_id)
     except ValidationError as exc:           # unknown or archived hub
         return render_template("order/hubs.html", hubs=_controller().list_hubs(), error=str(exc)), 400
-    return render_template("order/menu.html", view=view, error=error, quantities=quantities,
-                           selected_address_id=address_id), status
+    groups: dict[str, list] = {}                 # brands in menu order, not alphabetical
+    for entry in view.menu:
+        groups.setdefault(entry.item.brand_name, []).append(entry)
+    return render_template("order/menu.html", view=view, groups=groups.items(), error=error,
+                           quantities=quantities, selected_address_id=address_id), status
 
 
 @bp.get("/hubs")
@@ -42,7 +45,9 @@ def choose_hub():
 @bp.get("/hubs/<int:hub_id>")
 @role_required(Role.CUSTOMER)
 def choose_items(hub_id: int):
-    return _render_menu(hub_id, None, {}, None, 200)
+    # "Change items" on the quote page links back here with the cart in the query string, so nothing is lost.
+    return _render_menu(hub_id, None, _read_quantities(request.args),
+                        request.args.get("address_id", type=int), 200)
 
 
 @bp.post("/quote")

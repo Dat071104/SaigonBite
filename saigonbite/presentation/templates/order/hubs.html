@@ -1,16 +1,26 @@
 {% extends "base.html" %}
-{% block title %}Choose a hub - SaigonBite{% endblock %}
+{% block title %}Choose a kitchen · SaigonBite{% endblock %}
 {% block content %}
-<h1>Choose a hub</h1>
-{% if error %}<div class="flash error">{{ error }}</div>{% endif %}
-{% for hub in hubs %}
-<div class="card">
-  <h2>{{ hub.name }}</h2>
-  <p class="muted">{{ hub.address_text }}</p>
-  <p>Delivery fee: {{ hub.delivery_fee_flat|vnd }} (flat)</p>
-  <a class="btn" href="{{ url_for('order.choose_items', hub_id=hub.id) }}">Order from this hub</a>
+{% set step = 1 %}{% include "order/_steps.html" %}
+<div class="page-head">
+  <h1>Choose a kitchen hub</h1>
+  <p class="muted">Each hub cooks for several brands. The delivery fee is set per hub.</p>
 </div>
+{% if error %}<div class="flash error" role="alert">{{ error }}</div>{% endif %}
+{% if hubs %}
+<ul class="hubs">
+  {% for hub in hubs %}
+  <li class="panel hub">
+    <div>
+      <h2>{{ hub.name }}</h2>
+      <p class="muted">{{ hub.address_text }}</p>
+      <p class="fee">Delivery fee <span class="price">{{ hub.delivery_fee_flat|vnd }}</span></p>
+    </div>
+    <a class="btn" href="{{ url_for('order.choose_items', hub_id=hub.id) }}" aria-label="Order from {{ hub.name }}">Order from this hub</a>
+  </li>
+  {% endfor %}
+</ul>
 {% else %}
-<p>No hubs are open right now.</p>
-{% endfor %}
+<div class="panel"><p>No hubs are open right now. Please try again later.</p></div>
+{% endif %}
 {% endblock %}

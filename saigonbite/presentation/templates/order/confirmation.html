@@ -1,28 +1,35 @@
 {% extends "base.html" %}
-{% block title %}Order {{ result.order.id }} confirmed - SaigonBite{% endblock %}
+{% block title %}Order {{ result.order.id }} · SaigonBite{% endblock %}
 {% block content %}
 {% set order = result.order %}
-<h1>Order confirmed</h1>
-<p class="ok">Your order has been placed.</p>
-<div class="card">
-  <p>Order ID: <strong id="order-id">{{ order.id }}</strong></p>
-  <p>Status: <span id="order-state">{{ order.state.value }}</span></p>
-  <p>Hub: {{ result.hub.name }}<br>Deliver to: {{ result.address.full_address }}</p>
-  <p>Payment: <span id="payment-method">{{ result.payment.method.value }}</span>,
-     state <span id="payment-state">{{ result.payment.state.value }}</span></p>
+{% set step = 4 %}{% include "order/_steps.html" %}
+<div class="panel done">
+  <h1>Order {{ order.id }} is with the kitchen</h1>
+  <p>Have this amount ready in cash for the driver:</p>
+  <p class="big">{{ order.total|vnd }}</p>
 </div>
-<table>
-  <thead><tr><th>Item</th><th class="num">Unit price</th><th class="num">Qty</th><th class="num">Line total</th></tr></thead>
+<dl class="facts">
+  <dt>Order number</dt><dd><strong id="order-id">{{ order.id }}</strong></dd>
+  <dt>Status</dt><dd><span id="order-state">{{ order.state.value }}</span>, waiting for the kitchen to confirm</dd>
+  <dt>Payment</dt><dd><span id="payment-method">{{ result.payment.method.value }}</span> (cash on delivery), <span id="payment-state">{{ result.payment.state.value }}</span> until the driver collects it</dd>
+  <dt>Placed</dt><dd>{{ order.placed_at|vn_time }}</dd>
+</dl>
+<div class="panel">
+  <p>Hub: {{ result.hub.name }}</p>
+  <p class="muted">Deliver to: {{ result.address.full_address }}</p>
+</div>
+<table class="order-lines">
+  <thead><tr><th>Dish</th><th class="num col-unit">Unit price</th><th class="num col-qty">Qty</th><th class="num">Amount</th></tr></thead>
   <tbody>
   {% for line in order.lines %}
-    <tr><td>{{ line.item_name }}</td><td class="num">{{ line.unit_price|vnd }}</td>
-        <td class="num">{{ line.quantity }}</td><td class="num">{{ line.line_total|vnd }}</td></tr>
+    <tr><td>{{ line.item_name }}<span class="line-detail">{{ line.quantity }} x {{ line.unit_price|vnd }}</span></td>
+        <td class="num col-unit">{{ line.unit_price|vnd }}</td>
+        <td class="num col-qty">{{ line.quantity }}</td><td class="num">{{ line.line_total|vnd }}</td></tr>
   {% endfor %}
-    <tr><td colspan="3">Item subtotal</td><td class="num">{{ order.item_subtotal|vnd }}</td></tr>
-    <tr><td colspan="3">Delivery fee</td><td class="num">{{ order.delivery_fee|vnd }}</td></tr>
+    <tr class="sum-row"><td colspan="3">Dishes</td><td class="num">{{ order.item_subtotal|vnd }}</td></tr>
+    <tr class="sum-row"><td colspan="3">Delivery fee</td><td class="num">{{ order.delivery_fee|vnd }}</td></tr>
     <tr class="total-row"><td colspan="3">Total</td><td class="num" id="order-total">{{ order.total|vnd }}</td></tr>
   </tbody>
 </table>
-<p class="muted">Placed at {{ order.placed_at }} (UTC).</p>
-<p><a class="btn secondary" href="{{ url_for('order.choose_hub') }}">Place another order</a></p>
+<div class="actions"><a class="btn secondary" href="{{ url_for('order.choose_hub') }}">Place another order</a></div>
 {% endblock %}

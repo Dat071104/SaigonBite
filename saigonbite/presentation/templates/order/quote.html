@@ -1,22 +1,30 @@
 {% extends "base.html" %}
-{% block title %}Your quote - SaigonBite{% endblock %}
+{% block title %}Check your order · SaigonBite{% endblock %}
 {% block content %}
-<h1>Your quote</h1>
-{% if notice %}<div class="flash error" id="quote-changed">{{ notice }}</div>{% endif %}
-<p>{{ quote.hub.name }}<br><span class="muted">Deliver to: {{ quote.address.full_address }}</span></p>
-<table id="quote-table">
-  <thead><tr><th>Item</th><th class="num">Unit price</th><th class="num">Qty</th><th class="num">Line total</th></tr></thead>
+{% set step = 3 %}{% include "order/_steps.html" %}
+<div class="page-head">
+  <h1>Check your order</h1>
+  <p class="muted">Nothing is ordered until you press Confirm order.</p>
+</div>
+{% if notice %}<div class="flash notice" id="quote-changed" role="status">{{ notice }}</div>{% endif %}
+<div class="panel">
+  <p><strong>{{ quote.hub.name }}</strong></p>
+  <p class="muted">Deliver to {{ quote.address.full_address }}</p>
+</div>
+<table id="quote-table" class="order-lines">
+  <thead><tr><th>Dish</th><th class="num col-unit">Unit price</th><th class="num col-qty">Qty</th><th class="num">Amount</th></tr></thead>
   <tbody>
   {% for line in quote.lines %}
-    <tr><td>{{ line.item_name }}</td><td class="num">{{ line.unit_price|vnd }}</td>
-        <td class="num">{{ line.quantity }}</td><td class="num">{{ line.line_total|vnd }}</td></tr>
+    <tr><td>{{ line.item_name }}<span class="line-detail">{{ line.quantity }} x {{ line.unit_price|vnd }}</span></td>
+        <td class="num col-unit">{{ line.unit_price|vnd }}</td>
+        <td class="num col-qty">{{ line.quantity }}</td><td class="num">{{ line.line_total|vnd }}</td></tr>
   {% endfor %}
-    <tr><td colspan="3">Item subtotal</td><td class="num" id="item-subtotal">{{ quote.item_subtotal|vnd }}</td></tr>
-    <tr><td colspan="3">Delivery fee (flat)</td><td class="num" id="delivery-fee">{{ quote.delivery_fee|vnd }}</td></tr>
-    <tr class="total-row"><td colspan="3">Total to pay on delivery (COD)</td><td class="num" id="total">{{ quote.total|vnd }}</td></tr>
+    <tr class="sum-row"><td colspan="3">Dishes</td><td class="num" id="item-subtotal">{{ quote.item_subtotal|vnd }}</td></tr>
+    <tr class="sum-row"><td colspan="3">Delivery fee</td><td class="num" id="delivery-fee">{{ quote.delivery_fee|vnd }}</td></tr>
+    <tr class="total-row"><td colspan="3">Total, cash on delivery</td><td class="num" id="total">{{ quote.total|vnd }}</td></tr>
   </tbody>
 </table>
-<form method="post" action="{{ url_for('order.confirm') }}">
+<form method="post" action="{{ url_for('order.confirm') }}" data-once>
   <input type="hidden" name="hub_id" value="{{ quote.hub.id }}">
   <input type="hidden" name="address_id" value="{{ quote.address.id }}">
   <input type="hidden" name="idempotency_token" value="{{ idempotency_token }}">
@@ -24,7 +32,11 @@
   {% for item_id, qty in quantities.items() %}
     <input type="hidden" name="qty_{{ item_id }}" value="{{ qty }}">
   {% endfor %}
-  <button type="submit">Confirm order</button>
-  <a class="btn secondary" href="{{ url_for('order.choose_items', hub_id=quote.hub.id) }}">Change items</a>
+  <div class="actions">
+    <button type="submit" data-busy="Placing your order...">Confirm order</button>
+    {% set back = {'address_id': quote.address.id} %}
+    {% for line in quote.lines %}{% set _ = back.update({'qty_' ~ line.menu_item_id: line.quantity}) %}{% endfor %}
+    <a class="btn link" href="{{ url_for('order.choose_items', hub_id=quote.hub.id, **back) }}">Change items</a>
+  </div>
 </form>
 {% endblock %}

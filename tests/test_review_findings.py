@@ -1,5 +1,5 @@
 """Review findings of 20/10: price change between quote and confirm (C-01, round 2), archived hub in history (C-02)."""
-from .conftest import PHO, checkout_form, count, new_connection
+from .conftest import GOI_CUON, PHO, checkout_form, count, new_connection
 
 
 def _raise_pho_price(db_path, price):
@@ -67,3 +67,12 @@ def test_T_UC01_54_repeated_submit_of_a_placed_order_still_returns_it(customer_c
     again = customer_client.post("/order/confirm", data=form)
     assert again.status_code == 303 and again.headers["Location"] == first.headers["Location"]
     assert count(db_path, "orders") == 1
+
+
+def test_T_UC01_55_change_items_link_brings_the_cart_back(customer_client):
+    """UX review: "Change items" on the quote page returns to the menu with the same quantities and address."""
+    page = customer_client.post("/order/quote", data=checkout_form()).get_data(as_text=True)
+    href = page.split('class="btn link" href="')[1].split('"')[0].replace("&amp;", "&")
+    menu = customer_client.get(href).get_data(as_text=True)
+    assert f'name="qty_{PHO}" value="2"' in menu and f'name="qty_{GOI_CUON}" value="1"' in menu
+    assert '<option value="1" selected>' in menu

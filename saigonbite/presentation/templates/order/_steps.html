@@ -1,0 +1,7 @@
+<nav aria-label="Order steps">
+  <ol class="steps">
+    {% for label in ['Kitchen', 'Dishes', 'Confirm', 'Done'] %}
+      <li{% if loop.index == step %} aria-current="step"{% endif %}>{{ label }}</li>
+    {% endfor %}
+  </ol>
+</nav>

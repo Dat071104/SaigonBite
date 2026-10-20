@@ -1,13 +1,27 @@
 {% extends "base.html" %}
-{% block title %}SaigonBite - Home{% endblock %}
+{% block title %}SaigonBite{% endblock %}
 {% block content %}
-<h1>SaigonBite</h1>
-<p>Online food delivery hub platform. Iteration 1 build.</p>
+<div class="page-head">
+  <h1>Lunch from SaigonBite's kitchen hubs</h1>
+  <p>Several brands cook in each hub, so one order can mix pho, com tam and banh mi.</p>
+</div>
 {% if not current_user.is_authenticated %}
-  <p><a class="btn" href="{{ url_for('auth.login') }}">Log in to place an order</a></p>
+  <div class="actions"><a class="btn" href="{{ url_for('auth.login') }}">Log in to order</a></div>
 {% elif current_user.role.value == 'CUSTOMER' %}
-  <p><a class="btn" href="{{ url_for('order.choose_hub') }}">Place an order</a></p>
+  <div class="actions"><a class="btn" href="{{ url_for('order.choose_hub') }}">Start an order</a></div>
 {% else %}
-  <p class="muted">You are logged in as {{ current_user.role.value }}. This role has no screens in Iteration 1.</p>
+  <div class="panel">
+    <h2>Signed in as {{ current_user.role.value|replace('_', ' ')|lower }}</h2>
+    <p>Screens for this role come in a later iteration. In this build only customers can place orders.</p>
+  </div>
 {% endif %}
+<section class="panel" aria-labelledby="how">
+  <h2 id="how">How ordering works</h2>
+  <ol class="how">
+    <li>Pick a hub. Each one shows its delivery fee up front.</li>
+    <li>Choose your dishes. Sold-out dishes are marked and cannot be added.</li>
+    <li>Check the full price, then confirm. Pressing twice still places one order.</li>
+    <li>Pay the driver in cash when the food arrives.</li>
+  </ol>
+</section>
 {% endblock %}

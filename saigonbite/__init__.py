@@ -15,6 +15,18 @@ def _vnd(amount: int) -> str:
     return f"{amount:,} VND"
 
 
+def _vn_time(iso_utc: str) -> str:
+    """Show a stored UTC timestamp in Ho Chi Minh City time (UTC+7), e.g. 12:05, 20/10/2026."""
+    from datetime import datetime, timedelta, timezone
+    try:
+        moment = datetime.fromisoformat(iso_utc)
+    except (TypeError, ValueError):
+        return iso_utc
+    if moment.tzinfo is None:
+        moment = moment.replace(tzinfo=timezone.utc)
+    return moment.astimezone(timezone(timedelta(hours=7))).strftime("%H:%M, %d/%m/%Y")
+
+
 def create_app(test_config: dict | None = None) -> Flask:
     app = Flask(__name__, instance_relative_config=True,
                 template_folder="presentation/templates",
@@ -35,6 +47,7 @@ def create_app(test_config: dict | None = None) -> Flask:
     app.register_blueprint(auth.bp)
     app.register_blueprint(order.bp)
     app.jinja_env.filters["vnd"] = _vnd
+    app.jinja_env.filters["vn_time"] = _vn_time
 
     @app.errorhandler(AuthorizationError)
     def _forbidden_business(exc):
