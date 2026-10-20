@@ -21,7 +21,7 @@ def create_app(test_config: dict | None = None) -> Flask:
                 static_folder="presentation/static")
     app.config.from_mapping(
         SECRET_KEY=os.environ.get("SAIGONBITE_SECRET_KEY", "dev-only-secret-change-me"),
-        DATABASE=os.path.join(app.instance_path, "saigonbite.db"),
+        DATABASE=os.environ.get("SAIGONBITE_DATABASE") or os.path.join(app.instance_path, "saigonbite.db"),
     )
     if test_config:
         app.config.update(test_config)

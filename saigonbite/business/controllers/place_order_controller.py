@@ -76,7 +76,8 @@ class PlaceOrderController:
 
         A repeated call with the same token returns the first order and writes nothing (AC-7).
         quoted_total is the total the customer saw on the quote page. It is only compared, never
-        used as a price: if the re-priced total differs, QuoteChangedError carries the new quote.
+        used as a price: if it is missing or the re-priced total differs, no order is written and
+        QuoteChangedError carries the current quote for the customer to confirm.
         """
         customer = self._require_customer(user_id)
         token = (idempotency_token or "").strip()
@@ -92,7 +93,9 @@ class PlaceOrderController:
 
             # Re-validate and re-price inside the write lock: never trust the quote page.
             quote = self._build_quote(customer, hub_id, address_id, quantities)
-            if quoted_total is not None and quoted_total != quote.total:
+            if quoted_total is None:
+                raise QuoteChangedError(quote, QuoteChangedError.MISSING)
+            if quoted_total != quote.total:
                 raise QuoteChangedError(quote)
             now = _now()
             order = Order.place(customer.id, quote, token, now)

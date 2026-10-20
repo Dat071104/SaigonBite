@@ -39,7 +39,7 @@ def test_T_UC01_42_non_customer_roles_get_403_and_cannot_place_an_order(client, 
 def test_T_UC01_43_controller_refuses_non_customer_users_even_if_the_view_is_bypassed(db_path, user_id):
     conn = connect(db_path)
     with pytest.raises(AuthorizationError):
-        PlaceOrderController(conn).confirm_order(user_id, HUB_D1, ADDRESS_HOME, {PHO: "1"}, "tok-bypass")
+        PlaceOrderController(conn).confirm_order(user_id, HUB_D1, ADDRESS_HOME, {PHO: "1"}, "tok-bypass", 70000)
     conn.close()
     assert count(db_path, "orders") == 0
 

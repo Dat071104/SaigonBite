@@ -11,7 +11,7 @@ tracks delivery and cash, and reports from one shared order record.
 | Quan | (ID to be added) | UC-05 Confirm or reject an incoming order, UC-06 Manage brands and menu items (joins from Iteration 2) |
 
 **Status:** Iteration 1 increment (tag [`i1-evidence`](https://github.com/Dat071104/SaigonBite/tree/i1-evidence)): a persisted cash-on-delivery (COD) order
-for one hub (UC-01 subset) on a runnable skeleton. 90 pytest tests after the team review of 20/10.
+for one hub (UC-01 subset) on a runnable skeleton. 93 pytest tests after the team reviews of 20/10.
 
 > The Iteration 1 code was generated with AI assistance (Claude, 19/10/2026) and reviewed by the team on 20/10/2026.
 > The review found two defects that the tests did not catch (a price change between quote and confirm was charged
@@ -60,6 +60,19 @@ docker compose down                           # stop (add -v to delete the datab
 ```
 
 The database is created and seeded on the first start and kept in the `saigonbite-db` volume.
+The same commands work on Windows, macOS (tested on a team member's Mac: app and full test suite) and Linux.
+
+### Deploy on Vercel (demo)
+
+Vercel runs the Flask `app` in `app.py` as a Python function (no Docker). Import the GitHub repository in Vercel,
+keep the defaults and add one environment variable, `SAIGONBITE_SECRET_KEY`, set to a long random string.
+
+- Only `/tmp` is writable on Vercel, so the database is created and seeded there on a cold start. It is a demo
+  database: it resets when the function restarts, and each running instance has its own copy. Use the seeded
+  accounts below; do not rely on orders staying.
+- Static files are served from `public/static/` (a copy of `saigonbite/presentation/static/`; a test keeps the
+  two the same).
+- `.vercelignore` keeps the virtual environment, tests and the Part 1 documents out of the bundle.
 
 ## Run the tests
 

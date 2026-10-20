@@ -87,7 +87,7 @@ Failure (any rule below is broken):
 | E-09 | 7 | Same token submitted again | First order is shown; nothing new written | `test_T_UC01_30`, `_34` |
 | E-10 | 7 | Token missing | "This order form has expired" | `test_T_UC01_23` |
 | E-11 | 8 | Database error while saving | Transaction rolled back; nothing written | `test_T_UC01_13` |
-| E-12 | 8 | A price, fee or item changed after the quote, so the re-priced total differs from the total the customer saw | New quote shown (HTTP 409), "The price changed since your quote"; nothing written until the customer confirms again | `test_T_UC01_50`, `_51` |
+| E-12 | 8 | A price, fee or item changed after the quote, so the re-priced total differs from the total the customer saw, or the request carries no usable quoted total | Current quote shown (HTTP 409); nothing written until the customer confirms that total | `test_T_UC01_50`, `_51`, `_53` |
 
 ## 7. Traceability to the I1 acceptance criteria
 

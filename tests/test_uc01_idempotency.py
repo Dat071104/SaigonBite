@@ -31,7 +31,8 @@ def test_T_UC01_32_end_to_end_quote_then_double_click_on_confirm(customer_client
     quote_page = customer_client.post("/order/quote", data={
         "hub_id": HUB_D1, "address_id": ADDRESS_HOME, f"qty_{PHO}": "1", f"qty_{GOI_CUON}": "3"}).get_data(as_text=True)
     token = quote_page.split('name="idempotency_token" value="')[1].split('"')[0]
-    form = {"hub_id": HUB_D1, "address_id": ADDRESS_HOME, "idempotency_token": token,
+    total = quote_page.split('name="quoted_total" value="')[1].split('"')[0]
+    form = {"hub_id": HUB_D1, "address_id": ADDRESS_HOME, "idempotency_token": token, "quoted_total": total,
             f"qty_{PHO}": "1", f"qty_{GOI_CUON}": "3"}
     for _ in range(2):
         assert customer_client.post("/order/confirm", data=form).status_code == 303
@@ -51,7 +52,7 @@ def test_T_UC01_34_concurrent_submits_with_one_token_still_create_one_order(db_p
         conn = connect(db_path)
         try:
             results.append(PlaceOrderController(conn).confirm_order(
-                1, HUB_D1, ADDRESS_HOME, {PHO: "1"}, "race-token"))
+                1, HUB_D1, ADDRESS_HOME, {PHO: "1"}, "race-token", 70000))
         except Exception as exc:        # pragma: no cover - would fail the assertions below
             errors.append(exc)
         finally:

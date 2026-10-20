@@ -63,13 +63,38 @@ def count(db_path, table):
         conn.close()
 
 
+def _seed_prices():
+    """Menu prices and hub fees from seed.sql, so tests can post the total the quote page shows."""
+    from init_db import SCHEMA_PATH, SEED_PATH
+    conn = sqlite3.connect(":memory:")
+    conn.executescript(open(SCHEMA_PATH, encoding="utf-8").read())
+    conn.executescript(open(SEED_PATH, encoding="utf-8").read())
+    prices = dict(conn.execute("SELECT id, price FROM menu_item"))
+    fees = dict(conn.execute("SELECT id, delivery_fee_flat FROM hub"))
+    conn.close()
+    return prices, fees
+
+
+PRICES, FEES = _seed_prices()
+
+
+def quoted_total(hub_id, quantities):
+    """The total the quote page shows for valid quantities (seed prices)."""
+    return FEES[hub_id] + sum(PRICES[i] * int(q) for i, q in quantities.items() if str(q).strip())
+
+
 def checkout_form(token="tok-1", hub_id=HUB_D1, address_id=ADDRESS_HOME, quantities=None):
-    """Form data as the quote page would post it to /order/confirm."""
+    """Form data as the quote page would post it to /order/confirm (with the quoted total when it can be computed)."""
     data = {"hub_id": hub_id, "idempotency_token": token}
     if address_id is not None:
         data["address_id"] = address_id
-    for item_id, qty in (quantities if quantities is not None else {PHO: "2", GOI_CUON: "1"}).items():
+    quantities = quantities if quantities is not None else {PHO: "2", GOI_CUON: "1"}
+    for item_id, qty in quantities.items():
         data[f"qty_{item_id}"] = qty
+    try:
+        data["quoted_total"] = quoted_total(hub_id, quantities)
+    except (KeyError, ValueError, TypeError):
+        pass                            # invalid input: the request is refused before the totals are compared
     return data
 
 

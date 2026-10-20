@@ -1,4 +1,4 @@
-"""Review findings of 20/10: C-01 price change between quote and confirm, C-02 archived hub in history."""
+"""Review findings of 20/10: price change between quote and confirm (C-01, round 2), archived hub in history (C-02)."""
 from .conftest import PHO, checkout_form, count, new_connection
 
 
@@ -44,3 +44,26 @@ def test_T_UC01_52_confirmation_still_names_an_archived_hub(customer_client, db_
     conn.close()
     page = customer_client.get(resp.headers["Location"]).get_data(as_text=True)
     assert "Hub: SaigonBite District 1 Hub" in page
+
+
+def test_T_UC01_53_missing_or_broken_quoted_total_shows_the_quote_and_writes_nothing(customer_client, db_path):
+    """Review round 2: a request without a usable quoted total must not skip the price check."""
+    _raise_pho_price(db_path, 65000)
+    for bad in (None, "not-a-number"):
+        form = {k: v for k, v in checkout_form(token=f"tok-{bad}").items() if k != "quoted_total"}
+        if bad is not None:
+            form["quoted_total"] = bad
+        resp = customer_client.post("/order/confirm", data=form)
+        assert resp.status_code == 409
+        assert 'id="total">180,000 VND' in resp.get_data(as_text=True)
+    assert count(db_path, "orders") == 0 and count(db_path, "payment") == 0
+
+
+def test_T_UC01_54_repeated_submit_of_a_placed_order_still_returns_it(customer_client, db_path):
+    """The quote check runs only for new orders: a repeat of a saved token shows the first order."""
+    first = customer_client.post("/order/confirm", data=checkout_form(token="tok-repeat"))
+    assert first.status_code == 303
+    form = {k: v for k, v in checkout_form(token="tok-repeat").items() if k != "quoted_total"}
+    again = customer_client.post("/order/confirm", data=form)
+    assert again.status_code == 303 and again.headers["Location"] == first.headers["Location"]
+    assert count(db_path, "orders") == 1
