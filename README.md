@@ -49,6 +49,16 @@ The four steps are: (1) create and activate the virtual environment, (2) install
 - `python init_db.py` refuses to overwrite an existing database; use `python init_db.py --force` to recreate it.
 - Optional: set `SAIGONBITE_SECRET_KEY` to your own value; the default is a development key.
 
+### Or with Docker Desktop (no local Python needed)
+
+```
+docker compose up --build -d                  # build and start, then open http://127.0.0.1:5000/
+docker compose --profile test run --rm tests  # run the 81 tests inside the container
+docker compose down                           # stop (add -v to delete the database volume and reseed next start)
+```
+
+The database is created and seeded on the first start and kept in the `saigonbite-db` volume.
+
 ## Run the tests
 
 ```
