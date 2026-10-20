@@ -6,7 +6,7 @@ from werkzeug.security import check_password_hash
 from init_db import SCHEMA_PATH, main as init_main
 from saigonbite.business.domain import OrderState, PaymentState, Role
 
-from .conftest import SEED_USERS, new_connection
+from .conftest import DEMO_PASSWORD, SEED_USERS, new_connection
 
 
 def test_T_SEED_01_at_least_two_hubs_with_capacity_and_menu(db_path):
@@ -36,8 +36,8 @@ def test_T_SEED_03_one_user_per_role_with_hashed_passwords(db_path):
     for username in SEED_USERS:
         row = conn.execute("SELECT password_hash FROM user_account WHERE username = ?", (username,)).fetchone()
         assert row is not None
-        assert row["password_hash"] != f"dev-{username}"          # not stored in clear
-        assert check_password_hash(row["password_hash"], f"dev-{username}")
+        assert row["password_hash"] != DEMO_PASSWORD                # not stored in clear
+        assert check_password_hash(row["password_hash"], DEMO_PASSWORD)
 
 
 def test_T_SEED_04_init_db_refuses_to_overwrite_without_force(db_path, capsys):

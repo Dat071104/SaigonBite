@@ -4,7 +4,7 @@ import pytest
 from saigonbite.business.controllers import AuthorizationError, PlaceOrderController
 from saigonbite.data_access import connect
 
-from .conftest import ADDRESS_HOME, HUB_D1, PHO, add_second_customer, checkout_form, count, login
+from .conftest import ADDRESS_HOME, DEMO_PASSWORD, HUB_D1, PHO, add_second_customer, checkout_form, count, login
 
 PROTECTED_GETS = ["/order/hubs", f"/order/hubs/{HUB_D1}", "/order/1/confirmation"]
 PROTECTED_POSTS = ["/order/quote", "/order/confirm"]
@@ -63,11 +63,11 @@ def test_T_UC01_45_login_with_wrong_password_is_refused(client):
 
 
 def test_T_UC01_46_login_redirects_back_to_the_requested_page_but_only_on_this_site(client):
-    resp = client.post("/login", data={"username": "customer", "password": "dev-customer",
+    resp = client.post("/login", data={"username": "customer", "password": DEMO_PASSWORD,
                                        "next": "http://evil.example/"})
     assert resp.headers["Location"] == "/order/hubs"
     client.post("/logout")
-    resp = client.post("/login", data={"username": "customer", "password": "dev-customer",
+    resp = client.post("/login", data={"username": "customer", "password": DEMO_PASSWORD,
                                        "next": f"/order/hubs/{HUB_D1}"})
     assert resp.headers["Location"] == f"/order/hubs/{HUB_D1}"
 

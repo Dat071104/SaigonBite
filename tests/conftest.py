@@ -11,7 +11,8 @@ sys.path.insert(0, ROOT)
 from init_db import build_database  # noqa: E402
 from saigonbite import create_app   # noqa: E402
 
-# Seeded dev accounts (README.md): username -> password is dev-<username>.
+# Seeded dev accounts (README.md): every account uses the demo password below.
+DEMO_PASSWORD = "123456"
 SEED_USERS = ("customer", "kitchen", "shipper", "admin", "manager")
 HUB_D1, HUB_BT = 1, 2
 ADDRESS_HOME = 1
@@ -37,7 +38,7 @@ def client(app):
 
 
 def login(client, username):
-    resp = client.post("/login", data={"username": username, "password": f"dev-{username}"})
+    resp = client.post("/login", data={"username": username, "password": DEMO_PASSWORD})
     assert resp.status_code == 302, resp.get_data(as_text=True)
     return client
 

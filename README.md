@@ -84,15 +84,15 @@ Each test builds its own temporary database from `db/schema.sql` and `db/seed.sq
 
 ## Seeded development accounts
 
-Passwords are stored as PBKDF2-SHA256 hashes in `db/seed.sql`. These accounts are for local development only.
+Every seeded account uses the demo password `123456`, stored as a PBKDF2-SHA256 hash in `db/seed.sql`. These accounts are for local use and the public demo only; the demo holds no real data.
 
 | Role | Username | Password |
 |---|---|---|
-| Customer (local, with one address) | `customer` | `dev-customer` |
-| Kitchen staff | `kitchen` | `dev-kitchen` |
-| Shipper | `shipper` | `dev-shipper` |
-| Admin | `admin` | `dev-admin` |
-| Manager | `manager` | `dev-manager` |
+| Customer (local, with one address) | `customer` | `123456` |
+| Kitchen staff | `kitchen` | `123456` |
+| Shipper | `shipper` | `123456` |
+| Admin | `admin` | `123456` |
+| Manager | `manager` | `123456` |
 
 In Iteration 1 only the customer role has screens. The other roles can log in, see their role on the home page,
 and are refused (HTTP 403) on the order pages.
@@ -103,7 +103,7 @@ not carried by one hub, so the "item not available" rule can be tried by hand.
 
 ## Try the UC-01 subset by hand
 
-1. Log in as `customer` / `dev-customer`.
+1. Log in as `customer` / `123456`.
 2. Choose a hub, enter quantities (leave a blank for items you do not want), choose the address, press "See the quote".
 3. The quote shows item subtotal, flat delivery fee and total. Press "Confirm order".
 4. If a price changed after the quote, the new quote is shown and nothing is saved until you confirm it again.

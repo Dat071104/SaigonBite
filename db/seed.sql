@@ -32,11 +32,11 @@ INSERT INTO hub_menu_item (hub_id, menu_item_id, is_available) VALUES
  (2, 4, 1), (2, 5, 1), (2, 6, 1), (2, 7, 1), (2, 8, 1), (2, 9, 1), (2, 10, 1);
 
 INSERT INTO user_account (id, username, password_hash, display_name, role) VALUES
- (1, 'customer', 'pbkdf2:sha256:100000$Pavi4DHwGDSc35au$74bf904066766030d728a3317e8cff03e7aa470efd1bcb15d7d51aafff2ae1fb', 'Tran Thi Mai',     'CUSTOMER'),
- (2, 'kitchen',  'pbkdf2:sha256:100000$wBrPCGfDly10scIj$7ec46b284625e2eb94bd5a20dcd0213bda94e97559c211d619ed7e494694201e', 'Kitchen Staff D1', 'KITCHEN_STAFF'),
- (3, 'shipper',  'pbkdf2:sha256:100000$SonY8ZAxxBUEE8H1$01e9ebbe9dcd424593bdc84b2f544af33832e7885ff3c6b5d1fdd3f9dae86206', 'Shipper One',      'SHIPPER'),
- (4, 'admin',    'pbkdf2:sha256:100000$xtwS2wzdjue19dju$17fb94a96b1f28314f59aaf8b6db201484c2aea4270f2425129e2c356391092f', 'Admin',            'ADMIN'),
- (5, 'manager',  'pbkdf2:sha256:100000$KMmKLTxVe4i8p6A6$7f8fe621634b6101086cfc85019ba9010fc1ab8b4e2cae5b621e8152dfb0dad2', 'Manager',          'MANAGER');
+ (1, 'customer', 'pbkdf2:sha256:100000$PhSM7peDBNn8Sqnv$2a2e2efda712e6b381fa0f460b78977355de602bdbf827a3aab7327a6185e2a9', 'Tran Thi Mai',     'CUSTOMER'),
+ (2, 'kitchen',  'pbkdf2:sha256:100000$va70Ry6f66c3wV2z$43b879d083d626bd2fd22a3650cee75494fe2ac3b34852acb9945292f7d6acaa', 'Kitchen Staff D1', 'KITCHEN_STAFF'),
+ (3, 'shipper',  'pbkdf2:sha256:100000$DzClandDgQSZAum8$0b8e9589fa9c3063b6b4238b74c79316b2db3dd649ffca0f7336d7926a3c30d2', 'Shipper One',      'SHIPPER'),
+ (4, 'admin',    'pbkdf2:sha256:100000$mQyIk1Madu2LRMmR$8ba8d34cd406e14ce39d917c224a99c62f9f7eee3a516dc4aca954e62c4a24e7', 'Admin',            'ADMIN'),
+ (5, 'manager',  'pbkdf2:sha256:100000$yW7pPwKhrFtfOfwW$c013d40da1e780407b75290218b243d9616cb30a14823235626979b86dc4fd1a', 'Manager',          'MANAGER');
 
 INSERT INTO customer (id, user_id, full_name, phone, customer_type) VALUES
  (1, 1, 'Tran Thi Mai', '0901234567', 'LOCAL');
