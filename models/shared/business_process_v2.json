@@ -1,0 +1,243 @@
+{
+  "pages": [
+    {
+      "key": "Full",
+      "title": "1.5 Business process - SaigonBite Part 2",
+      "subtitle": "Order journey above; enabling operations below. Scope is planned; this figure is not test evidence.",
+      "nodes": [
+        {
+          "id": "identity",
+          "kind": "action",
+          "col": 0,
+          "row": 0,
+          "label": "SUC-01 / SUC-02\nSign in; register;\nprofile and addresses"
+        },
+        {
+          "id": "order",
+          "kind": "action",
+          "col": 1,
+          "row": 0,
+          "label": "UC-01\nAccept full quote\nand place order"
+        },
+        {
+          "id": "decide",
+          "kind": "action",
+          "col": 2,
+          "row": 0,
+          "label": "UC-05\nConfirm, reject or\noffer replacement"
+        },
+        {
+          "id": "prepare",
+          "kind": "action",
+          "col": 3,
+          "row": 0,
+          "label": "SUC-05\nStart PREPARING;\nmark READY"
+        },
+        {
+          "id": "availability",
+          "kind": "action",
+          "col": 0,
+          "row": 1,
+          "label": "SUC-06\nSet availability\nat own hub"
+        },
+        {
+          "id": "cancel",
+          "kind": "action",
+          "col": 1,
+          "row": 1,
+          "label": "SUC-04\nCancel PLACED\nor CONFIRMED"
+        },
+        {
+          "id": "track",
+          "kind": "action",
+          "col": 2,
+          "row": 1,
+          "label": "SUC-03\nTrack; answer offer;\nview receipt"
+        },
+        {
+          "id": "deliver",
+          "kind": "action",
+          "col": 3,
+          "row": 1,
+          "label": "UC-02\nPick up; deliver +\ncash; report failure"
+        },
+        {
+          "id": "hubs",
+          "kind": "action",
+          "col": 0,
+          "row": 2,
+          "label": "UC-03\nMaintain hubs\nand capacity"
+        },
+        {
+          "id": "catalogue",
+          "kind": "action",
+          "col": 1,
+          "row": 2,
+          "label": "UC-06\nMaintain brands,\nitems, hub listings"
+        },
+        {
+          "id": "admin",
+          "kind": "action",
+          "col": 2,
+          "row": 2,
+          "label": "SUC-07 / SUC-08\nMaintain vouchers\nand user accounts"
+        },
+        {
+          "id": "reports",
+          "kind": "action",
+          "col": 3,
+          "row": 2,
+          "label": "UC-04 / SUC-09\nReports; archive +\nread archived history"
+        },
+        {
+          "id": "rating",
+          "kind": "action",
+          "col": 0,
+          "row": 3,
+          "label": "Rate food and\ndelivery\nDEFERRED",
+          "grey": true
+        },
+        {
+          "id": "complaint",
+          "kind": "action",
+          "col": 1,
+          "row": 3,
+          "label": "Complain about\nwrong / late order\nDEFERRED",
+          "grey": true
+        },
+        {
+          "id": "refunddecision",
+          "kind": "action",
+          "col": 2,
+          "row": 3,
+          "label": "Decide a\ncomplaint refund\nDEFERRED",
+          "grey": true
+        },
+        {
+          "id": "payout",
+          "kind": "action",
+          "col": 3,
+          "row": 3,
+          "label": "Pay out a\nrefund owed\nDEFERRED",
+          "grey": true
+        }
+      ],
+      "edges": [
+        {
+          "src": "identity",
+          "dst": "order",
+          "label": "",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "order",
+          "dst": "decide",
+          "label": "",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "decide",
+          "dst": "prepare",
+          "label": "[confirmed]",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "prepare",
+          "dst": "deliver",
+          "label": "",
+          "ss": "b",
+          "ds": "t"
+        },
+        {
+          "src": "deliver",
+          "dst": "track",
+          "label": "",
+          "ss": "l",
+          "ds": "r"
+        },
+        {
+          "src": "order",
+          "dst": "cancel",
+          "label": "[early cancel]",
+          "ss": "b",
+          "ds": "t"
+        },
+        {
+          "src": "availability",
+          "dst": "decide",
+          "label": "",
+          "ss": "t",
+          "ds": "b"
+        },
+        {
+          "src": "track",
+          "dst": "complaint",
+          "label": "",
+          "ss": "b",
+          "ds": "t"
+        },
+        {
+          "src": "track",
+          "dst": "rating",
+          "label": "",
+          "ss": "b",
+          "ds": "t"
+        },
+        {
+          "src": "complaint",
+          "dst": "refunddecision",
+          "label": "",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "refunddecision",
+          "dst": "payout",
+          "label": "[approved]",
+          "ss": "r",
+          "ds": "l"
+        }
+      ],
+      "lanes": [],
+      "ys": [
+        145,
+        300,
+        450,
+        585
+      ],
+      "xs": [
+        245,
+        475,
+        705,
+        935
+      ],
+      "notes": [
+        "Future, not implemented: loyalty, subscriptions, group orders and scheduled orders (case p.2).",
+        "Refund liability is recorded in scope; the grey payout step does not execute in this release."
+      ],
+      "suffix": "",
+      "semantic": false,
+      "snake_order": [
+        "identity",
+        "order",
+        "decide",
+        "prepare",
+        "deliver",
+        "track",
+        "cancel",
+        "availability",
+        "hubs",
+        "catalogue",
+        "admin",
+        "reports",
+        "payout",
+        "refunddecision",
+        "complaint",
+        "rating"
+      ]
+    }
+  ]
+}

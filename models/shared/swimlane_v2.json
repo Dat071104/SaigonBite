@@ -1,0 +1,1451 @@
+{
+  "pages": [
+    {
+      "key": "Overview",
+      "title": "1.6 Swim-lane activity - responsibility overview",
+      "subtitle": "Read Parts A-G for control flow and guards. Circle letters are continuation codes, not stored states.",
+      "nodes": [
+        {
+          "id": "ca",
+          "kind": "connector",
+          "col": 0,
+          "row": 0,
+          "label": "A"
+        },
+        {
+          "id": "cust",
+          "kind": "action",
+          "col": 2,
+          "row": 0,
+          "label": "SUC-01 / 02 identity + addresses; UC-01 order;\nSUC-03 tracking, offer answer and receipt; SUC-04 cancel",
+          "w": 650,
+          "h": 60
+        },
+        {
+          "id": "kk",
+          "kind": "connector",
+          "col": 0,
+          "row": 1,
+          "label": "K"
+        },
+        {
+          "id": "kit",
+          "kind": "action",
+          "col": 2,
+          "row": 1,
+          "label": "UC-05 decide; SUC-05 prepare and mark READY;\nSUC-06 availability at own hub",
+          "w": 650,
+          "h": 60
+        },
+        {
+          "id": "dd",
+          "kind": "connector",
+          "col": 0,
+          "row": 2,
+          "label": "D"
+        },
+        {
+          "id": "ship",
+          "kind": "action",
+          "col": 2,
+          "row": 2,
+          "label": "UC-02 take READY order; deliver with exact COD cash,\nor report failure; only assigned shipper may finish",
+          "w": 650,
+          "h": 60
+        },
+        {
+          "id": "as",
+          "kind": "start",
+          "col": 0,
+          "row": 3,
+          "label": ""
+        },
+        {
+          "id": "admin",
+          "kind": "action",
+          "col": 2,
+          "row": 3,
+          "label": "UC-03 hubs; UC-06 catalogue; SUC-07 vouchers;\nSUC-08 accounts; SUC-09 archive closed orders (Part G)",
+          "w": 650,
+          "h": 60
+        },
+        {
+          "id": "af",
+          "kind": "final",
+          "col": 4,
+          "row": 3,
+          "label": ""
+        },
+        {
+          "id": "ms",
+          "kind": "start",
+          "col": 0,
+          "row": 4,
+          "label": ""
+        },
+        {
+          "id": "mgr",
+          "kind": "action",
+          "col": 2,
+          "row": 4,
+          "label": "UC-04 request sales, hub workload and delivery reports\nIndependent read-only activity (Part G)",
+          "w": 650,
+          "h": 60
+        },
+        {
+          "id": "mf",
+          "kind": "final",
+          "col": 4,
+          "row": 4,
+          "label": ""
+        },
+        {
+          "id": "sys",
+          "kind": "action",
+          "col": 2,
+          "row": 5,
+          "label": "Parts A-F: price, capacity, consent, payment simulator,\natomic state changes, privacy, history and receipts",
+          "w": 650,
+          "h": 60
+        }
+      ],
+      "edges": [
+        {
+          "src": "ca",
+          "dst": "cust",
+          "label": "",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "kk",
+          "dst": "kit",
+          "label": "",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "dd",
+          "dst": "ship",
+          "label": "",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "as",
+          "dst": "admin",
+          "label": "",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "admin",
+          "dst": "af",
+          "label": "",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "ms",
+          "dst": "mgr",
+          "label": "",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "mgr",
+          "dst": "mf",
+          "label": "",
+          "ss": "r",
+          "ds": "l"
+        }
+      ],
+      "lanes": [
+        [
+          90,
+          180,
+          "Customer"
+        ],
+        [
+          180,
+          270,
+          "Kitchen\nstaff"
+        ],
+        [
+          270,
+          360,
+          "Shipper"
+        ],
+        [
+          360,
+          450,
+          "Admin"
+        ],
+        [
+          450,
+          540,
+          "Manager"
+        ],
+        [
+          540,
+          630,
+          "System"
+        ]
+      ],
+      "ys": [
+        135,
+        225,
+        315,
+        405,
+        495,
+        585
+      ],
+      "xs": [
+        160,
+        350,
+        605,
+        845,
+        1035
+      ],
+      "notes": [
+        "Initial = filled dot; activity final = ring + dot (whole activity); flow final = circle + X (one path).",
+        "A: checkout \u00b7 K: PLACED kitchen decision \u00b7 R: offer response \u00b7 D: READY delivery."
+      ],
+      "suffix": "",
+      "semantic": false
+    },
+    {
+      "key": "A",
+      "title": "Part A - Select hub, check radius and obtain a quote",
+      "subtitle": "UC-01 \u00b7 Customer identity and addresses are managed through SUC-01 / SUC-02.",
+      "nodes": [
+        {
+          "id": "s",
+          "kind": "start",
+          "col": 0,
+          "row": 0,
+          "label": ""
+        },
+        {
+          "id": "choose",
+          "kind": "action",
+          "col": 1,
+          "row": 0,
+          "label": "Choose hub, items\nand own address"
+        },
+        {
+          "id": "radius",
+          "kind": "decision",
+          "col": 2,
+          "row": 2,
+          "label": "Within\n8 km?"
+        },
+        {
+          "id": "busy",
+          "kind": "decision",
+          "col": 3,
+          "row": 2,
+          "label": "Hub\nbusy?"
+        },
+        {
+          "id": "quote",
+          "kind": "action",
+          "col": 4,
+          "row": 2,
+          "label": "Show approximate\ndistance, S, D, F, Q, T\nand payment options",
+          "h": 85
+        },
+        {
+          "id": "review",
+          "kind": "action",
+          "col": 4,
+          "row": 0,
+          "label": "Review full quote\nand choose payment"
+        },
+        {
+          "id": "pay",
+          "kind": "connector",
+          "col": 4,
+          "row": 1,
+          "label": "P"
+        },
+        {
+          "id": "out",
+          "kind": "action",
+          "col": 2,
+          "row": 3,
+          "label": "Refuse: beyond\nraw 8 km radius",
+          "red": true
+        },
+        {
+          "id": "fo",
+          "kind": "flowfinal",
+          "col": 2,
+          "row": 4,
+          "label": ""
+        },
+        {
+          "id": "suggest",
+          "kind": "action",
+          "col": 3,
+          "row": 3,
+          "label": "Refuse this hub;\nsuggest up to 3\nquieter hubs",
+          "red": true
+        },
+        {
+          "id": "fb",
+          "kind": "flowfinal",
+          "col": 3,
+          "row": 4,
+          "label": ""
+        }
+      ],
+      "edges": [
+        {
+          "src": "s",
+          "dst": "choose",
+          "label": "",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "choose",
+          "dst": "radius",
+          "label": "",
+          "ss": "b",
+          "ds": "t"
+        },
+        {
+          "src": "radius",
+          "dst": "busy",
+          "label": "[d <= 8 km]",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "radius",
+          "dst": "out",
+          "label": "[d > 8 km]",
+          "ss": "b",
+          "ds": "t",
+          "red": true
+        },
+        {
+          "src": "out",
+          "dst": "fo",
+          "label": "",
+          "ss": "b",
+          "ds": "t"
+        },
+        {
+          "src": "busy",
+          "dst": "quote",
+          "label": "[not busy]",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "busy",
+          "dst": "suggest",
+          "label": "[busy]",
+          "ss": "b",
+          "ds": "t",
+          "red": true
+        },
+        {
+          "src": "suggest",
+          "dst": "fb",
+          "label": "",
+          "ss": "b",
+          "ds": "t"
+        },
+        {
+          "src": "quote",
+          "dst": "review",
+          "label": "",
+          "ss": "r",
+          "ds": "r"
+        },
+        {
+          "src": "review",
+          "dst": "pay",
+          "label": "",
+          "ss": "b",
+          "ds": "t"
+        }
+      ],
+      "lanes": [
+        [
+          90,
+          310,
+          "Customer"
+        ],
+        [
+          310,
+          630,
+          "System"
+        ]
+      ],
+      "ys": [
+        155,
+        270,
+        385,
+        515,
+        605
+      ],
+      "xs": [
+        150,
+        300,
+        520,
+        740,
+        960,
+        1060
+      ],
+      "notes": [
+        "P continues at Part B. Refused attempts end; changing hub/address starts a new quote.",
+        "Busy = load >= capacity; quiet incentive = load < 25% before insertion. Both are derived (BR-01-10)."
+      ],
+      "suffix": "_PartA",
+      "semantic": true
+    },
+    {
+      "key": "B",
+      "title": "Part B - Confirm checkout and simulated payment",
+      "subtitle": "UC-01 \u00b7 No real payment provider or card data. The simulator result is selected before the transaction.",
+      "nodes": [
+        {
+          "id": "p",
+          "kind": "connector",
+          "col": 0,
+          "row": 0,
+          "label": "P"
+        },
+        {
+          "id": "choice",
+          "kind": "action",
+          "col": 1,
+          "row": 0,
+          "label": "Choose COD or\nONLINE option +\nsimulator result"
+        },
+        {
+          "id": "route",
+          "kind": "decision",
+          "col": 1,
+          "row": 2,
+          "label": "Declined\nONLINE?"
+        },
+        {
+          "id": "fresh",
+          "kind": "decision",
+          "col": 3,
+          "row": 2,
+          "label": "Still\nvalid?"
+        },
+        {
+          "id": "save",
+          "kind": "action",
+          "col": 4,
+          "row": 2,
+          "label": "Atomically save\nOrder PLACED,\nlines and Payment"
+        },
+        {
+          "id": "k",
+          "kind": "connector",
+          "col": 4,
+          "row": 3,
+          "label": "K"
+        },
+        {
+          "id": "none",
+          "kind": "action",
+          "col": 1,
+          "row": 3,
+          "label": "Show decline;\nno Order or\nPayment row",
+          "red": true
+        },
+        {
+          "id": "fn",
+          "kind": "flowfinal",
+          "col": 2,
+          "row": 3,
+          "label": ""
+        },
+        {
+          "id": "reprice",
+          "kind": "action",
+          "col": 3,
+          "row": 3,
+          "label": "Show fresh quote;\nsave nothing",
+          "red": true
+        },
+        {
+          "id": "fr",
+          "kind": "flowfinal",
+          "col": 3,
+          "row": 4,
+          "label": ""
+        }
+      ],
+      "edges": [
+        {
+          "src": "p",
+          "dst": "choice",
+          "label": "",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "choice",
+          "dst": "route",
+          "label": "",
+          "ss": "b",
+          "ds": "t"
+        },
+        {
+          "src": "route",
+          "dst": "none",
+          "label": "[declined]",
+          "ss": "b",
+          "ds": "t",
+          "red": true
+        },
+        {
+          "src": "none",
+          "dst": "fn",
+          "label": "",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "route",
+          "dst": "fresh",
+          "label": "[COD or\napproved]",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "fresh",
+          "dst": "save",
+          "label": "[valid]",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "fresh",
+          "dst": "reprice",
+          "label": "[changed /\nineligible]",
+          "ss": "b",
+          "ds": "t",
+          "red": true
+        },
+        {
+          "src": "reprice",
+          "dst": "fr",
+          "label": "",
+          "ss": "b",
+          "ds": "t"
+        },
+        {
+          "src": "save",
+          "dst": "k",
+          "label": "",
+          "ss": "b",
+          "ds": "t"
+        }
+      ],
+      "lanes": [
+        [
+          90,
+          310,
+          "Customer"
+        ],
+        [
+          310,
+          630,
+          "System"
+        ]
+      ],
+      "ys": [
+        165,
+        270,
+        390,
+        515,
+        610
+      ],
+      "xs": [
+        150,
+        300,
+        520,
+        740,
+        960,
+        1060
+      ],
+      "notes": [
+        "Valid: recheck capacity, raw radius, voucher, basket/quote fingerprint and T in the write transaction.",
+        "COD starts PENDING; approved ONLINE starts PAID. Commit failure releases the simulated approval; saves nothing."
+      ],
+      "suffix": "_PartB",
+      "semantic": true
+    },
+    {
+      "key": "C",
+      "title": "Part C - Decide, prepare and release an order",
+      "subtitle": "UC-05 / SUC-05 / SUC-06 \u00b7 Kitchen actions require the order's own hub (BR-26).",
+      "nodes": [
+        {
+          "id": "k",
+          "kind": "connector",
+          "col": 0,
+          "row": 0,
+          "label": "K"
+        },
+        {
+          "id": "decision",
+          "kind": "decision",
+          "col": 1,
+          "row": 0,
+          "label": "Kitchen\ndecision?"
+        },
+        {
+          "id": "offer",
+          "kind": "action",
+          "col": 2,
+          "row": 0,
+          "label": "Create one OFFERED\nreplacement for an\nunavailable line",
+          "h": 85
+        },
+        {
+          "id": "r",
+          "kind": "connector",
+          "col": 3,
+          "row": 0,
+          "label": "R"
+        },
+        {
+          "id": "confirm",
+          "kind": "action",
+          "col": 3,
+          "row": 1,
+          "label": "Confirm order\nCONFIRMED"
+        },
+        {
+          "id": "prep",
+          "kind": "action",
+          "col": 4,
+          "row": 1,
+          "label": "Start PREPARING;\nthen mark ready"
+        },
+        {
+          "id": "reject",
+          "kind": "action",
+          "col": 1,
+          "row": 3,
+          "label": "REJECTED + reason;\nwithdraw open offer;\nsettle liability",
+          "red": true,
+          "h": 85
+        },
+        {
+          "id": "end",
+          "kind": "final",
+          "col": 1,
+          "row": 4,
+          "label": ""
+        },
+        {
+          "id": "ready",
+          "kind": "action",
+          "col": 4,
+          "row": 3,
+          "label": "Order READY;\ncreate Delivery\nAWAITING_PICKUP"
+        },
+        {
+          "id": "d",
+          "kind": "connector",
+          "col": 4,
+          "row": 4,
+          "label": "D"
+        }
+      ],
+      "edges": [
+        {
+          "src": "k",
+          "dst": "decision",
+          "label": "",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "decision",
+          "dst": "offer",
+          "label": "[replace]",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "offer",
+          "dst": "r",
+          "label": "",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "decision",
+          "dst": "confirm",
+          "label": "[confirm;\nno open offer]",
+          "ss": "b",
+          "ds": "l"
+        },
+        {
+          "src": "confirm",
+          "dst": "prep",
+          "label": "",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "prep",
+          "dst": "ready",
+          "label": "",
+          "ss": "b",
+          "ds": "t"
+        },
+        {
+          "src": "ready",
+          "dst": "d",
+          "label": "",
+          "ss": "b",
+          "ds": "t"
+        },
+        {
+          "src": "decision",
+          "dst": "reject",
+          "label": "[reject]",
+          "ss": "l",
+          "ds": "t",
+          "red": true
+        },
+        {
+          "src": "reject",
+          "dst": "end",
+          "label": "",
+          "ss": "b",
+          "ds": "t"
+        }
+      ],
+      "lanes": [
+        [
+          90,
+          345,
+          "Kitchen\nstaff"
+        ],
+        [
+          345,
+          630,
+          "System"
+        ]
+      ],
+      "ys": [
+        155,
+        290,
+        390,
+        495,
+        605
+      ],
+      "xs": [
+        150,
+        300,
+        520,
+        740,
+        960,
+        1060
+      ],
+      "notes": [
+        "R continues in Part D; an accepted/withdrawn offer leaves the order PLACED and returns to K.",
+        "Liability: COD -> VOIDED; ONLINE -> REFUND_PENDING, refund owed = full captured C (BR-17)."
+      ],
+      "suffix": "_PartC",
+      "semantic": true
+    },
+    {
+      "key": "D",
+      "title": "Part D - Customer consent to a replacement",
+      "subtitle": "SUC-03 with UC-05 \u00b7 A waiting order remains PLACED; there is no stored waiting state.",
+      "nodes": [
+        {
+          "id": "r",
+          "kind": "connector",
+          "col": 0,
+          "row": 0,
+          "label": "R"
+        },
+        {
+          "id": "review",
+          "kind": "action",
+          "col": 1,
+          "row": 0,
+          "label": "Review original +\nnew line, total and\nONLINE refund owed"
+        },
+        {
+          "id": "ans",
+          "kind": "decision",
+          "col": 2,
+          "row": 0,
+          "label": "Customer\nanswer?"
+        },
+        {
+          "id": "valid",
+          "kind": "decision",
+          "col": 3,
+          "row": 2,
+          "label": "Target\nvalid?"
+        },
+        {
+          "id": "apply",
+          "kind": "action",
+          "col": 4,
+          "row": 2,
+          "label": "Offer ACCEPTED;\nreplace line + T;\nkeep PLACED",
+          "w": 160
+        },
+        {
+          "id": "ka",
+          "kind": "connector",
+          "col": 5,
+          "row": 2,
+          "label": "K"
+        },
+        {
+          "id": "decline",
+          "kind": "action",
+          "col": 1,
+          "row": 2,
+          "label": "Offer DECLINED;\nOrder REJECTED;\nsettle full liability",
+          "red": true,
+          "h": 85
+        },
+        {
+          "id": "fd",
+          "kind": "final",
+          "col": 1,
+          "row": 3,
+          "label": ""
+        },
+        {
+          "id": "withdraw",
+          "kind": "action",
+          "col": 3,
+          "row": 3,
+          "label": "Offer WITHDRAWN;\nshow reason; order\nunchanged PLACED",
+          "red": true,
+          "h": 85
+        },
+        {
+          "id": "kw",
+          "kind": "connector",
+          "col": 4,
+          "row": 3,
+          "label": "K"
+        }
+      ],
+      "edges": [
+        {
+          "src": "r",
+          "dst": "review",
+          "label": "",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "review",
+          "dst": "ans",
+          "label": "",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "ans",
+          "dst": "valid",
+          "label": "[accept]",
+          "ss": "b",
+          "ds": "t"
+        },
+        {
+          "src": "ans",
+          "dst": "decline",
+          "label": "[decline]",
+          "ss": "b",
+          "ds": "t",
+          "red": true
+        },
+        {
+          "src": "decline",
+          "dst": "fd",
+          "label": "",
+          "ss": "b",
+          "ds": "t"
+        },
+        {
+          "src": "valid",
+          "dst": "apply",
+          "label": "[valid]",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "apply",
+          "dst": "ka",
+          "label": "",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "valid",
+          "dst": "withdraw",
+          "label": "[invalid]",
+          "ss": "b",
+          "ds": "t",
+          "red": true
+        },
+        {
+          "src": "withdraw",
+          "dst": "kw",
+          "label": "",
+          "ss": "r",
+          "ds": "l"
+        }
+      ],
+      "lanes": [
+        [
+          90,
+          310,
+          "Customer"
+        ],
+        [
+          310,
+          630,
+          "System"
+        ]
+      ],
+      "ys": [
+        165,
+        270,
+        400,
+        555,
+        610
+      ],
+      "xs": [
+        150,
+        310,
+        535,
+        710,
+        920,
+        1060
+      ],
+      "notes": [
+        "All answers require the exact OFFERED offer + own PLACED order; stale/repeated answers change nothing.",
+        "Accept: honour offered price, Dnew = min(Dold, Snew), F/Q unchanged. ONLINE stays PAID; C - T is owed, not paid."
+      ],
+      "suffix": "_PartD",
+      "semantic": true
+    },
+    {
+      "key": "E",
+      "title": "Part E - Delivery, cash and completion",
+      "subtitle": "UC-02 \u00b7 Take READY atomically; only the assigned active shipper can finish (BR-25).",
+      "nodes": [
+        {
+          "id": "d",
+          "kind": "connector",
+          "col": 0,
+          "row": 1,
+          "label": "D"
+        },
+        {
+          "id": "take",
+          "kind": "action",
+          "col": 1,
+          "row": 1,
+          "label": "Take READY;\nDelivery PICKED_UP;\nOUT_FOR_DELIVERY"
+        },
+        {
+          "id": "travel",
+          "kind": "action",
+          "col": 2,
+          "row": 1,
+          "label": "Deliver to the\nstored address"
+        },
+        {
+          "id": "finish",
+          "kind": "decision",
+          "col": 3,
+          "row": 1,
+          "label": "Finish\nresult?"
+        },
+        {
+          "id": "success",
+          "kind": "action",
+          "col": 4,
+          "row": 2,
+          "label": "Order DELIVERED;\nDelivery DELIVERED;\nCOD -> PAID"
+        },
+        {
+          "id": "receipt",
+          "kind": "action",
+          "col": 4,
+          "row": 0,
+          "label": "Read stored receipt\n(SUC-03)"
+        },
+        {
+          "id": "end",
+          "kind": "final",
+          "col": 5,
+          "row": 0,
+          "label": ""
+        },
+        {
+          "id": "fail",
+          "kind": "action",
+          "col": 3,
+          "row": 3,
+          "label": "Order DELIVERY_FAILED;\nDelivery FAILED;\nsettle full liability",
+          "w": 210,
+          "h": 85,
+          "red": true
+        },
+        {
+          "id": "fe",
+          "kind": "final",
+          "col": 4,
+          "row": 3,
+          "label": ""
+        },
+        {
+          "id": "invalid",
+          "kind": "action",
+          "col": 2,
+          "row": 2,
+          "label": "Refuse finish;\nleave order\nOUT_FOR_DELIVERY",
+          "red": true
+        },
+        {
+          "id": "fi",
+          "kind": "flowfinal",
+          "col": 2,
+          "row": 3,
+          "label": ""
+        }
+      ],
+      "edges": [
+        {
+          "src": "d",
+          "dst": "take",
+          "label": "",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "take",
+          "dst": "travel",
+          "label": "",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "travel",
+          "dst": "finish",
+          "label": "",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "finish",
+          "dst": "success",
+          "label": "[delivered]",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "finish",
+          "dst": "fail",
+          "label": "[failed +\nreason]",
+          "ss": "b",
+          "ds": "t",
+          "red": true
+        },
+        {
+          "src": "fail",
+          "dst": "fe",
+          "label": "",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "finish",
+          "dst": "invalid",
+          "label": "[invalid]",
+          "ss": "l",
+          "ds": "r",
+          "red": true
+        },
+        {
+          "src": "invalid",
+          "dst": "fi",
+          "label": "",
+          "ss": "b",
+          "ds": "t"
+        },
+        {
+          "src": "success",
+          "dst": "receipt",
+          "label": "",
+          "ss": "t",
+          "ds": "b"
+        },
+        {
+          "src": "receipt",
+          "dst": "end",
+          "label": "",
+          "ss": "r",
+          "ds": "l"
+        }
+      ],
+      "lanes": [
+        [
+          90,
+          250,
+          "Customer"
+        ],
+        [
+          250,
+          410,
+          "Shipper"
+        ],
+        [
+          410,
+          630,
+          "System"
+        ]
+      ],
+      "ys": [
+        165,
+        325,
+        460,
+        575,
+        610
+      ],
+      "xs": [
+        150,
+        310,
+        530,
+        750,
+        920,
+        1070
+      ],
+      "notes": [
+        "Delivered guard: ONLINE, or COD cash equals T exactly. Invalid cash / missing failure reason saves nothing.",
+        "Failure: COD -> VOIDED; ONLINE -> REFUND_PENDING with full captured C owed. No redelivery or payout."
+      ],
+      "suffix": "_PartE",
+      "semantic": true
+    },
+    {
+      "key": "F",
+      "title": "Part F - Customer cancellation (separate request activity)",
+      "subtitle": "SUC-04 \u00b7 Available in PLACED or CONFIRMED; the state check and effects use one transaction.",
+      "nodes": [
+        {
+          "id": "s",
+          "kind": "start",
+          "col": 0,
+          "row": 0,
+          "label": ""
+        },
+        {
+          "id": "request",
+          "kind": "action",
+          "col": 1,
+          "row": 0,
+          "label": "Request cancel\nfor own order"
+        },
+        {
+          "id": "guard",
+          "kind": "decision",
+          "col": 2,
+          "row": 2,
+          "label": "Early\nenough?"
+        },
+        {
+          "id": "cancel",
+          "kind": "action",
+          "col": 4,
+          "row": 2,
+          "label": "Order CANCELLED;\noffer WITHDRAWN;\nsettle liability"
+        },
+        {
+          "id": "end",
+          "kind": "final",
+          "col": 5,
+          "row": 2,
+          "label": ""
+        },
+        {
+          "id": "refuse",
+          "kind": "action",
+          "col": 2,
+          "row": 3,
+          "label": "Refuse cancellation;\norder unchanged",
+          "red": true
+        },
+        {
+          "id": "f",
+          "kind": "flowfinal",
+          "col": 4,
+          "row": 3,
+          "label": ""
+        }
+      ],
+      "edges": [
+        {
+          "src": "s",
+          "dst": "request",
+          "label": "",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "request",
+          "dst": "guard",
+          "label": "",
+          "ss": "b",
+          "ds": "t"
+        },
+        {
+          "src": "guard",
+          "dst": "cancel",
+          "label": "[PLACED or\nCONFIRMED]",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "cancel",
+          "dst": "end",
+          "label": "",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "guard",
+          "dst": "refuse",
+          "label": "[else]",
+          "ss": "b",
+          "ds": "t",
+          "red": true
+        },
+        {
+          "src": "refuse",
+          "dst": "f",
+          "label": "",
+          "ss": "r",
+          "ds": "l"
+        }
+      ],
+      "lanes": [
+        [
+          90,
+          310,
+          "Customer"
+        ],
+        [
+          310,
+          630,
+          "System"
+        ]
+      ],
+      "ys": [
+        165,
+        270,
+        410,
+        570,
+        610
+      ],
+      "xs": [
+        150,
+        300,
+        520,
+        740,
+        920,
+        1070
+      ],
+      "notes": [
+        "Cancel cannot revive a closed order or undo PREPARING. A racing action must recheck the current state.",
+        "Liability: COD -> VOIDED; ONLINE -> REFUND_PENDING; refund owed = C, replacing any partial amount."
+      ],
+      "suffix": "_PartF",
+      "semantic": true
+    },
+    {
+      "key": "G",
+      "title": "Part G - Independent administration and reports",
+      "subtitle": "UC-03 / UC-06 / UC-04 and SUC-07 / SUC-08 / SUC-09 \u00b7 These are separate activities, not order steps.",
+      "nodes": [
+        {
+          "id": "as",
+          "kind": "start",
+          "col": 0,
+          "row": 0,
+          "label": ""
+        },
+        {
+          "id": "maintain",
+          "kind": "action",
+          "col": 1,
+          "row": 0,
+          "label": "Choose a maintenance task:\nhub, catalogue, voucher,\naccount or closed-order archive",
+          "w": 240,
+          "h": 85
+        },
+        {
+          "id": "write",
+          "kind": "action",
+          "col": 1,
+          "row": 3,
+          "label": "Check role + task guards;\npersist permitted change",
+          "w": 240
+        },
+        {
+          "id": "af",
+          "kind": "final",
+          "col": 2,
+          "row": 3,
+          "label": ""
+        },
+        {
+          "id": "ms",
+          "kind": "start",
+          "col": 2,
+          "row": 1,
+          "label": ""
+        },
+        {
+          "id": "request",
+          "kind": "action",
+          "col": 3,
+          "row": 1,
+          "label": "Request sales, workload\nor delivery report",
+          "w": 210
+        },
+        {
+          "id": "query",
+          "kind": "action",
+          "col": 3,
+          "row": 3,
+          "label": "Read authorised records;\nno report writes",
+          "w": 210
+        },
+        {
+          "id": "read",
+          "kind": "action",
+          "col": 4,
+          "row": 1,
+          "label": "Review report\nresults"
+        },
+        {
+          "id": "mf",
+          "kind": "final",
+          "col": 5,
+          "row": 1,
+          "label": ""
+        }
+      ],
+      "edges": [
+        {
+          "src": "as",
+          "dst": "maintain",
+          "label": "",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "maintain",
+          "dst": "write",
+          "label": "",
+          "ss": "b",
+          "ds": "t"
+        },
+        {
+          "src": "write",
+          "dst": "af",
+          "label": "",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "ms",
+          "dst": "request",
+          "label": "",
+          "ss": "r",
+          "ds": "l"
+        },
+        {
+          "src": "request",
+          "dst": "query",
+          "label": "",
+          "ss": "b",
+          "ds": "t"
+        },
+        {
+          "src": "query",
+          "dst": "read",
+          "label": "",
+          "ss": "r",
+          "ds": "b"
+        },
+        {
+          "src": "read",
+          "dst": "mf",
+          "label": "",
+          "ss": "r",
+          "ds": "l"
+        }
+      ],
+      "lanes": [
+        [
+          90,
+          280,
+          "Admin"
+        ],
+        [
+          280,
+          450,
+          "Manager"
+        ],
+        [
+          450,
+          630,
+          "System"
+        ]
+      ],
+      "ys": [
+        170,
+        365,
+        480,
+        550,
+        610
+      ],
+      "xs": [
+        150,
+        340,
+        520,
+        730,
+        935,
+        1070
+      ],
+      "notes": [
+        "Archive preserves authorised history, receipts, reports and refund obligations; only closed orders may be archived.",
+        "Hub archive: no open orders. Accounts: ACTIVE / INACTIVE; a shipper with PICKED_UP work cannot be deactivated."
+      ],
+      "suffix": "_PartG",
+      "semantic": true
+    }
+  ]
+}
