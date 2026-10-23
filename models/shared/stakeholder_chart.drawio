@@ -1,0 +1,118 @@
+<mxfile host="app.diagrams.net" version="24.7.17" type="device">
+  <diagram id="stakeholder-map" name="Stakeholders">
+    <mxGraphModel dx="1460" dy="1160" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1460" pageHeight="1160" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="operations" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E7F0F6;strokeColor=#6C8EBF;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="50" y="100.0" width="600" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="operations_title" value="&lt;div&gt;Operations&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=0;fontFamily=Arial;fontSize=34;fontColor=#185695;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="74" y="118.0" width="552" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="operations_body" value="&lt;div&gt;• Owner / management — oversight&lt;br/&gt;• Hub managers — capacity&lt;br/&gt;• Kitchen staff — orders, prep, availability&lt;br/&gt;• Shippers — pickup, cash, delivery&lt;br/&gt;outcome&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=0;fontFamily=Arial;fontSize=28;fontColor=#202B36;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="76" y="168.0" width="548" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_insight" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E7F0F6;strokeColor=#6C8EBF;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="50" y="440.0" width="600" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_insight_title" value="&lt;div&gt;Administration and insight&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=0;fontFamily=Arial;fontSize=34;fontColor=#185695;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="74" y="458.0" width="552" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_insight_body" value="&lt;div&gt;• Administrators — hubs, catalogue,&lt;br/&gt;vouchers, accounts and archive&lt;br/&gt;• Managers / analysts — sales, workload&lt;br/&gt;and delivery reports&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=0;fontFamily=Arial;fontSize=28;fontColor=#202B36;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="76" y="508.0" width="548" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="external" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E7F0F6;strokeColor=#6C8EBF;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="50" y="780.0" width="600" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="external_title" value="&lt;div&gt;External participants&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=0;fontFamily=Arial;fontSize=34;fontColor=#185695;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="74" y="798.0" width="552" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="external_body" value="&lt;div&gt;• Local customers — quote, order, payment&lt;br/&gt;and tracking&lt;br/&gt;• Tourist customers — registration, address&lt;br/&gt;and payment choice&lt;br/&gt;• External payment provider — context&lt;br/&gt;only; this release uses a simulator&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=0;fontFamily=Arial;fontSize=28;fontColor=#202B36;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="76" y="848.0" width="548" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="ofd_platform" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#004387;strokeWidth=4;" vertex="1" parent="1">
+          <mxGeometry x="830" y="100" width="580" height="960" as="geometry" />
+        </mxCell>
+        <mxCell id="ofd_title" value="&lt;div&gt;SaigonBite OFDH&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=0;fontFamily=Arial;fontSize=42;fontColor=#004387;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="858" y="122" width="524" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ofd_subtitle" value="&lt;div&gt;Shared order and operating records&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=0;fontFamily=Arial;fontSize=28;fontColor=#52616F;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="858" y="173" width="524" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="service_1" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3F6F8;strokeColor=#C8D6E4;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="854" y="220" width="532" height="132" as="geometry" />
+        </mxCell>
+        <mxCell id="service_1_title" value="&lt;div&gt;Customer journey&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=0;fontFamily=Arial;fontSize=31;fontColor=#185695;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="872" y="232" width="496" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="service_1_body" value="&lt;div&gt;UC-01 · SUC-02–04 — quote, pay, track&lt;br/&gt;/ receipt, cancel&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=0;fontFamily=Arial;fontSize=27;fontColor=#202B36;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="873" y="274" width="494" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="service_2" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3F6F8;strokeColor=#C8D6E4;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="854" y="370" width="532" height="132" as="geometry" />
+        </mxCell>
+        <mxCell id="service_2_title" value="&lt;div&gt;Kitchen and delivery&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=0;fontFamily=Arial;fontSize=31;fontColor=#185695;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="872" y="382" width="496" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="service_2_body" value="&lt;div&gt;UC-05 · SUC-05–06 — confirm / reject /&lt;br/&gt;replace, prepare / ready, availability&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=0;fontFamily=Arial;fontSize=27;fontColor=#202B36;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="873" y="424" width="494" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="service_3" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3F6F8;strokeColor=#C8D6E4;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="854" y="520" width="532" height="132" as="geometry" />
+        </mxCell>
+        <mxCell id="service_3_title" value="&lt;div&gt;Shipper delivery&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=0;fontFamily=Arial;fontSize=31;fontColor=#185695;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="872" y="532" width="496" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="service_3_body" value="&lt;div&gt;UC-02 — pick up ready orders; record&lt;br/&gt;delivery, COD cash or failure&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=0;fontFamily=Arial;fontSize=27;fontColor=#202B36;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="873" y="574" width="494" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="service_4" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3F6F8;strokeColor=#C8D6E4;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="854" y="670" width="532" height="166" as="geometry" />
+        </mxCell>
+        <mxCell id="service_4_title" value="&lt;div&gt;Administration&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=0;fontFamily=Arial;fontSize=31;fontColor=#185695;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="872" y="682" width="496" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="service_4_body" value="&lt;div&gt;UC-03 / UC-06 · SUC-01 / SUC-07–09&lt;br/&gt;— hubs, catalogue, access, vouchers,&lt;br/&gt;accounts, archive&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=0;fontFamily=Arial;fontSize=27;fontColor=#202B36;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="873" y="724" width="494" height="108" as="geometry" />
+        </mxCell>
+        <mxCell id="service_5" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3F6F8;strokeColor=#C8D6E4;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="854" y="854" width="532" height="132" as="geometry" />
+        </mxCell>
+        <mxCell id="service_5_title" value="&lt;div&gt;Management reports&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=0;fontFamily=Arial;fontSize=31;fontColor=#185695;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="872" y="866" width="496" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="service_5_body" value="&lt;div&gt;UC-04 — sales, workload and delivery&lt;br/&gt;performance&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=0;fontFamily=Arial;fontSize=27;fontColor=#202B36;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="873" y="908" width="494" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="operations_link" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;strokeColor=#185695;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.4219;" edge="1" parent="1" source="operations" target="ofd_platform">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="710" y="240.0" />
+              <mxPoint x="710" y="505" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="admin_link" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;strokeColor=#185695;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.7344;" edge="1" parent="1" source="admin_insight" target="ofd_platform">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="750" y="580.0" />
+              <mxPoint x="750" y="805" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="external_link" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;strokeColor=#185695;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.2135;" edge="1" parent="1" source="external" target="ofd_platform">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="790" y="920.0" />
+              <mxPoint x="790" y="305" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="diagram_author" value="&lt;div&gt;Author: 722I0004 · AI-assisted (Codex)&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=0;fontFamily=Arial;fontSize=26;fontColor=#52616F;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="1092" width="850" height="34" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

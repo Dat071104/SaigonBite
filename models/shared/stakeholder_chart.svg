@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1460" height="1160" viewBox="0 0 1460 1160">
+<defs><marker id="arrow" markerWidth="12" markerHeight="10" refX="10" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#185695"/></marker></defs>
+<text x="50" y="22" fill="#004387" font-family="Arial, sans-serif" font-size="42" font-weight="700" dominant-baseline="hanging">
+<tspan x="50" dy="0">SaigonBite client stakeholders</tspan>
+</text>
+<text x="50" y="75" fill="#52616F" font-family="Arial, sans-serif" font-size="28" font-weight="400" dominant-baseline="hanging">
+<tspan x="50" dy="0">Grouped by OFDH interaction; formal reporting lines are not assumed.</tspan>
+</text>
+<rect x="50" y="100.0" width="600" height="280" rx="18" fill="#E7F0F6" stroke="#6C8EBF" stroke-width="3"/>
+<text x="74" y="118.0" fill="#185695" font-family="Arial, sans-serif" font-size="34" font-weight="700" dominant-baseline="hanging">
+<tspan x="74" dy="0">Operations</tspan>
+</text>
+<text x="76" y="170.0" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="400" dominant-baseline="hanging">
+<tspan x="76" dy="0">• Owner / management — oversight</tspan>
+</text>
+<text x="76" y="204.0" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="400" dominant-baseline="hanging">
+<tspan x="76" dy="0">• Hub managers — capacity</tspan>
+</text>
+<text x="76" y="238.0" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="400" dominant-baseline="hanging">
+<tspan x="76" dy="0">• Kitchen staff — orders, prep, availability</tspan>
+</text>
+<text x="76" y="272.0" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="400" dominant-baseline="hanging">
+<tspan x="76" dy="0">• Shippers — pickup, cash, delivery</tspan>
+</text>
+<text x="76" y="306.0" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="400" dominant-baseline="hanging">
+<tspan x="76" dy="0">outcome</tspan>
+</text>
+<rect x="50" y="440.0" width="600" height="280" rx="18" fill="#E7F0F6" stroke="#6C8EBF" stroke-width="3"/>
+<text x="74" y="458.0" fill="#185695" font-family="Arial, sans-serif" font-size="34" font-weight="700" dominant-baseline="hanging">
+<tspan x="74" dy="0">Administration and insight</tspan>
+</text>
+<text x="76" y="510.0" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="400" dominant-baseline="hanging">
+<tspan x="76" dy="0">• Administrators — hubs, catalogue,</tspan>
+</text>
+<text x="76" y="544.0" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="400" dominant-baseline="hanging">
+<tspan x="76" dy="0">vouchers, accounts and archive</tspan>
+</text>
+<text x="76" y="578.0" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="400" dominant-baseline="hanging">
+<tspan x="76" dy="0">• Managers / analysts — sales, workload</tspan>
+</text>
+<text x="76" y="612.0" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="400" dominant-baseline="hanging">
+<tspan x="76" dy="0">and delivery reports</tspan>
+</text>
+<rect x="50" y="780.0" width="600" height="280" rx="18" fill="#E7F0F6" stroke="#6C8EBF" stroke-width="3"/>
+<text x="74" y="798.0" fill="#185695" font-family="Arial, sans-serif" font-size="34" font-weight="700" dominant-baseline="hanging">
+<tspan x="74" dy="0">External participants</tspan>
+</text>
+<text x="76" y="850.0" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="400" dominant-baseline="hanging">
+<tspan x="76" dy="0">• Local customers — quote, order, payment</tspan>
+</text>
+<text x="76" y="884.0" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="400" dominant-baseline="hanging">
+<tspan x="76" dy="0">and tracking</tspan>
+</text>
+<text x="76" y="918.0" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="400" dominant-baseline="hanging">
+<tspan x="76" dy="0">• Tourist customers — registration, address</tspan>
+</text>
+<text x="76" y="952.0" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="400" dominant-baseline="hanging">
+<tspan x="76" dy="0">and payment choice</tspan>
+</text>
+<text x="76" y="986.0" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="400" dominant-baseline="hanging">
+<tspan x="76" dy="0">• External payment provider — context</tspan>
+</text>
+<text x="76" y="1020.0" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="400" dominant-baseline="hanging">
+<tspan x="76" dy="0">only; this release uses a simulator</tspan>
+</text>
+<rect x="830" y="100" width="580" height="960" rx="20" fill="#FFFFFF" stroke="#004387" stroke-width="5"/>
+<text x="858" y="122" fill="#004387" font-family="Arial, sans-serif" font-size="42" font-weight="700" dominant-baseline="hanging">
+<tspan x="858" dy="0">SaigonBite OFDH</tspan>
+</text>
+<text x="858" y="174" fill="#52616F" font-family="Arial, sans-serif" font-size="28" font-weight="400" dominant-baseline="hanging">
+<tspan x="858" dy="0">Shared order and operating records</tspan>
+</text>
+<rect x="854" y="220" width="532" height="132" rx="12" fill="#F3F6F8" stroke="#C8D6E4" stroke-width="2"/>
+<text x="872" y="232" fill="#185695" font-family="Arial, sans-serif" font-size="31" font-weight="700" dominant-baseline="hanging">
+<tspan x="872" dy="0">Customer journey</tspan>
+</text>
+<text x="873" y="275" fill="#202B36" font-family="Arial, sans-serif" font-size="27" font-weight="400" dominant-baseline="hanging">
+<tspan x="873" dy="0">UC-01 · SUC-02–04 — quote, pay, track</tspan>
+</text>
+<text x="873" y="307" fill="#202B36" font-family="Arial, sans-serif" font-size="27" font-weight="400" dominant-baseline="hanging">
+<tspan x="873" dy="0">/ receipt, cancel</tspan>
+</text>
+<rect x="854" y="370" width="532" height="132" rx="12" fill="#F3F6F8" stroke="#C8D6E4" stroke-width="2"/>
+<text x="872" y="382" fill="#185695" font-family="Arial, sans-serif" font-size="31" font-weight="700" dominant-baseline="hanging">
+<tspan x="872" dy="0">Kitchen and delivery</tspan>
+</text>
+<text x="873" y="425" fill="#202B36" font-family="Arial, sans-serif" font-size="27" font-weight="400" dominant-baseline="hanging">
+<tspan x="873" dy="0">UC-05 · SUC-05–06 — confirm / reject /</tspan>
+</text>
+<text x="873" y="457" fill="#202B36" font-family="Arial, sans-serif" font-size="27" font-weight="400" dominant-baseline="hanging">
+<tspan x="873" dy="0">replace, prepare / ready, availability</tspan>
+</text>
+<rect x="854" y="520" width="532" height="132" rx="12" fill="#F3F6F8" stroke="#C8D6E4" stroke-width="2"/>
+<text x="872" y="532" fill="#185695" font-family="Arial, sans-serif" font-size="31" font-weight="700" dominant-baseline="hanging">
+<tspan x="872" dy="0">Shipper delivery</tspan>
+</text>
+<text x="873" y="575" fill="#202B36" font-family="Arial, sans-serif" font-size="27" font-weight="400" dominant-baseline="hanging">
+<tspan x="873" dy="0">UC-02 — pick up ready orders; record</tspan>
+</text>
+<text x="873" y="607" fill="#202B36" font-family="Arial, sans-serif" font-size="27" font-weight="400" dominant-baseline="hanging">
+<tspan x="873" dy="0">delivery, COD cash or failure</tspan>
+</text>
+<rect x="854" y="670" width="532" height="166" rx="12" fill="#F3F6F8" stroke="#C8D6E4" stroke-width="2"/>
+<text x="872" y="682" fill="#185695" font-family="Arial, sans-serif" font-size="31" font-weight="700" dominant-baseline="hanging">
+<tspan x="872" dy="0">Administration</tspan>
+</text>
+<text x="873" y="725" fill="#202B36" font-family="Arial, sans-serif" font-size="27" font-weight="400" dominant-baseline="hanging">
+<tspan x="873" dy="0">UC-03 / UC-06 · SUC-01 / SUC-07–09</tspan>
+</text>
+<text x="873" y="757" fill="#202B36" font-family="Arial, sans-serif" font-size="27" font-weight="400" dominant-baseline="hanging">
+<tspan x="873" dy="0">— hubs, catalogue, access, vouchers,</tspan>
+</text>
+<text x="873" y="789" fill="#202B36" font-family="Arial, sans-serif" font-size="27" font-weight="400" dominant-baseline="hanging">
+<tspan x="873" dy="0">accounts, archive</tspan>
+</text>
+<rect x="854" y="854" width="532" height="132" rx="12" fill="#F3F6F8" stroke="#C8D6E4" stroke-width="2"/>
+<text x="872" y="866" fill="#185695" font-family="Arial, sans-serif" font-size="31" font-weight="700" dominant-baseline="hanging">
+<tspan x="872" dy="0">Management reports</tspan>
+</text>
+<text x="873" y="909" fill="#202B36" font-family="Arial, sans-serif" font-size="27" font-weight="400" dominant-baseline="hanging">
+<tspan x="873" dy="0">UC-04 — sales, workload and delivery</tspan>
+</text>
+<text x="873" y="941" fill="#202B36" font-family="Arial, sans-serif" font-size="27" font-weight="400" dominant-baseline="hanging">
+<tspan x="873" dy="0">performance</tspan>
+</text>
+<path d="M 650 240.0 L 710 240.0 L 710 505 L 830 505" fill="none" stroke="#185695" stroke-width="4" marker-end="url(#arrow)"/>
+<path d="M 650 580.0 L 750 580.0 L 750 805 L 830 805" fill="none" stroke="#185695" stroke-width="4" marker-end="url(#arrow)"/>
+<path d="M 650 920.0 L 790 920.0 L 790 305 L 830 305" fill="none" stroke="#185695" stroke-width="4" marker-end="url(#arrow)"/>
+<text x="50" y="1092" fill="#52616F" font-family="Arial, sans-serif" font-size="26" font-weight="700" dominant-baseline="hanging">
+<tspan x="50" dy="0">Author: 722I0004 · AI-assisted (Codex)</tspan>
+</text>
+</svg>
