@@ -4,6 +4,8 @@ Author: 722I0004 · AI-assisted (Codex)
 
 Date: 23/10/2026. Repo: D:/RAD/FINAL/SaigonBite; branch part2; WIP 4b0103c. Only P0/P1 is authorized. No application changes, git by workers, pushes, tags, external actions or Part 1 writes. Artifacts in English. The locked plan governs; checklist adds evidence detail. Defaults are not approval.
 
+Continuation: existing drafts were preserved in Part2/notes/P1_resume_existing_drafts.zip. The existing start manifest was rechecked successfully: zero changes in all frozen boundaries. Continue and verify your owned drafts rather than replacing correct content. Root will read none of this wave's reports until all four workers have finished. Use only the assigned model/effort; no further delegation. Actual runtime models are logged by root. No `_agent_ops/` exists in this target repository; the phase records provide its task and closure evidence.
+
 ## Authorities and vocabulary
 
 Read D:/RAD/FINAL/PLAN_SaigonBite_Part2_Final.md, Part2/README.md, Part2/content/links.json, Part2/codex/P1_CHECKLIST.md and relevant primary authorities in Lec_re/. Convenience text: Part2_Plan_Review/source_evidence/. Part1_v2/content/content_master.md, models and build/proc_*.py are read-only. Diagram skill is a ZIP despite its .txt suffix: D:/RAD/FINAL/balanced-diagrams.skill.txt contains balanced-diagrams/SKILL.md and scripts/layout_drawio.py. Read with zipfile; use/adapt the layout helper without writing Part 1.
