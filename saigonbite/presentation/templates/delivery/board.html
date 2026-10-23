@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% from "_form.html" import button %}
+{% block title %}Deliveries · SaigonBite{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>Deliveries</h1>
+</div>
+
+<section aria-labelledby="mine-h">
+  <h2 id="mine-h">On my bike</h2>
+  {% for v in board.mine %}
+  <article class="panel card" id="mine-{{ v.order.id }}">
+    <p class="card-head"><a href="{{ url_for('delivery.detail', order_id=v.order.id) }}">Order {{ v.order.id }}</a>
+      <span class="muted">{{ v.hub.name }} → {{ v.order.delivery_address_text }}</span></p>
+    <p>{% if v.cash_to_collect %}Collect <strong>{{ v.cash_to_collect|vnd }}</strong> in cash{% else %}Paid online: take no cash{% endif %}</p>
+  </article>
+  {% else %}<p class="muted">Nothing picked up.</p>{% endfor %}
+</section>
+
+<section aria-labelledby="wait-h">
+  <h2 id="wait-h">Ready for pickup</h2>
+  {% for v in board.waiting %}
+  <article class="panel card" id="waiting-{{ v.order.id }}">
+    <p class="card-head">Order {{ v.order.id }} <span class="muted">ready since {{ v.delivery.ready_at|vn_time }}</span></p>
+    <p>{{ v.hub.name }} → {{ v.order.delivery_address_text }} ({{ v.order.distance_km }} km)</p>
+    <p>{% if v.cash_to_collect %}Cash on delivery: {{ v.cash_to_collect|vnd }}{% else %}Paid online{% endif %}</p>
+    <div class="actions">{{ button(url_for('delivery.pick_up', order_id=v.order.id), 'Pick up this order') }}</div>
+  </article>
+  {% else %}<p class="muted">No order is waiting.</p>{% endfor %}
+</section>
+
+{% if board.finished %}
+<section aria-labelledby="done-h">
+  <h2 id="done-h">My recent deliveries</h2>
+  <table class="data">
+    <thead><tr><th>Order</th><th>Finished</th><th>Result</th><th class="num">Cash</th></tr></thead>
+    <tbody>
+    {% for v in board.finished %}
+      <tr><td><a href="{{ url_for('delivery.detail', order_id=v.order.id) }}">Order {{ v.order.id }}</a></td>
+          <td>{{ v.delivery.finished_at|vn_time }}</td><td>{{ v.delivery.state|label }}</td>
+          <td class="num">{{ (v.delivery.cash_collected or 0)|vnd }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endif %}
+{% endblock %}

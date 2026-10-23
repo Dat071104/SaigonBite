@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% from "_form.html" import csrf, field, select, error_box %}
+{% block title %}{{ 'Edit address' if address else 'New address' }} · SaigonBite{% endblock %}
+{% block content %}
+{% set v = form if form else ({'label': address.label, 'full_address': address.full_address, 'district': address.district} if address else {}) %}
+<div class="page-head">
+  <h1>{{ 'Edit address' if address else 'New delivery address' }}</h1>
+  <p class="muted">The district sets the distance to each hub, and so the delivery fee.</p>
+</div>
+{{ error_box(error) }}
+<form method="post" class="panel stack" action="{{ url_for('account.edit_address', address_id=address.id) if address else url_for('account.new_address') }}">
+  {{ csrf() }}
+  {{ field('label', 'Name of the place', v.get('label'), hint='Home, Office, Hotel ...') }}
+  {{ field('full_address', 'Full address', v.get('full_address'), hint='number, street, building or hotel') }}
+  {{ select('district', 'District', districts, v.get('district'), placeholder='Choose a district') }}
+  <div class="actions"><button type="submit">Save address</button><a class="btn link" href="{{ url_for('account.profile') }}">Back</a></div>
+</form>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% from "_form.html" import csrf, field, button, error_box %}
+{% block title %}Profile · SaigonBite{% endblock %}
+{% block content %}
+{% set c = p.customer %}
+{% set v = form if form else {'full_name': c.full_name, 'phone': c.phone, 'email': c.email, 'passport_no': c.passport_no, 'nationality': c.nationality} %}
+<div class="page-head">
+  <h1>Your profile</h1>
+  <p class="muted">{{ p.user.username }} · {{ 'Tourist' if c.customer_type.value == 'TOURIST' else 'Local customer' }}</p>
+</div>
+{{ error_box(error) }}
+<form method="post" action="{{ url_for('account.update_profile') }}" class="panel stack">
+  {{ csrf() }}
+  {{ field('full_name', 'Full name', v.get('full_name')) }}
+  {% if c.customer_type.value == 'LOCAL' %}
+    {{ field('phone', 'Vietnamese mobile number', v.get('phone'), type='tel') }}
+  {% else %}
+    {{ field('email', 'E-mail', v.get('email'), type='email') }}
+    {{ field('passport_no', 'Passport number', v.get('passport_no')) }}
+    {{ field('nationality', 'Nationality', v.get('nationality')) }}
+    {{ field('phone', 'Phone', v.get('phone'), type='tel', hint='optional', required=false) }}
+  {% endif %}
+  <div class="actions"><button type="submit">Save profile</button></div>
+</form>
+
+<section aria-labelledby="addr-h">
+  <h2 id="addr-h">Delivery addresses</h2>
+  {% if p.addresses %}
+  <table class="data">
+    <thead><tr><th>Name</th><th>Address</th><th>District</th><th></th></tr></thead>
+    <tbody>
+    {% for a in p.addresses %}
+      <tr><td>{{ a.label }}</td><td>{{ a.full_address }}</td><td>{{ a.district }}</td>
+          <td class="row-actions"><a href="{{ url_for('account.edit_address', address_id=a.id) }}">Edit</a>
+            {{ button(url_for('account.archive_address', address_id=a.id), 'Remove', 'link', confirm='Remove this address?') }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}<p>No address yet.</p>{% endif %}
+  <div class="actions"><a class="btn secondary" href="{{ url_for('account.new_address') }}">Add an address</a></div>
+</section>
+{% endblock %}

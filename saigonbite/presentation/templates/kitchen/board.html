@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% from "_form.html" import button %}
+{% block title %}Kitchen board · SaigonBite{% endblock %}
+{% block body_class %}wide{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>{{ board.hub.name }}</h1>
+  <p class="muted">Kitchen capacity {{ board.hub.max_active_orders }} orders. New, confirmed and preparing orders count towards it.</p>
+</div>
+{% set titles = {'PLACED': 'New', 'CONFIRMED': 'Confirmed', 'PREPARING': 'Preparing', 'READY': 'Ready for pickup'} %}
+<div class="board">
+  {% for state, entries in board.columns.items() %}
+  <section class="column" aria-labelledby="col-{{ state.value }}">
+    <h2 id="col-{{ state.value }}">{{ titles[state.value] }} <span class="count">{{ entries|length }}</span></h2>
+    {% for e in entries %}
+    {% set o = e.order %}
+    <article class="card" id="order-{{ o.id }}">
+      <p class="card-head"><a href="{{ url_for('kitchen.order', order_id=o.id) }}">Order {{ o.id }}</a>
+        <span class="muted">{{ o.placed_at|vn_time }}</span></p>
+      <ul class="plain">{% for l in o.lines %}<li>{{ l.quantity }} x {{ l.item_name }}</li>{% endfor %}</ul>
+      {% if e.awaiting_customer %}<p><span class="badge warn">Waiting for the customer</span></p>{% endif %}
+      <div class="actions">
+        {% if state.value == 'PLACED' %}
+          {% if not e.awaiting_customer %}{{ button(url_for('kitchen.confirm', order_id=o.id), 'Confirm') }}{% endif %}
+          <a class="btn link" href="{{ url_for('kitchen.order', order_id=o.id) }}">Reject or replace</a>
+        {% elif state.value == 'CONFIRMED' %}
+          {{ button(url_for('kitchen.prepare', order_id=o.id), 'Start preparing') }}
+        {% elif state.value == 'PREPARING' %}
+          {{ button(url_for('kitchen.ready', order_id=o.id), 'Mark ready') }}
+        {% else %}
+          <span class="muted">Waiting for a shipper since {{ o.ready_at|vn_time }}</span>
+        {% endif %}
+      </div>
+    </article>
+    {% else %}
+    <p class="muted">None</p>
+    {% endfor %}
+  </section>
+  {% endfor %}
+</div>
+{% endblock %}

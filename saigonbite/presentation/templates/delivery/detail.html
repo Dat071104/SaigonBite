@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% from "_form.html" import button, csrf %}
+{% block title %}Order {{ v.order.id }} · Delivery · SaigonBite{% endblock %}
+{% block content %}
+{% set d = v.delivery %}
+{% set mine = d.shipper_id == current_user.account.id %}
+<div class="page-head">
+  <h1>Order {{ v.order.id }}</h1>
+  <p class="muted"><span class="badge" id="delivery-state">{{ d.state|label }}</span> · from {{ v.hub.name }}</p>
+</div>
+<dl class="facts">
+  <dt>Deliver to</dt><dd>{{ v.order.delivery_address_text }} ({{ v.order.distance_km }} km)</dd>
+  {% if mine %}
+  <dt>Customer</dt><dd>{{ v.customer.full_name }}{% if v.customer.phone %} · <a href="tel:{{ v.customer.phone }}">{{ v.customer.phone }}</a>{% endif %}</dd>
+  {% endif %}
+  <dt>Payment</dt><dd id="cash-info">{% if v.cash_to_collect %}Collect {{ v.cash_to_collect|vnd }} in cash{% else %}Paid online: take no cash{% endif %}</dd>
+  <dt>Ready</dt><dd>{{ d.ready_at|vn_time }}</dd>
+  {% if d.picked_up_at %}<dt>Picked up</dt><dd>{{ d.picked_up_at|vn_time }}</dd>{% endif %}
+  {% if d.finished_at %}<dt>Finished</dt><dd>{{ d.finished_at|vn_time }}</dd>{% endif %}
+  {% if d.failure_reason %}<dt>Problem</dt><dd>{{ d.failure_reason }}</dd>{% endif %}
+  {% if d.cash_collected is not none %}<dt>Cash collected</dt><dd>{{ d.cash_collected|vnd }}</dd>{% endif %}
+</dl>
+<ul class="plain">{% for l in v.order.lines %}<li>{{ l.quantity }} x {{ l.item_name }}</li>{% endfor %}</ul>
+
+{% if d.state.value == 'AWAITING_PICKUP' %}
+  <div class="actions">{{ button(url_for('delivery.pick_up', order_id=v.order.id), 'Pick up this order') }}</div>
+{% elif d.state.value == 'PICKED_UP' and mine %}
+<section class="panel" aria-labelledby="ok-h">
+  <h2 id="ok-h">Delivered</h2>
+  <form method="post" action="{{ url_for('delivery.delivered', order_id=v.order.id) }}" class="stack" data-once>
+    {{ csrf() }}
+    {% if v.cash_to_collect %}
+    <div class="field">
+      <label for="cash">Cash collected (VND)</label>
+      <input type="number" id="cash" name="cash_collected" min="0" step="1" inputmode="numeric" required>
+    </div>
+    {% endif %}
+    <div class="actions"><button type="submit">Confirm delivery</button></div>
+  </form>
+</section>
+<section class="panel" aria-labelledby="fail-h">
+  <h2 id="fail-h">Could not deliver</h2>
+  <form method="post" action="{{ url_for('delivery.failed', order_id=v.order.id) }}" class="stack" data-confirm="Report that order {{ v.order.id }} could not be delivered?">
+    {{ csrf() }}
+    <div class="field">
+      <label for="reason">What happened</label>
+      <input type="text" id="reason" name="reason" maxlength="200" required placeholder="Customer did not answer, address not found ...">
+    </div>
+    <div class="actions"><button type="submit" class="danger">Report failed delivery</button></div>
+  </form>
+</section>
+{% endif %}
+<div class="actions"><a class="btn link" href="{{ url_for('delivery.board') }}">All deliveries</a></div>
+{% endblock %}

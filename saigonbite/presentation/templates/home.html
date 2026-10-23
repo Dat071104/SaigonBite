@@ -2,26 +2,29 @@
 {% block title %}SaigonBite{% endblock %}
 {% block content %}
 <div class="page-head">
-  <h1>Lunch from SaigonBite's kitchen hubs</h1>
+  <h1>Food from SaigonBite's kitchen hubs</h1>
   <p>Several brands cook in each hub, so one order can mix pho, com tam and banh mi.</p>
 </div>
 {% if not current_user.is_authenticated %}
-  <div class="actions"><a class="btn" href="{{ url_for('auth.login') }}">Log in to order</a></div>
-{% elif current_user.role.value == 'CUSTOMER' %}
-  <div class="actions"><a class="btn" href="{{ url_for('order.choose_hub') }}">Start an order</a></div>
-{% else %}
+  <div class="actions">
+    <a class="btn" href="{{ url_for('auth.login') }}">Log in to order</a>
+    <a class="btn secondary" href="{{ url_for('account.register') }}">Create an account</a>
+  </div>
+{% elif nav_links %}
   <div class="panel">
-    <h2>Signed in as {{ current_user.role.value|replace('_', ' ')|lower }}</h2>
-    <p>Screens for this role come in a later iteration. In this build only customers can place orders.</p>
+    <h2>Signed in as {{ current_user.role|label|lower }}</h2>
+    <div class="actions">
+      {% for endpoint, text in nav_links %}<a class="btn{% if not loop.first %} secondary{% endif %}" href="{{ url_for(endpoint) }}">{{ text }}</a>{% endfor %}
+    </div>
   </div>
 {% endif %}
 <section class="panel" aria-labelledby="how">
   <h2 id="how">How ordering works</h2>
   <ol class="how">
-    <li>Pick a hub. Each one shows its delivery fee up front.</li>
-    <li>Choose your dishes. Sold-out dishes are marked and cannot be added.</li>
-    <li>Check the full price, then confirm. Pressing twice still places one order.</li>
-    <li>Pay the driver in cash when the food arrives.</li>
+    <li>Pick a hub near you. A busy hub is marked, and a quiet one takes 5,000 VND off the delivery fee.</li>
+    <li>Choose your dishes and the address. Add one voucher if you have one.</li>
+    <li>Check the full price, then pay cash on delivery or online. Pressing twice still places one order.</li>
+    <li>Follow your order under My orders until it arrives.</li>
   </ol>
 </section>
 {% endblock %}

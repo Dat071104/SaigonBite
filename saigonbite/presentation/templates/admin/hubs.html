@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% from "_form.html" import button %}
+{% block title %}Hubs · Admin · SaigonBite{% endblock %}
+{% block body_class %}wide{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>Hubs and kitchen capacity</h1>
+  <p class="muted">Load = orders still to cook (new, confirmed, preparing). A hub at its capacity takes no new orders; below a quarter of it, delivery is 5,000 VND cheaper.</p>
+</div>
+<div class="actions"><a class="btn" href="{{ url_for('admin.new_hub') }}">New hub</a></div>
+<table class="data" id="hub-table">
+  <thead><tr><th>Code</th><th>Hub</th><th class="num">Load / capacity</th><th>Now</th><th class="num">Base fee</th><th>Open orders</th><th></th></tr></thead>
+  <tbody>
+  {% for v in hubs %}
+  {% set h = v.status.hub %}
+    <tr id="hub-{{ h.id }}"{% if h.archived_at %} class="archived"{% endif %}>
+      <td>{{ h.code }}</td><td>{{ h.name }}</td>
+      <td class="num">{{ v.status.load }} / {{ h.max_active_orders }}</td>
+      <td>{% if h.archived_at %}<span class="badge">Archived</span>{% elif v.status.busy %}<span class="badge warn">Busy</span>{% elif v.status.quiet %}<span class="badge good">Quiet</span>{% else %}Normal{% endif %}</td>
+      <td class="num">{{ h.base_delivery_fee|vnd }}</td>
+      <td>{{ v.open_orders }}</td>
+      <td class="row-actions">
+        {% if not h.archived_at %}
+        <a href="{{ url_for('admin.edit_hub', hub_id=h.id) }}">Edit</a>
+        <a href="{{ url_for('admin.hub_menu', hub_id=h.id) }}">Menu</a>
+        {% if v.can_archive %}{{ button(url_for('admin.archive_hub', hub_id=h.id), 'Archive', 'link', confirm='Archive ' ~ h.name ~ '? It will stop taking orders.') }}{% endif %}
+        {% else %}archived {{ h.archived_at|vn_time }}{% endif %}
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

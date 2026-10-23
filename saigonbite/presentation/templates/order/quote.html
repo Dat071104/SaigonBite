@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "_form.html" import csrf %}
 {% block title %}Check your order · SaigonBite{% endblock %}
 {% block content %}
 {% set step = 3 %}{% include "order/_steps.html" %}
@@ -6,10 +7,10 @@
   <h1>Check your order</h1>
   <p class="muted">Nothing is ordered until you press Confirm order.</p>
 </div>
-{% if notice %}<div class="flash notice" id="quote-changed" role="status">{{ notice }}</div>{% endif %}
+{% if notice %}<div class="flash {{ notice_kind }}" id="quote-changed" role="{{ 'alert' if notice_kind == 'error' else 'status' }}">{{ notice }}</div>{% endif %}
 <div class="panel">
   <p><strong>{{ quote.hub.name }}</strong></p>
-  <p class="muted">Deliver to {{ quote.address.full_address }}</p>
+  <p class="muted">Deliver to {{ quote.address.full_address }} · <span id="distance">{{ quote.distance_km }} km</span></p>
 </div>
 <table id="quote-table" class="order-lines">
   <thead><tr><th>Dish</th><th class="num col-unit">Unit price</th><th class="num col-qty">Qty</th><th class="num">Amount</th></tr></thead>
@@ -20,21 +21,32 @@
         <td class="num col-qty">{{ line.quantity }}</td><td class="num">{{ line.line_total|vnd }}</td></tr>
   {% endfor %}
     <tr class="sum-row"><td colspan="3">Dishes</td><td class="num" id="item-subtotal">{{ quote.item_subtotal|vnd }}</td></tr>
-    <tr class="sum-row"><td colspan="3">Delivery fee</td><td class="num" id="delivery-fee">{{ quote.delivery_fee|vnd }}</td></tr>
-    <tr class="total-row"><td colspan="3">Total, cash on delivery</td><td class="num" id="total">{{ quote.total|vnd }}</td></tr>
+    {% if quote.voucher %}<tr class="sum-row"><td colspan="3">Voucher {{ quote.voucher.code }}</td><td class="num" id="voucher-discount">-{{ quote.voucher_discount|vnd }}</td></tr>{% endif %}
+    <tr class="sum-row"><td colspan="3">Delivery fee ({{ quote.distance_km }} km)</td><td class="num" id="delivery-fee">{{ quote.delivery_fee|vnd }}</td></tr>
+    {% if quote.quiet_discount %}<tr class="sum-row"><td colspan="3">Quiet hub discount</td><td class="num" id="quiet-discount">-{{ quote.quiet_discount|vnd }}</td></tr>{% endif %}
+    <tr class="total-row"><td colspan="3">Total</td><td class="num" id="total">{{ quote.total|vnd }}</td></tr>
   </tbody>
 </table>
 <form method="post" action="{{ url_for('order.confirm') }}" data-once>
+  {{ csrf() }}
   <input type="hidden" name="hub_id" value="{{ quote.hub.id }}">
   <input type="hidden" name="address_id" value="{{ quote.address.id }}">
+  <input type="hidden" name="voucher_code" value="{{ quote.voucher.code if quote.voucher else '' }}">
   <input type="hidden" name="idempotency_token" value="{{ idempotency_token }}">
   <input type="hidden" name="quoted_total" value="{{ quote.total }}">
   {% for item_id, qty in quantities.items() %}
     <input type="hidden" name="qty_{{ item_id }}" value="{{ qty }}">
   {% endfor %}
+  <fieldset class="panel payment">
+    <legend>How will you pay?</legend>
+    <label class="choice"><input type="radio" name="payment" value="COD"{% if payment == 'COD' %} checked{% endif %}> Cash to the driver on delivery</label>
+    {% for option in options %}
+    <label class="choice"><input type="radio" name="payment" value="ONLINE:{{ option.value }}"{% if payment == 'ONLINE:' ~ option.value %} checked{% endif %}> Pay now online: {{ option|label|lower }}</label>
+    {% endfor %}
+  </fieldset>
   <div class="actions">
     <button type="submit" data-busy="Placing your order...">Confirm order</button>
-    {% set back = {'address_id': quote.address.id} %}
+    {% set back = {'address_id': quote.address.id, 'voucher_code': quote.voucher.code if quote.voucher else ''} %}
     {% for line in quote.lines %}{% set _ = back.update({'qty_' ~ line.menu_item_id: line.quantity}) %}{% endfor %}
     <a class="btn link" href="{{ url_for('order.choose_items', hub_id=quote.hub.id, **back) }}">Change items</a>
   </div>

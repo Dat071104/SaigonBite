@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Sales report · SaigonBite{% endblock %}
+{% block body_class %}wide{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>Sales</h1>
+  <p class="muted">Delivered orders, counted on the day they were delivered (Ho Chi Minh City time). Rejected, cancelled and failed orders are not sales.</p>
+</div>
+{% include "reports/_filter.html" %}
+{% if report %}
+<table class="data" id="sales-table">
+  <thead><tr><th>Hub</th><th class="num">Orders</th><th class="num">Dishes</th><th class="num">Vouchers</th>
+    <th class="num">Delivery fees</th><th class="num">Total</th><th class="num">Refunds owed</th><th class="num">Net</th></tr></thead>
+  <tbody>
+  {% for r in report.rows %}
+    <tr><td>{{ r.label }}</td><td class="num">{{ r.orders }}</td><td class="num">{{ r.item_sales|vnd }}</td>
+      <td class="num">-{{ r.voucher_discounts|vnd }}</td><td class="num">{{ r.delivery_fees|vnd }}</td>
+      <td class="num">{{ r.total|vnd }}</td><td class="num">{{ r.refunds_owed|vnd }}</td><td class="num">{{ r.net|vnd }}</td></tr>
+  {% else %}
+    <tr><td colspan="8">No delivered orders in this period.</td></tr>
+  {% endfor %}
+  {% set t = report.totals %}
+    <tr class="total-row" id="sales-total"><td>{{ t.label }}</td><td class="num">{{ t.orders }}</td><td class="num">{{ t.item_sales|vnd }}</td>
+      <td class="num">-{{ t.voucher_discounts|vnd }}</td><td class="num">{{ t.delivery_fees|vnd }}</td>
+      <td class="num">{{ t.total|vnd }}</td><td class="num">{{ t.refunds_owed|vnd }}</td><td class="num">{{ t.net|vnd }}</td></tr>
+  </tbody>
+</table>
+<p class="muted">Delivery fees are after the quiet-hub discount. Total = dishes - vouchers + delivery fees.</p>
+{% if report.top_items %}
+<section aria-labelledby="top-h">
+  <h2 id="top-h">Best-selling dishes</h2>
+  <table class="data" id="top-items">
+    <thead><tr><th>Dish</th><th class="num">Quantity</th><th class="num">Revenue</th></tr></thead>
+    <tbody>{% for name, qty, revenue in report.top_items %}<tr><td>{{ name }}</td><td class="num">{{ qty }}</td><td class="num">{{ revenue|vnd }}</td></tr>{% endfor %}</tbody>
+  </table>
+</section>
+{% endif %}
+{% endif %}
+{% endblock %}

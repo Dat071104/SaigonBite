@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Delivery performance · SaigonBite{% endblock %}
+{% block body_class %}wide{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>Delivery performance</h1>
+  <p class="muted">Deliveries that ended in the period. Wait = ready until picked up; ride = picked up until delivered.
+    Failure rate = failed / (delivered + failed).</p>
+</div>
+{% include "reports/_filter.html" %}
+{% macro rows(list) %}
+  {% for r in list %}
+    <tr><td>{{ r.label }}</td><td class="num">{{ r.delivered }}</td><td class="num">{{ r.failed }}</td>
+      <td class="num">{{ '%.1f%%'|format(r.failure_rate) if r.failure_rate is not none else 'n/a' }}</td>
+      <td class="num">{{ '%.1f min'|format(r.avg_wait) if r.avg_wait is not none else 'n/a' }}</td>
+      <td class="num">{{ '%.1f min'|format(r.avg_ride) if r.avg_ride is not none else 'n/a' }}</td></tr>
+  {% endfor %}
+{% endmacro %}
+{% if report %}
+{% set head %}<thead><tr><th></th><th class="num">Delivered</th><th class="num">Failed</th><th class="num">Failure rate</th><th class="num">Avg wait</th><th class="num">Avg ride</th></tr></thead>{% endset %}
+<section aria-labelledby="hub-h">
+  <h2 id="hub-h">By hub</h2>
+  <table class="data" id="delivery-by-hub">{{ head }}
+    <tbody>
+      {{ rows(report.by_hub) }}
+      {% if not report.by_hub %}<tr><td colspan="6">No delivery ended in this period.</td></tr>{% endif %}
+    </tbody>
+    <tbody class="total-row" id="delivery-overall">{{ rows([report.overall]) }}</tbody>
+  </table>
+</section>
+<section aria-labelledby="shipper-h">
+  <h2 id="shipper-h">By shipper</h2>
+  <table class="data" id="delivery-by-shipper">{{ head }}<tbody>{{ rows(report.by_shipper) }}</tbody></table>
+</section>
+{% endif %}
+{% endblock %}

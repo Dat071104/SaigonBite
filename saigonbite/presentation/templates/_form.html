@@ -1,0 +1,31 @@
+{# Form helpers. `values` is the submitted form (shown again after an error) or the saved record. #}
+{% macro csrf() %}<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">{% endmacro %}
+
+{% macro field(name, label, value='', type='text', hint=None, required=true, attrs='') %}
+<div class="field">
+  <label for="f-{{ name }}">{{ label }}{% if hint %} <span class="hint">{{ hint }}</span>{% endif %}</label>
+  <input type="{{ type }}" id="f-{{ name }}" name="{{ name }}" value="{{ value if value is not none else '' }}"{% if required %} required{% endif %} {{ attrs|safe }}>
+</div>
+{% endmacro %}
+
+{% macro select(name, label, options, selected=None, placeholder=None, hint=None) %}
+<div class="field">
+  <label for="f-{{ name }}">{{ label }}{% if hint %} <span class="hint">{{ hint }}</span>{% endif %}</label>
+  <select id="f-{{ name }}" name="{{ name }}">
+    {% if placeholder %}<option value="">{{ placeholder }}</option>{% endif %}
+    {% for value, text in options %}
+      <option value="{{ value }}"{% if selected is not none and value|string == selected|string %} selected{% endif %}>{{ text }}</option>
+    {% endfor %}
+  </select>
+</div>
+{% endmacro %}
+
+{% macro button(action, text, cls='', fields={}, confirm=None) %}
+<form method="post" action="{{ action }}" class="inline"{% if confirm %} data-confirm="{{ confirm }}"{% endif %}>
+  {{ csrf() }}
+  {% for k, v in fields.items() %}<input type="hidden" name="{{ k }}" value="{{ v }}">{% endfor %}
+  <button type="submit" class="{{ cls }}">{{ text }}</button>
+</form>
+{% endmacro %}
+
+{% macro error_box(error) %}{% if error %}<div class="flash error" id="form-error" role="alert">{{ error }}</div>{% endif %}{% endmacro %}

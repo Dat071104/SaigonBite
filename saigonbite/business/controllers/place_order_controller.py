@@ -1,10 +1,11 @@
-"""PlaceOrderController: one method per system operation of UC-01 (docs/i1/ssd_uc01_subset.md).
+"""PlaceOrderController (UC-01 Place an order): one method per system operation of the SSD.
 
-    listHubs        -> list_hubs()
-    selectHub       -> select_hub(user_id, hub_id)
-    requestQuote    -> request_quote(user_id, hub_id, address_id, quantities)
-    confirmOrder    -> confirm_order(user_id, hub_id, address_id, quantities, idempotency_token, quoted_total)
-    viewConfirmation-> get_confirmation(user_id, order_id)
+    listHubs         -> list_hubs()
+    selectHub        -> select_hub(user_id, hub_id)
+    requestQuote     -> request_quote(user_id, hub_id, address_id, quantities, voucher_code)
+    confirmOrder     -> confirm_order(user_id, hub_id, address_id, quantities, idempotency_token,
+                                      quoted_total, voucher_code, payment)
+    viewConfirmation -> get_confirmation(user_id, order_id)
 
 All rules are enforced here, on the server, whatever the browser sent.
 """
@@ -12,20 +13,23 @@ from __future__ import annotations
 
 import sqlite3
 from dataclasses import dataclass
-from datetime import datetime, timezone
 from typing import Mapping, Optional
 
-from saigonbite.business.domain import (MAX_QUANTITY, Address, Customer, Hub, HubMenuItem, Order,
-                                        OrderLine, Payment, PaymentMethod, PaymentState, Quote, Role)
-from saigonbite.data_access import (CustomerDAO, HubDAO, OrderDAO, PaymentDAO, UserDAO,
-                                    immediate_transaction)
+from saigonbite.business.domain import (MAX_QUANTITY, Address, Customer, Hub, HubMenuItem, HubStatus,
+                                        OnlineOption, Order, OrderLine, Payment, PaymentMethod, PaymentState,
+                                        Quote, Role, rules)
+from saigonbite.data_access import (CustomerDAO, HubDAO, OrderDAO, PaymentDAO, PaymentGatewaySimulator,
+                                    VoucherDAO, immediate_transaction)
 
-from .errors import AuthorizationError, NotFoundError, QuoteChangedError, ValidationError
+from .common import BaseController
+from .errors import (AuthorizationError, HubUnavailableError, NotFoundError, PaymentDeclinedError,
+                     QuoteChangedError, ValidationError)
 
 
 @dataclass
 class HubMenuView:
     hub: Hub
+    status: HubStatus
     menu: list[HubMenuItem]
     addresses: list[Address]
 
@@ -35,46 +39,61 @@ class OrderConfirmation:
     order: Order
     payment: Payment
     hub: Hub
-    address: Address
     created: bool = True     # False when a repeated submit returned the existing order
 
 
-def _now() -> str:
-    return datetime.now(timezone.utc).isoformat(timespec="seconds")
+@dataclass
+class PaymentChoice:
+    """How the customer pays. outcome is the payment simulator's answer (APPROVE or DECLINE) for ONLINE."""
+    method: PaymentMethod = PaymentMethod.COD
+    option: Optional[OnlineOption] = None
+    outcome: Optional[str] = None
 
 
-class PlaceOrderController:
-    def __init__(self, conn: sqlite3.Connection):
-        self.conn = conn
-        self.users = UserDAO(conn)
+class PlaceOrderController(BaseController):
+    def __init__(self, conn: sqlite3.Connection, clock=None, gateway: Optional[PaymentGatewaySimulator] = None):
+        super().__init__(conn, clock)
         self.customers = CustomerDAO(conn)
         self.hubs = HubDAO(conn)
         self.orders = OrderDAO(conn)
         self.payments = PaymentDAO(conn)
+        self.vouchers = VoucherDAO(conn)
+        self.gateway = gateway or PaymentGatewaySimulator()
 
     # ---- system operations -------------------------------------------------------------
 
-    def list_hubs(self) -> list[Hub]:
-        return self.hubs.list_active()
+    def list_hubs(self) -> list[HubStatus]:
+        loads = self.hubs.active_loads()
+        return [HubStatus(hub, loads.get(hub.id, 0)) for hub in self.hubs.list_active()]
 
     def select_hub(self, user_id: int, hub_id: int) -> HubMenuView:
         customer = self._require_customer(user_id)
         hub = self._require_hub(hub_id)
-        return HubMenuView(hub=hub, menu=self.hubs.list_menu(hub.id),
+        return HubMenuView(hub=hub, status=HubStatus(hub, self.hubs.active_load(hub.id)),
+                           menu=self.hubs.list_menu(hub.id),
                            addresses=self.customers.list_addresses(customer.id))
 
+    def payment_options(self, user_id: int) -> tuple[OnlineOption, ...]:
+        """Q4: the online options this customer's type may use (cash on delivery is always offered)."""
+        return self._require_customer(user_id).online_options
+
     def request_quote(self, user_id: int, hub_id: int, address_id: Optional[int],
-                      quantities: Mapping[int, str]) -> Quote:
-        """Price the cart (AC-3). Writes nothing."""
+                      quantities: Mapping[int, str], voucher_code: Optional[str] = None) -> Quote:
+        """Price the cart. Writes nothing."""
         customer = self._require_customer(user_id)
-        return self._build_quote(customer, hub_id, address_id, quantities)
+        return self._build_quote(customer, hub_id, address_id, quantities, voucher_code)
 
     def confirm_order(self, user_id: int, hub_id: int, address_id: Optional[int],
                       quantities: Mapping[int, str], idempotency_token: str,
-                      quoted_total: Optional[int] = None) -> OrderConfirmation:
-        """Create Order(PLACED) + OrderLines + Payment(COD, PENDING) in ONE transaction (AC-4).
+                      quoted_total: Optional[int] = None, voucher_code: Optional[str] = None,
+                      payment: Optional[PaymentChoice] = None) -> OrderConfirmation:
+        """Create Order(PLACED) + OrderLines + Payment in ONE transaction.
 
-        A repeated call with the same token returns the first order and writes nothing (AC-7).
+        Payment is COD PENDING, or ONLINE PAID when the simulator approved it (A-06: the money is taken
+        when the order is saved; a failed save releases the authorisation).
+        A repeated call with the same token returns the first order and writes nothing.
+        The capacity rule is checked again inside the write lock, so two customers cannot both take
+        the last slot of a hub (R-03).
         quoted_total is the total the customer saw on the quote page. It is only compared, never
         used as a price: if it is missing or the re-priced total differs, no order is written and
         QuoteChangedError carries the current quote for the customer to confirm.
@@ -83,6 +102,8 @@ class PlaceOrderController:
         token = (idempotency_token or "").strip()
         if not token:
             raise ValidationError("This order form has expired. Please start the order again.")
+        payment = payment or PaymentChoice()
+        self._check_payment_choice(customer, payment)
 
         with immediate_transaction(self.conn):
             existing = self.orders.get_by_token(token)
@@ -92,16 +113,31 @@ class PlaceOrderController:
                 return self._confirmation(existing, created=False)
 
             # Re-validate and re-price inside the write lock: never trust the quote page.
-            quote = self._build_quote(customer, hub_id, address_id, quantities)
+            quote = self._build_quote(customer, hub_id, address_id, quantities, voucher_code)
             if quoted_total is None:
                 raise QuoteChangedError(quote, QuoteChangedError.MISSING)
             if quoted_total != quote.total:
                 raise QuoteChangedError(quote)
-            now = _now()
-            order = Order.place(customer.id, quote, token, now)
-            order.id = self.orders.insert(order)
-            self.payments.insert(Payment(order_id=order.id, method=PaymentMethod.COD,
-                                         state=PaymentState.PENDING, amount=order.total, created_at=now))
+
+            reference = None
+            if payment.method is PaymentMethod.ONLINE:
+                auth = self.gateway.authorise(quote.total, payment.option, payment.outcome)
+                if not auth.approved:
+                    raise PaymentDeclinedError(quote, f"{auth.message} No order was placed. "
+                                                      "Try again or choose cash on delivery.")
+                reference = auth.reference
+            now = self._now()
+            try:
+                order = Order.place(customer.id, quote, token, now)
+                order.id = self.orders.insert(order)
+                self.payments.insert(Payment(
+                    order_id=order.id, method=payment.method, online_option=payment.option,
+                    provider_ref=reference, amount=order.total, created_at=now,
+                    state=PaymentState.PAID if payment.method is PaymentMethod.ONLINE else PaymentState.PENDING))
+            except BaseException:
+                if reference:
+                    self.gateway.release(reference)
+                raise
         return self._confirmation(self.orders.get_by_id(order.id), created=True)
 
     def get_confirmation(self, user_id: int, order_id: int) -> OrderConfirmation:
@@ -116,9 +152,7 @@ class PlaceOrderController:
     # ---- internals ---------------------------------------------------------------------
 
     def _require_customer(self, user_id: int) -> Customer:
-        user = self.users.get_by_id(user_id)
-        if user is None or not user.is_active or user.role is not Role.CUSTOMER:
-            raise AuthorizationError("Only logged-in customers can place orders.")
+        user = self._require_user(user_id, Role.CUSTOMER, message="Only logged-in customers can place orders.")
         customer = self.customers.get_by_user_id(user.id)
         if customer is None:
             raise AuthorizationError("Only logged-in customers can place orders.")
@@ -130,8 +164,30 @@ class PlaceOrderController:
             raise ValidationError("Please choose a hub.")
         return hub
 
+    @staticmethod
+    def _check_payment_choice(customer: Customer, payment: PaymentChoice) -> None:
+        if payment.method is PaymentMethod.COD:
+            payment.option = None
+            return
+        if payment.option not in customer.online_options:
+            allowed = ", ".join(o.value.replace("_", " ").lower() for o in customer.online_options)
+            raise ValidationError(f"This payment option is not offered to your account. You can pay by {allowed} "
+                                  "or cash on delivery.")
+
+    def suggest_hubs(self, exclude_hub_id: int, address: Optional[Address]) -> list[HubStatus]:
+        """Other active hubs that are not busy and can reach the address, quietest first."""
+        options = []
+        for status in self.list_hubs():
+            if status.hub.id == exclude_hub_id or status.busy:
+                continue
+            if address is not None and status.hub.distance_to(address) > rules.MAX_DELIVERY_KM:
+                continue
+            options.append(status)
+        options.sort(key=lambda s: (s.load / s.hub.max_active_orders, s.hub.id))
+        return options[:rules.MAX_SUGGESTIONS]
+
     def _build_quote(self, customer: Customer, hub_id: int, address_id: Optional[int],
-                     quantities: Mapping[int, str]) -> Quote:
+                     quantities: Mapping[int, str], voucher_code: Optional[str]) -> Quote:
         hub = self._require_hub(hub_id)
 
         lines: list[OrderLine] = []
@@ -161,11 +217,31 @@ class PlaceOrderController:
         if address is None:
             raise ValidationError("The selected delivery address is not valid.")
 
-        return Quote(hub=hub, address=address, lines=lines)
+        km = hub.distance_to(address)
+        if km > rules.MAX_DELIVERY_KM:
+            raise HubUnavailableError(
+                f"{address.label} is {km} km from {hub.name}. We deliver up to {rules.MAX_DELIVERY_KM:g} km.",
+                self.suggest_hubs(hub.id, address))
+        load = self.hubs.active_load(hub.id)
+        if rules.is_busy(load, hub.max_active_orders):
+            raise HubUnavailableError(f"{hub.name} is too busy to take new orders right now.",
+                                      self.suggest_hubs(hub.id, address))
+
+        quote = Quote(hub=hub, address=address, lines=lines, distance_km=km,
+                      delivery_fee=rules.delivery_fee(hub.base_delivery_fee, km))
+        quote.quiet_discount = rules.quiet_discount(load, hub.max_active_orders, quote.delivery_fee)
+
+        code = (voucher_code or "").strip()
+        if code:
+            voucher = self.vouchers.get_by_code(code)
+            if voucher is None:
+                raise ValidationError(f"Voucher {code} does not exist.")
+            problem = voucher.problem(quote.item_subtotal, self._today_vn())
+            if problem:
+                raise ValidationError(problem)
+            quote.voucher, quote.voucher_discount = voucher, voucher.discount_for(quote.item_subtotal)
+        return quote
 
     def _confirmation(self, order: Order, created: bool) -> OrderConfirmation:
-        payment = self.payments.get_by_order_id(order.id)
-        hub = self.hubs.get_including_archived(order.hub_id)
-        customer_addresses = self.customers.list_addresses(order.customer_id)
-        address = next(a for a in customer_addresses if a.id == order.address_id)
-        return OrderConfirmation(order=order, payment=payment, hub=hub, address=address, created=created)
+        return OrderConfirmation(order=order, payment=self.payments.get_by_order_id(order.id),
+                                 hub=self.hubs.get_including_archived(order.hub_id), created=created)

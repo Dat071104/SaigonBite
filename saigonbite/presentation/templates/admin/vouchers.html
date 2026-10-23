@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% from "_form.html" import button %}
+{% block title %}Vouchers · Admin · SaigonBite{% endblock %}
+{% block body_class %}wide{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>Vouchers</h1>
+  <p class="muted">A customer can use one voucher per order. The discount applies to the dishes, not the delivery fee.</p>
+</div>
+<div class="actions"><a class="btn" href="{{ url_for('admin.new_voucher') }}">New voucher</a></div>
+<table class="data" id="voucher-table">
+  <thead><tr><th>Code</th><th>Discount</th><th class="num">Minimum</th><th>Valid</th><th></th></tr></thead>
+  <tbody>
+  {% for v in vouchers %}
+    <tr id="voucher-{{ v.id }}"{% if v.archived_at %} class="archived"{% endif %}>
+      <td>{{ v.code }}{% if v.archived_at %} <span class="badge">Archived</span>{% endif %}<br><span class="muted">{{ v.description }}</span></td>
+      <td>{% if v.discount_type.value == 'PERCENT' %}{{ v.discount_value }}%{% if v.max_discount %}, at most {{ v.max_discount|vnd }}{% endif %}{% else %}{{ v.discount_value|vnd }}{% endif %}</td>
+      <td class="num">{{ v.min_subtotal|vnd }}</td>
+      <td>{{ v.valid_from }} to {{ v.valid_until }}</td>
+      <td class="row-actions">{% if not v.archived_at %}<a href="{{ url_for('admin.edit_voucher', voucher_id=v.id) }}">Edit</a>
+        {{ button(url_for('admin.archive_voucher', voucher_id=v.id), 'Archive', 'link', confirm='Archive ' ~ v.code ~ '?') }}{% endif %}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

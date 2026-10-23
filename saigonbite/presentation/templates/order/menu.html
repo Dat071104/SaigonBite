@@ -1,13 +1,17 @@
 {% extends "base.html" %}
+{% from "_form.html" import csrf %}
 {% block title %}{{ view.hub.name }} · SaigonBite{% endblock %}
 {% block content %}
 {% set step = 2 %}{% include "order/_steps.html" %}
 <div class="page-head">
   <h1>{{ view.hub.name }}</h1>
-  <p class="muted">{{ view.hub.address_text }} · delivery fee <span class="price">{{ view.hub.delivery_fee_flat|vnd }}</span></p>
+  <p class="muted">{{ view.hub.address_text }} · delivery from <span class="price">{{ (view.hub.base_delivery_fee + 3000)|vnd }}</span></p>
 </div>
+{% if view.status.busy %}<div class="flash notice" role="status">This kitchen is busy right now and will not take new orders. <a href="{{ url_for('order.choose_hub') }}">Choose another hub</a>.</div>
+{% elif view.status.quiet %}<div class="flash success" role="status">This kitchen is quiet: 5,000 VND off the delivery fee.</div>{% endif %}
 {% if error %}<div class="flash error" id="form-error" role="alert">{{ error }}</div>{% endif %}
 <form method="post" action="{{ url_for('order.quote') }}" data-menu-form>
+  {{ csrf() }}
   <input type="hidden" name="hub_id" value="{{ view.hub.id }}">
   {% for brand, entries in groups %}
   <section class="brand-group" aria-labelledby="brand-{{ loop.index }}">
@@ -51,8 +55,13 @@
           <option value="{{ a.id }}" {% if selected_address_id == a.id or (not error and not selected_address_id and view.addresses|length == 1) %}selected{% endif %}>{{ a.label }}: {{ a.full_address }}</option>
         {% endfor %}
       </select>
+      <p class="hint"><a href="{{ url_for('account.new_address') }}">Add an address</a></p>
     </div>
-    <p>You pay the driver in cash when the food arrives.</p>
+    <div class="field">
+      <label for="voucher_code">Voucher code <span class="hint">optional, one per order</span></label>
+      <input type="text" id="voucher_code" name="voucher_code" value="{{ voucher_code }}" autocapitalize="characters" autocomplete="off">
+    </div>
+    <p>You choose cash on delivery or online payment on the next page.</p>
   </div>
 
   <div class="summary-bar">

@@ -8,22 +8,32 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   <script src="{{ url_for('static', filename='app.js') }}" defer></script>
 </head>
-<body>
+<body class="{% block body_class %}{% endblock %}">
   <a class="skip" href="#content">Skip to content</a>
   <header class="topbar">
     <div class="wrap">
       <a class="brand" href="{{ url_for('main.home') }}">SaigonBite</a>
       <nav class="account" aria-label="Account">
         {% if current_user.is_authenticated %}
-          <span class="who">{{ current_user.display_name }}<span class="role"> · {{ current_user.role.value|replace('_', ' ')|lower|capitalize }}</span></span>
+          <span class="who">{{ current_user.display_name }}<span class="role"> · {{ current_user.role|label }}</span></span>
           <form method="post" action="{{ url_for('auth.logout') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <button type="submit" class="secondary">Log out</button>
           </form>
-        {% elif request.endpoint != 'auth.login' %}
+        {% elif request.endpoint not in ('auth.login', 'account.register') %}
           <a class="btn secondary" href="{{ url_for('auth.login') }}">Log in</a>
         {% endif %}
       </nav>
     </div>
+    {% if nav_links %}
+    <div class="wrap">
+      <nav class="mainnav" aria-label="Main">
+        {% for endpoint, text in nav_links %}
+          <a href="{{ url_for(endpoint) }}"{% if request.endpoint == endpoint %} aria-current="page"{% endif %}>{{ text }}</a>
+        {% endfor %}
+      </nav>
+    </div>
+    {% endif %}
   </header>
   <main id="content">
     <div class="wrap">
@@ -36,7 +46,7 @@
     </div>
   </main>
   <footer>
-    <div class="wrap">SaigonBite · lunch from our kitchens in Ho Chi Minh City, cash on delivery</div>
+    <div class="wrap">SaigonBite · food from our kitchen hubs in Ho Chi Minh City · demo system, synthetic data</div>
   </footer>
 </body>
 </html>

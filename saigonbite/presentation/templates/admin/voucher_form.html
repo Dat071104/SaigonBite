@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% from "_form.html" import csrf, field, select, error_box %}
+{% block title %}{{ 'Edit voucher' if voucher else 'New voucher' }} · Admin · SaigonBite{% endblock %}
+{% block content %}
+{% set v = form if form else (voucher.__dict__ if voucher else {'discount_type': 'PERCENT'}) %}
+<div class="page-head"><h1>{{ voucher.code if voucher else 'New voucher' }}</h1></div>
+{{ error_box(error) }}
+<form method="post" class="panel stack" action="{{ url_for('admin.edit_voucher', voucher_id=voucher.id) if voucher else url_for('admin.new_voucher') }}">
+  {{ csrf() }}
+  {{ field('code', 'Code', v.get('code'), hint='capital letters and digits') }}
+  {{ field('description', 'Description', v.get('description'), required=false) }}
+  {{ select('discount_type', 'Type', [('PERCENT', 'Percentage of the dishes'), ('FIXED', 'Fixed amount (VND)')], v.get('discount_type').value if v.get('discount_type').value is defined else v.get('discount_type')) }}
+  <div class="two">
+    {{ field('discount_value', 'Discount', v.get('discount_value'), type='number', hint='percent or VND', attrs='min="1" step="1"') }}
+    {{ field('max_discount', 'At most (VND)', v.get('max_discount'), type='number', hint='optional', required=false, attrs='min="0" step="1000"') }}
+  </div>
+  {{ field('min_subtotal', 'Minimum dishes total (VND)', v.get('min_subtotal', 0), type='number', required=false, attrs='min="0" step="1000"') }}
+  <div class="two">
+    {{ field('valid_from', 'First day', v.get('valid_from'), type='date') }}
+    {{ field('valid_until', 'Last day', v.get('valid_until'), type='date') }}
+  </div>
+  <div class="actions"><button type="submit">Save voucher</button><a class="btn link" href="{{ url_for('admin.vouchers') }}">Back</a></div>
+</form>
+{% endblock %}

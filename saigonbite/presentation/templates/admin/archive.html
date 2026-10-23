@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% from "_form.html" import csrf, error_box %}
+{% block title %}Archive orders · Admin · SaigonBite{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>Archive finished orders</h1>
+  <p class="muted">Delivered, failed, rejected and cancelled orders closed before the chosen day leave the operational screens.
+    Nothing is deleted, and the reports still count them. Open orders are never archived.</p>
+</div>
+{{ error_box(error) }}
+<form method="get" action="{{ url_for('admin.archive') }}" class="inline-form">
+  <label for="closed_before">Closed before (Ho Chi Minh City day)</label>
+  <input type="date" id="closed_before" name="closed_before" value="{{ day }}" required>
+  <button type="submit" class="secondary">Count orders</button>
+</form>
+{% if preview %}
+<div class="panel" id="archive-preview">
+  <p><strong>{{ preview.count }}</strong> finished order(s) closed before {{ preview.closed_before }} can be archived.</p>
+  {% if preview.count %}
+  <form method="post" action="{{ url_for('admin.archive_orders') }}" data-confirm="Archive {{ preview.count }} order(s)?">
+    {{ csrf() }}<input type="hidden" name="closed_before" value="{{ preview.closed_before }}">
+    <button type="submit">Archive them</button>
+  </form>
+  {% endif %}
+</div>
+{% endif %}
+{% if archived %}
+<section aria-labelledby="arch-h">
+  <h2 id="arch-h">Recently archived</h2>
+  <table class="data">
+    <thead><tr><th>Order</th><th>Status</th><th>Closed</th><th>Archived</th><th class="num">Total</th></tr></thead>
+    <tbody>
+    {% for o in archived %}
+      <tr><td>{{ o.id }}</td><td>{{ o.state|label }}</td><td>{{ o.closed_at|vn_time }}</td><td>{{ o.archived_at|vn_time }}</td><td class="num">{{ o.total|vnd }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endif %}
+{% endblock %}

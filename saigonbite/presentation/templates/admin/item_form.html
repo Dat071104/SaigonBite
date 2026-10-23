@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% from "_form.html" import csrf, field, select, error_box %}
+{% block title %}{{ 'Edit dish' if item else 'New dish' }} · Admin · SaigonBite{% endblock %}
+{% block content %}
+{% set v = form if form else (item.__dict__ if item else {}) %}
+<div class="page-head">
+  <h1>{{ item.name if item else 'New dish' }}</h1>
+  {% if item %}<p class="muted">{{ item.brand_name }} · a new price applies to new orders only</p>{% endif %}
+</div>
+{{ error_box(error) }}
+<form method="post" class="panel stack" action="{{ url_for('admin.edit_item', item_id=item.id) if item else url_for('admin.new_item') }}">
+  {{ csrf() }}
+  {% if not item %}
+    {% set options = [] %}{% for b in brands if not b.archived_at %}{% set _ = options.append((b.id, b.name)) %}{% endfor %}
+    {{ select('brand_id', 'Brand', options, v.get('brand_id'), placeholder='Choose a brand') }}
+  {% endif %}
+  {{ field('name', 'Dish name', v.get('name')) }}
+  {{ field('description', 'Description', v.get('description'), required=false) }}
+  {{ field('price', 'Price (VND)', v.get('price'), type='number', attrs='min="1" step="1000"') }}
+  <div class="actions"><button type="submit">Save dish</button><a class="btn link" href="{{ url_for('admin.catalogue') }}">Back</a></div>
+</form>
+{% endblock %}

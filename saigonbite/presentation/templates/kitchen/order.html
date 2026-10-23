@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% from "_form.html" import button, csrf %}
+{% block title %}Order {{ v.order.id }} · Kitchen · SaigonBite{% endblock %}
+{% block content %}
+{% set order = v.order %}
+<div class="page-head">
+  <h1>Order {{ order.id }}</h1>
+  <p class="muted">Placed {{ order.placed_at|vn_time }} · <span class="badge" id="order-state">{{ order.state|label }}</span>
+    · {{ v.payment.method.value }}{% if v.payment.method.value == 'ONLINE' %} (paid){% endif %}</p>
+</div>
+{% include "order/_lines.html" %}
+
+{% if v.open_offer %}
+<div class="panel attention"><p>Replacement offered: {{ v.open_offer.original_item_name }} → <strong>{{ v.open_offer.new_item_name }}</strong>.
+  Waiting for the customer to accept or decline. You can confirm the order after the answer.</p></div>
+{% endif %}
+{% if order.reject_reason %}<p class="muted">Reason: {{ order.reject_reason }}</p>{% endif %}
+
+{% if order.state.value == 'PLACED' %}
+<div class="actions">
+  {% if not v.open_offer %}{{ button(url_for('kitchen.confirm', order_id=order.id), 'Confirm order') }}{% endif %}
+</div>
+
+{% if v.candidates and not v.open_offer %}
+<section class="panel" aria-labelledby="repl-h">
+  <h2 id="repl-h">Offer a replacement</h2>
+  <p class="muted">If a dish has run out, offer one available dish at the same or a lower price. The customer decides.</p>
+  <form method="post" action="{{ url_for('kitchen.offer', order_id=order.id) }}" class="stack">
+    {{ csrf() }}
+    <div class="field">
+      <label for="replacement">Replace</label>
+      <select id="replacement" name="replacement">
+        <option value="">Choose the dish and its replacement</option>
+        {% for line in order.lines %}{% for item in v.candidates.get(line.id, []) %}
+        <option value="{{ line.id }}:{{ item.id }}">{{ line.item_name }} → {{ item.name }} ({{ item.price|vnd }})</option>
+        {% endfor %}{% endfor %}
+      </select>
+    </div>
+    <div class="actions"><button type="submit" class="secondary">Send the offer</button></div>
+  </form>
+</section>
+{% endif %}
+
+<section class="panel" aria-labelledby="rej-h">
+  <h2 id="rej-h">Reject the order</h2>
+  <form method="post" action="{{ url_for('kitchen.reject', order_id=order.id) }}" class="stack" data-confirm="Reject order {{ order.id }}?">
+    {{ csrf() }}
+    <div class="field">
+      <label for="reason">Reason for the customer</label>
+      <input type="text" id="reason" name="reason" maxlength="200" required>
+    </div>
+    <div class="actions"><button type="submit" class="danger">Reject order</button></div>
+  </form>
+</section>
+{% endif %}
+<div class="actions"><a class="btn link" href="{{ url_for('kitchen.board') }}">Back to the board</a></div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% from "_form.html" import csrf, field, select, error_box %}
+{% block title %}{{ 'Edit account' if user else 'New staff account' }} · Admin · SaigonBite{% endblock %}
+{% block content %}
+{% set v = form if form else ({'display_name': user.display_name, 'hub_id': user.hub_id} if user else {}) %}
+<div class="page-head">
+  <h1>{{ user.username if user else 'New staff account' }}</h1>
+  {% if user %}<p class="muted">{{ user.role|label }}</p>{% endif %}
+</div>
+{{ error_box(error) }}
+<form method="post" class="panel stack" action="{{ url_for('admin.edit_user', user_id=user.id) if user else url_for('admin.new_user') }}">
+  {{ csrf() }}
+  {% if not user %}
+    {{ field('username', 'Username', v.get('username')) }}
+    {% set role_options = [] %}{% for r in roles %}{% set _ = role_options.append((r.value, r|label)) %}{% endfor %}
+    {{ select('role', 'Role', role_options, v.get('role'), placeholder='Choose a role') }}
+  {% endif %}
+  {{ field('display_name', 'Display name', v.get('display_name')) }}
+  {% if not user or user.role.value == 'KITCHEN_STAFF' %}
+    {% set hub_options = [] %}{% for h in hubs %}{% set _ = hub_options.append((h.id, h.name)) %}{% endfor %}
+    {{ select('hub_id', 'Hub (kitchen staff only)', hub_options, v.get('hub_id'), placeholder='No hub') }}
+  {% endif %}
+  {{ field('password', 'New password' if user else 'Password', '', type='password', hint='leave empty to keep it' if user else 'at least 6 characters', required=not user, attrs='autocomplete="new-password"') }}
+  <div class="actions"><button type="submit">Save account</button><a class="btn link" href="{{ url_for('admin.users') }}">Back</a></div>
+</form>
+{% endblock %}

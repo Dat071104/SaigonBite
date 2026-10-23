@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Hub workload · SaigonBite{% endblock %}
+{% block body_class %}wide{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>Hub workload now</h1>
+  <p class="muted">As of {{ report.as_of|vn_time }}. Load = new + confirmed + preparing orders. A hub is busy at its capacity and quiet below a quarter of it.</p>
+</div>
+<table class="data" id="workload-table">
+  <thead><tr><th>Hub</th><th class="num">New</th><th class="num">Confirmed</th><th class="num">Preparing</th>
+    <th class="num">Load / capacity</th><th class="num">Load %</th><th>Status</th><th class="num">Ready</th><th class="num">On the way</th></tr></thead>
+  <tbody>
+  {% for r in report.rows %}
+    {# OrderState is a str enum, so the counts can be read with the state names #}
+    <tr id="workload-{{ r.status.hub.id }}"><td>{{ r.status.hub.name }}</td>
+      <td class="num">{{ r.counts.get('PLACED', 0) }}</td><td class="num">{{ r.counts.get('CONFIRMED', 0) }}</td>
+      <td class="num">{{ r.counts.get('PREPARING', 0) }}</td>
+      <td class="num">{{ r.status.load }} / {{ r.status.hub.max_active_orders }}</td><td class="num">{{ r.status.load_percent }}%</td>
+      <td>{% if r.label == 'Busy' %}<span class="badge warn">Busy</span>{% elif r.label == 'Quiet' %}<span class="badge good">Quiet</span>{% else %}Normal{% endif %}</td>
+      <td class="num">{{ r.counts.get('READY', 0) }}</td><td class="num">{{ r.counts.get('OUT_FOR_DELIVERY', 0) }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

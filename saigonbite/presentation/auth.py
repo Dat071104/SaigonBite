@@ -58,6 +58,12 @@ def role_required(*roles: Role):
     return decorator
 
 
+def home_for(role: Role) -> str:
+    """The first screen of each role (the first link of its navigation)."""
+    from saigonbite import NAV
+    return url_for(NAV[role.value][0][0])
+
+
 def _safe_next(target: str | None) -> str | None:
     """Accept only same-site relative paths that a browser can open with GET.
 
@@ -86,8 +92,7 @@ def login():
                                    username=request.form.get("username", ""),
                                    next=request.form.get("next", "")), 401
         login_user(SessionUser(user))
-        default = url_for("order.choose_hub") if user.role is Role.CUSTOMER else url_for("main.home")
-        return redirect(_safe_next(request.form.get("next")) or default)
+        return redirect(_safe_next(request.form.get("next")) or home_for(user.role))
     return render_template("login.html", error=None, username="", next=request.args.get("next", ""))
 
 

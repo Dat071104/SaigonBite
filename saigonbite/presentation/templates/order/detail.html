@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% from "_form.html" import button, csrf %}
+{% block title %}Order {{ d.order.id }} · SaigonBite{% endblock %}
+{% block content %}
+{% set order = d.order %}
+<div class="page-head">
+  <h1>Order {{ order.id }}</h1>
+  <p class="muted">{{ d.hub.name }} · placed {{ order.placed_at|vn_time }}</p>
+</div>
+
+{% if d.open_offer %}
+{% set o = d.open_offer %}
+<section class="panel attention" id="replacement-offer" aria-labelledby="offer-h">
+  <h2 id="offer-h">The kitchen asks about a replacement</h2>
+  <p>{{ o.original_item_name }} has run out. The kitchen offers <strong>{{ o.new_item_name }}</strong>
+     at {{ o.new_unit_price|vnd }} instead of {{ o.original_unit_price|vnd }}.</p>
+  <p>If you accept, the new total is <strong id="new-total">{{ d.total_if_accepted|vnd }}</strong>
+     (now {{ order.total|vnd }}).{% if d.payment.method.value == 'ONLINE' %} The difference is refunded to you.{% endif %}
+     If you decline, the order is not cooked{% if d.payment.method.value == 'ONLINE' %} and your payment is refunded in full{% endif %}.</p>
+  <form method="post" action="{{ url_for('order.answer_replacement', order_id=order.id) }}" class="actions">
+    {{ csrf() }}
+    <input type="hidden" name="offer_id" value="{{ o.id }}">
+    <button type="submit" name="decision" value="accept">Accept {{ o.new_item_name }}</button>
+    <button type="submit" name="decision" value="decline" class="secondary">Decline</button>
+  </form>
+</section>
+{% endif %}
+
+<dl class="facts">
+  <dt>Status</dt><dd><span class="badge" id="order-state">{{ order.state|label }}</span>
+    {% if order.reject_reason %}<span class="muted">· {{ order.reject_reason }}</span>{% endif %}</dd>
+  <dt>Payment</dt><dd id="payment">{{ d.payment.method.value }}{% if d.payment.online_option %} ({{ d.payment.online_option|label|lower }}){% endif %}, {{ d.payment.state|label|lower }}
+    {% if d.payment.refund_amount %}· {{ d.payment.refund_amount|vnd }} to be refunded{% endif %}</dd>
+  <dt>Deliver to</dt><dd>{{ order.delivery_address_text }}</dd>
+  {% if order.confirmed_at %}<dt>Confirmed</dt><dd>{{ order.confirmed_at|vn_time }}</dd>{% endif %}
+  {% if order.ready_at %}<dt>Ready</dt><dd>{{ order.ready_at|vn_time }}</dd>{% endif %}
+  {% if d.delivery and d.delivery.picked_up_at %}<dt>On the way</dt><dd>{{ d.delivery.picked_up_at|vn_time }}</dd>{% endif %}
+  {% if order.closed_at %}<dt>Finished</dt><dd>{{ order.closed_at|vn_time }}</dd>{% endif %}
+  {% if d.delivery and d.delivery.failure_reason %}<dt>Delivery problem</dt><dd>{{ d.delivery.failure_reason }}</dd>{% endif %}
+</dl>
+
+{% include "order/_lines.html" %}
+
+{% if d.offers and not d.open_offer %}
+<p class="muted">Replacement history: {% for o in d.offers %}{{ o.original_item_name }} → {{ o.new_item_name }} ({{ o.state|label|lower }}){% if not loop.last %}; {% endif %}{% endfor %}</p>
+{% endif %}
+
+<div class="actions">
+  {% if d.can_cancel %}{{ button(url_for('order.cancel', order_id=order.id), 'Cancel this order', 'secondary', confirm='Cancel order ' ~ order.id ~ '?') }}{% endif %}
+  <a class="btn link" href="{{ url_for('order.my_orders') }}">All my orders</a>
+</div>
+{% endblock %}

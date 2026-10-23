@@ -4,19 +4,33 @@
 {% set step = 1 %}{% include "order/_steps.html" %}
 <div class="page-head">
   <h1>Choose a kitchen hub</h1>
-  <p class="muted">Each hub cooks for several brands. The delivery fee is set per hub.</p>
+  <p class="muted">Each hub cooks for several brands. The delivery fee is the hub's base fee plus 3,000 VND per started km, up to 8 km.</p>
 </div>
-{% if error %}<div class="flash error" role="alert">{{ error }}</div>{% endif %}
+{% if error %}<div class="flash error" id="hub-error" role="alert">{{ error }}</div>{% endif %}
+{% if suggestions %}
+<section class="panel" id="suggestions" aria-labelledby="sugg">
+  <h2 id="sugg">These hubs can take your order now</h2>
+  <ul class="plain">
+    {% for s in suggestions %}
+    <li><a href="{{ url_for('order.choose_items', hub_id=s.hub.id) }}">{{ s.hub.name }}</a>
+      {% if s.quiet %}<span class="badge good">Quiet: 5,000 VND off delivery</span>{% endif %}</li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
 {% if hubs %}
 <ul class="hubs">
-  {% for hub in hubs %}
+  {% for s in hubs %}
+  {% set hub = s.hub %}
   <li class="panel hub">
     <div>
       <h2>{{ hub.name }}</h2>
       <p class="muted">{{ hub.address_text }}</p>
-      <p class="fee">Delivery fee <span class="price">{{ hub.delivery_fee_flat|vnd }}</span></p>
+      <p class="fee">Delivery from <span class="price">{{ (hub.base_delivery_fee + 3000)|vnd }}</span></p>
+      {% if s.busy %}<p><span class="badge warn">Busy now</span> This kitchen is full. Please choose another hub.</p>
+      {% elif s.quiet %}<p><span class="badge good">Quiet now</span> 5,000 VND off the delivery fee.</p>{% endif %}
     </div>
-    <a class="btn" href="{{ url_for('order.choose_items', hub_id=hub.id) }}" aria-label="Order from {{ hub.name }}">Order from this hub</a>
+    <a class="btn{% if s.busy %} secondary{% endif %}" href="{{ url_for('order.choose_items', hub_id=hub.id) }}" aria-label="Order from {{ hub.name }}">Order from this hub</a>
   </li>
   {% endfor %}
 </ul>

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% from "_form.html" import button %}
+{% block title %}Users · Admin · SaigonBite{% endblock %}
+{% block body_class %}wide{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>User accounts</h1>
+  <p class="muted">Customers register themselves. A deactivated account cannot log in; its history stays.</p>
+</div>
+<div class="actions"><a class="btn" href="{{ url_for('admin.new_user') }}">New staff account</a></div>
+<table class="data" id="user-table">
+  <thead><tr><th>Username</th><th>Name</th><th>Role</th><th>Hub</th><th>Status</th><th></th></tr></thead>
+  <tbody>
+  {% for u in users %}
+    <tr id="user-{{ u.id }}"{% if not u.is_active %} class="archived"{% endif %}>
+      <td>{{ u.username }}</td><td>{{ u.display_name }}</td><td>{{ u.role|label }}</td><td>{{ u.hub_id or '' }}</td>
+      <td>{% if u.is_active %}Active{% else %}<span class="badge">Deactivated</span>{% endif %}</td>
+      <td class="row-actions">
+        {% if u.role.value != 'CUSTOMER' %}<a href="{{ url_for('admin.edit_user', user_id=u.id) }}">Edit</a>{% endif %}
+        {% if u.id != current_user.account.id %}
+          {{ button(url_for('admin.set_user_active', user_id=u.id), 'Deactivate' if u.is_active else 'Reactivate', 'link', {'active': '0' if u.is_active else '1'}) }}
+        {% endif %}
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

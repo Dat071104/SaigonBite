@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% from "_form.html" import csrf %}
+{% block title %}Payment simulator · SaigonBite{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>Payment simulator</h1>
+  <p class="muted">Stands in for the payment provider in this demo. No card or wallet details are asked for and no money moves.</p>
+</div>
+<div class="panel sim">
+  <p>Amount: <strong class="big" id="sim-amount">{{ (amount or 0)|vnd }}</strong></p>
+  <p>Method: <strong>{{ option|label }}</strong></p>
+</div>
+<form method="post" action="{{ url_for('order.confirm') }}" data-once>
+  {{ csrf() }}
+  {% for key, value in form.items(multi=True) %}{% if key not in ('csrf_token', 'sim_outcome') %}
+  <input type="hidden" name="{{ key }}" value="{{ value }}">{% endif %}{% endfor %}
+  <div class="actions">
+    <button type="submit" name="sim_outcome" value="APPROVE" data-busy="Paying...">Approve payment</button>
+    <button type="submit" name="sim_outcome" value="DECLINE" class="secondary">Decline payment</button>
+  </div>
+</form>
+{% endblock %}

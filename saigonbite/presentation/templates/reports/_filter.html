@@ -1,0 +1,10 @@
+<form method="get" class="filter" aria-label="Report filter">
+  <div class="field"><label for="from">From</label><input type="date" id="from" name="from" value="{{ report.period.date_from if report else args.get('from', '') }}"></div>
+  <div class="field"><label for="to">To (inclusive)</label><input type="date" id="to" name="to" value="{{ report.period.date_to if report else args.get('to', '') }}"></div>
+  <div class="field"><label for="hub">Hub</label>
+    <select id="hub" name="hub"><option value="">All hubs</option>
+      {% for h in hubs %}<option value="{{ h.id }}"{% if args.get('hub')|string == h.id|string %} selected{% endif %}>{{ h.name }}{% if h.archived_at %} (archived){% endif %}</option>{% endfor %}
+    </select></div>
+  <button type="submit" class="secondary">Show</button>
+</form>
+{% if error %}<div class="flash error" id="form-error" role="alert">{{ error }}</div>{% endif %}

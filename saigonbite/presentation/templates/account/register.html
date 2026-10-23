@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% from "_form.html" import csrf, field, error_box %}
+{% block title %}Create an account · SaigonBite{% endblock %}
+{% block content %}
+<div class="narrow wide-form">
+  <h1>Create an account</h1>
+  {{ error_box(error) }}
+  <form method="post" action="{{ url_for('account.register') }}" class="stack" data-customer-type>
+    {{ csrf() }}
+    <fieldset>
+      <legend>Where do you live?</legend>
+      <label class="choice"><input type="radio" name="customer_type" value="LOCAL"{% if form.get('customer_type', 'LOCAL') == 'LOCAL' %} checked{% endif %}> In Vietnam (local customer)</label>
+      <label class="choice"><input type="radio" name="customer_type" value="TOURIST"{% if form.get('customer_type') == 'TOURIST' %} checked{% endif %}> I am visiting (tourist)</label>
+    </fieldset>
+    {{ field('full_name', 'Full name', form.get('full_name'), attrs='autocomplete="name"') }}
+    {{ field('phone', 'Phone', form.get('phone'), type='tel', hint='local: Vietnamese mobile, 10 digits, required; tourist: optional, any country', required=false, attrs='autocomplete="tel"') }}
+    <div data-for="TOURIST" class="stack">
+      <p class="muted">Tourists register with a passport and an e-mail address instead of a Vietnamese phone number.</p>
+      {{ field('email', 'E-mail', form.get('email'), type='email', required=false, attrs='autocomplete="email"') }}
+      {{ field('passport_no', 'Passport number', form.get('passport_no'), required=false) }}
+      {{ field('nationality', 'Nationality', form.get('nationality'), required=false) }}
+    </div>
+    {{ field('username', 'Username', form.get('username'), hint='small letters, digits, dot or underscore', attrs='autocomplete="username" autocapitalize="none"') }}
+    {{ field('password', 'Password', '', type='password', hint='at least 6 characters', attrs='autocomplete="new-password"') }}
+    {{ field('password_again', 'Password again', '', type='password', attrs='autocomplete="new-password"') }}
+    <div class="actions"><button type="submit">Create account</button><a class="btn link" href="{{ url_for('auth.login') }}">I already have an account</a></div>
+  </form>
+</div>
+{% endblock %}

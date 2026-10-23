@@ -1,4 +1,4 @@
-"""Frozen vocabulary shared by code, schema.sql and docs/i1 (AC-9).
+"""Frozen vocabulary shared by code, schema.sql and docs/part2.
 
 Values are the exact strings stored in the database CHECK constraints.
 """
@@ -19,7 +19,13 @@ class OrderState(str, Enum):
 
 class PaymentMethod(str, Enum):
     COD = "COD"
-    ONLINE = "ONLINE"   # team-built stub, not used before Iteration 3
+    ONLINE = "ONLINE"   # team-built payment simulator (A-05, L2)
+
+
+class OnlineOption(str, Enum):
+    E_WALLET = "E_WALLET"
+    BANK_QR = "BANK_QR"
+    INTERNATIONAL_CARD = "INTERNATIONAL_CARD"
 
 
 class PaymentState(str, Enum):
@@ -29,6 +35,20 @@ class PaymentState(str, Enum):
     VOIDED = "VOIDED"
     REFUND_PENDING = "REFUND_PENDING"
     REFUNDED = "REFUNDED"
+
+
+class DeliveryState(str, Enum):
+    AWAITING_PICKUP = "AWAITING_PICKUP"
+    PICKED_UP = "PICKED_UP"
+    DELIVERED = "DELIVERED"
+    FAILED = "FAILED"
+
+
+class OfferState(str, Enum):
+    OFFERED = "OFFERED"
+    ACCEPTED = "ACCEPTED"
+    DECLINED = "DECLINED"
+    WITHDRAWN = "WITHDRAWN"
 
 
 class Role(str, Enum):
@@ -42,3 +62,8 @@ class Role(str, Enum):
 class CustomerType(str, Enum):
     LOCAL = "LOCAL"
     TOURIST = "TOURIST"
+
+
+class DiscountType(str, Enum):
+    FIXED = "FIXED"
+    PERCENT = "PERCENT"

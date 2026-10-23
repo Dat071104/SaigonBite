@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% from "_form.html" import button %}
+{% block title %}Availability · Kitchen · SaigonBite{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>Dishes at {{ hub.name }}</h1>
+  <p class="muted">Mark a dish sold out when an ingredient runs out; customers can no longer add it.</p>
+</div>
+<table class="data">
+  <thead><tr><th>Dish</th><th>Brand</th><th>Status</th><th></th></tr></thead>
+  <tbody>
+  {% for m in menu %}
+    <tr id="item-{{ m.item.id }}"><td>{{ m.item.name }}</td><td>{{ m.item.brand_name }}</td>
+      <td>{% if m.is_available %}<span class="badge good">Available</span>{% else %}<span class="badge warn">Sold out</span>{% endif %}</td>
+      <td class="row-actions">{% if m.is_available %}{{ button(url_for('kitchen.set_availability', item_id=m.item.id), 'Mark sold out', 'secondary', {'available': '0'}) }}
+          {% else %}{{ button(url_for('kitchen.set_availability', item_id=m.item.id), 'Available again', 'secondary', {'available': '1'}) }}{% endif %}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

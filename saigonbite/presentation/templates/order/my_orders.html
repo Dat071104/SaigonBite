@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}My orders · SaigonBite{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>My orders</h1>
+</div>
+{% if orders %}
+<table class="data">
+  <thead><tr><th>Order</th><th>Placed</th><th>Hub</th><th>Status</th><th class="num">Total</th></tr></thead>
+  <tbody>
+  {% for s in orders %}
+    <tr>
+      <td><a href="{{ url_for('order.detail', order_id=s.order.id) }}">Order {{ s.order.id }}</a></td>
+      <td>{{ s.order.placed_at|vn_time }}</td>
+      <td>{{ s.hub_name }}</td>
+      <td><span class="badge">{{ s.order.state|label }}</span>{% if s.awaiting_answer %} <span class="badge warn">Your answer needed</span>{% endif %}</td>
+      <td class="num">{{ s.order.total|vnd }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<div class="panel"><p>You have no orders yet.</p><div class="actions"><a class="btn" href="{{ url_for('order.choose_hub') }}">Start an order</a></div></div>
+{% endif %}
+{% endblock %}

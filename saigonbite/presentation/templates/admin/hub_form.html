@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% from "_form.html" import csrf, field, button, error_box %}
+{% block title %}{{ 'Edit hub' if view else 'New hub' }} · Admin · SaigonBite{% endblock %}
+{% block content %}
+{% set h = view.status.hub if view else none %}
+{% set v = form if form else (h.__dict__ if h else {}) %}
+<div class="page-head">
+  <h1>{{ h.name if h else 'New hub' }}</h1>
+  {% if view %}<p class="muted">Load now {{ view.status.load }} of {{ h.max_active_orders }} · {{ view.open_orders }} open order(s)</p>{% endif %}
+</div>
+{{ error_box(error) }}
+<form method="post" class="panel stack" action="{{ url_for('admin.edit_hub', hub_id=h.id) if h else url_for('admin.new_hub') }}">
+  {{ csrf() }}
+  {{ field('code', 'Hub code', v.get('code'), hint='for example HUB-D3') }}
+  {{ field('name', 'Name', v.get('name')) }}
+  {{ field('address_text', 'Address', v.get('address_text')) }}
+  <div class="two">
+    {{ field('latitude', 'Latitude', v.get('latitude'), type='number', attrs='step="0.0001"') }}
+    {{ field('longitude', 'Longitude', v.get('longitude'), type='number', attrs='step="0.0001"') }}
+  </div>
+  <div class="two">
+    {{ field('max_active_orders', 'Kitchen capacity (orders)', v.get('max_active_orders'), type='number', hint='1 to 500', attrs='min="1" max="500" step="1"') }}
+    {{ field('base_delivery_fee', 'Base delivery fee (VND)', v.get('base_delivery_fee'), type='number', hint='plus 3,000 VND per km', attrs='min="0" step="1000"') }}
+  </div>
+  <div class="actions"><button type="submit">Save hub</button><a class="btn link" href="{{ url_for('admin.hubs') }}">Back</a></div>
+</form>
+{% if view and view.can_archive %}
+<div class="actions">{{ button(url_for('admin.archive_hub', hub_id=h.id), 'Archive this hub', 'danger', confirm='Archive ' ~ h.name ~ '?') }}</div>
+{% elif view and view.open_orders %}
+<p class="muted">This hub can be archived once its {{ view.open_orders }} open order(s) are finished.</p>
+{% endif %}
+{% endblock %}

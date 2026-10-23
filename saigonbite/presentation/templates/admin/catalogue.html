@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% from "_form.html" import button, csrf %}
+{% block title %}Brands and menu · Admin · SaigonBite{% endblock %}
+{% block body_class %}wide{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>Brands and menu</h1>
+  <p class="muted">Archived brands and dishes can no longer be ordered. Orders already placed keep the name and price they had.</p>
+</div>
+
+<section aria-labelledby="brands-h">
+  <h2 id="brands-h">Brands</h2>
+  <table class="data" id="brand-table">
+    <thead><tr><th>Brand</th><th>Rename</th><th></th></tr></thead>
+    <tbody>
+    {% for b in c.brands %}
+      <tr id="brand-{{ b.id }}"{% if b.archived_at %} class="archived"{% endif %}>
+        <td>{{ b.name }}{% if b.archived_at %} <span class="badge">Archived</span>{% endif %}</td>
+        <td>{% if not b.archived_at %}
+          <form method="post" action="{{ url_for('admin.rename_brand', brand_id=b.id) }}" class="inline-form">
+            {{ csrf() }}<input type="text" name="name" value="{{ b.name }}" aria-label="New name for {{ b.name }}" required>
+            <button type="submit" class="secondary">Rename</button></form>{% endif %}</td>
+        <td class="row-actions">{% if not b.archived_at %}{{ button(url_for('admin.archive_brand', brand_id=b.id), 'Archive', 'link', confirm='Archive the brand ' ~ b.name ~ '? Its dishes can no longer be ordered.') }}{% endif %}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <form method="post" action="{{ url_for('admin.create_brand') }}" class="inline-form">
+    {{ csrf() }}<label for="new-brand" class="visually-hidden">New brand name</label>
+    <input type="text" id="new-brand" name="name" placeholder="New brand name" required>
+    <button type="submit">Add brand</button>
+  </form>
+</section>
+
+<section aria-labelledby="items-h">
+  <h2 id="items-h">Dishes</h2>
+  <div class="actions"><a class="btn" href="{{ url_for('admin.new_item') }}">New dish</a></div>
+  <table class="data" id="item-table">
+    <thead><tr><th>Dish</th><th>Brand</th><th class="num">Price</th><th></th></tr></thead>
+    <tbody>
+    {% for i in c.items %}
+      <tr id="item-{{ i.id }}"{% if i.archived_at %} class="archived"{% endif %}>
+        <td>{{ i.name }}{% if i.archived_at %} <span class="badge">Archived</span>{% endif %}<br><span class="muted">{{ i.description }}</span></td>
+        <td>{{ i.brand_name }}</td><td class="num">{{ i.price|vnd }}</td>
+        <td class="row-actions">{% if not i.archived_at %}<a href="{{ url_for('admin.edit_item', item_id=i.id) }}">Edit</a>
+          {{ button(url_for('admin.archive_item', item_id=i.id), 'Archive', 'link', confirm='Archive ' ~ i.name ~ '?') }}{% endif %}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<section aria-labelledby="hubmenu-h">
+  <h2 id="hubmenu-h">Menus per hub</h2>
+  <ul class="plain">
+    {% for v in hubs if not v.status.hub.archived_at %}
+    <li><a href="{{ url_for('admin.hub_menu', hub_id=v.status.hub.id) }}">{{ v.status.hub.name }}</a></li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

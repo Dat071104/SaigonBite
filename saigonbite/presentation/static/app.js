@@ -35,6 +35,26 @@
     update();
   }
 
+  // Ask before buttons that cannot be undone (archive, reject, failed delivery)
+  document.querySelectorAll("form[data-confirm]").forEach(function (f) {
+    f.addEventListener("submit", function (e) {
+      if (!window.confirm(f.dataset.confirm)) { e.preventDefault(); e.stopImmediatePropagation(); }
+    });
+  });
+
+  // Registration: tourist fields only for tourists
+  var reg = document.querySelector("[data-customer-type]");
+  if (reg) {
+    var showTourist = function () {
+      var checked = reg.querySelector("input[name=customer_type]:checked");
+      reg.querySelectorAll("[data-for=TOURIST]").forEach(function (box) {
+        box.hidden = !checked || checked.value !== "TOURIST";
+      });
+    };
+    reg.addEventListener("change", showTourist);
+    showTourist();
+  }
+
   // One click is enough: show that the order is being sent (the server also ignores repeats)
   document.querySelectorAll("form[data-once]").forEach(function (f) {
     f.addEventListener("submit", function () {
