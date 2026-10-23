@@ -1,6 +1,11 @@
 # Part 1 – Project Proposal (Team02)
 
-Proposal for the SaigonBite Online Food Delivery Hub Platform, presented live on 26/10/2026.
+Proposal for the SaigonBite Online Food Delivery Hub Platform: submitted on eLearning by 25/10/2026, presented live on 26/10/2026, and recorded as a video (under 10 minutes, all three members speak).
+
+Team: Nguyen Thanh Dat (722I0004), Le Minh Quan (523K0049), Nguyen Minh Quan (523K0050).
+
+- Video: https://drive.google.com/drive/folders/1p8IneIPpxCXlIMOStzlWfcgD6wr_gaip?usp=sharing
+- Shared Drive folder (Team02_RAD_Sem01_2627): https://drive.google.com/drive/folders/12K-EuqmI--Wzo6Ut6QATwSNpZToBXCdi
 
 | Document | File |
 |---|---|
