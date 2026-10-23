@@ -204,8 +204,9 @@
         1520
       ],
       "png_from_matching_svg": true,
-      "svg_sha256": "39929e6e21b890f88bcf3aedf0763654cae5dc4126f9c8941c102b6308fa8345",
-      "png_sha256": "205a17a4c7832bdf8b7b6c5b5d5d04f3abe7f3878e562ef330500de2c63c3726"
+      "svg_sha256": "d37c0b79c5cbd90a132b272917c294843bc18fbefdd4d461e8ba96770a081622",
+      "png_sha256": "184ba24dcc94f9cdff0089bae2e1cdeb36ab65f0d555db48fc792a96786a0727",
+      "activity_frames": 2
     }
   ],
   "drawio_xml_pages": {
@@ -245,5 +246,11 @@
       "swimlane_v2_PartG.a4.png"
     ],
     "result": "All nine page proofs inspected with view_image: text readable, no clipped labels or node/text overlap. Detail C/E have short incident-edge shared stems; edge-edge crossing freedom is not asserted."
+  },
+  "root_refinement": {
+    "finding": "G1 R2",
+    "change": "Two named, disjoint activity scopes; each owns its initial and final nodes",
+    "scope_containment_check": true,
+    "current_PartG_visual_review": "Root inspected matching SVG-rendered PNG and 230mm A4 landscape proof; frame names, scoped finals and text are readable without overlap."
   }
 }

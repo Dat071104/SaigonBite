@@ -75,6 +75,7 @@ if (process.argv[2] === 'before') {
   console.log((await wb.inspect({ kind: 'match', searchTerm: '#REF!|#DIV/0!|#VALUE!|#NAME\\?|#N/A|#NUM!|#NULL!', options: { useRegex: true, maxResults: 12 }, maxChars: 1800 })).ndjson);
   const views = JSON.parse(await fs.readFile(`${base}/notes/P1_workbook_views.json`, 'utf8'));
   for (const view of views) {
+    if (process.argv[3] && !process.argv[3].split(',').includes(view.name)) continue;
     const image = await wb.render({ sheetName: view.sheet, range: view.range, scale: 1, format: 'png' });
     await fs.writeFile(`${base}/notes/P1_workbook_preview/${view.name}.png`, new Uint8Array(await image.arrayBuffer()));
   }

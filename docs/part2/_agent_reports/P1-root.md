@@ -65,7 +65,14 @@ Root corrections: restored separate rule-table trace/Tests columns without chang
 
 The C worker's temporary deletion was rejected by automatic approval review as blocked by policy. Root used reversible moves: retained the isolated profile at Part2/notes/P1_diagram_browser_profile and nine A4 proofs at Part2/notes/P1_diagram_a4, outside the versioned source and upload set. The diagram builder now places its profile outside the repo. Nothing was deleted.
 
-⟦PENDING: independent reviewer disposition and final closure checks⟧
+Independent review: P1-review.md conditionally accepted the content after one medium provenance correction; it found no high-severity contract, coverage, preservation or integrity blocker. Root closed both findings:
+
+| Finding | Root disposition | Verification |
+|---|---|---|
+| R1: A-19 detailed receipt contract labelled wholly case-fixed | Closed. Receipt availability remains case-required; detailed fields/presentation are explicitly BR-13/A-19 team defaults, not client-confirmed. Updated source, assembly and workbook J23/L23. | Rebuilt assembly; Artifact Tool recalculation/export and preservation guard; final receipt-status preview inspected. Fields, lecturer cells and source contracts unchanged. |
+| R2: two Part G activities lack visible scope boundaries | Closed. Added two named disjoint activity frames, each containing its own initial and activity-final node. Repositioned only final markers and routed the same seven control edges. No fork/join or business transition added. | p1_refine_part_g.py passed nine-node containment, disjoint scopes, XML references and renderer geometry/semantics; matching PNG and 230 mm A4 proof inspected. Updated the bundle, separate source/SVG/PNG, QA hashes and explanation. |
+
+The independent review is preserved as its original pre-fix assessment. These are root-verified corrections, not a second independent sign-off. Final native Excel/draw.io and PDF placement remain untested later-phase checks. Root's G1 decision is documentary readiness only; the application is not qualified by this phase.
 
 ## Integrity and staging
 

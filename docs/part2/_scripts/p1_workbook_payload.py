@@ -219,7 +219,8 @@ def build():
     views=[('Assumption Log','A11:L13','assumptions_superseded'),('Assumption Log','A16:L19','assumptions_new'),('Client Q&A','F5:L9','qa_current'),('Client Q&A','B16:L20','qa_limit'),
            ('Backlog & Risks','A5:J8','backlog_current'),('Backlog & Risks','A33:H35','risks_current'),('Backlog & Risks','A38:G41','deferred_current'),('Backlog & Risks','A45:H48','risks_overflow'),
            ('Requirements List','A4:K7','requirements_fr'),('Requirements List','A48:K51','requirements_nfr'),('Requirements List','B63:D63','requirements_totals'),
-           ('Iteration Plan','A4:H10','iterations_current'),('AI Usage Log','A8:H11','ai_current')]
+           ('Iteration Plan','A4:H10','iterations_current'),('AI Usage Log','A8:H11','ai_current'),
+           ('Assumption Log','G23:L23','receipt_status_final'),('AI Usage Log','A20:H20','ai_review_final')]
     for name,value in [('updates',UPDATES),('layout',LAYOUT),('views',[dict(sheet=s,range=r,name=n) for s,r,n in views])]:
         (BASE/f'notes/P1_workbook_{name}.json').write_text(json.dumps(value,indent=2,ensure_ascii=False),encoding='utf-8')
     print('Prepared',len(UPDATES),'cell updates across',len({u['sheet'] for u in UPDATES}),'sheets.')

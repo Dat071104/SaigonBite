@@ -177,6 +177,11 @@ def build_page(p,base):
         svg.append(f'<rect x="15" y="{y0}" width="1070" height="{y1-y0}" fill="{PALE}" stroke="{BLUE}" stroke-width="1"/><rect x="15" y="{y0}" width="115" height="{y1-y0}" fill="{BLUE}"/>'+txt(72.5,(y0+y1)/2,name,16,'white',True))
         cell(root,f'lane{i}','',f'rounded=0;fillColor={PALE};strokeColor={BLUE};',15,y0,1070,y1-y0)
         cell(root,f'head{i}',name,f'rounded=0;html=0;whiteSpace=wrap;fillColor={BLUE};strokeColor={BLUE};fontColor=#FFFFFF;fontSize=16;fontStyle=1;',15,y0,115,y1-y0)
+    for frame in p.get('activity_frames', []):
+        x,y,w,h=frame['rect'];fid=frame['id']
+        svg.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="none" stroke="{BLUE}" stroke-width="1.5" stroke-dasharray="7 4"/>')
+        cell(root,fid,'',f'rounded=0;fillColor=none;strokeColor={BLUE};strokeWidth=1.5;dashed=1;',x,y,w,h)
+        textitem(fid+'_title',frame['name'],x+8,y+3,w-16,22,16,True)
     for i,e in enumerate(edges):
         red=e.get('red');color=RED if red else BLUE;pts=e['pts'];ss=e.get('ss','r');ds=e.get('ds','l')
         ports={'l':(0,.5),'r':(1,.5),'t':(.5,0),'b':(.5,1)};sp,tp=ports[ss],ports[ds]

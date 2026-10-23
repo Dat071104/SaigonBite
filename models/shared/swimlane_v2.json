@@ -209,7 +209,7 @@
       ],
       "notes": [
         "Initial = filled dot; activity final = ring + dot (whole activity); flow final = circle + X (one path).",
-        "A: checkout \u00b7 K: PLACED kitchen decision \u00b7 R: offer response \u00b7 D: READY delivery."
+        "A: checkout · K: PLACED kitchen decision · R: offer response · D: READY delivery."
       ],
       "suffix": "",
       "semantic": false
@@ -217,7 +217,7 @@
     {
       "key": "A",
       "title": "Part A - Select hub, check radius and obtain a quote",
-      "subtitle": "UC-01 \u00b7 Customer identity and addresses are managed through SUC-01 / SUC-02.",
+      "subtitle": "UC-01 · Customer identity and addresses are managed through SUC-01 / SUC-02.",
       "nodes": [
         {
           "id": "s",
@@ -411,7 +411,7 @@
     {
       "key": "B",
       "title": "Part B - Confirm checkout and simulated payment",
-      "subtitle": "UC-01 \u00b7 No real payment provider or card data. The simulator result is selected before the transaction.",
+      "subtitle": "UC-01 · No real payment provider or card data. The simulator result is selected before the transaction.",
       "nodes": [
         {
           "id": "p",
@@ -590,7 +590,7 @@
     {
       "key": "C",
       "title": "Part C - Decide, prepare and release an order",
-      "subtitle": "UC-05 / SUC-05 / SUC-06 \u00b7 Kitchen actions require the order's own hub (BR-26).",
+      "subtitle": "UC-05 / SUC-05 / SUC-06 · Kitchen actions require the order's own hub (BR-26).",
       "nodes": [
         {
           "id": "k",
@@ -769,7 +769,7 @@
     {
       "key": "D",
       "title": "Part D - Customer consent to a replacement",
-      "subtitle": "SUC-03 with UC-05 \u00b7 A waiting order remains PLACED; there is no stored waiting state.",
+      "subtitle": "SUC-03 with UC-05 · A waiting order remains PLACED; there is no stored waiting state.",
       "nodes": [
         {
           "id": "r",
@@ -951,7 +951,7 @@
     {
       "key": "E",
       "title": "Part E - Delivery, cash and completion",
-      "subtitle": "UC-02 \u00b7 Take READY atomically; only the assigned active shipper can finish (BR-25).",
+      "subtitle": "UC-02 · Take READY atomically; only the assigned active shipper can finish (BR-25).",
       "nodes": [
         {
           "id": "d",
@@ -1151,7 +1151,7 @@
     {
       "key": "F",
       "title": "Part F - Customer cancellation (separate request activity)",
-      "subtitle": "SUC-04 \u00b7 Available in PLACED or CONFIRMED; the state check and effects use one transaction.",
+      "subtitle": "SUC-04 · Available in PLACED or CONFIRMED; the state check and effects use one transaction.",
       "nodes": [
         {
           "id": "s",
@@ -1286,7 +1286,7 @@
     {
       "key": "G",
       "title": "Part G - Independent administration and reports",
-      "subtitle": "UC-03 / UC-06 / UC-04 and SUC-07 / SUC-08 / SUC-09 \u00b7 These are separate activities, not order steps.",
+      "subtitle": "UC-03 / UC-06 / UC-04 and SUC-07 / SUC-08 / SUC-09 · These are separate activities, not order steps.",
       "nodes": [
         {
           "id": "as",
@@ -1315,7 +1315,7 @@
         {
           "id": "af",
           "kind": "final",
-          "col": 2,
+          "col": 0,
           "row": 3,
           "label": ""
         },
@@ -1376,8 +1376,8 @@
           "src": "write",
           "dst": "af",
           "label": "",
-          "ss": "r",
-          "ds": "l"
+          "ss": "l",
+          "ds": "r"
         },
         {
           "src": "ms",
@@ -1438,14 +1438,49 @@
         520,
         730,
         935,
-        1070
+        1065
       ],
       "notes": [
         "Archive preserves authorised history, receipts, reports and refund obligations; only closed orders may be archived.",
         "Hub archive: no open orders. Accounts: ACTIVE / INACTIVE; a shipper with PICKED_UP work cannot be deactivated."
       ],
       "suffix": "_PartG",
-      "semantic": true
+      "semantic": true,
+      "activity_frames": [
+        {
+          "id": "activity_admin",
+          "name": "act Admin maintenance",
+          "rect": [
+            132,
+            96,
+            360,
+            522
+          ],
+          "nodes": [
+            "as",
+            "maintain",
+            "write",
+            "af"
+          ]
+        },
+        {
+          "id": "activity_manager",
+          "name": "act Manager report",
+          "rect": [
+            496,
+            286,
+            588,
+            332
+          ],
+          "nodes": [
+            "ms",
+            "request",
+            "query",
+            "read",
+            "mf"
+          ]
+        }
+      ]
     }
   ]
 }
