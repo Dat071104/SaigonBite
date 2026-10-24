@@ -31,23 +31,26 @@
 <polyline points="1383.0,643.0 1400,635 1383.0,627.0" fill="none" stroke="#004387" stroke-width="3"/>
 <rect x="529.140625" y="592.32" width="541.71875" height="32.68" fill="white"/>
 <text x="800" y="618.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">05S-M08 acceptReplacement(orderId, offerId)</text>
-<rect x="80" y="690" width="1450" height="330" fill="none" stroke="#004387" stroke-width="3"/>
-<rect x="440.8671875" y="703.0" width="718.265625" height="32.68" fill="white"/>
-<text x="800" y="728.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="bold" fill="#202B36">alt [accept result; ownership/state checked before target]</text>
-<polyline points="80,835 1530,835" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
-<polyline points="80,925 1530,925" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
-<polyline points="1400,815 200,815" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
-<polyline points="217.0,807.0 200,815 217.0,823.0" fill="none" stroke="#004387" stroke-width="3"/>
-<rect x="279.6328125" y="772.32" width="1040.734375" height="32.68" fill="white"/>
-<text x="800" y="798.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">05S-R08a [own PLACED + exact open + target valid] acceptedOrderAndAmounts (PC04)</text>
-<polyline points="1400,905 200,905" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
-<polyline points="217.0,897.0 200,905 217.0,913.0" fill="none" stroke="#004387" stroke-width="3"/>
-<rect x="367.546875" y="862.32" width="864.90625" height="32.68" fill="white"/>
-<text x="800" y="888.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">05S-R08b [eligible offer; target invalid] withdrawnOfferAndReason (MG01)</text>
-<polyline points="1400,995 200,995" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
-<polyline points="217.0,987.0 200,995 217.0,1003.0" fill="none" stroke="#004387" stroke-width="3"/>
-<rect x="284.7578125" y="952.32" width="1030.484375" height="32.68" fill="white"/>
-<text x="800" y="978.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">05S-R08c [otherwise: stale / wrong owner / terminal] staleRefusal; zero changes (MG01)</text>
-<text x="800" y="1043.58" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Invalid-target acceptance withdraws only the exact offer; Order unchanged.</text>
-<text x="800" y="1074.26" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Stale answers never revive cancelled/rejected Orders. Decline: see Part C.</text>
+<rect x="80" y="690" width="1450" height="400" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="387.421875" y="703.0" width="825.15625" height="32.68" fill="white"/>
+<text x="800" y="728.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="bold" fill="#202B36">alt [accept result; eligible = own PLACED + exact open OFFERED]</text>
+<polyline points="80,810 1530,810" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="80,905 1530,905" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="80,1000 1530,1000" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="1400,790 200,790" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="217.0,782.0 200,790 217.0,798.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="322.2734375" y="747.32" width="955.453125" height="32.68" fill="white"/>
+<text x="800" y="773.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">05S-R08a [eligible + valid target + committed] acceptedOrderAndAmounts (PC04)</text>
+<polyline points="1400,885 200,885" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="217.0,877.0 200,885 217.0,893.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="314.5703125" y="842.32" width="970.859375" height="32.68" fill="white"/>
+<text x="800" y="868.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">05S-R08b [eligible + invalid target + committed] withdrawnOfferAndReason (MG01)</text>
+<polyline points="1400,980 200,980" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="217.0,972.0 200,980 217.0,988.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="352.15625" y="937.32" width="895.6875" height="32.68" fill="white"/>
+<text x="800" y="963.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">05S-R08c [ineligible owner / state / offer] staleRefusal; zero changes (MG01)</text>
+<polyline points="1400,1075 200,1075" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="217.0,1067.0 200,1075 217.0,1083.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="349.015625" y="1032.32" width="901.96875" height="32.68" fill="white"/>
+<text x="800" y="1058.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">05S-R08d [eligible; save fails] controlledFailure; rollback, no changes (MG01)</text>
 </svg>

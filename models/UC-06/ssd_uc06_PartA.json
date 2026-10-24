@@ -36,7 +36,7 @@
           "guard": "[archiveBrand]"
         }
       ],
-      "note": "PC01 / PC03; MG01 / MG02. Active-name uniqueness; archive blocks descendants.\nHistorical OrderLines stay unchanged. AVAILABLE never overrides an archived parent."
+      "note": "PC01 / PC03; MG01 / MG02. Name uniqueness includes retained archived names; archive blocks descendants.\nHistorical OrderLines stay unchanged. AVAILABLE never overrides an archived parent."
     }
   ]
 }

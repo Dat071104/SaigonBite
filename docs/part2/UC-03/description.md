@@ -41,7 +41,7 @@ Additional refusal detail: invalid coordinates, negative fee, missing/stale reco
 | Actor | System |
 |---|---|
 | 1. Request `listHubs(includeArchived?)`. |  |
-|  | 2. Return `hubRecordsAndLoad`, including capacity and derived load/busy context. No write occurs. |
+|  | 2. Recheck active Admin before disclosure; deny without data if inactive/unauthorized. Otherwise return `hubRecordsAndLoad`, including capacity and derived load/busy context. No write occurs. |
 | 3. Submit `createHub(code, name, address, latitude, longitude, baseDeliveryFee, capacity)`. |  |
 |  | 4. Check active Admin context, nonempty required fields, unique hub code, valid finite latitude/longitude, nonnegative whole-VND base fee and integer capacity ≥ 1. Recheck guards at the change boundary. |
 |  | 5. Save one ACTIVE hub and return `savedRecord`; UC03-PC01 holds. Existing orders are unchanged. |
@@ -56,5 +56,5 @@ Additional refusal detail: invalid coordinates, negative fee, missing/stale reco
 
 - **E01 — Invalid create/update (branch at 4 or A02 validation; end):** duplicate code, capacity < 1 or malformed coordinates/fee/required data returns `controlledRefusal` with a reason; UC03-MG01, nothing changed. A correction is a new request at 3/A02, not a partially saved record.
 - **E02 — Unsafe archive (branch at A03 guard; end):** any open order returns `controlledRefusal`; UC03-MG01, nothing changed. Lowering capacity itself is not this failure.
-- **E03 — Missing, stale, archived target or denied context (branch at any request; end):** return `refusal` for `getHub`, or `controlledRefusal` for a mutation; no data disclosure to a denied actor and UC03-MG01, nothing changed. No update revives an archived hub.
+- **E03 — Missing/stale target or denied context (branch at any request; end); archived target for update/archive only:** return `refusal` for `getHub`, or `controlledRefusal` for a mutation; no data disclosure to a denied actor and UC03-MG01, nothing changed. Authorized inspection of a retained archived hub remains valid; archive status alone does not refuse listHubs/getHub. No update revives an archived hub.
 - **E04 — Persistence failure (branch at 5/A02/A03 save; end):** return a controlled failure after rollback; UC03-MG01, nothing changed. No partial hub change is claimed.

@@ -41,19 +41,19 @@ class Canvas:
    else:self.d.line([(x*2,y*2) for x,y in [a,b]],fill=color,width=width*2)
  def rect(self,id,label,x,y,w,h,kind='action',color=BLUE):
   self.boxes[id]=(x,y,w,h)
-  if kind in ['initial','final']:
+  if kind in ['initial','final','connector']:
    self.svg.append(f'<ellipse cx="{x+w/2}" cy="{y+h/2}" rx="{w/2}" ry="{h/2}" fill="{color if kind=="initial" else "white"}" stroke="{color}" stroke-width="2"/>')
    self.d.ellipse((x*2,y*2,(x+w)*2,(y+h)*2),fill=color if kind=='initial' else 'white',outline=color,width=4)
    if kind=='final':
     self.svg.append(f'<ellipse cx="{x+w/2}" cy="{y+h/2}" rx="{w/2-6}" ry="{h/2-6}" fill="{color}"/>');self.d.ellipse(((x+6)*2,(y+6)*2,(x+w-6)*2,(y+h-6)*2),fill=color)
-   style='ellipse;' if kind=='initial' else 'shape=endState;'
+   style='ellipse;' if kind in ['initial','connector'] else 'shape=endState;'
   elif kind in ['decision','merge']:
    pts=[(x+w/2,y),(x+w,y+h/2),(x+w/2,y+h),(x,y+h/2)]
    self.svg.append('<polygon points="'+' '.join(f'{a},{b}' for a,b in pts)+f'" fill="white" stroke="{color}" stroke-width="2"/>');self.d.polygon([(a*2,b*2) for a,b in pts],fill='white',outline=color,width=4);style='rhombus;'
   else:
    fill='#FFFBE6' if kind=='note' else 'white';rx=0 if kind in ['note','frame','head'] else 12
    self.svg.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{rx}" fill="{fill}" stroke="{color}" stroke-width="2"/>');self.d.rounded_rectangle((x*2,y*2,(x+w)*2,(y+h)*2),radius=rx*2,fill=fill,outline=color,width=4);style='rounded=1;' if rx else 'rounded=0;'
-  self.cell(id,label,(x,y,w,h),style+f'html=0;whiteSpace=wrap;strokeColor={color};fillColor=white;fontSize={FS};align=center;verticalAlign=middle;')
+  self.cell(id,label,(x,y,w,h),style+f'html=0;whiteSpace=wrap;strokeColor={color};fillColor={color if kind=="initial" else "white"};fontSize={FS};align=center;verticalAlign=middle;')
   if label:self.text(id+'_txt',label,x+5,y+3,w-10,h-6,mx=False)
  def edge(self,id,src,dst,pts,dash=False,label='',labelbox=None,color=BLUE,openarrow=False):
   assert src in self.boxes and dst in self.boxes,(src,dst)
@@ -77,11 +77,50 @@ class Canvas:
 def activity(uc,part,title,actor,request,guard,effect,result,note):
  c=Canvas(f'UC-{uc} activity — Part {part}: {title}')
  c.rect('ActorLane','',20,85,340,755,'frame');c.rect('SystemLane','',360,85,720,755,'frame');c.text('actorname',actor,25,90,330,30,20,True,BLUE);c.text('systemname','System',365,90,710,30,20,True,BLUE)
- c.rect('I','',165,135,30,30,'initial');c.rect('A_request',request,40,190,280,110);c.rect('D_valid',guard,465,155,370,180,'decision');c.rect('S_effect',effect,465,365,370,150)
+ entry={'02':{'A':'','B':'TF','C':'FL'},'04':{'A':'','B':'WB','C':'DP'}}[uc][part]
+ c.rect('I',entry,158 if entry else 165,135,44 if entry else 30,44 if entry else 30,'connector' if entry else 'initial')
+ choice=part=='A' or (uc=='02' and part=='B')
+ if choice:
+  action=('1–2: Browse and inspect\nREADY / own assigned delivery' if uc=='02' and part=='A' else '4: Hand over or identify\na delivery failure' if uc=='02' else '1: Select report type')
+  c.rect('A_request',action,40,200 if uc=='04' else 190,280,50 if uc=='04' else 60)
+  c.rect('D_path','3 / A01: Next action?' if uc=='02' and part=='A' else '5 / A02: Outcome?' if uc=='02' else 'Selected report?',40,270,280,70,'decision')
+ else: c.rect('A_request',request,40,190,280,110)
+ c.rect('D_valid',guard,465,155,370,180,'decision');c.rect('S_effect',effect,465,365,370,150)
+ if choice:
+  command='3: takeDelivery(orderId)' if uc=='02' and part=='A' else '5: confirmDelivered(orderId, cashCollected?)' if uc=='02' else '2: salesReport(startDateVN, endDateVN, hubId?)'
+  c.text('selected_command',command,400,124,650,26,18,False,BLUE)
  c.rect('D_commit','Operation\nsucceeds?',565,545,170,90,'decision');c.rect('S_refuse','Refuse; no changes\n'+('MG01 / E01–E05' if uc=='02' else 'MG01/02 / E01–02'),865,355,200,110,color=RED)
  c.rect('S_rollback',('Rollback command\nNo partial changes\nMG01 / E06' if uc=='02' else 'Read unavailable\nNo fabricated result\nMG01 / E03'),850,590,215,100,color=RED)
- c.rect('A_result',result,40,650,280,90);c.rect('M_end','',632,755,36,36,'merge');c.rect('F','',634,805,32,32,'final');c.rect('N',note,35,365,290,215,'note')
- c.edge('e1','I','A_request',[(180,165),(180,190)]);c.edge('e2','A_request','D_valid',[(320,245),(465,245)])
+ c.rect('A_result',result,40,650,280,90);c.rect('M_end','',632,755,36,36,'merge')
+ if uc=='04' and part=='A':
+  c.rect('D_repeat','Again?',120,795,120,40,'decision');c.rect('F','',50,805,30,30,'final')
+  c.rect('R_entry','R',950,795,44,44,'connector');c.rect('M_entry','',170,173,20,20,'merge')
+ elif uc=='04':c.rect('F','R',628,795,44,44,'connector')
+ else:c.rect('F','',634,805,32,32,'final')
+ note=note.replace('Empty/no claim → end MG01.','Choose claim / resume / end.\nEnd → MG01; no writes.').replace('Resume own assignment via\nsteps 1–2; bypass pickup.','TF: own PICKED_UP delivery.\nFL: failure branch to Part C.')
+ c.rect('N',note,35,415 if choice else 365,290,185 if choice else 215,'note')
+ if uc=='04' and part=='A':
+  c.edge('e1','I','M_entry',[(180,165),(180,173)])
+  c.edge('entry','M_entry','A_request',[(180,193),(180,200)])
+ else:c.edge('e1','I','A_request',[(180,179 if entry else 165),(180,190)])
+ if choice:
+  c.edge('path_select','A_request','D_path',[(180,250),(180,270)])
+  label='[claim]' if uc=='02' and part=='A' else '[delivered]' if uc=='02' else '[sales]'
+  c.edge('e2','D_path','D_valid',[(320,305),(435,305),(435,245),(465,245)],label=label,labelbox=(370,309,125,26))
+ else: c.edge('e2','A_request','D_valid',[(320,245),(465,245)])
+ if uc=='02' and part=='A':
+  c.rect('TF','TF',158,792,44,44,'connector')
+  c.rect('M_continue','',166,752,28,28,'merge')
+  c.edge('resume','D_path','M_continue',[(180,340),(350,340),(350,766),(194,766)],label='[resume]',labelbox=(235,343,105,26))
+  c.rect('F_end','',280,375,28,28,'final')
+  c.edge('end','D_path','F_end',[(40,305),(25,305),(25,389),(280,389)],label='[end]',labelbox=(45,369,90,26))
+ elif uc=='02' and part=='B':
+  c.rect('FL','FL',158,365,44,44,'connector')
+  c.edge('failed','D_path','FL',[(180,340),(180,365)],label='[failed]',labelbox=(205,342,110,26))
+ elif uc=='04' and part=='A':
+  c.rect('WB','WB',45,365,44,44,'connector');c.rect('DP','DP',280,365,44,44,'connector')
+  c.edge('workload','D_path','WB',[(40,305),(25,305),(25,387),(45,387)],label='[workload]',labelbox=(95,375,150,26))
+  c.edge('performance','D_path','DP',[(180,340),(302,340),(302,365)],label='[delivery]',labelbox=(205,342,120,26))
  c.edge('e3','D_valid','S_effect',[(650,335),(650,365)],label='[valid]',labelbox=(655,337,100,26))
  c.edge('e4','D_valid','S_refuse',[(835,245),(965,245),(965,355)],label='[invalid]',labelbox=(835,258,120,26),color=RED)
  c.edge('e5','S_effect','D_commit',[(650,515),(650,545)])
@@ -89,10 +128,18 @@ def activity(uc,part,title,actor,request,guard,effect,result,note):
  c.edge('e7','D_commit','S_rollback',[(735,590),(795,590),(795,640),(850,640)],label='[no]',labelbox=(747,599,65,26),color=RED)
  c.edge('e8','S_refuse','M_end',[(965,465),(1080,465),(1080,773),(668,773)],color=RED)
  c.edge('e9','S_rollback','M_end',[(957,690),(957,730),(650,730),(650,755)],color=RED)
- c.edge('e10','A_result','M_end',[(180,740),(180,773),(632,773)])
- c.edge('e11','M_end','F',[(650,791),(650,805)])
- c.text('scope','Scoped activity episodes: pickup / finish or one report; final ends this episode, not other requests.',15,58,1070,26,18,False,BLUE)
- p=ROOT/f'models/UC-{uc}/activity_uc{uc}_Part{part}';return c.save(p,{'type':'activity','part':part,'guard_definition':'valid = every condition written in D_valid holds; invalid = its logical complement','flow_notes':note})
+ if uc=='02' and part=='A':
+  c.edge('e10','A_result','M_continue',[(180,740),(180,752)])
+  c.edge('continue','M_continue','TF',[(180,780),(180,792)])
+ else: c.edge('e10','A_result','M_end',[(180,740),(180,773),(632,773)])
+ if uc=='04' and part=='A':
+  c.edge('e11','M_end','D_repeat',[(650,791),(650,820),(240,820)])
+  c.edge('repeat','D_repeat','M_entry',[(180,795),(340,795),(340,183),(190,183)],label='[repeat]',labelbox=(230,765,110,26))
+  c.edge('end','D_repeat','F',[(120,820),(80,820)],label='[end]',labelbox=(30,760,80,26))
+  c.edge('results','R_entry','M_end',[(972,795),(972,745),(780,745),(780,773),(668,773)])
+ else:c.edge('e11','M_end','F',[(650,791),(650,795 if uc=='04' else 805)])
+ c.text('scope','One logical activity across A–C. Matching circles continue flow; only Part A has an initial node.',15,58,1070,26,18,False,BLUE)
+ p=ROOT/f'models/UC-{uc}/activity_uc{uc}_Part{part}';return c.save(p,{'type':'activity','part':part,'logical_activity':f'UC-{uc}','entry_connector':entry,'guard_definition':'valid = every condition in D_valid; invalid = its complement. Choice guards are exclusive selected actions.','flow_notes':note})
 
 def ssd(uc,part,title,actor,rows,frames,notes):
  c=Canvas(f'UC-{uc} SSD'+(f' — Part {part}: ' if part else ' — ')+title)
@@ -118,7 +165,7 @@ def ssd(uc,part,title,actor,rows,frames,notes):
 
 def main():
  qa=[]
- qa.append(activity('02','A','inspect and claim','Shipper','1–3: Browse, inspect,\nthen takeDelivery(orderId)','Active SHIPPER;\nREADY + unassigned\nAWAITING_PICKUP?','3: Atomic winner assigned\nDelivery PICKED_UP\nOrder OUT_FOR_DELIVERY\nSave picked_up_at — PC01','Read assignedDelivery\nContinue B or C later','1: viewReadyDeliveries()\n2: viewDelivery(orderId)\nRead-only contact snapshot;\nno passport.\nEmpty/no claim → end MG01.\nAny active shipper can claim;\nno concurrent-delivery cap.'))
+ qa.append(activity('02','A','inspect and claim','Shipper','1–3: Browse, inspect,\nthen takeDelivery(orderId)','Active SHIPPER;\nREADY + unassigned\nAWAITING_PICKUP?','3: Atomic winner assigned\nDelivery PICKED_UP\nOrder OUT_FOR_DELIVERY\nSave picked_up_at — PC01','Read assignedDelivery\nTF: continue to Part B','1: viewReadyDeliveries()\n2: viewDelivery(orderId)\nRead-only contact snapshot;\nno passport.\nEmpty/no claim → end MG01.\nAny active shipper can claim;\nno concurrent-delivery cap.'))
  qa.append(activity('02','B','successful delivery','Shipper','4–5 / A01: Hand over;\nconfirmDelivered(orderId,\ncashCollected?)','Active assigned shipper;\nPICKED_UP +\nOUT_FOR_DELIVERY;\nCOD cash=T / ONLINE 0?','5: Atomic terminal save\nDelivery + Order DELIVERED\nCOD PAID, cash=T; ONLINE\nremains PAID; finish/close\nPC02; partial owed retained','6: Read delivered result\nRequest ends','Resume own assignment via\nsteps 1–2; bypass pickup.\nCOD takes exactly T.\nONLINE takes no cash.\nWrong shipper/cash/repeat\n→ MG01, 0 changed rows.'))
  qa.append(activity('02','C','failed delivery','Shipper','A02: Unable to deliver;\nreportFailure(orderId, reason)','Active assigned shipper;\nPICKED_UP +\nOUT_FOR_DELIVERY;\nnonempty reason?','A02: Atomic FAILED + reason\nOrder DELIVERY_FAILED\nfinish/close times\nCOD VOIDED; ONLINE\nREFUND_PENDING, owed=C\nPC03 — BR-17','6: Read failed result\nRequest ends','C = captured ONLINE amount.\nFull C replaces partial owed;\nnever C + partial.\nNo payout is claimed.\nWrong shipper / repeat\n→ MG01, 0 changed rows.'))
  qa.append(activity('04','A','operational sales','Manager','1–2: salesReport(startDateVN,\nendDateVN, hubId?)','Active MANAGER;\nvalid ordered dates;\nexisting optional hub?','2–3: VN [start,end+1) → UTC\nDELIVERED by finish time\nOrder-grain S,D,F−Q,T,owed\nNo line join; item ID groups\nInclude archive — PC01','4–5: Read sales / counts\nEnd or new request','Refunds owed separate from T;\nnever subtract twice.\nOperational, not accounting.\nEmpty counts/sums = 0.\nReport writes 0 rows MG01;\nnon-manager denied MG02.'))

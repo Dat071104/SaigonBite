@@ -24,7 +24,7 @@ The model makes only these reuse/extension claims:
 
 | Relation | Direction and condition | Meaning |
 |---|---|---|
-| «include» | UC-01 → **Validate accepted checkout** | Every attempt must validate the accepted full quote and business guards, including a refused attempt. This factored subgoal represents BR-01–14 and the validation part of the existing checkout operations; it is not an additional user goal, SSD operation or persistent object. |
+| «include» | UC-01 → **Validate accepted checkout** | Each attempt to create a new checkout validates the accepted full quote and business guards, including a refused creation attempt. An authorized existing-token replay returns the existing order before this validation; it does not reprice or reauthorize. This factored subgoal represents BR-01–14 and the validation part of the existing checkout operations; it is not an additional user goal, SSD operation or persistent object. |
 | «extend» | **Simulate online payment** → UC-01; `[ONLINE]`; extension point **payment authorization** | The base goal also completes through COD. The conditional simulator behaviour uses the existing `simulatorOutcome`/checkout contract (BR-14), and introduces no external network call. |
 | «extend» | SUC-04 → SUC-03; `[request cancel; state PLACED or CONFIRMED]`; extension point **order action selected** | Cancellation is an optional customer action from the own-order view. BR-15/17 still guard the actual request; seeing the action is not permission to bypass the state check. |
 

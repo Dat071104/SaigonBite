@@ -328,15 +328,15 @@
           "id": "05S-R08a",
           "source": "system",
           "target": "actor",
-          "label": "[own PLACED + exact open + target valid] acceptedOrderAndAmounts (PC04)",
+          "label": "[eligible + valid target + committed] acceptedOrderAndAmounts (PC04)",
           "points": [
             [
               1400,
-              815
+              790
             ],
             [
               200,
-              815
+              790
             ]
           ],
           "return_message": true
@@ -345,15 +345,15 @@
           "id": "05S-R08b",
           "source": "system",
           "target": "actor",
-          "label": "[eligible offer; target invalid] withdrawnOfferAndReason (MG01)",
+          "label": "[eligible + invalid target + committed] withdrawnOfferAndReason (MG01)",
           "points": [
             [
               1400,
-              905
+              885
             ],
             [
               200,
-              905
+              885
             ]
           ],
           "return_message": true
@@ -362,15 +362,32 @@
           "id": "05S-R08c",
           "source": "system",
           "target": "actor",
-          "label": "[otherwise: stale / wrong owner / terminal] staleRefusal; zero changes (MG01)",
+          "label": "[ineligible owner / state / offer] staleRefusal; zero changes (MG01)",
           "points": [
             [
               1400,
-              995
+              980
             ],
             [
               200,
-              995
+              980
+            ]
+          ],
+          "return_message": true
+        },
+        {
+          "id": "05S-R08d",
+          "source": "system",
+          "target": "actor",
+          "label": "[eligible; save fails] controlledFailure; rollback, no changes (MG01)",
+          "points": [
+            [
+              1400,
+              1075
+            ],
+            [
+              200,
+              1075
             ]
           ],
           "return_message": true
@@ -431,15 +448,49 @@
           "id": "05S-R09",
           "source": "system",
           "target": "actor",
-          "label": "rejectedOrderAndAmounts (BR-17) | staleRefusal",
+          "label": "[eligible + committed] rejectedOrderAndAmounts (BR-17)",
           "points": [
             [
               1400,
-              625
+              675
             ],
             [
               200,
-              625
+              675
+            ]
+          ],
+          "return_message": true
+        },
+        {
+          "id": "05S-R09b",
+          "source": "system",
+          "target": "actor",
+          "label": "[ineligible owner / state / offer] staleRefusal; zero changes (MG01)",
+          "points": [
+            [
+              1400,
+              825
+            ],
+            [
+              200,
+              825
+            ]
+          ],
+          "return_message": true
+        },
+        {
+          "id": "05S-R09c",
+          "source": "system",
+          "target": "actor",
+          "label": "[eligible; save fails] controlledFailure; rollback, no changes (MG01)",
+          "points": [
+            [
+              1400,
+              980
+            ],
+            [
+              200,
+              980
             ]
           ],
           "return_message": true

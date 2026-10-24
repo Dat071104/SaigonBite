@@ -1,7 +1,9 @@
 {
   "type": "activity",
   "part": "A",
-  "guard_definition": "valid = every condition written in D_valid holds; invalid = its logical complement",
+  "logical_activity": "UC-04",
+  "entry_connector": "",
+  "guard_definition": "valid = every condition in D_valid; invalid = its complement. Choice guards are exclusive selected actions.",
   "flow_notes": "Refunds owed separate from T;\nnever subtract twice.\nOperational, not accounting.\nEmpty counts/sums = 0.\nReport writes 0 rows MG01;\nnon-manager denied MG02.",
   "nodes": {
     "ActorLane": [
@@ -24,9 +26,15 @@
     ],
     "A_request": [
       40,
-      190,
+      200,
       280,
-      110
+      50
+    ],
+    "D_path": [
+      40,
+      270,
+      280,
+      70
     ],
     "D_valid": [
       465,
@@ -70,24 +78,54 @@
       36,
       36
     ],
+    "D_repeat": [
+      120,
+      795,
+      120,
+      40
+    ],
     "F": [
-      634,
+      50,
       805,
-      32,
-      32
+      30,
+      30
+    ],
+    "R_entry": [
+      950,
+      795,
+      44,
+      44
+    ],
+    "M_entry": [
+      170,
+      173,
+      20,
+      20
     ],
     "N": [
       35,
-      365,
+      415,
       290,
-      215
+      185
+    ],
+    "WB": [
+      45,
+      365,
+      44,
+      44
+    ],
+    "DP": [
+      280,
+      365,
+      44,
+      44
     ]
   },
   "edges": [
     {
       "id": "e1",
       "source": "I",
-      "target": "A_request",
+      "target": "M_entry",
       "points": [
         [
           180,
@@ -95,7 +133,41 @@
         ],
         [
           180,
-          190
+          173
+        ]
+      ],
+      "dashed": false,
+      "label": ""
+    },
+    {
+      "id": "entry",
+      "source": "M_entry",
+      "target": "A_request",
+      "points": [
+        [
+          180,
+          193
+        ],
+        [
+          180,
+          200
+        ]
+      ],
+      "dashed": false,
+      "label": ""
+    },
+    {
+      "id": "path_select",
+      "source": "A_request",
+      "target": "D_path",
+      "points": [
+        [
+          180,
+          250
+        ],
+        [
+          180,
+          270
         ]
       ],
       "dashed": false,
@@ -103,11 +175,19 @@
     },
     {
       "id": "e2",
-      "source": "A_request",
+      "source": "D_path",
       "target": "D_valid",
       "points": [
         [
           320,
+          305
+        ],
+        [
+          435,
+          305
+        ],
+        [
+          435,
           245
         ],
         [
@@ -116,7 +196,53 @@
         ]
       ],
       "dashed": false,
-      "label": ""
+      "label": "[sales]"
+    },
+    {
+      "id": "workload",
+      "source": "D_path",
+      "target": "WB",
+      "points": [
+        [
+          40,
+          305
+        ],
+        [
+          25,
+          305
+        ],
+        [
+          25,
+          387
+        ],
+        [
+          45,
+          387
+        ]
+      ],
+      "dashed": false,
+      "label": "[workload]"
+    },
+    {
+      "id": "performance",
+      "source": "D_path",
+      "target": "DP",
+      "points": [
+        [
+          180,
+          340
+        ],
+        [
+          302,
+          340
+        ],
+        [
+          302,
+          365
+        ]
+      ],
+      "dashed": false,
+      "label": "[delivery]"
     },
     {
       "id": "e3",
@@ -297,7 +423,7 @@
     {
       "id": "e11",
       "source": "M_end",
-      "target": "F",
+      "target": "D_repeat",
       "points": [
         [
           650,
@@ -305,7 +431,82 @@
         ],
         [
           650,
-          805
+          820
+        ],
+        [
+          240,
+          820
+        ]
+      ],
+      "dashed": false,
+      "label": ""
+    },
+    {
+      "id": "repeat",
+      "source": "D_repeat",
+      "target": "M_entry",
+      "points": [
+        [
+          180,
+          795
+        ],
+        [
+          340,
+          795
+        ],
+        [
+          340,
+          183
+        ],
+        [
+          190,
+          183
+        ]
+      ],
+      "dashed": false,
+      "label": "[repeat]"
+    },
+    {
+      "id": "end",
+      "source": "D_repeat",
+      "target": "F",
+      "points": [
+        [
+          120,
+          820
+        ],
+        [
+          80,
+          820
+        ]
+      ],
+      "dashed": false,
+      "label": "[end]"
+    },
+    {
+      "id": "results",
+      "source": "R_entry",
+      "target": "M_end",
+      "points": [
+        [
+          972,
+          795
+        ],
+        [
+          972,
+          745
+        ],
+        [
+          780,
+          745
+        ],
+        [
+          780,
+          773
+        ],
+        [
+          668,
+          773
         ]
       ],
       "dashed": false,

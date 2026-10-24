@@ -40,6 +40,7 @@ def main():
         if op in ('salesReport','workloadReport','deliveryReport'): note+=' A technical read failure returns no fabricated figures and writes no persistent rows.'
         if op=='workloadReport': note+=' Root conservative reading: retain archived hub identities for reporting with no open work under BR-18 / UC03-PC02; draft list_active gap is a P4 input.'
         if op=='viewDelivery': note+=' Contact is a permitted read; the stored snapshot is the address. The return name does not introduce a persisted contact snapshot.'
+        if op in ('acceptReplacement','declineReplacement'): note+=' Eligible save failure rolls back all effects (UC05-MG01 / E04), distinct from staleRefusal.'
         if op=='updateMenuItem': note+=' brandId identifies the current parent; this analysis does not promise reparenting.'
         if op in ('createBrand','updateBrand','createMenuItem','updateMenuItem'): note+=' Duplicate checks include retained archived names; no reuse/restore promise is introduced.'
         ids='; '.join(a[0] for a in anchors if op in a[5].split('; '))
@@ -50,8 +51,8 @@ def main():
       ('confirmOrder','orderId','confirmedOrder | refusal','Kitchen staff','UC-05','PLACED → CONFIRMED; confirmed_at','BR-26; no open offer','KitchenController.confirm_order'),
       ('rejectOrder','orderId, reason','rejectedOrder | refusal','Kitchen staff','UC-05','PLACED → REJECTED; offer WITHDRAWN; BR-17; closed_at','BR-16; BR-17; BR-26','KitchenController.reject_order'),
       ('offerReplacement','orderId, orderLineId, targetItemId','offeredReplacement | refusal','Kitchen staff','UC-05','PLACED → PLACED; insert OFFERED','plan §3.3 1–3; BR-26','KitchenController.offer_replacement'),
-      ('acceptReplacement','orderId, offerId','acceptedOrderAndAmounts | withdrawnOfferAndReason | staleRefusal','Customer','SUC-03; UC-05','PLACED → PLACED; offer ACCEPTED; line/totals/payment; invalid target → WITHDRAWN only','plan §3.3 5–7','OrderTrackingController.answer_replacement (accept=True)'),
-      ('declineReplacement','orderId, offerId','rejectedOrderAndAmounts | staleRefusal','Customer','SUC-03; UC-05','PLACED → REJECTED; offer DECLINED; BR-17','plan §3.3 8; BR-17','OrderTrackingController.answer_replacement (accept=False)'),
+      ('acceptReplacement','orderId, offerId','acceptedOrderAndAmounts | withdrawnOfferAndReason | staleRefusal | controlledFailure','Customer','SUC-03; UC-05','PLACED → PLACED; offer ACCEPTED; line/totals/payment; invalid target → WITHDRAWN only','plan §3.3 5–7','OrderTrackingController.answer_replacement (accept=True)'),
+      ('declineReplacement','orderId, offerId','rejectedOrderAndAmounts | staleRefusal | controlledFailure','Customer','SUC-03; UC-05','PLACED → REJECTED; offer DECLINED; BR-17','plan §3.3 8; BR-17','OrderTrackingController.answer_replacement (accept=False)'),
       ('cancelOrder','orderId','cancelledOrderAndAmounts | refusal','Customer','SUC-04; UC-01','PLACED / CONFIRMED → CANCELLED; offer WITHDRAWN; BR-17','BR-15; BR-17','OrderTrackingController.cancel_order'),
       ('startPreparing','orderId','preparingOrder | refusal','Kitchen staff','SUC-05; UC-05','CONFIRMED → PREPARING','BR-26; no open offer','KitchenController.start_preparing'),
       ('markReady','orderId','readyOrderAndDelivery | refusal','Kitchen staff','SUC-05; UC-02','PREPARING → READY; insert Delivery AWAITING_PICKUP; ready_at','BR-26','KitchenController.mark_ready'),

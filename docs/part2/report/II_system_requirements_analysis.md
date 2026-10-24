@@ -138,7 +138,7 @@ The model makes only these reuse/extension claims:
 
 | Relation | Direction and condition | Meaning |
 |---|---|---|
-| «include» | UC-01 → **Validate accepted checkout** | Every attempt must validate the accepted full quote and business guards, including a refused attempt. This factored subgoal represents BR-01–14 and the validation part of the existing checkout operations; it is not an additional user goal, SSD operation or persistent object. |
+| «include» | UC-01 → **Validate accepted checkout** | Each attempt to create a new checkout validates the accepted full quote and business guards, including a refused creation attempt. An authorized existing-token replay returns the existing order before this validation; it does not reprice or reauthorize. This factored subgoal represents BR-01–14 and the validation part of the existing checkout operations; it is not an additional user goal, SSD operation or persistent object. |
 | «extend» | **Simulate online payment** → UC-01; `[ONLINE]`; extension point **payment authorization** | The base goal also completes through COD. The conditional simulator behaviour uses the existing `simulatorOutcome`/checkout contract (BR-14), and introduces no external network call. |
 | «extend» | SUC-04 → SUC-03; `[request cancel; state PLACED or CONFIRMED]`; extension point **order action selected** | Cancellation is an optional customer action from the own-order view. BR-15/17 still guard the actual request; seeing the action is not permission to bypass the state check. |
 
@@ -253,7 +253,7 @@ Author: 722I0004 · AI-assisted (Codex)
 | ID | Branch point | Actor / System behaviour | Rejoin / end |
 |---|---|---|---|
 | A01 | Step 5, token already belongs to this customer | System returns the same single existing order and its authorized receipt; does not rerun authorization or insert any row. | Rejoin 8 with `existingOrder`; UC01-MG02. |
-| A02 | Step 3/4, Customer chooses ONLINE | Local chooses E_WALLET or BANK_QR; Tourist chooses INTERNATIONAL_CARD. The labelled simulator page collects approve/decline **before** step 6's transaction. At step 6 after validation, Simulate online payment extends at payment authorization: the short deterministic in-process decision runs inside the transaction. Approval creates ONLINE PAID with captured amount C=T alongside all step-7 writes; decline uses E04. No network/provider call or user wait holds the transaction. | Rejoin 7 then 8; UC01-PC05. |
+| A02 | Step 3/4, Customer chooses ONLINE | Local chooses E_WALLET or BANK_QR; Tourist chooses INTERNATIONAL_CARD. The labelled simulator page collects approve/decline **before** step 5 begins the checkout transaction. At step 6 after validation, Simulate online payment extends at payment authorization: the short deterministic in-process decision runs inside the transaction. Approval creates ONLINE PAID with captured amount C=T alongside all step-7 writes; decline uses E04. No network/provider call or user wait holds the transaction. | Rejoin 7 then 8; UC01-PC05. |
 | A03 | E02 busySuggestions result | System gives up to 3 other ACTIVE, non-busy hubs within raw radius, ordered by load ratio, distance, ID; explicitly says menus may differ and a new quote is needed. Empty suggestion list is shown. Customer may select another hub and request a fresh quote or stop. | Rejoin 2 then 3 for a new attempt, or end; refused attempt UC01-MG03 and MG01. |
 | A04 | E03 revisedQuote or E04 decline | Customer may accept the revised full fingerprint+T, change basket/voucher/payment, retry ONLINE or choose COD. Any changed choice requires another `requestQuote(...)`; approval choice precedes a new checkout transaction. | Rejoin 3/4 before another 5, or end; failed attempt UC01-MG01. |
 | A05 | Step 2, no eligible item/address or no active hub at 1 | Customer uses SUC-02 to maintain an address or ends; menu/catalogue administration remains separate. Browse/selection itself writes zero rows. | Rejoin 1/2 after support or end; no checkout save, UC01-MG01. |
@@ -537,7 +537,7 @@ Alternatives (branch and continuation are explicit):
 
 Author: 722I0004 · AI-assisted (Codex)
 
-The three views are scoped episodes: pickup commits PC01, then the assigned shipper later selects the exclusive success or failure episode. A resumed own assignment bypasses pickup. A final ends this episode; it neither cancels a committed assignment nor terminates other deliveries. There is no fork/join concurrency; diamonds merge alternatives before the final. `[valid]` means every condition in the decision holds; `[invalid]` is its complete logical complement. The second decision separates committed success from operation failure and rollback. Queries in Part A are read-only; no selected candidate/empty board ends without a command or mutation.
+One logical activity spans Parts A–C. Part A is the sole entry: browse/inspect, then choose a new claim, resume an own PICKED_UP assignment, or end empty/read-only with UC02-MG01. Successful pickup and resume merge before TF, which enters Part B; no transaction spans travel. Part B selects delivered versus failed, with FL continuing to Part C. Activity finals end this delivery attempt after a complete outcome or refusal. [claim], [resume], [end] are mutually exclusive choices; [delivered]/[failed] are exclusive outcomes. [valid]/[invalid] are complementary guards, and [yes]/[no] distinguish atomic success from rollback.
 
 <!-- Figure placement: A4 landscape, 230 mm width; minimum text 10.67 pt. -->
 
@@ -666,7 +666,7 @@ Additional refusal detail: invalid coordinates, negative fee, missing/stale reco
 | Actor | System |
 |---|---|
 | 1. Request `listHubs(includeArchived?)`. |  |
-|  | 2. Return `hubRecordsAndLoad`, including capacity and derived load/busy context. No write occurs. |
+|  | 2. Recheck active Admin before disclosure; deny without data if inactive/unauthorized. Otherwise return `hubRecordsAndLoad`, including capacity and derived load/busy context. No write occurs. |
 | 3. Submit `createHub(code, name, address, latitude, longitude, baseDeliveryFee, capacity)`. |  |
 |  | 4. Check active Admin context, nonempty required fields, unique hub code, valid finite latitude/longitude, nonnegative whole-VND base fee and integer capacity ≥ 1. Recheck guards at the change boundary. |
 |  | 5. Save one ACTIVE hub and return `savedRecord`; UC03-PC01 holds. Existing orders are unchanged. |
@@ -681,7 +681,7 @@ Additional refusal detail: invalid coordinates, negative fee, missing/stale reco
 
 - **E01 — Invalid create/update (branch at 4 or A02 validation; end):** duplicate code, capacity < 1 or malformed coordinates/fee/required data returns `controlledRefusal` with a reason; UC03-MG01, nothing changed. A correction is a new request at 3/A02, not a partially saved record.
 - **E02 — Unsafe archive (branch at A03 guard; end):** any open order returns `controlledRefusal`; UC03-MG01, nothing changed. Lowering capacity itself is not this failure.
-- **E03 — Missing, stale, archived target or denied context (branch at any request; end):** return `refusal` for `getHub`, or `controlledRefusal` for a mutation; no data disclosure to a denied actor and UC03-MG01, nothing changed. No update revives an archived hub.
+- **E03 — Missing/stale target or denied context (branch at any request; end); archived target for update/archive only:** return `refusal` for `getHub`, or `controlledRefusal` for a mutation; no data disclosure to a denied actor and UC03-MG01, nothing changed. Authorized inspection of a retained archived hub remains valid; archive status alone does not refuse listHubs/getHub. No update revives an archived hub.
 - **E04 — Persistence failure (branch at 5/A02/A03 save; end):** return a controlled failure after rollback; UC03-MG01, nothing changed. No partial hub change is claimed.
 
 
@@ -721,7 +721,7 @@ The Hub state machine is Figure 2.6, owned here (source `models/UC-03/sm_hub.*`;
 
 The root assembler inserts the canonical state-machine block once beneath this subsection; this package cross-references it without copying shared images. These are analysis contracts, not measured application results.
 
-Editable models: each base .drawio contains all its pages; the adjacent JSON and Python regenerate the models. Catalogue base PNG/SVG are first-page aliases; use all A–C figures above together.
+Editable UC-03 sources are the single activity_uc03.drawio and ssd_uc03.drawio, each with adjacent JSON/Python generator and PNG/SVG exports. Neither UC-03 image is a first-page alias.
 
 All shared state figures below require **230 mm A4 landscape** placement (minimum 9.48 pt); do not shrink them into a portrait column.
 
@@ -847,7 +847,7 @@ Calculation definitions are part of the required response. Order totals remain T
 
 Author: 722I0004 · AI-assisted (Codex)
 
-The manager chooses one of three independently initiated report episodes. Part A is sales, B workload now and C delivery performance. All requests recheck the role. `[valid]` means every displayed role/filter condition holds; `[invalid]` is its complement. Read failures return unavailable without fabricated totals. Success and refusal paths explicitly merge before the episode's activity final; no lifecycle event or persistent write is produced. A new request restarts its own episode.
+One logical activity spans Parts A–C, with its sole initial in Part A. The exclusive report choice selects [sales], WB [workload], or DP [delivery]. Matching continuation circles enter Parts B/C without a new initial. Each report merges results/refusals; R returns those alternatives to the common merge in Part A. The [repeat]/[end] decision starts a fresh independently authorized report or ends the whole activity. Every request rechecks Manager access; [valid]/[invalid] are complementary, and read failure returns unavailable without fabricated totals or writes.
 
 <!-- Figure placement: A4 landscape, 230 mm width; minimum text 10.67 pt. -->
 
@@ -967,7 +967,7 @@ Author: 722I0004 · AI-assisted (Codex)
 | E01 | Steps 1–4/A02/A03: inactive or wrong role, wrong hub, non-PLACED, missing reason; confirm with an open offer; offer with source still available, nonmember line, invalid target or another open offer | Controlled refusal; no Order/line/payment/offer update. Own-hub privacy enforced on reads. | End request: UC05-MG01. A new read may rejoin 1/2. |
 | E02 | A03 invalid target; or C3 exact open offer whose target is now ineligible | At offer creation: refusal with no writes. At acceptance: only that offer becomes WITHDRAWN with an explanatory returned/displayed reason (`withdrawnOfferAndReason`); **Order, lines and payment unchanged**. No persisted withdrawal_reason attribute is assumed. | End request: UC05-MG01. Staff can refresh 1/2 and make a new eligible offer. |
 | E03 | C3/C6: wrong owner, order no longer PLACED (including CANCELLED/REJECTED), wrong/non-open offer or stale/repeated answer | Returns `staleRefusal`; zero rows changed. Ownership failure discloses no foreign order details. Never revives a terminal order. | End response: UC05-MG01; customer may read again at C1. |
-| E04 | Any modifying request: lock, write or commit failure | Controlled retry outcome; atomic rollback of every intended Order/line/offer/payment change. No partial confirmation, rejection, replacement or money change. | End request: UC05-MG01. New read at 1/C1 before retry. |
+| E04 | Any modifying request: lock, write or commit failure | Return `controlledFailure` as a controlled retry outcome; atomic rollback of every intended Order/line/offer/payment change. No partial confirmation, rejection, replacement or money change. | End request: UC05-MG01. New read at 1/C1 before retry. |
 
 Fixed contract example (not a test result): S=100,000, D=10,000, F=15,000, Q=5,000 gives T=C=100,000. Accepted replacement S_new=90,000 gives D_new=10,000 and T_new=90,000. COD payable=90,000; ONLINE keeps C=100,000 with 10,000 owed. Later cancel owes full 100,000. A delivered order retains T_new=90,000 for operational sales; the owed 10,000 is separate, never subtracted again.
 
@@ -1002,7 +1002,7 @@ Figure 2.18C. UC-05 — Customer response through SUC-03 — Author: 722I0004 ·
 
 Author: 722I0004 · AI-assisted (Codex)
 
-Black-box messages use the frozen operation catalogue verbatim; dashed arrows are returns. Part A is Kitchen staff + :System; Parts B and C are independent Customer + :System acceptance and decline companions through SUC-03. The kitchen request finishes before the customer session; no synchronous two-human session or transaction wait is implied. Place at **230 mm landscape**, minimum **10.59 pt**.
+Black-box messages use the frozen operation catalogue verbatim; dashed arrows are returns. Part A is Kitchen staff + :System; Parts B and C are independent Customer + :System acceptance and decline companions through SUC-03. Acceptance/decline results distinguish committed success or withdrawal, stale refusal, and controlled technical failure with rollback and UC05-MG01. The kitchen request finishes before the customer session; no synchronous two-human session or transaction wait is implied. Place at **230 mm landscape**, minimum **10.59 pt**.
 
 ![Figure 2.19A. UC-05 — kitchen commands](../../../models/UC-05/ssd_uc05_PartA.png)
 
@@ -1124,7 +1124,7 @@ Brand/MenuItem start ACTIVE and archive to ARCHIVED, with no undo-archive operat
 | Actor | System |
 |---|---|
 | 1. Request `listCatalogue(hubId?)` (omit hubId for the full catalogue, supply it for a hub view). |  |
-|  | 2. Return `brandsItemsHubsAndListings`; show active/archive status and listing availability per hub. This is also the read path for Brand, MenuItem and HubMenuItem. No write occurs. |
+|  | 2. Recheck active Admin before disclosure; deny without data if inactive/unauthorized. Otherwise return `brandsItemsHubsAndListings`; show active/archive status and listing availability per hub. This is also the read path for Brand, MenuItem and HubMenuItem. No write occurs. |
 | 3. Submit `createBrand(name)`. |  |
 |  | 4. Check active Admin, valid required name and unique Brand name. Recheck guards at the change boundary. |
 |  | 5. Save one ACTIVE brand; return `savedRecord` under UC06-PC01. Preserve old order lines (UC06-MG01). |
@@ -1167,7 +1167,7 @@ Figure 2.20B. UC-06 — MenuItem inspection and maintenance — Author: 722I0004
 
 Figure 2.20C. UC-06 — HubMenuItem inspection and maintenance — Author: 722I0004 · AI-assisted (Codex)
 
-Each page models one independently initiated request in Admin | System partitions; alternatives merge before the result is observed. The bullseye ends the whole request. There is no fork or concurrent flow. Guard checks include session authorization and save completion; the else edge covers every failed guard and rollback. Repeating an inspection starts another request.
+One logical activity spans A–C. The sole initial in Part A dispatches the exclusive [brand], MI [item], or HL [listing] choice. Matching connectors enter Parts B/C without new initial nodes. Each branch merges its inspection/save/refusal outcomes; R returns Parts B/C to the common Part A merge. After observing the result, [repeat] selects another target through the entry merge; [end] reaches the sole activity final. Every read rechecks active Admin before data disclosure. No transaction spans a user choice and no concurrent flow is introduced.
 
 #### iii. System sequence diagram for Use Case 6
 

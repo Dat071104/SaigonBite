@@ -6,7 +6,7 @@ Author: 722I0004 · AI-assisted (Codex)
 
 ## Sources read
 
-Locked plan §§1–5, P2, P3.1, §§7/10/11; Part2 README, links and P2 checklist; Phase 1 Section I, traceability, rules, decision log and P1-root/brief; frozen Part 1 content and diagram style. Primary PDFs were extracted directly with pypdf; DOCX paragraphs and all tables read with python-docx (nine description fields, not just text extract); primary marking workbook Checklist and Rubric Guide; team template and working Team & Use Cases, Events Table, CRUD Check. Durable direct-source readings and controller AST inventory: `D:/RAD/FINAL/Part2/notes/P2_primary_sources.json`. Draft controllers, domain vocabulary/behaviour and schema v2 read only as Static evidence. PDF, Documents and Spreadsheets skills read; balanced-diagrams ZIP skill read, with Phase 1 generator patterns reused. No external information was needed.
+Locked plan §§1–5, P2, P3.1, §§7/10/11; Part2 README, links and P2 checklist; Phase 1 Section I, traceability, rules, decision log and P1-root/brief; frozen Part 1 content and diagram style. Primary PDFs were extracted directly with pypdf; DOCX paragraphs and all tables read with python-docx (nine description fields, not just text extract); primary marking workbook Checklist and Rubric Guide; team template and working Team & Use Cases, Events Table, CRUD Check. Durable direct-source readings and controller AST inventory: `D:/RAD/FINAL/Part2/notes/P2_primary_sources.json`. Draft controllers, domain vocabulary/behaviour and schema v2 read only as Static evidence. PDF, Documents and Spreadsheets skills read; balanced-diagrams ZIP skill read, with Phase 1 generator patterns reused. No external project information was needed. Official Codex documentation was consulted only for runtime recovery; the live account-limit tool established availability before the same reviewer resumed.
 
 ## Preflight and stop rule
 
@@ -22,6 +22,7 @@ Baseline was clean before the preflight helper was created; the helper is the so
 | Plan L heading says asked 26/10, a future date on 24/10 | Preserve P1's truthful planned/unanswered interpretation. |
 | Item 17 is per-student, all Part 2 work authored by Dat (J2) | Partial: met for 722I0004 only; absent for 523K0049 / 523K0050. No invented authorship or promised grade. |
 | Template description table has no separate minimum-guarantee field | Keep its nine-field order; place MGs beside PCs within Post-conditions and branch outcomes within Exception conditions. |
+| Literal §2.4 and §2.5 omit different scoped Read qualifiers | Retain all 89 original §2.4 qualified cells; reconcile seven already-scoped Read qualifiers, no new C/U/D grant. Proposed clarification: qualify own authentication, authorized profile/history, tracking/address, own-hub preparation/replacement and delivery-payment reads consistently in both tables. Locked plan unchanged; detailed cell-set proof is in Wave 1 integration. |
 
 ## P4 inputs
 
@@ -146,3 +147,36 @@ Workbook published after the Wave 2 barrier and guard success. `P2_workbook_pres
 - P2-S16: updateMenuItem brandId is current-parent context; no item-reparenting or restore feature is promised by this phase.
 - P2-S17: draft lifetime uniqueness, validation maxima/lengths and HCMC coordinate bounds must be reconciled explicitly in P3/P4. Retained archived names remain duplicate-constrained conservatively; no blanket relaxation or unapproved new locked default is implied.
 - P2-S18: ReportController.workload_report currently iterates HubDAO.list_active. The adopted BR-22 / UC03-PC02 reading retains archived hub identities in reporting with zero open work; reconcile the query/result mapping in P4.
+
+## Wave 4 independent review and root disposition
+
+Author: 722I0004 · AI-assisted (Codex)
+
+The sole reviewer completed its report before root opened it. Its first attempt stopped with a usage-limit error; after the owner's continuation, the live account-limit tool allowed ordinary usage and root resumed the same p2_review identity. No replacement worker, account purchase, configuration change or application work was introduced. Bounded metadata/status checks verified liveness without reading the unfinished report. The independent verdict remains **NOT READY at 3097dca** in the original report; that historical assessment is preserved rather than relabelled as a post-fix reviewer pass.
+
+| Finding | Root disposition and correction evidence |
+|---|---|
+| R1 — disconnected UC-02/04/06 activities | Accepted and fixed. UC-02 has a sole initial, claim/resume/end choice, TF continuation, exclusive delivered/failed choice and FL continuation. A pickup transaction ends before travel. UC-04 has one report dispatcher, WB/DP continuations, R return to a common merge and repeat/end. UC-06 has one brand/item/listing dispatcher, MI/HL continuations, R return, entry/result merges and repeat/end. Continuation views have no independent initials. Source prose was rewritten; existing anchor node IDs retained. p2_review_audit.py checks every control node is reachable from the sole initial and can reach a complete activity final across the paired continuations. |
+| R2 — surviving active-only uniqueness | Accepted and fixed. Brand SSD Part A and its base inputs/exports now include retained archived names; the consistency builder normalizes the historical G-row fact to the same scope. No restore/reparenting feature or application change. |
+| R3 — create requires existing item target | Accepted and fixed. The MenuItem guard qualifies existing ACTIVE item as update/archive only. Creation checks active Brand, new fields, positive price and uniqueness. Base/Part B model data and exports agree. |
+| R4 — archived Hub reads / authorization clarity | Accepted and fixed. UC-03 E03 restricts archived-target refusal to update/archive, explicitly allows authorized retained-record inspection. Hub and catalogue read nodes recheck active Admin before disclosure and state no-data denial with the appropriate MG; source flows state the same. This clarifies analysis, not a measured security defect. |
+| R5 — Customer response save failures absent from SSD | Accepted and fixed. Acceptance returns require committed save for acceptance/withdrawal; a separate controlledFailure operand rolls back under UC05-MG01. Decline similarly separates committed rejection, stale refusal and technical failure. OP-05/06 returns/notes and UC-05 E04 agree. Extra return edges R08d/R09c are included in the MG matrix; operation names/count/parameters and all 30 anchors unchanged. |
+| R6 — stale step / include / source boilerplate | Accepted and fixed. Simulator choice explicitly precedes the step-5 transaction. The include explanation applies to new checkout creation and preserves authorized token replay without repricing/reauthorization. UC-03 source statement now describes its actual single activity and SSD. |
+
+All 13 changed unique figure views were opened as final PNG and independently Edge-rasterized SVG: UC-02 activities A–C; UC-03 activity; UC-04 activities A–C; UC-05 SSD B/C; UC-06 activities A–C and Brand SSD A. Revised first-page aliases match their Part A images. Final minimum placement remains at least 9 pt at the specified 230 mm width. Root retained the worker/reviewer reports as pre-fix evidence and recorded new structural/native-reference hashes, rather than relying on their earlier export hashes for changed files.
+
+Root post-correction assessment: **G2 analysis-ready**, with the J2 item-17 **Partial** explicitly retained. Six complete packages, team analysis and five actor CRUD subsections exist; all 30 main anchors resolve to state/stored facts and SSD messages. The 41 requests remain in the 60-operation catalogue and their description flows. The two ledgers are distinct; later design/code/test/result columns stay blank and eight cross-cutting NFRs stay Planned. No unresolved R1–R6 correction is accepted as a hidden pass. This root assessment is not a second independent review, application qualification or grade prediction.
+
+Verification evidence: `Part2/notes/P2-root/review_corrections_audit.json`, `analysis_structural_audit.json`, `Part2/notes/P2-root/consistency_audit.json`, final PNG/SVG reviews under `Part2/notes/P2-root/`, and the final start/end hash manifests. Native draw.io editing, native Excel and eventual final DOCX/PDF placement remain UNTESTED; later report assembly must preserve 230 mm landscape placement. No app tests were run in P2.
+
+## Handoff and pending owner facts
+
+Author: 722I0004 · AI-assisted (Codex)
+
+- ⟦PENDING: actual L1–L6 lecturer answers or explicit unanswered records, planned discussion 26/10 and replan checkpoint 31/10⟧. A differing L1/L3/L6 answer triggers the locked-plan replan rule; silence remains unanswered.
+- ⟦PENDING: Q1–Q5 answers and original submission dates, Dat to confirm by 31/10⟧. The five-question allowance remains exhausted; do not invent a further client question or answer.
+- ⟦PENDING: real lecturer feedback/approval and official Part 2 submission date, when received / when the eLearning slot opens⟧. The team's 15/11 target is not presented as the official deadline.
+- Dat should understand and explain the actual sole-authored models and AI assistance; no work is attributed to the other proposal owners.
+- P3 may map these contracts into design; P4.1 may start the code/test foundation independently. The Static F-01…09 and P2-S01…18 inputs above are obligations for later phases, not P2 fixes or test results.
+
+Submission staging follows only after the corrected model sources are committed. Exact local targets: `D:/RAD/FINAL/Part2/drive_upload/Team02_RAD_Sem01_2627_Team_Workbook.xlsx` and `D:/RAD/FINAL/Part2/drive_upload/Part2/models/` with shared/ and UC-01/ through UC-06/. Phase 1 flat copies are moved into shared/ without deletion; replaced staging bytes are preserved in P2_trash. Nothing is submitted to eLearning or pushed/tagged on GitHub by this phase. The staging manifest and final receipt outside the repo record the concrete copied hashes and final commit.

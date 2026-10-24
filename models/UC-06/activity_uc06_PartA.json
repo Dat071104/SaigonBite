@@ -7,7 +7,7 @@
       "prefix": "CA",
       "title": "Figure 2.20A. UC-06 — Brand inspection and maintenance",
       "browse": "1 / A01: request\nlistCatalogue(hubId?)",
-      "read": "2 / A01: return brandsItemsHubsAndListings\nInspect Brand records and current eligibility",
+      "read": "2 / A01: recheck active Admin; denial ends with MG02, no data\nIf authorized: return brandsItemsHubsAndListings\nInspect retained records and current eligibility",
       "request": "3 / A02 / A03: submit\ncreateBrand / updateBrand /\narchiveBrand",
       "validate": "4 / A02 / A03: active Admin; valid name;\ncreate/update: unique Brand name;\nupdate/archive: ACTIVE target (BR-19)\nIf guards pass, apply selected change atomically.",
       "save": "5 / A02 / A03: return savedRecord\nCreate / update / archive Brand\nPC01 / PC03; preserve MG01",

@@ -1,8 +1,10 @@
 {
   "type": "activity",
   "part": "B",
-  "guard_definition": "valid = every condition written in D_valid holds; invalid = its logical complement",
-  "flow_notes": "Resume own assignment via\nsteps 1\u20132; bypass pickup.\nCOD takes exactly T.\nONLINE takes no cash.\nWrong shipper/cash/repeat\n\u2192 MG01, 0 changed rows.",
+  "logical_activity": "UC-02",
+  "entry_connector": "TF",
+  "guard_definition": "valid = every condition in D_valid; invalid = its complement. Choice guards are exclusive selected actions.",
+  "flow_notes": "TF: own PICKED_UP delivery.\nFL: failure branch to Part C.\nCOD takes exactly T.\nONLINE takes no cash.\nWrong shipper/cash/repeat\n\u2192 MG01, 0 changed rows.",
   "nodes": {
     "ActorLane": [
       20,
@@ -17,16 +19,22 @@
       755
     ],
     "I": [
-      165,
+      158,
       135,
-      30,
-      30
+      44,
+      44
     ],
     "A_request": [
       40,
       190,
       280,
-      110
+      60
+    ],
+    "D_path": [
+      40,
+      270,
+      280,
+      70
     ],
     "D_valid": [
       465,
@@ -78,9 +86,15 @@
     ],
     "N": [
       35,
-      365,
+      415,
       290,
-      215
+      185
+    ],
+    "FL": [
+      158,
+      365,
+      44,
+      44
     ]
   },
   "edges": [
@@ -91,7 +105,7 @@
       "points": [
         [
           180,
-          165
+          179
         ],
         [
           180,
@@ -102,12 +116,37 @@
       "label": ""
     },
     {
-      "id": "e2",
+      "id": "path_select",
       "source": "A_request",
+      "target": "D_path",
+      "points": [
+        [
+          180,
+          250
+        ],
+        [
+          180,
+          270
+        ]
+      ],
+      "dashed": false,
+      "label": ""
+    },
+    {
+      "id": "e2",
+      "source": "D_path",
       "target": "D_valid",
       "points": [
         [
           320,
+          305
+        ],
+        [
+          435,
+          305
+        ],
+        [
+          435,
           245
         ],
         [
@@ -116,7 +155,24 @@
         ]
       ],
       "dashed": false,
-      "label": ""
+      "label": "[delivered]"
+    },
+    {
+      "id": "failed",
+      "source": "D_path",
+      "target": "FL",
+      "points": [
+        [
+          180,
+          340
+        ],
+        [
+          180,
+          365
+        ]
+      ],
+      "dashed": false,
+      "label": "[failed]"
     },
     {
       "id": "e3",

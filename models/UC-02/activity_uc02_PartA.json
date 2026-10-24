@@ -1,8 +1,10 @@
 {
   "type": "activity",
   "part": "A",
-  "guard_definition": "valid = every condition written in D_valid holds; invalid = its logical complement",
-  "flow_notes": "1: viewReadyDeliveries()\n2: viewDelivery(orderId)\nRead-only contact snapshot;\nno passport.\nEmpty/no claim \u2192 end MG01.\nAny active shipper can claim;\nno concurrent-delivery cap.",
+  "logical_activity": "UC-02",
+  "entry_connector": "",
+  "guard_definition": "valid = every condition in D_valid; invalid = its complement. Choice guards are exclusive selected actions.",
+  "flow_notes": "1: viewReadyDeliveries()\n2: viewDelivery(orderId)\nRead-only contact snapshot;\nno passport.\nChoose claim / resume / end.\nEnd \u2192 MG01; no writes.\nAny active shipper can claim;\nno concurrent-delivery cap.",
   "nodes": {
     "ActorLane": [
       20,
@@ -26,7 +28,13 @@
       40,
       190,
       280,
-      110
+      60
+    ],
+    "D_path": [
+      40,
+      270,
+      280,
+      70
     ],
     "D_valid": [
       465,
@@ -78,9 +86,27 @@
     ],
     "N": [
       35,
-      365,
+      415,
       290,
-      215
+      185
+    ],
+    "TF": [
+      158,
+      792,
+      44,
+      44
+    ],
+    "M_continue": [
+      166,
+      752,
+      28,
+      28
+    ],
+    "F_end": [
+      280,
+      375,
+      28,
+      28
     ]
   },
   "edges": [
@@ -102,12 +128,37 @@
       "label": ""
     },
     {
-      "id": "e2",
+      "id": "path_select",
       "source": "A_request",
+      "target": "D_path",
+      "points": [
+        [
+          180,
+          250
+        ],
+        [
+          180,
+          270
+        ]
+      ],
+      "dashed": false,
+      "label": ""
+    },
+    {
+      "id": "e2",
+      "source": "D_path",
       "target": "D_valid",
       "points": [
         [
           320,
+          305
+        ],
+        [
+          435,
+          305
+        ],
+        [
+          435,
           245
         ],
         [
@@ -116,7 +167,57 @@
         ]
       ],
       "dashed": false,
-      "label": ""
+      "label": "[claim]"
+    },
+    {
+      "id": "resume",
+      "source": "D_path",
+      "target": "M_continue",
+      "points": [
+        [
+          180,
+          340
+        ],
+        [
+          350,
+          340
+        ],
+        [
+          350,
+          766
+        ],
+        [
+          194,
+          766
+        ]
+      ],
+      "dashed": false,
+      "label": "[resume]"
+    },
+    {
+      "id": "end",
+      "source": "D_path",
+      "target": "F_end",
+      "points": [
+        [
+          40,
+          305
+        ],
+        [
+          25,
+          305
+        ],
+        [
+          25,
+          389
+        ],
+        [
+          280,
+          389
+        ]
+      ],
+      "dashed": false,
+      "label": "[end]"
     },
     {
       "id": "e3",
@@ -276,7 +377,7 @@
     {
       "id": "e10",
       "source": "A_result",
-      "target": "M_end",
+      "target": "M_continue",
       "points": [
         [
           180,
@@ -284,11 +385,24 @@
         ],
         [
           180,
-          773
+          752
+        ]
+      ],
+      "dashed": false,
+      "label": ""
+    },
+    {
+      "id": "continue",
+      "source": "M_continue",
+      "target": "TF",
+      "points": [
+        [
+          180,
+          780
         ],
         [
-          632,
-          773
+          180,
+          792
         ]
       ],
       "dashed": false,

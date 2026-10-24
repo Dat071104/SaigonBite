@@ -87,12 +87,25 @@ class Canvas:
   assert run.returncode==0 and proof.exists(),run.stderr
   return {'stem':target.stem,'canvas':[W,H],'placed_width_mm':230,'minimum_font_px':16,'minimum_pt':16*230/25.4*72/W,'connected_edges':self.edges,'nodes':list(self.nodes),'svg_proof':str(proof),'png':str(target.with_suffix('.png'))}
 
+def connector(c,id,label,x,y):
+ r=18
+ c.d.ellipse(((x-r)*2,(y-r)*2,(x+r)*2,(y+r)*2),fill='white',outline=BLUE,width=3)
+ c.svg.append(f'<circle cx="{x}" cy="{y}" r="18" fill="white" stroke="{BLUE}" stroke-width="1.5"/>')
+ c.cell(id,label,[x-r,y-r,36,36],'ellipse;fillColor=white;strokeColor='+BLUE+';')
+ c.text(id+'_label',label,x,y,16,cell=False)
+
 def activity(p,target):
  c=Canvas(p['title']);pre=p['prefix']
  c.rect('admin_lane','',20,60,310,665,fill='#F3F7FA');c.rect('system_lane','',330,60,750,665,fill='#FFFFFF')
  c.text('admin_header','Admin',175,80,18,True);c.text('system_header',':System',705,80,18,True)
- c.circle(pre+'-start',175,113)
- c.rect(pre+'-browse',p['browse'],40,145,270,66,rounded=True)
+ if pre=='CA':
+  c.circle(pre+'-start',55,115)
+  c.diamond(pre+'-entry','',102,115,24,24)
+  c.diamond(pre+'-scope','Target?',200,115,130,40)
+  connector(c,pre+'-mi','MI',305,115);connector(c,pre+'-hl','HL',445,115)
+ elif pre in ('CB','CC'):connector(c,pre+'-start','MI' if pre=='CB' else 'HL',175,113)
+ else:c.circle(pre+'-start',175,113)
+ c.rect(pre+'-browse',p['browse'],40,155 if pre=='CA' else 145,270,56 if pre=='CA' else 66,rounded=True)
  c.rect(pre+'-read',p['read'],385,145,640,66,rounded=True)
  c.diamond(pre+'-choice','Next?',175,320,120,70)
  c.rect(pre+'-inspect','Read-only inspection\nNo persistent rows changed',385,285,640,70,rounded=True)
@@ -102,8 +115,28 @@ def activity(p,target):
  c.rect(pre+'-save',p['save'],365,584,345,64,rounded=True)
  c.rect(pre+'-refuse',p['refuse'],755,584,305,64,fill='#FBEDEB',color=RED,rounded=True)
  c.diamond(pre+'-merge','',705,690,26,26)
- c.rect(pre+'-observe','Observe result; finish',40,644,270,42,rounded=True);c.circle(pre+'-final',175,704,True)
+ c.rect(pre+'-observe','Observe result' if pre=='CA' else 'Observe result; R to Part A' if pre in ('CB','CC') else 'Observe result; finish',40,632 if pre=='CA' else 638 if pre in ('CB','CC') else 644,270,40 if pre=='CA' else 38 if pre in ('CB','CC') else 42,rounded=True)
+ if pre=='CA':
+  c.diamond(pre+'-again','Again?',175,704,160,36);c.circle(pre+'-final',400,704,True)
+  connector(c,pre+'-return','R',1045,704)
+ elif pre in ('CB','CC'):connector(c,pre+'-final','R',175,707)
+ else:c.circle(pre+'-final',175,704,True)
  es=[('start','browse',[(175,125),(175,145)],'',None),('browse','read',[(310,178),(385,178)],'',None),('read','choice',[(705,211),(705,250),(175,250),(175,285)],'',None),('choice','inspect',[(235,320),(385,320)],'[inspect only]',(310,291)),('choice','request',[(175,355),(175,408)],'[maintain]',(235,380)),('request','validate',[(310,450),(385,450)],'',None),('validate','valid',[(705,493),(705,505)],'',None),('valid','save',[(645,535),(535,535),(535,584)],'[guards pass;\nsave completes]',(440,555)),('valid','refuse',[(765,535),(908,535),(908,584)],'[else]',(950,557)),('save','merge',[(535,648),(535,690),(692,690)],'',None),('refuse','merge',[(908,648),(908,670),(705,670),(705,677)],'',None),('inspect','merge',[(1025,320),(1070,320),(1070,690),(718,690)],'',None),('merge','observe',[(705,703),(705,715),(335,715),(335,665),(310,665)],'',None),('observe','final',[(175,686),(175,692)],'',None)]
+ if pre=='CA':
+  es[0]=('scope','browse',[(200,135),(200,143),(175,143),(175,155)],'[brand]',(245,143))
+  es[-2]=('merge','observe',[(705,703),(705,720),(335,720),(335,652),(310,652)],'',None)
+  es[-1]=('observe','again',[(175,672),(175,686)],'',None)
+  es.extend([
+   ('start','entry',[(67,115),(90,115)],'',None),
+   ('entry','scope',[(114,115),(135,115)],'',None),
+   ('scope','mi',[(265,115),(287,115)],'[item]',(275,94)),
+   ('scope','hl',[(200,135),(350,135),(350,115),(427,115)],'[listing]',(355,148)),
+   ('return','merge',[(1027,704),(1027,720),(730,720),(730,690),(718,690)],'',None),
+   ('again','entry',[(95,704),(35,704),(35,85),(102,85),(102,103)],'[repeat]',(86,610)),
+   ('again','final',[(255,704),(300,704),(300,724),(400,724),(400,716)],'[end]',(275,689))])
+ elif pre in ('CB','CC'):
+  es[0]=('start','browse',[(175,131),(175,145)],'',None)
+  es[-1]=('observe','final',[(175,676),(175,689)],'',None)
  for i,(s,t,pts,l,xy) in enumerate(es):c.line(pre+'-e'+str(i),pts,pre+'-'+s,pre+'-'+t,label=l,labelxy=xy)
  c.text('legend',p['legend'],550,52,16)
  return c.finish(target,p)

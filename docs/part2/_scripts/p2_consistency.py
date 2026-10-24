@@ -52,6 +52,7 @@ def main():
     for r in ecsv:
         uc=byid[r['id']]['UC']
         add(r['id'],r['description'],references(uc,'activity',r['activity_nodes'].split(';')),references(uc,'ssd',r['SSD_messages'].split(';')),r['state_fact'])
+    next(r for r in matrix if r['PC/MG']=='UC05-MG01')['SSD message'] += '; '+references('UC-05','ssd',['05S-R08d','05S-R09c'])
     fact_nodes={
       'UC02-PC01':{'activity_uc02_PartA':['S_effect','D_valid','D_commit']},
       'UC02-PC02':{'activity_uc02_PartB':['S_effect','D_valid','D_commit','A_result']},
@@ -84,7 +85,7 @@ def main():
       'UC06-MG01':{f'ssd_uc06_Part{p}':[f'M06-{p}0{x}' for x in [2,3,4]]+['saved','refused'] for p in 'ABC'},
       'UC06-MG02':{'ssd_uc06_PartA':['M06-A02','M06-A03','refused'],'ssd_uc06_PartB':['M06-B02','M06-B03','refused'],'ssd_uc06_PartC':['M06-C02','refused']}}
     for ident,r in g.items():
-        uc=byid[ident]['UC']; add(ident,r[1],references(uc,'activity',gact[ident]),exact_refs(uc,'ssd',gssd[ident]),r[4])
+        uc=byid[ident]['UC']; add(ident,r[1],references(uc,'activity',gact[ident]),exact_refs(uc,'ssd',gssd[ident]),r[4].replace('Duplicate active names/pair','Duplicate names including retained archived names / pair'))
     assert {r['PC/MG'] for r in matrix}==ids and len(matrix)==30
     matrix.sort(key=lambda r:(r['UC'],r['PC/MG']))
     with (DOC/'analysis_consistency.csv').open('w',encoding='utf-8',newline='') as stream:

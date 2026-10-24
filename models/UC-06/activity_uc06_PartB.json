@@ -7,9 +7,9 @@
       "prefix": "CB",
       "title": "Figure 2.20B. UC-06 — MenuItem inspection and maintenance",
       "browse": "1 / A01: request\nlistCatalogue(hubId?)",
-      "read": "2 / A01: return brandsItemsHubsAndListings\nInspect MenuItem records and current eligibility",
+      "read": "2 / A01: recheck active Admin; denial ends with MG02, no data\nIf authorized: return brandsItemsHubsAndListings\nInspect retained records and current eligibility",
       "request": "A04 / A05 / A06: submit\ncreateMenuItem /\nupdateMenuItem / archiveMenuItem",
-      "validate": "A04–A06: active Admin; valid fields; ACTIVE target;\ncreate/update: active parent, price > 0,\nunique name within Brand (BR-19)\nIf guards pass, apply selected change atomically.",
+      "validate": "A04–A06: active Admin; valid fields;\ncreate/update: active Brand, price > 0, unique name;\nupdate/archive only: existing ACTIVE item (BR-19).\nApply the selected change atomically.",
       "save": "A04–A06: return savedRecord\nCreate / update / archive item\nPC01 / PC03; preserve MG01",
       "refuse": "E01–E04: refuse; no change\nMG01 / MG02; show reason",
       "legend": "Price change/archive preserves historical OrderLine snapshots; no undo-archive."

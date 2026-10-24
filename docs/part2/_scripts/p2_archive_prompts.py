@@ -15,7 +15,7 @@ def main():
     source=matches[0]; prompts=[]
     for line in source.read_text(encoding='utf-8').splitlines():
         item=json.loads(line); p=item.get('payload',{})
-        if item.get('type')=='response_item' and p.get('type')=='function_call' and 'spawn_agent' in p.get('name',''):
+        if item.get('type')=='response_item' and p.get('type')=='function_call' and any(name in p.get('name','') for name in ('spawn_agent','followup_task','send_message')):
             prompts.append({'timestamp':item.get('timestamp'),'tool':p['name'],'arguments':json.loads(p['arguments'])})
     logs=[source]
     for day in (base/'23',base/'24',base/'25'):
@@ -31,6 +31,6 @@ def main():
         for path in logs: z.write(path,path.name)
         z.write(controlling,controlling.name)
         for report in Path(r'D:\RAD\FINAL\SaigonBite\docs\part2\_agent_reports').glob('P2-*.md'): z.write(report,report.name)
-    print(json.dumps({'spawn_count':len(prompts),'transcripts':len(logs),'path':str(out/'P2_prompt_archive.json')}))
+    print(json.dumps({'spawn_count':sum('spawn_agent' in p['tool'] for p in prompts),'coordination_prompts':len(prompts),'transcripts':len(logs),'path':str(out/'P2_prompt_archive.json')}))
 
 if __name__=='__main__': main()

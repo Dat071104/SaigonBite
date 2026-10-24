@@ -43,7 +43,7 @@ Brand/MenuItem start ACTIVE and archive to ARCHIVED, with no undo-archive operat
 | Actor | System |
 |---|---|
 | 1. Request `listCatalogue(hubId?)` (omit hubId for the full catalogue, supply it for a hub view). |  |
-|  | 2. Return `brandsItemsHubsAndListings`; show active/archive status and listing availability per hub. This is also the read path for Brand, MenuItem and HubMenuItem. No write occurs. |
+|  | 2. Recheck active Admin before disclosure; deny without data if inactive/unauthorized. Otherwise return `brandsItemsHubsAndListings`; show active/archive status and listing availability per hub. This is also the read path for Brand, MenuItem and HubMenuItem. No write occurs. |
 | 3. Submit `createBrand(name)`. |  |
 |  | 4. Check active Admin, valid required name and unique Brand name. Recheck guards at the change boundary. |
 |  | 5. Save one ACTIVE brand; return `savedRecord` under UC06-PC01. Preserve old order lines (UC06-MG01). |

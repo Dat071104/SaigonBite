@@ -1,7 +1,9 @@
 {
   "type": "activity",
   "part": "C",
-  "guard_definition": "valid = every condition written in D_valid holds; invalid = its logical complement",
+  "logical_activity": "UC-02",
+  "entry_connector": "FL",
+  "guard_definition": "valid = every condition in D_valid; invalid = its complement. Choice guards are exclusive selected actions.",
   "flow_notes": "C = captured ONLINE amount.\nFull C replaces partial owed;\nnever C + partial.\nNo payout is claimed.\nWrong shipper / repeat\n\u2192 MG01, 0 changed rows.",
   "nodes": {
     "ActorLane": [
@@ -17,10 +19,10 @@
       755
     ],
     "I": [
-      165,
+      158,
       135,
-      30,
-      30
+      44,
+      44
     ],
     "A_request": [
       40,
@@ -91,7 +93,7 @@
       "points": [
         [
           180,
-          165
+          179
         ],
         [
           180,
