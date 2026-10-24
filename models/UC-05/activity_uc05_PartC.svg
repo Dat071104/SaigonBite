@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200"><rect width="100%" height="100%" fill="white"/>
+<text x="800" y="64.44" text-anchor="middle" font-family="Arial" font-size="32" font-weight="bold" fill="#202B36">UC-05 — separate Customer response</text>
+<text x="800" y="1148.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Figure 2.18C. UC-05 — separate Customer response — Author: 722I0004 · AI-assisted (Codex)</text>
+<text x="800" y="1188.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Analysis contract · 230 mm landscape · minimum 10.59 pt · no execution result</text>
+<polyline points="20,90 1580,90 1580,1115 20,1115 20,90" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="410,90 410,1115" fill="none" stroke="#004387" stroke-width="3"/>
+<text x="210" y="145.76" text-anchor="middle" font-family="Arial" font-size="28" font-weight="bold" fill="#202B36">Actor</text>
+<text x="995" y="145.76" text-anchor="middle" font-family="Arial" font-size="28" font-weight="bold" fill="#202B36">System</text>
+<ellipse cx="210" cy="190" rx="35.0" ry="35.0" fill="white" stroke="#004387" stroke-width="3"/>
+<text x="210" y="201.92000000000002" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">C</text>
+<rect x="35.0" y="232.5" width="350" height="135" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="210" y="281.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">C1 Read own orders + offer</text>
+<text x="210" y="311.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">C2 Review amounts; submit</text>
+<text x="210" y="342.6" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">ACCEPT or DECLINE</text>
+<rect x="700.0" y="212.5" width="800" height="175" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="1100" y="250.56" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">C3/C6 Recheck active owner, own PLACED, exact open</text>
+<text x="1100" y="281.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">OFFERED</text>
+<text x="1100" y="311.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">belongs to Order. ACCEPT also requires target still ACTIVE,</text>
+<text x="1100" y="342.59999999999997" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">brand active, same-hub listed + AVAILABLE.</text>
+<text x="1100" y="373.28000000000003" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">DECLINE needs no target availability check.</text>
+<polygon points="1100,432.5 1270.0,505 1100,577.5 930.0,505" fill="white" stroke="#004387" stroke-width="3"/>
+<text x="1100" y="501.58000000000004" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Selected response</text>
+<text x="1100" y="532.26" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">eligible?</text>
+<rect x="470.0" y="395.0" width="360" height="220" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="650" y="440.22" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">E03 stale: 0 rows.</text>
+<text x="650" y="470.90000000000003" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">E02 invalid target:</text>
+<text x="650" y="501.58000000000004" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">offer WITHDRAWN;</text>
+<text x="650" y="532.26" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">return reason only.</text>
+<text x="650" y="562.9399999999999" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Order/lines/payment</text>
+<text x="650" y="593.62" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">unchanged (MG01).</text>
+<ellipse cx="440" cy="505" rx="17.0" ry="17.0" fill="white" stroke="#004387" stroke-width="3"/>
+<ellipse cx="440" cy="505" rx="11.0" ry="11.0" fill="#004387"/>
+<rect x="700.0" y="645.0" width="800" height="220" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="1100" y="690.2199999999999" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">C4/C6 Try one atomic response + COMMIT:</text>
+<text x="1100" y="720.8999999999999" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">ACCEPT: offer ACCEPTED; offered price, same qty;</text>
+<text x="1100" y="751.5799999999999" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">D=min(Dold,Snew); F/Q same; COD payable=Tnew;</text>
+<text x="1100" y="782.2599999999999" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">ONLINE PAID; C unchanged; owed=C−Tnew (PC04).</text>
+<text x="1100" y="812.9399999999999" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">DECLINE: DECLINED + REJECTED; reason/closed_at;</text>
+<text x="1100" y="843.6199999999999" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">COD VOIDED / ONLINE REFUND_PENDING, owed=C (BR-17).</text>
+<polygon points="1100,910.0 1250.0,970 1100,1030.0 950.0,970" fill="white" stroke="#004387" stroke-width="3"/>
+<text x="1100" y="981.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Atomic save?</text>
+<rect x="470.0" y="897.5" width="360" height="145" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="650" y="935.9" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">E04 rollback every intended</text>
+<text x="650" y="966.5799999999999" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">change</text>
+<text x="650" y="997.26" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Order unchanged (MG01);</text>
+<text x="650" y="1027.94" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">controlled retry</text>
+<ellipse cx="440" cy="970" rx="17.0" ry="17.0" fill="white" stroke="#004387" stroke-width="3"/>
+<ellipse cx="440" cy="970" rx="11.0" ry="11.0" fill="#004387"/>
+<rect x="700.0" y="1052.5" width="800" height="55" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="1100" y="1091.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">C5/C6 Return committed response</text>
+<ellipse cx="1530" cy="1080" rx="17.0" ry="17.0" fill="white" stroke="#004387" stroke-width="3"/>
+<ellipse cx="1530" cy="1080" rx="11.0" ry="11.0" fill="#004387"/>
+<polyline points="210,225.0 210,232.5" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="202.0,215.5 210,232.5 218.0,215.5" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="385.0,300 700.0,300" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="683.0,308.0 700.0,300 683.0,292.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1100,387.5 1100,432.5" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1092.0,415.5 1100,432.5 1108.0,415.5" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="930.0,505 830.0,505" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="847.0,497.0 830.0,505 847.0,513.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="852.328125" y="463.0" width="55.34375" height="32.68" fill="white"/>
+<text x="880" y="488.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">[no]</text>
+<polyline points="470.0,505 457.0,505" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="474.0,497.0 457.0,505 474.0,513.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1100,577.5 1100,645.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1092.0,628.0 1100,645.0 1108.0,628.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="1286.5546875" y="608.0" width="66.890625" height="32.68" fill="white"/>
+<text x="1320" y="633.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">[yes]</text>
+<polyline points="1100,865.0 1100,910.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1092.0,893.0 1100,910.0 1108.0,893.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="950.0,970 830.0,970" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="847.0,962.0 830.0,970 847.0,978.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="845.7109375" y="928.0" width="88.578125" height="32.68" fill="white"/>
+<text x="890" y="953.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">[failed]</text>
+<polyline points="470.0,970 457.0,970" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="474.0,962.0 457.0,970 474.0,978.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1100,1030.0 1100,1052.5" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1092.0,1035.5 1100,1052.5 1108.0,1035.5" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="1246.8359375" y="1023.0" width="146.328125" height="32.68" fill="white"/>
+<text x="1320" y="1048.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">[committed]</text>
+<polyline points="1500.0,1080 1513.0,1080" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1496.0,1088.0 1513.0,1080 1496.0,1072.0" fill="none" stroke="#004387" stroke-width="3"/>
+<text x="215" y="616.54" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">SUC-03 response session.</text>
+<text x="215" y="647.2199999999999" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Choice precedes transaction.</text>
+<text x="215" y="677.9" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Invalid-target withdrawal also</text>
+<text x="215" y="708.5799999999999" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">rolls back on save failure</text>
+<text x="215" y="739.26" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">(E04).</text>
+<text x="215" y="769.9399999999999" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">No transaction waits for user.</text>
+<text x="215" y="800.62" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Acceptance is not</text>
+<text x="215" y="831.3" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">confirmation.</text>
+</svg>

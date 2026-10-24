@@ -1,0 +1,206 @@
+{
+  "author": "Author: 722I0004 \u00b7 AI-assisted (Codex)",
+  "title": "UC-05 \u2014 replacement offer guards",
+  "figure": "2.18B",
+  "canvas": [
+    1600,
+    1200
+  ],
+  "minimum_font_px": 26,
+  "placed_width_mm": 230,
+  "minimum_placed_pt": 10.59,
+  "nodes": [
+    {
+      "id": "05B-B",
+      "label": "B",
+      "x": 210,
+      "y": 190,
+      "w": 70,
+      "h": 70,
+      "kind": "connector"
+    },
+    {
+      "id": "05B-A",
+      "label": "A03 choose line + target\nofferReplacement(...)",
+      "x": 210,
+      "y": 380,
+      "w": 350,
+      "h": 135,
+      "kind": "action"
+    },
+    {
+      "id": "05B-V",
+      "label": "A03 Validate and try atomic OFFERED + COMMIT:\nactive own-hub PLACED; no OFFERED; line belongs to Order;\nsource NOW unavailable (sold out / unlisted / archived);\ntarget active + brand active, same-hub listed AVAILABLE,\ndifferent, not another line, price \u2264 source snapshot",
+      "x": 1100,
+      "y": 380,
+      "w": 820,
+      "h": 230,
+      "kind": "action"
+    },
+    {
+      "id": "05B-D",
+      "label": "Guards + save pass?",
+      "x": 1100,
+      "y": 660,
+      "w": 340,
+      "h": 145,
+      "kind": "decision"
+    },
+    {
+      "id": "05B-E",
+      "label": "E01/E02/E04 refusal or rollback\nOrder unchanged; MG01",
+      "x": 640,
+      "y": 660,
+      "w": 400,
+      "h": 145,
+      "kind": "action"
+    },
+    {
+      "id": "05B-F",
+      "label": "",
+      "x": 640,
+      "y": 870,
+      "w": 34,
+      "h": 34,
+      "kind": "final"
+    },
+    {
+      "id": "05B-O",
+      "label": "A03 One OFFERED committed; original/new\nname + price snapshots; whole line, same qty\nOrder stays PLACED; still counts in load (PC03)",
+      "x": 1100,
+      "y": 870,
+      "w": 820,
+      "h": 145,
+      "kind": "action"
+    },
+    {
+      "id": "05B-C",
+      "label": "C",
+      "x": 1100,
+      "y": 1050,
+      "w": 70,
+      "h": 70,
+      "kind": "connector"
+    }
+  ],
+  "edges": [
+    {
+      "id": "a",
+      "source": "05B-B",
+      "target": "05B-A",
+      "label": "",
+      "points": [
+        [
+          210,
+          225.0
+        ],
+        [
+          210,
+          312.5
+        ]
+      ]
+    },
+    {
+      "id": "b",
+      "source": "05B-A",
+      "target": "05B-V",
+      "label": "",
+      "points": [
+        [
+          385.0,
+          380
+        ],
+        [
+          690.0,
+          380
+        ]
+      ]
+    },
+    {
+      "id": "c",
+      "source": "05B-V",
+      "target": "05B-D",
+      "label": "",
+      "points": [
+        [
+          1100,
+          495.0
+        ],
+        [
+          1100,
+          587.5
+        ]
+      ]
+    },
+    {
+      "id": "d",
+      "source": "05B-D",
+      "target": "05B-E",
+      "label": "[fail]",
+      "points": [
+        [
+          930.0,
+          660
+        ],
+        [
+          840.0,
+          660
+        ]
+      ]
+    },
+    {
+      "id": "e",
+      "source": "05B-E",
+      "target": "05B-F",
+      "label": "",
+      "points": [
+        [
+          640,
+          732.5
+        ],
+        [
+          640,
+          853.0
+        ]
+      ]
+    },
+    {
+      "id": "f",
+      "source": "05B-D",
+      "target": "05B-O",
+      "label": "[pass]",
+      "points": [
+        [
+          1100,
+          732.5
+        ],
+        [
+          1100,
+          797.5
+        ]
+      ]
+    },
+    {
+      "id": "g",
+      "source": "05B-O",
+      "target": "05B-C",
+      "label": "",
+      "points": [
+        [
+          1100,
+          942.5
+        ],
+        [
+          1100,
+          1015.0
+        ]
+      ]
+    }
+  ],
+  "decisions": {
+    "05B-D": [
+      "[fail]",
+      "[pass]"
+    ]
+  }
+}

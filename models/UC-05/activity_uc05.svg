@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200"><rect width="100%" height="100%" fill="white"/>
+<text x="800" y="64.44" text-anchor="middle" font-family="Arial" font-size="32" font-weight="bold" fill="#202B36">UC-05 — incoming kitchen decision</text>
+<text x="800" y="1148.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Figure 2.18A. UC-05 — incoming kitchen decision — Author: 722I0004 · AI-assisted (Codex)</text>
+<text x="800" y="1188.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Analysis contract · 230 mm landscape · minimum 10.59 pt · no execution result</text>
+<polyline points="20,90 1580,90 1580,1115 20,1115 20,90" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="410,90 410,1115" fill="none" stroke="#004387" stroke-width="3"/>
+<text x="210" y="145.76" text-anchor="middle" font-family="Arial" font-size="28" font-weight="bold" fill="#202B36">Actor</text>
+<text x="995" y="145.76" text-anchor="middle" font-family="Arial" font-size="28" font-weight="bold" fill="#202B36">System</text>
+<ellipse cx="210" cy="190" rx="14.0" ry="14.0" fill="#004387" stroke="#004387" stroke-width="3"/>
+<rect x="35.0" y="277.5" width="350" height="125" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="210" y="336.58000000000004" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">1–2 viewKitchenOrders()</text>
+<text x="210" y="367.26000000000005" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">viewKitchenOrder(orderId)</text>
+<rect x="740.0" y="277.5" width="760" height="125" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="1120" y="336.58000000000004" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">1–2 Read ownHubOrdersAndOffers /</text>
+<text x="1120" y="367.26000000000005" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">ownHubOrderAndLines; passport excluded</text>
+<polygon points="210,500.0 310.0,560 210,620.0 110.0,560" fill="white" stroke="#004387" stroke-width="3"/>
+<text x="210" y="571.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">3 Decision?</text>
+<polygon points="960,538.0 982.0,560 960,582.0 938.0,560" fill="white" stroke="#004387" stroke-width="3"/>
+<ellipse cx="210" cy="840" rx="35.0" ry="35.0" fill="white" stroke="#004387" stroke-width="3"/>
+<text x="210" y="851.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">B</text>
+<rect x="740.0" y="662.5" width="760" height="135" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="1120" y="711.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">3/A02 Try guarded atomic command + COMMIT:</text>
+<text x="1120" y="741.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">active own-hub PLACED; confirm: no open offer;</text>
+<text x="1120" y="772.6" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">reject: nonempty reason; any failure rolls back.</text>
+<polygon points="1120,842.5 1290.0,915 1120,987.5 950.0,915" fill="white" stroke="#004387" stroke-width="3"/>
+<text x="1120" y="911.5799999999999" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">All guards +</text>
+<text x="1120" y="942.2599999999999" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">commit pass?</text>
+<rect x="450.0" y="857.5" width="400" height="115" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="650" y="911.5799999999999" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">E01/E04 refusal/rollback</text>
+<text x="650" y="942.2599999999999" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Order unchanged; MG01</text>
+<ellipse cx="650" cy="1070" rx="17.0" ry="17.0" fill="white" stroke="#004387" stroke-width="3"/>
+<ellipse cx="650" cy="1070" rx="11.0" ry="11.0" fill="#004387"/>
+<rect x="740.0" y="1015.0" width="760" height="100" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="1120" y="1046.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">4 CONFIRMED + confirmed_at (PC01)</text>
+<text x="1120" y="1076.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">OR A02 REJECTED + reason + BR-17</text>
+<text x="1120" y="1107.6000000000001" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">+ open offer WITHDRAWN (PC02)</text>
+<ellipse cx="1530" cy="1065" rx="17.0" ry="17.0" fill="white" stroke="#004387" stroke-width="3"/>
+<ellipse cx="1530" cy="1065" rx="11.0" ry="11.0" fill="#004387"/>
+<polyline points="210,204.0 210,277.5" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="202.0,260.5 210,277.5 218.0,260.5" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="385.0,340 740.0,340" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="723.0,348.0 740.0,340 723.0,332.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1120,402.5 1120,450.0 210,450.0 210,500.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="202.0,483.0 210,500.0 218.0,483.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="310,560 938,560" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="921.0,568.0 938,560 921.0,552.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="564.171875" y="513.0" width="111.65625" height="32.68" fill="white"/>
+<text x="620" y="538.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">[confirm]</text>
+<polyline points="110,560 60,560 60,430 960,430 960,538" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="952.0,521.0 960,538 968.0,521.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="575.0" y="393.0" width="90.0" height="32.68" fill="white"/>
+<text x="620" y="418.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">[reject]</text>
+<polyline points="210,620.0 210,805.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="202.0,788.0 210,805.0 218.0,788.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="271.015625" y="718.0" width="77.96875" height="32.68" fill="white"/>
+<text x="310" y="743.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">[offer]</text>
+<polyline points="960,582.0 960,645.0 1120,645.0 1120,662.5" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1112.0,645.5 1120,662.5 1128.0,645.5" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1120,797.5 1120,842.5" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1112.0,825.5 1120,842.5 1128.0,825.5" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="950.0,915 850.0,915" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="867.0,907.0 850.0,915 867.0,923.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="870.1640625" y="873.0" width="59.671875" height="32.68" fill="white"/>
+<text x="900" y="898.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">[fail]</text>
+<polyline points="650,972.5 650,1053.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="642.0,1036.0 650,1053.0 658.0,1036.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1120,987.5 1120,1015.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1112.0,998.0 1120,1015.0 1128.0,998.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="1319.328125" y="976.0" width="81.34375" height="32.68" fill="white"/>
+<text x="1360" y="1001.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">[pass]</text>
+<polyline points="1500.0,1065 1513.0,1065" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1496.0,1073.0 1513.0,1065 1496.0,1057.0" fill="none" stroke="#004387" stroke-width="3"/>
+<text x="215" y="1003.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">B → Part B</text>
+<text x="215" y="1033.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">SUC-05 preparation is</text>
+<text x="215" y="1064.6000000000001" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">a later supporting goal.</text>
+</svg>

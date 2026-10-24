@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200"><rect width="100%" height="100%" fill="white"/>
+<text x="800" y="64.44" text-anchor="middle" font-family="Arial" font-size="32" font-weight="bold" fill="#202B36">UC-05 — separate SUC-03 decline response</text>
+<text x="800" y="1148.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Figure 2.19C. UC-05 — separate SUC-03 decline response — Author: 722I0004 · AI-assisted (Codex)</text>
+<text x="800" y="1188.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Analysis contract · 230 mm landscape · minimum 10.59 pt · no execution result</text>
+<rect x="50.0" y="87.5" width="300" height="65" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="200" y="131.92000000000002" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Customer</text>
+<rect x="1250.0" y="87.5" width="300" height="65" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="1400" y="131.92000000000002" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">:System</text>
+<polyline points="200,155 200,1110" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="1400,155 1400,1110" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<text x="800" y="233.57999999999998" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">C1–C2: after reviewing the same offer and proposed amounts (Part B reads).</text>
+<text x="800" y="264.26" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">This is an independent Customer response fragment through SUC-03.</text>
+<rect x="80" y="330" width="1450" height="400" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="592.5078125" y="343.0" width="414.984375" height="32.68" fill="white"/>
+<text x="800" y="368.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="bold" fill="#202B36">opt [Customer selects DECLINE]</text>
+<polyline points="200,465 1400,465" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1383.0,473.0 1400,465 1383.0,457.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="526.2421875" y="422.32" width="547.515625" height="32.68" fill="white"/>
+<text x="800" y="448.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">05S-M09 declineReplacement(orderId, offerId)</text>
+<polyline points="1400,625 200,625" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="217.0,617.0 200,625 217.0,633.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="454.0" y="582.32" width="692.0" height="32.68" fill="white"/>
+<text x="800" y="608.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">05S-R09 rejectedOrderAndAmounts (BR-17) | staleRefusal</text>
+<text x="800" y="798.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">[own PLACED + exact open OFFERED] → DECLINED + REJECTED, reason/closed_at,</text>
+<text x="800" y="828.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">COD VOIDED / ONLINE REFUND_PENDING with full captured C owed (BR-17).</text>
+<text x="800" y="859.6" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">[otherwise] → staleRefusal; zero rows; cannot revive CANCELLED/REJECTED.</text>
+</svg>

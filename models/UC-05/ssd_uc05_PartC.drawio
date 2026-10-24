@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="SaigonBite analysis" type="device">
+  <diagram name="UC-05 — separate SUC-03 decline response" id="ssd_uc05_PartC">
+    <mxGraphModel page="1" pageWidth="1600" pageHeight="1200">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="txt0" value="UC-05 — separate SUC-03 decline response" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="35.0" y="35.0" width="1530" height="37.76" />
+        </mxCell>
+        <mxCell id="txt1" value="Figure 2.19C. UC-05 — separate SUC-03 decline response — Author: 722I0004 · AI-assisted (Codex)" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="30.0" y="1125.0" width="1540" height="30.68" />
+        </mxCell>
+        <mxCell id="txt2" value="Analysis contract · 230 mm landscape · minimum 10.59 pt · no execution result" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="30.0" y="1165.0" width="1540" height="30.68" />
+        </mxCell>
+        <mxCell id="actor" value="" vertex="1" parent="1" style="rounded=1;fillColor=#E7F0F6;strokeColor=#004387;strokeWidth=2;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="50.0" y="87.5" width="300" height="65" />
+        </mxCell>
+        <mxCell id="txt3" value="Customer" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="62.0" y="108.0" width="276" height="30.68" />
+        </mxCell>
+        <mxCell id="system" value="" vertex="1" parent="1" style="rounded=1;fillColor=#E7F0F6;strokeColor=#004387;strokeWidth=2;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1250.0" y="87.5" width="300" height="65" />
+        </mxCell>
+        <mxCell id="txt4" value=":System" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1262.0" y="108.0" width="276" height="30.68" />
+        </mxCell>
+        <mxCell id="visual_line_5" vertex="1" parent="1" value="" style="shape=line;strokeColor=#004387;strokeWidth=2;dashed=1;">
+          <mxGeometry as="geometry" x="200" y="155" width="0" height="955" />
+        </mxCell>
+        <mxCell id="visual_line_6" vertex="1" parent="1" value="" style="shape=line;strokeColor=#004387;strokeWidth=2;dashed=1;">
+          <mxGeometry as="geometry" x="1400" y="155" width="0" height="955" />
+        </mxCell>
+        <mxCell id="txt7" value="C1–C2: after reviewing the same offer and proposed amounts (Part B reads).&#10;This is an independent Customer response fragment through SUC-03." vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="140.0" y="209.66" width="1320" height="61.36" />
+        </mxCell>
+        <mxCell id="05S-decline" value="" vertex="1" parent="1" style="shape=umlFrame;fillColor=none;strokeColor=#004387;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="80" y="330" width="1450" height="400" />
+        </mxCell>
+        <mxCell id="txt8" value="opt [Customer selects DECLINE]" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="150.0" y="345.0" width="1300" height="30.68" />
+        </mxCell>
+        <mxCell id="txt9" value="05S-M09 declineReplacement(orderId, offerId)" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="240.0" y="424.32" width="1120" height="30.68" />
+        </mxCell>
+        <mxCell id="05S-M09_a" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="199.5" y="464.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-M09_s" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1399.5" y="464.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-M09" value="" edge="1" parent="1" source="05S-M09_a" target="05S-M09_s" style="edgeStyle=none;exitX=0.5;exitY=0.5;entryX=0.5;entryY=0.5;endArrow=open;strokeColor=#004387;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="200" y="465" />
+            <mxPoint as="targetPoint" x="1400" y="465" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="txt10" value="05S-R09 rejectedOrderAndAmounts (BR-17) | staleRefusal" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="240.0" y="584.32" width="1120" height="30.68" />
+        </mxCell>
+        <mxCell id="05S-R09_a" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="199.5" y="624.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-R09_s" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1399.5" y="624.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-R09" value="" edge="1" parent="1" source="05S-R09_s" target="05S-R09_a" style="edgeStyle=none;exitX=0.5;exitY=0.5;entryX=0.5;entryY=0.5;endArrow=open;strokeColor=#004387;dashed=1;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1400" y="625" />
+            <mxPoint as="targetPoint" x="200" y="625" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="txt11" value="[own PLACED + exact open OFFERED] → DECLINED + REJECTED, reason/closed_at,&#10;COD VOIDED / ONLINE REFUND_PENDING with full captured C owed (BR-17).&#10;[otherwise] → staleRefusal; zero rows; cannot revive CANCELLED/REJECTED." vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="140.0" y="774.32" width="1320" height="92.03999999999999" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

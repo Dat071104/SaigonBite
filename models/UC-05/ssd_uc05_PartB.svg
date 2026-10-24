@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200"><rect width="100%" height="100%" fill="white"/>
+<text x="800" y="64.44" text-anchor="middle" font-family="Arial" font-size="32" font-weight="bold" fill="#202B36">UC-05 — separate SUC-03 acceptance response</text>
+<text x="800" y="1148.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Figure 2.19B. UC-05 — separate SUC-03 acceptance response — Author: 722I0004 · AI-assisted (Codex)</text>
+<text x="800" y="1188.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Analysis contract · 230 mm landscape · minimum 10.59 pt · no execution result</text>
+<rect x="50.0" y="87.5" width="300" height="65" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="200" y="131.92000000000002" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Customer</text>
+<rect x="1250.0" y="87.5" width="300" height="65" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="1400" y="131.92000000000002" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">:System</text>
+<polyline points="200,155 200,1110" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="1400,155 1400,1110" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="200,230 1400,230" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1383.0,238.0 1400,230 1383.0,222.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="645.9453125" y="187.32" width="308.109375" height="32.68" fill="white"/>
+<text x="800" y="213.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">05S-M06 viewMyOrders()</text>
+<polyline points="1400,305 200,305" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="217.0,297.0 200,305 217.0,313.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="585.46875" y="262.32" width="429.0625" height="32.68" fill="white"/>
+<text x="800" y="288.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">05S-R06 ownOrdersAndOpenOffers</text>
+<polyline points="200,400 1400,400" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1383.0,408.0 1400,400 1383.0,392.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="585.2421875" y="357.32" width="429.515625" height="32.68" fill="white"/>
+<text x="800" y="383.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">05S-M07 viewReplacement(orderId)</text>
+<polyline points="1400,480 200,480" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="217.0,472.0 200,480 217.0,488.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="405.078125" y="437.32" width="789.84375" height="32.68" fill="white"/>
+<text x="800" y="463.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">05S-R07 originalAndOfferedLineQuantityTotalRefundOwed | refusal</text>
+<rect x="80" y="535" width="1450" height="555" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="399.46875" y="548.0" width="801.0625" height="32.68" fill="white"/>
+<text x="800" y="573.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="bold" fill="#202B36">opt [Customer selects ACCEPT after seeing proposed amounts]</text>
+<polyline points="200,635 1400,635" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1383.0,643.0 1400,635 1383.0,627.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="529.140625" y="592.32" width="541.71875" height="32.68" fill="white"/>
+<text x="800" y="618.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">05S-M08 acceptReplacement(orderId, offerId)</text>
+<rect x="80" y="690" width="1450" height="330" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="440.8671875" y="703.0" width="718.265625" height="32.68" fill="white"/>
+<text x="800" y="728.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="bold" fill="#202B36">alt [accept result; ownership/state checked before target]</text>
+<polyline points="80,835 1530,835" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="80,925 1530,925" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="1400,815 200,815" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="217.0,807.0 200,815 217.0,823.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="279.6328125" y="772.32" width="1040.734375" height="32.68" fill="white"/>
+<text x="800" y="798.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">05S-R08a [own PLACED + exact open + target valid] acceptedOrderAndAmounts (PC04)</text>
+<polyline points="1400,905 200,905" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="217.0,897.0 200,905 217.0,913.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="367.546875" y="862.32" width="864.90625" height="32.68" fill="white"/>
+<text x="800" y="888.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">05S-R08b [eligible offer; target invalid] withdrawnOfferAndReason (MG01)</text>
+<polyline points="1400,995 200,995" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="217.0,987.0 200,995 217.0,1003.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="284.7578125" y="952.32" width="1030.484375" height="32.68" fill="white"/>
+<text x="800" y="978.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">05S-R08c [otherwise: stale / wrong owner / terminal] staleRefusal; zero changes (MG01)</text>
+<text x="800" y="1043.58" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Invalid-target acceptance withdraws only the exact offer; Order unchanged.</text>
+<text x="800" y="1074.26" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Stale answers never revive cancelled/rejected Orders. Decline: see Part C.</text>
+</svg>

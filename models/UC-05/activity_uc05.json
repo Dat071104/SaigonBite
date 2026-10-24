@@ -1,0 +1,877 @@
+{
+  "author": "Author: 722I0004 \u00b7 AI-assisted (Codex)",
+  "main_image": "Part A alias; editable base contains every page",
+  "parts": [
+    {
+      "author": "Author: 722I0004 \u00b7 AI-assisted (Codex)",
+      "title": "UC-05 \u2014 incoming kitchen decision",
+      "figure": "2.18A",
+      "canvas": [
+        1600,
+        1200
+      ],
+      "minimum_font_px": 26,
+      "placed_width_mm": 230,
+      "minimum_placed_pt": 10.59,
+      "nodes": [
+        {
+          "id": "05A-I",
+          "label": "",
+          "x": 210,
+          "y": 190,
+          "w": 28,
+          "h": 28,
+          "kind": "initial"
+        },
+        {
+          "id": "05A-Q",
+          "label": "1\u20132 viewKitchenOrders()\nviewKitchenOrder(orderId)",
+          "x": 210,
+          "y": 340,
+          "w": 350,
+          "h": 125,
+          "kind": "action"
+        },
+        {
+          "id": "05A-R",
+          "label": "1\u20132 Read ownHubOrdersAndOffers /\nownHubOrderAndLines; passport excluded",
+          "x": 1120,
+          "y": 340,
+          "w": 760,
+          "h": 125,
+          "kind": "action"
+        },
+        {
+          "id": "05A-D",
+          "label": "3 Decision?",
+          "x": 210,
+          "y": 560,
+          "w": 200,
+          "h": 120,
+          "kind": "decision"
+        },
+        {
+          "id": "05A-M",
+          "label": "",
+          "x": 960,
+          "y": 560,
+          "w": 44,
+          "h": 44,
+          "kind": "merge"
+        },
+        {
+          "id": "05A-B",
+          "label": "B",
+          "x": 210,
+          "y": 840,
+          "w": 70,
+          "h": 70,
+          "kind": "connector"
+        },
+        {
+          "id": "05A-V",
+          "label": "3/A02 Try guarded atomic command + COMMIT:\nactive own-hub PLACED; confirm: no open offer;\nreject: nonempty reason; any failure rolls back.",
+          "x": 1120,
+          "y": 730,
+          "w": 760,
+          "h": 135,
+          "kind": "action"
+        },
+        {
+          "id": "05A-G",
+          "label": "All guards +\ncommit pass?",
+          "x": 1120,
+          "y": 915,
+          "w": 340,
+          "h": 145,
+          "kind": "decision"
+        },
+        {
+          "id": "05A-E",
+          "label": "E01/E04 refusal/rollback\nOrder unchanged; MG01",
+          "x": 650,
+          "y": 915,
+          "w": 400,
+          "h": 115,
+          "kind": "action"
+        },
+        {
+          "id": "05A-EF",
+          "label": "",
+          "x": 650,
+          "y": 1070,
+          "w": 34,
+          "h": 34,
+          "kind": "final"
+        },
+        {
+          "id": "05A-S",
+          "label": "4 CONFIRMED + confirmed_at (PC01)\nOR A02 REJECTED + reason + BR-17\n+ open offer WITHDRAWN (PC02)",
+          "x": 1120,
+          "y": 1065,
+          "w": 760,
+          "h": 100,
+          "kind": "action"
+        },
+        {
+          "id": "05A-F",
+          "label": "",
+          "x": 1530,
+          "y": 1065,
+          "w": 34,
+          "h": 34,
+          "kind": "final"
+        }
+      ],
+      "edges": [
+        {
+          "id": "a",
+          "source": "05A-I",
+          "target": "05A-Q",
+          "label": "",
+          "points": [
+            [
+              210,
+              204.0
+            ],
+            [
+              210,
+              277.5
+            ]
+          ]
+        },
+        {
+          "id": "b",
+          "source": "05A-Q",
+          "target": "05A-R",
+          "label": "",
+          "points": [
+            [
+              385.0,
+              340
+            ],
+            [
+              740.0,
+              340
+            ]
+          ]
+        },
+        {
+          "id": "c",
+          "source": "05A-R",
+          "target": "05A-D",
+          "label": "",
+          "points": [
+            [
+              1120,
+              402.5
+            ],
+            [
+              1120,
+              450.0
+            ],
+            [
+              210,
+              450.0
+            ],
+            [
+              210,
+              500.0
+            ]
+          ]
+        },
+        {
+          "id": "d",
+          "source": "05A-D",
+          "target": "05A-M",
+          "label": "[confirm]",
+          "points": [
+            [
+              310,
+              560
+            ],
+            [
+              938,
+              560
+            ]
+          ]
+        },
+        {
+          "id": "e",
+          "source": "05A-D",
+          "target": "05A-M",
+          "label": "[reject]",
+          "points": [
+            [
+              110,
+              560
+            ],
+            [
+              60,
+              560
+            ],
+            [
+              60,
+              430
+            ],
+            [
+              960,
+              430
+            ],
+            [
+              960,
+              538
+            ]
+          ]
+        },
+        {
+          "id": "f",
+          "source": "05A-D",
+          "target": "05A-B",
+          "label": "[offer]",
+          "points": [
+            [
+              210,
+              620.0
+            ],
+            [
+              210,
+              805.0
+            ]
+          ]
+        },
+        {
+          "id": "g",
+          "source": "05A-M",
+          "target": "05A-V",
+          "label": "",
+          "points": [
+            [
+              960,
+              582.0
+            ],
+            [
+              960,
+              645.0
+            ],
+            [
+              1120,
+              645.0
+            ],
+            [
+              1120,
+              662.5
+            ]
+          ]
+        },
+        {
+          "id": "h",
+          "source": "05A-V",
+          "target": "05A-G",
+          "label": "",
+          "points": [
+            [
+              1120,
+              797.5
+            ],
+            [
+              1120,
+              842.5
+            ]
+          ]
+        },
+        {
+          "id": "i",
+          "source": "05A-G",
+          "target": "05A-E",
+          "label": "[fail]",
+          "points": [
+            [
+              950.0,
+              915
+            ],
+            [
+              850.0,
+              915
+            ]
+          ]
+        },
+        {
+          "id": "j",
+          "source": "05A-E",
+          "target": "05A-EF",
+          "label": "",
+          "points": [
+            [
+              650,
+              972.5
+            ],
+            [
+              650,
+              1053.0
+            ]
+          ]
+        },
+        {
+          "id": "k",
+          "source": "05A-G",
+          "target": "05A-S",
+          "label": "[pass]",
+          "points": [
+            [
+              1120,
+              987.5
+            ],
+            [
+              1120,
+              1015.0
+            ]
+          ]
+        },
+        {
+          "id": "l",
+          "source": "05A-S",
+          "target": "05A-F",
+          "label": "",
+          "points": [
+            [
+              1500.0,
+              1065
+            ],
+            [
+              1513.0,
+              1065
+            ]
+          ]
+        }
+      ],
+      "decisions": {
+        "05A-D": [
+          "[confirm]",
+          "[reject]",
+          "[offer]"
+        ],
+        "05A-G": [
+          "[fail]",
+          "[pass]"
+        ]
+      }
+    },
+    {
+      "author": "Author: 722I0004 \u00b7 AI-assisted (Codex)",
+      "title": "UC-05 \u2014 replacement offer guards",
+      "figure": "2.18B",
+      "canvas": [
+        1600,
+        1200
+      ],
+      "minimum_font_px": 26,
+      "placed_width_mm": 230,
+      "minimum_placed_pt": 10.59,
+      "nodes": [
+        {
+          "id": "05B-B",
+          "label": "B",
+          "x": 210,
+          "y": 190,
+          "w": 70,
+          "h": 70,
+          "kind": "connector"
+        },
+        {
+          "id": "05B-A",
+          "label": "A03 choose line + target\nofferReplacement(...)",
+          "x": 210,
+          "y": 380,
+          "w": 350,
+          "h": 135,
+          "kind": "action"
+        },
+        {
+          "id": "05B-V",
+          "label": "A03 Validate and try atomic OFFERED + COMMIT:\nactive own-hub PLACED; no OFFERED; line belongs to Order;\nsource NOW unavailable (sold out / unlisted / archived);\ntarget active + brand active, same-hub listed AVAILABLE,\ndifferent, not another line, price \u2264 source snapshot",
+          "x": 1100,
+          "y": 380,
+          "w": 820,
+          "h": 230,
+          "kind": "action"
+        },
+        {
+          "id": "05B-D",
+          "label": "Guards + save pass?",
+          "x": 1100,
+          "y": 660,
+          "w": 340,
+          "h": 145,
+          "kind": "decision"
+        },
+        {
+          "id": "05B-E",
+          "label": "E01/E02/E04 refusal or rollback\nOrder unchanged; MG01",
+          "x": 640,
+          "y": 660,
+          "w": 400,
+          "h": 145,
+          "kind": "action"
+        },
+        {
+          "id": "05B-F",
+          "label": "",
+          "x": 640,
+          "y": 870,
+          "w": 34,
+          "h": 34,
+          "kind": "final"
+        },
+        {
+          "id": "05B-O",
+          "label": "A03 One OFFERED committed; original/new\nname + price snapshots; whole line, same qty\nOrder stays PLACED; still counts in load (PC03)",
+          "x": 1100,
+          "y": 870,
+          "w": 820,
+          "h": 145,
+          "kind": "action"
+        },
+        {
+          "id": "05B-C",
+          "label": "C",
+          "x": 1100,
+          "y": 1050,
+          "w": 70,
+          "h": 70,
+          "kind": "connector"
+        }
+      ],
+      "edges": [
+        {
+          "id": "a",
+          "source": "05B-B",
+          "target": "05B-A",
+          "label": "",
+          "points": [
+            [
+              210,
+              225.0
+            ],
+            [
+              210,
+              312.5
+            ]
+          ]
+        },
+        {
+          "id": "b",
+          "source": "05B-A",
+          "target": "05B-V",
+          "label": "",
+          "points": [
+            [
+              385.0,
+              380
+            ],
+            [
+              690.0,
+              380
+            ]
+          ]
+        },
+        {
+          "id": "c",
+          "source": "05B-V",
+          "target": "05B-D",
+          "label": "",
+          "points": [
+            [
+              1100,
+              495.0
+            ],
+            [
+              1100,
+              587.5
+            ]
+          ]
+        },
+        {
+          "id": "d",
+          "source": "05B-D",
+          "target": "05B-E",
+          "label": "[fail]",
+          "points": [
+            [
+              930.0,
+              660
+            ],
+            [
+              840.0,
+              660
+            ]
+          ]
+        },
+        {
+          "id": "e",
+          "source": "05B-E",
+          "target": "05B-F",
+          "label": "",
+          "points": [
+            [
+              640,
+              732.5
+            ],
+            [
+              640,
+              853.0
+            ]
+          ]
+        },
+        {
+          "id": "f",
+          "source": "05B-D",
+          "target": "05B-O",
+          "label": "[pass]",
+          "points": [
+            [
+              1100,
+              732.5
+            ],
+            [
+              1100,
+              797.5
+            ]
+          ]
+        },
+        {
+          "id": "g",
+          "source": "05B-O",
+          "target": "05B-C",
+          "label": "",
+          "points": [
+            [
+              1100,
+              942.5
+            ],
+            [
+              1100,
+              1015.0
+            ]
+          ]
+        }
+      ],
+      "decisions": {
+        "05B-D": [
+          "[fail]",
+          "[pass]"
+        ]
+      }
+    },
+    {
+      "author": "Author: 722I0004 \u00b7 AI-assisted (Codex)",
+      "title": "UC-05 \u2014 separate Customer response",
+      "figure": "2.18C",
+      "canvas": [
+        1600,
+        1200
+      ],
+      "minimum_font_px": 26,
+      "placed_width_mm": 230,
+      "minimum_placed_pt": 10.59,
+      "nodes": [
+        {
+          "id": "05C-C",
+          "label": "C",
+          "x": 210,
+          "y": 190,
+          "w": 70,
+          "h": 70,
+          "kind": "connector"
+        },
+        {
+          "id": "05C-Q",
+          "label": "C1 Read own orders + offer\nC2 Review amounts; submit\nACCEPT or DECLINE",
+          "x": 210,
+          "y": 300,
+          "w": 350,
+          "h": 135,
+          "kind": "action"
+        },
+        {
+          "id": "05C-V",
+          "label": "C3/C6 Recheck active owner, own PLACED, exact open OFFERED\nbelongs to Order. ACCEPT also requires target still ACTIVE,\nbrand active, same-hub listed + AVAILABLE.\nDECLINE needs no target availability check.",
+          "x": 1100,
+          "y": 300,
+          "w": 800,
+          "h": 175,
+          "kind": "action"
+        },
+        {
+          "id": "05C-D",
+          "label": "Selected response\neligible?",
+          "x": 1100,
+          "y": 505,
+          "w": 340,
+          "h": 145,
+          "kind": "decision"
+        },
+        {
+          "id": "05C-E",
+          "label": "E03 stale: 0 rows.\nE02 invalid target:\noffer WITHDRAWN;\nreturn reason only.\nOrder/lines/payment\nunchanged (MG01).",
+          "x": 650,
+          "y": 505,
+          "w": 360,
+          "h": 220,
+          "kind": "action"
+        },
+        {
+          "id": "05C-EF",
+          "label": "",
+          "x": 440,
+          "y": 505,
+          "w": 34,
+          "h": 34,
+          "kind": "final"
+        },
+        {
+          "id": "05C-M",
+          "label": "C4/C6 Try one atomic response + COMMIT:\nACCEPT: offer ACCEPTED; offered price, same qty;\nD=min(Dold,Snew); F/Q same; COD payable=Tnew;\nONLINE PAID; C unchanged; owed=C\u2212Tnew (PC04).\nDECLINE: DECLINED + REJECTED; reason/closed_at;\nCOD VOIDED / ONLINE REFUND_PENDING, owed=C (BR-17).",
+          "x": 1100,
+          "y": 755,
+          "w": 800,
+          "h": 220,
+          "kind": "action"
+        },
+        {
+          "id": "05C-COMMIT",
+          "label": "Atomic save?",
+          "x": 1100,
+          "y": 970,
+          "w": 300,
+          "h": 120,
+          "kind": "decision"
+        },
+        {
+          "id": "05C-ROLL",
+          "label": "E04 rollback every intended change\nOrder unchanged (MG01); controlled retry",
+          "x": 650,
+          "y": 970,
+          "w": 360,
+          "h": 145,
+          "kind": "action"
+        },
+        {
+          "id": "05C-RF",
+          "label": "",
+          "x": 440,
+          "y": 970,
+          "w": 34,
+          "h": 34,
+          "kind": "final"
+        },
+        {
+          "id": "05C-S",
+          "label": "C5/C6 Return committed response",
+          "x": 1100,
+          "y": 1080,
+          "w": 800,
+          "h": 55,
+          "kind": "action"
+        },
+        {
+          "id": "05C-F",
+          "label": "",
+          "x": 1530,
+          "y": 1080,
+          "w": 34,
+          "h": 34,
+          "kind": "final"
+        }
+      ],
+      "edges": [
+        {
+          "id": "a",
+          "source": "05C-C",
+          "target": "05C-Q",
+          "label": "",
+          "points": [
+            [
+              210,
+              225.0
+            ],
+            [
+              210,
+              232.5
+            ]
+          ]
+        },
+        {
+          "id": "b",
+          "source": "05C-Q",
+          "target": "05C-V",
+          "label": "",
+          "points": [
+            [
+              385.0,
+              300
+            ],
+            [
+              700.0,
+              300
+            ]
+          ]
+        },
+        {
+          "id": "c",
+          "source": "05C-V",
+          "target": "05C-D",
+          "label": "",
+          "points": [
+            [
+              1100,
+              387.5
+            ],
+            [
+              1100,
+              432.5
+            ]
+          ]
+        },
+        {
+          "id": "d",
+          "source": "05C-D",
+          "target": "05C-E",
+          "label": "[no]",
+          "points": [
+            [
+              930.0,
+              505
+            ],
+            [
+              830.0,
+              505
+            ]
+          ]
+        },
+        {
+          "id": "e",
+          "source": "05C-E",
+          "target": "05C-EF",
+          "label": "",
+          "points": [
+            [
+              470.0,
+              505
+            ],
+            [
+              457.0,
+              505
+            ]
+          ]
+        },
+        {
+          "id": "f",
+          "source": "05C-D",
+          "target": "05C-M",
+          "label": "[yes]",
+          "points": [
+            [
+              1100,
+              577.5
+            ],
+            [
+              1100,
+              645.0
+            ]
+          ]
+        },
+        {
+          "id": "g",
+          "source": "05C-M",
+          "target": "05C-COMMIT",
+          "label": "",
+          "points": [
+            [
+              1100,
+              865.0
+            ],
+            [
+              1100,
+              910.0
+            ]
+          ]
+        },
+        {
+          "id": "h",
+          "source": "05C-COMMIT",
+          "target": "05C-ROLL",
+          "label": "[failed]",
+          "points": [
+            [
+              950.0,
+              970
+            ],
+            [
+              830.0,
+              970
+            ]
+          ]
+        },
+        {
+          "id": "i",
+          "source": "05C-ROLL",
+          "target": "05C-RF",
+          "label": "",
+          "points": [
+            [
+              470.0,
+              970
+            ],
+            [
+              457.0,
+              970
+            ]
+          ]
+        },
+        {
+          "id": "j",
+          "source": "05C-COMMIT",
+          "target": "05C-S",
+          "label": "[committed]",
+          "points": [
+            [
+              1100,
+              1030.0
+            ],
+            [
+              1100,
+              1052.5
+            ]
+          ]
+        },
+        {
+          "id": "k",
+          "source": "05C-S",
+          "target": "05C-F",
+          "label": "",
+          "points": [
+            [
+              1500.0,
+              1080
+            ],
+            [
+              1513.0,
+              1080
+            ]
+          ]
+        }
+      ],
+      "decisions": {
+        "05C-D": [
+          "[no]",
+          "[yes]"
+        ],
+        "05C-COMMIT": [
+          "[failed]",
+          "[committed]"
+        ]
+      }
+    }
+  ]
+}

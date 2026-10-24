@@ -1,0 +1,205 @@
+{
+  "author": "Author: 722I0004 \u00b7 AI-assisted (Codex)",
+  "title": "UC-05 \u2014 kitchen black-box operations",
+  "figure": "2.19A",
+  "canvas": [
+    1600,
+    1200
+  ],
+  "minimum_font_px": 26,
+  "placed_width_mm": 230,
+  "minimum_placed_pt": 10.59,
+  "nodes": [
+    {
+      "id": "actor",
+      "label": "Kitchen staff",
+      "x": 200,
+      "y": 120,
+      "w": 300,
+      "h": 65,
+      "kind": "action"
+    },
+    {
+      "id": "system",
+      "label": ":System",
+      "x": 1400,
+      "y": 120,
+      "w": 300,
+      "h": 65,
+      "kind": "action"
+    }
+  ],
+  "edges": [
+    {
+      "id": "05S-M01",
+      "source": "actor",
+      "target": "system",
+      "label": "viewKitchenOrders()",
+      "points": [
+        [
+          200,
+          230
+        ],
+        [
+          1400,
+          230
+        ]
+      ],
+      "return_message": false
+    },
+    {
+      "id": "05S-R01",
+      "source": "system",
+      "target": "actor",
+      "label": "ownHubOrdersAndOffers",
+      "points": [
+        [
+          1400,
+          305
+        ],
+        [
+          200,
+          305
+        ]
+      ],
+      "return_message": true
+    },
+    {
+      "id": "05S-M02",
+      "source": "actor",
+      "target": "system",
+      "label": "viewKitchenOrder(orderId)",
+      "points": [
+        [
+          200,
+          405
+        ],
+        [
+          1400,
+          405
+        ]
+      ],
+      "return_message": false
+    },
+    {
+      "id": "05S-R02",
+      "source": "system",
+      "target": "actor",
+      "label": "ownHubOrderAndLines | refusal",
+      "points": [
+        [
+          1400,
+          480
+        ],
+        [
+          200,
+          480
+        ]
+      ],
+      "return_message": true
+    },
+    {
+      "id": "05S-M03",
+      "source": "actor",
+      "target": "system",
+      "label": "confirmOrder(orderId)",
+      "points": [
+        [
+          200,
+          660
+        ],
+        [
+          1400,
+          660
+        ]
+      ],
+      "return_message": false
+    },
+    {
+      "id": "05S-R03",
+      "source": "system",
+      "target": "actor",
+      "label": "confirmedOrder | refusal",
+      "points": [
+        [
+          1400,
+          730
+        ],
+        [
+          200,
+          730
+        ]
+      ],
+      "return_message": true
+    },
+    {
+      "id": "05S-M04",
+      "source": "actor",
+      "target": "system",
+      "label": "rejectOrder(orderId, reason)",
+      "points": [
+        [
+          200,
+          850
+        ],
+        [
+          1400,
+          850
+        ]
+      ],
+      "return_message": false
+    },
+    {
+      "id": "05S-R04",
+      "source": "system",
+      "target": "actor",
+      "label": "rejectedOrder | refusal",
+      "points": [
+        [
+          1400,
+          920
+        ],
+        [
+          200,
+          920
+        ]
+      ],
+      "return_message": true
+    },
+    {
+      "id": "05S-M05",
+      "source": "actor",
+      "target": "system",
+      "label": "offerReplacement(orderId, orderLineId, targetItemId)",
+      "points": [
+        [
+          200,
+          1040
+        ],
+        [
+          1400,
+          1040
+        ]
+      ],
+      "return_message": false
+    },
+    {
+      "id": "05S-R05",
+      "source": "system",
+      "target": "actor",
+      "label": "offeredReplacement | refusal",
+      "points": [
+        [
+          1400,
+          1110
+        ],
+        [
+          200,
+          1110
+        ]
+      ],
+      "return_message": true
+    }
+  ],
+  "decisions": {}
+}

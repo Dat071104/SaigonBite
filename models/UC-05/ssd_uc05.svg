@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200"><rect width="100%" height="100%" fill="white"/>
+<text x="800" y="64.44" text-anchor="middle" font-family="Arial" font-size="32" font-weight="bold" fill="#202B36">UC-05 — kitchen black-box operations</text>
+<text x="800" y="1148.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Figure 2.19A. UC-05 — kitchen black-box operations — Author: 722I0004 · AI-assisted (Codex)</text>
+<text x="800" y="1188.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Analysis contract · 230 mm landscape · minimum 10.59 pt · no execution result</text>
+<rect x="50.0" y="87.5" width="300" height="65" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="200" y="131.92000000000002" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Kitchen staff</text>
+<rect x="1250.0" y="87.5" width="300" height="65" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="1400" y="131.92000000000002" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">:System</text>
+<polyline points="200,155 200,1110" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="1400,155 1400,1110" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="200,230 1400,230" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1383.0,238.0 1400,230 1383.0,222.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="619.921875" y="187.32" width="360.15625" height="32.68" fill="white"/>
+<text x="800" y="213.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">05S-M01 viewKitchenOrders()</text>
+<polyline points="1400,305 200,305" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="217.0,297.0 200,305 217.0,313.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="593.4140625" y="262.32" width="413.171875" height="32.68" fill="white"/>
+<text x="800" y="288.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">05S-R01 ownHubOrdersAndOffers</text>
+<polyline points="200,405 1400,405" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1383.0,413.0 1400,405 1383.0,397.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="585.25" y="362.32" width="429.5" height="32.68" fill="white"/>
+<text x="800" y="388.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">05S-M02 viewKitchenOrder(orderId)</text>
+<polyline points="1400,480 200,480" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="217.0,472.0 200,480 217.0,488.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="554.390625" y="437.32" width="491.21875" height="32.68" fill="white"/>
+<text x="800" y="463.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">05S-R02 ownHubOrderAndLines | refusal</text>
+<rect x="80" y="530" width="1450" height="590" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="357.8125" y="543.0" width="884.375" height="32.68" fill="white"/>
+<text x="800" y="568.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="bold" fill="#202B36">alt [staff selects one command; active own-hub PLACED is rechecked]</text>
+<polyline points="80,755 1530,755" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="80,945 1530,945" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<text x="800" y="608.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">[confirm selected; no open offer required]</text>
+<polyline points="200,660 1400,660" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1383.0,668.0 1400,660 1383.0,652.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="612.0" y="617.32" width="376.0" height="32.68" fill="white"/>
+<text x="800" y="643.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">05S-M03 confirmOrder(orderId)</text>
+<polyline points="1400,730 200,730" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="217.0,722.0 200,730 217.0,738.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="599.2109375" y="687.32" width="401.578125" height="32.68" fill="white"/>
+<text x="800" y="713.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">05S-R03 confirmedOrder | refusal</text>
+<text x="800" y="798.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">[reject selected; reason required; any open offer withdrawn]</text>
+<polyline points="200,850 1400,850" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1383.0,858.0 1400,850 1383.0,842.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="575.875" y="807.32" width="448.25" height="32.68" fill="white"/>
+<text x="800" y="833.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">05S-M04 rejectOrder(orderId, reason)</text>
+<polyline points="1400,920 200,920" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="217.0,912.0 200,920 217.0,928.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="610.0390625" y="877.32" width="379.921875" height="32.68" fill="white"/>
+<text x="800" y="903.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">05S-R04 rejectedOrder | refusal</text>
+<text x="800" y="988.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">[offer selected; §3.3 source/target/no-open-offer guards required]</text>
+<polyline points="200,1040 1400,1040" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1383.0,1048.0 1400,1040 1383.0,1032.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="435.96875" y="997.32" width="728.0625" height="32.68" fill="white"/>
+<text x="800" y="1023.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">05S-M05 offerReplacement(orderId, orderLineId, targetItemId)</text>
+<polyline points="1400,1110 200,1110" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="217.0,1102.0 200,1110 217.0,1118.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="572.6953125" y="1067.32" width="454.609375" height="32.68" fill="white"/>
+<text x="800" y="1093.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">05S-R05 offeredReplacement | refusal</text>
+</svg>

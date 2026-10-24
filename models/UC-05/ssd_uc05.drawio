@@ -1,0 +1,461 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="SaigonBite analysis" type="device"><diagram name="UC-05 — kitchen black-box operations" id="ssd_uc05_PartA">
+    <mxGraphModel page="1" pageWidth="1600" pageHeight="1200">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="txt0" value="UC-05 — kitchen black-box operations" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="35.0" y="35.0" width="1530" height="37.76" />
+        </mxCell>
+        <mxCell id="txt1" value="Figure 2.19A. UC-05 — kitchen black-box operations — Author: 722I0004 · AI-assisted (Codex)" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="30.0" y="1125.0" width="1540" height="30.68" />
+        </mxCell>
+        <mxCell id="txt2" value="Analysis contract · 230 mm landscape · minimum 10.59 pt · no execution result" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="30.0" y="1165.0" width="1540" height="30.68" />
+        </mxCell>
+        <mxCell id="actor" value="" vertex="1" parent="1" style="rounded=1;fillColor=#E7F0F6;strokeColor=#004387;strokeWidth=2;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="50.0" y="87.5" width="300" height="65" />
+        </mxCell>
+        <mxCell id="txt3" value="Kitchen staff" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="62.0" y="108.0" width="276" height="30.68" />
+        </mxCell>
+        <mxCell id="system" value="" vertex="1" parent="1" style="rounded=1;fillColor=#E7F0F6;strokeColor=#004387;strokeWidth=2;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1250.0" y="87.5" width="300" height="65" />
+        </mxCell>
+        <mxCell id="txt4" value=":System" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1262.0" y="108.0" width="276" height="30.68" />
+        </mxCell>
+        <mxCell id="visual_line_5" vertex="1" parent="1" value="" style="shape=line;strokeColor=#004387;strokeWidth=2;dashed=1;">
+          <mxGeometry as="geometry" x="200" y="155" width="0" height="955" />
+        </mxCell>
+        <mxCell id="visual_line_6" vertex="1" parent="1" value="" style="shape=line;strokeColor=#004387;strokeWidth=2;dashed=1;">
+          <mxGeometry as="geometry" x="1400" y="155" width="0" height="955" />
+        </mxCell>
+        <mxCell id="txt7" value="05S-M01 viewKitchenOrders()" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="240.0" y="189.32" width="1120" height="30.68" />
+        </mxCell>
+        <mxCell id="05S-M01_a" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="199.5" y="229.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-M01_s" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1399.5" y="229.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-M01" value="" edge="1" parent="1" source="05S-M01_a" target="05S-M01_s" style="edgeStyle=none;exitX=0.5;exitY=0.5;entryX=0.5;entryY=0.5;endArrow=open;strokeColor=#004387;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="200" y="230" />
+            <mxPoint as="targetPoint" x="1400" y="230" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="txt8" value="05S-R01 ownHubOrdersAndOffers" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="240.0" y="264.32" width="1120" height="30.68" />
+        </mxCell>
+        <mxCell id="05S-R01_a" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="199.5" y="304.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-R01_s" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1399.5" y="304.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-R01" value="" edge="1" parent="1" source="05S-R01_s" target="05S-R01_a" style="edgeStyle=none;exitX=0.5;exitY=0.5;entryX=0.5;entryY=0.5;endArrow=open;strokeColor=#004387;dashed=1;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1400" y="305" />
+            <mxPoint as="targetPoint" x="200" y="305" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="txt9" value="05S-M02 viewKitchenOrder(orderId)" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="240.0" y="364.32" width="1120" height="30.68" />
+        </mxCell>
+        <mxCell id="05S-M02_a" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="199.5" y="404.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-M02_s" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1399.5" y="404.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-M02" value="" edge="1" parent="1" source="05S-M02_a" target="05S-M02_s" style="edgeStyle=none;exitX=0.5;exitY=0.5;entryX=0.5;entryY=0.5;endArrow=open;strokeColor=#004387;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="200" y="405" />
+            <mxPoint as="targetPoint" x="1400" y="405" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="txt10" value="05S-R02 ownHubOrderAndLines | refusal" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="240.0" y="439.32" width="1120" height="30.68" />
+        </mxCell>
+        <mxCell id="05S-R02_a" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="199.5" y="479.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-R02_s" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1399.5" y="479.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-R02" value="" edge="1" parent="1" source="05S-R02_s" target="05S-R02_a" style="edgeStyle=none;exitX=0.5;exitY=0.5;entryX=0.5;entryY=0.5;endArrow=open;strokeColor=#004387;dashed=1;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1400" y="480" />
+            <mxPoint as="targetPoint" x="200" y="480" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="05S-alt" value="" vertex="1" parent="1" style="shape=umlFrame;fillColor=none;strokeColor=#004387;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="80" y="530" width="1450" height="590" />
+        </mxCell>
+        <mxCell id="txt11" value="alt [staff selects one command; active own-hub PLACED is rechecked]" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="150.0" y="545.0" width="1300" height="30.68" />
+        </mxCell>
+        <mxCell id="visual_line_12" vertex="1" parent="1" value="" style="shape=line;strokeColor=#004387;strokeWidth=2;dashed=1;">
+          <mxGeometry as="geometry" x="80" y="755" width="1450" height="0" />
+        </mxCell>
+        <mxCell id="visual_line_13" vertex="1" parent="1" value="" style="shape=line;strokeColor=#004387;strokeWidth=2;dashed=1;">
+          <mxGeometry as="geometry" x="80" y="945" width="1450" height="0" />
+        </mxCell>
+        <mxCell id="txt14" value="[confirm selected; no open offer required]" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="175.0" y="585.0" width="1250" height="30.68" />
+        </mxCell>
+        <mxCell id="txt15" value="05S-M03 confirmOrder(orderId)" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="240.0" y="619.32" width="1120" height="30.68" />
+        </mxCell>
+        <mxCell id="05S-M03_a" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="199.5" y="659.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-M03_s" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1399.5" y="659.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-M03" value="" edge="1" parent="1" source="05S-M03_a" target="05S-M03_s" style="edgeStyle=none;exitX=0.5;exitY=0.5;entryX=0.5;entryY=0.5;endArrow=open;strokeColor=#004387;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="200" y="660" />
+            <mxPoint as="targetPoint" x="1400" y="660" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="txt16" value="05S-R03 confirmedOrder | refusal" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="240.0" y="689.32" width="1120" height="30.68" />
+        </mxCell>
+        <mxCell id="05S-R03_a" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="199.5" y="729.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-R03_s" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1399.5" y="729.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-R03" value="" edge="1" parent="1" source="05S-R03_s" target="05S-R03_a" style="edgeStyle=none;exitX=0.5;exitY=0.5;entryX=0.5;entryY=0.5;endArrow=open;strokeColor=#004387;dashed=1;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1400" y="730" />
+            <mxPoint as="targetPoint" x="200" y="730" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="txt17" value="[reject selected; reason required; any open offer withdrawn]" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="175.0" y="775.0" width="1250" height="30.68" />
+        </mxCell>
+        <mxCell id="txt18" value="05S-M04 rejectOrder(orderId, reason)" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="240.0" y="809.32" width="1120" height="30.68" />
+        </mxCell>
+        <mxCell id="05S-M04_a" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="199.5" y="849.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-M04_s" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1399.5" y="849.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-M04" value="" edge="1" parent="1" source="05S-M04_a" target="05S-M04_s" style="edgeStyle=none;exitX=0.5;exitY=0.5;entryX=0.5;entryY=0.5;endArrow=open;strokeColor=#004387;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="200" y="850" />
+            <mxPoint as="targetPoint" x="1400" y="850" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="txt19" value="05S-R04 rejectedOrder | refusal" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="240.0" y="879.32" width="1120" height="30.68" />
+        </mxCell>
+        <mxCell id="05S-R04_a" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="199.5" y="919.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-R04_s" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1399.5" y="919.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-R04" value="" edge="1" parent="1" source="05S-R04_s" target="05S-R04_a" style="edgeStyle=none;exitX=0.5;exitY=0.5;entryX=0.5;entryY=0.5;endArrow=open;strokeColor=#004387;dashed=1;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1400" y="920" />
+            <mxPoint as="targetPoint" x="200" y="920" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="txt20" value="[offer selected; §3.3 source/target/no-open-offer guards required]" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="175.0" y="965.0" width="1250" height="30.68" />
+        </mxCell>
+        <mxCell id="txt21" value="05S-M05 offerReplacement(orderId, orderLineId, targetItemId)" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="240.0" y="999.32" width="1120" height="30.68" />
+        </mxCell>
+        <mxCell id="05S-M05_a" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="199.5" y="1039.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-M05_s" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1399.5" y="1039.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-M05" value="" edge="1" parent="1" source="05S-M05_a" target="05S-M05_s" style="edgeStyle=none;exitX=0.5;exitY=0.5;entryX=0.5;entryY=0.5;endArrow=open;strokeColor=#004387;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="200" y="1040" />
+            <mxPoint as="targetPoint" x="1400" y="1040" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="txt22" value="05S-R05 offeredReplacement | refusal" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="240.0" y="1069.32" width="1120" height="30.68" />
+        </mxCell>
+        <mxCell id="05S-R05_a" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="199.5" y="1109.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-R05_s" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1399.5" y="1109.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-R05" value="" edge="1" parent="1" source="05S-R05_s" target="05S-R05_a" style="edgeStyle=none;exitX=0.5;exitY=0.5;entryX=0.5;entryY=0.5;endArrow=open;strokeColor=#004387;dashed=1;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1400" y="1110" />
+            <mxPoint as="targetPoint" x="200" y="1110" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+<diagram name="UC-05 — separate SUC-03 acceptance response" id="ssd_uc05_PartB">
+    <mxGraphModel page="1" pageWidth="1600" pageHeight="1200">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="txt0" value="UC-05 — separate SUC-03 acceptance response" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="35.0" y="35.0" width="1530" height="37.76" />
+        </mxCell>
+        <mxCell id="txt1" value="Figure 2.19B. UC-05 — separate SUC-03 acceptance response — Author: 722I0004 · AI-assisted (Codex)" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="30.0" y="1125.0" width="1540" height="30.68" />
+        </mxCell>
+        <mxCell id="txt2" value="Analysis contract · 230 mm landscape · minimum 10.59 pt · no execution result" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="30.0" y="1165.0" width="1540" height="30.68" />
+        </mxCell>
+        <mxCell id="actor" value="" vertex="1" parent="1" style="rounded=1;fillColor=#E7F0F6;strokeColor=#004387;strokeWidth=2;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="50.0" y="87.5" width="300" height="65" />
+        </mxCell>
+        <mxCell id="txt3" value="Customer" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="62.0" y="108.0" width="276" height="30.68" />
+        </mxCell>
+        <mxCell id="system" value="" vertex="1" parent="1" style="rounded=1;fillColor=#E7F0F6;strokeColor=#004387;strokeWidth=2;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1250.0" y="87.5" width="300" height="65" />
+        </mxCell>
+        <mxCell id="txt4" value=":System" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1262.0" y="108.0" width="276" height="30.68" />
+        </mxCell>
+        <mxCell id="visual_line_5" vertex="1" parent="1" value="" style="shape=line;strokeColor=#004387;strokeWidth=2;dashed=1;">
+          <mxGeometry as="geometry" x="200" y="155" width="0" height="955" />
+        </mxCell>
+        <mxCell id="visual_line_6" vertex="1" parent="1" value="" style="shape=line;strokeColor=#004387;strokeWidth=2;dashed=1;">
+          <mxGeometry as="geometry" x="1400" y="155" width="0" height="955" />
+        </mxCell>
+        <mxCell id="txt7" value="05S-M06 viewMyOrders()" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="240.0" y="189.32" width="1120" height="30.68" />
+        </mxCell>
+        <mxCell id="05S-M06_a" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="199.5" y="229.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-M06_s" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1399.5" y="229.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-M06" value="" edge="1" parent="1" source="05S-M06_a" target="05S-M06_s" style="edgeStyle=none;exitX=0.5;exitY=0.5;entryX=0.5;entryY=0.5;endArrow=open;strokeColor=#004387;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="200" y="230" />
+            <mxPoint as="targetPoint" x="1400" y="230" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="txt8" value="05S-R06 ownOrdersAndOpenOffers" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="240.0" y="264.32" width="1120" height="30.68" />
+        </mxCell>
+        <mxCell id="05S-R06_a" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="199.5" y="304.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-R06_s" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1399.5" y="304.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-R06" value="" edge="1" parent="1" source="05S-R06_s" target="05S-R06_a" style="edgeStyle=none;exitX=0.5;exitY=0.5;entryX=0.5;entryY=0.5;endArrow=open;strokeColor=#004387;dashed=1;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1400" y="305" />
+            <mxPoint as="targetPoint" x="200" y="305" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="txt9" value="05S-M07 viewReplacement(orderId)" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="240.0" y="359.32" width="1120" height="30.68" />
+        </mxCell>
+        <mxCell id="05S-M07_a" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="199.5" y="399.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-M07_s" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1399.5" y="399.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-M07" value="" edge="1" parent="1" source="05S-M07_a" target="05S-M07_s" style="edgeStyle=none;exitX=0.5;exitY=0.5;entryX=0.5;entryY=0.5;endArrow=open;strokeColor=#004387;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="200" y="400" />
+            <mxPoint as="targetPoint" x="1400" y="400" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="txt10" value="05S-R07 originalAndOfferedLineQuantityTotalRefundOwed | refusal" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="240.0" y="439.32" width="1120" height="30.68" />
+        </mxCell>
+        <mxCell id="05S-R07_a" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="199.5" y="479.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-R07_s" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1399.5" y="479.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-R07" value="" edge="1" parent="1" source="05S-R07_s" target="05S-R07_a" style="edgeStyle=none;exitX=0.5;exitY=0.5;entryX=0.5;entryY=0.5;endArrow=open;strokeColor=#004387;dashed=1;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1400" y="480" />
+            <mxPoint as="targetPoint" x="200" y="480" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="05S-answer" value="" vertex="1" parent="1" style="shape=umlFrame;fillColor=none;strokeColor=#004387;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="80" y="535" width="1450" height="555" />
+        </mxCell>
+        <mxCell id="txt11" value="opt [Customer selects ACCEPT after seeing proposed amounts]" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="150.0" y="550.0" width="1300" height="30.68" />
+        </mxCell>
+        <mxCell id="txt12" value="05S-M08 acceptReplacement(orderId, offerId)" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="240.0" y="594.32" width="1120" height="30.68" />
+        </mxCell>
+        <mxCell id="05S-M08_a" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="199.5" y="634.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-M08_s" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1399.5" y="634.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-M08" value="" edge="1" parent="1" source="05S-M08_a" target="05S-M08_s" style="edgeStyle=none;exitX=0.5;exitY=0.5;entryX=0.5;entryY=0.5;endArrow=open;strokeColor=#004387;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="200" y="635" />
+            <mxPoint as="targetPoint" x="1400" y="635" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="05S-result" value="" vertex="1" parent="1" style="shape=umlFrame;fillColor=none;strokeColor=#004387;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="80" y="690" width="1450" height="330" />
+        </mxCell>
+        <mxCell id="txt13" value="alt [accept result; ownership/state checked before target]" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="150.0" y="705.0" width="1300" height="30.68" />
+        </mxCell>
+        <mxCell id="visual_line_14" vertex="1" parent="1" value="" style="shape=line;strokeColor=#004387;strokeWidth=2;dashed=1;">
+          <mxGeometry as="geometry" x="80" y="835" width="1450" height="0" />
+        </mxCell>
+        <mxCell id="visual_line_15" vertex="1" parent="1" value="" style="shape=line;strokeColor=#004387;strokeWidth=2;dashed=1;">
+          <mxGeometry as="geometry" x="80" y="925" width="1450" height="0" />
+        </mxCell>
+        <mxCell id="txt16" value="05S-R08a [own PLACED + exact open + target valid] acceptedOrderAndAmounts (PC04)" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="240.0" y="774.32" width="1120" height="30.68" />
+        </mxCell>
+        <mxCell id="05S-R08a_a" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="199.5" y="814.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-R08a_s" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1399.5" y="814.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-R08a" value="" edge="1" parent="1" source="05S-R08a_s" target="05S-R08a_a" style="edgeStyle=none;exitX=0.5;exitY=0.5;entryX=0.5;entryY=0.5;endArrow=open;strokeColor=#004387;dashed=1;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1400" y="815" />
+            <mxPoint as="targetPoint" x="200" y="815" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="txt17" value="05S-R08b [eligible offer; target invalid] withdrawnOfferAndReason (MG01)" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="240.0" y="864.32" width="1120" height="30.68" />
+        </mxCell>
+        <mxCell id="05S-R08b_a" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="199.5" y="904.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-R08b_s" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1399.5" y="904.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-R08b" value="" edge="1" parent="1" source="05S-R08b_s" target="05S-R08b_a" style="edgeStyle=none;exitX=0.5;exitY=0.5;entryX=0.5;entryY=0.5;endArrow=open;strokeColor=#004387;dashed=1;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1400" y="905" />
+            <mxPoint as="targetPoint" x="200" y="905" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="txt18" value="05S-R08c [otherwise: stale / wrong owner / terminal] staleRefusal; zero changes (MG01)" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="240.0" y="954.32" width="1120" height="30.68" />
+        </mxCell>
+        <mxCell id="05S-R08c_a" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="199.5" y="994.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-R08c_s" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1399.5" y="994.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-R08c" value="" edge="1" parent="1" source="05S-R08c_s" target="05S-R08c_a" style="edgeStyle=none;exitX=0.5;exitY=0.5;entryX=0.5;entryY=0.5;endArrow=open;strokeColor=#004387;dashed=1;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1400" y="995" />
+            <mxPoint as="targetPoint" x="200" y="995" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="txt19" value="Invalid-target acceptance withdraws only the exact offer; Order unchanged.&#10;Stale answers never revive cancelled/rejected Orders. Decline: see Part C." vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="140.0" y="1019.66" width="1320" height="61.36" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+<diagram name="UC-05 — separate SUC-03 decline response" id="ssd_uc05_PartC">
+    <mxGraphModel page="1" pageWidth="1600" pageHeight="1200">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="txt0" value="UC-05 — separate SUC-03 decline response" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="35.0" y="35.0" width="1530" height="37.76" />
+        </mxCell>
+        <mxCell id="txt1" value="Figure 2.19C. UC-05 — separate SUC-03 decline response — Author: 722I0004 · AI-assisted (Codex)" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="30.0" y="1125.0" width="1540" height="30.68" />
+        </mxCell>
+        <mxCell id="txt2" value="Analysis contract · 230 mm landscape · minimum 10.59 pt · no execution result" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="30.0" y="1165.0" width="1540" height="30.68" />
+        </mxCell>
+        <mxCell id="actor" value="" vertex="1" parent="1" style="rounded=1;fillColor=#E7F0F6;strokeColor=#004387;strokeWidth=2;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="50.0" y="87.5" width="300" height="65" />
+        </mxCell>
+        <mxCell id="txt3" value="Customer" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="62.0" y="108.0" width="276" height="30.68" />
+        </mxCell>
+        <mxCell id="system" value="" vertex="1" parent="1" style="rounded=1;fillColor=#E7F0F6;strokeColor=#004387;strokeWidth=2;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1250.0" y="87.5" width="300" height="65" />
+        </mxCell>
+        <mxCell id="txt4" value=":System" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1262.0" y="108.0" width="276" height="30.68" />
+        </mxCell>
+        <mxCell id="visual_line_5" vertex="1" parent="1" value="" style="shape=line;strokeColor=#004387;strokeWidth=2;dashed=1;">
+          <mxGeometry as="geometry" x="200" y="155" width="0" height="955" />
+        </mxCell>
+        <mxCell id="visual_line_6" vertex="1" parent="1" value="" style="shape=line;strokeColor=#004387;strokeWidth=2;dashed=1;">
+          <mxGeometry as="geometry" x="1400" y="155" width="0" height="955" />
+        </mxCell>
+        <mxCell id="txt7" value="C1–C2: after reviewing the same offer and proposed amounts (Part B reads).&#10;This is an independent Customer response fragment through SUC-03." vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="140.0" y="209.66" width="1320" height="61.36" />
+        </mxCell>
+        <mxCell id="05S-decline" value="" vertex="1" parent="1" style="shape=umlFrame;fillColor=none;strokeColor=#004387;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="80" y="330" width="1450" height="400" />
+        </mxCell>
+        <mxCell id="txt8" value="opt [Customer selects DECLINE]" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="150.0" y="345.0" width="1300" height="30.68" />
+        </mxCell>
+        <mxCell id="txt9" value="05S-M09 declineReplacement(orderId, offerId)" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="240.0" y="424.32" width="1120" height="30.68" />
+        </mxCell>
+        <mxCell id="05S-M09_a" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="199.5" y="464.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-M09_s" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1399.5" y="464.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-M09" value="" edge="1" parent="1" source="05S-M09_a" target="05S-M09_s" style="edgeStyle=none;exitX=0.5;exitY=0.5;entryX=0.5;entryY=0.5;endArrow=open;strokeColor=#004387;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="200" y="465" />
+            <mxPoint as="targetPoint" x="1400" y="465" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="txt10" value="05S-R09 rejectedOrderAndAmounts (BR-17) | staleRefusal" vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="240.0" y="584.32" width="1120" height="30.68" />
+        </mxCell>
+        <mxCell id="05S-R09_a" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="199.5" y="624.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-R09_s" value="" vertex="1" parent="1" style="opacity=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1399.5" y="624.5" width="1" height="1" />
+        </mxCell>
+        <mxCell id="05S-R09" value="" edge="1" parent="1" source="05S-R09_s" target="05S-R09_a" style="edgeStyle=none;exitX=0.5;exitY=0.5;entryX=0.5;entryY=0.5;endArrow=open;strokeColor=#004387;dashed=1;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1400" y="625" />
+            <mxPoint as="targetPoint" x="200" y="625" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="txt11" value="[own PLACED + exact open OFFERED] → DECLINED + REJECTED, reason/closed_at,&#10;COD VOIDED / ONLINE REFUND_PENDING with full captured C owed (BR-17).&#10;[otherwise] → staleRefusal; zero rows; cannot revive CANCELLED/REJECTED." vertex="1" parent="1" style="text;strokeColor=none;fillColor=none;align=center;fontFamily=Arial;fontSize=26;html=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="140.0" y="774.32" width="1320" height="92.03999999999999" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

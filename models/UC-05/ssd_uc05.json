@@ -1,0 +1,451 @@
+{
+  "author": "Author: 722I0004 \u00b7 AI-assisted (Codex)",
+  "main_image": "Part A alias; editable base contains every page",
+  "parts": [
+    {
+      "author": "Author: 722I0004 \u00b7 AI-assisted (Codex)",
+      "title": "UC-05 \u2014 kitchen black-box operations",
+      "figure": "2.19A",
+      "canvas": [
+        1600,
+        1200
+      ],
+      "minimum_font_px": 26,
+      "placed_width_mm": 230,
+      "minimum_placed_pt": 10.59,
+      "nodes": [
+        {
+          "id": "actor",
+          "label": "Kitchen staff",
+          "x": 200,
+          "y": 120,
+          "w": 300,
+          "h": 65,
+          "kind": "action"
+        },
+        {
+          "id": "system",
+          "label": ":System",
+          "x": 1400,
+          "y": 120,
+          "w": 300,
+          "h": 65,
+          "kind": "action"
+        }
+      ],
+      "edges": [
+        {
+          "id": "05S-M01",
+          "source": "actor",
+          "target": "system",
+          "label": "viewKitchenOrders()",
+          "points": [
+            [
+              200,
+              230
+            ],
+            [
+              1400,
+              230
+            ]
+          ],
+          "return_message": false
+        },
+        {
+          "id": "05S-R01",
+          "source": "system",
+          "target": "actor",
+          "label": "ownHubOrdersAndOffers",
+          "points": [
+            [
+              1400,
+              305
+            ],
+            [
+              200,
+              305
+            ]
+          ],
+          "return_message": true
+        },
+        {
+          "id": "05S-M02",
+          "source": "actor",
+          "target": "system",
+          "label": "viewKitchenOrder(orderId)",
+          "points": [
+            [
+              200,
+              405
+            ],
+            [
+              1400,
+              405
+            ]
+          ],
+          "return_message": false
+        },
+        {
+          "id": "05S-R02",
+          "source": "system",
+          "target": "actor",
+          "label": "ownHubOrderAndLines | refusal",
+          "points": [
+            [
+              1400,
+              480
+            ],
+            [
+              200,
+              480
+            ]
+          ],
+          "return_message": true
+        },
+        {
+          "id": "05S-M03",
+          "source": "actor",
+          "target": "system",
+          "label": "confirmOrder(orderId)",
+          "points": [
+            [
+              200,
+              660
+            ],
+            [
+              1400,
+              660
+            ]
+          ],
+          "return_message": false
+        },
+        {
+          "id": "05S-R03",
+          "source": "system",
+          "target": "actor",
+          "label": "confirmedOrder | refusal",
+          "points": [
+            [
+              1400,
+              730
+            ],
+            [
+              200,
+              730
+            ]
+          ],
+          "return_message": true
+        },
+        {
+          "id": "05S-M04",
+          "source": "actor",
+          "target": "system",
+          "label": "rejectOrder(orderId, reason)",
+          "points": [
+            [
+              200,
+              850
+            ],
+            [
+              1400,
+              850
+            ]
+          ],
+          "return_message": false
+        },
+        {
+          "id": "05S-R04",
+          "source": "system",
+          "target": "actor",
+          "label": "rejectedOrder | refusal",
+          "points": [
+            [
+              1400,
+              920
+            ],
+            [
+              200,
+              920
+            ]
+          ],
+          "return_message": true
+        },
+        {
+          "id": "05S-M05",
+          "source": "actor",
+          "target": "system",
+          "label": "offerReplacement(orderId, orderLineId, targetItemId)",
+          "points": [
+            [
+              200,
+              1040
+            ],
+            [
+              1400,
+              1040
+            ]
+          ],
+          "return_message": false
+        },
+        {
+          "id": "05S-R05",
+          "source": "system",
+          "target": "actor",
+          "label": "offeredReplacement | refusal",
+          "points": [
+            [
+              1400,
+              1110
+            ],
+            [
+              200,
+              1110
+            ]
+          ],
+          "return_message": true
+        }
+      ],
+      "decisions": {}
+    },
+    {
+      "author": "Author: 722I0004 \u00b7 AI-assisted (Codex)",
+      "title": "UC-05 \u2014 separate SUC-03 acceptance response",
+      "figure": "2.19B",
+      "canvas": [
+        1600,
+        1200
+      ],
+      "minimum_font_px": 26,
+      "placed_width_mm": 230,
+      "minimum_placed_pt": 10.59,
+      "nodes": [
+        {
+          "id": "actor",
+          "label": "Customer",
+          "x": 200,
+          "y": 120,
+          "w": 300,
+          "h": 65,
+          "kind": "action"
+        },
+        {
+          "id": "system",
+          "label": ":System",
+          "x": 1400,
+          "y": 120,
+          "w": 300,
+          "h": 65,
+          "kind": "action"
+        }
+      ],
+      "edges": [
+        {
+          "id": "05S-M06",
+          "source": "actor",
+          "target": "system",
+          "label": "viewMyOrders()",
+          "points": [
+            [
+              200,
+              230
+            ],
+            [
+              1400,
+              230
+            ]
+          ],
+          "return_message": false
+        },
+        {
+          "id": "05S-R06",
+          "source": "system",
+          "target": "actor",
+          "label": "ownOrdersAndOpenOffers",
+          "points": [
+            [
+              1400,
+              305
+            ],
+            [
+              200,
+              305
+            ]
+          ],
+          "return_message": true
+        },
+        {
+          "id": "05S-M07",
+          "source": "actor",
+          "target": "system",
+          "label": "viewReplacement(orderId)",
+          "points": [
+            [
+              200,
+              400
+            ],
+            [
+              1400,
+              400
+            ]
+          ],
+          "return_message": false
+        },
+        {
+          "id": "05S-R07",
+          "source": "system",
+          "target": "actor",
+          "label": "originalAndOfferedLineQuantityTotalRefundOwed | refusal",
+          "points": [
+            [
+              1400,
+              480
+            ],
+            [
+              200,
+              480
+            ]
+          ],
+          "return_message": true
+        },
+        {
+          "id": "05S-M08",
+          "source": "actor",
+          "target": "system",
+          "label": "acceptReplacement(orderId, offerId)",
+          "points": [
+            [
+              200,
+              635
+            ],
+            [
+              1400,
+              635
+            ]
+          ],
+          "return_message": false
+        },
+        {
+          "id": "05S-R08a",
+          "source": "system",
+          "target": "actor",
+          "label": "[own PLACED + exact open + target valid] acceptedOrderAndAmounts (PC04)",
+          "points": [
+            [
+              1400,
+              815
+            ],
+            [
+              200,
+              815
+            ]
+          ],
+          "return_message": true
+        },
+        {
+          "id": "05S-R08b",
+          "source": "system",
+          "target": "actor",
+          "label": "[eligible offer; target invalid] withdrawnOfferAndReason (MG01)",
+          "points": [
+            [
+              1400,
+              905
+            ],
+            [
+              200,
+              905
+            ]
+          ],
+          "return_message": true
+        },
+        {
+          "id": "05S-R08c",
+          "source": "system",
+          "target": "actor",
+          "label": "[otherwise: stale / wrong owner / terminal] staleRefusal; zero changes (MG01)",
+          "points": [
+            [
+              1400,
+              995
+            ],
+            [
+              200,
+              995
+            ]
+          ],
+          "return_message": true
+        }
+      ],
+      "decisions": {}
+    },
+    {
+      "author": "Author: 722I0004 \u00b7 AI-assisted (Codex)",
+      "title": "UC-05 \u2014 separate SUC-03 decline response",
+      "figure": "2.19C",
+      "canvas": [
+        1600,
+        1200
+      ],
+      "minimum_font_px": 26,
+      "placed_width_mm": 230,
+      "minimum_placed_pt": 10.59,
+      "nodes": [
+        {
+          "id": "actor",
+          "label": "Customer",
+          "x": 200,
+          "y": 120,
+          "w": 300,
+          "h": 65,
+          "kind": "action"
+        },
+        {
+          "id": "system",
+          "label": ":System",
+          "x": 1400,
+          "y": 120,
+          "w": 300,
+          "h": 65,
+          "kind": "action"
+        }
+      ],
+      "edges": [
+        {
+          "id": "05S-M09",
+          "source": "actor",
+          "target": "system",
+          "label": "declineReplacement(orderId, offerId)",
+          "points": [
+            [
+              200,
+              465
+            ],
+            [
+              1400,
+              465
+            ]
+          ],
+          "return_message": false
+        },
+        {
+          "id": "05S-R09",
+          "source": "system",
+          "target": "actor",
+          "label": "rejectedOrderAndAmounts (BR-17) | staleRefusal",
+          "points": [
+            [
+              1400,
+              625
+            ],
+            [
+              200,
+              625
+            ]
+          ],
+          "return_message": true
+        }
+      ],
+      "decisions": {}
+    }
+  ]
+}
