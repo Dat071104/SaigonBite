@@ -1,0 +1,48 @@
+{
+  "base": "ssd_uc03",
+  "pages": [
+    {
+      "type": "ssd",
+      "stem": "ssd_uc03",
+      "title": "Figure 2.15. UC-03 — System sequence diagram",
+      "queries": [
+        {
+          "id": "M03-01",
+          "operation": "listHubs",
+          "call": "listHubs(includeArchived?)",
+          "return": "hubRecordsAndLoad"
+        },
+        {
+          "id": "M03-02",
+          "operation": "getHub",
+          "call": "getHub(hubId)",
+          "return": "hubAndArchiveGuard | refusal"
+        }
+      ],
+      "commands": [
+        {
+          "id": "M03-03",
+          "operation": "createHub",
+          "call": "createHub(code, name, address, latitude, longitude,\nbaseDeliveryFee, capacity)",
+          "return": "savedRecord | controlledRefusal",
+          "guard": "[create]"
+        },
+        {
+          "id": "M03-04",
+          "operation": "updateHub",
+          "call": "updateHub(hubId, code, name, address, latitude, longitude,\nbaseDeliveryFee, capacity)",
+          "return": "savedRecord | controlledRefusal",
+          "guard": "[update]"
+        },
+        {
+          "id": "M03-05",
+          "operation": "archiveHub",
+          "call": "archiveHub(hubId)",
+          "return": "savedRecord | controlledRefusal",
+          "guard": "[archive]"
+        }
+      ],
+      "note": "BR-18 guards from description 4 / A02 / A03 are rechecked at the change boundary.\nSuccess: PC01 / PC02. Every failed write: MG01; archive retains history."
+    }
+  ]
+}

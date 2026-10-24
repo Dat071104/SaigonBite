@@ -1,0 +1,18 @@
+{
+  "base": "activity_uc03",
+  "pages": [
+    {
+      "type": "activity",
+      "stem": "activity_uc03",
+      "prefix": "H",
+      "title": "Figure 2.14. UC-03 — Hub inspection and maintenance",
+      "browse": "1 / A01: request\nlistHubs / getHub",
+      "read": "2 / A01: return records, load, capacity, archive guard\nlistHubs(includeArchived?) / getHub(hubId)",
+      "request": "3 / A02 / A03: submit\ncreateHub / updateHub /\narchiveHub",
+      "validate": "4 / A02 / A03: Admin; required fields; unique code;\nvalid coordinates; fee ≥ 0; integer capacity ≥ 1;\narchive: ACTIVE hub and no open orders (BR-18)\nIf guards pass, apply selected change atomically.",
+      "save": "5 / A02 / A03: return savedRecord\nACTIVE / attributes / ARCHIVED\nPC01 / PC02; retain history",
+      "refuse": "E01–E04: refuse; no change\nMG01; show reason",
+      "legend": "One request; ACTIVE → ARCHIVED only. Lowering capacity below load is valid."
+    }
+  ]
+}
