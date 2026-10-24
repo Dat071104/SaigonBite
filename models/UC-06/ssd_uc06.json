@@ -1,0 +1,116 @@
+{
+  "base": "ssd_uc06",
+  "pages": [
+    {
+      "type": "ssd",
+      "stem": "ssd_uc06_PartA",
+      "title": "Figure 2.21A. UC-06 — Brand system sequence diagram",
+      "queries": [
+        {
+          "id": "M06-A01",
+          "operation": "listCatalogue",
+          "call": "listCatalogue(hubId?)",
+          "return": "brandsItemsHubsAndListings"
+        }
+      ],
+      "commands": [
+        {
+          "id": "M06-A02",
+          "operation": "createBrand",
+          "call": "createBrand(name)",
+          "return": "savedRecord | controlledRefusal",
+          "guard": "[createBrand]"
+        },
+        {
+          "id": "M06-A03",
+          "operation": "updateBrand",
+          "call": "updateBrand(brandId, name)",
+          "return": "savedRecord | controlledRefusal",
+          "guard": "[updateBrand]"
+        },
+        {
+          "id": "M06-A04",
+          "operation": "archiveBrand",
+          "call": "archiveBrand(brandId)",
+          "return": "savedRecord | controlledRefusal",
+          "guard": "[archiveBrand]"
+        }
+      ],
+      "note": "PC01 / PC03; MG01 / MG02. Active-name uniqueness; archive blocks descendants.\nHistorical OrderLines stay unchanged. AVAILABLE never overrides an archived parent."
+    },
+    {
+      "type": "ssd",
+      "stem": "ssd_uc06_PartB",
+      "title": "Figure 2.21B. UC-06 — MenuItem system sequence diagram",
+      "queries": [
+        {
+          "id": "M06-B01",
+          "operation": "listCatalogue",
+          "call": "listCatalogue(hubId?)",
+          "return": "brandsItemsHubsAndListings"
+        }
+      ],
+      "commands": [
+        {
+          "id": "M06-B02",
+          "operation": "createMenuItem",
+          "call": "createMenuItem(brandId, name, description, price)",
+          "return": "savedRecord | controlledRefusal",
+          "guard": "[createMenuItem]"
+        },
+        {
+          "id": "M06-B03",
+          "operation": "updateMenuItem",
+          "call": "updateMenuItem(itemId, brandId, name, description, price)",
+          "return": "savedRecord | controlledRefusal",
+          "guard": "[updateMenuItem]"
+        },
+        {
+          "id": "M06-B04",
+          "operation": "archiveMenuItem",
+          "call": "archiveMenuItem(itemId)",
+          "return": "savedRecord | controlledRefusal",
+          "guard": "[archiveMenuItem]"
+        }
+      ],
+      "note": "PC01 / PC03; MG01 / MG02. Price > 0; active Brand; unique item name in Brand.\nHistorical OrderLines stay unchanged. AVAILABLE never overrides an archived parent."
+    },
+    {
+      "type": "ssd",
+      "stem": "ssd_uc06_PartC",
+      "title": "Figure 2.21C. UC-06 — HubMenuItem system sequence diagram",
+      "queries": [
+        {
+          "id": "M06-C01",
+          "operation": "listCatalogue",
+          "call": "listCatalogue(hubId?)",
+          "return": "brandsItemsHubsAndListings"
+        }
+      ],
+      "commands": [
+        {
+          "id": "M06-C02",
+          "operation": "listItemAtHub",
+          "call": "listItemAtHub(hubId, itemId, available)",
+          "return": "savedRecord | controlledRefusal",
+          "guard": "[listItemAtHub]"
+        },
+        {
+          "id": "M06-C03",
+          "operation": "setListingAvailability",
+          "call": "setListingAvailability(hubId, itemId, available)",
+          "return": "savedRecord | controlledRefusal",
+          "guard": "[setListingAvailability]"
+        },
+        {
+          "id": "M06-C04",
+          "operation": "unlistItemAtHub",
+          "call": "unlistItemAtHub(hubId, itemId)",
+          "return": "savedRecord | controlledRefusal",
+          "guard": "[unlistItemAtHub]"
+        }
+      ],
+      "note": "PC02 / PC03; MG01 / MG02. Active parents for listing; set/unlist require existing pair.\nHistorical OrderLines stay unchanged. AVAILABLE never overrides an archived parent."
+    }
+  ]
+}

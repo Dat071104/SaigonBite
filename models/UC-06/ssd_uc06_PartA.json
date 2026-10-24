@@ -1,0 +1,42 @@
+{
+  "base": "ssd_uc06_PartA",
+  "pages": [
+    {
+      "type": "ssd",
+      "stem": "ssd_uc06_PartA",
+      "title": "Figure 2.21A. UC-06 — Brand system sequence diagram",
+      "queries": [
+        {
+          "id": "M06-A01",
+          "operation": "listCatalogue",
+          "call": "listCatalogue(hubId?)",
+          "return": "brandsItemsHubsAndListings"
+        }
+      ],
+      "commands": [
+        {
+          "id": "M06-A02",
+          "operation": "createBrand",
+          "call": "createBrand(name)",
+          "return": "savedRecord | controlledRefusal",
+          "guard": "[createBrand]"
+        },
+        {
+          "id": "M06-A03",
+          "operation": "updateBrand",
+          "call": "updateBrand(brandId, name)",
+          "return": "savedRecord | controlledRefusal",
+          "guard": "[updateBrand]"
+        },
+        {
+          "id": "M06-A04",
+          "operation": "archiveBrand",
+          "call": "archiveBrand(brandId)",
+          "return": "savedRecord | controlledRefusal",
+          "guard": "[archiveBrand]"
+        }
+      ],
+      "note": "PC01 / PC03; MG01 / MG02. Active-name uniqueness; archive blocks descendants.\nHistorical OrderLines stay unchanged. AVAILABLE never overrides an archived parent."
+    }
+  ]
+}

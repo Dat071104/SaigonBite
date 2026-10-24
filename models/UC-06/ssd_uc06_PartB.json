@@ -1,0 +1,42 @@
+{
+  "base": "ssd_uc06_PartB",
+  "pages": [
+    {
+      "type": "ssd",
+      "stem": "ssd_uc06_PartB",
+      "title": "Figure 2.21B. UC-06 — MenuItem system sequence diagram",
+      "queries": [
+        {
+          "id": "M06-B01",
+          "operation": "listCatalogue",
+          "call": "listCatalogue(hubId?)",
+          "return": "brandsItemsHubsAndListings"
+        }
+      ],
+      "commands": [
+        {
+          "id": "M06-B02",
+          "operation": "createMenuItem",
+          "call": "createMenuItem(brandId, name, description, price)",
+          "return": "savedRecord | controlledRefusal",
+          "guard": "[createMenuItem]"
+        },
+        {
+          "id": "M06-B03",
+          "operation": "updateMenuItem",
+          "call": "updateMenuItem(itemId, brandId, name, description, price)",
+          "return": "savedRecord | controlledRefusal",
+          "guard": "[updateMenuItem]"
+        },
+        {
+          "id": "M06-B04",
+          "operation": "archiveMenuItem",
+          "call": "archiveMenuItem(itemId)",
+          "return": "savedRecord | controlledRefusal",
+          "guard": "[archiveMenuItem]"
+        }
+      ],
+      "note": "PC01 / PC03; MG01 / MG02. Price > 0; active Brand; unique item name in Brand.\nHistorical OrderLines stay unchanged. AVAILABLE never overrides an archived parent."
+    }
+  ]
+}

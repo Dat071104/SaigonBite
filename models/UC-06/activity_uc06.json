@@ -1,0 +1,44 @@
+{
+  "base": "activity_uc06",
+  "pages": [
+    {
+      "type": "activity",
+      "stem": "activity_uc06_PartA",
+      "prefix": "CA",
+      "title": "Figure 2.20A. UC-06 — Brand inspection and maintenance",
+      "browse": "1 / A01: request\nlistCatalogue(hubId?)",
+      "read": "2 / A01: return brandsItemsHubsAndListings\nInspect Brand records and current eligibility",
+      "request": "3 / A02 / A03: submit\ncreateBrand / updateBrand /\narchiveBrand",
+      "validate": "4 / A02 / A03: active Admin; valid name;\ncreate/update: unique Brand name;\nupdate/archive: ACTIVE target (BR-19)\nIf guards pass, apply selected change atomically.",
+      "save": "5 / A02 / A03: return savedRecord\nCreate / update / archive Brand\nPC01 / PC03; preserve MG01",
+      "refuse": "E01–E04: refuse; no change\nMG01 / MG02; show reason",
+      "legend": "Brand archive hides descendants from new listing and ordering; old lines stay unchanged."
+    },
+    {
+      "type": "activity",
+      "stem": "activity_uc06_PartB",
+      "prefix": "CB",
+      "title": "Figure 2.20B. UC-06 — MenuItem inspection and maintenance",
+      "browse": "1 / A01: request\nlistCatalogue(hubId?)",
+      "read": "2 / A01: return brandsItemsHubsAndListings\nInspect MenuItem records and current eligibility",
+      "request": "A04 / A05 / A06: submit\ncreateMenuItem /\nupdateMenuItem / archiveMenuItem",
+      "validate": "A04–A06: active Admin; valid fields; ACTIVE target;\ncreate/update: active parent, price > 0,\nunique name within Brand (BR-19)\nIf guards pass, apply selected change atomically.",
+      "save": "A04–A06: return savedRecord\nCreate / update / archive item\nPC01 / PC03; preserve MG01",
+      "refuse": "E01–E04: refuse; no change\nMG01 / MG02; show reason",
+      "legend": "Price change/archive preserves historical OrderLine snapshots; no undo-archive."
+    },
+    {
+      "type": "activity",
+      "stem": "activity_uc06_PartC",
+      "prefix": "CC",
+      "title": "Figure 2.20C. UC-06 — HubMenuItem inspection and maintenance",
+      "browse": "1 / A01: request\nlistCatalogue(hubId?)",
+      "read": "2 / A01: return brandsItemsHubsAndListings\nInspect HubMenuItem records and current eligibility",
+      "request": "A07 / A08 / A09: submit\nlistItemAtHub /\nsetListingAvailability /\nunlistItemAtHub",
+      "validate": "A07–A09: active Admin; existing parent IDs;\nlist: active parents, no duplicate pair, boolean flag;\nset/unlist: existing pair; set: boolean flag (BR-19)\nIf guards pass, apply selected change atomically.",
+      "save": "A07–A09: add / flag / remove pair\nAVAILABLE / SOLD_OUT; PC02/03\nOther hubs / old lines unchanged",
+      "refuse": "E01–E04: refuse; no change\nMG01 / MG02; show reason",
+      "legend": "SOLD_OUT is per hub. Unlist removes only the association; no historical line changes."
+    }
+  ]
+}

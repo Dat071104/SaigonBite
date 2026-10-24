@@ -1,0 +1,42 @@
+{
+  "base": "ssd_uc06_PartC",
+  "pages": [
+    {
+      "type": "ssd",
+      "stem": "ssd_uc06_PartC",
+      "title": "Figure 2.21C. UC-06 — HubMenuItem system sequence diagram",
+      "queries": [
+        {
+          "id": "M06-C01",
+          "operation": "listCatalogue",
+          "call": "listCatalogue(hubId?)",
+          "return": "brandsItemsHubsAndListings"
+        }
+      ],
+      "commands": [
+        {
+          "id": "M06-C02",
+          "operation": "listItemAtHub",
+          "call": "listItemAtHub(hubId, itemId, available)",
+          "return": "savedRecord | controlledRefusal",
+          "guard": "[listItemAtHub]"
+        },
+        {
+          "id": "M06-C03",
+          "operation": "setListingAvailability",
+          "call": "setListingAvailability(hubId, itemId, available)",
+          "return": "savedRecord | controlledRefusal",
+          "guard": "[setListingAvailability]"
+        },
+        {
+          "id": "M06-C04",
+          "operation": "unlistItemAtHub",
+          "call": "unlistItemAtHub(hubId, itemId)",
+          "return": "savedRecord | controlledRefusal",
+          "guard": "[unlistItemAtHub]"
+        }
+      ],
+      "note": "PC02 / PC03; MG01 / MG02. Active parents for listing; set/unlist require existing pair.\nHistorical OrderLines stay unchanged. AVAILABLE never overrides an archived parent."
+    }
+  ]
+}
