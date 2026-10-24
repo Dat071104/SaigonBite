@@ -4,6 +4,8 @@ Author: 722I0004 · AI-assisted (Codex)
 
 Date: 23/10/2026 (Asia/Bangkok). Scope: P0 prerequisites and P1 only. Branch: part2. Starting main: 50a3e9f. Preserved WIP: 4b0103c. Application correctness is not assessed in this phase.
 
+Continuation ran 23–24/10/2026; closure is dated 24/10/2026 (Asia/Bangkok). The Gantt and source facts retain their explicit 23/10 cutoff. All five current worker/reviewer dispatches occurred on 23/10, as verified from actual transcript timestamps.
+
 ## Sources read
 
 - Locked PLAN_SaigonBite_Part2_Final.md, especially §§0–4, P0/P1, §§8–11; Part2/README.md; Part2/content/links.json; Part2/codex/P1_CHECKLIST.md.
@@ -76,7 +78,11 @@ The independent review is preserved as its original pre-fix assessment. These ar
 
 ## Integrity and staging
 
-Start manifest: D:/RAD/FINAL/Part2/notes/P1_start_hashes.json. Frozen boundaries: 1,245 Part1_v2 files (excluding interpreter caches), 11 docs/part1 files, 85 saigonbite files, 12 tests, 4 db files, app.py and init_db.py, plan and links. End comparison and staging hashes are recorded at closure.
+Start manifest: D:/RAD/FINAL/Part2/notes/P1_start_hashes.json. Frozen boundaries: 1,245 Part1_v2 files (excluding interpreter caches), 11 docs/part1 files, 85 saigonbite files, 12 tests, 4 db files, app.py and init_db.py, plan and links. End comparison and staging hashes follow.
+
+End comparison: **PASS, zero changes/additions/removals**. Part1_v2: 1,245 files; docs/part1: 11 files; app: 85; tests: 12; db: 4; and two entrypoints. Locked plan and links.json are unchanged. `git diff --exit-code 4b0103c -- saigonbite tests db app.py init_db.py` exited 0. No application test suite was run. Evidence: Part2/notes/P1_end_hash_check.json.
+
+Staging copied the working workbook byte-for-byte and 39 model source/export/support files, each matching the repository source. Workbook SHA-256: 110ea5c940119e56e0495bc14a245f74f39d63b4896f19ab68d67c3794baac54. The eLearning staging folder contains 0 files. All staging paths and hashes: Part2/notes/P1_staging_manifest.json.
 
 ## Owner pending items
 
@@ -88,4 +94,36 @@ Start manifest: D:/RAD/FINAL/Part2/notes/P1_start_hashes.json. Frozen boundaries
 
 ## Closure
 
-⟦PENDING: final checklist, commits, integrity, workbook and staging evidence⟧
+**G1 READY for the Phase 1 documentary scope, closed 24/10/2026.** P0-01–P0-08: 8/8; P1-01–P1-33: 33/33. No checklist item is unticked and no review finding remains open. Client answers, feedback and later-phase measurements remain pending, as explicitly allowed by this draft gate.
+
+| Commit | Message |
+|---|---|
+| 4b0103c | WIP: Part 2 draft (tests not collecting yet) |
+| 63cfd44 | Part 2 Phase 1: preserve baseline and freeze business contracts |
+| 93ba789 | Part 2 report I: vision, roadmap and risks |
+| f08d729 | Part 2 report I: stakeholder chart and planned Gantt |
+| 8191591 | Part 2 report I: business narrative and assumption log |
+| 95adb56 | Part 2 report I: business process v2 and swimlane activities |
+| cbe1d37 | Part 2 report I: measurable requirements and traceability |
+| 7b597b6 | Part 2 Phase 1: integrate report and guarded workbook workflow |
+| 0dd931c | Part 2 Phase 1: resolve G1 provenance and activity-scope findings |
+
+The first two commits were reused from the preserved preflight; the rest were created in this continuation. The subsequent closure commit contains this receipt; its final hash is recorded in Part2/notes/P1_final_receipt.json and the user response. No push, tag, merge, author rewrite or configuration change occurred.
+
+## Closure receipt
+
+| Record | Disposition |
+|---|---|
+| Phase checklist | Updated 41 evidence-backed boxes; Part2/codex/P1_CHECKLIST.md and notes/P1_checklist_summary.json. |
+| Report and traceability | Section I 1.1–1.7 assembled from six source parts; 40 FR / 12 NFR; 52 Planned rows with future evidence blank. |
+| Contracts and decisions | Rule text unchanged; trace columns repaired; interpretation log records R1/R2. Locked plan not edited. |
+| AI log and worker records | Prior attempt and current root/four workers/reviewer declared; report-reading barrier honored; full available prompts/transcripts retained privately in Part2/notes. |
+| Workbook | Six existing sheets updated; preservation/recalculation and visual checks complete; 101 formulas, 309 lecturer cells, 20 original validations retained. |
+| Integrity and staging | Zero frozen-boundary changes; workbook plus 39 model files copied with hashes; no eLearning files. |
+| Managed ops | Not needed: target repository has no _agent_ops/. Phase records above hold implementation, decisions, milestone and handoff evidence; no unrelated infrastructure created. |
+
+## Owner upload and next phase
+
+Upload D:/RAD/FINAL/Part2/drive_upload/Team02_RAD_Sem01_2627_Team_Workbook.xlsx to the Drive top level, replacing the prior workbook. Upload D:/RAD/FINAL/Part2/drive_upload/Part2/models/ into Drive Part2/models/. Nothing is submitted to eLearning or pushed to GitHub in this phase; local report/contracts/model sources are on branch part2.
+
+Next authorized prompt can address P4.1 foundation collection/green checks and then P2 analysis, using this requirement/trace/contract baseline. The locked plan requires foundation repair before further analysis; neither P4.1 nor P2 was executed here. Preserve all future result fields until their evidence exists. Native Excel/draw.io and final PDF placement are untested; final export/placement remains a later-phase gate.

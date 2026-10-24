@@ -75,3 +75,5 @@ On 31/10 write one entry in `docs/part2/decision_log.md`: each L/Q item = answer
 - Checklist identifiers 11/12/13/41 are values in marking Checklist column B, at Excel rows 24/25/26/56. Literal rows 11/12/13/41 do not describe the requested four items.
 - The template heading I. Business Requirements (1 point) is retained verbatim; the requirements PDF and marking rubric allocate 5 marks. No score is claimed.
 - The plan P1.2 future test linkage is completed in P2–P4; Phase 1 test/result cells remain blank per its checklist.
+- G1 review R1: the case fixes receipt availability. The detailed BR-13/A-19 field set and presentation are team defaults, not client-confirmed. This clarifies provenance without changing the frozen receipt contract or adding a client question.
+- G1 review R2: Part G contains separately named Admin maintenance and Manager report activity scopes. Each owns its own initial/final; sharing responsibility lanes does not create concurrency or make one request end the other.
