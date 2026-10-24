@@ -1,0 +1,323 @@
+{
+  "type": "activity",
+  "part": "A",
+  "guard_definition": "valid = every condition written in D_valid holds; invalid = its logical complement",
+  "flow_notes": "1: viewReadyDeliveries()\n2: viewDelivery(orderId)\nRead-only contact snapshot;\nno passport.\nEmpty/no claim \u2192 end MG01.\nAny active shipper can claim;\nno concurrent-delivery cap.",
+  "nodes": {
+    "ActorLane": [
+      20,
+      85,
+      340,
+      755
+    ],
+    "SystemLane": [
+      360,
+      85,
+      720,
+      755
+    ],
+    "I": [
+      165,
+      135,
+      30,
+      30
+    ],
+    "A_request": [
+      40,
+      190,
+      280,
+      110
+    ],
+    "D_valid": [
+      465,
+      155,
+      370,
+      180
+    ],
+    "S_effect": [
+      465,
+      365,
+      370,
+      150
+    ],
+    "D_commit": [
+      565,
+      545,
+      170,
+      90
+    ],
+    "S_refuse": [
+      865,
+      355,
+      200,
+      110
+    ],
+    "S_rollback": [
+      850,
+      590,
+      215,
+      100
+    ],
+    "A_result": [
+      40,
+      650,
+      280,
+      90
+    ],
+    "M_end": [
+      632,
+      755,
+      36,
+      36
+    ],
+    "F": [
+      634,
+      805,
+      32,
+      32
+    ],
+    "N": [
+      35,
+      365,
+      290,
+      215
+    ]
+  },
+  "edges": [
+    {
+      "id": "e1",
+      "source": "I",
+      "target": "A_request",
+      "points": [
+        [
+          180,
+          165
+        ],
+        [
+          180,
+          190
+        ]
+      ],
+      "dashed": false,
+      "label": ""
+    },
+    {
+      "id": "e2",
+      "source": "A_request",
+      "target": "D_valid",
+      "points": [
+        [
+          320,
+          245
+        ],
+        [
+          465,
+          245
+        ]
+      ],
+      "dashed": false,
+      "label": ""
+    },
+    {
+      "id": "e3",
+      "source": "D_valid",
+      "target": "S_effect",
+      "points": [
+        [
+          650,
+          335
+        ],
+        [
+          650,
+          365
+        ]
+      ],
+      "dashed": false,
+      "label": "[valid]"
+    },
+    {
+      "id": "e4",
+      "source": "D_valid",
+      "target": "S_refuse",
+      "points": [
+        [
+          835,
+          245
+        ],
+        [
+          965,
+          245
+        ],
+        [
+          965,
+          355
+        ]
+      ],
+      "dashed": false,
+      "label": "[invalid]"
+    },
+    {
+      "id": "e5",
+      "source": "S_effect",
+      "target": "D_commit",
+      "points": [
+        [
+          650,
+          515
+        ],
+        [
+          650,
+          545
+        ]
+      ],
+      "dashed": false,
+      "label": ""
+    },
+    {
+      "id": "e6",
+      "source": "D_commit",
+      "target": "A_result",
+      "points": [
+        [
+          565,
+          590
+        ],
+        [
+          380,
+          590
+        ],
+        [
+          380,
+          695
+        ],
+        [
+          320,
+          695
+        ]
+      ],
+      "dashed": false,
+      "label": "[yes]"
+    },
+    {
+      "id": "e7",
+      "source": "D_commit",
+      "target": "S_rollback",
+      "points": [
+        [
+          735,
+          590
+        ],
+        [
+          795,
+          590
+        ],
+        [
+          795,
+          640
+        ],
+        [
+          850,
+          640
+        ]
+      ],
+      "dashed": false,
+      "label": "[no]"
+    },
+    {
+      "id": "e8",
+      "source": "S_refuse",
+      "target": "M_end",
+      "points": [
+        [
+          965,
+          465
+        ],
+        [
+          1080,
+          465
+        ],
+        [
+          1080,
+          773
+        ],
+        [
+          668,
+          773
+        ]
+      ],
+      "dashed": false,
+      "label": ""
+    },
+    {
+      "id": "e9",
+      "source": "S_rollback",
+      "target": "M_end",
+      "points": [
+        [
+          957,
+          690
+        ],
+        [
+          957,
+          730
+        ],
+        [
+          650,
+          730
+        ],
+        [
+          650,
+          755
+        ]
+      ],
+      "dashed": false,
+      "label": ""
+    },
+    {
+      "id": "e10",
+      "source": "A_result",
+      "target": "M_end",
+      "points": [
+        [
+          180,
+          740
+        ],
+        [
+          180,
+          773
+        ],
+        [
+          632,
+          773
+        ]
+      ],
+      "dashed": false,
+      "label": ""
+    },
+    {
+      "id": "e11",
+      "source": "M_end",
+      "target": "F",
+      "points": [
+        [
+          650,
+          791
+        ],
+        [
+          650,
+          805
+        ]
+      ],
+      "dashed": false,
+      "label": ""
+    }
+  ],
+  "canvas": [
+    1100,
+    900
+  ],
+  "minimum_font_px": 18,
+  "placed_width_mm": 230,
+  "minimum_pt": 10.67,
+  "author": "Author: 722I0004 \u00b7 AI-assisted (Codex)"
+}

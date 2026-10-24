@@ -1,0 +1,171 @@
+{
+  "type": "ssd",
+  "rows": [
+    {
+      "message_id": "M04",
+      "call": "confirmDelivered(orderId, cashCollected?)",
+      "return": "deliveredOrderAndPayment [valid] | refusal [otherwise]"
+    },
+    {
+      "message_id": "M05",
+      "call": "reportFailure(orderId, reason)",
+      "return": "failedOrderAndPayment [valid] | refusal [otherwise]"
+    }
+  ],
+  "fragments": [
+    [
+      50,
+      180,
+      1000,
+      510,
+      "alt [successful handover: COD cash=T / ONLINE cash absent or 0]"
+    ]
+  ],
+  "notes": "alt second operand [unable to deliver; nonempty reason] uses M05.\nEach result: alt [valid + atomic commit] PC02/PC03 / [otherwise] MG01; no payout.",
+  "nodes": {
+    "Actor": [
+      100,
+      95,
+      250,
+      55
+    ],
+    "System": [
+      750,
+      95,
+      250,
+      55
+    ],
+    "frame0": [
+      50,
+      180,
+      1000,
+      510
+    ],
+    "M04a": [
+      224,
+      234,
+      2,
+      2
+    ],
+    "M04ar": [
+      224,
+      268,
+      2,
+      2
+    ],
+    "M04s": [
+      874,
+      234,
+      2,
+      2
+    ],
+    "M04sr": [
+      874,
+      268,
+      2,
+      2
+    ],
+    "M05a": [
+      224,
+      529,
+      2,
+      2
+    ],
+    "M05ar": [
+      224,
+      563,
+      2,
+      2
+    ],
+    "M05s": [
+      874,
+      529,
+      2,
+      2
+    ],
+    "M05sr": [
+      874,
+      563,
+      2,
+      2
+    ]
+  },
+  "edges": [
+    {
+      "id": "M04",
+      "source": "M04a",
+      "target": "M04s",
+      "points": [
+        [
+          225,
+          235
+        ],
+        [
+          875,
+          235
+        ]
+      ],
+      "dashed": false,
+      "label": ""
+    },
+    {
+      "id": "M04r",
+      "source": "M04sr",
+      "target": "M04ar",
+      "points": [
+        [
+          875,
+          269
+        ],
+        [
+          225,
+          269
+        ]
+      ],
+      "dashed": true,
+      "label": ""
+    },
+    {
+      "id": "M05",
+      "source": "M05a",
+      "target": "M05s",
+      "points": [
+        [
+          225,
+          530
+        ],
+        [
+          875,
+          530
+        ]
+      ],
+      "dashed": false,
+      "label": ""
+    },
+    {
+      "id": "M05r",
+      "source": "M05sr",
+      "target": "M05ar",
+      "points": [
+        [
+          875,
+          564
+        ],
+        [
+          225,
+          564
+        ]
+      ],
+      "dashed": true,
+      "label": ""
+    }
+  ],
+  "canvas": [
+    1100,
+    900
+  ],
+  "minimum_font_px": 18,
+  "placed_width_mm": 230,
+  "minimum_pt": 10.67,
+  "author": "Author: 722I0004 \u00b7 AI-assisted (Codex)"
+}

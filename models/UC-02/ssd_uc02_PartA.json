@@ -1,0 +1,247 @@
+{
+  "type": "ssd",
+  "rows": [
+    {
+      "message_id": "M01",
+      "call": "viewReadyDeliveries()",
+      "return": "readyAndOwnAssignedDeliveries | refusal"
+    },
+    {
+      "message_id": "M02",
+      "call": "viewDelivery(orderId)",
+      "return": "deliveryContactSnapshotAndCashDue | refusal"
+    },
+    {
+      "message_id": "M03",
+      "call": "takeDelivery(orderId)",
+      "return": "assignedDelivery [valid winner] | refusal [otherwise]"
+    }
+  ],
+  "fragments": [
+    [
+      50,
+      185,
+      1000,
+      265,
+      "loop [browse / inspect again while needed; active SHIPPER]"
+    ],
+    [
+      50,
+      485,
+      1000,
+      150,
+      "opt [select unassigned READY order; bypass for own PICKED_UP]"
+    ]
+  ],
+  "notes": "M03 result alt [winner] PC01 / [invalid, lost race, repeat, failure] MG01.\nQueries expose contact/address snapshot only; no passport; session identity is implicit.",
+  "nodes": {
+    "Actor": [
+      100,
+      95,
+      250,
+      55
+    ],
+    "System": [
+      750,
+      95,
+      250,
+      55
+    ],
+    "frame0": [
+      50,
+      185,
+      1000,
+      265
+    ],
+    "frame1": [
+      50,
+      485,
+      1000,
+      150
+    ],
+    "M01a": [
+      224,
+      229,
+      2,
+      2
+    ],
+    "M01ar": [
+      224,
+      263,
+      2,
+      2
+    ],
+    "M01s": [
+      874,
+      229,
+      2,
+      2
+    ],
+    "M01sr": [
+      874,
+      263,
+      2,
+      2
+    ],
+    "M02a": [
+      224,
+      364,
+      2,
+      2
+    ],
+    "M02ar": [
+      224,
+      398,
+      2,
+      2
+    ],
+    "M02s": [
+      874,
+      364,
+      2,
+      2
+    ],
+    "M02sr": [
+      874,
+      398,
+      2,
+      2
+    ],
+    "M03a": [
+      224,
+      554,
+      2,
+      2
+    ],
+    "M03ar": [
+      224,
+      588,
+      2,
+      2
+    ],
+    "M03s": [
+      874,
+      554,
+      2,
+      2
+    ],
+    "M03sr": [
+      874,
+      588,
+      2,
+      2
+    ]
+  },
+  "edges": [
+    {
+      "id": "M01",
+      "source": "M01a",
+      "target": "M01s",
+      "points": [
+        [
+          225,
+          230
+        ],
+        [
+          875,
+          230
+        ]
+      ],
+      "dashed": false,
+      "label": ""
+    },
+    {
+      "id": "M01r",
+      "source": "M01sr",
+      "target": "M01ar",
+      "points": [
+        [
+          875,
+          264
+        ],
+        [
+          225,
+          264
+        ]
+      ],
+      "dashed": true,
+      "label": ""
+    },
+    {
+      "id": "M02",
+      "source": "M02a",
+      "target": "M02s",
+      "points": [
+        [
+          225,
+          365
+        ],
+        [
+          875,
+          365
+        ]
+      ],
+      "dashed": false,
+      "label": ""
+    },
+    {
+      "id": "M02r",
+      "source": "M02sr",
+      "target": "M02ar",
+      "points": [
+        [
+          875,
+          399
+        ],
+        [
+          225,
+          399
+        ]
+      ],
+      "dashed": true,
+      "label": ""
+    },
+    {
+      "id": "M03",
+      "source": "M03a",
+      "target": "M03s",
+      "points": [
+        [
+          225,
+          555
+        ],
+        [
+          875,
+          555
+        ]
+      ],
+      "dashed": false,
+      "label": ""
+    },
+    {
+      "id": "M03r",
+      "source": "M03sr",
+      "target": "M03ar",
+      "points": [
+        [
+          875,
+          589
+        ],
+        [
+          225,
+          589
+        ]
+      ],
+      "dashed": true,
+      "label": ""
+    }
+  ],
+  "canvas": [
+    1100,
+    900
+  ],
+  "minimum_font_px": 18,
+  "placed_width_mm": 230,
+  "minimum_pt": 10.67,
+  "author": "Author: 722I0004 \u00b7 AI-assisted (Codex)"
+}
