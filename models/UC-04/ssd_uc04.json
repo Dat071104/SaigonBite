@@ -1,0 +1,240 @@
+{
+  "type": "ssd",
+  "rows": [
+    {
+      "message_id": "M01",
+      "call": "salesReport(startDateVN, endDateVN, hubId?)",
+      "return": "operationalSalesAndRefundsOwed | invalidFilter | denied"
+    },
+    {
+      "message_id": "M02",
+      "call": "workloadReport()",
+      "return": "currentHubLoadCapacityReadyOutForDelivery | denied"
+    },
+    {
+      "message_id": "M03",
+      "call": "deliveryReport(startDateVN, endDateVN, hubId?)",
+      "return": "waitRideFailureRatesWithNAndNA | invalidFilter | denied"
+    }
+  ],
+  "fragments": [
+    [
+      50,
+      180,
+      1000,
+      590,
+      "loop [another independently authorized report request]"
+    ]
+  ],
+  "notes": "alt operands: [sales] M01 / [workload] M02 / [delivery performance] M03.\nAll branches read only MG01; non-manager denied MG02; empty metrics n/a with N=0.",
+  "nodes": {
+    "Actor": [
+      100,
+      95,
+      250,
+      55
+    ],
+    "System": [
+      750,
+      95,
+      250,
+      55
+    ],
+    "frame0": [
+      50,
+      180,
+      1000,
+      590
+    ],
+    "altframe": [
+      70,
+      220,
+      960,
+      530
+    ],
+    "M01a": [
+      224,
+      284,
+      2,
+      2
+    ],
+    "M01ar": [
+      224,
+      318,
+      2,
+      2
+    ],
+    "M01s": [
+      874,
+      284,
+      2,
+      2
+    ],
+    "M01sr": [
+      874,
+      318,
+      2,
+      2
+    ],
+    "M02a": [
+      224,
+      454,
+      2,
+      2
+    ],
+    "M02ar": [
+      224,
+      488,
+      2,
+      2
+    ],
+    "M02s": [
+      874,
+      454,
+      2,
+      2
+    ],
+    "M02sr": [
+      874,
+      488,
+      2,
+      2
+    ],
+    "M03a": [
+      224,
+      649,
+      2,
+      2
+    ],
+    "M03ar": [
+      224,
+      683,
+      2,
+      2
+    ],
+    "M03s": [
+      874,
+      649,
+      2,
+      2
+    ],
+    "M03sr": [
+      874,
+      683,
+      2,
+      2
+    ]
+  },
+  "edges": [
+    {
+      "id": "M01",
+      "source": "M01a",
+      "target": "M01s",
+      "points": [
+        [
+          225,
+          285
+        ],
+        [
+          875,
+          285
+        ]
+      ],
+      "dashed": false,
+      "label": ""
+    },
+    {
+      "id": "M01r",
+      "source": "M01sr",
+      "target": "M01ar",
+      "points": [
+        [
+          875,
+          319
+        ],
+        [
+          225,
+          319
+        ]
+      ],
+      "dashed": true,
+      "label": ""
+    },
+    {
+      "id": "M02",
+      "source": "M02a",
+      "target": "M02s",
+      "points": [
+        [
+          225,
+          455
+        ],
+        [
+          875,
+          455
+        ]
+      ],
+      "dashed": false,
+      "label": ""
+    },
+    {
+      "id": "M02r",
+      "source": "M02sr",
+      "target": "M02ar",
+      "points": [
+        [
+          875,
+          489
+        ],
+        [
+          225,
+          489
+        ]
+      ],
+      "dashed": true,
+      "label": ""
+    },
+    {
+      "id": "M03",
+      "source": "M03a",
+      "target": "M03s",
+      "points": [
+        [
+          225,
+          650
+        ],
+        [
+          875,
+          650
+        ]
+      ],
+      "dashed": false,
+      "label": ""
+    },
+    {
+      "id": "M03r",
+      "source": "M03sr",
+      "target": "M03ar",
+      "points": [
+        [
+          875,
+          684
+        ],
+        [
+          225,
+          684
+        ]
+      ],
+      "dashed": true,
+      "label": ""
+    }
+  ],
+  "canvas": [
+    1100,
+    900
+  ],
+  "minimum_font_px": 18,
+  "placed_width_mm": 230,
+  "minimum_pt": 10.67,
+  "author": "Author: 722I0004 \u00b7 AI-assisted (Codex)"
+}
