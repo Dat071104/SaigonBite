@@ -1,0 +1,138 @@
+{
+  "pages": [
+    {
+      "stem": "sm_order_PartC",
+      "key": "orderC",
+      "title": "Figure 2.3C. Order — cancellation window",
+      "subtitle": "UC-01 owner · SUC-04 · cancellation and preparation are serialised",
+      "nodes": [
+        {
+          "id": "placed",
+          "label": "PLACED",
+          "x": 180,
+          "y": 185,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "confirmed",
+          "label": "CONFIRMED",
+          "x": 180,
+          "y": 545,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "cancelled",
+          "label": "CANCELLED",
+          "x": 920,
+          "y": 365,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "endCancel",
+          "label": "",
+          "x": 1065,
+          "y": 365,
+          "w": 28,
+          "h": 28,
+          "kind": "final",
+          "grey": false
+        }
+      ],
+      "edges": [
+        {
+          "src": "placed",
+          "dst": "cancelled",
+          "points": [
+            [
+              285,
+              185
+            ],
+            [
+              790,
+              185
+            ],
+            [
+              790,
+              345
+            ],
+            [
+              815,
+              345
+            ]
+          ],
+          "label": "cancelOrder [own order; still PLACED]\n/ offer WITHDRAWN; BR-17; set closed_at",
+          "label_box": [
+            325,
+            215,
+            450,
+            80
+          ]
+        },
+        {
+          "src": "confirmed",
+          "dst": "cancelled",
+          "points": [
+            [
+              285,
+              545
+            ],
+            [
+              790,
+              545
+            ],
+            [
+              790,
+              385
+            ],
+            [
+              815,
+              385
+            ]
+          ],
+          "label": "cancelOrder [own order; still CONFIRMED]\n/ offer WITHDRAWN; BR-17; set closed_at",
+          "label_box": [
+            325,
+            440,
+            450,
+            80
+          ]
+        },
+        {
+          "src": "cancelled",
+          "dst": "endCancel",
+          "points": [
+            [
+              1025,
+              365
+            ],
+            [
+              1051,
+              365
+            ]
+          ],
+          "label": "",
+          "label_box": [
+            350,
+            100,
+            470,
+            120
+          ]
+        }
+      ],
+      "notes": [
+        "Views A–E project one Order lifecycle; repeated state names denote the same stored state.",
+        "Every event requires an active authorised actor; failed guards change no Order facts.",
+        "No cancel transition exists from PREPARING or later; terminal orders cannot be revived."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "pages": [
+    {
+      "stem": "sm_user_account",
+      "key": "user",
+      "title": "Figure 2.9. UserAccount — activation lifecycle",
+      "subtitle": "UC-03 placement: shared supporting SUC-08 / SUC-02 model; not a Hub-owned account",
+      "nodes": [
+        {
+          "id": "initial",
+          "label": "",
+          "x": 160,
+          "y": 110,
+          "w": 24,
+          "h": 24,
+          "kind": "initial",
+          "grey": false
+        },
+        {
+          "id": "active",
+          "label": "ACTIVE",
+          "x": 160,
+          "y": 365,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "inactive",
+          "label": "INACTIVE",
+          "x": 920,
+          "y": 365,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "unreachableFinal",
+          "label": "",
+          "x": 920,
+          "y": 585,
+          "w": 28,
+          "h": 28,
+          "kind": "final",
+          "grey": false
+        },
+        {
+          "id": "endNote",
+          "label": "Unreachable in Part 2\n(no account-end operation)",
+          "x": 610,
+          "y": 585,
+          "w": 450,
+          "h": 60,
+          "kind": "note",
+          "grey": true
+        }
+      ],
+      "edges": [
+        {
+          "src": "initial",
+          "dst": "active",
+          "points": [
+            [
+              160,
+              122
+            ],
+            [
+              160,
+              331
+            ]
+          ],
+          "label": "registerCustomer | createUserAccount\n[valid unique identity; role/hub valid]\n/ create is_active=true",
+          "label_box": [
+            300,
+            90,
+            680,
+            80
+          ]
+        },
+        {
+          "src": "active",
+          "dst": "inactive",
+          "points": [
+            [
+              265,
+              345
+            ],
+            [
+              815,
+              345
+            ]
+          ],
+          "label": "setUserActive [active=false; Admin; BR-25:\nno PICKED_UP delivery assigned to target shipper]\n/ is_active=false; reject existing session on next request",
+          "label_box": [
+            315,
+            225,
+            485,
+            100
+          ]
+        },
+        {
+          "src": "inactive",
+          "dst": "active",
+          "points": [
+            [
+              815,
+              385
+            ],
+            [
+              265,
+              385
+            ]
+          ],
+          "label": "setUserActive [active=true; authorised Admin]\n/ is_active=true; subsequent valid login permitted",
+          "label_box": [
+            315,
+            430,
+            485,
+            60
+          ]
+        }
+      ],
+      "notes": [
+        "updateUserAccount [valid Admin change] / attributes only; activation state does not change.",
+        "INACTIVE is reversible. No account deletion/end event exists; the shown final is unreachable.",
+        "BR-25 deactivation guard is checked atomically; inactive-account session fails on its next request."
+      ]
+    }
+  ]
+}

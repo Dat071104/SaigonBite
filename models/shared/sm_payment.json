@@ -1,0 +1,368 @@
+{
+  "pages": [
+    {
+      "stem": "sm_payment",
+      "key": "paymentCOD",
+      "title": "Figure 2.4A. Payment — COD",
+      "subtitle": "UC-01 owner; shared by UC-02 / UC-05 / SUC-03 / SUC-04 · method fixed at checkout",
+      "nodes": [
+        {
+          "id": "initial",
+          "label": "",
+          "x": 180,
+          "y": 110,
+          "w": 24,
+          "h": 24,
+          "kind": "initial",
+          "grey": false
+        },
+        {
+          "id": "pending",
+          "label": "PENDING",
+          "x": 180,
+          "y": 365,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "paid",
+          "label": "PAID",
+          "x": 920,
+          "y": 190,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "voided",
+          "label": "VOIDED",
+          "x": 920,
+          "y": 545,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "endPaid",
+          "label": "",
+          "x": 1065,
+          "y": 190,
+          "w": 28,
+          "h": 28,
+          "kind": "final",
+          "grey": false
+        },
+        {
+          "id": "endVoid",
+          "label": "",
+          "x": 1065,
+          "y": 545,
+          "w": 28,
+          "h": 28,
+          "kind": "final",
+          "grey": false
+        }
+      ],
+      "edges": [
+        {
+          "src": "initial",
+          "dst": "pending",
+          "points": [
+            [
+              180,
+              122
+            ],
+            [
+              180,
+              331
+            ]
+          ],
+          "label": "confirmCheckout [COD; accepted checkout]\n/ insert Payment; amount = T; refund_amount = 0",
+          "label_box": [
+            280,
+            95,
+            550,
+            60
+          ]
+        },
+        {
+          "src": "pending",
+          "dst": "paid",
+          "points": [
+            [
+              285,
+              365
+            ],
+            [
+              335,
+              365
+            ],
+            [
+              335,
+              190
+            ],
+            [
+              815,
+              190
+            ]
+          ],
+          "label": "confirmDelivered\n[assigned shipper; OUT_FOR_DELIVERY; cash = T]\n/ Payment PAID; cash_collected = T;\nOrder and Delivery DELIVERED",
+          "label_box": [
+            370,
+            225,
+            440,
+            100
+          ]
+        },
+        {
+          "src": "pending",
+          "dst": "voided",
+          "points": [
+            [
+              285,
+              365
+            ],
+            [
+              335,
+              365
+            ],
+            [
+              335,
+              545
+            ],
+            [
+              815,
+              545
+            ]
+          ],
+          "label": "rejectOrder | declineReplacement |\ncancelOrder | reportFailure\n[valid unfulfilled terminal outcome; BR-17]\n/ Payment VOIDED; refund_amount = 0",
+          "label_box": [
+            355,
+            415,
+            460,
+            100
+          ]
+        },
+        {
+          "src": "paid",
+          "dst": "endPaid",
+          "points": [
+            [
+              1025,
+              190
+            ],
+            [
+              1051,
+              190
+            ]
+          ],
+          "label": "",
+          "label_box": [
+            350,
+            100,
+            470,
+            120
+          ]
+        },
+        {
+          "src": "voided",
+          "dst": "endVoid",
+          "points": [
+            [
+              1025,
+              545
+            ],
+            [
+              1051,
+              545
+            ]
+          ],
+          "label": "",
+          "label_box": [
+            350,
+            100,
+            470,
+            120
+          ]
+        }
+      ],
+      "notes": [
+        "acceptReplacement [valid accepted offer] / update amount = new T while PENDING.",
+        "Order DELIVERED and Payment PAID are separate stored facts; cash handover is outside this lifecycle."
+      ]
+    },
+    {
+      "stem": "sm_payment_PartB",
+      "key": "paymentOnline",
+      "title": "Figure 2.4B. Payment — ONLINE simulator",
+      "subtitle": "UC-01 owner · C = amount captured at approved checkout; T = current order total",
+      "nodes": [
+        {
+          "id": "initial",
+          "label": "",
+          "x": 140,
+          "y": 110,
+          "w": 24,
+          "h": 24,
+          "kind": "initial",
+          "grey": false
+        },
+        {
+          "id": "paid",
+          "label": "PAID",
+          "x": 140,
+          "y": 365,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "refund",
+          "label": "REFUND_PENDING",
+          "x": 920,
+          "y": 540,
+          "w": 250,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "future",
+          "label": "REFUNDED\nFuture payout only",
+          "x": 920,
+          "y": 150,
+          "w": 250,
+          "h": 88,
+          "kind": "state",
+          "grey": true
+        },
+        {
+          "id": "endRefund",
+          "label": "",
+          "x": 1070,
+          "y": 540,
+          "w": 28,
+          "h": 28,
+          "kind": "final",
+          "grey": false
+        }
+      ],
+      "edges": [
+        {
+          "src": "initial",
+          "dst": "paid",
+          "points": [
+            [
+              140,
+              122
+            ],
+            [
+              140,
+              331
+            ]
+          ],
+          "label": "confirmCheckout [ONLINE approved + saved]\n/ insert Payment PAID; amount=C; refund_amount=0",
+          "label_box": [
+            280,
+            95,
+            510,
+            60
+          ]
+        },
+        {
+          "src": "paid",
+          "dst": "paid",
+          "points": [
+            [
+              140,
+              399
+            ],
+            [
+              140,
+              595
+            ],
+            [
+              330,
+              595
+            ],
+            [
+              330,
+              385
+            ],
+            [
+              245,
+              385
+            ]
+          ],
+          "label": "acceptReplacement [valid accepted offer]\n/ remain PAID; amount=C unchanged;\nrefund_amount=C−T_new (owed, not paid)",
+          "label_box": [
+            350,
+            265,
+            450,
+            80
+          ]
+        },
+        {
+          "src": "paid",
+          "dst": "refund",
+          "points": [
+            [
+              245,
+              345
+            ],
+            [
+              295,
+              345
+            ],
+            [
+              295,
+              540
+            ],
+            [
+              795,
+              540
+            ]
+          ],
+          "label": "rejectOrder | declineReplacement |\ncancelOrder | reportFailure\n[valid unfulfilled terminal outcome; BR-17]\n/ REFUND_PENDING; refund_amount=C\n(replace any partial amount; do not add it)",
+          "label_box": [
+            345,
+            410,
+            445,
+            120
+          ]
+        },
+        {
+          "src": "refund",
+          "dst": "endRefund",
+          "points": [
+            [
+              1045,
+              540
+            ],
+            [
+              1056,
+              540
+            ]
+          ],
+          "label": "",
+          "label_box": [
+            350,
+            100,
+            470,
+            120
+          ]
+        }
+      ],
+      "notes": [
+        "Declined attempt: message/log only, no Payment row and no persisted FAILED state.",
+        "REFUNDED has no incoming transition: payout is deferred (L3); final ends current model scope.",
+        "confirmDelivered [assigned shipper] / retain PAID, C and any partial refund owed."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "pages": [
+    {
+      "stem": "sm_catalogue_PartD",
+      "key": "catD",
+      "title": "Figure 2.8D. HubMenuItem — unlist ends the listing",
+      "subtitle": "UC-06 owner · same two listing states as Figure 2.8C · no new stored UNLISTED state",
+      "nodes": [
+        {
+          "id": "available",
+          "label": "AVAILABLE",
+          "x": 170,
+          "y": 185,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "sold",
+          "label": "SOLD_OUT",
+          "x": 170,
+          "y": 545,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "endListing",
+          "label": "",
+          "x": 940,
+          "y": 365,
+          "w": 28,
+          "h": 28,
+          "kind": "final",
+          "grey": false
+        }
+      ],
+      "edges": [
+        {
+          "src": "available",
+          "dst": "endListing",
+          "points": [
+            [
+              275,
+              185
+            ],
+            [
+              850,
+              185
+            ],
+            [
+              850,
+              365
+            ],
+            [
+              926,
+              365
+            ]
+          ],
+          "label": "unlistItemAtHub [listed pair; authorised admin]\n/ delete HubMenuItem row; preserve order snapshots",
+          "label_box": [
+            320,
+            235,
+            510,
+            60
+          ]
+        },
+        {
+          "src": "sold",
+          "dst": "endListing",
+          "points": [
+            [
+              275,
+              545
+            ],
+            [
+              850,
+              545
+            ],
+            [
+              850,
+              365
+            ],
+            [
+              926,
+              365
+            ]
+          ],
+          "label": "unlistItemAtHub [listed pair; authorised admin]\n/ delete HubMenuItem row; preserve order snapshots",
+          "label_box": [
+            320,
+            435,
+            510,
+            60
+          ]
+        }
+      ],
+      "notes": [
+        "Physical row deletion applies only to the listing; Brand/MenuItem use archive.",
+        "Listing is per hub; another hub’s listing is unchanged. New listing starts a new lifecycle."
+      ]
+    }
+  ]
+}

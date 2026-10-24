@@ -1,0 +1,739 @@
+{
+  "pages": [
+    {
+      "stem": "sm_order",
+      "key": "orderA",
+      "title": "Figure 2.3A. Order — creation and kitchen decision",
+      "subtitle": "UC-01 owner; shared by UC-05 · plan §4.1 · transition labels include guards and effects",
+      "nodes": [
+        {
+          "id": "initial",
+          "label": "",
+          "x": 60,
+          "y": 365,
+          "w": 24,
+          "h": 24,
+          "kind": "initial",
+          "grey": false
+        },
+        {
+          "id": "placed",
+          "label": "PLACED",
+          "x": 330,
+          "y": 365,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "confirmed",
+          "label": "CONFIRMED",
+          "x": 925,
+          "y": 170,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "rejected",
+          "label": "REJECTED",
+          "x": 925,
+          "y": 550,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "endReject",
+          "label": "",
+          "x": 1065,
+          "y": 550,
+          "w": 28,
+          "h": 28,
+          "kind": "final",
+          "grey": false
+        }
+      ],
+      "edges": [
+        {
+          "src": "initial",
+          "dst": "placed",
+          "points": [
+            [
+              72,
+              365
+            ],
+            [
+              225,
+              365
+            ]
+          ],
+          "label": "confirmCheckout\n[BR-02/06/08/10;\napproved or COD]\n/ insert order, lines,\npayment; snapshots;\nS/D/F/Q/T; load +1",
+          "label_box": [
+            30,
+            125,
+            285,
+            160
+          ]
+        },
+        {
+          "src": "placed",
+          "dst": "confirmed",
+          "points": [
+            [
+              435,
+              365
+            ],
+            [
+              480,
+              365
+            ],
+            [
+              480,
+              170
+            ],
+            [
+              820,
+              170
+            ]
+          ],
+          "label": "confirmOrder\n[own hub; no open offer]\n/ set confirmed_at",
+          "label_box": [
+            505,
+            200,
+            310,
+            80
+          ]
+        },
+        {
+          "src": "placed",
+          "dst": "rejected",
+          "points": [
+            [
+              435,
+              365
+            ],
+            [
+              480,
+              365
+            ],
+            [
+              480,
+              550
+            ],
+            [
+              820,
+              550
+            ]
+          ],
+          "label": "rejectOrder\n[own hub; reason supplied]\n/ offer WITHDRAWN; BR-17;\nset reject_reason, closed_at",
+          "label_box": [
+            505,
+            425,
+            310,
+            100
+          ]
+        },
+        {
+          "src": "rejected",
+          "dst": "endReject",
+          "points": [
+            [
+              1030,
+              550
+            ],
+            [
+              1051,
+              550
+            ]
+          ],
+          "label": "",
+          "label_box": [
+            350,
+            100,
+            470,
+            120
+          ]
+        }
+      ],
+      "notes": [
+        "Views A–E project one Order lifecycle; repeated state names denote the same stored state.",
+        "Every event requires an active authorised actor; failed guards change no Order facts.",
+        "BR-17: COD VOIDED; ONLINE REFUND_PENDING with refund_amount = captured C."
+      ]
+    },
+    {
+      "stem": "sm_order_PartB",
+      "key": "orderB",
+      "title": "Figure 2.3B. Order — replacement response",
+      "subtitle": "UC-01 / UC-05 / SUC-03 · internal transitions retain Order.PLACED",
+      "nodes": [
+        {
+          "id": "placed",
+          "label": "PLACED",
+          "x": 190,
+          "y": 365,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "rejected",
+          "label": "REJECTED",
+          "x": 925,
+          "y": 365,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "endReject",
+          "label": "",
+          "x": 1065,
+          "y": 365,
+          "w": 28,
+          "h": 28,
+          "kind": "final",
+          "grey": false
+        }
+      ],
+      "edges": [
+        {
+          "src": "placed",
+          "dst": "placed",
+          "points": [
+            [
+              190,
+              331
+            ],
+            [
+              190,
+              115
+            ],
+            [
+              325,
+              115
+            ],
+            [
+              325,
+              345
+            ],
+            [
+              295,
+              345
+            ]
+          ],
+          "label": "offerReplacement\n[own-hub PLACED; source unavailable; no open offer;\nactive/listed/available different target; price ≤ source]\n/ insert one OFFERED offer; preserve line and totals",
+          "label_box": [
+            395,
+            95,
+            670,
+            100
+          ]
+        },
+        {
+          "src": "placed",
+          "dst": "rejected",
+          "points": [
+            [
+              295,
+              365
+            ],
+            [
+              820,
+              365
+            ]
+          ],
+          "label": "declineReplacement [exact open offer; own order]\n/ offer DECLINED; REJECTED; rejection reason;\nBR-17; set closed_at",
+          "label_box": [
+            330,
+            275,
+            460,
+            80
+          ]
+        },
+        {
+          "src": "placed",
+          "dst": "placed",
+          "points": [
+            [
+              190,
+              399
+            ],
+            [
+              190,
+              605
+            ],
+            [
+              325,
+              605
+            ],
+            [
+              325,
+              385
+            ],
+            [
+              295,
+              385
+            ]
+          ],
+          "label": "acceptReplacement [own order; exact open offer;\nPLACED; target still active/listed/available]\n/ offered-price line; quantity unchanged; offer ACCEPTED;\nD_new=min(D_old,S_new); F,Q unchanged; recompute T;\nCOD amount=T; ONLINE PAID, amount=C, refund_amount=C−T",
+          "label_box": [
+            395,
+            465,
+            670,
+            120
+          ]
+        },
+        {
+          "src": "rejected",
+          "dst": "endReject",
+          "points": [
+            [
+              1030,
+              365
+            ],
+            [
+              1051,
+              365
+            ]
+          ],
+          "label": "",
+          "label_box": [
+            350,
+            100,
+            470,
+            120
+          ]
+        }
+      ],
+      "notes": [
+        "Views A–E project one Order lifecycle; repeated state names denote the same stored state.",
+        "Every event requires an active authorised actor; failed guards change no Order facts.",
+        "Waiting for customer = PLACED + an OFFERED offer; it is a derived label, not a state."
+      ]
+    },
+    {
+      "stem": "sm_order_PartC",
+      "key": "orderC",
+      "title": "Figure 2.3C. Order — cancellation window",
+      "subtitle": "UC-01 owner · SUC-04 · cancellation and preparation are serialised",
+      "nodes": [
+        {
+          "id": "placed",
+          "label": "PLACED",
+          "x": 180,
+          "y": 185,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "confirmed",
+          "label": "CONFIRMED",
+          "x": 180,
+          "y": 545,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "cancelled",
+          "label": "CANCELLED",
+          "x": 920,
+          "y": 365,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "endCancel",
+          "label": "",
+          "x": 1065,
+          "y": 365,
+          "w": 28,
+          "h": 28,
+          "kind": "final",
+          "grey": false
+        }
+      ],
+      "edges": [
+        {
+          "src": "placed",
+          "dst": "cancelled",
+          "points": [
+            [
+              285,
+              185
+            ],
+            [
+              790,
+              185
+            ],
+            [
+              790,
+              345
+            ],
+            [
+              815,
+              345
+            ]
+          ],
+          "label": "cancelOrder [own order; still PLACED]\n/ offer WITHDRAWN; BR-17; set closed_at",
+          "label_box": [
+            325,
+            215,
+            450,
+            80
+          ]
+        },
+        {
+          "src": "confirmed",
+          "dst": "cancelled",
+          "points": [
+            [
+              285,
+              545
+            ],
+            [
+              790,
+              545
+            ],
+            [
+              790,
+              385
+            ],
+            [
+              815,
+              385
+            ]
+          ],
+          "label": "cancelOrder [own order; still CONFIRMED]\n/ offer WITHDRAWN; BR-17; set closed_at",
+          "label_box": [
+            325,
+            440,
+            450,
+            80
+          ]
+        },
+        {
+          "src": "cancelled",
+          "dst": "endCancel",
+          "points": [
+            [
+              1025,
+              365
+            ],
+            [
+              1051,
+              365
+            ]
+          ],
+          "label": "",
+          "label_box": [
+            350,
+            100,
+            470,
+            120
+          ]
+        }
+      ],
+      "notes": [
+        "Views A–E project one Order lifecycle; repeated state names denote the same stored state.",
+        "Every event requires an active authorised actor; failed guards change no Order facts.",
+        "No cancel transition exists from PREPARING or later; terminal orders cannot be revived."
+      ]
+    },
+    {
+      "stem": "sm_order_PartD",
+      "key": "orderD",
+      "title": "Figure 2.3D. Order — preparation and pickup",
+      "subtitle": "UC-01 owner; shared by UC-05 / SUC-05 / UC-02 · paired object effects commit together",
+      "nodes": [
+        {
+          "id": "confirmed",
+          "label": "CONFIRMED",
+          "x": 160,
+          "y": 150,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "preparing",
+          "label": "PREPARING",
+          "x": 930,
+          "y": 150,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "ready",
+          "label": "READY",
+          "x": 930,
+          "y": 550,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "out",
+          "label": "OUT_FOR_DELIVERY",
+          "x": 160,
+          "y": 550,
+          "w": 240,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        }
+      ],
+      "edges": [
+        {
+          "src": "confirmed",
+          "dst": "preparing",
+          "points": [
+            [
+              265,
+              150
+            ],
+            [
+              825,
+              150
+            ]
+          ],
+          "label": "startPreparing [own hub; no open offer]\n/ set Order PREPARING",
+          "label_box": [
+            310,
+            175,
+            470,
+            60
+          ]
+        },
+        {
+          "src": "preparing",
+          "dst": "ready",
+          "points": [
+            [
+              930,
+              184
+            ],
+            [
+              930,
+              516
+            ]
+          ],
+          "label": "markReady [own hub]\n/ set ready_at; insert exactly one\nDelivery AWAITING_PICKUP",
+          "label_box": [
+            500,
+            300,
+            405,
+            80
+          ]
+        },
+        {
+          "src": "ready",
+          "dst": "out",
+          "points": [
+            [
+              825,
+              550
+            ],
+            [
+              280,
+              550
+            ]
+          ],
+          "label": "takeDelivery [active shipper; delivery unassigned]\n/ Delivery PICKED_UP; shipper_id; picked_up_at;\nOrder OUT_FOR_DELIVERY",
+          "label_box": [
+            305,
+            440,
+            500,
+            80
+          ]
+        }
+      ],
+      "notes": [
+        "Views A–E project one Order lifecycle; repeated state names denote the same stored state.",
+        "Every event requires an active authorised actor; failed guards change no Order facts.",
+        "READY and OUT_FOR_DELIVERY leave cooking load (BR-01); pickup has exactly one winner."
+      ]
+    },
+    {
+      "stem": "sm_order_PartE",
+      "key": "orderE",
+      "title": "Figure 2.3E. Order — delivered or delivery failed",
+      "subtitle": "UC-01 owner; shared by UC-02 · four terminal Order states appear across A/C/E",
+      "nodes": [
+        {
+          "id": "out",
+          "label": "OUT_FOR_DELIVERY",
+          "x": 180,
+          "y": 365,
+          "w": 260,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "delivered",
+          "label": "DELIVERED",
+          "x": 920,
+          "y": 170,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "failed",
+          "label": "DELIVERY_FAILED",
+          "x": 920,
+          "y": 550,
+          "w": 240,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "endDelivered",
+          "label": "",
+          "x": 1068,
+          "y": 170,
+          "w": 28,
+          "h": 28,
+          "kind": "final",
+          "grey": false
+        },
+        {
+          "id": "endFailed",
+          "label": "",
+          "x": 1068,
+          "y": 550,
+          "w": 28,
+          "h": 28,
+          "kind": "final",
+          "grey": false
+        }
+      ],
+      "edges": [
+        {
+          "src": "out",
+          "dst": "delivered",
+          "points": [
+            [
+              310,
+              365
+            ],
+            [
+              350,
+              365
+            ],
+            [
+              350,
+              170
+            ],
+            [
+              815,
+              170
+            ]
+          ],
+          "label": "confirmDelivered\n[assigned active shipper; COD cash = T]\n/ Delivery DELIVERED; set finished_at, closed_at;\nCOD PAID; record exact cash; ONLINE stays PAID",
+          "label_box": [
+            385,
+            210,
+            410,
+            100
+          ]
+        },
+        {
+          "src": "out",
+          "dst": "failed",
+          "points": [
+            [
+              310,
+              365
+            ],
+            [
+              350,
+              365
+            ],
+            [
+              350,
+              550
+            ],
+            [
+              800,
+              550
+            ]
+          ],
+          "label": "reportFailure [assigned active shipper; reason]\n/ Delivery FAILED + reason; finished_at, closed_at;\nCOD VOIDED or ONLINE REFUND_PENDING;\nONLINE refund_amount = captured C (BR-17)",
+          "label_box": [
+            375,
+            410,
+            420,
+            100
+          ]
+        },
+        {
+          "src": "delivered",
+          "dst": "endDelivered",
+          "points": [
+            [
+              1025,
+              170
+            ],
+            [
+              1054,
+              170
+            ]
+          ],
+          "label": "",
+          "label_box": [
+            350,
+            100,
+            470,
+            120
+          ]
+        },
+        {
+          "src": "failed",
+          "dst": "endFailed",
+          "points": [
+            [
+              1040,
+              550
+            ],
+            [
+              1054,
+              550
+            ]
+          ],
+          "label": "",
+          "label_box": [
+            350,
+            100,
+            470,
+            120
+          ]
+        }
+      ],
+      "notes": [
+        "Views A–E project one Order lifecycle; repeated state names denote the same stored state.",
+        "Every event requires an active authorised actor; failed guards change no Order facts.",
+        "Terminal states: DELIVERED, DELIVERY_FAILED, REJECTED, CANCELLED; no redelivery loop."
+      ]
+    }
+  ]
+}

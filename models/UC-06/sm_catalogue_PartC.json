@@ -1,0 +1,175 @@
+{
+  "pages": [
+    {
+      "stem": "sm_catalogue_PartC",
+      "key": "catC",
+      "title": "Figure 2.8C. HubMenuItem — list and change availability",
+      "subtitle": "UC-06 owner; SUC-06 staff support · availability belongs to a hub–item pair",
+      "nodes": [
+        {
+          "id": "initial",
+          "label": "",
+          "x": 150,
+          "y": 110,
+          "w": 24,
+          "h": 24,
+          "kind": "initial",
+          "grey": false
+        },
+        {
+          "id": "choice",
+          "label": "",
+          "x": 150,
+          "y": 250,
+          "w": 32,
+          "h": 32,
+          "kind": "choice",
+          "grey": false
+        },
+        {
+          "id": "available",
+          "label": "AVAILABLE",
+          "x": 150,
+          "y": 520,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "sold",
+          "label": "SOLD_OUT",
+          "x": 920,
+          "y": 520,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        }
+      ],
+      "edges": [
+        {
+          "src": "initial",
+          "dst": "choice",
+          "points": [
+            [
+              150,
+              122
+            ],
+            [
+              150,
+              234
+            ]
+          ],
+          "label": "listItemAtHub [active parents; no duplicate]\n/ validate the requested initial availability",
+          "label_box": [
+            290,
+            95,
+            750,
+            60
+          ]
+        },
+        {
+          "src": "choice",
+          "dst": "available",
+          "points": [
+            [
+              150,
+              266
+            ],
+            [
+              150,
+              486
+            ]
+          ],
+          "label": "[available=true]\n/ insert AVAILABLE listing\n(is_available=true)",
+          "label_box": [
+            175,
+            280,
+            300,
+            60
+          ]
+        },
+        {
+          "src": "choice",
+          "dst": "sold",
+          "points": [
+            [
+              166,
+              250
+            ],
+            [
+              1020,
+              250
+            ],
+            [
+              1020,
+              470
+            ],
+            [
+              920,
+              470
+            ],
+            [
+              920,
+              486
+            ]
+          ],
+          "label": "[available=false]\n/ insert SOLD_OUT listing (is_available=false)",
+          "label_box": [
+            500,
+            265,
+            500,
+            60
+          ]
+        },
+        {
+          "src": "available",
+          "dst": "sold",
+          "points": [
+            [
+              255,
+              500
+            ],
+            [
+              815,
+              500
+            ]
+          ],
+          "label": "setListingAvailability | setMenuAvailability\n[listed pair; authorised Admin / own-hub Kitchen; available=false]\n/ is_available=false; new orders blocked",
+          "label_box": [
+            280,
+            350,
+            530,
+            80
+          ]
+        },
+        {
+          "src": "sold",
+          "dst": "available",
+          "points": [
+            [
+              815,
+              540
+            ],
+            [
+              255,
+              540
+            ]
+          ],
+          "label": "setListingAvailability | setMenuAvailability\n[listed pair; authorised Admin / own-hub Kitchen; available=true]\n/ is_available=true; old order lines unchanged",
+          "label_box": [
+            280,
+            550,
+            530,
+            80
+          ]
+        }
+      ],
+      "notes": [
+        "No MenuItem.SOLD_OUT state: the same item may be available at another hub.",
+        "Unlist removes this listing lifecycle (Figure 2.8D); archived parents remain blocked regardless of flag."
+      ]
+    }
+  ]
+}

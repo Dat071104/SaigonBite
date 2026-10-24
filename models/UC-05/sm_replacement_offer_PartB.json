@@ -1,0 +1,148 @@
+{
+  "pages": [
+    {
+      "stem": "sm_replacement_offer_PartB",
+      "key": "offerB",
+      "title": "Figure 2.7B. ReplacementOffer — withdrawal paths",
+      "subtitle": "UC-05 owner · same OFFERED lifecycle as Figure 2.7A",
+      "nodes": [
+        {
+          "id": "offered",
+          "label": "OFFERED",
+          "x": 170,
+          "y": 365,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "withdrawn",
+          "label": "WITHDRAWN",
+          "x": 920,
+          "y": 365,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "endWithdrawn",
+          "label": "",
+          "x": 1065,
+          "y": 365,
+          "w": 28,
+          "h": 28,
+          "kind": "final",
+          "grey": false
+        }
+      ],
+      "edges": [
+        {
+          "src": "offered",
+          "dst": "withdrawn",
+          "points": [
+            [
+              170,
+              331
+            ],
+            [
+              170,
+              135
+            ],
+            [
+              920,
+              135
+            ],
+            [
+              920,
+              331
+            ]
+          ],
+          "label": "rejectOrder [own-hub PLACED; reason; open offer]\n/ WITHDRAWN; decided_at; Order REJECTED; BR-17",
+          "label_box": [
+            320,
+            165,
+            490,
+            80
+          ]
+        },
+        {
+          "src": "offered",
+          "dst": "withdrawn",
+          "points": [
+            [
+              275,
+              365
+            ],
+            [
+              815,
+              365
+            ]
+          ],
+          "label": "cancelOrder [own PLACED/CONFIRMED; open offer]\n/ WITHDRAWN; decided_at; Order CANCELLED; BR-17",
+          "label_box": [
+            325,
+            285,
+            480,
+            60
+          ]
+        },
+        {
+          "src": "offered",
+          "dst": "withdrawn",
+          "points": [
+            [
+              170,
+              399
+            ],
+            [
+              170,
+              590
+            ],
+            [
+              920,
+              590
+            ],
+            [
+              920,
+              399
+            ]
+          ],
+          "label": "acceptReplacement [own PLACED; exact open offer;\ntarget now unlisted / unavailable / archived]\n/ WITHDRAWN; decided_at; show reason; Order unchanged",
+          "label_box": [
+            320,
+            445,
+            490,
+            80
+          ]
+        },
+        {
+          "src": "withdrawn",
+          "dst": "endWithdrawn",
+          "points": [
+            [
+              1025,
+              365
+            ],
+            [
+              1051,
+              365
+            ]
+          ],
+          "label": "",
+          "label_box": [
+            350,
+            100,
+            470,
+            120
+          ]
+        }
+      ],
+      "notes": [
+        "WITHDRAWN is terminal for this offer; it never revives a cancelled/rejected order.",
+        "Invalid-target acceptance withdraws the offer only; UC05-MG01 still preserves the Order."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "pages": [
+    {
+      "stem": "sm_order_PartD",
+      "key": "orderD",
+      "title": "Figure 2.3D. Order — preparation and pickup",
+      "subtitle": "UC-01 owner; shared by UC-05 / SUC-05 / UC-02 · paired object effects commit together",
+      "nodes": [
+        {
+          "id": "confirmed",
+          "label": "CONFIRMED",
+          "x": 160,
+          "y": 150,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "preparing",
+          "label": "PREPARING",
+          "x": 930,
+          "y": 150,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "ready",
+          "label": "READY",
+          "x": 930,
+          "y": 550,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "out",
+          "label": "OUT_FOR_DELIVERY",
+          "x": 160,
+          "y": 550,
+          "w": 240,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        }
+      ],
+      "edges": [
+        {
+          "src": "confirmed",
+          "dst": "preparing",
+          "points": [
+            [
+              265,
+              150
+            ],
+            [
+              825,
+              150
+            ]
+          ],
+          "label": "startPreparing [own hub; no open offer]\n/ set Order PREPARING",
+          "label_box": [
+            310,
+            175,
+            470,
+            60
+          ]
+        },
+        {
+          "src": "preparing",
+          "dst": "ready",
+          "points": [
+            [
+              930,
+              184
+            ],
+            [
+              930,
+              516
+            ]
+          ],
+          "label": "markReady [own hub]\n/ set ready_at; insert exactly one\nDelivery AWAITING_PICKUP",
+          "label_box": [
+            500,
+            300,
+            405,
+            80
+          ]
+        },
+        {
+          "src": "ready",
+          "dst": "out",
+          "points": [
+            [
+              825,
+              550
+            ],
+            [
+              280,
+              550
+            ]
+          ],
+          "label": "takeDelivery [active shipper; delivery unassigned]\n/ Delivery PICKED_UP; shipper_id; picked_up_at;\nOrder OUT_FOR_DELIVERY",
+          "label_box": [
+            305,
+            440,
+            500,
+            80
+          ]
+        }
+      ],
+      "notes": [
+        "Views A–E project one Order lifecycle; repeated state names denote the same stored state.",
+        "Every event requires an active authorised actor; failed guards change no Order facts.",
+        "READY and OUT_FOR_DELIVERY leave cooking load (BR-01); pickup has exactly one winner."
+      ]
+    }
+  ]
+}

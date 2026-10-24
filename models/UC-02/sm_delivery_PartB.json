@@ -1,0 +1,168 @@
+{
+  "pages": [
+    {
+      "stem": "sm_delivery_PartB",
+      "key": "deliveryB",
+      "title": "Figure 2.5B. Delivery — completion outcomes",
+      "subtitle": "UC-02 owner · same PICKED_UP state as Figure 2.5A",
+      "nodes": [
+        {
+          "id": "picked",
+          "label": "PICKED_UP",
+          "x": 180,
+          "y": 365,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "delivered",
+          "label": "DELIVERED",
+          "x": 920,
+          "y": 175,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "failed",
+          "label": "FAILED",
+          "x": 920,
+          "y": 550,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "endDelivered",
+          "label": "",
+          "x": 1065,
+          "y": 175,
+          "w": 28,
+          "h": 28,
+          "kind": "final",
+          "grey": false
+        },
+        {
+          "id": "endFailed",
+          "label": "",
+          "x": 1065,
+          "y": 550,
+          "w": 28,
+          "h": 28,
+          "kind": "final",
+          "grey": false
+        }
+      ],
+      "edges": [
+        {
+          "src": "picked",
+          "dst": "delivered",
+          "points": [
+            [
+              285,
+              365
+            ],
+            [
+              335,
+              365
+            ],
+            [
+              335,
+              175
+            ],
+            [
+              815,
+              175
+            ]
+          ],
+          "label": "confirmDelivered\n[assigned active shipper; COD cash = T]\n/ Delivery DELIVERED; Order DELIVERED;\nfinished_at, closed_at; COD PAID + cash=T",
+          "label_box": [
+            375,
+            215,
+            420,
+            100
+          ]
+        },
+        {
+          "src": "picked",
+          "dst": "failed",
+          "points": [
+            [
+              285,
+              365
+            ],
+            [
+              335,
+              365
+            ],
+            [
+              335,
+              550
+            ],
+            [
+              815,
+              550
+            ]
+          ],
+          "label": "reportFailure [assigned active shipper; reason]\n/ Delivery FAILED; failure_reason; finished_at;\nOrder DELIVERY_FAILED + closed_at; BR-17\n(COD VOIDED; ONLINE REFUND_PENDING, owed=C)",
+          "label_box": [
+            365,
+            425,
+            440,
+            100
+          ]
+        },
+        {
+          "src": "delivered",
+          "dst": "endDelivered",
+          "points": [
+            [
+              1025,
+              175
+            ],
+            [
+              1051,
+              175
+            ]
+          ],
+          "label": "",
+          "label_box": [
+            350,
+            100,
+            470,
+            120
+          ]
+        },
+        {
+          "src": "failed",
+          "dst": "endFailed",
+          "points": [
+            [
+              1025,
+              550
+            ],
+            [
+              1051,
+              550
+            ]
+          ],
+          "label": "",
+          "label_box": [
+            350,
+            100,
+            470,
+            120
+          ]
+        }
+      ],
+      "notes": [
+        "Wrong shipper / wrong cash / repeat → 0 rows changed (UC02-MG01).",
+        "No retry or redelivery transition; retained delivery timestamps support read-only UC-04."
+      ]
+    }
+  ]
+}

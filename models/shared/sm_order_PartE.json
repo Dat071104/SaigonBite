@@ -1,0 +1,169 @@
+{
+  "pages": [
+    {
+      "stem": "sm_order_PartE",
+      "key": "orderE",
+      "title": "Figure 2.3E. Order — delivered or delivery failed",
+      "subtitle": "UC-01 owner; shared by UC-02 · four terminal Order states appear across A/C/E",
+      "nodes": [
+        {
+          "id": "out",
+          "label": "OUT_FOR_DELIVERY",
+          "x": 180,
+          "y": 365,
+          "w": 260,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "delivered",
+          "label": "DELIVERED",
+          "x": 920,
+          "y": 170,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "failed",
+          "label": "DELIVERY_FAILED",
+          "x": 920,
+          "y": 550,
+          "w": 240,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "endDelivered",
+          "label": "",
+          "x": 1068,
+          "y": 170,
+          "w": 28,
+          "h": 28,
+          "kind": "final",
+          "grey": false
+        },
+        {
+          "id": "endFailed",
+          "label": "",
+          "x": 1068,
+          "y": 550,
+          "w": 28,
+          "h": 28,
+          "kind": "final",
+          "grey": false
+        }
+      ],
+      "edges": [
+        {
+          "src": "out",
+          "dst": "delivered",
+          "points": [
+            [
+              310,
+              365
+            ],
+            [
+              350,
+              365
+            ],
+            [
+              350,
+              170
+            ],
+            [
+              815,
+              170
+            ]
+          ],
+          "label": "confirmDelivered\n[assigned active shipper; COD cash = T]\n/ Delivery DELIVERED; set finished_at, closed_at;\nCOD PAID; record exact cash; ONLINE stays PAID",
+          "label_box": [
+            385,
+            210,
+            410,
+            100
+          ]
+        },
+        {
+          "src": "out",
+          "dst": "failed",
+          "points": [
+            [
+              310,
+              365
+            ],
+            [
+              350,
+              365
+            ],
+            [
+              350,
+              550
+            ],
+            [
+              800,
+              550
+            ]
+          ],
+          "label": "reportFailure [assigned active shipper; reason]\n/ Delivery FAILED + reason; finished_at, closed_at;\nCOD VOIDED or ONLINE REFUND_PENDING;\nONLINE refund_amount = captured C (BR-17)",
+          "label_box": [
+            375,
+            410,
+            420,
+            100
+          ]
+        },
+        {
+          "src": "delivered",
+          "dst": "endDelivered",
+          "points": [
+            [
+              1025,
+              170
+            ],
+            [
+              1054,
+              170
+            ]
+          ],
+          "label": "",
+          "label_box": [
+            350,
+            100,
+            470,
+            120
+          ]
+        },
+        {
+          "src": "failed",
+          "dst": "endFailed",
+          "points": [
+            [
+              1040,
+              550
+            ],
+            [
+              1054,
+              550
+            ]
+          ],
+          "label": "",
+          "label_box": [
+            350,
+            100,
+            470,
+            120
+          ]
+        }
+      ],
+      "notes": [
+        "Views A–E project one Order lifecycle; repeated state names denote the same stored state.",
+        "Every event requires an active authorised actor; failed guards change no Order facts.",
+        "Terminal states: DELIVERED, DELIVERY_FAILED, REJECTED, CANCELLED; no redelivery loop."
+      ]
+    }
+  ]
+}

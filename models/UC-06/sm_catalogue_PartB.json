@@ -1,0 +1,162 @@
+{
+  "pages": [
+    {
+      "stem": "sm_catalogue_PartB",
+      "key": "catB",
+      "title": "Figure 2.8B. MenuItem — maintenance and archive",
+      "subtitle": "UC-06 owner · Admin · ACTIVE/ARCHIVED are lifecycle abstractions over archived_at",
+      "nodes": [
+        {
+          "id": "initial",
+          "label": "",
+          "x": 160,
+          "y": 110,
+          "w": 24,
+          "h": 24,
+          "kind": "initial",
+          "grey": false
+        },
+        {
+          "id": "active",
+          "label": "ACTIVE",
+          "x": 160,
+          "y": 365,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "archived",
+          "label": "ARCHIVED",
+          "x": 920,
+          "y": 365,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "endArchive",
+          "label": "",
+          "x": 1065,
+          "y": 365,
+          "w": 28,
+          "h": 28,
+          "kind": "final",
+          "grey": false
+        }
+      ],
+      "edges": [
+        {
+          "src": "initial",
+          "dst": "active",
+          "points": [
+            [
+              160,
+              122
+            ],
+            [
+              160,
+              331
+            ]
+          ],
+          "label": "createMenuItem [unique valid name; active brand; price > 0]\n/ create ACTIVE MenuItem",
+          "label_box": [
+            290,
+            95,
+            750,
+            60
+          ]
+        },
+        {
+          "src": "active",
+          "dst": "active",
+          "points": [
+            [
+              160,
+              399
+            ],
+            [
+              160,
+              585
+            ],
+            [
+              320,
+              585
+            ],
+            [
+              320,
+              385
+            ],
+            [
+              265,
+              385
+            ]
+          ],
+          "label": "updateMenuItem [valid fields; uniqueness; price > 0]\n/ save current catalogue attributes; old order lines unchanged",
+          "label_box": [
+            350,
+            470,
+            700,
+            60
+          ]
+        },
+        {
+          "src": "active",
+          "dst": "archived",
+          "points": [
+            [
+              265,
+              345
+            ],
+            [
+              780,
+              345
+            ],
+            [
+              780,
+              365
+            ],
+            [
+              815,
+              365
+            ]
+          ],
+          "label": "archiveMenuItem [active record; authorised admin]\n/ set archived_at; hide operationally;\nblock new ordering/listing; preserve snapshots",
+          "label_box": [
+            315,
+            240,
+            485,
+            100
+          ]
+        },
+        {
+          "src": "archived",
+          "dst": "endArchive",
+          "points": [
+            [
+              1025,
+              365
+            ],
+            [
+              1051,
+              365
+            ]
+          ],
+          "label": "",
+          "label_box": [
+            350,
+            100,
+            470,
+            120
+          ]
+        }
+      ],
+      "notes": [
+        "No reactivation operation is defined in the frozen catalogue contract.",
+        "Archived brand/item cannot be listed or ordered (BR-19); old order snapshots stay unchanged."
+      ]
+    }
+  ]
+}

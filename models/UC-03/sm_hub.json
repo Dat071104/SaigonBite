@@ -1,0 +1,163 @@
+{
+  "pages": [
+    {
+      "stem": "sm_hub",
+      "key": "hub",
+      "title": "Figure 2.6. Hub — maintenance and archive",
+      "subtitle": "UC-03 owner · Admin · archive hides operationally; historical references survive",
+      "nodes": [
+        {
+          "id": "initial",
+          "label": "",
+          "x": 170,
+          "y": 110,
+          "w": 24,
+          "h": 24,
+          "kind": "initial",
+          "grey": false
+        },
+        {
+          "id": "active",
+          "label": "ACTIVE",
+          "x": 170,
+          "y": 365,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "archived",
+          "label": "ARCHIVED",
+          "x": 920,
+          "y": 365,
+          "w": 210,
+          "h": 68,
+          "kind": "state",
+          "grey": false
+        },
+        {
+          "id": "endArchive",
+          "label": "",
+          "x": 1065,
+          "y": 365,
+          "w": 28,
+          "h": 28,
+          "kind": "final",
+          "grey": false
+        }
+      ],
+      "edges": [
+        {
+          "src": "initial",
+          "dst": "active",
+          "points": [
+            [
+              170,
+              122
+            ],
+            [
+              170,
+              331
+            ]
+          ],
+          "label": "createHub [unique code; valid coordinates/fee; capacity ≥ 1]\n/ create ACTIVE Hub",
+          "label_box": [
+            300,
+            95,
+            740,
+            60
+          ]
+        },
+        {
+          "src": "active",
+          "dst": "active",
+          "points": [
+            [
+              170,
+              399
+            ],
+            [
+              170,
+              585
+            ],
+            [
+              340,
+              585
+            ],
+            [
+              340,
+              385
+            ],
+            [
+              275,
+              385
+            ]
+          ],
+          "label": "updateHub [valid code/coordinates/fee; capacity ≥ 1]\n/ save attributes; existing orders retain snapshots",
+          "label_box": [
+            375,
+            470,
+            690,
+            60
+          ]
+        },
+        {
+          "src": "active",
+          "dst": "archived",
+          "points": [
+            [
+              275,
+              345
+            ],
+            [
+              780,
+              345
+            ],
+            [
+              780,
+              365
+            ],
+            [
+              815,
+              365
+            ]
+          ],
+          "label": "archiveHub [BR-18: no open orders]\n/ set archived_at; hide browse/checkout; preserve history",
+          "label_box": [
+            335,
+            250,
+            470,
+            80
+          ]
+        },
+        {
+          "src": "archived",
+          "dst": "endArchive",
+          "points": [
+            [
+              1025,
+              365
+            ],
+            [
+              1051,
+              365
+            ]
+          ],
+          "label": "",
+          "label_box": [
+            350,
+            100,
+            470,
+            120
+          ]
+        }
+      ],
+      "notes": [
+        "Inside ACTIVE: load=count(PLACED, CONFIRMED, PREPARING); BUSY if load ≥ capacity.",
+        "QUIET if pre-insert load < 25% capacity; these are derived classifications, never stored states.",
+        "Capacity may fall below load, never below 1; duplicate/invalid/unsafe archive → nothing changed."
+      ]
+    }
+  ]
+}
