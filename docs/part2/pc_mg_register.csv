@@ -1,0 +1,31 @@
+id,UC,text,state or stored fact,BR,ssd op
+UC01-PC01,UC-01,one PLACED order owned by the customer,one PLACED order owned by the customer,BR-01; BR-02; BR-05; BR-06; BR-08; BR-09; BR-10; BR-11; BR-14,confirmCheckout
+UC01-PC02,UC-01,lines with snapshot names/prices,lines with snapshot names/prices,BR-01; BR-02; BR-05; BR-06; BR-08; BR-09; BR-10; BR-11; BR-14,confirmCheckout
+UC01-PC03,UC-01,address snapshot + distance,address snapshot + distance,BR-01; BR-02; BR-05; BR-06; BR-08; BR-09; BR-10; BR-11; BR-14,confirmCheckout
+UC01-PC04,UC-01,S/D/F/Q/T stored and consistent,S/D/F/Q/T stored and consistent,BR-01; BR-02; BR-05; BR-06; BR-08; BR-09; BR-10; BR-11; BR-14,confirmCheckout
+UC01-PC05,UC-01,"payment PENDING (COD) or PAID (ONLINE, amount C)","payment PENDING (COD) or PAID (ONLINE, amount C)",BR-01; BR-02; BR-05; BR-06; BR-08; BR-09; BR-10; BR-11; BR-14,confirmCheckout
+UC01-PC06,UC-01,hub load +1,hub load +1,BR-01; BR-02; BR-05; BR-06; BR-08; BR-09; BR-10; BR-11; BR-14,confirmCheckout
+UC01-MG01,UC-01,"refused/declined/invalid → no order, no payment, no line","Invariant / refusal outcome: refused/declined/invalid → no order, no payment, no line",BR-01; BR-02; BR-05; BR-06; BR-08; BR-09; BR-10; BR-11; BR-14,confirmCheckout
+UC01-MG02,UC-01,replay → same single order,Invariant / refusal outcome: replay → same single order,BR-01; BR-02; BR-05; BR-06; BR-08; BR-09; BR-10; BR-11; BR-14,confirmCheckout
+UC01-MG03,UC-01,"busy → suggestions, nothing saved","Invariant / refusal outcome: busy → suggestions, nothing saved",BR-01; BR-02; BR-05; BR-06; BR-08; BR-09; BR-10; BR-11; BR-14,confirmCheckout
+UC02-PC01,UC-02,"one shipper assigned, Delivery PICKED_UP, order OUT_FOR_DELIVERY","one shipper assigned, Delivery PICKED_UP, order OUT_FOR_DELIVERY",BR-25,takeDelivery
+UC02-PC02,UC-02,"delivered: Delivery DELIVERED, order DELIVERED, COD PAID with cash = T","delivered: Delivery DELIVERED, order DELIVERED, COD PAID with cash = T",BR-25,confirmDelivered
+UC02-PC03,UC-02,"failed: Delivery FAILED + reason, order DELIVERY_FAILED, BR-17","failed: Delivery FAILED + reason, order DELIVERY_FAILED, BR-17",BR-17; BR-25,reportFailure
+UC02-MG01,UC-02,second shipper / wrong shipper / wrong cash / repeat → 0 rows changed,Invariant / refusal outcome: second shipper / wrong shipper / wrong cash / repeat → 0 rows changed,BR-25,takeDelivery; confirmDelivered; reportFailure
+UC03-PC01,UC-03,"hub created/updated with valid code, coordinates, fee, capacity","hub created/updated with valid code, coordinates, fee, capacity",BR-18,createHub; updateHub
+UC03-PC02,UC-03,"archived hub hidden from browse/checkout, visible in history/reports","archived hub hidden from browse/checkout, visible in history/reports",BR-18,archiveHub
+UC03-MG01,UC-03,duplicate code / capacity < 1 / archive with open order → nothing changed,Invariant / refusal outcome: duplicate code / capacity < 1 / archive with open order → nothing changed,BR-18,createHub; updateHub; archiveHub
+UC04-PC01,UC-04,"sales, workload, performance equal the hand oracle for the filter","sales, workload, performance equal the hand oracle for the filter",BR-20; BR-21; BR-22; BR-23; BR-24,salesReport; workloadReport; deliveryReport
+UC04-PC02,UC-04,n/a on empty denominators,n/a on empty denominators,BR-23,deliveryReport
+UC04-MG01,UC-04,0 rows written by any report request,Invariant / refusal outcome: 0 rows written by any report request,BR-24,salesReport; workloadReport; deliveryReport
+UC04-MG02,UC-04,non-manager denied,Invariant / refusal outcome: non-manager denied,plan §5.4,salesReport; workloadReport; deliveryReport
+UC05-PC01,UC-05,confirm: own-hub PLACED → CONFIRMED,confirm: own-hub PLACED → CONFIRMED,BR-26,confirmOrder
+UC05-PC02,UC-05,reject: REJECTED + reason + BR-17 + offer WITHDRAWN,reject: REJECTED + reason + BR-17 + offer WITHDRAWN,BR-16; BR-17; BR-26,rejectOrder
+UC05-PC03,UC-05,offer: one OFFERED offer per §3.3,offer: one OFFERED offer per §3.3,BR-26; plan §3.3,offerReplacement
+UC05-PC04,UC-05,accepted offer applied per §3.3 5–7,accepted offer applied per §3.3 5–7,plan §3.3,acceptReplacement
+UC05-MG01,UC-05,wrong hub / open offer / stale / invalid target → order unchanged,Invariant / refusal outcome: wrong hub / open offer / stale / invalid target → order unchanged,BR-26; plan §3.3,confirmOrder; offerReplacement; acceptReplacement
+UC06-PC01,UC-06,"brand/item created, updated, archived","brand/item created, updated, archived",BR-19,createBrand; updateBrand; archiveBrand; createMenuItem; updateMenuItem; archiveMenuItem
+UC06-PC02,UC-06,"listing added/removed, availability per hub","listing added/removed, availability per hub",BR-19,listItemAtHub; unlistItemAtHub; setListingAvailability
+UC06-PC03,UC-06,archived/sold-out items not orderable,archived/sold-out items not orderable,BR-19,archiveBrand; archiveMenuItem; setListingAvailability
+UC06-MG01,UC-06,old order lines unchanged after price change/archive,Invariant / refusal outcome: old order lines unchanged after price change/archive,BR-19,updateMenuItem; archiveMenuItem; archiveBrand; unlistItemAtHub
+UC06-MG02,UC-06,duplicates/invalid prices refused,Invariant / refusal outcome: duplicates/invalid prices refused,BR-19,createBrand; updateBrand; createMenuItem; updateMenuItem; listItemAtHub

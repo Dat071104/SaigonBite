@@ -19,3 +19,11 @@ Author: 722I0004 · AI-assisted (Codex)
 | Codex G1 reviewer, gpt-6.1-sol / high, 23/10/2026 | Independent Phase 1 review | Read-only P1-26–P1-31 audit against primary sources, report, workbook, diagrams and frozen boundaries; report-only write lane | Reviewer findings and root disposition recorded at closure | P1-review.md and P1-root.md; no application-test result inferred from documentary review |
 
 Full Phase 1 prompt: D:/RAD/FINAL/Part2/codex/P1_PROMPT.md. Worker prompts and outputs are archived in Part2/notes; earlier full prompts not recovered remain pending for Dat if requested within 48 hours.
+
+## Phase 2
+
+| Tool + date | Purpose | Prompt summary | Kept / changed | How verified |
+|---|---|---|---|---|
+| Codex root, 24/10/2026 | Phase 2 preflight, operation catalogue, PC/MG register and integration | Execute P2 only; 4 shared-analysis workers then 3 UC workers and 1 reviewer; preserve G1 app/Part 1 and Section I | Thirty verbatim P2.3 anchors and 60 observable operations; Static draft gaps recorded for P4; no code changes | Primary PDF/DOCX/XLSX reads, binary manifest, AST method inventory; later integration/review and guarded workbook evidence recorded in P2-root.md |
+
+Full controlling prompt: D:/RAD/FINAL/Part2/codex/P2_PROMPT.md. Worker dispatches and outputs are retained with the local Codex transcript and archived phase records; no unrecorded lecturer approval is inferred.
