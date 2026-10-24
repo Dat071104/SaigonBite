@@ -1,0 +1,924 @@
+{
+  "author": "722I0004 · AI-assisted (Codex)",
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "elements": {
+    "PlaceOrderController": [
+      {
+        "name": "request_quote",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "F-04; F-07; P3-S01",
+        "P4_subphase": "P4.3",
+        "reason": "Use raw distance; include payment choice and a full quote fingerprint; rank suggestions by load ratio, distance and ID.",
+        "signature": "request_quote(self, user_id: int, hub_id: int, address_id: Optional[int], quantities: Mapping[int, str], voucher_code: Optional[str] = None, payment: Optional[PaymentChoice] = None) -> Quote"
+      },
+      {
+        "name": "confirm_order",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "F-04; F-07; P2-S05; P2-S13",
+        "P4_subphase": "P4.3",
+        "reason": "Compare full fingerprint and T; release simulator authorization on every failure through COMMIT.",
+        "signature": "confirm_order(self, user_id: int, hub_id: int, address_id: Optional[int], quantities: Mapping[int, str], idempotency_token: str, quoted_total: Optional[int] = None, voucher_code: Optional[str] = None, payment: Optional[PaymentChoice] = None, quote_fingerprint: Optional[str] = None) -> OrderConfirmation"
+      },
+      {
+        "name": "suggest_hubs",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P3-S01; F-04",
+        "P4_subphase": "P4.3",
+        "reason": "Draft sorts by load ratio then ID; BR-04 requires distance as the second key and raw distance for range."
+      }
+    ],
+    "Quote": [
+      {
+        "name": "fingerprint",
+        "kind": "method",
+        "status": "GAP",
+        "P4_input": "F-07",
+        "P4_subphase": "P4.3",
+        "reason": "Canonical content fingerprint binds hub, address, line IDs/quantities/prices, voucher+D, F, Q and payment choice.",
+        "signature": "fingerprint(self, payment: PaymentChoice) -> str"
+      }
+    ],
+    "Hub": [
+      {
+        "name": "distance_to",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "F-04",
+        "P4_subphase": "P4.3",
+        "reason": "Keep raw Haversine precision through the radius and fee decisions; round only presentation/storage."
+      }
+    ],
+    "Payment": [
+      {
+        "name": "release_for_unfulfilled_order",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "F-02; P2-S01",
+        "P4_subphase": "P4.4",
+        "reason": "Set refund_amount=C with REFUND_PENDING; preserve COD VOIDED; no payout operation."
+      }
+    ],
+    "OrderTrackingController": [
+      {
+        "name": "answer_replacement",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "F-05; F-02; P2-S09; P2-S11; P2-S13",
+        "P4_subphase": "P4.4",
+        "reason": "Recheck PLACED and exact open offer; recheck target; invalid target withdraws only the offer; valid accept uses offered price; controlled rollback through COMMIT."
+      },
+      {
+        "name": "cancel_order",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "F-02; P2-S13",
+        "P4_subphase": "P4.4",
+        "reason": "BR-17 full C refund owed and atomic state/amount writes, including COMMIT rollback."
+      }
+    ],
+    "KitchenController": [
+      {
+        "name": "reject_order",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "F-02; P2-S13",
+        "P4_subphase": "P4.4",
+        "reason": "BR-17 full C refund owed and atomic state/amount writes, including COMMIT rollback."
+      },
+      {
+        "name": "offer_replacement",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "F-05; P2-S09; P2-S13",
+        "P4_subphase": "P4.4",
+        "reason": "Require currently unavailable source; target active/listed/available; one open offer; check every conditional save result."
+      },
+      {
+        "name": "confirm_order",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S13; P3-S03",
+        "P4_subphase": "P4.1 + P4.4",
+        "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete."
+      },
+      {
+        "name": "start_preparing",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S13; P3-S03",
+        "P4_subphase": "P4.1 + P4.4",
+        "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete."
+      },
+      {
+        "name": "mark_ready",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S13; P3-S03",
+        "P4_subphase": "P4.1 + P4.4",
+        "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete."
+      },
+      {
+        "name": "set_availability",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S13; P3-S03",
+        "P4_subphase": "P4.1 + P4.4",
+        "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete."
+      }
+    ],
+    "DeliveryController": [
+      {
+        "name": "report_failure",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "F-02; P2-S13",
+        "P4_subphase": "P4.4 / P4.5",
+        "reason": "BR-17 full C refund owed and atomic state/amount writes, including COMMIT rollback."
+      },
+      {
+        "name": "pick_up",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S13; P3-S03",
+        "P4_subphase": "P4.1 + P4.5",
+        "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete."
+      },
+      {
+        "name": "confirm_delivered",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S13; P3-S03",
+        "P4_subphase": "P4.1 + P4.5",
+        "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete."
+      }
+    ],
+    "ReportController": [
+      {
+        "name": "sales_report",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "F-03; F-09",
+        "P4_subphase": "P4.8",
+        "reason": "Expose T without subtracting refund owed twice; top items retain menu_item_id identity."
+      },
+      {
+        "name": "workload_report",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S18",
+        "P4_subphase": "P4.8",
+        "reason": "Use all retained hub identities, including archived hubs with zero open work."
+      }
+    ],
+    "SalesRow": [
+      {
+        "name": "net",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "F-03",
+        "P4_subphase": "P4.8",
+        "reason": "Return total T; refunds_owed is disclosed separately."
+      }
+    ],
+    "HubController": [
+      {
+        "name": "list_hubs",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P3-S02",
+        "P4_subphase": "P4.2",
+        "reason": "Honor optional includeArchived explicitly; draft always includes archived hubs.",
+        "signature": "list_hubs(self, user_id: int, include_archived: bool = True) -> list[HubAdminView]"
+      },
+      {
+        "name": "create_hub",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S13; P3-S03",
+        "P4_subphase": "P4.1 + P4.2",
+        "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete."
+      },
+      {
+        "name": "update_hub",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S13; P3-S03",
+        "P4_subphase": "P4.1 + P4.2",
+        "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete."
+      },
+      {
+        "name": "archive_hub",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S13; P3-S03",
+        "P4_subphase": "P4.1 + P4.2",
+        "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete."
+      }
+    ],
+    "MenuController": [
+      {
+        "name": "list_catalogue",
+        "kind": "method",
+        "status": "GAP",
+        "P4_input": "P2-S14",
+        "P4_subphase": "P4.6",
+        "reason": "One public SSD operation composes catalogue, all hubs, and optional hub listings; retain catalogue/hub_menu as helpers.",
+        "signature": "list_catalogue(self, user_id: int, hub_id: Optional[int] = None) -> dict[str, object]"
+      },
+      {
+        "name": "list_item_at_hub",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S15; P2-S13",
+        "P4_subphase": "P4.6",
+        "reason": "Insert the requested initial availability in the same transaction.",
+        "signature": "list_item_at_hub(self, user_id: int, hub_id: int, item_id: int, available: bool = True) -> None"
+      },
+      {
+        "name": "create_brand",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S13; P3-S03",
+        "P4_subphase": "P4.1 + P4.6",
+        "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete."
+      },
+      {
+        "name": "rename_brand",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S13; P3-S03",
+        "P4_subphase": "P4.1 + P4.6",
+        "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete."
+      },
+      {
+        "name": "archive_brand",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S13; P3-S03",
+        "P4_subphase": "P4.1 + P4.6",
+        "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete."
+      },
+      {
+        "name": "create_item",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S13; P3-S03",
+        "P4_subphase": "P4.1 + P4.6",
+        "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete."
+      },
+      {
+        "name": "update_item",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S13; P3-S03",
+        "P4_subphase": "P4.1 + P4.6",
+        "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete."
+      },
+      {
+        "name": "archive_item",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S13; P3-S03",
+        "P4_subphase": "P4.1 + P4.6",
+        "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete."
+      },
+      {
+        "name": "unlist_item_at_hub",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S13; P3-S03",
+        "P4_subphase": "P4.1 + P4.6",
+        "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete."
+      },
+      {
+        "name": "set_availability",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S13; P3-S03",
+        "P4_subphase": "P4.1 + P4.6",
+        "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete."
+      }
+    ],
+    "MenuDAO": [
+      {
+        "name": "add_listing",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S15",
+        "P4_subphase": "P4.6",
+        "reason": "Set available in the INSERT, never as a second independently committed operation.",
+        "signature": "add_listing(self, hub_id: int, item_id: int, available: bool = True) -> None"
+      }
+    ],
+    "OrderDAO": [
+      {
+        "name": "save_lines_and_totals",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S09; P2-S11; P3-S03",
+        "P4_subphase": "P4.4",
+        "reason": "Apply replacement only to expected PLACED order and check each affected line/header rowcount.",
+        "signature": "save_lines_and_totals(self, order: Order) -> bool"
+      },
+      {
+        "name": "archive_one",
+        "kind": "method",
+        "status": "GAP",
+        "P4_input": "P2-S06",
+        "P4_subphase": "P4.7",
+        "reason": "Conditional per-ID terminal archive; return whether exactly one row changed.",
+        "signature": "archive_one(self, order_id: int, now: str) -> bool"
+      }
+    ],
+    "PaymentDAO": [
+      {
+        "name": "set_amounts",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "F-02; P3-S03",
+        "P4_subphase": "P4.4",
+        "reason": "Persist full/partial refund obligations atomically and expose the conditional save outcome.",
+        "signature": "set_amounts(self, order_id: int, amount: int, refund_amount: int, now: str) -> bool"
+      }
+    ],
+    "OrderArchiveController": [
+      {
+        "name": "archive_order",
+        "kind": "method",
+        "status": "GAP",
+        "P4_input": "P2-S06",
+        "P4_subphase": "P4.7",
+        "reason": "Minimal per-ID closed-order archive preserves history and child rows; existing batch operation remains separately named.",
+        "signature": "archive_order(self, user_id: int, order_id: int) -> Order"
+      }
+    ],
+    "UserAccount": [
+      {
+        "name": "created_at",
+        "kind": "attribute",
+        "status": "GAP",
+        "P4_input": "P2-S02",
+        "P4_subphase": "P4.1",
+        "reason": "Required by schema contract; missing from code and SQL at C0.",
+        "type": "str",
+        "visibility": "+",
+        "annotated": true
+      }
+    ]
+  },
+  "responsibilities": {
+    "Order": "Own the order lifecycle, snapshots and accepted replacement totals.",
+    "Payment": "Hold captured amount C and refund obligations without claiming payout.",
+    "Quote": "Compute and bind the complete consented price; not persisted.",
+    "Hub": "Represent a kitchen location, capacity and fee.",
+    "HubMenuItem": "Represent one hub listing and its independent availability.",
+    "ReplacementOffer": "Hold one proposed whole-line replacement and its decision history.",
+    "Customer": "Represent customer identity and permitted online payment choices.",
+    "ReportController": "Authorize Manager requests and construct operational reports without writes.",
+    "order": "Translate authenticated customer routes and render quote, receipt and order results.",
+    "admin": "Translate administrator maintenance routes; never provide business decisions.",
+    "delivery": "Translate shipper requests and render contact and cash information.",
+    "kitchen": "Translate own-hub kitchen actions and render their results.",
+    "reports": "Translate Manager filters and render read-only report results."
+  },
+  "associations": [
+    {
+      "source": "Customer",
+      "target": "UserAccount",
+      "source_multiplicity": "0..1",
+      "target_multiplicity": "1",
+      "role": "linked account",
+      "kind": "association",
+      "navigable": true,
+      "status": "MATCH",
+      "evidence": "domain model 2.1.7; code identifiers / typed fields"
+    },
+    {
+      "source": "Customer",
+      "target": "Address",
+      "source_multiplicity": "1",
+      "target_multiplicity": "0..*",
+      "role": "owns",
+      "kind": "association",
+      "navigable": true,
+      "status": "MATCH",
+      "evidence": "domain model 2.1.7; code identifiers / typed fields"
+    },
+    {
+      "source": "Hub",
+      "target": "HubMenuItem",
+      "source_multiplicity": "1",
+      "target_multiplicity": "0..*",
+      "role": "listings",
+      "kind": "association",
+      "navigable": true,
+      "status": "MATCH",
+      "evidence": "domain model 2.1.7; code identifiers / typed fields"
+    },
+    {
+      "source": "HubMenuItem",
+      "target": "MenuItem",
+      "source_multiplicity": "0..*",
+      "target_multiplicity": "1",
+      "role": "item",
+      "kind": "association",
+      "navigable": true,
+      "status": "MATCH",
+      "evidence": "domain model 2.1.7; code identifiers / typed fields"
+    },
+    {
+      "source": "Brand",
+      "target": "MenuItem",
+      "source_multiplicity": "1",
+      "target_multiplicity": "0..*",
+      "role": "offers",
+      "kind": "association",
+      "navigable": true,
+      "status": "MATCH",
+      "evidence": "domain model 2.1.7; code identifiers / typed fields"
+    },
+    {
+      "source": "Order",
+      "target": "Customer",
+      "source_multiplicity": "0..*",
+      "target_multiplicity": "1",
+      "role": "customer",
+      "kind": "association",
+      "navigable": true,
+      "status": "MATCH",
+      "evidence": "domain model 2.1.7; code identifiers / typed fields"
+    },
+    {
+      "source": "Order",
+      "target": "Hub",
+      "source_multiplicity": "0..*",
+      "target_multiplicity": "1",
+      "role": "hub",
+      "kind": "association",
+      "navigable": true,
+      "status": "MATCH",
+      "evidence": "domain model 2.1.7; code identifiers / typed fields"
+    },
+    {
+      "source": "Order",
+      "target": "Address",
+      "source_multiplicity": "0..*",
+      "target_multiplicity": "1",
+      "role": "address",
+      "kind": "association",
+      "navigable": true,
+      "status": "MATCH",
+      "evidence": "domain model 2.1.7; code identifiers / typed fields"
+    },
+    {
+      "source": "Order",
+      "target": "Voucher",
+      "source_multiplicity": "0..*",
+      "target_multiplicity": "0..1",
+      "role": "voucher",
+      "kind": "association",
+      "navigable": true,
+      "status": "MATCH",
+      "evidence": "domain model 2.1.7; code identifiers / typed fields"
+    },
+    {
+      "source": "Order",
+      "target": "OrderLine",
+      "source_multiplicity": "1",
+      "target_multiplicity": "1..*",
+      "role": "lines",
+      "kind": "composition",
+      "navigable": true,
+      "status": "MATCH",
+      "evidence": "domain model 2.1.7; code identifiers / typed fields"
+    },
+    {
+      "source": "Order",
+      "target": "Payment",
+      "source_multiplicity": "1",
+      "target_multiplicity": "1",
+      "role": "payment",
+      "kind": "association",
+      "navigable": true,
+      "status": "MATCH",
+      "evidence": "domain model 2.1.7; code identifiers / typed fields"
+    },
+    {
+      "source": "Order",
+      "target": "Delivery",
+      "source_multiplicity": "1",
+      "target_multiplicity": "0..1",
+      "role": "delivery",
+      "kind": "association",
+      "navigable": true,
+      "status": "MATCH",
+      "evidence": "domain model 2.1.7; code identifiers / typed fields"
+    },
+    {
+      "source": "Order",
+      "target": "ReplacementOffer",
+      "source_multiplicity": "1",
+      "target_multiplicity": "0..*",
+      "role": "offers",
+      "kind": "association",
+      "navigable": true,
+      "status": "MATCH",
+      "evidence": "domain model 2.1.7; code identifiers / typed fields"
+    },
+    {
+      "source": "ReplacementOffer",
+      "target": "OrderLine",
+      "source_multiplicity": "0..*",
+      "target_multiplicity": "1",
+      "role": "for line",
+      "kind": "association",
+      "navigable": true,
+      "status": "MATCH",
+      "evidence": "domain model 2.1.7; code identifiers / typed fields"
+    },
+    {
+      "source": "ReplacementOffer",
+      "target": "MenuItem",
+      "source_multiplicity": "0..*",
+      "target_multiplicity": "1",
+      "role": "target item",
+      "kind": "association",
+      "navigable": true,
+      "status": "MATCH",
+      "evidence": "domain model 2.1.7; code identifiers / typed fields"
+    },
+    {
+      "source": "OrderLine",
+      "target": "MenuItem",
+      "source_multiplicity": "0..*",
+      "target_multiplicity": "1",
+      "role": "snapshot source",
+      "kind": "association",
+      "navigable": true,
+      "status": "MATCH",
+      "evidence": "domain model 2.1.7; code identifiers / typed fields"
+    },
+    {
+      "source": "Delivery",
+      "target": "UserAccount",
+      "source_multiplicity": "0..*",
+      "target_multiplicity": "0..1",
+      "role": "assigned shipper",
+      "kind": "association",
+      "navigable": true,
+      "status": "MATCH",
+      "evidence": "domain model 2.1.7; code identifiers / typed fields"
+    },
+    {
+      "source": "UserAccount",
+      "target": "Hub",
+      "source_multiplicity": "0..*",
+      "target_multiplicity": "0..1",
+      "role": "kitchen hub",
+      "kind": "association",
+      "navigable": true,
+      "status": "MATCH",
+      "evidence": "domain model 2.1.7; code identifiers / typed fields"
+    },
+    {
+      "source": "LocalCustomer",
+      "target": "Customer",
+      "source_multiplicity": "1",
+      "target_multiplicity": "1",
+      "role": "is a",
+      "kind": "generalization",
+      "navigable": true,
+      "status": "MATCH",
+      "evidence": "domain model 2.1.7; code identifiers / typed fields"
+    },
+    {
+      "source": "TouristCustomer",
+      "target": "Customer",
+      "source_multiplicity": "1",
+      "target_multiplicity": "1",
+      "role": "is a",
+      "kind": "generalization",
+      "navigable": true,
+      "status": "MATCH",
+      "evidence": "domain model 2.1.7; code identifiers / typed fields"
+    }
+  ],
+  "target_dependencies": [
+    {
+      "source": "PlaceOrderController",
+      "target": "Quote",
+      "kind": "dependency",
+      "status": "P4-TARGET",
+      "P4_input": "F-07",
+      "allowed_on_layered_diagram": true
+    },
+    {
+      "source": "MenuController",
+      "target": "MenuDAO",
+      "kind": "dependency",
+      "status": "P4-TARGET",
+      "P4_input": "P2-S14",
+      "allowed_on_layered_diagram": true
+    },
+    {
+      "source": "OrderArchiveController",
+      "target": "OrderDAO",
+      "kind": "dependency",
+      "status": "P4-TARGET",
+      "P4_input": "P2-S06",
+      "allowed_on_layered_diagram": true
+    }
+  ],
+  "P4_inputs": [
+    {
+      "element": "PlaceOrderController.request_quote",
+      "P4 input": "F-04; F-07; P3-S01",
+      "P4 subphase": "P4.3",
+      "reason": "Use raw distance; include payment choice and a full quote fingerprint; rank suggestions by load ratio, distance and ID.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "PlaceOrderController.confirm_order",
+      "P4 input": "F-04; F-07; P2-S05; P2-S13",
+      "P4 subphase": "P4.3",
+      "reason": "Compare full fingerprint and T; release simulator authorization on every failure through COMMIT.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "PlaceOrderController.suggest_hubs",
+      "P4 input": "P3-S01; F-04",
+      "P4 subphase": "P4.3",
+      "reason": "Draft sorts by load ratio then ID; BR-04 requires distance as the second key and raw distance for range.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "Quote.fingerprint",
+      "P4 input": "F-07",
+      "P4 subphase": "P4.3",
+      "reason": "Canonical content fingerprint binds hub, address, line IDs/quantities/prices, voucher+D, F, Q and payment choice.",
+      "status": "GAP"
+    },
+    {
+      "element": "Hub.distance_to",
+      "P4 input": "F-04",
+      "P4 subphase": "P4.3",
+      "reason": "Keep raw Haversine precision through the radius and fee decisions; round only presentation/storage.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "Payment.release_for_unfulfilled_order",
+      "P4 input": "F-02; P2-S01",
+      "P4 subphase": "P4.4",
+      "reason": "Set refund_amount=C with REFUND_PENDING; preserve COD VOIDED; no payout operation.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "OrderTrackingController.answer_replacement",
+      "P4 input": "F-05; F-02; P2-S09; P2-S11; P2-S13",
+      "P4 subphase": "P4.4",
+      "reason": "Recheck PLACED and exact open offer; recheck target; invalid target withdraws only the offer; valid accept uses offered price; controlled rollback through COMMIT.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "KitchenController.reject_order",
+      "P4 input": "F-02; P2-S13",
+      "P4 subphase": "P4.4",
+      "reason": "BR-17 full C refund owed and atomic state/amount writes, including COMMIT rollback.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "OrderTrackingController.cancel_order",
+      "P4 input": "F-02; P2-S13",
+      "P4 subphase": "P4.4",
+      "reason": "BR-17 full C refund owed and atomic state/amount writes, including COMMIT rollback.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "DeliveryController.report_failure",
+      "P4 input": "F-02; P2-S13",
+      "P4 subphase": "P4.4 / P4.5",
+      "reason": "BR-17 full C refund owed and atomic state/amount writes, including COMMIT rollback.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "KitchenController.offer_replacement",
+      "P4 input": "F-05; P2-S09; P2-S13",
+      "P4 subphase": "P4.4",
+      "reason": "Require currently unavailable source; target active/listed/available; one open offer; check every conditional save result.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "ReportController.sales_report",
+      "P4 input": "F-03; F-09",
+      "P4 subphase": "P4.8",
+      "reason": "Expose T without subtracting refund owed twice; top items retain menu_item_id identity.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "ReportController.workload_report",
+      "P4 input": "P2-S18",
+      "P4 subphase": "P4.8",
+      "reason": "Use all retained hub identities, including archived hubs with zero open work.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "SalesRow.net",
+      "P4 input": "F-03",
+      "P4 subphase": "P4.8",
+      "reason": "Return total T; refunds_owed is disclosed separately.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "HubController.list_hubs",
+      "P4 input": "P3-S02",
+      "P4 subphase": "P4.2",
+      "reason": "Honor optional includeArchived explicitly; draft always includes archived hubs.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "MenuController.list_catalogue",
+      "P4 input": "P2-S14",
+      "P4 subphase": "P4.6",
+      "reason": "One public SSD operation composes catalogue, all hubs, and optional hub listings; retain catalogue/hub_menu as helpers.",
+      "status": "GAP"
+    },
+    {
+      "element": "MenuController.list_item_at_hub",
+      "P4 input": "P2-S15; P2-S13",
+      "P4 subphase": "P4.6",
+      "reason": "Insert the requested initial availability in the same transaction.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "MenuDAO.add_listing",
+      "P4 input": "P2-S15",
+      "P4 subphase": "P4.6",
+      "reason": "Set available in the INSERT, never as a second independently committed operation.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "OrderDAO.save_lines_and_totals",
+      "P4 input": "P2-S09; P2-S11; P3-S03",
+      "P4 subphase": "P4.4",
+      "reason": "Apply replacement only to expected PLACED order and check each affected line/header rowcount.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "PaymentDAO.set_amounts",
+      "P4 input": "F-02; P3-S03",
+      "P4 subphase": "P4.4",
+      "reason": "Persist full/partial refund obligations atomically and expose the conditional save outcome.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "OrderArchiveController.archive_order",
+      "P4 input": "P2-S06",
+      "P4 subphase": "P4.7",
+      "reason": "Minimal per-ID closed-order archive preserves history and child rows; existing batch operation remains separately named.",
+      "status": "GAP"
+    },
+    {
+      "element": "OrderDAO.archive_one",
+      "P4 input": "P2-S06",
+      "P4 subphase": "P4.7",
+      "reason": "Conditional per-ID terminal archive; return whether exactly one row changed.",
+      "status": "GAP"
+    },
+    {
+      "element": "HubController.create_hub",
+      "P4 input": "P2-S13; P3-S03",
+      "P4 subphase": "P4.1 + P4.2",
+      "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "HubController.update_hub",
+      "P4 input": "P2-S13; P3-S03",
+      "P4 subphase": "P4.1 + P4.2",
+      "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "HubController.archive_hub",
+      "P4 input": "P2-S13; P3-S03",
+      "P4 subphase": "P4.1 + P4.2",
+      "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "MenuController.create_brand",
+      "P4 input": "P2-S13; P3-S03",
+      "P4 subphase": "P4.1 + P4.6",
+      "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "MenuController.rename_brand",
+      "P4 input": "P2-S13; P3-S03",
+      "P4 subphase": "P4.1 + P4.6",
+      "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "MenuController.archive_brand",
+      "P4 input": "P2-S13; P3-S03",
+      "P4 subphase": "P4.1 + P4.6",
+      "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "MenuController.create_item",
+      "P4 input": "P2-S13; P3-S03",
+      "P4 subphase": "P4.1 + P4.6",
+      "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "MenuController.update_item",
+      "P4 input": "P2-S13; P3-S03",
+      "P4 subphase": "P4.1 + P4.6",
+      "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "MenuController.archive_item",
+      "P4 input": "P2-S13; P3-S03",
+      "P4 subphase": "P4.1 + P4.6",
+      "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "MenuController.unlist_item_at_hub",
+      "P4 input": "P2-S13; P3-S03",
+      "P4 subphase": "P4.1 + P4.6",
+      "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "MenuController.set_availability",
+      "P4 input": "P2-S13; P3-S03",
+      "P4 subphase": "P4.1 + P4.6",
+      "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "KitchenController.confirm_order",
+      "P4 input": "P2-S13; P3-S03",
+      "P4 subphase": "P4.1 + P4.4",
+      "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "KitchenController.start_preparing",
+      "P4 input": "P2-S13; P3-S03",
+      "P4 subphase": "P4.1 + P4.4",
+      "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "KitchenController.mark_ready",
+      "P4 input": "P2-S13; P3-S03",
+      "P4 subphase": "P4.1 + P4.4",
+      "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "KitchenController.set_availability",
+      "P4 input": "P2-S13; P3-S03",
+      "P4 subphase": "P4.1 + P4.4",
+      "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "DeliveryController.pick_up",
+      "P4 input": "P2-S13; P3-S03",
+      "P4 subphase": "P4.1 + P4.5",
+      "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "DeliveryController.confirm_delivered",
+      "P4 input": "P2-S13; P3-S03",
+      "P4 subphase": "P4.1 + P4.5",
+      "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "UserAccount.created_at",
+      "P4 input": "P2-S02",
+      "P4 subphase": "P4.1",
+      "reason": "Required by schema contract; missing from code and SQL at C0.",
+      "status": "GAP"
+    }
+  ],
+  "count_interpretation": {
+    "membership_rows": 41,
+    "distinct_UC_operation_pairs": 39,
+    "UC06_occurrences": 12,
+    "UC06_distinct_operations": 10,
+    "resolution": "Preserve all 41 SSD occurrences: listCatalogue occurs separately in UC06 SSD Parts A/B/C, with three design-sequence views. The 39 distinct UC/operation pairs are never misreported as 41 distinct operations."
+  }
+}

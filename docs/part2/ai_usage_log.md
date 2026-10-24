@@ -37,3 +37,11 @@ Full Phase 1 prompt: D:/RAD/FINAL/Part2/codex/P1_PROMPT.md. Worker prompts and o
 | Codex root, 24/10/2026 (review closure and runtime recovery) | Resolve R1–R6, preserve actual review history, finish checklist and local staging | Resume same reviewer after live quota permits; use OpenAI-docs skill for runtime documentation only; connect split activities, align guards/returns, no app edits | Corrected generators/data/exports, descriptions, operation return metadata, assembled report and consistency ledger; no new anchors/operations, no fabricated independent re-review | p2_review_audit.py proves sole initials and cross-page reachability; all 13 changed unique PNG/SVG pairs reopened; final manifests, explicit staged-diff review and local commit/staging receipt |
 
 Full controlling prompt: D:/RAD/FINAL/Part2/codex/P2_PROMPT.md. Worker dispatches, same-agent resumes and outputs are retained with the local Codex transcript and archived phase records; no unrecorded lecturer approval is inferred.
+
+## Phase 3
+
+Author: 722I0004 · AI-assisted (Codex)
+
+| Tool + date | Purpose | Prompt summary | Kept / changed | How verified |
+|---|---|---|---|---|
+| Codex root, 25/10/2026 | P3 target design baseline, integration and closure | Execute attached Phase 3 only; committed AST baseline; preserve app/Part 1/P2; wait for every worker before reports | Inventory, responsibility mapping, explicit target model and re-runnable checks; no app repair | Git blob inventory, fresh primary reads, binary manifests, independent design review and final static/visual checks; closure records exact outcomes |
