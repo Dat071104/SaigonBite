@@ -29,14 +29,14 @@ All findings below are **Static**, read at G1 `657089b`, not tests or measured r
 
 | ID | Evidence | Contract / later action |
 |---|---|---|
-| F-01 | tests/conftest.py:74 queries obsolete delivery_fee_flat (plan finding, current file retained) | P4.1 repair fixture/import collection; no P2 test pass claimed. |
+| F-01 | tests/conftest.py:74 directly re-read: import-time _seed_prices queries obsolete delivery_fee_flat | P4.1 repair fixture/import collection; no P2 test pass claimed. |
 | F-02 | business/domain/models.py:265–267 release_for_unfulfilled_order changes state only | BR-17 requires ONLINE refund_amount=C in the same change, including after a partial refund obligation. P4.4. |
 | F-03 | data_access/report_dao.py sales and report_controller.py SalesRow.net | BR-21: do not subtract refunds owed again from already reduced T. P4.8. |
 | F-04 | business/domain/rules.py:58 returns rounded Haversine distance | BR-05/06: use raw distance for radius/fee before display/storage rounding. P4.3. |
 | F-05 | kitchen_controller.py:111–138; order_tracking_controller.py:76–99 | Require currently unavailable source; recheck target listed/available/not archived; invalid target withdraws offer without changing order. P4.4. |
-| F-06 | templates/order/detail.html refund wording (plan F-06) | State refund owed, not paid out; payout is deferred L3. P4.4. |
+| F-06 | presentation/templates/order/detail.html:18–19 directly re-read: difference/payment “is refunded”; line 33 says “to be refunded” | State refund owed, not paid out; payout is deferred L3. P4.4. |
 | F-07 | place_order_controller.py:86–119 compares quoted_total only | BR-10 requires full content fingerprint plus T; catalogue describes required input, not existing implementation. P4.3. |
-| F-08 | db/migrations README / init_db.py old-version handling (plan F-08) | D-6 fresh v2 and explicit refusal of versions <2; do not claim a migration exists. P4.1. |
+| F-08 | db/migrations contains README only; init_db.py:--migrate prints “up to date” when no scripts exist, without refusing user_version <2 | D-6 fresh v2 and explicit refusal of versions <2; do not claim a migration exists. P4.1. |
 | F-09 | report_dao.py:top_items GROUP BY item_name | BR-24 group by menu_item_id, snapshot name shown. P4.8. |
 | P2-S01 | enums.py PaymentState and schema payment CHECK include FAILED/REFUNDED; models.py PAYMENT_TRANSITIONS allows REFUND_PENDING→REFUNDED | Contract has no persisted declined attempt and no payout path. Depict REFUNDED grey future; P4 must exclude unsupported reachable behaviour. |
 | P2-S02 | schema user_account lacks created_at | §5.3 requires created_at; record mapping gap for P3/P4. |
@@ -52,3 +52,97 @@ All findings below are **Static**, read at G1 `657089b`, not tests or measured r
 ## Marking evidence pointers
 
 Primary `RAD_Sem01_2627_MarkingSheet.xlsx`: items 14–20 are physical Checklist rows 27–33. Rubric Guide row 8 holds P2-II Excellent. Evidence pointers and dispositions are completed at integration/review.
+
+| Item | Physical Excel row | Evidence / disposition |
+|---|---|---|
+| 14 | 27 | report/II_2-1_team_analysis.md; report/II_2-1-6_2-1-7_models.md; Figure 2.1A–C (events, actors, full goals, proposal owners, actual author, UC relations). |
+| 15 | 28 | Figure 2.2A–C; 13 base classes + 2 subtypes; final domain inventory in Part2/notes/P2-root/domain_model_final_audit.json. Static gaps remain P4 inputs. |
+| 16 | 29 | Six docs/part2/UC-0x/description.md; Figures 2.10–2.21 split activities/SSDs; six report 2.2 source parts; analysis_consistency.csv and ssd_flow_membership.csv. |
+| 17 | 30 | **Partial** under J2: all state machines are authored by 722I0004; no state-machine authorship exists for 523K0049 / 523K0050. This does not satisfy the per-student item for those members. |
+| 18 | 31 | report/II_2-3_crud.md: five actor tables, reconciled 13-class union and 13/13 schema coverage; guarded workbook CRUD Check rows 5–17. Analysis only; running CRUD paths remain G4/P4 work. |
+| 19 | 32 | Report 2.1.5 / Figure 2.1A–C: (a) UC-01; (b) UC-02/05; (c) UC-03/06; (d) UC-04. |
+| 20 | 33 | Author 722I0004 plus AI-assisted (Codex) on six UC titles/sections and all report figure captions / model exports. |
+
+| P2-II Excellent criterion (Rubric Guide row 8) | Evidence pointer / limit |
+|---|---|
+| Events table complete | 20 events in 2.1.3; workbook rows 5–24; External commands and on-demand Temporal date boundary, no fictitious scheduler/database actor. |
+| Correct domain with generalisation, whole-part, association class | Figure 2.2A–C: Customer subtypes, Order composition OrderLine, HubMenuItem association class, multiplicities; Static differences listed, not hidden. |
+| Fully developed descriptions with pre/postconditions | Six description sources, nine template fields in order, numbered two-column flow, A/E branches and 30 verbatim main anchors; SUC.md has nine supporting contracts. |
+| Activity / SSD / state consistency | analysis_consistency.csv: 30 actual-ID mappings; ssd_flow_membership.csv: 41 request occurrences / 38 distinct catalogue operations with exact parameters and flow membership. No application result is inferred. |
+| Complete CRUD verification | Five scoped actor tables and derived union retain every original §2.4 cell, explicitly reconcile literal plan omissions, cover all 13 tables. Running-path verification stays in P4. |
+
+These are evidence pointers for review, not an awarded score or a promise of Excellent.
+
+## Wave 1 integration
+
+All four completion notifications were received before any Wave 1 report was opened. Root then read A/B/C/D reports together. Requests and dispositions:
+
+| Request / finding | Disposition and reason |
+|---|---|
+| A: classify the 12 lifecycle events consistently | Accepted: External actor commands trigger the state changes; new states are responses. No autonomous state-event handler is invented. Temporal voucher boundaries remain checked on demand. |
+| Root: event 2 said simulator decline before checkout | Corrected to deterministic decision within confirmCheckout before persistence. The customer's approve/decline choice precedes the transaction; commit failure also releases authorization, BR-14. |
+| B: extra withdrawal_reason persistent attribute | Refused. §3.3(5) requires withdrawal with a shown reason, not new persistent reason history. Removed attribute from generator and regenerated all domain views; original B report is pre-integration evidence. Final PartC PNG and independently rendered SVG reopened by root. |
+| B: domain/UC split placement | Accepted: Figure 2.1A–C / 2.2A–C need 230 mm landscape. Unsuffixed images are first-page aliases; editable base files contain all three pages. |
+| B/C: Static P4 inputs | Accepted as mapping/behavior obligations, not runtime findings. See supplementary list below. |
+| C: state placement | Accepted named machine blocks once under owning iv headings; shared cross-references elsewhere. Account final is explicitly unreachable because the contract has reversible inactivity and no deletion event. Future Payment REFUNDED remains disconnected grey. |
+| D: §2.4/§2.5 literal CRUD discrepancies | Accepted narrow read-path reconciliation. Original §2.4 cells are all retained; seven extra Read qualifiers against literal §2.4 are from already-scoped §2.5 paths. Six missing actor qualifiers were filled from §2.4. No create/update/archive grant added. Authentication-context reads stay own-only, with credential lookup internal. |
+| Root reverse-direction CRUD omission | Kitchen Order R SUC-05 occurs in §2.5 but not §2.4; retain own-hub preparation read. D's original report is superseded for closure by the root reconciliation, not silently presented as an exact original-plan match. |
+
+Final five actor tables, reconciled union and all 13 schema tables are in `report/II_2-3_crud.md`; deterministic cell-set evidence: `Part2/notes/P2-root/crud_reconciliation.json` (zero missing original cells, zero additional write grants). Proposed future plan clarification: qualify own authentication, tracking/address selection, kitchen replacement/preparation, shipper payment-summary, Admin linked-profile/history reads explicitly in both tables. Locked plan unchanged. This is an analysis interpretation within existing scope, not a replan or new feature.
+
+The UC model keeps six main + nine supporting portfolio goals. Two unnumbered factored UC-01 behaviors express mandatory validation and optional simulated payment; they do not add portfolio IDs, operations or persisted classes. The three real include/extend relations are defined in report 2.1.6; Wave 2 uses those decisions.
+
+### Supplementary P4 inputs from B/C
+
+- P2-S07: SQL does not enforce Customer's linked UserAccount role CUSTOMER; BR-12 type/role correctness remains a behavioral/schema-design obligation.
+- P2-S08: Payment.updated_at is optional in the dataclass but NOT NULL in SQL. Direct PaymentDAO.insert inspection resolves the creation path: it writes updated_at or created_at. Document that mapping in P3; no unnecessary fix or failed-insert claim follows from optional typing alone.
+- P2-S09: Cross-row guards require later verification: offer line belongs to its Order, target remains eligible at the same hub, active assigned SHIPPER, one Payment and ≥1 line per successful checkout, exact cash and paired Order/Delivery/Payment updates.
+- P2-S10: Parent archive visibility, retained snapshots/history/refund obligations, Hub no-open-order archive, and BR-25 deactivation/next-request session checks need behavioral tests. Do not infer them from flags/CHECK constraints.
+- No persisted withdrawal_reason requirement was adopted; P3 maps the withdrawal reason as an operation result.
+- P2-S11: OrderTrackingController.answer_replacement and Order.replace_line lack an explicit PLACED recheck on acceptance. Existing no-open-offer confirmation/withdrawal logic is not a substitute for the §3.3(5) operation guard; verify/fix with F-05 in P4.4.
+- P2-S12: data_access/database.py.connect configures foreign_keys and timeout=10, but does not set journal_mode=WAL or synchronous=NORMAL as required by §5.2. Retain for P4/P6 production connection setup; the timeout is already present and is not reported as missing.
+- P2-S13: immediate_transaction performs COMMIT in its else branch outside the try/except around yield; no rollback handler covers a COMMIT exception. Audit this together with P2-S05 simulator-release behavior using forced commit failures in P4. No failure was induced in this phase.
+
+## Workbook preparation (before Wave 2 integration)
+
+Candidate only: `Part2/notes/P2-root/workbook_candidate.xlsx`; working/staged copies remain the G1 workbook until Wave 3. Payload is derived from versioned report events and reconciled CRUD, never hand-copied. Exactly 20 events and 13 union-class rows fit the template slots. Team & Use Cases corrections replace outdated short goals, distinguish proposal roles/owners from sole actual Part 2 authorship, and retain the proposal owner IDs.
+
+Artifact Tool import omitted shared-formula followers (G6 was empty while the original read-only audit has a formula). The authoring script restores every original expanded expression before calculation; the guard retains original formula XML, styles and package. Empty formula-result caches on still-unused template rows are retained as empty. Explicit line breaks preserve wording while preventing preview overflow. A controlled missing-Create probe returned Gap, then OK after restoration; all 13 used rows evaluate OK, five client questions remain, and the error scan matches zero cells. Candidate audit preserves **118 formulas, 321 green lecturer cells and 25 validation rules**, with only three worksheet parts modified. All seven changed-region previews were opened; final publication/verification follows the Wave 2 barrier. Native Excel remains untested.
+
+## Wave 2 liveness interruption and recovery
+
+After the owner explicitly requested a process check, runtime inventory showed only root and no E/F/G reports or renderer processes. Metadata-only transcript inspection (no unfinished report read) found E/F had stopped before a final event; G ended at 04:41:53 UTC with `usage_limit_exceeded` and no final message. The same cause is not asserted for E/F without a terminal record. Root had waited too long without detecting the absent workers.
+
+Root resumed the same p2_e / p2_f / p2_g identities with followup_task, preserving their original disjoint lanes and any existing drafts; no replacement agents, restart, deletes or model/config changes. Runtime then listed all three as running and their logs gained new timestamps. The owner's new instruction authorizes bounded process/liveness checks; it does not waive the report barrier. No Wave 2 report is opened until all three finish. Audit metadata is retained at `Part2/notes/P2-root/wave2_process_audit.json`; actual transcripts retain the terminal error and resume prompts.
+
+## Wave 3 integration
+
+F and G reported first; their reports remained unopened. Only after E's final notification did root open E/F/G together. All 30 main anchors and all 41 request occurrences were then integrated.
+
+| Request / root finding | Accepted / refused and reason |
+|---|---|
+| E1 / F1 / G1: canonical state blocks under owning iv headings | Accepted via p2_assembly.json and p2_assemble.py: Order/Payment UC-01; Delivery UC-02; Hub/UserAccount UC-03; read-only explanation UC-04; Offer UC-05; Catalogue UC-06. Shared images appear once. |
+| E2 / G2: anchor mappings plus query membership | Anchors accepted in analysis_consistency.csv. Request membership accepted in separate ssd_flow_membership.csv; mixing a read query into a creation-PC effect row was refused to avoid implying the query establishes a later write postcondition. Every request is still checked, including supporting receipt/tracking/cancel and Customer offer-response fragments. |
+| E3 / F2 / G2: preserve all split views | Accepted: all report figure parts retained at 230 mm landscape; no first-page alias is presented as the complete multi-page diagram. |
+| E4 / F3: no new operations or anchors; technical read failure | Accepted. Still 60 catalogue operations / 30 verbatim main anchors. Read-unavailable is an exception within existing report requests, with no fabricated figures or persistent writes; catalogue note records it. |
+| G3: Static mapping obligations | Accepted into P4 inputs below. Composite catalogue reads, requested initial availability and current-parent brandId require P3 mapping; no code was changed. |
+| Root: short UC-02/04 report names | Corrected to exact locked-plan goals. All six description titles now include the actual author. |
+| Root: main flow used a separate Step column | Corrected to the required two Actor/System columns; numbering remains with the action/response and all existing branch references remain valid. |
+| Root: active-only catalogue uniqueness wording | Refused as a promise of archived-name reuse. Root uses the conservative duplicate-name rule including retained archived names; diagrams/descriptions regenerated consistently. No restore/reparenting path added. |
+| Root: F workload active-hub restriction derived from draft | Refused. BR-22 says per hub and UC03-PC02 retains archived identities in reports. Conservative analysis includes archived hub identities with no open work under BR-18; this becomes a named P4 draft gap, not a code fix. |
+| Root: own catalogue return-name spacing typo | Corrected quoteWithFingerprintAndSD FQT to quoteWithFingerprintAndSDFQT in catalogue, description and generated UC-01 SSD. No operation or parameter changed. |
+| Root: replay boundary clarity | Explicitly begins the short checkout transaction before the token lookup in step 5 / activity 2.10B; step 6 continues it. This preserves BR-11 under competing confirmations without any user/simulator choice held inside the transaction. |
+
+`p2_consistency.py` resolves native node/edge IDs, rechecks all 41 actual request signatures against the catalogue and verifies description membership. `p2_audit.py` passes 60 new source/export sets, 30 anchor mappings, six nine-field descriptions and two-column flows, local assembled links and blank later evidence columns. All newly revised PNG/SVG forms were reopened by root, including first-page aliases; worker pre-integration QA remains historical evidence, while root's current hashes/structural checks cover final sources. Final diagram placement/native draw.io and native Excel remain later/native-engine limits, not hidden passes.
+
+`p2_assemble.py` resolves all description includes and injects state blocks without hand-copying descriptions. Section II has the exact template numbered heading order, including the documented extension to five actors. A nine-word primary-case overlap scan found no candidates. Traceability has **44 Analysed** rows with specific main/SUC anchors and **8 Planned** cross-cutting NFRs (03–10) whose exact durability/performance/privacy/transport/config/UI/architecture guarantees are not established by P2.3 anchors. Their analysis constraints remain referenced; no unrelated PC or design/code/test/result evidence was invented.
+
+Workbook published after the Wave 2 barrier and guard success. `P2_workbook_preservation.json` records 118 formula texts, 321 lecturer cells and 25 validations preserved, 244 allowed input-cell changes, three modified worksheet parts, 13 OK union rows and client count 5. Final Artifact Tool verification recalculated the preserved expressions, repeated the controlled Gap→OK probe and matched zero formula errors. All seven final renders are byte-identical to the reviewed candidate views. Native Excel was not used.
+
+### Additional P3/P4 mapping inputs from Wave 2
+
+- P2-S14: listCatalogue(hubId?) is a composite candidate over MenuController.catalogue / hub_menu; P3 confirms the observable-to-controller mapping.
+- P2-S15: listItemAtHub accepts an initial availability choice, while draft list_item_at_hub has no flag. Map creation plus requested availability atomically; never expose a briefly orderable row when requested SOLD_OUT.
+- P2-S16: updateMenuItem brandId is current-parent context; no item-reparenting or restore feature is promised by this phase.
+- P2-S17: draft lifetime uniqueness, validation maxima/lengths and HCMC coordinate bounds must be reconciled explicitly in P3/P4. Retained archived names remain duplicate-constrained conservatively; no blanket relaxation or unapproved new locked default is implied.
+- P2-S18: ReportController.workload_report currently iterates HubDAO.list_active. The adopted BR-22 / UC03-PC02 reading retains archived hub identities in reporting with zero open work; reconcile the query/result mapping in P4.

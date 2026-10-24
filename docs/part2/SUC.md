@@ -111,4 +111,3 @@ Author: 722I0004 · AI-assisted (Codex)
 - **CRUD cells held:** Order — Read/Archive; OrderLine, Payment, Delivery and ReplacementOffer — Read/Archive through the parent Order (SUC-09).
 - **Main UC served:** UC-04.
 - **Failure:** An open order or unauthorized archive request is refused with the Order and its children unchanged.
-

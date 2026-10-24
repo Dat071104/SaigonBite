@@ -42,3 +42,5 @@ Readability: ≥9 pt at placed width 170 mm portrait or 230 mm landscape; split 
 | G P2-41–45/56–60 | same pattern for UC-03 / UC-06, report parts 3/6; _agent_reports/P2-G.md |
 
 Report paths above prefixed `docs/part2/` unless full `models/` path. Root owns all other writes, workbook/checklist/AI log/contracts/assembly/git. Marker: `⟦PENDING: what, expected when⟧`. Finish report with files, checklist evidence, BLOCKED / ASSUMED, Requests to root, sources, visual QA; one final notification only after whole workstream.
+
+Wave 1 integrated: report 2.3 qualifies narrow existing Read paths and preserves all original union cells; no new write privileges. Lifecycle command events are External. Two factored UC01 behaviors support real include/extend; see Figure 2.1/report 2.1.6. No persistent withdrawal_reason attribute is required. Reuse/copy read-only B/C renderer patterns into your owned stems; never edit their files. For reports, state blocks have BEGIN/END markers in II_state_machines.md; root injects them once. All shared figures require 230 mm landscape. No extra PC/MG was adopted in Wave 1.

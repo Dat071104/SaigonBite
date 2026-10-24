@@ -40,4 +40,3 @@ No files outside the assigned write set were changed. No git commands or tests w
 - Primary-source extracts in `Part2/notes/P2_primary_sources.json`: case study and final-project requirements PDFs; report-template paragraphs/tables; direct workbook extracts for Team & Use Cases, Events Table, CRUD Check and MarkingSheet Checklist.
 - Convenience extracts in `Part2_Plan_Review/source_evidence/` for the case study, final-project requirements and report template; frozen `Part1_v2/content/content_master.md`, Part 1 process diagram source, and submitted Part 1 proposal PDF.
 - `docs/part2/rules.md`, `decision_log.md`, `pc_mg_register.csv`, `ssd_operations.csv`, and the locked Part 1 report/materials.
-

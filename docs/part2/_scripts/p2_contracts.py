@@ -16,7 +16,7 @@ def main():
     table=PLAN.split('**P2.3 Postcondition anchors',1)[1].split('Exit G2:',1)[0]
     # Semicolon is an anchor separator only when followed by another PC/MG token.
     maps={
-      '01': [('confirmCheckout','BR-01; BR-02; BR-05; BR-06; BR-08; BR-09; BR-10; BR-11; BR-14')]*9,
+      '01': [('confirmCheckout',b) for b in ['BR-02; BR-06; BR-08; BR-10; BR-11; BR-12; BR-14','BR-10; BR-19','BR-05; BR-06; BR-10; BR-12','BR-03; BR-07; BR-08; BR-09; BR-10','BR-14','BR-01; BR-02','BR-02; BR-06; BR-08; BR-10; BR-12; BR-14; plan §5.2','BR-11','BR-01; BR-02; BR-04; BR-06']],
       '02': [('takeDelivery','BR-25'),('confirmDelivered','BR-25'),('reportFailure','BR-17; BR-25'),('takeDelivery; confirmDelivered; reportFailure','BR-25')],
       '03': [('createHub; updateHub','BR-18'),('archiveHub','BR-18'),('createHub; updateHub; archiveHub','BR-18')],
       '04': [('salesReport; workloadReport; deliveryReport','BR-20; BR-21; BR-22; BR-23; BR-24'),('deliveryReport','BR-23'),('salesReport; workloadReport; deliveryReport','BR-24'),('salesReport; workloadReport; deliveryReport','plan §5.4')],
@@ -37,6 +37,11 @@ def main():
         w=csv.writer(f); w.writerow(['id','UC','text','state or stored fact','BR','ssd op']); w.writerows(anchors)
     rows=[]
     def add(op,params,ret,actor,uc,change,br,method,note='Contract operation; candidate mapping is Static only; P3 confirms design.'):
+        if op in ('salesReport','workloadReport','deliveryReport'): note+=' A technical read failure returns no fabricated figures and writes no persistent rows.'
+        if op=='workloadReport': note+=' Root conservative reading: retain archived hub identities for reporting with no open work under BR-18 / UC03-PC02; draft list_active gap is a P4 input.'
+        if op=='viewDelivery': note+=' Contact is a permitted read; the stored snapshot is the address. The return name does not introduce a persisted contact snapshot.'
+        if op=='updateMenuItem': note+=' brandId identifies the current parent; this analysis does not promise reparenting.'
+        if op in ('createBrand','updateBrand','createMenuItem','updateMenuItem'): note+=' Duplicate checks include retained archived names; no reuse/restore promise is introduced.'
         ids='; '.join(a[0] for a in anchors if op in a[5].split('; '))
         rows.append([f'OP-{len(rows)+1:02}',op,params,ret,actor,uc,change,br,ids,method,note])
     common='session actor identity is supplied by authenticated context; never trusted from posted actor ID'
@@ -57,7 +62,7 @@ def main():
     queries=[
       ('browseHubs','', 'activeHubsWithLoadAndCapacity','Customer','UC-01','BR-01; BR-02; BR-03','PlaceOrderController.list_hubs'),
       ('selectHub','hubId','availableMenuAndOwnAddresses | refusal','Customer','UC-01','BR-19','PlaceOrderController.select_hub'),
-      ('requestQuote','hubId, addressId, lines(itemId, quantity), voucherCode?, paymentMethod, onlineOption?','quoteWithFingerprintAndSD FQT | refusal | busySuggestions','Customer','UC-01','BR-01–BR-10; BR-14','PlaceOrderController.request_quote (payment/fingerprint gap for P4)'),
+      ('requestQuote','hubId, addressId, lines(itemId, quantity), voucherCode?, paymentMethod, onlineOption?','quoteWithFingerprintAndSDFQT | refusal | busySuggestions','Customer','UC-01','BR-01–BR-10; BR-14','PlaceOrderController.request_quote (payment/fingerprint gap for P4)'),
       ('viewReceipt','orderId','ownOrderReceipt | refusal','Customer','SUC-03; UC-01','BR-12; BR-13','OrderTrackingController.get_order (receipt formatting in presentation; Static)'),
       ('viewMyOrders','', 'ownOrdersAndOpenOffers','Customer','SUC-03','BR-12','OrderTrackingController.list_my_orders'),
       ('viewReplacement','orderId','originalAndOfferedLineQuantityTotalRefundOwed | refusal','Customer','SUC-03; UC-05','plan §3.3 4','OrderTrackingController.get_order'),

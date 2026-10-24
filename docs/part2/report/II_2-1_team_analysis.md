@@ -106,4 +106,3 @@ The proposal-owner column preserves the six use-case selections made in the prop
 | SUC-07 Maintain vouchers | Create, read, update and archive vouchers used by checkout. | Admin | UC-01 | 722I0004 |
 | SUC-08 Maintain user accounts; deactivate/reactivate | Maintain authorized staff accounts and active status. | Admin | UC-01–UC-06 | 722I0004 |
 | SUC-09 Archive closed orders; read archived history | Hide terminal orders from operational lists while retaining authorized historical access. | Admin | UC-04 | 722I0004 |
-

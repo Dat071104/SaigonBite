@@ -1,0 +1,16 @@
+{
+  "state_blocks": {
+    "UC-01": [
+      {"start": "<!-- BEGIN STATE_MACHINE ORDER -->", "end": "<!-- END STATE_MACHINE ORDER -->"},
+      {"start": "<!-- BEGIN STATE_MACHINE PAYMENT -->", "end": "<!-- END STATE_MACHINE PAYMENT -->"}
+    ],
+    "UC-02": [{"start": "<!-- BEGIN STATE_MACHINE DELIVERY -->", "end": "<!-- END STATE_MACHINE DELIVERY -->"}],
+    "UC-03": [
+      {"start": "<!-- BEGIN STATE_MACHINE HUB -->", "end": "<!-- END STATE_MACHINE HUB -->"},
+      {"start": "<!-- BEGIN STATE_MACHINE USER_ACCOUNT -->", "end": "<!-- END STATE_MACHINE USER_ACCOUNT -->"}
+    ],
+    "UC-04": [{"start": "<!-- BEGIN STATE_MACHINE UC04_READ_ONLY -->", "end": "<!-- END STATE_MACHINE UC04_READ_ONLY -->"}],
+    "UC-05": [{"start": "<!-- BEGIN STATE_MACHINE REPLACEMENT_OFFER -->", "end": "<!-- END STATE_MACHINE REPLACEMENT_OFFER -->"}],
+    "UC-06": [{"start": "<!-- BEGIN STATE_MACHINE CATALOGUE -->", "end": "<!-- END STATE_MACHINE CATALOGUE -->"}]
+  }
+}
