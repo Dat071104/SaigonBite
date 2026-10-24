@@ -1,0 +1,369 @@
+{
+  "stem": "use_case_diagram_PartA",
+  "width": 1600,
+  "height": 1220,
+  "font_min": 26,
+  "placed_width_mm": 230,
+  "min_placed_pt": 10.594488188976378,
+  "nodes": [
+    {
+      "id": "system",
+      "label": "SaigonBite system",
+      "x": 300,
+      "y": 100,
+      "w": 1120,
+      "h": 950,
+      "kind": "frame",
+      "fill": "white",
+      "attrs": null
+    },
+    {
+      "id": "customer",
+      "label": "Customer",
+      "x": 60,
+      "y": 260,
+      "w": 170,
+      "h": 120,
+      "kind": "actor",
+      "fill": "#E7F0F6",
+      "attrs": null
+    },
+    {
+      "id": "local",
+      "label": "Local\ncustomer",
+      "x": 5,
+      "y": 730,
+      "w": 170,
+      "h": 120,
+      "kind": "actor",
+      "fill": "#E7F0F6",
+      "attrs": null
+    },
+    {
+      "id": "tourist",
+      "label": "Tourist\ncustomer",
+      "x": 145,
+      "y": 730,
+      "w": 170,
+      "h": 120,
+      "kind": "actor",
+      "fill": "#E7F0F6",
+      "attrs": null
+    },
+    {
+      "id": "simulator",
+      "label": "Payment\nsimulator",
+      "x": 1430,
+      "y": 510,
+      "w": 170,
+      "h": 120,
+      "kind": "actor",
+      "fill": "#E7F0F6",
+      "attrs": null
+    },
+    {
+      "id": "UC01",
+      "label": "UC-01\nPlace an order with an accepted full price, voucher and payment choice\nextension point:\npayment authorization",
+      "x": 370,
+      "y": 155,
+      "w": 640,
+      "h": 260,
+      "kind": "ellipse",
+      "fill": "#DCEAF5",
+      "attrs": null
+    },
+    {
+      "id": "quote",
+      "label": "Validate accepted checkout\n\u00abincluded subgoal\u00bb",
+      "x": 1080,
+      "y": 180,
+      "w": 300,
+      "h": 170,
+      "kind": "ellipse",
+      "fill": "#F5F8FA",
+      "attrs": null
+    },
+    {
+      "id": "online",
+      "label": "Simulate online payment\n\u00abextension subgoal\u00bb",
+      "x": 1080,
+      "y": 500,
+      "w": 300,
+      "h": 170,
+      "kind": "ellipse",
+      "fill": "#F5F8FA",
+      "attrs": null
+    },
+    {
+      "id": "SUC02",
+      "label": "SUC-02\nRegister (local or tourist), edit profile, manage addresses",
+      "x": 370,
+      "y": 520,
+      "w": 310,
+      "h": 210,
+      "kind": "ellipse",
+      "fill": "#F5F8FA",
+      "attrs": null
+    },
+    {
+      "id": "SUC03",
+      "label": "SUC-03\nTrack my orders, view receipt, answer a replacement offer\nextension point:\norder action selected",
+      "x": 720,
+      "y": 500,
+      "w": 320,
+      "h": 270,
+      "kind": "ellipse",
+      "fill": "#F5F8FA",
+      "attrs": null
+    },
+    {
+      "id": "SUC04",
+      "label": "SUC-04\nCancel an order\n(PLACED or CONFIRMED)",
+      "x": 690,
+      "y": 850,
+      "w": 390,
+      "h": 175,
+      "kind": "ellipse",
+      "fill": "#F5F8FA",
+      "attrs": null
+    }
+  ],
+  "edges": [
+    {
+      "id": "a1",
+      "source": "customer",
+      "target": "UC01",
+      "points": [
+        [
+          230,
+          310
+        ],
+        [
+          370,
+          285
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": null
+    },
+    {
+      "id": "a2",
+      "source": "customer",
+      "target": "SUC02",
+      "points": [
+        [
+          230,
+          330
+        ],
+        [
+          320,
+          330
+        ],
+        [
+          320,
+          625
+        ],
+        [
+          370,
+          625
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": null
+    },
+    {
+      "id": "a3",
+      "source": "customer",
+      "target": "SUC03",
+      "points": [
+        [
+          230,
+          350
+        ],
+        [
+          290,
+          350
+        ],
+        [
+          290,
+          805
+        ],
+        [
+          690,
+          805
+        ],
+        [
+          690,
+          635
+        ],
+        [
+          720,
+          635
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": null
+    },
+    {
+      "id": "genlocal",
+      "source": "local",
+      "target": "customer",
+      "points": [
+        [
+          90,
+          730
+        ],
+        [
+          15,
+          730
+        ],
+        [
+          15,
+          215
+        ],
+        [
+          145,
+          215
+        ],
+        [
+          145,
+          260
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "general",
+      "ends": null
+    },
+    {
+      "id": "gentourist",
+      "source": "tourist",
+      "target": "customer",
+      "points": [
+        [
+          230,
+          730
+        ],
+        [
+          270,
+          730
+        ],
+        [
+          270,
+          195
+        ],
+        [
+          175,
+          195
+        ],
+        [
+          175,
+          260
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "general",
+      "ends": null
+    },
+    {
+      "id": "includequote",
+      "source": "UC01",
+      "target": "quote",
+      "points": [
+        [
+          1010,
+          260
+        ],
+        [
+          1080,
+          260
+        ]
+      ],
+      "label": "\u00abinclude\u00bb",
+      "lx": 1015,
+      "ly": 360,
+      "kind": "include",
+      "ends": null
+    },
+    {
+      "id": "extendonline",
+      "source": "online",
+      "target": "UC01",
+      "points": [
+        [
+          1230,
+          500
+        ],
+        [
+          1230,
+          450
+        ],
+        [
+          690,
+          450
+        ],
+        [
+          690,
+          415
+        ]
+      ],
+      "label": "\u00abextend\u00bb [ONLINE]",
+      "lx": 1060,
+      "ly": 465,
+      "kind": "extend",
+      "ends": null
+    },
+    {
+      "id": "extendcancel",
+      "source": "SUC04",
+      "target": "SUC03",
+      "points": [
+        [
+          880,
+          850
+        ],
+        [
+          880,
+          770
+        ]
+      ],
+      "label": "\u00abextend\u00bb\n[request cancel; state\nPLACED or CONFIRMED]",
+      "lx": 1070,
+      "ly": 790,
+      "kind": "extend",
+      "ends": null
+    },
+    {
+      "id": "sim",
+      "source": "simulator",
+      "target": "online",
+      "points": [
+        [
+          1430,
+          570
+        ],
+        [
+          1380,
+          585
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": null
+    }
+  ]
+}

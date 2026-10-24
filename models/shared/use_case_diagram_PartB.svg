@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1100" viewBox="0 0 1600 1100">
+<rect width="100%" height="100%" fill="white"/>
+<polyline points="185,322 240,315 390,290" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="185,322 240,335 320,335 320,587 390,587" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="185,322 240,355 280,355 280,705 1115,705 1115,665" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="185,792 240,785 390,840" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="1485,277 1430,280 1290,290" fill="none" stroke="#52616F" stroke-width="3"/>
+<rect x="300" y="100" width="1120" height="850" fill="none" stroke="#004387" stroke-width="3"/>
+<circle cx="155.0" cy="287" r="16" fill="white" stroke="#202B36" stroke-width="3"/>
+<path d="M155.0,303 V352 M125.0,322 H185.0 M127.0,387 L155.0,352 L183.0,387" fill="none" stroke="#202B36" stroke-width="3"/>
+<text x="83.71875" y="393" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="83.71875" dy="0">Kitchen staff</tspan>
+</text>
+<circle cx="155.0" cy="757" r="16" fill="white" stroke="#202B36" stroke-width="3"/>
+<path d="M155.0,773 V822 M125.0,792 H185.0 M127.0,857 L155.0,822 L183.0,857" fill="none" stroke="#202B36" stroke-width="3"/>
+<text x="110.203125" y="863" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="110.203125" dy="0">Shipper</tspan>
+</text>
+<circle cx="1515.0" cy="242" r="16" fill="white" stroke="#202B36" stroke-width="3"/>
+<path d="M1515.0,258 V307 M1485.0,277 H1545.0 M1487.0,342 L1515.0,307 L1543.0,342" fill="none" stroke="#202B36" stroke-width="3"/>
+<text x="1458.6640625" y="348" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1458.6640625" dy="0">Customer</tspan>
+</text>
+<ellipse cx="840.0" cy="292.5" rx="450.0" ry="112.5" fill="#DCEAF5" stroke="#004387" stroke-width="3"/>
+<ellipse cx="605.0" cy="587.5" rx="215.0" ry="77.5" fill="#F5F8FA" stroke="#004387" stroke-width="3"/>
+<ellipse cx="1115.0" cy="587.5" rx="215.0" ry="77.5" fill="#F5F8FA" stroke="#004387" stroke-width="3"/>
+<ellipse cx="840.0" cy="840.0" rx="450.0" ry="95.0" fill="#DCEAF5" stroke="#004387" stroke-width="3"/>
+<text x="30" y="18" fill="#202B36" font-family="Arial, sans-serif" font-size="34" font-weight="700" dominant-baseline="hanging">
+<tspan x="30" dy="0">Use cases · (b) kitchen and shipper fulfilment</tspan>
+</text>
+<text x="30" y="1034" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="30" dy="0">Figure 2.1B · Author: 722I0004 · AI-assisted (Codex)</tspan>
+</text>
+<text x="30" y="1065" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="30" dy="0">Analysis model · team defaults; no lecturer approval or runtime result inferred</tspan>
+</text>
+<text x="490" y="430" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="490" dy="0">Customer answer occurs through SUC-03 (Figure 2.1A);</tspan>
+</text>
+<text x="490" y="465" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="490" dy="0">it does not create a second synchronous kitchen actor session.</tspan>
+</text>
+<text x="350" y="975" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="350" dy="0">Sequence dependencies are described in flows, not drawn as «include».</tspan>
+</text>
+<text x="312" y="112" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="700" dominant-baseline="hanging">
+<tspan x="312" dy="0">SaigonBite system</tspan>
+</text>
+<text x="802.4375" y="246.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="802.4375" dy="0">UC-05</tspan>
+</text>
+<text x="447.296875" y="277.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="447.296875" dy="0">Decide an incoming order: confirm, reject, or offer a replacement the</tspan>
+</text>
+<text x="728.765625" y="308.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="728.765625" dy="0">customer agrees to</tspan>
+</text>
+<text x="558.765625" y="556.5" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="558.765625" dy="0">SUC-05</tspan>
+</text>
+<text x="425.140625" y="587.5" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="425.140625" dy="0">Start preparing and mark ready</tspan>
+</text>
+<text x="1068.765625" y="556.5" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1068.765625" dy="0">SUC-06</tspan>
+</text>
+<text x="935.125" y="587.5" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="935.125" dy="0">Set menu availability at my hub</tspan>
+</text>
+<text x="802.4375" y="809.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="802.4375" dy="0">UC-02</tspan>
+</text>
+<text x="442.7109375" y="840.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="442.7109375" dy="0">Deliver an order: pick up, deliver with cash collection, or report failure</tspan>
+</text>
+</svg>

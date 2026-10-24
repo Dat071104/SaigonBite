@@ -1,0 +1,447 @@
+{
+  "stem": "use_case_diagram_PartC",
+  "width": 1600,
+  "height": 1370,
+  "font_min": 26,
+  "placed_width_mm": 230,
+  "min_placed_pt": 10.594488188976378,
+  "nodes": [
+    {
+      "id": "system",
+      "label": "SaigonBite system",
+      "x": 300,
+      "y": 100,
+      "w": 1120,
+      "h": 1060,
+      "kind": "frame",
+      "fill": "white",
+      "attrs": null
+    },
+    {
+      "id": "admin",
+      "label": "Admin",
+      "x": 70,
+      "y": 370,
+      "w": 170,
+      "h": 120,
+      "kind": "actor",
+      "fill": "#E7F0F6",
+      "attrs": null
+    },
+    {
+      "id": "manager",
+      "label": "Manager",
+      "x": 1430,
+      "y": 520,
+      "w": 170,
+      "h": 120,
+      "kind": "actor",
+      "fill": "#E7F0F6",
+      "attrs": null
+    },
+    {
+      "id": "customer",
+      "label": "Customer",
+      "x": 1430,
+      "y": 805,
+      "w": 170,
+      "h": 120,
+      "kind": "actor",
+      "fill": "#E7F0F6",
+      "attrs": null
+    },
+    {
+      "id": "kitchen",
+      "label": "Kitchen staff",
+      "x": 1430,
+      "y": 970,
+      "w": 170,
+      "h": 120,
+      "kind": "actor",
+      "fill": "#E7F0F6",
+      "attrs": null
+    },
+    {
+      "id": "shipper",
+      "label": "Shipper",
+      "x": 70,
+      "y": 1010,
+      "w": 170,
+      "h": 120,
+      "kind": "actor",
+      "fill": "#E7F0F6",
+      "attrs": null
+    },
+    {
+      "id": "UC03",
+      "label": "UC-03\nMaintain hubs and kitchen capacity",
+      "x": 380,
+      "y": 175,
+      "w": 440,
+      "h": 195,
+      "kind": "ellipse",
+      "fill": "#DCEAF5",
+      "attrs": null
+    },
+    {
+      "id": "UC06",
+      "label": "UC-06\nMaintain brands, menu items and hub listings",
+      "x": 875,
+      "y": 175,
+      "w": 470,
+      "h": 195,
+      "kind": "ellipse",
+      "fill": "#DCEAF5",
+      "attrs": null
+    },
+    {
+      "id": "SUC07",
+      "label": "SUC-07\nMaintain vouchers",
+      "x": 380,
+      "y": 440,
+      "w": 380,
+      "h": 135,
+      "kind": "ellipse",
+      "fill": "#F5F8FA",
+      "attrs": null
+    },
+    {
+      "id": "SUC08",
+      "label": "SUC-08\nMaintain user accounts;\ndeactivate/reactivate",
+      "x": 380,
+      "y": 635,
+      "w": 380,
+      "h": 155,
+      "kind": "ellipse",
+      "fill": "#F5F8FA",
+      "attrs": null
+    },
+    {
+      "id": "SUC09",
+      "label": "SUC-09\nArchive closed orders;\nread archived history",
+      "x": 380,
+      "y": 850,
+      "w": 380,
+      "h": 155,
+      "kind": "ellipse",
+      "fill": "#F5F8FA",
+      "attrs": null
+    },
+    {
+      "id": "UC04",
+      "label": "UC-04\nProduce management reports: sales, workload, delivery performance",
+      "x": 875,
+      "y": 495,
+      "w": 470,
+      "h": 230,
+      "kind": "ellipse",
+      "fill": "#DCEAF5",
+      "attrs": null
+    },
+    {
+      "id": "SUC01",
+      "label": "SUC-01\nLog in / log out",
+      "x": 910,
+      "y": 970,
+      "w": 400,
+      "h": 140,
+      "kind": "ellipse",
+      "fill": "#F5F8FA",
+      "attrs": null
+    }
+  ],
+  "edges": [
+    {
+      "id": "ad3",
+      "source": "admin",
+      "target": "UC03",
+      "points": [
+        [
+          240,
+          410
+        ],
+        [
+          330,
+          410
+        ],
+        [
+          330,
+          270
+        ],
+        [
+          380,
+          270
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": null
+    },
+    {
+      "id": "ad6",
+      "source": "admin",
+      "target": "UC06",
+      "points": [
+        [
+          240,
+          430
+        ],
+        [
+          280,
+          430
+        ],
+        [
+          280,
+          155
+        ],
+        [
+          1110,
+          155
+        ],
+        [
+          1110,
+          175
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": null
+    },
+    {
+      "id": "ad7",
+      "source": "admin",
+      "target": "SUC07",
+      "points": [
+        [
+          240,
+          450
+        ],
+        [
+          380,
+          507
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": null
+    },
+    {
+      "id": "ad8",
+      "source": "admin",
+      "target": "SUC08",
+      "points": [
+        [
+          240,
+          470
+        ],
+        [
+          320,
+          470
+        ],
+        [
+          320,
+          710
+        ],
+        [
+          380,
+          710
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": null
+    },
+    {
+      "id": "ad9",
+      "source": "admin",
+      "target": "SUC09",
+      "points": [
+        [
+          240,
+          490
+        ],
+        [
+          290,
+          490
+        ],
+        [
+          290,
+          928
+        ],
+        [
+          380,
+          928
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": null
+    },
+    {
+      "id": "manage",
+      "source": "manager",
+      "target": "UC04",
+      "points": [
+        [
+          1430,
+          570
+        ],
+        [
+          1345,
+          610
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": null
+    },
+    {
+      "id": "loginad",
+      "source": "admin",
+      "target": "SUC01",
+      "points": [
+        [
+          240,
+          510
+        ],
+        [
+          265,
+          510
+        ],
+        [
+          265,
+          1130
+        ],
+        [
+          1110,
+          1130
+        ],
+        [
+          1110,
+          1110
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": null
+    },
+    {
+      "id": "loginma",
+      "source": "manager",
+      "target": "SUC01",
+      "points": [
+        [
+          1430,
+          590
+        ],
+        [
+          1410,
+          590
+        ],
+        [
+          1410,
+          1018
+        ],
+        [
+          1300,
+          1018
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": null
+    },
+    {
+      "id": "logincu",
+      "source": "customer",
+      "target": "SUC01",
+      "points": [
+        [
+          1430,
+          855
+        ],
+        [
+          1380,
+          855
+        ],
+        [
+          1380,
+          1040
+        ],
+        [
+          1310,
+          1040
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": null
+    },
+    {
+      "id": "loginki",
+      "source": "kitchen",
+      "target": "SUC01",
+      "points": [
+        [
+          1430,
+          1020
+        ],
+        [
+          1350,
+          1020
+        ],
+        [
+          1350,
+          1062
+        ],
+        [
+          1300,
+          1062
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": null
+    },
+    {
+      "id": "loginsh",
+      "source": "shipper",
+      "target": "SUC01",
+      "points": [
+        [
+          240,
+          1060
+        ],
+        [
+          910,
+          1060
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": null
+    }
+  ]
+}

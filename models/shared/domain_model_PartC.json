@@ -1,0 +1,629 @@
+{
+  "stem": "domain_model_PartC",
+  "width": 1800,
+  "height": 1490,
+  "font_min": 26,
+  "placed_width_mm": 230,
+  "min_placed_pt": 9.41732283464567,
+  "nodes": [
+    {
+      "id": "Order",
+      "label": "Order",
+      "x": 610,
+      "y": 120,
+      "w": 580,
+      "h": 561,
+      "kind": "class",
+      "fill": "#E7F0F6",
+      "attrs": [
+        "id: Integer",
+        "delivery_address_text: String",
+        "distance_km: Real",
+        "state: String",
+        "item_subtotal: Integer",
+        "voucher_discount: Integer",
+        "delivery_fee: Integer",
+        "quiet_discount: Integer",
+        "total_amount: Integer",
+        "idempotency_token: String",
+        "reject_reason: String?",
+        "placed_at: DateTime",
+        "confirmed_at: DateTime?",
+        "ready_at: DateTime?",
+        "closed_at: DateTime?",
+        "archived_at: DateTime?"
+      ]
+    },
+    {
+      "id": "Payment",
+      "label": "Payment",
+      "x": 1290,
+      "y": 120,
+      "w": 460,
+      "h": 344,
+      "kind": "class",
+      "fill": "#E7F0F6",
+      "attrs": [
+        "id: Integer",
+        "method: String",
+        "online_option: String?",
+        "provider_ref: String?",
+        "state: String",
+        "amount: Integer",
+        "refund_amount: Integer",
+        "created_at: DateTime",
+        "updated_at: DateTime"
+      ]
+    },
+    {
+      "id": "Delivery",
+      "label": "Delivery",
+      "x": 1290,
+      "y": 690,
+      "w": 460,
+      "h": 282,
+      "kind": "class",
+      "fill": "#E7F0F6",
+      "attrs": [
+        "id: Integer",
+        "state: String",
+        "ready_at: DateTime",
+        "picked_up_at: DateTime?",
+        "finished_at: DateTime?",
+        "failure_reason: String?",
+        "cash_collected: Integer?"
+      ]
+    },
+    {
+      "id": "OrderLine",
+      "label": "OrderLine",
+      "x": 50,
+      "y": 940,
+      "w": 450,
+      "h": 189,
+      "kind": "class",
+      "fill": "#E7F0F6",
+      "attrs": [
+        "id: Integer",
+        "item_name: String",
+        "unit_price: Integer",
+        "quantity: Integer"
+      ]
+    },
+    {
+      "id": "ReplacementOffer",
+      "label": "ReplacementOffer",
+      "x": 610,
+      "y": 995,
+      "w": 580,
+      "h": 313,
+      "kind": "class",
+      "fill": "#E7F0F6",
+      "attrs": [
+        "id: Integer",
+        "original_item_name: String",
+        "original_unit_price: Integer",
+        "new_item_name: String",
+        "new_unit_price: Integer",
+        "state: String",
+        "offered_at: DateTime",
+        "decided_at: DateTime?"
+      ]
+    },
+    {
+      "id": "Customer",
+      "label": "\u00abreference\u00bb Customer",
+      "x": 50,
+      "y": 120,
+      "w": 440,
+      "h": 65,
+      "kind": "ref",
+      "fill": "#F5F8FA",
+      "attrs": null
+    },
+    {
+      "id": "Hub",
+      "label": "\u00abreference\u00bb Hub",
+      "x": 50,
+      "y": 330,
+      "w": 440,
+      "h": 65,
+      "kind": "ref",
+      "fill": "#F5F8FA",
+      "attrs": null
+    },
+    {
+      "id": "Address",
+      "label": "\u00abreference\u00bb Address",
+      "x": 50,
+      "y": 540,
+      "w": 440,
+      "h": 65,
+      "kind": "ref",
+      "fill": "#F5F8FA",
+      "attrs": null
+    },
+    {
+      "id": "Voucher",
+      "label": "\u00abreference\u00bb Voucher",
+      "x": 50,
+      "y": 750,
+      "w": 440,
+      "h": 65,
+      "kind": "ref",
+      "fill": "#F5F8FA",
+      "attrs": null
+    },
+    {
+      "id": "MenuItem",
+      "label": "\u00abreference\u00bb MenuItem",
+      "x": 50,
+      "y": 1250,
+      "w": 450,
+      "h": 65,
+      "kind": "ref",
+      "fill": "#F5F8FA",
+      "attrs": null
+    },
+    {
+      "id": "UserAccount",
+      "label": "\u00abreference\u00bb UserAccount",
+      "x": 1290,
+      "y": 1085,
+      "w": 460,
+      "h": 65,
+      "kind": "ref",
+      "fill": "#F5F8FA",
+      "attrs": null
+    },
+    {
+      "id": "NewMenuItem",
+      "label": "\u00abreference\u00bb MenuItem\n(replacement target)",
+      "x": 1290,
+      "y": 1240,
+      "w": 460,
+      "h": 100,
+      "kind": "ref",
+      "fill": "#F5F8FA",
+      "attrs": null
+    }
+  ],
+  "edges": [
+    {
+      "id": "cust",
+      "source": "Customer",
+      "target": "Order",
+      "points": [
+        [
+          490,
+          152
+        ],
+        [
+          550,
+          152
+        ],
+        [
+          550,
+          165
+        ],
+        [
+          610,
+          165
+        ]
+      ],
+      "label": "",
+      "lx": 0,
+      "ly": 0,
+      "kind": "assoc",
+      "ends": [
+        [
+          "1",
+          500,
+          115
+        ],
+        [
+          "0..*",
+          550,
+          175
+        ]
+      ]
+    },
+    {
+      "id": "hub",
+      "source": "Hub",
+      "target": "Order",
+      "points": [
+        [
+          490,
+          362
+        ],
+        [
+          550,
+          362
+        ],
+        [
+          550,
+          365
+        ],
+        [
+          610,
+          365
+        ]
+      ],
+      "label": "",
+      "lx": 0,
+      "ly": 0,
+      "kind": "assoc",
+      "ends": [
+        [
+          "1",
+          500,
+          325
+        ],
+        [
+          "0..*",
+          550,
+          375
+        ]
+      ]
+    },
+    {
+      "id": "address",
+      "source": "Address",
+      "target": "Order",
+      "points": [
+        [
+          490,
+          572
+        ],
+        [
+          550,
+          572
+        ],
+        [
+          550,
+          565
+        ],
+        [
+          610,
+          565
+        ]
+      ],
+      "label": "",
+      "lx": 0,
+      "ly": 0,
+      "kind": "assoc",
+      "ends": [
+        [
+          "1",
+          500,
+          535
+        ],
+        [
+          "0..*",
+          550,
+          575
+        ]
+      ]
+    },
+    {
+      "id": "voucher",
+      "source": "Voucher",
+      "target": "Order",
+      "points": [
+        [
+          490,
+          782
+        ],
+        [
+          550,
+          782
+        ],
+        [
+          550,
+          635
+        ],
+        [
+          610,
+          635
+        ]
+      ],
+      "label": "",
+      "lx": 0,
+      "ly": 0,
+      "kind": "assoc",
+      "ends": [
+        [
+          "0..1",
+          500,
+          745
+        ],
+        [
+          "0..*",
+          550,
+          645
+        ]
+      ]
+    },
+    {
+      "id": "payment",
+      "source": "Order",
+      "target": "Payment",
+      "points": [
+        [
+          1190,
+          260
+        ],
+        [
+          1290,
+          260
+        ]
+      ],
+      "label": "",
+      "lx": 0,
+      "ly": 0,
+      "kind": "assoc",
+      "ends": [
+        [
+          "1",
+          1200,
+          220
+        ],
+        [
+          "1",
+          1250,
+          280
+        ]
+      ]
+    },
+    {
+      "id": "delivery",
+      "source": "Order",
+      "target": "Delivery",
+      "points": [
+        [
+          1190,
+          640
+        ],
+        [
+          1240,
+          640
+        ],
+        [
+          1240,
+          760
+        ],
+        [
+          1290,
+          760
+        ]
+      ],
+      "label": "",
+      "lx": 0,
+      "ly": 0,
+      "kind": "assoc",
+      "ends": [
+        [
+          "1",
+          1200,
+          598
+        ],
+        [
+          "0..1",
+          1210,
+          780
+        ]
+      ]
+    },
+    {
+      "id": "offers",
+      "source": "Order",
+      "target": "ReplacementOffer",
+      "points": [
+        [
+          1120,
+          681
+        ],
+        [
+          1120,
+          710
+        ],
+        [
+          1220,
+          710
+        ],
+        [
+          1220,
+          960
+        ],
+        [
+          1130,
+          960
+        ],
+        [
+          1130,
+          995
+        ]
+      ],
+      "label": "offers",
+      "lx": 1125,
+      "ly": 865,
+      "kind": "assoc",
+      "ends": [
+        [
+          "1",
+          1195,
+          680
+        ],
+        [
+          "0..*",
+          1140,
+          925
+        ]
+      ]
+    },
+    {
+      "id": "lines",
+      "source": "Order",
+      "target": "OrderLine",
+      "points": [
+        [
+          650,
+          681
+        ],
+        [
+          650,
+          870
+        ],
+        [
+          275,
+          870
+        ],
+        [
+          275,
+          940
+        ]
+      ],
+      "label": "contains",
+      "lx": 315,
+      "ly": 830,
+      "kind": "composition",
+      "ends": [
+        [
+          "1",
+          665,
+          690
+        ],
+        [
+          "1..*",
+          290,
+          902
+        ]
+      ]
+    },
+    {
+      "id": "offer_line",
+      "source": "ReplacementOffer",
+      "target": "OrderLine",
+      "points": [
+        [
+          610,
+          1100
+        ],
+        [
+          500,
+          1100
+        ]
+      ],
+      "label": "for line",
+      "lx": 505,
+      "ly": 1160,
+      "kind": "nav",
+      "ends": [
+        [
+          "0..*",
+          545,
+          1060
+        ],
+        [
+          "1",
+          510,
+          1120
+        ]
+      ]
+    },
+    {
+      "id": "line_item",
+      "source": "OrderLine",
+      "target": "MenuItem",
+      "points": [
+        [
+          275,
+          1129
+        ],
+        [
+          275,
+          1250
+        ]
+      ],
+      "label": "",
+      "lx": 0,
+      "ly": 0,
+      "kind": "assoc",
+      "ends": [
+        [
+          "0..*",
+          295,
+          1145
+        ],
+        [
+          "1",
+          295,
+          1210
+        ]
+      ]
+    },
+    {
+      "id": "assigned",
+      "source": "Delivery",
+      "target": "UserAccount",
+      "points": [
+        [
+          1510,
+          972
+        ],
+        [
+          1510,
+          1085
+        ]
+      ],
+      "label": "shipper role",
+      "lx": 1295,
+      "ly": 1010,
+      "kind": "assoc",
+      "ends": [
+        [
+          "0..*",
+          1525,
+          985
+        ],
+        [
+          "0..1",
+          1525,
+          1045
+        ]
+      ]
+    },
+    {
+      "id": "target_item",
+      "source": "ReplacementOffer",
+      "target": "NewMenuItem",
+      "points": [
+        [
+          1190,
+          1280
+        ],
+        [
+          1290,
+          1280
+        ]
+      ],
+      "label": "",
+      "lx": 0,
+      "ly": 0,
+      "kind": "nav",
+      "ends": [
+        [
+          "0..*",
+          1198,
+          1235
+        ],
+        [
+          "1",
+          1245,
+          1300
+        ]
+      ]
+    }
+  ]
+}

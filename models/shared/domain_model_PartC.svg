@@ -1,0 +1,305 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1490" viewBox="0 0 1800 1490">
+<rect width="100%" height="100%" fill="white"/>
+<polyline points="490,152 550,152 550,165 610,165" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="490,362 550,362 550,365 610,365" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="490,572 550,572 550,565 610,565" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="490,782 550,782 550,635 610,635" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="1190,260 1290,260" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="1190,640 1240,640 1240,760 1290,760" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="1120,681 1120,710 1220,710 1220,960 1130,960 1130,995" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="650,681 650,870 275,870 275,940" fill="none" stroke="#52616F" stroke-width="3"/>
+<polygon points="650,681 641.0,695.0 650.0,709.0 659.0,695.0" fill="#52616F"/>
+<polyline points="610,1100 500,1100" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="520.0,1090.0 500,1100 520.0,1110.0" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="275,1129 275,1250" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="1510,972 1510,1085" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="1190,1280 1290,1280" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="1270.0,1290.0 1290,1280 1270.0,1270.0" fill="none" stroke="#52616F" stroke-width="3"/>
+<rect x="610" y="120" width="580" height="561" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<path d="M610,172 H1190" stroke="#004387" stroke-width="2"/>
+<rect x="1290" y="120" width="460" height="344" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<path d="M1290,172 H1750" stroke="#004387" stroke-width="2"/>
+<rect x="1290" y="690" width="460" height="282" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<path d="M1290,742 H1750" stroke="#004387" stroke-width="2"/>
+<rect x="50" y="940" width="450" height="189" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<path d="M50,992 H500" stroke="#004387" stroke-width="2"/>
+<rect x="610" y="995" width="580" height="313" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<path d="M610,1047 H1190" stroke="#004387" stroke-width="2"/>
+<rect x="50" y="120" width="440" height="65" fill="#F5F8FA" stroke="#004387" stroke-width="3"/>
+<rect x="50" y="330" width="440" height="65" fill="#F5F8FA" stroke="#004387" stroke-width="3"/>
+<rect x="50" y="540" width="440" height="65" fill="#F5F8FA" stroke="#004387" stroke-width="3"/>
+<rect x="50" y="750" width="440" height="65" fill="#F5F8FA" stroke="#004387" stroke-width="3"/>
+<rect x="50" y="1250" width="450" height="65" fill="#F5F8FA" stroke="#004387" stroke-width="3"/>
+<rect x="1290" y="1085" width="460" height="65" fill="#F5F8FA" stroke="#004387" stroke-width="3"/>
+<rect x="1290" y="1240" width="460" height="100" fill="#F5F8FA" stroke="#004387" stroke-width="3"/>
+<text x="30" y="18" fill="#202B36" font-family="Arial, sans-serif" font-size="34" font-weight="700" dominant-baseline="hanging">
+<tspan x="30" dy="0">Domain model · order snapshots, payment, delivery and replacement</tspan>
+</text>
+<text x="30" y="1424" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="30" dy="0">Figure 2.2C · Author: 722I0004 · AI-assisted (Codex)</tspan>
+</text>
+<text x="30" y="1455" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="30" dy="0">Analysis model · team defaults; no lecturer approval or runtime result inferred</tspan>
+</text>
+<text x="700" y="735" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="700" dy="0">S − D + F − Q = T (snapshots).</tspan>
+<tspan x="700" dy="30.939999999999998">ONLINE amount = captured C.</tspan>
+<tspan x="700" dy="30.939999999999998">refund_amount = owed, not paid.</tspan>
+<tspan x="700" dy="30.939999999999998">One OFFERED offer per Order.</tspan>
+<tspan x="700" dy="30.939999999999998">Offer/line share the same Order.</tspan>
+<tspan x="700" dy="30.939999999999998">REFUNDED/payout deferred (L3).</tspan>
+</text>
+<text x="500" y="115" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="500" dy="0">1</tspan>
+</text>
+<text x="550" y="175" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="550" dy="0">0..*</tspan>
+</text>
+<text x="500" y="325" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="500" dy="0">1</tspan>
+</text>
+<text x="550" y="375" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="550" dy="0">0..*</tspan>
+</text>
+<text x="500" y="535" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="500" dy="0">1</tspan>
+</text>
+<text x="550" y="575" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="550" dy="0">0..*</tspan>
+</text>
+<text x="500" y="745" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="500" dy="0">0..1</tspan>
+</text>
+<text x="550" y="645" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="550" dy="0">0..*</tspan>
+</text>
+<text x="1200" y="220" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1200" dy="0">1</tspan>
+</text>
+<text x="1250" y="280" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1250" dy="0">1</tspan>
+</text>
+<text x="1200" y="598" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1200" dy="0">1</tspan>
+</text>
+<text x="1210" y="780" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1210" dy="0">0..1</tspan>
+</text>
+<text x="1125" y="865" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1125" dy="0">offers</tspan>
+</text>
+<text x="1195" y="680" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1195" dy="0">1</tspan>
+</text>
+<text x="1140" y="925" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1140" dy="0">0..*</tspan>
+</text>
+<text x="315" y="830" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="315" dy="0">contains</tspan>
+</text>
+<text x="665" y="690" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="665" dy="0">1</tspan>
+</text>
+<text x="290" y="902" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="290" dy="0">1..*</tspan>
+</text>
+<text x="505" y="1160" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="505" dy="0">for line</tspan>
+</text>
+<text x="545" y="1060" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="545" dy="0">0..*</tspan>
+</text>
+<text x="510" y="1120" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="510" dy="0">1</tspan>
+</text>
+<text x="295" y="1145" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="295" dy="0">0..*</tspan>
+</text>
+<text x="295" y="1210" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="295" dy="0">1</tspan>
+</text>
+<text x="1295" y="1010" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1295" dy="0">shipper role</tspan>
+</text>
+<text x="1525" y="985" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1525" dy="0">0..*</tspan>
+</text>
+<text x="1525" y="1045" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1525" dy="0">0..1</tspan>
+</text>
+<text x="1198" y="1235" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1198" dy="0">0..*</tspan>
+</text>
+<text x="1245" y="1300" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1245" dy="0">1</tspan>
+</text>
+<text x="624" y="132" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="700" dominant-baseline="hanging">
+<tspan x="624" dy="0">Order</tspan>
+</text>
+<text x="624" y="185" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="624" dy="0">id: Integer</tspan>
+</text>
+<text x="624" y="216" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="624" dy="0">delivery_address_text: String</tspan>
+</text>
+<text x="624" y="247" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="624" dy="0">distance_km: Real</tspan>
+</text>
+<text x="624" y="278" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="624" dy="0">state: String</tspan>
+</text>
+<text x="624" y="309" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="624" dy="0">item_subtotal: Integer</tspan>
+</text>
+<text x="624" y="340" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="624" dy="0">voucher_discount: Integer</tspan>
+</text>
+<text x="624" y="371" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="624" dy="0">delivery_fee: Integer</tspan>
+</text>
+<text x="624" y="402" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="624" dy="0">quiet_discount: Integer</tspan>
+</text>
+<text x="624" y="433" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="624" dy="0">total_amount: Integer</tspan>
+</text>
+<text x="624" y="464" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="624" dy="0">idempotency_token: String</tspan>
+</text>
+<text x="624" y="495" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="624" dy="0">reject_reason: String?</tspan>
+</text>
+<text x="624" y="526" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="624" dy="0">placed_at: DateTime</tspan>
+</text>
+<text x="624" y="557" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="624" dy="0">confirmed_at: DateTime?</tspan>
+</text>
+<text x="624" y="588" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="624" dy="0">ready_at: DateTime?</tspan>
+</text>
+<text x="624" y="619" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="624" dy="0">closed_at: DateTime?</tspan>
+</text>
+<text x="624" y="650" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="624" dy="0">archived_at: DateTime?</tspan>
+</text>
+<text x="1304" y="132" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="700" dominant-baseline="hanging">
+<tspan x="1304" dy="0">Payment</tspan>
+</text>
+<text x="1304" y="185" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1304" dy="0">id: Integer</tspan>
+</text>
+<text x="1304" y="216" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1304" dy="0">method: String</tspan>
+</text>
+<text x="1304" y="247" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1304" dy="0">online_option: String?</tspan>
+</text>
+<text x="1304" y="278" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1304" dy="0">provider_ref: String?</tspan>
+</text>
+<text x="1304" y="309" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1304" dy="0">state: String</tspan>
+</text>
+<text x="1304" y="340" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1304" dy="0">amount: Integer</tspan>
+</text>
+<text x="1304" y="371" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1304" dy="0">refund_amount: Integer</tspan>
+</text>
+<text x="1304" y="402" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1304" dy="0">created_at: DateTime</tspan>
+</text>
+<text x="1304" y="433" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1304" dy="0">updated_at: DateTime</tspan>
+</text>
+<text x="1304" y="702" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="700" dominant-baseline="hanging">
+<tspan x="1304" dy="0">Delivery</tspan>
+</text>
+<text x="1304" y="755" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1304" dy="0">id: Integer</tspan>
+</text>
+<text x="1304" y="786" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1304" dy="0">state: String</tspan>
+</text>
+<text x="1304" y="817" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1304" dy="0">ready_at: DateTime</tspan>
+</text>
+<text x="1304" y="848" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1304" dy="0">picked_up_at: DateTime?</tspan>
+</text>
+<text x="1304" y="879" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1304" dy="0">finished_at: DateTime?</tspan>
+</text>
+<text x="1304" y="910" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1304" dy="0">failure_reason: String?</tspan>
+</text>
+<text x="1304" y="941" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1304" dy="0">cash_collected: Integer?</tspan>
+</text>
+<text x="64" y="952" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="700" dominant-baseline="hanging">
+<tspan x="64" dy="0">OrderLine</tspan>
+</text>
+<text x="64" y="1005" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="64" dy="0">id: Integer</tspan>
+</text>
+<text x="64" y="1036" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="64" dy="0">item_name: String</tspan>
+</text>
+<text x="64" y="1067" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="64" dy="0">unit_price: Integer</tspan>
+</text>
+<text x="64" y="1098" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="64" dy="0">quantity: Integer</tspan>
+</text>
+<text x="624" y="1007" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="700" dominant-baseline="hanging">
+<tspan x="624" dy="0">ReplacementOffer</tspan>
+</text>
+<text x="624" y="1060" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="624" dy="0">id: Integer</tspan>
+</text>
+<text x="624" y="1091" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="624" dy="0">original_item_name: String</tspan>
+</text>
+<text x="624" y="1122" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="624" dy="0">original_unit_price: Integer</tspan>
+</text>
+<text x="624" y="1153" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="624" dy="0">new_item_name: String</tspan>
+</text>
+<text x="624" y="1184" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="624" dy="0">new_unit_price: Integer</tspan>
+</text>
+<text x="624" y="1215" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="624" dy="0">state: String</tspan>
+</text>
+<text x="624" y="1246" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="624" dy="0">offered_at: DateTime</tspan>
+</text>
+<text x="624" y="1277" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="624" dy="0">decided_at: DateTime?</tspan>
+</text>
+<text x="62" y="132" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="62" dy="0">«reference» Customer</tspan>
+</text>
+<text x="62" y="342" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="62" dy="0">«reference» Hub</tspan>
+</text>
+<text x="62" y="552" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="62" dy="0">«reference» Address</tspan>
+</text>
+<text x="62" y="762" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="62" dy="0">«reference» Voucher</tspan>
+</text>
+<text x="62" y="1262" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="62" dy="0">«reference» MenuItem</tspan>
+</text>
+<text x="1302" y="1097" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1302" dy="0">«reference» UserAccount</tspan>
+</text>
+<text x="1302" y="1252" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1302" dy="0">«reference» MenuItem</tspan>
+<tspan x="1302" dy="30.939999999999998">(replacement target)</tspan>
+</text>
+</svg>

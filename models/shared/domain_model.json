@@ -1,0 +1,1118 @@
+{
+  "parts": [
+    {
+      "stem": "domain_model_PartA",
+      "width": 1800,
+      "height": 1350,
+      "font_min": 26,
+      "placed_width_mm": 230,
+      "min_placed_pt": 9.41732283464567,
+      "nodes": [
+        {
+          "id": "UserAccount",
+          "label": "UserAccount",
+          "x": 50,
+          "y": 145,
+          "w": 550,
+          "h": 282,
+          "kind": "class",
+          "fill": "#E7F0F6",
+          "attrs": [
+            "id: Integer",
+            "username: String",
+            "password_hash: String",
+            "display_name: String",
+            "role: String",
+            "is_active: Boolean",
+            "created_at: DateTime"
+          ]
+        },
+        {
+          "id": "Customer",
+          "label": "Customer",
+          "x": 740,
+          "y": 145,
+          "w": 460,
+          "h": 127,
+          "kind": "class",
+          "fill": "#E7F0F6",
+          "attrs": [
+            "id: Integer",
+            "full_name: String"
+          ]
+        },
+        {
+          "id": "Address",
+          "label": "Address",
+          "x": 1300,
+          "y": 145,
+          "w": 450,
+          "h": 282,
+          "kind": "class",
+          "fill": "#E7F0F6",
+          "attrs": [
+            "id: Integer",
+            "label: String",
+            "full_address: String",
+            "district: String",
+            "latitude: Real",
+            "longitude: Real",
+            "archived_at: DateTime?"
+          ]
+        },
+        {
+          "id": "LocalCustomer",
+          "label": "LocalCustomer",
+          "x": 510,
+          "y": 650,
+          "w": 480,
+          "h": 127,
+          "kind": "class",
+          "fill": "#E7F0F6",
+          "attrs": [
+            "phone: String",
+            "email: String?"
+          ]
+        },
+        {
+          "id": "TouristCustomer",
+          "label": "TouristCustomer",
+          "x": 1110,
+          "y": 650,
+          "w": 530,
+          "h": 189,
+          "kind": "class",
+          "fill": "#E7F0F6",
+          "attrs": [
+            "phone: String?",
+            "email: String",
+            "passport_no: String",
+            "nationality: String"
+          ]
+        },
+        {
+          "id": "Hub",
+          "label": "Hub",
+          "x": 50,
+          "y": 760,
+          "w": 420,
+          "h": 344,
+          "kind": "class",
+          "fill": "#E7F0F6",
+          "attrs": [
+            "id: Integer",
+            "code: String",
+            "name: String",
+            "address_text: String",
+            "latitude: Real",
+            "longitude: Real",
+            "max_active_orders: Integer",
+            "base_delivery_fee: Integer",
+            "archived_at: DateTime?"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "id": "account_profile",
+          "source": "UserAccount",
+          "target": "Customer",
+          "points": [
+            [
+              600,
+              205
+            ],
+            [
+              740,
+              205
+            ]
+          ],
+          "label": "",
+          "lx": 0,
+          "ly": 0,
+          "kind": "assoc",
+          "ends": [
+            [
+              "1",
+              615,
+              165
+            ],
+            [
+              "0..1",
+              665,
+              165
+            ]
+          ]
+        },
+        {
+          "id": "addresses",
+          "source": "Customer",
+          "target": "Address",
+          "points": [
+            [
+              1200,
+              205
+            ],
+            [
+              1300,
+              205
+            ]
+          ],
+          "label": "",
+          "lx": 0,
+          "ly": 0,
+          "kind": "assoc",
+          "ends": [
+            [
+              "1",
+              1205,
+              165
+            ],
+            [
+              "0..*",
+              1250,
+              215
+            ]
+          ]
+        },
+        {
+          "id": "local_general",
+          "source": "LocalCustomer",
+          "target": "Customer",
+          "points": [
+            [
+              750,
+              650
+            ],
+            [
+              750,
+              580
+            ],
+            [
+              650,
+              580
+            ],
+            [
+              650,
+              250
+            ],
+            [
+              740,
+              250
+            ]
+          ],
+          "label": "",
+          "lx": null,
+          "ly": null,
+          "kind": "general",
+          "ends": null
+        },
+        {
+          "id": "tourist_general",
+          "source": "TouristCustomer",
+          "target": "Customer",
+          "points": [
+            [
+              1375,
+              650
+            ],
+            [
+              1375,
+              550
+            ],
+            [
+              1240,
+              550
+            ],
+            [
+              1240,
+              250
+            ],
+            [
+              1200,
+              250
+            ]
+          ],
+          "label": "",
+          "lx": null,
+          "ly": null,
+          "kind": "general",
+          "ends": null
+        },
+        {
+          "id": "kitchen_hub",
+          "source": "UserAccount",
+          "target": "Hub",
+          "points": [
+            [
+              260,
+              427
+            ],
+            [
+              260,
+              760
+            ]
+          ],
+          "label": "works at\n{role = KITCHEN_STAFF}",
+          "lx": 290,
+          "ly": 485,
+          "kind": "assoc",
+          "ends": [
+            [
+              "0..*",
+              275,
+              448
+            ],
+            [
+              "0..1",
+              275,
+              718
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "stem": "domain_model_PartB",
+      "width": 1800,
+      "height": 1310,
+      "font_min": 26,
+      "placed_width_mm": 230,
+      "min_placed_pt": 9.41732283464567,
+      "nodes": [
+        {
+          "id": "Brand",
+          "label": "Brand",
+          "x": 55,
+          "y": 150,
+          "w": 400,
+          "h": 158,
+          "kind": "class",
+          "fill": "#E7F0F6",
+          "attrs": [
+            "id: Integer",
+            "name: String",
+            "archived_at: DateTime?"
+          ]
+        },
+        {
+          "id": "MenuItem",
+          "label": "MenuItem",
+          "x": 665,
+          "y": 150,
+          "w": 530,
+          "h": 220,
+          "kind": "class",
+          "fill": "#E7F0F6",
+          "attrs": [
+            "id: Integer",
+            "name: String",
+            "description: String",
+            "price: Integer",
+            "archived_at: DateTime?"
+          ]
+        },
+        {
+          "id": "Hub",
+          "label": "\u00abreference\u00bb Hub",
+          "x": 1350,
+          "y": 150,
+          "w": 390,
+          "h": 65,
+          "kind": "ref",
+          "fill": "#F5F8FA",
+          "attrs": null
+        },
+        {
+          "id": "listing_link",
+          "label": "",
+          "x": 1270,
+          "y": 245,
+          "w": 4,
+          "h": 4,
+          "kind": "rect",
+          "fill": "white",
+          "attrs": null
+        },
+        {
+          "id": "HubMenuItem",
+          "label": "HubMenuItem",
+          "x": 1050,
+          "y": 530,
+          "w": 680,
+          "h": 96,
+          "kind": "class",
+          "fill": "#E7F0F6",
+          "attrs": [
+            "is_available: Boolean"
+          ]
+        },
+        {
+          "id": "Voucher",
+          "label": "Voucher",
+          "x": 55,
+          "y": 530,
+          "w": 800,
+          "h": 375,
+          "kind": "class",
+          "fill": "#E7F0F6",
+          "attrs": [
+            "id: Integer",
+            "code: String",
+            "description: String",
+            "discount_type: String",
+            "discount_value: Integer",
+            "min_subtotal: Integer",
+            "max_discount: Integer?",
+            "valid_from: Date",
+            "valid_until: Date",
+            "archived_at: DateTime?"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "id": "brand_items",
+          "source": "Brand",
+          "target": "MenuItem",
+          "points": [
+            [
+              455,
+              215
+            ],
+            [
+              665,
+              215
+            ]
+          ],
+          "label": "offers",
+          "lx": 490,
+          "ly": 240,
+          "kind": "assoc",
+          "ends": [
+            [
+              "1",
+              475,
+              171
+            ],
+            [
+              "0..*",
+              565,
+              171
+            ]
+          ]
+        },
+        {
+          "id": "listed",
+          "source": "MenuItem",
+          "target": "Hub",
+          "points": [
+            [
+              1195,
+              280
+            ],
+            [
+              1272,
+              280
+            ],
+            [
+              1272,
+              182
+            ],
+            [
+              1350,
+              182
+            ]
+          ],
+          "label": "listed at",
+          "lx": 1320,
+          "ly": 255,
+          "kind": "assoc",
+          "ends": [
+            [
+              "0..*",
+              1200,
+              320
+            ],
+            [
+              "0..*",
+              1250,
+              130
+            ]
+          ]
+        },
+        {
+          "id": "association_class",
+          "source": "HubMenuItem",
+          "target": "listing_link",
+          "points": [
+            [
+              1272,
+              530
+            ],
+            [
+              1272,
+              247
+            ]
+          ],
+          "label": "",
+          "lx": null,
+          "ly": null,
+          "kind": "anchor",
+          "ends": null
+        }
+      ]
+    },
+    {
+      "stem": "domain_model_PartC",
+      "width": 1800,
+      "height": 1490,
+      "font_min": 26,
+      "placed_width_mm": 230,
+      "min_placed_pt": 9.41732283464567,
+      "nodes": [
+        {
+          "id": "Order",
+          "label": "Order",
+          "x": 610,
+          "y": 120,
+          "w": 580,
+          "h": 561,
+          "kind": "class",
+          "fill": "#E7F0F6",
+          "attrs": [
+            "id: Integer",
+            "delivery_address_text: String",
+            "distance_km: Real",
+            "state: String",
+            "item_subtotal: Integer",
+            "voucher_discount: Integer",
+            "delivery_fee: Integer",
+            "quiet_discount: Integer",
+            "total_amount: Integer",
+            "idempotency_token: String",
+            "reject_reason: String?",
+            "placed_at: DateTime",
+            "confirmed_at: DateTime?",
+            "ready_at: DateTime?",
+            "closed_at: DateTime?",
+            "archived_at: DateTime?"
+          ]
+        },
+        {
+          "id": "Payment",
+          "label": "Payment",
+          "x": 1290,
+          "y": 120,
+          "w": 460,
+          "h": 344,
+          "kind": "class",
+          "fill": "#E7F0F6",
+          "attrs": [
+            "id: Integer",
+            "method: String",
+            "online_option: String?",
+            "provider_ref: String?",
+            "state: String",
+            "amount: Integer",
+            "refund_amount: Integer",
+            "created_at: DateTime",
+            "updated_at: DateTime"
+          ]
+        },
+        {
+          "id": "Delivery",
+          "label": "Delivery",
+          "x": 1290,
+          "y": 690,
+          "w": 460,
+          "h": 282,
+          "kind": "class",
+          "fill": "#E7F0F6",
+          "attrs": [
+            "id: Integer",
+            "state: String",
+            "ready_at: DateTime",
+            "picked_up_at: DateTime?",
+            "finished_at: DateTime?",
+            "failure_reason: String?",
+            "cash_collected: Integer?"
+          ]
+        },
+        {
+          "id": "OrderLine",
+          "label": "OrderLine",
+          "x": 50,
+          "y": 940,
+          "w": 450,
+          "h": 189,
+          "kind": "class",
+          "fill": "#E7F0F6",
+          "attrs": [
+            "id: Integer",
+            "item_name: String",
+            "unit_price: Integer",
+            "quantity: Integer"
+          ]
+        },
+        {
+          "id": "ReplacementOffer",
+          "label": "ReplacementOffer",
+          "x": 610,
+          "y": 995,
+          "w": 580,
+          "h": 313,
+          "kind": "class",
+          "fill": "#E7F0F6",
+          "attrs": [
+            "id: Integer",
+            "original_item_name: String",
+            "original_unit_price: Integer",
+            "new_item_name: String",
+            "new_unit_price: Integer",
+            "state: String",
+            "offered_at: DateTime",
+            "decided_at: DateTime?"
+          ]
+        },
+        {
+          "id": "Customer",
+          "label": "\u00abreference\u00bb Customer",
+          "x": 50,
+          "y": 120,
+          "w": 440,
+          "h": 65,
+          "kind": "ref",
+          "fill": "#F5F8FA",
+          "attrs": null
+        },
+        {
+          "id": "Hub",
+          "label": "\u00abreference\u00bb Hub",
+          "x": 50,
+          "y": 330,
+          "w": 440,
+          "h": 65,
+          "kind": "ref",
+          "fill": "#F5F8FA",
+          "attrs": null
+        },
+        {
+          "id": "Address",
+          "label": "\u00abreference\u00bb Address",
+          "x": 50,
+          "y": 540,
+          "w": 440,
+          "h": 65,
+          "kind": "ref",
+          "fill": "#F5F8FA",
+          "attrs": null
+        },
+        {
+          "id": "Voucher",
+          "label": "\u00abreference\u00bb Voucher",
+          "x": 50,
+          "y": 750,
+          "w": 440,
+          "h": 65,
+          "kind": "ref",
+          "fill": "#F5F8FA",
+          "attrs": null
+        },
+        {
+          "id": "MenuItem",
+          "label": "\u00abreference\u00bb MenuItem",
+          "x": 50,
+          "y": 1250,
+          "w": 450,
+          "h": 65,
+          "kind": "ref",
+          "fill": "#F5F8FA",
+          "attrs": null
+        },
+        {
+          "id": "UserAccount",
+          "label": "\u00abreference\u00bb UserAccount",
+          "x": 1290,
+          "y": 1085,
+          "w": 460,
+          "h": 65,
+          "kind": "ref",
+          "fill": "#F5F8FA",
+          "attrs": null
+        },
+        {
+          "id": "NewMenuItem",
+          "label": "\u00abreference\u00bb MenuItem\n(replacement target)",
+          "x": 1290,
+          "y": 1240,
+          "w": 460,
+          "h": 100,
+          "kind": "ref",
+          "fill": "#F5F8FA",
+          "attrs": null
+        }
+      ],
+      "edges": [
+        {
+          "id": "cust",
+          "source": "Customer",
+          "target": "Order",
+          "points": [
+            [
+              490,
+              152
+            ],
+            [
+              550,
+              152
+            ],
+            [
+              550,
+              165
+            ],
+            [
+              610,
+              165
+            ]
+          ],
+          "label": "",
+          "lx": 0,
+          "ly": 0,
+          "kind": "assoc",
+          "ends": [
+            [
+              "1",
+              500,
+              115
+            ],
+            [
+              "0..*",
+              550,
+              175
+            ]
+          ]
+        },
+        {
+          "id": "hub",
+          "source": "Hub",
+          "target": "Order",
+          "points": [
+            [
+              490,
+              362
+            ],
+            [
+              550,
+              362
+            ],
+            [
+              550,
+              365
+            ],
+            [
+              610,
+              365
+            ]
+          ],
+          "label": "",
+          "lx": 0,
+          "ly": 0,
+          "kind": "assoc",
+          "ends": [
+            [
+              "1",
+              500,
+              325
+            ],
+            [
+              "0..*",
+              550,
+              375
+            ]
+          ]
+        },
+        {
+          "id": "address",
+          "source": "Address",
+          "target": "Order",
+          "points": [
+            [
+              490,
+              572
+            ],
+            [
+              550,
+              572
+            ],
+            [
+              550,
+              565
+            ],
+            [
+              610,
+              565
+            ]
+          ],
+          "label": "",
+          "lx": 0,
+          "ly": 0,
+          "kind": "assoc",
+          "ends": [
+            [
+              "1",
+              500,
+              535
+            ],
+            [
+              "0..*",
+              550,
+              575
+            ]
+          ]
+        },
+        {
+          "id": "voucher",
+          "source": "Voucher",
+          "target": "Order",
+          "points": [
+            [
+              490,
+              782
+            ],
+            [
+              550,
+              782
+            ],
+            [
+              550,
+              635
+            ],
+            [
+              610,
+              635
+            ]
+          ],
+          "label": "",
+          "lx": 0,
+          "ly": 0,
+          "kind": "assoc",
+          "ends": [
+            [
+              "0..1",
+              500,
+              745
+            ],
+            [
+              "0..*",
+              550,
+              645
+            ]
+          ]
+        },
+        {
+          "id": "payment",
+          "source": "Order",
+          "target": "Payment",
+          "points": [
+            [
+              1190,
+              260
+            ],
+            [
+              1290,
+              260
+            ]
+          ],
+          "label": "",
+          "lx": 0,
+          "ly": 0,
+          "kind": "assoc",
+          "ends": [
+            [
+              "1",
+              1200,
+              220
+            ],
+            [
+              "1",
+              1250,
+              280
+            ]
+          ]
+        },
+        {
+          "id": "delivery",
+          "source": "Order",
+          "target": "Delivery",
+          "points": [
+            [
+              1190,
+              640
+            ],
+            [
+              1240,
+              640
+            ],
+            [
+              1240,
+              760
+            ],
+            [
+              1290,
+              760
+            ]
+          ],
+          "label": "",
+          "lx": 0,
+          "ly": 0,
+          "kind": "assoc",
+          "ends": [
+            [
+              "1",
+              1200,
+              598
+            ],
+            [
+              "0..1",
+              1210,
+              780
+            ]
+          ]
+        },
+        {
+          "id": "offers",
+          "source": "Order",
+          "target": "ReplacementOffer",
+          "points": [
+            [
+              1120,
+              681
+            ],
+            [
+              1120,
+              710
+            ],
+            [
+              1220,
+              710
+            ],
+            [
+              1220,
+              960
+            ],
+            [
+              1130,
+              960
+            ],
+            [
+              1130,
+              995
+            ]
+          ],
+          "label": "offers",
+          "lx": 1125,
+          "ly": 865,
+          "kind": "assoc",
+          "ends": [
+            [
+              "1",
+              1195,
+              680
+            ],
+            [
+              "0..*",
+              1140,
+              925
+            ]
+          ]
+        },
+        {
+          "id": "lines",
+          "source": "Order",
+          "target": "OrderLine",
+          "points": [
+            [
+              650,
+              681
+            ],
+            [
+              650,
+              870
+            ],
+            [
+              275,
+              870
+            ],
+            [
+              275,
+              940
+            ]
+          ],
+          "label": "contains",
+          "lx": 315,
+          "ly": 830,
+          "kind": "composition",
+          "ends": [
+            [
+              "1",
+              665,
+              690
+            ],
+            [
+              "1..*",
+              290,
+              902
+            ]
+          ]
+        },
+        {
+          "id": "offer_line",
+          "source": "ReplacementOffer",
+          "target": "OrderLine",
+          "points": [
+            [
+              610,
+              1100
+            ],
+            [
+              500,
+              1100
+            ]
+          ],
+          "label": "for line",
+          "lx": 505,
+          "ly": 1160,
+          "kind": "nav",
+          "ends": [
+            [
+              "0..*",
+              545,
+              1060
+            ],
+            [
+              "1",
+              510,
+              1120
+            ]
+          ]
+        },
+        {
+          "id": "line_item",
+          "source": "OrderLine",
+          "target": "MenuItem",
+          "points": [
+            [
+              275,
+              1129
+            ],
+            [
+              275,
+              1250
+            ]
+          ],
+          "label": "",
+          "lx": 0,
+          "ly": 0,
+          "kind": "assoc",
+          "ends": [
+            [
+              "0..*",
+              295,
+              1145
+            ],
+            [
+              "1",
+              295,
+              1210
+            ]
+          ]
+        },
+        {
+          "id": "assigned",
+          "source": "Delivery",
+          "target": "UserAccount",
+          "points": [
+            [
+              1510,
+              972
+            ],
+            [
+              1510,
+              1085
+            ]
+          ],
+          "label": "shipper role",
+          "lx": 1295,
+          "ly": 1010,
+          "kind": "assoc",
+          "ends": [
+            [
+              "0..*",
+              1525,
+              985
+            ],
+            [
+              "0..1",
+              1525,
+              1045
+            ]
+          ]
+        },
+        {
+          "id": "target_item",
+          "source": "ReplacementOffer",
+          "target": "NewMenuItem",
+          "points": [
+            [
+              1190,
+              1280
+            ],
+            [
+              1290,
+              1280
+            ]
+          ],
+          "label": "",
+          "lx": 0,
+          "ly": 0,
+          "kind": "nav",
+          "ends": [
+            [
+              "0..*",
+              1198,
+              1235
+            ],
+            [
+              "1",
+              1245,
+              1300
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "main_image": "first-page alias; use every PartA\u2013PartC in the report",
+  "author": "722I0004 \u00b7 AI-assisted (Codex)",
+  "persistent_base_classes": [
+    "Hub",
+    "Brand",
+    "MenuItem",
+    "HubMenuItem",
+    "UserAccount",
+    "Customer",
+    "Address",
+    "Voucher",
+    "Order",
+    "OrderLine",
+    "Payment",
+    "Delivery",
+    "ReplacementOffer"
+  ],
+  "subclasses": [
+    "LocalCustomer",
+    "TouristCustomer"
+  ],
+  "reference_nodes": "repeat an existing class, never another persistent class"
+}

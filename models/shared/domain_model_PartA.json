@@ -1,0 +1,272 @@
+{
+  "stem": "domain_model_PartA",
+  "width": 1800,
+  "height": 1350,
+  "font_min": 26,
+  "placed_width_mm": 230,
+  "min_placed_pt": 9.41732283464567,
+  "nodes": [
+    {
+      "id": "UserAccount",
+      "label": "UserAccount",
+      "x": 50,
+      "y": 145,
+      "w": 550,
+      "h": 282,
+      "kind": "class",
+      "fill": "#E7F0F6",
+      "attrs": [
+        "id: Integer",
+        "username: String",
+        "password_hash: String",
+        "display_name: String",
+        "role: String",
+        "is_active: Boolean",
+        "created_at: DateTime"
+      ]
+    },
+    {
+      "id": "Customer",
+      "label": "Customer",
+      "x": 740,
+      "y": 145,
+      "w": 460,
+      "h": 127,
+      "kind": "class",
+      "fill": "#E7F0F6",
+      "attrs": [
+        "id: Integer",
+        "full_name: String"
+      ]
+    },
+    {
+      "id": "Address",
+      "label": "Address",
+      "x": 1300,
+      "y": 145,
+      "w": 450,
+      "h": 282,
+      "kind": "class",
+      "fill": "#E7F0F6",
+      "attrs": [
+        "id: Integer",
+        "label: String",
+        "full_address: String",
+        "district: String",
+        "latitude: Real",
+        "longitude: Real",
+        "archived_at: DateTime?"
+      ]
+    },
+    {
+      "id": "LocalCustomer",
+      "label": "LocalCustomer",
+      "x": 510,
+      "y": 650,
+      "w": 480,
+      "h": 127,
+      "kind": "class",
+      "fill": "#E7F0F6",
+      "attrs": [
+        "phone: String",
+        "email: String?"
+      ]
+    },
+    {
+      "id": "TouristCustomer",
+      "label": "TouristCustomer",
+      "x": 1110,
+      "y": 650,
+      "w": 530,
+      "h": 189,
+      "kind": "class",
+      "fill": "#E7F0F6",
+      "attrs": [
+        "phone: String?",
+        "email: String",
+        "passport_no: String",
+        "nationality: String"
+      ]
+    },
+    {
+      "id": "Hub",
+      "label": "Hub",
+      "x": 50,
+      "y": 760,
+      "w": 420,
+      "h": 344,
+      "kind": "class",
+      "fill": "#E7F0F6",
+      "attrs": [
+        "id: Integer",
+        "code: String",
+        "name: String",
+        "address_text: String",
+        "latitude: Real",
+        "longitude: Real",
+        "max_active_orders: Integer",
+        "base_delivery_fee: Integer",
+        "archived_at: DateTime?"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "account_profile",
+      "source": "UserAccount",
+      "target": "Customer",
+      "points": [
+        [
+          600,
+          205
+        ],
+        [
+          740,
+          205
+        ]
+      ],
+      "label": "",
+      "lx": 0,
+      "ly": 0,
+      "kind": "assoc",
+      "ends": [
+        [
+          "1",
+          615,
+          165
+        ],
+        [
+          "0..1",
+          665,
+          165
+        ]
+      ]
+    },
+    {
+      "id": "addresses",
+      "source": "Customer",
+      "target": "Address",
+      "points": [
+        [
+          1200,
+          205
+        ],
+        [
+          1300,
+          205
+        ]
+      ],
+      "label": "",
+      "lx": 0,
+      "ly": 0,
+      "kind": "assoc",
+      "ends": [
+        [
+          "1",
+          1205,
+          165
+        ],
+        [
+          "0..*",
+          1250,
+          215
+        ]
+      ]
+    },
+    {
+      "id": "local_general",
+      "source": "LocalCustomer",
+      "target": "Customer",
+      "points": [
+        [
+          750,
+          650
+        ],
+        [
+          750,
+          580
+        ],
+        [
+          650,
+          580
+        ],
+        [
+          650,
+          250
+        ],
+        [
+          740,
+          250
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "general",
+      "ends": null
+    },
+    {
+      "id": "tourist_general",
+      "source": "TouristCustomer",
+      "target": "Customer",
+      "points": [
+        [
+          1375,
+          650
+        ],
+        [
+          1375,
+          550
+        ],
+        [
+          1240,
+          550
+        ],
+        [
+          1240,
+          250
+        ],
+        [
+          1200,
+          250
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "general",
+      "ends": null
+    },
+    {
+      "id": "kitchen_hub",
+      "source": "UserAccount",
+      "target": "Hub",
+      "points": [
+        [
+          260,
+          427
+        ],
+        [
+          260,
+          760
+        ]
+      ],
+      "label": "works at\n{role = KITCHEN_STAFF}",
+      "lx": 290,
+      "ly": 485,
+      "kind": "assoc",
+      "ends": [
+        [
+          "0..*",
+          275,
+          448
+        ],
+        [
+          "0..1",
+          275,
+          718
+        ]
+      ]
+    }
+  ]
+}

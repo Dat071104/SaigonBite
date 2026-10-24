@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" type="device">
+  <diagram name="use_case_diagram_PartB" id="use_case_diagram_PartB">
+    <mxGraphModel page="1" pageWidth="1600" pageHeight="1100" grid="1" gridSize="10">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="k5" edge="1" parent="1" source="kitchen" target="UC05" style="endArrow=none;strokeColor=#52616F;strokeWidth=2;rounded=0;exitX=0.6764705882352942;exitY=0.475;entryX=0.0;entryY=0.4888888888888889;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="240" y="315" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kprep" edge="1" parent="1" source="kitchen" target="SUC05" style="endArrow=none;strokeColor=#52616F;strokeWidth=2;rounded=0;exitX=0.6764705882352942;exitY=0.475;entryX=0.0;entryY=0.4967741935483871;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="240" y="335" />
+              <mxPoint x="320" y="335" />
+              <mxPoint x="320" y="587" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kavail" edge="1" parent="1" source="kitchen" target="SUC06" style="endArrow=none;strokeColor=#52616F;strokeWidth=2;rounded=0;exitX=0.6764705882352942;exitY=0.475;entryX=0.5;entryY=1.0;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="240" y="355" />
+              <mxPoint x="280" y="355" />
+              <mxPoint x="280" y="705" />
+              <mxPoint x="1115" y="705" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ship" edge="1" parent="1" source="shipper" target="UC02" style="endArrow=none;strokeColor=#52616F;strokeWidth=2;rounded=0;exitX=0.6764705882352942;exitY=0.475;entryX=0.0;entryY=0.5;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="240" y="785" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="reply" edge="1" parent="1" source="customer" target="UC05" style="endArrow=none;strokeColor=#52616F;strokeWidth=2;rounded=0;exitX=0.3235294117647059;exitY=0.475;entryX=1.0;entryY=0.4888888888888889;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1430" y="280" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="system" vertex="1" parent="1" value="" style="fillColor=none;strokeColor=#004387;whiteSpace=wrap;fontFamily=Arial;fontSize=26;html=0;">
+          <mxGeometry x="300" y="100" width="1120" height="850" as="geometry" />
+        </mxCell>
+        <mxCell id="kitchen" vertex="1" parent="1" value="Kitchen staff" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;fillColor=white;fontFamily=Arial;fontSize=26;html=0;">
+          <mxGeometry x="70" y="265" width="170" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="shipper" vertex="1" parent="1" value="Shipper" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;fillColor=white;fontFamily=Arial;fontSize=26;html=0;">
+          <mxGeometry x="70" y="735" width="170" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="customer" vertex="1" parent="1" value="Customer" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;fillColor=white;fontFamily=Arial;fontSize=26;html=0;">
+          <mxGeometry x="1430" y="220" width="170" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="UC05" vertex="1" parent="1" value="" style="ellipse;fillColor=#DCEAF5;strokeColor=#004387;whiteSpace=wrap;fontFamily=Arial;fontSize=26;html=0;">
+          <mxGeometry x="390" y="180" width="900" height="225" as="geometry" />
+        </mxCell>
+        <mxCell id="SUC05" vertex="1" parent="1" value="" style="ellipse;fillColor=#F5F8FA;strokeColor=#004387;whiteSpace=wrap;fontFamily=Arial;fontSize=26;html=0;">
+          <mxGeometry x="390" y="510" width="430" height="155" as="geometry" />
+        </mxCell>
+        <mxCell id="SUC06" vertex="1" parent="1" value="" style="ellipse;fillColor=#F5F8FA;strokeColor=#004387;whiteSpace=wrap;fontFamily=Arial;fontSize=26;html=0;">
+          <mxGeometry x="900" y="510" width="430" height="155" as="geometry" />
+        </mxCell>
+        <mxCell id="UC02" vertex="1" parent="1" value="" style="ellipse;fillColor=#DCEAF5;strokeColor=#004387;whiteSpace=wrap;fontFamily=Arial;fontSize=26;html=0;">
+          <mxGeometry x="390" y="745" width="900" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="text_0" value="&lt;div&gt;Use cases · (b) kitchen and shipper fulfilment&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=0;fontFamily=Arial;fontSize=34;fontColor=#202B36;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="18" width="741.09375" height="42.5" as="geometry" />
+        </mxCell>
+        <mxCell id="text_1" value="&lt;div&gt;Figure 2.1B · Author: 722I0004 · AI-assisted (Codex)&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=0;fontFamily=Arial;fontSize=26;fontColor=#202B36;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="30" y="1034" width="613.328125" height="32.5" as="geometry" />
+        </mxCell>
+        <mxCell id="text_2" value="&lt;div&gt;Analysis model · team defaults; no lecturer approval or runtime result inferred&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=0;fontFamily=Arial;fontSize=26;fontColor=#202B36;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="30" y="1065" width="896.453125" height="32.5" as="geometry" />
+        </mxCell>
+        <mxCell id="text_3" value="&lt;div&gt;Customer answer occurs through SUC-03 (Figure 2.1A);&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=0;fontFamily=Arial;fontSize=26;fontColor=#202B36;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="490" y="430" width="656.625" height="32.5" as="geometry" />
+        </mxCell>
+        <mxCell id="text_4" value="&lt;div&gt;it does not create a second synchronous kitchen actor session.&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=0;fontFamily=Arial;fontSize=26;fontColor=#202B36;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="490" y="465" width="731.828125" height="32.5" as="geometry" />
+        </mxCell>
+        <mxCell id="text_5" value="&lt;div&gt;Sequence dependencies are described in flows, not drawn as «include».&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=0;fontFamily=Arial;fontSize=26;fontColor=#202B36;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="350" y="975" width="841.71875" height="32.5" as="geometry" />
+        </mxCell>
+        <mxCell id="text_6" value="&lt;div&gt;SaigonBite system&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=0;fontFamily=Arial;fontSize=26;fontColor=#202B36;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="312" y="112" width="240.5625" height="32.5" as="geometry" />
+        </mxCell>
+        <mxCell id="text_7" value="&lt;div&gt;UC-05&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=0;fontFamily=Arial;fontSize=26;fontColor=#202B36;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="802.4375" y="246.0" width="83.125" height="32.5" as="geometry" />
+        </mxCell>
+        <mxCell id="text_8" value="&lt;div&gt;Decide an incoming order: confirm, reject, or offer a replacement the&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=0;fontFamily=Arial;fontSize=26;fontColor=#202B36;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="447.296875" y="277.0" width="793.40625" height="32.5" as="geometry" />
+        </mxCell>
+        <mxCell id="text_9" value="&lt;div&gt;customer agrees to&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=0;fontFamily=Arial;fontSize=26;fontColor=#202B36;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="728.765625" y="308.0" width="230.46875" height="32.5" as="geometry" />
+        </mxCell>
+        <mxCell id="text_10" value="&lt;div&gt;SUC-05&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=0;fontFamily=Arial;fontSize=26;fontColor=#202B36;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="558.765625" y="556.5" width="100.46875" height="32.5" as="geometry" />
+        </mxCell>
+        <mxCell id="text_11" value="&lt;div&gt;Start preparing and mark ready&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=0;fontFamily=Arial;fontSize=26;fontColor=#202B36;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="425.140625" y="587.5" width="367.71875" height="32.5" as="geometry" />
+        </mxCell>
+        <mxCell id="text_12" value="&lt;div&gt;SUC-06&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=0;fontFamily=Arial;fontSize=26;fontColor=#202B36;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="1068.765625" y="556.5" width="100.46875" height="32.5" as="geometry" />
+        </mxCell>
+        <mxCell id="text_13" value="&lt;div&gt;Set menu availability at my hub&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=0;fontFamily=Arial;fontSize=26;fontColor=#202B36;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="935.125" y="587.5" width="367.75" height="32.5" as="geometry" />
+        </mxCell>
+        <mxCell id="text_14" value="&lt;div&gt;UC-02&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=0;fontFamily=Arial;fontSize=26;fontColor=#202B36;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="802.4375" y="809.0" width="83.125" height="32.5" as="geometry" />
+        </mxCell>
+        <mxCell id="text_15" value="&lt;div&gt;Deliver an order: pick up, deliver with cash collection, or report failure&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=left;verticalAlign=top;spacing=0;fontFamily=Arial;fontSize=26;fontColor=#202B36;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="442.7109375" y="840.0" width="802.578125" height="32.5" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

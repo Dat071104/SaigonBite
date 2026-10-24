@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1310" viewBox="0 0 1800 1310">
+<rect width="100%" height="100%" fill="white"/>
+<polyline points="455,215 665,215" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="1195,280 1272,280 1272,182 1350,182" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="1272,530 1272,247" fill="none" stroke="#52616F" stroke-width="3" stroke-dasharray="10 7"/>
+<rect x="55" y="150" width="400" height="158" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<path d="M55,202 H455" stroke="#004387" stroke-width="2"/>
+<rect x="665" y="150" width="530" height="220" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<path d="M665,202 H1195" stroke="#004387" stroke-width="2"/>
+<rect x="1350" y="150" width="390" height="65" fill="#F5F8FA" stroke="#004387" stroke-width="3"/>
+<rect x="1270" y="245" width="4" height="4" fill="white" stroke="#004387" stroke-width="3"/>
+<rect x="1050" y="530" width="680" height="96" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<path d="M1050,582 H1730" stroke="#004387" stroke-width="2"/>
+<rect x="55" y="530" width="800" height="375" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<path d="M55,582 H855" stroke="#004387" stroke-width="2"/>
+<text x="30" y="18" fill="#202B36" font-family="Arial, sans-serif" font-size="34" font-weight="700" dominant-baseline="hanging">
+<tspan x="30" dy="0">Domain model · catalogue, hub listings and vouchers</tspan>
+</text>
+<text x="30" y="1244" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="30" dy="0">Figure 2.2B · Author: 722I0004 · AI-assisted (Codex)</tspan>
+</text>
+<text x="30" y="1275" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="30" dy="0">Analysis model · team defaults; no lecturer approval or runtime result inferred</tspan>
+</text>
+<text x="1050" y="710" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1050" dy="0">HubMenuItem is the association class of</tspan>
+<tspan x="1050" dy="30.939999999999998">Hub ↔ MenuItem (one row per pair).</tspan>
+<tspan x="1050" dy="30.939999999999998">Listed row absent = unlisted.</tspan>
+<tspan x="1050" dy="30.939999999999998">Available = true / false is per hub.</tspan>
+</text>
+<text x="1050" y="895" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1050" dy="0">Catalogue archive never rewrites order snapshots.</tspan>
+<tspan x="1050" dy="30.939999999999998">Archived brand or item cannot be ordered.</tspan>
+<tspan x="1050" dy="30.939999999999998">Hub details appear in Figure 2.2A.</tspan>
+<tspan x="1050" dy="30.939999999999998">Voucher → Order appears in Figure 2.2C.</tspan>
+</text>
+<text x="60" y="1105" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="60" dy="0">Quote, report filters/rows and receipts are computed views; they are not persistent classes.</tspan>
+</text>
+<text x="490" y="240" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="490" dy="0">offers</tspan>
+</text>
+<text x="475" y="171" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="475" dy="0">1</tspan>
+</text>
+<text x="565" y="171" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="565" dy="0">0..*</tspan>
+</text>
+<text x="1320" y="255" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1320" dy="0">listed at</tspan>
+</text>
+<text x="1200" y="320" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1200" dy="0">0..*</tspan>
+</text>
+<text x="1250" y="130" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1250" dy="0">0..*</tspan>
+</text>
+<text x="69" y="162" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="700" dominant-baseline="hanging">
+<tspan x="69" dy="0">Brand</tspan>
+</text>
+<text x="69" y="215" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="69" dy="0">id: Integer</tspan>
+</text>
+<text x="69" y="246" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="69" dy="0">name: String</tspan>
+</text>
+<text x="69" y="277" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="69" dy="0">archived_at: DateTime?</tspan>
+</text>
+<text x="679" y="162" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="700" dominant-baseline="hanging">
+<tspan x="679" dy="0">MenuItem</tspan>
+</text>
+<text x="679" y="215" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="679" dy="0">id: Integer</tspan>
+</text>
+<text x="679" y="246" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="679" dy="0">name: String</tspan>
+</text>
+<text x="679" y="277" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="679" dy="0">description: String</tspan>
+</text>
+<text x="679" y="308" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="679" dy="0">price: Integer</tspan>
+</text>
+<text x="679" y="339" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="679" dy="0">archived_at: DateTime?</tspan>
+</text>
+<text x="1362" y="162" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1362" dy="0">«reference» Hub</tspan>
+</text>
+<text x="1272.0" y="231.5" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1272.0" dy="0"></tspan>
+</text>
+<text x="1064" y="542" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="700" dominant-baseline="hanging">
+<tspan x="1064" dy="0">HubMenuItem</tspan>
+</text>
+<text x="1064" y="595" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1064" dy="0">is_available: Boolean</tspan>
+</text>
+<text x="69" y="542" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="700" dominant-baseline="hanging">
+<tspan x="69" dy="0">Voucher</tspan>
+</text>
+<text x="69" y="595" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="69" dy="0">id: Integer</tspan>
+</text>
+<text x="69" y="626" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="69" dy="0">code: String</tspan>
+</text>
+<text x="69" y="657" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="69" dy="0">description: String</tspan>
+</text>
+<text x="69" y="688" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="69" dy="0">discount_type: String</tspan>
+</text>
+<text x="69" y="719" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="69" dy="0">discount_value: Integer</tspan>
+</text>
+<text x="69" y="750" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="69" dy="0">min_subtotal: Integer</tspan>
+</text>
+<text x="69" y="781" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="69" dy="0">max_discount: Integer?</tspan>
+</text>
+<text x="69" y="812" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="69" dy="0">valid_from: Date</tspan>
+</text>
+<text x="69" y="843" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="69" dy="0">valid_until: Date</tspan>
+</text>
+<text x="69" y="874" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="69" dy="0">archived_at: DateTime?</tspan>
+</text>
+</svg>

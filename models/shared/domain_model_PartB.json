@@ -1,0 +1,191 @@
+{
+  "stem": "domain_model_PartB",
+  "width": 1800,
+  "height": 1310,
+  "font_min": 26,
+  "placed_width_mm": 230,
+  "min_placed_pt": 9.41732283464567,
+  "nodes": [
+    {
+      "id": "Brand",
+      "label": "Brand",
+      "x": 55,
+      "y": 150,
+      "w": 400,
+      "h": 158,
+      "kind": "class",
+      "fill": "#E7F0F6",
+      "attrs": [
+        "id: Integer",
+        "name: String",
+        "archived_at: DateTime?"
+      ]
+    },
+    {
+      "id": "MenuItem",
+      "label": "MenuItem",
+      "x": 665,
+      "y": 150,
+      "w": 530,
+      "h": 220,
+      "kind": "class",
+      "fill": "#E7F0F6",
+      "attrs": [
+        "id: Integer",
+        "name: String",
+        "description: String",
+        "price: Integer",
+        "archived_at: DateTime?"
+      ]
+    },
+    {
+      "id": "Hub",
+      "label": "\u00abreference\u00bb Hub",
+      "x": 1350,
+      "y": 150,
+      "w": 390,
+      "h": 65,
+      "kind": "ref",
+      "fill": "#F5F8FA",
+      "attrs": null
+    },
+    {
+      "id": "listing_link",
+      "label": "",
+      "x": 1270,
+      "y": 245,
+      "w": 4,
+      "h": 4,
+      "kind": "rect",
+      "fill": "white",
+      "attrs": null
+    },
+    {
+      "id": "HubMenuItem",
+      "label": "HubMenuItem",
+      "x": 1050,
+      "y": 530,
+      "w": 680,
+      "h": 96,
+      "kind": "class",
+      "fill": "#E7F0F6",
+      "attrs": [
+        "is_available: Boolean"
+      ]
+    },
+    {
+      "id": "Voucher",
+      "label": "Voucher",
+      "x": 55,
+      "y": 530,
+      "w": 800,
+      "h": 375,
+      "kind": "class",
+      "fill": "#E7F0F6",
+      "attrs": [
+        "id: Integer",
+        "code: String",
+        "description: String",
+        "discount_type: String",
+        "discount_value: Integer",
+        "min_subtotal: Integer",
+        "max_discount: Integer?",
+        "valid_from: Date",
+        "valid_until: Date",
+        "archived_at: DateTime?"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "brand_items",
+      "source": "Brand",
+      "target": "MenuItem",
+      "points": [
+        [
+          455,
+          215
+        ],
+        [
+          665,
+          215
+        ]
+      ],
+      "label": "offers",
+      "lx": 490,
+      "ly": 240,
+      "kind": "assoc",
+      "ends": [
+        [
+          "1",
+          475,
+          171
+        ],
+        [
+          "0..*",
+          565,
+          171
+        ]
+      ]
+    },
+    {
+      "id": "listed",
+      "source": "MenuItem",
+      "target": "Hub",
+      "points": [
+        [
+          1195,
+          280
+        ],
+        [
+          1272,
+          280
+        ],
+        [
+          1272,
+          182
+        ],
+        [
+          1350,
+          182
+        ]
+      ],
+      "label": "listed at",
+      "lx": 1320,
+      "ly": 255,
+      "kind": "assoc",
+      "ends": [
+        [
+          "0..*",
+          1200,
+          320
+        ],
+        [
+          "0..*",
+          1250,
+          130
+        ]
+      ]
+    },
+    {
+      "id": "association_class",
+      "source": "HubMenuItem",
+      "target": "listing_link",
+      "points": [
+        [
+          1272,
+          530
+        ],
+        [
+          1272,
+          247
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "anchor",
+      "ends": null
+    }
+  ]
+}

@@ -1,0 +1,220 @@
+{
+  "stem": "use_case_diagram_PartB",
+  "width": 1600,
+  "height": 1100,
+  "font_min": 26,
+  "placed_width_mm": 230,
+  "min_placed_pt": 10.594488188976378,
+  "nodes": [
+    {
+      "id": "system",
+      "label": "SaigonBite system",
+      "x": 300,
+      "y": 100,
+      "w": 1120,
+      "h": 850,
+      "kind": "frame",
+      "fill": "white",
+      "attrs": null
+    },
+    {
+      "id": "kitchen",
+      "label": "Kitchen staff",
+      "x": 70,
+      "y": 265,
+      "w": 170,
+      "h": 120,
+      "kind": "actor",
+      "fill": "#E7F0F6",
+      "attrs": null
+    },
+    {
+      "id": "shipper",
+      "label": "Shipper",
+      "x": 70,
+      "y": 735,
+      "w": 170,
+      "h": 120,
+      "kind": "actor",
+      "fill": "#E7F0F6",
+      "attrs": null
+    },
+    {
+      "id": "customer",
+      "label": "Customer",
+      "x": 1430,
+      "y": 220,
+      "w": 170,
+      "h": 120,
+      "kind": "actor",
+      "fill": "#E7F0F6",
+      "attrs": null
+    },
+    {
+      "id": "UC05",
+      "label": "UC-05\nDecide an incoming order: confirm, reject, or offer a replacement the customer agrees to",
+      "x": 390,
+      "y": 180,
+      "w": 900,
+      "h": 225,
+      "kind": "ellipse",
+      "fill": "#DCEAF5",
+      "attrs": null
+    },
+    {
+      "id": "SUC05",
+      "label": "SUC-05\nStart preparing and mark ready",
+      "x": 390,
+      "y": 510,
+      "w": 430,
+      "h": 155,
+      "kind": "ellipse",
+      "fill": "#F5F8FA",
+      "attrs": null
+    },
+    {
+      "id": "SUC06",
+      "label": "SUC-06\nSet menu availability at my hub",
+      "x": 900,
+      "y": 510,
+      "w": 430,
+      "h": 155,
+      "kind": "ellipse",
+      "fill": "#F5F8FA",
+      "attrs": null
+    },
+    {
+      "id": "UC02",
+      "label": "UC-02\nDeliver an order: pick up, deliver with cash collection, or report failure",
+      "x": 390,
+      "y": 745,
+      "w": 900,
+      "h": 190,
+      "kind": "ellipse",
+      "fill": "#DCEAF5",
+      "attrs": null
+    }
+  ],
+  "edges": [
+    {
+      "id": "k5",
+      "source": "kitchen",
+      "target": "UC05",
+      "points": [
+        [
+          240,
+          315
+        ],
+        [
+          390,
+          290
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": null
+    },
+    {
+      "id": "kprep",
+      "source": "kitchen",
+      "target": "SUC05",
+      "points": [
+        [
+          240,
+          335
+        ],
+        [
+          320,
+          335
+        ],
+        [
+          320,
+          587
+        ],
+        [
+          390,
+          587
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": null
+    },
+    {
+      "id": "kavail",
+      "source": "kitchen",
+      "target": "SUC06",
+      "points": [
+        [
+          240,
+          355
+        ],
+        [
+          280,
+          355
+        ],
+        [
+          280,
+          705
+        ],
+        [
+          1115,
+          705
+        ],
+        [
+          1115,
+          665
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": null
+    },
+    {
+      "id": "ship",
+      "source": "shipper",
+      "target": "UC02",
+      "points": [
+        [
+          240,
+          785
+        ],
+        [
+          390,
+          840
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": null
+    },
+    {
+      "id": "reply",
+      "source": "customer",
+      "target": "UC05",
+      "points": [
+        [
+          1430,
+          280
+        ],
+        [
+          1290,
+          290
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": null
+    }
+  ]
+}
