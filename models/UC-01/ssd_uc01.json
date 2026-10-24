@@ -1,0 +1,417 @@
+{
+  "author": "Author: 722I0004 \u00b7 AI-assisted (Codex)",
+  "main_image": "Part A alias; editable base contains every page",
+  "parts": [
+    {
+      "author": "Author: 722I0004 \u00b7 AI-assisted (Codex)",
+      "title": "UC-01 \u2014 read-only quote dialogue",
+      "figure": "2.11A",
+      "canvas": [
+        1600,
+        1200
+      ],
+      "minimum_font_px": 26,
+      "placed_width_mm": 230,
+      "minimum_placed_pt": 10.59,
+      "nodes": [
+        {
+          "id": "actor",
+          "label": "Customer",
+          "x": 200,
+          "y": 120,
+          "w": 300,
+          "h": 65,
+          "kind": "action"
+        },
+        {
+          "id": "system",
+          "label": ":System",
+          "x": 1400,
+          "y": 120,
+          "w": 300,
+          "h": 65,
+          "kind": "action"
+        }
+      ],
+      "edges": [
+        {
+          "id": "01S-M01",
+          "source": "actor",
+          "target": "system",
+          "label": "browseHubs()",
+          "points": [
+            [
+              200,
+              245
+            ],
+            [
+              1400,
+              245
+            ]
+          ],
+          "return_message": false
+        },
+        {
+          "id": "01S-R01",
+          "source": "system",
+          "target": "actor",
+          "label": "activeHubsWithLoadAndCapacity",
+          "points": [
+            [
+              1400,
+              330
+            ],
+            [
+              200,
+              330
+            ]
+          ],
+          "return_message": true
+        },
+        {
+          "id": "01S-M02",
+          "source": "actor",
+          "target": "system",
+          "label": "selectHub(hubId)",
+          "points": [
+            [
+              200,
+              445
+            ],
+            [
+              1400,
+              445
+            ]
+          ],
+          "return_message": false
+        },
+        {
+          "id": "01S-R02",
+          "source": "system",
+          "target": "actor",
+          "label": "availableMenuAndOwnAddresses | refusal",
+          "points": [
+            [
+              1400,
+              530
+            ],
+            [
+              200,
+              530
+            ]
+          ],
+          "return_message": true
+        },
+        {
+          "id": "01S-M03",
+          "source": "actor",
+          "target": "system",
+          "label": "requestQuote(hubId, addressId, lines(itemId, quantity), voucherCode?, paymentMethod, onlineOption?)",
+          "points": [
+            [
+              200,
+              760
+            ],
+            [
+              1400,
+              760
+            ]
+          ],
+          "return_message": false
+        },
+        {
+          "id": "01S-R03",
+          "source": "system",
+          "target": "actor",
+          "label": "quoteWithFingerprintAndSDFQT | refusal | busySuggestions",
+          "points": [
+            [
+              1400,
+              875
+            ],
+            [
+              200,
+              875
+            ]
+          ],
+          "return_message": true
+        }
+      ],
+      "decisions": {}
+    },
+    {
+      "author": "Author: 722I0004 \u00b7 AI-assisted (Codex)",
+      "title": "UC-01 \u2014 checkout and guarded results",
+      "figure": "2.11B",
+      "canvas": [
+        1600,
+        1200
+      ],
+      "minimum_font_px": 26,
+      "placed_width_mm": 230,
+      "minimum_placed_pt": 10.59,
+      "nodes": [
+        {
+          "id": "actor",
+          "label": "Customer",
+          "x": 200,
+          "y": 120,
+          "w": 300,
+          "h": 65,
+          "kind": "action"
+        },
+        {
+          "id": "system",
+          "label": ":System",
+          "x": 1400,
+          "y": 120,
+          "w": 300,
+          "h": 65,
+          "kind": "action"
+        }
+      ],
+      "edges": [
+        {
+          "id": "01S-M04",
+          "source": "actor",
+          "target": "system",
+          "label": "confirmCheckout(hubId, addressId, lines(itemId, quantity), voucherCode?, paymentMethod,\nonlineOption?, simulatorOutcome?, quoteFingerprint, quotedTotal, checkoutToken)",
+          "points": [
+            [
+              200,
+              295
+            ],
+            [
+              1400,
+              295
+            ]
+          ],
+          "return_message": false
+        },
+        {
+          "id": "01S-R04a",
+          "source": "system",
+          "target": "actor",
+          "label": "existingOrder (MG02)",
+          "points": [
+            [
+              1400,
+              485
+            ],
+            [
+              200,
+              485
+            ]
+          ],
+          "return_message": true
+        },
+        {
+          "id": "01S-R04b",
+          "source": "system",
+          "target": "actor",
+          "label": "placedOrderAndReceipt (PC01\u2013PC06)",
+          "points": [
+            [
+              1400,
+              605
+            ],
+            [
+              200,
+              605
+            ]
+          ],
+          "return_message": true
+        },
+        {
+          "id": "01S-R04c",
+          "source": "system",
+          "target": "actor",
+          "label": "busySuggestions; nothing saved (MG03 / MG01)",
+          "points": [
+            [
+              1400,
+              725
+            ],
+            [
+              200,
+              725
+            ]
+          ],
+          "return_message": true
+        },
+        {
+          "id": "01S-R04d",
+          "source": "system",
+          "target": "actor",
+          "label": "revisedQuote; nothing saved (MG01)",
+          "points": [
+            [
+              1400,
+              845
+            ],
+            [
+              200,
+              845
+            ]
+          ],
+          "return_message": true
+        },
+        {
+          "id": "01S-R04e",
+          "source": "system",
+          "target": "actor",
+          "label": "refusal; no new order/payment/line; release authorization on rollback (MG01)",
+          "points": [
+            [
+              1400,
+              1025
+            ],
+            [
+              200,
+              1025
+            ]
+          ],
+          "return_message": true
+        }
+      ],
+      "decisions": {}
+    },
+    {
+      "author": "Author: 722I0004 \u00b7 AI-assisted (Codex)",
+      "title": "UC-01 \u2014 receipt and supporting order actions",
+      "figure": "2.11C",
+      "canvas": [
+        1600,
+        1200
+      ],
+      "minimum_font_px": 26,
+      "placed_width_mm": 230,
+      "minimum_placed_pt": 10.59,
+      "nodes": [
+        {
+          "id": "actor",
+          "label": "Customer",
+          "x": 200,
+          "y": 120,
+          "w": 300,
+          "h": 65,
+          "kind": "action"
+        },
+        {
+          "id": "system",
+          "label": ":System",
+          "x": 1400,
+          "y": 120,
+          "w": 300,
+          "h": 65,
+          "kind": "action"
+        }
+      ],
+      "edges": [
+        {
+          "id": "01S-M05",
+          "source": "actor",
+          "target": "system",
+          "label": "viewReceipt(orderId)",
+          "points": [
+            [
+              200,
+              285
+            ],
+            [
+              1400,
+              285
+            ]
+          ],
+          "return_message": false
+        },
+        {
+          "id": "01S-R05",
+          "source": "system",
+          "target": "actor",
+          "label": "ownOrderReceipt | refusal",
+          "points": [
+            [
+              1400,
+              385
+            ],
+            [
+              200,
+              385
+            ]
+          ],
+          "return_message": true
+        },
+        {
+          "id": "01S-M06",
+          "source": "actor",
+          "target": "system",
+          "label": "viewMyOrders()",
+          "points": [
+            [
+              200,
+              560
+            ],
+            [
+              1400,
+              560
+            ]
+          ],
+          "return_message": false
+        },
+        {
+          "id": "01S-R06",
+          "source": "system",
+          "target": "actor",
+          "label": "ownOrdersAndOpenOffers",
+          "points": [
+            [
+              1400,
+              660
+            ],
+            [
+              200,
+              660
+            ]
+          ],
+          "return_message": true
+        },
+        {
+          "id": "01S-M07",
+          "source": "actor",
+          "target": "system",
+          "label": "cancelOrder(orderId)",
+          "points": [
+            [
+              200,
+              845
+            ],
+            [
+              1400,
+              845
+            ]
+          ],
+          "return_message": false
+        },
+        {
+          "id": "01S-R07",
+          "source": "system",
+          "target": "actor",
+          "label": "cancelledOrderAndAmounts | refusal",
+          "points": [
+            [
+              1400,
+              950
+            ],
+            [
+              200,
+              950
+            ]
+          ],
+          "return_message": true
+        }
+      ],
+      "decisions": {}
+    }
+  ]
+}

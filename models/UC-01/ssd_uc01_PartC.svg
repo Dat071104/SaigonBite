@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200"><rect width="100%" height="100%" fill="white"/>
+<text x="800" y="64.44" text-anchor="middle" font-family="Arial" font-size="32" font-weight="bold" fill="#202B36">UC-01 — receipt and supporting order actions</text>
+<text x="800" y="1148.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Figure 2.11C. UC-01 — receipt and supporting order actions — Author: 722I0004 · AI-assisted (Codex)</text>
+<text x="800" y="1188.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Analysis contract · 230 mm landscape · minimum 10.59 pt · no execution result</text>
+<rect x="50.0" y="87.5" width="300" height="65" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="200" y="131.92000000000002" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Customer</text>
+<rect x="1250.0" y="87.5" width="300" height="65" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="1400" y="131.92000000000002" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">:System</text>
+<polyline points="200,155 200,1110" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="1400,155 1400,1110" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<rect x="80" y="185" width="1450" height="240" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="480.6328125" y="198.0" width="638.734375" height="32.68" fill="white"/>
+<text x="800" y="223.92000000000002" text-anchor="middle" font-family="Arial" font-size="26" font-weight="bold" fill="#202B36">opt [Customer opens own receipt through SUC-03]</text>
+<polyline points="200,285 1400,285" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1383.0,293.0 1400,285 1383.0,277.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="617.75" y="242.32" width="364.5" height="32.68" fill="white"/>
+<text x="800" y="268.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">01S-M05 viewReceipt(orderId)</text>
+<polyline points="1400,385 200,385" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="217.0,377.0 200,385 217.0,393.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="588.359375" y="342.32" width="423.28125" height="32.68" fill="white"/>
+<text x="800" y="368.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">01S-R05 ownOrderReceipt | refusal</text>
+<rect x="80" y="460" width="1450" height="240" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="482.765625" y="473.0" width="634.46875" height="32.68" fill="white"/>
+<text x="800" y="498.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="bold" fill="#202B36">opt [Customer tracks own orders through SUC-03]</text>
+<polyline points="200,560 1400,560" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1383.0,568.0 1400,560 1383.0,552.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="645.9453125" y="517.32" width="308.109375" height="32.68" fill="white"/>
+<text x="800" y="543.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">01S-M06 viewMyOrders()</text>
+<polyline points="1400,660 200,660" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="217.0,652.0 200,660 217.0,668.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="585.46875" y="617.32" width="429.0625" height="32.68" fill="white"/>
+<text x="800" y="643.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">01S-R06 ownOrdersAndOpenOffers</text>
+<rect x="80" y="735" width="1450" height="350" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="387.4296875" y="748.0" width="825.140625" height="32.68" fill="white"/>
+<text x="800" y="773.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="bold" fill="#202B36">opt [SUC-04 extension: cancel requested at order action selected]</text>
+<polyline points="200,845 1400,845" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1383.0,853.0 1400,845 1383.0,837.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="617.0390625" y="802.32" width="365.921875" height="32.68" fill="white"/>
+<text x="800" y="828.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">01S-M07 cancelOrder(orderId)</text>
+<polyline points="1400,950 200,950" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="217.0,942.0 200,950 217.0,958.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="526.9453125" y="907.32" width="546.109375" height="32.68" fill="white"/>
+<text x="800" y="933.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">01S-R07 cancelledOrderAndAmounts | refusal</text>
+<text x="800" y="1028.58" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">[own PLACED / CONFIRMED] → CANCELLED + offer WITHDRAWN + BR-17 full C</text>
+<text x="800" y="1059.26" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">[otherwise] → refusal, zero lifecycle rows changed; no revival; no payout claim.</text>
+</svg>

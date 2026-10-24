@@ -1,0 +1,297 @@
+{
+  "author": "Author: 722I0004 \u00b7 AI-assisted (Codex)",
+  "title": "UC-01 \u2014 quote and selection",
+  "figure": "2.10A",
+  "canvas": [
+    1600,
+    1200
+  ],
+  "minimum_font_px": 26,
+  "placed_width_mm": 230,
+  "minimum_placed_pt": 10.59,
+  "nodes": [
+    {
+      "id": "01A-I",
+      "label": "",
+      "x": 210,
+      "y": 190,
+      "w": 28,
+      "h": 28,
+      "kind": "initial"
+    },
+    {
+      "id": "01A-1",
+      "label": "1 browseHubs()",
+      "x": 210,
+      "y": 300,
+      "w": 340,
+      "h": 90,
+      "kind": "action"
+    },
+    {
+      "id": "01A-2",
+      "label": "1 ACTIVE hubs, load/capacity\nNo persistent writes",
+      "x": 1120,
+      "y": 300,
+      "w": 620,
+      "h": 100,
+      "kind": "action"
+    },
+    {
+      "id": "01A-3",
+      "label": "2 Select hub\nselectHub(hubId)",
+      "x": 210,
+      "y": 470,
+      "w": 340,
+      "h": 100,
+      "kind": "action"
+    },
+    {
+      "id": "01A-4",
+      "label": "2 Available menu + own addresses\nNo persistent writes",
+      "x": 1120,
+      "y": 470,
+      "w": 620,
+      "h": 100,
+      "kind": "action"
+    },
+    {
+      "id": "01A-5",
+      "label": "3 Choose address, lines, voucher, payment\nrequestQuote(...)",
+      "x": 210,
+      "y": 660,
+      "w": 340,
+      "h": 160,
+      "kind": "action"
+    },
+    {
+      "id": "01A-6",
+      "label": "3 Validate actor/owner, active hub/menu, qty, raw radius, load, voucher, payment\nCompute full fingerprint + S/D/F/Q/T",
+      "x": 1120,
+      "y": 660,
+      "w": 620,
+      "h": 160,
+      "kind": "action"
+    },
+    {
+      "id": "01A-D",
+      "label": "Quote eligible?",
+      "x": 1120,
+      "y": 865,
+      "w": 230,
+      "h": 115,
+      "kind": "decision"
+    },
+    {
+      "id": "01A-E",
+      "label": "E01/E02 refusal or busySuggestions\nNo Order/Payment/Line saved\nMG01 / MG03",
+      "x": 650,
+      "y": 865,
+      "w": 400,
+      "h": 160,
+      "kind": "action"
+    },
+    {
+      "id": "01A-F",
+      "label": "",
+      "x": 650,
+      "y": 1050,
+      "w": 34,
+      "h": 34,
+      "kind": "final"
+    },
+    {
+      "id": "01A-AB",
+      "label": "AB",
+      "x": 1120,
+      "y": 1050,
+      "w": 70,
+      "h": 70,
+      "kind": "connector"
+    }
+  ],
+  "edges": [
+    {
+      "id": "a",
+      "source": "01A-I",
+      "target": "01A-1",
+      "label": "",
+      "points": [
+        [
+          210,
+          204.0
+        ],
+        [
+          210,
+          255.0
+        ]
+      ]
+    },
+    {
+      "id": "b",
+      "source": "01A-1",
+      "target": "01A-2",
+      "label": "",
+      "points": [
+        [
+          380.0,
+          300
+        ],
+        [
+          810.0,
+          300
+        ]
+      ]
+    },
+    {
+      "id": "c",
+      "source": "01A-2",
+      "target": "01A-3",
+      "label": "",
+      "points": [
+        [
+          1120,
+          350.0
+        ],
+        [
+          1120,
+          385.0
+        ],
+        [
+          210,
+          385.0
+        ],
+        [
+          210,
+          420.0
+        ]
+      ]
+    },
+    {
+      "id": "d",
+      "source": "01A-3",
+      "target": "01A-4",
+      "label": "",
+      "points": [
+        [
+          380.0,
+          470
+        ],
+        [
+          810.0,
+          470
+        ]
+      ]
+    },
+    {
+      "id": "e",
+      "source": "01A-4",
+      "target": "01A-5",
+      "label": "",
+      "points": [
+        [
+          1120,
+          520.0
+        ],
+        [
+          1120,
+          565.0
+        ],
+        [
+          210,
+          565.0
+        ],
+        [
+          210,
+          580.0
+        ]
+      ]
+    },
+    {
+      "id": "f",
+      "source": "01A-5",
+      "target": "01A-6",
+      "label": "",
+      "points": [
+        [
+          380.0,
+          660
+        ],
+        [
+          810.0,
+          660
+        ]
+      ]
+    },
+    {
+      "id": "g",
+      "source": "01A-6",
+      "target": "01A-D",
+      "label": "",
+      "points": [
+        [
+          1120,
+          740.0
+        ],
+        [
+          1120,
+          807.5
+        ]
+      ]
+    },
+    {
+      "id": "j",
+      "source": "01A-E",
+      "target": "01A-F",
+      "label": "",
+      "points": [
+        [
+          650,
+          945.0
+        ],
+        [
+          650,
+          1033.0
+        ]
+      ]
+    },
+    {
+      "id": "h",
+      "source": "01A-D",
+      "target": "01A-E",
+      "label": "[not eligible]",
+      "points": [
+        [
+          1005.0,
+          865
+        ],
+        [
+          850.0,
+          865
+        ]
+      ]
+    },
+    {
+      "id": "i",
+      "source": "01A-D",
+      "target": "01A-AB",
+      "label": "[eligible]",
+      "points": [
+        [
+          1120,
+          922.5
+        ],
+        [
+          1120,
+          1015.0
+        ]
+      ]
+    }
+  ],
+  "decisions": {
+    "01A-D": [
+      "[not eligible]",
+      "[eligible]"
+    ]
+  }
+}

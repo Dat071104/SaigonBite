@@ -1,0 +1,137 @@
+{
+  "author": "Author: 722I0004 \u00b7 AI-assisted (Codex)",
+  "title": "UC-01 \u2014 checkout and guarded results",
+  "figure": "2.11B",
+  "canvas": [
+    1600,
+    1200
+  ],
+  "minimum_font_px": 26,
+  "placed_width_mm": 230,
+  "minimum_placed_pt": 10.59,
+  "nodes": [
+    {
+      "id": "actor",
+      "label": "Customer",
+      "x": 200,
+      "y": 120,
+      "w": 300,
+      "h": 65,
+      "kind": "action"
+    },
+    {
+      "id": "system",
+      "label": ":System",
+      "x": 1400,
+      "y": 120,
+      "w": 300,
+      "h": 65,
+      "kind": "action"
+    }
+  ],
+  "edges": [
+    {
+      "id": "01S-M04",
+      "source": "actor",
+      "target": "system",
+      "label": "confirmCheckout(hubId, addressId, lines(itemId, quantity), voucherCode?, paymentMethod,\nonlineOption?, simulatorOutcome?, quoteFingerprint, quotedTotal, checkoutToken)",
+      "points": [
+        [
+          200,
+          295
+        ],
+        [
+          1400,
+          295
+        ]
+      ],
+      "return_message": false
+    },
+    {
+      "id": "01S-R04a",
+      "source": "system",
+      "target": "actor",
+      "label": "existingOrder (MG02)",
+      "points": [
+        [
+          1400,
+          485
+        ],
+        [
+          200,
+          485
+        ]
+      ],
+      "return_message": true
+    },
+    {
+      "id": "01S-R04b",
+      "source": "system",
+      "target": "actor",
+      "label": "placedOrderAndReceipt (PC01\u2013PC06)",
+      "points": [
+        [
+          1400,
+          605
+        ],
+        [
+          200,
+          605
+        ]
+      ],
+      "return_message": true
+    },
+    {
+      "id": "01S-R04c",
+      "source": "system",
+      "target": "actor",
+      "label": "busySuggestions; nothing saved (MG03 / MG01)",
+      "points": [
+        [
+          1400,
+          725
+        ],
+        [
+          200,
+          725
+        ]
+      ],
+      "return_message": true
+    },
+    {
+      "id": "01S-R04d",
+      "source": "system",
+      "target": "actor",
+      "label": "revisedQuote; nothing saved (MG01)",
+      "points": [
+        [
+          1400,
+          845
+        ],
+        [
+          200,
+          845
+        ]
+      ],
+      "return_message": true
+    },
+    {
+      "id": "01S-R04e",
+      "source": "system",
+      "target": "actor",
+      "label": "refusal; no new order/payment/line; release authorization on rollback (MG01)",
+      "points": [
+        [
+          1400,
+          1025
+        ],
+        [
+          200,
+          1025
+        ]
+      ],
+      "return_message": true
+    }
+  ],
+  "decisions": {}
+}

@@ -1,0 +1,137 @@
+{
+  "author": "Author: 722I0004 \u00b7 AI-assisted (Codex)",
+  "title": "UC-01 \u2014 receipt and supporting order actions",
+  "figure": "2.11C",
+  "canvas": [
+    1600,
+    1200
+  ],
+  "minimum_font_px": 26,
+  "placed_width_mm": 230,
+  "minimum_placed_pt": 10.59,
+  "nodes": [
+    {
+      "id": "actor",
+      "label": "Customer",
+      "x": 200,
+      "y": 120,
+      "w": 300,
+      "h": 65,
+      "kind": "action"
+    },
+    {
+      "id": "system",
+      "label": ":System",
+      "x": 1400,
+      "y": 120,
+      "w": 300,
+      "h": 65,
+      "kind": "action"
+    }
+  ],
+  "edges": [
+    {
+      "id": "01S-M05",
+      "source": "actor",
+      "target": "system",
+      "label": "viewReceipt(orderId)",
+      "points": [
+        [
+          200,
+          285
+        ],
+        [
+          1400,
+          285
+        ]
+      ],
+      "return_message": false
+    },
+    {
+      "id": "01S-R05",
+      "source": "system",
+      "target": "actor",
+      "label": "ownOrderReceipt | refusal",
+      "points": [
+        [
+          1400,
+          385
+        ],
+        [
+          200,
+          385
+        ]
+      ],
+      "return_message": true
+    },
+    {
+      "id": "01S-M06",
+      "source": "actor",
+      "target": "system",
+      "label": "viewMyOrders()",
+      "points": [
+        [
+          200,
+          560
+        ],
+        [
+          1400,
+          560
+        ]
+      ],
+      "return_message": false
+    },
+    {
+      "id": "01S-R06",
+      "source": "system",
+      "target": "actor",
+      "label": "ownOrdersAndOpenOffers",
+      "points": [
+        [
+          1400,
+          660
+        ],
+        [
+          200,
+          660
+        ]
+      ],
+      "return_message": true
+    },
+    {
+      "id": "01S-M07",
+      "source": "actor",
+      "target": "system",
+      "label": "cancelOrder(orderId)",
+      "points": [
+        [
+          200,
+          845
+        ],
+        [
+          1400,
+          845
+        ]
+      ],
+      "return_message": false
+    },
+    {
+      "id": "01S-R07",
+      "source": "system",
+      "target": "actor",
+      "label": "cancelledOrderAndAmounts | refusal",
+      "points": [
+        [
+          1400,
+          950
+        ],
+        [
+          200,
+          950
+        ]
+      ],
+      "return_message": true
+    }
+  ],
+  "decisions": {}
+}

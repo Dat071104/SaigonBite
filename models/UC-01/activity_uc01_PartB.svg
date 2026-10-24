@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200"><rect width="100%" height="100%" fill="white"/>
+<text x="800" y="64.44" text-anchor="middle" font-family="Arial" font-size="32" font-weight="bold" fill="#202B36">UC-01 — consent, choice and replay</text>
+<text x="800" y="1148.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Figure 2.10B. UC-01 — consent, choice and replay — Author: 722I0004 · AI-assisted (Codex)</text>
+<text x="800" y="1188.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Analysis contract · 230 mm landscape · minimum 10.59 pt · no execution result</text>
+<polyline points="20,90 1580,90 1580,1115 20,1115 20,90" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="410,90 410,1115" fill="none" stroke="#004387" stroke-width="3"/>
+<text x="210" y="145.76" text-anchor="middle" font-family="Arial" font-size="28" font-weight="bold" fill="#202B36">Actor</text>
+<text x="995" y="145.76" text-anchor="middle" font-family="Arial" font-size="28" font-weight="bold" fill="#202B36">System</text>
+<ellipse cx="210" cy="190" rx="35.0" ry="35.0" fill="white" stroke="#004387" stroke-width="3"/>
+<text x="210" y="201.92000000000002" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">AB</text>
+<rect x="40.0" y="267.5" width="340" height="125" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="210" y="326.58000000000004" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">4 Review full fingerprint + T</text>
+<text x="210" y="357.26000000000005" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Accept full quote</text>
+<polygon points="1100,275.0 1210.0,330 1100,385.0 990.0,330" fill="white" stroke="#004387" stroke-width="3"/>
+<text x="1100" y="341.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Method?</text>
+<rect x="40.0" y="442.5" width="340" height="195" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="210" y="505.90000000000003" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">A02 ONLINE: choose valid</text>
+<text x="210" y="536.5799999999999" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">option and simulator</text>
+<text x="210" y="567.26" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">approve/decline BEFORE</text>
+<text x="210" y="597.9399999999999" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">transaction</text>
+<polygon points="1100,668.0 1122.0,690 1100,712.0 1078.0,690" fill="white" stroke="#004387" stroke-width="3"/>
+<rect x="40.0" y="777.5" width="340" height="125" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="210" y="836.5799999999999" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">5 confirmCheckout(...)</text>
+<text x="210" y="867.2599999999999" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Token distinct from CSRF</text>
+<rect x="755.0" y="777.5" width="690" height="125" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="1100" y="821.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">5 Begin short checkout transaction</text>
+<text x="1100" y="851.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Recheck active role; token ownership</text>
+<text x="1100" y="882.6" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Do not authorize a replay</text>
+<polygon points="1100,955.0 1220.0,1010 1100,1065.0 980.0,1010" fill="white" stroke="#004387" stroke-width="3"/>
+<text x="1100" y="1021.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Token status?</text>
+<rect x="465.0" y="957.5" width="370" height="105" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="650" y="1006.5799999999999" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">A01 existingOrder</text>
+<text x="650" y="1037.26" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">MG02; no second save</text>
+<ellipse cx="440" cy="1010" rx="17.0" ry="17.0" fill="white" stroke="#004387" stroke-width="3"/>
+<ellipse cx="440" cy="1010" rx="11.0" ry="11.0" fill="#004387"/>
+<ellipse cx="1460" cy="1010" rx="35.0" ry="35.0" fill="white" stroke="#004387" stroke-width="3"/>
+<text x="1460" y="1021.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">BC</text>
+<polyline points="210,225.0 210,267.5" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="202.0,250.5 210,267.5 218.0,250.5" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="380.0,330 990.0,330" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="973.0,338.0 990.0,330 973.0,322.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1100,275 1100,240 600,240 600,540 380,540" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="397.0,532.0 380,540 397.0,548.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="638.3828125" y="463.0" width="123.234375" height="32.68" fill="white"/>
+<text x="700" y="488.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">[ONLINE]</text>
+<polyline points="1100,385.0 1100,668.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1092.0,651.0 1100,668.0 1108.0,651.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="1157.890625" y="538.0" width="84.21875" height="32.68" fill="white"/>
+<text x="1200" y="563.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">[COD]</text>
+<polyline points="210,637 210,690 1078,690" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1061.0,698.0 1078,690 1061.0,682.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1100,712.0 1100,765.0 210,765.0 210,777.5" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="202.0,760.5 210,777.5 218.0,760.5" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="380.0,840 755.0,840" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="738.0,848.0 755.0,840 738.0,832.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1100,902.5 1100,955.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1092.0,938.0 1100,955.0 1108.0,938.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="980.0,1010 835.0,1010" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="852.0,1002.0 835.0,1010 852.0,1018.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="716.4140625" y="943.0" width="217.171875" height="32.68" fill="white"/>
+<text x="825" y="968.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">[own token found]</text>
+<polyline points="465.0,1010 457.0,1010" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="474.0,1002.0 457.0,1010 474.0,1018.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1220.0,1010 1425.0,1010" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1408.0,1018.0 1425.0,1010 1408.0,1002.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="1299.4765625" y="933.0" width="181.046875" height="32.68" fill="white"/>
+<text x="1390" y="958.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">[no own token]</text>
+<text x="1110" y="1107.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">BC → Part C: foreign token is refused; unused token is revalidated.</text>
+</svg>

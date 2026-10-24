@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200"><rect width="100%" height="100%" fill="white"/>
+<text x="800" y="64.44" text-anchor="middle" font-family="Arial" font-size="32" font-weight="bold" fill="#202B36">UC-01 — atomic checkout and outcomes</text>
+<text x="800" y="1148.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Figure 2.10C. UC-01 — atomic checkout and outcomes — Author: 722I0004 · AI-assisted (Codex)</text>
+<text x="800" y="1188.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Analysis contract · 230 mm landscape · minimum 10.59 pt · no execution result</text>
+<polyline points="20,90 1580,90 1580,1115 20,1115 20,90" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="410,90 410,1115" fill="none" stroke="#004387" stroke-width="3"/>
+<text x="210" y="145.76" text-anchor="middle" font-family="Arial" font-size="28" font-weight="bold" fill="#202B36">Actor</text>
+<text x="995" y="145.76" text-anchor="middle" font-family="Arial" font-size="28" font-weight="bold" fill="#202B36">System</text>
+<ellipse cx="210" cy="190" rx="35.0" ry="35.0" fill="white" stroke="#004387" stroke-width="3"/>
+<text x="210" y="201.92000000000002" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">BC</text>
+<rect x="700.0" y="172.5" width="800" height="145" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="1100" y="226.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">6 Validate accepted checkout in transaction:</text>
+<text x="1100" y="256.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">unused token; own valid address; eligible lines;</text>
+<text x="1100" y="287.6" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">raw d ≤8.0; capacity; voucher; fingerprint + T</text>
+<polygon points="1100,322.5 1270.0,395 1100,467.5 930.0,395" fill="white" stroke="#004387" stroke-width="3"/>
+<text x="1100" y="391.58000000000004" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">All guards +</text>
+<text x="1100" y="422.26000000000005" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">consent match?</text>
+<rect x="470.0" y="322.5" width="360" height="145" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="650" y="360.90000000000003" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">E01/02/03 refusal,</text>
+<text x="650" y="391.58000000000004" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">busySuggestions /</text>
+<text x="650" y="422.26000000000005" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">revisedQuote</text>
+<text x="650" y="452.94" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">No saved rows; MG01/MG03</text>
+<ellipse cx="440" cy="395" rx="17.0" ry="17.0" fill="white" stroke="#004387" stroke-width="3"/>
+<ellipse cx="440" cy="395" rx="11.0" ry="11.0" fill="#004387"/>
+<rect x="700.0" y="502.5" width="800" height="95" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="1100" y="546.5799999999999" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">6 COD skips simulator; ONLINE runs short</text>
+<text x="1100" y="577.2599999999999" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">deterministic decision INSIDE transaction</text>
+<polygon points="1100,610.0 1270.0,680 1100,750.0 930.0,680" fill="white" stroke="#004387" stroke-width="3"/>
+<text x="1100" y="676.5799999999999" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Payment permits</text>
+<text x="1100" y="707.2599999999999" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">creation?</text>
+<rect x="470.0" y="630.0" width="360" height="100" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="650" y="676.5799999999999" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">E04 ONLINE declined</text>
+<text x="650" y="707.2599999999999" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">No rows; MG01</text>
+<ellipse cx="440" cy="680" rx="17.0" ry="17.0" fill="white" stroke="#004387" stroke-width="3"/>
+<ellipse cx="440" cy="680" rx="11.0" ry="11.0" fill="#004387"/>
+<rect x="700.0" y="765.0" width="800" height="120" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="1100" y="806.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">7 Create Order PLACED + line/address snapshots</text>
+<text x="1100" y="836.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">+ S/D/F/Q/T + COD PENDING / ONLINE PAID C=T</text>
+<text x="1100" y="867.6" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Try all writes + COMMIT as one unit</text>
+<polygon points="1100,910.0 1250.0,970 1100,1030.0 950.0,970" fill="white" stroke="#004387" stroke-width="3"/>
+<text x="1100" y="981.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Atomic save?</text>
+<rect x="470.0" y="890.0" width="360" height="160" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="650" y="920.56" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">E05 rollback all writes;</text>
+<text x="650" y="951.2399999999999" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">release</text>
+<text x="650" y="981.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">authorization even on</text>
+<text x="650" y="1012.5999999999999" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">COMMIT failure</text>
+<text x="650" y="1043.28" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">0 saved rows; MG01</text>
+<ellipse cx="440" cy="970" rx="17.0" ry="17.0" fill="white" stroke="#004387" stroke-width="3"/>
+<ellipse cx="440" cy="970" rx="11.0" ry="11.0" fill="#004387"/>
+<rect x="700.0" y="1052.5" width="800" height="55" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="1100" y="1091.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">8 placedOrderAndReceipt; PC01–06; load +1</text>
+<ellipse cx="1530" cy="1080" rx="17.0" ry="17.0" fill="white" stroke="#004387" stroke-width="3"/>
+<ellipse cx="1530" cy="1080" rx="11.0" ry="11.0" fill="#004387"/>
+<polyline points="245,190 680,190 680,170 1100,170 1100,172" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1092.0,155.0 1100,172 1108.0,155.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1100,317.5 1100,322.5" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1092.0,305.5 1100,322.5 1108.0,305.5" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="930.0,395 830.0,395" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="847.0,387.0 830.0,395 847.0,403.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="852.328125" y="353.0" width="55.34375" height="32.68" fill="white"/>
+<text x="880" y="378.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">[no]</text>
+<polyline points="470.0,395 457.0,395" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="474.0,387.0 457.0,395 474.0,403.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1100,467.5 1100,502.5" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1092.0,485.5 1100,502.5 1108.0,485.5" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="1286.5546875" y="463.0" width="66.890625" height="32.68" fill="white"/>
+<text x="1320" y="488.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">[yes]</text>
+<polyline points="1100,597.5 1100,610.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1092.0,593.0 1100,610.0 1108.0,593.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="930.0,680 830.0,680" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="847.0,672.0 830.0,680 847.0,688.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="766.359375" y="603.0" width="227.28125" height="32.68" fill="white"/>
+<text x="880" y="628.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">[ONLINE declined]</text>
+<polyline points="470.0,680 457.0,680" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="474.0,672.0 457.0,680 474.0,688.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1100,750.0 1100,765.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1092.0,748.0 1100,765.0 1108.0,748.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="1127.921875" y="743.0" width="334.15625" height="32.68" fill="white"/>
+<text x="1295" y="768.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">[COD or ONLINE approved]</text>
+<polyline points="1100,885.0 1100,910.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1092.0,893.0 1100,910.0 1108.0,893.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="950.0,970 830.0,970" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="847.0,962.0 830.0,970 847.0,978.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="845.7109375" y="928.0" width="88.578125" height="32.68" fill="white"/>
+<text x="890" y="953.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">[failed]</text>
+<polyline points="470.0,970 457.0,970" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="474.0,962.0 457.0,970 474.0,978.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1100,1030.0 1100,1052.5" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1092.0,1035.5 1100,1052.5 1108.0,1035.5" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="1246.8359375" y="1023.0" width="146.328125" height="32.68" fill="white"/>
+<text x="1320" y="1048.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">[committed]</text>
+<polyline points="1500.0,1080 1513.0,1080" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1496.0,1088.0 1513.0,1080 1496.0,1072.0" fill="none" stroke="#004387" stroke-width="3"/>
+<text x="215" y="431.88000000000005" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Busy: ≤3 ACTIVE non-busy</text>
+<text x="215" y="462.56000000000006" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">hubs</text>
+<text x="215" y="493.24000000000007" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">within radius; load ratio,</text>
+<text x="215" y="523.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">distance, ID.</text>
+<text x="215" y="554.6" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">New hub → new quote.</text>
+<text x="215" y="585.28" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Changed consent → new</text>
+<text x="215" y="615.9599999999999" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">acceptance.</text>
+<text x="210" y="877.9" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">9 viewReceipt (SUC-03)</text>
+<text x="210" y="908.5799999999999" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">F01 tracking/cancel follow-up</text>
+<text x="210" y="939.26" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">uses SSD Part C and</text>
+<text x="210" y="969.9399999999999" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Order Figure 2.3C.</text>
+</svg>

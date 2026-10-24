@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200"><rect width="100%" height="100%" fill="white"/>
+<text x="800" y="64.44" text-anchor="middle" font-family="Arial" font-size="32" font-weight="bold" fill="#202B36">UC-01 — checkout and guarded results</text>
+<text x="800" y="1148.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Figure 2.11B. UC-01 — checkout and guarded results — Author: 722I0004 · AI-assisted (Codex)</text>
+<text x="800" y="1188.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Analysis contract · 230 mm landscape · minimum 10.59 pt · no execution result</text>
+<rect x="50.0" y="87.5" width="300" height="65" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="200" y="131.92000000000002" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Customer</text>
+<rect x="1250.0" y="87.5" width="300" height="65" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="1400" y="131.92000000000002" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">:System</text>
+<polyline points="200,155 200,1110" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="1400,155 1400,1110" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="200,295 1400,295" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1383.0,303.0 1400,295 1383.0,287.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="312.9140625" y="190.95999999999998" width="974.171875" height="94.03999999999999" fill="white"/>
+<text x="800" y="216.88" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">01S-M04 confirmCheckout(hubId, addressId, lines(itemId, quantity), voucherCode?,</text>
+<text x="800" y="247.56" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">paymentMethod,</text>
+<text x="800" y="278.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">onlineOption?, simulatorOutcome?, quoteFingerprint, quotedTotal, checkoutToken)</text>
+<rect x="80" y="360" width="1450" height="720" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="551.3515625" y="373.0" width="497.296875" height="32.68" fill="white"/>
+<text x="800" y="398.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="bold" fill="#202B36">alt [mutually exclusive checkout result]</text>
+<polyline points="80,515 1530,515" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="80,635 1530,635" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="80,755 1530,755" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="80,875 1530,875" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<text x="800" y="428.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">[own token already exists] — no authorization or second insertion</text>
+<polyline points="1400,485 200,485" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="217.0,477.0 200,485 217.0,493.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="606.921875" y="442.32" width="386.15625" height="32.68" fill="white"/>
+<text x="800" y="468.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">01S-R04a existingOrder (MG02)</text>
+<text x="800" y="558.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">[unused token, eligible, unchanged consent, COD or approved ONLINE, commit succeeds]</text>
+<polyline points="1400,605 200,605" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="217.0,597.0 200,605 217.0,613.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="508.6328125" y="562.32" width="582.734375" height="32.68" fill="white"/>
+<text x="800" y="588.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">01S-R04b placedOrderAndReceipt (PC01–PC06)</text>
+<text x="800" y="678.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">[unused token, active/valid request but load ≥ capacity]</text>
+<polyline points="1400,725 200,725" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="217.0,717.0 200,725 217.0,733.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="451.59375" y="682.32" width="696.8125" height="32.68" fill="white"/>
+<text x="800" y="708.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">01S-R04c busySuggestions; nothing saved (MG03 / MG01)</text>
+<text x="800" y="798.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">[unused token, otherwise eligible, fingerprint OR T differs]</text>
+<polyline points="1400,845 200,845" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="217.0,837.0 200,845 217.0,853.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="518.7734375" y="802.32" width="562.453125" height="32.68" fill="white"/>
+<text x="800" y="828.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">01S-R04d revisedQuote; nothing saved (MG01)</text>
+<text x="800" y="928.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">[all other outcomes: foreign/invalid token or guard, ONLINE decline, lock/write/commit failure]</text>
+<polyline points="1400,1025 200,1025" fill="none" stroke="#004387" stroke-width="3" stroke-dasharray="10 8"/>
+<polyline points="217.0,1017.0 200,1025 217.0,1033.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="290.5078125" y="982.32" width="1018.984375" height="32.68" fill="white"/>
+<text x="800" y="1008.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">01S-R04e refusal; no new order/payment/line; release authorization on rollback (MG01)</text>
+</svg>

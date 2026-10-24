@@ -1,0 +1,325 @@
+{
+  "author": "Author: 722I0004 \u00b7 AI-assisted (Codex)",
+  "title": "UC-01 \u2014 consent, choice and replay",
+  "figure": "2.10B",
+  "canvas": [
+    1600,
+    1200
+  ],
+  "minimum_font_px": 26,
+  "placed_width_mm": 230,
+  "minimum_placed_pt": 10.59,
+  "nodes": [
+    {
+      "id": "01B-AB",
+      "label": "AB",
+      "x": 210,
+      "y": 190,
+      "w": 70,
+      "h": 70,
+      "kind": "connector"
+    },
+    {
+      "id": "01B-4",
+      "label": "4 Review full fingerprint + T\nAccept full quote",
+      "x": 210,
+      "y": 330,
+      "w": 340,
+      "h": 125,
+      "kind": "action"
+    },
+    {
+      "id": "01B-D1",
+      "label": "Method?",
+      "x": 1100,
+      "y": 330,
+      "w": 220,
+      "h": 110,
+      "kind": "decision"
+    },
+    {
+      "id": "01B-ON",
+      "label": "A02 ONLINE: choose valid option and simulator approve/decline BEFORE transaction",
+      "x": 210,
+      "y": 540,
+      "w": 340,
+      "h": 195,
+      "kind": "action"
+    },
+    {
+      "id": "01B-M",
+      "label": "",
+      "x": 1100,
+      "y": 690,
+      "w": 44,
+      "h": 44,
+      "kind": "merge"
+    },
+    {
+      "id": "01B-5",
+      "label": "5 confirmCheckout(...)\nToken distinct from CSRF",
+      "x": 210,
+      "y": 840,
+      "w": 340,
+      "h": 125,
+      "kind": "action"
+    },
+    {
+      "id": "01B-T",
+      "label": "5 Begin short checkout transaction\nRecheck active role; token ownership\nDo not authorize a replay",
+      "x": 1100,
+      "y": 840,
+      "w": 690,
+      "h": 125,
+      "kind": "action"
+    },
+    {
+      "id": "01B-D2",
+      "label": "Token status?",
+      "x": 1100,
+      "y": 1010,
+      "w": 240,
+      "h": 110,
+      "kind": "decision"
+    },
+    {
+      "id": "01B-RE",
+      "label": "A01 existingOrder\nMG02; no second save",
+      "x": 650,
+      "y": 1010,
+      "w": 370,
+      "h": 105,
+      "kind": "action"
+    },
+    {
+      "id": "01B-END",
+      "label": "",
+      "x": 440,
+      "y": 1010,
+      "w": 34,
+      "h": 34,
+      "kind": "final"
+    },
+    {
+      "id": "01B-BC",
+      "label": "BC",
+      "x": 1460,
+      "y": 1010,
+      "w": 70,
+      "h": 70,
+      "kind": "connector"
+    }
+  ],
+  "edges": [
+    {
+      "id": "a",
+      "source": "01B-AB",
+      "target": "01B-4",
+      "label": "",
+      "points": [
+        [
+          210,
+          225.0
+        ],
+        [
+          210,
+          267.5
+        ]
+      ]
+    },
+    {
+      "id": "b",
+      "source": "01B-4",
+      "target": "01B-D1",
+      "label": "",
+      "points": [
+        [
+          380.0,
+          330
+        ],
+        [
+          990.0,
+          330
+        ]
+      ]
+    },
+    {
+      "id": "c",
+      "source": "01B-D1",
+      "target": "01B-ON",
+      "label": "[ONLINE]",
+      "points": [
+        [
+          1100,
+          275
+        ],
+        [
+          1100,
+          240
+        ],
+        [
+          600,
+          240
+        ],
+        [
+          600,
+          540
+        ],
+        [
+          380,
+          540
+        ]
+      ]
+    },
+    {
+      "id": "d",
+      "source": "01B-D1",
+      "target": "01B-M",
+      "label": "[COD]",
+      "points": [
+        [
+          1100,
+          385.0
+        ],
+        [
+          1100,
+          668.0
+        ]
+      ]
+    },
+    {
+      "id": "e",
+      "source": "01B-ON",
+      "target": "01B-M",
+      "label": "",
+      "points": [
+        [
+          210,
+          637
+        ],
+        [
+          210,
+          690
+        ],
+        [
+          1078,
+          690
+        ]
+      ]
+    },
+    {
+      "id": "f",
+      "source": "01B-M",
+      "target": "01B-5",
+      "label": "",
+      "points": [
+        [
+          1100,
+          712.0
+        ],
+        [
+          1100,
+          765.0
+        ],
+        [
+          210,
+          765.0
+        ],
+        [
+          210,
+          777.5
+        ]
+      ]
+    },
+    {
+      "id": "g",
+      "source": "01B-5",
+      "target": "01B-T",
+      "label": "",
+      "points": [
+        [
+          380.0,
+          840
+        ],
+        [
+          755.0,
+          840
+        ]
+      ]
+    },
+    {
+      "id": "h",
+      "source": "01B-T",
+      "target": "01B-D2",
+      "label": "",
+      "points": [
+        [
+          1100,
+          902.5
+        ],
+        [
+          1100,
+          955.0
+        ]
+      ]
+    },
+    {
+      "id": "i",
+      "source": "01B-D2",
+      "target": "01B-RE",
+      "label": "[own token found]",
+      "points": [
+        [
+          980.0,
+          1010
+        ],
+        [
+          835.0,
+          1010
+        ]
+      ]
+    },
+    {
+      "id": "j",
+      "source": "01B-RE",
+      "target": "01B-END",
+      "label": "",
+      "points": [
+        [
+          465.0,
+          1010
+        ],
+        [
+          457.0,
+          1010
+        ]
+      ]
+    },
+    {
+      "id": "k",
+      "source": "01B-D2",
+      "target": "01B-BC",
+      "label": "[no own token]",
+      "points": [
+        [
+          1220.0,
+          1010
+        ],
+        [
+          1425.0,
+          1010
+        ]
+      ]
+    }
+  ],
+  "decisions": {
+    "01B-D1": [
+      "[ONLINE]",
+      "[COD]"
+    ],
+    "01B-D2": [
+      "[own token found]",
+      "[no own token]"
+    ]
+  }
+}

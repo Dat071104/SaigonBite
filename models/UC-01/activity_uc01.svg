@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200"><rect width="100%" height="100%" fill="white"/>
+<text x="800" y="64.44" text-anchor="middle" font-family="Arial" font-size="32" font-weight="bold" fill="#202B36">UC-01 — quote and selection</text>
+<text x="800" y="1148.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Figure 2.10A. UC-01 — quote and selection — Author: 722I0004 · AI-assisted (Codex)</text>
+<text x="800" y="1188.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Analysis contract · 230 mm landscape · minimum 10.59 pt · no execution result</text>
+<polyline points="20,90 1580,90 1580,1115 20,1115 20,90" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="410,90 410,1115" fill="none" stroke="#004387" stroke-width="3"/>
+<text x="210" y="145.76" text-anchor="middle" font-family="Arial" font-size="28" font-weight="bold" fill="#202B36">Actor</text>
+<text x="995" y="145.76" text-anchor="middle" font-family="Arial" font-size="28" font-weight="bold" fill="#202B36">System</text>
+<ellipse cx="210" cy="190" rx="14.0" ry="14.0" fill="#004387" stroke="#004387" stroke-width="3"/>
+<rect x="40.0" y="255.0" width="340" height="90" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="210" y="311.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">1 browseHubs()</text>
+<rect x="810.0" y="250.0" width="620" height="100" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="1120" y="296.58000000000004" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">1 ACTIVE hubs, load/capacity</text>
+<text x="1120" y="327.26000000000005" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">No persistent writes</text>
+<rect x="40.0" y="420.0" width="340" height="100" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="210" y="466.58000000000004" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">2 Select hub</text>
+<text x="210" y="497.26000000000005" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">selectHub(hubId)</text>
+<rect x="810.0" y="420.0" width="620" height="100" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="1120" y="466.58000000000004" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">2 Available menu + own addresses</text>
+<text x="1120" y="497.26000000000005" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">No persistent writes</text>
+<rect x="40.0" y="580.0" width="340" height="160" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="210" y="641.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">3 Choose address, lines,</text>
+<text x="210" y="671.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">voucher, payment</text>
+<text x="210" y="702.6" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">requestQuote(...)</text>
+<rect x="810.0" y="580.0" width="620" height="160" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="1120" y="641.24" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">3 Validate actor/owner, active hub/menu, qty, raw</text>
+<text x="1120" y="671.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">radius, load, voucher, payment</text>
+<text x="1120" y="702.6" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Compute full fingerprint + S/D/F/Q/T</text>
+<polygon points="1120,807.5 1235.0,865 1120,922.5 1005.0,865" fill="white" stroke="#004387" stroke-width="3"/>
+<text x="1120" y="876.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Quote eligible?</text>
+<rect x="450.0" y="785.0" width="400" height="160" rx="16" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<text x="650" y="830.9" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">E01/E02 refusal or</text>
+<text x="650" y="861.5799999999999" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">busySuggestions</text>
+<text x="650" y="892.26" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">No Order/Payment/Line saved</text>
+<text x="650" y="922.9399999999999" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">MG01 / MG03</text>
+<ellipse cx="650" cy="1050" rx="17.0" ry="17.0" fill="white" stroke="#004387" stroke-width="3"/>
+<ellipse cx="650" cy="1050" rx="11.0" ry="11.0" fill="#004387"/>
+<ellipse cx="1120" cy="1050" rx="35.0" ry="35.0" fill="white" stroke="#004387" stroke-width="3"/>
+<text x="1120" y="1061.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">AB</text>
+<polyline points="210,204.0 210,255.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="202.0,238.0 210,255.0 218.0,238.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="380.0,300 810.0,300" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="793.0,308.0 810.0,300 793.0,292.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1120,350.0 1120,385.0 210,385.0 210,420.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="202.0,403.0 210,420.0 218.0,403.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="380.0,470 810.0,470" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="793.0,478.0 810.0,470 793.0,462.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1120,520.0 1120,565.0 210,565.0 210,580.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="202.0,563.0 210,580.0 218.0,563.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="380.0,660 810.0,660" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="793.0,668.0 810.0,660 793.0,652.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1120,740.0 1120,807.5" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1112.0,790.5 1120,807.5 1128.0,790.5" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="650,945.0 650,1033.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="642.0,1016.0 650,1033.0 658.0,1016.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1005.0,865 850.0,865" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="867.0,857.0 850.0,865 867.0,873.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="854.640625" y="823.0" width="150.71875" height="32.68" fill="white"/>
+<text x="930" y="848.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">[not eligible]</text>
+<polyline points="1120,922.5 1120,1015.0" fill="none" stroke="#004387" stroke-width="3"/>
+<polyline points="1112.0,998.0 1120,1015.0 1128.0,998.0" fill="none" stroke="#004387" stroke-width="3"/>
+<rect x="1226.3125" y="978.0" width="107.375" height="32.68" fill="white"/>
+<text x="1280" y="1003.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">[eligible]</text>
+<text x="220" y="952.9" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Retry/suggestion choice starts</text>
+<text x="220" y="983.5799999999999" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">a fresh quote at 2/3; menu may</text>
+<text x="220" y="1014.26" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">differ.</text>
+<text x="220" y="1044.94" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">Empty suggestions handled.</text>
+<text x="1120" y="1107.92" text-anchor="middle" font-family="Arial" font-size="26" font-weight="normal" fill="#202B36">AB → Part B; 4 explicit full-price consent</text>
+</svg>

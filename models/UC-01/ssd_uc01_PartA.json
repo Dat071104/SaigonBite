@@ -1,0 +1,137 @@
+{
+  "author": "Author: 722I0004 \u00b7 AI-assisted (Codex)",
+  "title": "UC-01 \u2014 read-only quote dialogue",
+  "figure": "2.11A",
+  "canvas": [
+    1600,
+    1200
+  ],
+  "minimum_font_px": 26,
+  "placed_width_mm": 230,
+  "minimum_placed_pt": 10.59,
+  "nodes": [
+    {
+      "id": "actor",
+      "label": "Customer",
+      "x": 200,
+      "y": 120,
+      "w": 300,
+      "h": 65,
+      "kind": "action"
+    },
+    {
+      "id": "system",
+      "label": ":System",
+      "x": 1400,
+      "y": 120,
+      "w": 300,
+      "h": 65,
+      "kind": "action"
+    }
+  ],
+  "edges": [
+    {
+      "id": "01S-M01",
+      "source": "actor",
+      "target": "system",
+      "label": "browseHubs()",
+      "points": [
+        [
+          200,
+          245
+        ],
+        [
+          1400,
+          245
+        ]
+      ],
+      "return_message": false
+    },
+    {
+      "id": "01S-R01",
+      "source": "system",
+      "target": "actor",
+      "label": "activeHubsWithLoadAndCapacity",
+      "points": [
+        [
+          1400,
+          330
+        ],
+        [
+          200,
+          330
+        ]
+      ],
+      "return_message": true
+    },
+    {
+      "id": "01S-M02",
+      "source": "actor",
+      "target": "system",
+      "label": "selectHub(hubId)",
+      "points": [
+        [
+          200,
+          445
+        ],
+        [
+          1400,
+          445
+        ]
+      ],
+      "return_message": false
+    },
+    {
+      "id": "01S-R02",
+      "source": "system",
+      "target": "actor",
+      "label": "availableMenuAndOwnAddresses | refusal",
+      "points": [
+        [
+          1400,
+          530
+        ],
+        [
+          200,
+          530
+        ]
+      ],
+      "return_message": true
+    },
+    {
+      "id": "01S-M03",
+      "source": "actor",
+      "target": "system",
+      "label": "requestQuote(hubId, addressId, lines(itemId, quantity), voucherCode?, paymentMethod, onlineOption?)",
+      "points": [
+        [
+          200,
+          760
+        ],
+        [
+          1400,
+          760
+        ]
+      ],
+      "return_message": false
+    },
+    {
+      "id": "01S-R03",
+      "source": "system",
+      "target": "actor",
+      "label": "quoteWithFingerprintAndSDFQT | refusal | busySuggestions",
+      "points": [
+        [
+          1400,
+          875
+        ],
+        [
+          200,
+          875
+        ]
+      ],
+      "return_message": true
+    }
+  ],
+  "decisions": {}
+}

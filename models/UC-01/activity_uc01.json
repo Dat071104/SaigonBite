@@ -1,0 +1,1029 @@
+{
+  "author": "Author: 722I0004 \u00b7 AI-assisted (Codex)",
+  "main_image": "Part A alias; editable base contains every page",
+  "parts": [
+    {
+      "author": "Author: 722I0004 \u00b7 AI-assisted (Codex)",
+      "title": "UC-01 \u2014 quote and selection",
+      "figure": "2.10A",
+      "canvas": [
+        1600,
+        1200
+      ],
+      "minimum_font_px": 26,
+      "placed_width_mm": 230,
+      "minimum_placed_pt": 10.59,
+      "nodes": [
+        {
+          "id": "01A-I",
+          "label": "",
+          "x": 210,
+          "y": 190,
+          "w": 28,
+          "h": 28,
+          "kind": "initial"
+        },
+        {
+          "id": "01A-1",
+          "label": "1 browseHubs()",
+          "x": 210,
+          "y": 300,
+          "w": 340,
+          "h": 90,
+          "kind": "action"
+        },
+        {
+          "id": "01A-2",
+          "label": "1 ACTIVE hubs, load/capacity\nNo persistent writes",
+          "x": 1120,
+          "y": 300,
+          "w": 620,
+          "h": 100,
+          "kind": "action"
+        },
+        {
+          "id": "01A-3",
+          "label": "2 Select hub\nselectHub(hubId)",
+          "x": 210,
+          "y": 470,
+          "w": 340,
+          "h": 100,
+          "kind": "action"
+        },
+        {
+          "id": "01A-4",
+          "label": "2 Available menu + own addresses\nNo persistent writes",
+          "x": 1120,
+          "y": 470,
+          "w": 620,
+          "h": 100,
+          "kind": "action"
+        },
+        {
+          "id": "01A-5",
+          "label": "3 Choose address, lines, voucher, payment\nrequestQuote(...)",
+          "x": 210,
+          "y": 660,
+          "w": 340,
+          "h": 160,
+          "kind": "action"
+        },
+        {
+          "id": "01A-6",
+          "label": "3 Validate actor/owner, active hub/menu, qty, raw radius, load, voucher, payment\nCompute full fingerprint + S/D/F/Q/T",
+          "x": 1120,
+          "y": 660,
+          "w": 620,
+          "h": 160,
+          "kind": "action"
+        },
+        {
+          "id": "01A-D",
+          "label": "Quote eligible?",
+          "x": 1120,
+          "y": 865,
+          "w": 230,
+          "h": 115,
+          "kind": "decision"
+        },
+        {
+          "id": "01A-E",
+          "label": "E01/E02 refusal or busySuggestions\nNo Order/Payment/Line saved\nMG01 / MG03",
+          "x": 650,
+          "y": 865,
+          "w": 400,
+          "h": 160,
+          "kind": "action"
+        },
+        {
+          "id": "01A-F",
+          "label": "",
+          "x": 650,
+          "y": 1050,
+          "w": 34,
+          "h": 34,
+          "kind": "final"
+        },
+        {
+          "id": "01A-AB",
+          "label": "AB",
+          "x": 1120,
+          "y": 1050,
+          "w": 70,
+          "h": 70,
+          "kind": "connector"
+        }
+      ],
+      "edges": [
+        {
+          "id": "a",
+          "source": "01A-I",
+          "target": "01A-1",
+          "label": "",
+          "points": [
+            [
+              210,
+              204.0
+            ],
+            [
+              210,
+              255.0
+            ]
+          ]
+        },
+        {
+          "id": "b",
+          "source": "01A-1",
+          "target": "01A-2",
+          "label": "",
+          "points": [
+            [
+              380.0,
+              300
+            ],
+            [
+              810.0,
+              300
+            ]
+          ]
+        },
+        {
+          "id": "c",
+          "source": "01A-2",
+          "target": "01A-3",
+          "label": "",
+          "points": [
+            [
+              1120,
+              350.0
+            ],
+            [
+              1120,
+              385.0
+            ],
+            [
+              210,
+              385.0
+            ],
+            [
+              210,
+              420.0
+            ]
+          ]
+        },
+        {
+          "id": "d",
+          "source": "01A-3",
+          "target": "01A-4",
+          "label": "",
+          "points": [
+            [
+              380.0,
+              470
+            ],
+            [
+              810.0,
+              470
+            ]
+          ]
+        },
+        {
+          "id": "e",
+          "source": "01A-4",
+          "target": "01A-5",
+          "label": "",
+          "points": [
+            [
+              1120,
+              520.0
+            ],
+            [
+              1120,
+              565.0
+            ],
+            [
+              210,
+              565.0
+            ],
+            [
+              210,
+              580.0
+            ]
+          ]
+        },
+        {
+          "id": "f",
+          "source": "01A-5",
+          "target": "01A-6",
+          "label": "",
+          "points": [
+            [
+              380.0,
+              660
+            ],
+            [
+              810.0,
+              660
+            ]
+          ]
+        },
+        {
+          "id": "g",
+          "source": "01A-6",
+          "target": "01A-D",
+          "label": "",
+          "points": [
+            [
+              1120,
+              740.0
+            ],
+            [
+              1120,
+              807.5
+            ]
+          ]
+        },
+        {
+          "id": "j",
+          "source": "01A-E",
+          "target": "01A-F",
+          "label": "",
+          "points": [
+            [
+              650,
+              945.0
+            ],
+            [
+              650,
+              1033.0
+            ]
+          ]
+        },
+        {
+          "id": "h",
+          "source": "01A-D",
+          "target": "01A-E",
+          "label": "[not eligible]",
+          "points": [
+            [
+              1005.0,
+              865
+            ],
+            [
+              850.0,
+              865
+            ]
+          ]
+        },
+        {
+          "id": "i",
+          "source": "01A-D",
+          "target": "01A-AB",
+          "label": "[eligible]",
+          "points": [
+            [
+              1120,
+              922.5
+            ],
+            [
+              1120,
+              1015.0
+            ]
+          ]
+        }
+      ],
+      "decisions": {
+        "01A-D": [
+          "[not eligible]",
+          "[eligible]"
+        ]
+      }
+    },
+    {
+      "author": "Author: 722I0004 \u00b7 AI-assisted (Codex)",
+      "title": "UC-01 \u2014 consent, choice and replay",
+      "figure": "2.10B",
+      "canvas": [
+        1600,
+        1200
+      ],
+      "minimum_font_px": 26,
+      "placed_width_mm": 230,
+      "minimum_placed_pt": 10.59,
+      "nodes": [
+        {
+          "id": "01B-AB",
+          "label": "AB",
+          "x": 210,
+          "y": 190,
+          "w": 70,
+          "h": 70,
+          "kind": "connector"
+        },
+        {
+          "id": "01B-4",
+          "label": "4 Review full fingerprint + T\nAccept full quote",
+          "x": 210,
+          "y": 330,
+          "w": 340,
+          "h": 125,
+          "kind": "action"
+        },
+        {
+          "id": "01B-D1",
+          "label": "Method?",
+          "x": 1100,
+          "y": 330,
+          "w": 220,
+          "h": 110,
+          "kind": "decision"
+        },
+        {
+          "id": "01B-ON",
+          "label": "A02 ONLINE: choose valid option and simulator approve/decline BEFORE transaction",
+          "x": 210,
+          "y": 540,
+          "w": 340,
+          "h": 195,
+          "kind": "action"
+        },
+        {
+          "id": "01B-M",
+          "label": "",
+          "x": 1100,
+          "y": 690,
+          "w": 44,
+          "h": 44,
+          "kind": "merge"
+        },
+        {
+          "id": "01B-5",
+          "label": "5 confirmCheckout(...)\nToken distinct from CSRF",
+          "x": 210,
+          "y": 840,
+          "w": 340,
+          "h": 125,
+          "kind": "action"
+        },
+        {
+          "id": "01B-T",
+          "label": "5 Begin short checkout transaction\nRecheck active role; token ownership\nDo not authorize a replay",
+          "x": 1100,
+          "y": 840,
+          "w": 690,
+          "h": 125,
+          "kind": "action"
+        },
+        {
+          "id": "01B-D2",
+          "label": "Token status?",
+          "x": 1100,
+          "y": 1010,
+          "w": 240,
+          "h": 110,
+          "kind": "decision"
+        },
+        {
+          "id": "01B-RE",
+          "label": "A01 existingOrder\nMG02; no second save",
+          "x": 650,
+          "y": 1010,
+          "w": 370,
+          "h": 105,
+          "kind": "action"
+        },
+        {
+          "id": "01B-END",
+          "label": "",
+          "x": 440,
+          "y": 1010,
+          "w": 34,
+          "h": 34,
+          "kind": "final"
+        },
+        {
+          "id": "01B-BC",
+          "label": "BC",
+          "x": 1460,
+          "y": 1010,
+          "w": 70,
+          "h": 70,
+          "kind": "connector"
+        }
+      ],
+      "edges": [
+        {
+          "id": "a",
+          "source": "01B-AB",
+          "target": "01B-4",
+          "label": "",
+          "points": [
+            [
+              210,
+              225.0
+            ],
+            [
+              210,
+              267.5
+            ]
+          ]
+        },
+        {
+          "id": "b",
+          "source": "01B-4",
+          "target": "01B-D1",
+          "label": "",
+          "points": [
+            [
+              380.0,
+              330
+            ],
+            [
+              990.0,
+              330
+            ]
+          ]
+        },
+        {
+          "id": "c",
+          "source": "01B-D1",
+          "target": "01B-ON",
+          "label": "[ONLINE]",
+          "points": [
+            [
+              1100,
+              275
+            ],
+            [
+              1100,
+              240
+            ],
+            [
+              600,
+              240
+            ],
+            [
+              600,
+              540
+            ],
+            [
+              380,
+              540
+            ]
+          ]
+        },
+        {
+          "id": "d",
+          "source": "01B-D1",
+          "target": "01B-M",
+          "label": "[COD]",
+          "points": [
+            [
+              1100,
+              385.0
+            ],
+            [
+              1100,
+              668.0
+            ]
+          ]
+        },
+        {
+          "id": "e",
+          "source": "01B-ON",
+          "target": "01B-M",
+          "label": "",
+          "points": [
+            [
+              210,
+              637
+            ],
+            [
+              210,
+              690
+            ],
+            [
+              1078,
+              690
+            ]
+          ]
+        },
+        {
+          "id": "f",
+          "source": "01B-M",
+          "target": "01B-5",
+          "label": "",
+          "points": [
+            [
+              1100,
+              712.0
+            ],
+            [
+              1100,
+              765.0
+            ],
+            [
+              210,
+              765.0
+            ],
+            [
+              210,
+              777.5
+            ]
+          ]
+        },
+        {
+          "id": "g",
+          "source": "01B-5",
+          "target": "01B-T",
+          "label": "",
+          "points": [
+            [
+              380.0,
+              840
+            ],
+            [
+              755.0,
+              840
+            ]
+          ]
+        },
+        {
+          "id": "h",
+          "source": "01B-T",
+          "target": "01B-D2",
+          "label": "",
+          "points": [
+            [
+              1100,
+              902.5
+            ],
+            [
+              1100,
+              955.0
+            ]
+          ]
+        },
+        {
+          "id": "i",
+          "source": "01B-D2",
+          "target": "01B-RE",
+          "label": "[own token found]",
+          "points": [
+            [
+              980.0,
+              1010
+            ],
+            [
+              835.0,
+              1010
+            ]
+          ]
+        },
+        {
+          "id": "j",
+          "source": "01B-RE",
+          "target": "01B-END",
+          "label": "",
+          "points": [
+            [
+              465.0,
+              1010
+            ],
+            [
+              457.0,
+              1010
+            ]
+          ]
+        },
+        {
+          "id": "k",
+          "source": "01B-D2",
+          "target": "01B-BC",
+          "label": "[no own token]",
+          "points": [
+            [
+              1220.0,
+              1010
+            ],
+            [
+              1425.0,
+              1010
+            ]
+          ]
+        }
+      ],
+      "decisions": {
+        "01B-D1": [
+          "[ONLINE]",
+          "[COD]"
+        ],
+        "01B-D2": [
+          "[own token found]",
+          "[no own token]"
+        ]
+      }
+    },
+    {
+      "author": "Author: 722I0004 \u00b7 AI-assisted (Codex)",
+      "title": "UC-01 \u2014 atomic checkout and outcomes",
+      "figure": "2.10C",
+      "canvas": [
+        1600,
+        1200
+      ],
+      "minimum_font_px": 26,
+      "placed_width_mm": 230,
+      "minimum_placed_pt": 10.59,
+      "nodes": [
+        {
+          "id": "01C-BC",
+          "label": "BC",
+          "x": 210,
+          "y": 190,
+          "w": 70,
+          "h": 70,
+          "kind": "connector"
+        },
+        {
+          "id": "01C-V",
+          "label": "6 Validate accepted checkout in transaction:\nunused token; own valid address; eligible lines;\nraw d \u22648.0; capacity; voucher; fingerprint + T",
+          "x": 1100,
+          "y": 245,
+          "w": 800,
+          "h": 145,
+          "kind": "action"
+        },
+        {
+          "id": "01C-D1",
+          "label": "All guards +\nconsent match?",
+          "x": 1100,
+          "y": 395,
+          "w": 340,
+          "h": 145,
+          "kind": "decision"
+        },
+        {
+          "id": "01C-E",
+          "label": "E01/02/03 refusal,\nbusySuggestions / revisedQuote\nNo saved rows; MG01/MG03",
+          "x": 650,
+          "y": 395,
+          "w": 360,
+          "h": 145,
+          "kind": "action"
+        },
+        {
+          "id": "01C-EF",
+          "label": "",
+          "x": 440,
+          "y": 395,
+          "w": 34,
+          "h": 34,
+          "kind": "final"
+        },
+        {
+          "id": "01C-P",
+          "label": "6 COD skips simulator; ONLINE runs short\ndeterministic decision INSIDE transaction",
+          "x": 1100,
+          "y": 550,
+          "w": 800,
+          "h": 95,
+          "kind": "action"
+        },
+        {
+          "id": "01C-D2",
+          "label": "Payment permits\ncreation?",
+          "x": 1100,
+          "y": 680,
+          "w": 340,
+          "h": 140,
+          "kind": "decision"
+        },
+        {
+          "id": "01C-DECL",
+          "label": "E04 ONLINE declined\nNo rows; MG01",
+          "x": 650,
+          "y": 680,
+          "w": 360,
+          "h": 100,
+          "kind": "action"
+        },
+        {
+          "id": "01C-DF",
+          "label": "",
+          "x": 440,
+          "y": 680,
+          "w": 34,
+          "h": 34,
+          "kind": "final"
+        },
+        {
+          "id": "01C-W",
+          "label": "7 Create Order PLACED + line/address snapshots\n+ S/D/F/Q/T + COD PENDING / ONLINE PAID C=T\nTry all writes + COMMIT as one unit",
+          "x": 1100,
+          "y": 825,
+          "w": 800,
+          "h": 120,
+          "kind": "action"
+        },
+        {
+          "id": "01C-D3",
+          "label": "Atomic save?",
+          "x": 1100,
+          "y": 970,
+          "w": 300,
+          "h": 120,
+          "kind": "decision"
+        },
+        {
+          "id": "01C-ROLL",
+          "label": "E05 rollback all writes; release\nauthorization even on COMMIT failure\n0 saved rows; MG01",
+          "x": 650,
+          "y": 970,
+          "w": 360,
+          "h": 160,
+          "kind": "action"
+        },
+        {
+          "id": "01C-RF",
+          "label": "",
+          "x": 440,
+          "y": 970,
+          "w": 34,
+          "h": 34,
+          "kind": "final"
+        },
+        {
+          "id": "01C-S",
+          "label": "8 placedOrderAndReceipt; PC01\u201306; load +1",
+          "x": 1100,
+          "y": 1080,
+          "w": 800,
+          "h": 55,
+          "kind": "action"
+        },
+        {
+          "id": "01C-END",
+          "label": "",
+          "x": 1530,
+          "y": 1080,
+          "w": 34,
+          "h": 34,
+          "kind": "final"
+        }
+      ],
+      "edges": [
+        {
+          "id": "a",
+          "source": "01C-BC",
+          "target": "01C-V",
+          "label": "",
+          "points": [
+            [
+              245,
+              190
+            ],
+            [
+              680,
+              190
+            ],
+            [
+              680,
+              170
+            ],
+            [
+              1100,
+              170
+            ],
+            [
+              1100,
+              172
+            ]
+          ]
+        },
+        {
+          "id": "b",
+          "source": "01C-V",
+          "target": "01C-D1",
+          "label": "",
+          "points": [
+            [
+              1100,
+              317.5
+            ],
+            [
+              1100,
+              322.5
+            ]
+          ]
+        },
+        {
+          "id": "c",
+          "source": "01C-D1",
+          "target": "01C-E",
+          "label": "[no]",
+          "points": [
+            [
+              930.0,
+              395
+            ],
+            [
+              830.0,
+              395
+            ]
+          ]
+        },
+        {
+          "id": "d",
+          "source": "01C-E",
+          "target": "01C-EF",
+          "label": "",
+          "points": [
+            [
+              470.0,
+              395
+            ],
+            [
+              457.0,
+              395
+            ]
+          ]
+        },
+        {
+          "id": "e",
+          "source": "01C-D1",
+          "target": "01C-P",
+          "label": "[yes]",
+          "points": [
+            [
+              1100,
+              467.5
+            ],
+            [
+              1100,
+              502.5
+            ]
+          ]
+        },
+        {
+          "id": "f",
+          "source": "01C-P",
+          "target": "01C-D2",
+          "label": "",
+          "points": [
+            [
+              1100,
+              597.5
+            ],
+            [
+              1100,
+              610.0
+            ]
+          ]
+        },
+        {
+          "id": "g",
+          "source": "01C-D2",
+          "target": "01C-DECL",
+          "label": "[ONLINE declined]",
+          "points": [
+            [
+              930.0,
+              680
+            ],
+            [
+              830.0,
+              680
+            ]
+          ]
+        },
+        {
+          "id": "h",
+          "source": "01C-DECL",
+          "target": "01C-DF",
+          "label": "",
+          "points": [
+            [
+              470.0,
+              680
+            ],
+            [
+              457.0,
+              680
+            ]
+          ]
+        },
+        {
+          "id": "i",
+          "source": "01C-D2",
+          "target": "01C-W",
+          "label": "[COD or ONLINE approved]",
+          "points": [
+            [
+              1100,
+              750.0
+            ],
+            [
+              1100,
+              765.0
+            ]
+          ]
+        },
+        {
+          "id": "j",
+          "source": "01C-W",
+          "target": "01C-D3",
+          "label": "",
+          "points": [
+            [
+              1100,
+              885.0
+            ],
+            [
+              1100,
+              910.0
+            ]
+          ]
+        },
+        {
+          "id": "k",
+          "source": "01C-D3",
+          "target": "01C-ROLL",
+          "label": "[failed]",
+          "points": [
+            [
+              950.0,
+              970
+            ],
+            [
+              830.0,
+              970
+            ]
+          ]
+        },
+        {
+          "id": "l",
+          "source": "01C-ROLL",
+          "target": "01C-RF",
+          "label": "",
+          "points": [
+            [
+              470.0,
+              970
+            ],
+            [
+              457.0,
+              970
+            ]
+          ]
+        },
+        {
+          "id": "m",
+          "source": "01C-D3",
+          "target": "01C-S",
+          "label": "[committed]",
+          "points": [
+            [
+              1100,
+              1030.0
+            ],
+            [
+              1100,
+              1052.5
+            ]
+          ]
+        },
+        {
+          "id": "n",
+          "source": "01C-S",
+          "target": "01C-END",
+          "label": "",
+          "points": [
+            [
+              1500.0,
+              1080
+            ],
+            [
+              1513.0,
+              1080
+            ]
+          ]
+        }
+      ],
+      "decisions": {
+        "01C-D1": [
+          "[no]",
+          "[yes]"
+        ],
+        "01C-D2": [
+          "[ONLINE declined]",
+          "[COD or ONLINE approved]"
+        ],
+        "01C-D3": [
+          "[failed]",
+          "[committed]"
+        ]
+      }
+    }
+  ]
+}
