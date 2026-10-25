@@ -1,0 +1,212 @@
+{
+  "type": "sequence",
+  "title": "UC-06: updateBrand",
+  "UC": "UC-06",
+  "op_id": "OP-38",
+  "operation": "updateBrand",
+  "parameters": "brandId, name",
+  "ssd_occurrence": "models/UC-06/ssd_uc06_PartA.drawio#M06-A03",
+  "reject_guard": "denied / duplicate name / inactive target",
+  "controller": "MenuController",
+  "method": "rename_brand",
+  "view_method": "rename_brand",
+  "arguments": "uid(), brandId, name",
+  "domain": "Brand",
+  "domain_note": "name, archived_at",
+  "domain_attributes": [
+    "name",
+    "archived_at"
+  ],
+  "effect": "rename ACTIVE Brand; no snapshot rewrite",
+  "create": null,
+  "PC": "UC06-PC01",
+  "MG": "UC06-MG01 / UC06-MG02",
+  "read": false,
+  "result": "savedRecord",
+  "status": "P4-TARGET",
+  "P4_input": "P2-S13; P3-S03",
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "states": [],
+  "phase3": {
+    "diagram_type": "sequence",
+    "UC": "UC-06",
+    "op_id": "OP-38",
+    "operation": "updateBrand",
+    "parameters": "brandId, name",
+    "ssd_occurrence": "models/UC-06/ssd_uc06_PartA.drawio#M06-A03",
+    "elements": [
+      {
+        "class": "admin",
+        "attributes": [],
+        "methods": [
+          "rename_brand"
+        ]
+      },
+      {
+        "class": "MenuController",
+        "attributes": [],
+        "methods": [
+          "rename_brand",
+          "_require_admin"
+        ]
+      },
+      {
+        "class": "Brand",
+        "attributes": [
+          "name",
+          "archived_at"
+        ],
+        "methods": []
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "admin",
+        "target": "MenuController",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "MenuController",
+        "target": "Brand",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      }
+    ],
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Admin",
+        "role": "actor"
+      },
+      {
+        "id": "view",
+        "class": "admin",
+        "role": "view"
+      },
+      {
+        "id": "controller",
+        "class": "MenuController",
+        "role": "controller"
+      },
+      {
+        "id": "domain",
+        "class": "Brand",
+        "role": "domain"
+      }
+    ],
+    "messages": [
+      {
+        "from": "actor",
+        "to": "view",
+        "method": "updateBrand",
+        "kind": "ssd",
+        "arguments": "brandId, name",
+        "guard": "",
+        "PC_MG": ""
+      },
+      {
+        "from": "view",
+        "to": "controller",
+        "method": "rename_brand",
+        "kind": "call",
+        "arguments": "uid(), brandId, name",
+        "guard": "",
+        "PC_MG": ""
+      },
+      {
+        "from": "controller",
+        "to": "controller",
+        "method": "_require_admin",
+        "kind": "call",
+        "arguments": "uid()",
+        "guard": "",
+        "PC_MG": ""
+      },
+      {
+        "from": "controller",
+        "to": "view",
+        "method": "refusal",
+        "kind": "return",
+        "arguments": "",
+        "guard": "denied / invalid / stale",
+        "PC_MG": "UC06-MG01 / UC06-MG02"
+      },
+      {
+        "from": "view",
+        "to": "actor",
+        "method": "response",
+        "kind": "return",
+        "arguments": "",
+        "guard": "denied / invalid / stale",
+        "PC_MG": "UC06-MG01 / UC06-MG02"
+      },
+      {
+        "from": "controller",
+        "to": "domain",
+        "method": "attributes",
+        "kind": "note",
+        "arguments": "name, archived_at",
+        "guard": "valid",
+        "PC_MG": ""
+      },
+      {
+        "from": "controller",
+        "to": "view",
+        "method": "result",
+        "kind": "return",
+        "arguments": "",
+        "guard": "success",
+        "PC_MG": "UC06-PC01"
+      },
+      {
+        "from": "view",
+        "to": "actor",
+        "method": "response",
+        "kind": "return",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": ""
+      },
+      {
+        "from": "controller",
+        "to": "view",
+        "method": "controlledFailure",
+        "kind": "return",
+        "arguments": "",
+        "guard": "technical failure",
+        "PC_MG": "UC06-MG01 / UC06-MG02"
+      },
+      {
+        "from": "view",
+        "to": "actor",
+        "method": "response",
+        "kind": "return",
+        "arguments": "",
+        "guard": "technical failure",
+        "PC_MG": "UC06-MG01 / UC06-MG02"
+      }
+    ],
+    "states": []
+  },
+  "qa": {
+    "canvas": [
+      1200,
+      1250
+    ],
+    "placed_width_mm": 170,
+    "minimum_font_px": 23,
+    "minimum_pt": 9.236220472440946,
+    "connected_edges": 10,
+    "xml_valid": true,
+    "native_text_cells": 24,
+    "native_minimum_font_px": 23.0,
+    "native_minimum_pt": 9.236220472440946,
+    "native_explicit_font_styles": true
+  },
+  "controller_signature": "rename_brand(self, user_id: int, brand_id: int, name: str) -> Brand"
+}

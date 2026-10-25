@@ -1,0 +1,213 @@
+{
+  "type": "sequence",
+  "title": "UC-06: setListingAvailability",
+  "UC": "UC-06",
+  "op_id": "OP-44",
+  "operation": "setListingAvailability",
+  "parameters": "hubId, itemId, available",
+  "ssd_occurrence": "models/UC-06/ssd_uc06_PartC.drawio#M06-C03",
+  "reject_guard": "denied / missing pair / invalid flag",
+  "controller": "MenuController",
+  "method": "set_availability",
+  "view_method": "hub_item_availability",
+  "arguments": "uid(), hubId, itemId, available",
+  "domain": "HubMenuItem",
+  "domain_note": "item, is_available",
+  "domain_attributes": [
+    "item",
+    "is_available"
+  ],
+  "effect": "only selected pair changes; archived-parent exclusion remains",
+  "create": null,
+  "PC": "UC06-PC02; UC06-PC03",
+  "MG": "UC06-MG01 / UC06-MG02",
+  "read": false,
+  "result": "savedRecord",
+  "status": "P4-TARGET",
+  "P4_input": "P2-S13; P3-S03",
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "states": [],
+  "phase3": {
+    "diagram_type": "sequence",
+    "UC": "UC-06",
+    "op_id": "OP-44",
+    "operation": "setListingAvailability",
+    "parameters": "hubId, itemId, available",
+    "ssd_occurrence": "models/UC-06/ssd_uc06_PartC.drawio#M06-C03",
+    "elements": [
+      {
+        "class": "admin",
+        "attributes": [],
+        "methods": [
+          "hub_item_availability"
+        ]
+      },
+      {
+        "class": "MenuController",
+        "attributes": [],
+        "methods": [
+          "set_availability",
+          "_require_admin"
+        ]
+      },
+      {
+        "class": "HubMenuItem",
+        "attributes": [
+          "item",
+          "is_available"
+        ],
+        "methods": []
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "admin",
+        "target": "MenuController",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "MenuController",
+        "target": "HubMenuItem",
+        "kind": "dependency",
+        "status": "MATCH",
+        "P4_input": "P2-S15",
+        "allowed_on_layered_diagram": true,
+        "source_evidence": "Logical persistence responsibility mediated by MenuDAO; attribute note, not a direct Python method call"
+      }
+    ],
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Admin",
+        "role": "actor"
+      },
+      {
+        "id": "view",
+        "class": "admin",
+        "role": "view"
+      },
+      {
+        "id": "controller",
+        "class": "MenuController",
+        "role": "controller"
+      },
+      {
+        "id": "domain",
+        "class": "HubMenuItem",
+        "role": "domain"
+      }
+    ],
+    "messages": [
+      {
+        "from": "actor",
+        "to": "view",
+        "method": "setListingAvailability",
+        "kind": "ssd",
+        "arguments": "hubId, itemId, available",
+        "guard": "",
+        "PC_MG": ""
+      },
+      {
+        "from": "view",
+        "to": "controller",
+        "method": "set_availability",
+        "kind": "call",
+        "arguments": "uid(), hubId, itemId, available",
+        "guard": "",
+        "PC_MG": ""
+      },
+      {
+        "from": "controller",
+        "to": "controller",
+        "method": "_require_admin",
+        "kind": "call",
+        "arguments": "uid()",
+        "guard": "",
+        "PC_MG": ""
+      },
+      {
+        "from": "controller",
+        "to": "view",
+        "method": "refusal",
+        "kind": "return",
+        "arguments": "",
+        "guard": "denied / invalid / stale",
+        "PC_MG": "UC06-MG01 / UC06-MG02"
+      },
+      {
+        "from": "view",
+        "to": "actor",
+        "method": "response",
+        "kind": "return",
+        "arguments": "",
+        "guard": "denied / invalid / stale",
+        "PC_MG": "UC06-MG01 / UC06-MG02"
+      },
+      {
+        "from": "controller",
+        "to": "domain",
+        "method": "attributes",
+        "kind": "note",
+        "arguments": "item, is_available",
+        "guard": "valid",
+        "PC_MG": ""
+      },
+      {
+        "from": "controller",
+        "to": "view",
+        "method": "result",
+        "kind": "return",
+        "arguments": "",
+        "guard": "success",
+        "PC_MG": "UC06-PC02; UC06-PC03"
+      },
+      {
+        "from": "view",
+        "to": "actor",
+        "method": "response",
+        "kind": "return",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": ""
+      },
+      {
+        "from": "controller",
+        "to": "view",
+        "method": "controlledFailure",
+        "kind": "return",
+        "arguments": "",
+        "guard": "technical failure",
+        "PC_MG": "UC06-MG01 / UC06-MG02"
+      },
+      {
+        "from": "view",
+        "to": "actor",
+        "method": "response",
+        "kind": "return",
+        "arguments": "",
+        "guard": "technical failure",
+        "PC_MG": "UC06-MG01 / UC06-MG02"
+      }
+    ],
+    "states": []
+  },
+  "qa": {
+    "canvas": [
+      1200,
+      1250
+    ],
+    "placed_width_mm": 170,
+    "minimum_font_px": 23,
+    "minimum_pt": 9.236220472440946,
+    "connected_edges": 10,
+    "xml_valid": true,
+    "native_text_cells": 24,
+    "native_minimum_font_px": 23.0,
+    "native_minimum_pt": 9.236220472440946,
+    "native_explicit_font_styles": true
+  },
+  "controller_signature": "set_availability(self, user_id: int, hub_id: int, item_id: int, available: bool) -> None"
+}

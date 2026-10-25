@@ -1,0 +1,167 @@
+{
+  "author": "Author: 722I0004 · AI-assisted (Codex)",
+  "UC": "UC-06",
+  "model_source": "models/shared/design_model.json",
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "classes": {
+    "admin": [
+      "catalogue",
+      "create_brand",
+      "rename_brand",
+      "archive_brand",
+      "new_item",
+      "edit_item",
+      "archive_item",
+      "hub_menu",
+      "list_item",
+      "unlist_item",
+      "hub_item_availability",
+      "_menu",
+      "_hubs"
+    ],
+    "MenuController": [
+      "catalogue",
+      "hub_menu",
+      "list_catalogue",
+      "create_brand",
+      "rename_brand",
+      "archive_brand",
+      "create_item",
+      "update_item",
+      "archive_item",
+      "list_item_at_hub",
+      "unlist_item_at_hub",
+      "set_availability",
+      "_require_admin",
+      "_hub",
+      "_active_brand",
+      "_active_item",
+      "_name",
+      "_parse_item"
+    ],
+    "Catalogue": [],
+    "HubMenu": [],
+    "HubController": [
+      "list_hubs"
+    ],
+    "Hub": [],
+    "Brand": [],
+    "MenuItem": [],
+    "HubMenuItem": [],
+    "MenuDAO": [
+      "list_brands",
+      "get_brand",
+      "brand_name_exists",
+      "insert_brand",
+      "rename_brand",
+      "archive_brand",
+      "list_items",
+      "get_item",
+      "item_name_exists",
+      "insert_item",
+      "update_item",
+      "archive_item",
+      "list_hub_items",
+      "is_listed",
+      "add_listing",
+      "remove_listing",
+      "set_available"
+    ],
+    "HubDAO": [
+      "list_all",
+      "get_including_archived"
+    ],
+    "BaseController": [
+      "_require_user",
+      "_now"
+    ],
+    "UserAccount": [],
+    "Role": [],
+    "UserDAO": [
+      "get_by_id"
+    ]
+  },
+  "diagrams": {
+    "domain": [
+      "dcd_uc06_domain_PartA",
+      "dcd_uc06_domain_PartB",
+      "dcd_uc06_domain_PartC"
+    ],
+    "controller": [
+      "dcd_uc06_controller_PartA",
+      "dcd_uc06_controller_PartB",
+      "dcd_uc06_controller_PartC",
+      "dcd_uc06_controller_PartD",
+      "dcd_uc06_controller_PartE",
+      "dcd_uc06_controller_PartF"
+    ],
+    "view": [
+      "dcd_uc06_view_PartA",
+      "dcd_uc06_view_PartB",
+      "dcd_uc06_view_PartC"
+    ],
+    "dao": [
+      "dcd_uc06_dao_PartA",
+      "dcd_uc06_dao_PartB",
+      "dcd_uc06_dao_PartC",
+      "dcd_uc06_dao_PartD",
+      "dcd_uc06_dao_PartE"
+    ],
+    "all": [
+      "dcd_uc06_all_PartA",
+      "dcd_uc06_all_PartB",
+      "dcd_uc06_all_PartC",
+      "dcd_uc06_all_PartD",
+      "dcd_uc06_all_PartE",
+      "dcd_uc06_all_PartF",
+      "dcd_uc06_all_PartG",
+      "dcd_uc06_all_PartH",
+      "dcd_uc06_all_PartI",
+      "dcd_uc06_all_PartJ"
+    ],
+    "final": [
+      "dcd_uc06_final_PartA",
+      "dcd_uc06_final_PartB",
+      "dcd_uc06_final_PartC",
+      "dcd_uc06_final_PartD",
+      "dcd_uc06_final_PartE",
+      "dcd_uc06_final_PartF",
+      "dcd_uc06_final_PartG",
+      "dcd_uc06_final_PartH",
+      "dcd_uc06_final_PartI",
+      "dcd_uc06_final_PartJ"
+    ],
+    "sequence": [
+      "seq_uc06_listCatalogue_PartA",
+      "seq_uc06_createBrand",
+      "seq_uc06_updateBrand",
+      "seq_uc06_archiveBrand",
+      "seq_uc06_listCatalogue_PartB",
+      "seq_uc06_createMenuItem",
+      "seq_uc06_updateMenuItem",
+      "seq_uc06_archiveMenuItem",
+      "seq_uc06_listCatalogue_PartC",
+      "seq_uc06_listItemAtHub",
+      "seq_uc06_setListingAvailability",
+      "seq_uc06_unlistItemAtHub"
+    ]
+  },
+  "selection_contract": "Every class/member is selected from shared model. Domain *_id attributes retained only in tables. All/final are operation projections; union includes every sequence call receiver method.",
+  "continuation": "Each figure part is needed; no unsuffixed first-page alias.",
+  "model_sha256": "bd415d6b5874d373cd5eb928dc9b218d27d499e36052589304912a2c33cdd437",
+  "dependency_refresh": "Render-time filter of approved canonical dependencies; mediated MenuController/HubMenuItem relation remains logical, not a direct Python call.",
+  "native_text_policy": {
+    "DCD": {
+      "width_mm": 230,
+      "minimum_px": 18
+    },
+    "sequence": {
+      "width_mm": 170,
+      "minimum_px": 23
+    },
+    "explicit_each_text_cell": true
+  },
+  "association_classes": [
+    "HubMenuItem"
+  ]
+}

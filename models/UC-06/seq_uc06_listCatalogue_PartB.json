@@ -1,0 +1,215 @@
+{
+  "type": "sequence",
+  "title": "UC-06: listCatalogue PartB",
+  "UC": "UC-06",
+  "op_id": "OP-25",
+  "operation": "listCatalogue",
+  "parameters": "hubId?",
+  "ssd_occurrence": "models/UC-06/ssd_uc06_PartB.drawio#M06-B01",
+  "reject_guard": "denied / missing target",
+  "controller": "MenuController",
+  "method": "list_catalogue",
+  "view_method": "catalogue",
+  "arguments": "uid(), hub_id=hubId",
+  "domain": "MenuItem",
+  "domain_note": "name, price, archived_at",
+  "domain_attributes": [
+    "name",
+    "price",
+    "archived_at"
+  ],
+  "effect": "zero writes; Brand/Item/Hub/listing composite; optional hub filter",
+  "create": null,
+  "PC": "authorized read; zero writes",
+  "MG": "UC06-MG01 / UC06-MG02",
+  "read": true,
+  "result": "brandsItemsHubsAndListings",
+  "status": "GAP",
+  "P4_input": "P2-S14",
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "states": [],
+  "phase3": {
+    "diagram_type": "sequence",
+    "UC": "UC-06",
+    "op_id": "OP-25",
+    "operation": "listCatalogue",
+    "parameters": "hubId?",
+    "ssd_occurrence": "models/UC-06/ssd_uc06_PartB.drawio#M06-B01",
+    "elements": [
+      {
+        "class": "admin",
+        "attributes": [],
+        "methods": [
+          "catalogue",
+          "hub_menu"
+        ]
+      },
+      {
+        "class": "MenuController",
+        "attributes": [],
+        "methods": [
+          "list_catalogue",
+          "_require_admin"
+        ]
+      },
+      {
+        "class": "MenuItem",
+        "attributes": [
+          "name",
+          "price",
+          "archived_at"
+        ],
+        "methods": []
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "admin",
+        "target": "MenuController",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "MenuController",
+        "target": "MenuItem",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      }
+    ],
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Admin",
+        "role": "actor"
+      },
+      {
+        "id": "view",
+        "class": "admin",
+        "role": "view"
+      },
+      {
+        "id": "controller",
+        "class": "MenuController",
+        "role": "controller"
+      },
+      {
+        "id": "domain",
+        "class": "MenuItem",
+        "role": "domain"
+      }
+    ],
+    "messages": [
+      {
+        "from": "actor",
+        "to": "view",
+        "method": "listCatalogue",
+        "kind": "ssd",
+        "arguments": "hubId?",
+        "guard": "",
+        "PC_MG": ""
+      },
+      {
+        "from": "view",
+        "to": "controller",
+        "method": "list_catalogue",
+        "kind": "call",
+        "arguments": "uid(), hub_id=hubId",
+        "guard": "",
+        "PC_MG": ""
+      },
+      {
+        "from": "controller",
+        "to": "controller",
+        "method": "_require_admin",
+        "kind": "call",
+        "arguments": "uid()",
+        "guard": "",
+        "PC_MG": ""
+      },
+      {
+        "from": "controller",
+        "to": "view",
+        "method": "refusal",
+        "kind": "return",
+        "arguments": "",
+        "guard": "denied / invalid / stale",
+        "PC_MG": "UC06-MG01 / UC06-MG02"
+      },
+      {
+        "from": "view",
+        "to": "actor",
+        "method": "response",
+        "kind": "return",
+        "arguments": "",
+        "guard": "denied / invalid / stale",
+        "PC_MG": "UC06-MG01 / UC06-MG02"
+      },
+      {
+        "from": "controller",
+        "to": "domain",
+        "method": "attributes",
+        "kind": "note",
+        "arguments": "name, price, archived_at",
+        "guard": "valid",
+        "PC_MG": ""
+      },
+      {
+        "from": "controller",
+        "to": "view",
+        "method": "result",
+        "kind": "return",
+        "arguments": "",
+        "guard": "success",
+        "PC_MG": "authorized read; zero writes"
+      },
+      {
+        "from": "view",
+        "to": "actor",
+        "method": "response",
+        "kind": "return",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": ""
+      },
+      {
+        "from": "controller",
+        "to": "view",
+        "method": "controlledFailure",
+        "kind": "return",
+        "arguments": "",
+        "guard": "technical failure",
+        "PC_MG": "UC06-MG01 / UC06-MG02"
+      },
+      {
+        "from": "view",
+        "to": "actor",
+        "method": "response",
+        "kind": "return",
+        "arguments": "",
+        "guard": "technical failure",
+        "PC_MG": "UC06-MG01 / UC06-MG02"
+      }
+    ],
+    "states": []
+  },
+  "qa": {
+    "canvas": [
+      1200,
+      1250
+    ],
+    "placed_width_mm": 170,
+    "minimum_font_px": 23,
+    "minimum_pt": 9.236220472440946,
+    "connected_edges": 10,
+    "xml_valid": true,
+    "native_text_cells": 24,
+    "native_minimum_font_px": 23.0,
+    "native_minimum_pt": 9.236220472440946,
+    "native_explicit_font_styles": true
+  },
+  "controller_signature": "list_catalogue(self, user_id: int, hub_id: Optional[int] = None) -> dict[str, object]"
+}

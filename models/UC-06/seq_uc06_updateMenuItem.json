@@ -1,0 +1,216 @@
+{
+  "type": "sequence",
+  "title": "UC-06: updateMenuItem",
+  "UC": "UC-06",
+  "op_id": "OP-41",
+  "operation": "updateMenuItem",
+  "parameters": "itemId, brandId, name, description, price",
+  "ssd_occurrence": "models/UC-06/ssd_uc06_PartB.drawio#M06-B03",
+  "reject_guard": "denied / inactive target / duplicate name / invalid price",
+  "controller": "MenuController",
+  "method": "update_item",
+  "view_method": "edit_item",
+  "arguments": "uid(), itemId, form",
+  "domain": "MenuItem",
+  "domain_note": "name, description, price, archived_at",
+  "domain_attributes": [
+    "name",
+    "description",
+    "price",
+    "archived_at"
+  ],
+  "effect": "pin current brand; old OrderLine names/prices unchanged",
+  "create": null,
+  "PC": "UC06-PC01",
+  "MG": "UC06-MG01 / UC06-MG02",
+  "read": false,
+  "result": "savedRecord",
+  "status": "P4-TARGET",
+  "P4_input": "P2-S13; P3-S03",
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "states": [],
+  "phase3": {
+    "diagram_type": "sequence",
+    "UC": "UC-06",
+    "op_id": "OP-41",
+    "operation": "updateMenuItem",
+    "parameters": "itemId, brandId, name, description, price",
+    "ssd_occurrence": "models/UC-06/ssd_uc06_PartB.drawio#M06-B03",
+    "elements": [
+      {
+        "class": "admin",
+        "attributes": [],
+        "methods": [
+          "edit_item"
+        ]
+      },
+      {
+        "class": "MenuController",
+        "attributes": [],
+        "methods": [
+          "update_item",
+          "_require_admin"
+        ]
+      },
+      {
+        "class": "MenuItem",
+        "attributes": [
+          "name",
+          "description",
+          "price",
+          "archived_at"
+        ],
+        "methods": []
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "admin",
+        "target": "MenuController",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "MenuController",
+        "target": "MenuItem",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      }
+    ],
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Admin",
+        "role": "actor"
+      },
+      {
+        "id": "view",
+        "class": "admin",
+        "role": "view"
+      },
+      {
+        "id": "controller",
+        "class": "MenuController",
+        "role": "controller"
+      },
+      {
+        "id": "domain",
+        "class": "MenuItem",
+        "role": "domain"
+      }
+    ],
+    "messages": [
+      {
+        "from": "actor",
+        "to": "view",
+        "method": "updateMenuItem",
+        "kind": "ssd",
+        "arguments": "itemId, brandId, name, description, price",
+        "guard": "",
+        "PC_MG": ""
+      },
+      {
+        "from": "view",
+        "to": "controller",
+        "method": "update_item",
+        "kind": "call",
+        "arguments": "uid(), itemId, form",
+        "guard": "",
+        "PC_MG": ""
+      },
+      {
+        "from": "controller",
+        "to": "controller",
+        "method": "_require_admin",
+        "kind": "call",
+        "arguments": "uid()",
+        "guard": "",
+        "PC_MG": ""
+      },
+      {
+        "from": "controller",
+        "to": "view",
+        "method": "refusal",
+        "kind": "return",
+        "arguments": "",
+        "guard": "denied / invalid / stale",
+        "PC_MG": "UC06-MG01 / UC06-MG02"
+      },
+      {
+        "from": "view",
+        "to": "actor",
+        "method": "response",
+        "kind": "return",
+        "arguments": "",
+        "guard": "denied / invalid / stale",
+        "PC_MG": "UC06-MG01 / UC06-MG02"
+      },
+      {
+        "from": "controller",
+        "to": "domain",
+        "method": "attributes",
+        "kind": "note",
+        "arguments": "name, description, price, archived_at",
+        "guard": "valid",
+        "PC_MG": ""
+      },
+      {
+        "from": "controller",
+        "to": "view",
+        "method": "result",
+        "kind": "return",
+        "arguments": "",
+        "guard": "success",
+        "PC_MG": "UC06-PC01"
+      },
+      {
+        "from": "view",
+        "to": "actor",
+        "method": "response",
+        "kind": "return",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": ""
+      },
+      {
+        "from": "controller",
+        "to": "view",
+        "method": "controlledFailure",
+        "kind": "return",
+        "arguments": "",
+        "guard": "technical failure",
+        "PC_MG": "UC06-MG01 / UC06-MG02"
+      },
+      {
+        "from": "view",
+        "to": "actor",
+        "method": "response",
+        "kind": "return",
+        "arguments": "",
+        "guard": "technical failure",
+        "PC_MG": "UC06-MG01 / UC06-MG02"
+      }
+    ],
+    "states": []
+  },
+  "qa": {
+    "canvas": [
+      1200,
+      1250
+    ],
+    "placed_width_mm": 170,
+    "minimum_font_px": 23,
+    "minimum_pt": 9.236220472440946,
+    "connected_edges": 10,
+    "xml_valid": true,
+    "native_text_cells": 24,
+    "native_minimum_font_px": 23.0,
+    "native_minimum_pt": 9.236220472440946,
+    "native_explicit_font_styles": true
+  },
+  "controller_signature": "update_item(self, user_id: int, item_id: int, form: Mapping[str, str]) -> MenuItem"
+}

@@ -1,0 +1,176 @@
+{
+  "type": "dcd",
+  "title": "UC-06 final: archiveBrand (4/10)",
+  "model_source": "models/shared/design_model.json",
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "boxes": [
+    {
+      "class": "admin",
+      "attributes": [],
+      "methods": [
+        "archive_brand"
+      ],
+      "xyw": [
+        100,
+        80,
+        1050
+      ]
+    },
+    {
+      "class": "MenuController",
+      "attributes": [
+        "menu"
+      ],
+      "methods": [
+        "archive_brand",
+        "_require_admin"
+      ],
+      "xyw": [
+        100,
+        260,
+        1050
+      ]
+    },
+    {
+      "class": "Brand",
+      "attributes": [
+        "id",
+        "name",
+        "archived_at"
+      ],
+      "methods": [],
+      "xyw": [
+        100,
+        435,
+        510
+      ]
+    },
+    {
+      "class": "MenuDAO",
+      "attributes": [
+        "conn"
+      ],
+      "methods": [
+        "archive_brand"
+      ],
+      "xyw": [
+        100,
+        615,
+        1050
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "source": "MenuController",
+      "target": "Brand",
+      "kind": "dependency",
+      "status": "MATCH",
+      "source_evidence": "AST call or typed attribute/signature",
+      "allowed_on_layered_diagram": true
+    },
+    {
+      "source": "MenuController",
+      "target": "MenuDAO",
+      "kind": "dependency",
+      "status": "P4-TARGET",
+      "source_evidence": "AST call or typed attribute/signature",
+      "allowed_on_layered_diagram": true,
+      "P4_input": "P2-S14"
+    },
+    {
+      "source": "admin",
+      "target": "MenuController",
+      "kind": "dependency",
+      "status": "MATCH",
+      "source_evidence": "AST call or typed attribute/signature",
+      "allowed_on_layered_diagram": true
+    }
+  ],
+  "continuation": "dcd_uc06_final_PartA–PartJ: continued operation projections. Full typed members in .1 and layer sheets.",
+  "P4_input": "P2-S13; P3-S03",
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "admin",
+        "attributes": [],
+        "methods": [
+          "archive_brand"
+        ]
+      },
+      {
+        "class": "MenuController",
+        "attributes": [
+          "menu"
+        ],
+        "methods": [
+          "archive_brand",
+          "_require_admin"
+        ]
+      },
+      {
+        "class": "Brand",
+        "attributes": [
+          "id",
+          "name",
+          "archived_at"
+        ],
+        "methods": []
+      },
+      {
+        "class": "MenuDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "archive_brand"
+        ]
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "MenuController",
+        "target": "Brand",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "MenuController",
+        "target": "MenuDAO",
+        "kind": "dependency",
+        "status": "P4-TARGET",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true,
+        "P4_input": "P2-S14"
+      },
+      {
+        "source": "admin",
+        "target": "MenuController",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      }
+    ],
+    "states": [],
+    "association_classes": []
+  },
+  "qa": {
+    "canvas": [
+      1200,
+      850
+    ],
+    "placed_width_mm": 230,
+    "minimum_font_px": 18,
+    "minimum_pt": 9.779527559055119,
+    "connected_edges": 3,
+    "xml_valid": true,
+    "native_text_cells": 8,
+    "native_minimum_font_px": 18.0,
+    "native_minimum_pt": 9.779527559055119,
+    "native_explicit_font_styles": true
+  }
+}

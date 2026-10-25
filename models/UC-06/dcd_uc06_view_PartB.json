@@ -1,0 +1,61 @@
+{
+  "type": "dcd",
+  "title": "UC-06: view design classes (2/3)",
+  "model_source": "models/shared/design_model.json",
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "boxes": [
+    {
+      "class": "admin",
+      "attributes": [],
+      "methods": [
+        "edit_item",
+        "archive_item",
+        "hub_menu",
+        "list_item",
+        "unlist_item"
+      ],
+      "xyw": [
+        100,
+        90,
+        510
+      ]
+    }
+  ],
+  "dependencies": [],
+  "continuation": "UC-06 view continues in PartA–PartC; this is PartB. Read all parts together; full members in .1.",
+  "P4_input": "P2-S13 / P2-S14 / P2-S15 / P3-S02 / P3-S03",
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "admin",
+        "attributes": [],
+        "methods": [
+          "edit_item",
+          "archive_item",
+          "hub_menu",
+          "list_item",
+          "unlist_item"
+        ]
+      }
+    ],
+    "dependencies": [],
+    "states": [],
+    "association_classes": []
+  },
+  "qa": {
+    "canvas": [
+      1200,
+      850
+    ],
+    "placed_width_mm": 230,
+    "minimum_font_px": 18,
+    "minimum_pt": 9.779527559055119,
+    "connected_edges": 0,
+    "xml_valid": true,
+    "native_text_cells": 5,
+    "native_minimum_font_px": 18.0,
+    "native_minimum_pt": 9.779527559055119,
+    "native_explicit_font_styles": true
+  }
+}
