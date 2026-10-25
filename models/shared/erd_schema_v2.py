@@ -159,20 +159,20 @@ EDGE_LAYOUTS = [
     ("PartA", "customer", "user_id", "user_account", (730, 670), (1150, 433), [(730, 670), (850, 670), (850, 500), (1150, 500), (1150, 433)], "0..1", "1", (740, 635, 1160, 438)),
     ("PartA", "address", "customer_id", "customer", (1000, 700), (730, 700), [(1000, 700), (730, 700)], "1", "0..*", (950, 665, 735, 720)),
     ("PartB", "menu_item", "brand_id", "brand", (1000, 270), (680, 270), [(1000, 270), (680, 270)], "0..*", "1", (930, 235, 685, 275)),
-    ("PartB", "hub_menu_item", "menu_item_id", "menu_item", (1300, 600), (1300, 391), [(1300, 600), (1300, 391)], "1", "0..*", (1310, 580, 1310, 405)),
+    ("PartB", "hub_menu_item", "menu_item_id", "menu_item", (1300, 600), (1300, 391), [(1300, 600), (1300, 391)], "1", "0..*", (1310, 550, 1310, 405)),
     ("PartB", "hub_menu_item", "hub_id", "hub", (1300, 758), (1300, 850), [(1300, 758), (1300, 850)], "1", "0..*", (1310, 770, 1360, 825)),
     ("PartC", "orders", "customer_id", "customer", (680, 180), (830, 170), [(680, 180), (830, 170)], "0..*", "1", (685, 150, 780, 145)),
     ("PartC", "orders", "hub_id", "hub", (680, 360), (830, 350), [(680, 360), (830, 350)], "0..*", "1", (685, 330, 780, 325)),
     ("PartC", "orders", "address_id", "address", (680, 540), (830, 530), [(680, 540), (830, 530)], "0..*", "1", (685, 510, 780, 505)),
     ("PartC", "orders", "voucher_id", "voucher", (680, 720), (830, 710), [(680, 720), (830, 710)], "0..*", "0..1", (685, 690, 780, 685)),
-    ("PartC", "order_line", "order_id", "orders", (370, 900), (370, 795), [(370, 900), (370, 795)], "0..*", "1", (380, 885, 380, 775)),
-    ("PartC", "order_line", "menu_item_id", "menu_item", (680, 1010), (830, 960), [(680, 1010), (830, 960)], "0..*", "1", (685, 985, 780, 935)),
-    ("PartD", "payment", "order_id", "orders", (430, 515), (430, 720), [(430, 515), (430, 720)], "0..1", "1", (440, 520, 440, 700)),
+    ("PartC", "order_line", "order_id", "orders", (370, 900), (370, 795), [(370, 900), (370, 795)], "0..*", "1", (380, 855, 380, 810)),
+    ("PartC", "order_line", "menu_item_id", "menu_item", (680, 1010), (830, 960), [(680, 1010), (830, 960)], "0..*", "1", (685, 1015, 780, 935)),
+    ("PartD", "payment", "order_id", "orders", (430, 515), (430, 720), [(430, 515), (430, 720)], "0..1", "1", (440, 520, 440, 665)),
     ("PartD", "delivery", "order_id", "orders", (1040, 360), (740, 785), [(1040, 360), (800, 360), (800, 660), (740, 660), (740, 785)], "0..1", "1", (960, 330, 745, 765)),
     ("PartD", "delivery", "shipper_id", "user_account", (1350, 484), (1350, 720), [(1350, 484), (1350, 720)], "0..*", "0..1", (1360, 490, 1360, 695)),
     ("PartE", "replacement_offer", "order_id", "orders", (600, 546), (510, 815), [(600, 546), (600, 650), (510, 650), (510, 815)], "0..*", "1", (610, 550, 515, 785)),
-    ("PartE", "replacement_offer", "order_line_id", "order_line", (900, 546), (900, 750), [(900, 546), (900, 750)], "0..*", "1", (910, 550, 910, 730)),
-    ("PartE", "replacement_offer", "new_menu_item_id", "menu_item", (1200, 546), (1515, 750), [(1200, 546), (1200, 650), (1515, 650), (1515, 750)], "0..*", "1", (1210, 550, 1525, 730)),
+    ("PartE", "replacement_offer", "order_line_id", "order_line", (900, 546), (900, 750), [(900, 546), (900, 750)], "0..*", "1", (910, 550, 910, 700)),
+    ("PartE", "replacement_offer", "new_menu_item_id", "menu_item", (1200, 546), (1515, 750), [(1200, 546), (1200, 650), (1515, 650), (1515, 750)], "0..*", "1", (1210, 550, 1525, 700)),
 ]
 
 ATTR_MAP = {
@@ -540,9 +540,9 @@ def map_column(model: dict, table_name: str, column_name: str) -> tuple[str, str
 
 def status_and_subphase(table_name: str, column: str) -> tuple[str, str, str]:
     if (table_name, column) == ("customer", "nationality"):
-        return ("P4-TARGET†", "P2-S03", "P4.7 proposed; root to confirm")
+        return ("P4-TARGET†", "P2-S03", "P4.7 (accepted by root)")
     if (table_name, column) == ("customer", "user_id"):
-        return ("P4-TARGET†", "P2-S07", "P4.7 proposed; root to confirm")
+        return ("P4-TARGET†", "P2-S07", "P4.7 (accepted by root)")
     if (table_name, column) == ("payment", "updated_at"):
         return ("MATCH", "P2-S08 resolved", "No schema change; DAO supplies updated_at or created_at")
     if (table_name, column) == ("payment", "state"):
