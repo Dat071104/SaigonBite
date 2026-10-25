@@ -14,6 +14,13 @@ def preserve(path,kind):
         saved=saved.with_name(saved.name+'.'+sha(path)[:12]);assert not saved.exists() or sha(saved)==sha(path)
     shutil.copyfile(path,saved);assert sha(saved)==sha(path);return saved
 def main():
+    workbook=B/'workbook/Team02_RAD_Sem01_2627_Team_Workbook.xlsx';staged=B/'drive_upload'/workbook.name
+    start=json.loads((B/'notes/P3_start_hashes.json').read_text(encoding='utf-8'))
+    originals={name.replace('\\','/'):digest for name,digest in start['protected']['workbook'].items()}
+    assert len(originals)==len(start['protected']['workbook']),'Ambiguous workbook path normalization'
+    assert staged.exists() and sha(workbook)==sha(staged)
+    assert sha(workbook)==originals[workbook.relative_to(B.parent).as_posix()]
+    assert sha(staged)==originals[staged.relative_to(B.parent).as_posix()]
     paths=subprocess.check_output(['git','ls-files','--','models'],cwd=R,text=True).splitlines();assert paths
     untracked=subprocess.check_output(['git','ls-files','--others','--exclude-standard','--','models'],cwd=R,text=True).splitlines()
     assert not untracked,'All model sources must be committed before staging: '+str(untracked)
@@ -23,6 +30,11 @@ def main():
     # that a CRLF worktree file equal its LF Git blob byte for byte.
     subprocess.run(['git','diff','--quiet','HEAD','--','models'],cwd=R,check=True)
     records=[];preserved=[];expected={Path(p).relative_to('models').as_posix() for p in paths};DEST.mkdir(parents=True,exist_ok=True)
+    # Recover any already-preserved bytes after an interrupted earlier copy.
+    # Never replace the original hash manifest or discard a saved staging copy.
+    for kind in ('replaced_staging','superseded_staging'):
+        for saved in sorted((TRASH/kind).rglob('*')):
+            if saved.is_file():preserved.append({'saved':str(saved),'sha256':sha(saved),'recovered_preservation':True})
     for path in sorted(DEST.rglob('*')):
         if path.is_file() and path.relative_to(DEST).as_posix() not in expected:
             saved=preserve(path,'superseded_staging');target=inside(TRASH/'relocated_extras'/path.relative_to(DEST),B);target.parent.mkdir(parents=True,exist_ok=True);assert not target.exists();shutil.move(str(inside(path,DEST)),str(target));preserved.append({'from':str(path),'saved':str(saved),'relocated':str(target),'sha256':sha(target)})
@@ -31,11 +43,6 @@ def main():
         if target.exists() and sha(target)!=digest:
             saved=preserve(target,'replaced_staging');preserved.append({'from':str(target),'saved':str(saved),'sha256':sha(saved)})
         target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(source,target);assert sha(target)==digest;records.append({'source':str(source),'target':str(target),'sha256':digest})
-    workbook=B/'workbook/Team02_RAD_Sem01_2627_Team_Workbook.xlsx';staged=B/'drive_upload'/workbook.name
-    start=json.loads((B/'notes/P3_start_hashes.json').read_text(encoding='utf-8'))
-    assert staged.exists() and sha(workbook)==sha(staged)
-    assert sha(workbook)==start['protected']['workbook'][workbook.relative_to(B.parent).as_posix()]
-    assert sha(staged)==start['protected']['workbook'][staged.relative_to(B.parent).as_posix()]
     elearning=[p for p in (B/'drive_upload/eLearning').rglob('*') if p.is_file()];assert not elearning
     assert {p.relative_to(DEST).as_posix() for p in DEST.rglob('*') if p.is_file()}==expected
     result={'author':'722I0004 · AI-assisted (Codex)','at_utc':datetime.now(timezone.utc).isoformat(),'head':subprocess.check_output(['git','rev-parse','HEAD'],cwd=R,text=True).strip(),'models_tree_oid':model_tree,'model_files':len(records),'records':records,'preserved':preserved,'workbook_unchanged':True,'workbook_sha256':sha(staged),'eLearning_files':0,'no_external_upload':True}

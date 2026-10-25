@@ -160,3 +160,14 @@ Set-Location -LiteralPath 'D:\RAD\FINAL\SaigonBite'
 ## Pending owner facts and limits
 
 ⟦PENDING: actual L1–L6 answers/unanswered records, discussion planned 26/10 and checkpoint 31/10⟧; ⟦PENDING: Q1–Q5 original submission dates and answers, Dat by 31/10⟧; ⟦PENDING: real feedback/approval and official Part 2 deadline, when received/slot opens⟧. Native draw.io editing, native Excel and final DOCX/PDF placement are UNTESTED. No external upload/push/tag/merge is authorized. Next prompt is P4.1 unless P4 has already started.
+
+
+## Final integrity and local staging
+
+The end manifest passes for all1,730 original protected files: Part1, application/tests/schema/entrypoints, locked plan/links, both workbook copies, sectionsI/II, all339 pre-existing model files and the frozen P2 descriptions/registers/ledgers. App diff against C0 is empty; the only modified pre-existing tracked sources are the authorized AI log and traceability. The checked source revision is0cc0ef8; the final receipt records the closure commit separately.
+
+The model mirror contains2,327 committed files and exactly matches the source model set. P3_staging_manifest.json binds every source/target hash and any recovered preserved staging bytes. The workbook SHA256 is eb9a97714afa92cfdab30943f827883b3de996045d62c340e4268d1159ba31d9 in both working/staged copies, unchanged from start. eLearning contains0files; no external upload/push/tag/merge occurred.
+
+The first staging attempt stopped at a Windows-versus-POSIX manifest-key lookup after copying model files. Root normalized only lookup separators (with collision detection), moved workbook verification before copying, and reconstructed any prior preserved-copy records before repeating the full mirror. The immutable start manifest and workbook were never edited. The successful manifest is the final staging evidence; a partial copy was not treated as a staging pass.
+
+All workers are finished. Actual controlling/dispatch/resume prompts and transcripts are archived locally after the final handoffs. P3-closure.md records every local commit and the P4 handoff. P3_final_receipt.json is written only after the closure commit and a clean repository; it establishes69/69 checklist completion. This closes the target-design gate only, with the original independent verdict preserved and root's post-fix assessment above. Owner answers/dates, native editing, final document placement and P4/P5/P7 implementation/delivery evidence remain explicitly pending.

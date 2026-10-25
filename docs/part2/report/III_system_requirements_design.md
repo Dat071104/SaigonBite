@@ -1306,7 +1306,6 @@ Target collaborators for `fingerprint†`: **PaymentMethod** and **OnlineOption*
 | CustomerType | Knows LOCAL, TOURIST. Does typed value / enumeration initialization and attribute access. Hold typed business state and its local rules. | Customer, LocalCustomer, TouristCustomer |
 
 
-
 ### 3.1.4 OOD with Sequence Diagram
 
 Each SSD occurrence has its own operation sequence. Actor → actual blueprint module → controller → domain / typed value; UC-01 also uses the local simulator. No DAO/SQL lifeline is present. Synchronous calls use closed filled arrowheads; dashed open arrows carry results. Actual `alt`, `opt` and `break` rectangles enclose the messages they govern, including self-call paths. Inside an outcome `alt`, separately guarded regions have mutually exclusive conditions. Denial breaks terminate the current interaction; a continuation retains the same request and lifelines. Successful mutation results follow all atomic saves and COMMIT, whose DAO details remain in 4.3.2. Attribute/property reads are notes. Implicit dataclass «create» is not a business operation. Persistence is loaded/saved through data access — see 4.3.2.
@@ -4408,7 +4407,6 @@ Collaborators below resolve real AST constructor/function calls or typed collabo
 | Class | Responsibilities (knows / does) | Collaborators |
 |---|---|---|
 | CustomerType | Knows LOCAL, TOURIST. Does typed value / enumeration initialization and attribute access. Hold typed business state and its local rules. | Customer, LocalCustomer, TouristCustomer |
-
 
 
 ### 3.5.4 OOD with Sequence Diagram
