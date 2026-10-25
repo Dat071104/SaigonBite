@@ -1,0 +1,674 @@
+{
+  "author": "Author: 722I0004 · AI-assisted (Codex)",
+  "title": "UC-02 .2 DCD domain — Part B",
+  "canvas": {
+    "width": 2600,
+    "height": 2272,
+    "font_size": 50,
+    "placed_width_mm": 170
+  },
+  "nodes": [
+    {
+      "id": "layer_domain",
+      "kind": "layer",
+      "x": 40,
+      "y": 135,
+      "w": 2520,
+      "h": 70,
+      "lines": [
+        "Business / domain"
+      ]
+    },
+    {
+      "id": "Order",
+      "kind": "class",
+      "x": 80,
+      "y": 213,
+      "w": 793,
+      "h": 552,
+      "header_h": 137,
+      "header_lines": [
+        "Order"
+      ],
+      "subtitle_lines": [
+        "«entity»"
+      ],
+      "attribute_lines": [
+        "+state: OrderState",
+        "+id: Optional[int]"
+      ],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "Delivery",
+      "kind": "class",
+      "x": 903,
+      "y": 213,
+      "w": 793,
+      "h": 552,
+      "header_h": 137,
+      "header_lines": [
+        "Delivery"
+      ],
+      "subtitle_lines": [
+        "«entity»"
+      ],
+      "attribute_lines": [
+        "+state: DeliveryState",
+        "+id: Optional[int]"
+      ],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "Payment",
+      "kind": "class",
+      "x": 1726,
+      "y": 213,
+      "w": 793,
+      "h": 552,
+      "header_h": 137,
+      "header_lines": [
+        "Payment"
+      ],
+      "subtitle_lines": [
+        "«entity»"
+      ],
+      "attribute_lines": [
+        "+method: PaymentMethod",
+        "+state: PaymentState",
+        "+id: Optional[int]"
+      ],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "Customer",
+      "kind": "class",
+      "x": 80,
+      "y": 795,
+      "w": 793,
+      "h": 552,
+      "header_h": 137,
+      "header_lines": [
+        "Customer"
+      ],
+      "subtitle_lines": [
+        "«entity»"
+      ],
+      "attribute_lines": [
+        "+id: int",
+        "+full_name: str"
+      ],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "Hub",
+      "kind": "class",
+      "x": 903,
+      "y": 795,
+      "w": 793,
+      "h": 552,
+      "header_h": 137,
+      "header_lines": [
+        "Hub"
+      ],
+      "subtitle_lines": [
+        "«entity»"
+      ],
+      "attribute_lines": [
+        "+id: int",
+        "+name: str"
+      ],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "UserAccount",
+      "kind": "class",
+      "x": 1726,
+      "y": 795,
+      "w": 793,
+      "h": 552,
+      "header_h": 137,
+      "header_lines": [
+        "UserAccount"
+      ],
+      "subtitle_lines": [
+        "«entity»"
+      ],
+      "attribute_lines": [
+        "+id: int",
+        "+role: Role",
+        "+is_active: bool"
+      ],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "Role",
+      "kind": "class",
+      "x": 80,
+      "y": 1377,
+      "w": 793,
+      "h": 369,
+      "header_h": 137,
+      "header_lines": [
+        "Role"
+      ],
+      "subtitle_lines": [
+        "«enumeration»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "legend",
+      "kind": "note",
+      "x": 80,
+      "y": 1788,
+      "w": 2440,
+      "h": 372,
+      "lines": [
+        "Part A continues here. Domain FK scalars are omitted in favour of these navigable",
+        "associations. Domain associations/navigation and multiplicities: Customer (0..1) —",
+        "linked account — UserAccount (1); Order (0..*) — customer — Customer (1); Order",
+        "(0..*) — hub — Hub (1); Order (1) — payment — Payment (1); Order (1) — delivery —",
+        "Delivery (0..1); Delivery (0..*) — assigned shipper — UserAccount (0..1);",
+        "UserAccount (0..*) — kitchen hub — Hub (0..1)."
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "dep_00",
+      "source": "UserAccount",
+      "target": "Role",
+      "points": [
+        [
+          2122.5,
+          1347
+        ],
+        [
+          2122.5,
+          1362.0
+        ],
+        [
+          476.5,
+          1362.0
+        ],
+        [
+          476.5,
+          1377
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_01",
+      "source": "Customer",
+      "target": "UserAccount",
+      "points": [
+        [
+          873,
+          1071.0
+        ],
+        [
+          1299.5,
+          1071.0
+        ],
+        [
+          1726,
+          1071.0
+        ]
+      ],
+      "dashed": false,
+      "arrow": "block",
+      "color": "#004387",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_02",
+      "source": "Order",
+      "target": "Customer",
+      "points": [
+        [
+          476.5,
+          765
+        ],
+        [
+          476.5,
+          780.0
+        ],
+        [
+          476.5,
+          780.0
+        ],
+        [
+          476.5,
+          795
+        ]
+      ],
+      "dashed": false,
+      "arrow": "block",
+      "color": "#004387",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_03",
+      "source": "Order",
+      "target": "Hub",
+      "points": [
+        [
+          476.5,
+          765
+        ],
+        [
+          476.5,
+          780.0
+        ],
+        [
+          1299.5,
+          780.0
+        ],
+        [
+          1299.5,
+          795
+        ]
+      ],
+      "dashed": false,
+      "arrow": "block",
+      "color": "#004387",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_04",
+      "source": "Order",
+      "target": "Payment",
+      "points": [
+        [
+          873,
+          489.0
+        ],
+        [
+          1299.5,
+          489.0
+        ],
+        [
+          1726,
+          489.0
+        ]
+      ],
+      "dashed": false,
+      "arrow": "block",
+      "color": "#004387",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_05",
+      "source": "Order",
+      "target": "Delivery",
+      "points": [
+        [
+          873,
+          489.0
+        ],
+        [
+          888.0,
+          489.0
+        ],
+        [
+          903,
+          489.0
+        ]
+      ],
+      "dashed": false,
+      "arrow": "block",
+      "color": "#004387",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_06",
+      "source": "Delivery",
+      "target": "UserAccount",
+      "points": [
+        [
+          1299.5,
+          765
+        ],
+        [
+          1299.5,
+          780.0
+        ],
+        [
+          2122.5,
+          780.0
+        ],
+        [
+          2122.5,
+          795
+        ]
+      ],
+      "dashed": false,
+      "arrow": "block",
+      "color": "#004387",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_07",
+      "source": "UserAccount",
+      "target": "Hub",
+      "points": [
+        [
+          1726,
+          1071.0
+        ],
+        [
+          1711.0,
+          1071.0
+        ],
+        [
+          1696,
+          1071.0
+        ]
+      ],
+      "dashed": false,
+      "arrow": "block",
+      "color": "#004387",
+      "width": 2,
+      "label": ""
+    }
+  ],
+  "footer": "Author: 722I0004 · AI-assisted (Codex) · Static design at C0; † targets remain for P4.",
+  "phase3": {
+    "diagram_type": "dcd",
+    "UC": "UC-02",
+    "view": "domain",
+    "elements": [
+      {
+        "class": "Order",
+        "attributes": [
+          "state",
+          "id"
+        ],
+        "methods": [],
+        "attribute_types": {
+          "state": "OrderState",
+          "id": "Optional[int]"
+        },
+        "method_signatures": {},
+        "status": "MATCH",
+        "stereotype": "entity",
+        "module": "saigonbite/business/domain/models.py",
+        "attribute_statuses": {
+          "state": "MATCH",
+          "id": "MATCH"
+        },
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "Delivery",
+        "attributes": [
+          "state",
+          "id"
+        ],
+        "methods": [],
+        "attribute_types": {
+          "state": "DeliveryState",
+          "id": "Optional[int]"
+        },
+        "method_signatures": {},
+        "status": "MATCH",
+        "stereotype": "entity",
+        "module": "saigonbite/business/domain/models.py",
+        "attribute_statuses": {
+          "state": "MATCH",
+          "id": "MATCH"
+        },
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "Payment",
+        "attributes": [
+          "method",
+          "state",
+          "id"
+        ],
+        "methods": [],
+        "attribute_types": {
+          "method": "PaymentMethod",
+          "state": "PaymentState",
+          "id": "Optional[int]"
+        },
+        "method_signatures": {},
+        "status": "P4-TARGET",
+        "stereotype": "entity",
+        "module": "saigonbite/business/domain/models.py",
+        "attribute_statuses": {
+          "method": "MATCH",
+          "state": "MATCH",
+          "id": "MATCH"
+        },
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "Customer",
+        "attributes": [
+          "id",
+          "full_name"
+        ],
+        "methods": [],
+        "attribute_types": {
+          "id": "int",
+          "full_name": "str"
+        },
+        "method_signatures": {},
+        "status": "MATCH",
+        "stereotype": "entity",
+        "module": "saigonbite/business/domain/models.py",
+        "attribute_statuses": {
+          "id": "MATCH",
+          "full_name": "MATCH"
+        },
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "Hub",
+        "attributes": [
+          "id",
+          "name"
+        ],
+        "methods": [],
+        "attribute_types": {
+          "id": "int",
+          "name": "str"
+        },
+        "method_signatures": {},
+        "status": "P4-TARGET",
+        "stereotype": "entity",
+        "module": "saigonbite/business/domain/models.py",
+        "attribute_statuses": {
+          "id": "MATCH",
+          "name": "MATCH"
+        },
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "UserAccount",
+        "attributes": [
+          "id",
+          "role",
+          "is_active"
+        ],
+        "methods": [],
+        "attribute_types": {
+          "id": "int",
+          "role": "Role",
+          "is_active": "bool"
+        },
+        "method_signatures": {},
+        "status": "P4-TARGET",
+        "stereotype": "entity",
+        "module": "saigonbite/business/domain/models.py",
+        "attribute_statuses": {
+          "id": "MATCH",
+          "role": "MATCH",
+          "is_active": "MATCH"
+        },
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "Role",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {},
+        "status": "MATCH",
+        "stereotype": "enumeration",
+        "module": "saigonbite/business/domain/enums.py",
+        "attribute_statuses": {},
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "UserAccount",
+        "target": "Role",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "Customer",
+        "target": "UserAccount",
+        "source_multiplicity": "0..1",
+        "target_multiplicity": "1",
+        "role": "linked account",
+        "kind": "association",
+        "navigable": true,
+        "status": "MATCH",
+        "evidence": "domain model 2.1.7; code identifiers / typed fields"
+      },
+      {
+        "source": "Order",
+        "target": "Customer",
+        "source_multiplicity": "0..*",
+        "target_multiplicity": "1",
+        "role": "customer",
+        "kind": "association",
+        "navigable": true,
+        "status": "MATCH",
+        "evidence": "domain model 2.1.7; code identifiers / typed fields"
+      },
+      {
+        "source": "Order",
+        "target": "Hub",
+        "source_multiplicity": "0..*",
+        "target_multiplicity": "1",
+        "role": "hub",
+        "kind": "association",
+        "navigable": true,
+        "status": "MATCH",
+        "evidence": "domain model 2.1.7; code identifiers / typed fields"
+      },
+      {
+        "source": "Order",
+        "target": "Payment",
+        "source_multiplicity": "1",
+        "target_multiplicity": "1",
+        "role": "payment",
+        "kind": "association",
+        "navigable": true,
+        "status": "MATCH",
+        "evidence": "domain model 2.1.7; code identifiers / typed fields"
+      },
+      {
+        "source": "Order",
+        "target": "Delivery",
+        "source_multiplicity": "1",
+        "target_multiplicity": "0..1",
+        "role": "delivery",
+        "kind": "association",
+        "navigable": true,
+        "status": "MATCH",
+        "evidence": "domain model 2.1.7; code identifiers / typed fields"
+      },
+      {
+        "source": "Delivery",
+        "target": "UserAccount",
+        "source_multiplicity": "0..*",
+        "target_multiplicity": "0..1",
+        "role": "assigned shipper",
+        "kind": "association",
+        "navigable": true,
+        "status": "MATCH",
+        "evidence": "domain model 2.1.7; code identifiers / typed fields"
+      },
+      {
+        "source": "UserAccount",
+        "target": "Hub",
+        "source_multiplicity": "0..*",
+        "target_multiplicity": "0..1",
+        "role": "kitchen hub",
+        "kind": "association",
+        "navigable": true,
+        "status": "MATCH",
+        "evidence": "domain model 2.1.7; code identifiers / typed fields"
+      }
+    ]
+  },
+  "render_receipt": {
+    "canvas": [
+      2600,
+      2272
+    ],
+    "minimum_font_px": 50,
+    "placed_width_mm": 170,
+    "minimum_pt": 9.27,
+    "xml": "parsed",
+    "connected_edges": true,
+    "author_native_cell": true,
+    "all_text_minimum_px": 50
+  },
+  "source_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b"
+}

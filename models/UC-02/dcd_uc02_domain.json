@@ -1,0 +1,639 @@
+{
+  "author": "Author: 722I0004 · AI-assisted (Codex)",
+  "title": "UC-02 .2 DCD domain",
+  "canvas": {
+    "width": 2600,
+    "height": 2114,
+    "font_size": 50,
+    "placed_width_mm": 170
+  },
+  "nodes": [
+    {
+      "id": "layer_domain",
+      "kind": "layer",
+      "x": 40,
+      "y": 135,
+      "w": 2520,
+      "h": 70,
+      "lines": [
+        "Business / domain"
+      ]
+    },
+    {
+      "id": "Delivery",
+      "kind": "class",
+      "x": 80,
+      "y": 213,
+      "w": 793,
+      "h": 1162,
+      "header_h": 137,
+      "header_lines": [
+        "Delivery"
+      ],
+      "subtitle_lines": [
+        "«entity»"
+      ],
+      "attribute_lines": [
+        "+state: DeliveryState",
+        "+ready_at: str",
+        "+picked_up_at:",
+        "Optional[str]",
+        "+finished_at:",
+        "Optional[str]",
+        "+failure_reason:",
+        "Optional[str]",
+        "+cash_collected:",
+        "Optional[int]",
+        "+id: Optional[int]"
+      ],
+      "method_lines": [
+        "+move_to(self, new_state:",
+        "DeliveryState) -> None"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "Order",
+      "kind": "class",
+      "x": 903,
+      "y": 213,
+      "w": 793,
+      "h": 1162,
+      "header_h": 137,
+      "header_lines": [
+        "Order"
+      ],
+      "subtitle_lines": [
+        "«entity»"
+      ],
+      "attribute_lines": [
+        "+state: OrderState",
+        "+id: Optional[int]",
+        "+closed_at: Optional[str]",
+        "+delivery_address_text:",
+        "str"
+      ],
+      "method_lines": [
+        "+can_move_to(self,",
+        "new_state: OrderState) ->",
+        "bool",
+        "+move_to(self, new_state:",
+        "OrderState) -> None"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "Payment",
+      "kind": "class",
+      "x": 1726,
+      "y": 213,
+      "w": 793,
+      "h": 1162,
+      "header_h": 137,
+      "header_lines": [
+        "Payment"
+      ],
+      "subtitle_lines": [
+        "«entity»"
+      ],
+      "attribute_lines": [
+        "+method: PaymentMethod",
+        "+state: PaymentState",
+        "+amount: int",
+        "+refund_amount: int"
+      ],
+      "method_lines": [
+        "+move_to(self, new_state:",
+        "PaymentState) -> None",
+        "+release_for_unfulfilled_",
+        "order(self) -> None †"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "DeliveryState",
+      "kind": "class",
+      "x": 80,
+      "y": 1405,
+      "w": 793,
+      "h": 369,
+      "header_h": 137,
+      "header_lines": [
+        "DeliveryState"
+      ],
+      "subtitle_lines": [
+        "«enumeration»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "OrderState",
+      "kind": "class",
+      "x": 903,
+      "y": 1405,
+      "w": 793,
+      "h": 369,
+      "header_h": 137,
+      "header_lines": [
+        "OrderState"
+      ],
+      "subtitle_lines": [
+        "«enumeration»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "PaymentState",
+      "kind": "class",
+      "x": 1726,
+      "y": 1405,
+      "w": 793,
+      "h": 369,
+      "header_h": 137,
+      "header_lines": [
+        "PaymentState"
+      ],
+      "subtitle_lines": [
+        "«enumeration»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "legend",
+      "kind": "note",
+      "x": 80,
+      "y": 1816,
+      "w": 2440,
+      "h": 186,
+      "lines": [
+        "Lifecycle classes continue in Part B for party/hub associations. Domain",
+        "associations/navigation and multiplicities: Order (1) — payment — Payment (1);",
+        "Order (1) — delivery — Delivery (0..1)."
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "dep_00",
+      "source": "Payment",
+      "target": "PaymentState",
+      "points": [
+        [
+          2122.5,
+          1375
+        ],
+        [
+          2122.5,
+          1390.0
+        ],
+        [
+          2122.5,
+          1390.0
+        ],
+        [
+          2122.5,
+          1405
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_01",
+      "source": "Order",
+      "target": "OrderState",
+      "points": [
+        [
+          1299.5,
+          1375
+        ],
+        [
+          1299.5,
+          1390.0
+        ],
+        [
+          1299.5,
+          1390.0
+        ],
+        [
+          1299.5,
+          1405
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_02",
+      "source": "Delivery",
+      "target": "DeliveryState",
+      "points": [
+        [
+          476.5,
+          1375
+        ],
+        [
+          476.5,
+          1390.0
+        ],
+        [
+          476.5,
+          1390.0
+        ],
+        [
+          476.5,
+          1405
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_03",
+      "source": "Order",
+      "target": "Payment",
+      "points": [
+        [
+          1696,
+          794.0
+        ],
+        [
+          1711.0,
+          794.0
+        ],
+        [
+          1726,
+          794.0
+        ]
+      ],
+      "dashed": false,
+      "arrow": "block",
+      "color": "#004387",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_04",
+      "source": "Order",
+      "target": "Delivery",
+      "points": [
+        [
+          903,
+          794.0
+        ],
+        [
+          888.0,
+          794.0
+        ],
+        [
+          873,
+          794.0
+        ]
+      ],
+      "dashed": false,
+      "arrow": "block",
+      "color": "#004387",
+      "width": 2,
+      "label": ""
+    }
+  ],
+  "footer": "Author: 722I0004 · AI-assisted (Codex) · Static design at C0; † targets remain for P4.",
+  "phase3": {
+    "diagram_type": "dcd",
+    "UC": "UC-02",
+    "view": "domain",
+    "elements": [
+      {
+        "class": "Delivery",
+        "attributes": [
+          "state",
+          "ready_at",
+          "picked_up_at",
+          "finished_at",
+          "failure_reason",
+          "cash_collected",
+          "id"
+        ],
+        "methods": [
+          "move_to"
+        ],
+        "attribute_types": {
+          "state": "DeliveryState",
+          "ready_at": "str",
+          "picked_up_at": "Optional[str]",
+          "finished_at": "Optional[str]",
+          "failure_reason": "Optional[str]",
+          "cash_collected": "Optional[int]",
+          "id": "Optional[int]"
+        },
+        "method_signatures": {
+          "move_to": "move_to(self, new_state: DeliveryState) -> None"
+        },
+        "status": "MATCH",
+        "stereotype": "entity",
+        "module": "saigonbite/business/domain/models.py",
+        "attribute_statuses": {
+          "state": "MATCH",
+          "ready_at": "MATCH",
+          "picked_up_at": "MATCH",
+          "finished_at": "MATCH",
+          "failure_reason": "MATCH",
+          "cash_collected": "MATCH",
+          "id": "MATCH"
+        },
+        "method_statuses": {
+          "move_to": "MATCH"
+        },
+        "method_parameters": {
+          "move_to": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "new_state",
+              "type": "DeliveryState",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "move_to": "None"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "Order",
+        "attributes": [
+          "state",
+          "id",
+          "closed_at",
+          "delivery_address_text"
+        ],
+        "methods": [
+          "can_move_to",
+          "move_to"
+        ],
+        "attribute_types": {
+          "state": "OrderState",
+          "id": "Optional[int]",
+          "closed_at": "Optional[str]",
+          "delivery_address_text": "str"
+        },
+        "method_signatures": {
+          "can_move_to": "can_move_to(self, new_state: OrderState) -> bool",
+          "move_to": "move_to(self, new_state: OrderState) -> None"
+        },
+        "status": "MATCH",
+        "stereotype": "entity",
+        "module": "saigonbite/business/domain/models.py",
+        "attribute_statuses": {
+          "state": "MATCH",
+          "id": "MATCH",
+          "closed_at": "MATCH",
+          "delivery_address_text": "MATCH"
+        },
+        "method_statuses": {
+          "can_move_to": "MATCH",
+          "move_to": "MATCH"
+        },
+        "method_parameters": {
+          "can_move_to": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "new_state",
+              "type": "OrderState",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "move_to": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "new_state",
+              "type": "OrderState",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "can_move_to": "bool",
+          "move_to": "None"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "Payment",
+        "attributes": [
+          "method",
+          "state",
+          "amount",
+          "refund_amount"
+        ],
+        "methods": [
+          "move_to",
+          "release_for_unfulfilled_order"
+        ],
+        "attribute_types": {
+          "method": "PaymentMethod",
+          "state": "PaymentState",
+          "amount": "int",
+          "refund_amount": "int"
+        },
+        "method_signatures": {
+          "move_to": "move_to(self, new_state: PaymentState) -> None",
+          "release_for_unfulfilled_order": "release_for_unfulfilled_order(self) -> None"
+        },
+        "status": "P4-TARGET",
+        "stereotype": "entity",
+        "module": "saigonbite/business/domain/models.py",
+        "attribute_statuses": {
+          "method": "MATCH",
+          "state": "MATCH",
+          "amount": "MATCH",
+          "refund_amount": "MATCH"
+        },
+        "method_statuses": {
+          "move_to": "MATCH",
+          "release_for_unfulfilled_order": "P4-TARGET"
+        },
+        "method_parameters": {
+          "move_to": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "new_state",
+              "type": "PaymentState",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "release_for_unfulfilled_order": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "move_to": "None",
+          "release_for_unfulfilled_order": "None"
+        },
+        "P4_inputs": {
+          "release_for_unfulfilled_order": "F-02; P2-S01"
+        },
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "DeliveryState",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {},
+        "status": "MATCH",
+        "stereotype": "enumeration",
+        "module": "saigonbite/business/domain/enums.py",
+        "attribute_statuses": {},
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "OrderState",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {},
+        "status": "MATCH",
+        "stereotype": "enumeration",
+        "module": "saigonbite/business/domain/enums.py",
+        "attribute_statuses": {},
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "PaymentState",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {},
+        "status": "MATCH",
+        "stereotype": "enumeration",
+        "module": "saigonbite/business/domain/enums.py",
+        "attribute_statuses": {},
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "Payment",
+        "target": "PaymentState",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "Order",
+        "target": "OrderState",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "Delivery",
+        "target": "DeliveryState",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "Order",
+        "target": "Payment",
+        "source_multiplicity": "1",
+        "target_multiplicity": "1",
+        "role": "payment",
+        "kind": "association",
+        "navigable": true,
+        "status": "MATCH",
+        "evidence": "domain model 2.1.7; code identifiers / typed fields"
+      },
+      {
+        "source": "Order",
+        "target": "Delivery",
+        "source_multiplicity": "1",
+        "target_multiplicity": "0..1",
+        "role": "delivery",
+        "kind": "association",
+        "navigable": true,
+        "status": "MATCH",
+        "evidence": "domain model 2.1.7; code identifiers / typed fields"
+      }
+    ]
+  },
+  "render_receipt": {
+    "canvas": [
+      2600,
+      2114
+    ],
+    "minimum_font_px": 50,
+    "placed_width_mm": 170,
+    "minimum_pt": 9.27,
+    "xml": "parsed",
+    "connected_edges": true,
+    "author_native_cell": true,
+    "all_text_minimum_px": 50
+  },
+  "source_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b"
+}

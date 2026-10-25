@@ -1,0 +1,800 @@
+{
+  "author": "Author: 722I0004 · AI-assisted (Codex)",
+  "title": "UC-02 .2 DCD dao",
+  "canvas": {
+    "width": 2600,
+    "height": 2853,
+    "font_size": 50,
+    "placed_width_mm": 170
+  },
+  "nodes": [
+    {
+      "id": "layer_data_access",
+      "kind": "layer",
+      "x": 40,
+      "y": 135,
+      "w": 2520,
+      "h": 70,
+      "lines": [
+        "Data access"
+      ]
+    },
+    {
+      "id": "DeliveryDAO",
+      "kind": "class",
+      "x": 80,
+      "y": 213,
+      "w": 793,
+      "h": 1711,
+      "header_h": 137,
+      "header_lines": [
+        "DeliveryDAO"
+      ],
+      "subtitle_lines": [
+        "«DAO»"
+      ],
+      "attribute_lines": [
+        "+conn: sqlite3.Connection"
+      ],
+      "method_lines": [
+        "+get_by_order_id(self,",
+        "order_id: int) ->",
+        "Optional[Delivery]",
+        "+list_awaiting_",
+        "pickup(self) ->",
+        "list[Delivery]",
+        "+list_for_shipper(self,",
+        "shipper_id: int, state:",
+        "DeliveryState) ->",
+        "list[Delivery]",
+        "+take(self, order_id: int,",
+        "shipper_id: int, now: str)",
+        "-> bool",
+        "+finish(self, order_id:",
+        "int, shipper_id: int,",
+        "to_state: DeliveryState,",
+        "now: str, failure_reason:",
+        "Optional[str]=None,",
+        "cash_collected:",
+        "Optional[int]=None) ->",
+        "bool"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "OrderDAO",
+      "kind": "class",
+      "x": 903,
+      "y": 213,
+      "w": 793,
+      "h": 1711,
+      "header_h": 137,
+      "header_lines": [
+        "OrderDAO"
+      ],
+      "subtitle_lines": [
+        "«DAO»"
+      ],
+      "attribute_lines": [
+        "+conn: sqlite3.Connection"
+      ],
+      "method_lines": [
+        "+get_by_id(self, order_id:",
+        "int) -> Optional[Order]",
+        "+change_state(self,",
+        "order_id: int, from_state:",
+        "OrderState, to_state:",
+        "OrderState, now: str,",
+        "reject_reason:",
+        "Optional[str]=None) ->",
+        "bool",
+        "-_load(self, row:",
+        "Optional[sqlite3.Row]) ->",
+        "Optional[Order]"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "PaymentDAO",
+      "kind": "class",
+      "x": 1726,
+      "y": 213,
+      "w": 793,
+      "h": 1711,
+      "header_h": 137,
+      "header_lines": [
+        "PaymentDAO"
+      ],
+      "subtitle_lines": [
+        "«DAO»"
+      ],
+      "attribute_lines": [
+        "+conn: sqlite3.Connection"
+      ],
+      "method_lines": [
+        "+get_by_order_id(self,",
+        "order_id: int) ->",
+        "Optional[Payment]",
+        "+change_state(self,",
+        "order_id: int, from_state:",
+        "PaymentState, to_state:",
+        "PaymentState, now: str) ->",
+        "bool",
+        "+set_amounts(self,",
+        "order_id: int, amount:",
+        "int, refund_amount: int,",
+        "now: str) -> bool †"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "CustomerDAO",
+      "kind": "class",
+      "x": 80,
+      "y": 1954,
+      "w": 793,
+      "h": 613,
+      "header_h": 137,
+      "header_lines": [
+        "CustomerDAO"
+      ],
+      "subtitle_lines": [
+        "«DAO»"
+      ],
+      "attribute_lines": [
+        "+conn: sqlite3.Connection"
+      ],
+      "method_lines": [
+        "+get(self, customer_id:",
+        "int) -> Optional[Customer]"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "HubDAO",
+      "kind": "class",
+      "x": 903,
+      "y": 1954,
+      "w": 793,
+      "h": 613,
+      "header_h": 137,
+      "header_lines": [
+        "HubDAO"
+      ],
+      "subtitle_lines": [
+        "«DAO»"
+      ],
+      "attribute_lines": [
+        "+conn: sqlite3.Connection"
+      ],
+      "method_lines": [
+        "+get_including_",
+        "archived(self, hub_id:",
+        "int) -> Optional[Hub]"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "UserDAO",
+      "kind": "class",
+      "x": 1726,
+      "y": 1954,
+      "w": 793,
+      "h": 613,
+      "header_h": 137,
+      "header_lines": [
+        "UserDAO"
+      ],
+      "subtitle_lines": [
+        "«DAO»"
+      ],
+      "attribute_lines": [
+        "+conn: sqlite3.Connection"
+      ],
+      "method_lines": [
+        "+get_by_id(self, user_id:",
+        "int) ->",
+        "Optional[UserAccount]"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "legend",
+      "kind": "note",
+      "x": 80,
+      "y": 2609,
+      "w": 2440,
+      "h": 132,
+      "lines": [
+        "View/DAO continuation is not needed."
+      ]
+    }
+  ],
+  "edges": [],
+  "footer": "Author: 722I0004 · AI-assisted (Codex) · Static design at C0; † targets remain for P4.",
+  "phase3": {
+    "diagram_type": "dcd",
+    "UC": "UC-02",
+    "view": "dao",
+    "elements": [
+      {
+        "class": "DeliveryDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "get_by_order_id",
+          "list_awaiting_pickup",
+          "list_for_shipper",
+          "take",
+          "finish"
+        ],
+        "attribute_types": {
+          "conn": "sqlite3.Connection"
+        },
+        "method_signatures": {
+          "get_by_order_id": "get_by_order_id(self, order_id: int) -> Optional[Delivery]",
+          "list_awaiting_pickup": "list_awaiting_pickup(self) -> list[Delivery]",
+          "list_for_shipper": "list_for_shipper(self, shipper_id: int, state: DeliveryState) -> list[Delivery]",
+          "take": "take(self, order_id: int, shipper_id: int, now: str) -> bool",
+          "finish": "finish(self, order_id: int, shipper_id: int, to_state: DeliveryState, now: str, failure_reason: Optional[str]=None, cash_collected: Optional[int]=None) -> bool"
+        },
+        "status": "MATCH",
+        "stereotype": "DAO",
+        "module": "saigonbite/data_access/delivery_dao.py",
+        "attribute_statuses": {
+          "conn": "MATCH"
+        },
+        "method_statuses": {
+          "get_by_order_id": "MATCH",
+          "list_awaiting_pickup": "MATCH",
+          "list_for_shipper": "MATCH",
+          "take": "MATCH",
+          "finish": "MATCH"
+        },
+        "method_parameters": {
+          "get_by_order_id": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "order_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "list_awaiting_pickup": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "list_for_shipper": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "shipper_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "state",
+              "type": "DeliveryState",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "take": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "order_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "shipper_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "now",
+              "type": "str",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "finish": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "order_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "shipper_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "to_state",
+              "type": "DeliveryState",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "now",
+              "type": "str",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "failure_reason",
+              "type": "Optional[str]",
+              "annotated": true,
+              "default": "None",
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "cash_collected",
+              "type": "Optional[int]",
+              "annotated": true,
+              "default": "None",
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "get_by_order_id": "Optional[Delivery]",
+          "list_awaiting_pickup": "list[Delivery]",
+          "list_for_shipper": "list[Delivery]",
+          "take": "bool",
+          "finish": "bool"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "OrderDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "get_by_id",
+          "change_state",
+          "_load"
+        ],
+        "attribute_types": {
+          "conn": "sqlite3.Connection"
+        },
+        "method_signatures": {
+          "get_by_id": "get_by_id(self, order_id: int) -> Optional[Order]",
+          "change_state": "change_state(self, order_id: int, from_state: OrderState, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> bool",
+          "_load": "_load(self, row: Optional[sqlite3.Row]) -> Optional[Order]"
+        },
+        "status": "P4-TARGET",
+        "stereotype": "DAO",
+        "module": "saigonbite/data_access/order_dao.py",
+        "attribute_statuses": {
+          "conn": "MATCH"
+        },
+        "method_statuses": {
+          "get_by_id": "MATCH",
+          "change_state": "MATCH",
+          "_load": "MATCH"
+        },
+        "method_parameters": {
+          "get_by_id": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "order_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "change_state": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "order_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "from_state",
+              "type": "OrderState",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "to_state",
+              "type": "OrderState",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "now",
+              "type": "str",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "reject_reason",
+              "type": "Optional[str]",
+              "annotated": true,
+              "default": "None",
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "_load": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "row",
+              "type": "Optional[sqlite3.Row]",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "get_by_id": "Optional[Order]",
+          "change_state": "bool",
+          "_load": "Optional[Order]"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "PaymentDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "get_by_order_id",
+          "change_state",
+          "set_amounts"
+        ],
+        "attribute_types": {
+          "conn": "sqlite3.Connection"
+        },
+        "method_signatures": {
+          "get_by_order_id": "get_by_order_id(self, order_id: int) -> Optional[Payment]",
+          "change_state": "change_state(self, order_id: int, from_state: PaymentState, to_state: PaymentState, now: str) -> bool",
+          "set_amounts": "set_amounts(self, order_id: int, amount: int, refund_amount: int, now: str) -> bool"
+        },
+        "status": "P4-TARGET",
+        "stereotype": "DAO",
+        "module": "saigonbite/data_access/payment_dao.py",
+        "attribute_statuses": {
+          "conn": "MATCH"
+        },
+        "method_statuses": {
+          "get_by_order_id": "MATCH",
+          "change_state": "MATCH",
+          "set_amounts": "P4-TARGET"
+        },
+        "method_parameters": {
+          "get_by_order_id": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "order_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "change_state": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "order_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "from_state",
+              "type": "PaymentState",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "to_state",
+              "type": "PaymentState",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "now",
+              "type": "str",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "set_amounts": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "order_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "amount",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "refund_amount",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "now",
+              "type": "str",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "get_by_order_id": "Optional[Payment]",
+          "change_state": "bool",
+          "set_amounts": "bool"
+        },
+        "P4_inputs": {
+          "set_amounts": "F-02; P3-S03"
+        },
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "CustomerDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "get"
+        ],
+        "attribute_types": {
+          "conn": "sqlite3.Connection"
+        },
+        "method_signatures": {
+          "get": "get(self, customer_id: int) -> Optional[Customer]"
+        },
+        "status": "MATCH",
+        "stereotype": "DAO",
+        "module": "saigonbite/data_access/customer_dao.py",
+        "attribute_statuses": {
+          "conn": "MATCH"
+        },
+        "method_statuses": {
+          "get": "MATCH"
+        },
+        "method_parameters": {
+          "get": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "customer_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "get": "Optional[Customer]"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "HubDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "get_including_archived"
+        ],
+        "attribute_types": {
+          "conn": "sqlite3.Connection"
+        },
+        "method_signatures": {
+          "get_including_archived": "get_including_archived(self, hub_id: int) -> Optional[Hub]"
+        },
+        "status": "MATCH",
+        "stereotype": "DAO",
+        "module": "saigonbite/data_access/hub_dao.py",
+        "attribute_statuses": {
+          "conn": "MATCH"
+        },
+        "method_statuses": {
+          "get_including_archived": "MATCH"
+        },
+        "method_parameters": {
+          "get_including_archived": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "hub_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "get_including_archived": "Optional[Hub]"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "UserDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "get_by_id"
+        ],
+        "attribute_types": {
+          "conn": "sqlite3.Connection"
+        },
+        "method_signatures": {
+          "get_by_id": "get_by_id(self, user_id: int) -> Optional[UserAccount]"
+        },
+        "status": "MATCH",
+        "stereotype": "DAO",
+        "module": "saigonbite/data_access/user_dao.py",
+        "attribute_statuses": {
+          "conn": "MATCH"
+        },
+        "method_statuses": {
+          "get_by_id": "MATCH"
+        },
+        "method_parameters": {
+          "get_by_id": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "user_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "get_by_id": "Optional[UserAccount]"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      }
+    ],
+    "dependencies": []
+  },
+  "render_receipt": {
+    "canvas": [
+      2600,
+      2853
+    ],
+    "minimum_font_px": 50,
+    "placed_width_mm": 170,
+    "minimum_pt": 9.27,
+    "xml": "parsed",
+    "connected_edges": true,
+    "author_native_cell": true,
+    "all_text_minimum_px": 50
+  },
+  "source_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b"
+}

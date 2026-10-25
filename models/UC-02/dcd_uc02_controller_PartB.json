@@ -1,0 +1,701 @@
+{
+  "author": "Author: 722I0004 · AI-assisted (Codex)",
+  "title": "UC-02 .2 DCD controller — Part B",
+  "canvas": {
+    "width": 2600,
+    "height": 2487,
+    "font_size": 50,
+    "placed_width_mm": 170
+  },
+  "nodes": [
+    {
+      "id": "layer_controller",
+      "kind": "layer",
+      "x": 40,
+      "y": 135,
+      "w": 2520,
+      "h": 70,
+      "lines": [
+        "Business / controller"
+      ]
+    },
+    {
+      "id": "DeliveryController",
+      "kind": "class",
+      "x": 80,
+      "y": 213,
+      "w": 2440,
+      "h": 1040,
+      "header_h": 137,
+      "header_lines": [
+        "DeliveryController"
+      ],
+      "subtitle_lines": [
+        "«controller»"
+      ],
+      "attribute_lines": [
+        "+deliveries: DeliveryDAO *",
+        "+orders: OrderDAO *",
+        "+payments: PaymentDAO *"
+      ],
+      "method_lines": [
+        "+confirm_delivered(self, user_id: int, order_id: int, cash_collected: Optional[str])",
+        "-> DeliveryView †",
+        "+report_failure(self, user_id: int, order_id: int, reason: str) -> DeliveryView †",
+        "-_require_shipper(self, user_id: int) -> UserAccount",
+        "-_own_active_delivery(self, shipper: UserAccount, order_id: int) -> Delivery",
+        "-_parse_cash(raw: Optional[str]) -> Optional[int]",
+        "-_delivery(self, order_id: int) -> Delivery",
+        "-_view(self, delivery: Delivery) -> DeliveryView"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "BaseController",
+      "kind": "class",
+      "x": 80,
+      "y": 1283,
+      "w": 793,
+      "h": 918,
+      "header_h": 137,
+      "header_lines": [
+        "BaseController"
+      ],
+      "subtitle_lines": [
+        "«controller»"
+      ],
+      "attribute_lines": [
+        "+users: UserDAO *"
+      ],
+      "method_lines": [
+        "-_require_user(self,",
+        "user_id: int, *roles:",
+        "Role, message: str='Your",
+        "account cannot do this.')",
+        "-> UserAccount",
+        "-_now(self) -> str"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "controllers_common",
+      "kind": "class",
+      "x": 903,
+      "y": 1283,
+      "w": 793,
+      "h": 918,
+      "header_h": 137,
+      "header_lines": [
+        "controllers.common"
+      ],
+      "subtitle_lines": [
+        "«module»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [
+        "+move_order(orders:",
+        "OrderDAO, order: Order,",
+        "to_state: OrderState, now:",
+        "str, reject_reason:",
+        "Optional[str]=None) ->",
+        "None",
+        "+release_payment(payments:",
+        "PaymentDAO, order_id: int,",
+        "now: str) -> Payment †"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "DeliveryView",
+      "kind": "class",
+      "x": 1726,
+      "y": 1283,
+      "w": 793,
+      "h": 918,
+      "header_h": 137,
+      "header_lines": [
+        "DeliveryView"
+      ],
+      "subtitle_lines": [
+        "«value»"
+      ],
+      "attribute_lines": [
+        "+delivery: Delivery",
+        "+order: Order",
+        "+payment: Payment",
+        "+hub: Hub",
+        "+customer: Customer"
+      ],
+      "method_lines": [
+        "+cash_to_collect(self) ->",
+        "int {property}"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "legend",
+      "kind": "note",
+      "x": 80,
+      "y": 2243,
+      "w": 2440,
+      "h": 132,
+      "lines": [
+        "Part A continues through the two mutually exclusive completion outcomes."
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "dep_00",
+      "source": "DeliveryController",
+      "target": "DeliveryView",
+      "points": [
+        [
+          1300.0,
+          1253
+        ],
+        [
+          1300.0,
+          1268.0
+        ],
+        [
+          2122.5,
+          1268.0
+        ],
+        [
+          2122.5,
+          1283
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_01",
+      "source": "DeliveryController",
+      "target": "controllers_common",
+      "points": [
+        [
+          1300.0,
+          1253
+        ],
+        [
+          1300.0,
+          1268.0
+        ],
+        [
+          1299.5,
+          1268.0
+        ],
+        [
+          1299.5,
+          1283
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "repair_dep_2",
+      "source": "DeliveryController",
+      "target": "BaseController",
+      "points": [
+        [
+          1300.0,
+          1253
+        ],
+        [
+          1300.0,
+          1268.0
+        ],
+        [
+          476.5,
+          1268.0
+        ],
+        [
+          476.5,
+          1283
+        ]
+      ],
+      "dashed": false,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    }
+  ],
+  "footer": "Author: 722I0004 · AI-assisted (Codex) · Static design at C0; † targets remain for P4.",
+  "phase3": {
+    "diagram_type": "dcd",
+    "UC": "UC-02",
+    "view": "controller",
+    "elements": [
+      {
+        "class": "DeliveryController",
+        "attributes": [
+          "deliveries",
+          "orders",
+          "payments"
+        ],
+        "methods": [
+          "confirm_delivered",
+          "report_failure",
+          "_require_shipper",
+          "_own_active_delivery",
+          "_parse_cash",
+          "_delivery",
+          "_view"
+        ],
+        "attribute_types": {
+          "deliveries": "DeliveryDAO",
+          "orders": "OrderDAO",
+          "payments": "PaymentDAO"
+        },
+        "method_signatures": {
+          "confirm_delivered": "confirm_delivered(self, user_id: int, order_id: int, cash_collected: Optional[str]) -> DeliveryView",
+          "report_failure": "report_failure(self, user_id: int, order_id: int, reason: str) -> DeliveryView",
+          "_require_shipper": "_require_shipper(self, user_id: int) -> UserAccount",
+          "_own_active_delivery": "_own_active_delivery(self, shipper: UserAccount, order_id: int) -> Delivery",
+          "_parse_cash": "_parse_cash(raw: Optional[str]) -> Optional[int]",
+          "_delivery": "_delivery(self, order_id: int) -> Delivery",
+          "_view": "_view(self, delivery: Delivery) -> DeliveryView"
+        },
+        "status": "P4-TARGET",
+        "stereotype": "controller",
+        "module": "saigonbite/business/controllers/delivery_controller.py",
+        "attribute_statuses": {
+          "deliveries": "MATCH",
+          "orders": "MATCH",
+          "payments": "MATCH"
+        },
+        "method_statuses": {
+          "confirm_delivered": "P4-TARGET",
+          "report_failure": "P4-TARGET",
+          "_require_shipper": "MATCH",
+          "_own_active_delivery": "MATCH",
+          "_parse_cash": "MATCH",
+          "_delivery": "MATCH",
+          "_view": "MATCH"
+        },
+        "method_parameters": {
+          "confirm_delivered": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "user_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "order_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "cash_collected",
+              "type": "Optional[str]",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "report_failure": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "user_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "order_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "reason",
+              "type": "str",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "_require_shipper": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "user_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "_own_active_delivery": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "shipper",
+              "type": "UserAccount",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "order_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "_parse_cash": [
+            {
+              "name": "raw",
+              "type": "Optional[str]",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "_delivery": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "order_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "_view": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "delivery",
+              "type": "Delivery",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "confirm_delivered": "DeliveryView",
+          "report_failure": "DeliveryView",
+          "_require_shipper": "UserAccount",
+          "_own_active_delivery": "Delivery",
+          "_parse_cash": "Optional[int]",
+          "_delivery": "Delivery",
+          "_view": "DeliveryView"
+        },
+        "P4_inputs": {
+          "confirm_delivered": "P2-S13; P3-S03",
+          "report_failure": "F-02; P2-S13"
+        },
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "BaseController",
+        "attributes": [
+          "users"
+        ],
+        "methods": [
+          "_require_user",
+          "_now"
+        ],
+        "attribute_types": {
+          "users": "UserDAO"
+        },
+        "method_signatures": {
+          "_require_user": "_require_user(self, user_id: int, *roles: Role, message: str='Your account cannot do this.') -> UserAccount",
+          "_now": "_now(self) -> str"
+        },
+        "status": "MATCH",
+        "stereotype": "controller",
+        "module": "saigonbite/business/controllers/common.py",
+        "attribute_statuses": {
+          "users": "MATCH"
+        },
+        "method_statuses": {
+          "_require_user": "MATCH",
+          "_now": "MATCH"
+        },
+        "method_parameters": {
+          "_require_user": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "user_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "roles",
+              "type": "Role",
+              "annotated": true,
+              "default": null,
+              "kind": "vararg"
+            },
+            {
+              "name": "message",
+              "type": "str",
+              "annotated": true,
+              "default": "'Your account cannot do this.'",
+              "kind": "keyword_only"
+            }
+          ],
+          "_now": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "_require_user": "UserAccount",
+          "_now": "str"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "controllers.common",
+        "attributes": [],
+        "methods": [
+          "move_order",
+          "release_payment"
+        ],
+        "attribute_types": {},
+        "method_signatures": {
+          "move_order": "move_order(orders: OrderDAO, order: Order, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> None",
+          "release_payment": "release_payment(payments: PaymentDAO, order_id: int, now: str) -> Payment"
+        },
+        "status": "P4-TARGET",
+        "stereotype": "module",
+        "module": "saigonbite/business/controllers/common.py",
+        "attribute_statuses": {},
+        "method_statuses": {
+          "move_order": "MATCH",
+          "release_payment": "P4-TARGET"
+        },
+        "method_parameters": {
+          "move_order": [
+            {
+              "name": "orders",
+              "type": "OrderDAO",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "order",
+              "type": "Order",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "to_state",
+              "type": "OrderState",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "now",
+              "type": "str",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "reject_reason",
+              "type": "Optional[str]",
+              "annotated": true,
+              "default": "None",
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "release_payment": [
+            {
+              "name": "payments",
+              "type": "PaymentDAO",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "order_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "now",
+              "type": "str",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "move_order": "None",
+          "release_payment": "Payment"
+        },
+        "P4_inputs": {
+          "release_payment": "F-02; P2-S01; P3-S03"
+        },
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "DeliveryView",
+        "attributes": [
+          "delivery",
+          "order",
+          "payment",
+          "hub",
+          "customer"
+        ],
+        "methods": [
+          "cash_to_collect"
+        ],
+        "attribute_types": {
+          "delivery": "Delivery",
+          "order": "Order",
+          "payment": "Payment",
+          "hub": "Hub",
+          "customer": "Customer"
+        },
+        "method_signatures": {
+          "cash_to_collect": "cash_to_collect(self) -> int"
+        },
+        "status": "MATCH",
+        "stereotype": "value",
+        "module": "saigonbite/business/controllers/delivery_controller.py",
+        "attribute_statuses": {
+          "delivery": "MATCH",
+          "order": "MATCH",
+          "payment": "MATCH",
+          "hub": "MATCH",
+          "customer": "MATCH"
+        },
+        "method_statuses": {
+          "cash_to_collect": "MATCH"
+        },
+        "method_parameters": {
+          "cash_to_collect": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "cash_to_collect": "int"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "DeliveryController",
+        "target": "DeliveryView",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "DeliveryController",
+        "target": "controllers.common",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "DeliveryController",
+        "target": "BaseController",
+        "source_multiplicity": null,
+        "target_multiplicity": null,
+        "role": "inherits",
+        "kind": "generalization",
+        "navigable": false,
+        "status": "MATCH",
+        "evidence": "AST class base"
+      }
+    ]
+  },
+  "render_receipt": {
+    "canvas": [
+      2600,
+      2487
+    ],
+    "minimum_font_px": 50,
+    "placed_width_mm": 170,
+    "minimum_pt": 9.27,
+    "xml": "parsed",
+    "connected_edges": true,
+    "author_native_cell": true,
+    "all_text_minimum_px": 50
+  },
+  "source_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b"
+}

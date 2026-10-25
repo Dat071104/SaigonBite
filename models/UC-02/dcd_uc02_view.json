@@ -1,0 +1,160 @@
+{
+  "author": "Author: 722I0004 · AI-assisted (Codex)",
+  "title": "UC-02 .2 DCD view",
+  "canvas": {
+    "width": 2600,
+    "height": 1300,
+    "font_size": 50,
+    "placed_width_mm": 170
+  },
+  "nodes": [
+    {
+      "id": "layer_view",
+      "kind": "layer",
+      "x": 40,
+      "y": 135,
+      "w": 2520,
+      "h": 70,
+      "lines": [
+        "Presentation / view"
+      ]
+    },
+    {
+      "id": "delivery",
+      "kind": "class",
+      "x": 80,
+      "y": 213,
+      "w": 2440,
+      "h": 674,
+      "header_h": 137,
+      "header_lines": [
+        "delivery"
+      ],
+      "subtitle_lines": [
+        "«view»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [
+        "+board() *",
+        "+detail(order_id: int) *",
+        "+pick_up(order_id: int) *",
+        "+delivered(order_id: int) *",
+        "+failed(order_id: int) *"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "legend",
+      "kind": "note",
+      "x": 80,
+      "y": 929,
+      "w": 2440,
+      "h": 132,
+      "lines": [
+        "View/DAO continuation is not needed."
+      ]
+    }
+  ],
+  "edges": [],
+  "footer": "Author: 722I0004 · AI-assisted (Codex) · Static design at C0; † targets remain for P4.",
+  "phase3": {
+    "diagram_type": "dcd",
+    "UC": "UC-02",
+    "view": "view",
+    "elements": [
+      {
+        "class": "delivery",
+        "attributes": [],
+        "methods": [
+          "board",
+          "detail",
+          "pick_up",
+          "delivered",
+          "failed"
+        ],
+        "attribute_types": {},
+        "method_signatures": {
+          "board": "board()",
+          "detail": "detail(order_id: int)",
+          "pick_up": "pick_up(order_id: int)",
+          "delivered": "delivered(order_id: int)",
+          "failed": "failed(order_id: int)"
+        },
+        "status": "MATCH",
+        "stereotype": "view",
+        "module": "saigonbite/presentation/delivery.py",
+        "attribute_statuses": {},
+        "method_statuses": {
+          "board": "MATCH",
+          "detail": "MATCH",
+          "pick_up": "MATCH",
+          "delivered": "MATCH",
+          "failed": "MATCH"
+        },
+        "method_parameters": {
+          "board": [],
+          "detail": [
+            {
+              "name": "order_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "pick_up": [
+            {
+              "name": "order_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "delivered": [
+            {
+              "name": "order_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "failed": [
+            {
+              "name": "order_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "board": "Any",
+          "detail": "Any",
+          "pick_up": "Any",
+          "delivered": "Any",
+          "failed": "Any"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      }
+    ],
+    "dependencies": []
+  },
+  "render_receipt": {
+    "canvas": [
+      2600,
+      1300
+    ],
+    "minimum_font_px": 50,
+    "placed_width_mm": 170,
+    "minimum_pt": 9.27,
+    "xml": "parsed",
+    "connected_edges": true,
+    "author_native_cell": true,
+    "all_text_minimum_px": 50
+  },
+  "source_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b"
+}

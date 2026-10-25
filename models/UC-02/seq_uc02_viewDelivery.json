@@ -1,0 +1,1542 @@
+{
+  "author": "Author: 722I0004 · AI-assisted (Codex)",
+  "title": "UC-02 sequence — viewDelivery(orderId)",
+  "canvas": {
+    "width": 4200,
+    "height": 3000,
+    "font_size": 60,
+    "placed_width_mm": 230
+  },
+  "nodes": [
+    {
+      "id": "alt_frame",
+      "kind": "frame",
+      "x": 70,
+      "y": 400,
+      "w": 4060,
+      "h": 2500,
+      "lines": [],
+      "dashed": false
+    },
+    {
+      "id": "alt_title",
+      "kind": "text",
+      "x": 100,
+      "y": 402,
+      "w": 4000,
+      "h": 65,
+      "lines": [
+        "alt [authenticated actor, valid input, accepted operation]"
+      ],
+      "bold": true
+    },
+    {
+      "id": "ll_actor",
+      "kind": "lifeline",
+      "x": 40.0,
+      "y": 105,
+      "w": 280,
+      "h": 280,
+      "lines": [
+        "Shipper",
+        "actor"
+      ]
+    },
+    {
+      "id": "life_top_actor",
+      "kind": "anchor",
+      "x": 180.0,
+      "y": 390,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "life_bottom_actor",
+      "kind": "anchor",
+      "x": 180.0,
+      "y": 2875,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "ll_view",
+      "kind": "lifeline",
+      "x": 688.0,
+      "y": 105,
+      "w": 520,
+      "h": 280,
+      "lines": [
+        "delivery",
+        "«view»"
+      ]
+    },
+    {
+      "id": "life_top_view",
+      "kind": "anchor",
+      "x": 948.0,
+      "y": 390,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "life_bottom_view",
+      "kind": "anchor",
+      "x": 948.0,
+      "y": 2875,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "ll_ctrl",
+      "kind": "lifeline",
+      "x": 1456.0,
+      "y": 105,
+      "w": 520,
+      "h": 280,
+      "lines": [
+        "Delivery",
+        "Controller",
+        "«controller»"
+      ]
+    },
+    {
+      "id": "life_top_ctrl",
+      "kind": "anchor",
+      "x": 1716.0,
+      "y": 390,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "life_bottom_ctrl",
+      "kind": "anchor",
+      "x": 1716.0,
+      "y": 2875,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "ll_base",
+      "kind": "lifeline",
+      "x": 2224.0,
+      "y": 105,
+      "w": 520,
+      "h": 280,
+      "lines": [
+        "BaseController",
+        "«controller»"
+      ]
+    },
+    {
+      "id": "life_top_base",
+      "kind": "anchor",
+      "x": 2484.0,
+      "y": 390,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "life_bottom_base",
+      "kind": "anchor",
+      "x": 2484.0,
+      "y": 2875,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "ll_entity",
+      "kind": "lifeline",
+      "x": 2992.0,
+      "y": 105,
+      "w": 520,
+      "h": 280,
+      "lines": [
+        "Delivery",
+        "«entity»"
+      ]
+    },
+    {
+      "id": "life_top_entity",
+      "kind": "anchor",
+      "x": 3252.0,
+      "y": 390,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "life_bottom_entity",
+      "kind": "anchor",
+      "x": 3252.0,
+      "y": 2875,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "ll_row",
+      "kind": "lifeline",
+      "x": 3880.0,
+      "y": 105,
+      "w": 280,
+      "h": 280,
+      "lines": [
+        "Delivery",
+        "View",
+        "«value»"
+      ]
+    },
+    {
+      "id": "life_top_row",
+      "kind": "anchor",
+      "x": 4020.0,
+      "y": 390,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "life_bottom_row",
+      "kind": "anchor",
+      "x": 4020.0,
+      "y": 2875,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "activation_view",
+      "kind": "activation",
+      "x": 933.0,
+      "y": 550,
+      "w": 30,
+      "h": 1300
+    },
+    {
+      "id": "activation_ctrl",
+      "kind": "activation",
+      "x": 1701.0,
+      "y": 810,
+      "w": 30,
+      "h": 910
+    },
+    {
+      "id": "activation_base",
+      "kind": "activation",
+      "x": 2469.0,
+      "y": 1070,
+      "w": 30,
+      "h": 130
+    },
+    {
+      "id": "activation_row",
+      "kind": "activation",
+      "x": 4005.0,
+      "y": 1460,
+      "w": 30,
+      "h": 130
+    },
+    {
+      "id": "m00_s",
+      "kind": "anchor",
+      "x": 180.0,
+      "y": 550,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m00_t",
+      "kind": "anchor",
+      "x": 948.0,
+      "y": 550,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m01_s",
+      "kind": "anchor",
+      "x": 948.0,
+      "y": 680,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m01_t",
+      "kind": "anchor",
+      "x": 1068.0,
+      "y": 725,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m02_s",
+      "kind": "anchor",
+      "x": 948.0,
+      "y": 810,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m02_t",
+      "kind": "anchor",
+      "x": 1716.0,
+      "y": 810,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m03_s",
+      "kind": "anchor",
+      "x": 1716.0,
+      "y": 940,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m03_t",
+      "kind": "anchor",
+      "x": 1836.0,
+      "y": 985,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m04_s",
+      "kind": "anchor",
+      "x": 1716.0,
+      "y": 1070,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m04_t",
+      "kind": "anchor",
+      "x": 2484.0,
+      "y": 1070,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m05_s",
+      "kind": "anchor",
+      "x": 1716.0,
+      "y": 1200,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m05_t",
+      "kind": "anchor",
+      "x": 1836.0,
+      "y": 1245,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m07_s",
+      "kind": "anchor",
+      "x": 1716.0,
+      "y": 1330,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m07_t",
+      "kind": "anchor",
+      "x": 1836.0,
+      "y": 1375,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m08_s",
+      "kind": "anchor",
+      "x": 1716.0,
+      "y": 1460,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m08_t",
+      "kind": "anchor",
+      "x": 4020.0,
+      "y": 1460,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m10_s",
+      "kind": "anchor",
+      "x": 1716.0,
+      "y": 1590,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m10_t",
+      "kind": "anchor",
+      "x": 948.0,
+      "y": 1590,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m11_s",
+      "kind": "anchor",
+      "x": 948.0,
+      "y": 1720,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m11_t",
+      "kind": "anchor",
+      "x": 180.0,
+      "y": 1720,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "interaction_notes",
+      "kind": "note",
+      "x": 105,
+      "y": 2377,
+      "w": 3990,
+      "h": 168,
+      "lines": [
+        "assignment visibility: Only own assignment is visible; never passport.   •   cash_to_collect: Property read; COD due=T, ONLINE",
+        "due=0. Address is the stored snapshot; no passport."
+      ]
+    },
+    {
+      "id": "else_label",
+      "kind": "text",
+      "x": 105,
+      "y": 2572,
+      "w": 3990,
+      "h": 65,
+      "lines": [
+        "else [refusal / invalid filter / rollback / read unavailable / zero denominator]"
+      ],
+      "bold": true,
+      "color": "#B03A2E"
+    },
+    {
+      "id": "branch_note",
+      "kind": "note",
+      "x": 105,
+      "y": 2660,
+      "w": 3990,
+      "h": 235,
+      "lines": [
+        "else [E01 or E02: denied, missing/non-ready or another shipper's assignment] → refusal; UC02-MG01, zero changes."
+      ]
+    },
+    {
+      "id": "sep_a",
+      "kind": "anchor",
+      "x": 90,
+      "y": 2570,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "sep_b",
+      "kind": "anchor",
+      "x": 4110,
+      "y": 2570,
+      "w": 2,
+      "h": 2
+    }
+  ],
+  "edges": [
+    {
+      "id": "life_actor",
+      "source": "life_top_actor",
+      "target": "life_bottom_actor",
+      "points": [
+        [
+          180.0,
+          390
+        ],
+        [
+          180.0,
+          2875
+        ]
+      ],
+      "dashed": true,
+      "arrow": "none",
+      "color": "#8C98A5",
+      "width": 2
+    },
+    {
+      "id": "life_view",
+      "source": "life_top_view",
+      "target": "life_bottom_view",
+      "points": [
+        [
+          948.0,
+          390
+        ],
+        [
+          948.0,
+          2875
+        ]
+      ],
+      "dashed": true,
+      "arrow": "none",
+      "color": "#8C98A5",
+      "width": 2
+    },
+    {
+      "id": "life_ctrl",
+      "source": "life_top_ctrl",
+      "target": "life_bottom_ctrl",
+      "points": [
+        [
+          1716.0,
+          390
+        ],
+        [
+          1716.0,
+          2875
+        ]
+      ],
+      "dashed": true,
+      "arrow": "none",
+      "color": "#8C98A5",
+      "width": 2
+    },
+    {
+      "id": "life_base",
+      "source": "life_top_base",
+      "target": "life_bottom_base",
+      "points": [
+        [
+          2484.0,
+          390
+        ],
+        [
+          2484.0,
+          2875
+        ]
+      ],
+      "dashed": true,
+      "arrow": "none",
+      "color": "#8C98A5",
+      "width": 2
+    },
+    {
+      "id": "life_entity",
+      "source": "life_top_entity",
+      "target": "life_bottom_entity",
+      "points": [
+        [
+          3252.0,
+          390
+        ],
+        [
+          3252.0,
+          2875
+        ]
+      ],
+      "dashed": true,
+      "arrow": "none",
+      "color": "#8C98A5",
+      "width": 2
+    },
+    {
+      "id": "life_row",
+      "source": "life_top_row",
+      "target": "life_bottom_row",
+      "points": [
+        [
+          4020.0,
+          390
+        ],
+        [
+          4020.0,
+          2875
+        ]
+      ],
+      "dashed": true,
+      "arrow": "none",
+      "color": "#8C98A5",
+      "width": 2
+    },
+    {
+      "id": "msg_00",
+      "source": "m00_s",
+      "target": "m00_t",
+      "points": [
+        [
+          180.0,
+          550
+        ],
+        [
+          948.0,
+          550
+        ]
+      ],
+      "dashed": false,
+      "arrow": "block",
+      "color": "#004387",
+      "width": 3,
+      "label": "viewDelivery(orderId)",
+      "label_box": [
+        199.0,
+        478,
+        730,
+        64
+      ]
+    },
+    {
+      "id": "msg_01",
+      "source": "m01_s",
+      "target": "m01_t",
+      "points": [
+        [
+          948.0,
+          680
+        ],
+        [
+          1068.0,
+          680
+        ],
+        [
+          1068.0,
+          725
+        ],
+        [
+          948.0,
+          725
+        ]
+      ],
+      "dashed": false,
+      "arrow": "block",
+      "color": "#004387",
+      "width": 3,
+      "label": "detail(order_id)",
+      "label_box": [
+        718.0,
+        608,
+        580,
+        64
+      ]
+    },
+    {
+      "id": "msg_02",
+      "source": "m02_s",
+      "target": "m02_t",
+      "points": [
+        [
+          948.0,
+          810
+        ],
+        [
+          1716.0,
+          810
+        ]
+      ],
+      "dashed": false,
+      "arrow": "block",
+      "color": "#004387",
+      "width": 3,
+      "label": "get_delivery(user_id, order_id)",
+      "label_box": [
+        817.0,
+        738,
+        1030,
+        64
+      ]
+    },
+    {
+      "id": "msg_03",
+      "source": "m03_s",
+      "target": "m03_t",
+      "points": [
+        [
+          1716.0,
+          940
+        ],
+        [
+          1836.0,
+          940
+        ],
+        [
+          1836.0,
+          985
+        ],
+        [
+          1716.0,
+          985
+        ]
+      ],
+      "dashed": false,
+      "arrow": "block",
+      "color": "#004387",
+      "width": 3,
+      "label": "_require_shipper(user_id)",
+      "label_box": [
+        1351.0,
+        868,
+        850,
+        64
+      ]
+    },
+    {
+      "id": "msg_04",
+      "source": "m04_s",
+      "target": "m04_t",
+      "points": [
+        [
+          1716.0,
+          1070
+        ],
+        [
+          2484.0,
+          1070
+        ]
+      ],
+      "dashed": false,
+      "arrow": "block",
+      "color": "#004387",
+      "width": 3,
+      "label": "_require_user(user_id, Role.SHIPPER)",
+      "label_box": [
+        1510.0,
+        998,
+        1180,
+        64
+      ]
+    },
+    {
+      "id": "msg_05",
+      "source": "m05_s",
+      "target": "m05_t",
+      "points": [
+        [
+          1716.0,
+          1200
+        ],
+        [
+          1836.0,
+          1200
+        ],
+        [
+          1836.0,
+          1245
+        ],
+        [
+          1716.0,
+          1245
+        ]
+      ],
+      "dashed": false,
+      "arrow": "block",
+      "color": "#004387",
+      "width": 3,
+      "label": "_delivery(order_id)",
+      "label_box": [
+        1441.0,
+        1128,
+        670,
+        64
+      ]
+    },
+    {
+      "id": "msg_07",
+      "source": "m07_s",
+      "target": "m07_t",
+      "points": [
+        [
+          1716.0,
+          1330
+        ],
+        [
+          1836.0,
+          1330
+        ],
+        [
+          1836.0,
+          1375
+        ],
+        [
+          1716.0,
+          1375
+        ]
+      ],
+      "dashed": false,
+      "arrow": "block",
+      "color": "#004387",
+      "width": 3,
+      "label": "_view(delivery)",
+      "label_box": [
+        1501.0,
+        1258,
+        550,
+        64
+      ]
+    },
+    {
+      "id": "msg_08",
+      "source": "m08_s",
+      "target": "m08_t",
+      "points": [
+        [
+          1716.0,
+          1460
+        ],
+        [
+          4020.0,
+          1460
+        ]
+      ],
+      "dashed": false,
+      "arrow": "block",
+      "color": "#004387",
+      "width": 3,
+      "label": "«create» DeliveryView(delivery, order, payment, hub, customer)",
+      "label_box": [
+        1888.0,
+        1388,
+        1960,
+        64
+      ]
+    },
+    {
+      "id": "msg_10",
+      "source": "m10_s",
+      "target": "m10_t",
+      "points": [
+        [
+          1716.0,
+          1590
+        ],
+        [
+          948.0,
+          1590
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#004387",
+      "width": 3,
+      "label": "return get_delivery: deliveryContactSnapshotAndCashDue",
+      "label_box": [
+        472.0,
+        1518,
+        1720,
+        64
+      ]
+    },
+    {
+      "id": "msg_11",
+      "source": "m11_s",
+      "target": "m11_t",
+      "points": [
+        [
+          948.0,
+          1720
+        ],
+        [
+          180.0,
+          1720
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#004387",
+      "width": 3,
+      "label": "return viewDelivery: deliveryContactSnapshotAndCashDue | refusal (E01/E02)",
+      "label_box": [
+        80,
+        1648,
+        2320,
+        64
+      ]
+    },
+    {
+      "id": "operand_separator",
+      "source": "sep_a",
+      "target": "sep_b",
+      "points": [
+        [
+          90,
+          2570
+        ],
+        [
+          4110,
+          2570
+        ]
+      ],
+      "dashed": true,
+      "arrow": "none",
+      "color": "#004387",
+      "width": 2
+    }
+  ],
+  "footer": "Author: 722I0004 · AI-assisted (Codex) · Static design at C0; target behavior is not runtime evidence.",
+  "phase3": {
+    "diagram_type": "sequence",
+    "UC": "UC-02",
+    "op_id": "OP-22",
+    "operation": "viewDelivery",
+    "parameters": "orderId",
+    "ssd_occurrence": "models/UC-02/ssd_uc02_PartA.drawio#M02",
+    "elements": [
+      {
+        "class": "delivery",
+        "attributes": [],
+        "methods": [
+          "detail"
+        ],
+        "attribute_types": {},
+        "method_signatures": {
+          "detail": "detail(order_id: int)"
+        },
+        "status": "MATCH",
+        "stereotype": "view",
+        "module": "saigonbite/presentation/delivery.py",
+        "attribute_statuses": {},
+        "method_statuses": {
+          "detail": "MATCH"
+        },
+        "method_parameters": {
+          "detail": [
+            {
+              "name": "order_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "detail": "Any"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "DeliveryController",
+        "attributes": [
+          "deliveries",
+          "orders",
+          "payments",
+          "hubs",
+          "customers"
+        ],
+        "methods": [
+          "_delivery",
+          "_require_shipper",
+          "_view",
+          "get_delivery"
+        ],
+        "attribute_types": {
+          "deliveries": "DeliveryDAO",
+          "orders": "OrderDAO",
+          "payments": "PaymentDAO",
+          "hubs": "HubDAO",
+          "customers": "CustomerDAO"
+        },
+        "method_signatures": {
+          "_delivery": "_delivery(self, order_id: int) -> Delivery",
+          "_require_shipper": "_require_shipper(self, user_id: int) -> UserAccount",
+          "_view": "_view(self, delivery: Delivery) -> DeliveryView",
+          "get_delivery": "get_delivery(self, user_id: int, order_id: int) -> DeliveryView"
+        },
+        "status": "P4-TARGET",
+        "stereotype": "controller",
+        "module": "saigonbite/business/controllers/delivery_controller.py",
+        "attribute_statuses": {
+          "deliveries": "MATCH",
+          "orders": "MATCH",
+          "payments": "MATCH",
+          "hubs": "MATCH",
+          "customers": "MATCH"
+        },
+        "method_statuses": {
+          "_delivery": "MATCH",
+          "_require_shipper": "MATCH",
+          "_view": "MATCH",
+          "get_delivery": "MATCH"
+        },
+        "method_parameters": {
+          "_delivery": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "order_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "_require_shipper": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "user_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "_view": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "delivery",
+              "type": "Delivery",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "get_delivery": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "user_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "order_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "_delivery": "Delivery",
+          "_require_shipper": "UserAccount",
+          "_view": "DeliveryView",
+          "get_delivery": "DeliveryView"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "BaseController",
+        "attributes": [
+          "conn",
+          "clock",
+          "users"
+        ],
+        "methods": [
+          "_require_user"
+        ],
+        "attribute_types": {
+          "conn": "sqlite3.Connection",
+          "clock": "Any",
+          "users": "UserDAO"
+        },
+        "method_signatures": {
+          "_require_user": "_require_user(self, user_id: int, *roles: Role, message: str='Your account cannot do this.') -> UserAccount"
+        },
+        "status": "MATCH",
+        "stereotype": "controller",
+        "module": "saigonbite/business/controllers/common.py",
+        "attribute_statuses": {
+          "conn": "MATCH",
+          "clock": "MATCH",
+          "users": "MATCH"
+        },
+        "method_statuses": {
+          "_require_user": "MATCH"
+        },
+        "method_parameters": {
+          "_require_user": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "user_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "roles",
+              "type": "Role",
+              "annotated": true,
+              "default": null,
+              "kind": "vararg"
+            },
+            {
+              "name": "message",
+              "type": "str",
+              "annotated": true,
+              "default": "'Your account cannot do this.'",
+              "kind": "keyword_only"
+            }
+          ]
+        },
+        "method_returns": {
+          "_require_user": "UserAccount"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "Delivery",
+        "attributes": [
+          "order_id",
+          "state",
+          "ready_at",
+          "shipper_id",
+          "picked_up_at",
+          "finished_at",
+          "failure_reason",
+          "cash_collected",
+          "id"
+        ],
+        "methods": [],
+        "attribute_types": {
+          "order_id": "int",
+          "state": "DeliveryState",
+          "ready_at": "str",
+          "shipper_id": "Optional[int]",
+          "picked_up_at": "Optional[str]",
+          "finished_at": "Optional[str]",
+          "failure_reason": "Optional[str]",
+          "cash_collected": "Optional[int]",
+          "id": "Optional[int]"
+        },
+        "method_signatures": {},
+        "status": "MATCH",
+        "stereotype": "entity",
+        "module": "saigonbite/business/domain/models.py",
+        "attribute_statuses": {
+          "order_id": "MATCH",
+          "state": "MATCH",
+          "ready_at": "MATCH",
+          "shipper_id": "MATCH",
+          "picked_up_at": "MATCH",
+          "finished_at": "MATCH",
+          "failure_reason": "MATCH",
+          "cash_collected": "MATCH",
+          "id": "MATCH"
+        },
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "DeliveryView",
+        "attributes": [
+          "delivery",
+          "order",
+          "payment",
+          "hub",
+          "customer"
+        ],
+        "methods": [
+          "cash_to_collect"
+        ],
+        "attribute_types": {
+          "delivery": "Delivery",
+          "order": "Order",
+          "payment": "Payment",
+          "hub": "Hub",
+          "customer": "Customer"
+        },
+        "method_signatures": {
+          "cash_to_collect": "cash_to_collect(self) -> int"
+        },
+        "status": "MATCH",
+        "stereotype": "value",
+        "module": "saigonbite/business/controllers/delivery_controller.py",
+        "attribute_statuses": {
+          "delivery": "MATCH",
+          "order": "MATCH",
+          "payment": "MATCH",
+          "hub": "MATCH",
+          "customer": "MATCH"
+        },
+        "method_statuses": {
+          "cash_to_collect": "MATCH"
+        },
+        "method_parameters": {
+          "cash_to_collect": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "cash_to_collect": "int"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "delivery",
+        "target": "DeliveryController",
+        "kind": "call"
+      },
+      {
+        "source": "DeliveryController",
+        "target": "BaseController",
+        "kind": "call"
+      },
+      {
+        "source": "DeliveryController",
+        "target": "DeliveryView",
+        "kind": "create"
+      }
+    ],
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Shipper",
+        "role": "actor"
+      },
+      {
+        "id": "view",
+        "class": "delivery",
+        "role": "«view» blueprint module"
+      },
+      {
+        "id": "ctrl",
+        "class": "DeliveryController",
+        "role": "controller"
+      },
+      {
+        "id": "base",
+        "class": "BaseController",
+        "role": "controller base"
+      },
+      {
+        "id": "entity",
+        "class": "Delivery",
+        "role": "domain entity"
+      },
+      {
+        "id": "row",
+        "class": "DeliveryView",
+        "role": "controller value"
+      }
+    ],
+    "messages": [
+      {
+        "from": "actor",
+        "to": "view",
+        "method": "viewDelivery",
+        "kind": "ssd",
+        "arguments": "orderId",
+        "guard": "active SHIPPER; OP-22",
+        "PC_MG": []
+      },
+      {
+        "from": "view",
+        "to": "view",
+        "method": "detail",
+        "kind": "call",
+        "arguments": "order_id",
+        "guard": "",
+        "PC_MG": [],
+        "status": "MATCH",
+        "signature": "detail(order_id: int)",
+        "parameters": [
+          {
+            "name": "order_id",
+            "type": "int",
+            "annotated": true,
+            "default": null,
+            "kind": "positional_or_keyword"
+          }
+        ],
+        "return": "Any",
+        "P4_input": "",
+        "return_type": "Any"
+      },
+      {
+        "from": "view",
+        "to": "ctrl",
+        "method": "get_delivery",
+        "kind": "call",
+        "arguments": "user_id, order_id",
+        "guard": "",
+        "PC_MG": [],
+        "status": "MATCH",
+        "signature": "get_delivery(self, user_id: int, order_id: int) -> DeliveryView",
+        "parameters": [
+          {
+            "name": "self",
+            "type": "Any",
+            "annotated": false,
+            "default": null,
+            "kind": "positional_or_keyword"
+          },
+          {
+            "name": "user_id",
+            "type": "int",
+            "annotated": true,
+            "default": null,
+            "kind": "positional_or_keyword"
+          },
+          {
+            "name": "order_id",
+            "type": "int",
+            "annotated": true,
+            "default": null,
+            "kind": "positional_or_keyword"
+          }
+        ],
+        "return": "DeliveryView",
+        "P4_input": "",
+        "return_type": "DeliveryView"
+      },
+      {
+        "from": "ctrl",
+        "to": "ctrl",
+        "method": "_require_shipper",
+        "kind": "call",
+        "arguments": "user_id",
+        "guard": "",
+        "PC_MG": [],
+        "status": "MATCH",
+        "signature": "_require_shipper(self, user_id: int) -> UserAccount",
+        "parameters": [
+          {
+            "name": "self",
+            "type": "Any",
+            "annotated": false,
+            "default": null,
+            "kind": "positional_or_keyword"
+          },
+          {
+            "name": "user_id",
+            "type": "int",
+            "annotated": true,
+            "default": null,
+            "kind": "positional_or_keyword"
+          }
+        ],
+        "return": "UserAccount",
+        "P4_input": "",
+        "return_type": "UserAccount"
+      },
+      {
+        "from": "ctrl",
+        "to": "base",
+        "method": "_require_user",
+        "kind": "call",
+        "arguments": "user_id, Role.SHIPPER",
+        "guard": "",
+        "PC_MG": [],
+        "status": "MATCH",
+        "signature": "_require_user(self, user_id: int, *roles: Role, message: str='Your account cannot do this.') -> UserAccount",
+        "parameters": [
+          {
+            "name": "self",
+            "type": "Any",
+            "annotated": false,
+            "default": null,
+            "kind": "positional_or_keyword"
+          },
+          {
+            "name": "user_id",
+            "type": "int",
+            "annotated": true,
+            "default": null,
+            "kind": "positional_or_keyword"
+          },
+          {
+            "name": "roles",
+            "type": "Role",
+            "annotated": true,
+            "default": null,
+            "kind": "vararg"
+          },
+          {
+            "name": "message",
+            "type": "str",
+            "annotated": true,
+            "default": "'Your account cannot do this.'",
+            "kind": "keyword_only"
+          }
+        ],
+        "return": "UserAccount",
+        "P4_input": "",
+        "return_type": "UserAccount"
+      },
+      {
+        "from": "ctrl",
+        "to": "ctrl",
+        "method": "_delivery",
+        "kind": "call",
+        "arguments": "order_id",
+        "guard": "",
+        "PC_MG": [],
+        "status": "MATCH",
+        "signature": "_delivery(self, order_id: int) -> Delivery",
+        "parameters": [
+          {
+            "name": "self",
+            "type": "Any",
+            "annotated": false,
+            "default": null,
+            "kind": "positional_or_keyword"
+          },
+          {
+            "name": "order_id",
+            "type": "int",
+            "annotated": true,
+            "default": null,
+            "kind": "positional_or_keyword"
+          }
+        ],
+        "return": "Delivery",
+        "P4_input": "",
+        "return_type": "Delivery"
+      },
+      {
+        "from": "ctrl",
+        "to": "entity",
+        "method": "assignment visibility",
+        "kind": "note",
+        "arguments": "Only own assignment is visible; never passport.",
+        "guard": "",
+        "PC_MG": []
+      },
+      {
+        "from": "ctrl",
+        "to": "ctrl",
+        "method": "_view",
+        "kind": "call",
+        "arguments": "delivery",
+        "guard": "",
+        "PC_MG": [],
+        "status": "MATCH",
+        "signature": "_view(self, delivery: Delivery) -> DeliveryView",
+        "parameters": [
+          {
+            "name": "self",
+            "type": "Any",
+            "annotated": false,
+            "default": null,
+            "kind": "positional_or_keyword"
+          },
+          {
+            "name": "delivery",
+            "type": "Delivery",
+            "annotated": true,
+            "default": null,
+            "kind": "positional_or_keyword"
+          }
+        ],
+        "return": "DeliveryView",
+        "P4_input": "",
+        "return_type": "DeliveryView"
+      },
+      {
+        "from": "ctrl",
+        "to": "row",
+        "method": "DeliveryView",
+        "kind": "create",
+        "arguments": "delivery, order, payment, hub, customer",
+        "guard": "",
+        "PC_MG": []
+      },
+      {
+        "from": "view",
+        "to": "row",
+        "method": "cash_to_collect",
+        "kind": "note",
+        "arguments": "Property read; COD due=T, ONLINE due=0. Address is the stored snapshot; no passport.",
+        "guard": "",
+        "PC_MG": [],
+        "status": "MATCH",
+        "signature": "cash_to_collect(self) -> int",
+        "parameters": [
+          {
+            "name": "self",
+            "type": "Any",
+            "annotated": false,
+            "default": null,
+            "kind": "positional_or_keyword"
+          }
+        ],
+        "return": "int",
+        "P4_input": "",
+        "return_type": "int"
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "get_delivery",
+        "kind": "return",
+        "arguments": "deliveryContactSnapshotAndCashDue",
+        "guard": "",
+        "PC_MG": []
+      },
+      {
+        "from": "view",
+        "to": "actor",
+        "method": "viewDelivery",
+        "kind": "return",
+        "arguments": "deliveryContactSnapshotAndCashDue | refusal (E01/E02)",
+        "guard": "",
+        "PC_MG": []
+      }
+    ],
+    "states": [],
+    "main_outcome": "deliveryContactSnapshotAndCashDue; permitted contact and address snapshot only.",
+    "alternate_outcome": "else [E01 or E02: denied, missing/non-ready or another shipper's assignment] → refusal; UC02-MG01, zero changes.",
+    "shared_transaction_target": "P2-S13; P3-S03: guarded writes, COMMIT failure and busy handling remain P4 targets; read operations write nothing."
+  },
+  "render_receipt": {
+    "canvas": [
+      4200,
+      3000
+    ],
+    "minimum_font_px": 60,
+    "placed_width_mm": 230,
+    "minimum_pt": 9.31,
+    "xml": "parsed",
+    "connected_edges": true,
+    "author_native_cell": true,
+    "all_text_minimum_px": 60
+  },
+  "source_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b"
+}

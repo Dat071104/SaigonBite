@@ -1,0 +1,789 @@
+{
+  "author": "Author: 722I0004 · AI-assisted (Codex)",
+  "title": "UC-02 .2 DCD all",
+  "canvas": {
+    "width": 2600,
+    "height": 3217,
+    "font_size": 50,
+    "placed_width_mm": 170
+  },
+  "nodes": [
+    {
+      "id": "layer_view",
+      "kind": "layer",
+      "x": 40,
+      "y": 135,
+      "w": 2520,
+      "h": 70,
+      "lines": [
+        "Presentation / view"
+      ]
+    },
+    {
+      "id": "delivery",
+      "kind": "class",
+      "x": 80,
+      "y": 213,
+      "w": 2440,
+      "h": 430,
+      "header_h": 137,
+      "header_lines": [
+        "delivery"
+      ],
+      "subtitle_lines": [
+        "«view»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [
+        "+board() *"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "layer_controller",
+      "kind": "layer",
+      "x": 40,
+      "y": 685,
+      "w": 2520,
+      "h": 70,
+      "lines": [
+        "Business / controller"
+      ]
+    },
+    {
+      "id": "DeliveryController",
+      "kind": "class",
+      "x": 80,
+      "y": 763,
+      "w": 2440,
+      "h": 491,
+      "header_h": 137,
+      "header_lines": [
+        "DeliveryController"
+      ],
+      "subtitle_lines": [
+        "«controller»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [
+        "+board() -> ShipperBoard",
+        "-_require_shipper() -> UserAccount"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "BaseController",
+      "kind": "class",
+      "x": 80,
+      "y": 1284,
+      "w": 1205,
+      "h": 430,
+      "header_h": 137,
+      "header_lines": [
+        "BaseController"
+      ],
+      "subtitle_lines": [
+        "«controller»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [
+        "-_require_user() -> UserAccount"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "ShipperBoard",
+      "kind": "class",
+      "x": 1315,
+      "y": 1284,
+      "w": 1205,
+      "h": 430,
+      "header_h": 137,
+      "header_lines": [
+        "ShipperBoard"
+      ],
+      "subtitle_lines": [
+        "«value»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "layer_domain",
+      "kind": "layer",
+      "x": 40,
+      "y": 1756,
+      "w": 2520,
+      "h": 70,
+      "lines": [
+        "Business / domain"
+      ]
+    },
+    {
+      "id": "UserAccount",
+      "kind": "class",
+      "x": 80,
+      "y": 1834,
+      "w": 1205,
+      "h": 430,
+      "header_h": 137,
+      "header_lines": [
+        "UserAccount"
+      ],
+      "subtitle_lines": [
+        "«entity»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "Delivery",
+      "kind": "class",
+      "x": 1315,
+      "y": 1834,
+      "w": 1205,
+      "h": 430,
+      "header_h": 137,
+      "header_lines": [
+        "Delivery"
+      ],
+      "subtitle_lines": [
+        "«entity»"
+      ],
+      "attribute_lines": [
+        "+state: DeliveryState"
+      ],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "layer_data_access",
+      "kind": "layer",
+      "x": 40,
+      "y": 2306,
+      "w": 2520,
+      "h": 70,
+      "lines": [
+        "Data access"
+      ]
+    },
+    {
+      "id": "DeliveryDAO",
+      "kind": "class",
+      "x": 80,
+      "y": 2384,
+      "w": 1205,
+      "h": 369,
+      "header_h": 137,
+      "header_lines": [
+        "DeliveryDAO"
+      ],
+      "subtitle_lines": [
+        "«DAO»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "UserDAO",
+      "kind": "class",
+      "x": 1315,
+      "y": 2384,
+      "w": 1205,
+      "h": 369,
+      "header_h": 137,
+      "header_lines": [
+        "UserDAO"
+      ],
+      "subtitle_lines": [
+        "«DAO»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "legend",
+      "kind": "note",
+      "x": 80,
+      "y": 2795,
+      "w": 2440,
+      "h": 310,
+      "lines": [
+        "All four layers for ready board authorization and retrieval. SSD operations:",
+        "viewReadyDeliveries. DAO signatures are in iv; SQL/transactions are in 4.3.2. † marks P4",
+        "targets, not C0 implementation. Corrected model: delivery.move_to resolves to Delivery;",
+        "controller calls to Delivery/Payment are downward."
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "dep_00",
+      "source": "BaseController",
+      "target": "UserDAO",
+      "points": [
+        [
+          682.5,
+          1714
+        ],
+        [
+          682.5,
+          2049.0
+        ],
+        [
+          1917.5,
+          2049.0
+        ],
+        [
+          1917.5,
+          2384
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_01",
+      "source": "DeliveryController",
+      "target": "DeliveryDAO",
+      "points": [
+        [
+          1300.0,
+          1254
+        ],
+        [
+          1300.0,
+          1819.0
+        ],
+        [
+          682.5,
+          1819.0
+        ],
+        [
+          682.5,
+          2384
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_02",
+      "source": "DeliveryController",
+      "target": "ShipperBoard",
+      "points": [
+        [
+          1300.0,
+          1254
+        ],
+        [
+          1300.0,
+          1269.0
+        ],
+        [
+          1917.5,
+          1269.0
+        ],
+        [
+          1917.5,
+          1284
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_03",
+      "source": "delivery",
+      "target": "DeliveryController",
+      "points": [
+        [
+          1300.0,
+          643
+        ],
+        [
+          1300.0,
+          703.0
+        ],
+        [
+          1300.0,
+          703.0
+        ],
+        [
+          1300.0,
+          763
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_04",
+      "source": "Delivery",
+      "target": "UserAccount",
+      "points": [
+        [
+          1315,
+          2049.0
+        ],
+        [
+          1300.0,
+          2049.0
+        ],
+        [
+          1285,
+          2049.0
+        ]
+      ],
+      "dashed": false,
+      "arrow": "block",
+      "color": "#004387",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "repair_dep_5",
+      "source": "BaseController",
+      "target": "UserAccount",
+      "points": [
+        [
+          682.5,
+          1714
+        ],
+        [
+          682.5,
+          1774.0
+        ],
+        [
+          682.5,
+          1774.0
+        ],
+        [
+          682.5,
+          1834
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "repair_dep_6",
+      "source": "DeliveryController",
+      "target": "Delivery",
+      "points": [
+        [
+          1300.0,
+          1254
+        ],
+        [
+          1300.0,
+          1544.0
+        ],
+        [
+          1917.5,
+          1544.0
+        ],
+        [
+          1917.5,
+          1834
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "repair_dep_7",
+      "source": "DeliveryController",
+      "target": "UserAccount",
+      "points": [
+        [
+          1300.0,
+          1254
+        ],
+        [
+          1300.0,
+          1544.0
+        ],
+        [
+          682.5,
+          1544.0
+        ],
+        [
+          682.5,
+          1834
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "repair_dep_8",
+      "source": "DeliveryController",
+      "target": "BaseController",
+      "points": [
+        [
+          1300.0,
+          1254
+        ],
+        [
+          1300.0,
+          1269.0
+        ],
+        [
+          682.5,
+          1269.0
+        ],
+        [
+          682.5,
+          1284
+        ]
+      ],
+      "dashed": false,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    }
+  ],
+  "footer": "Author: 722I0004 · AI-assisted (Codex) · Static design at C0; † targets remain for P4.",
+  "phase3": {
+    "diagram_type": "dcd",
+    "UC": "UC-02",
+    "view": "all",
+    "elements": [
+      {
+        "class": "delivery",
+        "attributes": [],
+        "methods": [
+          "board"
+        ],
+        "attribute_types": {},
+        "method_signatures": {
+          "board": "board()"
+        },
+        "status": "MATCH",
+        "stereotype": "view",
+        "module": "saigonbite/presentation/delivery.py",
+        "attribute_statuses": {},
+        "method_statuses": {
+          "board": "MATCH"
+        },
+        "method_parameters": {
+          "board": []
+        },
+        "method_returns": {
+          "board": "Any"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "DeliveryController",
+        "attributes": [],
+        "methods": [
+          "board",
+          "_require_shipper"
+        ],
+        "attribute_types": {},
+        "method_signatures": {
+          "board": "board(self, user_id: int) -> ShipperBoard",
+          "_require_shipper": "_require_shipper(self, user_id: int) -> UserAccount"
+        },
+        "status": "P4-TARGET",
+        "stereotype": "controller",
+        "module": "saigonbite/business/controllers/delivery_controller.py",
+        "attribute_statuses": {},
+        "method_statuses": {
+          "board": "MATCH",
+          "_require_shipper": "MATCH"
+        },
+        "method_parameters": {
+          "board": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "user_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "_require_shipper": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "user_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "board": "ShipperBoard",
+          "_require_shipper": "UserAccount"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "BaseController",
+        "attributes": [],
+        "methods": [
+          "_require_user"
+        ],
+        "attribute_types": {},
+        "method_signatures": {
+          "_require_user": "_require_user(self, user_id: int, *roles: Role, message: str='Your account cannot do this.') -> UserAccount"
+        },
+        "status": "MATCH",
+        "stereotype": "controller",
+        "module": "saigonbite/business/controllers/common.py",
+        "attribute_statuses": {},
+        "method_statuses": {
+          "_require_user": "MATCH"
+        },
+        "method_parameters": {
+          "_require_user": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "user_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "roles",
+              "type": "Role",
+              "annotated": true,
+              "default": null,
+              "kind": "vararg"
+            },
+            {
+              "name": "message",
+              "type": "str",
+              "annotated": true,
+              "default": "'Your account cannot do this.'",
+              "kind": "keyword_only"
+            }
+          ]
+        },
+        "method_returns": {
+          "_require_user": "UserAccount"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "ShipperBoard",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {},
+        "status": "MATCH",
+        "stereotype": "value",
+        "module": "saigonbite/business/controllers/delivery_controller.py",
+        "attribute_statuses": {},
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "UserAccount",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {},
+        "status": "P4-TARGET",
+        "stereotype": "entity",
+        "module": "saigonbite/business/domain/models.py",
+        "attribute_statuses": {},
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "Delivery",
+        "attributes": [
+          "state"
+        ],
+        "methods": [],
+        "attribute_types": {
+          "state": "DeliveryState"
+        },
+        "method_signatures": {},
+        "status": "MATCH",
+        "stereotype": "entity",
+        "module": "saigonbite/business/domain/models.py",
+        "attribute_statuses": {
+          "state": "MATCH"
+        },
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "DeliveryDAO",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {},
+        "status": "MATCH",
+        "stereotype": "DAO",
+        "module": "saigonbite/data_access/delivery_dao.py",
+        "attribute_statuses": {},
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "UserDAO",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {},
+        "status": "MATCH",
+        "stereotype": "DAO",
+        "module": "saigonbite/data_access/user_dao.py",
+        "attribute_statuses": {},
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "BaseController",
+        "target": "UserAccount",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "BaseController",
+        "target": "UserDAO",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "DeliveryController",
+        "target": "Delivery",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "DeliveryController",
+        "target": "DeliveryDAO",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "DeliveryController",
+        "target": "ShipperBoard",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "DeliveryController",
+        "target": "UserAccount",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "delivery",
+        "target": "DeliveryController",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "Delivery",
+        "target": "UserAccount",
+        "source_multiplicity": "0..*",
+        "target_multiplicity": "0..1",
+        "role": "assigned shipper",
+        "kind": "association",
+        "navigable": true,
+        "status": "MATCH",
+        "evidence": "domain model 2.1.7; code identifiers / typed fields"
+      },
+      {
+        "source": "DeliveryController",
+        "target": "BaseController",
+        "source_multiplicity": null,
+        "target_multiplicity": null,
+        "role": "inherits",
+        "kind": "generalization",
+        "navigable": false,
+        "status": "MATCH",
+        "evidence": "AST class base"
+      }
+    ]
+  },
+  "render_receipt": {
+    "canvas": [
+      2600,
+      3217
+    ],
+    "minimum_font_px": 50,
+    "placed_width_mm": 170,
+    "minimum_pt": 9.27,
+    "xml": "parsed",
+    "connected_edges": true,
+    "author_native_cell": true,
+    "all_text_minimum_px": 50
+  },
+  "source_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b"
+}

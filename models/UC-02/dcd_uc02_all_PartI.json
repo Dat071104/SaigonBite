@@ -1,0 +1,626 @@
+{
+  "author": "Author: 722I0004 · AI-assisted (Codex)",
+  "title": "UC-02 .2 DCD all — Part I",
+  "canvas": {
+    "width": 2600,
+    "height": 3217,
+    "font_size": 50,
+    "placed_width_mm": 170
+  },
+  "nodes": [
+    {
+      "id": "layer_view",
+      "kind": "layer",
+      "x": 40,
+      "y": 135,
+      "w": 2520,
+      "h": 70,
+      "lines": [
+        "Presentation / view"
+      ]
+    },
+    {
+      "id": "delivery",
+      "kind": "class",
+      "x": 80,
+      "y": 213,
+      "w": 2440,
+      "h": 552,
+      "header_h": 137,
+      "header_lines": [
+        "delivery"
+      ],
+      "subtitle_lines": [
+        "«view»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [
+        "+detail() *",
+        "+board() *",
+        "+pick_up() *"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "layer_controller",
+      "kind": "layer",
+      "x": 40,
+      "y": 807,
+      "w": 2520,
+      "h": 70,
+      "lines": [
+        "Business / controller"
+      ]
+    },
+    {
+      "id": "DeliveryController",
+      "kind": "class",
+      "x": 80,
+      "y": 885,
+      "w": 2440,
+      "h": 430,
+      "header_h": 137,
+      "header_lines": [
+        "DeliveryController"
+      ],
+      "subtitle_lines": [
+        "«controller»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [
+        "-_view() -> DeliveryView"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "DeliveryView",
+      "kind": "class",
+      "x": 80,
+      "y": 1345,
+      "w": 2440,
+      "h": 430,
+      "header_h": 137,
+      "header_lines": [
+        "DeliveryView"
+      ],
+      "subtitle_lines": [
+        "«value»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [
+        "+cash_to_collect: int"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "layer_domain",
+      "kind": "layer",
+      "x": 40,
+      "y": 1817,
+      "w": 2520,
+      "h": 70,
+      "lines": [
+        "Business / domain"
+      ]
+    },
+    {
+      "id": "Hub",
+      "kind": "class",
+      "x": 80,
+      "y": 1895,
+      "w": 1205,
+      "h": 369,
+      "header_h": 137,
+      "header_lines": [
+        "Hub"
+      ],
+      "subtitle_lines": [
+        "«entity»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "Customer",
+      "kind": "class",
+      "x": 1315,
+      "y": 1895,
+      "w": 1205,
+      "h": 369,
+      "header_h": 137,
+      "header_lines": [
+        "Customer"
+      ],
+      "subtitle_lines": [
+        "«entity»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "layer_data_access",
+      "kind": "layer",
+      "x": 40,
+      "y": 2306,
+      "w": 2520,
+      "h": 70,
+      "lines": [
+        "Data access"
+      ]
+    },
+    {
+      "id": "HubDAO",
+      "kind": "class",
+      "x": 80,
+      "y": 2384,
+      "w": 1205,
+      "h": 369,
+      "header_h": 137,
+      "header_lines": [
+        "HubDAO"
+      ],
+      "subtitle_lines": [
+        "«DAO»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "CustomerDAO",
+      "kind": "class",
+      "x": 1315,
+      "y": 2384,
+      "w": 1205,
+      "h": 369,
+      "header_h": 137,
+      "header_lines": [
+        "CustomerDAO"
+      ],
+      "subtitle_lines": [
+        "«DAO»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "legend",
+      "kind": "note",
+      "x": 80,
+      "y": 2795,
+      "w": 2440,
+      "h": 310,
+      "lines": [
+        "All four layers for contact and archived-hub projection. SSD operations:",
+        "viewReadyDeliveries, viewDelivery, takeDelivery. DAO signatures are in iv;",
+        "SQL/transactions are in 4.3.2. † marks P4 targets, not C0 implementation. Corrected",
+        "model: delivery.move_to resolves to Delivery; controller calls to Delivery/Payment are",
+        "downward."
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "dep_00",
+      "source": "DeliveryView",
+      "target": "Customer",
+      "points": [
+        [
+          1300.0,
+          1775
+        ],
+        [
+          1300.0,
+          1835.0
+        ],
+        [
+          1917.5,
+          1835.0
+        ],
+        [
+          1917.5,
+          1895
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_01",
+      "source": "DeliveryView",
+      "target": "Hub",
+      "points": [
+        [
+          1300.0,
+          1775
+        ],
+        [
+          1300.0,
+          1835.0
+        ],
+        [
+          682.5,
+          1835.0
+        ],
+        [
+          682.5,
+          1895
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_02",
+      "source": "DeliveryController",
+      "target": "CustomerDAO",
+      "points": [
+        [
+          1300.0,
+          1315
+        ],
+        [
+          1300.0,
+          1849.5
+        ],
+        [
+          1917.5,
+          1849.5
+        ],
+        [
+          1917.5,
+          2384
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_03",
+      "source": "DeliveryController",
+      "target": "DeliveryView",
+      "points": [
+        [
+          1300.0,
+          1315
+        ],
+        [
+          1300.0,
+          1330.0
+        ],
+        [
+          1300.0,
+          1330.0
+        ],
+        [
+          1300.0,
+          1345
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_04",
+      "source": "DeliveryController",
+      "target": "HubDAO",
+      "points": [
+        [
+          1300.0,
+          1315
+        ],
+        [
+          1300.0,
+          1849.5
+        ],
+        [
+          682.5,
+          1849.5
+        ],
+        [
+          682.5,
+          2384
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_06",
+      "source": "delivery",
+      "target": "DeliveryController",
+      "points": [
+        [
+          1300.0,
+          765
+        ],
+        [
+          1300.0,
+          825.0
+        ],
+        [
+          1300.0,
+          825.0
+        ],
+        [
+          1300.0,
+          885
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    }
+  ],
+  "footer": "Author: 722I0004 · AI-assisted (Codex) · Static design at C0; † targets remain for P4.",
+  "phase3": {
+    "diagram_type": "dcd",
+    "UC": "UC-02",
+    "view": "all",
+    "elements": [
+      {
+        "class": "delivery",
+        "attributes": [],
+        "methods": [
+          "detail",
+          "board",
+          "pick_up"
+        ],
+        "attribute_types": {},
+        "method_signatures": {
+          "detail": "detail(order_id: int)",
+          "board": "board()",
+          "pick_up": "pick_up(order_id: int)"
+        },
+        "status": "MATCH",
+        "stereotype": "view",
+        "module": "saigonbite/presentation/delivery.py",
+        "attribute_statuses": {},
+        "method_statuses": {
+          "detail": "MATCH",
+          "board": "MATCH",
+          "pick_up": "MATCH"
+        },
+        "method_parameters": {
+          "detail": [
+            {
+              "name": "order_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "board": [],
+          "pick_up": [
+            {
+              "name": "order_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "detail": "Any",
+          "board": "Any",
+          "pick_up": "Any"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "DeliveryController",
+        "attributes": [],
+        "methods": [
+          "_view"
+        ],
+        "attribute_types": {},
+        "method_signatures": {
+          "_view": "_view(self, delivery: Delivery) -> DeliveryView"
+        },
+        "status": "P4-TARGET",
+        "stereotype": "controller",
+        "module": "saigonbite/business/controllers/delivery_controller.py",
+        "attribute_statuses": {},
+        "method_statuses": {
+          "_view": "MATCH"
+        },
+        "method_parameters": {
+          "_view": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "delivery",
+              "type": "Delivery",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "_view": "DeliveryView"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "DeliveryView",
+        "attributes": [],
+        "methods": [
+          "cash_to_collect"
+        ],
+        "attribute_types": {},
+        "method_signatures": {
+          "cash_to_collect": "cash_to_collect(self) -> int"
+        },
+        "status": "MATCH",
+        "stereotype": "value",
+        "module": "saigonbite/business/controllers/delivery_controller.py",
+        "attribute_statuses": {},
+        "method_statuses": {
+          "cash_to_collect": "MATCH"
+        },
+        "method_parameters": {
+          "cash_to_collect": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "cash_to_collect": "int"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "Hub",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {},
+        "status": "P4-TARGET",
+        "stereotype": "entity",
+        "module": "saigonbite/business/domain/models.py",
+        "attribute_statuses": {},
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "Customer",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {},
+        "status": "MATCH",
+        "stereotype": "entity",
+        "module": "saigonbite/business/domain/models.py",
+        "attribute_statuses": {},
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "HubDAO",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {},
+        "status": "MATCH",
+        "stereotype": "DAO",
+        "module": "saigonbite/data_access/hub_dao.py",
+        "attribute_statuses": {},
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "CustomerDAO",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {},
+        "status": "MATCH",
+        "stereotype": "DAO",
+        "module": "saigonbite/data_access/customer_dao.py",
+        "attribute_statuses": {},
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "DeliveryView",
+        "target": "Customer",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "DeliveryView",
+        "target": "Hub",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "DeliveryController",
+        "target": "CustomerDAO",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "DeliveryController",
+        "target": "DeliveryView",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "DeliveryController",
+        "target": "HubDAO",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "delivery",
+        "target": "DeliveryController",
+        "kind": "dependency",
+        "status": "MATCH"
+      }
+    ]
+  },
+  "render_receipt": {
+    "canvas": [
+      2600,
+      3217
+    ],
+    "minimum_font_px": 50,
+    "placed_width_mm": 170,
+    "minimum_pt": 9.27,
+    "xml": "parsed",
+    "connected_edges": true,
+    "author_native_cell": true,
+    "all_text_minimum_px": 50
+  },
+  "source_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b"
+}

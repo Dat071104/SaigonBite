@@ -1,0 +1,933 @@
+{
+  "author": "Author: 722I0004 · AI-assisted (Codex)",
+  "title": "UC-02 .5 Final DCD — Part E",
+  "canvas": {
+    "width": 2600,
+    "height": 3339,
+    "font_size": 50,
+    "placed_width_mm": 170
+  },
+  "nodes": [
+    {
+      "id": "layer_view",
+      "kind": "layer",
+      "x": 40,
+      "y": 135,
+      "w": 2520,
+      "h": 70,
+      "lines": [
+        "Presentation / view"
+      ]
+    },
+    {
+      "id": "delivery",
+      "kind": "class",
+      "x": 80,
+      "y": 213,
+      "w": 2440,
+      "h": 430,
+      "header_h": 137,
+      "header_lines": [
+        "delivery"
+      ],
+      "subtitle_lines": [
+        "«view»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [
+        "+pick_up() *"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "layer_controller",
+      "kind": "layer",
+      "x": 40,
+      "y": 685,
+      "w": 2520,
+      "h": 70,
+      "lines": [
+        "Business / controller"
+      ]
+    },
+    {
+      "id": "DeliveryController",
+      "kind": "class",
+      "x": 80,
+      "y": 763,
+      "w": 2440,
+      "h": 552,
+      "header_h": 137,
+      "header_lines": [
+        "DeliveryController"
+      ],
+      "subtitle_lines": [
+        "«controller»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [
+        "+pick_up() -> DeliveryView †",
+        "-_require_shipper() -> UserAccount",
+        "-_delivery() -> Delivery"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "controllers_common",
+      "kind": "class",
+      "x": 80,
+      "y": 1345,
+      "w": 2440,
+      "h": 430,
+      "header_h": 137,
+      "header_lines": [
+        "controllers.common"
+      ],
+      "subtitle_lines": [
+        "«module»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [
+        "+move_order() -> None"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "layer_domain",
+      "kind": "layer",
+      "x": 40,
+      "y": 1817,
+      "w": 2520,
+      "h": 70,
+      "lines": [
+        "Business / domain"
+      ]
+    },
+    {
+      "id": "Delivery",
+      "kind": "class",
+      "x": 80,
+      "y": 1895,
+      "w": 793,
+      "h": 491,
+      "header_h": 137,
+      "header_lines": [
+        "Delivery"
+      ],
+      "subtitle_lines": [
+        "«entity»"
+      ],
+      "attribute_lines": [
+        "+state: DeliveryState"
+      ],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "Order",
+      "kind": "class",
+      "x": 903,
+      "y": 1895,
+      "w": 793,
+      "h": 491,
+      "header_h": 137,
+      "header_lines": [
+        "Order"
+      ],
+      "subtitle_lines": [
+        "«entity»"
+      ],
+      "attribute_lines": [
+        "+state: OrderState"
+      ],
+      "method_lines": [
+        "+move_to() -> None"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "UserAccount",
+      "kind": "class",
+      "x": 1726,
+      "y": 1895,
+      "w": 793,
+      "h": 491,
+      "header_h": 137,
+      "header_lines": [
+        "UserAccount"
+      ],
+      "subtitle_lines": [
+        "«entity»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "layer_data_access",
+      "kind": "layer",
+      "x": 40,
+      "y": 2428,
+      "w": 2520,
+      "h": 70,
+      "lines": [
+        "Data access"
+      ]
+    },
+    {
+      "id": "DeliveryDAO",
+      "kind": "class",
+      "x": 80,
+      "y": 2506,
+      "w": 793,
+      "h": 369,
+      "header_h": 137,
+      "header_lines": [
+        "DeliveryDAO"
+      ],
+      "subtitle_lines": [
+        "«DAO»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "OrderDAO",
+      "kind": "class",
+      "x": 903,
+      "y": 2506,
+      "w": 793,
+      "h": 369,
+      "header_h": 137,
+      "header_lines": [
+        "OrderDAO"
+      ],
+      "subtitle_lines": [
+        "«DAO»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "UserDAO",
+      "kind": "class",
+      "x": 1726,
+      "y": 2506,
+      "w": 793,
+      "h": 369,
+      "header_h": 137,
+      "header_lines": [
+        "UserDAO"
+      ],
+      "subtitle_lines": [
+        "«DAO»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "legend",
+      "kind": "note",
+      "x": 80,
+      "y": 2917,
+      "w": 2440,
+      "h": 310,
+      "lines": [
+        "All four layers for atomic pickup and paired order transition. SSD operations:",
+        "takeDelivery. DAO signatures are in iv; SQL/transactions are in 4.3.2. † marks P4",
+        "targets, not C0 implementation. Corrected model: delivery.move_to resolves to Delivery;",
+        "controller calls to Delivery/Payment are downward."
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "dep_00",
+      "source": "DeliveryController",
+      "target": "DeliveryDAO",
+      "points": [
+        [
+          1300.0,
+          1315
+        ],
+        [
+          1300.0,
+          1910.5
+        ],
+        [
+          476.5,
+          1910.5
+        ],
+        [
+          476.5,
+          2506
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_01",
+      "source": "DeliveryController",
+      "target": "OrderDAO",
+      "points": [
+        [
+          1300.0,
+          1315
+        ],
+        [
+          1300.0,
+          1910.5
+        ],
+        [
+          1299.5,
+          1910.5
+        ],
+        [
+          1299.5,
+          2506
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_02",
+      "source": "DeliveryController",
+      "target": "controllers_common",
+      "points": [
+        [
+          1300.0,
+          1315
+        ],
+        [
+          1300.0,
+          1330.0
+        ],
+        [
+          1300.0,
+          1330.0
+        ],
+        [
+          1300.0,
+          1345
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_04",
+      "source": "delivery",
+      "target": "DeliveryController",
+      "points": [
+        [
+          1300.0,
+          643
+        ],
+        [
+          1300.0,
+          703.0
+        ],
+        [
+          1300.0,
+          703.0
+        ],
+        [
+          1300.0,
+          763
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_05",
+      "source": "Order",
+      "target": "Delivery",
+      "points": [
+        [
+          903,
+          2140.5
+        ],
+        [
+          888.0,
+          2140.5
+        ],
+        [
+          873,
+          2140.5
+        ]
+      ],
+      "dashed": false,
+      "arrow": "block",
+      "color": "#004387",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_06",
+      "source": "Delivery",
+      "target": "UserAccount",
+      "points": [
+        [
+          873,
+          2140.5
+        ],
+        [
+          1299.5,
+          2140.5
+        ],
+        [
+          1726,
+          2140.5
+        ]
+      ],
+      "dashed": false,
+      "arrow": "block",
+      "color": "#004387",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "repair_dep_6",
+      "source": "controllers_common",
+      "target": "Order",
+      "points": [
+        [
+          1300.0,
+          1775
+        ],
+        [
+          1300.0,
+          1835.0
+        ],
+        [
+          1299.5,
+          1835.0
+        ],
+        [
+          1299.5,
+          1895
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "repair_dep_7",
+      "source": "controllers_common",
+      "target": "OrderDAO",
+      "points": [
+        [
+          1300.0,
+          1775
+        ],
+        [
+          1300.0,
+          2140.5
+        ],
+        [
+          1299.5,
+          2140.5
+        ],
+        [
+          1299.5,
+          2506
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "repair_dep_8",
+      "source": "DeliveryController",
+      "target": "Delivery",
+      "points": [
+        [
+          1300.0,
+          1315
+        ],
+        [
+          1300.0,
+          1605.0
+        ],
+        [
+          476.5,
+          1605.0
+        ],
+        [
+          476.5,
+          1895
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "repair_dep_9",
+      "source": "DeliveryController",
+      "target": "UserAccount",
+      "points": [
+        [
+          1300.0,
+          1315
+        ],
+        [
+          1300.0,
+          1605.0
+        ],
+        [
+          2122.5,
+          1605.0
+        ],
+        [
+          2122.5,
+          1895
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    }
+  ],
+  "footer": "Author: 722I0004 · AI-assisted (Codex) · Static design at C0; † targets remain for P4.",
+  "phase3": {
+    "diagram_type": "dcd",
+    "UC": "UC-02",
+    "view": "all",
+    "elements": [
+      {
+        "class": "delivery",
+        "attributes": [],
+        "methods": [
+          "pick_up"
+        ],
+        "attribute_types": {},
+        "method_signatures": {
+          "pick_up": "pick_up(order_id: int)"
+        },
+        "status": "MATCH",
+        "stereotype": "view",
+        "module": "saigonbite/presentation/delivery.py",
+        "attribute_statuses": {},
+        "method_statuses": {
+          "pick_up": "MATCH"
+        },
+        "method_parameters": {
+          "pick_up": [
+            {
+              "name": "order_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "pick_up": "Any"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "DeliveryController",
+        "attributes": [],
+        "methods": [
+          "pick_up",
+          "_require_shipper",
+          "_delivery"
+        ],
+        "attribute_types": {},
+        "method_signatures": {
+          "pick_up": "pick_up(self, user_id: int, order_id: int) -> DeliveryView",
+          "_require_shipper": "_require_shipper(self, user_id: int) -> UserAccount",
+          "_delivery": "_delivery(self, order_id: int) -> Delivery"
+        },
+        "status": "P4-TARGET",
+        "stereotype": "controller",
+        "module": "saigonbite/business/controllers/delivery_controller.py",
+        "attribute_statuses": {},
+        "method_statuses": {
+          "pick_up": "P4-TARGET",
+          "_require_shipper": "MATCH",
+          "_delivery": "MATCH"
+        },
+        "method_parameters": {
+          "pick_up": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "user_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "order_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "_require_shipper": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "user_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "_delivery": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "order_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "pick_up": "DeliveryView",
+          "_require_shipper": "UserAccount",
+          "_delivery": "Delivery"
+        },
+        "P4_inputs": {
+          "pick_up": "P2-S13; P3-S03"
+        },
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "controllers.common",
+        "attributes": [],
+        "methods": [
+          "move_order"
+        ],
+        "attribute_types": {},
+        "method_signatures": {
+          "move_order": "move_order(orders: OrderDAO, order: Order, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> None"
+        },
+        "status": "P4-TARGET",
+        "stereotype": "module",
+        "module": "saigonbite/business/controllers/common.py",
+        "attribute_statuses": {},
+        "method_statuses": {
+          "move_order": "MATCH"
+        },
+        "method_parameters": {
+          "move_order": [
+            {
+              "name": "orders",
+              "type": "OrderDAO",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "order",
+              "type": "Order",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "to_state",
+              "type": "OrderState",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "now",
+              "type": "str",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "reject_reason",
+              "type": "Optional[str]",
+              "annotated": true,
+              "default": "None",
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "move_order": "None"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "Delivery",
+        "attributes": [
+          "state"
+        ],
+        "methods": [],
+        "attribute_types": {
+          "state": "DeliveryState"
+        },
+        "method_signatures": {},
+        "status": "MATCH",
+        "stereotype": "entity",
+        "module": "saigonbite/business/domain/models.py",
+        "attribute_statuses": {
+          "state": "MATCH"
+        },
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "Order",
+        "attributes": [
+          "state"
+        ],
+        "methods": [
+          "move_to"
+        ],
+        "attribute_types": {
+          "state": "OrderState"
+        },
+        "method_signatures": {
+          "move_to": "move_to(self, new_state: OrderState) -> None"
+        },
+        "status": "MATCH",
+        "stereotype": "entity",
+        "module": "saigonbite/business/domain/models.py",
+        "attribute_statuses": {
+          "state": "MATCH"
+        },
+        "method_statuses": {
+          "move_to": "MATCH"
+        },
+        "method_parameters": {
+          "move_to": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "new_state",
+              "type": "OrderState",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "move_to": "None"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "UserAccount",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {},
+        "status": "P4-TARGET",
+        "stereotype": "entity",
+        "module": "saigonbite/business/domain/models.py",
+        "attribute_statuses": {},
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "DeliveryDAO",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {},
+        "status": "MATCH",
+        "stereotype": "DAO",
+        "module": "saigonbite/data_access/delivery_dao.py",
+        "attribute_statuses": {},
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "OrderDAO",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {},
+        "status": "P4-TARGET",
+        "stereotype": "DAO",
+        "module": "saigonbite/data_access/order_dao.py",
+        "attribute_statuses": {},
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "UserDAO",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {},
+        "status": "MATCH",
+        "stereotype": "DAO",
+        "module": "saigonbite/data_access/user_dao.py",
+        "attribute_statuses": {},
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "controllers.common",
+        "target": "Order",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "controllers.common",
+        "target": "OrderDAO",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "DeliveryController",
+        "target": "Delivery",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "DeliveryController",
+        "target": "DeliveryDAO",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "DeliveryController",
+        "target": "OrderDAO",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "DeliveryController",
+        "target": "UserAccount",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "DeliveryController",
+        "target": "controllers.common",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "delivery",
+        "target": "DeliveryController",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "Order",
+        "target": "Delivery",
+        "source_multiplicity": "1",
+        "target_multiplicity": "0..1",
+        "role": "delivery",
+        "kind": "association",
+        "navigable": true,
+        "status": "MATCH",
+        "evidence": "domain model 2.1.7; code identifiers / typed fields"
+      },
+      {
+        "source": "Delivery",
+        "target": "UserAccount",
+        "source_multiplicity": "0..*",
+        "target_multiplicity": "0..1",
+        "role": "assigned shipper",
+        "kind": "association",
+        "navigable": true,
+        "status": "MATCH",
+        "evidence": "domain model 2.1.7; code identifiers / typed fields"
+      }
+    ]
+  },
+  "render_receipt": {
+    "canvas": [
+      2600,
+      3339
+    ],
+    "minimum_font_px": 50,
+    "placed_width_mm": 170,
+    "minimum_pt": 9.27,
+    "xml": "parsed",
+    "connected_edges": true,
+    "author_native_cell": true,
+    "all_text_minimum_px": 50
+  },
+  "source_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b"
+}
