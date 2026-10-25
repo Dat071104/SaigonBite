@@ -63,7 +63,13 @@ Root's first 273-figure integration diagnostic found 200 failing checks: 68 miss
 
 Root also replaced the package metadata's fictional `Database` class label with the actual `database (module)` role, clarified 14 bootstrap imports including app.py, and accepted D's request in section 4.2. Both the changed direct PNG and independently rasterized SVG were opened and inspected; `P3-root/package_integration_qa.json` records the source hashes. Native application opening remains UNTESTED.
 
-⟦PENDING: complete the repair barrier, validate regenerated views, and commit the six UC packages plus architecture/mapping⟧.
+All three successful repair handoffs were received before root opened P3-A's new section, P3-B-fix and P3-C's new section. No new model request remained from B/C. A's R-A06 was accepted: the model generator now consolidates 331 dependency records to 320 unique keys, retaining the stricter status and combined evidence. The effective status/direction graph and all non-dependency model fields are unchanged. Root reran every one of the 278 figure generators: all succeeded and no PNG/SVG bytes changed, so existing visual proofs remain applicable. `P3-root/R_A06_refresh.json` records before/after model hashes and actual source/export changes; originals are preserved in `P3_trash/wave1_before_dependency_consolidation.zip`.
+
+The current Wave 1 checker passes **14,802 checks** for 278 figures, 44 design-sequence views, all 41 SSD occurrences and all 30 main PC/MG anchors. It is explicitly an **incomplete-mode integration checkpoint**, with no DAO views yet, and does not establish G3. Responsibility statuses are 10 MATCH, 28 P4-TARGET and 3 GAP occurrences. Root also normalized the two B-lane CRC headings to the exact template wording; previous source bytes are archived in `P3_trash/B_heading_reconciliation`. All six main names and 30 required subsection titles were checked against the frozen analysis/template.
+
+Root's ERD semantic pass corrected four reversed manual multiplicity labels and one detached endpoint on Parts A/B. Schema/mapping metadata had been correct, so metadata-only FK coverage had missed these drawn defects. All 18 FKs now pass 126 schema/end-label/native-position/boundary checks; the auditor rejects the preserved original diagrams with the expected four label and one attachment failures. Both current image forms of every changed page were opened. Earlier border-clearance changes and the accepted P4.7 mapping assignments are reproducible in the coordinator. These are design-artifact corrections, not new application defects or P4 findings. Receipts: `erd_cardinality_qa.json`, `erd_auditor_regression.json`, `erd_label_qa.json` and the 328-check `mapping_crosscheck.json` under P3-root. The full checker normalizes in-memory FK tuples and serialized JSON lists before comparison.
+
+Architecture/mapping commits are ef9af54, 328d564 and efa8762. The six per-UC package commits are recorded next; Wave 2 starts only after those commits.
 
 ### Wave 1 usage interruption and same-identity recovery
 
@@ -72,6 +78,8 @@ At 18:08 UTC (25/10 01:08 Asia/Bangkok), runtime status showed A/B/C/D errored w
 Post-resumption runtime checks confirmed all four running. At 18:37 UTC, A/C/D had final notifications and B remained running with generation log timestamps in that minute. The next bounded liveness check at approximately 19:06 UTC again found B running; its builder and visual-audit metadata had fresh timestamps at 02:04–02:06 local time. No stalled-worker recovery or replacement was warranted. The three completed reports remained unopened while B finished.
 
 B subsequently stopped on another usage-limit error before its final report. On the owner's second explicit continuation, 25/10 03:22 UTC / 10:22 Bangkok, the live account tool again returned ordinaryUsageAllowed=true. Root resumed the same p3_b identity from the latest 02:13 local QA files, with no restart, replacement, model/config change or credit action. A/C/D stayed completed; their reports remained unopened pending B's successful final handoff. Resume checks re-established the branch/HEAD and app-diff boundary before continuing.
+
+The later three-worker repair batch had fresh scratch timestamps at approximately 04:10 UTC; metadata-only checks found A/C/B-fix running. B-fix then sent its successful final handoff. C subsequently failed with a usage-limit notification before its repair handoff, and A had no successful repair handoff recorded. On the owner's next continuation, 25/10 06:33 UTC /13:33 Bangkok, ordinaryUsageAllowed was true. Native followup_task restored the same A/C identities and list_agents confirmed them running. B-fix was not restarted. The three-repair-report barrier remains closed until A/C both finish; B-fix's completed report is still unopened. Root retained commits babbe4a and ef9af54 and rechecked the original protected-byte manifest and controlling prompt/plan hashes before integration.
 
 ## Wave 2 / Wave 3 integration
 
@@ -87,7 +95,7 @@ Fresh primary marking workbook: items 20–24 at physical Checklist rows 33–37
 
 ## P4 design inputs
 
-The element-specific register is `docs/part2/design/design_annotations.json` (P4_inputs), joined to SSD op IDs in `operation_realisation.csv`. Existing F-01…09 and P2-S01…18 remain P2-root inputs; design additions P3-S01…03 above do not imply execution. Final handoff CSV and exact rerun command follow closure.
+The element-specific register is `docs/part2/design/design_annotations.json` (P4_inputs and target dependencies), joined to SSD op IDs in `operation_realisation.csv`. `docs/part2/design/P4_design_inputs.csv` currently carries 121 rows for 96 member/schema/import/dependency elements; shared/supporting obligations are explicit where there is no main-UC op ID. Existing F-01…09 and P2-S01…18 remain P2-root inputs; design additions P3-S01…04 above do not imply execution. The register is regenerated after final integration; the exact rerun command follows closure.
 
 ## Pending owner facts and limits
 

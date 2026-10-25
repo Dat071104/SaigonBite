@@ -34846,7 +34846,7 @@
       "target": "Order",
       "kind": "dependency",
       "status": "MATCH",
-      "source_evidence": "AST call or typed attribute/signature",
+      "source_evidence": "AST call or typed attribute/signature; C0 order.move_to via typed Order parameter",
       "allowed_on_layered_diagram": true
     },
     {
@@ -34870,7 +34870,7 @@
       "target": "Payment",
       "kind": "dependency",
       "status": "MATCH",
-      "source_evidence": "AST call or typed attribute/signature",
+      "source_evidence": "AST call or typed attribute/signature; C0 payment.release_for_unfulfilled_order",
       "allowed_on_layered_diagram": true
     },
     {
@@ -34966,7 +34966,7 @@
       "target": "Delivery",
       "kind": "dependency",
       "status": "MATCH",
-      "source_evidence": "AST call or typed attribute/signature",
+      "source_evidence": "AST call or typed attribute/signature; C0 local delivery.move_to",
       "allowed_on_layered_diagram": true
     },
     {
@@ -35302,7 +35302,7 @@
       "target": "Order",
       "kind": "dependency",
       "status": "MATCH",
-      "source_evidence": "AST call or typed attribute/signature",
+      "source_evidence": "AST call or typed attribute/signature; C0 order.line",
       "allowed_on_layered_diagram": true
     },
     {
@@ -35461,9 +35461,10 @@
       "source": "MenuController",
       "target": "MenuDAO",
       "kind": "dependency",
-      "status": "MATCH",
+      "status": "P4-TARGET",
       "source_evidence": "AST call or typed attribute/signature",
-      "allowed_on_layered_diagram": true
+      "allowed_on_layered_diagram": true,
+      "P4_input": "P2-S14"
     },
     {
       "source": "MenuController",
@@ -35517,9 +35518,10 @@
       "source": "OrderArchiveController",
       "target": "OrderDAO",
       "kind": "dependency",
-      "status": "MATCH",
+      "status": "P4-TARGET",
       "source_evidence": "AST call or typed attribute/signature",
-      "allowed_on_layered_diagram": true
+      "allowed_on_layered_diagram": true,
+      "P4_input": "P2-S06"
     },
     {
       "source": "OrderArchiveController",
@@ -35654,7 +35656,7 @@
       "target": "Order",
       "kind": "dependency",
       "status": "MATCH",
-      "source_evidence": "AST call or typed attribute/signature",
+      "source_evidence": "AST call or typed attribute/signature; C0 order.replace_line",
       "allowed_on_layered_diagram": true
     },
     {
@@ -35830,7 +35832,7 @@
       "target": "Hub",
       "kind": "dependency",
       "status": "MATCH",
-      "source_evidence": "AST call or typed attribute/signature",
+      "source_evidence": "AST call or typed attribute/signature; C0 hub.distance_to",
       "allowed_on_layered_diagram": true
     },
     {
@@ -35957,9 +35959,10 @@
       "source": "PlaceOrderController",
       "target": "Quote",
       "kind": "dependency",
-      "status": "MATCH",
+      "status": "P4-TARGET",
       "source_evidence": "AST call or typed attribute/signature",
-      "allowed_on_layered_diagram": true
+      "allowed_on_layered_diagram": true,
+      "P4_input": "F-07"
     },
     {
       "source": "PlaceOrderController",
@@ -36405,9 +36408,10 @@
       "source": "Quote",
       "target": "OnlineOption",
       "kind": "dependency",
-      "status": "MATCH",
-      "source_evidence": "AST call or typed attribute/signature",
-      "allowed_on_layered_diagram": true
+      "status": "P4-TARGET",
+      "source_evidence": "AST call or typed attribute/signature; Pure-domain fingerprint parameter",
+      "allowed_on_layered_diagram": true,
+      "P4_input": "F-07"
     },
     {
       "source": "Quote",
@@ -36421,9 +36425,10 @@
       "source": "Quote",
       "target": "PaymentMethod",
       "kind": "dependency",
-      "status": "MATCH",
-      "source_evidence": "AST call or typed attribute/signature",
-      "allowed_on_layered_diagram": true
+      "status": "P4-TARGET",
+      "source_evidence": "AST call or typed attribute/signature; Pure-domain fingerprint parameter",
+      "allowed_on_layered_diagram": true,
+      "P4_input": "F-07"
     },
     {
       "source": "Quote",
@@ -37195,57 +37200,6 @@
     },
     {
       "source": "PlaceOrderController",
-      "target": "Quote",
-      "kind": "dependency",
-      "status": "P4-TARGET",
-      "P4_input": "F-07",
-      "allowed_on_layered_diagram": true
-    },
-    {
-      "source": "MenuController",
-      "target": "MenuDAO",
-      "kind": "dependency",
-      "status": "P4-TARGET",
-      "P4_input": "P2-S14",
-      "allowed_on_layered_diagram": true
-    },
-    {
-      "source": "OrderArchiveController",
-      "target": "OrderDAO",
-      "kind": "dependency",
-      "status": "P4-TARGET",
-      "P4_input": "P2-S06",
-      "allowed_on_layered_diagram": true
-    },
-    {
-      "source": "controllers.common",
-      "target": "Order",
-      "kind": "dependency",
-      "status": "MATCH",
-      "P4_input": "",
-      "allowed_on_layered_diagram": true,
-      "source_evidence": "C0 order.move_to via typed Order parameter"
-    },
-    {
-      "source": "controllers.common",
-      "target": "Payment",
-      "kind": "dependency",
-      "status": "MATCH",
-      "P4_input": "",
-      "allowed_on_layered_diagram": true,
-      "source_evidence": "C0 payment.release_for_unfulfilled_order"
-    },
-    {
-      "source": "PlaceOrderController",
-      "target": "Hub",
-      "kind": "dependency",
-      "status": "MATCH",
-      "P4_input": "",
-      "allowed_on_layered_diagram": true,
-      "source_evidence": "C0 hub.distance_to"
-    },
-    {
-      "source": "PlaceOrderController",
       "target": "Voucher",
       "kind": "dependency",
       "status": "MATCH",
@@ -37261,51 +37215,6 @@
       "P4_input": "",
       "allowed_on_layered_diagram": true,
       "source_evidence": "C0 fee / quiet / busy rule calls"
-    },
-    {
-      "source": "OrderTrackingController",
-      "target": "Order",
-      "kind": "dependency",
-      "status": "MATCH",
-      "P4_input": "",
-      "allowed_on_layered_diagram": true,
-      "source_evidence": "C0 order.replace_line"
-    },
-    {
-      "source": "KitchenController",
-      "target": "Order",
-      "kind": "dependency",
-      "status": "MATCH",
-      "P4_input": "",
-      "allowed_on_layered_diagram": true,
-      "source_evidence": "C0 order.line"
-    },
-    {
-      "source": "DeliveryController",
-      "target": "Delivery",
-      "kind": "dependency",
-      "status": "MATCH",
-      "P4_input": "",
-      "allowed_on_layered_diagram": true,
-      "source_evidence": "C0 local delivery.move_to"
-    },
-    {
-      "source": "Quote",
-      "target": "PaymentMethod",
-      "kind": "dependency",
-      "status": "P4-TARGET",
-      "P4_input": "F-07",
-      "allowed_on_layered_diagram": true,
-      "source_evidence": "Pure-domain fingerprint parameter"
-    },
-    {
-      "source": "Quote",
-      "target": "OnlineOption",
-      "kind": "dependency",
-      "status": "P4-TARGET",
-      "P4_input": "F-07",
-      "allowed_on_layered_diagram": true,
-      "source_evidence": "Pure-domain fingerprint parameter"
     },
     {
       "source": "MenuController",

@@ -5,6 +5,22 @@ from pathlib import Path
 import ast,copy,csv,json,re
 R=Path(__file__).resolve().parents[3];D=R/'docs/part2/design'
 def read(p):return json.loads(p.read_text(encoding='utf-8'))
+def consolidate_dependencies(items):
+    """One typed/call dependency per key; an unresolved target wins a duplicate."""
+    groups={};rank={'MATCH':0,'P4-TARGET':1,'GAP':2}
+    for item in items:groups.setdefault((item['source'],item['target'],item['kind']),[]).append(item)
+    result=[]
+    for entries in groups.values():
+        chosen=max(entries,key=lambda e:rank[e['status']]);merged=copy.deepcopy(entries[0]);merged.update(copy.deepcopy(chosen))
+        for field in ('source_evidence','P4_input','P4_subphase','reason'):
+            values=[]
+            for entry in entries:
+                value=entry.get(field)
+                if value and value not in values:values.append(value)
+            if values:merged[field]='; '.join(values)
+        merged['allowed_on_layered_diagram']=all(e.get('allowed_on_layered_diagram',False) for e in entries)
+        result.append(merged)
+    return result
 def layer(path):
     if '/presentation/' in path:return 'view'
     if '/controllers/' in path:return 'controller'
@@ -74,6 +90,7 @@ def build():
         rank={'view':0,'controller':1,'domain':2,'data_access':3}
         for dest in sorted(calls):dependencies.append({'source':name,'target':dest,'kind':'dependency','status':'MATCH','source_evidence':'AST call or typed attribute/signature','allowed_on_layered_diagram':rank[classes[dest]['layer']]>=rank[c['layer']] and not (c['layer']=='domain' and classes[dest]['layer']!='domain')})
     for dep in annotations.get('target_dependencies',[]):dependencies.append(dep)
+    dependencies=consolidate_dependencies(dependencies)
     for name,fields in annotations.get('class_annotations',{}).items():
         if name in classes:classes[name].update(fields)
     associations=copy.deepcopy(annotations['associations'])
