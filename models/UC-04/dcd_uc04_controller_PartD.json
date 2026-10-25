@@ -1,0 +1,341 @@
+{
+  "author": "Author: 722I0004 · AI-assisted (Codex)",
+  "title": "UC-04 .2 DCD controller — Part D",
+  "canvas": {
+    "width": 2600,
+    "height": 1572,
+    "font_size": 50,
+    "placed_width_mm": 170
+  },
+  "nodes": [
+    {
+      "id": "layer_controller",
+      "kind": "layer",
+      "x": 40,
+      "y": 135,
+      "w": 2520,
+      "h": 70,
+      "lines": [
+        "Business / controller"
+      ]
+    },
+    {
+      "id": "ReportController",
+      "kind": "class",
+      "x": 80,
+      "y": 213,
+      "w": 2440,
+      "h": 491,
+      "header_h": 137,
+      "header_lines": [
+        "ReportController"
+      ],
+      "subtitle_lines": [
+        "«controller»"
+      ],
+      "attribute_lines": [
+        "+reports: ReportDAO *"
+      ],
+      "method_lines": [
+        "+workload_report(self, user_id: int) -> WorkloadReport †"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "WorkloadRow",
+      "kind": "class",
+      "x": 80,
+      "y": 734,
+      "w": 1205,
+      "h": 552,
+      "header_h": 137,
+      "header_lines": [
+        "WorkloadRow"
+      ],
+      "subtitle_lines": [
+        "«value»"
+      ],
+      "attribute_lines": [
+        "+status: HubStatus",
+        "+counts: dict[OrderState, int]"
+      ],
+      "method_lines": [
+        "+label(self) -> str {property}"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "WorkloadReport",
+      "kind": "class",
+      "x": 1315,
+      "y": 734,
+      "w": 1205,
+      "h": 552,
+      "header_h": 137,
+      "header_lines": [
+        "WorkloadReport"
+      ],
+      "subtitle_lines": [
+        "«value»"
+      ],
+      "attribute_lines": [
+        "+as_of: str",
+        "+rows: list[WorkloadRow]"
+      ],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "legend",
+      "kind": "note",
+      "x": 80,
+      "y": 1328,
+      "w": 2440,
+      "h": 132,
+      "lines": [
+        "Part C contains authorization; workload targets retain archived hubs (P2-S18)."
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "dep_00",
+      "source": "WorkloadReport",
+      "target": "WorkloadRow",
+      "points": [
+        [
+          1315,
+          1010.0
+        ],
+        [
+          1300.0,
+          1010.0
+        ],
+        [
+          1285,
+          1010.0
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_01",
+      "source": "ReportController",
+      "target": "WorkloadReport",
+      "points": [
+        [
+          1300.0,
+          704
+        ],
+        [
+          1300.0,
+          719.0
+        ],
+        [
+          1917.5,
+          719.0
+        ],
+        [
+          1917.5,
+          734
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_02",
+      "source": "ReportController",
+      "target": "WorkloadRow",
+      "points": [
+        [
+          1300.0,
+          704
+        ],
+        [
+          1300.0,
+          719.0
+        ],
+        [
+          682.5,
+          719.0
+        ],
+        [
+          682.5,
+          734
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    }
+  ],
+  "footer": "Author: 722I0004 · AI-assisted (Codex) · Static design at C0; † targets remain for P4.",
+  "phase3": {
+    "diagram_type": "dcd",
+    "UC": "UC-04",
+    "view": "controller",
+    "elements": [
+      {
+        "class": "ReportController",
+        "attributes": [
+          "reports"
+        ],
+        "methods": [
+          "workload_report"
+        ],
+        "attribute_types": {
+          "reports": "ReportDAO"
+        },
+        "method_signatures": {
+          "workload_report": "workload_report(self, user_id: int) -> WorkloadReport"
+        },
+        "status": "P4-TARGET",
+        "stereotype": "controller",
+        "module": "saigonbite/business/controllers/report_controller.py",
+        "attribute_statuses": {
+          "reports": "MATCH"
+        },
+        "method_statuses": {
+          "workload_report": "P4-TARGET"
+        },
+        "method_parameters": {
+          "workload_report": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "user_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "workload_report": "WorkloadReport"
+        },
+        "P4_inputs": {
+          "workload_report": "P2-S18"
+        },
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "WorkloadRow",
+        "attributes": [
+          "status",
+          "counts"
+        ],
+        "methods": [
+          "label"
+        ],
+        "attribute_types": {
+          "status": "HubStatus",
+          "counts": "dict[OrderState, int]"
+        },
+        "method_signatures": {
+          "label": "label(self) -> str"
+        },
+        "status": "MATCH",
+        "stereotype": "value",
+        "module": "saigonbite/business/controllers/report_controller.py",
+        "attribute_statuses": {
+          "status": "MATCH",
+          "counts": "MATCH"
+        },
+        "method_statuses": {
+          "label": "MATCH"
+        },
+        "method_parameters": {
+          "label": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "label": "str"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "WorkloadReport",
+        "attributes": [
+          "as_of",
+          "rows"
+        ],
+        "methods": [],
+        "attribute_types": {
+          "as_of": "str",
+          "rows": "list[WorkloadRow]"
+        },
+        "method_signatures": {},
+        "status": "MATCH",
+        "stereotype": "value",
+        "module": "saigonbite/business/controllers/report_controller.py",
+        "attribute_statuses": {
+          "as_of": "MATCH",
+          "rows": "MATCH"
+        },
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "WorkloadReport",
+        "target": "WorkloadRow",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "ReportController",
+        "target": "WorkloadReport",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "ReportController",
+        "target": "WorkloadRow",
+        "kind": "dependency",
+        "status": "MATCH"
+      }
+    ]
+  },
+  "render_receipt": {
+    "canvas": [
+      2600,
+      1572
+    ],
+    "minimum_font_px": 50,
+    "placed_width_mm": 170,
+    "minimum_pt": 9.27,
+    "xml": "parsed",
+    "connected_edges": true,
+    "author_native_cell": true,
+    "all_text_minimum_px": 50
+  },
+  "source_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b"
+}

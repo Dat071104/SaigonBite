@@ -1,0 +1,1495 @@
+{
+  "author": "Author: 722I0004 · AI-assisted (Codex)",
+  "title": "UC-04 sequence — workloadReport()",
+  "canvas": {
+    "width": 4200,
+    "height": 3000,
+    "font_size": 60,
+    "placed_width_mm": 230
+  },
+  "nodes": [
+    {
+      "id": "alt_frame",
+      "kind": "frame",
+      "x": 70,
+      "y": 400,
+      "w": 4060,
+      "h": 2500,
+      "lines": [],
+      "dashed": false
+    },
+    {
+      "id": "alt_title",
+      "kind": "text",
+      "x": 100,
+      "y": 402,
+      "w": 4000,
+      "h": 65,
+      "lines": [
+        "alt [authenticated actor, valid input, accepted operation]"
+      ],
+      "bold": true
+    },
+    {
+      "id": "ll_actor",
+      "kind": "lifeline",
+      "x": 40.0,
+      "y": 105,
+      "w": 280,
+      "h": 280,
+      "lines": [
+        "Manager",
+        "actor"
+      ]
+    },
+    {
+      "id": "life_top_actor",
+      "kind": "anchor",
+      "x": 180.0,
+      "y": 390,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "life_bottom_actor",
+      "kind": "anchor",
+      "x": 180.0,
+      "y": 2875,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "ll_view",
+      "kind": "lifeline",
+      "x": 560.0,
+      "y": 105,
+      "w": 520,
+      "h": 280,
+      "lines": [
+        "reports",
+        "«view»"
+      ]
+    },
+    {
+      "id": "life_top_view",
+      "kind": "anchor",
+      "x": 820.0,
+      "y": 390,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "life_bottom_view",
+      "kind": "anchor",
+      "x": 820.0,
+      "y": 2875,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "ll_ctrl",
+      "kind": "lifeline",
+      "x": 1200.0,
+      "y": 105,
+      "w": 520,
+      "h": 280,
+      "lines": [
+        "Report",
+        "Controller",
+        "«controller»"
+      ]
+    },
+    {
+      "id": "life_top_ctrl",
+      "kind": "anchor",
+      "x": 1460.0,
+      "y": 390,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "life_bottom_ctrl",
+      "kind": "anchor",
+      "x": 1460.0,
+      "y": 2875,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "ll_base",
+      "kind": "lifeline",
+      "x": 1840.0,
+      "y": 105,
+      "w": 520,
+      "h": 280,
+      "lines": [
+        "BaseController",
+        "«controller»"
+      ]
+    },
+    {
+      "id": "life_top_base",
+      "kind": "anchor",
+      "x": 2100.0,
+      "y": 390,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "life_bottom_base",
+      "kind": "anchor",
+      "x": 2100.0,
+      "y": 2875,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "ll_hubstatus",
+      "kind": "lifeline",
+      "x": 2480.0,
+      "y": 105,
+      "w": 520,
+      "h": 280,
+      "lines": [
+        "HubStatus",
+        "domain value"
+      ]
+    },
+    {
+      "id": "life_top_hubstatus",
+      "kind": "anchor",
+      "x": 2740.0,
+      "y": 390,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "life_bottom_hubstatus",
+      "kind": "anchor",
+      "x": 2740.0,
+      "y": 2875,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "ll_row",
+      "kind": "lifeline",
+      "x": 3120.0,
+      "y": 105,
+      "w": 520,
+      "h": 280,
+      "lines": [
+        "WorkloadRow",
+        "«value»"
+      ]
+    },
+    {
+      "id": "life_top_row",
+      "kind": "anchor",
+      "x": 3380.0,
+      "y": 390,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "life_bottom_row",
+      "kind": "anchor",
+      "x": 3380.0,
+      "y": 2875,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "ll_report",
+      "kind": "lifeline",
+      "x": 3880.0,
+      "y": 105,
+      "w": 280,
+      "h": 280,
+      "lines": [
+        "Workload",
+        "Report",
+        "«value»"
+      ]
+    },
+    {
+      "id": "life_top_report",
+      "kind": "anchor",
+      "x": 4020.0,
+      "y": 390,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "life_bottom_report",
+      "kind": "anchor",
+      "x": 4020.0,
+      "y": 2875,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "activation_view",
+      "kind": "activation",
+      "x": 805.0,
+      "y": 550,
+      "w": 30,
+      "h": 1300
+    },
+    {
+      "id": "activation_ctrl",
+      "kind": "activation",
+      "x": 1445.0,
+      "y": 810,
+      "w": 30,
+      "h": 910
+    },
+    {
+      "id": "activation_base",
+      "kind": "activation",
+      "x": 2085.0,
+      "y": 1070,
+      "w": 30,
+      "h": 130
+    },
+    {
+      "id": "activation_hubstatus",
+      "kind": "activation",
+      "x": 2725.0,
+      "y": 1200,
+      "w": 30,
+      "h": 130
+    },
+    {
+      "id": "activation_row",
+      "kind": "activation",
+      "x": 3365.0,
+      "y": 1330,
+      "w": 30,
+      "h": 130
+    },
+    {
+      "id": "activation_report",
+      "kind": "activation",
+      "x": 4005.0,
+      "y": 1460,
+      "w": 30,
+      "h": 130
+    },
+    {
+      "id": "m00_s",
+      "kind": "anchor",
+      "x": 180.0,
+      "y": 550,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m00_t",
+      "kind": "anchor",
+      "x": 820.0,
+      "y": 550,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m01_s",
+      "kind": "anchor",
+      "x": 820.0,
+      "y": 680,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m01_t",
+      "kind": "anchor",
+      "x": 940.0,
+      "y": 725,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m02_s",
+      "kind": "anchor",
+      "x": 820.0,
+      "y": 810,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m02_t",
+      "kind": "anchor",
+      "x": 1460.0,
+      "y": 810,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m03_s",
+      "kind": "anchor",
+      "x": 1460.0,
+      "y": 940,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m03_t",
+      "kind": "anchor",
+      "x": 1580.0,
+      "y": 985,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m04_s",
+      "kind": "anchor",
+      "x": 1460.0,
+      "y": 1070,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m04_t",
+      "kind": "anchor",
+      "x": 2100.0,
+      "y": 1070,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m06_s",
+      "kind": "anchor",
+      "x": 1460.0,
+      "y": 1200,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m06_t",
+      "kind": "anchor",
+      "x": 2740.0,
+      "y": 1200,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m08_s",
+      "kind": "anchor",
+      "x": 1460.0,
+      "y": 1330,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m08_t",
+      "kind": "anchor",
+      "x": 3380.0,
+      "y": 1330,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m09_s",
+      "kind": "anchor",
+      "x": 1460.0,
+      "y": 1460,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m09_t",
+      "kind": "anchor",
+      "x": 4020.0,
+      "y": 1460,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m10_s",
+      "kind": "anchor",
+      "x": 1460.0,
+      "y": 1590,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m10_t",
+      "kind": "anchor",
+      "x": 820.0,
+      "y": 1590,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m11_s",
+      "kind": "anchor",
+      "x": 820.0,
+      "y": 1720,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m11_t",
+      "kind": "anchor",
+      "x": 180.0,
+      "y": 1720,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "interaction_notes",
+      "kind": "note",
+      "x": 105,
+      "y": 2449,
+      "w": 3990,
+      "h": 96,
+      "lines": [
+        "persistence: Read all retained hubs and open-order counts.   •   load_percent: Derived load/capacity; BUSY/QUIET are not states."
+      ]
+    },
+    {
+      "id": "else_label",
+      "kind": "text",
+      "x": 105,
+      "y": 2572,
+      "w": 3990,
+      "h": 65,
+      "lines": [
+        "else [refusal / invalid filter / rollback / read unavailable / zero denominator]"
+      ],
+      "bold": true,
+      "color": "#B03A2E"
+    },
+    {
+      "id": "branch_note",
+      "kind": "note",
+      "x": 105,
+      "y": 2660,
+      "w": 3990,
+      "h": 235,
+      "lines": [
+        "else [E01 non-manager → UC04-MG02; E03 read unavailable] → deny/unavailable; UC04-MG01, zero writes."
+      ]
+    },
+    {
+      "id": "sep_a",
+      "kind": "anchor",
+      "x": 90,
+      "y": 2570,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "sep_b",
+      "kind": "anchor",
+      "x": 4110,
+      "y": 2570,
+      "w": 2,
+      "h": 2
+    }
+  ],
+  "edges": [
+    {
+      "id": "life_actor",
+      "source": "life_top_actor",
+      "target": "life_bottom_actor",
+      "points": [
+        [
+          180.0,
+          390
+        ],
+        [
+          180.0,
+          2875
+        ]
+      ],
+      "dashed": true,
+      "arrow": "none",
+      "color": "#8C98A5",
+      "width": 2
+    },
+    {
+      "id": "life_view",
+      "source": "life_top_view",
+      "target": "life_bottom_view",
+      "points": [
+        [
+          820.0,
+          390
+        ],
+        [
+          820.0,
+          2875
+        ]
+      ],
+      "dashed": true,
+      "arrow": "none",
+      "color": "#8C98A5",
+      "width": 2
+    },
+    {
+      "id": "life_ctrl",
+      "source": "life_top_ctrl",
+      "target": "life_bottom_ctrl",
+      "points": [
+        [
+          1460.0,
+          390
+        ],
+        [
+          1460.0,
+          2875
+        ]
+      ],
+      "dashed": true,
+      "arrow": "none",
+      "color": "#8C98A5",
+      "width": 2
+    },
+    {
+      "id": "life_base",
+      "source": "life_top_base",
+      "target": "life_bottom_base",
+      "points": [
+        [
+          2100.0,
+          390
+        ],
+        [
+          2100.0,
+          2875
+        ]
+      ],
+      "dashed": true,
+      "arrow": "none",
+      "color": "#8C98A5",
+      "width": 2
+    },
+    {
+      "id": "life_hubstatus",
+      "source": "life_top_hubstatus",
+      "target": "life_bottom_hubstatus",
+      "points": [
+        [
+          2740.0,
+          390
+        ],
+        [
+          2740.0,
+          2875
+        ]
+      ],
+      "dashed": true,
+      "arrow": "none",
+      "color": "#8C98A5",
+      "width": 2
+    },
+    {
+      "id": "life_row",
+      "source": "life_top_row",
+      "target": "life_bottom_row",
+      "points": [
+        [
+          3380.0,
+          390
+        ],
+        [
+          3380.0,
+          2875
+        ]
+      ],
+      "dashed": true,
+      "arrow": "none",
+      "color": "#8C98A5",
+      "width": 2
+    },
+    {
+      "id": "life_report",
+      "source": "life_top_report",
+      "target": "life_bottom_report",
+      "points": [
+        [
+          4020.0,
+          390
+        ],
+        [
+          4020.0,
+          2875
+        ]
+      ],
+      "dashed": true,
+      "arrow": "none",
+      "color": "#8C98A5",
+      "width": 2
+    },
+    {
+      "id": "msg_00",
+      "source": "m00_s",
+      "target": "m00_t",
+      "points": [
+        [
+          180.0,
+          550
+        ],
+        [
+          820.0,
+          550
+        ]
+      ],
+      "dashed": false,
+      "arrow": "block",
+      "color": "#004387",
+      "width": 3,
+      "label": "workloadReport()",
+      "label_box": [
+        210.0,
+        478,
+        580,
+        64
+      ]
+    },
+    {
+      "id": "msg_01",
+      "source": "m01_s",
+      "target": "m01_t",
+      "points": [
+        [
+          820.0,
+          680
+        ],
+        [
+          940.0,
+          680
+        ],
+        [
+          940.0,
+          725
+        ],
+        [
+          820.0,
+          725
+        ]
+      ],
+      "dashed": false,
+      "arrow": "block",
+      "color": "#004387",
+      "width": 3,
+      "label": "workload()",
+      "label_box": [
+        680.0,
+        608,
+        400,
+        64
+      ]
+    },
+    {
+      "id": "msg_02",
+      "source": "m02_s",
+      "target": "m02_t",
+      "points": [
+        [
+          820.0,
+          810
+        ],
+        [
+          1460.0,
+          810
+        ]
+      ],
+      "dashed": false,
+      "arrow": "block",
+      "color": "#004387",
+      "width": 3,
+      "label": "workload_report †(user_id)",
+      "label_box": [
+        700.0,
+        738,
+        880,
+        64
+      ]
+    },
+    {
+      "id": "msg_03",
+      "source": "m03_s",
+      "target": "m03_t",
+      "points": [
+        [
+          1460.0,
+          940
+        ],
+        [
+          1580.0,
+          940
+        ],
+        [
+          1580.0,
+          985
+        ],
+        [
+          1460.0,
+          985
+        ]
+      ],
+      "dashed": false,
+      "arrow": "block",
+      "color": "#004387",
+      "width": 3,
+      "label": "_require_manager(user_id)",
+      "label_box": [
+        1095.0,
+        868,
+        850,
+        64
+      ]
+    },
+    {
+      "id": "msg_04",
+      "source": "m04_s",
+      "target": "m04_t",
+      "points": [
+        [
+          1460.0,
+          1070
+        ],
+        [
+          2100.0,
+          1070
+        ]
+      ],
+      "dashed": false,
+      "arrow": "block",
+      "color": "#004387",
+      "width": 3,
+      "label": "_require_user(user_id, Role.MANAGER)",
+      "label_box": [
+        1190.0,
+        998,
+        1180,
+        64
+      ]
+    },
+    {
+      "id": "msg_06",
+      "source": "m06_s",
+      "target": "m06_t",
+      "points": [
+        [
+          1460.0,
+          1200
+        ],
+        [
+          2740.0,
+          1200
+        ]
+      ],
+      "dashed": false,
+      "arrow": "block",
+      "color": "#004387",
+      "width": 3,
+      "label": "«create» HubStatus(hub, cooking load = PLACED + CONFIRMED + PREPARING)",
+      "label_box": [
+        1000.0,
+        1128,
+        2200,
+        64
+      ]
+    },
+    {
+      "id": "msg_08",
+      "source": "m08_s",
+      "target": "m08_t",
+      "points": [
+        [
+          1460.0,
+          1330
+        ],
+        [
+          3380.0,
+          1330
+        ]
+      ],
+      "dashed": false,
+      "arrow": "block",
+      "color": "#004387",
+      "width": 3,
+      "label": "«create» WorkloadRow(status, counts)",
+      "label_box": [
+        1830.0,
+        1258,
+        1180,
+        64
+      ]
+    },
+    {
+      "id": "msg_09",
+      "source": "m09_s",
+      "target": "m09_t",
+      "points": [
+        [
+          1460.0,
+          1460
+        ],
+        [
+          4020.0,
+          1460
+        ]
+      ],
+      "dashed": false,
+      "arrow": "block",
+      "color": "#004387",
+      "width": 3,
+      "label": "«create» WorkloadReport(as_of=now, rows)",
+      "label_box": [
+        2090.0,
+        1388,
+        1300,
+        64
+      ]
+    },
+    {
+      "id": "msg_10",
+      "source": "m10_s",
+      "target": "m10_t",
+      "points": [
+        [
+          1460.0,
+          1590
+        ],
+        [
+          820.0,
+          1590
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#004387",
+      "width": 3,
+      "label": "return workload_report: currentHubLoadCapacityReadyOutForDelivery",
+      "label_box": [
+        115.0,
+        1518,
+        2050,
+        64
+      ]
+    },
+    {
+      "id": "msg_11",
+      "source": "m11_s",
+      "target": "m11_t",
+      "points": [
+        [
+          820.0,
+          1720
+        ],
+        [
+          180.0,
+          1720
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#004387",
+      "width": 3,
+      "label": "return workloadReport: currentHubLoadCapacityReadyOutForDelivery | denied",
+      "label_box": [
+        80,
+        1648,
+        2290,
+        64
+      ]
+    },
+    {
+      "id": "operand_separator",
+      "source": "sep_a",
+      "target": "sep_b",
+      "points": [
+        [
+          90,
+          2570
+        ],
+        [
+          4110,
+          2570
+        ]
+      ],
+      "dashed": true,
+      "arrow": "none",
+      "color": "#004387",
+      "width": 2
+    }
+  ],
+  "footer": "Author: 722I0004 · AI-assisted (Codex) · Static design at C0; target behavior is not runtime evidence.",
+  "phase3": {
+    "diagram_type": "sequence",
+    "UC": "UC-04",
+    "op_id": "OP-27",
+    "operation": "workloadReport",
+    "parameters": "",
+    "ssd_occurrence": "models/UC-04/ssd_uc04.drawio#M02",
+    "elements": [
+      {
+        "class": "reports",
+        "attributes": [],
+        "methods": [
+          "workload"
+        ],
+        "attribute_types": {},
+        "method_signatures": {
+          "workload": "workload()"
+        },
+        "status": "P4-TARGET",
+        "stereotype": "view",
+        "module": "saigonbite/presentation/reports.py",
+        "attribute_statuses": {},
+        "method_statuses": {
+          "workload": "MATCH"
+        },
+        "method_parameters": {
+          "workload": []
+        },
+        "method_returns": {
+          "workload": "Any"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "ReportController",
+        "attributes": [
+          "reports",
+          "hubs"
+        ],
+        "methods": [
+          "_require_manager",
+          "workload_report"
+        ],
+        "attribute_types": {
+          "reports": "ReportDAO",
+          "hubs": "HubDAO"
+        },
+        "method_signatures": {
+          "_require_manager": "_require_manager(self, user_id: int) -> None",
+          "workload_report": "workload_report(self, user_id: int) -> WorkloadReport"
+        },
+        "status": "P4-TARGET",
+        "stereotype": "controller",
+        "module": "saigonbite/business/controllers/report_controller.py",
+        "attribute_statuses": {
+          "reports": "MATCH",
+          "hubs": "MATCH"
+        },
+        "method_statuses": {
+          "_require_manager": "MATCH",
+          "workload_report": "P4-TARGET"
+        },
+        "method_parameters": {
+          "_require_manager": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "user_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "workload_report": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "user_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "_require_manager": "None",
+          "workload_report": "WorkloadReport"
+        },
+        "P4_inputs": {
+          "workload_report": "P2-S18"
+        },
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "BaseController",
+        "attributes": [
+          "conn",
+          "clock",
+          "users"
+        ],
+        "methods": [
+          "_require_user"
+        ],
+        "attribute_types": {
+          "conn": "sqlite3.Connection",
+          "clock": "Any",
+          "users": "UserDAO"
+        },
+        "method_signatures": {
+          "_require_user": "_require_user(self, user_id: int, *roles: Role, message: str='Your account cannot do this.') -> UserAccount"
+        },
+        "status": "MATCH",
+        "stereotype": "controller",
+        "module": "saigonbite/business/controllers/common.py",
+        "attribute_statuses": {
+          "conn": "MATCH",
+          "clock": "MATCH",
+          "users": "MATCH"
+        },
+        "method_statuses": {
+          "_require_user": "MATCH"
+        },
+        "method_parameters": {
+          "_require_user": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "user_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "roles",
+              "type": "Role",
+              "annotated": true,
+              "default": null,
+              "kind": "vararg"
+            },
+            {
+              "name": "message",
+              "type": "str",
+              "annotated": true,
+              "default": "'Your account cannot do this.'",
+              "kind": "keyword_only"
+            }
+          ]
+        },
+        "method_returns": {
+          "_require_user": "UserAccount"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "HubStatus",
+        "attributes": [
+          "hub",
+          "load"
+        ],
+        "methods": [
+          "load_percent"
+        ],
+        "attribute_types": {
+          "hub": "Hub",
+          "load": "int"
+        },
+        "method_signatures": {
+          "load_percent": "load_percent(self) -> int"
+        },
+        "status": "MATCH",
+        "stereotype": "entity",
+        "module": "saigonbite/business/domain/models.py",
+        "attribute_statuses": {
+          "hub": "MATCH",
+          "load": "MATCH"
+        },
+        "method_statuses": {
+          "load_percent": "MATCH"
+        },
+        "method_parameters": {
+          "load_percent": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "load_percent": "int"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "WorkloadRow",
+        "attributes": [
+          "status",
+          "counts"
+        ],
+        "methods": [],
+        "attribute_types": {
+          "status": "HubStatus",
+          "counts": "dict[OrderState, int]"
+        },
+        "method_signatures": {},
+        "status": "MATCH",
+        "stereotype": "value",
+        "module": "saigonbite/business/controllers/report_controller.py",
+        "attribute_statuses": {
+          "status": "MATCH",
+          "counts": "MATCH"
+        },
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "WorkloadReport",
+        "attributes": [
+          "as_of",
+          "rows"
+        ],
+        "methods": [],
+        "attribute_types": {
+          "as_of": "str",
+          "rows": "list[WorkloadRow]"
+        },
+        "method_signatures": {},
+        "status": "MATCH",
+        "stereotype": "value",
+        "module": "saigonbite/business/controllers/report_controller.py",
+        "attribute_statuses": {
+          "as_of": "MATCH",
+          "rows": "MATCH"
+        },
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "reports",
+        "target": "ReportController",
+        "kind": "call"
+      },
+      {
+        "source": "ReportController",
+        "target": "BaseController",
+        "kind": "call"
+      },
+      {
+        "source": "ReportController",
+        "target": "HubStatus",
+        "kind": "create"
+      },
+      {
+        "source": "ReportController",
+        "target": "WorkloadRow",
+        "kind": "create"
+      },
+      {
+        "source": "ReportController",
+        "target": "WorkloadReport",
+        "kind": "create"
+      }
+    ],
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Manager",
+        "role": "actor"
+      },
+      {
+        "id": "view",
+        "class": "reports",
+        "role": "«view» blueprint module"
+      },
+      {
+        "id": "ctrl",
+        "class": "ReportController",
+        "role": "controller"
+      },
+      {
+        "id": "base",
+        "class": "BaseController",
+        "role": "controller base"
+      },
+      {
+        "id": "hubstatus",
+        "class": "HubStatus",
+        "role": "domain value"
+      },
+      {
+        "id": "row",
+        "class": "WorkloadRow",
+        "role": "controller value"
+      },
+      {
+        "id": "report",
+        "class": "WorkloadReport",
+        "role": "controller value"
+      }
+    ],
+    "messages": [
+      {
+        "from": "actor",
+        "to": "view",
+        "method": "workloadReport",
+        "kind": "ssd",
+        "arguments": "",
+        "guard": "active Manager; no date or hub parameters",
+        "PC_MG": []
+      },
+      {
+        "from": "view",
+        "to": "view",
+        "method": "workload",
+        "kind": "call",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": [],
+        "status": "MATCH",
+        "signature": "workload()",
+        "parameters": [],
+        "return": "Any",
+        "P4_input": "",
+        "return_type": "Any"
+      },
+      {
+        "from": "view",
+        "to": "ctrl",
+        "method": "workload_report",
+        "kind": "call",
+        "arguments": "user_id",
+        "guard": "† P2-S18",
+        "PC_MG": [
+          "UC04-PC01",
+          "UC04-MG01",
+          "UC04-MG02"
+        ],
+        "status": "P4-TARGET",
+        "signature": "workload_report(self, user_id: int) -> WorkloadReport",
+        "parameters": [
+          {
+            "name": "self",
+            "type": "Any",
+            "annotated": false,
+            "default": null,
+            "kind": "positional_or_keyword"
+          },
+          {
+            "name": "user_id",
+            "type": "int",
+            "annotated": true,
+            "default": null,
+            "kind": "positional_or_keyword"
+          }
+        ],
+        "return": "WorkloadReport",
+        "P4_input": "P2-S18",
+        "return_type": "WorkloadReport"
+      },
+      {
+        "from": "ctrl",
+        "to": "ctrl",
+        "method": "_require_manager",
+        "kind": "call",
+        "arguments": "user_id",
+        "guard": "",
+        "PC_MG": [],
+        "status": "MATCH",
+        "signature": "_require_manager(self, user_id: int) -> None",
+        "parameters": [
+          {
+            "name": "self",
+            "type": "Any",
+            "annotated": false,
+            "default": null,
+            "kind": "positional_or_keyword"
+          },
+          {
+            "name": "user_id",
+            "type": "int",
+            "annotated": true,
+            "default": null,
+            "kind": "positional_or_keyword"
+          }
+        ],
+        "return": "None",
+        "P4_input": "",
+        "return_type": "None"
+      },
+      {
+        "from": "ctrl",
+        "to": "base",
+        "method": "_require_user",
+        "kind": "call",
+        "arguments": "user_id, Role.MANAGER",
+        "guard": "",
+        "PC_MG": [],
+        "status": "MATCH",
+        "signature": "_require_user(self, user_id: int, *roles: Role, message: str='Your account cannot do this.') -> UserAccount",
+        "parameters": [
+          {
+            "name": "self",
+            "type": "Any",
+            "annotated": false,
+            "default": null,
+            "kind": "positional_or_keyword"
+          },
+          {
+            "name": "user_id",
+            "type": "int",
+            "annotated": true,
+            "default": null,
+            "kind": "positional_or_keyword"
+          },
+          {
+            "name": "roles",
+            "type": "Role",
+            "annotated": true,
+            "default": null,
+            "kind": "vararg"
+          },
+          {
+            "name": "message",
+            "type": "str",
+            "annotated": true,
+            "default": "'Your account cannot do this.'",
+            "kind": "keyword_only"
+          }
+        ],
+        "return": "UserAccount",
+        "P4_input": "",
+        "return_type": "UserAccount"
+      },
+      {
+        "from": "ctrl",
+        "to": "ctrl",
+        "method": "persistence",
+        "kind": "note",
+        "arguments": "Read all retained hubs and open-order counts.",
+        "guard": "",
+        "PC_MG": []
+      },
+      {
+        "from": "ctrl",
+        "to": "hubstatus",
+        "method": "HubStatus",
+        "kind": "create",
+        "arguments": "hub, cooking load = PLACED + CONFIRMED + PREPARING",
+        "guard": "",
+        "PC_MG": []
+      },
+      {
+        "from": "ctrl",
+        "to": "hubstatus",
+        "method": "load_percent",
+        "kind": "note",
+        "arguments": "Derived load/capacity; BUSY/QUIET are not states.",
+        "guard": "",
+        "PC_MG": [],
+        "status": "MATCH",
+        "signature": "load_percent(self) -> int",
+        "parameters": [
+          {
+            "name": "self",
+            "type": "Any",
+            "annotated": false,
+            "default": null,
+            "kind": "positional_or_keyword"
+          }
+        ],
+        "return": "int",
+        "P4_input": "",
+        "return_type": "int"
+      },
+      {
+        "from": "ctrl",
+        "to": "row",
+        "method": "WorkloadRow",
+        "kind": "create",
+        "arguments": "status, counts",
+        "guard": "",
+        "PC_MG": []
+      },
+      {
+        "from": "ctrl",
+        "to": "report",
+        "method": "WorkloadReport",
+        "kind": "create",
+        "arguments": "as_of=now, rows",
+        "guard": "",
+        "PC_MG": []
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "workload_report",
+        "kind": "return",
+        "arguments": "currentHubLoadCapacityReadyOutForDelivery",
+        "guard": "",
+        "PC_MG": []
+      },
+      {
+        "from": "view",
+        "to": "actor",
+        "method": "workloadReport",
+        "kind": "return",
+        "arguments": "currentHubLoadCapacityReadyOutForDelivery | denied",
+        "guard": "",
+        "PC_MG": []
+      }
+    ],
+    "states": [
+      {
+        "class": "Order",
+        "attribute": "state",
+        "values": [
+          "PLACED",
+          "CONFIRMED",
+          "PREPARING",
+          "READY",
+          "OUT_FOR_DELIVERY"
+        ]
+      }
+    ],
+    "main_outcome": "† P2-S18 target includes archived hubs with zero open work, labelled archived; this is a current snapshot marked now.",
+    "alternate_outcome": "else [E01 non-manager → UC04-MG02; E03 read unavailable] → deny/unavailable; UC04-MG01, zero writes.",
+    "shared_transaction_target": "Read-only; UC04-MG01 applies to every result and refusal."
+  },
+  "render_receipt": {
+    "canvas": [
+      4200,
+      3000
+    ],
+    "minimum_font_px": 60,
+    "placed_width_mm": 230,
+    "minimum_pt": 9.31,
+    "xml": "parsed",
+    "connected_edges": true,
+    "author_native_cell": true,
+    "all_text_minimum_px": 60
+  },
+  "source_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b"
+}

@@ -1,0 +1,5377 @@
+{
+  "author": "Author: 722I0004 · AI-assisted (Codex)",
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "source": "models/shared/design_model.json (read-only)",
+  "UC": "UC-04",
+  "views": {
+    "domain": {
+      "parts": [
+        {
+          "part": "A",
+          "classes": [
+            {
+              "class": "Hub",
+              "attributes": [
+                "id",
+                "name",
+                "max_active_orders",
+                "archived_at"
+              ],
+              "methods": [],
+              "attribute_types": {
+                "id": "int",
+                "name": "str",
+                "max_active_orders": "int",
+                "archived_at": "Optional[str]"
+              },
+              "method_signatures": {},
+              "status": "P4-TARGET",
+              "stereotype": "entity",
+              "module": "saigonbite/business/domain/models.py",
+              "layer": "domain",
+              "attribute_statuses": {
+                "id": "MATCH",
+                "name": "MATCH",
+                "max_active_orders": "MATCH",
+                "archived_at": "MATCH"
+              },
+              "method_statuses": {},
+              "method_parameters": {},
+              "method_returns": {},
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "HubStatus",
+              "attributes": [
+                "hub",
+                "load"
+              ],
+              "methods": [
+                "busy",
+                "quiet",
+                "load_percent"
+              ],
+              "attribute_types": {
+                "hub": "Hub",
+                "load": "int"
+              },
+              "method_signatures": {
+                "busy": "busy(self) -> bool",
+                "quiet": "quiet(self) -> bool",
+                "load_percent": "load_percent(self) -> int"
+              },
+              "status": "MATCH",
+              "stereotype": "entity",
+              "module": "saigonbite/business/domain/models.py",
+              "layer": "domain",
+              "attribute_statuses": {
+                "hub": "MATCH",
+                "load": "MATCH"
+              },
+              "method_statuses": {
+                "busy": "MATCH",
+                "quiet": "MATCH",
+                "load_percent": "MATCH"
+              },
+              "method_parameters": {
+                "busy": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ],
+                "quiet": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ],
+                "load_percent": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "busy": "bool",
+                "quiet": "bool",
+                "load_percent": "int"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "OrderState",
+              "attributes": [],
+              "methods": [],
+              "attribute_types": {},
+              "method_signatures": {},
+              "status": "MATCH",
+              "stereotype": "enumeration",
+              "module": "saigonbite/business/domain/enums.py",
+              "layer": "domain",
+              "attribute_statuses": {},
+              "method_statuses": {},
+              "method_parameters": {},
+              "method_returns": {},
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "DeliveryState",
+              "attributes": [],
+              "methods": [],
+              "attribute_types": {},
+              "method_signatures": {},
+              "status": "MATCH",
+              "stereotype": "enumeration",
+              "module": "saigonbite/business/domain/enums.py",
+              "layer": "domain",
+              "attribute_statuses": {},
+              "method_statuses": {},
+              "method_parameters": {},
+              "method_returns": {},
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            }
+          ],
+          "dependencies": [
+            {
+              "source": "HubStatus",
+              "target": "Hub",
+              "kind": "dependency",
+              "status": "MATCH"
+            }
+          ],
+          "note": "No Report domain class or lifecycle exists; report values stay in the controller module."
+        }
+      ]
+    },
+    "controller": {
+      "parts": [
+        {
+          "part": "A",
+          "classes": [
+            {
+              "class": "ReportController",
+              "attributes": [
+                "reports",
+                "hubs"
+              ],
+              "methods": [
+                "sales_report",
+                "all_hubs",
+                "_require_manager",
+                "_period",
+                "_hub"
+              ],
+              "attribute_types": {
+                "reports": "ReportDAO",
+                "hubs": "HubDAO"
+              },
+              "method_signatures": {
+                "sales_report": "sales_report(self, user_id: int, date_from: Optional[str]=None, date_to: Optional[str]=None, hub_id: Optional[int]=None) -> SalesReport",
+                "all_hubs": "all_hubs(self) -> list[Hub]",
+                "_require_manager": "_require_manager(self, user_id: int) -> None",
+                "_period": "_period(self, date_from: Optional[str], date_to: Optional[str]) -> Period",
+                "_hub": "_hub(self, hub_id: Optional[int]) -> Optional[Hub]"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "controller",
+              "module": "saigonbite/business/controllers/report_controller.py",
+              "layer": "controller",
+              "attribute_statuses": {
+                "reports": "MATCH",
+                "hubs": "MATCH"
+              },
+              "method_statuses": {
+                "sales_report": "P4-TARGET",
+                "all_hubs": "MATCH",
+                "_require_manager": "MATCH",
+                "_period": "MATCH",
+                "_hub": "MATCH"
+              },
+              "method_parameters": {
+                "sales_report": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "user_id",
+                    "type": "int",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "date_from",
+                    "type": "Optional[str]",
+                    "annotated": true,
+                    "default": "None",
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "date_to",
+                    "type": "Optional[str]",
+                    "annotated": true,
+                    "default": "None",
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "hub_id",
+                    "type": "Optional[int]",
+                    "annotated": true,
+                    "default": "None",
+                    "kind": "positional_or_keyword"
+                  }
+                ],
+                "all_hubs": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ],
+                "_require_manager": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "user_id",
+                    "type": "int",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ],
+                "_period": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "date_from",
+                    "type": "Optional[str]",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "date_to",
+                    "type": "Optional[str]",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ],
+                "_hub": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "hub_id",
+                    "type": "Optional[int]",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "sales_report": "SalesReport",
+                "all_hubs": "list[Hub]",
+                "_require_manager": "None",
+                "_period": "Period",
+                "_hub": "Optional[Hub]"
+              },
+              "P4_inputs": {
+                "sales_report": "F-03; F-09"
+              },
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "BaseController",
+              "attributes": [
+                "users"
+              ],
+              "methods": [
+                "_require_user",
+                "_today_vn"
+              ],
+              "attribute_types": {
+                "users": "UserDAO"
+              },
+              "method_signatures": {
+                "_require_user": "_require_user(self, user_id: int, *roles: Role, message: str='Your account cannot do this.') -> UserAccount",
+                "_today_vn": "_today_vn(self) -> str"
+              },
+              "status": "MATCH",
+              "stereotype": "controller",
+              "module": "saigonbite/business/controllers/common.py",
+              "layer": "controller",
+              "attribute_statuses": {
+                "users": "MATCH"
+              },
+              "method_statuses": {
+                "_require_user": "MATCH",
+                "_today_vn": "MATCH"
+              },
+              "method_parameters": {
+                "_require_user": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "user_id",
+                    "type": "int",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "roles",
+                    "type": "Role",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "vararg"
+                  },
+                  {
+                    "name": "message",
+                    "type": "str",
+                    "annotated": true,
+                    "default": "'Your account cannot do this.'",
+                    "kind": "keyword_only"
+                  }
+                ],
+                "_today_vn": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "_require_user": "UserAccount",
+                "_today_vn": "str"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "controllers.common",
+              "attributes": [],
+              "methods": [
+                "vn_day_start_utc"
+              ],
+              "attribute_types": {},
+              "method_signatures": {
+                "vn_day_start_utc": "vn_day_start_utc(day: date) -> str"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "module",
+              "module": "saigonbite/business/controllers/common.py",
+              "layer": "controller",
+              "attribute_statuses": {},
+              "method_statuses": {
+                "vn_day_start_utc": "MATCH"
+              },
+              "method_parameters": {
+                "vn_day_start_utc": [
+                  {
+                    "name": "day",
+                    "type": "date",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "vn_day_start_utc": "str"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            }
+          ],
+          "dependencies": [
+            {
+              "source": "ReportController",
+              "target": "controllers.common",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "BaseController",
+              "source_multiplicity": null,
+              "target_multiplicity": null,
+              "role": "inherits",
+              "kind": "generalization",
+              "navigable": false,
+              "status": "MATCH",
+              "evidence": "AST class base"
+            }
+          ],
+          "note": "Sales value roles continue in Part B; other report operations continue in Parts C–F."
+        },
+        {
+          "part": "B",
+          "classes": [
+            {
+              "class": "ReportController",
+              "attributes": [
+                "reports"
+              ],
+              "methods": [
+                "sales_report"
+              ],
+              "attribute_types": {
+                "reports": "ReportDAO"
+              },
+              "method_signatures": {
+                "sales_report": "sales_report(self, user_id: int, date_from: Optional[str]=None, date_to: Optional[str]=None, hub_id: Optional[int]=None) -> SalesReport"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "controller",
+              "module": "saigonbite/business/controllers/report_controller.py",
+              "layer": "controller",
+              "attribute_statuses": {
+                "reports": "MATCH"
+              },
+              "method_statuses": {
+                "sales_report": "P4-TARGET"
+              },
+              "method_parameters": {
+                "sales_report": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "user_id",
+                    "type": "int",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "date_from",
+                    "type": "Optional[str]",
+                    "annotated": true,
+                    "default": "None",
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "date_to",
+                    "type": "Optional[str]",
+                    "annotated": true,
+                    "default": "None",
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "hub_id",
+                    "type": "Optional[int]",
+                    "annotated": true,
+                    "default": "None",
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "sales_report": "SalesReport"
+              },
+              "P4_inputs": {
+                "sales_report": "F-03; F-09"
+              },
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "Period",
+              "attributes": [
+                "date_from",
+                "date_to",
+                "start_utc",
+                "end_utc"
+              ],
+              "methods": [],
+              "attribute_types": {
+                "date_from": "str",
+                "date_to": "str",
+                "start_utc": "str",
+                "end_utc": "str"
+              },
+              "method_signatures": {},
+              "status": "MATCH",
+              "stereotype": "value",
+              "module": "saigonbite/business/controllers/report_controller.py",
+              "layer": "controller",
+              "attribute_statuses": {
+                "date_from": "MATCH",
+                "date_to": "MATCH",
+                "start_utc": "MATCH",
+                "end_utc": "MATCH"
+              },
+              "method_statuses": {},
+              "method_parameters": {},
+              "method_returns": {},
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "SalesRow",
+              "attributes": [
+                "label",
+                "orders",
+                "item_sales",
+                "voucher_discounts",
+                "delivery_fees",
+                "total",
+                "refunds_owed"
+              ],
+              "methods": [
+                "net",
+                "add"
+              ],
+              "attribute_types": {
+                "label": "str",
+                "orders": "int",
+                "item_sales": "int",
+                "voucher_discounts": "int",
+                "delivery_fees": "int",
+                "total": "int",
+                "refunds_owed": "int"
+              },
+              "method_signatures": {
+                "net": "net(self) -> int",
+                "add": "add(self, other: 'SalesRow') -> None"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "value",
+              "module": "saigonbite/business/controllers/report_controller.py",
+              "layer": "controller",
+              "attribute_statuses": {
+                "label": "MATCH",
+                "orders": "MATCH",
+                "item_sales": "MATCH",
+                "voucher_discounts": "MATCH",
+                "delivery_fees": "MATCH",
+                "total": "MATCH",
+                "refunds_owed": "MATCH"
+              },
+              "method_statuses": {
+                "net": "P4-TARGET",
+                "add": "MATCH"
+              },
+              "method_parameters": {
+                "net": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ],
+                "add": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "other",
+                    "type": "'SalesRow'",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "net": "int",
+                "add": "None"
+              },
+              "P4_inputs": {
+                "net": "F-03"
+              },
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "SalesReport",
+              "attributes": [
+                "period",
+                "hub",
+                "rows",
+                "totals",
+                "top_items"
+              ],
+              "methods": [],
+              "attribute_types": {
+                "period": "Period",
+                "hub": "Optional[Hub]",
+                "rows": "list[SalesRow]",
+                "totals": "SalesRow",
+                "top_items": "list[tuple[int, str, int, int]]"
+              },
+              "method_signatures": {},
+              "status": "P4-TARGET",
+              "stereotype": "value",
+              "module": "saigonbite/business/controllers/report_controller.py",
+              "layer": "controller",
+              "attribute_statuses": {
+                "period": "MATCH",
+                "hub": "MATCH",
+                "rows": "MATCH",
+                "totals": "MATCH",
+                "top_items": "P4-TARGET"
+              },
+              "method_statuses": {},
+              "method_parameters": {},
+              "method_returns": {},
+              "P4_inputs": {},
+              "attribute_P4_inputs": {
+                "top_items": "F-09"
+              }
+            }
+          ],
+          "dependencies": [
+            {
+              "source": "SalesReport",
+              "target": "Period",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "SalesReport",
+              "target": "SalesRow",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "Period",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "SalesReport",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "SalesRow",
+              "kind": "dependency",
+              "status": "MATCH"
+            }
+          ],
+          "note": "Part A contains authorization/filter helpers; F-03/F-09 remain † targets."
+        },
+        {
+          "part": "C",
+          "classes": [
+            {
+              "class": "ReportController",
+              "attributes": [
+                "reports",
+                "hubs"
+              ],
+              "methods": [
+                "workload_report",
+                "_require_manager"
+              ],
+              "attribute_types": {
+                "reports": "ReportDAO",
+                "hubs": "HubDAO"
+              },
+              "method_signatures": {
+                "workload_report": "workload_report(self, user_id: int) -> WorkloadReport",
+                "_require_manager": "_require_manager(self, user_id: int) -> None"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "controller",
+              "module": "saigonbite/business/controllers/report_controller.py",
+              "layer": "controller",
+              "attribute_statuses": {
+                "reports": "MATCH",
+                "hubs": "MATCH"
+              },
+              "method_statuses": {
+                "workload_report": "P4-TARGET",
+                "_require_manager": "MATCH"
+              },
+              "method_parameters": {
+                "workload_report": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "user_id",
+                    "type": "int",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ],
+                "_require_manager": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "user_id",
+                    "type": "int",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "workload_report": "WorkloadReport",
+                "_require_manager": "None"
+              },
+              "P4_inputs": {
+                "workload_report": "P2-S18"
+              },
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "BaseController",
+              "attributes": [
+                "users"
+              ],
+              "methods": [
+                "_require_user",
+                "_now"
+              ],
+              "attribute_types": {
+                "users": "UserDAO"
+              },
+              "method_signatures": {
+                "_require_user": "_require_user(self, user_id: int, *roles: Role, message: str='Your account cannot do this.') -> UserAccount",
+                "_now": "_now(self) -> str"
+              },
+              "status": "MATCH",
+              "stereotype": "controller",
+              "module": "saigonbite/business/controllers/common.py",
+              "layer": "controller",
+              "attribute_statuses": {
+                "users": "MATCH"
+              },
+              "method_statuses": {
+                "_require_user": "MATCH",
+                "_now": "MATCH"
+              },
+              "method_parameters": {
+                "_require_user": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "user_id",
+                    "type": "int",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "roles",
+                    "type": "Role",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "vararg"
+                  },
+                  {
+                    "name": "message",
+                    "type": "str",
+                    "annotated": true,
+                    "default": "'Your account cannot do this.'",
+                    "kind": "keyword_only"
+                  }
+                ],
+                "_now": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "_require_user": "UserAccount",
+                "_now": "str"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            }
+          ],
+          "dependencies": [
+            {
+              "source": "ReportController",
+              "target": "BaseController",
+              "source_multiplicity": null,
+              "target_multiplicity": null,
+              "role": "inherits",
+              "kind": "generalization",
+              "navigable": false,
+              "status": "MATCH",
+              "evidence": "AST class base"
+            }
+          ],
+          "note": "Workload value roles continue in Part D."
+        },
+        {
+          "part": "D",
+          "classes": [
+            {
+              "class": "ReportController",
+              "attributes": [
+                "reports"
+              ],
+              "methods": [
+                "workload_report"
+              ],
+              "attribute_types": {
+                "reports": "ReportDAO"
+              },
+              "method_signatures": {
+                "workload_report": "workload_report(self, user_id: int) -> WorkloadReport"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "controller",
+              "module": "saigonbite/business/controllers/report_controller.py",
+              "layer": "controller",
+              "attribute_statuses": {
+                "reports": "MATCH"
+              },
+              "method_statuses": {
+                "workload_report": "P4-TARGET"
+              },
+              "method_parameters": {
+                "workload_report": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "user_id",
+                    "type": "int",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "workload_report": "WorkloadReport"
+              },
+              "P4_inputs": {
+                "workload_report": "P2-S18"
+              },
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "WorkloadRow",
+              "attributes": [
+                "status",
+                "counts"
+              ],
+              "methods": [
+                "label"
+              ],
+              "attribute_types": {
+                "status": "HubStatus",
+                "counts": "dict[OrderState, int]"
+              },
+              "method_signatures": {
+                "label": "label(self) -> str"
+              },
+              "status": "MATCH",
+              "stereotype": "value",
+              "module": "saigonbite/business/controllers/report_controller.py",
+              "layer": "controller",
+              "attribute_statuses": {
+                "status": "MATCH",
+                "counts": "MATCH"
+              },
+              "method_statuses": {
+                "label": "MATCH"
+              },
+              "method_parameters": {
+                "label": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "label": "str"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "WorkloadReport",
+              "attributes": [
+                "as_of",
+                "rows"
+              ],
+              "methods": [],
+              "attribute_types": {
+                "as_of": "str",
+                "rows": "list[WorkloadRow]"
+              },
+              "method_signatures": {},
+              "status": "MATCH",
+              "stereotype": "value",
+              "module": "saigonbite/business/controllers/report_controller.py",
+              "layer": "controller",
+              "attribute_statuses": {
+                "as_of": "MATCH",
+                "rows": "MATCH"
+              },
+              "method_statuses": {},
+              "method_parameters": {},
+              "method_returns": {},
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            }
+          ],
+          "dependencies": [
+            {
+              "source": "WorkloadReport",
+              "target": "WorkloadRow",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "WorkloadReport",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "WorkloadRow",
+              "kind": "dependency",
+              "status": "MATCH"
+            }
+          ],
+          "note": "Part C contains authorization; workload targets retain archived hubs (P2-S18)."
+        },
+        {
+          "part": "E",
+          "classes": [
+            {
+              "class": "ReportController",
+              "attributes": [
+                "reports",
+                "hubs"
+              ],
+              "methods": [
+                "delivery_report",
+                "_require_manager",
+                "_period",
+                "_hub"
+              ],
+              "attribute_types": {
+                "reports": "ReportDAO",
+                "hubs": "HubDAO"
+              },
+              "method_signatures": {
+                "delivery_report": "delivery_report(self, user_id: int, date_from: Optional[str]=None, date_to: Optional[str]=None, hub_id: Optional[int]=None) -> DeliveryReport",
+                "_require_manager": "_require_manager(self, user_id: int) -> None",
+                "_period": "_period(self, date_from: Optional[str], date_to: Optional[str]) -> Period",
+                "_hub": "_hub(self, hub_id: Optional[int]) -> Optional[Hub]"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "controller",
+              "module": "saigonbite/business/controllers/report_controller.py",
+              "layer": "controller",
+              "attribute_statuses": {
+                "reports": "MATCH",
+                "hubs": "MATCH"
+              },
+              "method_statuses": {
+                "delivery_report": "MATCH",
+                "_require_manager": "MATCH",
+                "_period": "MATCH",
+                "_hub": "MATCH"
+              },
+              "method_parameters": {
+                "delivery_report": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "user_id",
+                    "type": "int",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "date_from",
+                    "type": "Optional[str]",
+                    "annotated": true,
+                    "default": "None",
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "date_to",
+                    "type": "Optional[str]",
+                    "annotated": true,
+                    "default": "None",
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "hub_id",
+                    "type": "Optional[int]",
+                    "annotated": true,
+                    "default": "None",
+                    "kind": "positional_or_keyword"
+                  }
+                ],
+                "_require_manager": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "user_id",
+                    "type": "int",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ],
+                "_period": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "date_from",
+                    "type": "Optional[str]",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "date_to",
+                    "type": "Optional[str]",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ],
+                "_hub": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "hub_id",
+                    "type": "Optional[int]",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "delivery_report": "DeliveryReport",
+                "_require_manager": "None",
+                "_period": "Period",
+                "_hub": "Optional[Hub]"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "BaseController",
+              "attributes": [
+                "users"
+              ],
+              "methods": [
+                "_require_user",
+                "_today_vn"
+              ],
+              "attribute_types": {
+                "users": "UserDAO"
+              },
+              "method_signatures": {
+                "_require_user": "_require_user(self, user_id: int, *roles: Role, message: str='Your account cannot do this.') -> UserAccount",
+                "_today_vn": "_today_vn(self) -> str"
+              },
+              "status": "MATCH",
+              "stereotype": "controller",
+              "module": "saigonbite/business/controllers/common.py",
+              "layer": "controller",
+              "attribute_statuses": {
+                "users": "MATCH"
+              },
+              "method_statuses": {
+                "_require_user": "MATCH",
+                "_today_vn": "MATCH"
+              },
+              "method_parameters": {
+                "_require_user": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "user_id",
+                    "type": "int",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "roles",
+                    "type": "Role",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "vararg"
+                  },
+                  {
+                    "name": "message",
+                    "type": "str",
+                    "annotated": true,
+                    "default": "'Your account cannot do this.'",
+                    "kind": "keyword_only"
+                  }
+                ],
+                "_today_vn": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "_require_user": "UserAccount",
+                "_today_vn": "str"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "controllers.common",
+              "attributes": [],
+              "methods": [
+                "vn_day_start_utc"
+              ],
+              "attribute_types": {},
+              "method_signatures": {
+                "vn_day_start_utc": "vn_day_start_utc(day: date) -> str"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "module",
+              "module": "saigonbite/business/controllers/common.py",
+              "layer": "controller",
+              "attribute_statuses": {},
+              "method_statuses": {
+                "vn_day_start_utc": "MATCH"
+              },
+              "method_parameters": {
+                "vn_day_start_utc": [
+                  {
+                    "name": "day",
+                    "type": "date",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "vn_day_start_utc": "str"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "controllers.report_controller",
+              "attributes": [],
+              "methods": [
+                "_minutes"
+              ],
+              "attribute_types": {},
+              "method_signatures": {
+                "_minutes": "_minutes(start: Optional[str], end: Optional[str]) -> Optional[float]"
+              },
+              "status": "MATCH",
+              "stereotype": "module",
+              "module": "saigonbite/business/controllers/report_controller.py",
+              "layer": "controller",
+              "attribute_statuses": {},
+              "method_statuses": {
+                "_minutes": "MATCH"
+              },
+              "method_parameters": {
+                "_minutes": [
+                  {
+                    "name": "start",
+                    "type": "Optional[str]",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "end",
+                    "type": "Optional[str]",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "_minutes": "Optional[float]"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            }
+          ],
+          "dependencies": [
+            {
+              "source": "ReportController",
+              "target": "controllers.common",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "controllers.report_controller",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "BaseController",
+              "source_multiplicity": null,
+              "target_multiplicity": null,
+              "role": "inherits",
+              "kind": "generalization",
+              "navigable": false,
+              "status": "MATCH",
+              "evidence": "AST class base"
+            }
+          ],
+          "note": "Delivery metric value roles continue in Part F."
+        },
+        {
+          "part": "F",
+          "classes": [
+            {
+              "class": "ReportController",
+              "attributes": [
+                "reports"
+              ],
+              "methods": [
+                "delivery_report"
+              ],
+              "attribute_types": {
+                "reports": "ReportDAO"
+              },
+              "method_signatures": {
+                "delivery_report": "delivery_report(self, user_id: int, date_from: Optional[str]=None, date_to: Optional[str]=None, hub_id: Optional[int]=None) -> DeliveryReport"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "controller",
+              "module": "saigonbite/business/controllers/report_controller.py",
+              "layer": "controller",
+              "attribute_statuses": {
+                "reports": "MATCH"
+              },
+              "method_statuses": {
+                "delivery_report": "MATCH"
+              },
+              "method_parameters": {
+                "delivery_report": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "user_id",
+                    "type": "int",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "date_from",
+                    "type": "Optional[str]",
+                    "annotated": true,
+                    "default": "None",
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "date_to",
+                    "type": "Optional[str]",
+                    "annotated": true,
+                    "default": "None",
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "hub_id",
+                    "type": "Optional[int]",
+                    "annotated": true,
+                    "default": "None",
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "delivery_report": "DeliveryReport"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "Period",
+              "attributes": [
+                "date_from",
+                "date_to",
+                "start_utc",
+                "end_utc"
+              ],
+              "methods": [],
+              "attribute_types": {
+                "date_from": "str",
+                "date_to": "str",
+                "start_utc": "str",
+                "end_utc": "str"
+              },
+              "method_signatures": {},
+              "status": "MATCH",
+              "stereotype": "value",
+              "module": "saigonbite/business/controllers/report_controller.py",
+              "layer": "controller",
+              "attribute_statuses": {
+                "date_from": "MATCH",
+                "date_to": "MATCH",
+                "start_utc": "MATCH",
+                "end_utc": "MATCH"
+              },
+              "method_statuses": {},
+              "method_parameters": {},
+              "method_returns": {},
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "DeliveryRow",
+              "attributes": [
+                "label",
+                "delivered",
+                "failed",
+                "waits",
+                "rides"
+              ],
+              "methods": [
+                "avg_wait",
+                "avg_ride",
+                "failure_rate"
+              ],
+              "attribute_types": {
+                "label": "str",
+                "delivered": "int",
+                "failed": "int",
+                "waits": "list[float]",
+                "rides": "list[float]"
+              },
+              "method_signatures": {
+                "avg_wait": "avg_wait(self) -> Optional[float]",
+                "avg_ride": "avg_ride(self) -> Optional[float]",
+                "failure_rate": "failure_rate(self) -> Optional[float]"
+              },
+              "status": "MATCH",
+              "stereotype": "value",
+              "module": "saigonbite/business/controllers/report_controller.py",
+              "layer": "controller",
+              "attribute_statuses": {
+                "label": "MATCH",
+                "delivered": "MATCH",
+                "failed": "MATCH",
+                "waits": "MATCH",
+                "rides": "MATCH"
+              },
+              "method_statuses": {
+                "avg_wait": "MATCH",
+                "avg_ride": "MATCH",
+                "failure_rate": "MATCH"
+              },
+              "method_parameters": {
+                "avg_wait": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ],
+                "avg_ride": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ],
+                "failure_rate": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "avg_wait": "Optional[float]",
+                "avg_ride": "Optional[float]",
+                "failure_rate": "Optional[float]"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "DeliveryReport",
+              "attributes": [
+                "period",
+                "hub",
+                "by_hub",
+                "by_shipper",
+                "overall"
+              ],
+              "methods": [],
+              "attribute_types": {
+                "period": "Period",
+                "hub": "Optional[Hub]",
+                "by_hub": "list[DeliveryRow]",
+                "by_shipper": "list[DeliveryRow]",
+                "overall": "DeliveryRow"
+              },
+              "method_signatures": {},
+              "status": "MATCH",
+              "stereotype": "value",
+              "module": "saigonbite/business/controllers/report_controller.py",
+              "layer": "controller",
+              "attribute_statuses": {
+                "period": "MATCH",
+                "hub": "MATCH",
+                "by_hub": "MATCH",
+                "by_shipper": "MATCH",
+                "overall": "MATCH"
+              },
+              "method_statuses": {},
+              "method_parameters": {},
+              "method_returns": {},
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            }
+          ],
+          "dependencies": [
+            {
+              "source": "DeliveryReport",
+              "target": "DeliveryRow",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "DeliveryReport",
+              "target": "Period",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "DeliveryReport",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "DeliveryRow",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "Period",
+              "kind": "dependency",
+              "status": "MATCH"
+            }
+          ],
+          "note": "Part E contains authorization and interval helpers; rows and sample counts are non-persisted."
+        }
+      ]
+    },
+    "view": {
+      "parts": [
+        {
+          "part": "A",
+          "classes": [
+            {
+              "class": "reports",
+              "attributes": [],
+              "methods": [
+                "sales",
+                "workload",
+                "delivery",
+                "_filtered"
+              ],
+              "attribute_types": {},
+              "method_signatures": {
+                "sales": "sales()",
+                "workload": "workload()",
+                "delivery": "delivery()",
+                "_filtered": "_filtered(template: str, run)"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "view",
+              "module": "saigonbite/presentation/reports.py",
+              "layer": "view",
+              "attribute_statuses": {},
+              "method_statuses": {
+                "sales": "P4-TARGET",
+                "workload": "MATCH",
+                "delivery": "MATCH",
+                "_filtered": "MATCH"
+              },
+              "method_parameters": {
+                "sales": [],
+                "workload": [],
+                "delivery": [],
+                "_filtered": [
+                  {
+                    "name": "template",
+                    "type": "str",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "run",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "sales": "Any",
+                "workload": "Any",
+                "delivery": "Any",
+                "_filtered": "Any"
+              },
+              "P4_inputs": {
+                "sales": "F-09"
+              },
+              "attribute_P4_inputs": {}
+            }
+          ],
+          "dependencies": [],
+          "note": "View/DAO continuation is not needed."
+        }
+      ]
+    },
+    "dao": {
+      "parts": [
+        {
+          "part": "A",
+          "classes": [
+            {
+              "class": "ReportDAO",
+              "attributes": [
+                "conn"
+              ],
+              "methods": [
+                "sales_by_hub",
+                "top_items",
+                "open_orders_by_hub_and_state",
+                "finished_deliveries"
+              ],
+              "attribute_types": {
+                "conn": "sqlite3.Connection"
+              },
+              "method_signatures": {
+                "sales_by_hub": "sales_by_hub(self, start_utc: str, end_utc: str, hub_id: Optional[int]) -> list[sqlite3.Row]",
+                "top_items": "top_items(self, start_utc: str, end_utc: str, hub_id: Optional[int], limit: int=10) -> list[sqlite3.Row]",
+                "open_orders_by_hub_and_state": "open_orders_by_hub_and_state(self) -> list[sqlite3.Row]",
+                "finished_deliveries": "finished_deliveries(self, start_utc: str, end_utc: str, hub_id: Optional[int]) -> list[sqlite3.Row]"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "DAO",
+              "module": "saigonbite/data_access/report_dao.py",
+              "layer": "data_access",
+              "attribute_statuses": {
+                "conn": "MATCH"
+              },
+              "method_statuses": {
+                "sales_by_hub": "MATCH",
+                "top_items": "P4-TARGET",
+                "open_orders_by_hub_and_state": "MATCH",
+                "finished_deliveries": "MATCH"
+              },
+              "method_parameters": {
+                "sales_by_hub": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "start_utc",
+                    "type": "str",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "end_utc",
+                    "type": "str",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "hub_id",
+                    "type": "Optional[int]",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ],
+                "top_items": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "start_utc",
+                    "type": "str",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "end_utc",
+                    "type": "str",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "hub_id",
+                    "type": "Optional[int]",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "limit",
+                    "type": "int",
+                    "annotated": true,
+                    "default": "10",
+                    "kind": "positional_or_keyword"
+                  }
+                ],
+                "open_orders_by_hub_and_state": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ],
+                "finished_deliveries": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "start_utc",
+                    "type": "str",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "end_utc",
+                    "type": "str",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "hub_id",
+                    "type": "Optional[int]",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "sales_by_hub": "list[sqlite3.Row]",
+                "top_items": "list[sqlite3.Row]",
+                "open_orders_by_hub_and_state": "list[sqlite3.Row]",
+                "finished_deliveries": "list[sqlite3.Row]"
+              },
+              "P4_inputs": {
+                "top_items": "F-09"
+              },
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "HubDAO",
+              "attributes": [
+                "conn"
+              ],
+              "methods": [
+                "get_including_archived",
+                "list_active",
+                "list_all"
+              ],
+              "attribute_types": {
+                "conn": "sqlite3.Connection"
+              },
+              "method_signatures": {
+                "get_including_archived": "get_including_archived(self, hub_id: int) -> Optional[Hub]",
+                "list_active": "list_active(self) -> list[Hub]",
+                "list_all": "list_all(self) -> list[Hub]"
+              },
+              "status": "MATCH",
+              "stereotype": "DAO",
+              "module": "saigonbite/data_access/hub_dao.py",
+              "layer": "data_access",
+              "attribute_statuses": {
+                "conn": "MATCH"
+              },
+              "method_statuses": {
+                "get_including_archived": "MATCH",
+                "list_active": "MATCH",
+                "list_all": "MATCH"
+              },
+              "method_parameters": {
+                "get_including_archived": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "hub_id",
+                    "type": "int",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ],
+                "list_active": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ],
+                "list_all": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "get_including_archived": "Optional[Hub]",
+                "list_active": "list[Hub]",
+                "list_all": "list[Hub]"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "UserDAO",
+              "attributes": [
+                "conn"
+              ],
+              "methods": [
+                "get_by_id"
+              ],
+              "attribute_types": {
+                "conn": "sqlite3.Connection"
+              },
+              "method_signatures": {
+                "get_by_id": "get_by_id(self, user_id: int) -> Optional[UserAccount]"
+              },
+              "status": "MATCH",
+              "stereotype": "DAO",
+              "module": "saigonbite/data_access/user_dao.py",
+              "layer": "data_access",
+              "attribute_statuses": {
+                "conn": "MATCH"
+              },
+              "method_statuses": {
+                "get_by_id": "MATCH"
+              },
+              "method_parameters": {
+                "get_by_id": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "user_id",
+                    "type": "int",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "get_by_id": "Optional[UserAccount]"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            }
+          ],
+          "dependencies": [],
+          "note": "View/DAO continuation is not needed."
+        }
+      ]
+    },
+    "all_layers": {
+      "parts": [
+        {
+          "part": "A",
+          "label": "Sales operation and data grain",
+          "classes": [
+            {
+              "class": "reports",
+              "attributes": [],
+              "methods": [
+                "sales",
+                "_filtered"
+              ],
+              "attribute_types": {},
+              "method_signatures": {
+                "sales": "sales()",
+                "_filtered": "_filtered(template: str, run)"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "view",
+              "module": "saigonbite/presentation/reports.py",
+              "layer": "view",
+              "attribute_statuses": {},
+              "method_statuses": {
+                "sales": "P4-TARGET",
+                "_filtered": "MATCH"
+              },
+              "method_parameters": {
+                "sales": [],
+                "_filtered": [
+                  {
+                    "name": "template",
+                    "type": "str",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "run",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "sales": "Any",
+                "_filtered": "Any"
+              },
+              "P4_inputs": {
+                "sales": "F-09"
+              },
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "ReportController",
+              "attributes": [
+                "reports",
+                "hubs"
+              ],
+              "methods": [
+                "sales_report"
+              ],
+              "attribute_types": {
+                "reports": "ReportDAO",
+                "hubs": "HubDAO"
+              },
+              "method_signatures": {
+                "sales_report": "sales_report(self, user_id: int, date_from: Optional[str]=None, date_to: Optional[str]=None, hub_id: Optional[int]=None) -> SalesReport"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "controller",
+              "module": "saigonbite/business/controllers/report_controller.py",
+              "layer": "controller",
+              "attribute_statuses": {
+                "reports": "MATCH",
+                "hubs": "MATCH"
+              },
+              "method_statuses": {
+                "sales_report": "P4-TARGET"
+              },
+              "method_parameters": {
+                "sales_report": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "user_id",
+                    "type": "int",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "date_from",
+                    "type": "Optional[str]",
+                    "annotated": true,
+                    "default": "None",
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "date_to",
+                    "type": "Optional[str]",
+                    "annotated": true,
+                    "default": "None",
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "hub_id",
+                    "type": "Optional[int]",
+                    "annotated": true,
+                    "default": "None",
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "sales_report": "SalesReport"
+              },
+              "P4_inputs": {
+                "sales_report": "F-03; F-09"
+              },
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "Hub",
+              "attributes": [
+                "id",
+                "name"
+              ],
+              "methods": [],
+              "attribute_types": {
+                "id": "int",
+                "name": "str"
+              },
+              "method_signatures": {},
+              "status": "P4-TARGET",
+              "stereotype": "entity",
+              "module": "saigonbite/business/domain/models.py",
+              "layer": "domain",
+              "attribute_statuses": {
+                "id": "MATCH",
+                "name": "MATCH"
+              },
+              "method_statuses": {},
+              "method_parameters": {},
+              "method_returns": {},
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "OrderState",
+              "attributes": [],
+              "methods": [],
+              "attribute_types": {},
+              "method_signatures": {},
+              "status": "MATCH",
+              "stereotype": "enumeration",
+              "module": "saigonbite/business/domain/enums.py",
+              "layer": "domain",
+              "attribute_statuses": {},
+              "method_statuses": {},
+              "method_parameters": {},
+              "method_returns": {},
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "ReportDAO",
+              "attributes": [
+                "conn"
+              ],
+              "methods": [
+                "sales_by_hub",
+                "top_items"
+              ],
+              "attribute_types": {
+                "conn": "sqlite3.Connection"
+              },
+              "method_signatures": {
+                "sales_by_hub": "sales_by_hub(self, start_utc: str, end_utc: str, hub_id: Optional[int]) -> list[sqlite3.Row]",
+                "top_items": "top_items(self, start_utc: str, end_utc: str, hub_id: Optional[int], limit: int=10) -> list[sqlite3.Row]"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "DAO",
+              "module": "saigonbite/data_access/report_dao.py",
+              "layer": "data_access",
+              "attribute_statuses": {
+                "conn": "MATCH"
+              },
+              "method_statuses": {
+                "sales_by_hub": "MATCH",
+                "top_items": "P4-TARGET"
+              },
+              "method_parameters": {
+                "sales_by_hub": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "start_utc",
+                    "type": "str",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "end_utc",
+                    "type": "str",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "hub_id",
+                    "type": "Optional[int]",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ],
+                "top_items": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "start_utc",
+                    "type": "str",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "end_utc",
+                    "type": "str",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "hub_id",
+                    "type": "Optional[int]",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "limit",
+                    "type": "int",
+                    "annotated": true,
+                    "default": "10",
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "sales_by_hub": "list[sqlite3.Row]",
+                "top_items": "list[sqlite3.Row]"
+              },
+              "P4_inputs": {
+                "top_items": "F-09"
+              },
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "HubDAO",
+              "attributes": [
+                "conn"
+              ],
+              "methods": [
+                "get_including_archived"
+              ],
+              "attribute_types": {
+                "conn": "sqlite3.Connection"
+              },
+              "method_signatures": {
+                "get_including_archived": "get_including_archived(self, hub_id: int) -> Optional[Hub]"
+              },
+              "status": "MATCH",
+              "stereotype": "DAO",
+              "module": "saigonbite/data_access/hub_dao.py",
+              "layer": "data_access",
+              "attribute_statuses": {
+                "conn": "MATCH"
+              },
+              "method_statuses": {
+                "get_including_archived": "MATCH"
+              },
+              "method_parameters": {
+                "get_including_archived": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "hub_id",
+                    "type": "int",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "get_including_archived": "Optional[Hub]"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            }
+          ],
+          "dependencies": [
+            {
+              "source": "ReportController",
+              "target": "Hub",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "HubDAO",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "OrderState",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "ReportDAO",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "reports",
+              "target": "ReportController",
+              "kind": "dependency",
+              "status": "MATCH"
+            }
+          ]
+        },
+        {
+          "part": "B",
+          "label": "Manager guard and VN filter helpers",
+          "classes": [
+            {
+              "class": "reports",
+              "attributes": [],
+              "methods": [
+                "sales",
+                "_filtered"
+              ],
+              "attribute_types": {},
+              "method_signatures": {
+                "sales": "sales()",
+                "_filtered": "_filtered(template: str, run)"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "view",
+              "module": "saigonbite/presentation/reports.py",
+              "layer": "view",
+              "attribute_statuses": {},
+              "method_statuses": {
+                "sales": "P4-TARGET",
+                "_filtered": "MATCH"
+              },
+              "method_parameters": {
+                "sales": [],
+                "_filtered": [
+                  {
+                    "name": "template",
+                    "type": "str",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "run",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "sales": "Any",
+                "_filtered": "Any"
+              },
+              "P4_inputs": {
+                "sales": "F-09"
+              },
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "ReportController",
+              "attributes": [
+                "reports",
+                "hubs"
+              ],
+              "methods": [
+                "all_hubs",
+                "_require_manager",
+                "_period",
+                "_hub"
+              ],
+              "attribute_types": {
+                "reports": "ReportDAO",
+                "hubs": "HubDAO"
+              },
+              "method_signatures": {
+                "all_hubs": "all_hubs(self) -> list[Hub]",
+                "_require_manager": "_require_manager(self, user_id: int) -> None",
+                "_period": "_period(self, date_from: Optional[str], date_to: Optional[str]) -> Period",
+                "_hub": "_hub(self, hub_id: Optional[int]) -> Optional[Hub]"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "controller",
+              "module": "saigonbite/business/controllers/report_controller.py",
+              "layer": "controller",
+              "attribute_statuses": {
+                "reports": "MATCH",
+                "hubs": "MATCH"
+              },
+              "method_statuses": {
+                "all_hubs": "MATCH",
+                "_require_manager": "MATCH",
+                "_period": "MATCH",
+                "_hub": "MATCH"
+              },
+              "method_parameters": {
+                "all_hubs": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ],
+                "_require_manager": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "user_id",
+                    "type": "int",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ],
+                "_period": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "date_from",
+                    "type": "Optional[str]",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "date_to",
+                    "type": "Optional[str]",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ],
+                "_hub": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "hub_id",
+                    "type": "Optional[int]",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "all_hubs": "list[Hub]",
+                "_require_manager": "None",
+                "_period": "Period",
+                "_hub": "Optional[Hub]"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "BaseController",
+              "attributes": [
+                "conn",
+                "clock",
+                "users"
+              ],
+              "methods": [
+                "_require_user",
+                "_today_vn"
+              ],
+              "attribute_types": {
+                "conn": "sqlite3.Connection",
+                "clock": "Any",
+                "users": "UserDAO"
+              },
+              "method_signatures": {
+                "_require_user": "_require_user(self, user_id: int, *roles: Role, message: str='Your account cannot do this.') -> UserAccount",
+                "_today_vn": "_today_vn(self) -> str"
+              },
+              "status": "MATCH",
+              "stereotype": "controller",
+              "module": "saigonbite/business/controllers/common.py",
+              "layer": "controller",
+              "attribute_statuses": {
+                "conn": "MATCH",
+                "clock": "MATCH",
+                "users": "MATCH"
+              },
+              "method_statuses": {
+                "_require_user": "MATCH",
+                "_today_vn": "MATCH"
+              },
+              "method_parameters": {
+                "_require_user": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "user_id",
+                    "type": "int",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "roles",
+                    "type": "Role",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "vararg"
+                  },
+                  {
+                    "name": "message",
+                    "type": "str",
+                    "annotated": true,
+                    "default": "'Your account cannot do this.'",
+                    "kind": "keyword_only"
+                  }
+                ],
+                "_today_vn": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "_require_user": "UserAccount",
+                "_today_vn": "str"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "controllers.common",
+              "attributes": [],
+              "methods": [
+                "vn_day_start_utc"
+              ],
+              "attribute_types": {},
+              "method_signatures": {
+                "vn_day_start_utc": "vn_day_start_utc(day: date) -> str"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "module",
+              "module": "saigonbite/business/controllers/common.py",
+              "layer": "controller",
+              "attribute_statuses": {},
+              "method_statuses": {
+                "vn_day_start_utc": "MATCH"
+              },
+              "method_parameters": {
+                "vn_day_start_utc": [
+                  {
+                    "name": "day",
+                    "type": "date",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "vn_day_start_utc": "str"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "Hub",
+              "attributes": [
+                "id",
+                "name"
+              ],
+              "methods": [],
+              "attribute_types": {
+                "id": "int",
+                "name": "str"
+              },
+              "method_signatures": {},
+              "status": "P4-TARGET",
+              "stereotype": "entity",
+              "module": "saigonbite/business/domain/models.py",
+              "layer": "domain",
+              "attribute_statuses": {
+                "id": "MATCH",
+                "name": "MATCH"
+              },
+              "method_statuses": {},
+              "method_parameters": {},
+              "method_returns": {},
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "OrderState",
+              "attributes": [],
+              "methods": [],
+              "attribute_types": {},
+              "method_signatures": {},
+              "status": "MATCH",
+              "stereotype": "enumeration",
+              "module": "saigonbite/business/domain/enums.py",
+              "layer": "domain",
+              "attribute_statuses": {},
+              "method_statuses": {},
+              "method_parameters": {},
+              "method_returns": {},
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "HubDAO",
+              "attributes": [
+                "conn"
+              ],
+              "methods": [
+                "get_including_archived",
+                "list_all"
+              ],
+              "attribute_types": {
+                "conn": "sqlite3.Connection"
+              },
+              "method_signatures": {
+                "get_including_archived": "get_including_archived(self, hub_id: int) -> Optional[Hub]",
+                "list_all": "list_all(self) -> list[Hub]"
+              },
+              "status": "MATCH",
+              "stereotype": "DAO",
+              "module": "saigonbite/data_access/hub_dao.py",
+              "layer": "data_access",
+              "attribute_statuses": {
+                "conn": "MATCH"
+              },
+              "method_statuses": {
+                "get_including_archived": "MATCH",
+                "list_all": "MATCH"
+              },
+              "method_parameters": {
+                "get_including_archived": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "hub_id",
+                    "type": "int",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ],
+                "list_all": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "get_including_archived": "Optional[Hub]",
+                "list_all": "list[Hub]"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "UserDAO",
+              "attributes": [
+                "conn"
+              ],
+              "methods": [
+                "get_by_id"
+              ],
+              "attribute_types": {
+                "conn": "sqlite3.Connection"
+              },
+              "method_signatures": {
+                "get_by_id": "get_by_id(self, user_id: int) -> Optional[UserAccount]"
+              },
+              "status": "MATCH",
+              "stereotype": "DAO",
+              "module": "saigonbite/data_access/user_dao.py",
+              "layer": "data_access",
+              "attribute_statuses": {
+                "conn": "MATCH"
+              },
+              "method_statuses": {
+                "get_by_id": "MATCH"
+              },
+              "method_parameters": {
+                "get_by_id": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "user_id",
+                    "type": "int",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "get_by_id": "Optional[UserAccount]"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            }
+          ],
+          "dependencies": [
+            {
+              "source": "BaseController",
+              "target": "UserDAO",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "controllers.common",
+              "target": "OrderState",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "Hub",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "HubDAO",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "OrderState",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "controllers.common",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "reports",
+              "target": "ReportController",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "BaseController",
+              "source_multiplicity": null,
+              "target_multiplicity": null,
+              "role": "inherits",
+              "kind": "generalization",
+              "navigable": false,
+              "status": "MATCH",
+              "evidence": "AST class base"
+            }
+          ]
+        },
+        {
+          "part": "C",
+          "label": "Sales row and filter value objects",
+          "classes": [
+            {
+              "class": "reports",
+              "attributes": [],
+              "methods": [
+                "sales"
+              ],
+              "attribute_types": {},
+              "method_signatures": {
+                "sales": "sales()"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "view",
+              "module": "saigonbite/presentation/reports.py",
+              "layer": "view",
+              "attribute_statuses": {},
+              "method_statuses": {
+                "sales": "P4-TARGET"
+              },
+              "method_parameters": {
+                "sales": []
+              },
+              "method_returns": {
+                "sales": "Any"
+              },
+              "P4_inputs": {
+                "sales": "F-09"
+              },
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "ReportController",
+              "attributes": [
+                "reports",
+                "hubs"
+              ],
+              "methods": [
+                "sales_report"
+              ],
+              "attribute_types": {
+                "reports": "ReportDAO",
+                "hubs": "HubDAO"
+              },
+              "method_signatures": {
+                "sales_report": "sales_report(self, user_id: int, date_from: Optional[str]=None, date_to: Optional[str]=None, hub_id: Optional[int]=None) -> SalesReport"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "controller",
+              "module": "saigonbite/business/controllers/report_controller.py",
+              "layer": "controller",
+              "attribute_statuses": {
+                "reports": "MATCH",
+                "hubs": "MATCH"
+              },
+              "method_statuses": {
+                "sales_report": "P4-TARGET"
+              },
+              "method_parameters": {
+                "sales_report": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "user_id",
+                    "type": "int",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "date_from",
+                    "type": "Optional[str]",
+                    "annotated": true,
+                    "default": "None",
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "date_to",
+                    "type": "Optional[str]",
+                    "annotated": true,
+                    "default": "None",
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "hub_id",
+                    "type": "Optional[int]",
+                    "annotated": true,
+                    "default": "None",
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "sales_report": "SalesReport"
+              },
+              "P4_inputs": {
+                "sales_report": "F-03; F-09"
+              },
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "Period",
+              "attributes": [
+                "date_from",
+                "date_to",
+                "start_utc",
+                "end_utc"
+              ],
+              "methods": [],
+              "attribute_types": {
+                "date_from": "str",
+                "date_to": "str",
+                "start_utc": "str",
+                "end_utc": "str"
+              },
+              "method_signatures": {},
+              "status": "MATCH",
+              "stereotype": "value",
+              "module": "saigonbite/business/controllers/report_controller.py",
+              "layer": "controller",
+              "attribute_statuses": {
+                "date_from": "MATCH",
+                "date_to": "MATCH",
+                "start_utc": "MATCH",
+                "end_utc": "MATCH"
+              },
+              "method_statuses": {},
+              "method_parameters": {},
+              "method_returns": {},
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "SalesRow",
+              "attributes": [
+                "label",
+                "orders",
+                "item_sales",
+                "voucher_discounts",
+                "delivery_fees",
+                "total",
+                "refunds_owed"
+              ],
+              "methods": [
+                "net",
+                "add"
+              ],
+              "attribute_types": {
+                "label": "str",
+                "orders": "int",
+                "item_sales": "int",
+                "voucher_discounts": "int",
+                "delivery_fees": "int",
+                "total": "int",
+                "refunds_owed": "int"
+              },
+              "method_signatures": {
+                "net": "net(self) -> int",
+                "add": "add(self, other: 'SalesRow') -> None"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "value",
+              "module": "saigonbite/business/controllers/report_controller.py",
+              "layer": "controller",
+              "attribute_statuses": {
+                "label": "MATCH",
+                "orders": "MATCH",
+                "item_sales": "MATCH",
+                "voucher_discounts": "MATCH",
+                "delivery_fees": "MATCH",
+                "total": "MATCH",
+                "refunds_owed": "MATCH"
+              },
+              "method_statuses": {
+                "net": "P4-TARGET",
+                "add": "MATCH"
+              },
+              "method_parameters": {
+                "net": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ],
+                "add": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "other",
+                    "type": "'SalesRow'",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "net": "int",
+                "add": "None"
+              },
+              "P4_inputs": {
+                "net": "F-03"
+              },
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "Hub",
+              "attributes": [
+                "id",
+                "name"
+              ],
+              "methods": [],
+              "attribute_types": {
+                "id": "int",
+                "name": "str"
+              },
+              "method_signatures": {},
+              "status": "P4-TARGET",
+              "stereotype": "entity",
+              "module": "saigonbite/business/domain/models.py",
+              "layer": "domain",
+              "attribute_statuses": {
+                "id": "MATCH",
+                "name": "MATCH"
+              },
+              "method_statuses": {},
+              "method_parameters": {},
+              "method_returns": {},
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "ReportDAO",
+              "attributes": [
+                "conn"
+              ],
+              "methods": [
+                "sales_by_hub"
+              ],
+              "attribute_types": {
+                "conn": "sqlite3.Connection"
+              },
+              "method_signatures": {
+                "sales_by_hub": "sales_by_hub(self, start_utc: str, end_utc: str, hub_id: Optional[int]) -> list[sqlite3.Row]"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "DAO",
+              "module": "saigonbite/data_access/report_dao.py",
+              "layer": "data_access",
+              "attribute_statuses": {
+                "conn": "MATCH"
+              },
+              "method_statuses": {
+                "sales_by_hub": "MATCH"
+              },
+              "method_parameters": {
+                "sales_by_hub": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "start_utc",
+                    "type": "str",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "end_utc",
+                    "type": "str",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "hub_id",
+                    "type": "Optional[int]",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "sales_by_hub": "list[sqlite3.Row]"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "HubDAO",
+              "attributes": [
+                "conn"
+              ],
+              "methods": [
+                "get_including_archived"
+              ],
+              "attribute_types": {
+                "conn": "sqlite3.Connection"
+              },
+              "method_signatures": {
+                "get_including_archived": "get_including_archived(self, hub_id: int) -> Optional[Hub]"
+              },
+              "status": "MATCH",
+              "stereotype": "DAO",
+              "module": "saigonbite/data_access/hub_dao.py",
+              "layer": "data_access",
+              "attribute_statuses": {
+                "conn": "MATCH"
+              },
+              "method_statuses": {
+                "get_including_archived": "MATCH"
+              },
+              "method_parameters": {
+                "get_including_archived": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "hub_id",
+                    "type": "int",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "get_including_archived": "Optional[Hub]"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            }
+          ],
+          "dependencies": [
+            {
+              "source": "ReportController",
+              "target": "Hub",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "HubDAO",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "Period",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "ReportDAO",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "SalesRow",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "reports",
+              "target": "ReportController",
+              "kind": "dependency",
+              "status": "MATCH"
+            }
+          ]
+        },
+        {
+          "part": "D",
+          "label": "Sales report result object",
+          "classes": [
+            {
+              "class": "reports",
+              "attributes": [],
+              "methods": [
+                "sales"
+              ],
+              "attribute_types": {},
+              "method_signatures": {
+                "sales": "sales()"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "view",
+              "module": "saigonbite/presentation/reports.py",
+              "layer": "view",
+              "attribute_statuses": {},
+              "method_statuses": {
+                "sales": "P4-TARGET"
+              },
+              "method_parameters": {
+                "sales": []
+              },
+              "method_returns": {
+                "sales": "Any"
+              },
+              "P4_inputs": {
+                "sales": "F-09"
+              },
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "ReportController",
+              "attributes": [
+                "reports",
+                "hubs"
+              ],
+              "methods": [
+                "sales_report"
+              ],
+              "attribute_types": {
+                "reports": "ReportDAO",
+                "hubs": "HubDAO"
+              },
+              "method_signatures": {
+                "sales_report": "sales_report(self, user_id: int, date_from: Optional[str]=None, date_to: Optional[str]=None, hub_id: Optional[int]=None) -> SalesReport"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "controller",
+              "module": "saigonbite/business/controllers/report_controller.py",
+              "layer": "controller",
+              "attribute_statuses": {
+                "reports": "MATCH",
+                "hubs": "MATCH"
+              },
+              "method_statuses": {
+                "sales_report": "P4-TARGET"
+              },
+              "method_parameters": {
+                "sales_report": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "user_id",
+                    "type": "int",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "date_from",
+                    "type": "Optional[str]",
+                    "annotated": true,
+                    "default": "None",
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "date_to",
+                    "type": "Optional[str]",
+                    "annotated": true,
+                    "default": "None",
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "hub_id",
+                    "type": "Optional[int]",
+                    "annotated": true,
+                    "default": "None",
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "sales_report": "SalesReport"
+              },
+              "P4_inputs": {
+                "sales_report": "F-03; F-09"
+              },
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "SalesReport",
+              "attributes": [
+                "period",
+                "hub",
+                "rows",
+                "totals",
+                "top_items"
+              ],
+              "methods": [],
+              "attribute_types": {
+                "period": "Period",
+                "hub": "Optional[Hub]",
+                "rows": "list[SalesRow]",
+                "totals": "SalesRow",
+                "top_items": "list[tuple[int, str, int, int]]"
+              },
+              "method_signatures": {},
+              "status": "P4-TARGET",
+              "stereotype": "value",
+              "module": "saigonbite/business/controllers/report_controller.py",
+              "layer": "controller",
+              "attribute_statuses": {
+                "period": "MATCH",
+                "hub": "MATCH",
+                "rows": "MATCH",
+                "totals": "MATCH",
+                "top_items": "P4-TARGET"
+              },
+              "method_statuses": {},
+              "method_parameters": {},
+              "method_returns": {},
+              "P4_inputs": {},
+              "attribute_P4_inputs": {
+                "top_items": "F-09"
+              }
+            },
+            {
+              "class": "Hub",
+              "attributes": [
+                "id",
+                "name"
+              ],
+              "methods": [],
+              "attribute_types": {
+                "id": "int",
+                "name": "str"
+              },
+              "method_signatures": {},
+              "status": "P4-TARGET",
+              "stereotype": "entity",
+              "module": "saigonbite/business/domain/models.py",
+              "layer": "domain",
+              "attribute_statuses": {
+                "id": "MATCH",
+                "name": "MATCH"
+              },
+              "method_statuses": {},
+              "method_parameters": {},
+              "method_returns": {},
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "ReportDAO",
+              "attributes": [
+                "conn"
+              ],
+              "methods": [
+                "top_items"
+              ],
+              "attribute_types": {
+                "conn": "sqlite3.Connection"
+              },
+              "method_signatures": {
+                "top_items": "top_items(self, start_utc: str, end_utc: str, hub_id: Optional[int], limit: int=10) -> list[sqlite3.Row]"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "DAO",
+              "module": "saigonbite/data_access/report_dao.py",
+              "layer": "data_access",
+              "attribute_statuses": {
+                "conn": "MATCH"
+              },
+              "method_statuses": {
+                "top_items": "P4-TARGET"
+              },
+              "method_parameters": {
+                "top_items": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "start_utc",
+                    "type": "str",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "end_utc",
+                    "type": "str",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "hub_id",
+                    "type": "Optional[int]",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "limit",
+                    "type": "int",
+                    "annotated": true,
+                    "default": "10",
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "top_items": "list[sqlite3.Row]"
+              },
+              "P4_inputs": {
+                "top_items": "F-09"
+              },
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "HubDAO",
+              "attributes": [
+                "conn"
+              ],
+              "methods": [
+                "get_including_archived"
+              ],
+              "attribute_types": {
+                "conn": "sqlite3.Connection"
+              },
+              "method_signatures": {
+                "get_including_archived": "get_including_archived(self, hub_id: int) -> Optional[Hub]"
+              },
+              "status": "MATCH",
+              "stereotype": "DAO",
+              "module": "saigonbite/data_access/hub_dao.py",
+              "layer": "data_access",
+              "attribute_statuses": {
+                "conn": "MATCH"
+              },
+              "method_statuses": {
+                "get_including_archived": "MATCH"
+              },
+              "method_parameters": {
+                "get_including_archived": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "hub_id",
+                    "type": "int",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "get_including_archived": "Optional[Hub]"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            }
+          ],
+          "dependencies": [
+            {
+              "source": "SalesReport",
+              "target": "Hub",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "Hub",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "HubDAO",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "ReportDAO",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "SalesReport",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "reports",
+              "target": "ReportController",
+              "kind": "dependency",
+              "status": "MATCH"
+            }
+          ]
+        },
+        {
+          "part": "E",
+          "label": "Current workload and archived hubs",
+          "classes": [
+            {
+              "class": "reports",
+              "attributes": [],
+              "methods": [
+                "workload"
+              ],
+              "attribute_types": {},
+              "method_signatures": {
+                "workload": "workload()"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "view",
+              "module": "saigonbite/presentation/reports.py",
+              "layer": "view",
+              "attribute_statuses": {},
+              "method_statuses": {
+                "workload": "MATCH"
+              },
+              "method_parameters": {
+                "workload": []
+              },
+              "method_returns": {
+                "workload": "Any"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "ReportController",
+              "attributes": [
+                "reports",
+                "hubs"
+              ],
+              "methods": [
+                "workload_report"
+              ],
+              "attribute_types": {
+                "reports": "ReportDAO",
+                "hubs": "HubDAO"
+              },
+              "method_signatures": {
+                "workload_report": "workload_report(self, user_id: int) -> WorkloadReport"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "controller",
+              "module": "saigonbite/business/controllers/report_controller.py",
+              "layer": "controller",
+              "attribute_statuses": {
+                "reports": "MATCH",
+                "hubs": "MATCH"
+              },
+              "method_statuses": {
+                "workload_report": "P4-TARGET"
+              },
+              "method_parameters": {
+                "workload_report": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "user_id",
+                    "type": "int",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "workload_report": "WorkloadReport"
+              },
+              "P4_inputs": {
+                "workload_report": "P2-S18"
+              },
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "Hub",
+              "attributes": [
+                "id",
+                "name",
+                "max_active_orders",
+                "archived_at"
+              ],
+              "methods": [],
+              "attribute_types": {
+                "id": "int",
+                "name": "str",
+                "max_active_orders": "int",
+                "archived_at": "Optional[str]"
+              },
+              "method_signatures": {},
+              "status": "P4-TARGET",
+              "stereotype": "entity",
+              "module": "saigonbite/business/domain/models.py",
+              "layer": "domain",
+              "attribute_statuses": {
+                "id": "MATCH",
+                "name": "MATCH",
+                "max_active_orders": "MATCH",
+                "archived_at": "MATCH"
+              },
+              "method_statuses": {},
+              "method_parameters": {},
+              "method_returns": {},
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "HubStatus",
+              "attributes": [
+                "hub",
+                "load"
+              ],
+              "methods": [
+                "busy",
+                "quiet",
+                "load_percent"
+              ],
+              "attribute_types": {
+                "hub": "Hub",
+                "load": "int"
+              },
+              "method_signatures": {
+                "busy": "busy(self) -> bool",
+                "quiet": "quiet(self) -> bool",
+                "load_percent": "load_percent(self) -> int"
+              },
+              "status": "MATCH",
+              "stereotype": "entity",
+              "module": "saigonbite/business/domain/models.py",
+              "layer": "domain",
+              "attribute_statuses": {
+                "hub": "MATCH",
+                "load": "MATCH"
+              },
+              "method_statuses": {
+                "busy": "MATCH",
+                "quiet": "MATCH",
+                "load_percent": "MATCH"
+              },
+              "method_parameters": {
+                "busy": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ],
+                "quiet": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ],
+                "load_percent": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "busy": "bool",
+                "quiet": "bool",
+                "load_percent": "int"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "OrderState",
+              "attributes": [],
+              "methods": [],
+              "attribute_types": {},
+              "method_signatures": {},
+              "status": "MATCH",
+              "stereotype": "enumeration",
+              "module": "saigonbite/business/domain/enums.py",
+              "layer": "domain",
+              "attribute_statuses": {},
+              "method_statuses": {},
+              "method_parameters": {},
+              "method_returns": {},
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "ReportDAO",
+              "attributes": [
+                "conn"
+              ],
+              "methods": [
+                "open_orders_by_hub_and_state"
+              ],
+              "attribute_types": {
+                "conn": "sqlite3.Connection"
+              },
+              "method_signatures": {
+                "open_orders_by_hub_and_state": "open_orders_by_hub_and_state(self) -> list[sqlite3.Row]"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "DAO",
+              "module": "saigonbite/data_access/report_dao.py",
+              "layer": "data_access",
+              "attribute_statuses": {
+                "conn": "MATCH"
+              },
+              "method_statuses": {
+                "open_orders_by_hub_and_state": "MATCH"
+              },
+              "method_parameters": {
+                "open_orders_by_hub_and_state": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "open_orders_by_hub_and_state": "list[sqlite3.Row]"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "HubDAO",
+              "attributes": [
+                "conn"
+              ],
+              "methods": [
+                "list_all"
+              ],
+              "attribute_types": {
+                "conn": "sqlite3.Connection"
+              },
+              "method_signatures": {
+                "list_all": "list_all(self) -> list[Hub]"
+              },
+              "status": "MATCH",
+              "stereotype": "DAO",
+              "module": "saigonbite/data_access/hub_dao.py",
+              "layer": "data_access",
+              "attribute_statuses": {
+                "conn": "MATCH"
+              },
+              "method_statuses": {
+                "list_all": "MATCH"
+              },
+              "method_parameters": {
+                "list_all": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "list_all": "list[Hub]"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "UserDAO",
+              "attributes": [
+                "conn"
+              ],
+              "methods": [
+                "get_by_id"
+              ],
+              "attribute_types": {
+                "conn": "sqlite3.Connection"
+              },
+              "method_signatures": {
+                "get_by_id": "get_by_id(self, user_id: int) -> Optional[UserAccount]"
+              },
+              "status": "MATCH",
+              "stereotype": "DAO",
+              "module": "saigonbite/data_access/user_dao.py",
+              "layer": "data_access",
+              "attribute_statuses": {
+                "conn": "MATCH"
+              },
+              "method_statuses": {
+                "get_by_id": "MATCH"
+              },
+              "method_parameters": {
+                "get_by_id": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "user_id",
+                    "type": "int",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "get_by_id": "Optional[UserAccount]"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            }
+          ],
+          "dependencies": [
+            {
+              "source": "ReportController",
+              "target": "Hub",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "HubDAO",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "HubStatus",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "OrderState",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "ReportDAO",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "HubStatus",
+              "target": "Hub",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "reports",
+              "target": "ReportController",
+              "kind": "dependency",
+              "status": "MATCH"
+            }
+          ]
+        },
+        {
+          "part": "F",
+          "label": "Workload snapshot value objects",
+          "classes": [
+            {
+              "class": "reports",
+              "attributes": [],
+              "methods": [
+                "workload"
+              ],
+              "attribute_types": {},
+              "method_signatures": {
+                "workload": "workload()"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "view",
+              "module": "saigonbite/presentation/reports.py",
+              "layer": "view",
+              "attribute_statuses": {},
+              "method_statuses": {
+                "workload": "MATCH"
+              },
+              "method_parameters": {
+                "workload": []
+              },
+              "method_returns": {
+                "workload": "Any"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "ReportController",
+              "attributes": [
+                "reports",
+                "hubs"
+              ],
+              "methods": [
+                "workload_report"
+              ],
+              "attribute_types": {
+                "reports": "ReportDAO",
+                "hubs": "HubDAO"
+              },
+              "method_signatures": {
+                "workload_report": "workload_report(self, user_id: int) -> WorkloadReport"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "controller",
+              "module": "saigonbite/business/controllers/report_controller.py",
+              "layer": "controller",
+              "attribute_statuses": {
+                "reports": "MATCH",
+                "hubs": "MATCH"
+              },
+              "method_statuses": {
+                "workload_report": "P4-TARGET"
+              },
+              "method_parameters": {
+                "workload_report": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "user_id",
+                    "type": "int",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "workload_report": "WorkloadReport"
+              },
+              "P4_inputs": {
+                "workload_report": "P2-S18"
+              },
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "WorkloadRow",
+              "attributes": [
+                "status",
+                "counts"
+              ],
+              "methods": [
+                "label"
+              ],
+              "attribute_types": {
+                "status": "HubStatus",
+                "counts": "dict[OrderState, int]"
+              },
+              "method_signatures": {
+                "label": "label(self) -> str"
+              },
+              "status": "MATCH",
+              "stereotype": "value",
+              "module": "saigonbite/business/controllers/report_controller.py",
+              "layer": "controller",
+              "attribute_statuses": {
+                "status": "MATCH",
+                "counts": "MATCH"
+              },
+              "method_statuses": {
+                "label": "MATCH"
+              },
+              "method_parameters": {
+                "label": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "label": "str"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "WorkloadReport",
+              "attributes": [
+                "as_of",
+                "rows"
+              ],
+              "methods": [],
+              "attribute_types": {
+                "as_of": "str",
+                "rows": "list[WorkloadRow]"
+              },
+              "method_signatures": {},
+              "status": "MATCH",
+              "stereotype": "value",
+              "module": "saigonbite/business/controllers/report_controller.py",
+              "layer": "controller",
+              "attribute_statuses": {
+                "as_of": "MATCH",
+                "rows": "MATCH"
+              },
+              "method_statuses": {},
+              "method_parameters": {},
+              "method_returns": {},
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "Hub",
+              "attributes": [
+                "id",
+                "name"
+              ],
+              "methods": [],
+              "attribute_types": {
+                "id": "int",
+                "name": "str"
+              },
+              "method_signatures": {},
+              "status": "P4-TARGET",
+              "stereotype": "entity",
+              "module": "saigonbite/business/domain/models.py",
+              "layer": "domain",
+              "attribute_statuses": {
+                "id": "MATCH",
+                "name": "MATCH"
+              },
+              "method_statuses": {},
+              "method_parameters": {},
+              "method_returns": {},
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "HubStatus",
+              "attributes": [
+                "hub",
+                "load"
+              ],
+              "methods": [
+                "load_percent"
+              ],
+              "attribute_types": {
+                "hub": "Hub",
+                "load": "int"
+              },
+              "method_signatures": {
+                "load_percent": "load_percent(self) -> int"
+              },
+              "status": "MATCH",
+              "stereotype": "entity",
+              "module": "saigonbite/business/domain/models.py",
+              "layer": "domain",
+              "attribute_statuses": {
+                "hub": "MATCH",
+                "load": "MATCH"
+              },
+              "method_statuses": {
+                "load_percent": "MATCH"
+              },
+              "method_parameters": {
+                "load_percent": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "load_percent": "int"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "ReportDAO",
+              "attributes": [
+                "conn"
+              ],
+              "methods": [
+                "open_orders_by_hub_and_state"
+              ],
+              "attribute_types": {
+                "conn": "sqlite3.Connection"
+              },
+              "method_signatures": {
+                "open_orders_by_hub_and_state": "open_orders_by_hub_and_state(self) -> list[sqlite3.Row]"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "DAO",
+              "module": "saigonbite/data_access/report_dao.py",
+              "layer": "data_access",
+              "attribute_statuses": {
+                "conn": "MATCH"
+              },
+              "method_statuses": {
+                "open_orders_by_hub_and_state": "MATCH"
+              },
+              "method_parameters": {
+                "open_orders_by_hub_and_state": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "open_orders_by_hub_and_state": "list[sqlite3.Row]"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "HubDAO",
+              "attributes": [
+                "conn"
+              ],
+              "methods": [
+                "list_all"
+              ],
+              "attribute_types": {
+                "conn": "sqlite3.Connection"
+              },
+              "method_signatures": {
+                "list_all": "list_all(self) -> list[Hub]"
+              },
+              "status": "MATCH",
+              "stereotype": "DAO",
+              "module": "saigonbite/data_access/hub_dao.py",
+              "layer": "data_access",
+              "attribute_statuses": {
+                "conn": "MATCH"
+              },
+              "method_statuses": {
+                "list_all": "MATCH"
+              },
+              "method_parameters": {
+                "list_all": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "list_all": "list[Hub]"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            }
+          ],
+          "dependencies": [
+            {
+              "source": "WorkloadRow",
+              "target": "HubStatus",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "WorkloadReport",
+              "target": "WorkloadRow",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "Hub",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "HubDAO",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "HubStatus",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "ReportDAO",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "WorkloadReport",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "WorkloadRow",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "HubStatus",
+              "target": "Hub",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "reports",
+              "target": "ReportController",
+              "kind": "dependency",
+              "status": "MATCH"
+            }
+          ]
+        },
+        {
+          "part": "G",
+          "label": "Delivery interval and metric source",
+          "classes": [
+            {
+              "class": "reports",
+              "attributes": [],
+              "methods": [
+                "delivery",
+                "_filtered"
+              ],
+              "attribute_types": {},
+              "method_signatures": {
+                "delivery": "delivery()",
+                "_filtered": "_filtered(template: str, run)"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "view",
+              "module": "saigonbite/presentation/reports.py",
+              "layer": "view",
+              "attribute_statuses": {},
+              "method_statuses": {
+                "delivery": "MATCH",
+                "_filtered": "MATCH"
+              },
+              "method_parameters": {
+                "delivery": [],
+                "_filtered": [
+                  {
+                    "name": "template",
+                    "type": "str",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "run",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "delivery": "Any",
+                "_filtered": "Any"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "ReportController",
+              "attributes": [
+                "reports",
+                "hubs"
+              ],
+              "methods": [
+                "delivery_report"
+              ],
+              "attribute_types": {
+                "reports": "ReportDAO",
+                "hubs": "HubDAO"
+              },
+              "method_signatures": {
+                "delivery_report": "delivery_report(self, user_id: int, date_from: Optional[str]=None, date_to: Optional[str]=None, hub_id: Optional[int]=None) -> DeliveryReport"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "controller",
+              "module": "saigonbite/business/controllers/report_controller.py",
+              "layer": "controller",
+              "attribute_statuses": {
+                "reports": "MATCH",
+                "hubs": "MATCH"
+              },
+              "method_statuses": {
+                "delivery_report": "MATCH"
+              },
+              "method_parameters": {
+                "delivery_report": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "user_id",
+                    "type": "int",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "date_from",
+                    "type": "Optional[str]",
+                    "annotated": true,
+                    "default": "None",
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "date_to",
+                    "type": "Optional[str]",
+                    "annotated": true,
+                    "default": "None",
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "hub_id",
+                    "type": "Optional[int]",
+                    "annotated": true,
+                    "default": "None",
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "delivery_report": "DeliveryReport"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "controllers.report_controller",
+              "attributes": [],
+              "methods": [
+                "_minutes"
+              ],
+              "attribute_types": {},
+              "method_signatures": {
+                "_minutes": "_minutes(start: Optional[str], end: Optional[str]) -> Optional[float]"
+              },
+              "status": "MATCH",
+              "stereotype": "module",
+              "module": "saigonbite/business/controllers/report_controller.py",
+              "layer": "controller",
+              "attribute_statuses": {},
+              "method_statuses": {
+                "_minutes": "MATCH"
+              },
+              "method_parameters": {
+                "_minutes": [
+                  {
+                    "name": "start",
+                    "type": "Optional[str]",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "end",
+                    "type": "Optional[str]",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "_minutes": "Optional[float]"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "Hub",
+              "attributes": [
+                "id",
+                "name"
+              ],
+              "methods": [],
+              "attribute_types": {
+                "id": "int",
+                "name": "str"
+              },
+              "method_signatures": {},
+              "status": "P4-TARGET",
+              "stereotype": "entity",
+              "module": "saigonbite/business/domain/models.py",
+              "layer": "domain",
+              "attribute_statuses": {
+                "id": "MATCH",
+                "name": "MATCH"
+              },
+              "method_statuses": {},
+              "method_parameters": {},
+              "method_returns": {},
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "DeliveryState",
+              "attributes": [],
+              "methods": [],
+              "attribute_types": {},
+              "method_signatures": {},
+              "status": "MATCH",
+              "stereotype": "enumeration",
+              "module": "saigonbite/business/domain/enums.py",
+              "layer": "domain",
+              "attribute_statuses": {},
+              "method_statuses": {},
+              "method_parameters": {},
+              "method_returns": {},
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "ReportDAO",
+              "attributes": [
+                "conn"
+              ],
+              "methods": [
+                "finished_deliveries"
+              ],
+              "attribute_types": {
+                "conn": "sqlite3.Connection"
+              },
+              "method_signatures": {
+                "finished_deliveries": "finished_deliveries(self, start_utc: str, end_utc: str, hub_id: Optional[int]) -> list[sqlite3.Row]"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "DAO",
+              "module": "saigonbite/data_access/report_dao.py",
+              "layer": "data_access",
+              "attribute_statuses": {
+                "conn": "MATCH"
+              },
+              "method_statuses": {
+                "finished_deliveries": "MATCH"
+              },
+              "method_parameters": {
+                "finished_deliveries": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "start_utc",
+                    "type": "str",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "end_utc",
+                    "type": "str",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "hub_id",
+                    "type": "Optional[int]",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "finished_deliveries": "list[sqlite3.Row]"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "HubDAO",
+              "attributes": [
+                "conn"
+              ],
+              "methods": [
+                "get_including_archived"
+              ],
+              "attribute_types": {
+                "conn": "sqlite3.Connection"
+              },
+              "method_signatures": {
+                "get_including_archived": "get_including_archived(self, hub_id: int) -> Optional[Hub]"
+              },
+              "status": "MATCH",
+              "stereotype": "DAO",
+              "module": "saigonbite/data_access/hub_dao.py",
+              "layer": "data_access",
+              "attribute_statuses": {
+                "conn": "MATCH"
+              },
+              "method_statuses": {
+                "get_including_archived": "MATCH"
+              },
+              "method_parameters": {
+                "get_including_archived": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "hub_id",
+                    "type": "int",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "get_including_archived": "Optional[Hub]"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            }
+          ],
+          "dependencies": [
+            {
+              "source": "ReportController",
+              "target": "Hub",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "HubDAO",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "ReportDAO",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "controllers.report_controller",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "reports",
+              "target": "ReportController",
+              "kind": "dependency",
+              "status": "MATCH"
+            }
+          ]
+        },
+        {
+          "part": "H",
+          "label": "Delivery metric and report value objects",
+          "classes": [
+            {
+              "class": "reports",
+              "attributes": [],
+              "methods": [
+                "delivery"
+              ],
+              "attribute_types": {},
+              "method_signatures": {
+                "delivery": "delivery()"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "view",
+              "module": "saigonbite/presentation/reports.py",
+              "layer": "view",
+              "attribute_statuses": {},
+              "method_statuses": {
+                "delivery": "MATCH"
+              },
+              "method_parameters": {
+                "delivery": []
+              },
+              "method_returns": {
+                "delivery": "Any"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "ReportController",
+              "attributes": [
+                "reports",
+                "hubs"
+              ],
+              "methods": [
+                "delivery_report"
+              ],
+              "attribute_types": {
+                "reports": "ReportDAO",
+                "hubs": "HubDAO"
+              },
+              "method_signatures": {
+                "delivery_report": "delivery_report(self, user_id: int, date_from: Optional[str]=None, date_to: Optional[str]=None, hub_id: Optional[int]=None) -> DeliveryReport"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "controller",
+              "module": "saigonbite/business/controllers/report_controller.py",
+              "layer": "controller",
+              "attribute_statuses": {
+                "reports": "MATCH",
+                "hubs": "MATCH"
+              },
+              "method_statuses": {
+                "delivery_report": "MATCH"
+              },
+              "method_parameters": {
+                "delivery_report": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "user_id",
+                    "type": "int",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "date_from",
+                    "type": "Optional[str]",
+                    "annotated": true,
+                    "default": "None",
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "date_to",
+                    "type": "Optional[str]",
+                    "annotated": true,
+                    "default": "None",
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "hub_id",
+                    "type": "Optional[int]",
+                    "annotated": true,
+                    "default": "None",
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "delivery_report": "DeliveryReport"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "Period",
+              "attributes": [
+                "date_from",
+                "date_to",
+                "start_utc",
+                "end_utc"
+              ],
+              "methods": [],
+              "attribute_types": {
+                "date_from": "str",
+                "date_to": "str",
+                "start_utc": "str",
+                "end_utc": "str"
+              },
+              "method_signatures": {},
+              "status": "MATCH",
+              "stereotype": "value",
+              "module": "saigonbite/business/controllers/report_controller.py",
+              "layer": "controller",
+              "attribute_statuses": {
+                "date_from": "MATCH",
+                "date_to": "MATCH",
+                "start_utc": "MATCH",
+                "end_utc": "MATCH"
+              },
+              "method_statuses": {},
+              "method_parameters": {},
+              "method_returns": {},
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "DeliveryRow",
+              "attributes": [
+                "label",
+                "delivered",
+                "failed",
+                "waits",
+                "rides"
+              ],
+              "methods": [
+                "avg_wait",
+                "avg_ride",
+                "failure_rate"
+              ],
+              "attribute_types": {
+                "label": "str",
+                "delivered": "int",
+                "failed": "int",
+                "waits": "list[float]",
+                "rides": "list[float]"
+              },
+              "method_signatures": {
+                "avg_wait": "avg_wait(self) -> Optional[float]",
+                "avg_ride": "avg_ride(self) -> Optional[float]",
+                "failure_rate": "failure_rate(self) -> Optional[float]"
+              },
+              "status": "MATCH",
+              "stereotype": "value",
+              "module": "saigonbite/business/controllers/report_controller.py",
+              "layer": "controller",
+              "attribute_statuses": {
+                "label": "MATCH",
+                "delivered": "MATCH",
+                "failed": "MATCH",
+                "waits": "MATCH",
+                "rides": "MATCH"
+              },
+              "method_statuses": {
+                "avg_wait": "MATCH",
+                "avg_ride": "MATCH",
+                "failure_rate": "MATCH"
+              },
+              "method_parameters": {
+                "avg_wait": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ],
+                "avg_ride": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ],
+                "failure_rate": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "avg_wait": "Optional[float]",
+                "avg_ride": "Optional[float]",
+                "failure_rate": "Optional[float]"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "Hub",
+              "attributes": [
+                "id",
+                "name"
+              ],
+              "methods": [],
+              "attribute_types": {
+                "id": "int",
+                "name": "str"
+              },
+              "method_signatures": {},
+              "status": "P4-TARGET",
+              "stereotype": "entity",
+              "module": "saigonbite/business/domain/models.py",
+              "layer": "domain",
+              "attribute_statuses": {
+                "id": "MATCH",
+                "name": "MATCH"
+              },
+              "method_statuses": {},
+              "method_parameters": {},
+              "method_returns": {},
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "DeliveryState",
+              "attributes": [],
+              "methods": [],
+              "attribute_types": {},
+              "method_signatures": {},
+              "status": "MATCH",
+              "stereotype": "enumeration",
+              "module": "saigonbite/business/domain/enums.py",
+              "layer": "domain",
+              "attribute_statuses": {},
+              "method_statuses": {},
+              "method_parameters": {},
+              "method_returns": {},
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "ReportDAO",
+              "attributes": [
+                "conn"
+              ],
+              "methods": [
+                "finished_deliveries"
+              ],
+              "attribute_types": {
+                "conn": "sqlite3.Connection"
+              },
+              "method_signatures": {
+                "finished_deliveries": "finished_deliveries(self, start_utc: str, end_utc: str, hub_id: Optional[int]) -> list[sqlite3.Row]"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "DAO",
+              "module": "saigonbite/data_access/report_dao.py",
+              "layer": "data_access",
+              "attribute_statuses": {
+                "conn": "MATCH"
+              },
+              "method_statuses": {
+                "finished_deliveries": "MATCH"
+              },
+              "method_parameters": {
+                "finished_deliveries": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "start_utc",
+                    "type": "str",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "end_utc",
+                    "type": "str",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "hub_id",
+                    "type": "Optional[int]",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "finished_deliveries": "list[sqlite3.Row]"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "HubDAO",
+              "attributes": [
+                "conn"
+              ],
+              "methods": [
+                "get_including_archived"
+              ],
+              "attribute_types": {
+                "conn": "sqlite3.Connection"
+              },
+              "method_signatures": {
+                "get_including_archived": "get_including_archived(self, hub_id: int) -> Optional[Hub]"
+              },
+              "status": "MATCH",
+              "stereotype": "DAO",
+              "module": "saigonbite/data_access/hub_dao.py",
+              "layer": "data_access",
+              "attribute_statuses": {
+                "conn": "MATCH"
+              },
+              "method_statuses": {
+                "get_including_archived": "MATCH"
+              },
+              "method_parameters": {
+                "get_including_archived": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "hub_id",
+                    "type": "int",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "get_including_archived": "Optional[Hub]"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            }
+          ],
+          "dependencies": [
+            {
+              "source": "ReportController",
+              "target": "DeliveryRow",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "Hub",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "HubDAO",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "Period",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "ReportDAO",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "reports",
+              "target": "ReportController",
+              "kind": "dependency",
+              "status": "MATCH"
+            }
+          ]
+        },
+        {
+          "part": "I",
+          "label": "Delivery report result object",
+          "classes": [
+            {
+              "class": "reports",
+              "attributes": [],
+              "methods": [
+                "delivery"
+              ],
+              "attribute_types": {},
+              "method_signatures": {
+                "delivery": "delivery()"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "view",
+              "module": "saigonbite/presentation/reports.py",
+              "layer": "view",
+              "attribute_statuses": {},
+              "method_statuses": {
+                "delivery": "MATCH"
+              },
+              "method_parameters": {
+                "delivery": []
+              },
+              "method_returns": {
+                "delivery": "Any"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "ReportController",
+              "attributes": [
+                "reports",
+                "hubs"
+              ],
+              "methods": [
+                "delivery_report"
+              ],
+              "attribute_types": {
+                "reports": "ReportDAO",
+                "hubs": "HubDAO"
+              },
+              "method_signatures": {
+                "delivery_report": "delivery_report(self, user_id: int, date_from: Optional[str]=None, date_to: Optional[str]=None, hub_id: Optional[int]=None) -> DeliveryReport"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "controller",
+              "module": "saigonbite/business/controllers/report_controller.py",
+              "layer": "controller",
+              "attribute_statuses": {
+                "reports": "MATCH",
+                "hubs": "MATCH"
+              },
+              "method_statuses": {
+                "delivery_report": "MATCH"
+              },
+              "method_parameters": {
+                "delivery_report": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "user_id",
+                    "type": "int",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "date_from",
+                    "type": "Optional[str]",
+                    "annotated": true,
+                    "default": "None",
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "date_to",
+                    "type": "Optional[str]",
+                    "annotated": true,
+                    "default": "None",
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "hub_id",
+                    "type": "Optional[int]",
+                    "annotated": true,
+                    "default": "None",
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "delivery_report": "DeliveryReport"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "DeliveryReport",
+              "attributes": [
+                "period",
+                "hub",
+                "by_hub",
+                "by_shipper",
+                "overall"
+              ],
+              "methods": [],
+              "attribute_types": {
+                "period": "Period",
+                "hub": "Optional[Hub]",
+                "by_hub": "list[DeliveryRow]",
+                "by_shipper": "list[DeliveryRow]",
+                "overall": "DeliveryRow"
+              },
+              "method_signatures": {},
+              "status": "MATCH",
+              "stereotype": "value",
+              "module": "saigonbite/business/controllers/report_controller.py",
+              "layer": "controller",
+              "attribute_statuses": {
+                "period": "MATCH",
+                "hub": "MATCH",
+                "by_hub": "MATCH",
+                "by_shipper": "MATCH",
+                "overall": "MATCH"
+              },
+              "method_statuses": {},
+              "method_parameters": {},
+              "method_returns": {},
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "Hub",
+              "attributes": [
+                "id",
+                "name"
+              ],
+              "methods": [],
+              "attribute_types": {
+                "id": "int",
+                "name": "str"
+              },
+              "method_signatures": {},
+              "status": "P4-TARGET",
+              "stereotype": "entity",
+              "module": "saigonbite/business/domain/models.py",
+              "layer": "domain",
+              "attribute_statuses": {
+                "id": "MATCH",
+                "name": "MATCH"
+              },
+              "method_statuses": {},
+              "method_parameters": {},
+              "method_returns": {},
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "DeliveryState",
+              "attributes": [],
+              "methods": [],
+              "attribute_types": {},
+              "method_signatures": {},
+              "status": "MATCH",
+              "stereotype": "enumeration",
+              "module": "saigonbite/business/domain/enums.py",
+              "layer": "domain",
+              "attribute_statuses": {},
+              "method_statuses": {},
+              "method_parameters": {},
+              "method_returns": {},
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "ReportDAO",
+              "attributes": [
+                "conn"
+              ],
+              "methods": [
+                "finished_deliveries"
+              ],
+              "attribute_types": {
+                "conn": "sqlite3.Connection"
+              },
+              "method_signatures": {
+                "finished_deliveries": "finished_deliveries(self, start_utc: str, end_utc: str, hub_id: Optional[int]) -> list[sqlite3.Row]"
+              },
+              "status": "P4-TARGET",
+              "stereotype": "DAO",
+              "module": "saigonbite/data_access/report_dao.py",
+              "layer": "data_access",
+              "attribute_statuses": {
+                "conn": "MATCH"
+              },
+              "method_statuses": {
+                "finished_deliveries": "MATCH"
+              },
+              "method_parameters": {
+                "finished_deliveries": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "start_utc",
+                    "type": "str",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "end_utc",
+                    "type": "str",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "hub_id",
+                    "type": "Optional[int]",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "finished_deliveries": "list[sqlite3.Row]"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            },
+            {
+              "class": "HubDAO",
+              "attributes": [
+                "conn"
+              ],
+              "methods": [
+                "get_including_archived"
+              ],
+              "attribute_types": {
+                "conn": "sqlite3.Connection"
+              },
+              "method_signatures": {
+                "get_including_archived": "get_including_archived(self, hub_id: int) -> Optional[Hub]"
+              },
+              "status": "MATCH",
+              "stereotype": "DAO",
+              "module": "saigonbite/data_access/hub_dao.py",
+              "layer": "data_access",
+              "attribute_statuses": {
+                "conn": "MATCH"
+              },
+              "method_statuses": {
+                "get_including_archived": "MATCH"
+              },
+              "method_parameters": {
+                "get_including_archived": [
+                  {
+                    "name": "self",
+                    "type": "Any",
+                    "annotated": false,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  },
+                  {
+                    "name": "hub_id",
+                    "type": "int",
+                    "annotated": true,
+                    "default": null,
+                    "kind": "positional_or_keyword"
+                  }
+                ]
+              },
+              "method_returns": {
+                "get_including_archived": "Optional[Hub]"
+              },
+              "P4_inputs": {},
+              "attribute_P4_inputs": {}
+            }
+          ],
+          "dependencies": [
+            {
+              "source": "DeliveryReport",
+              "target": "Hub",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "DeliveryReport",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "Hub",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "HubDAO",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "ReportController",
+              "target": "ReportDAO",
+              "kind": "dependency",
+              "status": "MATCH"
+            },
+            {
+              "source": "reports",
+              "target": "ReportController",
+              "kind": "dependency",
+              "status": "MATCH"
+            }
+          ]
+        }
+      ],
+      "definition": "Every part displays view, controller, domain and data-access roles for its named SSD operation; all parts are mutually continued.",
+      "unsuffixed_aliases": {
+        "dcd_all": "Part A first-page alias; report embeds every all-layer Part.",
+        "dcd_final": "Part A first-page alias; report embeds every final Part."
+      }
+    }
+  },
+  "source_model_sha256": "bd415d6b5874d373cd5eb928dc9b218d27d499e36052589304912a2c33cdd437"
+}

@@ -1,0 +1,536 @@
+{
+  "author": "Author: 722I0004 · AI-assisted (Codex)",
+  "title": "UC-04 .2 DCD controller — Part F",
+  "canvas": {
+    "width": 2600,
+    "height": 2121,
+    "font_size": 50,
+    "placed_width_mm": 170
+  },
+  "nodes": [
+    {
+      "id": "layer_controller",
+      "kind": "layer",
+      "x": 40,
+      "y": 135,
+      "w": 2520,
+      "h": 70,
+      "lines": [
+        "Business / controller"
+      ]
+    },
+    {
+      "id": "ReportController",
+      "kind": "class",
+      "x": 80,
+      "y": 213,
+      "w": 2440,
+      "h": 552,
+      "header_h": 137,
+      "header_lines": [
+        "ReportController"
+      ],
+      "subtitle_lines": [
+        "«controller»"
+      ],
+      "attribute_lines": [
+        "+reports: ReportDAO *"
+      ],
+      "method_lines": [
+        "+delivery_report(self, user_id: int, date_from: Optional[str]=None, date_to:",
+        "Optional[str]=None, hub_id: Optional[int]=None) -> DeliveryReport"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "Period",
+      "kind": "class",
+      "x": 80,
+      "y": 795,
+      "w": 793,
+      "h": 1040,
+      "header_h": 137,
+      "header_lines": [
+        "Period"
+      ],
+      "subtitle_lines": [
+        "«value»"
+      ],
+      "attribute_lines": [
+        "+date_from: str",
+        "+date_to: str",
+        "+start_utc: str",
+        "+end_utc: str"
+      ],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "DeliveryRow",
+      "kind": "class",
+      "x": 903,
+      "y": 795,
+      "w": 793,
+      "h": 1040,
+      "header_h": 137,
+      "header_lines": [
+        "DeliveryRow"
+      ],
+      "subtitle_lines": [
+        "«value»"
+      ],
+      "attribute_lines": [
+        "+label: str",
+        "+delivered: int",
+        "+failed: int",
+        "+waits: list[float]",
+        "+rides: list[float]"
+      ],
+      "method_lines": [
+        "+avg_wait(self) ->",
+        "Optional[float] {property}",
+        "+avg_ride(self) ->",
+        "Optional[float] {property}",
+        "+failure_rate(self) ->",
+        "Optional[float] {property}"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "DeliveryReport",
+      "kind": "class",
+      "x": 1726,
+      "y": 795,
+      "w": 793,
+      "h": 1040,
+      "header_h": 137,
+      "header_lines": [
+        "DeliveryReport"
+      ],
+      "subtitle_lines": [
+        "«value»"
+      ],
+      "attribute_lines": [
+        "+period: Period",
+        "+hub: Optional[Hub]",
+        "+by_hub: list[DeliveryRow]",
+        "+by_shipper:",
+        "list[DeliveryRow]",
+        "+overall: DeliveryRow"
+      ],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "legend",
+      "kind": "note",
+      "x": 80,
+      "y": 1877,
+      "w": 2440,
+      "h": 132,
+      "lines": [
+        "Part E contains authorization and interval helpers; rows and sample counts are",
+        "non-persisted."
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "dep_00",
+      "source": "DeliveryReport",
+      "target": "DeliveryRow",
+      "points": [
+        [
+          1726,
+          1315.0
+        ],
+        [
+          1711.0,
+          1315.0
+        ],
+        [
+          1696,
+          1315.0
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_01",
+      "source": "DeliveryReport",
+      "target": "Period",
+      "points": [
+        [
+          1726,
+          1315.0
+        ],
+        [
+          1299.5,
+          1315.0
+        ],
+        [
+          873,
+          1315.0
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_02",
+      "source": "ReportController",
+      "target": "DeliveryReport",
+      "points": [
+        [
+          1300.0,
+          765
+        ],
+        [
+          1300.0,
+          780.0
+        ],
+        [
+          2122.5,
+          780.0
+        ],
+        [
+          2122.5,
+          795
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_03",
+      "source": "ReportController",
+      "target": "DeliveryRow",
+      "points": [
+        [
+          1300.0,
+          765
+        ],
+        [
+          1300.0,
+          780.0
+        ],
+        [
+          1299.5,
+          780.0
+        ],
+        [
+          1299.5,
+          795
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_04",
+      "source": "ReportController",
+      "target": "Period",
+      "points": [
+        [
+          1300.0,
+          765
+        ],
+        [
+          1300.0,
+          780.0
+        ],
+        [
+          476.5,
+          780.0
+        ],
+        [
+          476.5,
+          795
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    }
+  ],
+  "footer": "Author: 722I0004 · AI-assisted (Codex) · Static design at C0; † targets remain for P4.",
+  "phase3": {
+    "diagram_type": "dcd",
+    "UC": "UC-04",
+    "view": "controller",
+    "elements": [
+      {
+        "class": "ReportController",
+        "attributes": [
+          "reports"
+        ],
+        "methods": [
+          "delivery_report"
+        ],
+        "attribute_types": {
+          "reports": "ReportDAO"
+        },
+        "method_signatures": {
+          "delivery_report": "delivery_report(self, user_id: int, date_from: Optional[str]=None, date_to: Optional[str]=None, hub_id: Optional[int]=None) -> DeliveryReport"
+        },
+        "status": "P4-TARGET",
+        "stereotype": "controller",
+        "module": "saigonbite/business/controllers/report_controller.py",
+        "attribute_statuses": {
+          "reports": "MATCH"
+        },
+        "method_statuses": {
+          "delivery_report": "MATCH"
+        },
+        "method_parameters": {
+          "delivery_report": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "user_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "date_from",
+              "type": "Optional[str]",
+              "annotated": true,
+              "default": "None",
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "date_to",
+              "type": "Optional[str]",
+              "annotated": true,
+              "default": "None",
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "hub_id",
+              "type": "Optional[int]",
+              "annotated": true,
+              "default": "None",
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "delivery_report": "DeliveryReport"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "Period",
+        "attributes": [
+          "date_from",
+          "date_to",
+          "start_utc",
+          "end_utc"
+        ],
+        "methods": [],
+        "attribute_types": {
+          "date_from": "str",
+          "date_to": "str",
+          "start_utc": "str",
+          "end_utc": "str"
+        },
+        "method_signatures": {},
+        "status": "MATCH",
+        "stereotype": "value",
+        "module": "saigonbite/business/controllers/report_controller.py",
+        "attribute_statuses": {
+          "date_from": "MATCH",
+          "date_to": "MATCH",
+          "start_utc": "MATCH",
+          "end_utc": "MATCH"
+        },
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "DeliveryRow",
+        "attributes": [
+          "label",
+          "delivered",
+          "failed",
+          "waits",
+          "rides"
+        ],
+        "methods": [
+          "avg_wait",
+          "avg_ride",
+          "failure_rate"
+        ],
+        "attribute_types": {
+          "label": "str",
+          "delivered": "int",
+          "failed": "int",
+          "waits": "list[float]",
+          "rides": "list[float]"
+        },
+        "method_signatures": {
+          "avg_wait": "avg_wait(self) -> Optional[float]",
+          "avg_ride": "avg_ride(self) -> Optional[float]",
+          "failure_rate": "failure_rate(self) -> Optional[float]"
+        },
+        "status": "MATCH",
+        "stereotype": "value",
+        "module": "saigonbite/business/controllers/report_controller.py",
+        "attribute_statuses": {
+          "label": "MATCH",
+          "delivered": "MATCH",
+          "failed": "MATCH",
+          "waits": "MATCH",
+          "rides": "MATCH"
+        },
+        "method_statuses": {
+          "avg_wait": "MATCH",
+          "avg_ride": "MATCH",
+          "failure_rate": "MATCH"
+        },
+        "method_parameters": {
+          "avg_wait": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "avg_ride": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "failure_rate": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "avg_wait": "Optional[float]",
+          "avg_ride": "Optional[float]",
+          "failure_rate": "Optional[float]"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "DeliveryReport",
+        "attributes": [
+          "period",
+          "hub",
+          "by_hub",
+          "by_shipper",
+          "overall"
+        ],
+        "methods": [],
+        "attribute_types": {
+          "period": "Period",
+          "hub": "Optional[Hub]",
+          "by_hub": "list[DeliveryRow]",
+          "by_shipper": "list[DeliveryRow]",
+          "overall": "DeliveryRow"
+        },
+        "method_signatures": {},
+        "status": "MATCH",
+        "stereotype": "value",
+        "module": "saigonbite/business/controllers/report_controller.py",
+        "attribute_statuses": {
+          "period": "MATCH",
+          "hub": "MATCH",
+          "by_hub": "MATCH",
+          "by_shipper": "MATCH",
+          "overall": "MATCH"
+        },
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "DeliveryReport",
+        "target": "DeliveryRow",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "DeliveryReport",
+        "target": "Period",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "ReportController",
+        "target": "DeliveryReport",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "ReportController",
+        "target": "DeliveryRow",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "ReportController",
+        "target": "Period",
+        "kind": "dependency",
+        "status": "MATCH"
+      }
+    ]
+  },
+  "render_receipt": {
+    "canvas": [
+      2600,
+      2121
+    ],
+    "minimum_font_px": 50,
+    "placed_width_mm": 170,
+    "minimum_pt": 9.27,
+    "xml": "parsed",
+    "connected_edges": true,
+    "author_native_cell": true,
+    "all_text_minimum_px": 50
+  },
+  "source_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b"
+}

@@ -1,0 +1,311 @@
+{
+  "author": "Author: 722I0004 · AI-assisted (Codex)",
+  "title": "UC-04 .2 DCD domain",
+  "canvas": {
+    "width": 2600,
+    "height": 1755,
+    "font_size": 50,
+    "placed_width_mm": 170
+  },
+  "nodes": [
+    {
+      "id": "layer_domain",
+      "kind": "layer",
+      "x": 40,
+      "y": 135,
+      "w": 2520,
+      "h": 70,
+      "lines": [
+        "Business / domain"
+      ]
+    },
+    {
+      "id": "Hub",
+      "kind": "class",
+      "x": 80,
+      "y": 213,
+      "w": 793,
+      "h": 857,
+      "header_h": 137,
+      "header_lines": [
+        "Hub"
+      ],
+      "subtitle_lines": [
+        "«entity»"
+      ],
+      "attribute_lines": [
+        "+id: int",
+        "+name: str",
+        "+max_active_orders: int",
+        "+archived_at:",
+        "Optional[str]"
+      ],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "HubStatus",
+      "kind": "class",
+      "x": 903,
+      "y": 213,
+      "w": 793,
+      "h": 857,
+      "header_h": 137,
+      "header_lines": [
+        "HubStatus"
+      ],
+      "subtitle_lines": [
+        "«entity»"
+      ],
+      "attribute_lines": [
+        "+hub: Hub",
+        "+load: int"
+      ],
+      "method_lines": [
+        "+busy(self) -> bool",
+        "{property}",
+        "+quiet(self) -> bool",
+        "{property}",
+        "+load_percent(self) -> int",
+        "{property}"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "OrderState",
+      "kind": "class",
+      "x": 1726,
+      "y": 213,
+      "w": 793,
+      "h": 857,
+      "header_h": 137,
+      "header_lines": [
+        "OrderState"
+      ],
+      "subtitle_lines": [
+        "«enumeration»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "DeliveryState",
+      "kind": "class",
+      "x": 80,
+      "y": 1100,
+      "w": 793,
+      "h": 369,
+      "header_h": 137,
+      "header_lines": [
+        "DeliveryState"
+      ],
+      "subtitle_lines": [
+        "«enumeration»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "legend",
+      "kind": "note",
+      "x": 80,
+      "y": 1511,
+      "w": 2440,
+      "h": 132,
+      "lines": [
+        "No Report domain class or lifecycle exists; report values stay in the controller",
+        "module."
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "dep_00",
+      "source": "HubStatus",
+      "target": "Hub",
+      "points": [
+        [
+          903,
+          641.5
+        ],
+        [
+          888.0,
+          641.5
+        ],
+        [
+          873,
+          641.5
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    }
+  ],
+  "footer": "Author: 722I0004 · AI-assisted (Codex) · Static design at C0; † targets remain for P4.",
+  "phase3": {
+    "diagram_type": "dcd",
+    "UC": "UC-04",
+    "view": "domain",
+    "elements": [
+      {
+        "class": "Hub",
+        "attributes": [
+          "id",
+          "name",
+          "max_active_orders",
+          "archived_at"
+        ],
+        "methods": [],
+        "attribute_types": {
+          "id": "int",
+          "name": "str",
+          "max_active_orders": "int",
+          "archived_at": "Optional[str]"
+        },
+        "method_signatures": {},
+        "status": "P4-TARGET",
+        "stereotype": "entity",
+        "module": "saigonbite/business/domain/models.py",
+        "attribute_statuses": {
+          "id": "MATCH",
+          "name": "MATCH",
+          "max_active_orders": "MATCH",
+          "archived_at": "MATCH"
+        },
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "HubStatus",
+        "attributes": [
+          "hub",
+          "load"
+        ],
+        "methods": [
+          "busy",
+          "quiet",
+          "load_percent"
+        ],
+        "attribute_types": {
+          "hub": "Hub",
+          "load": "int"
+        },
+        "method_signatures": {
+          "busy": "busy(self) -> bool",
+          "quiet": "quiet(self) -> bool",
+          "load_percent": "load_percent(self) -> int"
+        },
+        "status": "MATCH",
+        "stereotype": "entity",
+        "module": "saigonbite/business/domain/models.py",
+        "attribute_statuses": {
+          "hub": "MATCH",
+          "load": "MATCH"
+        },
+        "method_statuses": {
+          "busy": "MATCH",
+          "quiet": "MATCH",
+          "load_percent": "MATCH"
+        },
+        "method_parameters": {
+          "busy": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "quiet": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "load_percent": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "busy": "bool",
+          "quiet": "bool",
+          "load_percent": "int"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "OrderState",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {},
+        "status": "MATCH",
+        "stereotype": "enumeration",
+        "module": "saigonbite/business/domain/enums.py",
+        "attribute_statuses": {},
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "DeliveryState",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {},
+        "status": "MATCH",
+        "stereotype": "enumeration",
+        "module": "saigonbite/business/domain/enums.py",
+        "attribute_statuses": {},
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "HubStatus",
+        "target": "Hub",
+        "kind": "dependency",
+        "status": "MATCH"
+      }
+    ]
+  },
+  "render_receipt": {
+    "canvas": [
+      2600,
+      1755
+    ],
+    "minimum_font_px": 50,
+    "placed_width_mm": 170,
+    "minimum_pt": 9.27,
+    "xml": "parsed",
+    "connected_edges": true,
+    "author_native_cell": true,
+    "all_text_minimum_px": 50
+  },
+  "source_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b"
+}

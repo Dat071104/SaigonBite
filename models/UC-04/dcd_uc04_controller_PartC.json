@@ -1,0 +1,293 @@
+{
+  "author": "Author: 722I0004 · AI-assisted (Codex)",
+  "title": "UC-04 .2 DCD controller — Part C",
+  "canvas": {
+    "width": 2600,
+    "height": 1755,
+    "font_size": 50,
+    "placed_width_mm": 170
+  },
+  "nodes": [
+    {
+      "id": "layer_controller",
+      "kind": "layer",
+      "x": 40,
+      "y": 135,
+      "w": 2520,
+      "h": 70,
+      "lines": [
+        "Business / controller"
+      ]
+    },
+    {
+      "id": "ReportController",
+      "kind": "class",
+      "x": 80,
+      "y": 213,
+      "w": 2440,
+      "h": 613,
+      "header_h": 137,
+      "header_lines": [
+        "ReportController"
+      ],
+      "subtitle_lines": [
+        "«controller»"
+      ],
+      "attribute_lines": [
+        "+reports: ReportDAO *",
+        "+hubs: HubDAO *"
+      ],
+      "method_lines": [
+        "+workload_report(self, user_id: int) -> WorkloadReport †",
+        "-_require_manager(self, user_id: int) -> None"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "BaseController",
+      "kind": "class",
+      "x": 80,
+      "y": 856,
+      "w": 2440,
+      "h": 613,
+      "header_h": 137,
+      "header_lines": [
+        "BaseController"
+      ],
+      "subtitle_lines": [
+        "«controller»"
+      ],
+      "attribute_lines": [
+        "+users: UserDAO *"
+      ],
+      "method_lines": [
+        "-_require_user(self, user_id: int, *roles: Role, message: str='Your account cannot do",
+        "this.') -> UserAccount",
+        "-_now(self) -> str"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "legend",
+      "kind": "note",
+      "x": 80,
+      "y": 1511,
+      "w": 2440,
+      "h": 132,
+      "lines": [
+        "Workload value roles continue in Part D."
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "repair_dep_0",
+      "source": "ReportController",
+      "target": "BaseController",
+      "points": [
+        [
+          1300.0,
+          826
+        ],
+        [
+          1300.0,
+          841.0
+        ],
+        [
+          1300.0,
+          841.0
+        ],
+        [
+          1300.0,
+          856
+        ]
+      ],
+      "dashed": false,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    }
+  ],
+  "footer": "Author: 722I0004 · AI-assisted (Codex) · Static design at C0; † targets remain for P4.",
+  "phase3": {
+    "diagram_type": "dcd",
+    "UC": "UC-04",
+    "view": "controller",
+    "elements": [
+      {
+        "class": "ReportController",
+        "attributes": [
+          "reports",
+          "hubs"
+        ],
+        "methods": [
+          "workload_report",
+          "_require_manager"
+        ],
+        "attribute_types": {
+          "reports": "ReportDAO",
+          "hubs": "HubDAO"
+        },
+        "method_signatures": {
+          "workload_report": "workload_report(self, user_id: int) -> WorkloadReport",
+          "_require_manager": "_require_manager(self, user_id: int) -> None"
+        },
+        "status": "P4-TARGET",
+        "stereotype": "controller",
+        "module": "saigonbite/business/controllers/report_controller.py",
+        "attribute_statuses": {
+          "reports": "MATCH",
+          "hubs": "MATCH"
+        },
+        "method_statuses": {
+          "workload_report": "P4-TARGET",
+          "_require_manager": "MATCH"
+        },
+        "method_parameters": {
+          "workload_report": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "user_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "_require_manager": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "user_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "workload_report": "WorkloadReport",
+          "_require_manager": "None"
+        },
+        "P4_inputs": {
+          "workload_report": "P2-S18"
+        },
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "BaseController",
+        "attributes": [
+          "users"
+        ],
+        "methods": [
+          "_require_user",
+          "_now"
+        ],
+        "attribute_types": {
+          "users": "UserDAO"
+        },
+        "method_signatures": {
+          "_require_user": "_require_user(self, user_id: int, *roles: Role, message: str='Your account cannot do this.') -> UserAccount",
+          "_now": "_now(self) -> str"
+        },
+        "status": "MATCH",
+        "stereotype": "controller",
+        "module": "saigonbite/business/controllers/common.py",
+        "attribute_statuses": {
+          "users": "MATCH"
+        },
+        "method_statuses": {
+          "_require_user": "MATCH",
+          "_now": "MATCH"
+        },
+        "method_parameters": {
+          "_require_user": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "user_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "roles",
+              "type": "Role",
+              "annotated": true,
+              "default": null,
+              "kind": "vararg"
+            },
+            {
+              "name": "message",
+              "type": "str",
+              "annotated": true,
+              "default": "'Your account cannot do this.'",
+              "kind": "keyword_only"
+            }
+          ],
+          "_now": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "_require_user": "UserAccount",
+          "_now": "str"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "ReportController",
+        "target": "BaseController",
+        "source_multiplicity": null,
+        "target_multiplicity": null,
+        "role": "inherits",
+        "kind": "generalization",
+        "navigable": false,
+        "status": "MATCH",
+        "evidence": "AST class base"
+      }
+    ]
+  },
+  "render_receipt": {
+    "canvas": [
+      2600,
+      1755
+    ],
+    "minimum_font_px": 50,
+    "placed_width_mm": 170,
+    "minimum_pt": 9.27,
+    "xml": "parsed",
+    "connected_edges": true,
+    "author_native_cell": true,
+    "all_text_minimum_px": 50
+  },
+  "source_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b"
+}

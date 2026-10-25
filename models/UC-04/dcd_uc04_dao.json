@@ -1,0 +1,421 @@
+{
+  "author": "Author: 722I0004 · AI-assisted (Codex)",
+  "title": "UC-04 .2 DCD dao",
+  "canvas": {
+    "width": 2600,
+    "height": 2088,
+    "font_size": 50,
+    "placed_width_mm": 170
+  },
+  "nodes": [
+    {
+      "id": "layer_data_access",
+      "kind": "layer",
+      "x": 40,
+      "y": 135,
+      "w": 2520,
+      "h": 70,
+      "lines": [
+        "Data access"
+      ]
+    },
+    {
+      "id": "ReportDAO",
+      "kind": "class",
+      "x": 80,
+      "y": 213,
+      "w": 793,
+      "h": 1589,
+      "header_h": 137,
+      "header_lines": [
+        "ReportDAO"
+      ],
+      "subtitle_lines": [
+        "«DAO»"
+      ],
+      "attribute_lines": [
+        "+conn: sqlite3.Connection"
+      ],
+      "method_lines": [
+        "+sales_by_hub(self,",
+        "start_utc: str, end_utc:",
+        "str, hub_id:",
+        "Optional[int]) ->",
+        "list[sqlite3.Row]",
+        "+top_items(self,",
+        "start_utc: str, end_utc:",
+        "str, hub_id:",
+        "Optional[int], limit:",
+        "int=10) ->",
+        "list[sqlite3.Row] †",
+        "+open_orders_by_hub_and_",
+        "state(self) ->",
+        "list[sqlite3.Row]",
+        "+finished_deliveries(self,",
+        "start_utc: str, end_utc:",
+        "str, hub_id:",
+        "Optional[int]) ->",
+        "list[sqlite3.Row]"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "HubDAO",
+      "kind": "class",
+      "x": 903,
+      "y": 213,
+      "w": 793,
+      "h": 1589,
+      "header_h": 137,
+      "header_lines": [
+        "HubDAO"
+      ],
+      "subtitle_lines": [
+        "«DAO»"
+      ],
+      "attribute_lines": [
+        "+conn: sqlite3.Connection"
+      ],
+      "method_lines": [
+        "+get_including_",
+        "archived(self, hub_id:",
+        "int) -> Optional[Hub]",
+        "+list_active(self) ->",
+        "list[Hub]",
+        "+list_all(self) ->",
+        "list[Hub]"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "UserDAO",
+      "kind": "class",
+      "x": 1726,
+      "y": 213,
+      "w": 793,
+      "h": 1589,
+      "header_h": 137,
+      "header_lines": [
+        "UserDAO"
+      ],
+      "subtitle_lines": [
+        "«DAO»"
+      ],
+      "attribute_lines": [
+        "+conn: sqlite3.Connection"
+      ],
+      "method_lines": [
+        "+get_by_id(self, user_id:",
+        "int) ->",
+        "Optional[UserAccount]"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "legend",
+      "kind": "note",
+      "x": 80,
+      "y": 1844,
+      "w": 2440,
+      "h": 132,
+      "lines": [
+        "View/DAO continuation is not needed."
+      ]
+    }
+  ],
+  "edges": [],
+  "footer": "Author: 722I0004 · AI-assisted (Codex) · Static design at C0; † targets remain for P4.",
+  "phase3": {
+    "diagram_type": "dcd",
+    "UC": "UC-04",
+    "view": "dao",
+    "elements": [
+      {
+        "class": "ReportDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "sales_by_hub",
+          "top_items",
+          "open_orders_by_hub_and_state",
+          "finished_deliveries"
+        ],
+        "attribute_types": {
+          "conn": "sqlite3.Connection"
+        },
+        "method_signatures": {
+          "sales_by_hub": "sales_by_hub(self, start_utc: str, end_utc: str, hub_id: Optional[int]) -> list[sqlite3.Row]",
+          "top_items": "top_items(self, start_utc: str, end_utc: str, hub_id: Optional[int], limit: int=10) -> list[sqlite3.Row]",
+          "open_orders_by_hub_and_state": "open_orders_by_hub_and_state(self) -> list[sqlite3.Row]",
+          "finished_deliveries": "finished_deliveries(self, start_utc: str, end_utc: str, hub_id: Optional[int]) -> list[sqlite3.Row]"
+        },
+        "status": "P4-TARGET",
+        "stereotype": "DAO",
+        "module": "saigonbite/data_access/report_dao.py",
+        "attribute_statuses": {
+          "conn": "MATCH"
+        },
+        "method_statuses": {
+          "sales_by_hub": "MATCH",
+          "top_items": "P4-TARGET",
+          "open_orders_by_hub_and_state": "MATCH",
+          "finished_deliveries": "MATCH"
+        },
+        "method_parameters": {
+          "sales_by_hub": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "start_utc",
+              "type": "str",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "end_utc",
+              "type": "str",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "hub_id",
+              "type": "Optional[int]",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "top_items": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "start_utc",
+              "type": "str",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "end_utc",
+              "type": "str",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "hub_id",
+              "type": "Optional[int]",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "limit",
+              "type": "int",
+              "annotated": true,
+              "default": "10",
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "open_orders_by_hub_and_state": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "finished_deliveries": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "start_utc",
+              "type": "str",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "end_utc",
+              "type": "str",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "hub_id",
+              "type": "Optional[int]",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "sales_by_hub": "list[sqlite3.Row]",
+          "top_items": "list[sqlite3.Row]",
+          "open_orders_by_hub_and_state": "list[sqlite3.Row]",
+          "finished_deliveries": "list[sqlite3.Row]"
+        },
+        "P4_inputs": {
+          "top_items": "F-09"
+        },
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "HubDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "get_including_archived",
+          "list_active",
+          "list_all"
+        ],
+        "attribute_types": {
+          "conn": "sqlite3.Connection"
+        },
+        "method_signatures": {
+          "get_including_archived": "get_including_archived(self, hub_id: int) -> Optional[Hub]",
+          "list_active": "list_active(self) -> list[Hub]",
+          "list_all": "list_all(self) -> list[Hub]"
+        },
+        "status": "MATCH",
+        "stereotype": "DAO",
+        "module": "saigonbite/data_access/hub_dao.py",
+        "attribute_statuses": {
+          "conn": "MATCH"
+        },
+        "method_statuses": {
+          "get_including_archived": "MATCH",
+          "list_active": "MATCH",
+          "list_all": "MATCH"
+        },
+        "method_parameters": {
+          "get_including_archived": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "hub_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "list_active": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "list_all": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "get_including_archived": "Optional[Hub]",
+          "list_active": "list[Hub]",
+          "list_all": "list[Hub]"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "UserDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "get_by_id"
+        ],
+        "attribute_types": {
+          "conn": "sqlite3.Connection"
+        },
+        "method_signatures": {
+          "get_by_id": "get_by_id(self, user_id: int) -> Optional[UserAccount]"
+        },
+        "status": "MATCH",
+        "stereotype": "DAO",
+        "module": "saigonbite/data_access/user_dao.py",
+        "attribute_statuses": {
+          "conn": "MATCH"
+        },
+        "method_statuses": {
+          "get_by_id": "MATCH"
+        },
+        "method_parameters": {
+          "get_by_id": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "user_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "get_by_id": "Optional[UserAccount]"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      }
+    ],
+    "dependencies": []
+  },
+  "render_receipt": {
+    "canvas": [
+      2600,
+      2088
+    ],
+    "minimum_font_px": 50,
+    "placed_width_mm": 170,
+    "minimum_pt": 9.27,
+    "xml": "parsed",
+    "connected_edges": true,
+    "author_native_cell": true,
+    "all_text_minimum_px": 50
+  },
+  "source_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b"
+}

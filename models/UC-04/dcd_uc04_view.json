@@ -1,0 +1,139 @@
+{
+  "author": "Author: 722I0004 · AI-assisted (Codex)",
+  "title": "UC-04 .2 DCD view",
+  "canvas": {
+    "width": 2600,
+    "height": 1300,
+    "font_size": 50,
+    "placed_width_mm": 170
+  },
+  "nodes": [
+    {
+      "id": "layer_view",
+      "kind": "layer",
+      "x": 40,
+      "y": 135,
+      "w": 2520,
+      "h": 70,
+      "lines": [
+        "Presentation / view"
+      ]
+    },
+    {
+      "id": "reports",
+      "kind": "class",
+      "x": 80,
+      "y": 213,
+      "w": 2440,
+      "h": 613,
+      "header_h": 137,
+      "header_lines": [
+        "reports"
+      ],
+      "subtitle_lines": [
+        "«view»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [
+        "+sales() * †",
+        "+workload() *",
+        "+delivery() *",
+        "-_filtered(template: str, run) *"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "legend",
+      "kind": "note",
+      "x": 80,
+      "y": 868,
+      "w": 2440,
+      "h": 132,
+      "lines": [
+        "View/DAO continuation is not needed."
+      ]
+    }
+  ],
+  "edges": [],
+  "footer": "Author: 722I0004 · AI-assisted (Codex) · Static design at C0; † targets remain for P4.",
+  "phase3": {
+    "diagram_type": "dcd",
+    "UC": "UC-04",
+    "view": "view",
+    "elements": [
+      {
+        "class": "reports",
+        "attributes": [],
+        "methods": [
+          "sales",
+          "workload",
+          "delivery",
+          "_filtered"
+        ],
+        "attribute_types": {},
+        "method_signatures": {
+          "sales": "sales()",
+          "workload": "workload()",
+          "delivery": "delivery()",
+          "_filtered": "_filtered(template: str, run)"
+        },
+        "status": "P4-TARGET",
+        "stereotype": "view",
+        "module": "saigonbite/presentation/reports.py",
+        "attribute_statuses": {},
+        "method_statuses": {
+          "sales": "P4-TARGET",
+          "workload": "MATCH",
+          "delivery": "MATCH",
+          "_filtered": "MATCH"
+        },
+        "method_parameters": {
+          "sales": [],
+          "workload": [],
+          "delivery": [],
+          "_filtered": [
+            {
+              "name": "template",
+              "type": "str",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "run",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "sales": "Any",
+          "workload": "Any",
+          "delivery": "Any",
+          "_filtered": "Any"
+        },
+        "P4_inputs": {
+          "sales": "F-09"
+        },
+        "attribute_P4_inputs": {}
+      }
+    ],
+    "dependencies": []
+  },
+  "render_receipt": {
+    "canvas": [
+      2600,
+      1300
+    ],
+    "minimum_font_px": 50,
+    "placed_width_mm": 170,
+    "minimum_pt": 9.27,
+    "xml": "parsed",
+    "connected_edges": true,
+    "author_native_cell": true,
+    "all_text_minimum_px": 50
+  },
+  "source_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b"
+}

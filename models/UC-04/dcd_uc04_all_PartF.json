@@ -1,0 +1,780 @@
+{
+  "author": "Author: 722I0004 · AI-assisted (Codex)",
+  "title": "UC-04 .2 DCD all — Part F",
+  "canvas": {
+    "width": 2600,
+    "height": 3032,
+    "font_size": 50,
+    "placed_width_mm": 170
+  },
+  "nodes": [
+    {
+      "id": "layer_view",
+      "kind": "layer",
+      "x": 40,
+      "y": 135,
+      "w": 2520,
+      "h": 70,
+      "lines": [
+        "Presentation / view"
+      ]
+    },
+    {
+      "id": "reports",
+      "kind": "class",
+      "x": 80,
+      "y": 213,
+      "w": 2440,
+      "h": 430,
+      "header_h": 137,
+      "header_lines": [
+        "reports"
+      ],
+      "subtitle_lines": [
+        "«view»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [
+        "+workload() *"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "layer_controller",
+      "kind": "layer",
+      "x": 40,
+      "y": 685,
+      "w": 2520,
+      "h": 70,
+      "lines": [
+        "Business / controller"
+      ]
+    },
+    {
+      "id": "ReportController",
+      "kind": "class",
+      "x": 80,
+      "y": 763,
+      "w": 2440,
+      "h": 430,
+      "header_h": 137,
+      "header_lines": [
+        "ReportController"
+      ],
+      "subtitle_lines": [
+        "«controller»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [
+        "+workload_report() -> WorkloadReport †"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "WorkloadRow",
+      "kind": "class",
+      "x": 80,
+      "y": 1223,
+      "w": 1205,
+      "h": 430,
+      "header_h": 137,
+      "header_lines": [
+        "WorkloadRow"
+      ],
+      "subtitle_lines": [
+        "«value»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [
+        "+label: str"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "WorkloadReport",
+      "kind": "class",
+      "x": 1315,
+      "y": 1223,
+      "w": 1205,
+      "h": 430,
+      "header_h": 137,
+      "header_lines": [
+        "WorkloadReport"
+      ],
+      "subtitle_lines": [
+        "«value»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "layer_domain",
+      "kind": "layer",
+      "x": 40,
+      "y": 1695,
+      "w": 2520,
+      "h": 70,
+      "lines": [
+        "Business / domain"
+      ]
+    },
+    {
+      "id": "Hub",
+      "kind": "class",
+      "x": 80,
+      "y": 1773,
+      "w": 1205,
+      "h": 430,
+      "header_h": 137,
+      "header_lines": [
+        "Hub"
+      ],
+      "subtitle_lines": [
+        "«entity»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "HubStatus",
+      "kind": "class",
+      "x": 1315,
+      "y": 1773,
+      "w": 1205,
+      "h": 430,
+      "header_h": 137,
+      "header_lines": [
+        "HubStatus"
+      ],
+      "subtitle_lines": [
+        "«entity»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [
+        "+load_percent: int"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "layer_data_access",
+      "kind": "layer",
+      "x": 40,
+      "y": 2245,
+      "w": 2520,
+      "h": 70,
+      "lines": [
+        "Data access"
+      ]
+    },
+    {
+      "id": "ReportDAO",
+      "kind": "class",
+      "x": 80,
+      "y": 2323,
+      "w": 1205,
+      "h": 369,
+      "header_h": 137,
+      "header_lines": [
+        "ReportDAO"
+      ],
+      "subtitle_lines": [
+        "«DAO»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "HubDAO",
+      "kind": "class",
+      "x": 1315,
+      "y": 2323,
+      "w": 1205,
+      "h": 369,
+      "header_h": 137,
+      "header_lines": [
+        "HubDAO"
+      ],
+      "subtitle_lines": [
+        "«DAO»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "legend",
+      "kind": "note",
+      "x": 80,
+      "y": 2734,
+      "w": 2440,
+      "h": 186,
+      "lines": [
+        "All four layers for workload snapshot value objects. SSD operations: workloadReport. DAO",
+        "signatures are in iv; SQL/transactions are in 4.3.2. † marks P4 targets, not C0",
+        "implementation."
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "dep_00",
+      "source": "WorkloadRow",
+      "target": "HubStatus",
+      "points": [
+        [
+          682.5,
+          1653
+        ],
+        [
+          682.5,
+          1713.0
+        ],
+        [
+          1917.5,
+          1713.0
+        ],
+        [
+          1917.5,
+          1773
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_01",
+      "source": "WorkloadReport",
+      "target": "WorkloadRow",
+      "points": [
+        [
+          1315,
+          1438.0
+        ],
+        [
+          1300.0,
+          1438.0
+        ],
+        [
+          1285,
+          1438.0
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_02",
+      "source": "ReportController",
+      "target": "HubDAO",
+      "points": [
+        [
+          1300.0,
+          1193
+        ],
+        [
+          1300.0,
+          1758.0
+        ],
+        [
+          1917.5,
+          1758.0
+        ],
+        [
+          1917.5,
+          2323
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_03",
+      "source": "ReportController",
+      "target": "HubStatus",
+      "points": [
+        [
+          1300.0,
+          1193
+        ],
+        [
+          1300.0,
+          1483.0
+        ],
+        [
+          1917.5,
+          1483.0
+        ],
+        [
+          1917.5,
+          1773
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_04",
+      "source": "ReportController",
+      "target": "ReportDAO",
+      "points": [
+        [
+          1300.0,
+          1193
+        ],
+        [
+          1300.0,
+          1758.0
+        ],
+        [
+          682.5,
+          1758.0
+        ],
+        [
+          682.5,
+          2323
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_05",
+      "source": "ReportController",
+      "target": "WorkloadReport",
+      "points": [
+        [
+          1300.0,
+          1193
+        ],
+        [
+          1300.0,
+          1208.0
+        ],
+        [
+          1917.5,
+          1208.0
+        ],
+        [
+          1917.5,
+          1223
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_06",
+      "source": "ReportController",
+      "target": "WorkloadRow",
+      "points": [
+        [
+          1300.0,
+          1193
+        ],
+        [
+          1300.0,
+          1208.0
+        ],
+        [
+          682.5,
+          1208.0
+        ],
+        [
+          682.5,
+          1223
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_07",
+      "source": "HubStatus",
+      "target": "Hub",
+      "points": [
+        [
+          1315,
+          1988.0
+        ],
+        [
+          1300.0,
+          1988.0
+        ],
+        [
+          1285,
+          1988.0
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_09",
+      "source": "reports",
+      "target": "ReportController",
+      "points": [
+        [
+          1300.0,
+          643
+        ],
+        [
+          1300.0,
+          703.0
+        ],
+        [
+          1300.0,
+          703.0
+        ],
+        [
+          1300.0,
+          763
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "repair_dep_9",
+      "source": "ReportController",
+      "target": "Hub",
+      "points": [
+        [
+          1300.0,
+          1193
+        ],
+        [
+          1300.0,
+          1483.0
+        ],
+        [
+          682.5,
+          1483.0
+        ],
+        [
+          682.5,
+          1773
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    }
+  ],
+  "footer": "Author: 722I0004 · AI-assisted (Codex) · Static design at C0; † targets remain for P4.",
+  "phase3": {
+    "diagram_type": "dcd",
+    "UC": "UC-04",
+    "view": "all",
+    "elements": [
+      {
+        "class": "reports",
+        "attributes": [],
+        "methods": [
+          "workload"
+        ],
+        "attribute_types": {},
+        "method_signatures": {
+          "workload": "workload()"
+        },
+        "status": "P4-TARGET",
+        "stereotype": "view",
+        "module": "saigonbite/presentation/reports.py",
+        "attribute_statuses": {},
+        "method_statuses": {
+          "workload": "MATCH"
+        },
+        "method_parameters": {
+          "workload": []
+        },
+        "method_returns": {
+          "workload": "Any"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "ReportController",
+        "attributes": [],
+        "methods": [
+          "workload_report"
+        ],
+        "attribute_types": {},
+        "method_signatures": {
+          "workload_report": "workload_report(self, user_id: int) -> WorkloadReport"
+        },
+        "status": "P4-TARGET",
+        "stereotype": "controller",
+        "module": "saigonbite/business/controllers/report_controller.py",
+        "attribute_statuses": {},
+        "method_statuses": {
+          "workload_report": "P4-TARGET"
+        },
+        "method_parameters": {
+          "workload_report": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "user_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "workload_report": "WorkloadReport"
+        },
+        "P4_inputs": {
+          "workload_report": "P2-S18"
+        },
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "WorkloadRow",
+        "attributes": [],
+        "methods": [
+          "label"
+        ],
+        "attribute_types": {},
+        "method_signatures": {
+          "label": "label(self) -> str"
+        },
+        "status": "MATCH",
+        "stereotype": "value",
+        "module": "saigonbite/business/controllers/report_controller.py",
+        "attribute_statuses": {},
+        "method_statuses": {
+          "label": "MATCH"
+        },
+        "method_parameters": {
+          "label": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "label": "str"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "WorkloadReport",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {},
+        "status": "MATCH",
+        "stereotype": "value",
+        "module": "saigonbite/business/controllers/report_controller.py",
+        "attribute_statuses": {},
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "Hub",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {},
+        "status": "P4-TARGET",
+        "stereotype": "entity",
+        "module": "saigonbite/business/domain/models.py",
+        "attribute_statuses": {},
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "HubStatus",
+        "attributes": [],
+        "methods": [
+          "load_percent"
+        ],
+        "attribute_types": {},
+        "method_signatures": {
+          "load_percent": "load_percent(self) -> int"
+        },
+        "status": "MATCH",
+        "stereotype": "entity",
+        "module": "saigonbite/business/domain/models.py",
+        "attribute_statuses": {},
+        "method_statuses": {
+          "load_percent": "MATCH"
+        },
+        "method_parameters": {
+          "load_percent": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "load_percent": "int"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "ReportDAO",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {},
+        "status": "P4-TARGET",
+        "stereotype": "DAO",
+        "module": "saigonbite/data_access/report_dao.py",
+        "attribute_statuses": {},
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "HubDAO",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {},
+        "status": "MATCH",
+        "stereotype": "DAO",
+        "module": "saigonbite/data_access/hub_dao.py",
+        "attribute_statuses": {},
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "WorkloadRow",
+        "target": "HubStatus",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "WorkloadReport",
+        "target": "WorkloadRow",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "ReportController",
+        "target": "Hub",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "ReportController",
+        "target": "HubDAO",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "ReportController",
+        "target": "HubStatus",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "ReportController",
+        "target": "ReportDAO",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "ReportController",
+        "target": "WorkloadReport",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "ReportController",
+        "target": "WorkloadRow",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "HubStatus",
+        "target": "Hub",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "reports",
+        "target": "ReportController",
+        "kind": "dependency",
+        "status": "MATCH"
+      }
+    ]
+  },
+  "render_receipt": {
+    "canvas": [
+      2600,
+      3032
+    ],
+    "minimum_font_px": 50,
+    "placed_width_mm": 170,
+    "minimum_pt": 9.27,
+    "xml": "parsed",
+    "connected_edges": true,
+    "author_native_cell": true,
+    "all_text_minimum_px": 50
+  },
+  "source_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b"
+}

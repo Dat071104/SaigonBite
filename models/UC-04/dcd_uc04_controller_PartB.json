@@ -1,0 +1,542 @@
+{
+  "author": "Author: 722I0004 · AI-assisted (Codex)",
+  "title": "UC-04 .2 DCD controller — Part B",
+  "canvas": {
+    "width": 2600,
+    "height": 2121,
+    "font_size": 50,
+    "placed_width_mm": 170
+  },
+  "nodes": [
+    {
+      "id": "layer_controller",
+      "kind": "layer",
+      "x": 40,
+      "y": 135,
+      "w": 2520,
+      "h": 70,
+      "lines": [
+        "Business / controller"
+      ]
+    },
+    {
+      "id": "ReportController",
+      "kind": "class",
+      "x": 80,
+      "y": 213,
+      "w": 2440,
+      "h": 552,
+      "header_h": 137,
+      "header_lines": [
+        "ReportController"
+      ],
+      "subtitle_lines": [
+        "«controller»"
+      ],
+      "attribute_lines": [
+        "+reports: ReportDAO *"
+      ],
+      "method_lines": [
+        "+sales_report(self, user_id: int, date_from: Optional[str]=None, date_to:",
+        "Optional[str]=None, hub_id: Optional[int]=None) -> SalesReport †"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "Period",
+      "kind": "class",
+      "x": 80,
+      "y": 795,
+      "w": 793,
+      "h": 1040,
+      "header_h": 137,
+      "header_lines": [
+        "Period"
+      ],
+      "subtitle_lines": [
+        "«value»"
+      ],
+      "attribute_lines": [
+        "+date_from: str",
+        "+date_to: str",
+        "+start_utc: str",
+        "+end_utc: str"
+      ],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "SalesRow",
+      "kind": "class",
+      "x": 903,
+      "y": 795,
+      "w": 793,
+      "h": 1040,
+      "header_h": 137,
+      "header_lines": [
+        "SalesRow"
+      ],
+      "subtitle_lines": [
+        "«value»"
+      ],
+      "attribute_lines": [
+        "+label: str",
+        "+orders: int",
+        "+item_sales: int",
+        "+voucher_discounts: int",
+        "+delivery_fees: int",
+        "+total: int",
+        "+refunds_owed: int"
+      ],
+      "method_lines": [
+        "+net(self) -> int",
+        "{property} †",
+        "+add(self, other:",
+        "'SalesRow') -> None"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "SalesReport",
+      "kind": "class",
+      "x": 1726,
+      "y": 795,
+      "w": 793,
+      "h": 1040,
+      "header_h": 137,
+      "header_lines": [
+        "SalesReport"
+      ],
+      "subtitle_lines": [
+        "«value»"
+      ],
+      "attribute_lines": [
+        "+period: Period",
+        "+hub: Optional[Hub]",
+        "+rows: list[SalesRow]",
+        "+totals: SalesRow",
+        "+top_items:",
+        "list[tuple[int, str, int,",
+        "int]] †"
+      ],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "legend",
+      "kind": "note",
+      "x": 80,
+      "y": 1877,
+      "w": 2440,
+      "h": 132,
+      "lines": [
+        "Part A contains authorization/filter helpers; F-03/F-09 remain † targets."
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "dep_00",
+      "source": "SalesReport",
+      "target": "Period",
+      "points": [
+        [
+          1726,
+          1315.0
+        ],
+        [
+          1299.5,
+          1315.0
+        ],
+        [
+          873,
+          1315.0
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_01",
+      "source": "SalesReport",
+      "target": "SalesRow",
+      "points": [
+        [
+          1726,
+          1315.0
+        ],
+        [
+          1711.0,
+          1315.0
+        ],
+        [
+          1696,
+          1315.0
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_02",
+      "source": "ReportController",
+      "target": "Period",
+      "points": [
+        [
+          1300.0,
+          765
+        ],
+        [
+          1300.0,
+          780.0
+        ],
+        [
+          476.5,
+          780.0
+        ],
+        [
+          476.5,
+          795
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_03",
+      "source": "ReportController",
+      "target": "SalesReport",
+      "points": [
+        [
+          1300.0,
+          765
+        ],
+        [
+          1300.0,
+          780.0
+        ],
+        [
+          2122.5,
+          780.0
+        ],
+        [
+          2122.5,
+          795
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_04",
+      "source": "ReportController",
+      "target": "SalesRow",
+      "points": [
+        [
+          1300.0,
+          765
+        ],
+        [
+          1300.0,
+          780.0
+        ],
+        [
+          1299.5,
+          780.0
+        ],
+        [
+          1299.5,
+          795
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    }
+  ],
+  "footer": "Author: 722I0004 · AI-assisted (Codex) · Static design at C0; † targets remain for P4.",
+  "phase3": {
+    "diagram_type": "dcd",
+    "UC": "UC-04",
+    "view": "controller",
+    "elements": [
+      {
+        "class": "ReportController",
+        "attributes": [
+          "reports"
+        ],
+        "methods": [
+          "sales_report"
+        ],
+        "attribute_types": {
+          "reports": "ReportDAO"
+        },
+        "method_signatures": {
+          "sales_report": "sales_report(self, user_id: int, date_from: Optional[str]=None, date_to: Optional[str]=None, hub_id: Optional[int]=None) -> SalesReport"
+        },
+        "status": "P4-TARGET",
+        "stereotype": "controller",
+        "module": "saigonbite/business/controllers/report_controller.py",
+        "attribute_statuses": {
+          "reports": "MATCH"
+        },
+        "method_statuses": {
+          "sales_report": "P4-TARGET"
+        },
+        "method_parameters": {
+          "sales_report": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "user_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "date_from",
+              "type": "Optional[str]",
+              "annotated": true,
+              "default": "None",
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "date_to",
+              "type": "Optional[str]",
+              "annotated": true,
+              "default": "None",
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "hub_id",
+              "type": "Optional[int]",
+              "annotated": true,
+              "default": "None",
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "sales_report": "SalesReport"
+        },
+        "P4_inputs": {
+          "sales_report": "F-03; F-09"
+        },
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "Period",
+        "attributes": [
+          "date_from",
+          "date_to",
+          "start_utc",
+          "end_utc"
+        ],
+        "methods": [],
+        "attribute_types": {
+          "date_from": "str",
+          "date_to": "str",
+          "start_utc": "str",
+          "end_utc": "str"
+        },
+        "method_signatures": {},
+        "status": "MATCH",
+        "stereotype": "value",
+        "module": "saigonbite/business/controllers/report_controller.py",
+        "attribute_statuses": {
+          "date_from": "MATCH",
+          "date_to": "MATCH",
+          "start_utc": "MATCH",
+          "end_utc": "MATCH"
+        },
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "SalesRow",
+        "attributes": [
+          "label",
+          "orders",
+          "item_sales",
+          "voucher_discounts",
+          "delivery_fees",
+          "total",
+          "refunds_owed"
+        ],
+        "methods": [
+          "net",
+          "add"
+        ],
+        "attribute_types": {
+          "label": "str",
+          "orders": "int",
+          "item_sales": "int",
+          "voucher_discounts": "int",
+          "delivery_fees": "int",
+          "total": "int",
+          "refunds_owed": "int"
+        },
+        "method_signatures": {
+          "net": "net(self) -> int",
+          "add": "add(self, other: 'SalesRow') -> None"
+        },
+        "status": "P4-TARGET",
+        "stereotype": "value",
+        "module": "saigonbite/business/controllers/report_controller.py",
+        "attribute_statuses": {
+          "label": "MATCH",
+          "orders": "MATCH",
+          "item_sales": "MATCH",
+          "voucher_discounts": "MATCH",
+          "delivery_fees": "MATCH",
+          "total": "MATCH",
+          "refunds_owed": "MATCH"
+        },
+        "method_statuses": {
+          "net": "P4-TARGET",
+          "add": "MATCH"
+        },
+        "method_parameters": {
+          "net": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "add": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "other",
+              "type": "'SalesRow'",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "net": "int",
+          "add": "None"
+        },
+        "P4_inputs": {
+          "net": "F-03"
+        },
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "SalesReport",
+        "attributes": [
+          "period",
+          "hub",
+          "rows",
+          "totals",
+          "top_items"
+        ],
+        "methods": [],
+        "attribute_types": {
+          "period": "Period",
+          "hub": "Optional[Hub]",
+          "rows": "list[SalesRow]",
+          "totals": "SalesRow",
+          "top_items": "list[tuple[int, str, int, int]]"
+        },
+        "method_signatures": {},
+        "status": "P4-TARGET",
+        "stereotype": "value",
+        "module": "saigonbite/business/controllers/report_controller.py",
+        "attribute_statuses": {
+          "period": "MATCH",
+          "hub": "MATCH",
+          "rows": "MATCH",
+          "totals": "MATCH",
+          "top_items": "P4-TARGET"
+        },
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {
+          "top_items": "F-09"
+        }
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "SalesReport",
+        "target": "Period",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "SalesReport",
+        "target": "SalesRow",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "ReportController",
+        "target": "Period",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "ReportController",
+        "target": "SalesReport",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "ReportController",
+        "target": "SalesRow",
+        "kind": "dependency",
+        "status": "MATCH"
+      }
+    ]
+  },
+  "render_receipt": {
+    "canvas": [
+      2600,
+      2121
+    ],
+    "minimum_font_px": 50,
+    "placed_width_mm": 170,
+    "minimum_pt": 9.27,
+    "xml": "parsed",
+    "connected_edges": true,
+    "author_native_cell": true,
+    "all_text_minimum_px": 50
+  },
+  "source_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b"
+}

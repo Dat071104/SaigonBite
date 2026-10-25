@@ -1,0 +1,468 @@
+{
+  "author": "Author: 722I0004 · AI-assisted (Codex)",
+  "title": "UC-04 .2 DCD controller",
+  "canvas": {
+    "width": 2600,
+    "height": 2060,
+    "font_size": 50,
+    "placed_width_mm": 170
+  },
+  "nodes": [
+    {
+      "id": "layer_controller",
+      "kind": "layer",
+      "x": 40,
+      "y": 135,
+      "w": 2520,
+      "h": 70,
+      "lines": [
+        "Business / controller"
+      ]
+    },
+    {
+      "id": "ReportController",
+      "kind": "class",
+      "x": 80,
+      "y": 213,
+      "w": 2440,
+      "h": 857,
+      "header_h": 137,
+      "header_lines": [
+        "ReportController"
+      ],
+      "subtitle_lines": [
+        "«controller»"
+      ],
+      "attribute_lines": [
+        "+reports: ReportDAO *",
+        "+hubs: HubDAO *"
+      ],
+      "method_lines": [
+        "+sales_report(self, user_id: int, date_from: Optional[str]=None, date_to:",
+        "Optional[str]=None, hub_id: Optional[int]=None) -> SalesReport †",
+        "+all_hubs(self) -> list[Hub]",
+        "-_require_manager(self, user_id: int) -> None",
+        "-_period(self, date_from: Optional[str], date_to: Optional[str]) -> Period",
+        "-_hub(self, hub_id: Optional[int]) -> Optional[Hub]"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "BaseController",
+      "kind": "class",
+      "x": 80,
+      "y": 1100,
+      "w": 1205,
+      "h": 674,
+      "header_h": 137,
+      "header_lines": [
+        "BaseController"
+      ],
+      "subtitle_lines": [
+        "«controller»"
+      ],
+      "attribute_lines": [
+        "+users: UserDAO *"
+      ],
+      "method_lines": [
+        "-_require_user(self, user_id: int,",
+        "*roles: Role, message: str='Your account",
+        "cannot do this.') -> UserAccount",
+        "-_today_vn(self) -> str"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "controllers_common",
+      "kind": "class",
+      "x": 1315,
+      "y": 1100,
+      "w": 1205,
+      "h": 674,
+      "header_h": 137,
+      "header_lines": [
+        "controllers.common"
+      ],
+      "subtitle_lines": [
+        "«module»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [
+        "+vn_day_start_utc(day: date) -> str"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "legend",
+      "kind": "note",
+      "x": 80,
+      "y": 1816,
+      "w": 2440,
+      "h": 132,
+      "lines": [
+        "Sales value roles continue in Part B; other report operations continue in Parts",
+        "C–F."
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "dep_00",
+      "source": "ReportController",
+      "target": "controllers_common",
+      "points": [
+        [
+          1300.0,
+          1070
+        ],
+        [
+          1300.0,
+          1085.0
+        ],
+        [
+          1917.5,
+          1085.0
+        ],
+        [
+          1917.5,
+          1100
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "repair_dep_1",
+      "source": "ReportController",
+      "target": "BaseController",
+      "points": [
+        [
+          1300.0,
+          1070
+        ],
+        [
+          1300.0,
+          1085.0
+        ],
+        [
+          682.5,
+          1085.0
+        ],
+        [
+          682.5,
+          1100
+        ]
+      ],
+      "dashed": false,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    }
+  ],
+  "footer": "Author: 722I0004 · AI-assisted (Codex) · Static design at C0; † targets remain for P4.",
+  "phase3": {
+    "diagram_type": "dcd",
+    "UC": "UC-04",
+    "view": "controller",
+    "elements": [
+      {
+        "class": "ReportController",
+        "attributes": [
+          "reports",
+          "hubs"
+        ],
+        "methods": [
+          "sales_report",
+          "all_hubs",
+          "_require_manager",
+          "_period",
+          "_hub"
+        ],
+        "attribute_types": {
+          "reports": "ReportDAO",
+          "hubs": "HubDAO"
+        },
+        "method_signatures": {
+          "sales_report": "sales_report(self, user_id: int, date_from: Optional[str]=None, date_to: Optional[str]=None, hub_id: Optional[int]=None) -> SalesReport",
+          "all_hubs": "all_hubs(self) -> list[Hub]",
+          "_require_manager": "_require_manager(self, user_id: int) -> None",
+          "_period": "_period(self, date_from: Optional[str], date_to: Optional[str]) -> Period",
+          "_hub": "_hub(self, hub_id: Optional[int]) -> Optional[Hub]"
+        },
+        "status": "P4-TARGET",
+        "stereotype": "controller",
+        "module": "saigonbite/business/controllers/report_controller.py",
+        "attribute_statuses": {
+          "reports": "MATCH",
+          "hubs": "MATCH"
+        },
+        "method_statuses": {
+          "sales_report": "P4-TARGET",
+          "all_hubs": "MATCH",
+          "_require_manager": "MATCH",
+          "_period": "MATCH",
+          "_hub": "MATCH"
+        },
+        "method_parameters": {
+          "sales_report": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "user_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "date_from",
+              "type": "Optional[str]",
+              "annotated": true,
+              "default": "None",
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "date_to",
+              "type": "Optional[str]",
+              "annotated": true,
+              "default": "None",
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "hub_id",
+              "type": "Optional[int]",
+              "annotated": true,
+              "default": "None",
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "all_hubs": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "_require_manager": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "user_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "_period": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "date_from",
+              "type": "Optional[str]",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "date_to",
+              "type": "Optional[str]",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ],
+          "_hub": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "hub_id",
+              "type": "Optional[int]",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "sales_report": "SalesReport",
+          "all_hubs": "list[Hub]",
+          "_require_manager": "None",
+          "_period": "Period",
+          "_hub": "Optional[Hub]"
+        },
+        "P4_inputs": {
+          "sales_report": "F-03; F-09"
+        },
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "BaseController",
+        "attributes": [
+          "users"
+        ],
+        "methods": [
+          "_require_user",
+          "_today_vn"
+        ],
+        "attribute_types": {
+          "users": "UserDAO"
+        },
+        "method_signatures": {
+          "_require_user": "_require_user(self, user_id: int, *roles: Role, message: str='Your account cannot do this.') -> UserAccount",
+          "_today_vn": "_today_vn(self) -> str"
+        },
+        "status": "MATCH",
+        "stereotype": "controller",
+        "module": "saigonbite/business/controllers/common.py",
+        "attribute_statuses": {
+          "users": "MATCH"
+        },
+        "method_statuses": {
+          "_require_user": "MATCH",
+          "_today_vn": "MATCH"
+        },
+        "method_parameters": {
+          "_require_user": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "user_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "roles",
+              "type": "Role",
+              "annotated": true,
+              "default": null,
+              "kind": "vararg"
+            },
+            {
+              "name": "message",
+              "type": "str",
+              "annotated": true,
+              "default": "'Your account cannot do this.'",
+              "kind": "keyword_only"
+            }
+          ],
+          "_today_vn": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "_require_user": "UserAccount",
+          "_today_vn": "str"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "controllers.common",
+        "attributes": [],
+        "methods": [
+          "vn_day_start_utc"
+        ],
+        "attribute_types": {},
+        "method_signatures": {
+          "vn_day_start_utc": "vn_day_start_utc(day: date) -> str"
+        },
+        "status": "P4-TARGET",
+        "stereotype": "module",
+        "module": "saigonbite/business/controllers/common.py",
+        "attribute_statuses": {},
+        "method_statuses": {
+          "vn_day_start_utc": "MATCH"
+        },
+        "method_parameters": {
+          "vn_day_start_utc": [
+            {
+              "name": "day",
+              "type": "date",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "vn_day_start_utc": "str"
+        },
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "ReportController",
+        "target": "controllers.common",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "ReportController",
+        "target": "BaseController",
+        "source_multiplicity": null,
+        "target_multiplicity": null,
+        "role": "inherits",
+        "kind": "generalization",
+        "navigable": false,
+        "status": "MATCH",
+        "evidence": "AST class base"
+      }
+    ]
+  },
+  "render_receipt": {
+    "canvas": [
+      2600,
+      2060
+    ],
+    "minimum_font_px": 50,
+    "placed_width_mm": 170,
+    "minimum_pt": 9.27,
+    "xml": "parsed",
+    "connected_edges": true,
+    "author_native_cell": true,
+    "all_text_minimum_px": 50
+  },
+  "source_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b"
+}

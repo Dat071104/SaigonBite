@@ -1,0 +1,577 @@
+{
+  "author": "Author: 722I0004 · AI-assisted (Codex)",
+  "title": "UC-04 .5 Final DCD — Part D",
+  "canvas": {
+    "width": 2600,
+    "height": 2971,
+    "font_size": 50,
+    "placed_width_mm": 170
+  },
+  "nodes": [
+    {
+      "id": "layer_view",
+      "kind": "layer",
+      "x": 40,
+      "y": 135,
+      "w": 2520,
+      "h": 70,
+      "lines": [
+        "Presentation / view"
+      ]
+    },
+    {
+      "id": "reports",
+      "kind": "class",
+      "x": 80,
+      "y": 213,
+      "w": 2440,
+      "h": 430,
+      "header_h": 137,
+      "header_lines": [
+        "reports"
+      ],
+      "subtitle_lines": [
+        "«view»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [
+        "+sales() * †"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "layer_controller",
+      "kind": "layer",
+      "x": 40,
+      "y": 685,
+      "w": 2520,
+      "h": 70,
+      "lines": [
+        "Business / controller"
+      ]
+    },
+    {
+      "id": "ReportController",
+      "kind": "class",
+      "x": 80,
+      "y": 763,
+      "w": 2440,
+      "h": 430,
+      "header_h": 137,
+      "header_lines": [
+        "ReportController"
+      ],
+      "subtitle_lines": [
+        "«controller»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [
+        "+sales_report() -> SalesReport †"
+      ],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "SalesReport",
+      "kind": "class",
+      "x": 80,
+      "y": 1223,
+      "w": 2440,
+      "h": 430,
+      "header_h": 137,
+      "header_lines": [
+        "SalesReport"
+      ],
+      "subtitle_lines": [
+        "«value»"
+      ],
+      "attribute_lines": [
+        "+top_items: list[tuple[int, str, int, int]] †"
+      ],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "layer_domain",
+      "kind": "layer",
+      "x": 40,
+      "y": 1695,
+      "w": 2520,
+      "h": 70,
+      "lines": [
+        "Business / domain"
+      ]
+    },
+    {
+      "id": "Hub",
+      "kind": "class",
+      "x": 80,
+      "y": 1773,
+      "w": 2440,
+      "h": 369,
+      "header_h": 137,
+      "header_lines": [
+        "Hub"
+      ],
+      "subtitle_lines": [
+        "«entity»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "layer_data_access",
+      "kind": "layer",
+      "x": 40,
+      "y": 2184,
+      "w": 2520,
+      "h": 70,
+      "lines": [
+        "Data access"
+      ]
+    },
+    {
+      "id": "ReportDAO",
+      "kind": "class",
+      "x": 80,
+      "y": 2262,
+      "w": 1205,
+      "h": 369,
+      "header_h": 137,
+      "header_lines": [
+        "ReportDAO"
+      ],
+      "subtitle_lines": [
+        "«DAO»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "HubDAO",
+      "kind": "class",
+      "x": 1315,
+      "y": 2262,
+      "w": 1205,
+      "h": 369,
+      "header_h": 137,
+      "header_lines": [
+        "HubDAO"
+      ],
+      "subtitle_lines": [
+        "«DAO»"
+      ],
+      "attribute_lines": [],
+      "method_lines": [],
+      "fill": "#FFFFFF"
+    },
+    {
+      "id": "legend",
+      "kind": "note",
+      "x": 80,
+      "y": 2673,
+      "w": 2440,
+      "h": 186,
+      "lines": [
+        "All four layers for sales report result object. SSD operations: salesReport. DAO",
+        "signatures are in iv; SQL/transactions are in 4.3.2. † marks P4 targets, not C0",
+        "implementation."
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "dep_00",
+      "source": "SalesReport",
+      "target": "Hub",
+      "points": [
+        [
+          1300.0,
+          1653
+        ],
+        [
+          1300.0,
+          1713.0
+        ],
+        [
+          1300.0,
+          1713.0
+        ],
+        [
+          1300.0,
+          1773
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_01",
+      "source": "ReportController",
+      "target": "HubDAO",
+      "points": [
+        [
+          1300.0,
+          1193
+        ],
+        [
+          1300.0,
+          1727.5
+        ],
+        [
+          1917.5,
+          1727.5
+        ],
+        [
+          1917.5,
+          2262
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_02",
+      "source": "ReportController",
+      "target": "ReportDAO",
+      "points": [
+        [
+          1300.0,
+          1193
+        ],
+        [
+          1300.0,
+          1727.5
+        ],
+        [
+          682.5,
+          1727.5
+        ],
+        [
+          682.5,
+          2262
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_03",
+      "source": "ReportController",
+      "target": "SalesReport",
+      "points": [
+        [
+          1300.0,
+          1193
+        ],
+        [
+          1300.0,
+          1208.0
+        ],
+        [
+          1300.0,
+          1208.0
+        ],
+        [
+          1300.0,
+          1223
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "dep_05",
+      "source": "reports",
+      "target": "ReportController",
+      "points": [
+        [
+          1300.0,
+          643
+        ],
+        [
+          1300.0,
+          703.0
+        ],
+        [
+          1300.0,
+          703.0
+        ],
+        [
+          1300.0,
+          763
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    },
+    {
+      "id": "repair_dep_5",
+      "source": "ReportController",
+      "target": "Hub",
+      "points": [
+        [
+          1300.0,
+          1193
+        ],
+        [
+          1300.0,
+          1483.0
+        ],
+        [
+          1300.0,
+          1483.0
+        ],
+        [
+          1300.0,
+          1773
+        ]
+      ],
+      "dashed": true,
+      "arrow": "block",
+      "color": "#6A6A6A",
+      "width": 2,
+      "label": ""
+    }
+  ],
+  "footer": "Author: 722I0004 · AI-assisted (Codex) · Static design at C0; † targets remain for P4.",
+  "phase3": {
+    "diagram_type": "dcd",
+    "UC": "UC-04",
+    "view": "all",
+    "elements": [
+      {
+        "class": "reports",
+        "attributes": [],
+        "methods": [
+          "sales"
+        ],
+        "attribute_types": {},
+        "method_signatures": {
+          "sales": "sales()"
+        },
+        "status": "P4-TARGET",
+        "stereotype": "view",
+        "module": "saigonbite/presentation/reports.py",
+        "attribute_statuses": {},
+        "method_statuses": {
+          "sales": "P4-TARGET"
+        },
+        "method_parameters": {
+          "sales": []
+        },
+        "method_returns": {
+          "sales": "Any"
+        },
+        "P4_inputs": {
+          "sales": "F-09"
+        },
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "ReportController",
+        "attributes": [],
+        "methods": [
+          "sales_report"
+        ],
+        "attribute_types": {},
+        "method_signatures": {
+          "sales_report": "sales_report(self, user_id: int, date_from: Optional[str]=None, date_to: Optional[str]=None, hub_id: Optional[int]=None) -> SalesReport"
+        },
+        "status": "P4-TARGET",
+        "stereotype": "controller",
+        "module": "saigonbite/business/controllers/report_controller.py",
+        "attribute_statuses": {},
+        "method_statuses": {
+          "sales_report": "P4-TARGET"
+        },
+        "method_parameters": {
+          "sales_report": [
+            {
+              "name": "self",
+              "type": "Any",
+              "annotated": false,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "user_id",
+              "type": "int",
+              "annotated": true,
+              "default": null,
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "date_from",
+              "type": "Optional[str]",
+              "annotated": true,
+              "default": "None",
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "date_to",
+              "type": "Optional[str]",
+              "annotated": true,
+              "default": "None",
+              "kind": "positional_or_keyword"
+            },
+            {
+              "name": "hub_id",
+              "type": "Optional[int]",
+              "annotated": true,
+              "default": "None",
+              "kind": "positional_or_keyword"
+            }
+          ]
+        },
+        "method_returns": {
+          "sales_report": "SalesReport"
+        },
+        "P4_inputs": {
+          "sales_report": "F-03; F-09"
+        },
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "SalesReport",
+        "attributes": [
+          "top_items"
+        ],
+        "methods": [],
+        "attribute_types": {
+          "top_items": "list[tuple[int, str, int, int]]"
+        },
+        "method_signatures": {},
+        "status": "P4-TARGET",
+        "stereotype": "value",
+        "module": "saigonbite/business/controllers/report_controller.py",
+        "attribute_statuses": {
+          "top_items": "P4-TARGET"
+        },
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {
+          "top_items": "F-09"
+        }
+      },
+      {
+        "class": "Hub",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {},
+        "status": "P4-TARGET",
+        "stereotype": "entity",
+        "module": "saigonbite/business/domain/models.py",
+        "attribute_statuses": {},
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "ReportDAO",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {},
+        "status": "P4-TARGET",
+        "stereotype": "DAO",
+        "module": "saigonbite/data_access/report_dao.py",
+        "attribute_statuses": {},
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      },
+      {
+        "class": "HubDAO",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {},
+        "status": "MATCH",
+        "stereotype": "DAO",
+        "module": "saigonbite/data_access/hub_dao.py",
+        "attribute_statuses": {},
+        "method_statuses": {},
+        "method_parameters": {},
+        "method_returns": {},
+        "P4_inputs": {},
+        "attribute_P4_inputs": {}
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "SalesReport",
+        "target": "Hub",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "ReportController",
+        "target": "Hub",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "ReportController",
+        "target": "HubDAO",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "ReportController",
+        "target": "ReportDAO",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "ReportController",
+        "target": "SalesReport",
+        "kind": "dependency",
+        "status": "MATCH"
+      },
+      {
+        "source": "reports",
+        "target": "ReportController",
+        "kind": "dependency",
+        "status": "MATCH"
+      }
+    ]
+  },
+  "render_receipt": {
+    "canvas": [
+      2600,
+      2971
+    ],
+    "minimum_font_px": 50,
+    "placed_width_mm": 170,
+    "minimum_pt": 9.27,
+    "xml": "parsed",
+    "connected_edges": true,
+    "author_native_cell": true,
+    "all_text_minimum_px": 50
+  },
+  "source_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b"
+}
