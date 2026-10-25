@@ -69,7 +69,7 @@ The current Wave 1 checker passes **14,802 checks** for 278 figures, 44 design-s
 
 Root's ERD semantic pass corrected four reversed manual multiplicity labels and one detached endpoint on Parts A/B. Schema/mapping metadata had been correct, so metadata-only FK coverage had missed these drawn defects. All 18 FKs now pass 126 schema/end-label/native-position/boundary checks; the auditor rejects the preserved original diagrams with the expected four label and one attachment failures. Both current image forms of every changed page were opened. Earlier border-clearance changes and the accepted P4.7 mapping assignments are reproducible in the coordinator. These are design-artifact corrections, not new application defects or P4 findings. Receipts: `erd_cardinality_qa.json`, `erd_auditor_regression.json`, `erd_label_qa.json` and the 328-check `mapping_crosscheck.json` under P3-root. The full checker normalizes in-memory FK tuples and serialized JSON lists before comparison.
 
-Architecture/mapping commits are ef9af54, 328d564 and efa8762. The six per-UC package commits are recorded next; Wave 2 starts only after those commits.
+Architecture/mapping commits are ef9af54, 328d564 and efa8762. The six package commits are UC-01 1987226, UC-02 32a54ea, UC-03 833eeec, UC-04 3a692ef, UC-05 33ae5a0 and UC-06 cab293e. Wave 2 was dispatched only after cab293e. During staged review root removed trailing empty source lines from 206 new P3 Python/CRC files; Python AST equality is recorded in EOF_normalization.json and all image bytes remain unchanged. Original B reports retain their intentional Markdown hard-break spaces and original handoff text.
 
 ### Wave 1 usage interruption and same-identity recovery
 
@@ -82,6 +82,8 @@ B subsequently stopped on another usage-limit error before its final report. On 
 The later three-worker repair batch had fresh scratch timestamps at approximately 04:10 UTC; metadata-only checks found A/C/B-fix running. B-fix then sent its successful final handoff. C subsequently failed with a usage-limit notification before its repair handoff, and A had no successful repair handoff recorded. On the owner's next continuation, 25/10 06:33 UTC /13:33 Bangkok, ordinaryUsageAllowed was true. Native followup_task restored the same A/C identities and list_agents confirmed them running. B-fix was not restarted. The three-repair-report barrier remains closed until A/C both finish; B-fix's completed report is still unopened. Root retained commits babbe4a and ef9af54 and rechecked the original protected-byte manifest and controlling prompt/plan hashes before integration.
 
 ## Wave 2 / Wave 3 integration
+
+E and F were dispatched on 25/10 after all six package commits, both generic workers explicitly selected as gpt-6.1-sol / high. E owns only subsystem DCD/report4.1; F owns only seqdao prefixes/report4.3.2. Shared model is frozen at SHA256 fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b. Root will not open either unfinished report or artifact before both successful final handoffs. Metadata-only liveness/recovery stays bounded; no model/config change or replacement is inferred.
 
 ⟦PENDING: complete E/F barrier, integrate subsystem/DAO design, rerun full cross-check and assemble reports⟧.
 
