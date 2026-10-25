@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200"><rect width="100%" height="100%" fill="white"/>
+<text x="35" y="42.040000000000006" font-family="Arial" font-size="28" font-weight="bold" fill="#202B36">UC-01 all — selected design members 7/9</text>
+<rect x="35" y="100" width="730" height="215.60000000000002" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="47" y="130.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«enumeration» OnlineOption</text>
+<text x="47" y="157.92" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">{layer: domain}</text>
+<polyline points="35,169.2 765,169.2" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="47" y="195.51999999999998" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ E_WALLET</text>
+<text x="47" y="223.11999999999998" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ BANK_QR</text>
+<text x="47" y="250.71999999999997" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ INTERNATIONAL_CARD</text>
+<polyline points="35,262.0 765,262.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="47" y="288.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">{no selected operation}</text>
+<rect x="815" y="100" width="730" height="243.20000000000002" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="827" y="130.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«enumeration» OfferState</text>
+<text x="827" y="157.92" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">{layer: domain}</text>
+<polyline points="815,169.2 1545,169.2" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="827" y="195.51999999999998" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ OFFERED</text>
+<text x="827" y="223.11999999999998" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ ACCEPTED</text>
+<text x="827" y="250.71999999999997" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ DECLINED</text>
+<text x="827" y="278.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ WITHDRAWN</text>
+<polyline points="815,289.59999999999997 1545,289.59999999999997" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="827" y="315.91999999999996" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">{no selected operation}</text>
+<rect x="35" y="333.6" width="730" height="270.8" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="47" y="363.92" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«enumeration» Role</text>
+<text x="47" y="391.52000000000004" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">{layer: domain}</text>
+<polyline points="35,402.8 765,402.8" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="47" y="429.12" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ CUSTOMER</text>
+<text x="47" y="456.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ KITCHEN_STAFF</text>
+<text x="47" y="484.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ SHIPPER</text>
+<text x="47" y="511.92" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ ADMIN</text>
+<text x="47" y="539.5200000000001" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ MANAGER</text>
+<polyline points="35,550.8 765,550.8" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="47" y="577.12" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">{no selected operation}</text>
+<rect x="815" y="361.20000000000005" width="730" height="188.0" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="827" y="391.52000000000004" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«module» domain.rules</text>
+<text x="827" y="419.12000000000006" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">{layer: domain}</text>
+<polyline points="815,430.40000000000003 1545,430.40000000000003" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="827" y="456.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">{no selected attribute}</text>
+<polyline points="815,468.0 1545,468.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="827" y="494.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ delivery_fee(base_fee: int, km: float) -&gt; int</text>
+<text x="827" y="521.9200000000001" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ quiet_discount(load: int, capacity: int, fee: int) -&gt; int</text>
+<rect x="815" y="567.2" width="730" height="188.0" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="827" y="597.5200000000001" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«enumeration» DiscountType</text>
+<text x="827" y="625.1200000000001" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">{layer: domain}</text>
+<polyline points="815,636.4000000000001 1545,636.4000000000001" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="827" y="662.7200000000001" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ FIXED</text>
+<text x="827" y="690.3200000000002" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ PERCENT</text>
+<polyline points="815,701.6000000000001 1545,701.6000000000001" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="827" y="727.9200000000002" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">{no selected operation}</text>
+<rect x="35" y="622.4000000000001" width="730" height="188.0" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="47" y="652.7200000000001" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«enumeration» CustomerType</text>
+<text x="47" y="680.3200000000002" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">{layer: domain}</text>
+<polyline points="35,691.6000000000001 765,691.6000000000001" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="47" y="717.9200000000002" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ LOCAL</text>
+<text x="47" y="745.5200000000002" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ TOURIST</text>
+<polyline points="35,756.8000000000002 765,756.8000000000002" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="47" y="783.1200000000002" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">{no selected operation}</text>
+<text x="35" y="1102.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Members continue across PartA, PartB, PartC, PartD, PartE, PartF, PartG, PartH, PartI; relation view follows in all_links.</text>
+<text x="35" y="1134.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">† design target, not yet in code at C0 (see P4 input none on this view).</text>
+<text x="35" y="1167.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Figure 3.1.2.vG. UC-01 all detailed design members — Author: 722I0004 · AI-assisted (Codex)</text>
+<text x="35" y="1193.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Static / target design · 230 mm landscape · smallest text 9.78 pt · native draw.io / final placement UNTESTED</text>
+</svg>

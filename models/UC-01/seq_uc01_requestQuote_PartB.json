@@ -1,0 +1,189 @@
+{
+  "UC": "UC-01",
+  "stem": "seq_uc01_requestQuote_PartB",
+  "title": "UC-01 requestQuote — Part B",
+  "figure": "3.1.4.OP-15B",
+  "caption": "UC-01 requestQuote design sequence",
+  "P4_input": "F-04; F-07; P3-S01",
+  "phase3": {
+    "diagram_type": "sequence",
+    "UC": "UC-01",
+    "op_id": "OP-15",
+    "operation": "requestQuote",
+    "parameters": "hubId, addressId, lines(itemId, quantity), voucherCode?, paymentMethod, onlineOption?",
+    "ssd_occurrence": "models/UC-01/ssd_uc01_PartA.drawio#01S-M03",
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Customer",
+        "role": "actor",
+        "label": "Customer"
+      },
+      {
+        "id": "view",
+        "class": "order",
+        "role": "view",
+        "label": "«view»\norder"
+      },
+      {
+        "id": "ctrl",
+        "class": "PlaceOrderController",
+        "role": "controller",
+        "label": "PlaceOrderController"
+      },
+      {
+        "id": "rules",
+        "class": "domain.rules",
+        "role": "domain",
+        "label": "domain.rules"
+      },
+      {
+        "id": "quote",
+        "class": "Quote",
+        "role": "domain",
+        "label": "Quote"
+      }
+    ],
+    "messages": [
+      {
+        "from": "ctrl",
+        "to": "rules",
+        "method": "delivery_fee",
+        "kind": "call",
+        "arguments": "hub.base_delivery_fee, raw_km",
+        "guard": "eligible/main operand (see frame and operation table)",
+        "PC_MG": "",
+        "label": "delivery_fee(hub.base_delivery_fee, raw_km)",
+        "y": 455,
+        "receiver_signature": "delivery_fee(base_fee: int, km: float) -> int",
+        "status": "MATCH",
+        "P4_input": ""
+      },
+      {
+        "from": "ctrl",
+        "to": "rules",
+        "method": "quiet_discount",
+        "kind": "call",
+        "arguments": "load, capacity, fee",
+        "guard": "eligible/main operand (see frame and operation table)",
+        "PC_MG": "",
+        "label": "quiet_discount(load, capacity, fee)",
+        "y": 525,
+        "receiver_signature": "quiet_discount(load: int, capacity: int, fee: int) -> int",
+        "status": "MATCH",
+        "P4_input": ""
+      },
+      {
+        "from": "ctrl",
+        "to": "quote",
+        "method": "Quote",
+        "kind": "create",
+        "arguments": "hub, address, lines, raw_km, F",
+        "guard": "eligible/main operand (see frame and operation table)",
+        "PC_MG": "",
+        "label": "«create» Quote (implicit dataclass initialization)",
+        "y": 595
+      },
+      {
+        "from": "ctrl",
+        "to": "quote",
+        "method": "fingerprint",
+        "kind": "call",
+        "arguments": "payment.method, payment.option",
+        "guard": "eligible/main operand (see frame and operation table)",
+        "PC_MG": "",
+        "label": "fingerprint†(payment.method, payment.option) [F-07]",
+        "y": 665,
+        "argument_bindings": {
+          "payment_method": "payment.method",
+          "online_option": "payment.option"
+        },
+        "receiver_signature": "fingerprint(self, payment_method: PaymentMethod, online_option: Optional[OnlineOption] = None) -> str",
+        "status": "GAP",
+        "P4_input": "F-07"
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "quoteWithFingerprintAndSDFQT | refusal | busySuggestions",
+        "guard": "",
+        "PC_MG": "Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation",
+        "label": "result / controlled refusal",
+        "y": 735
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "",
+        "guard": "denied / stale / invalid or atomic save failure",
+        "PC_MG": "UC01-MG01",
+        "label": "refusal / controlled failure; UC01-MG01",
+        "y": 1000
+      }
+    ],
+    "elements": [
+      {
+        "class": "order",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "PlaceOrderController",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "domain.rules",
+        "attributes": [],
+        "methods": [
+          "delivery_fee",
+          "quiet_discount"
+        ]
+      },
+      {
+        "class": "Quote",
+        "attributes": [],
+        "methods": [
+          "fingerprint"
+        ]
+      }
+    ],
+    "dependencies": [],
+    "states": []
+  },
+  "frames": [
+    {
+      "id": "alt",
+      "y": 180,
+      "h": 860,
+      "label": "alt [valid full quote → quoteWithFingerprintAndSDFQT / refused → zero writes; UC01-MG01]",
+      "operands": [
+        [
+          900,
+          "[denied / stale / invalid or failed atomic save] UC01-MG01"
+        ]
+      ]
+    }
+  ],
+  "notes": [
+    {
+      "y": 220,
+      "h": 75.2,
+      "text": "Read quote.item_subtotal / quote.total properties. Fingerprint binds hub/address, line IDs, quantities and prices, voucher + D, F, Q and payment choice; full accepted price T=S−D+F−Q. PaymentChoice is a typed adapter value."
+    },
+    {
+      "y": 1010,
+      "h": 65,
+      "text": "Persistence: loaded/saved through data access — see 4.3.2."
+    }
+  ],
+  "continuation": "Part B ↔ PartA. Same lifelines / same operation; no second request.",
+  "realisation_note": "Read quote.item_subtotal / quote.total properties. Fingerprint binds hub/address, line IDs, quantities and prices, voucher + D, F, Q and payment choice; full accepted price T=S−D+F−Q. PaymentChoice is a typed adapter value.",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+}

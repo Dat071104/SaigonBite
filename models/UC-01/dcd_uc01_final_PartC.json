@@ -1,0 +1,198 @@
+{
+  "UC": "UC-01",
+  "stem": "dcd_uc01_final_PartC",
+  "title": "UC-01 final — selected design members 3/9",
+  "figure": "3.1.5C",
+  "caption": "UC-01 final detailed design members",
+  "cards": [
+    {
+      "id": "OrderConfirmation_0",
+      "class": "OrderConfirmation",
+      "box": [
+        35,
+        100,
+        730,
+        243.20000000000002
+      ],
+      "compartments": [
+        [
+          "«value» OrderConfirmation",
+          "{layer: controller}"
+        ],
+        [
+          "+ order: Order",
+          "+ payment: Payment",
+          "+ hub: Hub",
+          "+ created: bool"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "OrderConfirmation",
+        "attributes": [
+          "order",
+          "payment",
+          "hub",
+          "created"
+        ],
+        "methods": []
+      }
+    },
+    {
+      "id": "HubMenuView_0",
+      "class": "HubMenuView",
+      "box": [
+        815,
+        100,
+        730,
+        243.20000000000002
+      ],
+      "compartments": [
+        [
+          "«value» HubMenuView",
+          "{layer: controller}"
+        ],
+        [
+          "+ hub: Hub",
+          "+ status: HubStatus",
+          "+ menu: list[HubMenuItem]",
+          "+ addresses: list[Address]"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "HubMenuView",
+        "attributes": [
+          "hub",
+          "status",
+          "menu",
+          "addresses"
+        ],
+        "methods": []
+      }
+    },
+    {
+      "id": "OrderDetail_0",
+      "class": "OrderDetail",
+      "box": [
+        35,
+        361.20000000000005,
+        730,
+        243.20000000000002
+      ],
+      "compartments": [
+        [
+          "«value» OrderDetail",
+          "{layer: controller}"
+        ],
+        [
+          "+ order: Order",
+          "+ payment: Payment",
+          "+ hub: Hub",
+          "+ delivery: Optional[Delivery]"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "OrderDetail",
+        "attributes": [
+          "order",
+          "payment",
+          "hub",
+          "delivery"
+        ],
+        "methods": []
+      }
+    },
+    {
+      "id": "OrderSummary_0",
+      "class": "OrderSummary",
+      "box": [
+        815,
+        361.20000000000005,
+        730,
+        215.60000000000002
+      ],
+      "compartments": [
+        [
+          "«value» OrderSummary",
+          "{layer: controller}"
+        ],
+        [
+          "+ order: Order",
+          "+ hub_name: str",
+          "+ awaiting_answer: bool"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "OrderSummary",
+        "attributes": [
+          "order",
+          "hub_name",
+          "awaiting_answer"
+        ],
+        "methods": []
+      }
+    }
+  ],
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "OrderConfirmation",
+        "attributes": [
+          "order",
+          "payment",
+          "hub",
+          "created"
+        ],
+        "methods": []
+      },
+      {
+        "class": "HubMenuView",
+        "attributes": [
+          "hub",
+          "status",
+          "menu",
+          "addresses"
+        ],
+        "methods": []
+      },
+      {
+        "class": "OrderDetail",
+        "attributes": [
+          "order",
+          "payment",
+          "hub",
+          "delivery"
+        ],
+        "methods": []
+      },
+      {
+        "class": "OrderSummary",
+        "attributes": [
+          "order",
+          "hub_name",
+          "awaiting_answer"
+        ],
+        "methods": []
+      }
+    ],
+    "dependencies": [],
+    "states": []
+  },
+  "P4_input": "none on this view",
+  "continuation": "Members continue across PartA, PartB, PartC, PartD, PartE, PartF, PartG, PartH, PartI; relation view follows in final_links.",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+}

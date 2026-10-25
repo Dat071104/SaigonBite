@@ -1,0 +1,211 @@
+{
+  "UC": "UC-01",
+  "stem": "seq_uc01_requestQuote_PartA",
+  "title": "UC-01 requestQuote — Part A",
+  "figure": "3.1.4.OP-15A",
+  "caption": "UC-01 requestQuote design sequence",
+  "P4_input": "F-04; F-07; P3-S01",
+  "phase3": {
+    "diagram_type": "sequence",
+    "UC": "UC-01",
+    "op_id": "OP-15",
+    "operation": "requestQuote",
+    "parameters": "hubId, addressId, lines(itemId, quantity), voucherCode?, paymentMethod, onlineOption?",
+    "ssd_occurrence": "models/UC-01/ssd_uc01_PartA.drawio#01S-M03",
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Customer",
+        "role": "actor",
+        "label": "Customer"
+      },
+      {
+        "id": "view",
+        "class": "order",
+        "role": "view",
+        "label": "«view»\norder"
+      },
+      {
+        "id": "ctrl",
+        "class": "PlaceOrderController",
+        "role": "controller",
+        "label": "PlaceOrderController"
+      },
+      {
+        "id": "hub",
+        "class": "Hub",
+        "role": "domain",
+        "label": "Hub"
+      },
+      {
+        "id": "voucher",
+        "class": "Voucher",
+        "role": "domain",
+        "label": "Voucher"
+      }
+    ],
+    "messages": [
+      {
+        "from": "actor",
+        "to": "view",
+        "method": "quote",
+        "kind": "ssd",
+        "arguments": "hubId, addressId, lines(itemId, quantity), voucherCode?, paymentMethod, onlineOption?",
+        "guard": "",
+        "PC_MG": "",
+        "label": "requestQuote(hubId, addressId, lines(itemId, quantity), voucherCode?, paymentMethod, onlineOption?)\n→ order.quote† [HTTP adapter]",
+        "y": 445,
+        "receiver_signature": "quote()",
+        "status": "P4-TARGET",
+        "P4_input": "F-07"
+      },
+      {
+        "from": "view",
+        "to": "ctrl",
+        "method": "request_quote",
+        "kind": "call",
+        "arguments": "user_id, hub_id, address_id, quantities, voucher_code, payment",
+        "guard": "eligible/main operand (see frame and operation table)",
+        "PC_MG": "Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation",
+        "label": "request_quote†(user_id, hub_id, address_id, quantities, voucher_code, payment)",
+        "y": 538,
+        "receiver_signature": "request_quote(self, user_id: int, hub_id: int, address_id: Optional[int], quantities: Mapping[int, str], voucher_code: Optional[str] = None, payment: Optional[PaymentChoice] = None) -> Quote",
+        "status": "P4-TARGET",
+        "P4_input": "F-04; F-07; P3-S01"
+      },
+      {
+        "from": "ctrl",
+        "to": "ctrl",
+        "method": "_build_quote",
+        "kind": "call",
+        "arguments": "customer, hub_id, address_id, quantities, voucher_code",
+        "guard": "eligible/main operand (see frame and operation table)",
+        "PC_MG": "",
+        "label": "_build_quote(customer, hub_id, address_id, quantities, voucher_code)",
+        "y": 655,
+        "receiver_signature": "_build_quote(self, customer: Customer, hub_id: int, address_id: Optional[int], quantities: Mapping[int, str], voucher_code: Optional[str]) -> Quote",
+        "status": "MATCH",
+        "P4_input": ""
+      },
+      {
+        "from": "ctrl",
+        "to": "hub",
+        "method": "distance_to",
+        "kind": "call",
+        "arguments": "address",
+        "guard": "eligible/main operand (see frame and operation table)",
+        "PC_MG": "",
+        "label": "distance_to†(address) [raw ≤ 8.0 km]",
+        "y": 750,
+        "receiver_signature": "distance_to(self, address: Address) -> float",
+        "status": "P4-TARGET",
+        "P4_input": "F-04"
+      },
+      {
+        "from": "ctrl",
+        "to": "voucher",
+        "method": "problem",
+        "kind": "call",
+        "arguments": "quote.item_subtotal, today",
+        "guard": "eligible/main operand (see frame and operation table)",
+        "PC_MG": "",
+        "label": "problem(quote.item_subtotal, today)",
+        "y": 815,
+        "receiver_signature": "problem(self, item_subtotal: int, today: str) -> Optional[str]",
+        "status": "MATCH",
+        "P4_input": ""
+      },
+      {
+        "from": "ctrl",
+        "to": "voucher",
+        "method": "discount_for",
+        "kind": "call",
+        "arguments": "quote.item_subtotal",
+        "guard": "eligible/main operand (see frame and operation table)",
+        "PC_MG": "",
+        "label": "discount_for(quote.item_subtotal)",
+        "y": 880,
+        "receiver_signature": "discount_for(self, item_subtotal: int) -> int",
+        "status": "MATCH",
+        "P4_input": ""
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "",
+        "guard": "denied / stale / invalid or atomic save failure",
+        "PC_MG": "UC01-MG01",
+        "label": "refusal / controlled failure; UC01-MG01",
+        "y": 1000
+      }
+    ],
+    "elements": [
+      {
+        "class": "order",
+        "attributes": [],
+        "methods": [
+          "quote"
+        ]
+      },
+      {
+        "class": "PlaceOrderController",
+        "attributes": [],
+        "methods": [
+          "_build_quote",
+          "request_quote"
+        ]
+      },
+      {
+        "class": "Hub",
+        "attributes": [],
+        "methods": [
+          "distance_to"
+        ]
+      },
+      {
+        "class": "Voucher",
+        "attributes": [],
+        "methods": [
+          "discount_for",
+          "problem"
+        ]
+      }
+    ],
+    "dependencies": [],
+    "states": []
+  },
+  "frames": [
+    {
+      "id": "alt",
+      "y": 550,
+      "h": 490,
+      "label": "alt [eligible main path; guards / effects in the operation note]",
+      "operands": [
+        [
+          910,
+          "[denied / stale / invalid or failed atomic save] UC01-MG01"
+        ]
+      ]
+    }
+  ],
+  "notes": [
+    {
+      "y": 220,
+      "h": 90,
+      "text": "Target: active hub/menu/brand, own active address, integer quantities, load < capacity. Details / guards: report operation table."
+    },
+    {
+      "y": 1010,
+      "h": 65,
+      "text": "Persistence: loaded/saved through data access — see 4.3.2."
+    }
+  ],
+  "continuation": "Part A ↔ PartB. Same lifelines / same operation; no second request.",
+  "realisation_note": "Target: active hub/menu/brand, own active address, integer quantities, load < capacity. Invalid input/refused voucher → no saved rows. Busy suggestions ≤3 ranked (load/capacity, raw distance, ID).",
+  "self_call_clearance_polished": true,
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+}

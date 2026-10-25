@@ -1,0 +1,247 @@
+{
+  "UC": "UC-01",
+  "stem": "seq_uc01_cancelOrder",
+  "title": "UC-01 cancelOrder",
+  "figure": "3.1.4.OP-07",
+  "caption": "UC-01 cancelOrder design sequence",
+  "P4_input": "F-02; P2-S01; P2-S13; P3-S03",
+  "phase3": {
+    "diagram_type": "sequence",
+    "UC": "UC-01",
+    "op_id": "OP-07",
+    "operation": "cancelOrder",
+    "parameters": "orderId",
+    "ssd_occurrence": "models/UC-01/ssd_uc01_PartC.drawio#01S-M07",
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Customer",
+        "role": "actor",
+        "label": "Customer"
+      },
+      {
+        "id": "view",
+        "class": "order",
+        "role": "view",
+        "label": "«view»\norder"
+      },
+      {
+        "id": "ctrl",
+        "class": "OrderTrackingController",
+        "role": "controller",
+        "label": "OrderTrackingController"
+      },
+      {
+        "id": "common",
+        "class": "controllers.common",
+        "role": "controller",
+        "label": "controllers.common"
+      },
+      {
+        "id": "order",
+        "class": "Order",
+        "role": "domain",
+        "label": "Order"
+      },
+      {
+        "id": "pay",
+        "class": "Payment",
+        "role": "domain",
+        "label": "Payment"
+      }
+    ],
+    "messages": [
+      {
+        "from": "actor",
+        "to": "view",
+        "method": "cancel",
+        "kind": "ssd",
+        "arguments": "orderId",
+        "guard": "",
+        "PC_MG": "",
+        "label": "cancelOrder(orderId)\n→ order.cancel [HTTP adapter]",
+        "y": 483,
+        "receiver_signature": "cancel(order_id: int)",
+        "status": "MATCH",
+        "P4_input": ""
+      },
+      {
+        "from": "view",
+        "to": "ctrl",
+        "method": "cancel_order",
+        "kind": "call",
+        "arguments": "user_id, order_id",
+        "guard": "eligible/main operand (see frame and operation table)",
+        "PC_MG": "SUC04-PC01; SUC04-PC02 (atomic cancellation and full-C obligation); checkout PCs are not asserted by cancellation",
+        "label": "cancel_order†(user_id, order_id)",
+        "y": 553,
+        "receiver_signature": "cancel_order(self, user_id: int, order_id: int) -> OrderDetail",
+        "status": "P4-TARGET",
+        "P4_input": "F-02; P2-S13"
+      },
+      {
+        "from": "ctrl",
+        "to": "common",
+        "method": "move_order",
+        "kind": "call",
+        "arguments": "orders, order, OrderState.CANCELLED, now",
+        "guard": "eligible/main operand (see frame and operation table)",
+        "PC_MG": "",
+        "label": "move_order(orders, order, OrderState.CANCELLED, now)",
+        "y": 675,
+        "receiver_signature": "move_order(orders: OrderDAO, order: Order, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> None",
+        "status": "MATCH",
+        "P4_input": ""
+      },
+      {
+        "from": "common",
+        "to": "order",
+        "method": "move_to",
+        "kind": "call",
+        "arguments": "OrderState.CANCELLED",
+        "guard": "eligible/main operand (see frame and operation table)",
+        "PC_MG": "",
+        "label": "move_to(OrderState.CANCELLED)",
+        "y": 745,
+        "receiver_signature": "move_to(self, new_state: OrderState) -> None",
+        "status": "MATCH",
+        "P4_input": ""
+      },
+      {
+        "from": "ctrl",
+        "to": "common",
+        "method": "release_payment",
+        "kind": "call",
+        "arguments": "payments, order.id, now",
+        "guard": "eligible/main operand (see frame and operation table)",
+        "PC_MG": "",
+        "label": "release_payment†(payments, order.id, now)",
+        "y": 815,
+        "receiver_signature": "release_payment(payments: PaymentDAO, order_id: int, now: str) -> Payment",
+        "status": "P4-TARGET",
+        "P4_input": "F-02; P2-S01; P3-S03"
+      },
+      {
+        "from": "common",
+        "to": "pay",
+        "method": "release_for_unfulfilled_order",
+        "kind": "call",
+        "arguments": "",
+        "guard": "eligible/main operand (see frame and operation table)",
+        "PC_MG": "",
+        "label": "release_for_unfulfilled_order†() [full C owed]",
+        "y": 885,
+        "receiver_signature": "release_for_unfulfilled_order(self) -> None",
+        "status": "P4-TARGET",
+        "P4_input": "F-02; P2-S01"
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "",
+        "guard": "denied / stale / invalid or atomic save failure",
+        "PC_MG": "SUC-04 failure invariant; SUC04-PC01 / SUC04-PC02 not reached",
+        "label": "refusal; retained Order / offer / payment unchanged",
+        "y": 1000
+      }
+    ],
+    "elements": [
+      {
+        "class": "order",
+        "attributes": [],
+        "methods": [
+          "cancel"
+        ]
+      },
+      {
+        "class": "OrderTrackingController",
+        "attributes": [],
+        "methods": [
+          "cancel_order"
+        ]
+      },
+      {
+        "class": "controllers.common",
+        "attributes": [],
+        "methods": [
+          "move_order",
+          "release_payment"
+        ]
+      },
+      {
+        "class": "Order",
+        "attributes": [],
+        "methods": [
+          "move_to"
+        ]
+      },
+      {
+        "class": "Payment",
+        "attributes": [],
+        "methods": [
+          "release_for_unfulfilled_order"
+        ]
+      }
+    ],
+    "dependencies": [],
+    "states": [
+      {
+        "class": "Order",
+        "attribute": "state",
+        "values": [
+          "PLACED",
+          "CONFIRMED",
+          "CANCELLED"
+        ]
+      },
+      {
+        "class": "Payment",
+        "attribute": "state",
+        "values": [
+          "VOIDED",
+          "REFUND_PENDING"
+        ]
+      },
+      {
+        "class": "ReplacementOffer",
+        "attribute": "state",
+        "values": [
+          "WITHDRAWN"
+        ]
+      }
+    ]
+  },
+  "frames": [
+    {
+      "id": "alt",
+      "y": 565,
+      "h": 475,
+      "label": "alt [eligible main path; guards / effects in the operation note]",
+      "operands": [
+        [
+          910,
+          "[denied / stale / failed save] SUC-04 failure: no new SUC04-PC01 or SUC04-PC02 effects"
+        ]
+      ]
+    }
+  ],
+  "notes": [
+    {
+      "y": 220,
+      "h": 102.80000000000001,
+      "text": "Guard: active own Customer; PLACED / CONFIRMED. Atomic CANCELLED + closed_at / reason; COD VOIDED; ONLINE REFUND_PENDING, refund_amount=C replaces any partial owed amount. No payout. Open offer WITHDRAWN; helpers are real module functions. Rowcount, busy and failure-through-COMMIT rollback†."
+    },
+    {
+      "y": 1010,
+      "h": 65,
+      "text": "Persistence: loaded/saved through data access — see 4.3.2."
+    }
+  ],
+  "continuation": "Complete design operation; failure path is the alternative operand above.",
+  "realisation_note": "Guard: active own Customer; PLACED / CONFIRMED. Atomic CANCELLED + closed_at / reason; COD VOIDED; ONLINE REFUND_PENDING, refund_amount=C replaces any partial owed amount. No payout. Open offer WITHDRAWN; helpers are real module functions. Rowcount, busy and failure-through-COMMIT rollback†. Root-adopted P4-TARGET: release_payment persists the full-C refund amount together with state and checks every conditional save in the same transaction (F-02; P2-S01; P3-S03).",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+}

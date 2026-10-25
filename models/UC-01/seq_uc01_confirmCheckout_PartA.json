@@ -1,0 +1,173 @@
+{
+  "UC": "UC-01",
+  "stem": "seq_uc01_confirmCheckout_PartA",
+  "title": "UC-01 confirmCheckout — Part A",
+  "figure": "3.1.4.OP-01A",
+  "caption": "UC-01 confirmCheckout design sequence",
+  "P4_input": "F-04; F-07; P2-S05; P2-S13",
+  "phase3": {
+    "diagram_type": "sequence",
+    "UC": "UC-01",
+    "op_id": "OP-01",
+    "operation": "confirmCheckout",
+    "parameters": "hubId, addressId, lines(itemId, quantity), voucherCode?, paymentMethod, onlineOption?, simulatorOutcome?, quoteFingerprint, quotedTotal, checkoutToken",
+    "ssd_occurrence": "models/UC-01/ssd_uc01_PartB.drawio#01S-M04",
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Customer",
+        "role": "actor",
+        "label": "Customer"
+      },
+      {
+        "id": "view",
+        "class": "order",
+        "role": "view",
+        "label": "«view»\norder"
+      },
+      {
+        "id": "ctrl",
+        "class": "PlaceOrderController",
+        "role": "controller",
+        "label": "PlaceOrderController"
+      },
+      {
+        "id": "quote",
+        "class": "Quote",
+        "role": "domain",
+        "label": "Quote"
+      }
+    ],
+    "messages": [
+      {
+        "from": "actor",
+        "to": "view",
+        "method": "confirm",
+        "kind": "ssd",
+        "arguments": "hubId, addressId, lines(itemId, quantity), voucherCode?, paymentMethod, onlineOption?, simulatorOutcome?, quoteFingerprint, quotedTotal, checkoutToken",
+        "guard": "",
+        "PC_MG": "",
+        "label": "confirmCheckout(hubId, addressId, lines(itemId, quantity), voucherCode?, paymentMethod, onlineOption?, simulatorOutcome?, quoteFingerprint, quotedTotal, checkoutToken)\n→ order.confirm† [HTTP adapter]",
+        "y": 501,
+        "receiver_signature": "confirm()",
+        "status": "P4-TARGET",
+        "P4_input": "F-07; P2-S05"
+      },
+      {
+        "from": "view",
+        "to": "ctrl",
+        "method": "confirm_order",
+        "kind": "call",
+        "arguments": "user_id, hub_id, address_id, quantities, checkoutToken, quotedTotal, voucher_code, payment, quoteFingerprint",
+        "guard": "eligible/main operand (see frame and operation table)",
+        "PC_MG": "UC01-PC01; UC01-PC02; UC01-PC03; UC01-PC04; UC01-PC05; UC01-PC06; UC01-MG01; UC01-MG02; UC01-MG03",
+        "label": "confirm_order†(user_id, hub_id, address_id, quantities, checkoutToken, quotedTotal, voucher_code, payment, quoteFingerprint)",
+        "y": 621,
+        "receiver_signature": "confirm_order(self, user_id: int, hub_id: int, address_id: Optional[int], quantities: Mapping[int, str], idempotency_token: str, quoted_total: Optional[int] = None, voucher_code: Optional[str] = None, payment: Optional[PaymentChoice] = None, quote_fingerprint: Optional[str] = None) -> OrderConfirmation",
+        "status": "P4-TARGET",
+        "P4_input": "F-04; F-07; P2-S05; P2-S13"
+      },
+      {
+        "from": "ctrl",
+        "to": "ctrl",
+        "method": "_build_quote",
+        "kind": "call",
+        "arguments": "customer, hub_id, address_id, quantities, voucher_code",
+        "guard": "eligible/main operand (see frame and operation table)",
+        "PC_MG": "",
+        "label": "_build_quote(customer, hub_id, address_id, quantities, voucher_code)",
+        "y": 738,
+        "receiver_signature": "_build_quote(self, customer: Customer, hub_id: int, address_id: Optional[int], quantities: Mapping[int, str], voucher_code: Optional[str]) -> Quote",
+        "status": "MATCH",
+        "P4_input": ""
+      },
+      {
+        "from": "ctrl",
+        "to": "quote",
+        "method": "fingerprint",
+        "kind": "call",
+        "arguments": "payment.method, payment.option",
+        "guard": "eligible/main operand (see frame and operation table)",
+        "PC_MG": "",
+        "label": "fingerprint†(payment.method, payment.option) [compare fingerprint AND T]",
+        "y": 861,
+        "argument_bindings": {
+          "payment_method": "payment.method",
+          "online_option": "payment.option"
+        },
+        "receiver_signature": "fingerprint(self, payment_method: PaymentMethod, online_option: Optional[OnlineOption] = None) -> str",
+        "status": "GAP",
+        "P4_input": "F-07"
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "",
+        "guard": "denied / stale / invalid or atomic save failure",
+        "PC_MG": "UC01-MG01",
+        "label": "refusal / controlled failure; UC01-MG01",
+        "y": 1000
+      }
+    ],
+    "elements": [
+      {
+        "class": "order",
+        "attributes": [],
+        "methods": [
+          "confirm"
+        ]
+      },
+      {
+        "class": "PlaceOrderController",
+        "attributes": [],
+        "methods": [
+          "_build_quote",
+          "confirm_order"
+        ]
+      },
+      {
+        "class": "Quote",
+        "attributes": [],
+        "methods": [
+          "fingerprint"
+        ]
+      }
+    ],
+    "dependencies": [],
+    "states": []
+  },
+  "frames": [
+    {
+      "id": "alt",
+      "y": 633,
+      "h": 407,
+      "label": "alt [unused eligible token; own replay skips calls and returns existingOrder (UC01-MG02)]",
+      "operands": [
+        [
+          910,
+          "[denied / stale / invalid or failed atomic save] UC01-MG01"
+        ]
+      ]
+    }
+  ],
+  "notes": [
+    {
+      "y": 220,
+      "h": 90,
+      "text": "Atomic token lookup: own replay → existingOrder, no reprice / authorization / insertion (UC01-MG02). Foreign token → refusal. Only unused tokens continue. Busy → suggestions (UC01-MG03); changed fingerprint OR T → revisedQuote; nothing saved (UC01-MG01)."
+    },
+    {
+      "y": 1010,
+      "h": 65,
+      "text": "Persistence: loaded/saved through data access — see 4.3.2."
+    }
+  ],
+  "continuation": "Part A ↔ PartB. Same lifelines / same operation; no second request.",
+  "realisation_note": "Simulator approve/decline choice precedes this request. Short atomic checkout begins before token lookup. Own existing token → existingOrder, no reprice, authorization or insertion (UC01-MG02). Foreign token → refusal. Unused token rechecks eligibility, raw radius, capacity, voucher and full consent.",
+  "self_call_clearance_polished": true,
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+}

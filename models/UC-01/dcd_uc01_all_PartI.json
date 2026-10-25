@@ -1,0 +1,198 @@
+{
+  "UC": "UC-01",
+  "stem": "dcd_uc01_all_PartI",
+  "title": "UC-01 all — selected design members 9/9",
+  "figure": "3.1.2.vI",
+  "caption": "UC-01 all detailed design members",
+  "cards": [
+    {
+      "id": "PaymentDAO_0",
+      "class": "PaymentDAO",
+      "box": [
+        35,
+        100,
+        730,
+        298.40000000000003
+      ],
+      "compartments": [
+        [
+          "«DAO» PaymentDAO",
+          "{layer: data_access}"
+        ],
+        [
+          "+ conn: sqlite3.Connection"
+        ],
+        [
+          "+ get_by_order_id(self, order_id: int) -> Optional[Payment]",
+          "+ insert(self, payment: Payment) -> int",
+          "+ change_state(self, order_id: int, from_state: PaymentState, to_state: PaymentState, now: str) -> bool",
+          "+ set_amounts(self, order_id: int, amount: int, refund_amount: int, now: str) -> bool†"
+        ]
+      ],
+      "element": {
+        "class": "PaymentDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "get_by_order_id",
+          "insert",
+          "change_state",
+          "set_amounts"
+        ]
+      }
+    },
+    {
+      "id": "DeliveryDAO_0",
+      "class": "DeliveryDAO",
+      "box": [
+        815,
+        100,
+        730,
+        160.4
+      ],
+      "compartments": [
+        [
+          "«DAO» DeliveryDAO",
+          "{layer: data_access}"
+        ],
+        [
+          "+ conn: sqlite3.Connection"
+        ],
+        [
+          "+ get_by_order_id(self, order_id: int) -> Optional[Delivery]"
+        ]
+      ],
+      "element": {
+        "class": "DeliveryDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "get_by_order_id"
+        ]
+      }
+    },
+    {
+      "id": "ReplacementOfferDAO_0",
+      "class": "ReplacementOfferDAO",
+      "box": [
+        815,
+        278.4,
+        730,
+        215.60000000000002
+      ],
+      "compartments": [
+        [
+          "«DAO» ReplacementOfferDAO",
+          "{layer: data_access}"
+        ],
+        [
+          "+ conn: sqlite3.Connection"
+        ],
+        [
+          "+ get_open(self, order_id: int) -> Optional[ReplacementOffer]",
+          "+ list_for_order(self, order_id: int) -> list[ReplacementOffer]",
+          "+ decide(self, offer_id: int, to_state: OfferState, now: str) -> bool"
+        ]
+      ],
+      "element": {
+        "class": "ReplacementOfferDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "get_open",
+          "list_for_order",
+          "decide"
+        ]
+      }
+    },
+    {
+      "id": "Authorisation_0",
+      "class": "Authorisation",
+      "box": [
+        35,
+        416.40000000000003,
+        730,
+        215.60000000000002
+      ],
+      "compartments": [
+        [
+          "«value» Authorisation",
+          "{layer: data_access}"
+        ],
+        [
+          "+ approved: bool",
+          "+ reference: Optional[str]",
+          "+ message: str"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "Authorisation",
+        "attributes": [
+          "approved",
+          "reference",
+          "message"
+        ],
+        "methods": []
+      }
+    }
+  ],
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "PaymentDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "get_by_order_id",
+          "insert",
+          "change_state",
+          "set_amounts"
+        ]
+      },
+      {
+        "class": "DeliveryDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "get_by_order_id"
+        ]
+      },
+      {
+        "class": "ReplacementOfferDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "get_open",
+          "list_for_order",
+          "decide"
+        ]
+      },
+      {
+        "class": "Authorisation",
+        "attributes": [
+          "approved",
+          "reference",
+          "message"
+        ],
+        "methods": []
+      }
+    ],
+    "dependencies": [],
+    "states": []
+  },
+  "P4_input": "F-02; P3-S03",
+  "continuation": "Members continue across PartA, PartB, PartC, PartD, PartE, PartF, PartG, PartH, PartI; relation view follows in all_links.",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+}

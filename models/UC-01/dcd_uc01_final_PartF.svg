@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200"><rect width="100%" height="100%" fill="white"/>
+<text x="35" y="42.040000000000006" font-family="Arial" font-size="28" font-weight="bold" fill="#202B36">UC-01 final — selected design members 6/9</text>
+<rect x="35" y="100" width="730" height="215.60000000000002" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="47" y="130.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«entity» Brand</text>
+<text x="47" y="157.92" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">{layer: domain}</text>
+<polyline points="35,169.2 765,169.2" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="47" y="195.51999999999998" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ id: int</text>
+<text x="47" y="223.11999999999998" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ name: str</text>
+<text x="47" y="250.71999999999997" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ archived_at: Optional[str]</text>
+<polyline points="35,262.0 765,262.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="47" y="288.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">{no selected operation}</text>
+<rect x="815" y="100" width="730" height="215.60000000000002" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="827" y="130.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«entity» HubMenuItem</text>
+<text x="827" y="157.92" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">{layer: domain}</text>
+<text x="827" y="185.51999999999998" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">{association class: Hub — MenuItem}</text>
+<polyline points="815,196.8 1545,196.8" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="827" y="223.12" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ item: MenuItem</text>
+<text x="827" y="250.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ is_available: bool</text>
+<polyline points="815,262.0 1545,262.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="827" y="288.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">{no selected operation}</text>
+<rect x="35" y="333.6" width="730" height="243.20000000000002" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="47" y="363.92" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«entity» UserAccount</text>
+<text x="47" y="391.52000000000004" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">{layer: domain}</text>
+<polyline points="35,402.8 765,402.8" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="47" y="429.12" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ id: int</text>
+<text x="47" y="456.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ username: str</text>
+<text x="47" y="484.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ password_hash: str</text>
+<text x="47" y="511.92" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ display_name: str</text>
+<polyline points="35,523.2 765,523.2" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="47" y="549.5200000000001" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">{no selected operation}</text>
+<rect x="815" y="333.6" width="730" height="381.2" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="827" y="363.92" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«enumeration» OrderState</text>
+<text x="827" y="391.52000000000004" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">{layer: domain}</text>
+<polyline points="815,402.8 1545,402.8" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="827" y="429.12" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ PLACED</text>
+<text x="827" y="456.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ CONFIRMED</text>
+<text x="827" y="484.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ REJECTED</text>
+<text x="827" y="511.92" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ PREPARING</text>
+<text x="827" y="539.5200000000001" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ READY</text>
+<text x="827" y="567.12" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ OUT_FOR_DELIVERY</text>
+<text x="827" y="594.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ DELIVERED</text>
+<text x="827" y="622.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ DELIVERY_FAILED</text>
+<text x="827" y="649.9200000000001" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ CANCELLED</text>
+<polyline points="815,661.2 1545,661.2" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="827" y="687.5200000000001" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">{no selected operation}</text>
+<rect x="35" y="594.8000000000001" width="730" height="298.40000000000003" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="47" y="625.1200000000001" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«enumeration» PaymentState</text>
+<text x="47" y="652.7200000000001" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">{layer: domain}</text>
+<polyline points="35,664.0 765,664.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="47" y="690.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ PENDING</text>
+<text x="47" y="717.9200000000001" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ PAID</text>
+<text x="47" y="745.5200000000001" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ FAILED</text>
+<text x="47" y="773.12" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ VOIDED</text>
+<text x="47" y="800.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ REFUND_PENDING</text>
+<text x="47" y="828.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ REFUNDED</text>
+<polyline points="35,839.6 765,839.6" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="47" y="865.9200000000001" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">{no selected operation}</text>
+<rect x="815" y="732.8" width="730" height="188.0" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="827" y="763.12" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«enumeration» PaymentMethod</text>
+<text x="827" y="790.72" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">{layer: domain}</text>
+<polyline points="815,802.0 1545,802.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="827" y="828.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ COD</text>
+<text x="827" y="855.9200000000001" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ ONLINE</text>
+<polyline points="815,867.2 1545,867.2" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="827" y="893.5200000000001" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">{no selected operation}</text>
+<text x="35" y="1102.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Members continue across PartA, PartB, PartC, PartD, PartE, PartF, PartG, PartH, PartI; relation view follows in final_links.</text>
+<text x="35" y="1134.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">† design target, not yet in code at C0 (see P4 input none on this view).</text>
+<text x="35" y="1167.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Figure 3.1.5F. UC-01 final detailed design members — Author: 722I0004 · AI-assisted (Codex)</text>
+<text x="35" y="1193.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Static / target design · 230 mm landscape · smallest text 9.78 pt · native draw.io / final placement UNTESTED</text>
+</svg>

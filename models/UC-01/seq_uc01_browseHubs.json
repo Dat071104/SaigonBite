@@ -1,0 +1,159 @@
+{
+  "UC": "UC-01",
+  "stem": "seq_uc01_browseHubs",
+  "title": "UC-01 browseHubs",
+  "figure": "3.1.4.OP-13",
+  "caption": "UC-01 browseHubs design sequence",
+  "P4_input": "none on this view",
+  "phase3": {
+    "diagram_type": "sequence",
+    "UC": "UC-01",
+    "op_id": "OP-13",
+    "operation": "browseHubs",
+    "parameters": "",
+    "ssd_occurrence": "models/UC-01/ssd_uc01_PartA.drawio#01S-M01",
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Customer",
+        "role": "actor",
+        "label": "Customer"
+      },
+      {
+        "id": "view",
+        "class": "order",
+        "role": "view",
+        "label": "«view»\norder"
+      },
+      {
+        "id": "ctrl",
+        "class": "PlaceOrderController",
+        "role": "controller",
+        "label": "PlaceOrderController"
+      },
+      {
+        "id": "value",
+        "class": "HubStatus",
+        "role": "domain",
+        "label": "HubStatus"
+      }
+    ],
+    "messages": [
+      {
+        "from": "actor",
+        "to": "view",
+        "method": "choose_hub",
+        "kind": "ssd",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "",
+        "label": "browseHubs()\n→ order.choose_hub [HTTP adapter]",
+        "y": 455,
+        "receiver_signature": "choose_hub()",
+        "status": "MATCH",
+        "P4_input": ""
+      },
+      {
+        "from": "view",
+        "to": "ctrl",
+        "method": "list_hubs",
+        "kind": "call",
+        "arguments": "",
+        "guard": "eligible/main operand (see frame and operation table)",
+        "PC_MG": "Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation",
+        "label": "list_hubs()",
+        "y": 525,
+        "receiver_signature": "list_hubs(self) -> list[HubStatus]",
+        "status": "MATCH",
+        "P4_input": ""
+      },
+      {
+        "from": "ctrl",
+        "to": "value",
+        "method": "HubStatus",
+        "kind": "create",
+        "arguments": "hub, load",
+        "guard": "eligible/main operand (see frame and operation table)",
+        "PC_MG": "",
+        "label": "«create» HubStatus (implicit dataclass initialization)",
+        "y": 647
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "activeHubsWithLoadAndCapacity",
+        "guard": "",
+        "PC_MG": "Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation",
+        "label": "result / controlled refusal",
+        "y": 717
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "",
+        "guard": "denied / stale / invalid or atomic save failure",
+        "PC_MG": "UC01-MG01",
+        "label": "refusal / controlled failure; UC01-MG01",
+        "y": 1000
+      }
+    ],
+    "elements": [
+      {
+        "class": "order",
+        "attributes": [],
+        "methods": [
+          "choose_hub"
+        ]
+      },
+      {
+        "class": "PlaceOrderController",
+        "attributes": [],
+        "methods": [
+          "list_hubs"
+        ]
+      },
+      {
+        "class": "HubStatus",
+        "attributes": [],
+        "methods": []
+      }
+    ],
+    "dependencies": [],
+    "states": []
+  },
+  "frames": [
+    {
+      "id": "alt",
+      "y": 537,
+      "h": 503,
+      "label": "alt [eligible main path; guards / effects in the operation note]",
+      "operands": [
+        [
+          910,
+          "[denied / stale / invalid or failed atomic save] UC01-MG01"
+        ]
+      ]
+    }
+  ],
+  "notes": [
+    {
+      "y": 220,
+      "h": 75.2,
+      "text": "Read .busy / .quiet on HubStatus; these are properties, never busy() / quiet() calls. No persistent writes. Active Customer gate belongs to view; select_hub also checks active Customer and hub."
+    },
+    {
+      "y": 1010,
+      "h": 65,
+      "text": "Persistence: loaded/saved through data access — see 4.3.2."
+    }
+  ],
+  "continuation": "Complete design operation; failure path is the alternative operand above.",
+  "realisation_note": "Read .busy / .quiet on HubStatus; these are properties, never busy() / quiet() calls. No persistent writes. Active Customer gate belongs to view; select_hub also checks active Customer and hub.",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+}

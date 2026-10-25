@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200"><rect width="100%" height="100%" fill="white"/>
+<text x="35" y="42.040000000000006" font-family="Arial" font-size="28" font-weight="bold" fill="#202B36">UC-01 domain — relationships 2</text>
+<rect x="55" y="105" width="500" height="85" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="67" y="135.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«entity» Order</text>
+<rect x="1035" y="105" width="500" height="85" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="1047" y="135.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«entity» Hub</text>
+<rect x="55" y="255" width="500" height="85" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="67" y="285.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«entity» Order</text>
+<rect x="1035" y="255" width="500" height="85" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="1047" y="285.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«entity» Address</text>
+<rect x="55" y="405" width="500" height="85" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="67" y="435.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«entity» Order</text>
+<rect x="1035" y="405" width="500" height="85" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="1047" y="435.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«entity» Voucher</text>
+<rect x="55" y="555" width="500" height="85" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="67" y="585.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«entity» Order</text>
+<rect x="1035" y="555" width="500" height="85" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="1047" y="585.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«entity» OrderLine</text>
+<rect x="55" y="705" width="500" height="85" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="67" y="735.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«entity» Order</text>
+<rect x="1035" y="705" width="500" height="85" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="1047" y="735.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«entity» Payment</text>
+<rect x="55" y="855" width="500" height="85" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="67" y="885.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«entity» Order</text>
+<rect x="1035" y="855" width="500" height="85" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="1047" y="885.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«entity» ReplacementOffer</text>
+<polyline points="555,148 1035,148" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="1021.0,155.0 1035,148 1021.0,141.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="575" y="131.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">0..* → 1 hub</text>
+<polyline points="555,298 1035,298" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="1021.0,305.0 1035,298 1021.0,291.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="575" y="281.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">0..* → 1 address</text>
+<polyline points="555,448 1035,448" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="1021.0,455.0 1035,448 1021.0,441.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="575" y="431.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">0..* → 0..1 voucher</text>
+<polyline points="555,598 1035,598" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="1021.0,605.0 1035,598 1021.0,591.0" fill="none" stroke="#004387" stroke-width="2"/>
+<polygon points="555,598 567.0,605.0 579.0,598.0 567.0,591.0" fill="#004387"/>
+<text x="575" y="581.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">1 → 1..* lines</text>
+<polyline points="555,748 1035,748" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="1021.0,755.0 1035,748 1021.0,741.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="575" y="731.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">1 → 1 payment</text>
+<polyline points="555,898 1035,898" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="1021.0,905.0 1035,898 1021.0,891.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="575" y="881.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">1 → 0..* offers</text>
+<text x="35" y="1102.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Members: domain detail parts. Relationship parts A–F continue both ways.</text>
+<text x="35" y="1134.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">† design target, not yet in code at C0 (see P4 input none on this view).</text>
+<text x="35" y="1167.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Figure 3.1.2.i.R2. UC-01 domain navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex)</text>
+<text x="35" y="1193.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Static / target design · 230 mm landscape · smallest text 9.78 pt · native draw.io / final placement UNTESTED</text>
+</svg>

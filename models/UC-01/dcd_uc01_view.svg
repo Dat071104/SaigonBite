@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200"><rect width="100%" height="100%" fill="white"/>
+<text x="35" y="42.040000000000006" font-family="Arial" font-size="28" font-weight="bold" fill="#202B36">UC-01 view — selected design members 1/1</text>
+<rect x="35" y="100" width="730" height="326.0" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="47" y="130.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«view» order</text>
+<text x="47" y="157.92" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">{layer: view}</text>
+<polyline points="35,169.2 765,169.2" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="47" y="195.51999999999998" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">{no selected attribute}</text>
+<polyline points="35,206.79999999999998 765,206.79999999999998" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="47" y="233.11999999999998" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ choose_hub() -&gt; Any [inferred return]</text>
+<text x="47" y="260.71999999999997" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ choose_items(hub_id: int) -&gt; Any [inferred return]</text>
+<text x="47" y="288.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ quote() -&gt; Any [inferred return]†</text>
+<text x="47" y="315.91999999999996" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ confirm() -&gt; Any [inferred return]†</text>
+<text x="47" y="343.52" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ detail(order_id: int) -&gt; Any [inferred return]</text>
+<text x="47" y="371.11999999999995" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ my_orders() -&gt; Any [inferred return]</text>
+<text x="47" y="398.71999999999997" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ cancel(order_id: int) -&gt; Any [inferred return]</text>
+<text x="35" y="1102.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Member projection; navigation is in the all/final relationship plates.</text>
+<text x="35" y="1134.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">† design target, not yet in code at C0 (see P4 input F-07; P2-S05).</text>
+<text x="35" y="1167.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Figure 3.1.2.iii. UC-01 view detailed design members — Author: 722I0004 · AI-assisted (Codex)</text>
+<text x="35" y="1193.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Static / target design · 230 mm landscape · smallest text 9.78 pt · native draw.io / final placement UNTESTED</text>
+</svg>

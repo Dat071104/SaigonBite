@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="SaigonBite P3-A" type="device">
+  <diagram name="UC-01 all — selected design members 9/9" id="dcd_uc01_all_PartI">
+    <mxGraphModel page="1" pageWidth="1600" pageHeight="1200">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="text0" value="UC-01 all — selected design members 9/9" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="35" y="16" width="1530" height="32.199999999999996" />
+        </mxCell>
+        <mxCell id="PaymentDAO_0" value="" vertex="1" parent="1" style="fillColor=#F1F6FA;strokeColor=#004387;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="35" y="100" width="730" height="298.40000000000003" />
+        </mxCell>
+        <mxCell id="text2" value="«DAO» PaymentDAO&#10;{layer: data_access}" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="47" y="108" width="706" height="55.199999999999996" />
+        </mxCell>
+        <mxCell id="text3" value="+ conn: sqlite3.Connection" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="47" y="173.2" width="706" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="text4" value="+ get_by_order_id(self, order_id: int) -&gt; Optional[Payment]&#10;+ insert(self, payment: Payment) -&gt; int&#10;+ change_state(self, order_id: int, from_state: PaymentState,&#10;to_state: PaymentState, now: str) -&gt; bool&#10;+ set_amounts(self, order_id: int, amount: int, refund_amount: int,&#10;now: str) -&gt; bool†" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="47" y="210.79999999999998" width="706" height="165.6" />
+        </mxCell>
+        <mxCell id="DeliveryDAO_0" value="" vertex="1" parent="1" style="fillColor=#F1F6FA;strokeColor=#004387;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="815" y="100" width="730" height="160.4" />
+        </mxCell>
+        <mxCell id="text6" value="«DAO» DeliveryDAO&#10;{layer: data_access}" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="827" y="108" width="706" height="55.199999999999996" />
+        </mxCell>
+        <mxCell id="text7" value="+ conn: sqlite3.Connection" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="827" y="173.2" width="706" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="text8" value="+ get_by_order_id(self, order_id: int) -&gt; Optional[Delivery]" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="827" y="210.79999999999998" width="706" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="ReplacementOfferDAO_0" value="" vertex="1" parent="1" style="fillColor=#F1F6FA;strokeColor=#004387;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="815" y="278.4" width="730" height="215.60000000000002" />
+        </mxCell>
+        <mxCell id="text10" value="«DAO» ReplacementOfferDAO&#10;{layer: data_access}" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="827" y="286.4" width="706" height="55.199999999999996" />
+        </mxCell>
+        <mxCell id="text11" value="+ conn: sqlite3.Connection" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="827" y="351.59999999999997" width="706" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="text12" value="+ get_open(self, order_id: int) -&gt; Optional[ReplacementOffer]&#10;+ list_for_order(self, order_id: int) -&gt; list[ReplacementOffer]&#10;+ decide(self, offer_id: int, to_state: OfferState, now: str) -&gt; bool" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="827" y="389.19999999999993" width="706" height="82.8" />
+        </mxCell>
+        <mxCell id="Authorisation_0" value="" vertex="1" parent="1" style="fillColor=#F1F6FA;strokeColor=#004387;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="35" y="416.40000000000003" width="730" height="215.60000000000002" />
+        </mxCell>
+        <mxCell id="text14" value="«value» Authorisation&#10;{layer: data_access}" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="47" y="424.40000000000003" width="706" height="55.199999999999996" />
+        </mxCell>
+        <mxCell id="text15" value="+ approved: bool&#10;+ reference: Optional[str]&#10;+ message: str" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="47" y="489.6" width="706" height="82.8" />
+        </mxCell>
+        <mxCell id="text16" value="{no selected operation}" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="47" y="582.4" width="706" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="text17" value="Members continue across PartA, PartB, PartC, PartD, PartE, PartF, PartG, PartH, PartI; relation view follows in all_links." vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="35" y="1080" width="1530" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="text18" value="† design target, not yet in code at C0 (see P4 input F-02; P3-S03)." vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="35" y="1112" width="1530" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="text19" value="Figure 3.1.2.vI. UC-01 all detailed design members — Author: 722I0004 · AI-assisted (Codex)" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="35" y="1145" width="1530" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="text20" value="Static / target design · 230 mm landscape · smallest text 9.78 pt · native draw.io / final placement UNTESTED" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="35" y="1171" width="1530" height="27.599999999999998" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

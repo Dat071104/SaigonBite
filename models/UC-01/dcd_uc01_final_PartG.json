@@ -1,0 +1,282 @@
+{
+  "UC": "UC-01",
+  "stem": "dcd_uc01_final_PartG",
+  "title": "UC-01 final — selected design members 7/9",
+  "figure": "3.1.5G",
+  "caption": "UC-01 final detailed design members",
+  "cards": [
+    {
+      "id": "OnlineOption_0",
+      "class": "OnlineOption",
+      "box": [
+        35,
+        100,
+        730,
+        215.60000000000002
+      ],
+      "compartments": [
+        [
+          "«enumeration» OnlineOption",
+          "{layer: domain}"
+        ],
+        [
+          "+ E_WALLET",
+          "+ BANK_QR",
+          "+ INTERNATIONAL_CARD"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "OnlineOption",
+        "attributes": [
+          "E_WALLET",
+          "BANK_QR",
+          "INTERNATIONAL_CARD"
+        ],
+        "methods": []
+      }
+    },
+    {
+      "id": "OfferState_0",
+      "class": "OfferState",
+      "box": [
+        815,
+        100,
+        730,
+        243.20000000000002
+      ],
+      "compartments": [
+        [
+          "«enumeration» OfferState",
+          "{layer: domain}"
+        ],
+        [
+          "+ OFFERED",
+          "+ ACCEPTED",
+          "+ DECLINED",
+          "+ WITHDRAWN"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "OfferState",
+        "attributes": [
+          "OFFERED",
+          "ACCEPTED",
+          "DECLINED",
+          "WITHDRAWN"
+        ],
+        "methods": []
+      }
+    },
+    {
+      "id": "Role_0",
+      "class": "Role",
+      "box": [
+        35,
+        333.6,
+        730,
+        270.8
+      ],
+      "compartments": [
+        [
+          "«enumeration» Role",
+          "{layer: domain}"
+        ],
+        [
+          "+ CUSTOMER",
+          "+ KITCHEN_STAFF",
+          "+ SHIPPER",
+          "+ ADMIN",
+          "+ MANAGER"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "Role",
+        "attributes": [
+          "CUSTOMER",
+          "KITCHEN_STAFF",
+          "SHIPPER",
+          "ADMIN"
+        ],
+        "methods": []
+      }
+    },
+    {
+      "id": "domain_rules_0",
+      "class": "domain.rules",
+      "box": [
+        815,
+        361.20000000000005,
+        730,
+        188.0
+      ],
+      "compartments": [
+        [
+          "«module» domain.rules",
+          "{layer: domain}"
+        ],
+        [
+          "{no selected attribute}"
+        ],
+        [
+          "+ delivery_fee(base_fee: int, km: float) -> int",
+          "+ quiet_discount(load: int, capacity: int, fee: int) -> int"
+        ]
+      ],
+      "element": {
+        "class": "domain.rules",
+        "attributes": [],
+        "methods": [
+          "delivery_fee",
+          "quiet_discount"
+        ]
+      }
+    },
+    {
+      "id": "DiscountType_0",
+      "class": "DiscountType",
+      "box": [
+        815,
+        567.2,
+        730,
+        188.0
+      ],
+      "compartments": [
+        [
+          "«enumeration» DiscountType",
+          "{layer: domain}"
+        ],
+        [
+          "+ FIXED",
+          "+ PERCENT"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "DiscountType",
+        "attributes": [
+          "FIXED",
+          "PERCENT"
+        ],
+        "methods": []
+      }
+    },
+    {
+      "id": "CustomerType_0",
+      "class": "CustomerType",
+      "box": [
+        35,
+        622.4000000000001,
+        730,
+        188.0
+      ],
+      "compartments": [
+        [
+          "«enumeration» CustomerType",
+          "{layer: domain}"
+        ],
+        [
+          "+ LOCAL",
+          "+ TOURIST"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "CustomerType",
+        "attributes": [
+          "LOCAL",
+          "TOURIST"
+        ],
+        "methods": []
+      }
+    }
+  ],
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "OnlineOption",
+        "attributes": [
+          "E_WALLET",
+          "BANK_QR",
+          "INTERNATIONAL_CARD"
+        ],
+        "methods": []
+      },
+      {
+        "class": "OfferState",
+        "attributes": [
+          "OFFERED",
+          "ACCEPTED",
+          "DECLINED",
+          "WITHDRAWN"
+        ],
+        "methods": []
+      },
+      {
+        "class": "Role",
+        "attributes": [
+          "CUSTOMER",
+          "KITCHEN_STAFF",
+          "SHIPPER",
+          "ADMIN"
+        ],
+        "methods": []
+      },
+      {
+        "class": "domain.rules",
+        "attributes": [],
+        "methods": [
+          "delivery_fee",
+          "quiet_discount"
+        ]
+      },
+      {
+        "class": "DiscountType",
+        "attributes": [
+          "FIXED",
+          "PERCENT"
+        ],
+        "methods": []
+      },
+      {
+        "class": "CustomerType",
+        "attributes": [
+          "LOCAL",
+          "TOURIST"
+        ],
+        "methods": []
+      }
+    ],
+    "dependencies": [],
+    "states": [
+      {
+        "class": "ReplacementOffer",
+        "attribute": "state",
+        "values": [
+          "OFFERED",
+          "ACCEPTED",
+          "DECLINED",
+          "WITHDRAWN"
+        ]
+      }
+    ]
+  },
+  "P4_input": "none on this view",
+  "continuation": "Members continue across PartA, PartB, PartC, PartD, PartE, PartF, PartG, PartH, PartI; relation view follows in final_links.",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+}

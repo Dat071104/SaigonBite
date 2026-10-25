@@ -1,0 +1,299 @@
+{
+  "UC": "UC-01",
+  "stem": "dcd_uc01_all_PartH",
+  "title": "UC-01 all — selected design members 8/9",
+  "figure": "3.1.2.vH",
+  "caption": "UC-01 all detailed design members",
+  "cards": [
+    {
+      "id": "HubDAO_0",
+      "class": "HubDAO",
+      "box": [
+        35,
+        100,
+        730,
+        353.6
+      ],
+      "compartments": [
+        [
+          "«DAO» HubDAO",
+          "{layer: data_access}"
+        ],
+        [
+          "+ conn: sqlite3.Connection"
+        ],
+        [
+          "+ active_loads(self) -> dict[int, int]",
+          "+ list_active(self) -> list[Hub]",
+          "+ active_load(self, hub_id: int) -> int",
+          "+ get(self, hub_id: int) -> Optional[Hub]",
+          "+ list_menu(self, hub_id: int) -> list[HubMenuItem]",
+          "+ get_available_item(self, hub_id: int, menu_item_id: int) -> Optional[MenuItem]",
+          "+ get_including_archived(self, hub_id: int) -> Optional[Hub]"
+        ]
+      ],
+      "element": {
+        "class": "HubDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "active_loads",
+          "list_active",
+          "active_load",
+          "get",
+          "list_menu",
+          "get_available_item",
+          "get_including_archived"
+        ]
+      }
+    },
+    {
+      "id": "CustomerDAO_0",
+      "class": "CustomerDAO",
+      "box": [
+        815,
+        100,
+        730,
+        243.20000000000002
+      ],
+      "compartments": [
+        [
+          "«DAO» CustomerDAO",
+          "{layer: data_access}"
+        ],
+        [
+          "+ conn: sqlite3.Connection"
+        ],
+        [
+          "+ get_by_user_id(self, user_id: int) -> Optional[Customer]",
+          "+ list_addresses(self, customer_id: int) -> list[Address]",
+          "+ get_address(self, address_id: int, customer_id: int) -> Optional[Address]"
+        ]
+      ],
+      "element": {
+        "class": "CustomerDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "get_by_user_id",
+          "list_addresses",
+          "get_address"
+        ]
+      }
+    },
+    {
+      "id": "UserDAO_0",
+      "class": "UserDAO",
+      "box": [
+        815,
+        361.20000000000005,
+        730,
+        160.4
+      ],
+      "compartments": [
+        [
+          "«DAO» UserDAO",
+          "{layer: data_access}"
+        ],
+        [
+          "+ conn: sqlite3.Connection"
+        ],
+        [
+          "+ get_by_id(self, user_id: int) -> Optional[UserAccount]"
+        ]
+      ],
+      "element": {
+        "class": "UserDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "get_by_id"
+        ]
+      }
+    },
+    {
+      "id": "VoucherDAO_0",
+      "class": "VoucherDAO",
+      "box": [
+        35,
+        471.6,
+        730,
+        160.4
+      ],
+      "compartments": [
+        [
+          "«DAO» VoucherDAO",
+          "{layer: data_access}"
+        ],
+        [
+          "+ conn: sqlite3.Connection"
+        ],
+        [
+          "+ get_by_code(self, code: str) -> Optional[Voucher]"
+        ]
+      ],
+      "element": {
+        "class": "VoucherDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "get_by_code"
+        ]
+      }
+    },
+    {
+      "id": "PaymentGatewaySimulator_0",
+      "class": "PaymentGatewaySimulator",
+      "box": [
+        815,
+        539.6,
+        730,
+        215.60000000000002
+      ],
+      "compartments": [
+        [
+          "«gateway» PaymentGatewaySimulator",
+          "{layer: data_access}"
+        ],
+        [
+          "{no selected attribute}"
+        ],
+        [
+          "+ authorise(self, amount: int, option: OnlineOption, outcome: str) -> Authorisation",
+          "+ release(self, reference: str) -> None"
+        ]
+      ],
+      "element": {
+        "class": "PaymentGatewaySimulator",
+        "attributes": [],
+        "methods": [
+          "authorise",
+          "release"
+        ]
+      }
+    },
+    {
+      "id": "OrderDAO_0",
+      "class": "OrderDAO",
+      "box": [
+        35,
+        650.0,
+        730,
+        353.6
+      ],
+      "compartments": [
+        [
+          "«DAO» OrderDAO",
+          "{layer: data_access}"
+        ],
+        [
+          "+ conn: sqlite3.Connection"
+        ],
+        [
+          "- _load(self, row: Optional[sqlite3.Row]) -> Optional[Order]",
+          "+ get_by_id(self, order_id: int) -> Optional[Order]",
+          "+ get_by_token(self, token: str) -> Optional[Order]",
+          "+ insert(self, order: Order) -> int",
+          "+ list_for_customer(self, customer_id: int) -> list[Order]",
+          "+ change_state(self, order_id: int, from_state: OrderState, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> bool"
+        ]
+      ],
+      "element": {
+        "class": "OrderDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "_load",
+          "get_by_id",
+          "get_by_token",
+          "insert",
+          "list_for_customer",
+          "change_state"
+        ]
+      }
+    }
+  ],
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "HubDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "active_loads",
+          "list_active",
+          "active_load",
+          "get",
+          "list_menu",
+          "get_available_item",
+          "get_including_archived"
+        ]
+      },
+      {
+        "class": "CustomerDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "get_by_user_id",
+          "list_addresses",
+          "get_address"
+        ]
+      },
+      {
+        "class": "UserDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "get_by_id"
+        ]
+      },
+      {
+        "class": "VoucherDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "get_by_code"
+        ]
+      },
+      {
+        "class": "PaymentGatewaySimulator",
+        "attributes": [],
+        "methods": [
+          "authorise",
+          "release"
+        ]
+      },
+      {
+        "class": "OrderDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "_load",
+          "get_by_id",
+          "get_by_token",
+          "insert",
+          "list_for_customer",
+          "change_state"
+        ]
+      }
+    ],
+    "dependencies": [],
+    "states": []
+  },
+  "P4_input": "none on this view",
+  "continuation": "Members continue across PartA, PartB, PartC, PartD, PartE, PartF, PartG, PartH, PartI; relation view follows in all_links.",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+}

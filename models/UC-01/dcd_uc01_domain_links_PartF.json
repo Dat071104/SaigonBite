@@ -1,0 +1,93 @@
+{
+  "UC": "UC-01",
+  "stem": "dcd_uc01_domain_links_PartF",
+  "title": "UC-01 domain — relationships 6",
+  "figure": "3.1.2.i.R6",
+  "caption": "UC-01 domain navigation / multiplicities",
+  "cards": [
+    {
+      "id": "s0",
+      "box": [
+        55,
+        105,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«entity» ReplacementOffer"
+        ]
+      ],
+      "class": "ReplacementOffer"
+    },
+    {
+      "id": "t0",
+      "box": [
+        1035,
+        145,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«enumeration» OfferState"
+        ]
+      ],
+      "class": "OfferState"
+    }
+  ],
+  "edges": [
+    {
+      "source": "s0",
+      "target": "t0",
+      "kind": "dependency",
+      "points": [
+        [
+          555,
+          148
+        ],
+        [
+          1035,
+          188
+        ]
+      ],
+      "label": "→  «use»",
+      "labelpos": [
+        575,
+        109
+      ],
+      "labelwidth": 440
+    }
+  ],
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "ReplacementOffer",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "OfferState",
+        "attributes": [],
+        "methods": []
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "ReplacementOffer",
+        "target": "OfferState",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      }
+    ],
+    "states": []
+  },
+  "continuation": "Members: domain detail parts. Relationship parts A–F continue both ways.",
+  "P4_input": "none on this view",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+}

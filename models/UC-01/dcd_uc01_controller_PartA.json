@@ -1,0 +1,233 @@
+{
+  "UC": "UC-01",
+  "stem": "dcd_uc01_controller_PartA",
+  "title": "UC-01 controller — selected design members 1/2",
+  "figure": "3.1.2.iiA",
+  "caption": "UC-01 controller detailed design members",
+  "cards": [
+    {
+      "id": "PlaceOrderController_0",
+      "class": "PlaceOrderController",
+      "box": [
+        35,
+        100,
+        730,
+        767.6
+      ],
+      "compartments": [
+        [
+          "«controller» PlaceOrderController",
+          "{layer: controller}"
+        ],
+        [
+          "+ customers: CustomerDAO [inferred]",
+          "+ hubs: HubDAO [inferred]",
+          "+ orders: OrderDAO [inferred]",
+          "+ payments: PaymentDAO [inferred]"
+        ],
+        [
+          "+ list_hubs(self) -> list[HubStatus]",
+          "+ select_hub(self, user_id: int, hub_id: int) -> HubMenuView",
+          "+ request_quote(self, user_id: int, hub_id: int, address_id: Optional[int], quantities: Mapping[int, str], voucher_code: Optional[str] = None, payment: Optional[PaymentChoice] = None) -> Quote†",
+          "+ confirm_order(self, user_id: int, hub_id: int, address_id: Optional[int], quantities: Mapping[int, str], idempotency_token: str, quoted_total: Optional[int] = None, voucher_code: Optional[str] = None, payment: Optional[PaymentChoice] = None, quote_fingerprint: Optional[str] = None) -> OrderConfirmation†",
+          "- _build_quote(self, customer: Customer, hub_id: int, address_id: Optional[int], quantities: Mapping[int, str], voucher_code: Optional[str]) -> Quote",
+          "+ suggest_hubs(self, exclude_hub_id: int, address: Optional[Address]) -> list[HubStatus]†",
+          "- _require_customer(self, user_id: int) -> Customer",
+          "- _check_payment_choice(customer: Customer, payment: PaymentChoice) -> None"
+        ]
+      ],
+      "element": {
+        "class": "PlaceOrderController",
+        "attributes": [
+          "customers",
+          "hubs",
+          "orders",
+          "payments"
+        ],
+        "methods": [
+          "list_hubs",
+          "select_hub",
+          "request_quote",
+          "confirm_order",
+          "_build_quote",
+          "suggest_hubs",
+          "_require_customer",
+          "_check_payment_choice"
+        ]
+      }
+    },
+    {
+      "id": "OrderTrackingController_0",
+      "class": "OrderTrackingController",
+      "box": [
+        815,
+        100,
+        730,
+        353.6
+      ],
+      "compartments": [
+        [
+          "«controller» OrderTrackingController",
+          "{layer: controller}"
+        ],
+        [
+          "+ customers: CustomerDAO [inferred]",
+          "+ orders: OrderDAO [inferred]",
+          "+ payments: PaymentDAO [inferred]",
+          "+ hubs: HubDAO [inferred]"
+        ],
+        [
+          "+ get_order(self, user_id: int, order_id: int) -> OrderDetail",
+          "+ list_my_orders(self, user_id: int) -> list[OrderSummary]",
+          "+ cancel_order(self, user_id: int, order_id: int) -> OrderDetail†",
+          "- _own_order(self, customer: Customer, order_id: int) -> Order",
+          "- _require_customer(self, user_id: int) -> Customer"
+        ]
+      ],
+      "element": {
+        "class": "OrderTrackingController",
+        "attributes": [
+          "customers",
+          "orders",
+          "payments",
+          "hubs"
+        ],
+        "methods": [
+          "get_order",
+          "list_my_orders",
+          "cancel_order",
+          "_own_order",
+          "_require_customer"
+        ]
+      }
+    },
+    {
+      "id": "controllers_common_0",
+      "class": "controllers.common",
+      "box": [
+        815,
+        471.6,
+        730,
+        270.8
+      ],
+      "compartments": [
+        [
+          "«module» controllers.common",
+          "{layer: controller}"
+        ],
+        [
+          "{no selected attribute}"
+        ],
+        [
+          "+ move_order(orders: OrderDAO, order: Order, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> None",
+          "+ release_payment(payments: PaymentDAO, order_id: int, now: str) -> Payment†"
+        ]
+      ],
+      "element": {
+        "class": "controllers.common",
+        "attributes": [],
+        "methods": [
+          "move_order",
+          "release_payment"
+        ]
+      }
+    },
+    {
+      "id": "PaymentChoice_0",
+      "class": "PaymentChoice",
+      "box": [
+        815,
+        760.4000000000001,
+        730,
+        215.60000000000002
+      ],
+      "compartments": [
+        [
+          "«value» PaymentChoice",
+          "{layer: controller}"
+        ],
+        [
+          "+ method: PaymentMethod",
+          "+ option: Optional[OnlineOption]",
+          "+ outcome: Optional[str]"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "PaymentChoice",
+        "attributes": [
+          "method",
+          "option",
+          "outcome"
+        ],
+        "methods": []
+      }
+    }
+  ],
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "PlaceOrderController",
+        "attributes": [
+          "customers",
+          "hubs",
+          "orders",
+          "payments"
+        ],
+        "methods": [
+          "list_hubs",
+          "select_hub",
+          "request_quote",
+          "confirm_order",
+          "_build_quote",
+          "suggest_hubs",
+          "_require_customer",
+          "_check_payment_choice"
+        ]
+      },
+      {
+        "class": "OrderTrackingController",
+        "attributes": [
+          "customers",
+          "orders",
+          "payments",
+          "hubs"
+        ],
+        "methods": [
+          "get_order",
+          "list_my_orders",
+          "cancel_order",
+          "_own_order",
+          "_require_customer"
+        ]
+      },
+      {
+        "class": "controllers.common",
+        "attributes": [],
+        "methods": [
+          "move_order",
+          "release_payment"
+        ]
+      },
+      {
+        "class": "PaymentChoice",
+        "attributes": [
+          "method",
+          "option",
+          "outcome"
+        ],
+        "methods": []
+      }
+    ],
+    "dependencies": [],
+    "states": []
+  },
+  "P4_input": "F-02; F-04; F-07; P2-S01; P2-S05; P2-S13; P3-S01; P3-S03",
+  "continuation": "Members continue across PartA, PartB; navigation is in controller_links parts A–A.",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+}

@@ -1,0 +1,312 @@
+{
+  "UC": "UC-01",
+  "stem": "dcd_uc01_all_PartF",
+  "title": "UC-01 all — selected design members 6/9",
+  "figure": "3.1.2.vF",
+  "caption": "UC-01 all detailed design members",
+  "cards": [
+    {
+      "id": "Brand_0",
+      "class": "Brand",
+      "box": [
+        35,
+        100,
+        730,
+        215.60000000000002
+      ],
+      "compartments": [
+        [
+          "«entity» Brand",
+          "{layer: domain}"
+        ],
+        [
+          "+ id: int",
+          "+ name: str",
+          "+ archived_at: Optional[str]"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "Brand",
+        "attributes": [
+          "id",
+          "name",
+          "archived_at"
+        ],
+        "methods": []
+      }
+    },
+    {
+      "id": "HubMenuItem_0",
+      "class": "HubMenuItem",
+      "box": [
+        815,
+        100,
+        730,
+        215.60000000000002
+      ],
+      "compartments": [
+        [
+          "«entity» HubMenuItem",
+          "{layer: domain}",
+          "{association class: Hub — MenuItem}"
+        ],
+        [
+          "+ item: MenuItem",
+          "+ is_available: bool"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "HubMenuItem",
+        "attributes": [
+          "item",
+          "is_available"
+        ],
+        "methods": []
+      }
+    },
+    {
+      "id": "UserAccount_0",
+      "class": "UserAccount",
+      "box": [
+        35,
+        333.6,
+        730,
+        243.20000000000002
+      ],
+      "compartments": [
+        [
+          "«entity» UserAccount",
+          "{layer: domain}"
+        ],
+        [
+          "+ id: int",
+          "+ username: str",
+          "+ password_hash: str",
+          "+ display_name: str"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "UserAccount",
+        "attributes": [
+          "id",
+          "username",
+          "password_hash",
+          "display_name"
+        ],
+        "methods": []
+      }
+    },
+    {
+      "id": "OrderState_0",
+      "class": "OrderState",
+      "box": [
+        815,
+        333.6,
+        730,
+        381.2
+      ],
+      "compartments": [
+        [
+          "«enumeration» OrderState",
+          "{layer: domain}"
+        ],
+        [
+          "+ PLACED",
+          "+ CONFIRMED",
+          "+ REJECTED",
+          "+ PREPARING",
+          "+ READY",
+          "+ OUT_FOR_DELIVERY",
+          "+ DELIVERED",
+          "+ DELIVERY_FAILED",
+          "+ CANCELLED"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "OrderState",
+        "attributes": [
+          "PLACED",
+          "CONFIRMED",
+          "REJECTED",
+          "PREPARING"
+        ],
+        "methods": []
+      }
+    },
+    {
+      "id": "PaymentState_0",
+      "class": "PaymentState",
+      "box": [
+        35,
+        594.8000000000001,
+        730,
+        298.40000000000003
+      ],
+      "compartments": [
+        [
+          "«enumeration» PaymentState",
+          "{layer: domain}"
+        ],
+        [
+          "+ PENDING",
+          "+ PAID",
+          "+ FAILED",
+          "+ VOIDED",
+          "+ REFUND_PENDING",
+          "+ REFUNDED"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "PaymentState",
+        "attributes": [
+          "PENDING",
+          "PAID",
+          "FAILED",
+          "VOIDED"
+        ],
+        "methods": []
+      }
+    },
+    {
+      "id": "PaymentMethod_0",
+      "class": "PaymentMethod",
+      "box": [
+        815,
+        732.8,
+        730,
+        188.0
+      ],
+      "compartments": [
+        [
+          "«enumeration» PaymentMethod",
+          "{layer: domain}"
+        ],
+        [
+          "+ COD",
+          "+ ONLINE"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "PaymentMethod",
+        "attributes": [
+          "COD",
+          "ONLINE"
+        ],
+        "methods": []
+      }
+    }
+  ],
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "Brand",
+        "attributes": [
+          "id",
+          "name",
+          "archived_at"
+        ],
+        "methods": []
+      },
+      {
+        "class": "HubMenuItem",
+        "attributes": [
+          "item",
+          "is_available"
+        ],
+        "methods": []
+      },
+      {
+        "class": "UserAccount",
+        "attributes": [
+          "id",
+          "username",
+          "password_hash",
+          "display_name"
+        ],
+        "methods": []
+      },
+      {
+        "class": "OrderState",
+        "attributes": [
+          "PLACED",
+          "CONFIRMED",
+          "REJECTED",
+          "PREPARING"
+        ],
+        "methods": []
+      },
+      {
+        "class": "PaymentState",
+        "attributes": [
+          "PENDING",
+          "PAID",
+          "FAILED",
+          "VOIDED"
+        ],
+        "methods": []
+      },
+      {
+        "class": "PaymentMethod",
+        "attributes": [
+          "COD",
+          "ONLINE"
+        ],
+        "methods": []
+      }
+    ],
+    "dependencies": [],
+    "states": [
+      {
+        "class": "Order",
+        "attribute": "state",
+        "values": [
+          "PLACED",
+          "CONFIRMED",
+          "REJECTED",
+          "PREPARING",
+          "READY",
+          "OUT_FOR_DELIVERY",
+          "DELIVERED",
+          "DELIVERY_FAILED",
+          "CANCELLED"
+        ]
+      },
+      {
+        "class": "Payment",
+        "attribute": "state",
+        "values": [
+          "PENDING",
+          "PAID",
+          "FAILED",
+          "VOIDED",
+          "REFUND_PENDING",
+          "REFUNDED"
+        ]
+      }
+    ]
+  },
+  "P4_input": "none on this view",
+  "continuation": "Members continue across PartA, PartB, PartC, PartD, PartE, PartF, PartG, PartH, PartI; relation view follows in all_links.",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+}

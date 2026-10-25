@@ -1,0 +1,327 @@
+{
+  "UC": "UC-01",
+  "stem": "dcd_uc01_all_PartD",
+  "title": "UC-01 all — selected design members 4/9",
+  "figure": "3.1.2.vD",
+  "caption": "UC-01 all detailed design members",
+  "cards": [
+    {
+      "id": "HubStatus_0",
+      "class": "HubStatus",
+      "box": [
+        35,
+        100,
+        730,
+        215.60000000000002
+      ],
+      "compartments": [
+        [
+          "«entity» HubStatus",
+          "{layer: domain}"
+        ],
+        [
+          "+ hub: Hub",
+          "+ load: int"
+        ],
+        [
+          "+ busy(self) -> bool {property; read as .busy}",
+          "+ quiet(self) -> bool {property; read as .quiet}"
+        ]
+      ],
+      "element": {
+        "class": "HubStatus",
+        "attributes": [
+          "hub",
+          "load"
+        ],
+        "methods": [
+          "busy",
+          "quiet"
+        ]
+      }
+    },
+    {
+      "id": "Hub_0",
+      "class": "Hub",
+      "box": [
+        815,
+        100,
+        730,
+        243.20000000000002
+      ],
+      "compartments": [
+        [
+          "«entity» Hub",
+          "{layer: domain}"
+        ],
+        [
+          "+ id: int",
+          "+ code: str",
+          "+ name: str",
+          "+ address_text: str"
+        ],
+        [
+          "+ distance_to(self, address: Address) -> float†"
+        ]
+      ],
+      "element": {
+        "class": "Hub",
+        "attributes": [
+          "id",
+          "code",
+          "name",
+          "address_text"
+        ],
+        "methods": [
+          "distance_to"
+        ]
+      }
+    },
+    {
+      "id": "Quote_0",
+      "class": "Quote",
+      "box": [
+        35,
+        333.6,
+        730,
+        298.40000000000003
+      ],
+      "compartments": [
+        [
+          "«entity» Quote",
+          "{layer: domain}"
+        ],
+        [
+          "+ hub: Hub",
+          "+ address: Address",
+          "+ lines: list[OrderLine]",
+          "+ distance_km: float"
+        ],
+        [
+          "+ fingerprint(self, payment_method: PaymentMethod, online_option: Optional[OnlineOption] = None) -> str†",
+          "+ total(self) -> int {property; read as .total}"
+        ]
+      ],
+      "element": {
+        "class": "Quote",
+        "attributes": [
+          "hub",
+          "address",
+          "lines",
+          "distance_km"
+        ],
+        "methods": [
+          "fingerprint",
+          "total"
+        ]
+      }
+    },
+    {
+      "id": "Voucher_0",
+      "class": "Voucher",
+      "box": [
+        815,
+        361.20000000000005,
+        730,
+        270.8
+      ],
+      "compartments": [
+        [
+          "«entity» Voucher",
+          "{layer: domain}"
+        ],
+        [
+          "+ id: int",
+          "+ code: str",
+          "+ description: str",
+          "+ discount_type: DiscountType"
+        ],
+        [
+          "+ discount_for(self, item_subtotal: int) -> int",
+          "+ problem(self, item_subtotal: int, today: str) -> Optional[str]"
+        ]
+      ],
+      "element": {
+        "class": "Voucher",
+        "attributes": [
+          "id",
+          "code",
+          "description",
+          "discount_type"
+        ],
+        "methods": [
+          "discount_for",
+          "problem"
+        ]
+      }
+    },
+    {
+      "id": "Order_0",
+      "class": "Order",
+      "box": [
+        35,
+        650.0,
+        730,
+        381.20000000000005
+      ],
+      "compartments": [
+        [
+          "«entity» Order",
+          "{layer: domain}"
+        ],
+        [
+          "+ state: OrderState",
+          "+ delivery_fee: int",
+          "+ idempotency_token: str",
+          "+ placed_at: str"
+        ],
+        [
+          "+ place(cls, customer_id: int, quote: Quote, idempotency_token: str, placed_at: str) -> 'Order'",
+          "+ move_to(self, new_state: OrderState) -> None",
+          "+ replace_line(self, line_id: int, menu_item_id: int, item_name: str, unit_price: int) -> None",
+          "+ line(self, line_id: int) -> Optional[OrderLine]"
+        ]
+      ],
+      "element": {
+        "class": "Order",
+        "attributes": [
+          "state",
+          "delivery_fee",
+          "idempotency_token",
+          "placed_at"
+        ],
+        "methods": [
+          "place",
+          "move_to",
+          "replace_line",
+          "line"
+        ]
+      }
+    },
+    {
+      "id": "Payment_0",
+      "class": "Payment",
+      "box": [
+        815,
+        650.0,
+        730,
+        243.20000000000002
+      ],
+      "compartments": [
+        [
+          "«entity» Payment",
+          "{layer: domain}"
+        ],
+        [
+          "+ method: PaymentMethod",
+          "+ state: PaymentState",
+          "+ amount: int",
+          "+ created_at: str"
+        ],
+        [
+          "+ release_for_unfulfilled_order(self) -> None†"
+        ]
+      ],
+      "element": {
+        "class": "Payment",
+        "attributes": [
+          "method",
+          "state",
+          "amount",
+          "created_at"
+        ],
+        "methods": [
+          "release_for_unfulfilled_order"
+        ]
+      }
+    }
+  ],
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "HubStatus",
+        "attributes": [
+          "hub",
+          "load"
+        ],
+        "methods": [
+          "busy",
+          "quiet"
+        ]
+      },
+      {
+        "class": "Hub",
+        "attributes": [
+          "id",
+          "code",
+          "name",
+          "address_text"
+        ],
+        "methods": [
+          "distance_to"
+        ]
+      },
+      {
+        "class": "Quote",
+        "attributes": [
+          "hub",
+          "address",
+          "lines",
+          "distance_km"
+        ],
+        "methods": [
+          "fingerprint",
+          "total"
+        ]
+      },
+      {
+        "class": "Voucher",
+        "attributes": [
+          "id",
+          "code",
+          "description",
+          "discount_type"
+        ],
+        "methods": [
+          "discount_for",
+          "problem"
+        ]
+      },
+      {
+        "class": "Order",
+        "attributes": [
+          "state",
+          "delivery_fee",
+          "idempotency_token",
+          "placed_at"
+        ],
+        "methods": [
+          "place",
+          "move_to",
+          "replace_line",
+          "line"
+        ]
+      },
+      {
+        "class": "Payment",
+        "attributes": [
+          "method",
+          "state",
+          "amount",
+          "created_at"
+        ],
+        "methods": [
+          "release_for_unfulfilled_order"
+        ]
+      }
+    ],
+    "dependencies": [],
+    "states": []
+  },
+  "P4_input": "F-02; F-04; F-07; P2-S01",
+  "continuation": "Members continue across PartA, PartB, PartC, PartD, PartE, PartF, PartG, PartH, PartI; relation view follows in all_links.",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+}

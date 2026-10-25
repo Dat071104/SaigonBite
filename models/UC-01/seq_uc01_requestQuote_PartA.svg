@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200"><rect width="100%" height="100%" fill="white"/>
+<text x="35" y="42.040000000000006" font-family="Arial" font-size="28" font-weight="bold" fill="#202B36">UC-01 requestQuote — Part A</text>
+<rect x="5.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="10.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Customer</text>
+<polyline points="90.0,170 90.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="360.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="365.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">«view»</text>
+<text x="365.0" y="131.92" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">order</text>
+<polyline points="445.0,170 445.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="715.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="720.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">PlaceOrderCo</text>
+<text x="720.0" y="131.92" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">ntroller</text>
+<polyline points="800.0,170 800.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="1070.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="1075.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Hub</text>
+<polyline points="1155.0,170 1155.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="1425.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="1430.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Voucher</text>
+<polyline points="1510.0,170 1510.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="30" y="550" width="1540" height="490" fill="white" stroke="#004387" stroke-width="2"/>
+<polyline points="90.0,550 90.0,1040" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="445.0,550 445.0,1040" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="800.0,550 800.0,1040" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="1155.0,550 1155.0,1040" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="1510.0,550 1510.0,1040" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<text x="40" y="575.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">alt [eligible main path; guards / effects in the operation note]</text>
+<polyline points="30,910 1570,910" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<text x="40" y="935.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">[denied / stale / invalid or failed atomic save] UC01-MG01</text>
+<rect x="35" y="220" width="1530" height="90" fill="#FFF8E9" stroke="#004387" stroke-width="2"/>
+<text x="45" y="247.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Target: active hub/menu/brand, own active address, integer quantities, load &lt; capacity. Details / guards: report operation table.</text>
+<rect x="35" y="1010" width="1530" height="65" fill="#FFF8E9" stroke="#004387" stroke-width="2"/>
+<text x="45" y="1037.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Persistence: loaded/saved through data access — see 4.3.2.</text>
+<polyline points="90.0,445 445.0,445" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="431.0,452.0 445.0,445 431.0,438.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="105.0" y="348.92" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">requestQuote(hubId, addressId,</text>
+<text x="105.0" y="376.52000000000004" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">lines(itemId, quantity), voucherCode?,</text>
+<text x="105.0" y="404.12" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">paymentMethod, onlineOption?)</text>
+<text x="105.0" y="431.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">→ order.quote† [HTTP adapter]</text>
+<polyline points="445.0,538 800.0,538" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="786.0,545.0 800.0,538 786.0,531.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="460.0" y="469.52" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">request_quote†(user_id, hub_id,</text>
+<text x="460.0" y="497.12" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">address_id, quantities, voucher_code,</text>
+<text x="460.0" y="524.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">payment)</text>
+<rect x="795.0" y="538" width="10" height="25" fill="#DAE9F5" stroke="#004387" stroke-width="2"/>
+<polyline points="800.0,655 845.0,655 845.0,680 800.0,680" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="814.0,673.0 800.0,680 814.0,687.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="430.0" y="614.12" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">_build_quote(customer, hub_id,</text>
+<text x="430.0" y="641.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">address_id, quantities, voucher_code)</text>
+<rect x="795.0" y="655" width="10" height="25" fill="#DAE9F5" stroke="#004387" stroke-width="2"/>
+<polyline points="800.0,750 1155.0,750" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="1141.0,757.0 1155.0,750 1141.0,743.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="815.0" y="736.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">distance_to†(address) [raw ≤ 8.0 km]</text>
+<rect x="1150.0" y="750" width="10" height="25" fill="#DAE9F5" stroke="#004387" stroke-width="2"/>
+<polyline points="800.0,815 1510.0,815" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="1496.0,822.0 1510.0,815 1496.0,808.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="815.0" y="801.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">problem(quote.item_subtotal, today)</text>
+<rect x="1505.0" y="815" width="10" height="25" fill="#DAE9F5" stroke="#004387" stroke-width="2"/>
+<polyline points="800.0,880 1510.0,880" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="1496.0,887.0 1510.0,880 1496.0,873.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="815.0" y="866.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">discount_for(quote.item_subtotal)</text>
+<rect x="1505.0" y="880" width="10" height="25" fill="#DAE9F5" stroke="#004387" stroke-width="2"/>
+<polyline points="800.0,1000 445.0,1000" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="459.0,993.0 445.0,1000 459.0,1007.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="460.0" y="986.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">refusal / controlled failure; UC01-MG01</text>
+<text x="35" y="1102.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Part A ↔ PartB. Same lifelines / same operation; no second request.</text>
+<text x="35" y="1134.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">† design target, not yet in code at C0 (see P4 input F-04; F-07; P3-S01).</text>
+<text x="35" y="1167.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Figure 3.1.4.OP-15A. UC-01 requestQuote design sequence — Author: 722I0004 · AI-assisted (Codex)</text>
+<text x="35" y="1193.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Static / target design · 230 mm landscape · smallest text 9.78 pt · native draw.io / final placement UNTESTED</text>
+</svg>

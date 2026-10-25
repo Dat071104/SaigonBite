@@ -1,0 +1,75 @@
+{
+  "UC": "UC-01",
+  "stem": "dcd_uc01_all_PartA",
+  "title": "UC-01 all — selected design members 1/9",
+  "figure": "3.1.2.vA",
+  "caption": "UC-01 all detailed design members",
+  "cards": [
+    {
+      "id": "order_0",
+      "class": "order",
+      "box": [
+        35,
+        100,
+        730,
+        326.0
+      ],
+      "compartments": [
+        [
+          "«view» order",
+          "{layer: view}"
+        ],
+        [
+          "{no selected attribute}"
+        ],
+        [
+          "+ choose_hub() -> Any [inferred return]",
+          "+ choose_items(hub_id: int) -> Any [inferred return]",
+          "+ quote() -> Any [inferred return]†",
+          "+ confirm() -> Any [inferred return]†",
+          "+ detail(order_id: int) -> Any [inferred return]",
+          "+ my_orders() -> Any [inferred return]",
+          "+ cancel(order_id: int) -> Any [inferred return]"
+        ]
+      ],
+      "element": {
+        "class": "order",
+        "attributes": [],
+        "methods": [
+          "choose_hub",
+          "choose_items",
+          "quote",
+          "confirm",
+          "detail",
+          "my_orders",
+          "cancel"
+        ]
+      }
+    }
+  ],
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "order",
+        "attributes": [],
+        "methods": [
+          "choose_hub",
+          "choose_items",
+          "quote",
+          "confirm",
+          "detail",
+          "my_orders",
+          "cancel"
+        ]
+      }
+    ],
+    "dependencies": [],
+    "states": []
+  },
+  "P4_input": "F-07; P2-S05",
+  "continuation": "Members continue across PartA, PartB, PartC, PartD, PartE, PartF, PartG, PartH, PartI; relation view follows in all_links.",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+}
