@@ -1,0 +1,544 @@
+{
+  "projection": "members",
+  "layer": "domain",
+  "title": "Domain members",
+  "subtitle": "Complete member projection; types and statuses resolve from the model.",
+  "cards": [
+    {
+      "class": "DeliveryState",
+      "attributes": [
+        "AWAITING_PICKUP",
+        "PICKED_UP",
+        "DELIVERED",
+        "FAILED"
+      ],
+      "methods": [],
+      "part": "members 1/1",
+      "x": 40,
+      "y": 132
+    },
+    {
+      "class": "OfferState",
+      "attributes": [
+        "OFFERED",
+        "ACCEPTED",
+        "DECLINED",
+        "WITHDRAWN"
+      ],
+      "methods": [],
+      "part": "members 1/1",
+      "x": 40,
+      "y": 328
+    },
+    {
+      "class": "Role",
+      "attributes": [
+        "CUSTOMER",
+        "KITCHEN_STAFF",
+        "SHIPPER",
+        "ADMIN",
+        "MANAGER"
+      ],
+      "methods": [],
+      "part": "members 1/1",
+      "x": 620,
+      "y": 132
+    },
+    {
+      "class": "CustomerType",
+      "attributes": [
+        "LOCAL",
+        "TOURIST"
+      ],
+      "methods": [],
+      "part": "members 1/1",
+      "x": 620,
+      "y": 351
+    },
+    {
+      "class": "DiscountType",
+      "attributes": [
+        "FIXED",
+        "PERCENT"
+      ],
+      "methods": [],
+      "part": "members 1/1",
+      "x": 620,
+      "y": 501
+    }
+  ],
+  "figure": "4.1X",
+  "stem": "dcd_subsystem_PartX",
+  "continuation": "Continues from Figure 4.1W; continues in Figure 4.1Y. Read 4.1A–4.1BP together.",
+  "model_source": "models/shared/design_model.json",
+  "model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "placed_width_mm": 230,
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "DeliveryState",
+        "attributes": [
+          "AWAITING_PICKUP",
+          "PICKED_UP",
+          "DELIVERED",
+          "FAILED"
+        ],
+        "methods": [],
+        "attribute_types": {
+          "AWAITING_PICKUP": "str",
+          "PICKED_UP": "str",
+          "DELIVERED": "str",
+          "FAILED": "str"
+        },
+        "method_signatures": {}
+      },
+      {
+        "class": "OfferState",
+        "attributes": [
+          "OFFERED",
+          "ACCEPTED",
+          "DECLINED",
+          "WITHDRAWN"
+        ],
+        "methods": [],
+        "attribute_types": {
+          "OFFERED": "str",
+          "ACCEPTED": "str",
+          "DECLINED": "str",
+          "WITHDRAWN": "str"
+        },
+        "method_signatures": {}
+      },
+      {
+        "class": "Role",
+        "attributes": [
+          "CUSTOMER",
+          "KITCHEN_STAFF",
+          "SHIPPER",
+          "ADMIN",
+          "MANAGER"
+        ],
+        "methods": [],
+        "attribute_types": {
+          "CUSTOMER": "str",
+          "KITCHEN_STAFF": "str",
+          "SHIPPER": "str",
+          "ADMIN": "str",
+          "MANAGER": "str"
+        },
+        "method_signatures": {}
+      },
+      {
+        "class": "CustomerType",
+        "attributes": [
+          "LOCAL",
+          "TOURIST"
+        ],
+        "methods": [],
+        "attribute_types": {
+          "LOCAL": "str",
+          "TOURIST": "str"
+        },
+        "method_signatures": {}
+      },
+      {
+        "class": "DiscountType",
+        "attributes": [
+          "FIXED",
+          "PERCENT"
+        ],
+        "methods": [],
+        "attribute_types": {
+          "FIXED": "str",
+          "PERCENT": "str"
+        },
+        "method_signatures": {}
+      }
+    ],
+    "dependencies": [],
+    "states": [
+      {
+        "class": "DeliveryState",
+        "attribute": "value",
+        "values": [
+          "AWAITING_PICKUP",
+          "PICKED_UP",
+          "DELIVERED",
+          "FAILED"
+        ]
+      },
+      {
+        "class": "OfferState",
+        "attribute": "value",
+        "values": [
+          "OFFERED",
+          "ACCEPTED",
+          "DECLINED",
+          "WITHDRAWN"
+        ]
+      }
+    ],
+    "association_classes": []
+  },
+  "qa": {
+    "canvas": [
+      1200,
+      850
+    ],
+    "placed_width_mm": 230,
+    "minimum_font_px": 18,
+    "minimum_pt": 9.779527559055119,
+    "native_minimum_font_px": 18,
+    "native_minimum_pt": 9.779527559055119,
+    "native_explicit_font_styles": true,
+    "xml_valid": true,
+    "connected_edges": 0,
+    "geometry_edges": [],
+    "text_bounds": [
+      {
+        "id": "title",
+        "text": "4.1X. Domain members",
+        "x": 35,
+        "y": 18,
+        "w": 253.140625,
+        "h": 25,
+        "font": 23
+      },
+      {
+        "id": "sub",
+        "text": "Shared subsystem · C0 45ac762 · Complete member projection; types and statuses resolve from the model.",
+        "x": 35,
+        "y": 50,
+        "w": 862.671875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "layer_title",
+        "text": "Domain · complete declared members across the continued cards",
+        "x": 40,
+        "y": 94,
+        "w": 564.328125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_title",
+        "text": "«enumeration» DeliveryState",
+        "x": 52,
+        "y": 139,
+        "w": 247.171875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_status",
+        "text": "Shown: [MATCH] · members 1/1",
+        "x": 52,
+        "y": 164,
+        "w": 258.796875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line0",
+        "text": "— attributes —",
+        "x": 52,
+        "y": 191,
+        "w": 120.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line1",
+        "text": "+ AWAITING_PICKUP: str = 'AWAITING_PICKUP' [inferred]",
+        "x": 52,
+        "y": 214,
+        "w": 477.28125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line2",
+        "text": "+ PICKED_UP: str = 'PICKED_UP' [inferred]",
+        "x": 52,
+        "y": 237,
+        "w": 353.0,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line3",
+        "text": "+ DELIVERED: str = 'DELIVERED' [inferred]",
+        "x": 52,
+        "y": 260,
+        "w": 353.0,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line4",
+        "text": "+ FAILED: str = 'FAILED' [inferred]",
+        "x": 52,
+        "y": 283,
+        "w": 273.0,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_title",
+        "text": "«enumeration» OfferState",
+        "x": 52,
+        "y": 335,
+        "w": 220.125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_status",
+        "text": "Shown: [MATCH] · members 1/1",
+        "x": 52,
+        "y": 360,
+        "w": 258.796875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line0",
+        "text": "— attributes —",
+        "x": 52,
+        "y": 387,
+        "w": 120.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line1",
+        "text": "+ OFFERED: str = 'OFFERED' [inferred]",
+        "x": 52,
+        "y": 410,
+        "w": 320.96875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line2",
+        "text": "+ ACCEPTED: str = 'ACCEPTED' [inferred]",
+        "x": 52,
+        "y": 433,
+        "w": 343.96875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line3",
+        "text": "+ DECLINED: str = 'DECLINED' [inferred]",
+        "x": 52,
+        "y": 456,
+        "w": 331.0,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line4",
+        "text": "+ WITHDRAWN: str = 'WITHDRAWN' [inferred]",
+        "x": 52,
+        "y": 479,
+        "w": 375.5625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_title",
+        "text": "«enumeration» Role",
+        "x": 632,
+        "y": 139,
+        "w": 172.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_status",
+        "text": "Shown: [MATCH] · members 1/1",
+        "x": 632,
+        "y": 164,
+        "w": 258.796875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line0",
+        "text": "— attributes —",
+        "x": 632,
+        "y": 191,
+        "w": 120.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line1",
+        "text": "+ CUSTOMER: str = 'CUSTOMER' [inferred]",
+        "x": 632,
+        "y": 214,
+        "w": 354.3125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line2",
+        "text": "+ KITCHEN_STAFF: str = 'KITCHEN_STAFF' [inferred]",
+        "x": 632,
+        "y": 237,
+        "w": 438.34375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line3",
+        "text": "+ SHIPPER: str = 'SHIPPER' [inferred]",
+        "x": 632,
+        "y": 260,
+        "w": 306.96875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line4",
+        "text": "+ ADMIN: str = 'ADMIN' [inferred]",
+        "x": 632,
+        "y": 283,
+        "w": 263.96875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line5",
+        "text": "+ MANAGER: str = 'MANAGER' [inferred]",
+        "x": 632,
+        "y": 306,
+        "w": 330.96875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card3_title",
+        "text": "«enumeration» CustomerType",
+        "x": 632,
+        "y": 358,
+        "w": 257.8125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card3_status",
+        "text": "Shown: [MATCH] · members 1/1",
+        "x": 632,
+        "y": 383,
+        "w": 258.796875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card3_line0",
+        "text": "— attributes —",
+        "x": 632,
+        "y": 410,
+        "w": 120.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card3_line1",
+        "text": "+ LOCAL: str = 'LOCAL' [inferred]",
+        "x": 632,
+        "y": 433,
+        "w": 267.03125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card3_line2",
+        "text": "+ TOURIST: str = 'TOURIST' [inferred]",
+        "x": 632,
+        "y": 456,
+        "w": 303.984375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card4_title",
+        "text": "«enumeration» DiscountType",
+        "x": 632,
+        "y": 508,
+        "w": 250.8125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card4_status",
+        "text": "Shown: [MATCH] · members 1/1",
+        "x": 632,
+        "y": 533,
+        "w": 258.796875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card4_line0",
+        "text": "— attributes —",
+        "x": 632,
+        "y": 560,
+        "w": 120.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card4_line1",
+        "text": "+ FIXED: str = 'FIXED' [inferred]",
+        "x": 632,
+        "y": 583,
+        "w": 254.96875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card4_line2",
+        "text": "+ PERCENT: str = 'PERCENT' [inferred]",
+        "x": 632,
+        "y": 606,
+        "w": 318.96875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "continue",
+        "text": "Continues from Figure 4.1W; continues in Figure 4.1Y. Read 4.1A–4.1BP together.",
+        "x": 35,
+        "y": 713,
+        "w": 655.5625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "legend",
+        "text": "MATCH = static correspondence at C0. No runtime or implementation-completion claim.",
+        "x": 35,
+        "y": 758,
+        "w": 698.65625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "author",
+        "text": "Author: 722I0004 · AI-assisted (Codex)",
+        "x": 35,
+        "y": 818,
+        "w": 311.25,
+        "h": 20,
+        "font": 18
+      }
+    ]
+  }
+}

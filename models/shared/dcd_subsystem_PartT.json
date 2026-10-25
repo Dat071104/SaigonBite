@@ -1,0 +1,592 @@
+{
+  "projection": "members",
+  "layer": "controller",
+  "title": "Controller members",
+  "subtitle": "Complete member projection; types and statuses resolve from the model.",
+  "cards": [
+    {
+      "class": "DeliveryRow",
+      "attributes": [
+        "label",
+        "delivered",
+        "failed",
+        "waits",
+        "rides"
+      ],
+      "methods": [
+        "failure_rate",
+        "avg_wait",
+        "avg_ride"
+      ],
+      "part": "members 1/1",
+      "x": 40,
+      "y": 132
+    },
+    {
+      "class": "DeliveryReport",
+      "attributes": [
+        "period",
+        "hub",
+        "by_hub",
+        "by_shipper",
+        "overall"
+      ],
+      "methods": [],
+      "part": "members 1/1",
+      "x": 40,
+      "y": 443
+    },
+    {
+      "class": "ReportController",
+      "attributes": [
+        "reports",
+        "hubs"
+      ],
+      "methods": [
+        "__init__",
+        "all_hubs",
+        "sales_report",
+        "workload_report",
+        "delivery_report",
+        "_require_manager",
+        "_hub",
+        "_period"
+      ],
+      "part": "members 1/1",
+      "x": 620,
+      "y": 132
+    }
+  ],
+  "figure": "4.1T",
+  "stem": "dcd_subsystem_PartT",
+  "continuation": "Continues from Figure 4.1S; continues in Figure 4.1U. Read 4.1A–4.1BP together.",
+  "model_source": "models/shared/design_model.json",
+  "model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "placed_width_mm": 230,
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "DeliveryRow",
+        "attributes": [
+          "label",
+          "delivered",
+          "failed",
+          "waits",
+          "rides"
+        ],
+        "methods": [
+          "failure_rate",
+          "avg_wait",
+          "avg_ride"
+        ],
+        "attribute_types": {
+          "label": "str",
+          "delivered": "int",
+          "failed": "int",
+          "waits": "list[float]",
+          "rides": "list[float]"
+        },
+        "method_signatures": {
+          "failure_rate": "failure_rate(self) -> Optional[float]",
+          "avg_wait": "avg_wait(self) -> Optional[float]",
+          "avg_ride": "avg_ride(self) -> Optional[float]"
+        }
+      },
+      {
+        "class": "DeliveryReport",
+        "attributes": [
+          "period",
+          "hub",
+          "by_hub",
+          "by_shipper",
+          "overall"
+        ],
+        "methods": [],
+        "attribute_types": {
+          "period": "Period",
+          "hub": "Optional[Hub]",
+          "by_hub": "list[DeliveryRow]",
+          "by_shipper": "list[DeliveryRow]",
+          "overall": "DeliveryRow"
+        },
+        "method_signatures": {}
+      },
+      {
+        "class": "ReportController",
+        "attributes": [
+          "reports",
+          "hubs"
+        ],
+        "methods": [
+          "__init__",
+          "all_hubs",
+          "sales_report",
+          "workload_report",
+          "delivery_report",
+          "_require_manager",
+          "_hub",
+          "_period"
+        ],
+        "attribute_types": {
+          "reports": "ReportDAO",
+          "hubs": "HubDAO"
+        },
+        "method_signatures": {
+          "__init__": "__init__(self, conn: sqlite3.Connection, clock=None)",
+          "all_hubs": "all_hubs(self) -> list[Hub]",
+          "sales_report": "sales_report(self, user_id: int, date_from: Optional[str]=None, date_to: Optional[str]=None, hub_id: Optional[int]=None) -> SalesReport",
+          "workload_report": "workload_report(self, user_id: int) -> WorkloadReport",
+          "delivery_report": "delivery_report(self, user_id: int, date_from: Optional[str]=None, date_to: Optional[str]=None, hub_id: Optional[int]=None) -> DeliveryReport",
+          "_require_manager": "_require_manager(self, user_id: int) -> None",
+          "_hub": "_hub(self, hub_id: Optional[int]) -> Optional[Hub]",
+          "_period": "_period(self, date_from: Optional[str], date_to: Optional[str]) -> Period"
+        }
+      }
+    ],
+    "dependencies": [],
+    "states": [],
+    "association_classes": []
+  },
+  "qa": {
+    "canvas": [
+      1200,
+      850
+    ],
+    "placed_width_mm": 230,
+    "minimum_font_px": 18,
+    "minimum_pt": 9.779527559055119,
+    "native_minimum_font_px": 18,
+    "native_minimum_pt": 9.779527559055119,
+    "native_explicit_font_styles": true,
+    "xml_valid": true,
+    "connected_edges": 0,
+    "geometry_edges": [],
+    "text_bounds": [
+      {
+        "id": "title",
+        "text": "4.1T. Controller members",
+        "x": 35,
+        "y": 18,
+        "w": 274.84375,
+        "h": 25,
+        "font": 23
+      },
+      {
+        "id": "sub",
+        "text": "Shared subsystem · C0 45ac762 · Complete member projection; types and statuses resolve from the model.",
+        "x": 35,
+        "y": 50,
+        "w": 862.671875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "layer_title",
+        "text": "Controller · complete declared members across the continued cards",
+        "x": 40,
+        "y": 94,
+        "w": 584.328125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_title",
+        "text": "«value» DeliveryRow",
+        "x": 52,
+        "y": 139,
+        "w": 179.140625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_status",
+        "text": "Shown: [MATCH] · members 1/1",
+        "x": 52,
+        "y": 164,
+        "w": 258.796875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line0",
+        "text": "— attributes —",
+        "x": 52,
+        "y": 191,
+        "w": 120.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line1",
+        "text": "+ label: str",
+        "x": 52,
+        "y": 214,
+        "w": 83.5625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line2",
+        "text": "+ delivered: int",
+        "x": 52,
+        "y": 237,
+        "w": 117.609375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line3",
+        "text": "+ failed: int",
+        "x": 52,
+        "y": 260,
+        "w": 87.578125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line4",
+        "text": "+ waits: list[float]",
+        "x": 52,
+        "y": 283,
+        "w": 132.5625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line5",
+        "text": "+ rides: list[float]",
+        "x": 52,
+        "y": 306,
+        "w": 130.578125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line6",
+        "text": "— operations —",
+        "x": 52,
+        "y": 329,
+        "w": 130.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line7",
+        "text": "+ failure_rate() -> Optional[float] {property}",
+        "x": 52,
+        "y": 352,
+        "w": 338.3125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line8",
+        "text": "+ avg_wait() -> Optional[float] {property}",
+        "x": 52,
+        "y": 375,
+        "w": 319.28125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line9",
+        "text": "+ avg_ride() -> Optional[float] {property}",
+        "x": 52,
+        "y": 398,
+        "w": 317.296875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_title",
+        "text": "«value» DeliveryReport",
+        "x": 52,
+        "y": 450,
+        "w": 199.15625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_status",
+        "text": "Shown: [MATCH] · members 1/1",
+        "x": 52,
+        "y": 475,
+        "w": 258.796875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line0",
+        "text": "— attributes —",
+        "x": 52,
+        "y": 502,
+        "w": 120.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line1",
+        "text": "+ period: Period",
+        "x": 52,
+        "y": 525,
+        "w": 127.625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line2",
+        "text": "+ hub: Optional[Hub]",
+        "x": 52,
+        "y": 548,
+        "w": 165.65625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line3",
+        "text": "+ by_hub: list[DeliveryRow]",
+        "x": 52,
+        "y": 571,
+        "w": 217.640625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line4",
+        "text": "+ by_shipper: list[DeliveryRow]",
+        "x": 52,
+        "y": 594,
+        "w": 246.65625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line5",
+        "text": "+ overall: DeliveryRow",
+        "x": 52,
+        "y": 617,
+        "w": 179.609375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_title",
+        "text": "«controller» ReportController",
+        "x": 632,
+        "y": 139,
+        "w": 252.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_status",
+        "text": "Shown: [P4-TARGET] † · members 1/1",
+        "x": 632,
+        "y": 164,
+        "w": 310.828125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line0",
+        "text": "— attributes —",
+        "x": 632,
+        "y": 191,
+        "w": 120.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line1",
+        "text": "+ reports: ReportDAO [inferred]",
+        "x": 632,
+        "y": 214,
+        "w": 250.671875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line2",
+        "text": "+ hubs: HubDAO [inferred]",
+        "x": 632,
+        "y": 237,
+        "w": 212.65625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line3",
+        "text": "— operations —",
+        "x": 632,
+        "y": 260,
+        "w": 130.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line4",
+        "text": "- __init__(conn: sqlite3.Connection, clock: Any = None) -> Any",
+        "x": 632,
+        "y": 283,
+        "w": 494.390625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line5",
+        "text": "[inferred]",
+        "x": 632,
+        "y": 306,
+        "w": 71.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line6",
+        "text": "+ all_hubs() -> list[Hub]",
+        "x": 632,
+        "y": 329,
+        "w": 186.140625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line7",
+        "text": "+ sales_report(user_id: int, date_from: Optional[str] = None,",
+        "x": 632,
+        "y": 352,
+        "w": 475.390625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line8",
+        "text": "date_to: Optional[str] = None, hub_id: Optional[int] = None) ->",
+        "x": 632,
+        "y": 375,
+        "w": 491.9375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line9",
+        "text": "SalesReport † [P4-TARGET]",
+        "x": 632,
+        "y": 398,
+        "w": 228.78125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line10",
+        "text": "+ workload_report(user_id: int) -> WorkloadReport †",
+        "x": 632,
+        "y": 421,
+        "w": 416.015625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line11",
+        "text": "[P4-TARGET]",
+        "x": 632,
+        "y": 444,
+        "w": 109.6875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line12",
+        "text": "+ delivery_report(user_id: int, date_from: Optional[str] = None,",
+        "x": 632,
+        "y": 467,
+        "w": 495.40625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line13",
+        "text": "date_to: Optional[str] = None, hub_id: Optional[int] = None) ->",
+        "x": 632,
+        "y": 490,
+        "w": 491.9375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line14",
+        "text": "DeliveryReport",
+        "x": 632,
+        "y": 513,
+        "w": 119.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line15",
+        "text": "- _require_manager(user_id: int) -> None",
+        "x": 632,
+        "y": 536,
+        "w": 327.8125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line16",
+        "text": "- _hub(hub_id: Optional[int]) -> Optional[Hub]",
+        "x": 632,
+        "y": 559,
+        "w": 359.828125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line17",
+        "text": "- _period(date_from: Optional[str], date_to: Optional[str]) ->",
+        "x": 632,
+        "y": 582,
+        "w": 469.875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line18",
+        "text": "Period",
+        "x": 632,
+        "y": 605,
+        "w": 52.046875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "continue",
+        "text": "Continues from Figure 4.1S; continues in Figure 4.1U. Read 4.1A–4.1BP together.",
+        "x": 35,
+        "y": 713,
+        "w": 654.21875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "legend",
+        "text": "† P4-TARGET / GAP: design target, not yet in code at C0. P4 input: F-03, F-09, P2-S18.",
+        "x": 35,
+        "y": 758,
+        "w": 701.796875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "author",
+        "text": "Author: 722I0004 · AI-assisted (Codex)",
+        "x": 35,
+        "y": 818,
+        "w": 311.25,
+        "h": 20,
+        "font": 18
+      }
+    ]
+  }
+}

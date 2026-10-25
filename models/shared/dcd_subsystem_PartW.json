@@ -1,0 +1,560 @@
+{
+  "projection": "members",
+  "layer": "domain",
+  "title": "Domain members",
+  "subtitle": "Complete member projection; types and statuses resolve from the model.",
+  "cards": [
+    {
+      "class": "OrderState",
+      "attributes": [
+        "PLACED",
+        "CONFIRMED",
+        "REJECTED",
+        "PREPARING",
+        "READY",
+        "OUT_FOR_DELIVERY",
+        "DELIVERED",
+        "DELIVERY_FAILED",
+        "CANCELLED"
+      ],
+      "methods": [],
+      "part": "members 1/1",
+      "x": 40,
+      "y": 132
+    },
+    {
+      "class": "PaymentMethod",
+      "attributes": [
+        "COD",
+        "ONLINE"
+      ],
+      "methods": [],
+      "part": "members 1/1",
+      "x": 40,
+      "y": 466
+    },
+    {
+      "class": "OnlineOption",
+      "attributes": [
+        "E_WALLET",
+        "BANK_QR",
+        "INTERNATIONAL_CARD"
+      ],
+      "methods": [],
+      "part": "members 1/1",
+      "x": 620,
+      "y": 132
+    },
+    {
+      "class": "PaymentState",
+      "attributes": [
+        "PENDING",
+        "PAID",
+        "FAILED",
+        "VOIDED",
+        "REFUND_PENDING",
+        "REFUNDED"
+      ],
+      "methods": [],
+      "part": "members 1/1",
+      "x": 620,
+      "y": 328
+    }
+  ],
+  "figure": "4.1W",
+  "stem": "dcd_subsystem_PartW",
+  "continuation": "Continues from Figure 4.1V; continues in Figure 4.1X. Read 4.1A–4.1BP together.",
+  "model_source": "models/shared/design_model.json",
+  "model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "placed_width_mm": 230,
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "OrderState",
+        "attributes": [
+          "PLACED",
+          "CONFIRMED",
+          "REJECTED",
+          "PREPARING",
+          "READY",
+          "OUT_FOR_DELIVERY",
+          "DELIVERED",
+          "DELIVERY_FAILED",
+          "CANCELLED"
+        ],
+        "methods": [],
+        "attribute_types": {
+          "PLACED": "str",
+          "CONFIRMED": "str",
+          "REJECTED": "str",
+          "PREPARING": "str",
+          "READY": "str",
+          "OUT_FOR_DELIVERY": "str",
+          "DELIVERED": "str",
+          "DELIVERY_FAILED": "str",
+          "CANCELLED": "str"
+        },
+        "method_signatures": {}
+      },
+      {
+        "class": "PaymentMethod",
+        "attributes": [
+          "COD",
+          "ONLINE"
+        ],
+        "methods": [],
+        "attribute_types": {
+          "COD": "str",
+          "ONLINE": "str"
+        },
+        "method_signatures": {}
+      },
+      {
+        "class": "OnlineOption",
+        "attributes": [
+          "E_WALLET",
+          "BANK_QR",
+          "INTERNATIONAL_CARD"
+        ],
+        "methods": [],
+        "attribute_types": {
+          "E_WALLET": "str",
+          "BANK_QR": "str",
+          "INTERNATIONAL_CARD": "str"
+        },
+        "method_signatures": {}
+      },
+      {
+        "class": "PaymentState",
+        "attributes": [
+          "PENDING",
+          "PAID",
+          "FAILED",
+          "VOIDED",
+          "REFUND_PENDING",
+          "REFUNDED"
+        ],
+        "methods": [],
+        "attribute_types": {
+          "PENDING": "str",
+          "PAID": "str",
+          "FAILED": "str",
+          "VOIDED": "str",
+          "REFUND_PENDING": "str",
+          "REFUNDED": "str"
+        },
+        "method_signatures": {}
+      }
+    ],
+    "dependencies": [],
+    "states": [
+      {
+        "class": "OrderState",
+        "attribute": "value",
+        "values": [
+          "PLACED",
+          "CONFIRMED",
+          "REJECTED",
+          "PREPARING",
+          "READY",
+          "OUT_FOR_DELIVERY",
+          "DELIVERED",
+          "DELIVERY_FAILED",
+          "CANCELLED"
+        ]
+      },
+      {
+        "class": "PaymentState",
+        "attribute": "value",
+        "values": [
+          "PENDING",
+          "PAID",
+          "FAILED",
+          "VOIDED",
+          "REFUND_PENDING",
+          "REFUNDED"
+        ]
+      }
+    ],
+    "association_classes": []
+  },
+  "qa": {
+    "canvas": [
+      1200,
+      850
+    ],
+    "placed_width_mm": 230,
+    "minimum_font_px": 18,
+    "minimum_pt": 9.779527559055119,
+    "native_minimum_font_px": 18,
+    "native_minimum_pt": 9.779527559055119,
+    "native_explicit_font_styles": true,
+    "xml_valid": true,
+    "connected_edges": 0,
+    "geometry_edges": [],
+    "text_bounds": [
+      {
+        "id": "title",
+        "text": "4.1W. Domain members",
+        "x": 35,
+        "y": 18,
+        "w": 258.234375,
+        "h": 25,
+        "font": 23
+      },
+      {
+        "id": "sub",
+        "text": "Shared subsystem · C0 45ac762 · Complete member projection; types and statuses resolve from the model.",
+        "x": 35,
+        "y": 50,
+        "w": 862.671875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "layer_title",
+        "text": "Domain · complete declared members across the continued cards",
+        "x": 40,
+        "y": 94,
+        "w": 564.328125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_title",
+        "text": "«enumeration» OrderState",
+        "x": 52,
+        "y": 139,
+        "w": 226.125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_status",
+        "text": "Shown: [MATCH] · members 1/1",
+        "x": 52,
+        "y": 164,
+        "w": 258.796875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line0",
+        "text": "— attributes —",
+        "x": 52,
+        "y": 191,
+        "w": 120.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line1",
+        "text": "+ PLACED: str = 'PLACED' [inferred]",
+        "x": 52,
+        "y": 214,
+        "w": 293.0,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line2",
+        "text": "+ CONFIRMED: str = 'CONFIRMED' [inferred]",
+        "x": 52,
+        "y": 237,
+        "w": 366.96875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line3",
+        "text": "+ REJECTED: str = 'REJECTED' [inferred]",
+        "x": 52,
+        "y": 260,
+        "w": 338.96875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line4",
+        "text": "+ PREPARING: str = 'PREPARING' [inferred]",
+        "x": 52,
+        "y": 283,
+        "w": 358.3125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line5",
+        "text": "+ READY: str = 'READY' [inferred]",
+        "x": 52,
+        "y": 306,
+        "w": 271.96875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line6",
+        "text": "+ OUT_FOR_DELIVERY: str = 'OUT_FOR_DELIVERY'",
+        "x": 52,
+        "y": 329,
+        "w": 441.34375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line7",
+        "text": "[inferred]",
+        "x": 52,
+        "y": 352,
+        "w": 71.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line8",
+        "text": "+ DELIVERED: str = 'DELIVERED' [inferred]",
+        "x": 52,
+        "y": 375,
+        "w": 353.0,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line9",
+        "text": "+ DELIVERY_FAILED: str = 'DELIVERY_FAILED' [inferred]",
+        "x": 52,
+        "y": 398,
+        "w": 470.40625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line10",
+        "text": "+ CANCELLED: str = 'CANCELLED' [inferred]",
+        "x": 52,
+        "y": 421,
+        "w": 365.03125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_title",
+        "text": "«enumeration» PaymentMethod",
+        "x": 52,
+        "y": 473,
+        "w": 272.140625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_status",
+        "text": "Shown: [MATCH] · members 1/1",
+        "x": 52,
+        "y": 498,
+        "w": 258.796875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line0",
+        "text": "— attributes —",
+        "x": 52,
+        "y": 525,
+        "w": 120.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line1",
+        "text": "+ COD: str = 'COD' [inferred]",
+        "x": 52,
+        "y": 548,
+        "w": 228.96875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line2",
+        "text": "+ ONLINE: str = 'ONLINE' [inferred]",
+        "x": 52,
+        "y": 571,
+        "w": 283.0,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_title",
+        "text": "«enumeration» OnlineOption",
+        "x": 632,
+        "y": 139,
+        "w": 247.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_status",
+        "text": "Shown: [MATCH] · members 1/1",
+        "x": 632,
+        "y": 164,
+        "w": 258.796875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line0",
+        "text": "— attributes —",
+        "x": 632,
+        "y": 191,
+        "w": 120.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line1",
+        "text": "+ E_WALLET: str = 'E_WALLET' [inferred]",
+        "x": 632,
+        "y": 214,
+        "w": 333.6875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line2",
+        "text": "+ BANK_QR: str = 'BANK_QR' [inferred]",
+        "x": 632,
+        "y": 237,
+        "w": 321.0,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line3",
+        "text": "+ INTERNATIONAL_CARD: str = 'INTERNATIONAL_CARD'",
+        "x": 632,
+        "y": 260,
+        "w": 480.3125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line4",
+        "text": "[inferred]",
+        "x": 632,
+        "y": 283,
+        "w": 71.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card3_title",
+        "text": "«enumeration» PaymentState",
+        "x": 632,
+        "y": 335,
+        "w": 252.15625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card3_status",
+        "text": "Shown: [MATCH] · members 1/1",
+        "x": 632,
+        "y": 360,
+        "w": 258.796875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card3_line0",
+        "text": "— attributes —",
+        "x": 632,
+        "y": 387,
+        "w": 120.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card3_line1",
+        "text": "+ PENDING: str = 'PENDING' [inferred]",
+        "x": 632,
+        "y": 410,
+        "w": 312.96875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card3_line2",
+        "text": "+ PAID: str = 'PAID' [inferred]",
+        "x": 632,
+        "y": 433,
+        "w": 230.3125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card3_line3",
+        "text": "+ FAILED: str = 'FAILED' [inferred]",
+        "x": 632,
+        "y": 456,
+        "w": 273.0,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card3_line4",
+        "text": "+ VOIDED: str = 'VOIDED' [inferred]",
+        "x": 632,
+        "y": 479,
+        "w": 286.96875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card3_line5",
+        "text": "+ REFUND_PENDING: str = 'REFUND_PENDING' [inferred]",
+        "x": 632,
+        "y": 502,
+        "w": 483.0,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card3_line6",
+        "text": "+ REFUNDED: str = 'REFUNDED' [inferred]",
+        "x": 632,
+        "y": 525,
+        "w": 348.96875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "continue",
+        "text": "Continues from Figure 4.1V; continues in Figure 4.1X. Read 4.1A–4.1BP together.",
+        "x": 35,
+        "y": 713,
+        "w": 652.546875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "legend",
+        "text": "MATCH = static correspondence at C0. No runtime or implementation-completion claim.",
+        "x": 35,
+        "y": 758,
+        "w": 698.65625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "author",
+        "text": "Author: 722I0004 · AI-assisted (Codex)",
+        "x": 35,
+        "y": 818,
+        "w": 311.25,
+        "h": 20,
+        "font": 18
+      }
+    ]
+  }
+}

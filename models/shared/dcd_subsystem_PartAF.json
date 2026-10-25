@@ -1,0 +1,208 @@
+{
+  "projection": "members",
+  "layer": "domain",
+  "title": "Domain members",
+  "subtitle": "Complete member projection; types and statuses resolve from the model.",
+  "cards": [
+    {
+      "class": "domain.rules",
+      "attributes": [],
+      "methods": [
+        "distance_km",
+        "delivery_fee",
+        "is_busy",
+        "is_quiet",
+        "quiet_discount"
+      ],
+      "part": "members 1/1",
+      "x": 40,
+      "y": 132
+    }
+  ],
+  "figure": "4.1AF",
+  "stem": "dcd_subsystem_PartAF",
+  "continuation": "Continues from Figure 4.1AE; continues in Figure 4.1AG. Read 4.1A–4.1BP together.",
+  "model_source": "models/shared/design_model.json",
+  "model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "placed_width_mm": 230,
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "domain.rules",
+        "attributes": [],
+        "methods": [
+          "distance_km",
+          "delivery_fee",
+          "is_busy",
+          "is_quiet",
+          "quiet_discount"
+        ],
+        "attribute_types": {},
+        "method_signatures": {
+          "distance_km": "distance_km(lat1: float, lon1: float, lat2: float, lon2: float) -> float",
+          "delivery_fee": "delivery_fee(base_fee: int, km: float) -> int",
+          "is_busy": "is_busy(load: int, capacity: int) -> bool",
+          "is_quiet": "is_quiet(load: int, capacity: int) -> bool",
+          "quiet_discount": "quiet_discount(load: int, capacity: int, fee: int) -> int"
+        }
+      }
+    ],
+    "dependencies": [],
+    "states": [],
+    "association_classes": []
+  },
+  "qa": {
+    "canvas": [
+      1200,
+      850
+    ],
+    "placed_width_mm": 230,
+    "minimum_font_px": 18,
+    "minimum_pt": 9.779527559055119,
+    "native_minimum_font_px": 18,
+    "native_minimum_pt": 9.779527559055119,
+    "native_explicit_font_styles": true,
+    "xml_valid": true,
+    "connected_edges": 0,
+    "geometry_edges": [],
+    "text_bounds": [
+      {
+        "id": "title",
+        "text": "4.1AF. Domain members",
+        "x": 35,
+        "y": 18,
+        "w": 265.90625,
+        "h": 25,
+        "font": 23
+      },
+      {
+        "id": "sub",
+        "text": "Shared subsystem · C0 45ac762 · Complete member projection; types and statuses resolve from the model.",
+        "x": 35,
+        "y": 50,
+        "w": 862.671875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "layer_title",
+        "text": "Domain · complete declared members across the continued cards",
+        "x": 40,
+        "y": 94,
+        "w": 564.328125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_title",
+        "text": "«module» domain.rules",
+        "x": 52,
+        "y": 139,
+        "w": 201.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_status",
+        "text": "Shown: [P4-TARGET] † · members 1/1",
+        "x": 52,
+        "y": 164,
+        "w": 310.828125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line0",
+        "text": "— operations —",
+        "x": 52,
+        "y": 191,
+        "w": 130.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line1",
+        "text": "+ distance_km(lat1: float, lon1: float, lat2: float, lon2: float) ->",
+        "x": 52,
+        "y": 214,
+        "w": 482.390625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line2",
+        "text": "float † [P4-TARGET]",
+        "x": 52,
+        "y": 237,
+        "w": 163.734375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line3",
+        "text": "+ delivery_fee(base_fee: int, km: float) -> int",
+        "x": 52,
+        "y": 260,
+        "w": 351.28125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line4",
+        "text": "+ is_busy(load: int, capacity: int) -> bool",
+        "x": 52,
+        "y": 283,
+        "w": 317.25,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line5",
+        "text": "+ is_quiet(load: int, capacity: int) -> bool",
+        "x": 52,
+        "y": 306,
+        "w": 318.265625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line6",
+        "text": "+ quiet_discount(load: int, capacity: int, fee: int) -> int",
+        "x": 52,
+        "y": 329,
+        "w": 421.34375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "continue",
+        "text": "Continues from Figure 4.1AE; continues in Figure 4.1AG. Read 4.1A–4.1BP together.",
+        "x": 35,
+        "y": 713,
+        "w": 679.21875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "legend",
+        "text": "† P4-TARGET / GAP: design target, not yet in code at C0. P4 input: F-04.",
+        "x": 35,
+        "y": 758,
+        "w": 584.71875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "author",
+        "text": "Author: 722I0004 · AI-assisted (Codex)",
+        "x": 35,
+        "y": 818,
+        "w": 311.25,
+        "h": 20,
+        "font": 18
+      }
+    ]
+  }
+}

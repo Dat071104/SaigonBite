@@ -1,0 +1,419 @@
+{
+  "projection": "relations",
+  "title": "Domain enumeration dependencies",
+  "subtitle": "Real enums; state/flag/derived facts retain their original representations.",
+  "relations": [
+    {
+      "source": "Delivery",
+      "target": "DeliveryState",
+      "kind": "dependency",
+      "status": "MATCH",
+      "source_evidence": "AST call or typed attribute/signature",
+      "allowed_on_layered_diagram": true
+    },
+    {
+      "source": "ReplacementOffer",
+      "target": "OfferState",
+      "kind": "dependency",
+      "status": "MATCH",
+      "source_evidence": "AST call or typed attribute/signature",
+      "allowed_on_layered_diagram": true
+    },
+    {
+      "source": "domain.models",
+      "target": "CustomerType",
+      "kind": "dependency",
+      "status": "MATCH",
+      "source_evidence": "AST call or typed attribute/signature",
+      "allowed_on_layered_diagram": true
+    }
+  ],
+  "figure": "4.1BP",
+  "stem": "dcd_subsystem_PartBP",
+  "continuation": "Continues from Figure 4.1BO; continues in Figure 4.1A. Read 4.1A–4.1BP together.",
+  "model_source": "models/shared/design_model.json",
+  "model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "placed_width_mm": 230,
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "Delivery",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      },
+      {
+        "class": "DeliveryState",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      },
+      {
+        "class": "ReplacementOffer",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      },
+      {
+        "class": "OfferState",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      },
+      {
+        "class": "domain.models",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      },
+      {
+        "class": "CustomerType",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "Delivery",
+        "target": "DeliveryState",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "ReplacementOffer",
+        "target": "OfferState",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "domain.models",
+        "target": "CustomerType",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      }
+    ],
+    "states": [],
+    "association_classes": []
+  },
+  "qa": {
+    "canvas": [
+      1200,
+      850
+    ],
+    "placed_width_mm": 230,
+    "minimum_font_px": 18,
+    "minimum_pt": 9.779527559055119,
+    "native_minimum_font_px": 18,
+    "native_minimum_pt": 9.779527559055119,
+    "native_explicit_font_styles": true,
+    "xml_valid": true,
+    "connected_edges": 3,
+    "geometry_edges": [
+      {
+        "id": "rel0",
+        "source_shape": "s0",
+        "target_shape": "t0",
+        "source": "Delivery",
+        "target": "DeliveryState",
+        "kind": "dependency",
+        "points": [
+          [
+            410,
+            190
+          ],
+          [
+            790,
+            190
+          ]
+        ]
+      },
+      {
+        "id": "rel1",
+        "source_shape": "s1",
+        "target_shape": "t1",
+        "source": "ReplacementOffer",
+        "target": "OfferState",
+        "kind": "dependency",
+        "points": [
+          [
+            410,
+            377
+          ],
+          [
+            790,
+            377
+          ]
+        ]
+      },
+      {
+        "id": "rel2",
+        "source_shape": "s2",
+        "target_shape": "t2",
+        "source": "domain.models",
+        "target": "CustomerType",
+        "kind": "dependency",
+        "points": [
+          [
+            410,
+            564
+          ],
+          [
+            790,
+            564
+          ]
+        ]
+      }
+    ],
+    "text_bounds": [
+      {
+        "id": "title",
+        "text": "4.1BP. Domain enumeration dependencies",
+        "x": 35,
+        "y": 18,
+        "w": 462.3125,
+        "h": 25,
+        "font": 23
+      },
+      {
+        "id": "sub",
+        "text": "Shared subsystem · C0 45ac762 · Real enums; state/flag/derived facts retain their original representations.",
+        "x": 35,
+        "y": 50,
+        "w": 851.703125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s0_st",
+        "text": "«entity»",
+        "x": 44,
+        "y": 129,
+        "w": 63.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s0_name",
+        "text": "Delivery",
+        "x": 44,
+        "y": 153,
+        "w": 70.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t0_st",
+        "text": "«enumeration»",
+        "x": 799,
+        "y": 129,
+        "w": 120.140625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t0_name",
+        "text": "DeliveryState",
+        "x": 799,
+        "y": 153,
+        "w": 114.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s0_ref",
+        "text": "Members: 4.1AE",
+        "x": 47,
+        "y": 203,
+        "w": 134.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t0_ref",
+        "text": "Members: 4.1X",
+        "x": 802,
+        "y": 203,
+        "w": 122.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "label0",
+        "text": "depends on",
+        "x": 445,
+        "y": 131,
+        "w": 94.125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s1_st",
+        "text": "«entity»",
+        "x": 44,
+        "y": 316,
+        "w": 63.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s1_name",
+        "text": "ReplacementOffer",
+        "x": 44,
+        "y": 340,
+        "w": 155.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t1_st",
+        "text": "«enumeration»",
+        "x": 799,
+        "y": 316,
+        "w": 120.140625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t1_name",
+        "text": "OfferState",
+        "x": 799,
+        "y": 340,
+        "w": 87.046875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s1_ref",
+        "text": "Members: 4.1AE",
+        "x": 47,
+        "y": 390,
+        "w": 134.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t1_ref",
+        "text": "Members: 4.1X",
+        "x": 802,
+        "y": 390,
+        "w": 122.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "label1",
+        "text": "depends on",
+        "x": 445,
+        "y": 318,
+        "w": 94.125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s2_st",
+        "text": "«module»",
+        "x": 44,
+        "y": 503,
+        "w": 79.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s2_name",
+        "text": "domain.models",
+        "x": 44,
+        "y": 527,
+        "w": 132.046875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t2_st",
+        "text": "«enumeration»",
+        "x": 799,
+        "y": 503,
+        "w": 120.140625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t2_name",
+        "text": "CustomerType",
+        "x": 799,
+        "y": 527,
+        "w": 124.734375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s2_ref",
+        "text": "Members: 4.1AE",
+        "x": 47,
+        "y": 577,
+        "w": 134.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t2_ref",
+        "text": "Members: 4.1X",
+        "x": 802,
+        "y": 577,
+        "w": 122.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "label2",
+        "text": "depends on",
+        "x": 445,
+        "y": 505,
+        "w": 94.125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "continue",
+        "text": "Continues from Figure 4.1BO; continues in Figure 4.1A. Read 4.1A–4.1BP together.",
+        "x": 35,
+        "y": 713,
+        "w": 667.21875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "legend",
+        "text": "MATCH = static correspondence at C0. No runtime or implementation-completion claim.",
+        "x": 35,
+        "y": 758,
+        "w": 698.65625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "author",
+        "text": "Author: 722I0004 · AI-assisted (Codex)",
+        "x": 35,
+        "y": 818,
+        "w": 311.25,
+        "h": 20,
+        "font": 18
+      }
+    ]
+  }
+}

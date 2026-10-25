@@ -1,0 +1,547 @@
+{
+  "projection": "members",
+  "layer": "controller",
+  "title": "Controller members",
+  "subtitle": "Complete member projection; types and statuses resolve from the model.",
+  "cards": [
+    {
+      "class": "NotFoundError",
+      "attributes": [],
+      "methods": [],
+      "part": "members 1/1",
+      "x": 40,
+      "y": 132
+    },
+    {
+      "class": "ConflictError",
+      "attributes": [],
+      "methods": [],
+      "part": "members 1/1",
+      "x": 40,
+      "y": 236
+    },
+    {
+      "class": "QuoteChangedError",
+      "attributes": [
+        "CHANGED",
+        "MISSING",
+        "quote"
+      ],
+      "methods": [
+        "__init__"
+      ],
+      "part": "members 1/1",
+      "x": 40,
+      "y": 340
+    },
+    {
+      "class": "HubUnavailableError",
+      "attributes": [
+        "suggestions"
+      ],
+      "methods": [
+        "__init__"
+      ],
+      "part": "members 1/1",
+      "x": 620,
+      "y": 132
+    },
+    {
+      "class": "PaymentDeclinedError",
+      "attributes": [
+        "quote"
+      ],
+      "methods": [
+        "__init__"
+      ],
+      "part": "members 1/1",
+      "x": 620,
+      "y": 305
+    },
+    {
+      "class": "HubAdminView",
+      "attributes": [
+        "status",
+        "open_orders"
+      ],
+      "methods": [
+        "can_archive"
+      ],
+      "part": "members 1/1",
+      "x": 620,
+      "y": 478
+    }
+  ],
+  "figure": "4.1K",
+  "stem": "dcd_subsystem_PartK",
+  "continuation": "Continues from Figure 4.1J; continues in Figure 4.1L. Read 4.1A–4.1BP together.",
+  "model_source": "models/shared/design_model.json",
+  "model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "placed_width_mm": 230,
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "NotFoundError",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      },
+      {
+        "class": "ConflictError",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      },
+      {
+        "class": "QuoteChangedError",
+        "attributes": [
+          "CHANGED",
+          "MISSING",
+          "quote"
+        ],
+        "methods": [
+          "__init__"
+        ],
+        "attribute_types": {
+          "CHANGED": "str",
+          "MISSING": "str",
+          "quote": "Any"
+        },
+        "method_signatures": {
+          "__init__": "__init__(self, quote, message: str=CHANGED)"
+        }
+      },
+      {
+        "class": "HubUnavailableError",
+        "attributes": [
+          "suggestions"
+        ],
+        "methods": [
+          "__init__"
+        ],
+        "attribute_types": {
+          "suggestions": "Any"
+        },
+        "method_signatures": {
+          "__init__": "__init__(self, message: str, suggestions)"
+        }
+      },
+      {
+        "class": "PaymentDeclinedError",
+        "attributes": [
+          "quote"
+        ],
+        "methods": [
+          "__init__"
+        ],
+        "attribute_types": {
+          "quote": "Any"
+        },
+        "method_signatures": {
+          "__init__": "__init__(self, quote, message: str)"
+        }
+      },
+      {
+        "class": "HubAdminView",
+        "attributes": [
+          "status",
+          "open_orders"
+        ],
+        "methods": [
+          "can_archive"
+        ],
+        "attribute_types": {
+          "status": "HubStatus",
+          "open_orders": "int"
+        },
+        "method_signatures": {
+          "can_archive": "can_archive(self) -> bool"
+        }
+      }
+    ],
+    "dependencies": [],
+    "states": [],
+    "association_classes": []
+  },
+  "qa": {
+    "canvas": [
+      1200,
+      850
+    ],
+    "placed_width_mm": 230,
+    "minimum_font_px": 18,
+    "minimum_pt": 9.779527559055119,
+    "native_minimum_font_px": 18,
+    "native_minimum_pt": 9.779527559055119,
+    "native_explicit_font_styles": true,
+    "xml_valid": true,
+    "connected_edges": 0,
+    "geometry_edges": [],
+    "text_bounds": [
+      {
+        "id": "title",
+        "text": "4.1K. Controller members",
+        "x": 35,
+        "y": 18,
+        "w": 279.953125,
+        "h": 25,
+        "font": 23
+      },
+      {
+        "id": "sub",
+        "text": "Shared subsystem · C0 45ac762 · Complete member projection; types and statuses resolve from the model.",
+        "x": 35,
+        "y": 50,
+        "w": 862.671875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "layer_title",
+        "text": "Controller · complete declared members across the continued cards",
+        "x": 40,
+        "y": 94,
+        "w": 584.328125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_title",
+        "text": "«value» NotFoundError",
+        "x": 52,
+        "y": 139,
+        "w": 200.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_status",
+        "text": "Shown: [MATCH] · members 1/1",
+        "x": 52,
+        "y": 164,
+        "w": 258.796875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_empty",
+        "text": "(no declared attributes or methods)",
+        "x": 52,
+        "y": 191,
+        "w": 280.25,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_title",
+        "text": "«value» ConflictError",
+        "x": 52,
+        "y": 243,
+        "w": 182.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_status",
+        "text": "Shown: [MATCH] · members 1/1",
+        "x": 52,
+        "y": 268,
+        "w": 258.796875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_empty",
+        "text": "(no declared attributes or methods)",
+        "x": 52,
+        "y": 295,
+        "w": 280.25,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_title",
+        "text": "«value» QuoteChangedError",
+        "x": 52,
+        "y": 347,
+        "w": 244.125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_status",
+        "text": "Shown: [MATCH] · members 1/1",
+        "x": 52,
+        "y": 372,
+        "w": 258.796875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line0",
+        "text": "— attributes —",
+        "x": 52,
+        "y": 399,
+        "w": 120.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line1",
+        "text": "+ CHANGED: str [inferred]",
+        "x": 52,
+        "y": 422,
+        "w": 211.578125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line2",
+        "text": "+ MISSING: str [inferred]",
+        "x": 52,
+        "y": 445,
+        "w": 197.578125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line3",
+        "text": "+ quote: Any [inferred]",
+        "x": 52,
+        "y": 468,
+        "w": 176.65625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line4",
+        "text": "— operations —",
+        "x": 52,
+        "y": 491,
+        "w": 130.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line5",
+        "text": "- __init__(quote: Any, message: str = CHANGED) -> Any",
+        "x": 52,
+        "y": 514,
+        "w": 449.9375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line6",
+        "text": "[inferred]",
+        "x": 52,
+        "y": 537,
+        "w": 71.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card3_title",
+        "text": "«value» HubUnavailableError",
+        "x": 632,
+        "y": 139,
+        "w": 250.15625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card3_status",
+        "text": "Shown: [MATCH] · members 1/1",
+        "x": 632,
+        "y": 164,
+        "w": 258.796875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card3_line0",
+        "text": "— attributes —",
+        "x": 632,
+        "y": 191,
+        "w": 120.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card3_line1",
+        "text": "+ suggestions: Any [inferred]",
+        "x": 632,
+        "y": 214,
+        "w": 227.6875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card3_line2",
+        "text": "— operations —",
+        "x": 632,
+        "y": 237,
+        "w": 130.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card3_line3",
+        "text": "- __init__(message: str, suggestions: Any) -> Any [inferred]",
+        "x": 632,
+        "y": 260,
+        "w": 466.84375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card4_title",
+        "text": "«value» PaymentDeclinedError",
+        "x": 632,
+        "y": 312,
+        "w": 265.171875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card4_status",
+        "text": "Shown: [MATCH] · members 1/1",
+        "x": 632,
+        "y": 337,
+        "w": 258.796875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card4_line0",
+        "text": "— attributes —",
+        "x": 632,
+        "y": 364,
+        "w": 120.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card4_line1",
+        "text": "+ quote: Any [inferred]",
+        "x": 632,
+        "y": 387,
+        "w": 176.65625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card4_line2",
+        "text": "— operations —",
+        "x": 632,
+        "y": 410,
+        "w": 130.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card4_line3",
+        "text": "- __init__(quote: Any, message: str) -> Any [inferred]",
+        "x": 632,
+        "y": 433,
+        "w": 415.484375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card5_title",
+        "text": "«value» HubAdminView",
+        "x": 632,
+        "y": 485,
+        "w": 202.765625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card5_status",
+        "text": "Shown: [MATCH] · members 1/1",
+        "x": 632,
+        "y": 510,
+        "w": 258.796875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card5_line0",
+        "text": "— attributes —",
+        "x": 632,
+        "y": 537,
+        "w": 120.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card5_line1",
+        "text": "+ status: HubStatus",
+        "x": 632,
+        "y": 560,
+        "w": 157.609375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card5_line2",
+        "text": "+ open_orders: int",
+        "x": 632,
+        "y": 583,
+        "w": 145.65625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card5_line3",
+        "text": "— operations —",
+        "x": 632,
+        "y": 606,
+        "w": 130.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card5_line4",
+        "text": "+ can_archive() -> bool {property}",
+        "x": 632,
+        "y": 629,
+        "w": 268.265625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "continue",
+        "text": "Continues from Figure 4.1J; continues in Figure 4.1L. Read 4.1A–4.1BP together.",
+        "x": 35,
+        "y": 713,
+        "w": 648.234375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "legend",
+        "text": "MATCH = static correspondence at C0. No runtime or implementation-completion claim.",
+        "x": 35,
+        "y": 758,
+        "w": 698.65625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "author",
+        "text": "Author: 722I0004 · AI-assisted (Codex)",
+        "x": 35,
+        "y": 818,
+        "w": 311.25,
+        "h": 20,
+        "font": 18
+      }
+    ]
+  }
+}

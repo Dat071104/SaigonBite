@@ -1,0 +1,499 @@
+{
+  "projection": "members",
+  "layer": "domain",
+  "title": "Domain members",
+  "subtitle": "Complete member projection; types and statuses resolve from the model.",
+  "cards": [
+    {
+      "class": "Delivery",
+      "attributes": [
+        "state",
+        "ready_at",
+        "picked_up_at",
+        "finished_at",
+        "failure_reason",
+        "cash_collected",
+        "id"
+      ],
+      "methods": [
+        "move_to"
+      ],
+      "part": "members 1/1",
+      "x": 40,
+      "y": 132
+    },
+    {
+      "class": "ReplacementOffer",
+      "attributes": [
+        "original_item_name",
+        "original_unit_price",
+        "new_item_name",
+        "new_unit_price",
+        "state",
+        "offered_at",
+        "decided_at",
+        "id"
+      ],
+      "methods": [
+        "move_to"
+      ],
+      "part": "members 1/1",
+      "x": 620,
+      "y": 132
+    },
+    {
+      "class": "domain.models",
+      "attributes": [],
+      "methods": [
+        "_check_move",
+        "make_customer"
+      ],
+      "part": "members 1/1",
+      "x": 620,
+      "y": 466
+    }
+  ],
+  "figure": "4.1AE",
+  "stem": "dcd_subsystem_PartAE",
+  "continuation": "Continues from Figure 4.1AD; continues in Figure 4.1AF. Read 4.1A–4.1BP together.",
+  "model_source": "models/shared/design_model.json",
+  "model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "placed_width_mm": 230,
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "Delivery",
+        "attributes": [
+          "state",
+          "ready_at",
+          "picked_up_at",
+          "finished_at",
+          "failure_reason",
+          "cash_collected",
+          "id"
+        ],
+        "methods": [
+          "move_to"
+        ],
+        "attribute_types": {
+          "state": "DeliveryState",
+          "ready_at": "str",
+          "picked_up_at": "Optional[str]",
+          "finished_at": "Optional[str]",
+          "failure_reason": "Optional[str]",
+          "cash_collected": "Optional[int]",
+          "id": "Optional[int]"
+        },
+        "method_signatures": {
+          "move_to": "move_to(self, new_state: DeliveryState) -> None"
+        }
+      },
+      {
+        "class": "ReplacementOffer",
+        "attributes": [
+          "original_item_name",
+          "original_unit_price",
+          "new_item_name",
+          "new_unit_price",
+          "state",
+          "offered_at",
+          "decided_at",
+          "id"
+        ],
+        "methods": [
+          "move_to"
+        ],
+        "attribute_types": {
+          "original_item_name": "str",
+          "original_unit_price": "int",
+          "new_item_name": "str",
+          "new_unit_price": "int",
+          "state": "OfferState",
+          "offered_at": "str",
+          "decided_at": "Optional[str]",
+          "id": "Optional[int]"
+        },
+        "method_signatures": {
+          "move_to": "move_to(self, new_state: OfferState) -> None"
+        }
+      },
+      {
+        "class": "domain.models",
+        "attributes": [],
+        "methods": [
+          "_check_move",
+          "make_customer"
+        ],
+        "attribute_types": {},
+        "method_signatures": {
+          "_check_move": "_check_move(table: dict, current, new, what: str) -> None",
+          "make_customer": "make_customer(customer_type: str, **fields) -> Customer"
+        }
+      }
+    ],
+    "dependencies": [],
+    "states": [],
+    "association_classes": []
+  },
+  "qa": {
+    "canvas": [
+      1200,
+      850
+    ],
+    "placed_width_mm": 230,
+    "minimum_font_px": 18,
+    "minimum_pt": 9.779527559055119,
+    "native_minimum_font_px": 18,
+    "native_minimum_pt": 9.779527559055119,
+    "native_explicit_font_styles": true,
+    "xml_valid": true,
+    "connected_edges": 0,
+    "geometry_edges": [],
+    "text_bounds": [
+      {
+        "id": "title",
+        "text": "4.1AE. Domain members",
+        "x": 35,
+        "y": 18,
+        "w": 269.75,
+        "h": 25,
+        "font": 23
+      },
+      {
+        "id": "sub",
+        "text": "Shared subsystem · C0 45ac762 · Complete member projection; types and statuses resolve from the model.",
+        "x": 35,
+        "y": 50,
+        "w": 862.671875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "layer_title",
+        "text": "Domain · complete declared members across the continued cards",
+        "x": 40,
+        "y": 94,
+        "w": 564.328125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_title",
+        "text": "«entity» Delivery",
+        "x": 52,
+        "y": 139,
+        "w": 143.125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_status",
+        "text": "Shown: [MATCH] · members 1/1",
+        "x": 52,
+        "y": 164,
+        "w": 258.796875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line0",
+        "text": "— attributes —",
+        "x": 52,
+        "y": 191,
+        "w": 120.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line1",
+        "text": "+ state: DeliveryState",
+        "x": 52,
+        "y": 214,
+        "w": 171.609375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line2",
+        "text": "+ ready_at: str",
+        "x": 52,
+        "y": 237,
+        "w": 115.59375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line3",
+        "text": "+ picked_up_at: Optional[str]",
+        "x": 52,
+        "y": 260,
+        "w": 229.703125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line4",
+        "text": "+ finished_at: Optional[str]",
+        "x": 52,
+        "y": 283,
+        "w": 209.671875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line5",
+        "text": "+ failure_reason: Optional[str]",
+        "x": 52,
+        "y": 306,
+        "w": 236.703125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line6",
+        "text": "+ cash_collected: Optional[int]",
+        "x": 52,
+        "y": 329,
+        "w": 240.703125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line7",
+        "text": "+ id: Optional[int]",
+        "x": 52,
+        "y": 352,
+        "w": 135.609375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line8",
+        "text": "— operations —",
+        "x": 52,
+        "y": 375,
+        "w": 130.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line9",
+        "text": "+ move_to(new_state: DeliveryState) -> None",
+        "x": 52,
+        "y": 398,
+        "w": 365.28125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_title",
+        "text": "«entity» ReplacementOffer",
+        "x": 632,
+        "y": 139,
+        "w": 228.15625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_status",
+        "text": "Shown: [MATCH] · members 1/1",
+        "x": 632,
+        "y": 164,
+        "w": 258.796875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line0",
+        "text": "— attributes —",
+        "x": 632,
+        "y": 191,
+        "w": 120.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line1",
+        "text": "+ original_item_name: str",
+        "x": 632,
+        "y": 214,
+        "w": 202.671875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line2",
+        "text": "+ original_unit_price: int",
+        "x": 632,
+        "y": 237,
+        "w": 190.6875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line3",
+        "text": "+ new_item_name: str",
+        "x": 632,
+        "y": 260,
+        "w": 177.640625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line4",
+        "text": "+ new_unit_price: int",
+        "x": 632,
+        "y": 283,
+        "w": 165.65625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line5",
+        "text": "+ state: OfferState",
+        "x": 632,
+        "y": 306,
+        "w": 146.265625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line6",
+        "text": "+ offered_at: str",
+        "x": 632,
+        "y": 329,
+        "w": 126.28125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line7",
+        "text": "+ decided_at: Optional[str]",
+        "x": 632,
+        "y": 352,
+        "w": 210.6875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line8",
+        "text": "+ id: Optional[int]",
+        "x": 632,
+        "y": 375,
+        "w": 135.609375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line9",
+        "text": "— operations —",
+        "x": 632,
+        "y": 398,
+        "w": 130.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line10",
+        "text": "+ move_to(new_state: OfferState) -> None",
+        "x": 632,
+        "y": 421,
+        "w": 339.9375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_title",
+        "text": "«module» domain.models",
+        "x": 632,
+        "y": 473,
+        "w": 221.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_status",
+        "text": "Shown: [MATCH] · members 1/1",
+        "x": 632,
+        "y": 498,
+        "w": 258.796875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line0",
+        "text": "— operations —",
+        "x": 632,
+        "y": 525,
+        "w": 130.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line1",
+        "text": "- _check_move(table: dict, current: Any, new: Any, what: str) ->",
+        "x": 632,
+        "y": 548,
+        "w": 497.15625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line2",
+        "text": "None [inferred]",
+        "x": 632,
+        "y": 571,
+        "w": 119.109375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line3",
+        "text": "+ make_customer(customer_type: str, **fields: Any) ->",
+        "x": 632,
+        "y": 594,
+        "w": 430.265625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line4",
+        "text": "Customer [inferred]",
+        "x": 632,
+        "y": 617,
+        "w": 154.109375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "continue",
+        "text": "Continues from Figure 4.1AD; continues in Figure 4.1AF. Read 4.1A–4.1BP together.",
+        "x": 35,
+        "y": 713,
+        "w": 675.21875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "legend",
+        "text": "MATCH = static correspondence at C0. No runtime or implementation-completion claim.",
+        "x": 35,
+        "y": 758,
+        "w": 698.65625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "author",
+        "text": "Author: 722I0004 · AI-assisted (Codex)",
+        "x": 35,
+        "y": 818,
+        "w": 311.25,
+        "h": 20,
+        "font": 18
+      }
+    ]
+  }
+}

@@ -1,0 +1,481 @@
+{
+  "projection": "members",
+  "layer": "domain",
+  "title": "Domain members",
+  "subtitle": "Complete member projection; types and statuses resolve from the model.",
+  "cards": [
+    {
+      "class": "Quote",
+      "attributes": [
+        "hub",
+        "address",
+        "lines",
+        "distance_km",
+        "delivery_fee",
+        "quiet_discount",
+        "voucher",
+        "voucher_discount"
+      ],
+      "methods": [
+        "item_subtotal",
+        "total",
+        "fingerprint"
+      ],
+      "part": "members 1/1",
+      "x": 40,
+      "y": 132
+    },
+    {
+      "class": "Payment",
+      "attributes": [
+        "method",
+        "state",
+        "amount",
+        "created_at",
+        "updated_at",
+        "online_option",
+        "provider_ref",
+        "refund_amount",
+        "id"
+      ],
+      "methods": [
+        "move_to",
+        "release_for_unfulfilled_order"
+      ],
+      "part": "members 1/1",
+      "x": 620,
+      "y": 132
+    }
+  ],
+  "figure": "4.1AC",
+  "stem": "dcd_subsystem_PartAC",
+  "continuation": "Continues from Figure 4.1AB; continues in Figure 4.1AD. Read 4.1A–4.1BP together.",
+  "model_source": "models/shared/design_model.json",
+  "model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "placed_width_mm": 230,
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "Quote",
+        "attributes": [
+          "hub",
+          "address",
+          "lines",
+          "distance_km",
+          "delivery_fee",
+          "quiet_discount",
+          "voucher",
+          "voucher_discount"
+        ],
+        "methods": [
+          "item_subtotal",
+          "total",
+          "fingerprint"
+        ],
+        "attribute_types": {
+          "hub": "Hub",
+          "address": "Address",
+          "lines": "list[OrderLine]",
+          "distance_km": "float",
+          "delivery_fee": "int",
+          "quiet_discount": "int",
+          "voucher": "Optional[Voucher]",
+          "voucher_discount": "int"
+        },
+        "method_signatures": {
+          "item_subtotal": "item_subtotal(self) -> int",
+          "total": "total(self) -> int",
+          "fingerprint": "fingerprint(self, payment_method: PaymentMethod, online_option: Optional[OnlineOption] = None) -> str"
+        }
+      },
+      {
+        "class": "Payment",
+        "attributes": [
+          "method",
+          "state",
+          "amount",
+          "created_at",
+          "updated_at",
+          "online_option",
+          "provider_ref",
+          "refund_amount",
+          "id"
+        ],
+        "methods": [
+          "move_to",
+          "release_for_unfulfilled_order"
+        ],
+        "attribute_types": {
+          "method": "PaymentMethod",
+          "state": "PaymentState",
+          "amount": "int",
+          "created_at": "str",
+          "updated_at": "Optional[str]",
+          "online_option": "Optional[OnlineOption]",
+          "provider_ref": "Optional[str]",
+          "refund_amount": "int",
+          "id": "Optional[int]"
+        },
+        "method_signatures": {
+          "move_to": "move_to(self, new_state: PaymentState) -> None",
+          "release_for_unfulfilled_order": "release_for_unfulfilled_order(self) -> None"
+        }
+      }
+    ],
+    "dependencies": [],
+    "states": [],
+    "association_classes": []
+  },
+  "qa": {
+    "canvas": [
+      1200,
+      850
+    ],
+    "placed_width_mm": 230,
+    "minimum_font_px": 18,
+    "minimum_pt": 9.779527559055119,
+    "native_minimum_font_px": 18,
+    "native_minimum_pt": 9.779527559055119,
+    "native_explicit_font_styles": true,
+    "xml_valid": true,
+    "connected_edges": 0,
+    "geometry_edges": [],
+    "text_bounds": [
+      {
+        "id": "title",
+        "text": "4.1AC. Domain members",
+        "x": 35,
+        "y": 18,
+        "w": 271.015625,
+        "h": 25,
+        "font": 23
+      },
+      {
+        "id": "sub",
+        "text": "Shared subsystem · C0 45ac762 · Complete member projection; types and statuses resolve from the model.",
+        "x": 35,
+        "y": 50,
+        "w": 862.671875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "layer_title",
+        "text": "Domain · complete declared members across the continued cards",
+        "x": 40,
+        "y": 94,
+        "w": 564.328125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_title",
+        "text": "«entity» Quote",
+        "x": 52,
+        "y": 139,
+        "w": 125.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_status",
+        "text": "Shown: [GAP] † · members 1/1",
+        "x": 52,
+        "y": 164,
+        "w": 249.140625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line0",
+        "text": "— attributes —",
+        "x": 52,
+        "y": 191,
+        "w": 120.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line1",
+        "text": "+ hub: Hub",
+        "x": 52,
+        "y": 214,
+        "w": 88.59375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line2",
+        "text": "+ address: Address",
+        "x": 52,
+        "y": 237,
+        "w": 154.625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line3",
+        "text": "+ lines: list[OrderLine]",
+        "x": 52,
+        "y": 260,
+        "w": 174.625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line4",
+        "text": "+ distance_km: float",
+        "x": 52,
+        "y": 283,
+        "w": 160.625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line5",
+        "text": "+ delivery_fee: int",
+        "x": 52,
+        "y": 306,
+        "w": 141.625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line6",
+        "text": "+ quiet_discount: int",
+        "x": 52,
+        "y": 329,
+        "w": 160.65625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line7",
+        "text": "+ voucher: Optional[Voucher]",
+        "x": 52,
+        "y": 352,
+        "w": 232.703125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line8",
+        "text": "+ voucher_discount: int",
+        "x": 52,
+        "y": 375,
+        "w": 185.671875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line9",
+        "text": "— operations —",
+        "x": 52,
+        "y": 398,
+        "w": 130.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line10",
+        "text": "+ item_subtotal() -> int {property}",
+        "x": 52,
+        "y": 421,
+        "w": 263.234375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line11",
+        "text": "+ total() -> int {property}",
+        "x": 52,
+        "y": 444,
+        "w": 190.171875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line12",
+        "text": "+ fingerprint(payment_method: PaymentMethod, online_option:",
+        "x": 52,
+        "y": 467,
+        "w": 503.984375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line13",
+        "text": "Optional[OnlineOption] = None) -> str † [GAP]",
+        "x": 52,
+        "y": 490,
+        "w": 366.25,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_title",
+        "text": "«entity» Payment",
+        "x": 632,
+        "y": 139,
+        "w": 148.109375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_status",
+        "text": "Shown: [P4-TARGET] † · members 1/1",
+        "x": 632,
+        "y": 164,
+        "w": 310.828125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line0",
+        "text": "— attributes —",
+        "x": 632,
+        "y": 191,
+        "w": 120.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line1",
+        "text": "+ method: PaymentMethod",
+        "x": 632,
+        "y": 214,
+        "w": 216.6875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line2",
+        "text": "+ state: PaymentState",
+        "x": 632,
+        "y": 237,
+        "w": 177.625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line3",
+        "text": "+ amount: int",
+        "x": 632,
+        "y": 260,
+        "w": 104.59375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line4",
+        "text": "+ created_at: str",
+        "x": 632,
+        "y": 283,
+        "w": 130.609375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line5",
+        "text": "+ updated_at: Optional[str]",
+        "x": 632,
+        "y": 306,
+        "w": 212.703125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line6",
+        "text": "+ online_option: Optional[OnlineOption]",
+        "x": 632,
+        "y": 329,
+        "w": 314.8125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line7",
+        "text": "+ provider_ref: Optional[str]",
+        "x": 632,
+        "y": 352,
+        "w": 218.671875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line8",
+        "text": "+ refund_amount: int",
+        "x": 632,
+        "y": 375,
+        "w": 165.671875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line9",
+        "text": "+ id: Optional[int]",
+        "x": 632,
+        "y": 398,
+        "w": 135.609375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line10",
+        "text": "— operations —",
+        "x": 632,
+        "y": 421,
+        "w": 130.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line11",
+        "text": "+ move_to(new_state: PaymentState) -> None",
+        "x": 632,
+        "y": 444,
+        "w": 371.296875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line12",
+        "text": "+ release_for_unfulfilled_order() -> None † [P4-TARGET]",
+        "x": 632,
+        "y": 467,
+        "w": 455.03125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "continue",
+        "text": "Continues from Figure 4.1AB; continues in Figure 4.1AD. Read 4.1A–4.1BP together.",
+        "x": 35,
+        "y": 713,
+        "w": 678.21875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "legend",
+        "text": "† P4-TARGET / GAP: design target, not yet in code at C0. P4 input: F-02, F-07, P2-S01.",
+        "x": 35,
+        "y": 758,
+        "w": 701.796875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "author",
+        "text": "Author: 722I0004 · AI-assisted (Codex)",
+        "x": 35,
+        "y": 818,
+        "w": 311.25,
+        "h": 20,
+        "font": 18
+      }
+    ]
+  }
+}

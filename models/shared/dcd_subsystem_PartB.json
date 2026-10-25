@@ -1,0 +1,532 @@
+{
+  "projection": "members",
+  "layer": "view",
+  "title": "View members",
+  "subtitle": "Complete member projection; types and statuses resolve from the model.",
+  "cards": [
+    {
+      "class": "admin",
+      "attributes": [],
+      "methods": [
+        "rename_brand",
+        "archive_brand",
+        "new_item",
+        "edit_item",
+        "archive_item",
+        "hub_menu",
+        "list_item",
+        "unlist_item"
+      ],
+      "part": "members 2/4",
+      "x": 40,
+      "y": 132
+    },
+    {
+      "class": "admin",
+      "attributes": [],
+      "methods": [
+        "hub_item_availability",
+        "_vouchers",
+        "vouchers",
+        "new_voucher",
+        "edit_voucher",
+        "archive_voucher",
+        "_users",
+        "users",
+        "new_user"
+      ],
+      "part": "members 3/4",
+      "x": 620,
+      "y": 132
+    }
+  ],
+  "figure": "4.1B",
+  "stem": "dcd_subsystem_PartB",
+  "continuation": "Continues from Figure 4.1A; continues in Figure 4.1C. Read 4.1A–4.1BP together.",
+  "model_source": "models/shared/design_model.json",
+  "model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "placed_width_mm": 230,
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "admin",
+        "attributes": [],
+        "methods": [
+          "rename_brand",
+          "archive_brand",
+          "new_item",
+          "edit_item",
+          "archive_item",
+          "hub_menu",
+          "list_item",
+          "unlist_item"
+        ],
+        "attribute_types": {},
+        "method_signatures": {
+          "rename_brand": "rename_brand(brand_id: int)",
+          "archive_brand": "archive_brand(brand_id: int)",
+          "new_item": "new_item()",
+          "edit_item": "edit_item(item_id: int)",
+          "archive_item": "archive_item(item_id: int)",
+          "hub_menu": "hub_menu(hub_id: int)",
+          "list_item": "list_item(hub_id: int)",
+          "unlist_item": "unlist_item(hub_id: int, item_id: int)"
+        }
+      },
+      {
+        "class": "admin",
+        "attributes": [],
+        "methods": [
+          "hub_item_availability",
+          "_vouchers",
+          "vouchers",
+          "new_voucher",
+          "edit_voucher",
+          "archive_voucher",
+          "_users",
+          "users",
+          "new_user"
+        ],
+        "attribute_types": {},
+        "method_signatures": {
+          "hub_item_availability": "hub_item_availability(hub_id: int, item_id: int)",
+          "_vouchers": "_vouchers() -> VoucherController",
+          "vouchers": "vouchers()",
+          "new_voucher": "new_voucher()",
+          "edit_voucher": "edit_voucher(voucher_id: int)",
+          "archive_voucher": "archive_voucher(voucher_id: int)",
+          "_users": "_users() -> UserAdminController",
+          "users": "users()",
+          "new_user": "new_user()"
+        }
+      }
+    ],
+    "dependencies": [],
+    "states": [],
+    "association_classes": []
+  },
+  "qa": {
+    "canvas": [
+      1200,
+      850
+    ],
+    "placed_width_mm": 230,
+    "minimum_font_px": 18,
+    "minimum_pt": 9.779527559055119,
+    "native_minimum_font_px": 18,
+    "native_minimum_pt": 9.779527559055119,
+    "native_explicit_font_styles": true,
+    "xml_valid": true,
+    "connected_edges": 0,
+    "geometry_edges": [],
+    "text_bounds": [
+      {
+        "id": "title",
+        "text": "4.1B. View members",
+        "x": 35,
+        "y": 18,
+        "w": 222.0625,
+        "h": 25,
+        "font": 23
+      },
+      {
+        "id": "sub",
+        "text": "Shared subsystem · C0 45ac762 · Complete member projection; types and statuses resolve from the model.",
+        "x": 35,
+        "y": 50,
+        "w": 862.671875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "layer_title",
+        "text": "View · complete declared members across the continued cards",
+        "x": 40,
+        "y": 94,
+        "w": 539.0,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_title",
+        "text": "«view» admin",
+        "x": 52,
+        "y": 139,
+        "w": 117.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_status",
+        "text": "Shown: [P4-TARGET] † · members 2/4",
+        "x": 52,
+        "y": 164,
+        "w": 310.828125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line0",
+        "text": "— operations —",
+        "x": 52,
+        "y": 191,
+        "w": 130.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line1",
+        "text": "+ rename_brand(brand_id: int) -> Any [inferred]",
+        "x": 52,
+        "y": 214,
+        "w": 376.359375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line2",
+        "text": "{POST /admin/brands/<int:brand_id>}",
+        "x": 52,
+        "y": 237,
+        "w": 299.953125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line3",
+        "text": "+ archive_brand(brand_id: int) -> Any [inferred]",
+        "x": 52,
+        "y": 260,
+        "w": 373.34375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line4",
+        "text": "{POST /admin/brands/<int:brand_id>/archive}",
+        "x": 52,
+        "y": 283,
+        "w": 363.0,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line5",
+        "text": "+ new_item() -> Any [inferred]",
+        "x": 52,
+        "y": 306,
+        "w": 237.171875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line6",
+        "text": "{GET/POST /admin/items/new}",
+        "x": 52,
+        "y": 329,
+        "w": 247.796875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line7",
+        "text": "+ edit_item(item_id: int) -> Any [inferred]",
+        "x": 52,
+        "y": 352,
+        "w": 320.234375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line8",
+        "text": "{GET/POST /admin/items/<int:item_id>}",
+        "x": 52,
+        "y": 375,
+        "w": 317.859375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line9",
+        "text": "+ archive_item(item_id: int) -> Any [inferred]",
+        "x": 52,
+        "y": 398,
+        "w": 349.25,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line10",
+        "text": "{POST /admin/items/<int:item_id>/archive}",
+        "x": 52,
+        "y": 421,
+        "w": 338.90625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line11",
+        "text": "+ hub_menu(hub_id: int) -> Any [inferred] † [P4-TARGET]",
+        "x": 52,
+        "y": 444,
+        "w": 458.015625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line12",
+        "text": "{GET /admin/hubs/<int:hub_id>/menu}",
+        "x": 52,
+        "y": 467,
+        "w": 305.96875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line13",
+        "text": "+ list_item(hub_id: int) -> Any [inferred] † [P4-TARGET]",
+        "x": 52,
+        "y": 490,
+        "w": 438.9375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line14",
+        "text": "{POST /admin/hubs/<int:hub_id>/menu}",
+        "x": 52,
+        "y": 513,
+        "w": 317.96875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line15",
+        "text": "+ unlist_item(hub_id: int, item_id: int) -> Any [inferred]",
+        "x": 52,
+        "y": 536,
+        "w": 426.328125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line16",
+        "text": "{POST /admin/hubs/<int:hub_id>/menu/<int:item_id>/remove}",
+        "x": 52,
+        "y": 559,
+        "w": 491.109375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_title",
+        "text": "«view» admin",
+        "x": 632,
+        "y": 139,
+        "w": 117.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_status",
+        "text": "Shown: [MATCH] · members 3/4",
+        "x": 632,
+        "y": 164,
+        "w": 258.796875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line0",
+        "text": "— operations —",
+        "x": 632,
+        "y": 191,
+        "w": 130.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line1",
+        "text": "+ hub_item_availability(hub_id: int, item_id: int) -> Any [inferred]",
+        "x": 632,
+        "y": 214,
+        "w": 507.421875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line2",
+        "text": "{POST",
+        "x": 632,
+        "y": 237,
+        "w": 55.015625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line3",
+        "text": "/admin/hubs/<int:hub_id>/menu/<int:item_id>/availability}",
+        "x": 632,
+        "y": 260,
+        "w": 454.4375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line4",
+        "text": "- _vouchers() -> VoucherController",
+        "x": 632,
+        "y": 283,
+        "w": 276.71875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line5",
+        "text": "+ vouchers() -> Any [inferred]",
+        "x": 632,
+        "y": 306,
+        "w": 233.171875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line6",
+        "text": "{GET /admin/vouchers}",
+        "x": 632,
+        "y": 329,
+        "w": 185.8125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line7",
+        "text": "+ new_voucher() -> Any [inferred]",
+        "x": 632,
+        "y": 352,
+        "w": 267.21875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line8",
+        "text": "{GET/POST /admin/vouchers/new}",
+        "x": 632,
+        "y": 375,
+        "w": 277.84375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line9",
+        "text": "+ edit_voucher(voucher_id: int) -> Any [inferred]",
+        "x": 632,
+        "y": 398,
+        "w": 380.328125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line10",
+        "text": "{GET/POST /admin/vouchers/<int:voucher_id>}",
+        "x": 632,
+        "y": 421,
+        "w": 377.953125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line11",
+        "text": "+ archive_voucher(voucher_id: int) -> Any [inferred]",
+        "x": 632,
+        "y": 444,
+        "w": 409.34375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line12",
+        "text": "{POST /admin/vouchers/<int:voucher_id>/archive}",
+        "x": 632,
+        "y": 467,
+        "w": 399.0,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line13",
+        "text": "- _users() -> UserAdminController",
+        "x": 632,
+        "y": 490,
+        "w": 270.671875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line14",
+        "text": "+ users() -> Any [inferred]",
+        "x": 632,
+        "y": 513,
+        "w": 204.140625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line15",
+        "text": "{GET /admin/users}",
+        "x": 632,
+        "y": 536,
+        "w": 156.78125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line16",
+        "text": "+ new_user() -> Any [inferred]",
+        "x": 632,
+        "y": 559,
+        "w": 238.1875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line17",
+        "text": "{GET/POST /admin/users/new}",
+        "x": 632,
+        "y": 582,
+        "w": 248.8125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "continue",
+        "text": "Continues from Figure 4.1A; continues in Figure 4.1C. Read 4.1A–4.1BP together.",
+        "x": 35,
+        "y": 713,
+        "w": 654.21875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "legend",
+        "text": "† P4-TARGET / GAP: design target, not yet in code at C0. P4 input: P2-S14, P2-S15.",
+        "x": 35,
+        "y": 758,
+        "w": 677.78125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "author",
+        "text": "Author: 722I0004 · AI-assisted (Codex)",
+        "x": 35,
+        "y": 818,
+        "w": 311.25,
+        "h": 20,
+        "font": 18
+      }
+    ]
+  }
+}

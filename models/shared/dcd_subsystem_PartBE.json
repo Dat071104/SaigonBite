@@ -1,0 +1,430 @@
+{
+  "projection": "relations",
+  "title": "Associations and generalizations",
+  "subtitle": "Named source is at left; each multiplicity belongs to its adjacent end.",
+  "relations": [
+    {
+      "source": "LocalCustomer",
+      "target": "Customer",
+      "source_multiplicity": null,
+      "target_multiplicity": null,
+      "role": "is a",
+      "kind": "generalization",
+      "navigable": true,
+      "status": "MATCH",
+      "evidence": "domain model 2.1.7; code identifiers / typed fields"
+    },
+    {
+      "source": "TouristCustomer",
+      "target": "Customer",
+      "source_multiplicity": null,
+      "target_multiplicity": null,
+      "role": "is a",
+      "kind": "generalization",
+      "navigable": true,
+      "status": "MATCH",
+      "evidence": "domain model 2.1.7; code identifiers / typed fields"
+    },
+    {
+      "source": "AccountController",
+      "target": "BaseController",
+      "source_multiplicity": null,
+      "target_multiplicity": null,
+      "role": "inherits",
+      "kind": "generalization",
+      "navigable": false,
+      "status": "MATCH",
+      "evidence": "AST class base"
+    }
+  ],
+  "figure": "4.1BE",
+  "stem": "dcd_subsystem_PartBE",
+  "continuation": "Continues from Figure 4.1BD; continues in Figure 4.1BF. Read 4.1A–4.1BP together.",
+  "model_source": "models/shared/design_model.json",
+  "model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "placed_width_mm": 230,
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "LocalCustomer",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      },
+      {
+        "class": "Customer",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      },
+      {
+        "class": "TouristCustomer",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      },
+      {
+        "class": "AccountController",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      },
+      {
+        "class": "BaseController",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "LocalCustomer",
+        "target": "Customer",
+        "source_multiplicity": null,
+        "target_multiplicity": null,
+        "role": "is a",
+        "kind": "generalization",
+        "navigable": true,
+        "status": "MATCH",
+        "evidence": "domain model 2.1.7; code identifiers / typed fields"
+      },
+      {
+        "source": "TouristCustomer",
+        "target": "Customer",
+        "source_multiplicity": null,
+        "target_multiplicity": null,
+        "role": "is a",
+        "kind": "generalization",
+        "navigable": true,
+        "status": "MATCH",
+        "evidence": "domain model 2.1.7; code identifiers / typed fields"
+      },
+      {
+        "source": "AccountController",
+        "target": "BaseController",
+        "source_multiplicity": null,
+        "target_multiplicity": null,
+        "role": "inherits",
+        "kind": "generalization",
+        "navigable": false,
+        "status": "MATCH",
+        "evidence": "AST class base"
+      }
+    ],
+    "states": [],
+    "association_classes": []
+  },
+  "qa": {
+    "canvas": [
+      1200,
+      850
+    ],
+    "placed_width_mm": 230,
+    "minimum_font_px": 18,
+    "minimum_pt": 9.779527559055119,
+    "native_minimum_font_px": 18,
+    "native_minimum_pt": 9.779527559055119,
+    "native_explicit_font_styles": true,
+    "xml_valid": true,
+    "connected_edges": 3,
+    "geometry_edges": [
+      {
+        "id": "rel0",
+        "source_shape": "s0",
+        "target_shape": "t0",
+        "source": "LocalCustomer",
+        "target": "Customer",
+        "kind": "generalization",
+        "points": [
+          [
+            410,
+            190
+          ],
+          [
+            790,
+            190
+          ]
+        ]
+      },
+      {
+        "id": "rel1",
+        "source_shape": "s1",
+        "target_shape": "t1",
+        "source": "TouristCustomer",
+        "target": "Customer",
+        "kind": "generalization",
+        "points": [
+          [
+            410,
+            377
+          ],
+          [
+            790,
+            377
+          ]
+        ]
+      },
+      {
+        "id": "rel2",
+        "source_shape": "s2",
+        "target_shape": "t2",
+        "source": "AccountController",
+        "target": "BaseController",
+        "kind": "generalization",
+        "points": [
+          [
+            410,
+            564
+          ],
+          [
+            790,
+            564
+          ]
+        ]
+      }
+    ],
+    "text_bounds": [
+      {
+        "id": "title",
+        "text": "4.1BE. Associations and generalizations",
+        "x": 35,
+        "y": 18,
+        "w": 440.15625,
+        "h": 25,
+        "font": 23
+      },
+      {
+        "id": "sub",
+        "text": "Shared subsystem · C0 45ac762 · Named source is at left; each multiplicity belongs to its adjacent end.",
+        "x": 35,
+        "y": 50,
+        "w": 823.640625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s0_st",
+        "text": "«entity»",
+        "x": 44,
+        "y": 129,
+        "w": 63.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s0_name",
+        "text": "LocalCustomer",
+        "x": 44,
+        "y": 153,
+        "w": 131.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t0_st",
+        "text": "«entity»",
+        "x": 799,
+        "y": 129,
+        "w": 63.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t0_name",
+        "text": "Customer",
+        "x": 799,
+        "y": 153,
+        "w": 84.03125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s0_ref",
+        "text": "Members: 4.1Y",
+        "x": 47,
+        "y": 203,
+        "w": 122.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t0_ref",
+        "text": "Members: 4.1Y",
+        "x": 802,
+        "y": 203,
+        "w": 122.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "label0",
+        "text": "is a",
+        "x": 445,
+        "y": 131,
+        "w": 28.015625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s1_st",
+        "text": "«entity»",
+        "x": 44,
+        "y": 316,
+        "w": 63.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s1_name",
+        "text": "TouristCustomer",
+        "x": 44,
+        "y": 340,
+        "w": 143.71875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t1_st",
+        "text": "«entity»",
+        "x": 799,
+        "y": 316,
+        "w": 63.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t1_name",
+        "text": "Customer",
+        "x": 799,
+        "y": 340,
+        "w": 84.03125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s1_ref",
+        "text": "Members: 4.1Y",
+        "x": 47,
+        "y": 390,
+        "w": 122.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t1_ref",
+        "text": "Members: 4.1Y",
+        "x": 802,
+        "y": 390,
+        "w": 122.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "label1",
+        "text": "is a",
+        "x": 445,
+        "y": 318,
+        "w": 28.015625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s2_st",
+        "text": "«controller» †",
+        "x": 44,
+        "y": 503,
+        "w": 109.109375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s2_name",
+        "text": "AccountController",
+        "x": 44,
+        "y": 527,
+        "w": 158.046875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t2_st",
+        "text": "«controller»",
+        "x": 799,
+        "y": 503,
+        "w": 94.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t2_name",
+        "text": "BaseController",
+        "x": 799,
+        "y": 527,
+        "w": 129.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s2_ref",
+        "text": "Members: 4.1G, 4.1H",
+        "x": 47,
+        "y": 577,
+        "w": 172.109375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t2_ref",
+        "text": "Members: 4.1H",
+        "x": 802,
+        "y": 577,
+        "w": 123.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "label2",
+        "text": "inherits",
+        "x": 445,
+        "y": 505,
+        "w": 58.046875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "continue",
+        "text": "Continues from Figure 4.1BD; continues in Figure 4.1BF. Read 4.1A–4.1BP together.",
+        "x": 35,
+        "y": 713,
+        "w": 675.21875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "legend",
+        "text": "† P4-TARGET / GAP: design target, not yet in code at C0. P4 input: P2-S13, P3-S03.",
+        "x": 35,
+        "y": 758,
+        "w": 677.78125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "author",
+        "text": "Author: 722I0004 · AI-assisted (Codex)",
+        "x": 35,
+        "y": 818,
+        "w": 311.25,
+        "h": 20,
+        "font": 18
+      }
+    ]
+  }
+}

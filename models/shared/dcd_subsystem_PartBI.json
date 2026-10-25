@@ -1,0 +1,423 @@
+{
+  "projection": "relations",
+  "title": "Associations and generalizations",
+  "subtitle": "Named source is at left; each multiplicity belongs to its adjacent end.",
+  "relations": [
+    {
+      "source": "KitchenController",
+      "target": "BaseController",
+      "source_multiplicity": null,
+      "target_multiplicity": null,
+      "role": "inherits",
+      "kind": "generalization",
+      "navigable": false,
+      "status": "MATCH",
+      "evidence": "AST class base"
+    },
+    {
+      "source": "MenuController",
+      "target": "BaseController",
+      "source_multiplicity": null,
+      "target_multiplicity": null,
+      "role": "inherits",
+      "kind": "generalization",
+      "navigable": false,
+      "status": "MATCH",
+      "evidence": "AST class base"
+    },
+    {
+      "source": "OrderArchiveController",
+      "target": "BaseController",
+      "source_multiplicity": null,
+      "target_multiplicity": null,
+      "role": "inherits",
+      "kind": "generalization",
+      "navigable": false,
+      "status": "MATCH",
+      "evidence": "AST class base"
+    }
+  ],
+  "figure": "4.1BI",
+  "stem": "dcd_subsystem_PartBI",
+  "continuation": "Continues from Figure 4.1BH; continues in Figure 4.1BJ. Read 4.1A–4.1BP together.",
+  "model_source": "models/shared/design_model.json",
+  "model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "placed_width_mm": 230,
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "KitchenController",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      },
+      {
+        "class": "BaseController",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      },
+      {
+        "class": "MenuController",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      },
+      {
+        "class": "OrderArchiveController",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "KitchenController",
+        "target": "BaseController",
+        "source_multiplicity": null,
+        "target_multiplicity": null,
+        "role": "inherits",
+        "kind": "generalization",
+        "navigable": false,
+        "status": "MATCH",
+        "evidence": "AST class base"
+      },
+      {
+        "source": "MenuController",
+        "target": "BaseController",
+        "source_multiplicity": null,
+        "target_multiplicity": null,
+        "role": "inherits",
+        "kind": "generalization",
+        "navigable": false,
+        "status": "MATCH",
+        "evidence": "AST class base"
+      },
+      {
+        "source": "OrderArchiveController",
+        "target": "BaseController",
+        "source_multiplicity": null,
+        "target_multiplicity": null,
+        "role": "inherits",
+        "kind": "generalization",
+        "navigable": false,
+        "status": "MATCH",
+        "evidence": "AST class base"
+      }
+    ],
+    "states": [],
+    "association_classes": []
+  },
+  "qa": {
+    "canvas": [
+      1200,
+      850
+    ],
+    "placed_width_mm": 230,
+    "minimum_font_px": 18,
+    "minimum_pt": 9.779527559055119,
+    "native_minimum_font_px": 18,
+    "native_minimum_pt": 9.779527559055119,
+    "native_explicit_font_styles": true,
+    "xml_valid": true,
+    "connected_edges": 3,
+    "geometry_edges": [
+      {
+        "id": "rel0",
+        "source_shape": "s0",
+        "target_shape": "t0",
+        "source": "KitchenController",
+        "target": "BaseController",
+        "kind": "generalization",
+        "points": [
+          [
+            410,
+            190
+          ],
+          [
+            790,
+            190
+          ]
+        ]
+      },
+      {
+        "id": "rel1",
+        "source_shape": "s1",
+        "target_shape": "t1",
+        "source": "MenuController",
+        "target": "BaseController",
+        "kind": "generalization",
+        "points": [
+          [
+            410,
+            377
+          ],
+          [
+            790,
+            377
+          ]
+        ]
+      },
+      {
+        "id": "rel2",
+        "source_shape": "s2",
+        "target_shape": "t2",
+        "source": "OrderArchiveController",
+        "target": "BaseController",
+        "kind": "generalization",
+        "points": [
+          [
+            410,
+            564
+          ],
+          [
+            790,
+            564
+          ]
+        ]
+      }
+    ],
+    "text_bounds": [
+      {
+        "id": "title",
+        "text": "4.1BI. Associations and generalizations",
+        "x": 35,
+        "y": 18,
+        "w": 431.203125,
+        "h": 25,
+        "font": 23
+      },
+      {
+        "id": "sub",
+        "text": "Shared subsystem · C0 45ac762 · Named source is at left; each multiplicity belongs to its adjacent end.",
+        "x": 35,
+        "y": 50,
+        "w": 823.640625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s0_st",
+        "text": "«controller» †",
+        "x": 44,
+        "y": 129,
+        "w": 109.109375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s0_name",
+        "text": "KitchenController",
+        "x": 44,
+        "y": 153,
+        "w": 152.046875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t0_st",
+        "text": "«controller»",
+        "x": 799,
+        "y": 129,
+        "w": 94.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t0_name",
+        "text": "BaseController",
+        "x": 799,
+        "y": 153,
+        "w": 129.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s0_ref",
+        "text": "Members: 4.1M",
+        "x": 47,
+        "y": 203,
+        "w": 125.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t0_ref",
+        "text": "Members: 4.1H",
+        "x": 802,
+        "y": 203,
+        "w": 123.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "label0",
+        "text": "inherits",
+        "x": 445,
+        "y": 131,
+        "w": 58.046875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s1_st",
+        "text": "«controller» †",
+        "x": 44,
+        "y": 316,
+        "w": 109.109375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s1_name",
+        "text": "MenuController",
+        "x": 44,
+        "y": 340,
+        "w": 133.03125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t1_st",
+        "text": "«controller»",
+        "x": 799,
+        "y": 316,
+        "w": 94.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t1_name",
+        "text": "BaseController",
+        "x": 799,
+        "y": 340,
+        "w": 129.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s1_ref",
+        "text": "Members: 4.1N, 4.1O",
+        "x": 47,
+        "y": 390,
+        "w": 172.109375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t1_ref",
+        "text": "Members: 4.1H",
+        "x": 802,
+        "y": 390,
+        "w": 123.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "label1",
+        "text": "inherits",
+        "x": 445,
+        "y": 318,
+        "w": 58.046875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s2_st",
+        "text": "«controller» †",
+        "x": 44,
+        "y": 503,
+        "w": 109.109375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s2_name",
+        "text": "OrderArchiveController",
+        "x": 44,
+        "y": 527,
+        "w": 201.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t2_st",
+        "text": "«controller»",
+        "x": 799,
+        "y": 503,
+        "w": 94.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t2_name",
+        "text": "BaseController",
+        "x": 799,
+        "y": 527,
+        "w": 129.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s2_ref",
+        "text": "Members: 4.1O",
+        "x": 47,
+        "y": 577,
+        "w": 124.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t2_ref",
+        "text": "Members: 4.1H",
+        "x": 802,
+        "y": 577,
+        "w": 123.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "label2",
+        "text": "inherits",
+        "x": 445,
+        "y": 505,
+        "w": 58.046875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "continue",
+        "text": "Continues from Figure 4.1BH; continues in Figure 4.1BJ. Read 4.1A–4.1BP together.",
+        "x": 35,
+        "y": 713,
+        "w": 675.21875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "legend",
+        "text": "† P4-TARGET / GAP: design target, not yet in code at C0. P4 input: F-02, F-05, P2-S06, P2-S09, P2-S13, P2-S14, P2-S15, P3-S03.",
+        "x": 35,
+        "y": 758,
+        "w": 1052.03125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "author",
+        "text": "Author: 722I0004 · AI-assisted (Codex)",
+        "x": 35,
+        "y": 818,
+        "w": 311.25,
+        "h": 20,
+        "font": 18
+      }
+    ]
+  }
+}

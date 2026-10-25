@@ -1,0 +1,434 @@
+{
+  "projection": "layered",
+  "title": "SUC-07 / vouchers",
+  "subtitle": "Selected responsibility links; all declared members are in the member parts.",
+  "view": "admin",
+  "controller": "VoucherController",
+  "domains": [
+    "Voucher",
+    "DiscountType"
+  ],
+  "daos": [
+    "VoucherDAO",
+    "data_access.database"
+  ],
+  "figure": "4.1AV",
+  "stem": "dcd_subsystem_PartAV",
+  "continuation": "Continues from Figure 4.1AU; continues in Figure 4.1AW. Read 4.1A–4.1BP together.",
+  "model_source": "models/shared/design_model.json",
+  "model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "placed_width_mm": 230,
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "admin",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      },
+      {
+        "class": "VoucherController",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      },
+      {
+        "class": "Voucher",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      },
+      {
+        "class": "DiscountType",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      },
+      {
+        "class": "VoucherDAO",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      },
+      {
+        "class": "data_access.database",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "admin",
+        "target": "VoucherController",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "VoucherController",
+        "target": "Voucher",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "VoucherController",
+        "target": "DiscountType",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "VoucherController",
+        "target": "VoucherDAO",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "VoucherController",
+        "target": "data_access.database",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      }
+    ],
+    "states": [],
+    "association_classes": []
+  },
+  "qa": {
+    "canvas": [
+      1200,
+      850
+    ],
+    "placed_width_mm": 230,
+    "minimum_font_px": 18,
+    "minimum_pt": 9.779527559055119,
+    "native_minimum_font_px": 18,
+    "native_minimum_pt": 9.779527559055119,
+    "native_explicit_font_styles": true,
+    "xml_valid": true,
+    "connected_edges": 5,
+    "geometry_edges": [
+      {
+        "id": "dep0",
+        "source_shape": "admin",
+        "target_shape": "VoucherController",
+        "source": "admin",
+        "target": "VoucherController",
+        "kind": "dependency",
+        "points": [
+          [
+            600.0,
+            199
+          ],
+          [
+            600.0,
+            266
+          ]
+        ]
+      },
+      {
+        "id": "dep1",
+        "source_shape": "VoucherController",
+        "target_shape": "Voucher",
+        "source": "VoucherController",
+        "target": "Voucher",
+        "kind": "dependency",
+        "points": [
+          [
+            600.0,
+            345
+          ],
+          [
+            417.5,
+            426
+          ]
+        ]
+      },
+      {
+        "id": "dep2",
+        "source_shape": "VoucherController",
+        "target_shape": "DiscountType",
+        "source": "VoucherController",
+        "target": "DiscountType",
+        "kind": "dependency",
+        "points": [
+          [
+            600.0,
+            345
+          ],
+          [
+            782.5,
+            426
+          ]
+        ]
+      },
+      {
+        "id": "dep3",
+        "source_shape": "VoucherController",
+        "target_shape": "VoucherDAO",
+        "source": "VoucherController",
+        "target": "VoucherDAO",
+        "kind": "dependency",
+        "points": [
+          [
+            390,
+            301
+          ],
+          [
+            12,
+            301
+          ],
+          [
+            12,
+            555
+          ],
+          [
+            417.5,
+            555
+          ],
+          [
+            417.5,
+            596
+          ]
+        ]
+      },
+      {
+        "id": "dep4",
+        "source_shape": "VoucherController",
+        "target_shape": "data_access.database",
+        "source": "VoucherController",
+        "target": "data_access.database",
+        "kind": "dependency",
+        "points": [
+          [
+            390,
+            305
+          ],
+          [
+            17,
+            305
+          ],
+          [
+            17,
+            555
+          ],
+          [
+            782.5,
+            555
+          ],
+          [
+            782.5,
+            596
+          ]
+        ]
+      }
+    ],
+    "text_bounds": [
+      {
+        "id": "title",
+        "text": "4.1AV. SUC-07 / vouchers",
+        "x": 35,
+        "y": 18,
+        "w": 276.171875,
+        "h": 25,
+        "font": 23
+      },
+      {
+        "id": "sub",
+        "text": "Shared subsystem · C0 45ac762 · Selected responsibility links; all declared members are in the member parts.",
+        "x": 35,
+        "y": 50,
+        "w": 881.671875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "bandlabel_view",
+        "text": "View",
+        "x": 35,
+        "y": 95,
+        "w": 40.6875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "bandlabel_controller",
+        "text": "Controller",
+        "x": 35,
+        "y": 239,
+        "w": 86.015625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "bandlabel_domain",
+        "text": "Domain",
+        "x": 35,
+        "y": 399,
+        "w": 66.015625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "bandlabel_data_access",
+        "text": "Data access",
+        "x": 35,
+        "y": 569,
+        "w": 104.125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "admin_st",
+        "text": "«view» †",
+        "x": 449,
+        "y": 124,
+        "w": 71.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "admin_name",
+        "text": "admin",
+        "x": 449,
+        "y": 148,
+        "w": 53.015625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "VoucherController_st",
+        "text": "«controller» †",
+        "x": 399,
+        "y": 270,
+        "w": 109.109375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "VoucherController_name",
+        "text": "VoucherController",
+        "x": 399,
+        "y": 294,
+        "w": 156.71875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "Voucher_st",
+        "text": "«entity»",
+        "x": 256.5,
+        "y": 430,
+        "w": 63.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "Voucher_name",
+        "text": "Voucher",
+        "x": 256.5,
+        "y": 454,
+        "w": 70.703125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "DiscountType_st",
+        "text": "«enumeration»",
+        "x": 621.5,
+        "y": 430,
+        "w": 120.140625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "DiscountType_name",
+        "text": "DiscountType",
+        "x": 621.5,
+        "y": 454,
+        "w": 117.734375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "VoucherDAO_st",
+        "text": "«DAO»",
+        "x": 256.5,
+        "y": 600,
+        "w": 59.03125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "VoucherDAO_name",
+        "text": "VoucherDAO",
+        "x": 256.5,
+        "y": 624,
+        "w": 110.703125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "data_access.database_st",
+        "text": "«module» †",
+        "x": 621.5,
+        "y": 600,
+        "w": 94.109375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "data_access.database_name",
+        "text": "data_access.database",
+        "x": 621.5,
+        "y": 624,
+        "w": 190.21875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "continue",
+        "text": "Continues from Figure 4.1AU; continues in Figure 4.1AW. Read 4.1A–4.1BP together.",
+        "x": 35,
+        "y": 713,
+        "w": 681.53125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "legend",
+        "text": "† P4-TARGET / GAP: design target, not yet in code at C0. P4 input: P2-S12, P2-S13, P2-S14, P2-S15, P3-S02, P3-S03.",
+        "x": 35,
+        "y": 758,
+        "w": 957.96875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "author",
+        "text": "Author: 722I0004 · AI-assisted (Codex)",
+        "x": 35,
+        "y": 818,
+        "w": 311.25,
+        "h": 20,
+        "font": 18
+      }
+    ]
+  }
+}

@@ -1,0 +1,498 @@
+{
+  "projection": "relations",
+  "title": "Associations and generalizations",
+  "subtitle": "Named source is at left; each multiplicity belongs to its adjacent end.",
+  "relations": [
+    {
+      "source": "HubMenuItem",
+      "target": "MenuItem",
+      "source_multiplicity": "0..*",
+      "target_multiplicity": "1",
+      "role": "item",
+      "kind": "association",
+      "navigable": true,
+      "status": "MATCH",
+      "evidence": "domain model 2.1.7; code identifiers / typed fields"
+    },
+    {
+      "source": "Brand",
+      "target": "MenuItem",
+      "source_multiplicity": "1",
+      "target_multiplicity": "0..*",
+      "role": "offers",
+      "kind": "association",
+      "navigable": true,
+      "status": "MATCH",
+      "evidence": "domain model 2.1.7; code identifiers / typed fields"
+    },
+    {
+      "source": "Order",
+      "target": "Customer",
+      "source_multiplicity": "0..*",
+      "target_multiplicity": "1",
+      "role": "customer",
+      "kind": "association",
+      "navigable": true,
+      "status": "MATCH",
+      "evidence": "domain model 2.1.7; code identifiers / typed fields"
+    }
+  ],
+  "figure": "4.1AZ",
+  "stem": "dcd_subsystem_PartAZ",
+  "continuation": "Continues from Figure 4.1AY; continues in Figure 4.1BA. Read 4.1A–4.1BP together.",
+  "model_source": "models/shared/design_model.json",
+  "model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "placed_width_mm": 230,
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "HubMenuItem",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      },
+      {
+        "class": "MenuItem",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      },
+      {
+        "class": "Brand",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      },
+      {
+        "class": "Order",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      },
+      {
+        "class": "Customer",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "HubMenuItem",
+        "target": "MenuItem",
+        "source_multiplicity": "0..*",
+        "target_multiplicity": "1",
+        "role": "item",
+        "kind": "association",
+        "navigable": true,
+        "status": "MATCH",
+        "evidence": "domain model 2.1.7; code identifiers / typed fields"
+      },
+      {
+        "source": "Brand",
+        "target": "MenuItem",
+        "source_multiplicity": "1",
+        "target_multiplicity": "0..*",
+        "role": "offers",
+        "kind": "association",
+        "navigable": true,
+        "status": "MATCH",
+        "evidence": "domain model 2.1.7; code identifiers / typed fields"
+      },
+      {
+        "source": "Order",
+        "target": "Customer",
+        "source_multiplicity": "0..*",
+        "target_multiplicity": "1",
+        "role": "customer",
+        "kind": "association",
+        "navigable": true,
+        "status": "MATCH",
+        "evidence": "domain model 2.1.7; code identifiers / typed fields"
+      }
+    ],
+    "states": [],
+    "association_classes": [
+      {
+        "class": "HubMenuItem",
+        "classification": "association class"
+      }
+    ]
+  },
+  "qa": {
+    "canvas": [
+      1200,
+      850
+    ],
+    "placed_width_mm": 230,
+    "minimum_font_px": 18,
+    "minimum_pt": 9.779527559055119,
+    "native_minimum_font_px": 18,
+    "native_minimum_pt": 9.779527559055119,
+    "native_explicit_font_styles": true,
+    "xml_valid": true,
+    "connected_edges": 3,
+    "geometry_edges": [
+      {
+        "id": "rel0",
+        "source_shape": "s0",
+        "target_shape": "t0",
+        "source": "HubMenuItem",
+        "target": "MenuItem",
+        "kind": "association",
+        "points": [
+          [
+            410,
+            190
+          ],
+          [
+            790,
+            190
+          ]
+        ]
+      },
+      {
+        "id": "rel1",
+        "source_shape": "s1",
+        "target_shape": "t1",
+        "source": "Brand",
+        "target": "MenuItem",
+        "kind": "association",
+        "points": [
+          [
+            410,
+            377
+          ],
+          [
+            790,
+            377
+          ]
+        ]
+      },
+      {
+        "id": "rel2",
+        "source_shape": "s2",
+        "target_shape": "t2",
+        "source": "Order",
+        "target": "Customer",
+        "kind": "association",
+        "points": [
+          [
+            410,
+            564
+          ],
+          [
+            790,
+            564
+          ]
+        ]
+      }
+    ],
+    "text_bounds": [
+      {
+        "id": "title",
+        "text": "4.1AZ. Associations and generalizations",
+        "x": 35,
+        "y": 18,
+        "w": 438.859375,
+        "h": 25,
+        "font": 23
+      },
+      {
+        "id": "sub",
+        "text": "Shared subsystem · C0 45ac762 · Named source is at left; each multiplicity belongs to its adjacent end.",
+        "x": 35,
+        "y": 50,
+        "w": 823.640625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s0_st",
+        "text": "«association class»",
+        "x": 44,
+        "y": 129,
+        "w": 156.125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s0_name",
+        "text": "HubMenuItem",
+        "x": 44,
+        "y": 153,
+        "w": 119.03125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t0_st",
+        "text": "«entity»",
+        "x": 799,
+        "y": 129,
+        "w": 63.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t0_name",
+        "text": "MenuItem",
+        "x": 799,
+        "y": 153,
+        "w": 84.03125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s0_ref",
+        "text": "Members: 4.1AA",
+        "x": 47,
+        "y": 203,
+        "w": 134.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t0_ref",
+        "text": "Members: 4.1AA",
+        "x": 802,
+        "y": 203,
+        "w": 134.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "label0",
+        "text": "item",
+        "x": 445,
+        "y": 131,
+        "w": 34.015625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "source_mult0",
+        "text": "0..*",
+        "x": 437,
+        "y": 162,
+        "w": 27.015625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "target_mult0",
+        "text": "1",
+        "x": 759.984375,
+        "y": 162,
+        "w": 10.015625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "association_note0",
+        "text": "Association class: Hub × MenuItem; availability belongs to this link.",
+        "x": 35,
+        "y": 248,
+        "w": 532.875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s1_st",
+        "text": "«entity»",
+        "x": 44,
+        "y": 316,
+        "w": 63.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s1_name",
+        "text": "Brand",
+        "x": 44,
+        "y": 340,
+        "w": 52.015625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t1_st",
+        "text": "«entity»",
+        "x": 799,
+        "y": 316,
+        "w": 63.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t1_name",
+        "text": "MenuItem",
+        "x": 799,
+        "y": 340,
+        "w": 84.03125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s1_ref",
+        "text": "Members: 4.1AA",
+        "x": 47,
+        "y": 390,
+        "w": 134.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t1_ref",
+        "text": "Members: 4.1AA",
+        "x": 802,
+        "y": 390,
+        "w": 134.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "label1",
+        "text": "offers",
+        "x": 445,
+        "y": 318,
+        "w": 44.703125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "source_mult1",
+        "text": "1",
+        "x": 437,
+        "y": 349,
+        "w": 10.015625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "target_mult1",
+        "text": "0..*",
+        "x": 742.984375,
+        "y": 349,
+        "w": 27.015625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s2_st",
+        "text": "«entity»",
+        "x": 44,
+        "y": 503,
+        "w": 63.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s2_name",
+        "text": "Order",
+        "x": 44,
+        "y": 527,
+        "w": 49.015625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t2_st",
+        "text": "«entity»",
+        "x": 799,
+        "y": 503,
+        "w": 63.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t2_name",
+        "text": "Customer",
+        "x": 799,
+        "y": 527,
+        "w": 84.03125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s2_ref",
+        "text": "Members: 4.1AD",
+        "x": 47,
+        "y": 577,
+        "w": 135.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t2_ref",
+        "text": "Members: 4.1Y",
+        "x": 802,
+        "y": 577,
+        "w": 122.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "label2",
+        "text": "customer",
+        "x": 445,
+        "y": 505,
+        "w": 74.046875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "source_mult2",
+        "text": "0..*",
+        "x": 437,
+        "y": 536,
+        "w": 27.015625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "target_mult2",
+        "text": "1",
+        "x": 759.984375,
+        "y": 536,
+        "w": 10.015625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "continue",
+        "text": "Continues from Figure 4.1AY; continues in Figure 4.1BA. Read 4.1A–4.1BP together.",
+        "x": 35,
+        "y": 713,
+        "w": 674.71875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "legend",
+        "text": "MATCH = static correspondence at C0. No runtime or implementation-completion claim.",
+        "x": 35,
+        "y": 758,
+        "w": 698.65625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "author",
+        "text": "Author: 722I0004 · AI-assisted (Codex)",
+        "x": 35,
+        "y": 818,
+        "w": 311.25,
+        "h": 20,
+        "font": 18
+      }
+    ]
+  }
+}

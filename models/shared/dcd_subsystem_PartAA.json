@@ -1,0 +1,483 @@
+{
+  "projection": "members",
+  "layer": "domain",
+  "title": "Domain members",
+  "subtitle": "Complete member projection; types and statuses resolve from the model.",
+  "cards": [
+    {
+      "class": "HubStatus",
+      "attributes": [
+        "hub",
+        "load"
+      ],
+      "methods": [
+        "busy",
+        "quiet",
+        "load_percent"
+      ],
+      "part": "members 1/1",
+      "x": 40,
+      "y": 132
+    },
+    {
+      "class": "Brand",
+      "attributes": [
+        "id",
+        "name",
+        "archived_at"
+      ],
+      "methods": [],
+      "part": "members 1/1",
+      "x": 40,
+      "y": 374
+    },
+    {
+      "class": "MenuItem",
+      "attributes": [
+        "id",
+        "brand_name",
+        "name",
+        "description",
+        "price",
+        "archived_at"
+      ],
+      "methods": [],
+      "part": "members 1/1",
+      "x": 620,
+      "y": 132
+    },
+    {
+      "class": "HubMenuItem",
+      "attributes": [
+        "item",
+        "is_available"
+      ],
+      "methods": [],
+      "part": "members 1/1",
+      "x": 620,
+      "y": 374
+    }
+  ],
+  "figure": "4.1AA",
+  "stem": "dcd_subsystem_PartAA",
+  "continuation": "Continues from Figure 4.1Z; continues in Figure 4.1AB. Read 4.1A–4.1BP together.",
+  "model_source": "models/shared/design_model.json",
+  "model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "placed_width_mm": 230,
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "HubStatus",
+        "attributes": [
+          "hub",
+          "load"
+        ],
+        "methods": [
+          "busy",
+          "quiet",
+          "load_percent"
+        ],
+        "attribute_types": {
+          "hub": "Hub",
+          "load": "int"
+        },
+        "method_signatures": {
+          "busy": "busy(self) -> bool",
+          "quiet": "quiet(self) -> bool",
+          "load_percent": "load_percent(self) -> int"
+        }
+      },
+      {
+        "class": "Brand",
+        "attributes": [
+          "id",
+          "name",
+          "archived_at"
+        ],
+        "methods": [],
+        "attribute_types": {
+          "id": "int",
+          "name": "str",
+          "archived_at": "Optional[str]"
+        },
+        "method_signatures": {}
+      },
+      {
+        "class": "MenuItem",
+        "attributes": [
+          "id",
+          "brand_name",
+          "name",
+          "description",
+          "price",
+          "archived_at"
+        ],
+        "methods": [],
+        "attribute_types": {
+          "id": "int",
+          "brand_name": "str",
+          "name": "str",
+          "description": "str",
+          "price": "int",
+          "archived_at": "Optional[str]"
+        },
+        "method_signatures": {}
+      },
+      {
+        "class": "HubMenuItem",
+        "attributes": [
+          "item",
+          "is_available"
+        ],
+        "methods": [],
+        "attribute_types": {
+          "item": "MenuItem",
+          "is_available": "bool"
+        },
+        "method_signatures": {}
+      }
+    ],
+    "dependencies": [],
+    "states": [],
+    "association_classes": [
+      {
+        "class": "HubMenuItem",
+        "classification": "association class"
+      }
+    ]
+  },
+  "qa": {
+    "canvas": [
+      1200,
+      850
+    ],
+    "placed_width_mm": 230,
+    "minimum_font_px": 18,
+    "minimum_pt": 9.779527559055119,
+    "native_minimum_font_px": 18,
+    "native_minimum_pt": 9.779527559055119,
+    "native_explicit_font_styles": true,
+    "xml_valid": true,
+    "connected_edges": 0,
+    "geometry_edges": [],
+    "text_bounds": [
+      {
+        "id": "title",
+        "text": "4.1AA. Domain members",
+        "x": 35,
+        "y": 18,
+        "w": 271.015625,
+        "h": 25,
+        "font": 23
+      },
+      {
+        "id": "sub",
+        "text": "Shared subsystem · C0 45ac762 · Complete member projection; types and statuses resolve from the model.",
+        "x": 35,
+        "y": 50,
+        "w": 862.671875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "layer_title",
+        "text": "Domain · complete declared members across the continued cards",
+        "x": 40,
+        "y": 94,
+        "w": 564.328125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_title",
+        "text": "«entity» HubStatus",
+        "x": 52,
+        "y": 139,
+        "w": 163.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_status",
+        "text": "Shown: [MATCH] · members 1/1",
+        "x": 52,
+        "y": 164,
+        "w": 258.796875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line0",
+        "text": "— attributes —",
+        "x": 52,
+        "y": 191,
+        "w": 120.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line1",
+        "text": "+ hub: Hub",
+        "x": 52,
+        "y": 214,
+        "w": 88.59375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line2",
+        "text": "+ load: int",
+        "x": 52,
+        "y": 237,
+        "w": 78.578125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line3",
+        "text": "— operations —",
+        "x": 52,
+        "y": 260,
+        "w": 130.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line4",
+        "text": "+ busy() -> bool {property}",
+        "x": 52,
+        "y": 283,
+        "w": 209.203125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line5",
+        "text": "+ quiet() -> bool {property}",
+        "x": 52,
+        "y": 306,
+        "w": 210.21875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line6",
+        "text": "+ load_percent() -> int {property}",
+        "x": 52,
+        "y": 329,
+        "w": 260.265625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_title",
+        "text": "«entity» Brand",
+        "x": 52,
+        "y": 381,
+        "w": 125.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_status",
+        "text": "Shown: [MATCH] · members 1/1",
+        "x": 52,
+        "y": 406,
+        "w": 258.796875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line0",
+        "text": "— attributes —",
+        "x": 52,
+        "y": 433,
+        "w": 120.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line1",
+        "text": "+ id: int",
+        "x": 52,
+        "y": 456,
+        "w": 58.546875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line2",
+        "text": "+ name: str",
+        "x": 52,
+        "y": 479,
+        "w": 90.5625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line3",
+        "text": "+ archived_at: Optional[str]",
+        "x": 52,
+        "y": 502,
+        "w": 215.671875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_title",
+        "text": "«entity» MenuItem",
+        "x": 632,
+        "y": 139,
+        "w": 157.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_status",
+        "text": "Shown: [MATCH] · members 1/1",
+        "x": 632,
+        "y": 164,
+        "w": 258.796875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line0",
+        "text": "— attributes —",
+        "x": 632,
+        "y": 191,
+        "w": 120.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line1",
+        "text": "+ id: int",
+        "x": 632,
+        "y": 214,
+        "w": 58.546875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line2",
+        "text": "+ brand_name: str",
+        "x": 632,
+        "y": 237,
+        "w": 146.640625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line3",
+        "text": "+ name: str",
+        "x": 632,
+        "y": 260,
+        "w": 90.5625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line4",
+        "text": "+ description: str",
+        "x": 632,
+        "y": 283,
+        "w": 132.59375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line5",
+        "text": "+ price: int",
+        "x": 632,
+        "y": 306,
+        "w": 83.5625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line6",
+        "text": "+ archived_at: Optional[str]",
+        "x": 632,
+        "y": 329,
+        "w": 215.671875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card3_title",
+        "text": "«association class» HubMenuItem",
+        "x": 632,
+        "y": 381,
+        "w": 293.203125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card3_status",
+        "text": "Shown: [MATCH] · members 1/1",
+        "x": 632,
+        "y": 406,
+        "w": 258.796875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card3_line0",
+        "text": "— attributes —",
+        "x": 632,
+        "y": 433,
+        "w": 120.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card3_line1",
+        "text": "+ item: MenuItem",
+        "x": 632,
+        "y": 456,
+        "w": 139.59375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card3_line2",
+        "text": "+ is_available: bool",
+        "x": 632,
+        "y": 479,
+        "w": 153.65625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "continue",
+        "text": "Continues from Figure 4.1Z; continues in Figure 4.1AB. Read 4.1A–4.1BP together.",
+        "x": 35,
+        "y": 713,
+        "w": 664.21875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "legend",
+        "text": "MATCH = static correspondence at C0. No runtime or implementation-completion claim.",
+        "x": 35,
+        "y": 758,
+        "w": 698.65625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "author",
+        "text": "Author: 722I0004 · AI-assisted (Codex)",
+        "x": 35,
+        "y": 818,
+        "w": 311.25,
+        "h": 20,
+        "font": 18
+      }
+    ]
+  }
+}

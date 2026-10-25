@@ -1,0 +1,544 @@
+{
+  "projection": "members",
+  "layer": "controller",
+  "title": "Controller members",
+  "subtitle": "Complete member projection; types and statuses resolve from the model.",
+  "cards": [
+    {
+      "class": "KitchenController",
+      "attributes": [
+        "hubs",
+        "menu",
+        "orders",
+        "payments",
+        "deliveries",
+        "offers"
+      ],
+      "methods": [
+        "__init__",
+        "board",
+        "get_order",
+        "confirm_order",
+        "reject_order",
+        "offer_replacement",
+        "start_preparing"
+      ],
+      "part": "members 1/2",
+      "x": 40,
+      "y": 132
+    },
+    {
+      "class": "KitchenController",
+      "attributes": [],
+      "methods": [
+        "mark_ready",
+        "list_availability",
+        "set_availability",
+        "_require_staff",
+        "_hub_order"
+      ],
+      "part": "members 2/2",
+      "x": 620,
+      "y": 132
+    },
+    {
+      "class": "Catalogue",
+      "attributes": [
+        "brands",
+        "items"
+      ],
+      "methods": [],
+      "part": "members 1/1",
+      "x": 620,
+      "y": 397
+    }
+  ],
+  "figure": "4.1M",
+  "stem": "dcd_subsystem_PartM",
+  "continuation": "Continues from Figure 4.1L; continues in Figure 4.1N. Read 4.1A–4.1BP together.",
+  "model_source": "models/shared/design_model.json",
+  "model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "placed_width_mm": 230,
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "KitchenController",
+        "attributes": [
+          "hubs",
+          "menu",
+          "orders",
+          "payments",
+          "deliveries",
+          "offers"
+        ],
+        "methods": [
+          "__init__",
+          "board",
+          "get_order",
+          "confirm_order",
+          "reject_order",
+          "offer_replacement",
+          "start_preparing"
+        ],
+        "attribute_types": {
+          "hubs": "HubDAO",
+          "menu": "MenuDAO",
+          "orders": "OrderDAO",
+          "payments": "PaymentDAO",
+          "deliveries": "DeliveryDAO",
+          "offers": "ReplacementOfferDAO"
+        },
+        "method_signatures": {
+          "__init__": "__init__(self, conn: sqlite3.Connection, clock=None)",
+          "board": "board(self, user_id: int) -> KitchenBoard",
+          "get_order": "get_order(self, user_id: int, order_id: int) -> KitchenOrderView",
+          "confirm_order": "confirm_order(self, user_id: int, order_id: int) -> Order",
+          "reject_order": "reject_order(self, user_id: int, order_id: int, reason: str) -> Order",
+          "offer_replacement": "offer_replacement(self, user_id: int, order_id: int, order_line_id: int, new_menu_item_id: int) -> ReplacementOffer",
+          "start_preparing": "start_preparing(self, user_id: int, order_id: int) -> Order"
+        }
+      },
+      {
+        "class": "KitchenController",
+        "attributes": [],
+        "methods": [
+          "mark_ready",
+          "list_availability",
+          "set_availability",
+          "_require_staff",
+          "_hub_order"
+        ],
+        "attribute_types": {},
+        "method_signatures": {
+          "mark_ready": "mark_ready(self, user_id: int, order_id: int) -> Order",
+          "list_availability": "list_availability(self, user_id: int) -> tuple[Hub, list[HubMenuItem]]",
+          "set_availability": "set_availability(self, user_id: int, menu_item_id: int, available: bool) -> None",
+          "_require_staff": "_require_staff(self, user_id: int) -> UserAccount",
+          "_hub_order": "_hub_order(self, staff: UserAccount, order_id: int) -> Order"
+        }
+      },
+      {
+        "class": "Catalogue",
+        "attributes": [
+          "brands",
+          "items"
+        ],
+        "methods": [],
+        "attribute_types": {
+          "brands": "list[Brand]",
+          "items": "list[MenuItem]"
+        },
+        "method_signatures": {}
+      }
+    ],
+    "dependencies": [],
+    "states": [],
+    "association_classes": []
+  },
+  "qa": {
+    "canvas": [
+      1200,
+      850
+    ],
+    "placed_width_mm": 230,
+    "minimum_font_px": 18,
+    "minimum_pt": 9.779527559055119,
+    "native_minimum_font_px": 18,
+    "native_minimum_pt": 9.779527559055119,
+    "native_explicit_font_styles": true,
+    "xml_valid": true,
+    "connected_edges": 0,
+    "geometry_edges": [],
+    "text_bounds": [
+      {
+        "id": "title",
+        "text": "4.1M. Controller members",
+        "x": 35,
+        "y": 18,
+        "w": 282.5,
+        "h": 25,
+        "font": 23
+      },
+      {
+        "id": "sub",
+        "text": "Shared subsystem · C0 45ac762 · Complete member projection; types and statuses resolve from the model.",
+        "x": 35,
+        "y": 50,
+        "w": 862.671875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "layer_title",
+        "text": "Controller · complete declared members across the continued cards",
+        "x": 40,
+        "y": 94,
+        "w": 584.328125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_title",
+        "text": "«controller» KitchenController",
+        "x": 52,
+        "y": 139,
+        "w": 260.109375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_status",
+        "text": "Shown: [P4-TARGET] † · members 1/2",
+        "x": 52,
+        "y": 164,
+        "w": 310.828125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line0",
+        "text": "— attributes —",
+        "x": 52,
+        "y": 191,
+        "w": 120.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line1",
+        "text": "+ hubs: HubDAO [inferred]",
+        "x": 52,
+        "y": 214,
+        "w": 212.65625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line2",
+        "text": "+ menu: MenuDAO [inferred]",
+        "x": 52,
+        "y": 237,
+        "w": 230.671875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line3",
+        "text": "+ orders: OrderDAO [inferred]",
+        "x": 52,
+        "y": 260,
+        "w": 237.65625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line4",
+        "text": "+ payments: PaymentDAO [inferred]",
+        "x": 52,
+        "y": 283,
+        "w": 289.6875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line5",
+        "text": "+ deliveries: DeliveryDAO [inferred]",
+        "x": 52,
+        "y": 306,
+        "w": 281.671875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line6",
+        "text": "+ offers: ReplacementOfferDAO [inferred]",
+        "x": 52,
+        "y": 329,
+        "w": 331.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line7",
+        "text": "— operations —",
+        "x": 52,
+        "y": 352,
+        "w": 130.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line8",
+        "text": "- __init__(conn: sqlite3.Connection, clock: Any = None) -> Any",
+        "x": 52,
+        "y": 375,
+        "w": 494.390625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line9",
+        "text": "[inferred]",
+        "x": 52,
+        "y": 398,
+        "w": 71.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line10",
+        "text": "+ board(user_id: int) -> KitchenBoard",
+        "x": 52,
+        "y": 421,
+        "w": 296.265625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line11",
+        "text": "+ get_order(user_id: int, order_id: int) -> KitchenOrderView",
+        "x": 52,
+        "y": 444,
+        "w": 469.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line12",
+        "text": "+ confirm_order(user_id: int, order_id: int) -> Order †",
+        "x": 52,
+        "y": 467,
+        "w": 419.34375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line13",
+        "text": "[P4-TARGET]",
+        "x": 52,
+        "y": 490,
+        "w": 109.6875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line14",
+        "text": "+ reject_order(user_id: int, order_id: int, reason: str) -> Order †",
+        "x": 52,
+        "y": 513,
+        "w": 499.40625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line15",
+        "text": "[P4-TARGET]",
+        "x": 52,
+        "y": 536,
+        "w": 109.6875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line16",
+        "text": "+ offer_replacement(user_id: int, order_id: int, order_line_id: int,",
+        "x": 52,
+        "y": 559,
+        "w": 507.640625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line17",
+        "text": "new_menu_item_id: int) -> ReplacementOffer † [P4-TARGET]",
+        "x": 52,
+        "y": 582,
+        "w": 493.171875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line18",
+        "text": "+ start_preparing(user_id: int, order_id: int) -> Order †",
+        "x": 52,
+        "y": 605,
+        "w": 429.375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line19",
+        "text": "[P4-TARGET]",
+        "x": 52,
+        "y": 628,
+        "w": 109.6875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_title",
+        "text": "«controller» KitchenController",
+        "x": 632,
+        "y": 139,
+        "w": 260.109375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_status",
+        "text": "Shown: [P4-TARGET] † · members 2/2",
+        "x": 632,
+        "y": 164,
+        "w": 310.828125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line0",
+        "text": "— operations —",
+        "x": 632,
+        "y": 191,
+        "w": 130.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line1",
+        "text": "+ mark_ready(user_id: int, order_id: int) -> Order †",
+        "x": 632,
+        "y": 214,
+        "w": 403.328125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line2",
+        "text": "[P4-TARGET]",
+        "x": 632,
+        "y": 237,
+        "w": 109.6875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line3",
+        "text": "+ list_availability(user_id: int) -> tuple[Hub, list[HubMenuItem]]",
+        "x": 632,
+        "y": 260,
+        "w": 494.359375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line4",
+        "text": "+ set_availability(user_id: int, menu_item_id: int, available: bool)",
+        "x": 632,
+        "y": 283,
+        "w": 509.9375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line5",
+        "text": "-> None † [P4-TARGET]",
+        "x": 632,
+        "y": 306,
+        "w": 194.265625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line6",
+        "text": "- _require_staff(user_id: int) -> UserAccount",
+        "x": 632,
+        "y": 329,
+        "w": 350.4375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line7",
+        "text": "- _hub_order(staff: UserAccount, order_id: int) -> Order",
+        "x": 632,
+        "y": 352,
+        "w": 439.515625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_title",
+        "text": "«value» Catalogue",
+        "x": 632,
+        "y": 404,
+        "w": 158.125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_status",
+        "text": "Shown: [MATCH] · members 1/1",
+        "x": 632,
+        "y": 429,
+        "w": 258.796875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line0",
+        "text": "— attributes —",
+        "x": 632,
+        "y": 456,
+        "w": 120.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line1",
+        "text": "+ brands: list[Brand]",
+        "x": 632,
+        "y": 479,
+        "w": 160.625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line2",
+        "text": "+ items: list[MenuItem]",
+        "x": 632,
+        "y": 502,
+        "w": 180.59375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "continue",
+        "text": "Continues from Figure 4.1L; continues in Figure 4.1N. Read 4.1A–4.1BP together.",
+        "x": 35,
+        "y": 713,
+        "w": 652.234375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "legend",
+        "text": "† P4-TARGET / GAP: design target, not yet in code at C0. P4 input: F-02, F-05, P2-S09, P2-S13, P3-S03.",
+        "x": 35,
+        "y": 758,
+        "w": 841.890625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "author",
+        "text": "Author: 722I0004 · AI-assisted (Codex)",
+        "x": 35,
+        "y": 818,
+        "w": 311.25,
+        "h": 20,
+        "font": 18
+      }
+    ]
+  }
+}

@@ -1,0 +1,532 @@
+{
+  "projection": "members",
+  "layer": "domain",
+  "title": "Domain members",
+  "subtitle": "Complete member projection; types and statuses resolve from the model.",
+  "cards": [
+    {
+      "class": "InvalidTransition",
+      "attributes": [],
+      "methods": [],
+      "part": "members 1/1",
+      "x": 40,
+      "y": 132
+    },
+    {
+      "class": "UserAccount",
+      "attributes": [
+        "id",
+        "username",
+        "password_hash",
+        "display_name",
+        "role",
+        "is_active",
+        "created_at"
+      ],
+      "methods": [],
+      "part": "members 1/1",
+      "x": 40,
+      "y": 236
+    },
+    {
+      "class": "Customer",
+      "attributes": [
+        "id",
+        "full_name",
+        "phone",
+        "email",
+        "passport_no",
+        "nationality",
+        "customer_type"
+      ],
+      "methods": [
+        "online_options"
+      ],
+      "part": "members 1/1",
+      "x": 620,
+      "y": 132
+    },
+    {
+      "class": "LocalCustomer",
+      "attributes": [
+        "customer_type"
+      ],
+      "methods": [],
+      "part": "members 1/1",
+      "x": 620,
+      "y": 443
+    },
+    {
+      "class": "TouristCustomer",
+      "attributes": [
+        "customer_type"
+      ],
+      "methods": [],
+      "part": "members 1/1",
+      "x": 620,
+      "y": 570
+    }
+  ],
+  "figure": "4.1Y",
+  "stem": "dcd_subsystem_PartY",
+  "continuation": "Continues from Figure 4.1X; continues in Figure 4.1Z. Read 4.1A–4.1BP together.",
+  "model_source": "models/shared/design_model.json",
+  "model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "placed_width_mm": 230,
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "InvalidTransition",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      },
+      {
+        "class": "UserAccount",
+        "attributes": [
+          "id",
+          "username",
+          "password_hash",
+          "display_name",
+          "role",
+          "is_active",
+          "created_at"
+        ],
+        "methods": [],
+        "attribute_types": {
+          "id": "int",
+          "username": "str",
+          "password_hash": "str",
+          "display_name": "str",
+          "role": "Role",
+          "is_active": "bool",
+          "created_at": "str"
+        },
+        "method_signatures": {}
+      },
+      {
+        "class": "Customer",
+        "attributes": [
+          "id",
+          "full_name",
+          "phone",
+          "email",
+          "passport_no",
+          "nationality",
+          "customer_type"
+        ],
+        "methods": [
+          "online_options"
+        ],
+        "attribute_types": {
+          "id": "int",
+          "full_name": "str",
+          "phone": "Optional[str]",
+          "email": "Optional[str]",
+          "passport_no": "Optional[str]",
+          "nationality": "Optional[str]",
+          "customer_type": "CustomerType"
+        },
+        "method_signatures": {
+          "online_options": "online_options(self) -> tuple[OnlineOption, ...]"
+        }
+      },
+      {
+        "class": "LocalCustomer",
+        "attributes": [
+          "customer_type"
+        ],
+        "methods": [],
+        "attribute_types": {
+          "customer_type": "CustomerType"
+        },
+        "method_signatures": {}
+      },
+      {
+        "class": "TouristCustomer",
+        "attributes": [
+          "customer_type"
+        ],
+        "methods": [],
+        "attribute_types": {
+          "customer_type": "CustomerType"
+        },
+        "method_signatures": {}
+      }
+    ],
+    "dependencies": [],
+    "states": [],
+    "association_classes": []
+  },
+  "qa": {
+    "canvas": [
+      1200,
+      850
+    ],
+    "placed_width_mm": 230,
+    "minimum_font_px": 18,
+    "minimum_pt": 9.779527559055119,
+    "native_minimum_font_px": 18,
+    "native_minimum_pt": 9.779527559055119,
+    "native_explicit_font_styles": true,
+    "xml_valid": true,
+    "connected_edges": 0,
+    "geometry_edges": [],
+    "text_bounds": [
+      {
+        "id": "title",
+        "text": "4.1Y. Domain members",
+        "x": 35,
+        "y": 18,
+        "w": 250.59375,
+        "h": 25,
+        "font": 23
+      },
+      {
+        "id": "sub",
+        "text": "Shared subsystem · C0 45ac762 · Complete member projection; types and statuses resolve from the model.",
+        "x": 35,
+        "y": 50,
+        "w": 862.671875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "layer_title",
+        "text": "Domain · complete declared members across the continued cards",
+        "x": 40,
+        "y": 94,
+        "w": 564.328125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_title",
+        "text": "«entity» InvalidTransition",
+        "x": 52,
+        "y": 139,
+        "w": 216.125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_status",
+        "text": "Shown: [MATCH] · members 1/1",
+        "x": 52,
+        "y": 164,
+        "w": 258.796875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_empty",
+        "text": "(no declared attributes or methods)",
+        "x": 52,
+        "y": 191,
+        "w": 280.25,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_title",
+        "text": "«entity» UserAccount",
+        "x": 52,
+        "y": 243,
+        "w": 185.125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_status",
+        "text": "Shown: [GAP] † · members 1/1",
+        "x": 52,
+        "y": 268,
+        "w": 249.140625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line0",
+        "text": "— attributes —",
+        "x": 52,
+        "y": 295,
+        "w": 120.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line1",
+        "text": "+ id: int",
+        "x": 52,
+        "y": 318,
+        "w": 58.546875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line2",
+        "text": "+ username: str",
+        "x": 52,
+        "y": 341,
+        "w": 125.59375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line3",
+        "text": "+ password_hash: str",
+        "x": 52,
+        "y": 364,
+        "w": 171.640625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line4",
+        "text": "+ display_name: str",
+        "x": 52,
+        "y": 387,
+        "w": 156.625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line5",
+        "text": "+ role: Role",
+        "x": 52,
+        "y": 410,
+        "w": 92.578125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line6",
+        "text": "+ is_active: bool",
+        "x": 52,
+        "y": 433,
+        "w": 129.609375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line7",
+        "text": "+ created_at: str † [GAP]",
+        "x": 52,
+        "y": 456,
+        "w": 198.625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_title",
+        "text": "«entity» Customer",
+        "x": 632,
+        "y": 139,
+        "w": 157.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_status",
+        "text": "Shown: [MATCH] · members 1/1",
+        "x": 632,
+        "y": 164,
+        "w": 258.796875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line0",
+        "text": "— attributes —",
+        "x": 632,
+        "y": 191,
+        "w": 120.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line1",
+        "text": "+ id: int",
+        "x": 632,
+        "y": 214,
+        "w": 58.546875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line2",
+        "text": "+ full_name: str",
+        "x": 632,
+        "y": 237,
+        "w": 123.59375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line3",
+        "text": "+ phone: Optional[str]",
+        "x": 632,
+        "y": 260,
+        "w": 172.65625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line4",
+        "text": "+ email: Optional[str]",
+        "x": 632,
+        "y": 283,
+        "w": 165.609375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line5",
+        "text": "+ passport_no: Optional[str]",
+        "x": 632,
+        "y": 306,
+        "w": 221.6875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line6",
+        "text": "+ nationality: Optional[str]",
+        "x": 632,
+        "y": 329,
+        "w": 203.65625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line7",
+        "text": "+ customer_type: CustomerType [inferred]",
+        "x": 632,
+        "y": 352,
+        "w": 336.75,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line8",
+        "text": "— operations —",
+        "x": 632,
+        "y": 375,
+        "w": 130.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line9",
+        "text": "+ online_options() -> tuple[OnlineOption, ...] {property}",
+        "x": 632,
+        "y": 398,
+        "w": 432.40625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card3_title",
+        "text": "«entity» LocalCustomer",
+        "x": 632,
+        "y": 450,
+        "w": 204.125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card3_status",
+        "text": "Shown: [MATCH] · members 1/1",
+        "x": 632,
+        "y": 475,
+        "w": 258.796875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card3_line0",
+        "text": "— attributes —",
+        "x": 632,
+        "y": 502,
+        "w": 120.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card3_line1",
+        "text": "+ customer_type: CustomerType [inferred]",
+        "x": 632,
+        "y": 525,
+        "w": 336.75,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card4_title",
+        "text": "«entity» TouristCustomer",
+        "x": 632,
+        "y": 577,
+        "w": 216.78125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card4_status",
+        "text": "Shown: [MATCH] · members 1/1",
+        "x": 632,
+        "y": 602,
+        "w": 258.796875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card4_line0",
+        "text": "— attributes —",
+        "x": 632,
+        "y": 629,
+        "w": 120.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card4_line1",
+        "text": "+ customer_type: CustomerType [inferred]",
+        "x": 632,
+        "y": 652,
+        "w": 336.75,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "continue",
+        "text": "Continues from Figure 4.1X; continues in Figure 4.1Z. Read 4.1A–4.1BP together.",
+        "x": 35,
+        "y": 713,
+        "w": 652.21875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "legend",
+        "text": "† P4-TARGET / GAP: design target, not yet in code at C0. P4 input: P2-S02.",
+        "x": 35,
+        "y": 758,
+        "w": 607.734375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "author",
+        "text": "Author: 722I0004 · AI-assisted (Codex)",
+        "x": 35,
+        "y": 818,
+        "w": 311.25,
+        "h": 20,
+        "font": 18
+      }
+    ]
+  }
+}

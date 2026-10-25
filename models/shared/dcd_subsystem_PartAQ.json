@@ -1,0 +1,550 @@
+{
+  "projection": "layered",
+  "title": "UC-05 / kitchen decisions",
+  "subtitle": "Selected responsibility links; all declared members are in the member parts.",
+  "view": "kitchen",
+  "controller": "KitchenController",
+  "domains": [
+    "Order",
+    "ReplacementOffer",
+    "Delivery"
+  ],
+  "daos": [
+    "OrderDAO",
+    "ReplacementOfferDAO",
+    "PaymentDAO"
+  ],
+  "figure": "4.1AQ",
+  "stem": "dcd_subsystem_PartAQ",
+  "continuation": "Continues from Figure 4.1AP; continues in Figure 4.1AR. Read 4.1A–4.1BP together.",
+  "model_source": "models/shared/design_model.json",
+  "model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "placed_width_mm": 230,
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "kitchen",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      },
+      {
+        "class": "KitchenController",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      },
+      {
+        "class": "Order",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      },
+      {
+        "class": "ReplacementOffer",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      },
+      {
+        "class": "Delivery",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      },
+      {
+        "class": "OrderDAO",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      },
+      {
+        "class": "ReplacementOfferDAO",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      },
+      {
+        "class": "PaymentDAO",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "kitchen",
+        "target": "KitchenController",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "KitchenController",
+        "target": "Order",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature; C0 order.line",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "KitchenController",
+        "target": "ReplacementOffer",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "KitchenController",
+        "target": "Delivery",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "KitchenController",
+        "target": "OrderDAO",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "KitchenController",
+        "target": "ReplacementOfferDAO",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "KitchenController",
+        "target": "PaymentDAO",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      }
+    ],
+    "states": [],
+    "association_classes": []
+  },
+  "qa": {
+    "canvas": [
+      1200,
+      850
+    ],
+    "placed_width_mm": 230,
+    "minimum_font_px": 18,
+    "minimum_pt": 9.779527559055119,
+    "native_minimum_font_px": 18,
+    "native_minimum_pt": 9.779527559055119,
+    "native_explicit_font_styles": true,
+    "xml_valid": true,
+    "connected_edges": 7,
+    "geometry_edges": [
+      {
+        "id": "dep0",
+        "source_shape": "kitchen",
+        "target_shape": "KitchenController",
+        "source": "kitchen",
+        "target": "KitchenController",
+        "kind": "dependency",
+        "points": [
+          [
+            600.0,
+            199
+          ],
+          [
+            600.0,
+            266
+          ]
+        ]
+      },
+      {
+        "id": "dep1",
+        "source_shape": "KitchenController",
+        "target_shape": "Order",
+        "source": "KitchenController",
+        "target": "Order",
+        "kind": "dependency",
+        "points": [
+          [
+            600.0,
+            345
+          ],
+          [
+            235.0,
+            426
+          ]
+        ]
+      },
+      {
+        "id": "dep2",
+        "source_shape": "KitchenController",
+        "target_shape": "ReplacementOffer",
+        "source": "KitchenController",
+        "target": "ReplacementOffer",
+        "kind": "dependency",
+        "points": [
+          [
+            600.0,
+            345
+          ],
+          [
+            600.0,
+            426
+          ]
+        ]
+      },
+      {
+        "id": "dep3",
+        "source_shape": "KitchenController",
+        "target_shape": "Delivery",
+        "source": "KitchenController",
+        "target": "Delivery",
+        "kind": "dependency",
+        "points": [
+          [
+            600.0,
+            345
+          ],
+          [
+            965.0,
+            426
+          ]
+        ]
+      },
+      {
+        "id": "dep4",
+        "source_shape": "KitchenController",
+        "target_shape": "OrderDAO",
+        "source": "KitchenController",
+        "target": "OrderDAO",
+        "kind": "dependency",
+        "points": [
+          [
+            390,
+            301
+          ],
+          [
+            12,
+            301
+          ],
+          [
+            12,
+            555
+          ],
+          [
+            235.0,
+            555
+          ],
+          [
+            235.0,
+            596
+          ]
+        ]
+      },
+      {
+        "id": "dep5",
+        "source_shape": "KitchenController",
+        "target_shape": "ReplacementOfferDAO",
+        "source": "KitchenController",
+        "target": "ReplacementOfferDAO",
+        "kind": "dependency",
+        "points": [
+          [
+            390,
+            305
+          ],
+          [
+            17,
+            305
+          ],
+          [
+            17,
+            555
+          ],
+          [
+            600.0,
+            555
+          ],
+          [
+            600.0,
+            596
+          ]
+        ]
+      },
+      {
+        "id": "dep6",
+        "source_shape": "KitchenController",
+        "target_shape": "PaymentDAO",
+        "source": "KitchenController",
+        "target": "PaymentDAO",
+        "kind": "dependency",
+        "points": [
+          [
+            390,
+            309
+          ],
+          [
+            22,
+            309
+          ],
+          [
+            22,
+            555
+          ],
+          [
+            965.0,
+            555
+          ],
+          [
+            965.0,
+            596
+          ]
+        ]
+      }
+    ],
+    "text_bounds": [
+      {
+        "id": "title",
+        "text": "4.1AQ. UC-05 / kitchen decisions",
+        "x": 35,
+        "y": 18,
+        "w": 357.9375,
+        "h": 25,
+        "font": 23
+      },
+      {
+        "id": "sub",
+        "text": "Shared subsystem · C0 45ac762 · Selected responsibility links; all declared members are in the member parts.",
+        "x": 35,
+        "y": 50,
+        "w": 881.671875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "bandlabel_view",
+        "text": "View",
+        "x": 35,
+        "y": 95,
+        "w": 40.6875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "bandlabel_controller",
+        "text": "Controller",
+        "x": 35,
+        "y": 239,
+        "w": 86.015625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "bandlabel_domain",
+        "text": "Domain",
+        "x": 35,
+        "y": 399,
+        "w": 66.015625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "bandlabel_data_access",
+        "text": "Data access",
+        "x": 35,
+        "y": 569,
+        "w": 104.125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "kitchen_st",
+        "text": "«view»",
+        "x": 449,
+        "y": 124,
+        "w": 56.046875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "kitchen_name",
+        "text": "kitchen",
+        "x": 449,
+        "y": 148,
+        "w": 63.046875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "KitchenController_st",
+        "text": "«controller» †",
+        "x": 399,
+        "y": 270,
+        "w": 109.109375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "KitchenController_name",
+        "text": "KitchenController",
+        "x": 399,
+        "y": 294,
+        "w": 152.046875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "Order_st",
+        "text": "«entity»",
+        "x": 74.0,
+        "y": 430,
+        "w": 63.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "Order_name",
+        "text": "Order",
+        "x": 74.0,
+        "y": 454,
+        "w": 49.015625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "ReplacementOffer_st",
+        "text": "«entity»",
+        "x": 439.0,
+        "y": 430,
+        "w": 63.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "ReplacementOffer_name",
+        "text": "ReplacementOffer",
+        "x": 439.0,
+        "y": 454,
+        "w": 155.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "Delivery_st",
+        "text": "«entity»",
+        "x": 804.0,
+        "y": 430,
+        "w": 63.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "Delivery_name",
+        "text": "Delivery",
+        "x": 804.0,
+        "y": 454,
+        "w": 70.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "OrderDAO_st",
+        "text": "«DAO» †",
+        "x": 74.0,
+        "y": 600,
+        "w": 74.046875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "OrderDAO_name",
+        "text": "OrderDAO",
+        "x": 74.0,
+        "y": 624,
+        "w": 89.015625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "ReplacementOfferDAO_st",
+        "text": "«DAO»",
+        "x": 439.0,
+        "y": 600,
+        "w": 59.03125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "ReplacementOfferDAO_name",
+        "text": "ReplacementOfferDAO",
+        "x": 439.0,
+        "y": 624,
+        "w": 195.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "PaymentDAO_st",
+        "text": "«DAO» †",
+        "x": 804.0,
+        "y": 600,
+        "w": 74.046875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "PaymentDAO_name",
+        "text": "PaymentDAO",
+        "x": 804.0,
+        "y": 624,
+        "w": 115.046875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "continue",
+        "text": "Continues from Figure 4.1AP; continues in Figure 4.1AR. Read 4.1A–4.1BP together.",
+        "x": 35,
+        "y": 713,
+        "w": 678.21875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "legend",
+        "text": "† P4-TARGET / GAP: design target, not yet in code at C0. P4 input: F-02, F-05, P2-S06, P2-S09, P2-S11, P2-S13, P3-S03.",
+        "x": 35,
+        "y": 758,
+        "w": 980.65625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "author",
+        "text": "Author: 722I0004 · AI-assisted (Codex)",
+        "x": 35,
+        "y": 818,
+        "w": 311.25,
+        "h": 20,
+        "font": 18
+      }
+    ]
+  }
+}

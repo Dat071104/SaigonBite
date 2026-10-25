@@ -1,0 +1,412 @@
+{
+  "projection": "relations",
+  "title": "Domain enumeration dependencies",
+  "subtitle": "Real enums; state/flag/derived facts retain their original representations.",
+  "relations": [
+    {
+      "source": "Payment",
+      "target": "PaymentMethod",
+      "kind": "dependency",
+      "status": "MATCH",
+      "source_evidence": "AST call or typed attribute/signature",
+      "allowed_on_layered_diagram": true
+    },
+    {
+      "source": "Payment",
+      "target": "PaymentState",
+      "kind": "dependency",
+      "status": "MATCH",
+      "source_evidence": "AST call or typed attribute/signature",
+      "allowed_on_layered_diagram": true
+    },
+    {
+      "source": "Order",
+      "target": "OrderState",
+      "kind": "dependency",
+      "status": "MATCH",
+      "source_evidence": "AST call or typed attribute/signature",
+      "allowed_on_layered_diagram": true
+    }
+  ],
+  "figure": "4.1BO",
+  "stem": "dcd_subsystem_PartBO",
+  "continuation": "Continues from Figure 4.1BN; continues in Figure 4.1BP. Read 4.1A–4.1BP together.",
+  "model_source": "models/shared/design_model.json",
+  "model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "placed_width_mm": 230,
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "Payment",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      },
+      {
+        "class": "PaymentMethod",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      },
+      {
+        "class": "PaymentState",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      },
+      {
+        "class": "Order",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      },
+      {
+        "class": "OrderState",
+        "attributes": [],
+        "methods": [],
+        "attribute_types": {},
+        "method_signatures": {}
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "Payment",
+        "target": "PaymentMethod",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "Payment",
+        "target": "PaymentState",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "Order",
+        "target": "OrderState",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      }
+    ],
+    "states": [],
+    "association_classes": []
+  },
+  "qa": {
+    "canvas": [
+      1200,
+      850
+    ],
+    "placed_width_mm": 230,
+    "minimum_font_px": 18,
+    "minimum_pt": 9.779527559055119,
+    "native_minimum_font_px": 18,
+    "native_minimum_pt": 9.779527559055119,
+    "native_explicit_font_styles": true,
+    "xml_valid": true,
+    "connected_edges": 3,
+    "geometry_edges": [
+      {
+        "id": "rel0",
+        "source_shape": "s0",
+        "target_shape": "t0",
+        "source": "Payment",
+        "target": "PaymentMethod",
+        "kind": "dependency",
+        "points": [
+          [
+            410,
+            190
+          ],
+          [
+            790,
+            190
+          ]
+        ]
+      },
+      {
+        "id": "rel1",
+        "source_shape": "s1",
+        "target_shape": "t1",
+        "source": "Payment",
+        "target": "PaymentState",
+        "kind": "dependency",
+        "points": [
+          [
+            410,
+            377
+          ],
+          [
+            790,
+            377
+          ]
+        ]
+      },
+      {
+        "id": "rel2",
+        "source_shape": "s2",
+        "target_shape": "t2",
+        "source": "Order",
+        "target": "OrderState",
+        "kind": "dependency",
+        "points": [
+          [
+            410,
+            564
+          ],
+          [
+            790,
+            564
+          ]
+        ]
+      }
+    ],
+    "text_bounds": [
+      {
+        "id": "title",
+        "text": "4.1BO. Domain enumeration dependencies",
+        "x": 35,
+        "y": 18,
+        "w": 467.828125,
+        "h": 25,
+        "font": 23
+      },
+      {
+        "id": "sub",
+        "text": "Shared subsystem · C0 45ac762 · Real enums; state/flag/derived facts retain their original representations.",
+        "x": 35,
+        "y": 50,
+        "w": 851.703125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s0_st",
+        "text": "«entity» †",
+        "x": 44,
+        "y": 129,
+        "w": 78.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s0_name",
+        "text": "Payment",
+        "x": 44,
+        "y": 153,
+        "w": 75.046875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t0_st",
+        "text": "«enumeration»",
+        "x": 799,
+        "y": 129,
+        "w": 120.140625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t0_name",
+        "text": "PaymentMethod",
+        "x": 799,
+        "y": 153,
+        "w": 139.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s0_ref",
+        "text": "Members: 4.1AC",
+        "x": 47,
+        "y": 203,
+        "w": 135.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t0_ref",
+        "text": "Members: 4.1W",
+        "x": 802,
+        "y": 203,
+        "w": 127.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "label0",
+        "text": "depends on",
+        "x": 445,
+        "y": 131,
+        "w": 94.125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s1_st",
+        "text": "«entity» †",
+        "x": 44,
+        "y": 316,
+        "w": 78.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s1_name",
+        "text": "Payment",
+        "x": 44,
+        "y": 340,
+        "w": 75.046875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t1_st",
+        "text": "«enumeration»",
+        "x": 799,
+        "y": 316,
+        "w": 120.140625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t1_name",
+        "text": "PaymentState",
+        "x": 799,
+        "y": 340,
+        "w": 119.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s1_ref",
+        "text": "Members: 4.1AC",
+        "x": 47,
+        "y": 390,
+        "w": 135.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t1_ref",
+        "text": "Members: 4.1W",
+        "x": 802,
+        "y": 390,
+        "w": 127.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "label1",
+        "text": "depends on",
+        "x": 445,
+        "y": 318,
+        "w": 94.125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s2_st",
+        "text": "«entity»",
+        "x": 44,
+        "y": 503,
+        "w": 63.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s2_name",
+        "text": "Order",
+        "x": 44,
+        "y": 527,
+        "w": 49.015625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t2_st",
+        "text": "«enumeration»",
+        "x": 799,
+        "y": 503,
+        "w": 120.140625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t2_name",
+        "text": "OrderState",
+        "x": 799,
+        "y": 527,
+        "w": 93.046875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "s2_ref",
+        "text": "Members: 4.1AD",
+        "x": 47,
+        "y": 577,
+        "w": 135.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "t2_ref",
+        "text": "Members: 4.1W",
+        "x": 802,
+        "y": 577,
+        "w": 127.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "label2",
+        "text": "depends on",
+        "x": 445,
+        "y": 505,
+        "w": 94.125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "continue",
+        "text": "Continues from Figure 4.1BN; continues in Figure 4.1BP. Read 4.1A–4.1BP together.",
+        "x": 35,
+        "y": 713,
+        "w": 675.90625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "legend",
+        "text": "† P4-TARGET / GAP: design target, not yet in code at C0. P4 input: F-02, P2-S01.",
+        "x": 35,
+        "y": 758,
+        "w": 654.765625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "author",
+        "text": "Author: 722I0004 · AI-assisted (Codex)",
+        "x": 35,
+        "y": 818,
+        "w": 311.25,
+        "h": 20,
+        "font": 18
+      }
+    ]
+  }
+}

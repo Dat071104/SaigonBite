@@ -1,0 +1,580 @@
+{
+  "projection": "members",
+  "layer": "data_access",
+  "title": "Data access members",
+  "subtitle": "Complete member projection; types and statuses resolve from the model.",
+  "cards": [
+    {
+      "class": "MenuDAO",
+      "attributes": [
+        "conn"
+      ],
+      "methods": [
+        "__init__",
+        "list_brands",
+        "get_brand",
+        "brand_name_exists",
+        "insert_brand",
+        "rename_brand",
+        "archive_brand",
+        "list_items",
+        "get_item",
+        "item_name_exists",
+        "insert_item",
+        "update_item",
+        "archive_item",
+        "list_hub_items",
+        "is_listed"
+      ],
+      "part": "members 1/2",
+      "x": 40,
+      "y": 132
+    },
+    {
+      "class": "MenuDAO",
+      "attributes": [],
+      "methods": [
+        "add_listing",
+        "remove_listing",
+        "set_available"
+      ],
+      "part": "members 2/2",
+      "x": 620,
+      "y": 132
+    },
+    {
+      "class": "ReplacementOfferDAO",
+      "attributes": [
+        "conn"
+      ],
+      "methods": [
+        "__init__",
+        "insert",
+        "get_open",
+        "list_for_order",
+        "decide"
+      ],
+      "part": "members 1/1",
+      "x": 620,
+      "y": 328
+    }
+  ],
+  "figure": "4.1AI",
+  "stem": "dcd_subsystem_PartAI",
+  "continuation": "Continues from Figure 4.1AH; continues in Figure 4.1AJ. Read 4.1A–4.1BP together.",
+  "model_source": "models/shared/design_model.json",
+  "model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "placed_width_mm": 230,
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "MenuDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "__init__",
+          "list_brands",
+          "get_brand",
+          "brand_name_exists",
+          "insert_brand",
+          "rename_brand",
+          "archive_brand",
+          "list_items",
+          "get_item",
+          "item_name_exists",
+          "insert_item",
+          "update_item",
+          "archive_item",
+          "list_hub_items",
+          "is_listed"
+        ],
+        "attribute_types": {
+          "conn": "sqlite3.Connection"
+        },
+        "method_signatures": {
+          "__init__": "__init__(self, conn: sqlite3.Connection)",
+          "list_brands": "list_brands(self) -> list[Brand]",
+          "get_brand": "get_brand(self, brand_id: int) -> Optional[Brand]",
+          "brand_name_exists": "brand_name_exists(self, name: str, except_id: Optional[int]=None) -> bool",
+          "insert_brand": "insert_brand(self, name: str) -> int",
+          "rename_brand": "rename_brand(self, brand_id: int, name: str) -> bool",
+          "archive_brand": "archive_brand(self, brand_id: int, now: str) -> bool",
+          "list_items": "list_items(self) -> list[MenuItem]",
+          "get_item": "get_item(self, item_id: int) -> Optional[MenuItem]",
+          "item_name_exists": "item_name_exists(self, brand_id: int, name: str, except_id: Optional[int]=None) -> bool",
+          "insert_item": "insert_item(self, item: MenuItem) -> int",
+          "update_item": "update_item(self, item: MenuItem) -> bool",
+          "archive_item": "archive_item(self, item_id: int, now: str) -> bool",
+          "list_hub_items": "list_hub_items(self, hub_id: int) -> list[HubMenuItem]",
+          "is_listed": "is_listed(self, hub_id: int, item_id: int) -> bool"
+        }
+      },
+      {
+        "class": "MenuDAO",
+        "attributes": [],
+        "methods": [
+          "add_listing",
+          "remove_listing",
+          "set_available"
+        ],
+        "attribute_types": {},
+        "method_signatures": {
+          "add_listing": "add_listing(self, hub_id: int, item_id: int, available: bool = True) -> None",
+          "remove_listing": "remove_listing(self, hub_id: int, item_id: int) -> bool",
+          "set_available": "set_available(self, hub_id: int, item_id: int, available: bool) -> bool"
+        }
+      },
+      {
+        "class": "ReplacementOfferDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "__init__",
+          "insert",
+          "get_open",
+          "list_for_order",
+          "decide"
+        ],
+        "attribute_types": {
+          "conn": "sqlite3.Connection"
+        },
+        "method_signatures": {
+          "__init__": "__init__(self, conn: sqlite3.Connection)",
+          "insert": "insert(self, offer: ReplacementOffer) -> int",
+          "get_open": "get_open(self, order_id: int) -> Optional[ReplacementOffer]",
+          "list_for_order": "list_for_order(self, order_id: int) -> list[ReplacementOffer]",
+          "decide": "decide(self, offer_id: int, to_state: OfferState, now: str) -> bool"
+        }
+      }
+    ],
+    "dependencies": [],
+    "states": [],
+    "association_classes": []
+  },
+  "qa": {
+    "canvas": [
+      1200,
+      850
+    ],
+    "placed_width_mm": 230,
+    "minimum_font_px": 18,
+    "minimum_pt": 9.779527559055119,
+    "native_minimum_font_px": 18,
+    "native_minimum_pt": 9.779527559055119,
+    "native_explicit_font_styles": true,
+    "xml_valid": true,
+    "connected_edges": 0,
+    "geometry_edges": [],
+    "text_bounds": [
+      {
+        "id": "title",
+        "text": "4.1AI. Data access members",
+        "x": 35,
+        "y": 18,
+        "w": 309.484375,
+        "h": 25,
+        "font": 23
+      },
+      {
+        "id": "sub",
+        "text": "Shared subsystem · C0 45ac762 · Complete member projection; types and statuses resolve from the model.",
+        "x": 35,
+        "y": 50,
+        "w": 862.671875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "layer_title",
+        "text": "Data access · complete declared members across the continued cards",
+        "x": 40,
+        "y": 94,
+        "w": 602.4375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_title",
+        "text": "«DAO» MenuDAO",
+        "x": 52,
+        "y": 139,
+        "w": 152.046875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_status",
+        "text": "Shown: [MATCH] · members 1/2",
+        "x": 52,
+        "y": 164,
+        "w": 258.796875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line0",
+        "text": "— attributes —",
+        "x": 52,
+        "y": 191,
+        "w": 120.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line1",
+        "text": "+ conn: sqlite3.Connection",
+        "x": 52,
+        "y": 214,
+        "w": 212.703125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line2",
+        "text": "— operations —",
+        "x": 52,
+        "y": 237,
+        "w": 130.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line3",
+        "text": "- __init__(conn: sqlite3.Connection) -> Any [inferred]",
+        "x": 52,
+        "y": 260,
+        "w": 415.859375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line4",
+        "text": "+ list_brands() -> list[Brand]",
+        "x": 52,
+        "y": 283,
+        "w": 221.15625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line5",
+        "text": "+ get_brand(brand_id: int) -> Optional[Brand]",
+        "x": 52,
+        "y": 306,
+        "w": 359.359375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line6",
+        "text": "+ brand_name_exists(name: str, except_id: Optional[int] =",
+        "x": 52,
+        "y": 329,
+        "w": 461.390625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line7",
+        "text": "None) -> bool",
+        "x": 52,
+        "y": 352,
+        "w": 109.609375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line8",
+        "text": "+ insert_brand(name: str) -> int",
+        "x": 52,
+        "y": 375,
+        "w": 248.203125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line9",
+        "text": "+ rename_brand(brand_id: int, name: str) -> bool",
+        "x": 52,
+        "y": 398,
+        "w": 389.375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line10",
+        "text": "+ archive_brand(brand_id: int, now: str) -> bool",
+        "x": 52,
+        "y": 421,
+        "w": 374.34375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line11",
+        "text": "+ list_items() -> list[MenuItem]",
+        "x": 52,
+        "y": 444,
+        "w": 241.125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line12",
+        "text": "+ get_item(item_id: int) -> Optional[MenuItem]",
+        "x": 52,
+        "y": 467,
+        "w": 367.28125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line13",
+        "text": "+ item_name_exists(brand_id: int, name: str, except_id:",
+        "x": 52,
+        "y": 490,
+        "w": 441.859375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line14",
+        "text": "Optional[int] = None) -> bool",
+        "x": 52,
+        "y": 513,
+        "w": 226.203125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line15",
+        "text": "+ insert_item(item: MenuItem) -> int",
+        "x": 52,
+        "y": 536,
+        "w": 285.1875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line16",
+        "text": "+ update_item(item: MenuItem) -> bool",
+        "x": 52,
+        "y": 559,
+        "w": 311.265625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line17",
+        "text": "+ archive_item(item_id: int, now: str) -> bool",
+        "x": 52,
+        "y": 582,
+        "w": 350.25,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line18",
+        "text": "+ list_hub_items(hub_id: int) -> list[HubMenuItem]",
+        "x": 52,
+        "y": 605,
+        "w": 397.3125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card0_line19",
+        "text": "+ is_listed(hub_id: int, item_id: int) -> bool",
+        "x": 52,
+        "y": 628,
+        "w": 333.28125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_title",
+        "text": "«DAO» MenuDAO",
+        "x": 632,
+        "y": 139,
+        "w": 152.046875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_status",
+        "text": "Shown: [P4-TARGET] † · members 2/2",
+        "x": 632,
+        "y": 164,
+        "w": 310.828125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line0",
+        "text": "— operations —",
+        "x": 632,
+        "y": 191,
+        "w": 130.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line1",
+        "text": "+ add_listing(hub_id: int, item_id: int, available: bool = True) ->",
+        "x": 632,
+        "y": 214,
+        "w": 496.953125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line2",
+        "text": "None † [P4-TARGET]",
+        "x": 632,
+        "y": 237,
+        "w": 172.75,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line3",
+        "text": "+ remove_listing(hub_id: int, item_id: int) -> bool",
+        "x": 632,
+        "y": 260,
+        "w": 384.328125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card1_line4",
+        "text": "+ set_available(hub_id: int, item_id: int, available: bool) -> bool",
+        "x": 632,
+        "y": 283,
+        "w": 498.46875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_title",
+        "text": "«DAO» ReplacementOfferDAO",
+        "x": 632,
+        "y": 335,
+        "w": 260.125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_status",
+        "text": "Shown: [MATCH] · members 1/1",
+        "x": 632,
+        "y": 360,
+        "w": 258.796875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line0",
+        "text": "— attributes —",
+        "x": 632,
+        "y": 387,
+        "w": 120.0625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line1",
+        "text": "+ conn: sqlite3.Connection",
+        "x": 632,
+        "y": 410,
+        "w": 212.703125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line2",
+        "text": "— operations —",
+        "x": 632,
+        "y": 433,
+        "w": 130.09375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line3",
+        "text": "- __init__(conn: sqlite3.Connection) -> Any [inferred]",
+        "x": 632,
+        "y": 456,
+        "w": 415.859375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line4",
+        "text": "+ insert(offer: ReplacementOffer) -> int",
+        "x": 632,
+        "y": 479,
+        "w": 308.5625,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line5",
+        "text": "+ get_open(order_id: int) -> Optional[ReplacementOffer]",
+        "x": 632,
+        "y": 502,
+        "w": 447.078125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line6",
+        "text": "+ list_for_order(order_id: int) -> list[ReplacementOffer]",
+        "x": 632,
+        "y": 525,
+        "w": 432.0,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "card2_line7",
+        "text": "+ decide(offer_id: int, to_state: OfferState, now: str) -> bool",
+        "x": 632,
+        "y": 548,
+        "w": 468.703125,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "continue",
+        "text": "Continues from Figure 4.1AH; continues in Figure 4.1AJ. Read 4.1A–4.1BP together.",
+        "x": 35,
+        "y": 713,
+        "w": 675.21875,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "legend",
+        "text": "† P4-TARGET / GAP: design target, not yet in code at C0. P4 input: P2-S15.",
+        "x": 35,
+        "y": 758,
+        "w": 607.734375,
+        "h": 20,
+        "font": 18
+      },
+      {
+        "id": "author",
+        "text": "Author: 722I0004 · AI-assisted (Codex)",
+        "x": 35,
+        "y": 818,
+        "w": 311.25,
+        "h": 20,
+        "font": 18
+      }
+    ]
+  }
+}
