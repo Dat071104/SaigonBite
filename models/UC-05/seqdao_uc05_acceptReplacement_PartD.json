@@ -1,0 +1,419 @@
+{
+  "UC": "UC-05",
+  "stem": "seqdao_uc05_acceptReplacement_PartD",
+  "title": "UC-05 acceptReplacement — DAO sequence / Part D",
+  "figure": "4.3.2.5.OP-05.D",
+  "part": "Part D",
+  "scope": "Same request and transaction across all parts; focus 4/7. Mechanical reads: responsibility table (report 4.3.2).",
+  "continuation": "From seqdao_uc05_acceptReplacement_PartC → this part → seqdao_uc05_acceptReplacement_PartE.",
+  "transaction_summary": "Transaction key (whole request): BEGIN IMMEDIATE → checked rowcount / inserts → COMMIT; failure → ROLLBACK if active. Busy: retry, nothing changed.",
+  "target_note": "† design target, not yet in code at C0: F-02; F-05; P2-S09; P2-S11; P2-S13; P3-S03; P2-S12 connection settings; MATCH is Static only.",
+  "phase3": {
+    "diagram_type": "dao_sequence",
+    "UC": "UC-05",
+    "op_id": "OP-05",
+    "operation": "acceptReplacement",
+    "parameters": "orderId, offerId",
+    "ssd_occurrence": "models/UC-05/ssd_uc05_PartB.drawio#05S-M08",
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Customer",
+        "role": "actor",
+        "label": "Customer"
+      },
+      {
+        "id": "view",
+        "class": "order",
+        "role": "view",
+        "label": "«view»\norder"
+      },
+      {
+        "id": "ctrl",
+        "class": "OrderTrackingController",
+        "role": "controller",
+        "label": "OrderTrackingController"
+      },
+      {
+        "id": "obj7",
+        "class": "Order",
+        "role": "domain",
+        "label": "Order"
+      },
+      {
+        "id": "obj4",
+        "class": "OrderDAO",
+        "role": "data_access",
+        "label": "«DAO»\nOrderDAO"
+      },
+      {
+        "id": "db",
+        "class": "Database",
+        "role": "database",
+        "label": ":Database\n«resource»"
+      }
+    ],
+    "messages": [
+      {
+        "from": "ctrl",
+        "to": "ctrl",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "target valid",
+        "PC_MG": "UC05-PC04; UC05-MG01",
+        "label": "Valid branch below is mutually exclusive with invalid-target branch; same request, no second system operation.",
+        "base_label": "Valid branch below is mutually exclusive with invalid-target branch; same request, no second system operation.",
+        "fragment": true,
+        "draw_arrow": false,
+        "y": 341
+      },
+      {
+        "from": "ctrl",
+        "to": "obj7",
+        "method": "replace_line",
+        "kind": "call",
+        "arguments": "offer.order_line_id, offer.new_menu_item_id, offer.new_item_name, offer.new_unit_price",
+        "guard": "target valid",
+        "PC_MG": "UC05-PC04; UC05-MG01",
+        "label": "replace_line(offer.order_line_id, offer.new_menu_item_id, offer.new_item_name, offer.new_unit_price)",
+        "base_label": "replace_line{dagger}(offer.order_line_id, offer.new_menu_item_id, offer.new_item_name, offer.new_unit_price)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "replace_line(self, line_id: int, menu_item_id: int, item_name: str, unit_price: int) -> None",
+        "status": "MATCH",
+        "P4_input": "",
+        "y": 466,
+        "edge_id": "message1"
+      },
+      {
+        "from": "ctrl",
+        "to": "ctrl",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC05-PC04; UC05-MG01",
+        "label": "Whole line, unchanged quantity, offered price/name. Dnew = min(Dold, Snew); F and Q unchanged; Tnew = Snew − Dnew + F − Q. Read Order.total as property. Order stays PLACED; no auto-confirm.",
+        "base_label": "Whole line, unchanged quantity, offered price/name. Dnew = min(Dold, Snew); F and Q unchanged; Tnew = Snew − Dnew + F − Q. Read Order.total as property. Order stays PLACED; no auto-confirm.",
+        "fragment": false,
+        "draw_arrow": false,
+        "y": 591
+      },
+      {
+        "from": "ctrl",
+        "to": "obj4",
+        "method": "save_lines_and_totals",
+        "kind": "call",
+        "arguments": "order",
+        "guard": "target valid",
+        "PC_MG": "UC05-PC04; UC05-MG01",
+        "label": "save_lines_and_totals†(order)",
+        "base_label": "save_lines_and_totals{dagger}(order)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "save_lines_and_totals(self, order: Order) -> bool",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S09; P2-S11; P3-S03",
+        "y": 716,
+        "edge_id": "message3"
+      },
+      {
+        "from": "obj4",
+        "to": "db",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC05-PC04; UC05-MG01",
+        "label": "SQL note: † UPDATE each order_line by id + order_id; UPDATE orders by id AND state = ? (PLACED); save Snew,Dnew,Tnew.",
+        "base_label": "SQL note: † UPDATE each order_line by id + order_id; UPDATE orders by id AND state = ? (PLACED); save Snew,Dnew,Tnew.",
+        "fragment": false,
+        "draw_arrow": true,
+        "y": 841,
+        "edge_id": "message4"
+      },
+      {
+        "from": "obj4",
+        "to": "ctrl",
+        "method": "",
+        "kind": "return",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC05-PC04; UC05-MG01",
+        "label": "† every intended line/header rowcount == 1; check bool; any 0 / False → ROLLBACK",
+        "base_label": "† every intended line/header rowcount == 1; check bool; any 0 / False → ROLLBACK",
+        "fragment": false,
+        "draw_arrow": false,
+        "y": 966,
+        "edge_id": "message5"
+      }
+    ],
+    "elements": [
+      {
+        "class": "order",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "OrderTrackingController",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "Order",
+        "attributes": [],
+        "methods": [
+          "replace_line",
+          "total"
+        ],
+        "method_signatures": {
+          "replace_line": "replace_line(self, line_id: int, menu_item_id: int, item_name: str, unit_price: int) -> None",
+          "total": "total(self) -> int"
+        }
+      },
+      {
+        "class": "OrderDAO",
+        "attributes": [],
+        "methods": [
+          "save_lines_and_totals"
+        ],
+        "method_signatures": {
+          "save_lines_and_totals": "save_lines_and_totals(self, order: Order) -> bool"
+        }
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "OrderTrackingController",
+        "target": "Order",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature; C0 order.replace_line",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "OrderTrackingController",
+        "target": "OrderDAO",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      }
+    ],
+    "states": [
+      {
+        "class": "Order",
+        "attribute": "state",
+        "values": [
+          "PLACED"
+        ]
+      }
+    ]
+  },
+  "placed_width_mm": 230,
+  "source_design_sequences": [
+    "models\\UC-05\\seq_uc05_acceptReplacement_PartA.json",
+    "models\\UC-05\\seq_uc05_acceptReplacement_PartB.json"
+  ],
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "refresh_policy": "Reviewed model MATCH only; changed signature fails until explicit alias/lane review; no behavioral auto-qualification.",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "render_receipt": {
+    "canvas": [
+      1600,
+      1250
+    ],
+    "minimum_font_px": 24,
+    "placed_width_mm": 230,
+    "minimum_pt": 9.779527559055119,
+    "native_font_matches_svg": true,
+    "label_bounds": [
+      [
+        35,
+        15,
+        1530,
+        32.48
+      ],
+      [
+        35,
+        54,
+        1530,
+        27.839999999999996
+      ],
+      [
+        15.0,
+        105,
+        210,
+        27.839999999999996
+      ],
+      [
+        287.0,
+        105,
+        210,
+        55.67999999999999
+      ],
+      [
+        559.0,
+        105,
+        210,
+        83.51999999999998
+      ],
+      [
+        831.0,
+        105,
+        210,
+        27.839999999999996
+      ],
+      [
+        1103.0,
+        105,
+        210,
+        83.51999999999998
+      ],
+      [
+        1375.0,
+        105,
+        210,
+        55.67999999999999
+      ],
+      [
+        42,
+        242,
+        56,
+        27.839999999999996
+      ],
+      [
+        110,
+        247,
+        1440,
+        27.839999999999996
+      ],
+      [
+        45,
+        367,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        497,
+        1510,
+        55.67999999999999
+      ],
+      [
+        45,
+        617,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        742,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        867,
+        1510,
+        27.839999999999996
+      ],
+      [
+        35,
+        1035,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1070,
+        1530,
+        55.67999999999999
+      ],
+      [
+        35,
+        1130,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1190,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1220,
+        1530,
+        27.839999999999996
+      ]
+    ],
+    "edges": [
+      {
+        "id": "message1",
+        "source": "m1s",
+        "target": "m1t",
+        "points": [
+          [
+            664.0,
+            466
+          ],
+          [
+            936.0,
+            466
+          ]
+        ]
+      },
+      {
+        "id": "message3",
+        "source": "m3s",
+        "target": "m3t",
+        "points": [
+          [
+            664.0,
+            716
+          ],
+          [
+            1208.0,
+            716
+          ]
+        ]
+      },
+      {
+        "id": "message4",
+        "source": "m4s",
+        "target": "m4t",
+        "points": [
+          [
+            1208.0,
+            841
+          ],
+          [
+            1480.0,
+            841
+          ]
+        ]
+      },
+      {
+        "id": "message5",
+        "source": "m5s",
+        "target": "m5t",
+        "points": [
+          [
+            1208.0,
+            966
+          ],
+          [
+            664.0,
+            966
+          ]
+        ]
+      }
+    ],
+    "author_native_cell": true
+  }
+}

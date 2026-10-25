@@ -1,0 +1,520 @@
+{
+  "UC": "UC-02",
+  "stem": "seqdao_uc02_confirmDelivered_PartD",
+  "title": "UC-02 confirmDelivered — DAO sequence / Part D",
+  "figure": "4.3.2.2.OP-11.D",
+  "part": "Part D",
+  "scope": "Same request and transaction across all parts; focus 4/6. Mechanical reads: responsibility table (report 4.3.2).",
+  "continuation": "From seqdao_uc02_confirmDelivered_PartC → this part → seqdao_uc02_confirmDelivered_PartE.",
+  "transaction_summary": "Transaction key (whole request): BEGIN IMMEDIATE → checked rowcount / inserts → COMMIT; failure → ROLLBACK if active. Busy: retry, nothing changed.",
+  "target_note": "† design target, not yet in code at C0: P2-S13; P3-S03; P2-S12 connection settings; MATCH is Static only.",
+  "phase3": {
+    "diagram_type": "dao_sequence",
+    "UC": "UC-02",
+    "op_id": "OP-11",
+    "operation": "confirmDelivered",
+    "parameters": "orderId, cashCollected?",
+    "ssd_occurrence": "models/UC-02/ssd_uc02_PartB.drawio#M04",
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Shipper",
+        "role": "actor",
+        "label": "Shipper"
+      },
+      {
+        "id": "view",
+        "class": "delivery",
+        "role": "view",
+        "label": "«view»\ndelivery"
+      },
+      {
+        "id": "ctrl",
+        "class": "DeliveryController",
+        "role": "controller",
+        "label": "DeliveryController"
+      },
+      {
+        "id": "obj8",
+        "class": "controllers.common",
+        "role": "controller",
+        "label": "controllers.common"
+      },
+      {
+        "id": "obj7",
+        "class": "Delivery",
+        "role": "domain",
+        "label": "Delivery"
+      },
+      {
+        "id": "obj9",
+        "class": "Order",
+        "role": "domain",
+        "label": "Order"
+      },
+      {
+        "id": "obj4",
+        "class": "DeliveryDAO",
+        "role": "data_access",
+        "label": "«DAO»\nDeliveryDAO"
+      },
+      {
+        "id": "obj10",
+        "class": "OrderDAO",
+        "role": "data_access",
+        "label": "«DAO»\nOrderDAO"
+      },
+      {
+        "id": "db",
+        "class": "Database",
+        "role": "database",
+        "label": ":Database\n«resource»"
+      }
+    ],
+    "messages": [
+      {
+        "from": "obj4",
+        "to": "db",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC02-PC02; UC02-MG01",
+        "label": "SQL note: UPDATE delivery by order_id + assigned shipper_id AND state = 'PICKED_UP'; set DELIVERED + finished_at + cash.",
+        "base_label": "SQL note: UPDATE delivery by order_id + assigned shipper_id AND state = 'PICKED_UP'; set DELIVERED + finished_at + cash.",
+        "fragment": false,
+        "draw_arrow": true,
+        "y": 341,
+        "edge_id": "message0"
+      },
+      {
+        "from": "obj4",
+        "to": "ctrl",
+        "method": "",
+        "kind": "return",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC02-PC02; UC02-MG01",
+        "label": "rowcount == 1; bool checked; 0 / False → ROLLBACK earlier COD write",
+        "base_label": "rowcount == 1; bool checked; 0 / False → ROLLBACK earlier COD write",
+        "fragment": false,
+        "draw_arrow": false,
+        "y": 466,
+        "edge_id": "message1"
+      },
+      {
+        "from": "ctrl",
+        "to": "obj8",
+        "method": "move_order",
+        "kind": "call",
+        "arguments": "orders, order, OrderState.DELIVERED, now",
+        "guard": "",
+        "PC_MG": "UC02-PC02; UC02-MG01",
+        "label": "move_order(orders, order, OrderState.DELIVERED, now)",
+        "base_label": "move_order{dagger}(orders, order, OrderState.DELIVERED, now)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "move_order(orders: OrderDAO, order: Order, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> None",
+        "status": "MATCH",
+        "P4_input": "",
+        "y": 591,
+        "edge_id": "message2"
+      },
+      {
+        "from": "obj8",
+        "to": "obj9",
+        "method": "move_to",
+        "kind": "call",
+        "arguments": "OrderState.DELIVERED",
+        "guard": "",
+        "PC_MG": "UC02-PC02; UC02-MG01",
+        "label": "move_to(OrderState.DELIVERED)",
+        "base_label": "move_to{dagger}(OrderState.DELIVERED)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "move_to(self, new_state: OrderState) -> None",
+        "status": "MATCH",
+        "P4_input": "",
+        "y": 716,
+        "edge_id": "message3"
+      },
+      {
+        "from": "obj8",
+        "to": "obj10",
+        "method": "change_state",
+        "kind": "call",
+        "arguments": "order_id, OrderState.OUT_FOR_DELIVERY, OrderState.DELIVERED, now",
+        "guard": "",
+        "PC_MG": "UC02-PC02; UC02-MG01",
+        "label": "change_state(order_id, OrderState.OUT_FOR_DELIVERY, OrderState.DELIVERED, now)",
+        "base_label": "change_state{dagger}(order_id, OrderState.OUT_FOR_DELIVERY, OrderState.DELIVERED, now)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "change_state(self, order_id: int, from_state: OrderState, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> bool",
+        "status": "MATCH",
+        "P4_input": "",
+        "y": 841,
+        "edge_id": "message4"
+      },
+      {
+        "from": "obj10",
+        "to": "db",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC02-PC02; UC02-MG01",
+        "label": "SQL note: UPDATE orders by id AND state = ? (OUT_FOR_DELIVERY); set DELIVERED + closed_at.",
+        "base_label": "SQL note: UPDATE orders by id AND state = ? (OUT_FOR_DELIVERY); set DELIVERED + closed_at.",
+        "fragment": false,
+        "draw_arrow": true,
+        "y": 966,
+        "edge_id": "message5"
+      }
+    ],
+    "elements": [
+      {
+        "class": "delivery",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "DeliveryController",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "controllers.common",
+        "attributes": [],
+        "methods": [
+          "move_order"
+        ],
+        "method_signatures": {
+          "move_order": "move_order(orders: OrderDAO, order: Order, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> None"
+        }
+      },
+      {
+        "class": "Delivery",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "Order",
+        "attributes": [],
+        "methods": [
+          "move_to"
+        ],
+        "method_signatures": {
+          "move_to": "move_to(self, new_state: OrderState) -> None"
+        }
+      },
+      {
+        "class": "DeliveryDAO",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "OrderDAO",
+        "attributes": [],
+        "methods": [
+          "change_state"
+        ],
+        "method_signatures": {
+          "change_state": "change_state(self, order_id: int, from_state: OrderState, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> bool"
+        }
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "DeliveryController",
+        "target": "controllers.common",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "controllers.common",
+        "target": "Order",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature; C0 order.move_to via typed Order parameter",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "controllers.common",
+        "target": "OrderDAO",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      }
+    ],
+    "states": [
+      {
+        "class": "Delivery",
+        "attribute": "state",
+        "values": [
+          "PICKED_UP",
+          "DELIVERED"
+        ]
+      },
+      {
+        "class": "Order",
+        "attribute": "state",
+        "values": [
+          "OUT_FOR_DELIVERY",
+          "DELIVERED"
+        ]
+      }
+    ]
+  },
+  "placed_width_mm": 230,
+  "source_design_sequences": [
+    "models\\UC-02\\seq_uc02_confirmDelivered.json"
+  ],
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "refresh_policy": "Reviewed model MATCH only; changed signature fails until explicit alias/lane review; no behavioral auto-qualification.",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "render_receipt": {
+    "canvas": [
+      1600,
+      1250
+    ],
+    "minimum_font_px": 24,
+    "placed_width_mm": 230,
+    "minimum_pt": 9.779527559055119,
+    "native_font_matches_svg": true,
+    "label_bounds": [
+      [
+        35,
+        15,
+        1530,
+        32.48
+      ],
+      [
+        35,
+        54,
+        1530,
+        27.839999999999996
+      ],
+      [
+        49.0,
+        105,
+        142.0,
+        27.839999999999996
+      ],
+      [
+        219.0,
+        105,
+        142.0,
+        55.67999999999999
+      ],
+      [
+        389.0,
+        105,
+        142.0,
+        55.67999999999999
+      ],
+      [
+        559.0,
+        105,
+        142.0,
+        55.67999999999999
+      ],
+      [
+        729.0,
+        105,
+        142.0,
+        27.839999999999996
+      ],
+      [
+        899.0,
+        105,
+        142.0,
+        27.839999999999996
+      ],
+      [
+        1069.0,
+        105,
+        142.0,
+        83.51999999999998
+      ],
+      [
+        1239.0,
+        105,
+        142.0,
+        83.51999999999998
+      ],
+      [
+        1409.0,
+        105,
+        142.0,
+        55.67999999999999
+      ],
+      [
+        45,
+        242,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        367,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        492,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        617,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        742,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        867,
+        1510,
+        27.839999999999996
+      ],
+      [
+        35,
+        1035,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1070,
+        1530,
+        55.67999999999999
+      ],
+      [
+        35,
+        1130,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1190,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1220,
+        1530,
+        27.839999999999996
+      ]
+    ],
+    "edges": [
+      {
+        "id": "message0",
+        "source": "m0s",
+        "target": "m0t",
+        "points": [
+          [
+            1140.0,
+            341
+          ],
+          [
+            1480.0,
+            341
+          ]
+        ]
+      },
+      {
+        "id": "message1",
+        "source": "m1s",
+        "target": "m1t",
+        "points": [
+          [
+            1140.0,
+            466
+          ],
+          [
+            460.0,
+            466
+          ]
+        ]
+      },
+      {
+        "id": "message2",
+        "source": "m2s",
+        "target": "m2t",
+        "points": [
+          [
+            460.0,
+            591
+          ],
+          [
+            630.0,
+            591
+          ]
+        ]
+      },
+      {
+        "id": "message3",
+        "source": "m3s",
+        "target": "m3t",
+        "points": [
+          [
+            630.0,
+            716
+          ],
+          [
+            970.0,
+            716
+          ]
+        ]
+      },
+      {
+        "id": "message4",
+        "source": "m4s",
+        "target": "m4t",
+        "points": [
+          [
+            630.0,
+            841
+          ],
+          [
+            1310.0,
+            841
+          ]
+        ]
+      },
+      {
+        "id": "message5",
+        "source": "m5s",
+        "target": "m5t",
+        "points": [
+          [
+            1310.0,
+            966
+          ],
+          [
+            1480.0,
+            966
+          ]
+        ]
+      }
+    ],
+    "author_native_cell": true
+  }
+}

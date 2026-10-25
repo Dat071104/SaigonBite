@@ -1,0 +1,444 @@
+{
+  "UC": "UC-05",
+  "stem": "seqdao_uc05_rejectOrder_PartE",
+  "title": "UC-05 rejectOrder — DAO sequence / Part E",
+  "figure": "4.3.2.5.OP-03.E",
+  "part": "Part E",
+  "scope": "Same request and transaction across all parts; focus 5/6. Mechanical reads: responsibility table (report 4.3.2).",
+  "continuation": "From seqdao_uc05_rejectOrder_PartD → this part → seqdao_uc05_rejectOrder_PartF.",
+  "transaction_summary": "Transaction key (whole request): BEGIN IMMEDIATE → checked rowcount / inserts → COMMIT; failure → ROLLBACK if active. Busy: retry, nothing changed.",
+  "target_note": "† design target, not yet in code at C0: F-02; P2-S01; P2-S13; P3-S03; P2-S12 connection settings; MATCH is Static only.",
+  "phase3": {
+    "diagram_type": "dao_sequence",
+    "UC": "UC-05",
+    "op_id": "OP-03",
+    "operation": "rejectOrder",
+    "parameters": "orderId, reason",
+    "ssd_occurrence": "models/UC-05/ssd_uc05_PartA.drawio#05S-M04",
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Kitchen staff",
+        "role": "actor",
+        "label": "Kitchen staff"
+      },
+      {
+        "id": "view",
+        "class": "kitchen",
+        "role": "view",
+        "label": "«view»\nkitchen"
+      },
+      {
+        "id": "ctrl",
+        "class": "KitchenController",
+        "role": "controller",
+        "label": "KitchenController"
+      },
+      {
+        "id": "obj5",
+        "class": "controllers.common",
+        "role": "controller",
+        "label": "controllers.common"
+      },
+      {
+        "id": "obj6",
+        "class": "Order",
+        "role": "domain",
+        "label": "Order"
+      },
+      {
+        "id": "obj8",
+        "class": "PaymentDAO",
+        "role": "data_access",
+        "label": "«DAO»\nPaymentDAO"
+      },
+      {
+        "id": "db",
+        "class": "Database",
+        "role": "database",
+        "label": ":Database\n«resource»"
+      }
+    ],
+    "messages": [
+      {
+        "from": "obj5",
+        "to": "obj8",
+        "method": "change_state",
+        "kind": "call",
+        "arguments": "order.id, previous_state, payment.state, now",
+        "guard": "",
+        "PC_MG": "UC05-PC02",
+        "label": "change_state(order.id, previous_state, payment.state, now)",
+        "base_label": "change_state{dagger}(order.id, previous_state, payment.state, now)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "change_state(self, order_id: int, from_state: PaymentState, to_state: PaymentState, now: str) -> bool",
+        "status": "MATCH",
+        "P4_input": "",
+        "y": 341,
+        "edge_id": "message0"
+      },
+      {
+        "from": "obj8",
+        "to": "db",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC05-PC02",
+        "label": "SQL note: UPDATE payment by order_id AND state = ? (previous state); VOIDED or REFUND_PENDING.",
+        "base_label": "SQL note: UPDATE payment by order_id AND state = ? (previous state); VOIDED or REFUND_PENDING.",
+        "fragment": false,
+        "draw_arrow": true,
+        "y": 466,
+        "edge_id": "message1"
+      },
+      {
+        "from": "obj8",
+        "to": "obj5",
+        "method": "",
+        "kind": "return",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC05-PC02",
+        "label": "rowcount == 1; † helper checks True; 0 / False → ROLLBACK all prior writes",
+        "base_label": "rowcount == 1; † helper checks True; 0 / False → ROLLBACK all prior writes",
+        "fragment": false,
+        "draw_arrow": false,
+        "y": 591,
+        "edge_id": "message2"
+      },
+      {
+        "from": "ctrl",
+        "to": "db",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC05-PC02",
+        "label": "COMMIT† only after rejection + optional offer WITHDRAWN + full-C obligation/state persist; UC05-PC02.",
+        "base_label": "COMMIT† only after rejection + optional offer WITHDRAWN + full-C obligation/state persist; UC05-PC02.",
+        "fragment": false,
+        "draw_arrow": true,
+        "y": 716,
+        "edge_id": "message3"
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC05-PC02",
+        "label": "rejected Order and reason; refund owed, no payout",
+        "base_label": "rejected Order and reason; refund owed, no payout",
+        "fragment": false,
+        "draw_arrow": false,
+        "y": 841,
+        "edge_id": "message4"
+      },
+      {
+        "from": "ctrl",
+        "to": "ctrl",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC05-PC02",
+        "label": "Guard refusal / 0 rows / False DAO result: stop; ROLLBACK all intended writes if transaction active. ",
+        "base_label": "Guard refusal / 0 rows / False DAO result: stop; ROLLBACK all intended writes if transaction active. ",
+        "fragment": true,
+        "draw_arrow": false,
+        "y": 966
+      }
+    ],
+    "elements": [
+      {
+        "class": "kitchen",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "KitchenController",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "controllers.common",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "Order",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "PaymentDAO",
+        "attributes": [],
+        "methods": [
+          "change_state"
+        ],
+        "method_signatures": {
+          "change_state": "change_state(self, order_id: int, from_state: PaymentState, to_state: PaymentState, now: str) -> bool"
+        }
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "controllers.common",
+        "target": "PaymentDAO",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      }
+    ],
+    "states": [
+      {
+        "class": "Payment",
+        "attribute": "state",
+        "values": [
+          "PENDING",
+          "VOIDED",
+          "REFUND_PENDING"
+        ]
+      },
+      {
+        "class": "ReplacementOffer",
+        "attribute": "state",
+        "values": [
+          "WITHDRAWN"
+        ]
+      }
+    ]
+  },
+  "placed_width_mm": 230,
+  "source_design_sequences": [
+    "models\\UC-05\\seq_uc05_rejectOrder.json"
+  ],
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "refresh_policy": "Reviewed model MATCH only; changed signature fails until explicit alias/lane review; no behavioral auto-qualification.",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "render_receipt": {
+    "canvas": [
+      1600,
+      1250
+    ],
+    "minimum_font_px": 24,
+    "placed_width_mm": 230,
+    "minimum_pt": 9.779527559055119,
+    "native_font_matches_svg": true,
+    "label_bounds": [
+      [
+        35,
+        15,
+        1530,
+        32.48
+      ],
+      [
+        35,
+        54,
+        1530,
+        27.839999999999996
+      ],
+      [
+        20.66666666666667,
+        105,
+        198.66666666666666,
+        27.839999999999996
+      ],
+      [
+        247.33333333333331,
+        105,
+        198.66666666666666,
+        55.67999999999999
+      ],
+      [
+        473.99999999999994,
+        105,
+        198.66666666666666,
+        55.67999999999999
+      ],
+      [
+        700.6666666666666,
+        105,
+        198.66666666666666,
+        55.67999999999999
+      ],
+      [
+        927.3333333333331,
+        105,
+        198.66666666666666,
+        27.839999999999996
+      ],
+      [
+        1154.0,
+        105,
+        198.66666666666666,
+        83.51999999999998
+      ],
+      [
+        1380.6666666666667,
+        105,
+        198.66666666666666,
+        55.67999999999999
+      ],
+      [
+        45,
+        242,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        367,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        492,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        617,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        742,
+        1510,
+        27.839999999999996
+      ],
+      [
+        42,
+        867,
+        56,
+        27.839999999999996
+      ],
+      [
+        110,
+        872,
+        1440,
+        27.839999999999996
+      ],
+      [
+        35,
+        1035,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1070,
+        1530,
+        55.67999999999999
+      ],
+      [
+        35,
+        1130,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1190,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1220,
+        1530,
+        27.839999999999996
+      ]
+    ],
+    "edges": [
+      {
+        "id": "message0",
+        "source": "m0s",
+        "target": "m0t",
+        "points": [
+          [
+            800.0,
+            341
+          ],
+          [
+            1253.3333333333333,
+            341
+          ]
+        ]
+      },
+      {
+        "id": "message1",
+        "source": "m1s",
+        "target": "m1t",
+        "points": [
+          [
+            1253.3333333333333,
+            466
+          ],
+          [
+            1480.0,
+            466
+          ]
+        ]
+      },
+      {
+        "id": "message2",
+        "source": "m2s",
+        "target": "m2t",
+        "points": [
+          [
+            1253.3333333333333,
+            591
+          ],
+          [
+            800.0,
+            591
+          ]
+        ]
+      },
+      {
+        "id": "message3",
+        "source": "m3s",
+        "target": "m3t",
+        "points": [
+          [
+            573.3333333333333,
+            716
+          ],
+          [
+            1480.0,
+            716
+          ]
+        ]
+      },
+      {
+        "id": "message4",
+        "source": "m4s",
+        "target": "m4t",
+        "points": [
+          [
+            573.3333333333333,
+            841
+          ],
+          [
+            346.66666666666663,
+            841
+          ]
+        ]
+      }
+    ],
+    "author_native_cell": true
+  }
+}

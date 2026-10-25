@@ -1,0 +1,432 @@
+{
+  "UC": "UC-01",
+  "stem": "seqdao_uc01_confirmCheckout_PartA",
+  "title": "UC-01 confirmCheckout — DAO sequence / Part A",
+  "figure": "4.3.2.1.OP-01.A",
+  "part": "Part A",
+  "scope": "Same request and transaction across all parts; focus 1/7. Mechanical reads: responsibility table (report 4.3.2).",
+  "continuation": "From request boundary → this part → seqdao_uc01_confirmCheckout_PartB.",
+  "transaction_summary": "Transaction key (whole request): BEGIN IMMEDIATE → checked rowcount / inserts → COMMIT; failure → ROLLBACK if active. Busy: retry, nothing changed.",
+  "target_note": "† design target, not yet in code at C0: F-04; F-07; P2-S05; P2-S13; P2-S12 connection settings; MATCH is Static only.",
+  "phase3": {
+    "diagram_type": "dao_sequence",
+    "UC": "UC-01",
+    "op_id": "OP-01",
+    "operation": "confirmCheckout",
+    "parameters": "hubId, addressId, lines(itemId, quantity), voucherCode?, paymentMethod, onlineOption?, simulatorOutcome?, quoteFingerprint, quotedTotal, checkoutToken",
+    "ssd_occurrence": "models/UC-01/ssd_uc01_PartB.drawio#01S-M04",
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Customer",
+        "role": "actor",
+        "label": "Customer"
+      },
+      {
+        "id": "view",
+        "class": "order",
+        "role": "view",
+        "label": "«view»\norder"
+      },
+      {
+        "id": "ctrl",
+        "class": "PlaceOrderController",
+        "role": "controller",
+        "label": "PlaceOrderController"
+      },
+      {
+        "id": "obj9",
+        "class": "Quote",
+        "role": "domain",
+        "label": "Quote"
+      },
+      {
+        "id": "obj4",
+        "class": "OrderDAO",
+        "role": "data_access",
+        "label": "«DAO»\nOrderDAO"
+      },
+      {
+        "id": "db",
+        "class": "Database",
+        "role": "database",
+        "label": ":Database\n«resource»"
+      }
+    ],
+    "messages": [
+      {
+        "from": "actor",
+        "to": "view",
+        "method": "confirm",
+        "kind": "ssd",
+        "arguments": "hubId, addressId, lines(itemId, quantity), voucherCode?, paymentMethod, onlineOption?, simulatorOutcome?, quoteFingerprint, quotedTotal, checkoutToken",
+        "guard": "",
+        "PC_MG": "UC01-PC01; UC01-PC02; UC01-PC03; UC01-PC04; UC01-PC05; UC01-PC06; UC01-MG01; UC01-MG02; UC01-MG03",
+        "label": "confirmCheckout(hubId, addressId, lines(itemId, quantity), voucherCode?, paymentMethod, onlineOption?, simulatorOutcome?, quoteFingerprint, quotedTotal, checkoutToken) → order.confirm [HTTP adapter]",
+        "base_label": "confirmCheckout(hubId, addressId, lines(itemId, quantity), voucherCode?, paymentMethod, onlineOption?, simulatorOutcome?, quoteFingerprint, quotedTotal, checkoutToken) → order.confirm [HTTP adapter]",
+        "fragment": false,
+        "draw_arrow": false,
+        "y": 341,
+        "edge_id": "message0"
+      },
+      {
+        "from": "view",
+        "to": "ctrl",
+        "method": "confirm_order",
+        "kind": "call",
+        "arguments": "user_id, hub_id, address_id, quantities, token, quoted_total, voucher_code, payment, quote_fingerprint",
+        "guard": "",
+        "PC_MG": "UC01-PC01; UC01-PC02; UC01-PC03; UC01-PC04; UC01-PC05; UC01-PC06; UC01-MG01; UC01-MG02; UC01-MG03",
+        "label": "confirm_order†(user_id, hub_id, address_id, quantities, token, quoted_total, voucher_code, payment, quote_fingerprint)",
+        "base_label": "confirm_order{dagger}(user_id, hub_id, address_id, quantities, token, quoted_total, voucher_code, payment, quote_fingerprint)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "confirm_order(self, user_id: int, hub_id: int, address_id: Optional[int], quantities: Mapping[int, str], idempotency_token: str, quoted_total: Optional[int] = None, voucher_code: Optional[str] = None, payment: Optional[PaymentChoice] = None, quote_fingerprint: Optional[str] = None) -> OrderConfirmation",
+        "status": "P4-TARGET",
+        "P4_input": "F-04; F-07; P2-S05; P2-S13",
+        "y": 466,
+        "edge_id": "message1"
+      },
+      {
+        "from": "ctrl",
+        "to": "ctrl",
+        "method": "_require_customer",
+        "kind": "call",
+        "arguments": "user_id",
+        "guard": "",
+        "PC_MG": "UC01-PC01; UC01-PC02; UC01-PC03; UC01-PC04; UC01-PC05; UC01-PC06; UC01-MG01; UC01-MG02; UC01-MG03",
+        "label": "_require_customer(user_id)",
+        "base_label": "_require_customer{dagger}(user_id)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "_require_customer(self, user_id: int) -> Customer",
+        "status": "MATCH",
+        "P4_input": "",
+        "y": 591,
+        "edge_id": "message2"
+      },
+      {
+        "from": "ctrl",
+        "to": "ctrl",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC01-PC01; UC01-PC02; UC01-PC03; UC01-PC04; UC01-PC05; UC01-PC06; UC01-MG01; UC01-MG02; UC01-MG03",
+        "label": "Active customer / nonempty token / allowed PaymentChoice. User simulator choice happens before the transaction; deterministic local decision has no network or wait.",
+        "base_label": "Active customer / nonempty token / allowed PaymentChoice. User simulator choice happens before the transaction; deterministic local decision has no network or wait.",
+        "fragment": false,
+        "draw_arrow": false,
+        "y": 716
+      },
+      {
+        "from": "ctrl",
+        "to": "db",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC01-PC01; UC01-PC02; UC01-PC03; UC01-PC04; UC01-PC05; UC01-PC06; UC01-MG01; UC01-MG02; UC01-MG03",
+        "label": "BEGIN IMMEDIATE†; acquire write transaction before live-state checks.",
+        "base_label": "BEGIN IMMEDIATE†; acquire write transaction before live-state checks.",
+        "fragment": false,
+        "draw_arrow": true,
+        "y": 841,
+        "edge_id": "message4"
+      },
+      {
+        "from": "ctrl",
+        "to": "obj4",
+        "method": "get_by_token",
+        "kind": "call",
+        "arguments": "token",
+        "guard": "",
+        "PC_MG": "UC01-PC01; UC01-PC02; UC01-PC03; UC01-PC04; UC01-PC05; UC01-PC06; UC01-MG01; UC01-MG02; UC01-MG03",
+        "label": "get_by_token(token)",
+        "base_label": "get_by_token{dagger}(token)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "get_by_token(self, token: str) -> Optional[Order]",
+        "status": "MATCH",
+        "P4_input": "",
+        "y": 966,
+        "edge_id": "message5"
+      }
+    ],
+    "elements": [
+      {
+        "class": "order",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "PlaceOrderController",
+        "attributes": [],
+        "methods": [
+          "confirm_order",
+          "_require_customer"
+        ],
+        "method_signatures": {
+          "confirm_order": "confirm_order(self, user_id: int, hub_id: int, address_id: Optional[int], quantities: Mapping[int, str], idempotency_token: str, quoted_total: Optional[int] = None, voucher_code: Optional[str] = None, payment: Optional[PaymentChoice] = None, quote_fingerprint: Optional[str] = None) -> OrderConfirmation",
+          "_require_customer": "_require_customer(self, user_id: int) -> Customer"
+        }
+      },
+      {
+        "class": "Quote",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "OrderDAO",
+        "attributes": [],
+        "methods": [
+          "get_by_token"
+        ],
+        "method_signatures": {
+          "get_by_token": "get_by_token(self, token: str) -> Optional[Order]"
+        }
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "order",
+        "target": "PlaceOrderController",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "PlaceOrderController",
+        "target": "OrderDAO",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      }
+    ],
+    "states": []
+  },
+  "placed_width_mm": 230,
+  "source_design_sequences": [
+    "models\\UC-01\\seq_uc01_confirmCheckout_PartA.json",
+    "models\\UC-01\\seq_uc01_confirmCheckout_PartB.json"
+  ],
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "refresh_policy": "Reviewed model MATCH only; changed signature fails until explicit alias/lane review; no behavioral auto-qualification.",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "render_receipt": {
+    "canvas": [
+      1600,
+      1250
+    ],
+    "minimum_font_px": 24,
+    "placed_width_mm": 230,
+    "minimum_pt": 9.779527559055119,
+    "native_font_matches_svg": true,
+    "label_bounds": [
+      [
+        35,
+        15,
+        1530,
+        32.48
+      ],
+      [
+        35,
+        54,
+        1530,
+        27.839999999999996
+      ],
+      [
+        15.0,
+        105,
+        210,
+        27.839999999999996
+      ],
+      [
+        287.0,
+        105,
+        210,
+        55.67999999999999
+      ],
+      [
+        559.0,
+        105,
+        210,
+        83.51999999999998
+      ],
+      [
+        831.0,
+        105,
+        210,
+        27.839999999999996
+      ],
+      [
+        1103.0,
+        105,
+        210,
+        83.51999999999998
+      ],
+      [
+        1375.0,
+        105,
+        210,
+        55.67999999999999
+      ],
+      [
+        45,
+        242,
+        1510,
+        55.67999999999999
+      ],
+      [
+        45,
+        367,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        492,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        622,
+        1510,
+        55.67999999999999
+      ],
+      [
+        45,
+        742,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        867,
+        1510,
+        27.839999999999996
+      ],
+      [
+        35,
+        1035,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1070,
+        1530,
+        55.67999999999999
+      ],
+      [
+        35,
+        1130,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1190,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1220,
+        1530,
+        27.839999999999996
+      ]
+    ],
+    "edges": [
+      {
+        "id": "message0",
+        "source": "m0s",
+        "target": "m0t",
+        "points": [
+          [
+            120.0,
+            341
+          ],
+          [
+            392.0,
+            341
+          ]
+        ]
+      },
+      {
+        "id": "message1",
+        "source": "m1s",
+        "target": "m1t",
+        "points": [
+          [
+            392.0,
+            466
+          ],
+          [
+            664.0,
+            466
+          ]
+        ]
+      },
+      {
+        "id": "message2",
+        "source": "m2s",
+        "target": "m2t",
+        "points": [
+          [
+            664.0,
+            591
+          ],
+          [
+            699.0,
+            591
+          ],
+          [
+            699.0,
+            613
+          ],
+          [
+            664.0,
+            613
+          ]
+        ]
+      },
+      {
+        "id": "message4",
+        "source": "m4s",
+        "target": "m4t",
+        "points": [
+          [
+            664.0,
+            841
+          ],
+          [
+            1480.0,
+            841
+          ]
+        ]
+      },
+      {
+        "id": "message5",
+        "source": "m5s",
+        "target": "m5t",
+        "points": [
+          [
+            664.0,
+            966
+          ],
+          [
+            1208.0,
+            966
+          ]
+        ]
+      }
+    ],
+    "author_native_cell": true
+  }
+}

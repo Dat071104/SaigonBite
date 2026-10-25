@@ -1,0 +1,428 @@
+{
+  "UC": "UC-01",
+  "stem": "seqdao_uc01_confirmCheckout_PartC",
+  "title": "UC-01 confirmCheckout — DAO sequence / Part C",
+  "figure": "4.3.2.1.OP-01.C",
+  "part": "Part C",
+  "scope": "Same request and transaction across all parts; focus 3/7. Mechanical reads: responsibility table (report 4.3.2).",
+  "continuation": "From seqdao_uc01_confirmCheckout_PartB → this part → seqdao_uc01_confirmCheckout_PartD.",
+  "transaction_summary": "Transaction key (whole request): BEGIN IMMEDIATE → checked rowcount / inserts → COMMIT; failure → ROLLBACK if active. Busy: retry, nothing changed.",
+  "target_note": "† design target, not yet in code at C0: F-04; F-07; P2-S05; P2-S13; P2-S12 connection settings; MATCH is Static only.",
+  "phase3": {
+    "diagram_type": "dao_sequence",
+    "UC": "UC-01",
+    "op_id": "OP-01",
+    "operation": "confirmCheckout",
+    "parameters": "hubId, addressId, lines(itemId, quantity), voucherCode?, paymentMethod, onlineOption?, simulatorOutcome?, quoteFingerprint, quotedTotal, checkoutToken",
+    "ssd_occurrence": "models/UC-01/ssd_uc01_PartB.drawio#01S-M04",
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Customer",
+        "role": "actor",
+        "label": "Customer"
+      },
+      {
+        "id": "view",
+        "class": "order",
+        "role": "view",
+        "label": "«view»\norder"
+      },
+      {
+        "id": "ctrl",
+        "class": "PlaceOrderController",
+        "role": "controller",
+        "label": "PlaceOrderController"
+      },
+      {
+        "id": "obj9",
+        "class": "Quote",
+        "role": "domain",
+        "label": "Quote"
+      },
+      {
+        "id": "obj6",
+        "class": "HubDAO",
+        "role": "data_access",
+        "label": "«DAO»\nHubDAO"
+      },
+      {
+        "id": "db",
+        "class": "Database",
+        "role": "database",
+        "label": ":Database\n«resource»"
+      }
+    ],
+    "messages": [
+      {
+        "from": "ctrl",
+        "to": "obj6",
+        "method": "get",
+        "kind": "call",
+        "arguments": "hub_id",
+        "guard": "",
+        "PC_MG": "UC01-PC01; UC01-PC02; UC01-PC03; UC01-PC04; UC01-PC05; UC01-PC06; UC01-MG01; UC01-MG02; UC01-MG03",
+        "label": "get(hub_id)",
+        "base_label": "get{dagger}(hub_id)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "get(self, hub_id: int) -> Optional[Hub]",
+        "status": "MATCH",
+        "P4_input": "",
+        "y": 341,
+        "edge_id": "message0"
+      },
+      {
+        "from": "ctrl",
+        "to": "obj6",
+        "method": "active_load",
+        "kind": "call",
+        "arguments": "hub_id",
+        "guard": "",
+        "PC_MG": "UC01-PC01; UC01-PC02; UC01-PC03; UC01-PC04; UC01-PC05; UC01-PC06; UC01-MG01; UC01-MG02; UC01-MG03",
+        "label": "active_load(hub_id)",
+        "base_label": "active_load{dagger}(hub_id)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "active_load(self, hub_id: int) -> int",
+        "status": "MATCH",
+        "P4_input": "",
+        "y": 466,
+        "edge_id": "message1"
+      },
+      {
+        "from": "obj6",
+        "to": "db",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC01-PC01; UC01-PC02; UC01-PC03; UC01-PC04; UC01-PC05; UC01-PC06; UC01-MG01; UC01-MG02; UC01-MG03",
+        "label": "SQL note: SELECT hub not archived; SELECT COUNT orders in PLACED, CONFIRMED, PREPARING.",
+        "base_label": "SQL note: SELECT hub not archived; SELECT COUNT orders in PLACED, CONFIRMED, PREPARING.",
+        "fragment": false,
+        "draw_arrow": true,
+        "y": 591,
+        "edge_id": "message2"
+      },
+      {
+        "from": "ctrl",
+        "to": "ctrl",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC01-PC01; UC01-PC02; UC01-PC03; UC01-PC04; UC01-PC05; UC01-PC06; UC01-MG01; UC01-MG02; UC01-MG03",
+        "label": "Revalidate complete eligibility under lock: own active address; active hub; load < capacity; positive quantities; listed/AVAILABLE active item and brand; voucher date/minimum/cap. Refusal changes nothing.",
+        "base_label": "Revalidate complete eligibility under lock: own active address; active hub; load < capacity; positive quantities; listed/AVAILABLE active item and brand; voucher date/minimum/cap. Refusal changes nothing.",
+        "fragment": true,
+        "draw_arrow": false,
+        "y": 716
+      },
+      {
+        "from": "ctrl",
+        "to": "obj6",
+        "method": "get_available_item",
+        "kind": "call",
+        "arguments": "hub_id, item_id",
+        "guard": "loop each requested line",
+        "PC_MG": "UC01-PC01; UC01-PC02; UC01-PC03; UC01-PC04; UC01-PC05; UC01-PC06; UC01-MG01; UC01-MG02; UC01-MG03",
+        "label": "get_available_item(hub_id, item_id)",
+        "base_label": "get_available_item{dagger}(hub_id, item_id)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "get_available_item(self, hub_id: int, menu_item_id: int) -> Optional[MenuItem]",
+        "status": "MATCH",
+        "P4_input": "",
+        "y": 841,
+        "edge_id": "message4"
+      },
+      {
+        "from": "obj6",
+        "to": "db",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC01-PC01; UC01-PC02; UC01-PC03; UC01-PC04; UC01-PC05; UC01-PC06; UC01-MG01; UC01-MG02; UC01-MG03",
+        "label": "SQL note: SELECT hub_menu_item + menu_item + brand: listed, is_available=1; item/brand not archived.",
+        "base_label": "SQL note: SELECT hub_menu_item + menu_item + brand: listed, is_available=1; item/brand not archived.",
+        "fragment": false,
+        "draw_arrow": true,
+        "y": 966,
+        "edge_id": "message5"
+      }
+    ],
+    "elements": [
+      {
+        "class": "order",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "PlaceOrderController",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "Quote",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "HubDAO",
+        "attributes": [],
+        "methods": [
+          "get",
+          "active_load",
+          "get_available_item"
+        ],
+        "method_signatures": {
+          "get": "get(self, hub_id: int) -> Optional[Hub]",
+          "active_load": "active_load(self, hub_id: int) -> int",
+          "get_available_item": "get_available_item(self, hub_id: int, menu_item_id: int) -> Optional[MenuItem]"
+        }
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "PlaceOrderController",
+        "target": "HubDAO",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      }
+    ],
+    "states": [
+      {
+        "class": "Order",
+        "attribute": "state",
+        "values": [
+          "PLACED"
+        ]
+      }
+    ]
+  },
+  "placed_width_mm": 230,
+  "source_design_sequences": [
+    "models\\UC-01\\seq_uc01_confirmCheckout_PartA.json",
+    "models\\UC-01\\seq_uc01_confirmCheckout_PartB.json"
+  ],
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "refresh_policy": "Reviewed model MATCH only; changed signature fails until explicit alias/lane review; no behavioral auto-qualification.",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "render_receipt": {
+    "canvas": [
+      1600,
+      1250
+    ],
+    "minimum_font_px": 24,
+    "placed_width_mm": 230,
+    "minimum_pt": 9.779527559055119,
+    "native_font_matches_svg": true,
+    "label_bounds": [
+      [
+        35,
+        15,
+        1530,
+        32.48
+      ],
+      [
+        35,
+        54,
+        1530,
+        27.839999999999996
+      ],
+      [
+        15.0,
+        105,
+        210,
+        27.839999999999996
+      ],
+      [
+        287.0,
+        105,
+        210,
+        55.67999999999999
+      ],
+      [
+        559.0,
+        105,
+        210,
+        83.51999999999998
+      ],
+      [
+        831.0,
+        105,
+        210,
+        27.839999999999996
+      ],
+      [
+        1103.0,
+        105,
+        210,
+        83.51999999999998
+      ],
+      [
+        1375.0,
+        105,
+        210,
+        55.67999999999999
+      ],
+      [
+        45,
+        242,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        367,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        492,
+        1510,
+        27.839999999999996
+      ],
+      [
+        42,
+        617,
+        56,
+        27.839999999999996
+      ],
+      [
+        110,
+        622,
+        1440,
+        55.67999999999999
+      ],
+      [
+        45,
+        742,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        867,
+        1510,
+        27.839999999999996
+      ],
+      [
+        35,
+        1035,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1070,
+        1530,
+        55.67999999999999
+      ],
+      [
+        35,
+        1130,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1190,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1220,
+        1530,
+        27.839999999999996
+      ]
+    ],
+    "edges": [
+      {
+        "id": "message0",
+        "source": "m0s",
+        "target": "m0t",
+        "points": [
+          [
+            664.0,
+            341
+          ],
+          [
+            1208.0,
+            341
+          ]
+        ]
+      },
+      {
+        "id": "message1",
+        "source": "m1s",
+        "target": "m1t",
+        "points": [
+          [
+            664.0,
+            466
+          ],
+          [
+            1208.0,
+            466
+          ]
+        ]
+      },
+      {
+        "id": "message2",
+        "source": "m2s",
+        "target": "m2t",
+        "points": [
+          [
+            1208.0,
+            591
+          ],
+          [
+            1480.0,
+            591
+          ]
+        ]
+      },
+      {
+        "id": "message4",
+        "source": "m4s",
+        "target": "m4t",
+        "points": [
+          [
+            664.0,
+            841
+          ],
+          [
+            1208.0,
+            841
+          ]
+        ]
+      },
+      {
+        "id": "message5",
+        "source": "m5s",
+        "target": "m5t",
+        "points": [
+          [
+            1208.0,
+            966
+          ],
+          [
+            1480.0,
+            966
+          ]
+        ]
+      }
+    ],
+    "author_native_cell": true
+  }
+}

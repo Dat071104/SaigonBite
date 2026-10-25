@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1250" viewBox="0 0 1600 1250"><rect width="100%" height="100%" fill="white"/>
+<text x="35" y="41.040000000000006" font-family="Arial" font-size="28" font-weight="bold" fill="#202B36">UC-05 rejectOrder — DAO sequence / Part D</text>
+<text x="35" y="76.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Same request and transaction across all parts; focus 4/6. Mechanical reads: responsibility table (report 4.3.2).</text>
+<rect x="29.85714285714286" y="100" width="180.28571428571428" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
+<text x="36.85714285714286" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Kitchen staff</text>
+<polyline points="120.0,220 120.0,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<rect x="224.14285714285714" y="100" width="180.28571428571428" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
+<text x="231.14285714285714" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">«view»</text>
+<text x="231.14285714285714" y="155.16" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">kitchen</text>
+<polyline points="314.2857142857143,220 314.2857142857143,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<rect x="418.42857142857144" y="100" width="180.28571428571428" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
+<text x="425.42857142857144" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Kitchen</text>
+<text x="425.42857142857144" y="155.16" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Controller</text>
+<polyline points="508.57142857142856,220 508.57142857142856,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<rect x="612.7142857142858" y="100" width="180.28571428571428" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
+<text x="619.7142857142858" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">controllers.com</text>
+<text x="619.7142857142858" y="155.16" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">mon</text>
+<polyline points="702.8571428571429,220 702.8571428571429,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<rect x="807.0" y="100" width="180.28571428571428" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
+<text x="814.0" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Order</text>
+<polyline points="897.1428571428571,220 897.1428571428571,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<rect x="1001.2857142857144" y="100" width="180.28571428571428" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
+<text x="1008.2857142857144" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Payment</text>
+<polyline points="1091.4285714285716,220 1091.4285714285716,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<rect x="1195.5714285714287" y="100" width="180.28571428571428" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
+<text x="1202.5714285714287" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">«DAO»</text>
+<text x="1202.5714285714287" y="155.16" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Payment</text>
+<text x="1202.5714285714287" y="183.0" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">DAO</text>
+<polyline points="1285.7142857142858,220 1285.7142857142858,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<rect x="1389.857142857143" y="100" width="180.28571428571428" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
+<text x="1396.857142857143" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">:Database</text>
+<text x="1396.857142857143" y="155.16" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">«resource»</text>
+<polyline points="1480.0,220 1480.0,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<rect x="42" y="241" width="1516" height="30.839999999999996" fill="white"/>
+<text x="45" y="264.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">get_by_order_id(order.id)</text>
+<polyline points="702.8571428571429,341 1285.7142857142858,341" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="1273.1080262813482,347.08951747755725 1285.7142857142858,341 1273.1080262813482,334.91048252244275" fill="none" stroke="#004387" stroke-width="2"/>
+<rect x="1280.7142857142858" y="341" width="10" height="18" stroke="#004387" fill="#DAE9F5" stroke-width="2"/>
+<rect x="42" y="366" width="1516" height="30.839999999999996" fill="white"/>
+<text x="45" y="389.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">release_for_unfulfilled_order†()</text>
+<polyline points="702.8571428571429,466 1091.4285714285716,466" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="1078.822311995634,472.08951747755725 1091.4285714285716,466 1078.822311995634,459.91048252244275" fill="none" stroke="#004387" stroke-width="2"/>
+<rect x="1086.4285714285716" y="466" width="10" height="18" stroke="#004387" fill="#DAE9F5" stroke-width="2"/>
+<rect x="35" y="492" width="1530" height="111" stroke="#004387" fill="#FFF8E9" stroke-width="2"/>
+<text x="45" y="519.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">† F-02: COD PENDING → VOIDED; ONLINE PAID → REFUND_PENDING AND refund_amount = full captured C (replace any partial owed).</text>
+<text x="45" y="547.1600000000001" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">No payout, no REFUNDED.</text>
+<rect x="42" y="616" width="1516" height="30.839999999999996" fill="white"/>
+<text x="45" y="639.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">set_amounts†(order.id, payment.amount, payment.refund_amount, now)</text>
+<polyline points="702.8571428571429,716 1285.7142857142858,716" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="1273.1080262813482,722.0895174775573 1285.7142857142858,716 1273.1080262813482,709.9104825224427" fill="none" stroke="#004387" stroke-width="2"/>
+<rect x="1280.7142857142858" y="716" width="10" height="18" stroke="#004387" fill="#DAE9F5" stroke-width="2"/>
+<rect x="42" y="741" width="1516" height="30.839999999999996" fill="white"/>
+<text x="45" y="764.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">SQL note: † UPDATE payment amounts by order_id; expose bool rowcount == 1 (C0 returns None).</text>
+<polyline points="1285.7142857142858,841 1480.0,841" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="1467.3937405670624,847.0895174775573 1480.0,841 1467.3937405670624,834.9104825224427" fill="none" stroke="#004387" stroke-width="2"/>
+<rect x="42" y="866" width="1516" height="30.839999999999996" fill="white"/>
+<text x="45" y="889.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">† check bool True; 0 / False → ROLLBACK rejection and withdrawal</text>
+<polyline points="1285.7142857142858,966 702.8571428571429,966" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<polyline points="715.4634022900804,959.9104825224427 702.8571428571429,966 715.4634022900804,972.0895174775573" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="35" y="1057.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">From seqdao_uc05_rejectOrder_PartC → this part → seqdao_uc05_rejectOrder_PartE.</text>
+<text x="35" y="1092.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Transaction key (whole request): BEGIN IMMEDIATE → checked rowcount / inserts → COMMIT; failure → ROLLBACK if active. Busy: retry,</text>
+<text x="35" y="1120.1599999999999" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">nothing changed.</text>
+<text x="35" y="1152.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">† design target, not yet in code at C0: F-02; P2-S01; P2-S13; P3-S03; P2-S12 connection settings; MATCH is Static only.</text>
+<text x="35" y="1212.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Figure 4.3.2.5.OP-03.D. rejectOrder / Part D — Author: 722I0004 · AI-assisted (Codex)</text>
+<text x="35" y="1242.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Static only · 230 mm landscape · minimum 9.78 pt · native draw.io and final DOCX/PDF placement UNTESTED</text>
+</svg>

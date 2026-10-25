@@ -1,0 +1,223 @@
+{
+  "UC": "UC-02",
+  "stem": "seqdao_uc02_takeDelivery_PartE",
+  "title": "UC-02 takeDelivery — DAO sequence / Part E",
+  "figure": "4.3.2.2.OP-10.E",
+  "part": "Part E",
+  "scope": "Same request and transaction across all parts; focus 5/5. Mechanical reads: responsibility table (report 4.3.2).",
+  "continuation": "From seqdao_uc02_takeDelivery_PartD → this part → response boundary.",
+  "transaction_summary": "Transaction key (whole request): BEGIN IMMEDIATE → checked rowcount / inserts → COMMIT; failure → ROLLBACK if active. Busy: retry, nothing changed.",
+  "target_note": "† design target, not yet in code at C0: P2-S13; P3-S03; P2-S12 connection settings; MATCH is Static only.",
+  "phase3": {
+    "diagram_type": "dao_sequence",
+    "UC": "UC-02",
+    "op_id": "OP-10",
+    "operation": "takeDelivery",
+    "parameters": "orderId",
+    "ssd_occurrence": "models/UC-02/ssd_uc02_PartA.drawio#M03",
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Shipper",
+        "role": "actor",
+        "label": "Shipper"
+      },
+      {
+        "id": "view",
+        "class": "delivery",
+        "role": "view",
+        "label": "«view»\ndelivery"
+      },
+      {
+        "id": "ctrl",
+        "class": "DeliveryController",
+        "role": "controller",
+        "label": "DeliveryController"
+      },
+      {
+        "id": "obj10",
+        "class": "Delivery",
+        "role": "domain",
+        "label": "Delivery"
+      },
+      {
+        "id": "obj4",
+        "class": "DeliveryDAO",
+        "role": "data_access",
+        "label": "«DAO»\nDeliveryDAO"
+      },
+      {
+        "id": "db",
+        "class": "Database",
+        "role": "database",
+        "label": ":Database\n«resource»"
+      }
+    ],
+    "messages": [
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "",
+        "guard": "database is locked: rollback if active; failed BEGIN has no active transaction",
+        "PC_MG": "UC02-PC01; UC02-MG01",
+        "label": "Busy, please retry; nothing was changed",
+        "base_label": "Busy, please retry; nothing was changed",
+        "fragment": false,
+        "draw_arrow": false,
+        "y": 341,
+        "edge_id": "message0"
+      }
+    ],
+    "elements": [
+      {
+        "class": "delivery",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "DeliveryController",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "Delivery",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "DeliveryDAO",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      }
+    ],
+    "dependencies": [],
+    "states": []
+  },
+  "placed_width_mm": 230,
+  "source_design_sequences": [
+    "models\\UC-02\\seq_uc02_takeDelivery.json"
+  ],
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "refresh_policy": "Reviewed model MATCH only; changed signature fails until explicit alias/lane review; no behavioral auto-qualification.",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "render_receipt": {
+    "canvas": [
+      1600,
+      1250
+    ],
+    "minimum_font_px": 24,
+    "placed_width_mm": 230,
+    "minimum_pt": 9.779527559055119,
+    "native_font_matches_svg": true,
+    "label_bounds": [
+      [
+        35,
+        15,
+        1530,
+        32.48
+      ],
+      [
+        35,
+        54,
+        1530,
+        27.839999999999996
+      ],
+      [
+        15.0,
+        105,
+        210,
+        27.839999999999996
+      ],
+      [
+        287.0,
+        105,
+        210,
+        55.67999999999999
+      ],
+      [
+        559.0,
+        105,
+        210,
+        55.67999999999999
+      ],
+      [
+        831.0,
+        105,
+        210,
+        27.839999999999996
+      ],
+      [
+        1103.0,
+        105,
+        210,
+        83.51999999999998
+      ],
+      [
+        1375.0,
+        105,
+        210,
+        55.67999999999999
+      ],
+      [
+        45,
+        242,
+        1510,
+        27.839999999999996
+      ],
+      [
+        35,
+        1035,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1070,
+        1530,
+        55.67999999999999
+      ],
+      [
+        35,
+        1130,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1190,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1220,
+        1530,
+        27.839999999999996
+      ]
+    ],
+    "edges": [
+      {
+        "id": "message0",
+        "source": "m0s",
+        "target": "m0t",
+        "points": [
+          [
+            664.0,
+            341
+          ],
+          [
+            392.0,
+            341
+          ]
+        ]
+      }
+    ],
+    "author_native_cell": true
+  }
+}

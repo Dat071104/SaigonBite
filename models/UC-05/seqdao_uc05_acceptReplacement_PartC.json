@@ -1,0 +1,403 @@
+{
+  "UC": "UC-05",
+  "stem": "seqdao_uc05_acceptReplacement_PartC",
+  "title": "UC-05 acceptReplacement — DAO sequence / Part C",
+  "figure": "4.3.2.5.OP-05.C",
+  "part": "Part C",
+  "scope": "Same request and transaction across all parts; focus 3/7. Mechanical reads: responsibility table (report 4.3.2).",
+  "continuation": "From seqdao_uc05_acceptReplacement_PartB → this part → seqdao_uc05_acceptReplacement_PartD.",
+  "transaction_summary": "Transaction key (whole request): BEGIN IMMEDIATE → checked rowcount / inserts → COMMIT; failure → ROLLBACK if active. Busy: retry, nothing changed.",
+  "target_note": "† design target, not yet in code at C0: F-02; F-05; P2-S09; P2-S11; P2-S13; P3-S03; P2-S12 connection settings; MATCH is Static only.",
+  "phase3": {
+    "diagram_type": "dao_sequence",
+    "UC": "UC-05",
+    "op_id": "OP-05",
+    "operation": "acceptReplacement",
+    "parameters": "orderId, offerId",
+    "ssd_occurrence": "models/UC-05/ssd_uc05_PartB.drawio#05S-M08",
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Customer",
+        "role": "actor",
+        "label": "Customer"
+      },
+      {
+        "id": "view",
+        "class": "order",
+        "role": "view",
+        "label": "«view»\norder"
+      },
+      {
+        "id": "ctrl",
+        "class": "OrderTrackingController",
+        "role": "controller",
+        "label": "OrderTrackingController"
+      },
+      {
+        "id": "obj7",
+        "class": "Order",
+        "role": "domain",
+        "label": "Order"
+      },
+      {
+        "id": "obj5",
+        "class": "ReplacementOfferDAO",
+        "role": "data_access",
+        "label": "«DAO»\nReplacementOfferDAO"
+      },
+      {
+        "id": "db",
+        "class": "Database",
+        "role": "database",
+        "label": ":Database\n«resource»"
+      }
+    ],
+    "messages": [
+      {
+        "from": "ctrl",
+        "to": "ctrl",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC05-PC04; UC05-MG01",
+        "label": "† Recheck target eligibility under same transaction; different source, not already another order line. Catalog price may change: valid acceptance uses stored offer.new_unit_price.",
+        "base_label": "† Recheck target eligibility under same transaction; different source, not already another order line. Catalog price may change: valid acceptance uses stored offer.new_unit_price.",
+        "fragment": false,
+        "draw_arrow": false,
+        "y": 341
+      },
+      {
+        "from": "ctrl",
+        "to": "ctrl",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "target invalid",
+        "PC_MG": "UC05-PC04; UC05-MG01",
+        "label": "Invalid target intentionally withdraws ONLY exact open offer; no Order/Line/Payment changes. This is a committed refusal branch, not rollback of a successful withdrawal.",
+        "base_label": "Invalid target intentionally withdraws ONLY exact open offer; no Order/Line/Payment changes. This is a committed refusal branch, not rollback of a successful withdrawal.",
+        "fragment": true,
+        "draw_arrow": false,
+        "y": 466
+      },
+      {
+        "from": "ctrl",
+        "to": "obj5",
+        "method": "decide",
+        "kind": "call",
+        "arguments": "offer.id, OfferState.WITHDRAWN, now",
+        "guard": "invalid target; exact offer already checked",
+        "PC_MG": "UC05-PC04; UC05-MG01",
+        "label": "decide(offer.id, OfferState.WITHDRAWN, now)",
+        "base_label": "decide{dagger}(offer.id, OfferState.WITHDRAWN, now)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "decide(self, offer_id: int, to_state: OfferState, now: str) -> bool",
+        "status": "MATCH",
+        "P4_input": "",
+        "y": 591,
+        "edge_id": "message2"
+      },
+      {
+        "from": "obj5",
+        "to": "db",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC05-PC04; UC05-MG01",
+        "label": "SQL note: UPDATE replacement_offer by exact id AND state = 'OFFERED'; WITHDRAWN.",
+        "base_label": "SQL note: UPDATE replacement_offer by exact id AND state = 'OFFERED'; WITHDRAWN.",
+        "fragment": false,
+        "draw_arrow": true,
+        "y": 716,
+        "edge_id": "message3"
+      },
+      {
+        "from": "obj5",
+        "to": "ctrl",
+        "method": "",
+        "kind": "return",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC05-PC04; UC05-MG01",
+        "label": "rowcount == 1 required; 0 / False → ROLLBACK; True → COMMIT withdrawal only",
+        "base_label": "rowcount == 1 required; 0 / False → ROLLBACK; True → COMMIT withdrawal only",
+        "fragment": false,
+        "draw_arrow": false,
+        "y": 841,
+        "edge_id": "message4"
+      },
+      {
+        "from": "ctrl",
+        "to": "db",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "invalid target AND withdrawal True",
+        "PC_MG": "UC05-PC04; UC05-MG01",
+        "label": "COMMIT† invalid-target withdrawal; Order, order_line and payment unchanged; respond withdrawn offer + reason.",
+        "base_label": "COMMIT† invalid-target withdrawal; Order, order_line and payment unchanged; respond withdrawn offer + reason.",
+        "fragment": false,
+        "draw_arrow": true,
+        "y": 966,
+        "edge_id": "message5"
+      }
+    ],
+    "elements": [
+      {
+        "class": "order",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "OrderTrackingController",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "Order",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "ReplacementOfferDAO",
+        "attributes": [],
+        "methods": [
+          "decide"
+        ],
+        "method_signatures": {
+          "decide": "decide(self, offer_id: int, to_state: OfferState, now: str) -> bool"
+        }
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "OrderTrackingController",
+        "target": "ReplacementOfferDAO",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      }
+    ],
+    "states": [
+      {
+        "class": "ReplacementOffer",
+        "attribute": "state",
+        "values": [
+          "OFFERED",
+          "WITHDRAWN"
+        ]
+      }
+    ]
+  },
+  "placed_width_mm": 230,
+  "source_design_sequences": [
+    "models\\UC-05\\seq_uc05_acceptReplacement_PartA.json",
+    "models\\UC-05\\seq_uc05_acceptReplacement_PartB.json"
+  ],
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "refresh_policy": "Reviewed model MATCH only; changed signature fails until explicit alias/lane review; no behavioral auto-qualification.",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "render_receipt": {
+    "canvas": [
+      1600,
+      1250
+    ],
+    "minimum_font_px": 24,
+    "placed_width_mm": 230,
+    "minimum_pt": 9.779527559055119,
+    "native_font_matches_svg": true,
+    "label_bounds": [
+      [
+        35,
+        15,
+        1530,
+        32.48
+      ],
+      [
+        35,
+        54,
+        1530,
+        27.839999999999996
+      ],
+      [
+        15.0,
+        105,
+        210,
+        27.839999999999996
+      ],
+      [
+        287.0,
+        105,
+        210,
+        55.67999999999999
+      ],
+      [
+        559.0,
+        105,
+        210,
+        83.51999999999998
+      ],
+      [
+        831.0,
+        105,
+        210,
+        27.839999999999996
+      ],
+      [
+        1103.0,
+        105,
+        210,
+        111.35999999999999
+      ],
+      [
+        1375.0,
+        105,
+        210,
+        55.67999999999999
+      ],
+      [
+        45,
+        247,
+        1510,
+        55.67999999999999
+      ],
+      [
+        42,
+        367,
+        56,
+        27.839999999999996
+      ],
+      [
+        110,
+        372,
+        1440,
+        55.67999999999999
+      ],
+      [
+        45,
+        492,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        617,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        742,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        867,
+        1510,
+        55.67999999999999
+      ],
+      [
+        35,
+        1035,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1070,
+        1530,
+        55.67999999999999
+      ],
+      [
+        35,
+        1130,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1190,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1220,
+        1530,
+        27.839999999999996
+      ]
+    ],
+    "edges": [
+      {
+        "id": "message2",
+        "source": "m2s",
+        "target": "m2t",
+        "points": [
+          [
+            664.0,
+            591
+          ],
+          [
+            1208.0,
+            591
+          ]
+        ]
+      },
+      {
+        "id": "message3",
+        "source": "m3s",
+        "target": "m3t",
+        "points": [
+          [
+            1208.0,
+            716
+          ],
+          [
+            1480.0,
+            716
+          ]
+        ]
+      },
+      {
+        "id": "message4",
+        "source": "m4s",
+        "target": "m4t",
+        "points": [
+          [
+            1208.0,
+            841
+          ],
+          [
+            664.0,
+            841
+          ]
+        ]
+      },
+      {
+        "id": "message5",
+        "source": "m5s",
+        "target": "m5t",
+        "points": [
+          [
+            664.0,
+            966
+          ],
+          [
+            1480.0,
+            966
+          ]
+        ]
+      }
+    ],
+    "author_native_cell": true
+  }
+}

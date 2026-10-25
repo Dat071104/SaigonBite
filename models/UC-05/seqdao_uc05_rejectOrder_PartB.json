@@ -1,0 +1,479 @@
+{
+  "UC": "UC-05",
+  "stem": "seqdao_uc05_rejectOrder_PartB",
+  "title": "UC-05 rejectOrder — DAO sequence / Part B",
+  "figure": "4.3.2.5.OP-03.B",
+  "part": "Part B",
+  "scope": "Same request and transaction across all parts; focus 2/6. Mechanical reads: responsibility table (report 4.3.2).",
+  "continuation": "From seqdao_uc05_rejectOrder_PartA → this part → seqdao_uc05_rejectOrder_PartC.",
+  "transaction_summary": "Transaction key (whole request): BEGIN IMMEDIATE → checked rowcount / inserts → COMMIT; failure → ROLLBACK if active. Busy: retry, nothing changed.",
+  "target_note": "† design target, not yet in code at C0: F-02; P2-S01; P2-S13; P3-S03; P2-S12 connection settings; MATCH is Static only.",
+  "phase3": {
+    "diagram_type": "dao_sequence",
+    "UC": "UC-05",
+    "op_id": "OP-03",
+    "operation": "rejectOrder",
+    "parameters": "orderId, reason",
+    "ssd_occurrence": "models/UC-05/ssd_uc05_PartA.drawio#05S-M04",
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Kitchen staff",
+        "role": "actor",
+        "label": "Kitchen staff"
+      },
+      {
+        "id": "view",
+        "class": "kitchen",
+        "role": "view",
+        "label": "«view»\nkitchen"
+      },
+      {
+        "id": "ctrl",
+        "class": "KitchenController",
+        "role": "controller",
+        "label": "KitchenController"
+      },
+      {
+        "id": "obj5",
+        "class": "controllers.common",
+        "role": "controller",
+        "label": "controllers.common"
+      },
+      {
+        "id": "obj6",
+        "class": "Order",
+        "role": "domain",
+        "label": "Order"
+      },
+      {
+        "id": "obj4",
+        "class": "OrderDAO",
+        "role": "data_access",
+        "label": "«DAO»\nOrderDAO"
+      },
+      {
+        "id": "db",
+        "class": "Database",
+        "role": "database",
+        "label": ":Database\n«resource»"
+      }
+    ],
+    "messages": [
+      {
+        "from": "ctrl",
+        "to": "obj4",
+        "method": "get_by_id",
+        "kind": "call",
+        "arguments": "order_id",
+        "guard": "",
+        "PC_MG": "UC05-PC02",
+        "label": "get_by_id(order_id)",
+        "base_label": "get_by_id{dagger}(order_id)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "get_by_id(self, order_id: int) -> Optional[Order]",
+        "status": "MATCH",
+        "P4_input": "",
+        "y": 341,
+        "edge_id": "message0"
+      },
+      {
+        "from": "ctrl",
+        "to": "ctrl",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC05-PC02",
+        "label": "Guard own hub + Order PLACED; wrong hub / stale state → refusal unchanged.",
+        "base_label": "Guard own hub + Order PLACED; wrong hub / stale state → refusal unchanged.",
+        "fragment": true,
+        "draw_arrow": false,
+        "y": 466
+      },
+      {
+        "from": "ctrl",
+        "to": "obj5",
+        "method": "move_order",
+        "kind": "call",
+        "arguments": "orders, order, OrderState.REJECTED, now, reason",
+        "guard": "",
+        "PC_MG": "UC05-PC02",
+        "label": "move_order(orders, order, OrderState.REJECTED, now, reason)",
+        "base_label": "move_order{dagger}(orders, order, OrderState.REJECTED, now, reason)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "move_order(orders: OrderDAO, order: Order, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> None",
+        "status": "MATCH",
+        "P4_input": "",
+        "y": 591,
+        "edge_id": "message2"
+      },
+      {
+        "from": "obj5",
+        "to": "obj6",
+        "method": "move_to",
+        "kind": "call",
+        "arguments": "OrderState.REJECTED",
+        "guard": "",
+        "PC_MG": "UC05-PC02",
+        "label": "move_to(OrderState.REJECTED)",
+        "base_label": "move_to{dagger}(OrderState.REJECTED)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "move_to(self, new_state: OrderState) -> None",
+        "status": "MATCH",
+        "P4_input": "",
+        "y": 716,
+        "edge_id": "message3"
+      },
+      {
+        "from": "obj5",
+        "to": "obj4",
+        "method": "change_state",
+        "kind": "call",
+        "arguments": "order_id, OrderState.PLACED, OrderState.REJECTED, now, reason",
+        "guard": "",
+        "PC_MG": "UC05-PC02",
+        "label": "change_state(order_id, OrderState.PLACED, OrderState.REJECTED, now, reason)",
+        "base_label": "change_state{dagger}(order_id, OrderState.PLACED, OrderState.REJECTED, now, reason)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "change_state(self, order_id: int, from_state: OrderState, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> bool",
+        "status": "MATCH",
+        "P4_input": "",
+        "y": 841,
+        "edge_id": "message4"
+      },
+      {
+        "from": "obj4",
+        "to": "db",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC05-PC02",
+        "label": "SQL note: UPDATE orders by id AND state = ? (PLACED); save REJECTED, reason and closed_at.",
+        "base_label": "SQL note: UPDATE orders by id AND state = ? (PLACED); save REJECTED, reason and closed_at.",
+        "fragment": false,
+        "draw_arrow": true,
+        "y": 966,
+        "edge_id": "message5"
+      }
+    ],
+    "elements": [
+      {
+        "class": "kitchen",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "KitchenController",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "controllers.common",
+        "attributes": [],
+        "methods": [
+          "move_order"
+        ],
+        "method_signatures": {
+          "move_order": "move_order(orders: OrderDAO, order: Order, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> None"
+        }
+      },
+      {
+        "class": "Order",
+        "attributes": [],
+        "methods": [
+          "move_to"
+        ],
+        "method_signatures": {
+          "move_to": "move_to(self, new_state: OrderState) -> None"
+        }
+      },
+      {
+        "class": "OrderDAO",
+        "attributes": [],
+        "methods": [
+          "get_by_id",
+          "change_state"
+        ],
+        "method_signatures": {
+          "get_by_id": "get_by_id(self, order_id: int) -> Optional[Order]",
+          "change_state": "change_state(self, order_id: int, from_state: OrderState, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> bool"
+        }
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "KitchenController",
+        "target": "OrderDAO",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "KitchenController",
+        "target": "controllers.common",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "controllers.common",
+        "target": "Order",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature; C0 order.move_to via typed Order parameter",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "controllers.common",
+        "target": "OrderDAO",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      }
+    ],
+    "states": [
+      {
+        "class": "Order",
+        "attribute": "state",
+        "values": [
+          "PLACED",
+          "REJECTED"
+        ]
+      }
+    ]
+  },
+  "placed_width_mm": 230,
+  "source_design_sequences": [
+    "models\\UC-05\\seq_uc05_rejectOrder.json"
+  ],
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "refresh_policy": "Reviewed model MATCH only; changed signature fails until explicit alias/lane review; no behavioral auto-qualification.",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "render_receipt": {
+    "canvas": [
+      1600,
+      1250
+    ],
+    "minimum_font_px": 24,
+    "placed_width_mm": 230,
+    "minimum_pt": 9.779527559055119,
+    "native_font_matches_svg": true,
+    "label_bounds": [
+      [
+        35,
+        15,
+        1530,
+        32.48
+      ],
+      [
+        35,
+        54,
+        1530,
+        27.839999999999996
+      ],
+      [
+        20.66666666666667,
+        105,
+        198.66666666666666,
+        27.839999999999996
+      ],
+      [
+        247.33333333333331,
+        105,
+        198.66666666666666,
+        55.67999999999999
+      ],
+      [
+        473.99999999999994,
+        105,
+        198.66666666666666,
+        55.67999999999999
+      ],
+      [
+        700.6666666666666,
+        105,
+        198.66666666666666,
+        55.67999999999999
+      ],
+      [
+        927.3333333333331,
+        105,
+        198.66666666666666,
+        27.839999999999996
+      ],
+      [
+        1154.0,
+        105,
+        198.66666666666666,
+        83.51999999999998
+      ],
+      [
+        1380.6666666666667,
+        105,
+        198.66666666666666,
+        55.67999999999999
+      ],
+      [
+        45,
+        242,
+        1510,
+        27.839999999999996
+      ],
+      [
+        42,
+        367,
+        56,
+        27.839999999999996
+      ],
+      [
+        110,
+        372,
+        1440,
+        27.839999999999996
+      ],
+      [
+        45,
+        492,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        617,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        742,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        867,
+        1510,
+        27.839999999999996
+      ],
+      [
+        35,
+        1035,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1070,
+        1530,
+        55.67999999999999
+      ],
+      [
+        35,
+        1130,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1190,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1220,
+        1530,
+        27.839999999999996
+      ]
+    ],
+    "edges": [
+      {
+        "id": "message0",
+        "source": "m0s",
+        "target": "m0t",
+        "points": [
+          [
+            573.3333333333333,
+            341
+          ],
+          [
+            1253.3333333333333,
+            341
+          ]
+        ]
+      },
+      {
+        "id": "message2",
+        "source": "m2s",
+        "target": "m2t",
+        "points": [
+          [
+            573.3333333333333,
+            591
+          ],
+          [
+            800.0,
+            591
+          ]
+        ]
+      },
+      {
+        "id": "message3",
+        "source": "m3s",
+        "target": "m3t",
+        "points": [
+          [
+            800.0,
+            716
+          ],
+          [
+            1026.6666666666665,
+            716
+          ]
+        ]
+      },
+      {
+        "id": "message4",
+        "source": "m4s",
+        "target": "m4t",
+        "points": [
+          [
+            800.0,
+            841
+          ],
+          [
+            1253.3333333333333,
+            841
+          ]
+        ]
+      },
+      {
+        "id": "message5",
+        "source": "m5s",
+        "target": "m5t",
+        "points": [
+          [
+            1253.3333333333333,
+            966
+          ],
+          [
+            1480.0,
+            966
+          ]
+        ]
+      }
+    ],
+    "author_native_cell": true
+  }
+}

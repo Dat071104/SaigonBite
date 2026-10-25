@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="SaigonBite P3-F" type="device">
+  <diagram id="seqdao_uc04_salesReport_PartA" name="UC-04 salesReport — DAO sequence / Part A">
+    <mxGraphModel page="1" pageWidth="1600" pageHeight="1250">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="txt0" vertex="1" parent="1" value="UC-04 salesReport — DAO sequence / Part A" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=28;fontStyle=1;">
+          <mxGeometry as="geometry" x="35" y="15" width="1530" height="32.48" />
+        </mxCell>
+        <mxCell id="txt1" vertex="1" parent="1" value="Same read-only request across all parts; focus 1/4. Mechanical reads: responsibility table (report 4.3.2)." style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="35" y="54" width="1530" height="27.839999999999996" />
+        </mxCell>
+        <mxCell id="actor" vertex="1" parent="1" value="" style="fillColor=#F1F6FA;strokeColor=#004387;">
+          <mxGeometry as="geometry" x="13.666666666666671" y="100" width="212.66666666666666" height="120" />
+        </mxCell>
+        <mxCell id="txt3" vertex="1" parent="1" value="Manager" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="20.66666666666667" y="105" width="198.66666666666666" height="27.839999999999996" />
+        </mxCell>
+        <mxCell id="view" vertex="1" parent="1" value="" style="fillColor=#F1F6FA;strokeColor=#004387;">
+          <mxGeometry as="geometry" x="240.33333333333331" y="100" width="212.66666666666666" height="120" />
+        </mxCell>
+        <mxCell id="txt5" vertex="1" parent="1" value="«view»&#10;reports" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="247.33333333333331" y="105" width="198.66666666666666" height="55.67999999999999" />
+        </mxCell>
+        <mxCell id="ctrl" vertex="1" parent="1" value="" style="fillColor=#F1F6FA;strokeColor=#004387;">
+          <mxGeometry as="geometry" x="466.99999999999994" y="100" width="212.66666666666666" height="120" />
+        </mxCell>
+        <mxCell id="txt7" vertex="1" parent="1" value="Report&#10;Controller" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="473.99999999999994" y="105" width="198.66666666666666" height="55.67999999999999" />
+        </mxCell>
+        <mxCell id="obj5" vertex="1" parent="1" value="" style="fillColor=#F1F6FA;strokeColor=#004387;">
+          <mxGeometry as="geometry" x="693.6666666666666" y="100" width="212.66666666666666" height="120" />
+        </mxCell>
+        <mxCell id="txt9" vertex="1" parent="1" value="Sales&#10;Row" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="700.6666666666666" y="105" width="198.66666666666666" height="55.67999999999999" />
+        </mxCell>
+        <mxCell id="obj7" vertex="1" parent="1" value="" style="fillColor=#F1F6FA;strokeColor=#004387;">
+          <mxGeometry as="geometry" x="920.3333333333331" y="100" width="212.66666666666666" height="120" />
+        </mxCell>
+        <mxCell id="txt11" vertex="1" parent="1" value="Base&#10;Controller" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="927.3333333333331" y="105" width="198.66666666666666" height="55.67999999999999" />
+        </mxCell>
+        <mxCell id="obj4" vertex="1" parent="1" value="" style="fillColor=#F1F6FA;strokeColor=#004387;">
+          <mxGeometry as="geometry" x="1147.0" y="100" width="212.66666666666666" height="120" />
+        </mxCell>
+        <mxCell id="txt13" vertex="1" parent="1" value="«DAO»&#10;Report&#10;DAO" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="1154.0" y="105" width="198.66666666666666" height="83.51999999999998" />
+        </mxCell>
+        <mxCell id="db" vertex="1" parent="1" value="" style="fillColor=#F1F6FA;strokeColor=#004387;">
+          <mxGeometry as="geometry" x="1373.6666666666667" y="100" width="212.66666666666666" height="120" />
+        </mxCell>
+        <mxCell id="txt15" vertex="1" parent="1" value=":Database&#10;«resource»" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="1380.6666666666667" y="105" width="198.66666666666666" height="55.67999999999999" />
+        </mxCell>
+        <mxCell id="txt16" vertex="1" parent="1" value="salesReport(startDateVN, endDateVN, hubId?) → reports.sales [HTTP adapter]" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="45" y="242" width="1510" height="27.839999999999996" />
+        </mxCell>
+        <mxCell id="m0s" vertex="1" parent="1" value="" style="opacity=0;">
+          <mxGeometry as="geometry" x="120.0" y="341" width="0" height="0" />
+        </mxCell>
+        <mxCell id="m0t" vertex="1" parent="1" value="" style="opacity=0;">
+          <mxGeometry as="geometry" x="346.66666666666663" y="341" width="0" height="0" />
+        </mxCell>
+        <mxCell id="message0" edge="1" parent="1" source="m0s" target="m0t" style="edgeStyle=none;endArrow=open;strokeColor=#004387;exitX=0.5;entryX=0.5;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="txt18" vertex="1" parent="1" value="sales_report†(user_id, date_from=startDateVN, date_to=endDateVN, hub_id=hubId)" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="45" y="367" width="1510" height="27.839999999999996" />
+        </mxCell>
+        <mxCell id="m1s" vertex="1" parent="1" value="" style="opacity=0;">
+          <mxGeometry as="geometry" x="346.66666666666663" y="466" width="0" height="0" />
+        </mxCell>
+        <mxCell id="m1t" vertex="1" parent="1" value="" style="opacity=0;">
+          <mxGeometry as="geometry" x="573.3333333333333" y="466" width="0" height="0" />
+        </mxCell>
+        <mxCell id="message1" edge="1" parent="1" source="m1s" target="m1t" style="edgeStyle=none;endArrow=open;strokeColor=#004387;exitX=0.5;entryX=0.5;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="box20" vertex="1" parent="1" value="" style="fillColor=#DAE9F5;strokeColor=#004387;">
+          <mxGeometry as="geometry" x="568.3333333333333" y="466" width="10" height="18" />
+        </mxCell>
+        <mxCell id="txt21" vertex="1" parent="1" value="_require_manager(user_id)" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="45" y="492" width="1510" height="27.839999999999996" />
+        </mxCell>
+        <mxCell id="m2s" vertex="1" parent="1" value="" style="opacity=0;">
+          <mxGeometry as="geometry" x="573.3333333333333" y="591" width="0" height="0" />
+        </mxCell>
+        <mxCell id="m2t" vertex="1" parent="1" value="" style="opacity=0;">
+          <mxGeometry as="geometry" x="573.3333333333333" y="613" width="0" height="0" />
+        </mxCell>
+        <mxCell id="message2" edge="1" parent="1" source="m2s" target="m2t" style="edgeStyle=none;endArrow=open;strokeColor=#004387;exitX=0.5;entryX=0.5;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="608.3333333333333" y="591" />
+              <mxPoint x="608.3333333333333" y="613" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="box23" vertex="1" parent="1" value="" style="fillColor=#DAE9F5;strokeColor=#004387;">
+          <mxGeometry as="geometry" x="568.3333333333333" y="591" width="10" height="18" />
+        </mxCell>
+        <mxCell id="txt24" vertex="1" parent="1" value="_require_user(user_id, Role.MANAGER)" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="45" y="617" width="1510" height="27.839999999999996" />
+        </mxCell>
+        <mxCell id="m3s" vertex="1" parent="1" value="" style="opacity=0;">
+          <mxGeometry as="geometry" x="573.3333333333333" y="716" width="0" height="0" />
+        </mxCell>
+        <mxCell id="m3t" vertex="1" parent="1" value="" style="opacity=0;">
+          <mxGeometry as="geometry" x="1026.6666666666665" y="716" width="0" height="0" />
+        </mxCell>
+        <mxCell id="message3" edge="1" parent="1" source="m3s" target="m3t" style="edgeStyle=none;endArrow=open;strokeColor=#004387;exitX=0.5;entryX=0.5;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="box26" vertex="1" parent="1" value="" style="fillColor=#DAE9F5;strokeColor=#004387;">
+          <mxGeometry as="geometry" x="1021.6666666666665" y="716" width="10" height="18" />
+        </mxCell>
+        <mxCell id="box27" vertex="1" parent="1" value="" style="fillColor=#FFF8E9;strokeColor=#004387;">
+          <mxGeometry as="geometry" x="35" y="742" width="1530" height="111" />
+        </mxCell>
+        <mxCell id="box28" vertex="1" parent="1" value="" style="fillColor=#F1F6FA;strokeColor=#004387;">
+          <mxGeometry as="geometry" x="35" y="742" width="66" height="32" />
+        </mxCell>
+        <mxCell id="txt29" vertex="1" parent="1" value="alt" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="42" y="742" width="56" height="27.839999999999996" />
+        </mxCell>
+        <mxCell id="txt30" vertex="1" parent="1" value="Manager denial → refusal before report queries. UC04-MG02; UC04-MG01 read-only on denial, invalid filter, empty and success paths." style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="110" y="747" width="1440" height="27.839999999999996" />
+        </mxCell>
+        <mxCell id="txt31" vertex="1" parent="1" value="_period(date_from, date_to)" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="45" y="867" width="1510" height="27.839999999999996" />
+        </mxCell>
+        <mxCell id="m5s" vertex="1" parent="1" value="" style="opacity=0;">
+          <mxGeometry as="geometry" x="573.3333333333333" y="966" width="0" height="0" />
+        </mxCell>
+        <mxCell id="m5t" vertex="1" parent="1" value="" style="opacity=0;">
+          <mxGeometry as="geometry" x="573.3333333333333" y="988" width="0" height="0" />
+        </mxCell>
+        <mxCell id="message5" edge="1" parent="1" source="m5s" target="m5t" style="edgeStyle=none;endArrow=open;strokeColor=#004387;exitX=0.5;entryX=0.5;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="608.3333333333333" y="966" />
+              <mxPoint x="608.3333333333333" y="988" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="box33" vertex="1" parent="1" value="" style="fillColor=#DAE9F5;strokeColor=#004387;">
+          <mxGeometry as="geometry" x="568.3333333333333" y="966" width="10" height="18" />
+        </mxCell>
+        <mxCell id="txt34" vertex="1" parent="1" value="From request boundary → this part → seqdao_uc04_salesReport_PartB." style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="35" y="1035" width="1530" height="27.839999999999996" />
+        </mxCell>
+        <mxCell id="txt35" vertex="1" parent="1" value="Read-only on ALL paths; SELECT only; UC04-MG01. No BEGIN IMMEDIATE, business write or write-transaction retry." style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="35" y="1070" width="1530" height="27.839999999999996" />
+        </mxCell>
+        <mxCell id="txt36" vertex="1" parent="1" value="† design target, not yet in code at C0: F-03; F-09; P2-S12 connection settings; MATCH is Static only." style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="35" y="1130" width="1530" height="27.839999999999996" />
+        </mxCell>
+        <mxCell id="txt37" vertex="1" parent="1" value="Figure 4.3.2.4.OP-26.A. salesReport / Part A — Author: 722I0004 · AI-assisted (Codex)" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="35" y="1190" width="1530" height="27.839999999999996" />
+        </mxCell>
+        <mxCell id="txt38" vertex="1" parent="1" value="Static only · 230 mm landscape · minimum 9.78 pt · native draw.io and final DOCX/PDF placement UNTESTED" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="35" y="1220" width="1530" height="27.839999999999996" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

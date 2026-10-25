@@ -1,0 +1,335 @@
+{
+  "UC": "UC-04",
+  "stem": "seqdao_uc04_salesReport_PartD",
+  "title": "UC-04 salesReport — DAO sequence / Part D",
+  "figure": "4.3.2.4.OP-26.D",
+  "part": "Part D",
+  "scope": "Same read-only request across all parts; focus 4/4. Mechanical reads: responsibility table (report 4.3.2).",
+  "continuation": "From seqdao_uc04_salesReport_PartC → this part → response boundary.",
+  "transaction_summary": "Read-only on ALL paths; SELECT only; UC04-MG01. No BEGIN IMMEDIATE, business write or write-transaction retry.",
+  "target_note": "† design target, not yet in code at C0: F-03; F-09; P2-S12 connection settings; MATCH is Static only.",
+  "phase3": {
+    "diagram_type": "dao_sequence",
+    "UC": "UC-04",
+    "op_id": "OP-26",
+    "operation": "salesReport",
+    "parameters": "startDateVN, endDateVN, hubId?",
+    "ssd_occurrence": "models/UC-04/ssd_uc04.drawio#M01",
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Manager",
+        "role": "actor",
+        "label": "Manager"
+      },
+      {
+        "id": "view",
+        "class": "reports",
+        "role": "view",
+        "label": "«view»\nreports"
+      },
+      {
+        "id": "ctrl",
+        "class": "ReportController",
+        "role": "controller",
+        "label": "ReportController"
+      },
+      {
+        "id": "obj5",
+        "class": "SalesRow",
+        "role": "controller",
+        "label": "SalesRow"
+      },
+      {
+        "id": "obj6",
+        "class": "SalesReport",
+        "role": "controller",
+        "label": "SalesReport"
+      },
+      {
+        "id": "obj4",
+        "class": "ReportDAO",
+        "role": "data_access",
+        "label": "«DAO»\nReportDAO"
+      },
+      {
+        "id": "db",
+        "class": "Database",
+        "role": "database",
+        "label": ":Database\n«resource»"
+      }
+    ],
+    "messages": [
+      {
+        "from": "obj4",
+        "to": "ctrl",
+        "method": "",
+        "kind": "return",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC04-PC01; UC04-MG01; UC04-MG02",
+        "label": "† menu_item_id, snapshot name, quantity, revenue; ID retained in SalesReport.top_items",
+        "base_label": "† menu_item_id, snapshot name, quantity, revenue; ID retained in SalesReport.top_items",
+        "fragment": false,
+        "draw_arrow": false,
+        "y": 341,
+        "edge_id": "message0"
+      },
+      {
+        "from": "ctrl",
+        "to": "obj6",
+        "method": "SalesReport",
+        "kind": "create",
+        "arguments": "period, hub, rows, totals, top_items",
+        "guard": "",
+        "PC_MG": "UC04-PC01; UC04-MG01; UC04-MG02",
+        "label": "«create» SalesReport(period, hub, rows, totals, top_items); non-persisted; item ID retained†.",
+        "base_label": "«create» SalesReport(period, hub, rows, totals, top_items); non-persisted; item ID retained†.",
+        "fragment": false,
+        "draw_arrow": false,
+        "y": 466,
+        "edge_id": "message1"
+      },
+      {
+        "from": "ctrl",
+        "to": "ctrl",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC04-PC01; UC04-MG01; UC04-MG02",
+        "label": "ALL branches: SELECT only; no BEGIN IMMEDIATE, INSERT, UPDATE or DELETE. Empty data → zero counts / empty top list. UC04-MG01; UC04-PC01.",
+        "base_label": "ALL branches: SELECT only; no BEGIN IMMEDIATE, INSERT, UPDATE or DELETE. Empty data → zero counts / empty top list. UC04-MG01; UC04-PC01.",
+        "fragment": false,
+        "draw_arrow": false,
+        "y": 591
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC04-PC01; UC04-MG01; UC04-MG02",
+        "label": "operational sales and refunds owed, or controlled read/filter refusal",
+        "base_label": "operational sales and refunds owed, or controlled read/filter refusal",
+        "fragment": false,
+        "draw_arrow": false,
+        "y": 716,
+        "edge_id": "message3"
+      }
+    ],
+    "elements": [
+      {
+        "class": "reports",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "ReportController",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "SalesRow",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "SalesReport",
+        "attributes": [
+          "top_items"
+        ],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "ReportDAO",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      }
+    ],
+    "dependencies": [],
+    "states": []
+  },
+  "placed_width_mm": 230,
+  "source_design_sequences": [
+    "models\\UC-04\\seq_uc04_salesReport.json"
+  ],
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "refresh_policy": "Reviewed model MATCH only; changed signature fails until explicit alias/lane review; no behavioral auto-qualification.",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "render_receipt": {
+    "canvas": [
+      1600,
+      1250
+    ],
+    "minimum_font_px": 24,
+    "placed_width_mm": 230,
+    "minimum_pt": 9.779527559055119,
+    "native_font_matches_svg": true,
+    "label_bounds": [
+      [
+        35,
+        15,
+        1530,
+        32.48
+      ],
+      [
+        35,
+        54,
+        1530,
+        27.839999999999996
+      ],
+      [
+        20.66666666666667,
+        105,
+        198.66666666666666,
+        27.839999999999996
+      ],
+      [
+        247.33333333333331,
+        105,
+        198.66666666666666,
+        55.67999999999999
+      ],
+      [
+        473.99999999999994,
+        105,
+        198.66666666666666,
+        55.67999999999999
+      ],
+      [
+        700.6666666666666,
+        105,
+        198.66666666666666,
+        55.67999999999999
+      ],
+      [
+        927.3333333333331,
+        105,
+        198.66666666666666,
+        55.67999999999999
+      ],
+      [
+        1154.0,
+        105,
+        198.66666666666666,
+        83.51999999999998
+      ],
+      [
+        1380.6666666666667,
+        105,
+        198.66666666666666,
+        55.67999999999999
+      ],
+      [
+        45,
+        242,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        367,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        497,
+        1510,
+        55.67999999999999
+      ],
+      [
+        45,
+        617,
+        1510,
+        27.839999999999996
+      ],
+      [
+        35,
+        1035,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1070,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1130,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1190,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1220,
+        1530,
+        27.839999999999996
+      ]
+    ],
+    "edges": [
+      {
+        "id": "message0",
+        "source": "m0s",
+        "target": "m0t",
+        "points": [
+          [
+            1253.3333333333333,
+            341
+          ],
+          [
+            573.3333333333333,
+            341
+          ]
+        ]
+      },
+      {
+        "id": "message1",
+        "source": "m1s",
+        "target": "m1t",
+        "points": [
+          [
+            573.3333333333333,
+            466
+          ],
+          [
+            1026.6666666666665,
+            466
+          ]
+        ]
+      },
+      {
+        "id": "message3",
+        "source": "m3s",
+        "target": "m3t",
+        "points": [
+          [
+            573.3333333333333,
+            716
+          ],
+          [
+            346.66666666666663,
+            716
+          ]
+        ]
+      }
+    ],
+    "author_native_cell": true
+  }
+}

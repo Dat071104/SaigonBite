@@ -1,0 +1,423 @@
+{
+  "UC": "UC-03",
+  "stem": "seqdao_uc03_archiveHub_PartB",
+  "title": "UC-03 archiveHub — DAO sequence / Part B",
+  "figure": "4.3.2.3.OP-36.B",
+  "part": "Part B",
+  "scope": "Same request and transaction across all parts; focus 2/4. Mechanical reads: responsibility table (report 4.3.2).",
+  "continuation": "From seqdao_uc03_archiveHub_PartA → this part → seqdao_uc03_archiveHub_PartC.",
+  "transaction_summary": "Transaction key (whole request): BEGIN IMMEDIATE → checked rowcount / inserts → COMMIT; failure → ROLLBACK if active. Busy: retry, nothing changed.",
+  "target_note": "† design target, not yet in code at C0: P2-S13; P3-S03; P2-S12 connection settings; MATCH is Static only.",
+  "phase3": {
+    "diagram_type": "dao_sequence",
+    "UC": "UC-03",
+    "op_id": "OP-36",
+    "operation": "archiveHub",
+    "parameters": "hubId",
+    "ssd_occurrence": "models/UC-03/ssd_uc03.drawio#M03-05",
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Admin",
+        "role": "actor",
+        "label": "Admin"
+      },
+      {
+        "id": "view",
+        "class": "admin",
+        "role": "view",
+        "label": "«view»\nadmin"
+      },
+      {
+        "id": "ctrl",
+        "class": "HubController",
+        "role": "controller",
+        "label": "HubController"
+      },
+      {
+        "id": "obj5",
+        "class": "Hub",
+        "role": "domain",
+        "label": "Hub"
+      },
+      {
+        "id": "obj4",
+        "class": "HubDAO",
+        "role": "data_access",
+        "label": "«DAO»\nHubDAO"
+      },
+      {
+        "id": "db",
+        "class": "Database",
+        "role": "database",
+        "label": ":Database\n«resource»"
+      }
+    ],
+    "messages": [
+      {
+        "from": "ctrl",
+        "to": "ctrl",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC03-PC02; UC03-MG01",
+        "label": "Read Hub.id, Hub.archived_at: require existing hub and archived_at IS NULL. Admin denial / missing / already archived → refuse unchanged; UC03-MG01.",
+        "base_label": "Read Hub.id, Hub.archived_at: require existing hub and archived_at IS NULL. Admin denial / missing / already archived → refuse unchanged; UC03-MG01.",
+        "fragment": true,
+        "draw_arrow": false,
+        "y": 341
+      },
+      {
+        "from": "ctrl",
+        "to": "obj4",
+        "method": "open_order_count",
+        "kind": "call",
+        "arguments": "hub_id",
+        "guard": "",
+        "PC_MG": "UC03-PC02; UC03-MG01",
+        "label": "open_order_count(hub_id)",
+        "base_label": "open_order_count{dagger}(hub_id)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "open_order_count(self, hub_id: int) -> int",
+        "status": "MATCH",
+        "P4_input": "",
+        "y": 466,
+        "edge_id": "message1"
+      },
+      {
+        "from": "obj4",
+        "to": "db",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC03-PC02; UC03-MG01",
+        "label": "SQL note: SELECT COUNT orders by hub_id excluding DELIVERED, DELIVERY_FAILED, REJECTED, CANCELLED.",
+        "base_label": "SQL note: SELECT COUNT orders by hub_id excluding DELIVERED, DELIVERY_FAILED, REJECTED, CANCELLED.",
+        "fragment": false,
+        "draw_arrow": true,
+        "y": 591,
+        "edge_id": "message2"
+      },
+      {
+        "from": "obj4",
+        "to": "ctrl",
+        "method": "",
+        "kind": "return",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC03-PC02; UC03-MG01",
+        "label": "open_orders; require 0 under write lock; nonzero → ROLLBACK / refusal",
+        "base_label": "open_orders; require 0 under write lock; nonzero → ROLLBACK / refusal",
+        "fragment": false,
+        "draw_arrow": false,
+        "y": 716,
+        "edge_id": "message3"
+      },
+      {
+        "from": "ctrl",
+        "to": "obj4",
+        "method": "archive",
+        "kind": "call",
+        "arguments": "hub_id, now",
+        "guard": "",
+        "PC_MG": "UC03-PC02; UC03-MG01",
+        "label": "archive(hub_id, now)",
+        "base_label": "archive{dagger}(hub_id, now)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "archive(self, hub_id: int, now: str) -> bool",
+        "status": "MATCH",
+        "P4_input": "",
+        "y": 841,
+        "edge_id": "message4"
+      },
+      {
+        "from": "obj4",
+        "to": "db",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC03-PC02; UC03-MG01",
+        "label": "SQL note: UPDATE hub by id AND archived_at IS NULL; set archive timestamp. No state enum predicate.",
+        "base_label": "SQL note: UPDATE hub by id AND archived_at IS NULL; set archive timestamp. No state enum predicate.",
+        "fragment": false,
+        "draw_arrow": true,
+        "y": 966,
+        "edge_id": "message5"
+      }
+    ],
+    "elements": [
+      {
+        "class": "admin",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "HubController",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "Hub",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "HubDAO",
+        "attributes": [],
+        "methods": [
+          "open_order_count",
+          "archive"
+        ],
+        "method_signatures": {
+          "open_order_count": "open_order_count(self, hub_id: int) -> int",
+          "archive": "archive(self, hub_id: int, now: str) -> bool"
+        }
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "HubController",
+        "target": "HubDAO",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      }
+    ],
+    "states": [
+      {
+        "class": "Hub",
+        "attribute": "archived_at",
+        "values": [
+          "NULL",
+          "timestamp"
+        ]
+      }
+    ]
+  },
+  "placed_width_mm": 230,
+  "source_design_sequences": [
+    "models\\UC-03\\seq_uc03_archiveHub.json"
+  ],
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "refresh_policy": "Reviewed model MATCH only; changed signature fails until explicit alias/lane review; no behavioral auto-qualification.",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "render_receipt": {
+    "canvas": [
+      1600,
+      1250
+    ],
+    "minimum_font_px": 24,
+    "placed_width_mm": 230,
+    "minimum_pt": 9.779527559055119,
+    "native_font_matches_svg": true,
+    "label_bounds": [
+      [
+        35,
+        15,
+        1530,
+        32.48
+      ],
+      [
+        35,
+        54,
+        1530,
+        27.839999999999996
+      ],
+      [
+        15.0,
+        105,
+        210,
+        27.839999999999996
+      ],
+      [
+        287.0,
+        105,
+        210,
+        55.67999999999999
+      ],
+      [
+        559.0,
+        105,
+        210,
+        55.67999999999999
+      ],
+      [
+        831.0,
+        105,
+        210,
+        27.839999999999996
+      ],
+      [
+        1103.0,
+        105,
+        210,
+        83.51999999999998
+      ],
+      [
+        1375.0,
+        105,
+        210,
+        55.67999999999999
+      ],
+      [
+        42,
+        242,
+        56,
+        27.839999999999996
+      ],
+      [
+        110,
+        247,
+        1440,
+        55.67999999999999
+      ],
+      [
+        45,
+        367,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        492,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        617,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        742,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        867,
+        1510,
+        27.839999999999996
+      ],
+      [
+        35,
+        1035,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1070,
+        1530,
+        55.67999999999999
+      ],
+      [
+        35,
+        1130,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1190,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1220,
+        1530,
+        27.839999999999996
+      ]
+    ],
+    "edges": [
+      {
+        "id": "message1",
+        "source": "m1s",
+        "target": "m1t",
+        "points": [
+          [
+            664.0,
+            466
+          ],
+          [
+            1208.0,
+            466
+          ]
+        ]
+      },
+      {
+        "id": "message2",
+        "source": "m2s",
+        "target": "m2t",
+        "points": [
+          [
+            1208.0,
+            591
+          ],
+          [
+            1480.0,
+            591
+          ]
+        ]
+      },
+      {
+        "id": "message3",
+        "source": "m3s",
+        "target": "m3t",
+        "points": [
+          [
+            1208.0,
+            716
+          ],
+          [
+            664.0,
+            716
+          ]
+        ]
+      },
+      {
+        "id": "message4",
+        "source": "m4s",
+        "target": "m4t",
+        "points": [
+          [
+            664.0,
+            841
+          ],
+          [
+            1208.0,
+            841
+          ]
+        ]
+      },
+      {
+        "id": "message5",
+        "source": "m5s",
+        "target": "m5t",
+        "points": [
+          [
+            1208.0,
+            966
+          ],
+          [
+            1480.0,
+            966
+          ]
+        ]
+      }
+    ],
+    "author_native_cell": true
+  }
+}

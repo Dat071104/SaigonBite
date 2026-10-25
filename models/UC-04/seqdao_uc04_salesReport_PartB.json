@@ -1,0 +1,469 @@
+{
+  "UC": "UC-04",
+  "stem": "seqdao_uc04_salesReport_PartB",
+  "title": "UC-04 salesReport — DAO sequence / Part B",
+  "figure": "4.3.2.4.OP-26.B",
+  "part": "Part B",
+  "scope": "Same read-only request across all parts; focus 2/4. Mechanical reads: responsibility table (report 4.3.2).",
+  "continuation": "From seqdao_uc04_salesReport_PartA → this part → seqdao_uc04_salesReport_PartC.",
+  "transaction_summary": "Read-only on ALL paths; SELECT only; UC04-MG01. No BEGIN IMMEDIATE, business write or write-transaction retry.",
+  "target_note": "† design target, not yet in code at C0: F-03; F-09; P2-S12 connection settings; MATCH is Static only.",
+  "phase3": {
+    "diagram_type": "dao_sequence",
+    "UC": "UC-04",
+    "op_id": "OP-26",
+    "operation": "salesReport",
+    "parameters": "startDateVN, endDateVN, hubId?",
+    "ssd_occurrence": "models/UC-04/ssd_uc04.drawio#M01",
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Manager",
+        "role": "actor",
+        "label": "Manager"
+      },
+      {
+        "id": "view",
+        "class": "reports",
+        "role": "view",
+        "label": "«view»\nreports"
+      },
+      {
+        "id": "ctrl",
+        "class": "ReportController",
+        "role": "controller",
+        "label": "ReportController"
+      },
+      {
+        "id": "obj5",
+        "class": "SalesRow",
+        "role": "controller",
+        "label": "SalesRow"
+      },
+      {
+        "id": "obj8",
+        "class": "controllers.common",
+        "role": "controller",
+        "label": "controllers.common"
+      },
+      {
+        "id": "obj9",
+        "class": "Period",
+        "role": "controller",
+        "label": "Period"
+      },
+      {
+        "id": "obj4",
+        "class": "ReportDAO",
+        "role": "data_access",
+        "label": "«DAO»\nReportDAO"
+      },
+      {
+        "id": "db",
+        "class": "Database",
+        "role": "database",
+        "label": ":Database\n«resource»"
+      }
+    ],
+    "messages": [
+      {
+        "from": "ctrl",
+        "to": "obj8",
+        "method": "vn_day_start_utc",
+        "kind": "call",
+        "arguments": "day",
+        "guard": "twice: start day and end day + 1",
+        "PC_MG": "UC04-PC01; UC04-MG01; UC04-MG02",
+        "label": "vn_day_start_utc(day)",
+        "base_label": "vn_day_start_utc{dagger}(day)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "vn_day_start_utc(day: date) -> str",
+        "status": "MATCH",
+        "P4_input": "",
+        "y": 341,
+        "edge_id": "message0"
+      },
+      {
+        "from": "ctrl",
+        "to": "obj9",
+        "method": "Period",
+        "kind": "create",
+        "arguments": "date_from, date_to, start_utc, end_utc",
+        "guard": "",
+        "PC_MG": "UC04-PC01; UC04-MG01; UC04-MG02",
+        "label": "«create» Period(date_from, date_to, start_utc, end_utc); non-persisted range",
+        "base_label": "«create» Period(date_from, date_to, start_utc, end_utc); non-persisted range",
+        "fragment": false,
+        "draw_arrow": false,
+        "y": 466,
+        "edge_id": "message1"
+      },
+      {
+        "from": "ctrl",
+        "to": "ctrl",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC04-PC01; UC04-MG01; UC04-MG02",
+        "label": "Period value: Asia/Ho_Chi_Minh calendar range → UTC [start 00:00, end+1 00:00). Invalid range: refusal, no writes.",
+        "base_label": "Period value: Asia/Ho_Chi_Minh calendar range → UTC [start 00:00, end+1 00:00). Invalid range: refusal, no writes.",
+        "fragment": false,
+        "draw_arrow": false,
+        "y": 591
+      },
+      {
+        "from": "ctrl",
+        "to": "ctrl",
+        "method": "_hub",
+        "kind": "call",
+        "arguments": "hub_id",
+        "guard": "",
+        "PC_MG": "UC04-PC01; UC04-MG01; UC04-MG02",
+        "label": "_hub(hub_id)",
+        "base_label": "_hub{dagger}(hub_id)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "_hub(self, hub_id: Optional[int]) -> Optional[Hub]",
+        "status": "MATCH",
+        "P4_input": "",
+        "y": 716,
+        "edge_id": "message3"
+      },
+      {
+        "from": "ctrl",
+        "to": "obj4",
+        "method": "sales_by_hub",
+        "kind": "call",
+        "arguments": "period.start_utc, period.end_utc, hub_id",
+        "guard": "",
+        "PC_MG": "UC04-PC01; UC04-MG01; UC04-MG02",
+        "label": "sales_by_hub(period.start_utc, period.end_utc, hub_id)",
+        "base_label": "sales_by_hub{dagger}(period.start_utc, period.end_utc, hub_id)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "sales_by_hub(self, start_utc: str, end_utc: str, hub_id: Optional[int]) -> list[sqlite3.Row]",
+        "status": "MATCH",
+        "P4_input": "",
+        "y": 841,
+        "edge_id": "message4"
+      },
+      {
+        "from": "obj4",
+        "to": "db",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC04-PC01; UC04-MG01; UC04-MG02",
+        "label": "SQL note: SELECT orders + delivery + payment + hub; Order DELIVERED, finished_at in [start,end), optional hub; archived included.",
+        "base_label": "SQL note: SELECT orders + delivery + payment + hub; Order DELIVERED, finished_at in [start,end), optional hub; archived included.",
+        "fragment": false,
+        "draw_arrow": true,
+        "y": 966,
+        "edge_id": "message5"
+      }
+    ],
+    "elements": [
+      {
+        "class": "reports",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "ReportController",
+        "attributes": [],
+        "methods": [
+          "_hub"
+        ],
+        "method_signatures": {
+          "_hub": "_hub(self, hub_id: Optional[int]) -> Optional[Hub]"
+        }
+      },
+      {
+        "class": "SalesRow",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "controllers.common",
+        "attributes": [],
+        "methods": [
+          "vn_day_start_utc"
+        ],
+        "method_signatures": {
+          "vn_day_start_utc": "vn_day_start_utc(day: date) -> str"
+        }
+      },
+      {
+        "class": "Period",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "ReportDAO",
+        "attributes": [],
+        "methods": [
+          "sales_by_hub"
+        ],
+        "method_signatures": {
+          "sales_by_hub": "sales_by_hub(self, start_utc: str, end_utc: str, hub_id: Optional[int]) -> list[sqlite3.Row]"
+        }
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "ReportController",
+        "target": "controllers.common",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "ReportController",
+        "target": "ReportDAO",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      }
+    ],
+    "states": []
+  },
+  "placed_width_mm": 230,
+  "source_design_sequences": [
+    "models\\UC-04\\seq_uc04_salesReport.json"
+  ],
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "refresh_policy": "Reviewed model MATCH only; changed signature fails until explicit alias/lane review; no behavioral auto-qualification.",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "render_receipt": {
+    "canvas": [
+      1600,
+      1250
+    ],
+    "minimum_font_px": 24,
+    "placed_width_mm": 230,
+    "minimum_pt": 9.779527559055119,
+    "native_font_matches_svg": true,
+    "label_bounds": [
+      [
+        35,
+        15,
+        1530,
+        32.48
+      ],
+      [
+        35,
+        54,
+        1530,
+        27.839999999999996
+      ],
+      [
+        36.85714285714286,
+        105,
+        166.28571428571428,
+        27.839999999999996
+      ],
+      [
+        231.14285714285714,
+        105,
+        166.28571428571428,
+        55.67999999999999
+      ],
+      [
+        425.42857142857144,
+        105,
+        166.28571428571428,
+        55.67999999999999
+      ],
+      [
+        619.7142857142858,
+        105,
+        166.28571428571428,
+        55.67999999999999
+      ],
+      [
+        814.0,
+        105,
+        166.28571428571428,
+        55.67999999999999
+      ],
+      [
+        1008.2857142857144,
+        105,
+        166.28571428571428,
+        27.839999999999996
+      ],
+      [
+        1202.5714285714287,
+        105,
+        166.28571428571428,
+        83.51999999999998
+      ],
+      [
+        1396.857142857143,
+        105,
+        166.28571428571428,
+        55.67999999999999
+      ],
+      [
+        45,
+        242,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        367,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        497,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        617,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        742,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        867,
+        1510,
+        27.839999999999996
+      ],
+      [
+        35,
+        1035,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1070,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1130,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1190,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1220,
+        1530,
+        27.839999999999996
+      ]
+    ],
+    "edges": [
+      {
+        "id": "message0",
+        "source": "m0s",
+        "target": "m0t",
+        "points": [
+          [
+            508.57142857142856,
+            341
+          ],
+          [
+            897.1428571428571,
+            341
+          ]
+        ]
+      },
+      {
+        "id": "message1",
+        "source": "m1s",
+        "target": "m1t",
+        "points": [
+          [
+            508.57142857142856,
+            466
+          ],
+          [
+            1091.4285714285716,
+            466
+          ]
+        ]
+      },
+      {
+        "id": "message3",
+        "source": "m3s",
+        "target": "m3t",
+        "points": [
+          [
+            508.57142857142856,
+            716
+          ],
+          [
+            543.5714285714286,
+            716
+          ],
+          [
+            543.5714285714286,
+            738
+          ],
+          [
+            508.57142857142856,
+            738
+          ]
+        ]
+      },
+      {
+        "id": "message4",
+        "source": "m4s",
+        "target": "m4t",
+        "points": [
+          [
+            508.57142857142856,
+            841
+          ],
+          [
+            1285.7142857142858,
+            841
+          ]
+        ]
+      },
+      {
+        "id": "message5",
+        "source": "m5s",
+        "target": "m5t",
+        "points": [
+          [
+            1285.7142857142858,
+            966
+          ],
+          [
+            1480.0,
+            966
+          ]
+        ]
+      }
+    ],
+    "author_native_cell": true
+  }
+}

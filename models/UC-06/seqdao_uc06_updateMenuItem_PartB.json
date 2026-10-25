@@ -1,0 +1,423 @@
+{
+  "UC": "UC-06",
+  "stem": "seqdao_uc06_updateMenuItem_PartB",
+  "title": "UC-06 updateMenuItem — DAO sequence / Part B",
+  "figure": "4.3.2.6.OP-41.B",
+  "part": "Part B",
+  "scope": "Same request and transaction across all parts; focus 2/4. Mechanical reads: responsibility table (report 4.3.2).",
+  "continuation": "From seqdao_uc06_updateMenuItem_PartA → this part → seqdao_uc06_updateMenuItem_PartC.",
+  "transaction_summary": "Transaction key (whole request): BEGIN IMMEDIATE → checked rowcount / inserts → COMMIT; failure → ROLLBACK if active. Busy: retry, nothing changed.",
+  "target_note": "† design target, not yet in code at C0: P2-S13; P3-S03; P2-S12 connection settings; MATCH is Static only.",
+  "phase3": {
+    "diagram_type": "dao_sequence",
+    "UC": "UC-06",
+    "op_id": "OP-41",
+    "operation": "updateMenuItem",
+    "parameters": "itemId, brandId, name, description, price",
+    "ssd_occurrence": "models/UC-06/ssd_uc06_PartB.drawio#M06-B03",
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Admin",
+        "role": "actor",
+        "label": "Admin"
+      },
+      {
+        "id": "view",
+        "class": "admin",
+        "role": "view",
+        "label": "«view»\nadmin"
+      },
+      {
+        "id": "ctrl",
+        "class": "MenuController",
+        "role": "controller",
+        "label": "MenuController"
+      },
+      {
+        "id": "obj5",
+        "class": "MenuItem",
+        "role": "domain",
+        "label": "MenuItem"
+      },
+      {
+        "id": "obj4",
+        "class": "MenuDAO",
+        "role": "data_access",
+        "label": "«DAO»\nMenuDAO"
+      },
+      {
+        "id": "db",
+        "class": "Database",
+        "role": "database",
+        "label": ":Database\n«resource»"
+      }
+    ],
+    "messages": [
+      {
+        "from": "ctrl",
+        "to": "ctrl",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC06-PC01; UC06-MG01; UC06-MG02",
+        "label": "Require active existing item/brand; parse name, description and valid positive price. brandId is context; pin current.brand_id (no reparenting). Invalid/archived → refusal unchanged.",
+        "base_label": "Require active existing item/brand; parse name, description and valid positive price. brandId is context; pin current.brand_id (no reparenting). Invalid/archived → refusal unchanged.",
+        "fragment": true,
+        "draw_arrow": false,
+        "y": 341
+      },
+      {
+        "from": "ctrl",
+        "to": "obj4",
+        "method": "item_name_exists",
+        "kind": "call",
+        "arguments": "current.brand_id, item.name, except_id=item_id",
+        "guard": "",
+        "PC_MG": "UC06-PC01; UC06-MG01; UC06-MG02",
+        "label": "item_name_exists(current.brand_id, item.name, except_id=item_id)",
+        "base_label": "item_name_exists{dagger}(current.brand_id, item.name, except_id=item_id)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "item_name_exists(self, brand_id: int, name: str, except_id: Optional[int]=None) -> bool",
+        "status": "MATCH",
+        "P4_input": "",
+        "y": 466,
+        "edge_id": "message1"
+      },
+      {
+        "from": "obj4",
+        "to": "db",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC06-PC01; UC06-MG01; UC06-MG02",
+        "label": "SQL note: SELECT menu_item by brand + case-insensitive name, excluding item id.",
+        "base_label": "SQL note: SELECT menu_item by brand + case-insensitive name, excluding item id.",
+        "fragment": false,
+        "draw_arrow": true,
+        "y": 591,
+        "edge_id": "message2"
+      },
+      {
+        "from": "obj4",
+        "to": "ctrl",
+        "method": "",
+        "kind": "return",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC06-PC01; UC06-MG01; UC06-MG02",
+        "label": "duplicate bool; True → refusal / ROLLBACK; False → eligible update",
+        "base_label": "duplicate bool; True → refusal / ROLLBACK; False → eligible update",
+        "fragment": false,
+        "draw_arrow": false,
+        "y": 716,
+        "edge_id": "message3"
+      },
+      {
+        "from": "ctrl",
+        "to": "obj4",
+        "method": "update_item",
+        "kind": "call",
+        "arguments": "item",
+        "guard": "",
+        "PC_MG": "UC06-PC01; UC06-MG01; UC06-MG02",
+        "label": "update_item(item)",
+        "base_label": "update_item{dagger}(item)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "update_item(self, item: MenuItem) -> bool",
+        "status": "MATCH",
+        "P4_input": "",
+        "y": 841,
+        "edge_id": "message4"
+      },
+      {
+        "from": "obj4",
+        "to": "db",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC06-PC01; UC06-MG01; UC06-MG02",
+        "label": "SQL note: UPDATE menu_item by id AND archived_at IS NULL; set name, description and price only.",
+        "base_label": "SQL note: UPDATE menu_item by id AND archived_at IS NULL; set name, description and price only.",
+        "fragment": false,
+        "draw_arrow": true,
+        "y": 966,
+        "edge_id": "message5"
+      }
+    ],
+    "elements": [
+      {
+        "class": "admin",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "MenuController",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "MenuItem",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "MenuDAO",
+        "attributes": [],
+        "methods": [
+          "item_name_exists",
+          "update_item"
+        ],
+        "method_signatures": {
+          "item_name_exists": "item_name_exists(self, brand_id: int, name: str, except_id: Optional[int]=None) -> bool",
+          "update_item": "update_item(self, item: MenuItem) -> bool"
+        }
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "MenuController",
+        "target": "MenuDAO",
+        "kind": "dependency",
+        "status": "P4-TARGET",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true,
+        "P4_input": "P2-S14"
+      }
+    ],
+    "states": [
+      {
+        "class": "MenuItem",
+        "attribute": "archived_at",
+        "values": [
+          "NULL"
+        ]
+      }
+    ]
+  },
+  "placed_width_mm": 230,
+  "source_design_sequences": [
+    "models\\UC-06\\seq_uc06_updateMenuItem.json"
+  ],
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "refresh_policy": "Reviewed model MATCH only; changed signature fails until explicit alias/lane review; no behavioral auto-qualification.",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "render_receipt": {
+    "canvas": [
+      1600,
+      1250
+    ],
+    "minimum_font_px": 24,
+    "placed_width_mm": 230,
+    "minimum_pt": 9.779527559055119,
+    "native_font_matches_svg": true,
+    "label_bounds": [
+      [
+        35,
+        15,
+        1530,
+        32.48
+      ],
+      [
+        35,
+        54,
+        1530,
+        27.839999999999996
+      ],
+      [
+        15.0,
+        105,
+        210,
+        27.839999999999996
+      ],
+      [
+        287.0,
+        105,
+        210,
+        55.67999999999999
+      ],
+      [
+        559.0,
+        105,
+        210,
+        55.67999999999999
+      ],
+      [
+        831.0,
+        105,
+        210,
+        55.67999999999999
+      ],
+      [
+        1103.0,
+        105,
+        210,
+        83.51999999999998
+      ],
+      [
+        1375.0,
+        105,
+        210,
+        55.67999999999999
+      ],
+      [
+        42,
+        242,
+        56,
+        27.839999999999996
+      ],
+      [
+        110,
+        247,
+        1440,
+        55.67999999999999
+      ],
+      [
+        45,
+        367,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        492,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        617,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        742,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        867,
+        1510,
+        27.839999999999996
+      ],
+      [
+        35,
+        1035,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1070,
+        1530,
+        55.67999999999999
+      ],
+      [
+        35,
+        1130,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1190,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1220,
+        1530,
+        27.839999999999996
+      ]
+    ],
+    "edges": [
+      {
+        "id": "message1",
+        "source": "m1s",
+        "target": "m1t",
+        "points": [
+          [
+            664.0,
+            466
+          ],
+          [
+            1208.0,
+            466
+          ]
+        ]
+      },
+      {
+        "id": "message2",
+        "source": "m2s",
+        "target": "m2t",
+        "points": [
+          [
+            1208.0,
+            591
+          ],
+          [
+            1480.0,
+            591
+          ]
+        ]
+      },
+      {
+        "id": "message3",
+        "source": "m3s",
+        "target": "m3t",
+        "points": [
+          [
+            1208.0,
+            716
+          ],
+          [
+            664.0,
+            716
+          ]
+        ]
+      },
+      {
+        "id": "message4",
+        "source": "m4s",
+        "target": "m4t",
+        "points": [
+          [
+            664.0,
+            841
+          ],
+          [
+            1208.0,
+            841
+          ]
+        ]
+      },
+      {
+        "id": "message5",
+        "source": "m5s",
+        "target": "m5t",
+        "points": [
+          [
+            1208.0,
+            966
+          ],
+          [
+            1480.0,
+            966
+          ]
+        ]
+      }
+    ],
+    "author_native_cell": true
+  }
+}

@@ -1,0 +1,465 @@
+{
+  "UC": "UC-01",
+  "stem": "seqdao_uc01_confirmCheckout_PartF",
+  "title": "UC-01 confirmCheckout — DAO sequence / Part F",
+  "figure": "4.3.2.1.OP-01.F",
+  "part": "Part F",
+  "scope": "Same request and transaction across all parts; focus 6/7. Mechanical reads: responsibility table (report 4.3.2).",
+  "continuation": "From seqdao_uc01_confirmCheckout_PartE → this part → seqdao_uc01_confirmCheckout_PartG.",
+  "transaction_summary": "Transaction key (whole request): BEGIN IMMEDIATE → checked rowcount / inserts → COMMIT; failure → ROLLBACK if active. Busy: retry, nothing changed.",
+  "target_note": "† design target, not yet in code at C0: F-04; F-07; P2-S05; P2-S13; P2-S12 connection settings; MATCH is Static only.",
+  "phase3": {
+    "diagram_type": "dao_sequence",
+    "UC": "UC-01",
+    "op_id": "OP-01",
+    "operation": "confirmCheckout",
+    "parameters": "hubId, addressId, lines(itemId, quantity), voucherCode?, paymentMethod, onlineOption?, simulatorOutcome?, quoteFingerprint, quotedTotal, checkoutToken",
+    "ssd_occurrence": "models/UC-01/ssd_uc01_PartB.drawio#01S-M04",
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Customer",
+        "role": "actor",
+        "label": "Customer"
+      },
+      {
+        "id": "view",
+        "class": "order",
+        "role": "view",
+        "label": "«view»\norder"
+      },
+      {
+        "id": "ctrl",
+        "class": "PlaceOrderController",
+        "role": "controller",
+        "label": "PlaceOrderController"
+      },
+      {
+        "id": "obj9",
+        "class": "Quote",
+        "role": "domain",
+        "label": "Quote"
+      },
+      {
+        "id": "obj12",
+        "class": "Payment",
+        "role": "domain",
+        "label": "Payment"
+      },
+      {
+        "id": "obj4",
+        "class": "OrderDAO",
+        "role": "data_access",
+        "label": "«DAO»\nOrderDAO"
+      },
+      {
+        "id": "obj13",
+        "class": "PaymentDAO",
+        "role": "data_access",
+        "label": "«DAO»\nPaymentDAO"
+      },
+      {
+        "id": "db",
+        "class": "Database",
+        "role": "database",
+        "label": ":Database\n«resource»"
+      }
+    ],
+    "messages": [
+      {
+        "from": "obj4",
+        "to": "db",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC01-PC01; UC01-PC02; UC01-PC03; UC01-PC04; UC01-PC05; UC01-PC06; UC01-MG01; UC01-MG02; UC01-MG03",
+        "label": "SQL note: INSERT orders (UNIQUE token, CHECK totals); INSERT order_line for each line; expect one header + N lines; FK/constraint errors fail transaction.",
+        "base_label": "SQL note: INSERT orders (UNIQUE token, CHECK totals); INSERT order_line for each line; expect one header + N lines; FK/constraint errors fail transaction.",
+        "fragment": false,
+        "draw_arrow": true,
+        "y": 341,
+        "edge_id": "message0"
+      },
+      {
+        "from": "obj4",
+        "to": "ctrl",
+        "method": "",
+        "kind": "return",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC01-PC01; UC01-PC02; UC01-PC03; UC01-PC04; UC01-PC05; UC01-PC06; UC01-MG01; UC01-MG02; UC01-MG03",
+        "label": "new order_id; insert cardinality/constraints enforced (not a state UPDATE rowcount)",
+        "base_label": "new order_id; insert cardinality/constraints enforced (not a state UPDATE rowcount)",
+        "fragment": false,
+        "draw_arrow": false,
+        "y": 466,
+        "edge_id": "message1"
+      },
+      {
+        "from": "ctrl",
+        "to": "obj12",
+        "method": "Payment",
+        "kind": "create",
+        "arguments": "order_id, method, state, amount=T, created_at, provider_ref, online_option",
+        "guard": "",
+        "PC_MG": "UC01-PC01; UC01-PC02; UC01-PC03; UC01-PC04; UC01-PC05; UC01-PC06; UC01-MG01; UC01-MG02; UC01-MG03",
+        "label": "«create» Payment: COD / PENDING, ONLINE / PAID; amount = T, refund owed = 0",
+        "base_label": "«create» Payment: COD / PENDING, ONLINE / PAID; amount = T, refund owed = 0",
+        "fragment": false,
+        "draw_arrow": false,
+        "y": 591,
+        "edge_id": "message2"
+      },
+      {
+        "from": "ctrl",
+        "to": "obj13",
+        "method": "insert",
+        "kind": "call",
+        "arguments": "payment",
+        "guard": "",
+        "PC_MG": "UC01-PC01; UC01-PC02; UC01-PC03; UC01-PC04; UC01-PC05; UC01-PC06; UC01-MG01; UC01-MG02; UC01-MG03",
+        "label": "insert(payment)",
+        "base_label": "insert{dagger}(payment)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "insert(self, payment: Payment) -> int",
+        "status": "MATCH",
+        "P4_input": "",
+        "y": 716,
+        "edge_id": "message3"
+      },
+      {
+        "from": "obj13",
+        "to": "db",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC01-PC01; UC01-PC02; UC01-PC03; UC01-PC04; UC01-PC05; UC01-PC06; UC01-MG01; UC01-MG02; UC01-MG03",
+        "label": "SQL note: INSERT payment: exactly one per order; UNIQUE order_id, FK and enum CHECK; expect one new identity.",
+        "base_label": "SQL note: INSERT payment: exactly one per order; UNIQUE order_id, FK and enum CHECK; expect one new identity.",
+        "fragment": false,
+        "draw_arrow": true,
+        "y": 841,
+        "edge_id": "message4"
+      },
+      {
+        "from": "ctrl",
+        "to": "db",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC01-PC01; UC01-PC02; UC01-PC03; UC01-PC04; UC01-PC05; UC01-PC06; UC01-MG01; UC01-MG02; UC01-MG03",
+        "label": "COMMIT† only after header + all lines + payment succeed; ONLINE captured amount C = T at success.",
+        "base_label": "COMMIT† only after header + all lines + payment succeed; ONLINE captured amount C = T at success.",
+        "fragment": false,
+        "draw_arrow": true,
+        "y": 966,
+        "edge_id": "message5"
+      }
+    ],
+    "elements": [
+      {
+        "class": "order",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "PlaceOrderController",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "Quote",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "Payment",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "OrderDAO",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "PaymentDAO",
+        "attributes": [],
+        "methods": [
+          "insert"
+        ],
+        "method_signatures": {
+          "insert": "insert(self, payment: Payment) -> int"
+        }
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "PlaceOrderController",
+        "target": "PaymentDAO",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      }
+    ],
+    "states": [
+      {
+        "class": "Payment",
+        "attribute": "state",
+        "values": [
+          "PENDING",
+          "PAID"
+        ]
+      }
+    ]
+  },
+  "placed_width_mm": 230,
+  "source_design_sequences": [
+    "models\\UC-01\\seq_uc01_confirmCheckout_PartA.json",
+    "models\\UC-01\\seq_uc01_confirmCheckout_PartB.json"
+  ],
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "refresh_policy": "Reviewed model MATCH only; changed signature fails until explicit alias/lane review; no behavioral auto-qualification.",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "render_receipt": {
+    "canvas": [
+      1600,
+      1250
+    ],
+    "minimum_font_px": 24,
+    "placed_width_mm": 230,
+    "minimum_pt": 9.779527559055119,
+    "native_font_matches_svg": true,
+    "label_bounds": [
+      [
+        35,
+        15,
+        1530,
+        32.48
+      ],
+      [
+        35,
+        54,
+        1530,
+        27.839999999999996
+      ],
+      [
+        36.85714285714286,
+        105,
+        166.28571428571428,
+        27.839999999999996
+      ],
+      [
+        231.14285714285714,
+        105,
+        166.28571428571428,
+        55.67999999999999
+      ],
+      [
+        425.42857142857144,
+        105,
+        166.28571428571428,
+        83.51999999999998
+      ],
+      [
+        619.7142857142858,
+        105,
+        166.28571428571428,
+        27.839999999999996
+      ],
+      [
+        814.0,
+        105,
+        166.28571428571428,
+        27.839999999999996
+      ],
+      [
+        1008.2857142857144,
+        105,
+        166.28571428571428,
+        83.51999999999998
+      ],
+      [
+        1202.5714285714287,
+        105,
+        166.28571428571428,
+        83.51999999999998
+      ],
+      [
+        1396.857142857143,
+        105,
+        166.28571428571428,
+        55.67999999999999
+      ],
+      [
+        45,
+        242,
+        1510,
+        55.67999999999999
+      ],
+      [
+        45,
+        367,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        492,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        617,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        742,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        867,
+        1510,
+        27.839999999999996
+      ],
+      [
+        35,
+        1035,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1070,
+        1530,
+        55.67999999999999
+      ],
+      [
+        35,
+        1130,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1190,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1220,
+        1530,
+        27.839999999999996
+      ]
+    ],
+    "edges": [
+      {
+        "id": "message0",
+        "source": "m0s",
+        "target": "m0t",
+        "points": [
+          [
+            1091.4285714285716,
+            341
+          ],
+          [
+            1480.0,
+            341
+          ]
+        ]
+      },
+      {
+        "id": "message1",
+        "source": "m1s",
+        "target": "m1t",
+        "points": [
+          [
+            1091.4285714285716,
+            466
+          ],
+          [
+            508.57142857142856,
+            466
+          ]
+        ]
+      },
+      {
+        "id": "message2",
+        "source": "m2s",
+        "target": "m2t",
+        "points": [
+          [
+            508.57142857142856,
+            591
+          ],
+          [
+            897.1428571428571,
+            591
+          ]
+        ]
+      },
+      {
+        "id": "message3",
+        "source": "m3s",
+        "target": "m3t",
+        "points": [
+          [
+            508.57142857142856,
+            716
+          ],
+          [
+            1285.7142857142858,
+            716
+          ]
+        ]
+      },
+      {
+        "id": "message4",
+        "source": "m4s",
+        "target": "m4t",
+        "points": [
+          [
+            1285.7142857142858,
+            841
+          ],
+          [
+            1480.0,
+            841
+          ]
+        ]
+      },
+      {
+        "id": "message5",
+        "source": "m5s",
+        "target": "m5t",
+        "points": [
+          [
+            508.57142857142856,
+            966
+          ],
+          [
+            1480.0,
+            966
+          ]
+        ]
+      }
+    ],
+    "author_native_cell": true
+  }
+}

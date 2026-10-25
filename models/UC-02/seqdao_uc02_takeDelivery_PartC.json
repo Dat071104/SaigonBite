@@ -1,0 +1,501 @@
+{
+  "UC": "UC-02",
+  "stem": "seqdao_uc02_takeDelivery_PartC",
+  "title": "UC-02 takeDelivery — DAO sequence / Part C",
+  "figure": "4.3.2.2.OP-10.C",
+  "part": "Part C",
+  "scope": "Same request and transaction across all parts; focus 3/5. Mechanical reads: responsibility table (report 4.3.2).",
+  "continuation": "From seqdao_uc02_takeDelivery_PartB → this part → seqdao_uc02_takeDelivery_PartD.",
+  "transaction_summary": "Transaction key (whole request): BEGIN IMMEDIATE → checked rowcount / inserts → COMMIT; failure → ROLLBACK if active. Busy: retry, nothing changed.",
+  "target_note": "† design target, not yet in code at C0: P2-S13; P3-S03; P2-S12 connection settings; MATCH is Static only.",
+  "phase3": {
+    "diagram_type": "dao_sequence",
+    "UC": "UC-02",
+    "op_id": "OP-10",
+    "operation": "takeDelivery",
+    "parameters": "orderId",
+    "ssd_occurrence": "models/UC-02/ssd_uc02_PartA.drawio#M03",
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Shipper",
+        "role": "actor",
+        "label": "Shipper"
+      },
+      {
+        "id": "view",
+        "class": "delivery",
+        "role": "view",
+        "label": "«view»\ndelivery"
+      },
+      {
+        "id": "ctrl",
+        "class": "DeliveryController",
+        "role": "controller",
+        "label": "DeliveryController"
+      },
+      {
+        "id": "obj6",
+        "class": "controllers.common",
+        "role": "controller",
+        "label": "controllers.common"
+      },
+      {
+        "id": "obj7",
+        "class": "Order",
+        "role": "domain",
+        "label": "Order"
+      },
+      {
+        "id": "obj10",
+        "class": "Delivery",
+        "role": "domain",
+        "label": "Delivery"
+      },
+      {
+        "id": "obj5",
+        "class": "OrderDAO",
+        "role": "data_access",
+        "label": "«DAO»\nOrderDAO"
+      },
+      {
+        "id": "db",
+        "class": "Database",
+        "role": "database",
+        "label": ":Database\n«resource»"
+      }
+    ],
+    "messages": [
+      {
+        "from": "ctrl",
+        "to": "obj6",
+        "method": "move_order",
+        "kind": "call",
+        "arguments": "orders, order, OrderState.OUT_FOR_DELIVERY, now",
+        "guard": "",
+        "PC_MG": "UC02-PC01; UC02-MG01",
+        "label": "move_order(orders, order, OrderState.OUT_FOR_DELIVERY, now)",
+        "base_label": "move_order{dagger}(orders, order, OrderState.OUT_FOR_DELIVERY, now)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "move_order(orders: OrderDAO, order: Order, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> None",
+        "status": "MATCH",
+        "P4_input": "",
+        "y": 341,
+        "edge_id": "message0"
+      },
+      {
+        "from": "obj6",
+        "to": "obj7",
+        "method": "move_to",
+        "kind": "call",
+        "arguments": "OrderState.OUT_FOR_DELIVERY",
+        "guard": "",
+        "PC_MG": "UC02-PC01; UC02-MG01",
+        "label": "move_to(OrderState.OUT_FOR_DELIVERY)",
+        "base_label": "move_to{dagger}(OrderState.OUT_FOR_DELIVERY)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "move_to(self, new_state: OrderState) -> None",
+        "status": "MATCH",
+        "P4_input": "",
+        "y": 466,
+        "edge_id": "message1"
+      },
+      {
+        "from": "obj6",
+        "to": "obj5",
+        "method": "change_state",
+        "kind": "call",
+        "arguments": "order_id, OrderState.READY, OrderState.OUT_FOR_DELIVERY, now",
+        "guard": "",
+        "PC_MG": "UC02-PC01; UC02-MG01",
+        "label": "change_state(order_id, OrderState.READY, OrderState.OUT_FOR_DELIVERY, now)",
+        "base_label": "change_state{dagger}(order_id, OrderState.READY, OrderState.OUT_FOR_DELIVERY, now)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "change_state(self, order_id: int, from_state: OrderState, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> bool",
+        "status": "MATCH",
+        "P4_input": "",
+        "y": 591,
+        "edge_id": "message2"
+      },
+      {
+        "from": "obj5",
+        "to": "db",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC02-PC01; UC02-MG01",
+        "label": "SQL note: UPDATE orders by id AND state = ? (READY); set OUT_FOR_DELIVERY.",
+        "base_label": "SQL note: UPDATE orders by id AND state = ? (READY); set OUT_FOR_DELIVERY.",
+        "fragment": false,
+        "draw_arrow": true,
+        "y": 716,
+        "edge_id": "message3"
+      },
+      {
+        "from": "obj5",
+        "to": "obj6",
+        "method": "",
+        "kind": "return",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC02-PC01; UC02-MG01",
+        "label": "rowcount == 1; † helper checks bool; 0 rows → ROLLBACK pickup too",
+        "base_label": "rowcount == 1; † helper checks bool; 0 rows → ROLLBACK pickup too",
+        "fragment": false,
+        "draw_arrow": false,
+        "y": 841,
+        "edge_id": "message4"
+      },
+      {
+        "from": "ctrl",
+        "to": "db",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC02-PC01; UC02-MG01",
+        "label": "COMMIT†: paired Delivery PICKED_UP + Order OUT_FOR_DELIVERY; UC02-PC01.",
+        "base_label": "COMMIT†: paired Delivery PICKED_UP + Order OUT_FOR_DELIVERY; UC02-PC01.",
+        "fragment": false,
+        "draw_arrow": true,
+        "y": 966,
+        "edge_id": "message5"
+      }
+    ],
+    "elements": [
+      {
+        "class": "delivery",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "DeliveryController",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "controllers.common",
+        "attributes": [],
+        "methods": [
+          "move_order"
+        ],
+        "method_signatures": {
+          "move_order": "move_order(orders: OrderDAO, order: Order, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> None"
+        }
+      },
+      {
+        "class": "Order",
+        "attributes": [],
+        "methods": [
+          "move_to"
+        ],
+        "method_signatures": {
+          "move_to": "move_to(self, new_state: OrderState) -> None"
+        }
+      },
+      {
+        "class": "Delivery",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "OrderDAO",
+        "attributes": [],
+        "methods": [
+          "change_state"
+        ],
+        "method_signatures": {
+          "change_state": "change_state(self, order_id: int, from_state: OrderState, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> bool"
+        }
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "DeliveryController",
+        "target": "controllers.common",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "controllers.common",
+        "target": "Order",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature; C0 order.move_to via typed Order parameter",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "controllers.common",
+        "target": "OrderDAO",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      }
+    ],
+    "states": [
+      {
+        "class": "Delivery",
+        "attribute": "state",
+        "values": [
+          "PICKED_UP"
+        ]
+      },
+      {
+        "class": "Order",
+        "attribute": "state",
+        "values": [
+          "READY",
+          "OUT_FOR_DELIVERY"
+        ]
+      }
+    ]
+  },
+  "placed_width_mm": 230,
+  "source_design_sequences": [
+    "models\\UC-02\\seq_uc02_takeDelivery.json"
+  ],
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "refresh_policy": "Reviewed model MATCH only; changed signature fails until explicit alias/lane review; no behavioral auto-qualification.",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "render_receipt": {
+    "canvas": [
+      1600,
+      1250
+    ],
+    "minimum_font_px": 24,
+    "placed_width_mm": 230,
+    "minimum_pt": 9.779527559055119,
+    "native_font_matches_svg": true,
+    "label_bounds": [
+      [
+        35,
+        15,
+        1530,
+        32.48
+      ],
+      [
+        35,
+        54,
+        1530,
+        27.839999999999996
+      ],
+      [
+        36.85714285714286,
+        105,
+        166.28571428571428,
+        27.839999999999996
+      ],
+      [
+        231.14285714285714,
+        105,
+        166.28571428571428,
+        55.67999999999999
+      ],
+      [
+        425.42857142857144,
+        105,
+        166.28571428571428,
+        55.67999999999999
+      ],
+      [
+        619.7142857142858,
+        105,
+        166.28571428571428,
+        55.67999999999999
+      ],
+      [
+        814.0,
+        105,
+        166.28571428571428,
+        27.839999999999996
+      ],
+      [
+        1008.2857142857144,
+        105,
+        166.28571428571428,
+        27.839999999999996
+      ],
+      [
+        1202.5714285714287,
+        105,
+        166.28571428571428,
+        83.51999999999998
+      ],
+      [
+        1396.857142857143,
+        105,
+        166.28571428571428,
+        55.67999999999999
+      ],
+      [
+        45,
+        242,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        367,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        492,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        617,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        742,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        867,
+        1510,
+        27.839999999999996
+      ],
+      [
+        35,
+        1035,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1070,
+        1530,
+        55.67999999999999
+      ],
+      [
+        35,
+        1130,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1190,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1220,
+        1530,
+        27.839999999999996
+      ]
+    ],
+    "edges": [
+      {
+        "id": "message0",
+        "source": "m0s",
+        "target": "m0t",
+        "points": [
+          [
+            508.57142857142856,
+            341
+          ],
+          [
+            702.8571428571429,
+            341
+          ]
+        ]
+      },
+      {
+        "id": "message1",
+        "source": "m1s",
+        "target": "m1t",
+        "points": [
+          [
+            702.8571428571429,
+            466
+          ],
+          [
+            897.1428571428571,
+            466
+          ]
+        ]
+      },
+      {
+        "id": "message2",
+        "source": "m2s",
+        "target": "m2t",
+        "points": [
+          [
+            702.8571428571429,
+            591
+          ],
+          [
+            1285.7142857142858,
+            591
+          ]
+        ]
+      },
+      {
+        "id": "message3",
+        "source": "m3s",
+        "target": "m3t",
+        "points": [
+          [
+            1285.7142857142858,
+            716
+          ],
+          [
+            1480.0,
+            716
+          ]
+        ]
+      },
+      {
+        "id": "message4",
+        "source": "m4s",
+        "target": "m4t",
+        "points": [
+          [
+            1285.7142857142858,
+            841
+          ],
+          [
+            702.8571428571429,
+            841
+          ]
+        ]
+      },
+      {
+        "id": "message5",
+        "source": "m5s",
+        "target": "m5t",
+        "points": [
+          [
+            508.57142857142856,
+            966
+          ],
+          [
+            1480.0,
+            966
+          ]
+        ]
+      }
+    ],
+    "author_native_cell": true
+  }
+}

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1250" viewBox="0 0 1600 1250"><rect width="100%" height="100%" fill="white"/>
+<text x="35" y="41.040000000000006" font-family="Arial" font-size="28" font-weight="bold" fill="#202B36">UC-05 rejectOrder — DAO sequence / Part F</text>
+<text x="35" y="76.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Same request and transaction across all parts; focus 6/6. Mechanical reads: responsibility table (report 4.3.2).</text>
+<rect x="8.0" y="100" width="224" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
+<text x="15.0" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Kitchen staff</text>
+<polyline points="120.0,220 120.0,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<rect x="280.0" y="100" width="224" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
+<text x="287.0" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">«view»</text>
+<text x="287.0" y="155.16" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">kitchen</text>
+<polyline points="392.0,220 392.0,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<rect x="552.0" y="100" width="224" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
+<text x="559.0" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Kitchen</text>
+<text x="559.0" y="155.16" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Controller</text>
+<polyline points="664.0,220 664.0,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<rect x="824.0" y="100" width="224" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
+<text x="831.0" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Order</text>
+<polyline points="936.0,220 936.0,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<rect x="1096.0" y="100" width="224" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
+<text x="1103.0" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">«DAO»</text>
+<text x="1103.0" y="155.16" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Order</text>
+<text x="1103.0" y="183.0" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">DAO</text>
+<polyline points="1208.0,220 1208.0,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<rect x="1368.0" y="100" width="224" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
+<text x="1375.0" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">:Database</text>
+<text x="1375.0" y="155.16" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">«resource»</text>
+<polyline points="1480.0,220 1480.0,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<rect x="42" y="241" width="1516" height="30.839999999999996" fill="white"/>
+<text x="45" y="264.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">[transaction or COMMIT failed] ROLLBACK† if active after write or COMMIT failure; do not issue unconditional rollback after a failed BEGIN.</text>
+<polyline points="664.0,341 1480.0,341" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="1467.3937405670624,347.08951747755725 1480.0,341 1467.3937405670624,334.91048252244275" fill="none" stroke="#004387" stroke-width="2"/>
+<rect x="42" y="366" width="1516" height="30.839999999999996" fill="white"/>
+<text x="45" y="389.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">[database is locked: rollback if active; failed BEGIN has no active transaction] Busy, please retry; nothing was changed</text>
+<polyline points="664.0,466 392.0,466" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<polyline points="404.60625943293746,459.91048252244275 392.0,466 404.60625943293746,472.08951747755725" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="35" y="1057.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">From seqdao_uc05_rejectOrder_PartE → this part → response boundary.</text>
+<text x="35" y="1092.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Transaction key (whole request): BEGIN IMMEDIATE → checked rowcount / inserts → COMMIT; failure → ROLLBACK if active. Busy: retry,</text>
+<text x="35" y="1120.1599999999999" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">nothing changed.</text>
+<text x="35" y="1152.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">† design target, not yet in code at C0: F-02; P2-S01; P2-S13; P3-S03; P2-S12 connection settings; MATCH is Static only.</text>
+<text x="35" y="1212.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Figure 4.3.2.5.OP-03.F. rejectOrder / Part F — Author: 722I0004 · AI-assisted (Codex)</text>
+<text x="35" y="1242.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Static only · 230 mm landscape · minimum 9.78 pt · native draw.io and final DOCX/PDF placement UNTESTED</text>
+</svg>

@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1250" viewBox="0 0 1600 1250"><rect width="100%" height="100%" fill="white"/>
+<text x="35" y="41.040000000000006" font-family="Arial" font-size="28" font-weight="bold" fill="#202B36">UC-01 confirmCheckout — DAO sequence / Part D</text>
+<text x="35" y="76.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Same request and transaction across all parts; focus 4/7. Mechanical reads: responsibility table (report 4.3.2).</text>
+<rect x="13.666666666666671" y="100" width="212.66666666666666" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
+<text x="20.66666666666667" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Customer</text>
+<polyline points="120.0,220 120.0,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<rect x="240.33333333333331" y="100" width="212.66666666666666" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
+<text x="247.33333333333331" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">«view»</text>
+<text x="247.33333333333331" y="155.16" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">order</text>
+<polyline points="346.66666666666663,220 346.66666666666663,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<rect x="466.99999999999994" y="100" width="212.66666666666666" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
+<text x="473.99999999999994" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Place</text>
+<text x="473.99999999999994" y="155.16" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Order</text>
+<text x="473.99999999999994" y="183.0" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Controller</text>
+<polyline points="573.3333333333333,220 573.3333333333333,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<rect x="693.6666666666666" y="100" width="212.66666666666666" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
+<text x="700.6666666666666" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Hub</text>
+<polyline points="800.0,220 800.0,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<rect x="920.3333333333331" y="100" width="212.66666666666666" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
+<text x="927.3333333333331" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Quote</text>
+<polyline points="1026.6666666666665,220 1026.6666666666665,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<rect x="1147.0" y="100" width="212.66666666666666" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
+<text x="1154.0" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">«DAO»</text>
+<text x="1154.0" y="155.16" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Voucher</text>
+<text x="1154.0" y="183.0" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">DAO</text>
+<polyline points="1253.3333333333333,220 1253.3333333333333,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<rect x="1373.6666666666667" y="100" width="212.66666666666666" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
+<text x="1380.6666666666667" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">:Database</text>
+<text x="1380.6666666666667" y="155.16" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">«resource»</text>
+<polyline points="1480.0,220 1480.0,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<rect x="42" y="241" width="1516" height="30.839999999999996" fill="white"/>
+<text x="45" y="264.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">[eligible address] distance_to†(address)</text>
+<polyline points="573.3333333333333,341 800.0,341" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="787.3937405670625,347.08951747755725 800.0,341 787.3937405670625,334.91048252244275" fill="none" stroke="#004387" stroke-width="2"/>
+<rect x="795.0" y="341" width="10" height="18" stroke="#004387" fill="#DAE9F5" stroke-width="2"/>
+<rect x="35" y="367" width="1530" height="111" stroke="#004387" fill="#FFF8E9" stroke-width="2"/>
+<text x="45" y="394.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">† F-04: raw distance ≤ 8 km; raw distance determines fee, round only display/storage. Quiet discount uses pre-insert load. Voucher</text>
+<text x="45" y="422.15999999999997" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">recalculated; T = S − D + F − Q.</text>
+<rect x="42" y="491" width="1516" height="30.839999999999996" fill="white"/>
+<text x="45" y="514.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">[voucher supplied] get_by_code(voucher_code)</text>
+<polyline points="573.3333333333333,591 1253.3333333333333,591" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="1240.7270739003957,597.0895174775573 1253.3333333333333,591 1240.7270739003957,584.9104825224427" fill="none" stroke="#004387" stroke-width="2"/>
+<rect x="1248.3333333333333" y="591" width="10" height="18" stroke="#004387" fill="#DAE9F5" stroke-width="2"/>
+<rect x="42" y="616" width="1516" height="30.839999999999996" fill="white"/>
+<text x="45" y="639.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">SQL note: SELECT voucher by code; controller/domain validate dates, archival, subtotal and cap.</text>
+<polyline points="1253.3333333333333,716 1480.0,716" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="1467.3937405670624,722.0895174775573 1480.0,716 1467.3937405670624,709.9104825224427" fill="none" stroke="#004387" stroke-width="2"/>
+<rect x="42" y="741" width="1516" height="30.839999999999996" fill="white"/>
+<text x="45" y="764.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">fingerprint†(payment.method, payment.option)</text>
+<polyline points="573.3333333333333,841 1026.6666666666665,841" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="1014.060407233729,847.0895174775573 1026.6666666666665,841 1014.060407233729,834.9104825224427" fill="none" stroke="#004387" stroke-width="2"/>
+<rect x="1021.6666666666665" y="841" width="10" height="18" stroke="#004387" fill="#DAE9F5" stroke-width="2"/>
+<rect x="35" y="867" width="1530" height="111" stroke="#004387" fill="#FFF8E9" stroke-width="2"/>
+<rect x="35" y="867" width="66" height="32" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
+<text x="42" y="889.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">alt</text>
+<text x="110" y="894.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">† F-07: compare complete fingerprint AND T with consent. Changed/missing consent → revised quote; ROLLBACK, zero</text>
+<text x="110" y="922.1600000000001" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Order/Line/Payment. Domain receives PaymentMethod/OnlineOption enums, not PaymentChoice.</text>
+<text x="35" y="1057.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">From seqdao_uc01_confirmCheckout_PartC → this part → seqdao_uc01_confirmCheckout_PartE.</text>
+<text x="35" y="1092.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Transaction key (whole request): BEGIN IMMEDIATE → checked rowcount / inserts → COMMIT; failure → ROLLBACK if active. Busy: retry,</text>
+<text x="35" y="1120.1599999999999" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">nothing changed.</text>
+<text x="35" y="1152.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">† design target, not yet in code at C0: F-04; F-07; P2-S05; P2-S13; P2-S12 connection settings; MATCH is Static only.</text>
+<text x="35" y="1212.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Figure 4.3.2.1.OP-01.D. confirmCheckout / Part D — Author: 722I0004 · AI-assisted (Codex)</text>
+<text x="35" y="1242.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Static only · 230 mm landscape · minimum 9.78 pt · native draw.io and final DOCX/PDF placement UNTESTED</text>
+</svg>

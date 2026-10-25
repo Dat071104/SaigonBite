@@ -1,0 +1,468 @@
+{
+  "UC": "UC-01",
+  "stem": "seqdao_uc01_confirmCheckout_PartE",
+  "title": "UC-01 confirmCheckout — DAO sequence / Part E",
+  "figure": "4.3.2.1.OP-01.E",
+  "part": "Part E",
+  "scope": "Same request and transaction across all parts; focus 5/7. Mechanical reads: responsibility table (report 4.3.2).",
+  "continuation": "From seqdao_uc01_confirmCheckout_PartD → this part → seqdao_uc01_confirmCheckout_PartF.",
+  "transaction_summary": "Transaction key (whole request): BEGIN IMMEDIATE → checked rowcount / inserts → COMMIT; failure → ROLLBACK if active. Busy: retry, nothing changed.",
+  "target_note": "† design target, not yet in code at C0: F-04; F-07; P2-S05; P2-S13; P2-S12 connection settings; MATCH is Static only.",
+  "phase3": {
+    "diagram_type": "dao_sequence",
+    "UC": "UC-01",
+    "op_id": "OP-01",
+    "operation": "confirmCheckout",
+    "parameters": "hubId, addressId, lines(itemId, quantity), voucherCode?, paymentMethod, onlineOption?, simulatorOutcome?, quoteFingerprint, quotedTotal, checkoutToken",
+    "ssd_occurrence": "models/UC-01/ssd_uc01_PartB.drawio#01S-M04",
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Customer",
+        "role": "actor",
+        "label": "Customer"
+      },
+      {
+        "id": "view",
+        "class": "order",
+        "role": "view",
+        "label": "«view»\norder"
+      },
+      {
+        "id": "ctrl",
+        "class": "PlaceOrderController",
+        "role": "controller",
+        "label": "PlaceOrderController"
+      },
+      {
+        "id": "obj9",
+        "class": "Quote",
+        "role": "domain",
+        "label": "Quote"
+      },
+      {
+        "id": "obj11",
+        "class": "Order",
+        "role": "domain",
+        "label": "Order"
+      },
+      {
+        "id": "obj4",
+        "class": "OrderDAO",
+        "role": "data_access",
+        "label": "«DAO»\nOrderDAO"
+      },
+      {
+        "id": "obj10",
+        "class": "PaymentGatewaySimulator",
+        "role": "data_access",
+        "label": "PaymentGatewaySimulator"
+      },
+      {
+        "id": "db",
+        "class": "Database",
+        "role": "database",
+        "label": ":Database\n«resource»"
+      }
+    ],
+    "messages": [
+      {
+        "from": "ctrl",
+        "to": "obj10",
+        "method": "authorise",
+        "kind": "call",
+        "arguments": "quote.total, payment.option, payment.outcome",
+        "guard": "ONLINE only; consent matches",
+        "PC_MG": "UC01-PC01; UC01-PC02; UC01-PC03; UC01-PC04; UC01-PC05; UC01-PC06; UC01-MG01; UC01-MG02; UC01-MG03",
+        "label": "authorise(quote.total, payment.option, payment.outcome)",
+        "base_label": "authorise{dagger}(quote.total, payment.option, payment.outcome)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "authorise(self, amount: int, option: OnlineOption, outcome: str) -> Authorisation",
+        "status": "MATCH",
+        "P4_input": "",
+        "y": 341,
+        "edge_id": "message0"
+      },
+      {
+        "from": "obj10",
+        "to": "ctrl",
+        "method": "",
+        "kind": "return",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC01-PC01; UC01-PC02; UC01-PC03; UC01-PC04; UC01-PC05; UC01-PC06; UC01-MG01; UC01-MG02; UC01-MG03",
+        "label": "Authorisation(approved, reference, message); short deterministic local decision",
+        "base_label": "Authorisation(approved, reference, message); short deterministic local decision",
+        "fragment": false,
+        "draw_arrow": false,
+        "y": 466,
+        "edge_id": "message1"
+      },
+      {
+        "from": "ctrl",
+        "to": "ctrl",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "not approved",
+        "PC_MG": "UC01-PC01; UC01-PC02; UC01-PC03; UC01-PC04; UC01-PC05; UC01-PC06; UC01-MG01; UC01-MG02; UC01-MG03",
+        "label": "ONLINE decline: ROLLBACK; zero orders, order_line and payment rows. No FAILED payment row. COD skips authorization; local simulator has no external request.",
+        "base_label": "ONLINE decline: ROLLBACK; zero orders, order_line and payment rows. No FAILED payment row. COD skips authorization; local simulator has no external request.",
+        "fragment": true,
+        "draw_arrow": false,
+        "y": 591
+      },
+      {
+        "from": "ctrl",
+        "to": "obj11",
+        "method": "place",
+        "kind": "call",
+        "arguments": "customer.id, quote, token, now",
+        "guard": "COD or approved ONLINE",
+        "PC_MG": "UC01-PC01; UC01-PC02; UC01-PC03; UC01-PC04; UC01-PC05; UC01-PC06; UC01-MG01; UC01-MG02; UC01-MG03",
+        "label": "place(customer.id, quote, token, now)",
+        "base_label": "place{dagger}(customer.id, quote, token, now)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "place(cls, customer_id: int, quote: Quote, idempotency_token: str, placed_at: str) -> 'Order'",
+        "status": "MATCH",
+        "P4_input": "",
+        "y": 716,
+        "edge_id": "message3"
+      },
+      {
+        "from": "ctrl",
+        "to": "ctrl",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC01-PC01; UC01-PC02; UC01-PC03; UC01-PC04; UC01-PC05; UC01-PC06; UC01-MG01; UC01-MG02; UC01-MG03",
+        "label": "Order.place creates PLACED with immutable line/address/name/price snapshots; properties supply S,D,F,Q,T. No fake WHERE-state UPDATE for a new checkout.",
+        "base_label": "Order.place creates PLACED with immutable line/address/name/price snapshots; properties supply S,D,F,Q,T. No fake WHERE-state UPDATE for a new checkout.",
+        "fragment": false,
+        "draw_arrow": false,
+        "y": 841
+      },
+      {
+        "from": "ctrl",
+        "to": "obj4",
+        "method": "insert",
+        "kind": "call",
+        "arguments": "order",
+        "guard": "",
+        "PC_MG": "UC01-PC01; UC01-PC02; UC01-PC03; UC01-PC04; UC01-PC05; UC01-PC06; UC01-MG01; UC01-MG02; UC01-MG03",
+        "label": "insert(order)",
+        "base_label": "insert{dagger}(order)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "insert(self, order: Order) -> int",
+        "status": "MATCH",
+        "P4_input": "",
+        "y": 966,
+        "edge_id": "message5"
+      }
+    ],
+    "elements": [
+      {
+        "class": "order",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "PlaceOrderController",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "Quote",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "Order",
+        "attributes": [],
+        "methods": [
+          "place"
+        ],
+        "method_signatures": {
+          "place": "place(cls, customer_id: int, quote: Quote, idempotency_token: str, placed_at: str) -> 'Order'"
+        }
+      },
+      {
+        "class": "OrderDAO",
+        "attributes": [],
+        "methods": [
+          "insert"
+        ],
+        "method_signatures": {
+          "insert": "insert(self, order: Order) -> int"
+        }
+      },
+      {
+        "class": "PaymentGatewaySimulator",
+        "attributes": [],
+        "methods": [
+          "authorise"
+        ],
+        "method_signatures": {
+          "authorise": "authorise(self, amount: int, option: OnlineOption, outcome: str) -> Authorisation"
+        }
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "PlaceOrderController",
+        "target": "PaymentGatewaySimulator",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "PlaceOrderController",
+        "target": "Order",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "PlaceOrderController",
+        "target": "OrderDAO",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      }
+    ],
+    "states": [
+      {
+        "class": "Order",
+        "attribute": "state",
+        "values": [
+          "PLACED"
+        ]
+      }
+    ]
+  },
+  "placed_width_mm": 230,
+  "source_design_sequences": [
+    "models\\UC-01\\seq_uc01_confirmCheckout_PartA.json",
+    "models\\UC-01\\seq_uc01_confirmCheckout_PartB.json"
+  ],
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "refresh_policy": "Reviewed model MATCH only; changed signature fails until explicit alias/lane review; no behavioral auto-qualification.",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "render_receipt": {
+    "canvas": [
+      1600,
+      1250
+    ],
+    "minimum_font_px": 24,
+    "placed_width_mm": 230,
+    "minimum_pt": 9.779527559055119,
+    "native_font_matches_svg": true,
+    "label_bounds": [
+      [
+        35,
+        15,
+        1530,
+        32.48
+      ],
+      [
+        35,
+        54,
+        1530,
+        27.839999999999996
+      ],
+      [
+        36.85714285714286,
+        105,
+        166.28571428571428,
+        27.839999999999996
+      ],
+      [
+        231.14285714285714,
+        105,
+        166.28571428571428,
+        55.67999999999999
+      ],
+      [
+        425.42857142857144,
+        105,
+        166.28571428571428,
+        83.51999999999998
+      ],
+      [
+        619.7142857142858,
+        105,
+        166.28571428571428,
+        27.839999999999996
+      ],
+      [
+        814.0,
+        105,
+        166.28571428571428,
+        27.839999999999996
+      ],
+      [
+        1008.2857142857144,
+        105,
+        166.28571428571428,
+        83.51999999999998
+      ],
+      [
+        1202.5714285714287,
+        105,
+        166.28571428571428,
+        83.51999999999998
+      ],
+      [
+        1396.857142857143,
+        105,
+        166.28571428571428,
+        55.67999999999999
+      ],
+      [
+        45,
+        242,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        367,
+        1510,
+        27.839999999999996
+      ],
+      [
+        42,
+        492,
+        56,
+        27.839999999999996
+      ],
+      [
+        110,
+        497,
+        1440,
+        55.67999999999999
+      ],
+      [
+        45,
+        617,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        747,
+        1510,
+        55.67999999999999
+      ],
+      [
+        45,
+        867,
+        1510,
+        27.839999999999996
+      ],
+      [
+        35,
+        1035,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1070,
+        1530,
+        55.67999999999999
+      ],
+      [
+        35,
+        1130,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1190,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1220,
+        1530,
+        27.839999999999996
+      ]
+    ],
+    "edges": [
+      {
+        "id": "message0",
+        "source": "m0s",
+        "target": "m0t",
+        "points": [
+          [
+            508.57142857142856,
+            341
+          ],
+          [
+            1285.7142857142858,
+            341
+          ]
+        ]
+      },
+      {
+        "id": "message1",
+        "source": "m1s",
+        "target": "m1t",
+        "points": [
+          [
+            1285.7142857142858,
+            466
+          ],
+          [
+            508.57142857142856,
+            466
+          ]
+        ]
+      },
+      {
+        "id": "message3",
+        "source": "m3s",
+        "target": "m3t",
+        "points": [
+          [
+            508.57142857142856,
+            716
+          ],
+          [
+            897.1428571428571,
+            716
+          ]
+        ]
+      },
+      {
+        "id": "message5",
+        "source": "m5s",
+        "target": "m5t",
+        "points": [
+          [
+            508.57142857142856,
+            966
+          ],
+          [
+            1091.4285714285716,
+            966
+          ]
+        ]
+      }
+    ],
+    "author_native_cell": true
+  }
+}

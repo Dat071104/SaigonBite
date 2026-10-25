@@ -1,0 +1,420 @@
+{
+  "UC": "UC-04",
+  "stem": "seqdao_uc04_salesReport_PartC",
+  "title": "UC-04 salesReport — DAO sequence / Part C",
+  "figure": "4.3.2.4.OP-26.C",
+  "part": "Part C",
+  "scope": "Same read-only request across all parts; focus 3/4. Mechanical reads: responsibility table (report 4.3.2).",
+  "continuation": "From seqdao_uc04_salesReport_PartB → this part → seqdao_uc04_salesReport_PartD.",
+  "transaction_summary": "Read-only on ALL paths; SELECT only; UC04-MG01. No BEGIN IMMEDIATE, business write or write-transaction retry.",
+  "target_note": "† design target, not yet in code at C0: F-03; F-09; P2-S12 connection settings; MATCH is Static only.",
+  "phase3": {
+    "diagram_type": "dao_sequence",
+    "UC": "UC-04",
+    "op_id": "OP-26",
+    "operation": "salesReport",
+    "parameters": "startDateVN, endDateVN, hubId?",
+    "ssd_occurrence": "models/UC-04/ssd_uc04.drawio#M01",
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Manager",
+        "role": "actor",
+        "label": "Manager"
+      },
+      {
+        "id": "view",
+        "class": "reports",
+        "role": "view",
+        "label": "«view»\nreports"
+      },
+      {
+        "id": "ctrl",
+        "class": "ReportController",
+        "role": "controller",
+        "label": "ReportController"
+      },
+      {
+        "id": "obj5",
+        "class": "SalesRow",
+        "role": "controller",
+        "label": "SalesRow"
+      },
+      {
+        "id": "obj4",
+        "class": "ReportDAO",
+        "role": "data_access",
+        "label": "«DAO»\nReportDAO"
+      },
+      {
+        "id": "db",
+        "class": "Database",
+        "role": "database",
+        "label": ":Database\n«resource»"
+      }
+    ],
+    "messages": [
+      {
+        "from": "obj4",
+        "to": "ctrl",
+        "method": "",
+        "kind": "return",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC04-PC01; UC04-MG01; UC04-MG02",
+        "label": "hub aggregate rows: orders, S, D, F−Q, T, refund owed; no order_line join",
+        "base_label": "hub aggregate rows: orders, S, D, F−Q, T, refund owed; no order_line join",
+        "fragment": false,
+        "draw_arrow": false,
+        "y": 341,
+        "edge_id": "message0"
+      },
+      {
+        "from": "ctrl",
+        "to": "obj5",
+        "method": "SalesRow",
+        "kind": "create",
+        "arguments": "label, orders, item_sales, voucher_discounts, delivery_fees, total, refunds_owed",
+        "guard": "",
+        "PC_MG": "UC04-PC01; UC04-MG01; UC04-MG02",
+        "label": "«create» SalesRow from each SELECT row; non-persisted. Total row starts at zero.",
+        "base_label": "«create» SalesRow from each SELECT row; non-persisted. Total row starts at zero.",
+        "fragment": false,
+        "draw_arrow": false,
+        "y": 466,
+        "edge_id": "message1"
+      },
+      {
+        "from": "ctrl",
+        "to": "obj5",
+        "method": "add",
+        "kind": "call",
+        "arguments": "row",
+        "guard": "loop hub rows; totals accumulator",
+        "PC_MG": "UC04-PC01; UC04-MG01; UC04-MG02",
+        "label": "add(row)",
+        "base_label": "add{dagger}(row)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "add(self, other: 'SalesRow') -> None",
+        "status": "MATCH",
+        "P4_input": "",
+        "y": 591,
+        "edge_id": "message2"
+      },
+      {
+        "from": "ctrl",
+        "to": "ctrl",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC04-PC01; UC04-MG01; UC04-MG02",
+        "label": "SalesRow.net† is property access: operational sales = T; refund owed disclosed separately, never subtracted again (F-03). No metric correctness measured.",
+        "base_label": "SalesRow.net† is property access: operational sales = T; refund owed disclosed separately, never subtracted again (F-03). No metric correctness measured.",
+        "fragment": false,
+        "draw_arrow": false,
+        "y": 716
+      },
+      {
+        "from": "ctrl",
+        "to": "obj4",
+        "method": "top_items",
+        "kind": "call",
+        "arguments": "period.start_utc, period.end_utc, hub_id, limit=10",
+        "guard": "",
+        "PC_MG": "UC04-PC01; UC04-MG01; UC04-MG02",
+        "label": "top_items†(period.start_utc, period.end_utc, hub_id, limit=10)",
+        "base_label": "top_items{dagger}(period.start_utc, period.end_utc, hub_id, limit=10)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "top_items(self, start_utc: str, end_utc: str, hub_id: Optional[int], limit: int=10) -> list[sqlite3.Row]",
+        "status": "P4-TARGET",
+        "P4_input": "F-09",
+        "y": 841,
+        "edge_id": "message4"
+      },
+      {
+        "from": "obj4",
+        "to": "db",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC04-PC01; UC04-MG01; UC04-MG02",
+        "label": "SQL note: SELECT order_line + orders + delivery; delivered finish period. † F-09 GROUP BY menu_item_id; snapshot name is label, not identity.",
+        "base_label": "SQL note: SELECT order_line + orders + delivery; delivered finish period. † F-09 GROUP BY menu_item_id; snapshot name is label, not identity.",
+        "fragment": false,
+        "draw_arrow": true,
+        "y": 966,
+        "edge_id": "message5"
+      }
+    ],
+    "elements": [
+      {
+        "class": "reports",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "ReportController",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "SalesRow",
+        "attributes": [],
+        "methods": [
+          "add",
+          "net"
+        ],
+        "method_signatures": {
+          "add": "add(self, other: 'SalesRow') -> None",
+          "net": "net(self) -> int"
+        }
+      },
+      {
+        "class": "ReportDAO",
+        "attributes": [],
+        "methods": [
+          "top_items"
+        ],
+        "method_signatures": {
+          "top_items": "top_items(self, start_utc: str, end_utc: str, hub_id: Optional[int], limit: int=10) -> list[sqlite3.Row]"
+        }
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "ReportController",
+        "target": "SalesRow",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "ReportController",
+        "target": "ReportDAO",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      }
+    ],
+    "states": []
+  },
+  "placed_width_mm": 230,
+  "source_design_sequences": [
+    "models\\UC-04\\seq_uc04_salesReport.json"
+  ],
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "refresh_policy": "Reviewed model MATCH only; changed signature fails until explicit alias/lane review; no behavioral auto-qualification.",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "render_receipt": {
+    "canvas": [
+      1600,
+      1250
+    ],
+    "minimum_font_px": 24,
+    "placed_width_mm": 230,
+    "minimum_pt": 9.779527559055119,
+    "native_font_matches_svg": true,
+    "label_bounds": [
+      [
+        35,
+        15,
+        1530,
+        32.48
+      ],
+      [
+        35,
+        54,
+        1530,
+        27.839999999999996
+      ],
+      [
+        15.0,
+        105,
+        210,
+        27.839999999999996
+      ],
+      [
+        287.0,
+        105,
+        210,
+        55.67999999999999
+      ],
+      [
+        559.0,
+        105,
+        210,
+        55.67999999999999
+      ],
+      [
+        831.0,
+        105,
+        210,
+        55.67999999999999
+      ],
+      [
+        1103.0,
+        105,
+        210,
+        83.51999999999998
+      ],
+      [
+        1375.0,
+        105,
+        210,
+        55.67999999999999
+      ],
+      [
+        45,
+        242,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        367,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        492,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        622,
+        1510,
+        55.67999999999999
+      ],
+      [
+        45,
+        742,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        867,
+        1510,
+        55.67999999999999
+      ],
+      [
+        35,
+        1035,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1070,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1130,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1190,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1220,
+        1530,
+        27.839999999999996
+      ]
+    ],
+    "edges": [
+      {
+        "id": "message0",
+        "source": "m0s",
+        "target": "m0t",
+        "points": [
+          [
+            1208.0,
+            341
+          ],
+          [
+            664.0,
+            341
+          ]
+        ]
+      },
+      {
+        "id": "message1",
+        "source": "m1s",
+        "target": "m1t",
+        "points": [
+          [
+            664.0,
+            466
+          ],
+          [
+            936.0,
+            466
+          ]
+        ]
+      },
+      {
+        "id": "message2",
+        "source": "m2s",
+        "target": "m2t",
+        "points": [
+          [
+            664.0,
+            591
+          ],
+          [
+            936.0,
+            591
+          ]
+        ]
+      },
+      {
+        "id": "message4",
+        "source": "m4s",
+        "target": "m4t",
+        "points": [
+          [
+            664.0,
+            841
+          ],
+          [
+            1208.0,
+            841
+          ]
+        ]
+      },
+      {
+        "id": "message5",
+        "source": "m5s",
+        "target": "m5t",
+        "points": [
+          [
+            1208.0,
+            966
+          ],
+          [
+            1480.0,
+            966
+          ]
+        ]
+      }
+    ],
+    "author_native_cell": true
+  }
+}

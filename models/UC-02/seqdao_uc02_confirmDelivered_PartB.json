@@ -1,0 +1,449 @@
+{
+  "UC": "UC-02",
+  "stem": "seqdao_uc02_confirmDelivered_PartB",
+  "title": "UC-02 confirmDelivered — DAO sequence / Part B",
+  "figure": "4.3.2.2.OP-11.B",
+  "part": "Part B",
+  "scope": "Same request and transaction across all parts; focus 2/6. Mechanical reads: responsibility table (report 4.3.2).",
+  "continuation": "From seqdao_uc02_confirmDelivered_PartA → this part → seqdao_uc02_confirmDelivered_PartC.",
+  "transaction_summary": "Transaction key (whole request): BEGIN IMMEDIATE → checked rowcount / inserts → COMMIT; failure → ROLLBACK if active. Busy: retry, nothing changed.",
+  "target_note": "† design target, not yet in code at C0: P2-S13; P3-S03; P2-S12 connection settings; MATCH is Static only.",
+  "phase3": {
+    "diagram_type": "dao_sequence",
+    "UC": "UC-02",
+    "op_id": "OP-11",
+    "operation": "confirmDelivered",
+    "parameters": "orderId, cashCollected?",
+    "ssd_occurrence": "models/UC-02/ssd_uc02_PartB.drawio#M04",
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Shipper",
+        "role": "actor",
+        "label": "Shipper"
+      },
+      {
+        "id": "view",
+        "class": "delivery",
+        "role": "view",
+        "label": "«view»\ndelivery"
+      },
+      {
+        "id": "ctrl",
+        "class": "DeliveryController",
+        "role": "controller",
+        "label": "DeliveryController"
+      },
+      {
+        "id": "obj7",
+        "class": "Delivery",
+        "role": "domain",
+        "label": "Delivery"
+      },
+      {
+        "id": "obj5",
+        "class": "PaymentDAO",
+        "role": "data_access",
+        "label": "«DAO»\nPaymentDAO"
+      },
+      {
+        "id": "db",
+        "class": "Database",
+        "role": "database",
+        "label": ":Database\n«resource»"
+      }
+    ],
+    "messages": [
+      {
+        "from": "ctrl",
+        "to": "ctrl",
+        "method": "_own_active_delivery",
+        "kind": "call",
+        "arguments": "shipper, order_id",
+        "guard": "",
+        "PC_MG": "UC02-PC02; UC02-MG01",
+        "label": "_own_active_delivery(shipper, order_id)",
+        "base_label": "_own_active_delivery{dagger}(shipper, order_id)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "_own_active_delivery(self, shipper: UserAccount, order_id: int) -> Delivery",
+        "status": "MATCH",
+        "P4_input": "",
+        "y": 341,
+        "edge_id": "message0"
+      },
+      {
+        "from": "ctrl",
+        "to": "ctrl",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC02-PC02; UC02-MG01",
+        "label": "Assigned shipper matches; Delivery PICKED_UP; Order OUT_FOR_DELIVERY. A stale finish or wrong shipper refuses unchanged; UC02-MG01.",
+        "base_label": "Assigned shipper matches; Delivery PICKED_UP; Order OUT_FOR_DELIVERY. A stale finish or wrong shipper refuses unchanged; UC02-MG01.",
+        "fragment": true,
+        "draw_arrow": false,
+        "y": 466
+      },
+      {
+        "from": "ctrl",
+        "to": "obj5",
+        "method": "get_by_order_id",
+        "kind": "call",
+        "arguments": "order_id",
+        "guard": "",
+        "PC_MG": "UC02-PC02; UC02-MG01",
+        "label": "get_by_order_id(order_id)",
+        "base_label": "get_by_order_id{dagger}(order_id)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "get_by_order_id(self, order_id: int) -> Optional[Payment]",
+        "status": "MATCH",
+        "P4_input": "",
+        "y": 591,
+        "edge_id": "message2"
+      },
+      {
+        "from": "obj5",
+        "to": "db",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC02-PC02; UC02-MG01",
+        "label": "SQL note: SELECT payment by order_id.",
+        "base_label": "SQL note: SELECT payment by order_id.",
+        "fragment": false,
+        "draw_arrow": true,
+        "y": 716,
+        "edge_id": "message3"
+      },
+      {
+        "from": "ctrl",
+        "to": "ctrl",
+        "method": "_parse_cash",
+        "kind": "call",
+        "arguments": "cash_collected",
+        "guard": "",
+        "PC_MG": "UC02-PC02; UC02-MG01",
+        "label": "_parse_cash(cash_collected)",
+        "base_label": "_parse_cash{dagger}(cash_collected)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "_parse_cash(raw: Optional[str]) -> Optional[int]",
+        "status": "MATCH",
+        "P4_input": "",
+        "y": 841,
+        "edge_id": "message4"
+      },
+      {
+        "from": "ctrl",
+        "to": "ctrl",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC02-PC02; UC02-MG01",
+        "label": "COD cash must equal T exactly (payment.amount = T). ONLINE cash must be None or 0; no cash taken; PAID and captured C/refund owed preserved.",
+        "base_label": "COD cash must equal T exactly (payment.amount = T). ONLINE cash must be None or 0; no cash taken; PAID and captured C/refund owed preserved.",
+        "fragment": true,
+        "draw_arrow": false,
+        "y": 966
+      }
+    ],
+    "elements": [
+      {
+        "class": "delivery",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "DeliveryController",
+        "attributes": [],
+        "methods": [
+          "_own_active_delivery",
+          "_parse_cash"
+        ],
+        "method_signatures": {
+          "_own_active_delivery": "_own_active_delivery(self, shipper: UserAccount, order_id: int) -> Delivery",
+          "_parse_cash": "_parse_cash(raw: Optional[str]) -> Optional[int]"
+        }
+      },
+      {
+        "class": "Delivery",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "PaymentDAO",
+        "attributes": [],
+        "methods": [
+          "get_by_order_id"
+        ],
+        "method_signatures": {
+          "get_by_order_id": "get_by_order_id(self, order_id: int) -> Optional[Payment]"
+        }
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "DeliveryController",
+        "target": "PaymentDAO",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      }
+    ],
+    "states": [
+      {
+        "class": "Delivery",
+        "attribute": "state",
+        "values": [
+          "PICKED_UP"
+        ]
+      },
+      {
+        "class": "Order",
+        "attribute": "state",
+        "values": [
+          "OUT_FOR_DELIVERY"
+        ]
+      },
+      {
+        "class": "Payment",
+        "attribute": "state",
+        "values": [
+          "PAID"
+        ]
+      }
+    ]
+  },
+  "placed_width_mm": 230,
+  "source_design_sequences": [
+    "models\\UC-02\\seq_uc02_confirmDelivered.json"
+  ],
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "refresh_policy": "Reviewed model MATCH only; changed signature fails until explicit alias/lane review; no behavioral auto-qualification.",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "render_receipt": {
+    "canvas": [
+      1600,
+      1250
+    ],
+    "minimum_font_px": 24,
+    "placed_width_mm": 230,
+    "minimum_pt": 9.779527559055119,
+    "native_font_matches_svg": true,
+    "label_bounds": [
+      [
+        35,
+        15,
+        1530,
+        32.48
+      ],
+      [
+        35,
+        54,
+        1530,
+        27.839999999999996
+      ],
+      [
+        15.0,
+        105,
+        210,
+        27.839999999999996
+      ],
+      [
+        287.0,
+        105,
+        210,
+        55.67999999999999
+      ],
+      [
+        559.0,
+        105,
+        210,
+        55.67999999999999
+      ],
+      [
+        831.0,
+        105,
+        210,
+        27.839999999999996
+      ],
+      [
+        1103.0,
+        105,
+        210,
+        83.51999999999998
+      ],
+      [
+        1375.0,
+        105,
+        210,
+        55.67999999999999
+      ],
+      [
+        45,
+        242,
+        1510,
+        27.839999999999996
+      ],
+      [
+        42,
+        367,
+        56,
+        27.839999999999996
+      ],
+      [
+        110,
+        372,
+        1440,
+        55.67999999999999
+      ],
+      [
+        45,
+        492,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        617,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        742,
+        1510,
+        27.839999999999996
+      ],
+      [
+        42,
+        867,
+        56,
+        27.839999999999996
+      ],
+      [
+        110,
+        872,
+        1440,
+        55.67999999999999
+      ],
+      [
+        35,
+        1035,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1070,
+        1530,
+        55.67999999999999
+      ],
+      [
+        35,
+        1130,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1190,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1220,
+        1530,
+        27.839999999999996
+      ]
+    ],
+    "edges": [
+      {
+        "id": "message0",
+        "source": "m0s",
+        "target": "m0t",
+        "points": [
+          [
+            664.0,
+            341
+          ],
+          [
+            699.0,
+            341
+          ],
+          [
+            699.0,
+            363
+          ],
+          [
+            664.0,
+            363
+          ]
+        ]
+      },
+      {
+        "id": "message2",
+        "source": "m2s",
+        "target": "m2t",
+        "points": [
+          [
+            664.0,
+            591
+          ],
+          [
+            1208.0,
+            591
+          ]
+        ]
+      },
+      {
+        "id": "message3",
+        "source": "m3s",
+        "target": "m3t",
+        "points": [
+          [
+            1208.0,
+            716
+          ],
+          [
+            1480.0,
+            716
+          ]
+        ]
+      },
+      {
+        "id": "message4",
+        "source": "m4s",
+        "target": "m4t",
+        "points": [
+          [
+            664.0,
+            841
+          ],
+          [
+            699.0,
+            841
+          ],
+          [
+            699.0,
+            863
+          ],
+          [
+            664.0,
+            863
+          ]
+        ]
+      }
+    ],
+    "author_native_cell": true
+  }
+}

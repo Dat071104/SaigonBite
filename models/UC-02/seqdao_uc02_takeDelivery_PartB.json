@@ -1,0 +1,458 @@
+{
+  "UC": "UC-02",
+  "stem": "seqdao_uc02_takeDelivery_PartB",
+  "title": "UC-02 takeDelivery — DAO sequence / Part B",
+  "figure": "4.3.2.2.OP-10.B",
+  "part": "Part B",
+  "scope": "Same request and transaction across all parts; focus 2/5. Mechanical reads: responsibility table (report 4.3.2).",
+  "continuation": "From seqdao_uc02_takeDelivery_PartA → this part → seqdao_uc02_takeDelivery_PartC.",
+  "transaction_summary": "Transaction key (whole request): BEGIN IMMEDIATE → checked rowcount / inserts → COMMIT; failure → ROLLBACK if active. Busy: retry, nothing changed.",
+  "target_note": "† design target, not yet in code at C0: P2-S13; P3-S03; P2-S12 connection settings; MATCH is Static only.",
+  "phase3": {
+    "diagram_type": "dao_sequence",
+    "UC": "UC-02",
+    "op_id": "OP-10",
+    "operation": "takeDelivery",
+    "parameters": "orderId",
+    "ssd_occurrence": "models/UC-02/ssd_uc02_PartA.drawio#M03",
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Shipper",
+        "role": "actor",
+        "label": "Shipper"
+      },
+      {
+        "id": "view",
+        "class": "delivery",
+        "role": "view",
+        "label": "«view»\ndelivery"
+      },
+      {
+        "id": "ctrl",
+        "class": "DeliveryController",
+        "role": "controller",
+        "label": "DeliveryController"
+      },
+      {
+        "id": "obj10",
+        "class": "Delivery",
+        "role": "domain",
+        "label": "Delivery"
+      },
+      {
+        "id": "obj4",
+        "class": "DeliveryDAO",
+        "role": "data_access",
+        "label": "«DAO»\nDeliveryDAO"
+      },
+      {
+        "id": "obj5",
+        "class": "OrderDAO",
+        "role": "data_access",
+        "label": "«DAO»\nOrderDAO"
+      },
+      {
+        "id": "db",
+        "class": "Database",
+        "role": "database",
+        "label": ":Database\n«resource»"
+      }
+    ],
+    "messages": [
+      {
+        "from": "obj4",
+        "to": "db",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC02-PC01; UC02-MG01",
+        "label": "SQL note: SELECT delivery by order_id.",
+        "base_label": "SQL note: SELECT delivery by order_id.",
+        "fragment": false,
+        "draw_arrow": true,
+        "y": 341,
+        "edge_id": "message0"
+      },
+      {
+        "from": "ctrl",
+        "to": "obj5",
+        "method": "get_by_id",
+        "kind": "call",
+        "arguments": "order_id",
+        "guard": "",
+        "PC_MG": "UC02-PC01; UC02-MG01",
+        "label": "get_by_id(order_id)",
+        "base_label": "get_by_id{dagger}(order_id)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "get_by_id(self, order_id: int) -> Optional[Order]",
+        "status": "MATCH",
+        "P4_input": "",
+        "y": 466,
+        "edge_id": "message1"
+      },
+      {
+        "from": "ctrl",
+        "to": "ctrl",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC02-PC01; UC02-MG01",
+        "label": "Active SHIPPER; delivery AWAITING_PICKUP and unassigned; Order READY. Otherwise refuse, rollback if active; UC02-MG01. No one-active-delivery limit.",
+        "base_label": "Active SHIPPER; delivery AWAITING_PICKUP and unassigned; Order READY. Otherwise refuse, rollback if active; UC02-MG01. No one-active-delivery limit.",
+        "fragment": true,
+        "draw_arrow": false,
+        "y": 591
+      },
+      {
+        "from": "ctrl",
+        "to": "obj4",
+        "method": "take",
+        "kind": "call",
+        "arguments": "order_id, shipper.id, now",
+        "guard": "",
+        "PC_MG": "UC02-PC01; UC02-MG01",
+        "label": "take(order_id, shipper.id, now)",
+        "base_label": "take{dagger}(order_id, shipper.id, now)",
+        "fragment": false,
+        "draw_arrow": false,
+        "receiver_signature": "take(self, order_id: int, shipper_id: int, now: str) -> bool",
+        "status": "MATCH",
+        "P4_input": "",
+        "y": 716,
+        "edge_id": "message3"
+      },
+      {
+        "from": "obj4",
+        "to": "db",
+        "method": "",
+        "kind": "note",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC02-PC01; UC02-MG01",
+        "label": "SQL note: UPDATE delivery by order_id AND state = 'AWAITING_PICKUP'; set PICKED_UP, shipper and time.",
+        "base_label": "SQL note: UPDATE delivery by order_id AND state = 'AWAITING_PICKUP'; set PICKED_UP, shipper and time.",
+        "fragment": false,
+        "draw_arrow": true,
+        "y": 841,
+        "edge_id": "message4"
+      },
+      {
+        "from": "obj4",
+        "to": "ctrl",
+        "method": "",
+        "kind": "return",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC02-PC01; UC02-MG01",
+        "label": "bool = (rowcount == 1); controller checks True; 0 rows / False → ROLLBACK",
+        "base_label": "bool = (rowcount == 1); controller checks True; 0 rows / False → ROLLBACK",
+        "fragment": false,
+        "draw_arrow": false,
+        "y": 966,
+        "edge_id": "message5"
+      }
+    ],
+    "elements": [
+      {
+        "class": "delivery",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "DeliveryController",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "Delivery",
+        "attributes": [],
+        "methods": [],
+        "method_signatures": {}
+      },
+      {
+        "class": "DeliveryDAO",
+        "attributes": [],
+        "methods": [
+          "take"
+        ],
+        "method_signatures": {
+          "take": "take(self, order_id: int, shipper_id: int, now: str) -> bool"
+        }
+      },
+      {
+        "class": "OrderDAO",
+        "attributes": [],
+        "methods": [
+          "get_by_id"
+        ],
+        "method_signatures": {
+          "get_by_id": "get_by_id(self, order_id: int) -> Optional[Order]"
+        }
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "DeliveryController",
+        "target": "OrderDAO",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "DeliveryController",
+        "target": "DeliveryDAO",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      }
+    ],
+    "states": [
+      {
+        "class": "Delivery",
+        "attribute": "state",
+        "values": [
+          "AWAITING_PICKUP",
+          "PICKED_UP"
+        ]
+      },
+      {
+        "class": "Order",
+        "attribute": "state",
+        "values": [
+          "READY"
+        ]
+      }
+    ]
+  },
+  "placed_width_mm": 230,
+  "source_design_sequences": [
+    "models\\UC-02\\seq_uc02_takeDelivery.json"
+  ],
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "refresh_policy": "Reviewed model MATCH only; changed signature fails until explicit alias/lane review; no behavioral auto-qualification.",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "render_receipt": {
+    "canvas": [
+      1600,
+      1250
+    ],
+    "minimum_font_px": 24,
+    "placed_width_mm": 230,
+    "minimum_pt": 9.779527559055119,
+    "native_font_matches_svg": true,
+    "label_bounds": [
+      [
+        35,
+        15,
+        1530,
+        32.48
+      ],
+      [
+        35,
+        54,
+        1530,
+        27.839999999999996
+      ],
+      [
+        20.66666666666667,
+        105,
+        198.66666666666666,
+        27.839999999999996
+      ],
+      [
+        247.33333333333331,
+        105,
+        198.66666666666666,
+        55.67999999999999
+      ],
+      [
+        473.99999999999994,
+        105,
+        198.66666666666666,
+        55.67999999999999
+      ],
+      [
+        700.6666666666666,
+        105,
+        198.66666666666666,
+        27.839999999999996
+      ],
+      [
+        927.3333333333331,
+        105,
+        198.66666666666666,
+        83.51999999999998
+      ],
+      [
+        1154.0,
+        105,
+        198.66666666666666,
+        83.51999999999998
+      ],
+      [
+        1380.6666666666667,
+        105,
+        198.66666666666666,
+        55.67999999999999
+      ],
+      [
+        45,
+        242,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        367,
+        1510,
+        27.839999999999996
+      ],
+      [
+        42,
+        492,
+        56,
+        27.839999999999996
+      ],
+      [
+        110,
+        497,
+        1440,
+        55.67999999999999
+      ],
+      [
+        45,
+        617,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        742,
+        1510,
+        27.839999999999996
+      ],
+      [
+        45,
+        867,
+        1510,
+        27.839999999999996
+      ],
+      [
+        35,
+        1035,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1070,
+        1530,
+        55.67999999999999
+      ],
+      [
+        35,
+        1130,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1190,
+        1530,
+        27.839999999999996
+      ],
+      [
+        35,
+        1220,
+        1530,
+        27.839999999999996
+      ]
+    ],
+    "edges": [
+      {
+        "id": "message0",
+        "source": "m0s",
+        "target": "m0t",
+        "points": [
+          [
+            1026.6666666666665,
+            341
+          ],
+          [
+            1480.0,
+            341
+          ]
+        ]
+      },
+      {
+        "id": "message1",
+        "source": "m1s",
+        "target": "m1t",
+        "points": [
+          [
+            573.3333333333333,
+            466
+          ],
+          [
+            1253.3333333333333,
+            466
+          ]
+        ]
+      },
+      {
+        "id": "message3",
+        "source": "m3s",
+        "target": "m3t",
+        "points": [
+          [
+            573.3333333333333,
+            716
+          ],
+          [
+            1026.6666666666665,
+            716
+          ]
+        ]
+      },
+      {
+        "id": "message4",
+        "source": "m4s",
+        "target": "m4t",
+        "points": [
+          [
+            1026.6666666666665,
+            841
+          ],
+          [
+            1480.0,
+            841
+          ]
+        ]
+      },
+      {
+        "id": "message5",
+        "source": "m5s",
+        "target": "m5t",
+        "points": [
+          [
+            1026.6666666666665,
+            966
+          ],
+          [
+            573.3333333333333,
+            966
+          ]
+        ]
+      }
+    ],
+    "author_native_cell": true
+  }
+}
