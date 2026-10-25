@@ -1,0 +1,309 @@
+{
+  "UC": "UC-05",
+  "stem": "dcd_uc05_all_PartB",
+  "title": "UC-05 all — selected design members 2/7",
+  "figure": "3.5.2.vB",
+  "caption": "UC-05 all detailed design members",
+  "cards": [
+    {
+      "id": "KitchenController_0",
+      "class": "KitchenController",
+      "box": [
+        35,
+        100,
+        730,
+        436.40000000000003
+      ],
+      "compartments": [
+        [
+          "«controller» KitchenController",
+          "{layer: controller}"
+        ],
+        [
+          "+ hubs: HubDAO [inferred]",
+          "+ menu: MenuDAO [inferred]",
+          "+ orders: OrderDAO [inferred]",
+          "+ payments: PaymentDAO [inferred]"
+        ],
+        [
+          "+ board(self, user_id: int) -> KitchenBoard",
+          "+ get_order(self, user_id: int, order_id: int) -> KitchenOrderView",
+          "+ confirm_order(self, user_id: int, order_id: int) -> Order†",
+          "+ reject_order(self, user_id: int, order_id: int, reason: str) -> Order†",
+          "+ offer_replacement(self, user_id: int, order_id: int, order_line_id: int, new_menu_item_id: int) -> ReplacementOffer†"
+        ]
+      ],
+      "element": {
+        "class": "KitchenController",
+        "attributes": [
+          "hubs",
+          "menu",
+          "orders",
+          "payments"
+        ],
+        "methods": [
+          "board",
+          "get_order",
+          "confirm_order",
+          "reject_order",
+          "offer_replacement"
+        ]
+      }
+    },
+    {
+      "id": "OrderTrackingController_0",
+      "class": "OrderTrackingController",
+      "box": [
+        815,
+        100,
+        730,
+        381.20000000000005
+      ],
+      "compartments": [
+        [
+          "«controller» OrderTrackingController",
+          "{layer: controller}"
+        ],
+        [
+          "+ customers: CustomerDAO [inferred]",
+          "+ orders: OrderDAO [inferred]",
+          "+ payments: PaymentDAO [inferred]",
+          "+ hubs: HubDAO [inferred]"
+        ],
+        [
+          "+ list_my_orders(self, user_id: int) -> list[OrderSummary]",
+          "+ get_order(self, user_id: int, order_id: int) -> OrderDetail",
+          "+ answer_replacement(self, user_id: int, order_id: int, offer_id: int, accept: bool) -> OrderDetail†",
+          "- _own_order(self, customer: Customer, order_id: int) -> Order",
+          "- _require_customer(self, user_id: int) -> Customer"
+        ]
+      ],
+      "element": {
+        "class": "OrderTrackingController",
+        "attributes": [
+          "customers",
+          "orders",
+          "payments",
+          "hubs"
+        ],
+        "methods": [
+          "list_my_orders",
+          "get_order",
+          "answer_replacement",
+          "_own_order",
+          "_require_customer"
+        ]
+      }
+    },
+    {
+      "id": "OrderDetail_0",
+      "class": "OrderDetail",
+      "box": [
+        815,
+        499.20000000000005,
+        730,
+        270.8
+      ],
+      "compartments": [
+        [
+          "«value» OrderDetail",
+          "{layer: controller}"
+        ],
+        [
+          "+ order: Order",
+          "+ payment: Payment",
+          "+ hub: Hub",
+          "+ delivery: Optional[Delivery]"
+        ],
+        [
+          "+ total_if_accepted(self) -> Optional[int] {property; read as .total_if_accepted}"
+        ]
+      ],
+      "element": {
+        "class": "OrderDetail",
+        "attributes": [
+          "order",
+          "payment",
+          "hub",
+          "delivery"
+        ],
+        "methods": [
+          "total_if_accepted"
+        ]
+      }
+    },
+    {
+      "id": "controllers_common_0",
+      "class": "controllers.common",
+      "box": [
+        35,
+        554.4000000000001,
+        730,
+        270.8
+      ],
+      "compartments": [
+        [
+          "«module» controllers.common",
+          "{layer: controller}"
+        ],
+        [
+          "{no selected attribute}"
+        ],
+        [
+          "+ move_order(orders: OrderDAO, order: Order, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> None",
+          "+ release_payment(payments: PaymentDAO, order_id: int, now: str) -> Payment†"
+        ]
+      ],
+      "element": {
+        "class": "controllers.common",
+        "attributes": [],
+        "methods": [
+          "move_order",
+          "release_payment"
+        ]
+      }
+    },
+    {
+      "id": "KitchenBoard_0",
+      "class": "KitchenBoard",
+      "box": [
+        815,
+        788.0,
+        730,
+        188.0
+      ],
+      "compartments": [
+        [
+          "«value» KitchenBoard",
+          "{layer: controller}"
+        ],
+        [
+          "+ hub: Hub",
+          "+ columns: dict[OrderState, list[BoardEntry]]"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "KitchenBoard",
+        "attributes": [
+          "hub",
+          "columns"
+        ],
+        "methods": []
+      }
+    },
+    {
+      "id": "BoardEntry_0",
+      "class": "BoardEntry",
+      "box": [
+        35,
+        843.2,
+        730,
+        188.0
+      ],
+      "compartments": [
+        [
+          "«value» BoardEntry",
+          "{layer: controller}"
+        ],
+        [
+          "+ order: Order",
+          "+ awaiting_customer: bool"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "BoardEntry",
+        "attributes": [
+          "order",
+          "awaiting_customer"
+        ],
+        "methods": []
+      }
+    }
+  ],
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "KitchenController",
+        "attributes": [
+          "hubs",
+          "menu",
+          "orders",
+          "payments"
+        ],
+        "methods": [
+          "board",
+          "get_order",
+          "confirm_order",
+          "reject_order",
+          "offer_replacement"
+        ]
+      },
+      {
+        "class": "OrderTrackingController",
+        "attributes": [
+          "customers",
+          "orders",
+          "payments",
+          "hubs"
+        ],
+        "methods": [
+          "list_my_orders",
+          "get_order",
+          "answer_replacement",
+          "_own_order",
+          "_require_customer"
+        ]
+      },
+      {
+        "class": "OrderDetail",
+        "attributes": [
+          "order",
+          "payment",
+          "hub",
+          "delivery"
+        ],
+        "methods": [
+          "total_if_accepted"
+        ]
+      },
+      {
+        "class": "controllers.common",
+        "attributes": [],
+        "methods": [
+          "move_order",
+          "release_payment"
+        ]
+      },
+      {
+        "class": "KitchenBoard",
+        "attributes": [
+          "hub",
+          "columns"
+        ],
+        "methods": []
+      },
+      {
+        "class": "BoardEntry",
+        "attributes": [
+          "order",
+          "awaiting_customer"
+        ],
+        "methods": []
+      }
+    ],
+    "dependencies": [],
+    "states": []
+  },
+  "P4_input": "F-02; F-05; P2-S01; P2-S09; P2-S11; P2-S13; P3-S03",
+  "continuation": "Members continue across PartA, PartB, PartC, PartD, PartE, PartF, PartG; relation view follows in all_links.",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+}

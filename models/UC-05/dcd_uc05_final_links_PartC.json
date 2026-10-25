@@ -1,0 +1,443 @@
+{
+  "UC": "UC-05",
+  "stem": "dcd_uc05_final_links_PartC",
+  "title": "UC-05 final — relationships 3",
+  "figure": "3.5.5.R3",
+  "caption": "UC-05 final navigation / multiplicities",
+  "cards": [
+    {
+      "id": "s0",
+      "box": [
+        55,
+        105,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«entity» ReplacementOffer"
+        ]
+      ],
+      "class": "ReplacementOffer"
+    },
+    {
+      "id": "t0",
+      "box": [
+        1035,
+        105,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«entity» MenuItem"
+        ]
+      ],
+      "class": "MenuItem"
+    },
+    {
+      "id": "s1",
+      "box": [
+        55,
+        255,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«entity» OrderLine"
+        ]
+      ],
+      "class": "OrderLine"
+    },
+    {
+      "id": "t1",
+      "box": [
+        1035,
+        255,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«entity» MenuItem"
+        ]
+      ],
+      "class": "MenuItem"
+    },
+    {
+      "id": "s2",
+      "box": [
+        55,
+        405,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«entity» UserAccount"
+        ]
+      ],
+      "class": "UserAccount"
+    },
+    {
+      "id": "t2",
+      "box": [
+        1035,
+        405,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«entity» Hub"
+        ]
+      ],
+      "class": "Hub"
+    },
+    {
+      "id": "s3",
+      "box": [
+        55,
+        555,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«entity» LocalCustomer"
+        ]
+      ],
+      "class": "LocalCustomer"
+    },
+    {
+      "id": "t3",
+      "box": [
+        1035,
+        555,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«entity» Customer"
+        ]
+      ],
+      "class": "Customer"
+    },
+    {
+      "id": "s4",
+      "box": [
+        55,
+        705,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«entity» TouristCustomer"
+        ]
+      ],
+      "class": "TouristCustomer"
+    },
+    {
+      "id": "t4",
+      "box": [
+        1035,
+        705,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«entity» Customer"
+        ]
+      ],
+      "class": "Customer"
+    },
+    {
+      "id": "s5",
+      "box": [
+        55,
+        855,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«module» controllers.common"
+        ]
+      ],
+      "class": "controllers.common"
+    },
+    {
+      "id": "t5",
+      "box": [
+        1035,
+        895,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«entity» Order"
+        ]
+      ],
+      "class": "Order"
+    }
+  ],
+  "edges": [
+    {
+      "source": "s0",
+      "target": "t0",
+      "kind": "association",
+      "points": [
+        [
+          555,
+          148
+        ],
+        [
+          1035,
+          148
+        ]
+      ],
+      "label": "0..* → 1 target item",
+      "labelpos": [
+        575,
+        109
+      ],
+      "labelwidth": 440
+    },
+    {
+      "source": "s1",
+      "target": "t1",
+      "kind": "association",
+      "points": [
+        [
+          555,
+          298
+        ],
+        [
+          1035,
+          298
+        ]
+      ],
+      "label": "0..* → 1 snapshot source",
+      "labelpos": [
+        575,
+        259
+      ],
+      "labelwidth": 440
+    },
+    {
+      "source": "s2",
+      "target": "t2",
+      "kind": "association",
+      "points": [
+        [
+          555,
+          448
+        ],
+        [
+          1035,
+          448
+        ]
+      ],
+      "label": "0..* → 0..1 kitchen hub",
+      "labelpos": [
+        575,
+        409
+      ],
+      "labelwidth": 440
+    },
+    {
+      "source": "s3",
+      "target": "t3",
+      "kind": "generalization",
+      "points": [
+        [
+          555,
+          598
+        ],
+        [
+          1035,
+          598
+        ]
+      ],
+      "label": "→  is a",
+      "labelpos": [
+        575,
+        559
+      ],
+      "labelwidth": 440
+    },
+    {
+      "source": "s4",
+      "target": "t4",
+      "kind": "generalization",
+      "points": [
+        [
+          555,
+          748
+        ],
+        [
+          1035,
+          748
+        ]
+      ],
+      "label": "→  is a",
+      "labelpos": [
+        575,
+        709
+      ],
+      "labelwidth": 440
+    },
+    {
+      "source": "s5",
+      "target": "t5",
+      "kind": "dependency",
+      "points": [
+        [
+          555,
+          898
+        ],
+        [
+          1035,
+          938
+        ]
+      ],
+      "label": "→  «use»",
+      "labelpos": [
+        575,
+        859
+      ],
+      "labelwidth": 440
+    }
+  ],
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "ReplacementOffer",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "MenuItem",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "OrderLine",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "UserAccount",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "Hub",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "LocalCustomer",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "Customer",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "TouristCustomer",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "controllers.common",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "Order",
+        "attributes": [],
+        "methods": []
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "ReplacementOffer",
+        "target": "MenuItem",
+        "source_multiplicity": "0..*",
+        "target_multiplicity": "1",
+        "role": "target item",
+        "kind": "association",
+        "navigable": true,
+        "status": "MATCH",
+        "evidence": "domain model 2.1.7; code identifiers / typed fields"
+      },
+      {
+        "source": "OrderLine",
+        "target": "MenuItem",
+        "source_multiplicity": "0..*",
+        "target_multiplicity": "1",
+        "role": "snapshot source",
+        "kind": "association",
+        "navigable": true,
+        "status": "MATCH",
+        "evidence": "domain model 2.1.7; code identifiers / typed fields"
+      },
+      {
+        "source": "UserAccount",
+        "target": "Hub",
+        "source_multiplicity": "0..*",
+        "target_multiplicity": "0..1",
+        "role": "kitchen hub",
+        "kind": "association",
+        "navigable": true,
+        "status": "MATCH",
+        "evidence": "domain model 2.1.7; code identifiers / typed fields"
+      },
+      {
+        "source": "LocalCustomer",
+        "target": "Customer",
+        "source_multiplicity": null,
+        "target_multiplicity": null,
+        "role": "is a",
+        "kind": "generalization",
+        "navigable": true,
+        "status": "MATCH",
+        "evidence": "domain model 2.1.7; code identifiers / typed fields"
+      },
+      {
+        "source": "TouristCustomer",
+        "target": "Customer",
+        "source_multiplicity": null,
+        "target_multiplicity": null,
+        "role": "is a",
+        "kind": "generalization",
+        "navigable": true,
+        "status": "MATCH",
+        "evidence": "domain model 2.1.7; code identifiers / typed fields"
+      },
+      {
+        "source": "controllers.common",
+        "target": "Order",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature; C0 order.move_to via typed Order parameter",
+        "allowed_on_layered_diagram": true
+      }
+    ],
+    "states": []
+  },
+  "continuation": "Members: final detail parts. Relationship parts A–L continue both ways.",
+  "P4_input": "none on this view",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+}

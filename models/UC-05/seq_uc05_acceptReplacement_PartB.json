@@ -1,0 +1,165 @@
+{
+  "UC": "UC-05",
+  "stem": "seq_uc05_acceptReplacement_PartB",
+  "title": "UC-05 acceptReplacement — Part B",
+  "figure": "3.5.4.OP-05B",
+  "caption": "UC-05 acceptReplacement design sequence",
+  "P4_input": "F-02; F-05; P2-S09; P2-S11; P2-S13",
+  "phase3": {
+    "diagram_type": "sequence",
+    "UC": "UC-05",
+    "op_id": "OP-05",
+    "operation": "acceptReplacement",
+    "parameters": "orderId, offerId",
+    "ssd_occurrence": "models/UC-05/ssd_uc05_PartB.drawio#05S-M08",
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Customer",
+        "role": "actor",
+        "label": "Customer"
+      },
+      {
+        "id": "view",
+        "class": "order",
+        "role": "view",
+        "label": "«view»\norder"
+      },
+      {
+        "id": "ctrl",
+        "class": "OrderTrackingController",
+        "role": "controller",
+        "label": "OrderTrackingController"
+      },
+      {
+        "id": "order",
+        "class": "Order",
+        "role": "domain",
+        "label": "Order"
+      },
+      {
+        "id": "pay",
+        "class": "Payment",
+        "role": "domain",
+        "label": "Payment"
+      }
+    ],
+    "messages": [
+      {
+        "from": "ctrl",
+        "to": "order",
+        "method": "replace_line",
+        "kind": "call",
+        "arguments": "offer.order_line_id, offer.new_menu_item_id, offer.new_item_name, offer.new_unit_price",
+        "guard": "valid acceptance only",
+        "PC_MG": "UC05-PC04",
+        "label": "replace_line(offer.order_line_id, offer.new_menu_item_id, offer.new_item_name, offer.new_unit_price)",
+        "y": 563,
+        "receiver_signature": "replace_line(self, line_id: int, menu_item_id: int, item_name: str, unit_price: int) -> None",
+        "status": "MATCH",
+        "P4_input": ""
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "acceptedOrderAndAmounts | withdrawnOfferAndReason | staleRefusal | controlledFailure",
+        "guard": "",
+        "PC_MG": "UC05-PC04; UC05-MG01",
+        "label": "result / controlled refusal",
+        "y": 633
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "",
+        "guard": "denied / stale / invalid or atomic save failure",
+        "PC_MG": "UC05-MG01",
+        "label": "refusal / controlled failure; UC05-MG01",
+        "y": 1000
+      }
+    ],
+    "elements": [
+      {
+        "class": "order",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "OrderTrackingController",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "Order",
+        "attributes": [],
+        "methods": [
+          "replace_line"
+        ]
+      },
+      {
+        "class": "Payment",
+        "attributes": [],
+        "methods": []
+      }
+    ],
+    "dependencies": [],
+    "states": [
+      {
+        "class": "Order",
+        "attribute": "state",
+        "values": [
+          "PLACED"
+        ]
+      },
+      {
+        "class": "Payment",
+        "attribute": "state",
+        "values": [
+          "PAID"
+        ]
+      },
+      {
+        "class": "ReplacementOffer",
+        "attribute": "state",
+        "values": [
+          "ACCEPTED"
+        ]
+      }
+    ]
+  },
+  "frames": [
+    {
+      "id": "alt",
+      "y": 180,
+      "h": 860,
+      "label": "alt [all conditional saves + commit → UC05-PC04 / failed atomic save → controlledFailure; UC05-MG01]",
+      "operands": [
+        [
+          900,
+          "[denied / stale / invalid or failed atomic save] UC05-MG01"
+        ]
+      ]
+    }
+  ],
+  "notes": [
+    {
+      "y": 220,
+      "h": 130.4,
+      "text": "Valid acceptance continues atomically: use offered price, whole line, same quantity; Snew; Dnew=min(Dold,Snew), F/Q unchanged; Tnew=Snew−Dnew+F−Q. Read Order.total property, set offer ACCEPTED through data access. COD amount=Tnew; ONLINE state PAID, C unchanged, refund_amount=C−Tnew. Order stays PLACED (PC04), never auto-confirms. Any conditional 0-row/lock/write/commit failure → complete rollback†, MG01."
+    },
+    {
+      "y": 1010,
+      "h": 65,
+      "text": "Persistence: loaded/saved through data access — see 4.3.2."
+    }
+  ],
+  "continuation": "Part B ↔ PartA. Same lifelines / same operation; no second request.",
+  "realisation_note": "Valid acceptance continues atomically: use offered price, whole line, same quantity; Snew; Dnew=min(Dold,Snew), F/Q unchanged; Tnew=Snew−Dnew+F−Q. Read Order.total property, set offer ACCEPTED through data access. COD amount=Tnew; ONLINE state PAID, C unchanged, refund_amount=C−Tnew. Order stays PLACED (PC04), never auto-confirms. Any conditional 0-row/lock/write/commit failure → complete rollback†, MG01.",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+}

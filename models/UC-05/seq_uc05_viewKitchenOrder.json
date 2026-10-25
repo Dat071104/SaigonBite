@@ -1,0 +1,159 @@
+{
+  "UC": "UC-05",
+  "stem": "seq_uc05_viewKitchenOrder",
+  "title": "UC-05 viewKitchenOrder",
+  "figure": "3.5.4.OP-20",
+  "caption": "UC-05 viewKitchenOrder design sequence",
+  "P4_input": "none on this view",
+  "phase3": {
+    "diagram_type": "sequence",
+    "UC": "UC-05",
+    "op_id": "OP-20",
+    "operation": "viewKitchenOrder",
+    "parameters": "orderId",
+    "ssd_occurrence": "models/UC-05/ssd_uc05_PartA.drawio#05S-M02",
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Kitchen staff",
+        "role": "actor",
+        "label": "Kitchen staff"
+      },
+      {
+        "id": "view",
+        "class": "kitchen",
+        "role": "view",
+        "label": "«view»\nkitchen"
+      },
+      {
+        "id": "ctrl",
+        "class": "KitchenController",
+        "role": "controller",
+        "label": "KitchenController"
+      },
+      {
+        "id": "value",
+        "class": "KitchenOrderView",
+        "role": "value",
+        "label": "KitchenOrderView"
+      }
+    ],
+    "messages": [
+      {
+        "from": "actor",
+        "to": "view",
+        "method": "order",
+        "kind": "ssd",
+        "arguments": "orderId",
+        "guard": "",
+        "PC_MG": "",
+        "label": "viewKitchenOrder(orderId)\n→ kitchen.order [HTTP adapter]",
+        "y": 483,
+        "receiver_signature": "order(order_id: int)",
+        "status": "MATCH",
+        "P4_input": ""
+      },
+      {
+        "from": "view",
+        "to": "ctrl",
+        "method": "get_order",
+        "kind": "call",
+        "arguments": "user_id, order_id",
+        "guard": "eligible/main operand (see frame and operation table)",
+        "PC_MG": "Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation",
+        "label": "get_order(user_id, order_id)",
+        "y": 553,
+        "receiver_signature": "get_order(self, user_id: int, order_id: int) -> KitchenOrderView",
+        "status": "MATCH",
+        "P4_input": ""
+      },
+      {
+        "from": "ctrl",
+        "to": "value",
+        "method": "KitchenOrderView",
+        "kind": "create",
+        "arguments": "typed attributes loaded for authorized result",
+        "guard": "eligible/main operand (see frame and operation table)",
+        "PC_MG": "",
+        "label": "«create» KitchenOrderView (implicit dataclass initialization)",
+        "y": 675
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "ownHubOrderAndLines | refusal",
+        "guard": "",
+        "PC_MG": "Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation",
+        "label": "result / controlled refusal",
+        "y": 745
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "",
+        "guard": "denied / stale / invalid or atomic save failure",
+        "PC_MG": "UC05-MG01",
+        "label": "refusal / controlled failure; UC05-MG01",
+        "y": 1000
+      }
+    ],
+    "elements": [
+      {
+        "class": "kitchen",
+        "attributes": [],
+        "methods": [
+          "order"
+        ]
+      },
+      {
+        "class": "KitchenController",
+        "attributes": [],
+        "methods": [
+          "get_order"
+        ]
+      },
+      {
+        "class": "KitchenOrderView",
+        "attributes": [],
+        "methods": []
+      }
+    ],
+    "dependencies": [],
+    "states": []
+  },
+  "frames": [
+    {
+      "id": "alt",
+      "y": 565,
+      "h": 475,
+      "label": "alt [eligible main path; guards / effects in the operation note]",
+      "operands": [
+        [
+          910,
+          "[denied / stale / invalid or failed atomic save] UC05-MG01"
+        ]
+      ]
+    }
+  ],
+  "notes": [
+    {
+      "y": 220,
+      "h": 102.80000000000001,
+      "text": "Read-only active role + own Customer / own kitchen hub checks; denied context discloses no foreign details. Receipt/offer amounts say refund owed, never paid out (F-06 where applicable). Read snapshots, .total and offer attributes; no fabricated business getters. No persistent writes."
+    },
+    {
+      "y": 1010,
+      "h": 65,
+      "text": "Persistence: loaded/saved through data access — see 4.3.2."
+    }
+  ],
+  "continuation": "Complete design operation; failure path is the alternative operand above.",
+  "realisation_note": "Read-only active role + own Customer / own kitchen hub checks; denied context discloses no foreign details. Receipt/offer amounts say refund owed, never paid out (F-06 where applicable). Read snapshots, .total and offer attributes; no fabricated business getters. No persistent writes.",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+}

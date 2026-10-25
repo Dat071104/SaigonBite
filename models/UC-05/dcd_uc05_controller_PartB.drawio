@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="SaigonBite P3-A" type="device">
+  <diagram name="UC-05 controller — selected design members 2/2" id="dcd_uc05_controller_PartB">
+    <mxGraphModel page="1" pageWidth="1600" pageHeight="1200">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="text0" value="UC-05 controller — selected design members 2/2" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="35" y="16" width="1530" height="32.199999999999996" />
+        </mxCell>
+        <mxCell id="KitchenOrderView_0" value="" vertex="1" parent="1" style="fillColor=#F1F6FA;strokeColor=#004387;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="35" y="100" width="730" height="243.20000000000002" />
+        </mxCell>
+        <mxCell id="text2" value="«value» KitchenOrderView&#10;{layer: controller}" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="47" y="108" width="706" height="55.199999999999996" />
+        </mxCell>
+        <mxCell id="text3" value="+ order: Order&#10;+ payment: Payment&#10;+ open_offer: Optional[ReplacementOffer]&#10;+ offers: list[ReplacementOffer]" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="47" y="173.2" width="706" height="110.39999999999999" />
+        </mxCell>
+        <mxCell id="text4" value="{no selected operation}" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="47" y="293.59999999999997" width="706" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="OrderSummary_0" value="" vertex="1" parent="1" style="fillColor=#F1F6FA;strokeColor=#004387;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="815" y="100" width="730" height="215.60000000000002" />
+        </mxCell>
+        <mxCell id="text6" value="«value» OrderSummary&#10;{layer: controller}" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="827" y="108" width="706" height="55.199999999999996" />
+        </mxCell>
+        <mxCell id="text7" value="+ order: Order&#10;+ hub_name: str&#10;+ awaiting_answer: bool" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="827" y="173.2" width="706" height="82.8" />
+        </mxCell>
+        <mxCell id="text8" value="{no selected operation}" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="827" y="266.0" width="706" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="text9" value="Members continue across PartA, PartB; navigation is in controller_links parts A–A." vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="35" y="1080" width="1530" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="text10" value="† design target, not yet in code at C0 (see P4 input none on this view)." vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="35" y="1112" width="1530" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="text11" value="Figure 3.5.2.iiB. UC-05 controller detailed design members — Author: 722I0004 · AI-assisted (Codex)" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="35" y="1145" width="1530" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="text12" value="Static / target design · 230 mm landscape · smallest text 9.78 pt · native draw.io / final placement UNTESTED" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="35" y="1171" width="1530" height="27.599999999999998" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

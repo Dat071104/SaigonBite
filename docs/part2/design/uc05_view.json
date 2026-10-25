@@ -1,0 +1,466 @@
+{
+  "author": "Author: 722I0004 · AI-assisted (Codex)",
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "UC": "UC-05",
+  "model": "models/shared/design_model.json",
+  "selection": {
+    "KitchenController": {
+      "attributes": [
+        "hubs",
+        "menu",
+        "orders",
+        "payments",
+        "deliveries",
+        "offers"
+      ],
+      "methods": [
+        "board",
+        "get_order",
+        "confirm_order",
+        "reject_order",
+        "offer_replacement"
+      ]
+    },
+    "kitchen": {
+      "attributes": [],
+      "methods": [
+        "board",
+        "order",
+        "confirm",
+        "reject",
+        "offer"
+      ]
+    },
+    "HubDAO": {
+      "attributes": [
+        "conn"
+      ],
+      "methods": [
+        "get_including_archived",
+        "list_menu",
+        "get_available_item"
+      ]
+    },
+    "OrderDAO": {
+      "attributes": [
+        "conn"
+      ],
+      "methods": [
+        "_load",
+        "list_for_hub",
+        "get_by_id",
+        "change_state",
+        "list_for_customer",
+        "save_lines_and_totals"
+      ]
+    },
+    "ReplacementOfferDAO": {
+      "attributes": [
+        "conn"
+      ],
+      "methods": [
+        "get_open",
+        "list_for_order",
+        "decide",
+        "insert"
+      ]
+    },
+    "UserDAO": {
+      "attributes": [
+        "conn"
+      ],
+      "methods": [
+        "get_by_id"
+      ]
+    },
+    "PaymentDAO": {
+      "attributes": [
+        "conn"
+      ],
+      "methods": [
+        "get_by_order_id",
+        "change_state",
+        "set_amounts"
+      ]
+    },
+    "Order": {
+      "attributes": [
+        "state",
+        "delivery_fee",
+        "idempotency_token",
+        "placed_at",
+        "lines",
+        "id",
+        "archived_at",
+        "delivery_address_text",
+        "distance_km",
+        "voucher_discount",
+        "quiet_discount",
+        "reject_reason",
+        "confirmed_at",
+        "ready_at",
+        "closed_at"
+      ],
+      "methods": [
+        "move_to",
+        "line",
+        "replace_line",
+        "total"
+      ]
+    },
+    "Payment": {
+      "attributes": [
+        "method",
+        "state",
+        "amount",
+        "created_at",
+        "updated_at",
+        "online_option",
+        "provider_ref",
+        "refund_amount",
+        "id"
+      ],
+      "methods": [
+        "release_for_unfulfilled_order"
+      ]
+    },
+    "OrderTrackingController": {
+      "attributes": [
+        "customers",
+        "orders",
+        "payments",
+        "hubs",
+        "deliveries",
+        "offers"
+      ],
+      "methods": [
+        "list_my_orders",
+        "get_order",
+        "answer_replacement",
+        "_own_order",
+        "_require_customer"
+      ]
+    },
+    "order": {
+      "attributes": [],
+      "methods": [
+        "my_orders",
+        "detail",
+        "answer_replacement"
+      ]
+    },
+    "CustomerDAO": {
+      "attributes": [
+        "conn"
+      ],
+      "methods": [
+        "get_by_user_id"
+      ]
+    },
+    "OrderDetail": {
+      "attributes": [
+        "order",
+        "payment",
+        "hub",
+        "delivery",
+        "open_offer",
+        "offers"
+      ],
+      "methods": [
+        "total_if_accepted"
+      ]
+    },
+    "DeliveryDAO": {
+      "attributes": [
+        "conn"
+      ],
+      "methods": [
+        "get_by_order_id"
+      ]
+    },
+    "controllers.common": {
+      "attributes": [],
+      "methods": [
+        "move_order",
+        "release_payment"
+      ]
+    },
+    "ReplacementOffer": {
+      "attributes": [
+        "original_item_name",
+        "original_unit_price",
+        "new_item_name",
+        "new_unit_price",
+        "state",
+        "offered_at",
+        "decided_at",
+        "id"
+      ],
+      "methods": [
+        "move_to"
+      ]
+    },
+    "OrderLine": {
+      "attributes": [
+        "item_name",
+        "unit_price",
+        "quantity",
+        "id"
+      ],
+      "methods": []
+    },
+    "Customer": {
+      "attributes": [
+        "id",
+        "full_name",
+        "phone",
+        "email",
+        "passport_no",
+        "nationality",
+        "customer_type"
+      ],
+      "methods": []
+    },
+    "LocalCustomer": {
+      "attributes": [
+        "customer_type"
+      ],
+      "methods": []
+    },
+    "TouristCustomer": {
+      "attributes": [
+        "customer_type"
+      ],
+      "methods": []
+    },
+    "Address": {
+      "attributes": [
+        "id",
+        "label",
+        "full_address",
+        "district",
+        "latitude",
+        "longitude",
+        "archived_at"
+      ],
+      "methods": []
+    },
+    "MenuItem": {
+      "attributes": [
+        "id",
+        "brand_name",
+        "name",
+        "description",
+        "price",
+        "archived_at"
+      ],
+      "methods": []
+    },
+    "Brand": {
+      "attributes": [
+        "id",
+        "name",
+        "archived_at"
+      ],
+      "methods": []
+    },
+    "HubMenuItem": {
+      "attributes": [
+        "item",
+        "is_available"
+      ],
+      "methods": []
+    },
+    "UserAccount": {
+      "attributes": [
+        "id",
+        "username",
+        "password_hash",
+        "display_name",
+        "role",
+        "is_active",
+        "created_at"
+      ],
+      "methods": []
+    },
+    "OrderState": {
+      "attributes": [
+        "PLACED",
+        "CONFIRMED",
+        "REJECTED",
+        "PREPARING",
+        "READY",
+        "OUT_FOR_DELIVERY",
+        "DELIVERED",
+        "DELIVERY_FAILED",
+        "CANCELLED"
+      ],
+      "methods": []
+    },
+    "PaymentState": {
+      "attributes": [
+        "PENDING",
+        "PAID",
+        "FAILED",
+        "VOIDED",
+        "REFUND_PENDING",
+        "REFUNDED"
+      ],
+      "methods": []
+    },
+    "PaymentMethod": {
+      "attributes": [
+        "COD",
+        "ONLINE"
+      ],
+      "methods": []
+    },
+    "OnlineOption": {
+      "attributes": [
+        "E_WALLET",
+        "BANK_QR",
+        "INTERNATIONAL_CARD"
+      ],
+      "methods": []
+    },
+    "OfferState": {
+      "attributes": [
+        "OFFERED",
+        "ACCEPTED",
+        "DECLINED",
+        "WITHDRAWN"
+      ],
+      "methods": []
+    },
+    "Role": {
+      "attributes": [
+        "CUSTOMER",
+        "KITCHEN_STAFF",
+        "SHIPPER",
+        "ADMIN",
+        "MANAGER"
+      ],
+      "methods": []
+    },
+    "KitchenBoard": {
+      "attributes": [
+        "hub",
+        "columns"
+      ],
+      "methods": []
+    },
+    "BoardEntry": {
+      "attributes": [
+        "order",
+        "awaiting_customer"
+      ],
+      "methods": []
+    },
+    "KitchenOrderView": {
+      "attributes": [
+        "order",
+        "payment",
+        "open_offer",
+        "offers",
+        "candidates"
+      ],
+      "methods": []
+    },
+    "OrderSummary": {
+      "attributes": [
+        "order",
+        "hub_name",
+        "awaiting_answer"
+      ],
+      "methods": []
+    },
+    "Hub": {
+      "attributes": [
+        "id",
+        "code",
+        "name",
+        "address_text",
+        "latitude",
+        "longitude",
+        "max_active_orders",
+        "base_delivery_fee",
+        "archived_at"
+      ],
+      "methods": []
+    },
+    "CustomerType": {
+      "attributes": [
+        "LOCAL",
+        "TOURIST"
+      ],
+      "methods": []
+    }
+  },
+  "diagrams": {
+    "view": [
+      "dcd_uc05_view"
+    ],
+    "controller": [
+      "dcd_uc05_controller_PartA",
+      "dcd_uc05_controller_PartB",
+      "dcd_uc05_controller_links_PartA"
+    ],
+    "domain": [
+      "dcd_uc05_domain_PartA",
+      "dcd_uc05_domain_PartB",
+      "dcd_uc05_domain_PartC",
+      "dcd_uc05_domain_links_PartA",
+      "dcd_uc05_domain_links_PartB",
+      "dcd_uc05_domain_links_PartC",
+      "dcd_uc05_domain_links_PartD",
+      "dcd_uc05_domain_links_PartE"
+    ],
+    "dao": [
+      "dcd_uc05_dao"
+    ],
+    "all": [
+      "dcd_uc05_all_PartA",
+      "dcd_uc05_all_PartB",
+      "dcd_uc05_all_PartC",
+      "dcd_uc05_all_PartD",
+      "dcd_uc05_all_PartE",
+      "dcd_uc05_all_PartF",
+      "dcd_uc05_all_PartG",
+      "dcd_uc05_all_links_PartA",
+      "dcd_uc05_all_links_PartB",
+      "dcd_uc05_all_links_PartC",
+      "dcd_uc05_all_links_PartD",
+      "dcd_uc05_all_links_PartE",
+      "dcd_uc05_all_links_PartF",
+      "dcd_uc05_all_links_PartG",
+      "dcd_uc05_all_links_PartH",
+      "dcd_uc05_all_links_PartI",
+      "dcd_uc05_all_links_PartJ",
+      "dcd_uc05_all_links_PartK",
+      "dcd_uc05_all_links_PartL"
+    ],
+    "final": [
+      "dcd_uc05_final_PartA",
+      "dcd_uc05_final_PartB",
+      "dcd_uc05_final_PartC",
+      "dcd_uc05_final_PartD",
+      "dcd_uc05_final_PartE",
+      "dcd_uc05_final_PartF",
+      "dcd_uc05_final_PartG",
+      "dcd_uc05_final_links_PartA",
+      "dcd_uc05_final_links_PartB",
+      "dcd_uc05_final_links_PartC",
+      "dcd_uc05_final_links_PartD",
+      "dcd_uc05_final_links_PartE",
+      "dcd_uc05_final_links_PartF",
+      "dcd_uc05_final_links_PartG",
+      "dcd_uc05_final_links_PartH",
+      "dcd_uc05_final_links_PartI",
+      "dcd_uc05_final_links_PartJ",
+      "dcd_uc05_final_links_PartK",
+      "dcd_uc05_final_links_PartL"
+    ]
+  },
+  "filter_note": "Tables retain all attributes; diagrams project first four non-FK typed fields and selected exact operations. Enum members retained. Repeated class identities across parts are the same class.",
+  "shared_model_sha256": "bd415d6b5874d373cd5eb928dc9b218d27d499e36052589304912a2c33cdd437"
+}

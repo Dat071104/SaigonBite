@@ -1,0 +1,337 @@
+{
+  "UC": "UC-05",
+  "stem": "dcd_uc05_final_PartG",
+  "title": "UC-05 final — selected design members 7/7",
+  "figure": "3.5.5G",
+  "caption": "UC-05 final detailed design members",
+  "cards": [
+    {
+      "id": "HubDAO_0",
+      "class": "HubDAO",
+      "box": [
+        35,
+        100,
+        730,
+        243.20000000000002
+      ],
+      "compartments": [
+        [
+          "«DAO» HubDAO",
+          "{layer: data_access}"
+        ],
+        [
+          "+ conn: sqlite3.Connection"
+        ],
+        [
+          "+ get_including_archived(self, hub_id: int) -> Optional[Hub]",
+          "+ list_menu(self, hub_id: int) -> list[HubMenuItem]",
+          "+ get_available_item(self, hub_id: int, menu_item_id: int) -> Optional[MenuItem]"
+        ]
+      ],
+      "element": {
+        "class": "HubDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "get_including_archived",
+          "list_menu",
+          "get_available_item"
+        ]
+      }
+    },
+    {
+      "id": "OrderDAO_0",
+      "class": "OrderDAO",
+      "box": [
+        815,
+        100,
+        730,
+        381.20000000000005
+      ],
+      "compartments": [
+        [
+          "«DAO» OrderDAO",
+          "{layer: data_access}"
+        ],
+        [
+          "+ conn: sqlite3.Connection"
+        ],
+        [
+          "- _load(self, row: Optional[sqlite3.Row]) -> Optional[Order]",
+          "+ list_for_hub(self, hub_id: int, states: Iterable[OrderState]) -> list[Order]",
+          "+ get_by_id(self, order_id: int) -> Optional[Order]",
+          "+ change_state(self, order_id: int, from_state: OrderState, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> bool",
+          "+ list_for_customer(self, customer_id: int) -> list[Order]",
+          "+ save_lines_and_totals(self, order: Order) -> bool†"
+        ]
+      ],
+      "element": {
+        "class": "OrderDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "_load",
+          "list_for_hub",
+          "get_by_id",
+          "change_state",
+          "list_for_customer",
+          "save_lines_and_totals"
+        ]
+      }
+    },
+    {
+      "id": "ReplacementOfferDAO_0",
+      "class": "ReplacementOfferDAO",
+      "box": [
+        35,
+        361.20000000000005,
+        730,
+        243.20000000000002
+      ],
+      "compartments": [
+        [
+          "«DAO» ReplacementOfferDAO",
+          "{layer: data_access}"
+        ],
+        [
+          "+ conn: sqlite3.Connection"
+        ],
+        [
+          "+ get_open(self, order_id: int) -> Optional[ReplacementOffer]",
+          "+ list_for_order(self, order_id: int) -> list[ReplacementOffer]",
+          "+ decide(self, offer_id: int, to_state: OfferState, now: str) -> bool",
+          "+ insert(self, offer: ReplacementOffer) -> int"
+        ]
+      ],
+      "element": {
+        "class": "ReplacementOfferDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "get_open",
+          "list_for_order",
+          "decide",
+          "insert"
+        ]
+      }
+    },
+    {
+      "id": "UserDAO_0",
+      "class": "UserDAO",
+      "box": [
+        815,
+        499.20000000000005,
+        730,
+        160.4
+      ],
+      "compartments": [
+        [
+          "«DAO» UserDAO",
+          "{layer: data_access}"
+        ],
+        [
+          "+ conn: sqlite3.Connection"
+        ],
+        [
+          "+ get_by_id(self, user_id: int) -> Optional[UserAccount]"
+        ]
+      ],
+      "element": {
+        "class": "UserDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "get_by_id"
+        ]
+      }
+    },
+    {
+      "id": "PaymentDAO_0",
+      "class": "PaymentDAO",
+      "box": [
+        35,
+        622.4000000000001,
+        730,
+        270.8
+      ],
+      "compartments": [
+        [
+          "«DAO» PaymentDAO",
+          "{layer: data_access}"
+        ],
+        [
+          "+ conn: sqlite3.Connection"
+        ],
+        [
+          "+ get_by_order_id(self, order_id: int) -> Optional[Payment]",
+          "+ change_state(self, order_id: int, from_state: PaymentState, to_state: PaymentState, now: str) -> bool",
+          "+ set_amounts(self, order_id: int, amount: int, refund_amount: int, now: str) -> bool†"
+        ]
+      ],
+      "element": {
+        "class": "PaymentDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "get_by_order_id",
+          "change_state",
+          "set_amounts"
+        ]
+      }
+    },
+    {
+      "id": "CustomerDAO_0",
+      "class": "CustomerDAO",
+      "box": [
+        815,
+        677.6,
+        730,
+        160.4
+      ],
+      "compartments": [
+        [
+          "«DAO» CustomerDAO",
+          "{layer: data_access}"
+        ],
+        [
+          "+ conn: sqlite3.Connection"
+        ],
+        [
+          "+ get_by_user_id(self, user_id: int) -> Optional[Customer]"
+        ]
+      ],
+      "element": {
+        "class": "CustomerDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "get_by_user_id"
+        ]
+      }
+    },
+    {
+      "id": "DeliveryDAO_0",
+      "class": "DeliveryDAO",
+      "box": [
+        815,
+        856.0,
+        730,
+        160.4
+      ],
+      "compartments": [
+        [
+          "«DAO» DeliveryDAO",
+          "{layer: data_access}"
+        ],
+        [
+          "+ conn: sqlite3.Connection"
+        ],
+        [
+          "+ get_by_order_id(self, order_id: int) -> Optional[Delivery]"
+        ]
+      ],
+      "element": {
+        "class": "DeliveryDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "get_by_order_id"
+        ]
+      }
+    }
+  ],
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "HubDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "get_including_archived",
+          "list_menu",
+          "get_available_item"
+        ]
+      },
+      {
+        "class": "OrderDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "_load",
+          "list_for_hub",
+          "get_by_id",
+          "change_state",
+          "list_for_customer",
+          "save_lines_and_totals"
+        ]
+      },
+      {
+        "class": "ReplacementOfferDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "get_open",
+          "list_for_order",
+          "decide",
+          "insert"
+        ]
+      },
+      {
+        "class": "UserDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "get_by_id"
+        ]
+      },
+      {
+        "class": "PaymentDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "get_by_order_id",
+          "change_state",
+          "set_amounts"
+        ]
+      },
+      {
+        "class": "CustomerDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "get_by_user_id"
+        ]
+      },
+      {
+        "class": "DeliveryDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "get_by_order_id"
+        ]
+      }
+    ],
+    "dependencies": [],
+    "states": []
+  },
+  "P4_input": "F-02; P2-S09; P2-S11; P3-S03",
+  "continuation": "Members continue across PartA, PartB, PartC, PartD, PartE, PartF, PartG; relation view follows in final_links.",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+}

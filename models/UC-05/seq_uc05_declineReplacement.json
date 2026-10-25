@@ -1,0 +1,247 @@
+{
+  "UC": "UC-05",
+  "stem": "seq_uc05_declineReplacement",
+  "title": "UC-05 declineReplacement",
+  "figure": "3.5.4.OP-06",
+  "caption": "UC-05 declineReplacement design sequence",
+  "P4_input": "F-02; F-05; P2-S01; P2-S09; P2-S11; P2-S13; P3-S03",
+  "phase3": {
+    "diagram_type": "sequence",
+    "UC": "UC-05",
+    "op_id": "OP-06",
+    "operation": "declineReplacement",
+    "parameters": "orderId, offerId",
+    "ssd_occurrence": "models/UC-05/ssd_uc05_PartC.drawio#05S-M09",
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Customer",
+        "role": "actor",
+        "label": "Customer"
+      },
+      {
+        "id": "view",
+        "class": "order",
+        "role": "view",
+        "label": "«view»\norder"
+      },
+      {
+        "id": "ctrl",
+        "class": "OrderTrackingController",
+        "role": "controller",
+        "label": "OrderTrackingController"
+      },
+      {
+        "id": "common",
+        "class": "controllers.common",
+        "role": "controller",
+        "label": "controllers.common"
+      },
+      {
+        "id": "order",
+        "class": "Order",
+        "role": "domain",
+        "label": "Order"
+      },
+      {
+        "id": "pay",
+        "class": "Payment",
+        "role": "domain",
+        "label": "Payment"
+      }
+    ],
+    "messages": [
+      {
+        "from": "actor",
+        "to": "view",
+        "method": "answer_replacement",
+        "kind": "ssd",
+        "arguments": "orderId, offerId",
+        "guard": "",
+        "PC_MG": "",
+        "label": "declineReplacement(orderId, offerId)\n→ order.answer_replacement [HTTP adapter]",
+        "y": 418,
+        "receiver_signature": "answer_replacement(order_id: int)",
+        "status": "MATCH",
+        "P4_input": ""
+      },
+      {
+        "from": "view",
+        "to": "ctrl",
+        "method": "answer_replacement",
+        "kind": "call",
+        "arguments": "user_id, order_id, offer_id, False",
+        "guard": "eligible/main operand (see frame and operation table)",
+        "PC_MG": "SUC03-PC04; UC05-MG01 (decline/reject and BR-17; stale or failed save leaves Order unchanged)",
+        "label": "answer_replacement†(user_id, order_id, offer_id, False)",
+        "y": 483,
+        "receiver_signature": "answer_replacement(self, user_id: int, order_id: int, offer_id: int, accept: bool) -> OrderDetail",
+        "status": "P4-TARGET",
+        "P4_input": "F-05; F-02; P2-S09; P2-S11; P2-S13"
+      },
+      {
+        "from": "ctrl",
+        "to": "common",
+        "method": "move_order",
+        "kind": "call",
+        "arguments": "orders, order, OrderState.REJECTED, now, DECLINED_REASON",
+        "guard": "eligible/main operand (see frame and operation table)",
+        "PC_MG": "",
+        "label": "move_order(orders, order, OrderState.REJECTED, now, DECLINED_REASON)",
+        "y": 628,
+        "receiver_signature": "move_order(orders: OrderDAO, order: Order, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> None",
+        "status": "MATCH",
+        "P4_input": ""
+      },
+      {
+        "from": "common",
+        "to": "order",
+        "method": "move_to",
+        "kind": "call",
+        "arguments": "OrderState.REJECTED",
+        "guard": "eligible/main operand (see frame and operation table)",
+        "PC_MG": "",
+        "label": "move_to(OrderState.REJECTED)",
+        "y": 693,
+        "receiver_signature": "move_to(self, new_state: OrderState) -> None",
+        "status": "MATCH",
+        "P4_input": ""
+      },
+      {
+        "from": "ctrl",
+        "to": "common",
+        "method": "release_payment",
+        "kind": "call",
+        "arguments": "payments, order.id, now",
+        "guard": "eligible/main operand (see frame and operation table)",
+        "PC_MG": "",
+        "label": "release_payment†(payments, order.id, now)",
+        "y": 758,
+        "receiver_signature": "release_payment(payments: PaymentDAO, order_id: int, now: str) -> Payment",
+        "status": "P4-TARGET",
+        "P4_input": "F-02; P2-S01; P3-S03"
+      },
+      {
+        "from": "common",
+        "to": "pay",
+        "method": "release_for_unfulfilled_order",
+        "kind": "call",
+        "arguments": "",
+        "guard": "eligible/main operand (see frame and operation table)",
+        "PC_MG": "",
+        "label": "release_for_unfulfilled_order†() [full C owed]",
+        "y": 823,
+        "receiver_signature": "release_for_unfulfilled_order(self) -> None",
+        "status": "P4-TARGET",
+        "P4_input": "F-02; P2-S01"
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "",
+        "guard": "denied / stale / invalid or atomic save failure",
+        "PC_MG": "UC05-MG01",
+        "label": "refusal / controlled failure; UC05-MG01",
+        "y": 1000
+      }
+    ],
+    "elements": [
+      {
+        "class": "order",
+        "attributes": [],
+        "methods": [
+          "answer_replacement"
+        ]
+      },
+      {
+        "class": "OrderTrackingController",
+        "attributes": [],
+        "methods": [
+          "answer_replacement"
+        ]
+      },
+      {
+        "class": "controllers.common",
+        "attributes": [],
+        "methods": [
+          "move_order",
+          "release_payment"
+        ]
+      },
+      {
+        "class": "Order",
+        "attributes": [],
+        "methods": [
+          "move_to"
+        ]
+      },
+      {
+        "class": "Payment",
+        "attributes": [],
+        "methods": [
+          "release_for_unfulfilled_order"
+        ]
+      }
+    ],
+    "dependencies": [],
+    "states": [
+      {
+        "class": "Order",
+        "attribute": "state",
+        "values": [
+          "PLACED",
+          "REJECTED"
+        ]
+      },
+      {
+        "class": "Payment",
+        "attribute": "state",
+        "values": [
+          "VOIDED",
+          "REFUND_PENDING"
+        ]
+      },
+      {
+        "class": "ReplacementOffer",
+        "attribute": "state",
+        "values": [
+          "OFFERED",
+          "DECLINED"
+        ]
+      }
+    ]
+  },
+  "frames": [
+    {
+      "id": "alt",
+      "y": 495,
+      "h": 545,
+      "label": "alt [eligible main path; guards / effects in the operation note]",
+      "operands": [
+        [
+          910,
+          "[denied / stale / invalid or failed atomic save] UC05-MG01"
+        ]
+      ]
+    }
+  ],
+  "notes": [
+    {
+      "y": 220,
+      "h": 90,
+      "text": "Own PLACED + exact open OFFERED: atomic offer DECLINED + Order REJECTED + closed_at / reason. COD VOIDED; ONLINE REFUND_PENDING, refund_amount=C (BR-17; SUC03-PC04). Stale / denied: no changes. Busy / write / COMMIT failure: rollback all (UC05-MG01)."
+    },
+    {
+      "y": 1010,
+      "h": 65,
+      "text": "Persistence: loaded/saved through data access — see 4.3.2."
+    }
+  ],
+  "continuation": "Complete design operation; failure path is the alternative operand above.",
+  "realisation_note": "Guard: active own Customer; PLACED; exact open OFFERED with matching order/offer IDs. SUC03-PC04: atomic REJECTED + closed_at / reason; COD VOIDED; ONLINE REFUND_PENDING, refund_amount=C replaces any partial owed amount. No payout. Open offer DECLINED; helpers are real module functions. Rowcount, busy and failure-through-COMMIT rollback†. Root-adopted P4-TARGET: release_payment persists the full-C refund amount together with state and checks every conditional save in the same transaction (F-02; P2-S01; P3-S03).",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+}

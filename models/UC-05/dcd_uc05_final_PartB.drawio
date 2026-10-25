@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="SaigonBite P3-A" type="device">
+  <diagram name="UC-05 final — selected design members 2/7" id="dcd_uc05_final_PartB">
+    <mxGraphModel page="1" pageWidth="1600" pageHeight="1200">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="text0" value="UC-05 final — selected design members 2/7" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="35" y="16" width="1530" height="32.199999999999996" />
+        </mxCell>
+        <mxCell id="KitchenController_0" value="" vertex="1" parent="1" style="fillColor=#F1F6FA;strokeColor=#004387;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="35" y="100" width="730" height="436.40000000000003" />
+        </mxCell>
+        <mxCell id="text2" value="«controller» KitchenController&#10;{layer: controller}" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="47" y="108" width="706" height="55.199999999999996" />
+        </mxCell>
+        <mxCell id="text3" value="+ hubs: HubDAO [inferred]&#10;+ menu: MenuDAO [inferred]&#10;+ orders: OrderDAO [inferred]&#10;+ payments: PaymentDAO [inferred]" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="47" y="173.2" width="706" height="110.39999999999999" />
+        </mxCell>
+        <mxCell id="text4" value="+ board(self, user_id: int) -&gt; KitchenBoard&#10;+ get_order(self, user_id: int, order_id: int) -&gt; KitchenOrderView&#10;+ confirm_order(self, user_id: int, order_id: int) -&gt; Order†&#10;+ reject_order(self, user_id: int, order_id: int, reason: str) -&gt;&#10;Order†&#10;+ offer_replacement(self, user_id: int, order_id: int, order_line_id:&#10;int, new_menu_item_id: int) -&gt; ReplacementOffer†" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="47" y="293.59999999999997" width="706" height="193.2" />
+        </mxCell>
+        <mxCell id="OrderTrackingController_0" value="" vertex="1" parent="1" style="fillColor=#F1F6FA;strokeColor=#004387;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="815" y="100" width="730" height="381.20000000000005" />
+        </mxCell>
+        <mxCell id="text6" value="«controller» OrderTrackingController&#10;{layer: controller}" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="827" y="108" width="706" height="55.199999999999996" />
+        </mxCell>
+        <mxCell id="text7" value="+ customers: CustomerDAO [inferred]&#10;+ orders: OrderDAO [inferred]&#10;+ payments: PaymentDAO [inferred]&#10;+ hubs: HubDAO [inferred]" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="827" y="173.2" width="706" height="110.39999999999999" />
+        </mxCell>
+        <mxCell id="text8" value="+ list_my_orders(self, user_id: int) -&gt; list[OrderSummary]&#10;+ get_order(self, user_id: int, order_id: int) -&gt; OrderDetail&#10;+ answer_replacement(self, user_id: int, order_id: int, offer_id: int,&#10;accept: bool) -&gt; OrderDetail†&#10;- _own_order(self, customer: Customer, order_id: int) -&gt; Order&#10;- _require_customer(self, user_id: int) -&gt; Customer" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="827" y="293.59999999999997" width="706" height="165.6" />
+        </mxCell>
+        <mxCell id="OrderDetail_0" value="" vertex="1" parent="1" style="fillColor=#F1F6FA;strokeColor=#004387;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="815" y="499.20000000000005" width="730" height="270.8" />
+        </mxCell>
+        <mxCell id="text10" value="«value» OrderDetail&#10;{layer: controller}" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="827" y="507.20000000000005" width="706" height="55.199999999999996" />
+        </mxCell>
+        <mxCell id="text11" value="+ order: Order&#10;+ payment: Payment&#10;+ hub: Hub&#10;+ delivery: Optional[Delivery]" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="827" y="572.4000000000001" width="706" height="110.39999999999999" />
+        </mxCell>
+        <mxCell id="text12" value="+ total_if_accepted(self) -&gt; Optional[int] {property; read as&#10;.total_if_accepted}" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="827" y="692.8000000000001" width="706" height="55.199999999999996" />
+        </mxCell>
+        <mxCell id="controllers_common_0" value="" vertex="1" parent="1" style="fillColor=#F1F6FA;strokeColor=#004387;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="35" y="554.4000000000001" width="730" height="270.8" />
+        </mxCell>
+        <mxCell id="text14" value="«module» controllers.common&#10;{layer: controller}" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="47" y="562.4000000000001" width="706" height="55.199999999999996" />
+        </mxCell>
+        <mxCell id="text15" value="{no selected attribute}" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="47" y="627.6000000000001" width="706" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="text16" value="+ move_order(orders: OrderDAO, order: Order, to_state:&#10;OrderState, now: str, reject_reason: Optional[str]=None) -&gt; None&#10;+ release_payment(payments: PaymentDAO, order_id: int, now:&#10;str) -&gt; Payment†" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="47" y="665.2000000000002" width="706" height="110.39999999999999" />
+        </mxCell>
+        <mxCell id="KitchenBoard_0" value="" vertex="1" parent="1" style="fillColor=#F1F6FA;strokeColor=#004387;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="815" y="788.0" width="730" height="188.0" />
+        </mxCell>
+        <mxCell id="text18" value="«value» KitchenBoard&#10;{layer: controller}" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="827" y="796.0" width="706" height="55.199999999999996" />
+        </mxCell>
+        <mxCell id="text19" value="+ hub: Hub&#10;+ columns: dict[OrderState, list[BoardEntry]]" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="827" y="861.2" width="706" height="55.199999999999996" />
+        </mxCell>
+        <mxCell id="text20" value="{no selected operation}" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="827" y="926.4000000000001" width="706" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="BoardEntry_0" value="" vertex="1" parent="1" style="fillColor=#F1F6FA;strokeColor=#004387;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="35" y="843.2" width="730" height="188.0" />
+        </mxCell>
+        <mxCell id="text22" value="«value» BoardEntry&#10;{layer: controller}" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="47" y="851.2" width="706" height="55.199999999999996" />
+        </mxCell>
+        <mxCell id="text23" value="+ order: Order&#10;+ awaiting_customer: bool" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="47" y="916.4000000000001" width="706" height="55.199999999999996" />
+        </mxCell>
+        <mxCell id="text24" value="{no selected operation}" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="47" y="981.6000000000001" width="706" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="text25" value="Members continue across PartA, PartB, PartC, PartD, PartE, PartF, PartG; relation view follows in final_links." vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="35" y="1080" width="1530" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="text26" value="† design target, not yet in code at C0 (see P4 input F-02; F-05; P2-S01; P2-S09; P2-S11; P2-S13; P3-S03)." vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="35" y="1112" width="1530" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="text27" value="Figure 3.5.5B. UC-05 final detailed design members — Author: 722I0004 · AI-assisted (Codex)" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="35" y="1145" width="1530" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="text28" value="Static / target design · 230 mm landscape · smallest text 9.78 pt · native draw.io / final placement UNTESTED" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="35" y="1171" width="1530" height="27.599999999999998" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

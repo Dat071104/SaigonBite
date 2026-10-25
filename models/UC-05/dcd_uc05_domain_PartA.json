@@ -1,0 +1,339 @@
+{
+  "UC": "UC-05",
+  "stem": "dcd_uc05_domain_PartA",
+  "title": "UC-05 domain — selected design members 1/3",
+  "figure": "3.5.2.iA",
+  "caption": "UC-05 domain detailed design members",
+  "cards": [
+    {
+      "id": "Order_0",
+      "class": "Order",
+      "box": [
+        35,
+        100,
+        730,
+        353.6
+      ],
+      "compartments": [
+        [
+          "«entity» Order",
+          "{layer: domain}"
+        ],
+        [
+          "+ state: OrderState",
+          "+ delivery_fee: int",
+          "+ idempotency_token: str",
+          "+ placed_at: str"
+        ],
+        [
+          "+ move_to(self, new_state: OrderState) -> None",
+          "+ line(self, line_id: int) -> Optional[OrderLine]",
+          "+ replace_line(self, line_id: int, menu_item_id: int, item_name: str, unit_price: int) -> None",
+          "+ total(self) -> int {property; read as .total}"
+        ]
+      ],
+      "element": {
+        "class": "Order",
+        "attributes": [
+          "state",
+          "delivery_fee",
+          "idempotency_token",
+          "placed_at"
+        ],
+        "methods": [
+          "move_to",
+          "line",
+          "replace_line",
+          "total"
+        ]
+      }
+    },
+    {
+      "id": "Payment_0",
+      "class": "Payment",
+      "box": [
+        815,
+        100,
+        730,
+        243.20000000000002
+      ],
+      "compartments": [
+        [
+          "«entity» Payment",
+          "{layer: domain}"
+        ],
+        [
+          "+ method: PaymentMethod",
+          "+ state: PaymentState",
+          "+ amount: int",
+          "+ created_at: str"
+        ],
+        [
+          "+ release_for_unfulfilled_order(self) -> None†"
+        ]
+      ],
+      "element": {
+        "class": "Payment",
+        "attributes": [
+          "method",
+          "state",
+          "amount",
+          "created_at"
+        ],
+        "methods": [
+          "release_for_unfulfilled_order"
+        ]
+      }
+    },
+    {
+      "id": "ReplacementOffer_0",
+      "class": "ReplacementOffer",
+      "box": [
+        815,
+        361.20000000000005,
+        730,
+        243.20000000000002
+      ],
+      "compartments": [
+        [
+          "«entity» ReplacementOffer",
+          "{layer: domain}"
+        ],
+        [
+          "+ original_item_name: str",
+          "+ original_unit_price: int",
+          "+ new_item_name: str",
+          "+ new_unit_price: int"
+        ],
+        [
+          "+ move_to(self, new_state: OfferState) -> None"
+        ]
+      ],
+      "element": {
+        "class": "ReplacementOffer",
+        "attributes": [
+          "original_item_name",
+          "original_unit_price",
+          "new_item_name",
+          "new_unit_price"
+        ],
+        "methods": [
+          "move_to"
+        ]
+      }
+    },
+    {
+      "id": "OrderLine_0",
+      "class": "OrderLine",
+      "box": [
+        35,
+        471.6,
+        730,
+        243.20000000000002
+      ],
+      "compartments": [
+        [
+          "«entity» OrderLine",
+          "{layer: domain}"
+        ],
+        [
+          "+ item_name: str",
+          "+ unit_price: int",
+          "+ quantity: int",
+          "+ id: Optional[int]"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "OrderLine",
+        "attributes": [
+          "item_name",
+          "unit_price",
+          "quantity",
+          "id"
+        ],
+        "methods": []
+      }
+    },
+    {
+      "id": "Customer_0",
+      "class": "Customer",
+      "box": [
+        815,
+        622.4000000000001,
+        730,
+        243.20000000000002
+      ],
+      "compartments": [
+        [
+          "«entity» Customer",
+          "{layer: domain}"
+        ],
+        [
+          "+ id: int",
+          "+ full_name: str",
+          "+ phone: Optional[str]",
+          "+ email: Optional[str]"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "Customer",
+        "attributes": [
+          "id",
+          "full_name",
+          "phone",
+          "email"
+        ],
+        "methods": []
+      }
+    },
+    {
+      "id": "LocalCustomer_0",
+      "class": "LocalCustomer",
+      "box": [
+        35,
+        732.8000000000001,
+        730,
+        160.4
+      ],
+      "compartments": [
+        [
+          "«entity» LocalCustomer",
+          "{layer: domain}"
+        ],
+        [
+          "+ customer_type: CustomerType [inferred]"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "LocalCustomer",
+        "attributes": [
+          "customer_type"
+        ],
+        "methods": []
+      }
+    },
+    {
+      "id": "TouristCustomer_0",
+      "class": "TouristCustomer",
+      "box": [
+        815,
+        883.6000000000001,
+        730,
+        160.4
+      ],
+      "compartments": [
+        [
+          "«entity» TouristCustomer",
+          "{layer: domain}"
+        ],
+        [
+          "+ customer_type: CustomerType [inferred]"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "TouristCustomer",
+        "attributes": [
+          "customer_type"
+        ],
+        "methods": []
+      }
+    }
+  ],
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "Order",
+        "attributes": [
+          "state",
+          "delivery_fee",
+          "idempotency_token",
+          "placed_at"
+        ],
+        "methods": [
+          "move_to",
+          "line",
+          "replace_line",
+          "total"
+        ]
+      },
+      {
+        "class": "Payment",
+        "attributes": [
+          "method",
+          "state",
+          "amount",
+          "created_at"
+        ],
+        "methods": [
+          "release_for_unfulfilled_order"
+        ]
+      },
+      {
+        "class": "ReplacementOffer",
+        "attributes": [
+          "original_item_name",
+          "original_unit_price",
+          "new_item_name",
+          "new_unit_price"
+        ],
+        "methods": [
+          "move_to"
+        ]
+      },
+      {
+        "class": "OrderLine",
+        "attributes": [
+          "item_name",
+          "unit_price",
+          "quantity",
+          "id"
+        ],
+        "methods": []
+      },
+      {
+        "class": "Customer",
+        "attributes": [
+          "id",
+          "full_name",
+          "phone",
+          "email"
+        ],
+        "methods": []
+      },
+      {
+        "class": "LocalCustomer",
+        "attributes": [
+          "customer_type"
+        ],
+        "methods": []
+      },
+      {
+        "class": "TouristCustomer",
+        "attributes": [
+          "customer_type"
+        ],
+        "methods": []
+      }
+    ],
+    "dependencies": [],
+    "states": []
+  },
+  "P4_input": "F-02; P2-S01",
+  "continuation": "Members continue across PartA, PartB, PartC; relation view follows in domain_links.",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+}

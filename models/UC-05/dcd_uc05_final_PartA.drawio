@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="SaigonBite P3-A" type="device">
+  <diagram name="UC-05 final — selected design members 1/7" id="dcd_uc05_final_PartA">
+    <mxGraphModel page="1" pageWidth="1600" pageHeight="1200">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="text0" value="UC-05 final — selected design members 1/7" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="35" y="16" width="1530" height="32.199999999999996" />
+        </mxCell>
+        <mxCell id="kitchen_0" value="" vertex="1" parent="1" style="fillColor=#F1F6FA;strokeColor=#004387;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="35" y="100" width="730" height="270.8" />
+        </mxCell>
+        <mxCell id="text2" value="«view» kitchen&#10;{layer: view}" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="47" y="108" width="706" height="55.199999999999996" />
+        </mxCell>
+        <mxCell id="text3" value="{no selected attribute}" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="47" y="173.2" width="706" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="text4" value="+ board() -&gt; Any [inferred return]&#10;+ order(order_id: int) -&gt; Any [inferred return]&#10;+ confirm(order_id: int) -&gt; Any [inferred return]&#10;+ reject(order_id: int) -&gt; Any [inferred return]&#10;+ offer(order_id: int) -&gt; Any [inferred return]" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="47" y="210.79999999999998" width="706" height="138.0" />
+        </mxCell>
+        <mxCell id="order_0" value="" vertex="1" parent="1" style="fillColor=#F1F6FA;strokeColor=#004387;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="815" y="100" width="730" height="215.60000000000002" />
+        </mxCell>
+        <mxCell id="text6" value="«view» order&#10;{layer: view}" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="827" y="108" width="706" height="55.199999999999996" />
+        </mxCell>
+        <mxCell id="text7" value="{no selected attribute}" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="827" y="173.2" width="706" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="text8" value="+ my_orders() -&gt; Any [inferred return]&#10;+ detail(order_id: int) -&gt; Any [inferred return]&#10;+ answer_replacement(order_id: int) -&gt; Any [inferred return]" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="827" y="210.79999999999998" width="706" height="82.8" />
+        </mxCell>
+        <mxCell id="text9" value="Members continue across PartA, PartB, PartC, PartD, PartE, PartF, PartG; relation view follows in final_links." vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="35" y="1080" width="1530" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="text10" value="† design target, not yet in code at C0 (see P4 input none on this view)." vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="35" y="1112" width="1530" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="text11" value="Figure 3.5.5A. UC-05 final detailed design members — Author: 722I0004 · AI-assisted (Codex)" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="35" y="1145" width="1530" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="text12" value="Static / target design · 230 mm landscape · smallest text 9.78 pt · native draw.io / final placement UNTESTED" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="35" y="1171" width="1530" height="27.599999999999998" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

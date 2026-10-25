@@ -1,0 +1,423 @@
+{
+  "UC": "UC-05",
+  "stem": "dcd_uc05_all_links_PartJ",
+  "title": "UC-05 all — relationships 10",
+  "figure": "3.5.2.v.R10",
+  "caption": "UC-05 all navigation / multiplicities",
+  "cards": [
+    {
+      "id": "s0",
+      "box": [
+        55,
+        105,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«controller» OrderTrackingController"
+        ]
+      ],
+      "class": "OrderTrackingController"
+    },
+    {
+      "id": "t0",
+      "box": [
+        1035,
+        145,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«value» OrderSummary"
+        ]
+      ],
+      "class": "OrderSummary"
+    },
+    {
+      "id": "s1",
+      "box": [
+        55,
+        255,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«controller» OrderTrackingController"
+        ]
+      ],
+      "class": "OrderTrackingController"
+    },
+    {
+      "id": "t1",
+      "box": [
+        1035,
+        295,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«DAO» PaymentDAO"
+        ]
+      ],
+      "class": "PaymentDAO"
+    },
+    {
+      "id": "s2",
+      "box": [
+        55,
+        405,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«controller» OrderTrackingController"
+        ]
+      ],
+      "class": "OrderTrackingController"
+    },
+    {
+      "id": "t2",
+      "box": [
+        1035,
+        445,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«DAO» ReplacementOfferDAO"
+        ]
+      ],
+      "class": "ReplacementOfferDAO"
+    },
+    {
+      "id": "s3",
+      "box": [
+        55,
+        555,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«controller» OrderTrackingController"
+        ]
+      ],
+      "class": "OrderTrackingController"
+    },
+    {
+      "id": "t3",
+      "box": [
+        1035,
+        595,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«module» controllers.common"
+        ]
+      ],
+      "class": "controllers.common"
+    },
+    {
+      "id": "s4",
+      "box": [
+        55,
+        705,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«entity» UserAccount"
+        ]
+      ],
+      "class": "UserAccount"
+    },
+    {
+      "id": "t4",
+      "box": [
+        1035,
+        745,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«enumeration» Role"
+        ]
+      ],
+      "class": "Role"
+    },
+    {
+      "id": "s5",
+      "box": [
+        55,
+        855,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«entity» Customer"
+        ]
+      ],
+      "class": "Customer"
+    },
+    {
+      "id": "t5",
+      "box": [
+        1035,
+        895,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«enumeration» CustomerType"
+        ]
+      ],
+      "class": "CustomerType"
+    }
+  ],
+  "edges": [
+    {
+      "source": "s0",
+      "target": "t0",
+      "kind": "dependency",
+      "points": [
+        [
+          555,
+          148
+        ],
+        [
+          1035,
+          188
+        ]
+      ],
+      "label": "→  «use»",
+      "labelpos": [
+        575,
+        109
+      ],
+      "labelwidth": 440
+    },
+    {
+      "source": "s1",
+      "target": "t1",
+      "kind": "dependency",
+      "points": [
+        [
+          555,
+          298
+        ],
+        [
+          1035,
+          338
+        ]
+      ],
+      "label": "→  «use»",
+      "labelpos": [
+        575,
+        259
+      ],
+      "labelwidth": 440
+    },
+    {
+      "source": "s2",
+      "target": "t2",
+      "kind": "dependency",
+      "points": [
+        [
+          555,
+          448
+        ],
+        [
+          1035,
+          488
+        ]
+      ],
+      "label": "→  «use»",
+      "labelpos": [
+        575,
+        409
+      ],
+      "labelwidth": 440
+    },
+    {
+      "source": "s3",
+      "target": "t3",
+      "kind": "dependency",
+      "points": [
+        [
+          555,
+          598
+        ],
+        [
+          1035,
+          638
+        ]
+      ],
+      "label": "→  «use»",
+      "labelpos": [
+        575,
+        559
+      ],
+      "labelwidth": 440
+    },
+    {
+      "source": "s4",
+      "target": "t4",
+      "kind": "dependency",
+      "points": [
+        [
+          555,
+          748
+        ],
+        [
+          1035,
+          788
+        ]
+      ],
+      "label": "→  «use»",
+      "labelpos": [
+        575,
+        709
+      ],
+      "labelwidth": 440
+    },
+    {
+      "source": "s5",
+      "target": "t5",
+      "kind": "dependency",
+      "points": [
+        [
+          555,
+          898
+        ],
+        [
+          1035,
+          938
+        ]
+      ],
+      "label": "→  «use»",
+      "labelpos": [
+        575,
+        859
+      ],
+      "labelwidth": 440
+    }
+  ],
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "OrderTrackingController",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "OrderSummary",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "PaymentDAO",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "ReplacementOfferDAO",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "controllers.common",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "UserAccount",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "Role",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "Customer",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "CustomerType",
+        "attributes": [],
+        "methods": []
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "OrderTrackingController",
+        "target": "OrderSummary",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "OrderTrackingController",
+        "target": "PaymentDAO",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "OrderTrackingController",
+        "target": "ReplacementOfferDAO",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "OrderTrackingController",
+        "target": "controllers.common",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "UserAccount",
+        "target": "Role",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "Customer",
+        "target": "CustomerType",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      }
+    ],
+    "states": []
+  },
+  "continuation": "Members: all detail parts. Relationship parts A–L continue both ways.",
+  "P4_input": "none on this view",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+}

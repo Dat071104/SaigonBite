@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200"><rect width="100%" height="100%" fill="white"/>
+<text x="35" y="42.040000000000006" font-family="Arial" font-size="28" font-weight="bold" fill="#202B36">UC-05 dao — selected design members 1/1</text>
+<rect x="35" y="100" width="730" height="243.20000000000002" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="47" y="130.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«DAO» HubDAO</text>
+<text x="47" y="157.92" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">{layer: data_access}</text>
+<polyline points="35,169.2 765,169.2" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="47" y="195.51999999999998" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ conn: sqlite3.Connection</text>
+<polyline points="35,206.79999999999998 765,206.79999999999998" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="47" y="233.11999999999998" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ get_including_archived(self, hub_id: int) -&gt; Optional[Hub]</text>
+<text x="47" y="260.71999999999997" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ list_menu(self, hub_id: int) -&gt; list[HubMenuItem]</text>
+<text x="47" y="288.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ get_available_item(self, hub_id: int, menu_item_id: int) -&gt;</text>
+<text x="47" y="315.91999999999996" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Optional[MenuItem]</text>
+<rect x="815" y="100" width="730" height="381.20000000000005" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="827" y="130.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«DAO» OrderDAO</text>
+<text x="827" y="157.92" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">{layer: data_access}</text>
+<polyline points="815,169.2 1545,169.2" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="827" y="195.51999999999998" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ conn: sqlite3.Connection</text>
+<polyline points="815,206.79999999999998 1545,206.79999999999998" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="827" y="233.11999999999998" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">- _load(self, row: Optional[sqlite3.Row]) -&gt; Optional[Order]</text>
+<text x="827" y="260.71999999999997" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ list_for_hub(self, hub_id: int, states: Iterable[OrderState]) -&gt;</text>
+<text x="827" y="288.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">list[Order]</text>
+<text x="827" y="315.91999999999996" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ get_by_id(self, order_id: int) -&gt; Optional[Order]</text>
+<text x="827" y="343.52" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ change_state(self, order_id: int, from_state: OrderState,</text>
+<text x="827" y="371.11999999999995" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">to_state: OrderState, now: str, reject_reason: Optional[str]=None)</text>
+<text x="827" y="398.71999999999997" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">-&gt; bool</text>
+<text x="827" y="426.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ list_for_customer(self, customer_id: int) -&gt; list[Order]</text>
+<text x="827" y="453.91999999999996" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ save_lines_and_totals(self, order: Order) -&gt; bool†</text>
+<rect x="35" y="361.20000000000005" width="730" height="243.20000000000002" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="47" y="391.52000000000004" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«DAO» ReplacementOfferDAO</text>
+<text x="47" y="419.12000000000006" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">{layer: data_access}</text>
+<polyline points="35,430.40000000000003 765,430.40000000000003" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="47" y="456.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ conn: sqlite3.Connection</text>
+<polyline points="35,468.0 765,468.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="47" y="494.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ get_open(self, order_id: int) -&gt; Optional[ReplacementOffer]</text>
+<text x="47" y="521.9200000000001" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ list_for_order(self, order_id: int) -&gt; list[ReplacementOffer]</text>
+<text x="47" y="549.5200000000001" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ decide(self, offer_id: int, to_state: OfferState, now: str) -&gt; bool</text>
+<text x="47" y="577.12" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ insert(self, offer: ReplacementOffer) -&gt; int</text>
+<rect x="815" y="499.20000000000005" width="730" height="160.4" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="827" y="529.5200000000001" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«DAO» UserDAO</text>
+<text x="827" y="557.1200000000001" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">{layer: data_access}</text>
+<polyline points="815,568.4000000000001 1545,568.4000000000001" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="827" y="594.7200000000001" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ conn: sqlite3.Connection</text>
+<polyline points="815,606.0000000000001 1545,606.0000000000001" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="827" y="632.3200000000002" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ get_by_id(self, user_id: int) -&gt; Optional[UserAccount]</text>
+<rect x="35" y="622.4000000000001" width="730" height="270.8" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="47" y="652.7200000000001" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«DAO» PaymentDAO</text>
+<text x="47" y="680.3200000000002" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">{layer: data_access}</text>
+<polyline points="35,691.6000000000001 765,691.6000000000001" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="47" y="717.9200000000002" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ conn: sqlite3.Connection</text>
+<polyline points="35,729.2000000000002 765,729.2000000000002" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="47" y="755.5200000000002" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ get_by_order_id(self, order_id: int) -&gt; Optional[Payment]</text>
+<text x="47" y="783.1200000000002" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ change_state(self, order_id: int, from_state: PaymentState,</text>
+<text x="47" y="810.7200000000003" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">to_state: PaymentState, now: str) -&gt; bool</text>
+<text x="47" y="838.3200000000002" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ set_amounts(self, order_id: int, amount: int, refund_amount: int,</text>
+<text x="47" y="865.9200000000002" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">now: str) -&gt; bool†</text>
+<rect x="815" y="677.6" width="730" height="160.4" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="827" y="707.9200000000001" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«DAO» CustomerDAO</text>
+<text x="827" y="735.5200000000001" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">{layer: data_access}</text>
+<polyline points="815,746.8 1545,746.8" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="827" y="773.12" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ conn: sqlite3.Connection</text>
+<polyline points="815,784.4 1545,784.4" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="827" y="810.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ get_by_user_id(self, user_id: int) -&gt; Optional[Customer]</text>
+<rect x="815" y="856.0" width="730" height="160.4" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="827" y="886.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«DAO» DeliveryDAO</text>
+<text x="827" y="913.9200000000001" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">{layer: data_access}</text>
+<polyline points="815,925.2 1545,925.2" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="827" y="951.5200000000001" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ conn: sqlite3.Connection</text>
+<polyline points="815,962.8000000000001 1545,962.8000000000001" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="827" y="989.1200000000001" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ get_by_order_id(self, order_id: int) -&gt; Optional[Delivery]</text>
+<text x="35" y="1102.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Member projection; navigation is in the all/final relationship plates.</text>
+<text x="35" y="1134.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">† design target, not yet in code at C0 (see P4 input F-02; P2-S09; P2-S11; P3-S03).</text>
+<text x="35" y="1167.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Figure 3.5.2.iv. UC-05 dao detailed design members — Author: 722I0004 · AI-assisted (Codex)</text>
+<text x="35" y="1193.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Static / target design · 230 mm landscape · smallest text 9.78 pt · native draw.io / final placement UNTESTED</text>
+</svg>

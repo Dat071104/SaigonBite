@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200"><rect width="100%" height="100%" fill="white"/>
+<text x="35" y="42.040000000000006" font-family="Arial" font-size="28" font-weight="bold" fill="#202B36">UC-05 declineReplacement</text>
+<rect x="5.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="10.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Customer</text>
+<polyline points="90.0,170 90.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="289.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="294.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">«view»</text>
+<text x="294.0" y="131.92" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">order</text>
+<polyline points="374.0,170 374.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="573.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="578.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">OrderTracking</text>
+<text x="578.0" y="131.92" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Controller</text>
+<polyline points="658.0,170 658.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="857.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="862.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">controllers.co</text>
+<text x="862.0" y="131.92" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">mmon</text>
+<polyline points="942.0,170 942.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="1141.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="1146.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Order</text>
+<polyline points="1226.0,170 1226.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="1425.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="1430.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Payment</text>
+<polyline points="1510.0,170 1510.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="30" y="495" width="1540" height="545" fill="white" stroke="#004387" stroke-width="2"/>
+<polyline points="90.0,495 90.0,1040" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="374.0,495 374.0,1040" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="658.0,495 658.0,1040" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="942.0,495 942.0,1040" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="1226.0,495 1226.0,1040" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="1510.0,495 1510.0,1040" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<text x="40" y="520.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">alt [eligible main path; guards / effects in the operation note]</text>
+<polyline points="30,910 1570,910" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<text x="40" y="935.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">[denied / stale / invalid or failed atomic save] UC05-MG01</text>
+<rect x="35" y="220" width="1530" height="90" fill="#FFF8E9" stroke="#004387" stroke-width="2"/>
+<text x="45" y="247.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Own PLACED + exact open OFFERED: atomic offer DECLINED + Order REJECTED + closed_at / reason. COD VOIDED; ONLINE</text>
+<text x="45" y="274.92" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">REFUND_PENDING, refund_amount=C (BR-17; SUC03-PC04). Stale / denied: no changes. Busy / write / COMMIT failure: rollback all</text>
+<text x="45" y="302.52" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">(UC05-MG01).</text>
+<rect x="35" y="1010" width="1530" height="65" fill="#FFF8E9" stroke="#004387" stroke-width="2"/>
+<text x="45" y="1037.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Persistence: loaded/saved through data access — see 4.3.2.</text>
+<polyline points="90.0,418 374.0,418" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="360.0,425.0 374.0,418 360.0,411.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="105.0" y="349.52" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">declineReplacement(orderId, offerId)</text>
+<text x="105.0" y="377.12" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">→ order.answer_replacement [HTTP</text>
+<text x="105.0" y="404.71999999999997" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">adapter]</text>
+<polyline points="374.0,483 658.0,483" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="644.0,490.0 658.0,483 644.0,476.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="389.0" y="442.12" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">answer_replacement†(user_id,</text>
+<text x="389.0" y="469.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">order_id, offer_id, False)</text>
+<rect x="653.0" y="483" width="10" height="25" fill="#DAE9F5" stroke="#004387" stroke-width="2"/>
+<polyline points="658.0,628 942.0,628" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="928.0,635.0 942.0,628 928.0,621.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="673.0" y="559.5200000000001" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">move_order(orders, order,</text>
+<text x="673.0" y="587.1200000000001" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">OrderState.REJECTED, now,</text>
+<text x="673.0" y="614.7200000000001" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">DECLINED_REASON)</text>
+<rect x="937.0" y="628" width="10" height="25" fill="#DAE9F5" stroke="#004387" stroke-width="2"/>
+<polyline points="942.0,693 1226.0,693" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="1212.0,700.0 1226.0,693 1212.0,686.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="957.0" y="679.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">move_to(OrderState.REJECTED)</text>
+<rect x="1221.0" y="693" width="10" height="25" fill="#DAE9F5" stroke="#004387" stroke-width="2"/>
+<polyline points="658.0,758 942.0,758" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="928.0,765.0 942.0,758 928.0,751.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="673.0" y="717.12" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">release_payment†(payments, order.id,</text>
+<text x="673.0" y="744.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">now)</text>
+<rect x="937.0" y="758" width="10" height="25" fill="#DAE9F5" stroke="#004387" stroke-width="2"/>
+<polyline points="942.0,823 1510.0,823" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="1496.0,830.0 1510.0,823 1496.0,816.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="957.0" y="809.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">release_for_unfulfilled_order†() [full C owed]</text>
+<rect x="1505.0" y="823" width="10" height="25" fill="#DAE9F5" stroke="#004387" stroke-width="2"/>
+<polyline points="658.0,1000 374.0,1000" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="388.0,993.0 374.0,1000 388.0,1007.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="389.0" y="986.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">refusal / controlled failure; UC05-MG01</text>
+<text x="35" y="1102.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Complete design operation; failure path is the alternative operand above.</text>
+<text x="35" y="1134.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">† design target, not yet in code at C0 (see P4 input F-02; F-05; P2-S01; P2-S09; P2-S11; P2-S13; P3-S03).</text>
+<text x="35" y="1167.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Figure 3.5.4.OP-06. UC-05 declineReplacement design sequence — Author: 722I0004 · AI-assisted (Codex)</text>
+<text x="35" y="1193.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Static / target design · 230 mm landscape · smallest text 9.78 pt · native draw.io / final placement UNTESTED</text>
+</svg>

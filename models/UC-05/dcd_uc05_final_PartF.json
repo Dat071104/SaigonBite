@@ -1,0 +1,347 @@
+{
+  "UC": "UC-05",
+  "stem": "dcd_uc05_final_PartF",
+  "title": "UC-05 final — selected design members 6/7",
+  "figure": "3.5.5F",
+  "caption": "UC-05 final detailed design members",
+  "cards": [
+    {
+      "id": "PaymentState_0",
+      "class": "PaymentState",
+      "box": [
+        35,
+        100,
+        730,
+        298.40000000000003
+      ],
+      "compartments": [
+        [
+          "«enumeration» PaymentState",
+          "{layer: domain}"
+        ],
+        [
+          "+ PENDING",
+          "+ PAID",
+          "+ FAILED",
+          "+ VOIDED",
+          "+ REFUND_PENDING",
+          "+ REFUNDED"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "PaymentState",
+        "attributes": [
+          "PENDING",
+          "PAID",
+          "FAILED",
+          "VOIDED"
+        ],
+        "methods": []
+      }
+    },
+    {
+      "id": "PaymentMethod_0",
+      "class": "PaymentMethod",
+      "box": [
+        815,
+        100,
+        730,
+        188.0
+      ],
+      "compartments": [
+        [
+          "«enumeration» PaymentMethod",
+          "{layer: domain}"
+        ],
+        [
+          "+ COD",
+          "+ ONLINE"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "PaymentMethod",
+        "attributes": [
+          "COD",
+          "ONLINE"
+        ],
+        "methods": []
+      }
+    },
+    {
+      "id": "OnlineOption_0",
+      "class": "OnlineOption",
+      "box": [
+        815,
+        306.0,
+        730,
+        215.60000000000002
+      ],
+      "compartments": [
+        [
+          "«enumeration» OnlineOption",
+          "{layer: domain}"
+        ],
+        [
+          "+ E_WALLET",
+          "+ BANK_QR",
+          "+ INTERNATIONAL_CARD"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "OnlineOption",
+        "attributes": [
+          "E_WALLET",
+          "BANK_QR",
+          "INTERNATIONAL_CARD"
+        ],
+        "methods": []
+      }
+    },
+    {
+      "id": "OfferState_0",
+      "class": "OfferState",
+      "box": [
+        35,
+        416.40000000000003,
+        730,
+        243.20000000000002
+      ],
+      "compartments": [
+        [
+          "«enumeration» OfferState",
+          "{layer: domain}"
+        ],
+        [
+          "+ OFFERED",
+          "+ ACCEPTED",
+          "+ DECLINED",
+          "+ WITHDRAWN"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "OfferState",
+        "attributes": [
+          "OFFERED",
+          "ACCEPTED",
+          "DECLINED",
+          "WITHDRAWN"
+        ],
+        "methods": []
+      }
+    },
+    {
+      "id": "Role_0",
+      "class": "Role",
+      "box": [
+        815,
+        539.6,
+        730,
+        270.8
+      ],
+      "compartments": [
+        [
+          "«enumeration» Role",
+          "{layer: domain}"
+        ],
+        [
+          "+ CUSTOMER",
+          "+ KITCHEN_STAFF",
+          "+ SHIPPER",
+          "+ ADMIN",
+          "+ MANAGER"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "Role",
+        "attributes": [
+          "CUSTOMER",
+          "KITCHEN_STAFF",
+          "SHIPPER",
+          "ADMIN"
+        ],
+        "methods": []
+      }
+    },
+    {
+      "id": "Hub_0",
+      "class": "Hub",
+      "box": [
+        35,
+        677.6000000000001,
+        730,
+        243.20000000000002
+      ],
+      "compartments": [
+        [
+          "«entity» Hub",
+          "{layer: domain}"
+        ],
+        [
+          "+ id: int",
+          "+ code: str",
+          "+ name: str",
+          "+ address_text: str"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "Hub",
+        "attributes": [
+          "id",
+          "code",
+          "name",
+          "address_text"
+        ],
+        "methods": []
+      }
+    },
+    {
+      "id": "CustomerType_0",
+      "class": "CustomerType",
+      "box": [
+        815,
+        828.4000000000001,
+        730,
+        188.0
+      ],
+      "compartments": [
+        [
+          "«enumeration» CustomerType",
+          "{layer: domain}"
+        ],
+        [
+          "+ LOCAL",
+          "+ TOURIST"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "CustomerType",
+        "attributes": [
+          "LOCAL",
+          "TOURIST"
+        ],
+        "methods": []
+      }
+    }
+  ],
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "PaymentState",
+        "attributes": [
+          "PENDING",
+          "PAID",
+          "FAILED",
+          "VOIDED"
+        ],
+        "methods": []
+      },
+      {
+        "class": "PaymentMethod",
+        "attributes": [
+          "COD",
+          "ONLINE"
+        ],
+        "methods": []
+      },
+      {
+        "class": "OnlineOption",
+        "attributes": [
+          "E_WALLET",
+          "BANK_QR",
+          "INTERNATIONAL_CARD"
+        ],
+        "methods": []
+      },
+      {
+        "class": "OfferState",
+        "attributes": [
+          "OFFERED",
+          "ACCEPTED",
+          "DECLINED",
+          "WITHDRAWN"
+        ],
+        "methods": []
+      },
+      {
+        "class": "Role",
+        "attributes": [
+          "CUSTOMER",
+          "KITCHEN_STAFF",
+          "SHIPPER",
+          "ADMIN"
+        ],
+        "methods": []
+      },
+      {
+        "class": "Hub",
+        "attributes": [
+          "id",
+          "code",
+          "name",
+          "address_text"
+        ],
+        "methods": []
+      },
+      {
+        "class": "CustomerType",
+        "attributes": [
+          "LOCAL",
+          "TOURIST"
+        ],
+        "methods": []
+      }
+    ],
+    "dependencies": [],
+    "states": [
+      {
+        "class": "Payment",
+        "attribute": "state",
+        "values": [
+          "PENDING",
+          "PAID",
+          "FAILED",
+          "VOIDED",
+          "REFUND_PENDING",
+          "REFUNDED"
+        ]
+      },
+      {
+        "class": "ReplacementOffer",
+        "attribute": "state",
+        "values": [
+          "OFFERED",
+          "ACCEPTED",
+          "DECLINED",
+          "WITHDRAWN"
+        ]
+      }
+    ]
+  },
+  "P4_input": "none on this view",
+  "continuation": "Members continue across PartA, PartB, PartC, PartD, PartE, PartF, PartG; relation view follows in final_links.",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+}

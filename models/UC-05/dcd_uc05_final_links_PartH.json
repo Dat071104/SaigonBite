@@ -1,0 +1,418 @@
+{
+  "UC": "UC-05",
+  "stem": "dcd_uc05_final_links_PartH",
+  "title": "UC-05 final — relationships 8",
+  "figure": "3.5.5.R8",
+  "caption": "UC-05 final navigation / multiplicities",
+  "cards": [
+    {
+      "id": "s0",
+      "box": [
+        55,
+        105,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«value» OrderDetail"
+        ]
+      ],
+      "class": "OrderDetail"
+    },
+    {
+      "id": "t0",
+      "box": [
+        1035,
+        145,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«entity» Hub"
+        ]
+      ],
+      "class": "Hub"
+    },
+    {
+      "id": "s1",
+      "box": [
+        55,
+        255,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«value» OrderDetail"
+        ]
+      ],
+      "class": "OrderDetail"
+    },
+    {
+      "id": "t1",
+      "box": [
+        1035,
+        295,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«entity» Order"
+        ]
+      ],
+      "class": "Order"
+    },
+    {
+      "id": "s2",
+      "box": [
+        55,
+        405,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«value» OrderDetail"
+        ]
+      ],
+      "class": "OrderDetail"
+    },
+    {
+      "id": "t2",
+      "box": [
+        1035,
+        445,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«entity» Payment"
+        ]
+      ],
+      "class": "Payment"
+    },
+    {
+      "id": "s3",
+      "box": [
+        55,
+        555,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«value» OrderDetail"
+        ]
+      ],
+      "class": "OrderDetail"
+    },
+    {
+      "id": "t3",
+      "box": [
+        1035,
+        595,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«entity» ReplacementOffer"
+        ]
+      ],
+      "class": "ReplacementOffer"
+    },
+    {
+      "id": "s4",
+      "box": [
+        55,
+        705,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«value» OrderSummary"
+        ]
+      ],
+      "class": "OrderSummary"
+    },
+    {
+      "id": "t4",
+      "box": [
+        1035,
+        745,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«entity» Order"
+        ]
+      ],
+      "class": "Order"
+    },
+    {
+      "id": "s5",
+      "box": [
+        55,
+        855,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«controller» OrderTrackingController"
+        ]
+      ],
+      "class": "OrderTrackingController"
+    },
+    {
+      "id": "t5",
+      "box": [
+        1035,
+        895,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«entity» Customer"
+        ]
+      ],
+      "class": "Customer"
+    }
+  ],
+  "edges": [
+    {
+      "source": "s0",
+      "target": "t0",
+      "kind": "dependency",
+      "points": [
+        [
+          555,
+          148
+        ],
+        [
+          1035,
+          188
+        ]
+      ],
+      "label": "→  «use»",
+      "labelpos": [
+        575,
+        109
+      ],
+      "labelwidth": 440
+    },
+    {
+      "source": "s1",
+      "target": "t1",
+      "kind": "dependency",
+      "points": [
+        [
+          555,
+          298
+        ],
+        [
+          1035,
+          338
+        ]
+      ],
+      "label": "→  «use»",
+      "labelpos": [
+        575,
+        259
+      ],
+      "labelwidth": 440
+    },
+    {
+      "source": "s2",
+      "target": "t2",
+      "kind": "dependency",
+      "points": [
+        [
+          555,
+          448
+        ],
+        [
+          1035,
+          488
+        ]
+      ],
+      "label": "→  «use»",
+      "labelpos": [
+        575,
+        409
+      ],
+      "labelwidth": 440
+    },
+    {
+      "source": "s3",
+      "target": "t3",
+      "kind": "dependency",
+      "points": [
+        [
+          555,
+          598
+        ],
+        [
+          1035,
+          638
+        ]
+      ],
+      "label": "→  «use»",
+      "labelpos": [
+        575,
+        559
+      ],
+      "labelwidth": 440
+    },
+    {
+      "source": "s4",
+      "target": "t4",
+      "kind": "dependency",
+      "points": [
+        [
+          555,
+          748
+        ],
+        [
+          1035,
+          788
+        ]
+      ],
+      "label": "→  «use»",
+      "labelpos": [
+        575,
+        709
+      ],
+      "labelwidth": 440
+    },
+    {
+      "source": "s5",
+      "target": "t5",
+      "kind": "dependency",
+      "points": [
+        [
+          555,
+          898
+        ],
+        [
+          1035,
+          938
+        ]
+      ],
+      "label": "→  «use»",
+      "labelpos": [
+        575,
+        859
+      ],
+      "labelwidth": 440
+    }
+  ],
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "OrderDetail",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "Hub",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "Order",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "Payment",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "ReplacementOffer",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "OrderSummary",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "OrderTrackingController",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "Customer",
+        "attributes": [],
+        "methods": []
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "OrderDetail",
+        "target": "Hub",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "OrderDetail",
+        "target": "Order",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "OrderDetail",
+        "target": "Payment",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "OrderDetail",
+        "target": "ReplacementOffer",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "OrderSummary",
+        "target": "Order",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "OrderTrackingController",
+        "target": "Customer",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      }
+    ],
+    "states": []
+  },
+  "continuation": "Members: final detail parts. Relationship parts A–L continue both ways.",
+  "P4_input": "none on this view",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+}

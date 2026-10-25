@@ -1,0 +1,111 @@
+{
+  "UC": "UC-05",
+  "stem": "dcd_uc05_view",
+  "title": "UC-05 view — selected design members 1/1",
+  "figure": "3.5.2.iii",
+  "caption": "UC-05 view detailed design members",
+  "cards": [
+    {
+      "id": "kitchen_0",
+      "class": "kitchen",
+      "box": [
+        35,
+        100,
+        730,
+        270.8
+      ],
+      "compartments": [
+        [
+          "«view» kitchen",
+          "{layer: view}"
+        ],
+        [
+          "{no selected attribute}"
+        ],
+        [
+          "+ board() -> Any [inferred return]",
+          "+ order(order_id: int) -> Any [inferred return]",
+          "+ confirm(order_id: int) -> Any [inferred return]",
+          "+ reject(order_id: int) -> Any [inferred return]",
+          "+ offer(order_id: int) -> Any [inferred return]"
+        ]
+      ],
+      "element": {
+        "class": "kitchen",
+        "attributes": [],
+        "methods": [
+          "board",
+          "order",
+          "confirm",
+          "reject",
+          "offer"
+        ]
+      }
+    },
+    {
+      "id": "order_0",
+      "class": "order",
+      "box": [
+        815,
+        100,
+        730,
+        215.60000000000002
+      ],
+      "compartments": [
+        [
+          "«view» order",
+          "{layer: view}"
+        ],
+        [
+          "{no selected attribute}"
+        ],
+        [
+          "+ my_orders() -> Any [inferred return]",
+          "+ detail(order_id: int) -> Any [inferred return]",
+          "+ answer_replacement(order_id: int) -> Any [inferred return]"
+        ]
+      ],
+      "element": {
+        "class": "order",
+        "attributes": [],
+        "methods": [
+          "my_orders",
+          "detail",
+          "answer_replacement"
+        ]
+      }
+    }
+  ],
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "kitchen",
+        "attributes": [],
+        "methods": [
+          "board",
+          "order",
+          "confirm",
+          "reject",
+          "offer"
+        ]
+      },
+      {
+        "class": "order",
+        "attributes": [],
+        "methods": [
+          "my_orders",
+          "detail",
+          "answer_replacement"
+        ]
+      }
+    ],
+    "dependencies": [],
+    "states": []
+  },
+  "P4_input": "none on this view",
+  "continuation": "Member projection; navigation is in the all/final relationship plates.",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+}

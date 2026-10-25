@@ -1,0 +1,436 @@
+{
+  "UC": "UC-05",
+  "stem": "dcd_uc05_domain_links_PartA",
+  "title": "UC-05 domain — relationships 1",
+  "figure": "3.5.2.i.R1",
+  "caption": "UC-05 domain navigation / multiplicities",
+  "cards": [
+    {
+      "id": "s0",
+      "box": [
+        55,
+        105,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«entity» Customer"
+        ]
+      ],
+      "class": "Customer"
+    },
+    {
+      "id": "t0",
+      "box": [
+        1035,
+        105,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«entity» UserAccount"
+        ]
+      ],
+      "class": "UserAccount"
+    },
+    {
+      "id": "s1",
+      "box": [
+        55,
+        255,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«entity» Customer"
+        ]
+      ],
+      "class": "Customer"
+    },
+    {
+      "id": "t1",
+      "box": [
+        1035,
+        255,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«entity» Address"
+        ]
+      ],
+      "class": "Address"
+    },
+    {
+      "id": "s2",
+      "box": [
+        55,
+        405,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«entity» Hub"
+        ]
+      ],
+      "class": "Hub"
+    },
+    {
+      "id": "t2",
+      "box": [
+        1035,
+        405,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«entity» HubMenuItem"
+        ]
+      ],
+      "class": "HubMenuItem"
+    },
+    {
+      "id": "s3",
+      "box": [
+        55,
+        555,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«entity» HubMenuItem"
+        ]
+      ],
+      "class": "HubMenuItem"
+    },
+    {
+      "id": "t3",
+      "box": [
+        1035,
+        555,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«entity» MenuItem"
+        ]
+      ],
+      "class": "MenuItem"
+    },
+    {
+      "id": "s4",
+      "box": [
+        55,
+        705,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«entity» Brand"
+        ]
+      ],
+      "class": "Brand"
+    },
+    {
+      "id": "t4",
+      "box": [
+        1035,
+        705,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«entity» MenuItem"
+        ]
+      ],
+      "class": "MenuItem"
+    },
+    {
+      "id": "s5",
+      "box": [
+        55,
+        855,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«entity» Order"
+        ]
+      ],
+      "class": "Order"
+    },
+    {
+      "id": "t5",
+      "box": [
+        1035,
+        855,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«entity» Customer"
+        ]
+      ],
+      "class": "Customer"
+    }
+  ],
+  "edges": [
+    {
+      "source": "s0",
+      "target": "t0",
+      "kind": "association",
+      "points": [
+        [
+          555,
+          148
+        ],
+        [
+          1035,
+          148
+        ]
+      ],
+      "label": "0..1 → 1 linked account",
+      "labelpos": [
+        575,
+        109
+      ],
+      "labelwidth": 440
+    },
+    {
+      "source": "s1",
+      "target": "t1",
+      "kind": "association",
+      "points": [
+        [
+          555,
+          298
+        ],
+        [
+          1035,
+          298
+        ]
+      ],
+      "label": "1 → 0..* owns",
+      "labelpos": [
+        575,
+        259
+      ],
+      "labelwidth": 440
+    },
+    {
+      "source": "s2",
+      "target": "t2",
+      "kind": "association",
+      "points": [
+        [
+          555,
+          448
+        ],
+        [
+          1035,
+          448
+        ]
+      ],
+      "label": "1 → 0..* listings",
+      "labelpos": [
+        575,
+        409
+      ],
+      "labelwidth": 440
+    },
+    {
+      "source": "s3",
+      "target": "t3",
+      "kind": "association",
+      "points": [
+        [
+          555,
+          598
+        ],
+        [
+          1035,
+          598
+        ]
+      ],
+      "label": "0..* → 1 item",
+      "labelpos": [
+        575,
+        559
+      ],
+      "labelwidth": 440
+    },
+    {
+      "source": "s4",
+      "target": "t4",
+      "kind": "association",
+      "points": [
+        [
+          555,
+          748
+        ],
+        [
+          1035,
+          748
+        ]
+      ],
+      "label": "1 → 0..* offers",
+      "labelpos": [
+        575,
+        709
+      ],
+      "labelwidth": 440
+    },
+    {
+      "source": "s5",
+      "target": "t5",
+      "kind": "association",
+      "points": [
+        [
+          555,
+          898
+        ],
+        [
+          1035,
+          898
+        ]
+      ],
+      "label": "0..* → 1 customer",
+      "labelpos": [
+        575,
+        859
+      ],
+      "labelwidth": 440
+    }
+  ],
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "Customer",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "UserAccount",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "Address",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "Hub",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "HubMenuItem",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "MenuItem",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "Brand",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "Order",
+        "attributes": [],
+        "methods": []
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "Customer",
+        "target": "UserAccount",
+        "source_multiplicity": "0..1",
+        "target_multiplicity": "1",
+        "role": "linked account",
+        "kind": "association",
+        "navigable": true,
+        "status": "MATCH",
+        "evidence": "domain model 2.1.7; code identifiers / typed fields"
+      },
+      {
+        "source": "Customer",
+        "target": "Address",
+        "source_multiplicity": "1",
+        "target_multiplicity": "0..*",
+        "role": "owns",
+        "kind": "association",
+        "navigable": true,
+        "status": "MATCH",
+        "evidence": "domain model 2.1.7; code identifiers / typed fields"
+      },
+      {
+        "source": "Hub",
+        "target": "HubMenuItem",
+        "source_multiplicity": "1",
+        "target_multiplicity": "0..*",
+        "role": "listings",
+        "kind": "association",
+        "navigable": true,
+        "status": "MATCH",
+        "evidence": "domain model 2.1.7; code identifiers / typed fields"
+      },
+      {
+        "source": "HubMenuItem",
+        "target": "MenuItem",
+        "source_multiplicity": "0..*",
+        "target_multiplicity": "1",
+        "role": "item",
+        "kind": "association",
+        "navigable": true,
+        "status": "MATCH",
+        "evidence": "domain model 2.1.7; code identifiers / typed fields"
+      },
+      {
+        "source": "Brand",
+        "target": "MenuItem",
+        "source_multiplicity": "1",
+        "target_multiplicity": "0..*",
+        "role": "offers",
+        "kind": "association",
+        "navigable": true,
+        "status": "MATCH",
+        "evidence": "domain model 2.1.7; code identifiers / typed fields"
+      },
+      {
+        "source": "Order",
+        "target": "Customer",
+        "source_multiplicity": "0..*",
+        "target_multiplicity": "1",
+        "role": "customer",
+        "kind": "association",
+        "navigable": true,
+        "status": "MATCH",
+        "evidence": "domain model 2.1.7; code identifiers / typed fields"
+      }
+    ],
+    "states": []
+  },
+  "continuation": "Members: domain detail parts. Relationship parts A–E continue both ways.",
+  "P4_input": "none on this view",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+}

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200"><rect width="100%" height="100%" fill="white"/>
+<text x="35" y="42.040000000000006" font-family="Arial" font-size="28" font-weight="bold" fill="#202B36">UC-05 all — selected design members 1/7</text>
+<rect x="35" y="100" width="730" height="270.8" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="47" y="130.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«view» kitchen</text>
+<text x="47" y="157.92" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">{layer: view}</text>
+<polyline points="35,169.2 765,169.2" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="47" y="195.51999999999998" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">{no selected attribute}</text>
+<polyline points="35,206.79999999999998 765,206.79999999999998" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="47" y="233.11999999999998" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ board() -&gt; Any [inferred return]</text>
+<text x="47" y="260.71999999999997" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ order(order_id: int) -&gt; Any [inferred return]</text>
+<text x="47" y="288.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ confirm(order_id: int) -&gt; Any [inferred return]</text>
+<text x="47" y="315.91999999999996" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ reject(order_id: int) -&gt; Any [inferred return]</text>
+<text x="47" y="343.52" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ offer(order_id: int) -&gt; Any [inferred return]</text>
+<rect x="815" y="100" width="730" height="215.60000000000002" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="827" y="130.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«view» order</text>
+<text x="827" y="157.92" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">{layer: view}</text>
+<polyline points="815,169.2 1545,169.2" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="827" y="195.51999999999998" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">{no selected attribute}</text>
+<polyline points="815,206.79999999999998 1545,206.79999999999998" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="827" y="233.11999999999998" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ my_orders() -&gt; Any [inferred return]</text>
+<text x="827" y="260.71999999999997" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ detail(order_id: int) -&gt; Any [inferred return]</text>
+<text x="827" y="288.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">+ answer_replacement(order_id: int) -&gt; Any [inferred return]</text>
+<text x="35" y="1102.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Members continue across PartA, PartB, PartC, PartD, PartE, PartF, PartG; relation view follows in all_links.</text>
+<text x="35" y="1134.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">† design target, not yet in code at C0 (see P4 input none on this view).</text>
+<text x="35" y="1167.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Figure 3.5.2.vA. UC-05 all detailed design members — Author: 722I0004 · AI-assisted (Codex)</text>
+<text x="35" y="1193.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Static / target design · 230 mm landscape · smallest text 9.78 pt · native draw.io / final placement UNTESTED</text>
+</svg>

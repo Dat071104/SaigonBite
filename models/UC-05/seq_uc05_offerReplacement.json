@@ -1,0 +1,201 @@
+{
+  "UC": "UC-05",
+  "stem": "seq_uc05_offerReplacement",
+  "title": "UC-05 offerReplacement",
+  "figure": "3.5.4.OP-04",
+  "caption": "UC-05 offerReplacement design sequence",
+  "P4_input": "F-05; P2-S09; P2-S13",
+  "phase3": {
+    "diagram_type": "sequence",
+    "UC": "UC-05",
+    "op_id": "OP-04",
+    "operation": "offerReplacement",
+    "parameters": "orderId, orderLineId, targetItemId",
+    "ssd_occurrence": "models/UC-05/ssd_uc05_PartA.drawio#05S-M05",
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Kitchen staff",
+        "role": "actor",
+        "label": "Kitchen staff"
+      },
+      {
+        "id": "view",
+        "class": "kitchen",
+        "role": "view",
+        "label": "«view»\nkitchen"
+      },
+      {
+        "id": "ctrl",
+        "class": "KitchenController",
+        "role": "controller",
+        "label": "KitchenController"
+      },
+      {
+        "id": "order",
+        "class": "Order",
+        "role": "domain",
+        "label": "Order"
+      },
+      {
+        "id": "offer",
+        "class": "ReplacementOffer",
+        "role": "domain",
+        "label": "ReplacementOffer"
+      }
+    ],
+    "messages": [
+      {
+        "from": "actor",
+        "to": "view",
+        "method": "offer",
+        "kind": "ssd",
+        "arguments": "orderId, orderLineId, targetItemId",
+        "guard": "",
+        "PC_MG": "",
+        "label": "offerReplacement(orderId, orderLineId, targetItemId)\n→ kitchen.offer [HTTP adapter]",
+        "y": 508,
+        "receiver_signature": "offer(order_id: int)",
+        "status": "MATCH",
+        "P4_input": ""
+      },
+      {
+        "from": "view",
+        "to": "ctrl",
+        "method": "offer_replacement",
+        "kind": "call",
+        "arguments": "user_id, order_id, order_line_id, target_item_id",
+        "guard": "eligible/main operand (see frame and operation table)",
+        "PC_MG": "UC05-PC03; UC05-MG01",
+        "label": "offer_replacement†(user_id, order_id, order_line_id, target_item_id)",
+        "y": 578,
+        "receiver_signature": "offer_replacement(self, user_id: int, order_id: int, order_line_id: int, new_menu_item_id: int) -> ReplacementOffer",
+        "status": "P4-TARGET",
+        "P4_input": "F-05; P2-S09; P2-S13"
+      },
+      {
+        "from": "ctrl",
+        "to": "order",
+        "method": "line",
+        "kind": "call",
+        "arguments": "order_line_id",
+        "guard": "eligible/main operand (see frame and operation table)",
+        "PC_MG": "",
+        "label": "line(order_line_id)",
+        "y": 700,
+        "receiver_signature": "line(self, line_id: int) -> Optional[OrderLine]",
+        "status": "MATCH",
+        "P4_input": ""
+      },
+      {
+        "from": "ctrl",
+        "to": "offer",
+        "method": "ReplacementOffer",
+        "kind": "create",
+        "arguments": "order, linked line, source/target snapshots, OFFERED, now",
+        "guard": "eligible/main operand (see frame and operation table)",
+        "PC_MG": "",
+        "label": "«create» ReplacementOffer (implicit dataclass initialization)",
+        "y": 770
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "offeredReplacement | refusal",
+        "guard": "",
+        "PC_MG": "UC05-PC03; UC05-MG01",
+        "label": "result / controlled refusal",
+        "y": 840
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "",
+        "guard": "denied / stale / invalid or atomic save failure",
+        "PC_MG": "UC05-MG01",
+        "label": "refusal / controlled failure; UC05-MG01",
+        "y": 1000
+      }
+    ],
+    "elements": [
+      {
+        "class": "kitchen",
+        "attributes": [],
+        "methods": [
+          "offer"
+        ]
+      },
+      {
+        "class": "KitchenController",
+        "attributes": [],
+        "methods": [
+          "offer_replacement"
+        ]
+      },
+      {
+        "class": "Order",
+        "attributes": [],
+        "methods": [
+          "line"
+        ]
+      },
+      {
+        "class": "ReplacementOffer",
+        "attributes": [],
+        "methods": []
+      }
+    ],
+    "dependencies": [],
+    "states": [
+      {
+        "class": "Order",
+        "attribute": "state",
+        "values": [
+          "PLACED"
+        ]
+      },
+      {
+        "class": "ReplacementOffer",
+        "attribute": "state",
+        "values": [
+          "OFFERED"
+        ]
+      }
+    ]
+  },
+  "frames": [
+    {
+      "id": "alt",
+      "y": 590,
+      "h": 450,
+      "label": "alt [eligible main path; guards / effects in the operation note]",
+      "operands": [
+        [
+          910,
+          "[denied / stale / invalid or failed atomic save] UC05-MG01"
+        ]
+      ]
+    }
+  ],
+  "notes": [
+    {
+      "y": 220,
+      "h": 102.80000000000001,
+      "text": "Active own-hub PLACED; no open offer. Source currently sold out/unlisted/archived. Target active + active Brand, same-hub listed/available, different and absent from other lines; offered unit price ≤ source snapshot. Atomic OFFERED with unchanged quantity/Order PLACED (PC03). Fail/lock/commit rollback†; no request waits for Customer."
+    },
+    {
+      "y": 1010,
+      "h": 65,
+      "text": "Persistence: loaded/saved through data access — see 4.3.2."
+    }
+  ],
+  "continuation": "Complete design operation; failure path is the alternative operand above.",
+  "realisation_note": "Active own-hub PLACED; no open offer. Source currently sold out/unlisted/archived. Target active + active Brand, same-hub listed/available, different and absent from other lines; offered unit price ≤ source snapshot. Atomic OFFERED with unchanged quantity/Order PLACED (PC03). Fail/lock/commit rollback†; no request waits for Customer.",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+}

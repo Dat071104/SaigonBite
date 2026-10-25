@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200"><rect width="100%" height="100%" fill="white"/>
+<text x="35" y="42.040000000000006" font-family="Arial" font-size="28" font-weight="bold" fill="#202B36">UC-05 acceptReplacement — Part A</text>
+<rect x="5.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="10.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Customer</text>
+<polyline points="90.0,170 90.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="360.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="365.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">«view»</text>
+<text x="365.0" y="131.92" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">order</text>
+<polyline points="445.0,170 445.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="715.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="720.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">OrderTracking</text>
+<text x="720.0" y="131.92" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Controller</text>
+<polyline points="800.0,170 800.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="1070.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="1075.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Order</text>
+<polyline points="1155.0,170 1155.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="1425.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="1430.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Replacement</text>
+<text x="1430.0" y="131.92" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Offer</text>
+<polyline points="1510.0,170 1510.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="30" y="590" width="1540" height="450" fill="white" stroke="#004387" stroke-width="2"/>
+<polyline points="90.0,590 90.0,1040" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="445.0,590 445.0,1040" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="800.0,590 800.0,1040" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="1155.0,590 1155.0,1040" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="1510.0,590 1510.0,1040" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<text x="40" y="615.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">alt [eligible main path; guards / effects in the operation note]</text>
+<polyline points="30,910 1570,910" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<text x="40" y="935.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">[denied / stale / invalid or failed atomic save] UC05-MG01</text>
+<rect x="35" y="220" width="1530" height="102.80000000000001" fill="#FFF8E9" stroke="#004387" stroke-width="2"/>
+<text x="45" y="247.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Before mutation†: active owner + own PLACED + exact open OFFERED belongs to order. Recheck target active, active Brand, listed +</text>
+<text x="45" y="274.92" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">AVAILABLE at same hub. Ineligible owner/state/offer → staleRefusal, 0 changed rows. Invalid target → only exact offer WITHDRAWN† with</text>
+<text x="45" y="302.52" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">returned reason; Order/lines/payment unchanged (MG01).</text>
+<rect x="35" y="1010" width="1530" height="65" fill="#FFF8E9" stroke="#004387" stroke-width="2"/>
+<text x="45" y="1037.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Persistence: loaded/saved through data access — see 4.3.2.</text>
+<polyline points="90.0,508 445.0,508" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="431.0,515.0 445.0,508 431.0,501.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="105.0" y="439.52" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">acceptReplacement(orderId, offerId)</text>
+<text x="105.0" y="467.12" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">→ order.answer_replacement [HTTP</text>
+<text x="105.0" y="494.71999999999997" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">adapter]</text>
+<polyline points="445.0,578 800.0,578" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="786.0,585.0 800.0,578 786.0,571.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="460.0" y="537.12" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">answer_replacement†(user_id,</text>
+<text x="460.0" y="564.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">order_id, offer_id, True)</text>
+<rect x="795.0" y="578" width="10" height="25" fill="#DAE9F5" stroke="#004387" stroke-width="2"/>
+<polyline points="800.0,700 845.0,700 845.0,725 800.0,725" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="814.0,718.0 800.0,725 814.0,732.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="430.0" y="686.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">_own_order(customer, order_id)</text>
+<rect x="795.0" y="700" width="10" height="25" fill="#DAE9F5" stroke="#004387" stroke-width="2"/>
+<polyline points="800.0,1000 445.0,1000" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="459.0,993.0 445.0,1000 459.0,1007.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="460.0" y="986.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">refusal / controlled failure; UC05-MG01</text>
+<text x="35" y="1102.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Part A ↔ PartB. Same lifelines / same operation; no second request.</text>
+<text x="35" y="1134.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">† design target, not yet in code at C0 (see P4 input F-02; F-05; P2-S09; P2-S11; P2-S13).</text>
+<text x="35" y="1167.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Figure 3.5.4.OP-05A. UC-05 acceptReplacement design sequence — Author: 722I0004 · AI-assisted (Codex)</text>
+<text x="35" y="1193.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Static / target design · 230 mm landscape · smallest text 9.78 pt · native draw.io / final placement UNTESTED</text>
+</svg>

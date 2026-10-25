@@ -1,0 +1,231 @@
+{
+  "UC": "UC-05",
+  "stem": "dcd_uc05_domain_links_PartE",
+  "title": "UC-05 domain — relationships 5",
+  "figure": "3.5.2.i.R5",
+  "caption": "UC-05 domain navigation / multiplicities",
+  "cards": [
+    {
+      "id": "s0",
+      "box": [
+        55,
+        105,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«entity» Payment"
+        ]
+      ],
+      "class": "Payment"
+    },
+    {
+      "id": "t0",
+      "box": [
+        1035,
+        145,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«enumeration» PaymentState"
+        ]
+      ],
+      "class": "PaymentState"
+    },
+    {
+      "id": "s1",
+      "box": [
+        55,
+        255,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«entity» Order"
+        ]
+      ],
+      "class": "Order"
+    },
+    {
+      "id": "t1",
+      "box": [
+        1035,
+        295,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«enumeration» OrderState"
+        ]
+      ],
+      "class": "OrderState"
+    },
+    {
+      "id": "s2",
+      "box": [
+        55,
+        405,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«entity» ReplacementOffer"
+        ]
+      ],
+      "class": "ReplacementOffer"
+    },
+    {
+      "id": "t2",
+      "box": [
+        1035,
+        445,
+        500,
+        85
+      ],
+      "compartments": [
+        [
+          "«enumeration» OfferState"
+        ]
+      ],
+      "class": "OfferState"
+    }
+  ],
+  "edges": [
+    {
+      "source": "s0",
+      "target": "t0",
+      "kind": "dependency",
+      "points": [
+        [
+          555,
+          148
+        ],
+        [
+          1035,
+          188
+        ]
+      ],
+      "label": "→  «use»",
+      "labelpos": [
+        575,
+        109
+      ],
+      "labelwidth": 440
+    },
+    {
+      "source": "s1",
+      "target": "t1",
+      "kind": "dependency",
+      "points": [
+        [
+          555,
+          298
+        ],
+        [
+          1035,
+          338
+        ]
+      ],
+      "label": "→  «use»",
+      "labelpos": [
+        575,
+        259
+      ],
+      "labelwidth": 440
+    },
+    {
+      "source": "s2",
+      "target": "t2",
+      "kind": "dependency",
+      "points": [
+        [
+          555,
+          448
+        ],
+        [
+          1035,
+          488
+        ]
+      ],
+      "label": "→  «use»",
+      "labelpos": [
+        575,
+        409
+      ],
+      "labelwidth": 440
+    }
+  ],
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "Payment",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "PaymentState",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "Order",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "OrderState",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "ReplacementOffer",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "OfferState",
+        "attributes": [],
+        "methods": []
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "Payment",
+        "target": "PaymentState",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "Order",
+        "target": "OrderState",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "ReplacementOffer",
+        "target": "OfferState",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      }
+    ],
+    "states": []
+  },
+  "continuation": "Members: domain detail parts. Relationship parts A–E continue both ways.",
+  "P4_input": "none on this view",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+}

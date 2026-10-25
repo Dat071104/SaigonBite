@@ -1,0 +1,207 @@
+{
+  "UC": "UC-05",
+  "stem": "seq_uc05_confirmOrder",
+  "title": "UC-05 confirmOrder",
+  "figure": "3.5.4.OP-02",
+  "caption": "UC-05 confirmOrder design sequence",
+  "P4_input": "P2-S13; P3-S03",
+  "phase3": {
+    "diagram_type": "sequence",
+    "UC": "UC-05",
+    "op_id": "OP-02",
+    "operation": "confirmOrder",
+    "parameters": "orderId",
+    "ssd_occurrence": "models/UC-05/ssd_uc05_PartA.drawio#05S-M03",
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Kitchen staff",
+        "role": "actor",
+        "label": "Kitchen staff"
+      },
+      {
+        "id": "view",
+        "class": "kitchen",
+        "role": "view",
+        "label": "«view»\nkitchen"
+      },
+      {
+        "id": "ctrl",
+        "class": "KitchenController",
+        "role": "controller",
+        "label": "KitchenController"
+      },
+      {
+        "id": "common",
+        "class": "controllers.common",
+        "role": "controller",
+        "label": "controllers.common"
+      },
+      {
+        "id": "order",
+        "class": "Order",
+        "role": "domain",
+        "label": "Order"
+      }
+    ],
+    "messages": [
+      {
+        "from": "actor",
+        "to": "view",
+        "method": "confirm",
+        "kind": "ssd",
+        "arguments": "orderId",
+        "guard": "",
+        "PC_MG": "",
+        "label": "confirmOrder(orderId)\n→ kitchen.confirm [HTTP adapter]",
+        "y": 455,
+        "receiver_signature": "confirm(order_id: int)",
+        "status": "MATCH",
+        "P4_input": ""
+      },
+      {
+        "from": "view",
+        "to": "ctrl",
+        "method": "confirm_order",
+        "kind": "call",
+        "arguments": "user_id, order_id",
+        "guard": "eligible/main operand (see frame and operation table)",
+        "PC_MG": "UC05-PC01; UC05-MG01",
+        "label": "confirm_order†(user_id, order_id)",
+        "y": 525,
+        "receiver_signature": "confirm_order(self, user_id: int, order_id: int) -> Order",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S13; P3-S03"
+      },
+      {
+        "from": "ctrl",
+        "to": "common",
+        "method": "move_order",
+        "kind": "call",
+        "arguments": "orders, order, OrderState.CONFIRMED, now",
+        "guard": "eligible/main operand (see frame and operation table)",
+        "PC_MG": "",
+        "label": "move_order(orders, order, OrderState.CONFIRMED, now)",
+        "y": 647,
+        "receiver_signature": "move_order(orders: OrderDAO, order: Order, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> None",
+        "status": "MATCH",
+        "P4_input": ""
+      },
+      {
+        "from": "common",
+        "to": "order",
+        "method": "move_to",
+        "kind": "call",
+        "arguments": "OrderState.CONFIRMED",
+        "guard": "eligible/main operand (see frame and operation table)",
+        "PC_MG": "",
+        "label": "move_to(OrderState.CONFIRMED)",
+        "y": 717,
+        "receiver_signature": "move_to(self, new_state: OrderState) -> None",
+        "status": "MATCH",
+        "P4_input": ""
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "confirmedOrder | refusal",
+        "guard": "",
+        "PC_MG": "UC05-PC01; UC05-MG01",
+        "label": "result / controlled refusal",
+        "y": 787
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "",
+        "guard": "denied / stale / invalid or atomic save failure",
+        "PC_MG": "UC05-MG01",
+        "label": "refusal / controlled failure; UC05-MG01",
+        "y": 1000
+      }
+    ],
+    "elements": [
+      {
+        "class": "kitchen",
+        "attributes": [],
+        "methods": [
+          "confirm"
+        ]
+      },
+      {
+        "class": "KitchenController",
+        "attributes": [],
+        "methods": [
+          "confirm_order"
+        ]
+      },
+      {
+        "class": "controllers.common",
+        "attributes": [],
+        "methods": [
+          "move_order"
+        ]
+      },
+      {
+        "class": "Order",
+        "attributes": [],
+        "methods": [
+          "move_to"
+        ]
+      }
+    ],
+    "dependencies": [],
+    "states": [
+      {
+        "class": "Order",
+        "attribute": "state",
+        "values": [
+          "PLACED",
+          "CONFIRMED"
+        ]
+      },
+      {
+        "class": "ReplacementOffer",
+        "attribute": "state",
+        "values": [
+          "OFFERED"
+        ]
+      }
+    ]
+  },
+  "frames": [
+    {
+      "id": "alt",
+      "y": 537,
+      "h": 503,
+      "label": "alt [eligible main path; guards / effects in the operation note]",
+      "operands": [
+        [
+          910,
+          "[denied / stale / invalid or failed atomic save] UC05-MG01"
+        ]
+      ]
+    }
+  ],
+  "notes": [
+    {
+      "y": 220,
+      "h": 75.2,
+      "text": "Active own-hub staff; own PLACED; no open OFFERED. Atomic guarded state change + confirmed_at. No repricing/payment change. Conditional rowcount and busy/write/commit rollback† (P2-S13, P3-S03)."
+    },
+    {
+      "y": 1010,
+      "h": 65,
+      "text": "Persistence: loaded/saved through data access — see 4.3.2."
+    }
+  ],
+  "continuation": "Complete design operation; failure path is the alternative operand above.",
+  "realisation_note": "Active own-hub staff; own PLACED; no open OFFERED. Atomic guarded state change + confirmed_at. No repricing/payment change. Conditional rowcount and busy/write/commit rollback† (P2-S13, P3-S03).",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+}

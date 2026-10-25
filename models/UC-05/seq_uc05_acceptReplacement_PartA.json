@@ -1,0 +1,179 @@
+{
+  "UC": "UC-05",
+  "stem": "seq_uc05_acceptReplacement_PartA",
+  "title": "UC-05 acceptReplacement — Part A",
+  "figure": "3.5.4.OP-05A",
+  "caption": "UC-05 acceptReplacement design sequence",
+  "P4_input": "F-02; F-05; P2-S09; P2-S11; P2-S13",
+  "phase3": {
+    "diagram_type": "sequence",
+    "UC": "UC-05",
+    "op_id": "OP-05",
+    "operation": "acceptReplacement",
+    "parameters": "orderId, offerId",
+    "ssd_occurrence": "models/UC-05/ssd_uc05_PartB.drawio#05S-M08",
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Customer",
+        "role": "actor",
+        "label": "Customer"
+      },
+      {
+        "id": "view",
+        "class": "order",
+        "role": "view",
+        "label": "«view»\norder"
+      },
+      {
+        "id": "ctrl",
+        "class": "OrderTrackingController",
+        "role": "controller",
+        "label": "OrderTrackingController"
+      },
+      {
+        "id": "order",
+        "class": "Order",
+        "role": "domain",
+        "label": "Order"
+      },
+      {
+        "id": "offer",
+        "class": "ReplacementOffer",
+        "role": "domain",
+        "label": "ReplacementOffer"
+      }
+    ],
+    "messages": [
+      {
+        "from": "actor",
+        "to": "view",
+        "method": "answer_replacement",
+        "kind": "ssd",
+        "arguments": "orderId, offerId",
+        "guard": "",
+        "PC_MG": "",
+        "label": "acceptReplacement(orderId, offerId)\n→ order.answer_replacement [HTTP adapter]",
+        "y": 508,
+        "receiver_signature": "answer_replacement(order_id: int)",
+        "status": "MATCH",
+        "P4_input": ""
+      },
+      {
+        "from": "view",
+        "to": "ctrl",
+        "method": "answer_replacement",
+        "kind": "call",
+        "arguments": "user_id, order_id, offer_id, True",
+        "guard": "eligible/main operand (see frame and operation table)",
+        "PC_MG": "UC05-PC04; UC05-MG01",
+        "label": "answer_replacement†(user_id, order_id, offer_id, True)",
+        "y": 578,
+        "receiver_signature": "answer_replacement(self, user_id: int, order_id: int, offer_id: int, accept: bool) -> OrderDetail",
+        "status": "P4-TARGET",
+        "P4_input": "F-05; F-02; P2-S09; P2-S11; P2-S13"
+      },
+      {
+        "from": "ctrl",
+        "to": "ctrl",
+        "method": "_own_order",
+        "kind": "call",
+        "arguments": "customer, order_id",
+        "guard": "active owner",
+        "PC_MG": "UC05-MG01",
+        "label": "_own_order(customer, order_id)",
+        "y": 700,
+        "receiver_signature": "_own_order(self, customer: Customer, order_id: int) -> Order",
+        "status": "MATCH",
+        "P4_input": ""
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "",
+        "guard": "denied / stale / invalid or atomic save failure",
+        "PC_MG": "UC05-MG01",
+        "label": "refusal / controlled failure; UC05-MG01",
+        "y": 1000
+      }
+    ],
+    "elements": [
+      {
+        "class": "order",
+        "attributes": [],
+        "methods": [
+          "answer_replacement"
+        ]
+      },
+      {
+        "class": "OrderTrackingController",
+        "attributes": [],
+        "methods": [
+          "_own_order",
+          "answer_replacement"
+        ]
+      },
+      {
+        "class": "Order",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "ReplacementOffer",
+        "attributes": [],
+        "methods": []
+      }
+    ],
+    "dependencies": [],
+    "states": [
+      {
+        "class": "Order",
+        "attribute": "state",
+        "values": [
+          "PLACED"
+        ]
+      },
+      {
+        "class": "ReplacementOffer",
+        "attribute": "state",
+        "values": [
+          "OFFERED",
+          "WITHDRAWN"
+        ]
+      }
+    ]
+  },
+  "frames": [
+    {
+      "id": "alt",
+      "y": 590,
+      "h": 450,
+      "label": "alt [eligible main path; guards / effects in the operation note]",
+      "operands": [
+        [
+          910,
+          "[denied / stale / invalid or failed atomic save] UC05-MG01"
+        ]
+      ]
+    }
+  ],
+  "notes": [
+    {
+      "y": 220,
+      "h": 102.80000000000001,
+      "text": "Before mutation†: active owner + own PLACED + exact open OFFERED belongs to order. Recheck target active, active Brand, listed + AVAILABLE at same hub. Ineligible owner/state/offer → staleRefusal, 0 changed rows. Invalid target → only exact offer WITHDRAWN† with returned reason; Order/lines/payment unchanged (MG01)."
+    },
+    {
+      "y": 1010,
+      "h": 65,
+      "text": "Persistence: loaded/saved through data access — see 4.3.2."
+    }
+  ],
+  "continuation": "Part A ↔ PartB. Same lifelines / same operation; no second request.",
+  "realisation_note": "Before mutation†: active owner + own PLACED + exact open OFFERED belongs to order. Recheck target active, active Brand, listed + AVAILABLE at same hub. Ineligible owner/state/offer → staleRefusal, 0 changed rows. Invalid target → only exact offer WITHDRAWN† with returned reason; Order/lines/payment unchanged (MG01).",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+}

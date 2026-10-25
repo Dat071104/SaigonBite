@@ -1,0 +1,108 @@
+{
+  "UC": "UC-05",
+  "stem": "dcd_uc05_controller_PartB",
+  "title": "UC-05 controller — selected design members 2/2",
+  "figure": "3.5.2.iiB",
+  "caption": "UC-05 controller detailed design members",
+  "cards": [
+    {
+      "id": "KitchenOrderView_0",
+      "class": "KitchenOrderView",
+      "box": [
+        35,
+        100,
+        730,
+        243.20000000000002
+      ],
+      "compartments": [
+        [
+          "«value» KitchenOrderView",
+          "{layer: controller}"
+        ],
+        [
+          "+ order: Order",
+          "+ payment: Payment",
+          "+ open_offer: Optional[ReplacementOffer]",
+          "+ offers: list[ReplacementOffer]"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "KitchenOrderView",
+        "attributes": [
+          "order",
+          "payment",
+          "open_offer",
+          "offers"
+        ],
+        "methods": []
+      }
+    },
+    {
+      "id": "OrderSummary_0",
+      "class": "OrderSummary",
+      "box": [
+        815,
+        100,
+        730,
+        215.60000000000002
+      ],
+      "compartments": [
+        [
+          "«value» OrderSummary",
+          "{layer: controller}"
+        ],
+        [
+          "+ order: Order",
+          "+ hub_name: str",
+          "+ awaiting_answer: bool"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "OrderSummary",
+        "attributes": [
+          "order",
+          "hub_name",
+          "awaiting_answer"
+        ],
+        "methods": []
+      }
+    }
+  ],
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "KitchenOrderView",
+        "attributes": [
+          "order",
+          "payment",
+          "open_offer",
+          "offers"
+        ],
+        "methods": []
+      },
+      {
+        "class": "OrderSummary",
+        "attributes": [
+          "order",
+          "hub_name",
+          "awaiting_answer"
+        ],
+        "methods": []
+      }
+    ],
+    "dependencies": [],
+    "states": []
+  },
+  "P4_input": "none on this view",
+  "continuation": "Members continue across PartA, PartB; navigation is in controller_links parts A–A.",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+}

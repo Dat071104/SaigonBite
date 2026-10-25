@@ -1,0 +1,304 @@
+{
+  "UC": "UC-05",
+  "stem": "dcd_uc05_domain_PartB",
+  "title": "UC-05 domain — selected design members 2/3",
+  "figure": "3.5.2.iB",
+  "caption": "UC-05 domain detailed design members",
+  "cards": [
+    {
+      "id": "Address_0",
+      "class": "Address",
+      "box": [
+        35,
+        100,
+        730,
+        243.20000000000002
+      ],
+      "compartments": [
+        [
+          "«entity» Address",
+          "{layer: domain}"
+        ],
+        [
+          "+ id: int",
+          "+ label: str",
+          "+ full_address: str",
+          "+ district: str"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "Address",
+        "attributes": [
+          "id",
+          "label",
+          "full_address",
+          "district"
+        ],
+        "methods": []
+      }
+    },
+    {
+      "id": "MenuItem_0",
+      "class": "MenuItem",
+      "box": [
+        815,
+        100,
+        730,
+        243.20000000000002
+      ],
+      "compartments": [
+        [
+          "«entity» MenuItem",
+          "{layer: domain}"
+        ],
+        [
+          "+ id: int",
+          "+ brand_name: str",
+          "+ name: str",
+          "+ description: str"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "MenuItem",
+        "attributes": [
+          "id",
+          "brand_name",
+          "name",
+          "description"
+        ],
+        "methods": []
+      }
+    },
+    {
+      "id": "Brand_0",
+      "class": "Brand",
+      "box": [
+        35,
+        361.20000000000005,
+        730,
+        215.60000000000002
+      ],
+      "compartments": [
+        [
+          "«entity» Brand",
+          "{layer: domain}"
+        ],
+        [
+          "+ id: int",
+          "+ name: str",
+          "+ archived_at: Optional[str]"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "Brand",
+        "attributes": [
+          "id",
+          "name",
+          "archived_at"
+        ],
+        "methods": []
+      }
+    },
+    {
+      "id": "HubMenuItem_0",
+      "class": "HubMenuItem",
+      "box": [
+        815,
+        361.20000000000005,
+        730,
+        215.60000000000002
+      ],
+      "compartments": [
+        [
+          "«entity» HubMenuItem",
+          "{layer: domain}",
+          "{association class: Hub — MenuItem}"
+        ],
+        [
+          "+ item: MenuItem",
+          "+ is_available: bool"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "HubMenuItem",
+        "attributes": [
+          "item",
+          "is_available"
+        ],
+        "methods": []
+      }
+    },
+    {
+      "id": "UserAccount_0",
+      "class": "UserAccount",
+      "box": [
+        35,
+        594.8000000000001,
+        730,
+        243.20000000000002
+      ],
+      "compartments": [
+        [
+          "«entity» UserAccount",
+          "{layer: domain}"
+        ],
+        [
+          "+ id: int",
+          "+ username: str",
+          "+ password_hash: str",
+          "+ display_name: str"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "UserAccount",
+        "attributes": [
+          "id",
+          "username",
+          "password_hash",
+          "display_name"
+        ],
+        "methods": []
+      }
+    },
+    {
+      "id": "OrderState_0",
+      "class": "OrderState",
+      "box": [
+        815,
+        594.8000000000001,
+        730,
+        381.2
+      ],
+      "compartments": [
+        [
+          "«enumeration» OrderState",
+          "{layer: domain}"
+        ],
+        [
+          "+ PLACED",
+          "+ CONFIRMED",
+          "+ REJECTED",
+          "+ PREPARING",
+          "+ READY",
+          "+ OUT_FOR_DELIVERY",
+          "+ DELIVERED",
+          "+ DELIVERY_FAILED",
+          "+ CANCELLED"
+        ],
+        [
+          "{no selected operation}"
+        ]
+      ],
+      "element": {
+        "class": "OrderState",
+        "attributes": [
+          "PLACED",
+          "CONFIRMED",
+          "REJECTED",
+          "PREPARING"
+        ],
+        "methods": []
+      }
+    }
+  ],
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "Address",
+        "attributes": [
+          "id",
+          "label",
+          "full_address",
+          "district"
+        ],
+        "methods": []
+      },
+      {
+        "class": "MenuItem",
+        "attributes": [
+          "id",
+          "brand_name",
+          "name",
+          "description"
+        ],
+        "methods": []
+      },
+      {
+        "class": "Brand",
+        "attributes": [
+          "id",
+          "name",
+          "archived_at"
+        ],
+        "methods": []
+      },
+      {
+        "class": "HubMenuItem",
+        "attributes": [
+          "item",
+          "is_available"
+        ],
+        "methods": []
+      },
+      {
+        "class": "UserAccount",
+        "attributes": [
+          "id",
+          "username",
+          "password_hash",
+          "display_name"
+        ],
+        "methods": []
+      },
+      {
+        "class": "OrderState",
+        "attributes": [
+          "PLACED",
+          "CONFIRMED",
+          "REJECTED",
+          "PREPARING"
+        ],
+        "methods": []
+      }
+    ],
+    "dependencies": [],
+    "states": [
+      {
+        "class": "Order",
+        "attribute": "state",
+        "values": [
+          "PLACED",
+          "CONFIRMED",
+          "REJECTED",
+          "PREPARING",
+          "READY",
+          "OUT_FOR_DELIVERY",
+          "DELIVERED",
+          "DELIVERY_FAILED",
+          "CANCELLED"
+        ]
+      }
+    ]
+  },
+  "P4_input": "none on this view",
+  "continuation": "Members continue across PartA, PartB, PartC; relation view follows in domain_links.",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+}

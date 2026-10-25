@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200"><rect width="100%" height="100%" fill="white"/>
+<text x="35" y="42.040000000000006" font-family="Arial" font-size="28" font-weight="bold" fill="#202B36">UC-05 all — relationships 3</text>
+<rect x="55" y="105" width="500" height="85" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="67" y="135.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«entity» ReplacementOffer</text>
+<rect x="1035" y="105" width="500" height="85" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="1047" y="135.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«entity» MenuItem</text>
+<rect x="55" y="255" width="500" height="85" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="67" y="285.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«entity» OrderLine</text>
+<rect x="1035" y="255" width="500" height="85" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="1047" y="285.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«entity» MenuItem</text>
+<rect x="55" y="405" width="500" height="85" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="67" y="435.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«entity» UserAccount</text>
+<rect x="1035" y="405" width="500" height="85" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="1047" y="435.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«entity» Hub</text>
+<rect x="55" y="555" width="500" height="85" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="67" y="585.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«entity» LocalCustomer</text>
+<rect x="1035" y="555" width="500" height="85" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="1047" y="585.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«entity» Customer</text>
+<rect x="55" y="705" width="500" height="85" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="67" y="735.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«entity» TouristCustomer</text>
+<rect x="1035" y="705" width="500" height="85" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="1047" y="735.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«entity» Customer</text>
+<rect x="55" y="855" width="500" height="85" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="67" y="885.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«module» controllers.common</text>
+<rect x="1035" y="895" width="500" height="85" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="1047" y="925.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«entity» Order</text>
+<polyline points="555,148 1035,148" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="1021.0,155.0 1035,148 1021.0,141.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="575" y="131.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">0..* → 1 target item</text>
+<polyline points="555,298 1035,298" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="1021.0,305.0 1035,298 1021.0,291.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="575" y="281.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">0..* → 1 snapshot source</text>
+<polyline points="555,448 1035,448" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="1021.0,455.0 1035,448 1021.0,441.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="575" y="431.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">0..* → 0..1 kitchen hub</text>
+<polyline points="555,598 1035,598" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="1021.0,605.0 1035,598 1021.0,591.0" fill="none" stroke="#004387" stroke-width="2"/>
+<polygon points="1021.0,605.0 1035,598 1021.0,591.0" fill="white" stroke="#004387"/>
+<text x="575" y="581.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">→ is a</text>
+<polyline points="555,748 1035,748" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="1021.0,755.0 1035,748 1021.0,741.0" fill="none" stroke="#004387" stroke-width="2"/>
+<polygon points="1021.0,755.0 1035,748 1021.0,741.0" fill="white" stroke="#004387"/>
+<text x="575" y="731.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">→ is a</text>
+<polyline points="555,898 1035,938" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="1020.4670410255954,943.8131835897617 1035,938 1021.6296777435479,929.8615429743335" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="575" y="881.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">→ «use»</text>
+<text x="35" y="1102.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Members: all detail parts. Relationship parts A–L continue both ways.</text>
+<text x="35" y="1134.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">† design target, not yet in code at C0 (see P4 input none on this view).</text>
+<text x="35" y="1167.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Figure 3.5.2.v.R3. UC-05 all navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex)</text>
+<text x="35" y="1193.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Static / target design · 230 mm landscape · smallest text 9.78 pt · native draw.io / final placement UNTESTED</text>
+</svg>
