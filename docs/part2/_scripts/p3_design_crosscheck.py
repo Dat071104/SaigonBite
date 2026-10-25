@@ -5,6 +5,9 @@ No application imports, SQL execution or tests. --read-only writes nothing.
 from pathlib import Path
 import argparse,ast,collections,csv,hashlib,html,importlib.util,json,re,subprocess,sys,xml.etree.ElementTree as ET
 sys.dont_write_bytecode=True
+_notation_spec=importlib.util.spec_from_file_location('p3_native_notation',Path(__file__).with_name('p3_notation_audit.py'))
+_notation_module=importlib.util.module_from_spec(_notation_spec);_notation_spec.loader.exec_module(_notation_module)
+audit_notation=_notation_module.audit
 R=Path(__file__).resolve().parents[3];D=R/'docs/part2/design';N=R.parent/'Part2/notes/P3-root'
 def read(p):return json.loads(p.read_text(encoding='utf-8-sig'))
 def csvread(p):return list(csv.DictReader(p.open(encoding='utf-8-sig',newline='')))
@@ -159,6 +162,7 @@ def main():
         diagrams.append((path,data,meta))
         kind=meta.get('diagram_type');key=path.relative_to(R).as_posix()
         check('diagram_type',key,kind in ('dcd','sequence','dao_sequence','package','erd'),'Known Phase3 diagram role; no unclassified figure is silently accepted')
+        audit_notation(path,data,meta,model,check)
         if kind=='erd':audit_erd(inventory,path,data,meta,check)
         for ext in ('.py','.drawio','.png','.svg'):check('artifact',key+ext,path.with_suffix(ext).is_file(),'Required generator/source/export')
         if path.with_suffix('.drawio').exists():

@@ -95,7 +95,13 @@ On the owner's continuation at 25/10 approximately 11:52 UTC /18:52 Bangkok, the
 
 ## Wave 4 independent review
 
-⟦PENDING: sole read-only review, root dispositions, cross-check and integrity/staging closure⟧.
+The sole read-only reviewer delivered P3-review.md for integrated revision d85d067. Its independent verdict is **NOT READY for an unqualified G3/B5 closure at the reviewed artifact state**. That verdict is preserved verbatim; root has not relabelled it. The reviewer independently reproduced the 20,297-check structural pass and identified four gaps outside that checker's former scope: R1 guarded interaction geometry (MEDIUM), R2 separate adjacent multiplicities (MEDIUM), R3 three missing success results (LOW), and R4 dependency/synchronous-call arrow styles (LOW). Root accepts all four as design-artifact defects, not application failures.
+
+Root preserved 2,430 current model/document files and the reviewer bytes in P3_trash/before_independent_review_repairs.zip; pre_review_repair_manifest.json records the original reviewer hash. Four disjoint same-identity repair lanes A/B-fix/C/F own only their original UC/DAO families. The whole-four-worker barrier applies: no unfinished report or artifact is read until every final handoff. E and the reviewer are completed; neither is restarted. The shared design model and all protected application/analysis sources remain frozen.
+
+Root repaired the three package dependencies to actual dashed/open arrows in native XML, SVG and PNG, using an explicit local visual-preset adapter without modifying the frozen P2 renderer. Both current export forms were opened; review_package_qa.json checks all three styles and binds the fresh independent raster. Root is strengthening C6 to inspect actual fragment containment, native end-label geometry, success returns and call/reply styles. The earlier structural pass is not used to waive any of these findings.
+
+⟦PENDING: all-four repair handoffs, root dispositions and post-fix semantic/visual checks, full cross-check and integrity/staging closure⟧.
 
 ## Marking evidence pointers
 

@@ -27,7 +27,22 @@ ALLOWED = {
 spec = importlib.util.spec_from_file_location("p2_diagram_renderer", OUT / "use_case_diagram.py")
 R = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(R)
-Page = R.Page
+class Page(R.Page):
+    def export(self):
+        # Reuse the immutable renderer's dashed/open visual preset. Restore the
+        # semantic kind before serializing Phase 3: these are dependencies,
+        # never use-case include relationships.
+        dependencies = [edge for edge in self.edges if edge['kind'] == 'dependency']
+        for edge in dependencies:
+            edge['kind'] = 'include'
+        try:
+            data = super().export()
+        finally:
+            for edge in dependencies:
+                edge['kind'] = 'dependency'
+        data['edges'] = self.edges
+        (OUT / (self.stem + '.json')).write_text(json.dumps(data, indent=2), encoding='utf-8')
+        return data
 
 
 def source_package(path: str) -> list[str]:
@@ -209,7 +224,7 @@ def build() -> dict:
         "«dependency»",
         790,
         345,
-        kind="nav",
+        kind="dependency",
     )
     p.edge(
         "dep_controllers_domain",
@@ -219,7 +234,7 @@ def build() -> dict:
         "«dependency»",
         525,
         705,
-        kind="nav",
+        kind="dependency",
     )
     p.edge(
         "dep_controllers_data_access",
@@ -229,7 +244,7 @@ def build() -> dict:
         "«dependency»",
         1125,
         705,
-        kind="nav",
+        kind="dependency",
     )
 
     note = (
