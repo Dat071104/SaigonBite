@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1360" viewBox="0 0 1800 1360">
+<rect width="100%" height="100%" fill="white"/>
+<polyline points="600,546 600,650 510,650 510,815" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="900,546 900,750" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="1200,546 1200,650 1515,650 1515,750" fill="none" stroke="#52616F" stroke-width="3"/>
+<rect x="550" y="140" width="700" height="406" fill="#F4F8FB" stroke="#004387" stroke-width="3"/>
+<path d="M550,192 H1250" stroke="#004387" stroke-width="2"/>
+<rect x="60" y="750" width="450" height="130" fill="#F5F8FA" stroke="#004387" stroke-width="3"/>
+<rect x="675" y="750" width="450" height="130" fill="#F5F8FA" stroke="#004387" stroke-width="3"/>
+<rect x="1290" y="750" width="450" height="130" fill="#F5F8FA" stroke="#004387" stroke-width="3"/>
+<rect x="70" y="930" width="1660" height="285" fill="#FFF8E8" stroke="#004387" stroke-width="3"/>
+<text x="30" y="18" fill="#202B36" font-family="Arial, sans-serif" font-size="34" font-weight="700" dominant-baseline="hanging">
+<tspan x="30" dy="0">Schema v2 · replacement-offer history</tspan>
+</text>
+<text x="30" y="1294" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="30" dy="0">Figure 4.3.1E · Author: 722I0004 · AI-assisted (Codex)</tspan>
+</text>
+<text x="30" y="1325" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="30" dy="0">Static schema v2 at C0 = 45ac762; full SQL mapping and notes are in §4.3.1.</tspan>
+</text>
+<text x="610" y="550" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="610" dy="0">0..*</tspan>
+</text>
+<text x="515" y="785" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="515" dy="0">1</tspan>
+</text>
+<text x="910" y="550" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="910" dy="0">0..*</tspan>
+</text>
+<text x="910" y="730" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="910" dy="0">1</tspan>
+</text>
+<text x="1210" y="550" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1210" dy="0">0..*</tspan>
+</text>
+<text x="1525" y="730" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1525" dy="0">1</tspan>
+</text>
+<text x="564" y="152" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="700" dominant-baseline="hanging">
+<tspan x="564" dy="0">replacement_offer</tspan>
+</text>
+<text x="564" y="205" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="564" dy="0">PK id</tspan>
+</text>
+<text x="564" y="236" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="564" dy="0">FK/U* order_id</tspan>
+</text>
+<text x="564" y="267" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="564" dy="0">FK order_line_id</tspan>
+</text>
+<text x="564" y="298" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="564" dy="0">original_item_name</tspan>
+</text>
+<text x="564" y="329" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="564" dy="0">C original_unit_price</tspan>
+</text>
+<text x="564" y="360" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="564" dy="0">FK new_menu_item_id</tspan>
+</text>
+<text x="564" y="391" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="564" dy="0">new_item_name</tspan>
+</text>
+<text x="564" y="422" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="564" dy="0">C new_unit_price</tspan>
+</text>
+<text x="564" y="453" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="564" dy="0">C state</tspan>
+</text>
+<text x="564" y="484" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="564" dy="0">offered_at</tspan>
+</text>
+<text x="564" y="515" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="564" dy="0">decided_at?</tspan>
+</text>
+<text x="72" y="762" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="72" dy="0">«reference» orders</tspan>
+<tspan x="72" dy="30.939999999999998">PK id · full table in C</tspan>
+</text>
+<text x="687" y="762" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="687" dy="0">«reference» order_line</tspan>
+<tspan x="687" dy="30.939999999999998">PK id · full table in C</tspan>
+</text>
+<text x="1302" y="762" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1302" dy="0">«reference» menu_item</tspan>
+<tspan x="1302" dy="30.939999999999998">PK id · full table in B</tspan>
+</text>
+<text x="82" y="942" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="82" dy="0">idx_offer_one_open is UNIQUE on order_id only WHERE state = &#x27;OFFERED&#x27;; all resolved offers remain history.</tspan>
+<tspan x="82" dy="30.939999999999998">SQL does not require offer.order_id to match order_line.order_id or recheck target eligibility at the same hub (P2-S09).</tspan>
+<tspan x="82" dy="30.939999999999998">Original/new names and prices are snapshots; only new_menu_item_id references the current target item.</tspan>
+<tspan x="82" dy="30.939999999999998">Offer timestamps are UTC. No withdrawal_reason column or separate Shipper table exists in schema v2.</tspan>
+<tspan x="82" dy="30.939999999999998">Continuation: Order and OrderLine resolve to PartC; target MenuItem resolves to PartB; payment history is in PartD.</tspan>
+</text>
+</svg>

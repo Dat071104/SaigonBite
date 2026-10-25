@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1360" viewBox="0 0 1800 1360">
+<rect width="100%" height="100%" fill="white"/>
+<polyline points="430,515 430,720" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="1040,360 800,360 800,660 740,660 740,785" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="1350,484 1350,720" fill="none" stroke="#52616F" stroke-width="3"/>
+<rect x="120" y="140" width="620" height="375" fill="#F4F8FB" stroke="#004387" stroke-width="3"/>
+<path d="M120,192 H740" stroke="#004387" stroke-width="2"/>
+<rect x="1040" y="140" width="620" height="344" fill="#F4F8FB" stroke="#004387" stroke-width="3"/>
+<path d="M1040,192 H1660" stroke="#004387" stroke-width="2"/>
+<rect x="120" y="720" width="620" height="130" fill="#F5F8FA" stroke="#004387" stroke-width="3"/>
+<rect x="1040" y="720" width="620" height="130" fill="#F5F8FA" stroke="#004387" stroke-width="3"/>
+<rect x="70" y="930" width="1660" height="285" fill="#FFF8E8" stroke="#004387" stroke-width="3"/>
+<text x="30" y="18" fill="#202B36" font-family="Arial, sans-serif" font-size="34" font-weight="700" dominant-baseline="hanging">
+<tspan x="30" dy="0">Schema v2 · payment and delivery records</tspan>
+</text>
+<text x="30" y="1294" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="30" dy="0">Figure 4.3.1D · Author: 722I0004 · AI-assisted (Codex)</tspan>
+</text>
+<text x="30" y="1325" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="30" dy="0">Static schema v2 at C0 = 45ac762; full SQL mapping and notes are in §4.3.1.</tspan>
+</text>
+<text x="440" y="520" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="440" dy="0">0..1</tspan>
+</text>
+<text x="440" y="700" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="440" dy="0">1</tspan>
+</text>
+<text x="960" y="330" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="960" dy="0">0..1</tspan>
+</text>
+<text x="745" y="765" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="745" dy="0">1</tspan>
+</text>
+<text x="1360" y="490" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1360" dy="0">0..*</tspan>
+</text>
+<text x="1360" y="695" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1360" dy="0">0..1</tspan>
+</text>
+<text x="134" y="152" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="700" dominant-baseline="hanging">
+<tspan x="134" dy="0">payment</tspan>
+</text>
+<text x="134" y="205" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="134" dy="0">PK id</tspan>
+</text>
+<text x="134" y="236" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="134" dy="0">FK/U order_id</tspan>
+</text>
+<text x="134" y="267" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="134" dy="0">C method</tspan>
+</text>
+<text x="134" y="298" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="134" dy="0">C online_option?</tspan>
+</text>
+<text x="134" y="329" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="134" dy="0">provider_ref?</tspan>
+</text>
+<text x="134" y="360" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="134" dy="0">C state</tspan>
+</text>
+<text x="134" y="391" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="134" dy="0">C amount</tspan>
+</text>
+<text x="134" y="422" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="134" dy="0">C refund_amount</tspan>
+</text>
+<text x="134" y="453" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="134" dy="0">created_at</tspan>
+</text>
+<text x="134" y="484" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="134" dy="0">updated_at</tspan>
+</text>
+<text x="1054" y="152" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="700" dominant-baseline="hanging">
+<tspan x="1054" dy="0">delivery</tspan>
+</text>
+<text x="1054" y="205" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1054" dy="0">PK id</tspan>
+</text>
+<text x="1054" y="236" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1054" dy="0">FK/U order_id</tspan>
+</text>
+<text x="1054" y="267" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1054" dy="0">FK/C shipper_id?</tspan>
+</text>
+<text x="1054" y="298" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1054" dy="0">C state</tspan>
+</text>
+<text x="1054" y="329" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1054" dy="0">ready_at</tspan>
+</text>
+<text x="1054" y="360" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1054" dy="0">picked_up_at?</tspan>
+</text>
+<text x="1054" y="391" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1054" dy="0">finished_at?</tspan>
+</text>
+<text x="1054" y="422" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1054" dy="0">C failure_reason?</tspan>
+</text>
+<text x="1054" y="453" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1054" dy="0">C cash_collected?</tspan>
+</text>
+<text x="132" y="732" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="132" dy="0">«reference» orders</tspan>
+<tspan x="132" dy="30.939999999999998">PK id · full table in C</tspan>
+</text>
+<text x="1052" y="732" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1052" dy="0">«reference» user_account</tspan>
+<tspan x="1052" dy="30.939999999999998">PK id · full table in A</tspan>
+</text>
+<text x="82" y="942" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="82" dy="0">Order 1–0..1 Payment and Order 1–0..1 Delivery are SQL maxima; successful checkout / markReady supplies required rows.</tspan>
+<tspan x="82" dy="30.939999999999998">Payment.amount is COD due or captured ONLINE amount C; refund_amount is owed, not paid. All event timestamps are UTC.</tspan>
+<tspan x="82" dy="30.939999999999998">Payment.updated_at is SQL NOT NULL; PaymentDAO.insert uses updated_at or created_at (P2-S08), so this is not a gap.</tspan>
+<tspan x="82" dy="30.939999999999998">FAILED / REFUNDED remain SQL/enum values but are deferred or unreachable per P2-S01; no payout is drawn.</tspan>
+<tspan x="82" dy="30.939999999999998">Continuation: Order resolves to PartC; UserAccount resolves to PartA; replacement offers continue in PartE.</tspan>
+</text>
+</svg>

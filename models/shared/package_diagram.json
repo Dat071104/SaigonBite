@@ -1,0 +1,3314 @@
+{
+  "stem": "package_diagram",
+  "width": 1800,
+  "height": 1360,
+  "font_min": 26,
+  "placed_width_mm": 230,
+  "min_placed_pt": 9.41732283464567,
+  "nodes": [
+    {
+      "id": "presentation",
+      "label": "«package» presentation\nFlask blueprint modules / view routes\naccount · admin · auth · delivery · kitchen\nmain · order · reports · security\nTemplates and static assets are presentation resources.",
+      "x": 570,
+      "y": 100,
+      "w": 660,
+      "h": 220,
+      "kind": "rect",
+      "fill": "#EAF2FA",
+      "attrs": null
+    },
+    {
+      "id": "controllers",
+      "label": "«package» business.controllers\nUC and supporting controllers\nPlaceOrder · OrderTracking · Account · Kitchen · Delivery\nHub · Menu · Voucher · UserAdmin · OrderArchive · Report\nShared coordination and domain error types.",
+      "x": 570,
+      "y": 400,
+      "w": 660,
+      "h": 260,
+      "kind": "rect",
+      "fill": "#E9F4EF",
+      "attrs": null
+    },
+    {
+      "id": "domain",
+      "label": "«package» business.domain\nDataclasses · enums · state transitions · business rules\nOrder · Customer · Hub · MenuItem · Payment · Delivery\nNo outward application-layer dependency is allowed.",
+      "x": 100,
+      "y": 760,
+      "w": 680,
+      "h": 250,
+      "kind": "rect",
+      "fill": "#F2EFF9",
+      "attrs": null
+    },
+    {
+      "id": "data_access",
+      "label": "«package» data_access\nHand-written parameterised-SQL DAOs\ndatabase module: connection / transaction helper\nLocal PaymentGatewaySimulator adapter.",
+      "x": 1000,
+      "y": 760,
+      "w": 680,
+      "h": 250,
+      "kind": "rect",
+      "fill": "#FFF2E6",
+      "attrs": null
+    },
+    {
+      "id": "actual_import_violations",
+      "label": "C0 imports that violate the strict layer graph (shown as notes, never allowed arrows):\npresentation → domain: 12 imports / 7 modules; presentation → data_access: 3 / 2 modules.\ndata_access → domain: 28 imports / 10 modules (DAO materialisation, enums and rules).\npresentation.auth → saigonbite.NAV: 1 root import; 14 bootstrap imports include app.py → create_app.\nFlask, SQLite, standard library and other external imports are outside this layer comparison.",
+      "x": 70,
+      "y": 1035,
+      "w": 1660,
+      "h": 190,
+      "kind": "note",
+      "fill": "#FFF8E8",
+      "attrs": null
+    }
+  ],
+  "edges": [
+    {
+      "id": "dep_presentation_controllers",
+      "source": "presentation",
+      "target": "controllers",
+      "points": [
+        [
+          900,
+          320
+        ],
+        [
+          900,
+          400
+        ]
+      ],
+      "label": "«dependency»",
+      "lx": 790,
+      "ly": 345,
+      "kind": "nav",
+      "ends": null
+    },
+    {
+      "id": "dep_controllers_domain",
+      "source": "controllers",
+      "target": "domain",
+      "points": [
+        [
+          690,
+          660
+        ],
+        [
+          690,
+          710
+        ],
+        [
+          780,
+          710
+        ],
+        [
+          780,
+          760
+        ]
+      ],
+      "label": "«dependency»",
+      "lx": 525,
+      "ly": 705,
+      "kind": "nav",
+      "ends": null
+    },
+    {
+      "id": "dep_controllers_data_access",
+      "source": "controllers",
+      "target": "data_access",
+      "points": [
+        [
+          1110,
+          660
+        ],
+        [
+          1110,
+          710
+        ],
+        [
+          1000,
+          710
+        ],
+        [
+          1000,
+          760
+        ]
+      ],
+      "label": "«dependency»",
+      "lx": 1125,
+      "ly": 705,
+      "kind": "nav",
+      "ends": null
+    }
+  ],
+  "author": "722I0004 · AI-assisted (Codex)",
+  "phase3": {
+    "diagram_type": "package",
+    "elements": [
+      {
+        "class": "presentation (package)",
+        "attributes": [
+          "account",
+          "admin",
+          "auth",
+          "delivery",
+          "kitchen",
+          "main",
+          "order",
+          "reports",
+          "security"
+        ],
+        "methods": []
+      },
+      {
+        "class": "controllers (package)",
+        "attributes": [
+          "PlaceOrderController",
+          "OrderTrackingController",
+          "AccountController",
+          "KitchenController",
+          "DeliveryController",
+          "HubController",
+          "MenuController",
+          "VoucherController",
+          "UserAdminController",
+          "OrderArchiveController",
+          "ReportController"
+        ],
+        "methods": []
+      },
+      {
+        "class": "domain (package)",
+        "attributes": [
+          "UserAccount",
+          "Customer",
+          "Address",
+          "Hub",
+          "Brand",
+          "MenuItem",
+          "HubMenuItem",
+          "Voucher",
+          "Order",
+          "OrderLine",
+          "Payment",
+          "Delivery",
+          "ReplacementOffer",
+          "enums",
+          "rules"
+        ],
+        "methods": []
+      },
+      {
+        "class": "data_access (package)",
+        "attributes": [
+          "CustomerDAO",
+          "DeliveryDAO",
+          "HubDAO",
+          "MenuDAO",
+          "OrderDAO",
+          "PaymentDAO",
+          "ReplacementOfferDAO",
+          "ReportDAO",
+          "UserDAO",
+          "VoucherDAO",
+          "database (module)",
+          "PaymentGatewaySimulator"
+        ],
+        "methods": []
+      },
+      {
+        "class": "C0 import-audit note",
+        "attributes": [
+          "actual forbidden imports",
+          "external-import scope note"
+        ],
+        "methods": []
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "presentation",
+        "target": "controllers",
+        "kind": "allowed_dependency"
+      },
+      {
+        "source": "controllers",
+        "target": "domain",
+        "kind": "allowed_dependency"
+      },
+      {
+        "source": "controllers",
+        "target": "data_access",
+        "kind": "allowed_dependency"
+      }
+    ],
+    "import_audit": {
+      "source": "docs/part2/design/code_inventory.json",
+      "source_commit": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+      "evidence_label": "Static",
+      "total_saigonbite_import_records": 392,
+      "allowed_cross_layer": [
+        {
+          "source": "controllers",
+          "target": "data_access",
+          "count": 46,
+          "source_files": [
+            "saigonbite/business/controllers/account_controller.py",
+            "saigonbite/business/controllers/auth_controller.py",
+            "saigonbite/business/controllers/common.py",
+            "saigonbite/business/controllers/delivery_controller.py",
+            "saigonbite/business/controllers/hub_controller.py",
+            "saigonbite/business/controllers/kitchen_controller.py",
+            "saigonbite/business/controllers/menu_controller.py",
+            "saigonbite/business/controllers/order_archive_controller.py",
+            "saigonbite/business/controllers/order_tracking_controller.py",
+            "saigonbite/business/controllers/place_order_controller.py",
+            "saigonbite/business/controllers/report_controller.py",
+            "saigonbite/business/controllers/user_admin_controller.py",
+            "saigonbite/business/controllers/voucher_controller.py"
+          ]
+        },
+        {
+          "source": "controllers",
+          "target": "domain",
+          "count": 82,
+          "source_files": [
+            "saigonbite/business/controllers/account_controller.py",
+            "saigonbite/business/controllers/auth_controller.py",
+            "saigonbite/business/controllers/common.py",
+            "saigonbite/business/controllers/delivery_controller.py",
+            "saigonbite/business/controllers/hub_controller.py",
+            "saigonbite/business/controllers/kitchen_controller.py",
+            "saigonbite/business/controllers/menu_controller.py",
+            "saigonbite/business/controllers/order_archive_controller.py",
+            "saigonbite/business/controllers/order_tracking_controller.py",
+            "saigonbite/business/controllers/place_order_controller.py",
+            "saigonbite/business/controllers/report_controller.py",
+            "saigonbite/business/controllers/user_admin_controller.py",
+            "saigonbite/business/controllers/voucher_controller.py"
+          ]
+        },
+        {
+          "source": "presentation",
+          "target": "controllers",
+          "count": 24,
+          "source_files": [
+            "saigonbite/presentation/account.py",
+            "saigonbite/presentation/admin.py",
+            "saigonbite/presentation/auth.py",
+            "saigonbite/presentation/delivery.py",
+            "saigonbite/presentation/helpers.py",
+            "saigonbite/presentation/kitchen.py",
+            "saigonbite/presentation/order.py",
+            "saigonbite/presentation/reports.py"
+          ]
+        }
+      ],
+      "same_layer": [
+        {
+          "source": "controllers",
+          "target": "controllers",
+          "count": 93,
+          "source_files": [
+            "saigonbite/business/controllers/__init__.py",
+            "saigonbite/business/controllers/account_controller.py",
+            "saigonbite/business/controllers/common.py",
+            "saigonbite/business/controllers/delivery_controller.py",
+            "saigonbite/business/controllers/hub_controller.py",
+            "saigonbite/business/controllers/kitchen_controller.py",
+            "saigonbite/business/controllers/menu_controller.py",
+            "saigonbite/business/controllers/order_archive_controller.py",
+            "saigonbite/business/controllers/order_tracking_controller.py",
+            "saigonbite/business/controllers/place_order_controller.py",
+            "saigonbite/business/controllers/report_controller.py",
+            "saigonbite/business/controllers/user_admin_controller.py",
+            "saigonbite/business/controllers/voucher_controller.py"
+          ]
+        },
+        {
+          "source": "data_access",
+          "target": "data_access",
+          "count": 16,
+          "source_files": [
+            "saigonbite/data_access/__init__.py"
+          ]
+        },
+        {
+          "source": "domain",
+          "target": "domain",
+          "count": 48,
+          "source_files": [
+            "saigonbite/business/domain/__init__.py",
+            "saigonbite/business/domain/models.py",
+            "saigonbite/business/domain/rules.py"
+          ]
+        },
+        {
+          "source": "presentation",
+          "target": "presentation",
+          "count": 25,
+          "source_files": [
+            "saigonbite/presentation/account.py",
+            "saigonbite/presentation/admin.py",
+            "saigonbite/presentation/auth.py",
+            "saigonbite/presentation/delivery.py",
+            "saigonbite/presentation/kitchen.py",
+            "saigonbite/presentation/order.py",
+            "saigonbite/presentation/reports.py"
+          ]
+        }
+      ],
+      "violations": [
+        {
+          "source": "data_access",
+          "target": "domain",
+          "count": 28,
+          "source_files": [
+            "saigonbite/data_access/customer_dao.py",
+            "saigonbite/data_access/delivery_dao.py",
+            "saigonbite/data_access/hub_dao.py",
+            "saigonbite/data_access/menu_dao.py",
+            "saigonbite/data_access/offer_dao.py",
+            "saigonbite/data_access/order_dao.py",
+            "saigonbite/data_access/payment_dao.py",
+            "saigonbite/data_access/payment_gateway.py",
+            "saigonbite/data_access/user_dao.py",
+            "saigonbite/data_access/voucher_dao.py"
+          ]
+        },
+        {
+          "source": "presentation",
+          "target": "data_access",
+          "count": 3,
+          "source_files": [
+            "saigonbite/presentation/db.py",
+            "saigonbite/presentation/order.py"
+          ]
+        },
+        {
+          "source": "presentation",
+          "target": "domain",
+          "count": 12,
+          "source_files": [
+            "saigonbite/presentation/account.py",
+            "saigonbite/presentation/admin.py",
+            "saigonbite/presentation/auth.py",
+            "saigonbite/presentation/delivery.py",
+            "saigonbite/presentation/kitchen.py",
+            "saigonbite/presentation/order.py",
+            "saigonbite/presentation/reports.py"
+          ]
+        }
+      ],
+      "presentation_to_root": [
+        {
+          "source_file": "saigonbite/presentation/auth.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite",
+          "imported_name": "NAV",
+          "line": 63
+        }
+      ],
+      "composition_root_wiring": [
+        {
+          "source_file": "saigonbite/__init__.py",
+          "source_layer": "outside-layer",
+          "target_module": "saigonbite.business.controllers",
+          "imported_name": "AuthorizationError",
+          "line": 76
+        },
+        {
+          "source_file": "saigonbite/__init__.py",
+          "source_layer": "outside-layer",
+          "target_module": "saigonbite.business.controllers",
+          "imported_name": "ConflictError",
+          "line": 76
+        },
+        {
+          "source_file": "saigonbite/__init__.py",
+          "source_layer": "outside-layer",
+          "target_module": "saigonbite.business.controllers",
+          "imported_name": "NotFoundError",
+          "line": 76
+        },
+        {
+          "source_file": "saigonbite/__init__.py",
+          "source_layer": "outside-layer",
+          "target_module": "saigonbite.presentation",
+          "imported_name": "account",
+          "line": 77
+        },
+        {
+          "source_file": "saigonbite/__init__.py",
+          "source_layer": "outside-layer",
+          "target_module": "saigonbite.presentation",
+          "imported_name": "admin",
+          "line": 77
+        },
+        {
+          "source_file": "saigonbite/__init__.py",
+          "source_layer": "outside-layer",
+          "target_module": "saigonbite.presentation",
+          "imported_name": "auth",
+          "line": 77
+        },
+        {
+          "source_file": "saigonbite/__init__.py",
+          "source_layer": "outside-layer",
+          "target_module": "saigonbite.presentation",
+          "imported_name": "db",
+          "line": 77
+        },
+        {
+          "source_file": "saigonbite/__init__.py",
+          "source_layer": "outside-layer",
+          "target_module": "saigonbite.presentation",
+          "imported_name": "delivery",
+          "line": 77
+        },
+        {
+          "source_file": "saigonbite/__init__.py",
+          "source_layer": "outside-layer",
+          "target_module": "saigonbite.presentation",
+          "imported_name": "kitchen",
+          "line": 77
+        },
+        {
+          "source_file": "saigonbite/__init__.py",
+          "source_layer": "outside-layer",
+          "target_module": "saigonbite.presentation",
+          "imported_name": "main",
+          "line": 77
+        },
+        {
+          "source_file": "saigonbite/__init__.py",
+          "source_layer": "outside-layer",
+          "target_module": "saigonbite.presentation",
+          "imported_name": "order",
+          "line": 77
+        },
+        {
+          "source_file": "saigonbite/__init__.py",
+          "source_layer": "outside-layer",
+          "target_module": "saigonbite.presentation",
+          "imported_name": "reports",
+          "line": 77
+        },
+        {
+          "source_file": "saigonbite/__init__.py",
+          "source_layer": "outside-layer",
+          "target_module": "saigonbite.presentation",
+          "imported_name": "security",
+          "line": 77
+        }
+      ],
+      "outside_layer_imports": [
+        {
+          "source_file": "app.py",
+          "source_layer": "outside-layer",
+          "target_module": "saigonbite",
+          "imported_name": "create_app",
+          "line": 12
+        },
+        {
+          "source_file": "saigonbite/presentation/auth.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite",
+          "imported_name": "NAV",
+          "line": 63
+        }
+      ],
+      "external_imports_excluded": {
+        "controllers": [
+          "__future__",
+          "dataclasses",
+          "datetime",
+          "re",
+          "sqlite3",
+          "typing",
+          "werkzeug.security"
+        ],
+        "data_access": [
+          "__future__",
+          "contextlib",
+          "dataclasses",
+          "logging",
+          "sqlite3",
+          "typing",
+          "uuid"
+        ],
+        "domain": [
+          "__future__",
+          "dataclasses",
+          "enum",
+          "math",
+          "typing"
+        ],
+        "presentation": [
+          "flask",
+          "flask_login",
+          "functools",
+          "hmac",
+          "os",
+          "secrets",
+          "sqlite3",
+          "typing",
+          "urllib.parse",
+          "uuid",
+          "werkzeug.exceptions"
+        ]
+      },
+      "resolved_internal_imports": [
+        {
+          "source_file": "app.py",
+          "source_layer": "outside-layer",
+          "target_module": "saigonbite",
+          "imported_name": "create_app",
+          "line": 12
+        },
+        {
+          "source_file": "saigonbite/__init__.py",
+          "source_layer": "outside-layer",
+          "target_module": "saigonbite.business.controllers",
+          "imported_name": "AuthorizationError",
+          "line": 76
+        },
+        {
+          "source_file": "saigonbite/__init__.py",
+          "source_layer": "outside-layer",
+          "target_module": "saigonbite.business.controllers",
+          "imported_name": "ConflictError",
+          "line": 76
+        },
+        {
+          "source_file": "saigonbite/__init__.py",
+          "source_layer": "outside-layer",
+          "target_module": "saigonbite.business.controllers",
+          "imported_name": "NotFoundError",
+          "line": 76
+        },
+        {
+          "source_file": "saigonbite/__init__.py",
+          "source_layer": "outside-layer",
+          "target_module": "saigonbite.presentation",
+          "imported_name": "account",
+          "line": 77
+        },
+        {
+          "source_file": "saigonbite/__init__.py",
+          "source_layer": "outside-layer",
+          "target_module": "saigonbite.presentation",
+          "imported_name": "admin",
+          "line": 77
+        },
+        {
+          "source_file": "saigonbite/__init__.py",
+          "source_layer": "outside-layer",
+          "target_module": "saigonbite.presentation",
+          "imported_name": "auth",
+          "line": 77
+        },
+        {
+          "source_file": "saigonbite/__init__.py",
+          "source_layer": "outside-layer",
+          "target_module": "saigonbite.presentation",
+          "imported_name": "db",
+          "line": 77
+        },
+        {
+          "source_file": "saigonbite/__init__.py",
+          "source_layer": "outside-layer",
+          "target_module": "saigonbite.presentation",
+          "imported_name": "delivery",
+          "line": 77
+        },
+        {
+          "source_file": "saigonbite/__init__.py",
+          "source_layer": "outside-layer",
+          "target_module": "saigonbite.presentation",
+          "imported_name": "kitchen",
+          "line": 77
+        },
+        {
+          "source_file": "saigonbite/__init__.py",
+          "source_layer": "outside-layer",
+          "target_module": "saigonbite.presentation",
+          "imported_name": "main",
+          "line": 77
+        },
+        {
+          "source_file": "saigonbite/__init__.py",
+          "source_layer": "outside-layer",
+          "target_module": "saigonbite.presentation",
+          "imported_name": "order",
+          "line": 77
+        },
+        {
+          "source_file": "saigonbite/__init__.py",
+          "source_layer": "outside-layer",
+          "target_module": "saigonbite.presentation",
+          "imported_name": "reports",
+          "line": 77
+        },
+        {
+          "source_file": "saigonbite/__init__.py",
+          "source_layer": "outside-layer",
+          "target_module": "saigonbite.presentation",
+          "imported_name": "security",
+          "line": 77
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.account_controller",
+          "imported_name": "AccountController",
+          "line": 1
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.account_controller",
+          "imported_name": "Profile",
+          "line": 1
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.auth_controller",
+          "imported_name": "AuthController",
+          "line": 2
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.delivery_controller",
+          "imported_name": "DeliveryController",
+          "line": 3
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.delivery_controller",
+          "imported_name": "DeliveryView",
+          "line": 3
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.delivery_controller",
+          "imported_name": "ShipperBoard",
+          "line": 3
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "AuthorizationError",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "BusinessError",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "ConflictError",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "HubUnavailableError",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "NotFoundError",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "PaymentDeclinedError",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "QuoteChangedError",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "ValidationError",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.hub_controller",
+          "imported_name": "HubAdminView",
+          "line": 6
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.hub_controller",
+          "imported_name": "HubController",
+          "line": 6
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.kitchen_controller",
+          "imported_name": "KitchenBoard",
+          "line": 7
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.kitchen_controller",
+          "imported_name": "KitchenController",
+          "line": 7
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.kitchen_controller",
+          "imported_name": "KitchenOrderView",
+          "line": 7
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.menu_controller",
+          "imported_name": "Catalogue",
+          "line": 8
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.menu_controller",
+          "imported_name": "HubMenu",
+          "line": 8
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.menu_controller",
+          "imported_name": "MenuController",
+          "line": 8
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.order_archive_controller",
+          "imported_name": "ArchivePreview",
+          "line": 9
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.order_archive_controller",
+          "imported_name": "OrderArchiveController",
+          "line": 9
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.order_tracking_controller",
+          "imported_name": "OrderDetail",
+          "line": 10
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.order_tracking_controller",
+          "imported_name": "OrderSummary",
+          "line": 10
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.order_tracking_controller",
+          "imported_name": "OrderTrackingController",
+          "line": 10
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.place_order_controller",
+          "imported_name": "HubMenuView",
+          "line": 11
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.place_order_controller",
+          "imported_name": "OrderConfirmation",
+          "line": 11
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.place_order_controller",
+          "imported_name": "PaymentChoice",
+          "line": 11
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.place_order_controller",
+          "imported_name": "PlaceOrderController",
+          "line": 11
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.report_controller",
+          "imported_name": "DeliveryReport",
+          "line": 12
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.report_controller",
+          "imported_name": "ReportController",
+          "line": 12
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.report_controller",
+          "imported_name": "SalesReport",
+          "line": 12
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.report_controller",
+          "imported_name": "WorkloadReport",
+          "line": 12
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.user_admin_controller",
+          "imported_name": "STAFF_ROLES",
+          "line": 13
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.user_admin_controller",
+          "imported_name": "UserAdminController",
+          "line": 13
+        },
+        {
+          "source_file": "saigonbite/business/controllers/__init__.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.voucher_controller",
+          "imported_name": "VoucherController",
+          "line": 14
+        },
+        {
+          "source_file": "saigonbite/business/controllers/account_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Address",
+          "line": 22
+        },
+        {
+          "source_file": "saigonbite/business/controllers/account_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Customer",
+          "line": 22
+        },
+        {
+          "source_file": "saigonbite/business/controllers/account_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "CustomerType",
+          "line": 22
+        },
+        {
+          "source_file": "saigonbite/business/controllers/account_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Role",
+          "line": 22
+        },
+        {
+          "source_file": "saigonbite/business/controllers/account_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "UserAccount",
+          "line": 22
+        },
+        {
+          "source_file": "saigonbite/business/controllers/account_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "make_customer",
+          "line": 22
+        },
+        {
+          "source_file": "saigonbite/business/controllers/account_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "rules",
+          "line": 22
+        },
+        {
+          "source_file": "saigonbite/business/controllers/account_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "CustomerDAO",
+          "line": 23
+        },
+        {
+          "source_file": "saigonbite/business/controllers/account_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "immediate_transaction",
+          "line": 23
+        },
+        {
+          "source_file": "saigonbite/business/controllers/account_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.common",
+          "imported_name": "BaseController",
+          "line": 25
+        },
+        {
+          "source_file": "saigonbite/business/controllers/account_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "AuthorizationError",
+          "line": 26
+        },
+        {
+          "source_file": "saigonbite/business/controllers/account_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "NotFoundError",
+          "line": 26
+        },
+        {
+          "source_file": "saigonbite/business/controllers/account_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "ValidationError",
+          "line": 26
+        },
+        {
+          "source_file": "saigonbite/business/controllers/auth_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "UserAccount",
+          "line": 8
+        },
+        {
+          "source_file": "saigonbite/business/controllers/auth_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "UserDAO",
+          "line": 9
+        },
+        {
+          "source_file": "saigonbite/business/controllers/common.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "InvalidTransition",
+          "line": 9
+        },
+        {
+          "source_file": "saigonbite/business/controllers/common.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Order",
+          "line": 9
+        },
+        {
+          "source_file": "saigonbite/business/controllers/common.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "OrderState",
+          "line": 9
+        },
+        {
+          "source_file": "saigonbite/business/controllers/common.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Payment",
+          "line": 9
+        },
+        {
+          "source_file": "saigonbite/business/controllers/common.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Role",
+          "line": 9
+        },
+        {
+          "source_file": "saigonbite/business/controllers/common.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "UserAccount",
+          "line": 9
+        },
+        {
+          "source_file": "saigonbite/business/controllers/common.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "OrderDAO",
+          "line": 10
+        },
+        {
+          "source_file": "saigonbite/business/controllers/common.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "PaymentDAO",
+          "line": 10
+        },
+        {
+          "source_file": "saigonbite/business/controllers/common.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "UserDAO",
+          "line": 10
+        },
+        {
+          "source_file": "saigonbite/business/controllers/common.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "AuthorizationError",
+          "line": 12
+        },
+        {
+          "source_file": "saigonbite/business/controllers/common.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "ConflictError",
+          "line": 12
+        },
+        {
+          "source_file": "saigonbite/business/controllers/delivery_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Customer",
+          "line": 20
+        },
+        {
+          "source_file": "saigonbite/business/controllers/delivery_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Delivery",
+          "line": 20
+        },
+        {
+          "source_file": "saigonbite/business/controllers/delivery_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "DeliveryState",
+          "line": 20
+        },
+        {
+          "source_file": "saigonbite/business/controllers/delivery_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Hub",
+          "line": 20
+        },
+        {
+          "source_file": "saigonbite/business/controllers/delivery_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Order",
+          "line": 20
+        },
+        {
+          "source_file": "saigonbite/business/controllers/delivery_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "OrderState",
+          "line": 20
+        },
+        {
+          "source_file": "saigonbite/business/controllers/delivery_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Payment",
+          "line": 20
+        },
+        {
+          "source_file": "saigonbite/business/controllers/delivery_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "PaymentMethod",
+          "line": 20
+        },
+        {
+          "source_file": "saigonbite/business/controllers/delivery_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "PaymentState",
+          "line": 20
+        },
+        {
+          "source_file": "saigonbite/business/controllers/delivery_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Role",
+          "line": 20
+        },
+        {
+          "source_file": "saigonbite/business/controllers/delivery_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "UserAccount",
+          "line": 20
+        },
+        {
+          "source_file": "saigonbite/business/controllers/delivery_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "CustomerDAO",
+          "line": 22
+        },
+        {
+          "source_file": "saigonbite/business/controllers/delivery_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "DeliveryDAO",
+          "line": 22
+        },
+        {
+          "source_file": "saigonbite/business/controllers/delivery_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "HubDAO",
+          "line": 22
+        },
+        {
+          "source_file": "saigonbite/business/controllers/delivery_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "OrderDAO",
+          "line": 22
+        },
+        {
+          "source_file": "saigonbite/business/controllers/delivery_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "PaymentDAO",
+          "line": 22
+        },
+        {
+          "source_file": "saigonbite/business/controllers/delivery_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "immediate_transaction",
+          "line": 22
+        },
+        {
+          "source_file": "saigonbite/business/controllers/delivery_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.common",
+          "imported_name": "BaseController",
+          "line": 25
+        },
+        {
+          "source_file": "saigonbite/business/controllers/delivery_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.common",
+          "imported_name": "move_order",
+          "line": 25
+        },
+        {
+          "source_file": "saigonbite/business/controllers/delivery_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.common",
+          "imported_name": "release_payment",
+          "line": 25
+        },
+        {
+          "source_file": "saigonbite/business/controllers/delivery_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "AuthorizationError",
+          "line": 26
+        },
+        {
+          "source_file": "saigonbite/business/controllers/delivery_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "ConflictError",
+          "line": 26
+        },
+        {
+          "source_file": "saigonbite/business/controllers/delivery_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "NotFoundError",
+          "line": 26
+        },
+        {
+          "source_file": "saigonbite/business/controllers/delivery_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "ValidationError",
+          "line": 26
+        },
+        {
+          "source_file": "saigonbite/business/controllers/hub_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Hub",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/hub_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "HubStatus",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/hub_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Role",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/hub_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "HubDAO",
+          "line": 19
+        },
+        {
+          "source_file": "saigonbite/business/controllers/hub_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "immediate_transaction",
+          "line": 19
+        },
+        {
+          "source_file": "saigonbite/business/controllers/hub_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.common",
+          "imported_name": "BaseController",
+          "line": 21
+        },
+        {
+          "source_file": "saigonbite/business/controllers/hub_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "ConflictError",
+          "line": 22
+        },
+        {
+          "source_file": "saigonbite/business/controllers/hub_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "NotFoundError",
+          "line": 22
+        },
+        {
+          "source_file": "saigonbite/business/controllers/hub_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "ValidationError",
+          "line": 22
+        },
+        {
+          "source_file": "saigonbite/business/controllers/kitchen_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Delivery",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/kitchen_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "DeliveryState",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/kitchen_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Hub",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/kitchen_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "HubMenuItem",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/kitchen_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "MenuItem",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/kitchen_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "OfferState",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/kitchen_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Order",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/kitchen_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "OrderState",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/kitchen_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Payment",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/kitchen_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "ReplacementOffer",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/kitchen_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Role",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/kitchen_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "UserAccount",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/kitchen_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "DeliveryDAO",
+          "line": 20
+        },
+        {
+          "source_file": "saigonbite/business/controllers/kitchen_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "HubDAO",
+          "line": 20
+        },
+        {
+          "source_file": "saigonbite/business/controllers/kitchen_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "MenuDAO",
+          "line": 20
+        },
+        {
+          "source_file": "saigonbite/business/controllers/kitchen_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "OrderDAO",
+          "line": 20
+        },
+        {
+          "source_file": "saigonbite/business/controllers/kitchen_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "PaymentDAO",
+          "line": 20
+        },
+        {
+          "source_file": "saigonbite/business/controllers/kitchen_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "ReplacementOfferDAO",
+          "line": 20
+        },
+        {
+          "source_file": "saigonbite/business/controllers/kitchen_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "immediate_transaction",
+          "line": 20
+        },
+        {
+          "source_file": "saigonbite/business/controllers/kitchen_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.common",
+          "imported_name": "BaseController",
+          "line": 23
+        },
+        {
+          "source_file": "saigonbite/business/controllers/kitchen_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.common",
+          "imported_name": "move_order",
+          "line": 23
+        },
+        {
+          "source_file": "saigonbite/business/controllers/kitchen_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.common",
+          "imported_name": "release_payment",
+          "line": 23
+        },
+        {
+          "source_file": "saigonbite/business/controllers/kitchen_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "AuthorizationError",
+          "line": 24
+        },
+        {
+          "source_file": "saigonbite/business/controllers/kitchen_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "ConflictError",
+          "line": 24
+        },
+        {
+          "source_file": "saigonbite/business/controllers/kitchen_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "NotFoundError",
+          "line": 24
+        },
+        {
+          "source_file": "saigonbite/business/controllers/kitchen_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "ValidationError",
+          "line": 24
+        },
+        {
+          "source_file": "saigonbite/business/controllers/menu_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Brand",
+          "line": 24
+        },
+        {
+          "source_file": "saigonbite/business/controllers/menu_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Hub",
+          "line": 24
+        },
+        {
+          "source_file": "saigonbite/business/controllers/menu_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "HubMenuItem",
+          "line": 24
+        },
+        {
+          "source_file": "saigonbite/business/controllers/menu_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "MenuItem",
+          "line": 24
+        },
+        {
+          "source_file": "saigonbite/business/controllers/menu_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Role",
+          "line": 24
+        },
+        {
+          "source_file": "saigonbite/business/controllers/menu_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "HubDAO",
+          "line": 25
+        },
+        {
+          "source_file": "saigonbite/business/controllers/menu_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "MenuDAO",
+          "line": 25
+        },
+        {
+          "source_file": "saigonbite/business/controllers/menu_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "immediate_transaction",
+          "line": 25
+        },
+        {
+          "source_file": "saigonbite/business/controllers/menu_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.common",
+          "imported_name": "BaseController",
+          "line": 27
+        },
+        {
+          "source_file": "saigonbite/business/controllers/menu_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "ConflictError",
+          "line": 28
+        },
+        {
+          "source_file": "saigonbite/business/controllers/menu_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "NotFoundError",
+          "line": 28
+        },
+        {
+          "source_file": "saigonbite/business/controllers/menu_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "ValidationError",
+          "line": 28
+        },
+        {
+          "source_file": "saigonbite/business/controllers/order_archive_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Order",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/order_archive_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Role",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/order_archive_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "OrderDAO",
+          "line": 19
+        },
+        {
+          "source_file": "saigonbite/business/controllers/order_archive_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "immediate_transaction",
+          "line": 19
+        },
+        {
+          "source_file": "saigonbite/business/controllers/order_archive_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.common",
+          "imported_name": "BaseController",
+          "line": 21
+        },
+        {
+          "source_file": "saigonbite/business/controllers/order_archive_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.common",
+          "imported_name": "vn_day_start_utc",
+          "line": 21
+        },
+        {
+          "source_file": "saigonbite/business/controllers/order_archive_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "ValidationError",
+          "line": 22
+        },
+        {
+          "source_file": "saigonbite/business/controllers/order_tracking_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Customer",
+          "line": 13
+        },
+        {
+          "source_file": "saigonbite/business/controllers/order_tracking_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Delivery",
+          "line": 13
+        },
+        {
+          "source_file": "saigonbite/business/controllers/order_tracking_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Hub",
+          "line": 13
+        },
+        {
+          "source_file": "saigonbite/business/controllers/order_tracking_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "OfferState",
+          "line": 13
+        },
+        {
+          "source_file": "saigonbite/business/controllers/order_tracking_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Order",
+          "line": 13
+        },
+        {
+          "source_file": "saigonbite/business/controllers/order_tracking_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "OrderState",
+          "line": 13
+        },
+        {
+          "source_file": "saigonbite/business/controllers/order_tracking_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Payment",
+          "line": 13
+        },
+        {
+          "source_file": "saigonbite/business/controllers/order_tracking_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "PaymentMethod",
+          "line": 13
+        },
+        {
+          "source_file": "saigonbite/business/controllers/order_tracking_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "ReplacementOffer",
+          "line": 13
+        },
+        {
+          "source_file": "saigonbite/business/controllers/order_tracking_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Role",
+          "line": 13
+        },
+        {
+          "source_file": "saigonbite/business/controllers/order_tracking_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "CustomerDAO",
+          "line": 15
+        },
+        {
+          "source_file": "saigonbite/business/controllers/order_tracking_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "DeliveryDAO",
+          "line": 15
+        },
+        {
+          "source_file": "saigonbite/business/controllers/order_tracking_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "HubDAO",
+          "line": 15
+        },
+        {
+          "source_file": "saigonbite/business/controllers/order_tracking_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "OrderDAO",
+          "line": 15
+        },
+        {
+          "source_file": "saigonbite/business/controllers/order_tracking_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "PaymentDAO",
+          "line": 15
+        },
+        {
+          "source_file": "saigonbite/business/controllers/order_tracking_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "ReplacementOfferDAO",
+          "line": 15
+        },
+        {
+          "source_file": "saigonbite/business/controllers/order_tracking_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "immediate_transaction",
+          "line": 15
+        },
+        {
+          "source_file": "saigonbite/business/controllers/order_tracking_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.common",
+          "imported_name": "BaseController",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/order_tracking_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.common",
+          "imported_name": "move_order",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/order_tracking_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.common",
+          "imported_name": "release_payment",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/order_tracking_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "AuthorizationError",
+          "line": 19
+        },
+        {
+          "source_file": "saigonbite/business/controllers/order_tracking_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "ConflictError",
+          "line": 19
+        },
+        {
+          "source_file": "saigonbite/business/controllers/order_tracking_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "NotFoundError",
+          "line": 19
+        },
+        {
+          "source_file": "saigonbite/business/controllers/place_order_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "MAX_QUANTITY",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/place_order_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Address",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/place_order_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Customer",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/place_order_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Hub",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/place_order_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "HubMenuItem",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/place_order_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "HubStatus",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/place_order_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "OnlineOption",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/place_order_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Order",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/place_order_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "OrderLine",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/place_order_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Payment",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/place_order_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "PaymentMethod",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/place_order_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "PaymentState",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/place_order_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Quote",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/place_order_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Role",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/place_order_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "rules",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/place_order_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "CustomerDAO",
+          "line": 21
+        },
+        {
+          "source_file": "saigonbite/business/controllers/place_order_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "HubDAO",
+          "line": 21
+        },
+        {
+          "source_file": "saigonbite/business/controllers/place_order_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "OrderDAO",
+          "line": 21
+        },
+        {
+          "source_file": "saigonbite/business/controllers/place_order_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "PaymentDAO",
+          "line": 21
+        },
+        {
+          "source_file": "saigonbite/business/controllers/place_order_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "PaymentGatewaySimulator",
+          "line": 21
+        },
+        {
+          "source_file": "saigonbite/business/controllers/place_order_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "VoucherDAO",
+          "line": 21
+        },
+        {
+          "source_file": "saigonbite/business/controllers/place_order_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "immediate_transaction",
+          "line": 21
+        },
+        {
+          "source_file": "saigonbite/business/controllers/place_order_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.common",
+          "imported_name": "BaseController",
+          "line": 24
+        },
+        {
+          "source_file": "saigonbite/business/controllers/place_order_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "AuthorizationError",
+          "line": 25
+        },
+        {
+          "source_file": "saigonbite/business/controllers/place_order_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "HubUnavailableError",
+          "line": 25
+        },
+        {
+          "source_file": "saigonbite/business/controllers/place_order_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "NotFoundError",
+          "line": 25
+        },
+        {
+          "source_file": "saigonbite/business/controllers/place_order_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "PaymentDeclinedError",
+          "line": 25
+        },
+        {
+          "source_file": "saigonbite/business/controllers/place_order_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "QuoteChangedError",
+          "line": 25
+        },
+        {
+          "source_file": "saigonbite/business/controllers/place_order_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "ValidationError",
+          "line": 25
+        },
+        {
+          "source_file": "saigonbite/business/controllers/report_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Hub",
+          "line": 21
+        },
+        {
+          "source_file": "saigonbite/business/controllers/report_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "HubStatus",
+          "line": 21
+        },
+        {
+          "source_file": "saigonbite/business/controllers/report_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "OrderState",
+          "line": 21
+        },
+        {
+          "source_file": "saigonbite/business/controllers/report_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Role",
+          "line": 21
+        },
+        {
+          "source_file": "saigonbite/business/controllers/report_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "HubDAO",
+          "line": 22
+        },
+        {
+          "source_file": "saigonbite/business/controllers/report_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "ReportDAO",
+          "line": 22
+        },
+        {
+          "source_file": "saigonbite/business/controllers/report_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.common",
+          "imported_name": "BaseController",
+          "line": 24
+        },
+        {
+          "source_file": "saigonbite/business/controllers/report_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.common",
+          "imported_name": "vn_day_start_utc",
+          "line": 24
+        },
+        {
+          "source_file": "saigonbite/business/controllers/report_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "ValidationError",
+          "line": 25
+        },
+        {
+          "source_file": "saigonbite/business/controllers/user_admin_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Hub",
+          "line": 19
+        },
+        {
+          "source_file": "saigonbite/business/controllers/user_admin_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Role",
+          "line": 19
+        },
+        {
+          "source_file": "saigonbite/business/controllers/user_admin_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "UserAccount",
+          "line": 19
+        },
+        {
+          "source_file": "saigonbite/business/controllers/user_admin_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "HubDAO",
+          "line": 20
+        },
+        {
+          "source_file": "saigonbite/business/controllers/user_admin_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "immediate_transaction",
+          "line": 20
+        },
+        {
+          "source_file": "saigonbite/business/controllers/user_admin_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.common",
+          "imported_name": "BaseController",
+          "line": 22
+        },
+        {
+          "source_file": "saigonbite/business/controllers/user_admin_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "ConflictError",
+          "line": 23
+        },
+        {
+          "source_file": "saigonbite/business/controllers/user_admin_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "NotFoundError",
+          "line": 23
+        },
+        {
+          "source_file": "saigonbite/business/controllers/user_admin_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "ValidationError",
+          "line": 23
+        },
+        {
+          "source_file": "saigonbite/business/controllers/voucher_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "DiscountType",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/voucher_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Role",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/voucher_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Voucher",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/business/controllers/voucher_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "VoucherDAO",
+          "line": 19
+        },
+        {
+          "source_file": "saigonbite/business/controllers/voucher_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "immediate_transaction",
+          "line": 19
+        },
+        {
+          "source_file": "saigonbite/business/controllers/voucher_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.common",
+          "imported_name": "BaseController",
+          "line": 21
+        },
+        {
+          "source_file": "saigonbite/business/controllers/voucher_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "ConflictError",
+          "line": 22
+        },
+        {
+          "source_file": "saigonbite/business/controllers/voucher_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "NotFoundError",
+          "line": 22
+        },
+        {
+          "source_file": "saigonbite/business/controllers/voucher_controller.py",
+          "source_layer": "controllers",
+          "target_module": "saigonbite.business.controllers.errors",
+          "imported_name": "ValidationError",
+          "line": 22
+        },
+        {
+          "source_file": "saigonbite/business/domain/__init__.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "rules",
+          "line": 1
+        },
+        {
+          "source_file": "saigonbite/business/domain/__init__.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.enums",
+          "imported_name": "CustomerType",
+          "line": 2
+        },
+        {
+          "source_file": "saigonbite/business/domain/__init__.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.enums",
+          "imported_name": "DeliveryState",
+          "line": 2
+        },
+        {
+          "source_file": "saigonbite/business/domain/__init__.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.enums",
+          "imported_name": "DiscountType",
+          "line": 2
+        },
+        {
+          "source_file": "saigonbite/business/domain/__init__.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.enums",
+          "imported_name": "OfferState",
+          "line": 2
+        },
+        {
+          "source_file": "saigonbite/business/domain/__init__.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.enums",
+          "imported_name": "OnlineOption",
+          "line": 2
+        },
+        {
+          "source_file": "saigonbite/business/domain/__init__.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.enums",
+          "imported_name": "OrderState",
+          "line": 2
+        },
+        {
+          "source_file": "saigonbite/business/domain/__init__.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.enums",
+          "imported_name": "PaymentMethod",
+          "line": 2
+        },
+        {
+          "source_file": "saigonbite/business/domain/__init__.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.enums",
+          "imported_name": "PaymentState",
+          "line": 2
+        },
+        {
+          "source_file": "saigonbite/business/domain/__init__.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.enums",
+          "imported_name": "Role",
+          "line": 2
+        },
+        {
+          "source_file": "saigonbite/business/domain/__init__.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.models",
+          "imported_name": "ACTIVE_ORDER_STATES",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/business/domain/__init__.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.models",
+          "imported_name": "ALLOWED_TRANSITIONS",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/business/domain/__init__.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.models",
+          "imported_name": "DELIVERY_TRANSITIONS",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/business/domain/__init__.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.models",
+          "imported_name": "MAX_QUANTITY",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/business/domain/__init__.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.models",
+          "imported_name": "OFFER_TRANSITIONS",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/business/domain/__init__.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.models",
+          "imported_name": "PAYMENT_TRANSITIONS",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/business/domain/__init__.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.models",
+          "imported_name": "Address",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/business/domain/__init__.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.models",
+          "imported_name": "Brand",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/business/domain/__init__.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.models",
+          "imported_name": "Customer",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/business/domain/__init__.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.models",
+          "imported_name": "Delivery",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/business/domain/__init__.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.models",
+          "imported_name": "Hub",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/business/domain/__init__.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.models",
+          "imported_name": "HubMenuItem",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/business/domain/__init__.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.models",
+          "imported_name": "HubStatus",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/business/domain/__init__.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.models",
+          "imported_name": "InvalidTransition",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/business/domain/__init__.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.models",
+          "imported_name": "LocalCustomer",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/business/domain/__init__.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.models",
+          "imported_name": "MenuItem",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/business/domain/__init__.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.models",
+          "imported_name": "Order",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/business/domain/__init__.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.models",
+          "imported_name": "OrderLine",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/business/domain/__init__.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.models",
+          "imported_name": "Payment",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/business/domain/__init__.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.models",
+          "imported_name": "Quote",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/business/domain/__init__.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.models",
+          "imported_name": "ReplacementOffer",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/business/domain/__init__.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.models",
+          "imported_name": "TouristCustomer",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/business/domain/__init__.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.models",
+          "imported_name": "UserAccount",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/business/domain/__init__.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.models",
+          "imported_name": "Voucher",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/business/domain/__init__.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.models",
+          "imported_name": "make_customer",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/business/domain/models.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "rules",
+          "line": 13
+        },
+        {
+          "source_file": "saigonbite/business/domain/models.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.enums",
+          "imported_name": "CustomerType",
+          "line": 14
+        },
+        {
+          "source_file": "saigonbite/business/domain/models.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.enums",
+          "imported_name": "DeliveryState",
+          "line": 14
+        },
+        {
+          "source_file": "saigonbite/business/domain/models.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.enums",
+          "imported_name": "DiscountType",
+          "line": 14
+        },
+        {
+          "source_file": "saigonbite/business/domain/models.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.enums",
+          "imported_name": "OfferState",
+          "line": 14
+        },
+        {
+          "source_file": "saigonbite/business/domain/models.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.enums",
+          "imported_name": "OnlineOption",
+          "line": 14
+        },
+        {
+          "source_file": "saigonbite/business/domain/models.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.enums",
+          "imported_name": "OrderState",
+          "line": 14
+        },
+        {
+          "source_file": "saigonbite/business/domain/models.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.enums",
+          "imported_name": "PaymentMethod",
+          "line": 14
+        },
+        {
+          "source_file": "saigonbite/business/domain/models.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.enums",
+          "imported_name": "PaymentState",
+          "line": 14
+        },
+        {
+          "source_file": "saigonbite/business/domain/models.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.enums",
+          "imported_name": "Role",
+          "line": 14
+        },
+        {
+          "source_file": "saigonbite/business/domain/rules.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.enums",
+          "imported_name": "CustomerType",
+          "line": 10
+        },
+        {
+          "source_file": "saigonbite/business/domain/rules.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.enums",
+          "imported_name": "OnlineOption",
+          "line": 10
+        },
+        {
+          "source_file": "saigonbite/business/domain/rules.py",
+          "source_layer": "domain",
+          "target_module": "saigonbite.business.domain.enums",
+          "imported_name": "OrderState",
+          "line": 10
+        },
+        {
+          "source_file": "saigonbite/data_access/__init__.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.data_access.customer_dao",
+          "imported_name": "CustomerDAO",
+          "line": 1
+        },
+        {
+          "source_file": "saigonbite/data_access/__init__.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.data_access.database",
+          "imported_name": "connect",
+          "line": 2
+        },
+        {
+          "source_file": "saigonbite/data_access/__init__.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.data_access.database",
+          "imported_name": "immediate_transaction",
+          "line": 2
+        },
+        {
+          "source_file": "saigonbite/data_access/__init__.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.data_access.delivery_dao",
+          "imported_name": "DeliveryDAO",
+          "line": 3
+        },
+        {
+          "source_file": "saigonbite/data_access/__init__.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.data_access.hub_dao",
+          "imported_name": "HubDAO",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/data_access/__init__.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.data_access.menu_dao",
+          "imported_name": "MenuDAO",
+          "line": 5
+        },
+        {
+          "source_file": "saigonbite/data_access/__init__.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.data_access.offer_dao",
+          "imported_name": "ReplacementOfferDAO",
+          "line": 6
+        },
+        {
+          "source_file": "saigonbite/data_access/__init__.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.data_access.order_dao",
+          "imported_name": "OrderDAO",
+          "line": 7
+        },
+        {
+          "source_file": "saigonbite/data_access/__init__.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.data_access.payment_dao",
+          "imported_name": "PaymentDAO",
+          "line": 8
+        },
+        {
+          "source_file": "saigonbite/data_access/__init__.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.data_access.payment_gateway",
+          "imported_name": "APPROVE",
+          "line": 9
+        },
+        {
+          "source_file": "saigonbite/data_access/__init__.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.data_access.payment_gateway",
+          "imported_name": "DECLINE",
+          "line": 9
+        },
+        {
+          "source_file": "saigonbite/data_access/__init__.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.data_access.payment_gateway",
+          "imported_name": "Authorisation",
+          "line": 9
+        },
+        {
+          "source_file": "saigonbite/data_access/__init__.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.data_access.payment_gateway",
+          "imported_name": "PaymentGatewaySimulator",
+          "line": 9
+        },
+        {
+          "source_file": "saigonbite/data_access/__init__.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.data_access.report_dao",
+          "imported_name": "ReportDAO",
+          "line": 10
+        },
+        {
+          "source_file": "saigonbite/data_access/__init__.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.data_access.user_dao",
+          "imported_name": "UserDAO",
+          "line": 11
+        },
+        {
+          "source_file": "saigonbite/data_access/__init__.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.data_access.voucher_dao",
+          "imported_name": "VoucherDAO",
+          "line": 12
+        },
+        {
+          "source_file": "saigonbite/data_access/customer_dao.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Address",
+          "line": 6
+        },
+        {
+          "source_file": "saigonbite/data_access/customer_dao.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Customer",
+          "line": 6
+        },
+        {
+          "source_file": "saigonbite/data_access/customer_dao.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "make_customer",
+          "line": 6
+        },
+        {
+          "source_file": "saigonbite/data_access/delivery_dao.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Delivery",
+          "line": 8
+        },
+        {
+          "source_file": "saigonbite/data_access/delivery_dao.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "DeliveryState",
+          "line": 8
+        },
+        {
+          "source_file": "saigonbite/data_access/hub_dao.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "ACTIVE_ORDER_STATES",
+          "line": 6
+        },
+        {
+          "source_file": "saigonbite/data_access/hub_dao.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Hub",
+          "line": 6
+        },
+        {
+          "source_file": "saigonbite/data_access/hub_dao.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "HubMenuItem",
+          "line": 6
+        },
+        {
+          "source_file": "saigonbite/data_access/hub_dao.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "MenuItem",
+          "line": 6
+        },
+        {
+          "source_file": "saigonbite/data_access/hub_dao.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "rules",
+          "line": 6
+        },
+        {
+          "source_file": "saigonbite/data_access/menu_dao.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Brand",
+          "line": 7
+        },
+        {
+          "source_file": "saigonbite/data_access/menu_dao.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "HubMenuItem",
+          "line": 7
+        },
+        {
+          "source_file": "saigonbite/data_access/menu_dao.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "MenuItem",
+          "line": 7
+        },
+        {
+          "source_file": "saigonbite/data_access/offer_dao.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "OfferState",
+          "line": 7
+        },
+        {
+          "source_file": "saigonbite/data_access/offer_dao.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "ReplacementOffer",
+          "line": 7
+        },
+        {
+          "source_file": "saigonbite/data_access/order_dao.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Order",
+          "line": 6
+        },
+        {
+          "source_file": "saigonbite/data_access/order_dao.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "OrderLine",
+          "line": 6
+        },
+        {
+          "source_file": "saigonbite/data_access/order_dao.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "OrderState",
+          "line": 6
+        },
+        {
+          "source_file": "saigonbite/data_access/order_dao.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "rules",
+          "line": 6
+        },
+        {
+          "source_file": "saigonbite/data_access/payment_dao.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "OnlineOption",
+          "line": 6
+        },
+        {
+          "source_file": "saigonbite/data_access/payment_dao.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Payment",
+          "line": 6
+        },
+        {
+          "source_file": "saigonbite/data_access/payment_dao.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "PaymentMethod",
+          "line": 6
+        },
+        {
+          "source_file": "saigonbite/data_access/payment_dao.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "PaymentState",
+          "line": 6
+        },
+        {
+          "source_file": "saigonbite/data_access/payment_gateway.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "OnlineOption",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/data_access/user_dao.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Role",
+          "line": 6
+        },
+        {
+          "source_file": "saigonbite/data_access/user_dao.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "UserAccount",
+          "line": 6
+        },
+        {
+          "source_file": "saigonbite/data_access/voucher_dao.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "DiscountType",
+          "line": 7
+        },
+        {
+          "source_file": "saigonbite/data_access/voucher_dao.py",
+          "source_layer": "data_access",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Voucher",
+          "line": 7
+        },
+        {
+          "source_file": "saigonbite/presentation/account.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.controllers",
+          "imported_name": "AccountController",
+          "line": 5
+        },
+        {
+          "source_file": "saigonbite/presentation/account.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.controllers",
+          "imported_name": "NotFoundError",
+          "line": 5
+        },
+        {
+          "source_file": "saigonbite/presentation/account.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.controllers",
+          "imported_name": "ValidationError",
+          "line": 5
+        },
+        {
+          "source_file": "saigonbite/presentation/account.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Role",
+          "line": 6
+        },
+        {
+          "source_file": "saigonbite/presentation/account.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "rules",
+          "line": 6
+        },
+        {
+          "source_file": "saigonbite/presentation/account.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.presentation.auth",
+          "imported_name": "SessionUser",
+          "line": 7
+        },
+        {
+          "source_file": "saigonbite/presentation/account.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.presentation.auth",
+          "imported_name": "role_required",
+          "line": 7
+        },
+        {
+          "source_file": "saigonbite/presentation/account.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.presentation.db",
+          "imported_name": "get_db",
+          "line": 8
+        },
+        {
+          "source_file": "saigonbite/presentation/account.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.presentation.helpers",
+          "imported_name": "act",
+          "line": 9
+        },
+        {
+          "source_file": "saigonbite/presentation/account.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.presentation.helpers",
+          "imported_name": "uid",
+          "line": 9
+        },
+        {
+          "source_file": "saigonbite/presentation/admin.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.controllers",
+          "imported_name": "STAFF_ROLES",
+          "line": 5
+        },
+        {
+          "source_file": "saigonbite/presentation/admin.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.controllers",
+          "imported_name": "HubController",
+          "line": 5
+        },
+        {
+          "source_file": "saigonbite/presentation/admin.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.controllers",
+          "imported_name": "MenuController",
+          "line": 5
+        },
+        {
+          "source_file": "saigonbite/presentation/admin.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.controllers",
+          "imported_name": "OrderArchiveController",
+          "line": 5
+        },
+        {
+          "source_file": "saigonbite/presentation/admin.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.controllers",
+          "imported_name": "UserAdminController",
+          "line": 5
+        },
+        {
+          "source_file": "saigonbite/presentation/admin.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.controllers",
+          "imported_name": "ValidationError",
+          "line": 5
+        },
+        {
+          "source_file": "saigonbite/presentation/admin.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.controllers",
+          "imported_name": "VoucherController",
+          "line": 5
+        },
+        {
+          "source_file": "saigonbite/presentation/admin.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "DiscountType",
+          "line": 7
+        },
+        {
+          "source_file": "saigonbite/presentation/admin.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Role",
+          "line": 7
+        },
+        {
+          "source_file": "saigonbite/presentation/admin.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.presentation.auth",
+          "imported_name": "role_required",
+          "line": 8
+        },
+        {
+          "source_file": "saigonbite/presentation/admin.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.presentation.db",
+          "imported_name": "get_db",
+          "line": 9
+        },
+        {
+          "source_file": "saigonbite/presentation/admin.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.presentation.helpers",
+          "imported_name": "act",
+          "line": 10
+        },
+        {
+          "source_file": "saigonbite/presentation/admin.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.presentation.helpers",
+          "imported_name": "uid",
+          "line": 10
+        },
+        {
+          "source_file": "saigonbite/presentation/auth.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.controllers",
+          "imported_name": "AuthController",
+          "line": 9
+        },
+        {
+          "source_file": "saigonbite/presentation/auth.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Role",
+          "line": 10
+        },
+        {
+          "source_file": "saigonbite/presentation/auth.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "UserAccount",
+          "line": 10
+        },
+        {
+          "source_file": "saigonbite/presentation/auth.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.presentation.db",
+          "imported_name": "get_db",
+          "line": 11
+        },
+        {
+          "source_file": "saigonbite/presentation/auth.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite",
+          "imported_name": "NAV",
+          "line": 63
+        },
+        {
+          "source_file": "saigonbite/presentation/db.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "connect",
+          "line": 7
+        },
+        {
+          "source_file": "saigonbite/presentation/delivery.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.controllers",
+          "imported_name": "DeliveryController",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/presentation/delivery.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Role",
+          "line": 5
+        },
+        {
+          "source_file": "saigonbite/presentation/delivery.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.presentation.auth",
+          "imported_name": "role_required",
+          "line": 6
+        },
+        {
+          "source_file": "saigonbite/presentation/delivery.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.presentation.db",
+          "imported_name": "get_db",
+          "line": 7
+        },
+        {
+          "source_file": "saigonbite/presentation/delivery.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.presentation.helpers",
+          "imported_name": "act",
+          "line": 8
+        },
+        {
+          "source_file": "saigonbite/presentation/delivery.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.presentation.helpers",
+          "imported_name": "uid",
+          "line": 8
+        },
+        {
+          "source_file": "saigonbite/presentation/helpers.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.controllers",
+          "imported_name": "ConflictError",
+          "line": 7
+        },
+        {
+          "source_file": "saigonbite/presentation/helpers.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.controllers",
+          "imported_name": "ValidationError",
+          "line": 7
+        },
+        {
+          "source_file": "saigonbite/presentation/kitchen.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.controllers",
+          "imported_name": "KitchenController",
+          "line": 5
+        },
+        {
+          "source_file": "saigonbite/presentation/kitchen.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Role",
+          "line": 6
+        },
+        {
+          "source_file": "saigonbite/presentation/kitchen.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.presentation.auth",
+          "imported_name": "role_required",
+          "line": 7
+        },
+        {
+          "source_file": "saigonbite/presentation/kitchen.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.presentation.db",
+          "imported_name": "get_db",
+          "line": 8
+        },
+        {
+          "source_file": "saigonbite/presentation/kitchen.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.presentation.helpers",
+          "imported_name": "act",
+          "line": 9
+        },
+        {
+          "source_file": "saigonbite/presentation/kitchen.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.presentation.helpers",
+          "imported_name": "uid",
+          "line": 9
+        },
+        {
+          "source_file": "saigonbite/presentation/order.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.controllers",
+          "imported_name": "HubUnavailableError",
+          "line": 13
+        },
+        {
+          "source_file": "saigonbite/presentation/order.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.controllers",
+          "imported_name": "OrderTrackingController",
+          "line": 13
+        },
+        {
+          "source_file": "saigonbite/presentation/order.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.controllers",
+          "imported_name": "PaymentChoice",
+          "line": 13
+        },
+        {
+          "source_file": "saigonbite/presentation/order.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.controllers",
+          "imported_name": "PaymentDeclinedError",
+          "line": 13
+        },
+        {
+          "source_file": "saigonbite/presentation/order.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.controllers",
+          "imported_name": "PlaceOrderController",
+          "line": 13
+        },
+        {
+          "source_file": "saigonbite/presentation/order.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.controllers",
+          "imported_name": "QuoteChangedError",
+          "line": 13
+        },
+        {
+          "source_file": "saigonbite/presentation/order.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.controllers",
+          "imported_name": "ValidationError",
+          "line": 13
+        },
+        {
+          "source_file": "saigonbite/presentation/order.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "OnlineOption",
+          "line": 16
+        },
+        {
+          "source_file": "saigonbite/presentation/order.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "PaymentMethod",
+          "line": 16
+        },
+        {
+          "source_file": "saigonbite/presentation/order.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Role",
+          "line": 16
+        },
+        {
+          "source_file": "saigonbite/presentation/order.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "APPROVE",
+          "line": 17
+        },
+        {
+          "source_file": "saigonbite/presentation/order.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.data_access",
+          "imported_name": "DECLINE",
+          "line": 17
+        },
+        {
+          "source_file": "saigonbite/presentation/order.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.presentation.auth",
+          "imported_name": "role_required",
+          "line": 18
+        },
+        {
+          "source_file": "saigonbite/presentation/order.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.presentation.db",
+          "imported_name": "get_db",
+          "line": 19
+        },
+        {
+          "source_file": "saigonbite/presentation/order.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.presentation.helpers",
+          "imported_name": "act",
+          "line": 20
+        },
+        {
+          "source_file": "saigonbite/presentation/order.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.presentation.helpers",
+          "imported_name": "uid",
+          "line": 20
+        },
+        {
+          "source_file": "saigonbite/presentation/reports.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.controllers",
+          "imported_name": "ReportController",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/presentation/reports.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.controllers",
+          "imported_name": "ValidationError",
+          "line": 4
+        },
+        {
+          "source_file": "saigonbite/presentation/reports.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.business.domain",
+          "imported_name": "Role",
+          "line": 5
+        },
+        {
+          "source_file": "saigonbite/presentation/reports.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.presentation.auth",
+          "imported_name": "role_required",
+          "line": 6
+        },
+        {
+          "source_file": "saigonbite/presentation/reports.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.presentation.db",
+          "imported_name": "get_db",
+          "line": 7
+        },
+        {
+          "source_file": "saigonbite/presentation/reports.py",
+          "source_layer": "presentation",
+          "target_module": "saigonbite.presentation.helpers",
+          "imported_name": "uid",
+          "line": 8
+        }
+      ]
+    },
+    "notation": {
+      "dashed_open_arrow": "allowed UML package dependency",
+      "forbidden_imports": "listed in the note and report; not drawn as allowed arrows",
+      "external_imports": "framework, standard-library and third-party imports are outside the app-layer graph"
+    },
+    "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665"
+  }
+}

@@ -1,0 +1,689 @@
+{
+  "stem": "erd_schema_v2_PartB",
+  "width": 1800,
+  "height": 1360,
+  "font_min": 26,
+  "placed_width_mm": 230,
+  "min_placed_pt": 9.212598425196852,
+  "nodes": [
+    {
+      "id": "brand",
+      "label": "brand",
+      "x": 80,
+      "y": 140,
+      "w": 600,
+      "h": 158,
+      "kind": "class",
+      "fill": "#F4F8FB",
+      "attrs": [
+        "PK id",
+        "U name",
+        "archived_at?"
+      ]
+    },
+    {
+      "id": "menu_item",
+      "label": "menu_item",
+      "x": 1000,
+      "y": 140,
+      "w": 600,
+      "h": 251,
+      "kind": "class",
+      "fill": "#F4F8FB",
+      "attrs": [
+        "PK id",
+        "FK/U* brand_id",
+        "U* name",
+        "description",
+        "C price",
+        "archived_at?"
+      ]
+    },
+    {
+      "id": "hub_menu_item",
+      "label": "hub_menu_item",
+      "x": 1000,
+      "y": 600,
+      "w": 600,
+      "h": 158,
+      "kind": "class",
+      "fill": "#F4F8FB",
+      "attrs": [
+        "PK/FK hub_id",
+        "PK/FK menu_item_id",
+        "C is_available"
+      ]
+    },
+    {
+      "id": "voucher",
+      "label": "voucher",
+      "x": 80,
+      "y": 600,
+      "w": 600,
+      "h": 375,
+      "kind": "class",
+      "fill": "#F4F8FB",
+      "attrs": [
+        "PK id",
+        "U code",
+        "description",
+        "C discount_type",
+        "C discount_value",
+        "C min_subtotal",
+        "C max_discount?",
+        "C valid_from",
+        "C valid_until",
+        "archived_at?"
+      ]
+    },
+    {
+      "id": "ref_hub",
+      "label": "«reference» hub\nPK id · full table in A",
+      "x": 1000,
+      "y": 850,
+      "w": 600,
+      "h": 120,
+      "kind": "ref",
+      "fill": "#F5F8FA",
+      "attrs": null
+    },
+    {
+      "id": "part_note",
+      "label": "hub_menu_item is the Hub–MenuItem association class; its composite PK is (hub_id, menu_item_id).\nUNIQUE: menu_item(brand_id, name); hub_menu_item(hub_id, menu_item_id) PK; brand.name and voucher.code.\nAn absent hub_menu_item row is unlisted; is_available is per hub. Order snapshots retain historical names/prices.\nContinuation: Hub resolves to PartA; orders/lines continue in PartC; payment/delivery and replacement offers in PartsD/E.",
+      "x": 70,
+      "y": 1010,
+      "w": 1660,
+      "h": 215,
+      "kind": "note",
+      "fill": "#FFF8E8",
+      "attrs": null
+    }
+  ],
+  "edges": [
+    {
+      "id": "fk_menu_item_brand_id",
+      "source": "menu_item",
+      "target": "brand",
+      "points": [
+        [
+          1000,
+          270
+        ],
+        [
+          680,
+          270
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": [
+        [
+          "0..*",
+          930,
+          235
+        ],
+        [
+          "1",
+          685,
+          275
+        ]
+      ]
+    },
+    {
+      "id": "fk_hub_menu_item_menu_item_id",
+      "source": "hub_menu_item",
+      "target": "menu_item",
+      "points": [
+        [
+          1300,
+          600
+        ],
+        [
+          1300,
+          391
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": [
+        [
+          "1",
+          1310,
+          580
+        ],
+        [
+          "0..*",
+          1310,
+          405
+        ]
+      ]
+    },
+    {
+      "id": "fk_hub_menu_item_hub_id",
+      "source": "hub_menu_item",
+      "target": "ref_hub",
+      "points": [
+        [
+          1300,
+          758
+        ],
+        [
+          1300,
+          850
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": [
+        [
+          "1",
+          1310,
+          770
+        ],
+        [
+          "0..*",
+          1360,
+          825
+        ]
+      ]
+    }
+  ],
+  "author": "722I0004 · AI-assisted (Codex)",
+  "phase3": {
+    "diagram_type": "erd",
+    "elements": [
+      {
+        "class": "Brand (table brand)",
+        "attributes": [
+          "id",
+          "name",
+          "archived_at"
+        ],
+        "methods": []
+      },
+      {
+        "class": "MenuItem (table menu_item)",
+        "attributes": [
+          "id",
+          "brand_id",
+          "name",
+          "description",
+          "price",
+          "archived_at"
+        ],
+        "methods": []
+      },
+      {
+        "class": "HubMenuItem (table hub_menu_item)",
+        "attributes": [
+          "hub_id",
+          "menu_item_id",
+          "is_available"
+        ],
+        "methods": []
+      },
+      {
+        "class": "Voucher (table voucher)",
+        "attributes": [
+          "id",
+          "code",
+          "description",
+          "discount_type",
+          "discount_value",
+          "min_subtotal",
+          "max_discount",
+          "valid_from",
+          "valid_until",
+          "archived_at"
+        ],
+        "methods": []
+      },
+      {
+        "class": "Hub (reference to table hub)",
+        "attributes": [
+          "id"
+        ],
+        "methods": []
+      },
+      {
+        "class": "Continuation / schema note (PartB)",
+        "attributes": [
+          "cross-page references",
+          "schema constraints",
+          "C0 notes"
+        ],
+        "methods": []
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "menu_item",
+        "target": "brand",
+        "kind": "foreign_key",
+        "column": "brand_id",
+        "child_to_parent": "1",
+        "parent_to_child": "0..*",
+        "enforcement": [
+          "FOREIGN KEY",
+          "NOT NULL",
+          "UNIQUE (brand_id, name)"
+        ]
+      },
+      {
+        "source": "hub_menu_item",
+        "target": "menu_item",
+        "kind": "foreign_key",
+        "column": "menu_item_id",
+        "child_to_parent": "1",
+        "parent_to_child": "0..*",
+        "enforcement": [
+          "FOREIGN KEY",
+          "NOT NULL"
+        ]
+      },
+      {
+        "source": "hub_menu_item",
+        "target": "hub",
+        "kind": "foreign_key",
+        "column": "hub_id",
+        "child_to_parent": "1",
+        "parent_to_child": "0..*",
+        "enforcement": [
+          "FOREIGN KEY",
+          "NOT NULL"
+        ]
+      }
+    ],
+    "schema_metadata": {
+      "user_version": 2,
+      "schema_sha256": "3c69ba2ecda4bbbeab6f91ae0fd0e59153f6bbb2ae3f7cb517aeed1ba0e68794",
+      "tables": {
+        "brand": {
+          "columns": [
+            {
+              "name": "id",
+              "type": "INTEGER",
+              "not_null": false,
+              "primary_key": true,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "name",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": true,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "archived_at",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            }
+          ],
+          "constraints": [],
+          "checks": []
+        },
+        "menu_item": {
+          "columns": [
+            {
+              "name": "id",
+              "type": "INTEGER",
+              "not_null": false,
+              "primary_key": true,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "brand_id",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": [
+                [
+                  "brand",
+                  "id"
+                ]
+              ]
+            },
+            {
+              "name": "name",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "description",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "price",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "price > 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "archived_at",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            }
+          ],
+          "constraints": [
+            "UNIQUE (brand_id, name)"
+          ],
+          "checks": [
+            "price > 0"
+          ]
+        },
+        "hub_menu_item": {
+          "columns": [
+            {
+              "name": "hub_id",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": [
+                [
+                  "hub",
+                  "id"
+                ]
+              ]
+            },
+            {
+              "name": "menu_item_id",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": [
+                [
+                  "menu_item",
+                  "id"
+                ]
+              ]
+            },
+            {
+              "name": "is_available",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "is_available IN (0, 1)"
+              ],
+              "references": []
+            }
+          ],
+          "constraints": [
+            "PRIMARY KEY (hub_id, menu_item_id)"
+          ],
+          "checks": [
+            "is_available IN (0, 1)"
+          ]
+        },
+        "voucher": {
+          "columns": [
+            {
+              "name": "id",
+              "type": "INTEGER",
+              "not_null": false,
+              "primary_key": true,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "code",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": true,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "description",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "discount_type",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "discount_type IN ('FIXED', 'PERCENT')"
+              ],
+              "references": []
+            },
+            {
+              "name": "discount_value",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "discount_value > 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "min_subtotal",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "min_subtotal >= 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "max_discount",
+              "type": "INTEGER",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "max_discount IS NULL OR max_discount > 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "valid_from",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "valid_until",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "archived_at",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            }
+          ],
+          "constraints": [
+            "CHECK (discount_type = 'FIXED' OR discount_value <= 100)",
+            "CHECK (valid_from <= valid_until)"
+          ],
+          "checks": [
+            "discount_type IN ('FIXED', 'PERCENT')",
+            "discount_value > 0",
+            "min_subtotal >= 0",
+            "max_discount IS NULL OR max_discount > 0",
+            "discount_type = 'FIXED' OR discount_value <= 100",
+            "valid_from <= valid_until"
+          ]
+        },
+        "hub": {
+          "columns": [
+            {
+              "name": "id",
+              "type": "INTEGER",
+              "not_null": false,
+              "primary_key": true,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "code",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": true,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "name",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "address_text",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "latitude",
+              "type": "REAL",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "longitude",
+              "type": "REAL",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "max_active_orders",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "max_active_orders > 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "base_delivery_fee",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "base_delivery_fee >= 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "archived_at",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            }
+          ],
+          "constraints": [],
+          "checks": [
+            "max_active_orders > 0",
+            "base_delivery_fee >= 0"
+          ]
+        }
+      },
+      "indexes": []
+    },
+    "reference_nodes": [
+      "hub"
+    ],
+    "continuation": "Hub resolves to PartA; orders/lines continue in PartC; payment/delivery and replacement offers in PartsD/E.",
+    "legend": {
+      "PK": "primary-key column (including composite-key members)",
+      "FK": "foreign-key column; line labels show SQL multiplicity",
+      "U": "single-column UNIQUE constraint",
+      "U*": "member of a composite UNIQUE or partial UNIQUE index; not individually unique",
+      "C": "column participates in one or more SQL CHECK expressions; full expressions are in the mapping CSV",
+      "?": "SQL NULL is permitted",
+      "multiplicity": "UML end labels are SQL cardinalities unless a note explicitly states an application invariant"
+    },
+    "schema_user_version": 2,
+    "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+    "evidence_label": "Static",
+    "min_placed_pt_at_230x170mm": 9.2126
+  }
+}

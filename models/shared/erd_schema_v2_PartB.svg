@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1360" viewBox="0 0 1800 1360">
+<rect width="100%" height="100%" fill="white"/>
+<polyline points="1000,270 680,270" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="1300,600 1300,391" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="1300,758 1300,850" fill="none" stroke="#52616F" stroke-width="3"/>
+<rect x="80" y="140" width="600" height="158" fill="#F4F8FB" stroke="#004387" stroke-width="3"/>
+<path d="M80,192 H680" stroke="#004387" stroke-width="2"/>
+<rect x="1000" y="140" width="600" height="251" fill="#F4F8FB" stroke="#004387" stroke-width="3"/>
+<path d="M1000,192 H1600" stroke="#004387" stroke-width="2"/>
+<rect x="1000" y="600" width="600" height="158" fill="#F4F8FB" stroke="#004387" stroke-width="3"/>
+<path d="M1000,652 H1600" stroke="#004387" stroke-width="2"/>
+<rect x="80" y="600" width="600" height="375" fill="#F4F8FB" stroke="#004387" stroke-width="3"/>
+<path d="M80,652 H680" stroke="#004387" stroke-width="2"/>
+<rect x="1000" y="850" width="600" height="120" fill="#F5F8FA" stroke="#004387" stroke-width="3"/>
+<rect x="70" y="1010" width="1660" height="215" fill="#FFF8E8" stroke="#004387" stroke-width="3"/>
+<text x="30" y="18" fill="#202B36" font-family="Arial, sans-serif" font-size="34" font-weight="700" dominant-baseline="hanging">
+<tspan x="30" dy="0">Schema v2 · brands, menu items, hub listings and vouchers</tspan>
+</text>
+<text x="30" y="1294" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="30" dy="0">Figure 4.3.1B · Author: 722I0004 · AI-assisted (Codex)</tspan>
+</text>
+<text x="30" y="1325" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="30" dy="0">Static schema v2 at C0 = 45ac762; full SQL mapping and notes are in §4.3.1.</tspan>
+</text>
+<text x="930" y="235" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="930" dy="0">0..*</tspan>
+</text>
+<text x="685" y="275" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="685" dy="0">1</tspan>
+</text>
+<text x="1310" y="580" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1310" dy="0">1</tspan>
+</text>
+<text x="1310" y="405" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1310" dy="0">0..*</tspan>
+</text>
+<text x="1310" y="770" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1310" dy="0">1</tspan>
+</text>
+<text x="1360" y="825" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1360" dy="0">0..*</tspan>
+</text>
+<text x="94" y="152" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="700" dominant-baseline="hanging">
+<tspan x="94" dy="0">brand</tspan>
+</text>
+<text x="94" y="205" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="94" dy="0">PK id</tspan>
+</text>
+<text x="94" y="236" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="94" dy="0">U name</tspan>
+</text>
+<text x="94" y="267" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="94" dy="0">archived_at?</tspan>
+</text>
+<text x="1014" y="152" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="700" dominant-baseline="hanging">
+<tspan x="1014" dy="0">menu_item</tspan>
+</text>
+<text x="1014" y="205" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1014" dy="0">PK id</tspan>
+</text>
+<text x="1014" y="236" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1014" dy="0">FK/U* brand_id</tspan>
+</text>
+<text x="1014" y="267" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1014" dy="0">U* name</tspan>
+</text>
+<text x="1014" y="298" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1014" dy="0">description</tspan>
+</text>
+<text x="1014" y="329" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1014" dy="0">C price</tspan>
+</text>
+<text x="1014" y="360" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1014" dy="0">archived_at?</tspan>
+</text>
+<text x="1014" y="612" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="700" dominant-baseline="hanging">
+<tspan x="1014" dy="0">hub_menu_item</tspan>
+</text>
+<text x="1014" y="665" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1014" dy="0">PK/FK hub_id</tspan>
+</text>
+<text x="1014" y="696" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1014" dy="0">PK/FK menu_item_id</tspan>
+</text>
+<text x="1014" y="727" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1014" dy="0">C is_available</tspan>
+</text>
+<text x="94" y="612" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="700" dominant-baseline="hanging">
+<tspan x="94" dy="0">voucher</tspan>
+</text>
+<text x="94" y="665" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="94" dy="0">PK id</tspan>
+</text>
+<text x="94" y="696" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="94" dy="0">U code</tspan>
+</text>
+<text x="94" y="727" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="94" dy="0">description</tspan>
+</text>
+<text x="94" y="758" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="94" dy="0">C discount_type</tspan>
+</text>
+<text x="94" y="789" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="94" dy="0">C discount_value</tspan>
+</text>
+<text x="94" y="820" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="94" dy="0">C min_subtotal</tspan>
+</text>
+<text x="94" y="851" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="94" dy="0">C max_discount?</tspan>
+</text>
+<text x="94" y="882" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="94" dy="0">C valid_from</tspan>
+</text>
+<text x="94" y="913" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="94" dy="0">C valid_until</tspan>
+</text>
+<text x="94" y="944" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="94" dy="0">archived_at?</tspan>
+</text>
+<text x="1012" y="862" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1012" dy="0">«reference» hub</tspan>
+<tspan x="1012" dy="30.939999999999998">PK id · full table in A</tspan>
+</text>
+<text x="82" y="1022" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="82" dy="0">hub_menu_item is the Hub–MenuItem association class; its composite PK is (hub_id, menu_item_id).</tspan>
+<tspan x="82" dy="30.939999999999998">UNIQUE: menu_item(brand_id, name); hub_menu_item(hub_id, menu_item_id) PK; brand.name and voucher.code.</tspan>
+<tspan x="82" dy="30.939999999999998">An absent hub_menu_item row is unlisted; is_available is per hub. Order snapshots retain historical names/prices.</tspan>
+<tspan x="82" dy="30.939999999999998">Continuation: Hub resolves to PartA; orders/lines continue in PartC; payment/delivery and replacement offers in PartsD/E.</tspan>
+</text>
+</svg>

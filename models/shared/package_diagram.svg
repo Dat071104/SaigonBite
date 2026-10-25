@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1360" viewBox="0 0 1800 1360">
+<rect width="100%" height="100%" fill="white"/>
+<polyline points="900,320 900,400" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="890.0,380.0 900,400 910.0,380.0" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="690,660 690,710 780,710 780,760" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="770.0,740.0 780,760 790.0,740.0" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="1110,660 1110,710 1000,710 1000,760" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="990.0,740.0 1000,760 1010.0,740.0" fill="none" stroke="#52616F" stroke-width="3"/>
+<rect x="570" y="100" width="660" height="220" fill="#EAF2FA" stroke="#004387" stroke-width="3"/>
+<rect x="570" y="400" width="660" height="260" fill="#E9F4EF" stroke="#004387" stroke-width="3"/>
+<rect x="100" y="760" width="680" height="250" fill="#F2EFF9" stroke="#004387" stroke-width="3"/>
+<rect x="1000" y="760" width="680" height="250" fill="#FFF2E6" stroke="#004387" stroke-width="3"/>
+<rect x="70" y="1035" width="1660" height="190" fill="#FFF8E8" stroke="#004387" stroke-width="3"/>
+<text x="30" y="18" fill="#202B36" font-family="Arial, sans-serif" font-size="34" font-weight="700" dominant-baseline="hanging">
+<tspan x="30" dy="0">Package architecture · allowed dependencies and C0 import audit</tspan>
+</text>
+<text x="30" y="1294" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="30" dy="0">Figure 4.2 · Author: 722I0004 · AI-assisted (Codex)</tspan>
+</text>
+<text x="30" y="1325" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="30" dy="0">Static import comparison at C0 = 45ac762; no runtime behavior inferred.</tspan>
+</text>
+<text x="790" y="345" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="790" dy="0">«dependency»</tspan>
+</text>
+<text x="525" y="705" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="525" dy="0">«dependency»</tspan>
+</text>
+<text x="1125" y="705" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1125" dy="0">«dependency»</tspan>
+</text>
+<text x="761.28125" y="117.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="761.28125" dy="0">«package» presentation</tspan>
+</text>
+<text x="686.1875" y="148.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="686.1875" dy="0">Flask blueprint modules / view routes</tspan>
+</text>
+<text x="661.640625" y="179.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="661.640625" dy="0">account · admin · auth · delivery · kitchen</tspan>
+</text>
+<text x="721.625" y="210.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="721.625" dy="0">main · order · reports · security</tspan>
+</text>
+<text x="642.8359375" y="241.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="642.8359375" dy="0">Templates and static assets are presentation</tspan>
+</text>
+<text x="839.328125" y="272.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="839.328125" dy="0">resources.</tspan>
+</text>
+<text x="717.9453125" y="421.5" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="717.9453125" dy="0">«package» business.controllers</tspan>
+</text>
+<text x="728.0703125" y="452.5" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="728.0703125" dy="0">UC and supporting controllers</tspan>
+</text>
+<text x="619.5234375" y="483.5" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="619.5234375" dy="0">PlaceOrder · OrderTracking · Account · Kitchen ·</tspan>
+</text>
+<text x="853.046875" y="514.5" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="853.046875" dy="0">Delivery</tspan>
+</text>
+<text x="608.921875" y="545.5" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="608.921875" dy="0">Hub · Menu · Voucher · UserAdmin · OrderArchive</tspan>
+</text>
+<text x="853.0546875" y="576.5" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="853.0546875" dy="0">· Report</tspan>
+</text>
+<text x="642.828125" y="607.5" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="642.828125" dy="0">Shared coordination and domain error types.</tspan>
+</text>
+<text x="275.2734375" y="792.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="275.2734375" dy="0">«package» business.domain</tspan>
+</text>
+<text x="153.2421875" y="823.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="153.2421875" dy="0">Dataclasses · enums · state transitions · business</tspan>
+</text>
+<text x="411.828125" y="854.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="411.828125" dy="0">rules</tspan>
+</text>
+<text x="163.40625" y="885.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="163.40625" dy="0">Order · Customer · Hub · MenuItem · Payment ·</tspan>
+</text>
+<text x="393.046875" y="916.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="393.046875" dy="0">Delivery</tspan>
+</text>
+<text x="136.5703125" y="947.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="136.5703125" dy="0">No outward application-layer dependency is allowed.</tspan>
+</text>
+<text x="1199.8359375" y="823.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1199.8359375" dy="0">«package» data_access</tspan>
+</text>
+<text x="1111.5078125" y="854.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1111.5078125" dy="0">Hand-written parameterised-SQL DAOs</tspan>
+</text>
+<text x="1056.0859375" y="885.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1056.0859375" dy="0">database module: connection / transaction helper</tspan>
+</text>
+<text x="1097.2734375" y="916.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1097.2734375" dy="0">Local PaymentGatewaySimulator adapter.</tspan>
+</text>
+<text x="82" y="1047" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="82" dy="0">C0 imports that violate the strict layer graph (shown as notes, never allowed arrows):</tspan>
+<tspan x="82" dy="30.939999999999998">presentation → domain: 12 imports / 7 modules; presentation → data_access: 3 / 2 modules.</tspan>
+<tspan x="82" dy="30.939999999999998">data_access → domain: 28 imports / 10 modules (DAO materialisation, enums and rules).</tspan>
+<tspan x="82" dy="30.939999999999998">presentation.auth → saigonbite.NAV: 1 root import; 14 bootstrap imports include app.py → create_app.</tspan>
+<tspan x="82" dy="30.939999999999998">Flask, SQLite, standard library and other external imports are outside this layer comparison.</tspan>
+</text>
+</svg>

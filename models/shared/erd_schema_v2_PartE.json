@@ -1,0 +1,852 @@
+{
+  "stem": "erd_schema_v2_PartE",
+  "width": 1800,
+  "height": 1360,
+  "font_min": 26,
+  "placed_width_mm": 230,
+  "min_placed_pt": 9.212598425196852,
+  "nodes": [
+    {
+      "id": "replacement_offer",
+      "label": "replacement_offer",
+      "x": 550,
+      "y": 140,
+      "w": 700,
+      "h": 406,
+      "kind": "class",
+      "fill": "#F4F8FB",
+      "attrs": [
+        "PK id",
+        "FK/U* order_id",
+        "FK order_line_id",
+        "original_item_name",
+        "C original_unit_price",
+        "FK new_menu_item_id",
+        "new_item_name",
+        "C new_unit_price",
+        "C state",
+        "offered_at",
+        "decided_at?"
+      ]
+    },
+    {
+      "id": "ref_orders",
+      "label": "«reference» orders\nPK id · full table in C",
+      "x": 60,
+      "y": 750,
+      "w": 450,
+      "h": 130,
+      "kind": "ref",
+      "fill": "#F5F8FA",
+      "attrs": null
+    },
+    {
+      "id": "ref_order_line",
+      "label": "«reference» order_line\nPK id · full table in C",
+      "x": 675,
+      "y": 750,
+      "w": 450,
+      "h": 130,
+      "kind": "ref",
+      "fill": "#F5F8FA",
+      "attrs": null
+    },
+    {
+      "id": "ref_menu_item",
+      "label": "«reference» menu_item\nPK id · full table in B",
+      "x": 1290,
+      "y": 750,
+      "w": 450,
+      "h": 130,
+      "kind": "ref",
+      "fill": "#F5F8FA",
+      "attrs": null
+    },
+    {
+      "id": "part_note",
+      "label": "idx_offer_one_open is UNIQUE on order_id only WHERE state = 'OFFERED'; all resolved offers remain history.\nSQL does not require offer.order_id to match order_line.order_id or recheck target eligibility at the same hub (P2-S09).\nOriginal/new names and prices are snapshots; only new_menu_item_id references the current target item.\nOffer timestamps are UTC. No withdrawal_reason column or separate Shipper table exists in schema v2.\nContinuation: Order and OrderLine resolve to PartC; target MenuItem resolves to PartB; payment history is in PartD.",
+      "x": 70,
+      "y": 930,
+      "w": 1660,
+      "h": 285,
+      "kind": "note",
+      "fill": "#FFF8E8",
+      "attrs": null
+    }
+  ],
+  "edges": [
+    {
+      "id": "fk_replacement_offer_order_id",
+      "source": "replacement_offer",
+      "target": "ref_orders",
+      "points": [
+        [
+          600,
+          546
+        ],
+        [
+          600,
+          650
+        ],
+        [
+          510,
+          650
+        ],
+        [
+          510,
+          815
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": [
+        [
+          "0..*",
+          610,
+          550
+        ],
+        [
+          "1",
+          515,
+          785
+        ]
+      ]
+    },
+    {
+      "id": "fk_replacement_offer_order_line_id",
+      "source": "replacement_offer",
+      "target": "ref_order_line",
+      "points": [
+        [
+          900,
+          546
+        ],
+        [
+          900,
+          750
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": [
+        [
+          "0..*",
+          910,
+          550
+        ],
+        [
+          "1",
+          910,
+          730
+        ]
+      ]
+    },
+    {
+      "id": "fk_replacement_offer_new_menu_item_id",
+      "source": "replacement_offer",
+      "target": "ref_menu_item",
+      "points": [
+        [
+          1200,
+          546
+        ],
+        [
+          1200,
+          650
+        ],
+        [
+          1515,
+          650
+        ],
+        [
+          1515,
+          750
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": [
+        [
+          "0..*",
+          1210,
+          550
+        ],
+        [
+          "1",
+          1525,
+          730
+        ]
+      ]
+    }
+  ],
+  "author": "722I0004 · AI-assisted (Codex)",
+  "phase3": {
+    "diagram_type": "erd",
+    "elements": [
+      {
+        "class": "ReplacementOffer (table replacement_offer)",
+        "attributes": [
+          "id",
+          "order_id",
+          "order_line_id",
+          "original_item_name",
+          "original_unit_price",
+          "new_menu_item_id",
+          "new_item_name",
+          "new_unit_price",
+          "state",
+          "offered_at",
+          "decided_at"
+        ],
+        "methods": []
+      },
+      {
+        "class": "Order (reference to table orders)",
+        "attributes": [
+          "id"
+        ],
+        "methods": []
+      },
+      {
+        "class": "OrderLine (reference to table order_line)",
+        "attributes": [
+          "id"
+        ],
+        "methods": []
+      },
+      {
+        "class": "MenuItem (reference to table menu_item)",
+        "attributes": [
+          "id"
+        ],
+        "methods": []
+      },
+      {
+        "class": "Continuation / schema note (PartE)",
+        "attributes": [
+          "cross-page references",
+          "schema constraints",
+          "C0 notes"
+        ],
+        "methods": []
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "replacement_offer",
+        "target": "orders",
+        "kind": "foreign_key",
+        "column": "order_id",
+        "child_to_parent": "1",
+        "parent_to_child": "0..*",
+        "enforcement": [
+          "FOREIGN KEY",
+          "NOT NULL",
+          "UNIQUE index idx_offer_one_open (order_id) WHERE state = 'OFFERED'"
+        ]
+      },
+      {
+        "source": "replacement_offer",
+        "target": "order_line",
+        "kind": "foreign_key",
+        "column": "order_line_id",
+        "child_to_parent": "1",
+        "parent_to_child": "0..*",
+        "enforcement": [
+          "FOREIGN KEY",
+          "NOT NULL"
+        ]
+      },
+      {
+        "source": "replacement_offer",
+        "target": "menu_item",
+        "kind": "foreign_key",
+        "column": "new_menu_item_id",
+        "child_to_parent": "1",
+        "parent_to_child": "0..*",
+        "enforcement": [
+          "FOREIGN KEY",
+          "NOT NULL"
+        ]
+      }
+    ],
+    "schema_metadata": {
+      "user_version": 2,
+      "schema_sha256": "3c69ba2ecda4bbbeab6f91ae0fd0e59153f6bbb2ae3f7cb517aeed1ba0e68794",
+      "tables": {
+        "replacement_offer": {
+          "columns": [
+            {
+              "name": "id",
+              "type": "INTEGER",
+              "not_null": false,
+              "primary_key": true,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "order_id",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": [
+                [
+                  "orders",
+                  "id"
+                ]
+              ]
+            },
+            {
+              "name": "order_line_id",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": [
+                [
+                  "order_line",
+                  "id"
+                ]
+              ]
+            },
+            {
+              "name": "original_item_name",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "original_unit_price",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "new_menu_item_id",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": [
+                [
+                  "menu_item",
+                  "id"
+                ]
+              ]
+            },
+            {
+              "name": "new_item_name",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "new_unit_price",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "new_unit_price >= 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "state",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "state IN ('OFFERED', 'ACCEPTED', 'DECLINED', 'WITHDRAWN')"
+              ],
+              "references": []
+            },
+            {
+              "name": "offered_at",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "decided_at",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            }
+          ],
+          "constraints": [
+            "CHECK (new_unit_price <= original_unit_price)"
+          ],
+          "checks": [
+            "new_unit_price >= 0",
+            "state IN ('OFFERED', 'ACCEPTED', 'DECLINED', 'WITHDRAWN')",
+            "new_unit_price <= original_unit_price"
+          ]
+        },
+        "orders": {
+          "columns": [
+            {
+              "name": "id",
+              "type": "INTEGER",
+              "not_null": false,
+              "primary_key": true,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "customer_id",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": [
+                [
+                  "customer",
+                  "id"
+                ]
+              ]
+            },
+            {
+              "name": "hub_id",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": [
+                [
+                  "hub",
+                  "id"
+                ]
+              ]
+            },
+            {
+              "name": "address_id",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": [
+                [
+                  "address",
+                  "id"
+                ]
+              ]
+            },
+            {
+              "name": "delivery_address_text",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "distance_km",
+              "type": "REAL",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "distance_km >= 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "state",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "state IN\n                            ('PLACED', 'CONFIRMED', 'REJECTED', 'PREPARING', 'READY',\n                             'OUT_FOR_DELIVERY', 'DELIVERED', 'DELIVERY_FAILED', 'CANCELLED')"
+              ],
+              "references": []
+            },
+            {
+              "name": "item_subtotal",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "item_subtotal >= 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "voucher_id",
+              "type": "INTEGER",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": [
+                [
+                  "voucher",
+                  "id"
+                ]
+              ]
+            },
+            {
+              "name": "voucher_discount",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "voucher_discount >= 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "delivery_fee",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "delivery_fee >= 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "quiet_discount",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "quiet_discount >= 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "total_amount",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "total_amount >= 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "idempotency_token",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": true,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "reject_reason",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "placed_at",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "confirmed_at",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "ready_at",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "closed_at",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "archived_at",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            }
+          ],
+          "constraints": [
+            "CHECK (total_amount = item_subtotal - voucher_discount + delivery_fee - quiet_discount)",
+            "CHECK (voucher_discount <= item_subtotal AND quiet_discount <= delivery_fee)",
+            "CHECK (voucher_id IS NOT NULL OR voucher_discount = 0)"
+          ],
+          "checks": [
+            "distance_km >= 0",
+            "state IN\n                            ('PLACED', 'CONFIRMED', 'REJECTED', 'PREPARING', 'READY',\n                             'OUT_FOR_DELIVERY', 'DELIVERED', 'DELIVERY_FAILED', 'CANCELLED')",
+            "item_subtotal >= 0",
+            "voucher_discount >= 0",
+            "delivery_fee >= 0",
+            "quiet_discount >= 0",
+            "total_amount >= 0",
+            "total_amount = item_subtotal - voucher_discount + delivery_fee - quiet_discount",
+            "voucher_discount <= item_subtotal AND quiet_discount <= delivery_fee",
+            "voucher_id IS NOT NULL OR voucher_discount = 0"
+          ]
+        },
+        "order_line": {
+          "columns": [
+            {
+              "name": "id",
+              "type": "INTEGER",
+              "not_null": false,
+              "primary_key": true,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "order_id",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": [
+                [
+                  "orders",
+                  "id"
+                ]
+              ]
+            },
+            {
+              "name": "menu_item_id",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": [
+                [
+                  "menu_item",
+                  "id"
+                ]
+              ]
+            },
+            {
+              "name": "item_name",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "unit_price",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "unit_price >= 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "quantity",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "quantity > 0"
+              ],
+              "references": []
+            }
+          ],
+          "constraints": [
+            "UNIQUE (order_id, menu_item_id)"
+          ],
+          "checks": [
+            "unit_price >= 0",
+            "quantity > 0"
+          ]
+        },
+        "menu_item": {
+          "columns": [
+            {
+              "name": "id",
+              "type": "INTEGER",
+              "not_null": false,
+              "primary_key": true,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "brand_id",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": [
+                [
+                  "brand",
+                  "id"
+                ]
+              ]
+            },
+            {
+              "name": "name",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "description",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "price",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "price > 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "archived_at",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            }
+          ],
+          "constraints": [
+            "UNIQUE (brand_id, name)"
+          ],
+          "checks": [
+            "price > 0"
+          ]
+        }
+      },
+      "indexes": [
+        {
+          "name": "idx_orders_customer",
+          "table": "orders",
+          "unique": false,
+          "definition_summary": "customer_id"
+        },
+        {
+          "name": "idx_orders_hub_state",
+          "table": "orders",
+          "unique": false,
+          "definition_summary": "hub_id, state"
+        },
+        {
+          "name": "idx_order_line_order",
+          "table": "order_line",
+          "unique": false,
+          "definition_summary": "order_id"
+        },
+        {
+          "name": "idx_offer_order",
+          "table": "replacement_offer",
+          "unique": false,
+          "definition_summary": "order_id"
+        },
+        {
+          "name": "idx_offer_one_open",
+          "table": "replacement_offer",
+          "unique": true,
+          "definition_summary": "UNIQUE order_id WHERE state = 'OFFERED'"
+        }
+      ]
+    },
+    "reference_nodes": [
+      "orders",
+      "order_line",
+      "menu_item"
+    ],
+    "continuation": "Order and OrderLine resolve to PartC; target MenuItem resolves to PartB; payment history is in PartD.",
+    "legend": {
+      "PK": "primary-key column (including composite-key members)",
+      "FK": "foreign-key column; line labels show SQL multiplicity",
+      "U": "single-column UNIQUE constraint",
+      "U*": "member of a composite UNIQUE or partial UNIQUE index; not individually unique",
+      "C": "column participates in one or more SQL CHECK expressions; full expressions are in the mapping CSV",
+      "?": "SQL NULL is permitted",
+      "multiplicity": "UML end labels are SQL cardinalities unless a note explicitly states an application invariant"
+    },
+    "schema_user_version": 2,
+    "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+    "evidence_label": "Static",
+    "min_placed_pt_at_230x170mm": 9.2126
+  }
+}

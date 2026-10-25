@@ -1,0 +1,691 @@
+{
+  "stem": "erd_schema_v2_PartA",
+  "width": 1800,
+  "height": 1360,
+  "font_min": 26,
+  "placed_width_mm": 230,
+  "min_placed_pt": 9.212598425196852,
+  "nodes": [
+    {
+      "id": "hub",
+      "label": "hub",
+      "x": 80,
+      "y": 120,
+      "w": 650,
+      "h": 344,
+      "kind": "class",
+      "fill": "#F4F8FB",
+      "attrs": [
+        "PK id",
+        "U code",
+        "name",
+        "address_text",
+        "latitude",
+        "longitude",
+        "C max_active_orders",
+        "C base_delivery_fee",
+        "archived_at?"
+      ]
+    },
+    {
+      "id": "user_account",
+      "label": "user_account",
+      "x": 1000,
+      "y": 120,
+      "w": 650,
+      "h": 282,
+      "kind": "class",
+      "fill": "#F4F8FB",
+      "attrs": [
+        "PK id",
+        "U username",
+        "password_hash",
+        "display_name",
+        "C role",
+        "FK/C hub_id?",
+        "C is_active"
+      ]
+    },
+    {
+      "id": "customer",
+      "label": "customer",
+      "x": 80,
+      "y": 590,
+      "w": 650,
+      "h": 313,
+      "kind": "class",
+      "fill": "#F4F8FB",
+      "attrs": [
+        "PK id",
+        "FK/U user_id",
+        "full_name",
+        "C customer_type",
+        "C phone?",
+        "C email?",
+        "C passport_no?",
+        "nationality?"
+      ]
+    },
+    {
+      "id": "address",
+      "label": "address",
+      "x": 1000,
+      "y": 590,
+      "w": 650,
+      "h": 313,
+      "kind": "class",
+      "fill": "#F4F8FB",
+      "attrs": [
+        "PK id",
+        "FK customer_id",
+        "label",
+        "full_address",
+        "district",
+        "latitude",
+        "longitude",
+        "archived_at?"
+      ]
+    },
+    {
+      "id": "part_note",
+      "label": "† P2-S02: user_account.created_at is required by §5.3 but is absent from the C0 table and class implementation.\n† P2-S03: TOURIST CHECK requires passport_no and email; nationality IS NOT NULL is absent at C0.\n† P2-S07: customer.user_id is FK + UNIQUE, but SQL does not require the linked user_account.role = CUSTOMER.\nCustomer is one table with customer_type LOCAL / TOURIST; no subtype tables. Kitchen staff role iff hub_id is set.\n† design target, not yet in code at C0 (see P4 inputs P2-S02/S03/S07).\nContinuation: Catalogue/listing continues in PartB; orders in PartC; payment/delivery in PartD; offers in PartE.",
+      "x": 70,
+      "y": 960,
+      "w": 1660,
+      "h": 235,
+      "kind": "note",
+      "fill": "#FFF8E8",
+      "attrs": null
+    }
+  ],
+  "edges": [
+    {
+      "id": "fk_user_account_hub_id",
+      "source": "user_account",
+      "target": "hub",
+      "points": [
+        [
+          1000,
+          250
+        ],
+        [
+          730,
+          250
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": [
+        [
+          "0..1",
+          930,
+          215
+        ],
+        [
+          "0..*",
+          740,
+          215
+        ]
+      ]
+    },
+    {
+      "id": "fk_customer_user_id",
+      "source": "customer",
+      "target": "user_account",
+      "points": [
+        [
+          730,
+          670
+        ],
+        [
+          850,
+          670
+        ],
+        [
+          850,
+          500
+        ],
+        [
+          1150,
+          500
+        ],
+        [
+          1150,
+          433
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": [
+        [
+          "0..1",
+          740,
+          635
+        ],
+        [
+          "1",
+          1160,
+          438
+        ]
+      ]
+    },
+    {
+      "id": "fk_address_customer_id",
+      "source": "address",
+      "target": "customer",
+      "points": [
+        [
+          1000,
+          700
+        ],
+        [
+          730,
+          700
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": [
+        [
+          "1",
+          950,
+          665
+        ],
+        [
+          "0..*",
+          735,
+          720
+        ]
+      ]
+    }
+  ],
+  "author": "722I0004 · AI-assisted (Codex)",
+  "phase3": {
+    "diagram_type": "erd",
+    "elements": [
+      {
+        "class": "Hub (table hub)",
+        "attributes": [
+          "id",
+          "code",
+          "name",
+          "address_text",
+          "latitude",
+          "longitude",
+          "max_active_orders",
+          "base_delivery_fee",
+          "archived_at"
+        ],
+        "methods": []
+      },
+      {
+        "class": "UserAccount (table user_account)",
+        "attributes": [
+          "id",
+          "username",
+          "password_hash",
+          "display_name",
+          "role",
+          "hub_id",
+          "is_active"
+        ],
+        "methods": []
+      },
+      {
+        "class": "Customer (table customer)",
+        "attributes": [
+          "id",
+          "user_id",
+          "full_name",
+          "customer_type",
+          "phone",
+          "email",
+          "passport_no",
+          "nationality"
+        ],
+        "methods": []
+      },
+      {
+        "class": "Address (table address)",
+        "attributes": [
+          "id",
+          "customer_id",
+          "label",
+          "full_address",
+          "district",
+          "latitude",
+          "longitude",
+          "archived_at"
+        ],
+        "methods": []
+      },
+      {
+        "class": "Continuation / schema note (PartA)",
+        "attributes": [
+          "cross-page references",
+          "schema constraints",
+          "C0 notes"
+        ],
+        "methods": []
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "user_account",
+        "target": "hub",
+        "kind": "foreign_key",
+        "column": "hub_id",
+        "child_to_parent": "0..1",
+        "parent_to_child": "0..*",
+        "enforcement": [
+          "FOREIGN KEY",
+          "nullable FK"
+        ]
+      },
+      {
+        "source": "customer",
+        "target": "user_account",
+        "kind": "foreign_key",
+        "column": "user_id",
+        "child_to_parent": "1",
+        "parent_to_child": "0..1",
+        "enforcement": [
+          "FOREIGN KEY",
+          "NOT NULL",
+          "UNIQUE column constraint"
+        ]
+      },
+      {
+        "source": "address",
+        "target": "customer",
+        "kind": "foreign_key",
+        "column": "customer_id",
+        "child_to_parent": "1",
+        "parent_to_child": "0..*",
+        "enforcement": [
+          "FOREIGN KEY",
+          "NOT NULL"
+        ]
+      }
+    ],
+    "schema_metadata": {
+      "user_version": 2,
+      "schema_sha256": "3c69ba2ecda4bbbeab6f91ae0fd0e59153f6bbb2ae3f7cb517aeed1ba0e68794",
+      "tables": {
+        "hub": {
+          "columns": [
+            {
+              "name": "id",
+              "type": "INTEGER",
+              "not_null": false,
+              "primary_key": true,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "code",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": true,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "name",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "address_text",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "latitude",
+              "type": "REAL",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "longitude",
+              "type": "REAL",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "max_active_orders",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "max_active_orders > 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "base_delivery_fee",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "base_delivery_fee >= 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "archived_at",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            }
+          ],
+          "constraints": [],
+          "checks": [
+            "max_active_orders > 0",
+            "base_delivery_fee >= 0"
+          ]
+        },
+        "user_account": {
+          "columns": [
+            {
+              "name": "id",
+              "type": "INTEGER",
+              "not_null": false,
+              "primary_key": true,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "username",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": true,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "password_hash",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "display_name",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "role",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "role IN ('CUSTOMER', 'KITCHEN_STAFF', 'SHIPPER', 'ADMIN', 'MANAGER')"
+              ],
+              "references": []
+            },
+            {
+              "name": "hub_id",
+              "type": "INTEGER",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": [
+                [
+                  "hub",
+                  "id"
+                ]
+              ]
+            },
+            {
+              "name": "is_active",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "is_active IN (0, 1)"
+              ],
+              "references": []
+            }
+          ],
+          "constraints": [
+            "CHECK ((role = 'KITCHEN_STAFF') = (hub_id IS NOT NULL))"
+          ],
+          "checks": [
+            "role IN ('CUSTOMER', 'KITCHEN_STAFF', 'SHIPPER', 'ADMIN', 'MANAGER')",
+            "is_active IN (0, 1)",
+            "(role = 'KITCHEN_STAFF') = (hub_id IS NOT NULL)"
+          ]
+        },
+        "customer": {
+          "columns": [
+            {
+              "name": "id",
+              "type": "INTEGER",
+              "not_null": false,
+              "primary_key": true,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "user_id",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": true,
+              "checks": [],
+              "references": [
+                [
+                  "user_account",
+                  "id"
+                ]
+              ]
+            },
+            {
+              "name": "full_name",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "customer_type",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "customer_type IN ('LOCAL', 'TOURIST')"
+              ],
+              "references": []
+            },
+            {
+              "name": "phone",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "email",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "passport_no",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "nationality",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            }
+          ],
+          "constraints": [
+            "CHECK ((customer_type = 'LOCAL' AND phone IS NOT NULL)\n        OR (customer_type = 'TOURIST' AND passport_no IS NOT NULL AND email IS NOT NULL))"
+          ],
+          "checks": [
+            "customer_type IN ('LOCAL', 'TOURIST')",
+            "(customer_type = 'LOCAL' AND phone IS NOT NULL)\n        OR (customer_type = 'TOURIST' AND passport_no IS NOT NULL AND email IS NOT NULL)"
+          ]
+        },
+        "address": {
+          "columns": [
+            {
+              "name": "id",
+              "type": "INTEGER",
+              "not_null": false,
+              "primary_key": true,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "customer_id",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": [
+                [
+                  "customer",
+                  "id"
+                ]
+              ]
+            },
+            {
+              "name": "label",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "full_address",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "district",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "latitude",
+              "type": "REAL",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "longitude",
+              "type": "REAL",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "archived_at",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            }
+          ],
+          "constraints": [],
+          "checks": []
+        }
+      },
+      "indexes": []
+    },
+    "reference_nodes": [],
+    "continuation": "Catalogue/listing continues in PartB; orders in PartC; payment/delivery in PartD; offers in PartE.",
+    "legend": {
+      "PK": "primary-key column (including composite-key members)",
+      "FK": "foreign-key column; line labels show SQL multiplicity",
+      "U": "single-column UNIQUE constraint",
+      "U*": "member of a composite UNIQUE or partial UNIQUE index; not individually unique",
+      "C": "column participates in one or more SQL CHECK expressions; full expressions are in the mapping CSV",
+      "?": "SQL NULL is permitted",
+      "multiplicity": "UML end labels are SQL cardinalities unless a note explicitly states an application invariant"
+    },
+    "schema_user_version": 2,
+    "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+    "evidence_label": "Static",
+    "min_placed_pt_at_230x170mm": 9.2126
+  }
+}

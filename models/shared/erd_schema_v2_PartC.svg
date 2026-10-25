@@ -1,0 +1,174 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1360" viewBox="0 0 1800 1360">
+<rect width="100%" height="100%" fill="white"/>
+<polyline points="680,180 830,170" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="680,360 830,350" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="680,540 830,530" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="680,720 830,710" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="370,900 370,795" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="680,1010 830,960" fill="none" stroke="#52616F" stroke-width="3"/>
+<rect x="60" y="110" width="620" height="685" fill="#F4F8FB" stroke="#004387" stroke-width="3"/>
+<path d="M60,162 H680" stroke="#004387" stroke-width="2"/>
+<rect x="60" y="900" width="620" height="251" fill="#F4F8FB" stroke="#004387" stroke-width="3"/>
+<path d="M60,952 H680" stroke="#004387" stroke-width="2"/>
+<rect x="830" y="110" width="830" height="120" fill="#F5F8FA" stroke="#004387" stroke-width="3"/>
+<rect x="830" y="290" width="830" height="120" fill="#F5F8FA" stroke="#004387" stroke-width="3"/>
+<rect x="830" y="470" width="830" height="120" fill="#F5F8FA" stroke="#004387" stroke-width="3"/>
+<rect x="830" y="650" width="830" height="120" fill="#F5F8FA" stroke="#004387" stroke-width="3"/>
+<rect x="830" y="900" width="830" height="120" fill="#F5F8FA" stroke="#004387" stroke-width="3"/>
+<rect x="760" y="1070" width="980" height="145" fill="#FFF8E8" stroke="#004387" stroke-width="3"/>
+<text x="30" y="18" fill="#202B36" font-family="Arial, sans-serif" font-size="34" font-weight="700" dominant-baseline="hanging">
+<tspan x="30" dy="0">Schema v2 · orders and line snapshots</tspan>
+</text>
+<text x="30" y="1294" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="30" dy="0">Figure 4.3.1C · Author: 722I0004 · AI-assisted (Codex)</tspan>
+</text>
+<text x="30" y="1325" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="30" dy="0">Static schema v2 at C0 = 45ac762; full SQL mapping and notes are in §4.3.1.</tspan>
+</text>
+<text x="685" y="150" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="685" dy="0">0..*</tspan>
+</text>
+<text x="780" y="145" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="780" dy="0">1</tspan>
+</text>
+<text x="685" y="330" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="685" dy="0">0..*</tspan>
+</text>
+<text x="780" y="325" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="780" dy="0">1</tspan>
+</text>
+<text x="685" y="510" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="685" dy="0">0..*</tspan>
+</text>
+<text x="780" y="505" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="780" dy="0">1</tspan>
+</text>
+<text x="685" y="690" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="685" dy="0">0..*</tspan>
+</text>
+<text x="780" y="685" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="780" dy="0">0..1</tspan>
+</text>
+<text x="380" y="885" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="380" dy="0">0..*</tspan>
+</text>
+<text x="380" y="775" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="380" dy="0">1</tspan>
+</text>
+<text x="685" y="985" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="685" dy="0">0..*</tspan>
+</text>
+<text x="780" y="935" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="780" dy="0">1</tspan>
+</text>
+<text x="74" y="122" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="700" dominant-baseline="hanging">
+<tspan x="74" dy="0">orders</tspan>
+</text>
+<text x="74" y="175" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="74" dy="0">PK id</tspan>
+</text>
+<text x="74" y="206" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="74" dy="0">FK customer_id</tspan>
+</text>
+<text x="74" y="237" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="74" dy="0">FK hub_id</tspan>
+</text>
+<text x="74" y="268" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="74" dy="0">FK address_id</tspan>
+</text>
+<text x="74" y="299" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="74" dy="0">delivery_address_text</tspan>
+</text>
+<text x="74" y="330" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="74" dy="0">C distance_km</tspan>
+</text>
+<text x="74" y="361" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="74" dy="0">C state</tspan>
+</text>
+<text x="74" y="392" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="74" dy="0">C item_subtotal</tspan>
+</text>
+<text x="74" y="423" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="74" dy="0">FK/C voucher_id?</tspan>
+</text>
+<text x="74" y="454" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="74" dy="0">C voucher_discount</tspan>
+</text>
+<text x="74" y="485" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="74" dy="0">C delivery_fee</tspan>
+</text>
+<text x="74" y="516" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="74" dy="0">C quiet_discount</tspan>
+</text>
+<text x="74" y="547" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="74" dy="0">C total_amount</tspan>
+</text>
+<text x="74" y="578" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="74" dy="0">U idempotency_token</tspan>
+</text>
+<text x="74" y="609" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="74" dy="0">reject_reason?</tspan>
+</text>
+<text x="74" y="640" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="74" dy="0">placed_at</tspan>
+</text>
+<text x="74" y="671" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="74" dy="0">confirmed_at?</tspan>
+</text>
+<text x="74" y="702" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="74" dy="0">ready_at?</tspan>
+</text>
+<text x="74" y="733" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="74" dy="0">closed_at?</tspan>
+</text>
+<text x="74" y="764" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="74" dy="0">archived_at?</tspan>
+</text>
+<text x="74" y="912" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="700" dominant-baseline="hanging">
+<tspan x="74" dy="0">order_line</tspan>
+</text>
+<text x="74" y="965" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="74" dy="0">PK id</tspan>
+</text>
+<text x="74" y="996" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="74" dy="0">FK/U* order_id</tspan>
+</text>
+<text x="74" y="1027" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="74" dy="0">FK/U* menu_item_id</tspan>
+</text>
+<text x="74" y="1058" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="74" dy="0">item_name</tspan>
+</text>
+<text x="74" y="1089" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="74" dy="0">C unit_price</tspan>
+</text>
+<text x="74" y="1120" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="74" dy="0">C quantity</tspan>
+</text>
+<text x="842" y="122" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="842" dy="0">«reference» customer</tspan>
+<tspan x="842" dy="30.939999999999998">PK id · full table in A</tspan>
+</text>
+<text x="842" y="302" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="842" dy="0">«reference» hub</tspan>
+<tspan x="842" dy="30.939999999999998">PK id · full table in A</tspan>
+</text>
+<text x="842" y="482" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="842" dy="0">«reference» address</tspan>
+<tspan x="842" dy="30.939999999999998">PK id · full table in A</tspan>
+</text>
+<text x="842" y="662" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="842" dy="0">«reference» voucher</tspan>
+<tspan x="842" dy="30.939999999999998">PK id · full table in A</tspan>
+</text>
+<text x="842" y="912" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="842" dy="0">«reference» menu_item</tspan>
+<tspan x="842" dy="30.939999999999998">PK id · full table in B</tspan>
+</text>
+<text x="772" y="1082" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="772" dy="0">CHECK: T = S - D + F - Q; details in class_table_mapping.csv.</tspan>
+<tspan x="772" dy="30.939999999999998">SQL allows 0..* OrderLines; checkout targets 1..* (P2-S09).</tspan>
+<tspan x="772" dy="30.939999999999998">UNIQUE: token; order_line(order_id, menu_item_id); line snapshots retained.</tspan>
+<tspan x="772" dy="30.939999999999998">Continuation: Refs are in PartsA/B; payment/delivery in PartD; offers in PartE.</tspan>
+</text>
+</svg>

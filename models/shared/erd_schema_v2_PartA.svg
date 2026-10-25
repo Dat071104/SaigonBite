@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1360" viewBox="0 0 1800 1360">
+<rect width="100%" height="100%" fill="white"/>
+<polyline points="1000,250 730,250" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="730,670 850,670 850,500 1150,500 1150,433" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="1000,700 730,700" fill="none" stroke="#52616F" stroke-width="3"/>
+<rect x="80" y="120" width="650" height="344" fill="#F4F8FB" stroke="#004387" stroke-width="3"/>
+<path d="M80,172 H730" stroke="#004387" stroke-width="2"/>
+<rect x="1000" y="120" width="650" height="282" fill="#F4F8FB" stroke="#004387" stroke-width="3"/>
+<path d="M1000,172 H1650" stroke="#004387" stroke-width="2"/>
+<rect x="80" y="590" width="650" height="313" fill="#F4F8FB" stroke="#004387" stroke-width="3"/>
+<path d="M80,642 H730" stroke="#004387" stroke-width="2"/>
+<rect x="1000" y="590" width="650" height="313" fill="#F4F8FB" stroke="#004387" stroke-width="3"/>
+<path d="M1000,642 H1650" stroke="#004387" stroke-width="2"/>
+<rect x="70" y="960" width="1660" height="235" fill="#FFF8E8" stroke="#004387" stroke-width="3"/>
+<text x="30" y="18" fill="#202B36" font-family="Arial, sans-serif" font-size="34" font-weight="700" dominant-baseline="hanging">
+<tspan x="30" dy="0">Schema v2 · identity, customer and hub records</tspan>
+</text>
+<text x="30" y="1294" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="30" dy="0">Figure 4.3.1A · Author: 722I0004 · AI-assisted (Codex)</tspan>
+</text>
+<text x="30" y="1325" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="30" dy="0">Static schema v2 at C0 = 45ac762; full SQL mapping and notes are in §4.3.1.</tspan>
+</text>
+<text x="930" y="215" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="930" dy="0">0..1</tspan>
+</text>
+<text x="740" y="215" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="740" dy="0">0..*</tspan>
+</text>
+<text x="740" y="635" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="740" dy="0">0..1</tspan>
+</text>
+<text x="1160" y="438" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1160" dy="0">1</tspan>
+</text>
+<text x="950" y="665" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="950" dy="0">1</tspan>
+</text>
+<text x="735" y="720" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="735" dy="0">0..*</tspan>
+</text>
+<text x="94" y="132" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="700" dominant-baseline="hanging">
+<tspan x="94" dy="0">hub</tspan>
+</text>
+<text x="94" y="185" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="94" dy="0">PK id</tspan>
+</text>
+<text x="94" y="216" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="94" dy="0">U code</tspan>
+</text>
+<text x="94" y="247" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="94" dy="0">name</tspan>
+</text>
+<text x="94" y="278" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="94" dy="0">address_text</tspan>
+</text>
+<text x="94" y="309" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="94" dy="0">latitude</tspan>
+</text>
+<text x="94" y="340" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="94" dy="0">longitude</tspan>
+</text>
+<text x="94" y="371" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="94" dy="0">C max_active_orders</tspan>
+</text>
+<text x="94" y="402" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="94" dy="0">C base_delivery_fee</tspan>
+</text>
+<text x="94" y="433" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="94" dy="0">archived_at?</tspan>
+</text>
+<text x="1014" y="132" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="700" dominant-baseline="hanging">
+<tspan x="1014" dy="0">user_account</tspan>
+</text>
+<text x="1014" y="185" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1014" dy="0">PK id</tspan>
+</text>
+<text x="1014" y="216" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1014" dy="0">U username</tspan>
+</text>
+<text x="1014" y="247" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1014" dy="0">password_hash</tspan>
+</text>
+<text x="1014" y="278" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1014" dy="0">display_name</tspan>
+</text>
+<text x="1014" y="309" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1014" dy="0">C role</tspan>
+</text>
+<text x="1014" y="340" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1014" dy="0">FK/C hub_id?</tspan>
+</text>
+<text x="1014" y="371" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1014" dy="0">C is_active</tspan>
+</text>
+<text x="94" y="602" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="700" dominant-baseline="hanging">
+<tspan x="94" dy="0">customer</tspan>
+</text>
+<text x="94" y="655" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="94" dy="0">PK id</tspan>
+</text>
+<text x="94" y="686" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="94" dy="0">FK/U user_id</tspan>
+</text>
+<text x="94" y="717" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="94" dy="0">full_name</tspan>
+</text>
+<text x="94" y="748" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="94" dy="0">C customer_type</tspan>
+</text>
+<text x="94" y="779" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="94" dy="0">C phone?</tspan>
+</text>
+<text x="94" y="810" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="94" dy="0">C email?</tspan>
+</text>
+<text x="94" y="841" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="94" dy="0">C passport_no?</tspan>
+</text>
+<text x="94" y="872" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="94" dy="0">nationality?</tspan>
+</text>
+<text x="1014" y="602" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="700" dominant-baseline="hanging">
+<tspan x="1014" dy="0">address</tspan>
+</text>
+<text x="1014" y="655" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1014" dy="0">PK id</tspan>
+</text>
+<text x="1014" y="686" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1014" dy="0">FK customer_id</tspan>
+</text>
+<text x="1014" y="717" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1014" dy="0">label</tspan>
+</text>
+<text x="1014" y="748" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1014" dy="0">full_address</tspan>
+</text>
+<text x="1014" y="779" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1014" dy="0">district</tspan>
+</text>
+<text x="1014" y="810" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1014" dy="0">latitude</tspan>
+</text>
+<text x="1014" y="841" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1014" dy="0">longitude</tspan>
+</text>
+<text x="1014" y="872" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1014" dy="0">archived_at?</tspan>
+</text>
+<text x="82" y="972" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="82" dy="0">† P2-S02: user_account.created_at is required by §5.3 but is absent from the C0 table and class implementation.</tspan>
+<tspan x="82" dy="30.939999999999998">† P2-S03: TOURIST CHECK requires passport_no and email; nationality IS NOT NULL is absent at C0.</tspan>
+<tspan x="82" dy="30.939999999999998">† P2-S07: customer.user_id is FK + UNIQUE, but SQL does not require the linked user_account.role = CUSTOMER.</tspan>
+<tspan x="82" dy="30.939999999999998">Customer is one table with customer_type LOCAL / TOURIST; no subtype tables. Kitchen staff role iff hub_id is set.</tspan>
+<tspan x="82" dy="30.939999999999998">† design target, not yet in code at C0 (see P4 inputs P2-S02/S03/S07).</tspan>
+<tspan x="82" dy="30.939999999999998">Continuation: Catalogue/listing continues in PartB; orders in PartC; payment/delivery in PartD; offers in PartE.</tspan>
+</text>
+</svg>

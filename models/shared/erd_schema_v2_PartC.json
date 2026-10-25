@@ -1,0 +1,1291 @@
+{
+  "stem": "erd_schema_v2_PartC",
+  "width": 1800,
+  "height": 1360,
+  "font_min": 26,
+  "placed_width_mm": 230,
+  "min_placed_pt": 9.212598425196852,
+  "nodes": [
+    {
+      "id": "orders",
+      "label": "orders",
+      "x": 60,
+      "y": 110,
+      "w": 620,
+      "h": 685,
+      "kind": "class",
+      "fill": "#F4F8FB",
+      "attrs": [
+        "PK id",
+        "FK customer_id",
+        "FK hub_id",
+        "FK address_id",
+        "delivery_address_text",
+        "C distance_km",
+        "C state",
+        "C item_subtotal",
+        "FK/C voucher_id?",
+        "C voucher_discount",
+        "C delivery_fee",
+        "C quiet_discount",
+        "C total_amount",
+        "U idempotency_token",
+        "reject_reason?",
+        "placed_at",
+        "confirmed_at?",
+        "ready_at?",
+        "closed_at?",
+        "archived_at?"
+      ]
+    },
+    {
+      "id": "order_line",
+      "label": "order_line",
+      "x": 60,
+      "y": 900,
+      "w": 620,
+      "h": 251,
+      "kind": "class",
+      "fill": "#F4F8FB",
+      "attrs": [
+        "PK id",
+        "FK/U* order_id",
+        "FK/U* menu_item_id",
+        "item_name",
+        "C unit_price",
+        "C quantity"
+      ]
+    },
+    {
+      "id": "ref_customer",
+      "label": "«reference» customer\nPK id · full table in A",
+      "x": 830,
+      "y": 110,
+      "w": 830,
+      "h": 120,
+      "kind": "ref",
+      "fill": "#F5F8FA",
+      "attrs": null
+    },
+    {
+      "id": "ref_hub",
+      "label": "«reference» hub\nPK id · full table in A",
+      "x": 830,
+      "y": 290,
+      "w": 830,
+      "h": 120,
+      "kind": "ref",
+      "fill": "#F5F8FA",
+      "attrs": null
+    },
+    {
+      "id": "ref_address",
+      "label": "«reference» address\nPK id · full table in A",
+      "x": 830,
+      "y": 470,
+      "w": 830,
+      "h": 120,
+      "kind": "ref",
+      "fill": "#F5F8FA",
+      "attrs": null
+    },
+    {
+      "id": "ref_voucher",
+      "label": "«reference» voucher\nPK id · full table in A",
+      "x": 830,
+      "y": 650,
+      "w": 830,
+      "h": 120,
+      "kind": "ref",
+      "fill": "#F5F8FA",
+      "attrs": null
+    },
+    {
+      "id": "ref_menu_item",
+      "label": "«reference» menu_item\nPK id · full table in B",
+      "x": 830,
+      "y": 900,
+      "w": 830,
+      "h": 120,
+      "kind": "ref",
+      "fill": "#F5F8FA",
+      "attrs": null
+    },
+    {
+      "id": "part_note",
+      "label": "CHECK: T = S - D + F - Q; details in class_table_mapping.csv.\nSQL allows 0..* OrderLines; checkout targets 1..* (P2-S09).\nUNIQUE: token; order_line(order_id, menu_item_id); line snapshots retained.\nContinuation: Refs are in PartsA/B; payment/delivery in PartD; offers in PartE.",
+      "x": 760,
+      "y": 1070,
+      "w": 980,
+      "h": 145,
+      "kind": "note",
+      "fill": "#FFF8E8",
+      "attrs": null
+    }
+  ],
+  "edges": [
+    {
+      "id": "fk_orders_customer_id",
+      "source": "orders",
+      "target": "ref_customer",
+      "points": [
+        [
+          680,
+          180
+        ],
+        [
+          830,
+          170
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": [
+        [
+          "0..*",
+          685,
+          150
+        ],
+        [
+          "1",
+          780,
+          145
+        ]
+      ]
+    },
+    {
+      "id": "fk_orders_hub_id",
+      "source": "orders",
+      "target": "ref_hub",
+      "points": [
+        [
+          680,
+          360
+        ],
+        [
+          830,
+          350
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": [
+        [
+          "0..*",
+          685,
+          330
+        ],
+        [
+          "1",
+          780,
+          325
+        ]
+      ]
+    },
+    {
+      "id": "fk_orders_address_id",
+      "source": "orders",
+      "target": "ref_address",
+      "points": [
+        [
+          680,
+          540
+        ],
+        [
+          830,
+          530
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": [
+        [
+          "0..*",
+          685,
+          510
+        ],
+        [
+          "1",
+          780,
+          505
+        ]
+      ]
+    },
+    {
+      "id": "fk_orders_voucher_id",
+      "source": "orders",
+      "target": "ref_voucher",
+      "points": [
+        [
+          680,
+          720
+        ],
+        [
+          830,
+          710
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": [
+        [
+          "0..*",
+          685,
+          690
+        ],
+        [
+          "0..1",
+          780,
+          685
+        ]
+      ]
+    },
+    {
+      "id": "fk_order_line_order_id",
+      "source": "order_line",
+      "target": "orders",
+      "points": [
+        [
+          370,
+          900
+        ],
+        [
+          370,
+          795
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": [
+        [
+          "0..*",
+          380,
+          885
+        ],
+        [
+          "1",
+          380,
+          775
+        ]
+      ]
+    },
+    {
+      "id": "fk_order_line_menu_item_id",
+      "source": "order_line",
+      "target": "ref_menu_item",
+      "points": [
+        [
+          680,
+          1010
+        ],
+        [
+          830,
+          960
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": [
+        [
+          "0..*",
+          685,
+          985
+        ],
+        [
+          "1",
+          780,
+          935
+        ]
+      ]
+    }
+  ],
+  "author": "722I0004 · AI-assisted (Codex)",
+  "phase3": {
+    "diagram_type": "erd",
+    "elements": [
+      {
+        "class": "Order (table orders)",
+        "attributes": [
+          "id",
+          "customer_id",
+          "hub_id",
+          "address_id",
+          "delivery_address_text",
+          "distance_km",
+          "state",
+          "item_subtotal",
+          "voucher_id",
+          "voucher_discount",
+          "delivery_fee",
+          "quiet_discount",
+          "total_amount",
+          "idempotency_token",
+          "reject_reason",
+          "placed_at",
+          "confirmed_at",
+          "ready_at",
+          "closed_at",
+          "archived_at"
+        ],
+        "methods": []
+      },
+      {
+        "class": "OrderLine (table order_line)",
+        "attributes": [
+          "id",
+          "order_id",
+          "menu_item_id",
+          "item_name",
+          "unit_price",
+          "quantity"
+        ],
+        "methods": []
+      },
+      {
+        "class": "Customer (reference to table customer)",
+        "attributes": [
+          "id"
+        ],
+        "methods": []
+      },
+      {
+        "class": "Hub (reference to table hub)",
+        "attributes": [
+          "id"
+        ],
+        "methods": []
+      },
+      {
+        "class": "Address (reference to table address)",
+        "attributes": [
+          "id"
+        ],
+        "methods": []
+      },
+      {
+        "class": "Voucher (reference to table voucher)",
+        "attributes": [
+          "id"
+        ],
+        "methods": []
+      },
+      {
+        "class": "MenuItem (reference to table menu_item)",
+        "attributes": [
+          "id"
+        ],
+        "methods": []
+      },
+      {
+        "class": "Continuation / schema note (PartC)",
+        "attributes": [
+          "cross-page references",
+          "schema constraints",
+          "C0 notes"
+        ],
+        "methods": []
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "orders",
+        "target": "customer",
+        "kind": "foreign_key",
+        "column": "customer_id",
+        "child_to_parent": "1",
+        "parent_to_child": "0..*",
+        "enforcement": [
+          "FOREIGN KEY",
+          "NOT NULL"
+        ]
+      },
+      {
+        "source": "orders",
+        "target": "hub",
+        "kind": "foreign_key",
+        "column": "hub_id",
+        "child_to_parent": "1",
+        "parent_to_child": "0..*",
+        "enforcement": [
+          "FOREIGN KEY",
+          "NOT NULL"
+        ]
+      },
+      {
+        "source": "orders",
+        "target": "address",
+        "kind": "foreign_key",
+        "column": "address_id",
+        "child_to_parent": "1",
+        "parent_to_child": "0..*",
+        "enforcement": [
+          "FOREIGN KEY",
+          "NOT NULL"
+        ]
+      },
+      {
+        "source": "orders",
+        "target": "voucher",
+        "kind": "foreign_key",
+        "column": "voucher_id",
+        "child_to_parent": "0..1",
+        "parent_to_child": "0..*",
+        "enforcement": [
+          "FOREIGN KEY",
+          "nullable FK"
+        ]
+      },
+      {
+        "source": "order_line",
+        "target": "orders",
+        "kind": "foreign_key",
+        "column": "order_id",
+        "child_to_parent": "1",
+        "parent_to_child": "0..*",
+        "enforcement": [
+          "FOREIGN KEY",
+          "NOT NULL",
+          "UNIQUE (order_id, menu_item_id)"
+        ]
+      },
+      {
+        "source": "order_line",
+        "target": "menu_item",
+        "kind": "foreign_key",
+        "column": "menu_item_id",
+        "child_to_parent": "1",
+        "parent_to_child": "0..*",
+        "enforcement": [
+          "FOREIGN KEY",
+          "NOT NULL",
+          "UNIQUE (order_id, menu_item_id)"
+        ]
+      }
+    ],
+    "schema_metadata": {
+      "user_version": 2,
+      "schema_sha256": "3c69ba2ecda4bbbeab6f91ae0fd0e59153f6bbb2ae3f7cb517aeed1ba0e68794",
+      "tables": {
+        "orders": {
+          "columns": [
+            {
+              "name": "id",
+              "type": "INTEGER",
+              "not_null": false,
+              "primary_key": true,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "customer_id",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": [
+                [
+                  "customer",
+                  "id"
+                ]
+              ]
+            },
+            {
+              "name": "hub_id",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": [
+                [
+                  "hub",
+                  "id"
+                ]
+              ]
+            },
+            {
+              "name": "address_id",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": [
+                [
+                  "address",
+                  "id"
+                ]
+              ]
+            },
+            {
+              "name": "delivery_address_text",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "distance_km",
+              "type": "REAL",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "distance_km >= 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "state",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "state IN\n                            ('PLACED', 'CONFIRMED', 'REJECTED', 'PREPARING', 'READY',\n                             'OUT_FOR_DELIVERY', 'DELIVERED', 'DELIVERY_FAILED', 'CANCELLED')"
+              ],
+              "references": []
+            },
+            {
+              "name": "item_subtotal",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "item_subtotal >= 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "voucher_id",
+              "type": "INTEGER",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": [
+                [
+                  "voucher",
+                  "id"
+                ]
+              ]
+            },
+            {
+              "name": "voucher_discount",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "voucher_discount >= 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "delivery_fee",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "delivery_fee >= 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "quiet_discount",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "quiet_discount >= 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "total_amount",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "total_amount >= 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "idempotency_token",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": true,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "reject_reason",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "placed_at",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "confirmed_at",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "ready_at",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "closed_at",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "archived_at",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            }
+          ],
+          "constraints": [
+            "CHECK (total_amount = item_subtotal - voucher_discount + delivery_fee - quiet_discount)",
+            "CHECK (voucher_discount <= item_subtotal AND quiet_discount <= delivery_fee)",
+            "CHECK (voucher_id IS NOT NULL OR voucher_discount = 0)"
+          ],
+          "checks": [
+            "distance_km >= 0",
+            "state IN\n                            ('PLACED', 'CONFIRMED', 'REJECTED', 'PREPARING', 'READY',\n                             'OUT_FOR_DELIVERY', 'DELIVERED', 'DELIVERY_FAILED', 'CANCELLED')",
+            "item_subtotal >= 0",
+            "voucher_discount >= 0",
+            "delivery_fee >= 0",
+            "quiet_discount >= 0",
+            "total_amount >= 0",
+            "total_amount = item_subtotal - voucher_discount + delivery_fee - quiet_discount",
+            "voucher_discount <= item_subtotal AND quiet_discount <= delivery_fee",
+            "voucher_id IS NOT NULL OR voucher_discount = 0"
+          ]
+        },
+        "order_line": {
+          "columns": [
+            {
+              "name": "id",
+              "type": "INTEGER",
+              "not_null": false,
+              "primary_key": true,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "order_id",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": [
+                [
+                  "orders",
+                  "id"
+                ]
+              ]
+            },
+            {
+              "name": "menu_item_id",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": [
+                [
+                  "menu_item",
+                  "id"
+                ]
+              ]
+            },
+            {
+              "name": "item_name",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "unit_price",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "unit_price >= 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "quantity",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "quantity > 0"
+              ],
+              "references": []
+            }
+          ],
+          "constraints": [
+            "UNIQUE (order_id, menu_item_id)"
+          ],
+          "checks": [
+            "unit_price >= 0",
+            "quantity > 0"
+          ]
+        },
+        "customer": {
+          "columns": [
+            {
+              "name": "id",
+              "type": "INTEGER",
+              "not_null": false,
+              "primary_key": true,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "user_id",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": true,
+              "checks": [],
+              "references": [
+                [
+                  "user_account",
+                  "id"
+                ]
+              ]
+            },
+            {
+              "name": "full_name",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "customer_type",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "customer_type IN ('LOCAL', 'TOURIST')"
+              ],
+              "references": []
+            },
+            {
+              "name": "phone",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "email",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "passport_no",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "nationality",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            }
+          ],
+          "constraints": [
+            "CHECK ((customer_type = 'LOCAL' AND phone IS NOT NULL)\n        OR (customer_type = 'TOURIST' AND passport_no IS NOT NULL AND email IS NOT NULL))"
+          ],
+          "checks": [
+            "customer_type IN ('LOCAL', 'TOURIST')",
+            "(customer_type = 'LOCAL' AND phone IS NOT NULL)\n        OR (customer_type = 'TOURIST' AND passport_no IS NOT NULL AND email IS NOT NULL)"
+          ]
+        },
+        "hub": {
+          "columns": [
+            {
+              "name": "id",
+              "type": "INTEGER",
+              "not_null": false,
+              "primary_key": true,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "code",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": true,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "name",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "address_text",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "latitude",
+              "type": "REAL",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "longitude",
+              "type": "REAL",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "max_active_orders",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "max_active_orders > 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "base_delivery_fee",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "base_delivery_fee >= 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "archived_at",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            }
+          ],
+          "constraints": [],
+          "checks": [
+            "max_active_orders > 0",
+            "base_delivery_fee >= 0"
+          ]
+        },
+        "address": {
+          "columns": [
+            {
+              "name": "id",
+              "type": "INTEGER",
+              "not_null": false,
+              "primary_key": true,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "customer_id",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": [
+                [
+                  "customer",
+                  "id"
+                ]
+              ]
+            },
+            {
+              "name": "label",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "full_address",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "district",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "latitude",
+              "type": "REAL",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "longitude",
+              "type": "REAL",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "archived_at",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            }
+          ],
+          "constraints": [],
+          "checks": []
+        },
+        "voucher": {
+          "columns": [
+            {
+              "name": "id",
+              "type": "INTEGER",
+              "not_null": false,
+              "primary_key": true,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "code",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": true,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "description",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "discount_type",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "discount_type IN ('FIXED', 'PERCENT')"
+              ],
+              "references": []
+            },
+            {
+              "name": "discount_value",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "discount_value > 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "min_subtotal",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "min_subtotal >= 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "max_discount",
+              "type": "INTEGER",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "max_discount IS NULL OR max_discount > 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "valid_from",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "valid_until",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "archived_at",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            }
+          ],
+          "constraints": [
+            "CHECK (discount_type = 'FIXED' OR discount_value <= 100)",
+            "CHECK (valid_from <= valid_until)"
+          ],
+          "checks": [
+            "discount_type IN ('FIXED', 'PERCENT')",
+            "discount_value > 0",
+            "min_subtotal >= 0",
+            "max_discount IS NULL OR max_discount > 0",
+            "discount_type = 'FIXED' OR discount_value <= 100",
+            "valid_from <= valid_until"
+          ]
+        },
+        "menu_item": {
+          "columns": [
+            {
+              "name": "id",
+              "type": "INTEGER",
+              "not_null": false,
+              "primary_key": true,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "brand_id",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": [
+                [
+                  "brand",
+                  "id"
+                ]
+              ]
+            },
+            {
+              "name": "name",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "description",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "price",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "price > 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "archived_at",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            }
+          ],
+          "constraints": [
+            "UNIQUE (brand_id, name)"
+          ],
+          "checks": [
+            "price > 0"
+          ]
+        }
+      },
+      "indexes": [
+        {
+          "name": "idx_orders_customer",
+          "table": "orders",
+          "unique": false,
+          "definition_summary": "customer_id"
+        },
+        {
+          "name": "idx_orders_hub_state",
+          "table": "orders",
+          "unique": false,
+          "definition_summary": "hub_id, state"
+        },
+        {
+          "name": "idx_order_line_order",
+          "table": "order_line",
+          "unique": false,
+          "definition_summary": "order_id"
+        }
+      ]
+    },
+    "reference_nodes": [
+      "customer",
+      "hub",
+      "address",
+      "voucher",
+      "menu_item"
+    ],
+    "continuation": "Refs are in PartsA/B; payment/delivery in PartD; offers in PartE.",
+    "legend": {
+      "PK": "primary-key column (including composite-key members)",
+      "FK": "foreign-key column; line labels show SQL multiplicity",
+      "U": "single-column UNIQUE constraint",
+      "U*": "member of a composite UNIQUE or partial UNIQUE index; not individually unique",
+      "C": "column participates in one or more SQL CHECK expressions; full expressions are in the mapping CSV",
+      "?": "SQL NULL is permitted",
+      "multiplicity": "UML end labels are SQL cardinalities unless a note explicitly states an application invariant"
+    },
+    "schema_user_version": 2,
+    "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+    "evidence_label": "Static",
+    "min_placed_pt_at_230x170mm": 9.2126
+  }
+}

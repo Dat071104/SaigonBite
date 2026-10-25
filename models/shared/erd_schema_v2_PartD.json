@@ -1,0 +1,891 @@
+{
+  "stem": "erd_schema_v2_PartD",
+  "width": 1800,
+  "height": 1360,
+  "font_min": 26,
+  "placed_width_mm": 230,
+  "min_placed_pt": 9.212598425196852,
+  "nodes": [
+    {
+      "id": "payment",
+      "label": "payment",
+      "x": 120,
+      "y": 140,
+      "w": 620,
+      "h": 375,
+      "kind": "class",
+      "fill": "#F4F8FB",
+      "attrs": [
+        "PK id",
+        "FK/U order_id",
+        "C method",
+        "C online_option?",
+        "provider_ref?",
+        "C state",
+        "C amount",
+        "C refund_amount",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "id": "delivery",
+      "label": "delivery",
+      "x": 1040,
+      "y": 140,
+      "w": 620,
+      "h": 344,
+      "kind": "class",
+      "fill": "#F4F8FB",
+      "attrs": [
+        "PK id",
+        "FK/U order_id",
+        "FK/C shipper_id?",
+        "C state",
+        "ready_at",
+        "picked_up_at?",
+        "finished_at?",
+        "C failure_reason?",
+        "C cash_collected?"
+      ]
+    },
+    {
+      "id": "ref_orders",
+      "label": "«reference» orders\nPK id · full table in C",
+      "x": 120,
+      "y": 720,
+      "w": 620,
+      "h": 130,
+      "kind": "ref",
+      "fill": "#F5F8FA",
+      "attrs": null
+    },
+    {
+      "id": "ref_user_account",
+      "label": "«reference» user_account\nPK id · full table in A",
+      "x": 1040,
+      "y": 720,
+      "w": 620,
+      "h": 130,
+      "kind": "ref",
+      "fill": "#F5F8FA",
+      "attrs": null
+    },
+    {
+      "id": "part_note",
+      "label": "Order 1–0..1 Payment and Order 1–0..1 Delivery are SQL maxima; successful checkout / markReady supplies required rows.\nPayment.amount is COD due or captured ONLINE amount C; refund_amount is owed, not paid. All event timestamps are UTC.\nPayment.updated_at is SQL NOT NULL; PaymentDAO.insert uses updated_at or created_at (P2-S08), so this is not a gap.\nFAILED / REFUNDED remain SQL/enum values but are deferred or unreachable per P2-S01; no payout is drawn.\nContinuation: Order resolves to PartC; UserAccount resolves to PartA; replacement offers continue in PartE.",
+      "x": 70,
+      "y": 930,
+      "w": 1660,
+      "h": 285,
+      "kind": "note",
+      "fill": "#FFF8E8",
+      "attrs": null
+    }
+  ],
+  "edges": [
+    {
+      "id": "fk_payment_order_id",
+      "source": "payment",
+      "target": "ref_orders",
+      "points": [
+        [
+          430,
+          515
+        ],
+        [
+          430,
+          720
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": [
+        [
+          "0..1",
+          440,
+          520
+        ],
+        [
+          "1",
+          440,
+          700
+        ]
+      ]
+    },
+    {
+      "id": "fk_delivery_order_id",
+      "source": "delivery",
+      "target": "ref_orders",
+      "points": [
+        [
+          1040,
+          360
+        ],
+        [
+          800,
+          360
+        ],
+        [
+          800,
+          660
+        ],
+        [
+          740,
+          660
+        ],
+        [
+          740,
+          785
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": [
+        [
+          "0..1",
+          960,
+          330
+        ],
+        [
+          "1",
+          745,
+          765
+        ]
+      ]
+    },
+    {
+      "id": "fk_delivery_shipper_id",
+      "source": "delivery",
+      "target": "ref_user_account",
+      "points": [
+        [
+          1350,
+          484
+        ],
+        [
+          1350,
+          720
+        ]
+      ],
+      "label": "",
+      "lx": null,
+      "ly": null,
+      "kind": "assoc",
+      "ends": [
+        [
+          "0..*",
+          1360,
+          490
+        ],
+        [
+          "0..1",
+          1360,
+          695
+        ]
+      ]
+    }
+  ],
+  "author": "722I0004 · AI-assisted (Codex)",
+  "phase3": {
+    "diagram_type": "erd",
+    "elements": [
+      {
+        "class": "Payment (table payment)",
+        "attributes": [
+          "id",
+          "order_id",
+          "method",
+          "online_option",
+          "provider_ref",
+          "state",
+          "amount",
+          "refund_amount",
+          "created_at",
+          "updated_at"
+        ],
+        "methods": []
+      },
+      {
+        "class": "Delivery (table delivery)",
+        "attributes": [
+          "id",
+          "order_id",
+          "shipper_id",
+          "state",
+          "ready_at",
+          "picked_up_at",
+          "finished_at",
+          "failure_reason",
+          "cash_collected"
+        ],
+        "methods": []
+      },
+      {
+        "class": "Order (reference to table orders)",
+        "attributes": [
+          "id"
+        ],
+        "methods": []
+      },
+      {
+        "class": "UserAccount (reference to table user_account)",
+        "attributes": [
+          "id"
+        ],
+        "methods": []
+      },
+      {
+        "class": "Continuation / schema note (PartD)",
+        "attributes": [
+          "cross-page references",
+          "schema constraints",
+          "C0 notes"
+        ],
+        "methods": []
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "payment",
+        "target": "orders",
+        "kind": "foreign_key",
+        "column": "order_id",
+        "child_to_parent": "1",
+        "parent_to_child": "0..1",
+        "enforcement": [
+          "FOREIGN KEY",
+          "NOT NULL",
+          "UNIQUE column constraint"
+        ]
+      },
+      {
+        "source": "delivery",
+        "target": "orders",
+        "kind": "foreign_key",
+        "column": "order_id",
+        "child_to_parent": "1",
+        "parent_to_child": "0..1",
+        "enforcement": [
+          "FOREIGN KEY",
+          "NOT NULL",
+          "UNIQUE column constraint"
+        ]
+      },
+      {
+        "source": "delivery",
+        "target": "user_account",
+        "kind": "foreign_key",
+        "column": "shipper_id",
+        "child_to_parent": "0..1",
+        "parent_to_child": "0..*",
+        "enforcement": [
+          "FOREIGN KEY",
+          "nullable FK"
+        ]
+      }
+    ],
+    "schema_metadata": {
+      "user_version": 2,
+      "schema_sha256": "3c69ba2ecda4bbbeab6f91ae0fd0e59153f6bbb2ae3f7cb517aeed1ba0e68794",
+      "tables": {
+        "payment": {
+          "columns": [
+            {
+              "name": "id",
+              "type": "INTEGER",
+              "not_null": false,
+              "primary_key": true,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "order_id",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": true,
+              "checks": [],
+              "references": [
+                [
+                  "orders",
+                  "id"
+                ]
+              ]
+            },
+            {
+              "name": "method",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "method IN ('COD', 'ONLINE')"
+              ],
+              "references": []
+            },
+            {
+              "name": "online_option",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "online_option IN ('E_WALLET', 'BANK_QR', 'INTERNATIONAL_CARD')"
+              ],
+              "references": []
+            },
+            {
+              "name": "provider_ref",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "state",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "state IN ('PENDING', 'PAID', 'FAILED', 'VOIDED', 'REFUND_PENDING', 'REFUNDED')"
+              ],
+              "references": []
+            },
+            {
+              "name": "amount",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "amount >= 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "refund_amount",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "refund_amount >= 0 AND refund_amount <= amount"
+              ],
+              "references": []
+            },
+            {
+              "name": "created_at",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "updated_at",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            }
+          ],
+          "constraints": [
+            "CHECK ((method = 'COD' AND online_option IS NULL) OR (method = 'ONLINE' AND online_option IS NOT NULL))"
+          ],
+          "checks": [
+            "method IN ('COD', 'ONLINE')",
+            "online_option IN ('E_WALLET', 'BANK_QR', 'INTERNATIONAL_CARD')",
+            "state IN ('PENDING', 'PAID', 'FAILED', 'VOIDED', 'REFUND_PENDING', 'REFUNDED')",
+            "amount >= 0",
+            "refund_amount >= 0 AND refund_amount <= amount",
+            "(method = 'COD' AND online_option IS NULL) OR (method = 'ONLINE' AND online_option IS NOT NULL)"
+          ]
+        },
+        "delivery": {
+          "columns": [
+            {
+              "name": "id",
+              "type": "INTEGER",
+              "not_null": false,
+              "primary_key": true,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "order_id",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": true,
+              "checks": [],
+              "references": [
+                [
+                  "orders",
+                  "id"
+                ]
+              ]
+            },
+            {
+              "name": "shipper_id",
+              "type": "INTEGER",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": [
+                [
+                  "user_account",
+                  "id"
+                ]
+              ]
+            },
+            {
+              "name": "state",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "state IN ('AWAITING_PICKUP', 'PICKED_UP', 'DELIVERED', 'FAILED')"
+              ],
+              "references": []
+            },
+            {
+              "name": "ready_at",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "picked_up_at",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "finished_at",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "failure_reason",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "cash_collected",
+              "type": "INTEGER",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "cash_collected IS NULL OR cash_collected >= 0"
+              ],
+              "references": []
+            }
+          ],
+          "constraints": [
+            "CHECK (state = 'AWAITING_PICKUP' OR shipper_id IS NOT NULL)",
+            "CHECK (state <> 'FAILED' OR failure_reason IS NOT NULL)"
+          ],
+          "checks": [
+            "state IN ('AWAITING_PICKUP', 'PICKED_UP', 'DELIVERED', 'FAILED')",
+            "cash_collected IS NULL OR cash_collected >= 0",
+            "state = 'AWAITING_PICKUP' OR shipper_id IS NOT NULL",
+            "state <> 'FAILED' OR failure_reason IS NOT NULL"
+          ]
+        },
+        "orders": {
+          "columns": [
+            {
+              "name": "id",
+              "type": "INTEGER",
+              "not_null": false,
+              "primary_key": true,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "customer_id",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": [
+                [
+                  "customer",
+                  "id"
+                ]
+              ]
+            },
+            {
+              "name": "hub_id",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": [
+                [
+                  "hub",
+                  "id"
+                ]
+              ]
+            },
+            {
+              "name": "address_id",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": [
+                [
+                  "address",
+                  "id"
+                ]
+              ]
+            },
+            {
+              "name": "delivery_address_text",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "distance_km",
+              "type": "REAL",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "distance_km >= 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "state",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "state IN\n                            ('PLACED', 'CONFIRMED', 'REJECTED', 'PREPARING', 'READY',\n                             'OUT_FOR_DELIVERY', 'DELIVERED', 'DELIVERY_FAILED', 'CANCELLED')"
+              ],
+              "references": []
+            },
+            {
+              "name": "item_subtotal",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "item_subtotal >= 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "voucher_id",
+              "type": "INTEGER",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": [
+                [
+                  "voucher",
+                  "id"
+                ]
+              ]
+            },
+            {
+              "name": "voucher_discount",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "voucher_discount >= 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "delivery_fee",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "delivery_fee >= 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "quiet_discount",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "quiet_discount >= 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "total_amount",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "total_amount >= 0"
+              ],
+              "references": []
+            },
+            {
+              "name": "idempotency_token",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": true,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "reject_reason",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "placed_at",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "confirmed_at",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "ready_at",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "closed_at",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "archived_at",
+              "type": "TEXT",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            }
+          ],
+          "constraints": [
+            "CHECK (total_amount = item_subtotal - voucher_discount + delivery_fee - quiet_discount)",
+            "CHECK (voucher_discount <= item_subtotal AND quiet_discount <= delivery_fee)",
+            "CHECK (voucher_id IS NOT NULL OR voucher_discount = 0)"
+          ],
+          "checks": [
+            "distance_km >= 0",
+            "state IN\n                            ('PLACED', 'CONFIRMED', 'REJECTED', 'PREPARING', 'READY',\n                             'OUT_FOR_DELIVERY', 'DELIVERED', 'DELIVERY_FAILED', 'CANCELLED')",
+            "item_subtotal >= 0",
+            "voucher_discount >= 0",
+            "delivery_fee >= 0",
+            "quiet_discount >= 0",
+            "total_amount >= 0",
+            "total_amount = item_subtotal - voucher_discount + delivery_fee - quiet_discount",
+            "voucher_discount <= item_subtotal AND quiet_discount <= delivery_fee",
+            "voucher_id IS NOT NULL OR voucher_discount = 0"
+          ]
+        },
+        "user_account": {
+          "columns": [
+            {
+              "name": "id",
+              "type": "INTEGER",
+              "not_null": false,
+              "primary_key": true,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "username",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": true,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "password_hash",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "display_name",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": []
+            },
+            {
+              "name": "role",
+              "type": "TEXT",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "role IN ('CUSTOMER', 'KITCHEN_STAFF', 'SHIPPER', 'ADMIN', 'MANAGER')"
+              ],
+              "references": []
+            },
+            {
+              "name": "hub_id",
+              "type": "INTEGER",
+              "not_null": false,
+              "primary_key": false,
+              "unique": false,
+              "checks": [],
+              "references": [
+                [
+                  "hub",
+                  "id"
+                ]
+              ]
+            },
+            {
+              "name": "is_active",
+              "type": "INTEGER",
+              "not_null": true,
+              "primary_key": false,
+              "unique": false,
+              "checks": [
+                "is_active IN (0, 1)"
+              ],
+              "references": []
+            }
+          ],
+          "constraints": [
+            "CHECK ((role = 'KITCHEN_STAFF') = (hub_id IS NOT NULL))"
+          ],
+          "checks": [
+            "role IN ('CUSTOMER', 'KITCHEN_STAFF', 'SHIPPER', 'ADMIN', 'MANAGER')",
+            "is_active IN (0, 1)",
+            "(role = 'KITCHEN_STAFF') = (hub_id IS NOT NULL)"
+          ]
+        }
+      },
+      "indexes": [
+        {
+          "name": "idx_orders_customer",
+          "table": "orders",
+          "unique": false,
+          "definition_summary": "customer_id"
+        },
+        {
+          "name": "idx_orders_hub_state",
+          "table": "orders",
+          "unique": false,
+          "definition_summary": "hub_id, state"
+        },
+        {
+          "name": "idx_delivery_state",
+          "table": "delivery",
+          "unique": false,
+          "definition_summary": "state"
+        },
+        {
+          "name": "idx_delivery_finished",
+          "table": "delivery",
+          "unique": false,
+          "definition_summary": "finished_at"
+        }
+      ]
+    },
+    "reference_nodes": [
+      "orders",
+      "user_account"
+    ],
+    "continuation": "Order resolves to PartC; UserAccount resolves to PartA; replacement offers continue in PartE.",
+    "legend": {
+      "PK": "primary-key column (including composite-key members)",
+      "FK": "foreign-key column; line labels show SQL multiplicity",
+      "U": "single-column UNIQUE constraint",
+      "U*": "member of a composite UNIQUE or partial UNIQUE index; not individually unique",
+      "C": "column participates in one or more SQL CHECK expressions; full expressions are in the mapping CSV",
+      "?": "SQL NULL is permitted",
+      "multiplicity": "UML end labels are SQL cardinalities unless a note explicitly states an application invariant"
+    },
+    "schema_user_version": 2,
+    "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+    "evidence_label": "Static",
+    "min_placed_pt_at_230x170mm": 9.2126
+  }
+}
