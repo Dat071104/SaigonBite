@@ -1,0 +1,208 @@
+{
+  "UC": "UC-01",
+  "stem": "seq_uc01_confirmCheckout_PartC",
+  "title": "UC-01 confirmCheckout — Part C",
+  "figure": "3.1.4.OP-01C",
+  "caption": "UC-01 confirmCheckout — Part C",
+  "P4_input": "F-04; F-07; P2-S05; P2-S13",
+  "phase3": {
+    "diagram_type": "sequence",
+    "UC": "UC-01",
+    "op_id": "OP-01",
+    "operation": "confirmCheckout",
+    "parameters": "hubId, addressId, lines(itemId, quantity), voucherCode?, paymentMethod, onlineOption?, simulatorOutcome?, quoteFingerprint, quotedTotal, checkoutToken",
+    "ssd_occurrence": "models/UC-01/ssd_uc01_PartB.drawio#01S-M04",
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Customer",
+        "role": "actor",
+        "label": "Customer"
+      },
+      {
+        "id": "view",
+        "class": "order",
+        "role": "view",
+        "label": "«view»\norder"
+      },
+      {
+        "id": "ctrl",
+        "class": "PlaceOrderController",
+        "role": "controller",
+        "label": "PlaceOrderController"
+      },
+      {
+        "id": "sim",
+        "class": "PaymentGatewaySimulator",
+        "role": "gateway",
+        "label": "«gateway»\nPaymentGatewaySimulator"
+      },
+      {
+        "id": "order",
+        "class": "Order",
+        "role": "domain",
+        "label": "Order"
+      },
+      {
+        "id": "pay",
+        "class": "Payment",
+        "role": "domain",
+        "label": "Payment"
+      }
+    ],
+    "messages": [
+      {
+        "from": "ctrl",
+        "to": "sim",
+        "method": "authorise",
+        "kind": "call",
+        "arguments": "quote.total, payment.option, payment.outcome",
+        "guard": "ONLINE",
+        "PC_MG": "",
+        "label": "authorise(quote.total, option, outcome) [ONLINE]",
+        "y": 400,
+        "receiver_signature": "authorise(self, amount: int, option: OnlineOption, outcome: str) -> Authorisation",
+        "status": "MATCH",
+        "P4_input": "",
+        "native_edge_id": "message_000",
+        "source_anchor_id": "message_000_source",
+        "target_anchor_id": "message_000_target",
+        "native_points": [
+          [
+            658.0,
+            400
+          ],
+          [
+            942.0,
+            400
+          ]
+        ]
+      },
+      {
+        "from": "sim",
+        "to": "ctrl",
+        "method": "",
+        "kind": "return",
+        "arguments": "Authorisation: approved, reference, message",
+        "guard": "ONLINE",
+        "PC_MG": "",
+        "label": "Authorisation: approved, reference, message",
+        "y": 530,
+        "native_edge_id": "message_001",
+        "source_anchor_id": "message_001_source",
+        "target_anchor_id": "message_001_target",
+        "native_points": [
+          [
+            942.0,
+            530
+          ],
+          [
+            658.0,
+            530
+          ]
+        ]
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "refusal",
+        "guard": "ONLINE declined",
+        "PC_MG": "UC01-MG01",
+        "label": "refusal",
+        "y": 820,
+        "native_edge_id": "message_002",
+        "source_anchor_id": "message_002_source",
+        "target_anchor_id": "message_002_target",
+        "native_points": [
+          [
+            658.0,
+            820
+          ],
+          [
+            374.0,
+            820
+          ]
+        ]
+      }
+    ],
+    "elements": [
+      {
+        "class": "order",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "PlaceOrderController",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "PaymentGatewaySimulator",
+        "attributes": [],
+        "methods": [
+          "authorise"
+        ]
+      },
+      {
+        "class": "Order",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "Payment",
+        "attributes": [],
+        "methods": []
+      }
+    ],
+    "dependencies": [],
+    "states": [],
+    "interaction_fragments": [
+      {
+        "id": "online_opt",
+        "operator": "opt",
+        "guard": "payment method ONLINE (COD skips this entire region)",
+        "x": 30,
+        "y": 250,
+        "w": 1540,
+        "h": 360,
+        "message_indices": [
+          0,
+          1
+        ]
+      },
+      {
+        "id": "declined_break",
+        "operator": "break",
+        "guard": "ONLINE and approved = false; no Order/Line/Payment; UC01-MG01",
+        "x": 30,
+        "y": 640,
+        "w": 1540,
+        "h": 240,
+        "message_indices": [
+          2
+        ]
+      }
+    ]
+  },
+  "frames": [],
+  "notes": [
+    {
+      "y": 175,
+      "h": 65,
+      "text": "Deterministic local simulator only. COD skips authorization. ONLINE decline terminates here. COD or approved ONLINE continues to creation; no human wait/network call holds the transaction."
+    },
+    {
+      "y": 1030,
+      "h": 45,
+      "text": "loaded/saved through data access — see 4.3.2"
+    }
+  ],
+  "continuation": "confirmCheckout: Part C of A–E; previous Part B; next Part D; same request, no new human wait.",
+  "realisation_note": "Deterministic local simulator, no network/wait. COD skips authorise; ONLINE declined → zero Order/Line/Payment. Success atomically saves PLACED + snapshots + COD PENDING / ONLINE PAID, C=T (UC01-PC01–06). Any lock/write/commit failure rolls back all intended writes and releases authorization† (P2-S05/P2-S13). Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets.",
+  "review_repair_version": "R1-R4"
+}

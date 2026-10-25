@@ -15,39 +15,48 @@
 <text x="1075.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Order</text>
 <polyline points="1155.0,170 1155.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
 <rect x="1425.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
-<text x="1430.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Payment</text>
+<text x="1430.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Replacement</text>
+<text x="1430.0" y="131.92" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Offer</text>
 <polyline points="1510.0,170 1510.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
-<rect x="30" y="180" width="1540" height="860" fill="white" stroke="#004387" stroke-width="2"/>
-<polyline points="90.0,180 90.0,1040" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
-<polyline points="445.0,180 445.0,1040" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
-<polyline points="800.0,180 800.0,1040" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
-<polyline points="1155.0,180 1155.0,1040" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
-<polyline points="1510.0,180 1510.0,1040" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
-<text x="40" y="205.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">alt [all conditional saves + commit → UC05-PC04 / failed atomic save → controlledFailure; UC05-MG01]</text>
-<polyline points="30,900 1570,900" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
-<text x="40" y="925.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">[denied / stale / invalid or failed atomic save] UC05-MG01</text>
-<rect x="35" y="220" width="1530" height="130.4" fill="#FFF8E9" stroke="#004387" stroke-width="2"/>
-<text x="45" y="247.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Valid acceptance continues atomically: use offered price, whole line, same quantity; Snew; Dnew=min(Dold,Snew), F/Q unchanged;</text>
-<text x="45" y="274.92" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Tnew=Snew−Dnew+F−Q. Read Order.total property, set offer ACCEPTED through data access. COD amount=Tnew; ONLINE state PAID, C</text>
-<text x="45" y="302.52" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">unchanged, refund_amount=C−Tnew. Order stays PLACED (PC04), never auto-confirms. Any conditional 0-row/lock/write/commit failure →</text>
-<text x="45" y="330.12" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">complete rollback†, MG01.</text>
-<rect x="35" y="1010" width="1530" height="65" fill="#FFF8E9" stroke="#004387" stroke-width="2"/>
-<text x="45" y="1037.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Persistence: loaded/saved through data access — see 4.3.2.</text>
-<polyline points="800.0,563 1155.0,563" fill="none" stroke="#004387" stroke-width="2"/>
-<polyline points="1141.0,570.0 1155.0,563 1141.0,556.0" fill="none" stroke="#004387" stroke-width="2"/>
-<text x="815.0" y="466.92" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">replace_line(offer.order_line_id,</text>
-<text x="815.0" y="494.52000000000004" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">offer.new_menu_item_id,</text>
-<text x="815.0" y="522.12" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">offer.new_item_name,</text>
-<text x="815.0" y="549.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">offer.new_unit_price)</text>
-<rect x="1150.0" y="563" width="10" height="25" fill="#DAE9F5" stroke="#004387" stroke-width="2"/>
-<polyline points="800.0,633 445.0,633" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
-<polyline points="459.0,626.0 445.0,633 459.0,640.0" fill="none" stroke="#004387" stroke-width="2"/>
-<text x="460.0" y="619.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">result / controlled refusal</text>
-<polyline points="800.0,1000 445.0,1000" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
-<polyline points="459.0,993.0 445.0,1000 459.0,1007.0" fill="none" stroke="#004387" stroke-width="2"/>
-<text x="460.0" y="986.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">refusal / controlled failure; UC05-MG01</text>
-<text x="35" y="1102.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Part B ↔ PartA. Same lifelines / same operation; no second request.</text>
+<rect x="30" y="250" width="1540" height="770" fill="white" stroke="#004387" stroke-width="2"/>
+<text x="40" y="275.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">alt [target eligibility: invalid OR valid (exclusive)]</text>
+<rect x="30" y="285" width="1540" height="375" fill="white" stroke="#004387" stroke-width="2"/>
+<text x="40" y="310.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">opt [target invalid: withdraw exact offer only; Order unchanged]</text>
+<rect x="50" y="330" width="1500" height="330" fill="white" stroke="#004387" stroke-width="2"/>
+<text x="60" y="355.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">alt [withdrawal-only atomic outcome]</text>
+<rect x="50" y="370" width="1500" height="145" fill="white" stroke="#004387" stroke-width="2"/>
+<text x="60" y="395.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">opt [withdrawal COMMIT succeeds]</text>
+<rect x="50" y="515" width="1500" height="145" fill="white" stroke="#004387" stroke-width="2"/>
+<text x="60" y="540.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">opt [withdrawal save fails: rollback; UC05-MG01]</text>
+<rect x="30" y="660" width="1540" height="360" fill="white" stroke="#004387" stroke-width="2"/>
+<text x="40" y="685.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">opt [target still ACTIVE / active brand / listed + AVAILABLE at own hub]</text>
+<polyline points="90.0,170 90.0,1020" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="445.0,170 445.0,1020" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="800.0,170 800.0,1020" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="1155.0,170 1155.0,1020" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="1510.0,170 1510.0,1020" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="35" y="175" width="1530" height="65" fill="#FFF8E9" stroke="#004387" stroke-width="2"/>
+<text x="45" y="202.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Invalid target changes only the exact offer to WITHDRAWN, with a returned reason. It cannot execute replace_line. Valid target alone applies</text>
+<text x="45" y="229.92" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">offered price to the whole linked line, same quantity.</text>
+<rect x="35" y="1030" width="1530" height="45" fill="#FFF8E9" stroke="#004387" stroke-width="2"/>
+<text x="45" y="1057.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">loaded/saved through data access — see 4.3.2</text>
+<polyline points="800.0,480 445.0,480" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="459.0,473.0 445.0,480 459.0,487.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="460.0" y="439.12" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">withdrawnOfferAndReason [withdrawal</text>
+<text x="460.0" y="466.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">COMMIT succeeded]</text>
+<polyline points="800.0,620 445.0,620" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="459.0,613.0 445.0,620 459.0,627.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="460.0" y="606.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">controlledFailure</text>
+<polyline points="800.0,900 1155.0,900" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="1141.0,907.0 1155.0,900 1141.0,893.0" fill="none" stroke="#004387" stroke-width="2"/>
+<polygon data-message-arrow="filled-synchronous" points="1141.0,907.0 1155.0,900 1141.0,893.0" fill="#004387" stroke="#004387"/>
+<text x="815.0" y="803.9200000000001" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">replace_line(offer.order_line_id,</text>
+<text x="815.0" y="831.5200000000001" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">offer.new_menu_item_id,</text>
+<text x="815.0" y="859.1200000000001" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">offer.new_item_name,</text>
+<text x="815.0" y="886.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">offer.new_unit_price)</text>
+<rect x="1150.0" y="900" width="10" height="25" fill="#DAE9F5" stroke="#004387" stroke-width="2"/>
+<text x="35" y="1102.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">acceptReplacement: Part B of A–C; previous Part A; next Part C; same request, no new human wait.</text>
 <text x="35" y="1134.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">† design target, not yet in code at C0 (see P4 input F-02; F-05; P2-S09; P2-S11; P2-S13).</text>
-<text x="35" y="1167.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Figure 3.5.4.OP-05B. UC-05 acceptReplacement design sequence — Author: 722I0004 · AI-assisted (Codex)</text>
+<text x="35" y="1167.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Figure 3.5.4.OP-05B. UC-05 acceptReplacement — Part B — Author: 722I0004 · AI-assisted (Codex)</text>
 <text x="35" y="1193.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Static / target design · 230 mm landscape · smallest text 9.78 pt · native draw.io / final placement UNTESTED</text>
 </svg>

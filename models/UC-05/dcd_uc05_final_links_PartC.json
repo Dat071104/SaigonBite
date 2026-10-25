@@ -201,12 +201,13 @@
           148
         ]
       ],
-      "label": "0..* → 1 target item",
+      "label": "target item",
       "labelpos": [
-        575,
-        109
+        690,
+        158
       ],
-      "labelwidth": 440
+      "labelwidth": 330,
+      "native_edge_id": "dcd_relation_000"
     },
     {
       "source": "s1",
@@ -222,12 +223,13 @@
           298
         ]
       ],
-      "label": "0..* → 1 snapshot source",
+      "label": "snapshot source",
       "labelpos": [
-        575,
-        259
+        690,
+        308
       ],
-      "labelwidth": 440
+      "labelwidth": 330,
+      "native_edge_id": "dcd_relation_001"
     },
     {
       "source": "s2",
@@ -243,12 +245,13 @@
           448
         ]
       ],
-      "label": "0..* → 0..1 kitchen hub",
+      "label": "kitchen hub",
       "labelpos": [
-        575,
-        409
+        690,
+        458
       ],
-      "labelwidth": 440
+      "labelwidth": 330,
+      "native_edge_id": "dcd_relation_002"
     },
     {
       "source": "s3",
@@ -264,12 +267,13 @@
           598
         ]
       ],
-      "label": "→  is a",
+      "label": "is a",
       "labelpos": [
-        575,
-        559
+        690,
+        560
       ],
-      "labelwidth": 440
+      "labelwidth": 330,
+      "native_edge_id": "dcd_relation_003"
     },
     {
       "source": "s4",
@@ -285,12 +289,13 @@
           748
         ]
       ],
-      "label": "→  is a",
+      "label": "is a",
       "labelpos": [
-        575,
-        709
+        690,
+        710
       ],
-      "labelwidth": 440
+      "labelwidth": 330,
+      "native_edge_id": "dcd_relation_004"
     },
     {
       "source": "s5",
@@ -306,12 +311,13 @@
           938
         ]
       ],
-      "label": "→  «use»",
+      "label": "«use»",
       "labelpos": [
-        575,
-        859
+        690,
+        860
       ],
-      "labelwidth": 440
+      "labelwidth": 330,
+      "native_edge_id": "dcd_relation_005"
     }
   ],
   "phase3": {
@@ -433,7 +439,66 @@
         "allowed_on_layered_diagram": true
       }
     ],
-    "states": []
+    "states": [],
+    "association_end_labels": [
+      {
+        "source": "ReplacementOffer",
+        "target": "MenuItem",
+        "kind": "association",
+        "role": "target item",
+        "native_edge_id": "dcd_relation_000",
+        "source_label_id": "dcd_relation_000_source_multiplicity",
+        "target_label_id": "dcd_relation_000_target_multiplicity",
+        "source_endpoint": [
+          555,
+          148
+        ],
+        "target_endpoint": [
+          1035,
+          148
+        ],
+        "source_card_id": "s0",
+        "target_card_id": "t0"
+      },
+      {
+        "source": "OrderLine",
+        "target": "MenuItem",
+        "kind": "association",
+        "role": "snapshot source",
+        "native_edge_id": "dcd_relation_001",
+        "source_label_id": "dcd_relation_001_source_multiplicity",
+        "target_label_id": "dcd_relation_001_target_multiplicity",
+        "source_endpoint": [
+          555,
+          298
+        ],
+        "target_endpoint": [
+          1035,
+          298
+        ],
+        "source_card_id": "s1",
+        "target_card_id": "t1"
+      },
+      {
+        "source": "UserAccount",
+        "target": "Hub",
+        "kind": "association",
+        "role": "kitchen hub",
+        "native_edge_id": "dcd_relation_002",
+        "source_label_id": "dcd_relation_002_source_multiplicity",
+        "target_label_id": "dcd_relation_002_target_multiplicity",
+        "source_endpoint": [
+          555,
+          448
+        ],
+        "target_endpoint": [
+          1035,
+          448
+        ],
+        "source_card_id": "s2",
+        "target_card_id": "t2"
+      }
+    ]
   },
   "continuation": "Members: final detail parts. Relationship parts A–L continue both ways.",
   "P4_input": "none on this view",

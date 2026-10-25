@@ -81,8 +81,16 @@
         "receiver_signature": "get_by_order_id(self, order_id: int) -> Optional[Payment]",
         "status": "MATCH",
         "P4_input": "",
-        "y": 341,
-        "edge_id": "message0"
+        "y": 308.68,
+        "edge_id": "message0",
+        "label_box": [
+          65,
+          269.84000000000003,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message0",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "obj5",
@@ -99,8 +107,16 @@
         "receiver_signature": "release_for_unfulfilled_order(self) -> None",
         "status": "P4-TARGET",
         "P4_input": "F-02; P2-S01",
-        "y": 466,
-        "edge_id": "message1"
+        "y": 374.52,
+        "edge_id": "message1",
+        "label_box": [
+          65,
+          335.68,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message1",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "ctrl",
@@ -114,7 +130,13 @@
         "base_label": "† F-02: COD PENDING → VOIDED; ONLINE PAID → REFUND_PENDING AND refund_amount = full captured C (replace any partial owed). No payout, no REFUNDED.",
         "fragment": false,
         "draw_arrow": false,
-        "y": 591
+        "y": 457.2,
+        "label_box": [
+          65,
+          405.52,
+          1470,
+          55.68
+        ]
       },
       {
         "from": "obj5",
@@ -131,8 +153,16 @@
         "receiver_signature": "set_amounts(self, order_id: int, amount: int, refund_amount: int, now: str) -> bool",
         "status": "P4-TARGET",
         "P4_input": "F-02; P3-S03",
-        "y": 716,
-        "edge_id": "message3"
+        "y": 518.04,
+        "edge_id": "message3",
+        "label_box": [
+          65,
+          479.2,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message3",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "obj8",
@@ -146,8 +176,16 @@
         "base_label": "SQL note: † UPDATE payment amounts by order_id; expose bool rowcount == 1 (C0 returns None).",
         "fragment": false,
         "draw_arrow": true,
-        "y": 841,
-        "edge_id": "message4"
+        "y": 583.88,
+        "edge_id": "message4",
+        "label_box": [
+          65,
+          545.04,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message4",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "obj8",
@@ -161,8 +199,16 @@
         "base_label": "† check bool True; 0 / False → ROLLBACK rejection and withdrawal",
         "fragment": false,
         "draw_arrow": false,
-        "y": 966,
-        "edge_id": "message5"
+        "y": 649.72,
+        "edge_id": "message5",
+        "label_box": [
+          65,
+          610.88,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message5",
+        "arrow_style": "dashed_open_reply"
       }
     ],
     "elements": [
@@ -241,6 +287,28 @@
           "PAID",
           "REFUND_PENDING"
         ]
+      }
+    ],
+    "interaction_fragments": [
+      {
+        "id": "fragment_seqdao_uc05_rejectOrder_PartD_1",
+        "operator": "opt",
+        "guard": "order rejection and optional withdrawal succeeded; full-C obligation is atomic (from Part C)",
+        "start_index": 0,
+        "end_index": 5,
+        "message_indices": [
+          0,
+          1,
+          3,
+          4,
+          5
+        ],
+        "x": 25,
+        "y": 232,
+        "w": 1550,
+        "h": 444.72,
+        "depth": 0,
+        "guard_height": 32.84
       }
     ]
   },
@@ -322,39 +390,51 @@
         55.67999999999999
       ],
       [
-        45,
-        242,
-        1510,
+        31,
+        233,
+        84,
         27.839999999999996
       ],
       [
-        45,
-        367,
-        1510,
+        127,
+        233,
+        1438,
         27.839999999999996
       ],
       [
-        45,
-        497,
-        1510,
+        65,
+        269.84000000000003,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        335.68,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        405.52,
+        1470,
         55.67999999999999
       ],
       [
-        45,
-        617,
-        1510,
+        65,
+        479.2,
+        1470,
         27.839999999999996
       ],
       [
-        45,
-        742,
-        1510,
+        65,
+        545.04,
+        1470,
         27.839999999999996
       ],
       [
-        45,
-        867,
-        1510,
+        65,
+        610.88,
+        1470,
         27.839999999999996
       ],
       [
@@ -396,13 +476,15 @@
         "points": [
           [
             702.8571428571429,
-            341
+            308.68
           ],
           [
             1285.7142857142858,
-            341
+            308.68
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message1",
@@ -411,13 +493,15 @@
         "points": [
           [
             702.8571428571429,
-            466
+            374.52
           ],
           [
             1091.4285714285716,
-            466
+            374.52
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message3",
@@ -426,13 +510,15 @@
         "points": [
           [
             702.8571428571429,
-            716
+            518.04
           ],
           [
             1285.7142857142858,
-            716
+            518.04
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message4",
@@ -441,13 +527,15 @@
         "points": [
           [
             1285.7142857142858,
-            841
+            583.88
           ],
           [
             1480.0,
-            841
+            583.88
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message5",
@@ -456,15 +544,25 @@
         "points": [
           [
             1285.7142857142858,
-            966
+            649.72
           ],
           [
             702.8571428571429,
-            966
+            649.72
           ]
-        ]
+        ],
+        "filled": false,
+        "dashed": true
       }
     ],
     "author_native_cell": true
+  },
+  "independent_review_repair": {
+    "findings": [
+      "R1",
+      "R4"
+    ],
+    "preserved_source": "D:\\RAD\\FINAL\\Part2\\notes\\P3_trash\\P3-F\\independent_review_R1_R4_20261025_192108\\UC-05\\seqdao_uc05_rejectOrder_PartD.json",
+    "scope": "Actual guarded regions and synchronous arrowheads; no shared-model/app/status changes."
   }
 }

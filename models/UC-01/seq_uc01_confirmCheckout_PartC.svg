@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200"><rect width="100%" height="100%" fill="white"/>
+<text x="35" y="42.040000000000006" font-family="Arial" font-size="28" font-weight="bold" fill="#202B36">UC-01 confirmCheckout — Part C</text>
+<rect x="5.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="10.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Customer</text>
+<polyline points="90.0,170 90.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="289.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="294.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">«view»</text>
+<text x="294.0" y="131.92" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">order</text>
+<polyline points="374.0,170 374.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="573.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="578.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">PlaceOrderCo</text>
+<text x="578.0" y="131.92" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">ntroller</text>
+<polyline points="658.0,170 658.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="857.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="862.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">«gateway»</text>
+<text x="862.0" y="131.92" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">PaymentGate</text>
+<text x="862.0" y="159.51999999999998" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">waySimulator</text>
+<polyline points="942.0,170 942.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="1141.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="1146.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Order</text>
+<polyline points="1226.0,170 1226.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="1425.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="1430.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Payment</text>
+<polyline points="1510.0,170 1510.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="30" y="250" width="1540" height="360" fill="white" stroke="#004387" stroke-width="2"/>
+<text x="40" y="275.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">opt [payment method ONLINE (COD skips this entire region)]</text>
+<rect x="30" y="640" width="1540" height="240" fill="white" stroke="#004387" stroke-width="2"/>
+<text x="40" y="665.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">break [ONLINE and approved = false; no Order/Line/Payment; UC01-MG01]</text>
+<polyline points="90.0,170 90.0,1020" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="374.0,170 374.0,1020" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="658.0,170 658.0,1020" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="942.0,170 942.0,1020" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="1226.0,170 1226.0,1020" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="1510.0,170 1510.0,1020" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="35" y="175" width="1530" height="65" fill="#FFF8E9" stroke="#004387" stroke-width="2"/>
+<text x="45" y="202.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Deterministic local simulator only. COD skips authorization. ONLINE decline terminates here. COD or approved ONLINE continues to</text>
+<text x="45" y="229.92" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">creation; no human wait/network call holds the transaction.</text>
+<rect x="35" y="1030" width="1530" height="45" fill="#FFF8E9" stroke="#004387" stroke-width="2"/>
+<text x="45" y="1057.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">loaded/saved through data access — see 4.3.2</text>
+<polyline points="658.0,400 942.0,400" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="928.0,407.0 942.0,400 928.0,393.0" fill="none" stroke="#004387" stroke-width="2"/>
+<polygon data-message-arrow="filled-synchronous" points="928.0,407.0 942.0,400 928.0,393.0" fill="#004387" stroke="#004387"/>
+<text x="673.0" y="359.12" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">authorise(quote.total, option, outcome)</text>
+<text x="673.0" y="386.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">[ONLINE]</text>
+<rect x="937.0" y="400" width="10" height="25" fill="#DAE9F5" stroke="#004387" stroke-width="2"/>
+<polyline points="942.0,530 658.0,530" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="672.0,523.0 658.0,530 672.0,537.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="673.0" y="489.12" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Authorisation: approved, reference,</text>
+<text x="673.0" y="516.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">message</text>
+<polyline points="658.0,820 374.0,820" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="388.0,813.0 374.0,820 388.0,827.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="389.0" y="806.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">refusal</text>
+<text x="35" y="1102.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">confirmCheckout: Part C of A–E; previous Part B; next Part D; same request, no new human wait.</text>
+<text x="35" y="1134.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">† design target, not yet in code at C0 (see P4 input F-04; F-07; P2-S05; P2-S13).</text>
+<text x="35" y="1167.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Figure 3.1.4.OP-01C. UC-01 confirmCheckout — Part C — Author: 722I0004 · AI-assisted (Codex)</text>
+<text x="35" y="1193.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Static / target design · 230 mm landscape · smallest text 9.78 pt · native draw.io / final placement UNTESTED</text>
+</svg>

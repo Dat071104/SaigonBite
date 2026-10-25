@@ -1,0 +1,218 @@
+{
+  "UC": "UC-05",
+  "stem": "seq_uc05_acceptReplacement_PartC",
+  "title": "UC-05 acceptReplacement — Part C",
+  "figure": "3.5.4.OP-05C",
+  "caption": "UC-05 acceptReplacement — Part C",
+  "P4_input": "F-02; F-05; P2-S09; P2-S11; P2-S13",
+  "phase3": {
+    "diagram_type": "sequence",
+    "UC": "UC-05",
+    "op_id": "OP-05",
+    "operation": "acceptReplacement",
+    "parameters": "orderId, offerId",
+    "ssd_occurrence": "models/UC-05/ssd_uc05_PartB.drawio#05S-M08",
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Customer",
+        "role": "actor",
+        "label": "Customer"
+      },
+      {
+        "id": "view",
+        "class": "order",
+        "role": "view",
+        "label": "«view»\norder"
+      },
+      {
+        "id": "ctrl",
+        "class": "OrderTrackingController",
+        "role": "controller",
+        "label": "OrderTrackingController"
+      },
+      {
+        "id": "order",
+        "class": "Order",
+        "role": "domain",
+        "label": "Order"
+      },
+      {
+        "id": "pay",
+        "class": "Payment",
+        "role": "domain",
+        "label": "Payment"
+      }
+    ],
+    "messages": [
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "acceptedOrderAndAmounts [COMMIT succeeded]",
+        "guard": "valid target and all atomic saves + COMMIT succeed",
+        "PC_MG": "UC05-PC04",
+        "label": "acceptedOrderAndAmounts [COMMIT succeeded]",
+        "y": 540,
+        "native_edge_id": "message_000",
+        "source_anchor_id": "message_000_source",
+        "target_anchor_id": "message_000_target",
+        "native_points": [
+          [
+            800.0,
+            540
+          ],
+          [
+            445.0,
+            540
+          ]
+        ]
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "controlledFailure",
+        "guard": "valid-target save / lock / COMMIT failure; rollback",
+        "PC_MG": "UC05-MG01",
+        "label": "controlledFailure",
+        "y": 900,
+        "native_edge_id": "message_001",
+        "source_anchor_id": "message_001_source",
+        "target_anchor_id": "message_001_target",
+        "native_points": [
+          [
+            800.0,
+            900
+          ],
+          [
+            445.0,
+            900
+          ]
+        ]
+      }
+    ],
+    "elements": [
+      {
+        "class": "order",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "OrderTrackingController",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "Order",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "Payment",
+        "attributes": [],
+        "methods": []
+      }
+    ],
+    "dependencies": [],
+    "states": [
+      {
+        "class": "Order",
+        "attribute": "state",
+        "values": [
+          "PLACED"
+        ]
+      },
+      {
+        "class": "Payment",
+        "attribute": "state",
+        "values": [
+          "PAID"
+        ]
+      },
+      {
+        "class": "ReplacementOffer",
+        "attribute": "state",
+        "values": [
+          "ACCEPTED"
+        ]
+      }
+    ],
+    "interaction_fragments": [
+      {
+        "id": "valid_continuation",
+        "operator": "opt",
+        "guard": "eligible valid-target path continued from Part B",
+        "x": 30,
+        "y": 270,
+        "w": 1540,
+        "h": 750,
+        "message_indices": [
+          0,
+          1
+        ]
+      },
+      {
+        "id": "accept_outcome",
+        "operator": "alt",
+        "guard": "atomic save / COMMIT outcome",
+        "x": 30,
+        "y": 310,
+        "w": 1540,
+        "h": 710,
+        "message_indices": [
+          0,
+          1
+        ],
+        "parent": "valid_continuation"
+      },
+      {
+        "id": "accept_committed",
+        "operator": "opt",
+        "guard": "all saves + COMMIT succeed; UC05-PC04",
+        "x": 30,
+        "y": 350,
+        "w": 1540,
+        "h": 300,
+        "message_indices": [
+          0
+        ],
+        "parent": "accept_outcome"
+      },
+      {
+        "id": "accept_failed",
+        "operator": "opt",
+        "guard": "save / lock / COMMIT fails: rollback every intended change; UC05-MG01",
+        "x": 30,
+        "y": 650,
+        "w": 1540,
+        "h": 370,
+        "message_indices": [
+          1
+        ],
+        "parent": "accept_outcome"
+      }
+    ]
+  },
+  "frames": [],
+  "notes": [
+    {
+      "y": 175,
+      "h": 65,
+      "text": "Dnew=min(Dold,Snew); F/Q and captured C unchanged. COD payable=Tnew; ONLINE stays PAID, owed=C−Tnew. Offer ACCEPTED; Order stays PLACED. No automatic confirmation or payout."
+    },
+    {
+      "y": 1030,
+      "h": 45,
+      "text": "loaded/saved through data access — see 4.3.2"
+    }
+  ],
+  "continuation": "acceptReplacement: Part C of A–C; previous Part B; end of this request.",
+  "realisation_note": "Valid acceptance continues atomically: use offered price, whole line, same quantity; Snew; Dnew=min(Dold,Snew), F/Q unchanged; Tnew=Snew−Dnew+F−Q. Read Order.total property, set offer ACCEPTED through data access. COD amount=Tnew; ONLINE state PAID, C unchanged, refund_amount=C−Tnew. Order stays PLACED (PC04), never auto-confirms. Any conditional 0-row/lock/write/commit failure → complete rollback†, MG01. Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets.",
+  "review_repair_version": "R1-R4"
+}

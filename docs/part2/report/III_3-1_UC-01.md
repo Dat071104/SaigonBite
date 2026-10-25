@@ -226,17 +226,19 @@ Figure 3.1.2.v.R14. UC-01 all navigation / multiplicities — Author: 722I0004 �
 
 ## 3.1.4 OOD with Sequence Diagram
 
-Each SSD occurrence has its own operation sequence. Actor → actual blueprint module → controller → domain / typed value; UC-01 also uses the local simulator. No DAO/SQL lifeline is present. Calls are synchronous, result arrows dashed, receivers activated, and the `alt` frame names the authorized/success versus main denial/rollback operands. Attribute/property reads are notes. Implicit dataclass «create» is not a business operation. Persistence is loaded/saved through data access — see 4.3.2.
+Each SSD occurrence has its own operation sequence. Actor → actual blueprint module → controller → domain / typed value; UC-01 also uses the local simulator. No DAO/SQL lifeline is present. Synchronous calls use closed filled arrowheads; dashed open arrows carry results. Actual `alt`, `opt` and `break` rectangles enclose the messages they govern, including self-call paths. Inside an outcome `alt`, separately guarded regions have mutually exclusive conditions. Denial breaks terminate the current interaction; a continuation retains the same request and lifelines. Successful mutation results follow all atomic saves and COMMIT, whose DAO details remain in 4.3.2. Attribute/property reads are notes. Implicit dataclass «create» is not a business operation. Persistence is loaded/saved through data access — see 4.3.2.
+
+Checkout uses Parts A–E: token replay/denial breaks; quote and fingerprint/T validation; optional ONLINE authorization with a decline break; creation only for COD or approved ONLINE; then exclusive commit success versus rollback. Only the failed branch can release an obtained ONLINE reference. The success branch retains authorization. requestQuote uses Parts A–C: eligibility/distance, Quote initialization, then optional voucher validation/discount and fingerprint. Invalid voucher terminates before discount or a quote result. cancelOrder Parts A/B return `cancelledOrderAndAmounts` only after successful atomic save and COMMIT; the rollback reply remains separate.
 
 | SSD operation and exact parameters | View → controller adapter; status | Guard / effects and failure guarantee |
 |---|---|---|
-| `browseHubs()`<br>`models/UC-01/ssd_uc01_PartA.drawio#01S-M01` | `order.choose_hub, GET /order/hubs` → `PlaceOrderController.list_hubs(self) -> list[HubStatus]`; MATCH | Read .busy / .quiet on HubStatus; these are properties, never busy() / quiet() calls. No persistent writes. Active Customer gate belongs to view; select_hub also checks active Customer and hub. |
-| `selectHub(hubId)`<br>`models/UC-01/ssd_uc01_PartA.drawio#01S-M02` | `order.choose_items, GET /order/hubs/<int:hub_id>` → `PlaceOrderController.select_hub(self, user_id: int, hub_id: int) -> HubMenuView`; MATCH | Read .busy / .quiet on HubStatus; these are properties, never busy() / quiet() calls. No persistent writes. Active Customer gate belongs to view; select_hub also checks active Customer and hub. |
-| `requestQuote(hubId, addressId, lines(itemId, quantity), voucherCode?, paymentMethod, onlineOption?)`<br>`models/UC-01/ssd_uc01_PartA.drawio#01S-M03` | `order.quote, POST /order/quote` → `PlaceOrderController.request_quote(self, user_id: int, hub_id: int, address_id: Optional[int], quantities: Mapping[int, str], voucher_code: Optional[str] = None, payment: Optional[PaymentChoice] = None) -> Quote`; P4-TARGET† F-04; F-07; P3-S01 | Target: active hub/menu/brand, own active address, integer quantities, load < capacity. Invalid input/refused voucher → no saved rows. Busy suggestions ≤3 ranked (load/capacity, raw distance, ID).<br>Read quote.item_subtotal / quote.total properties. Fingerprint binds hub/address, line IDs, quantities and prices, voucher + D, F, Q and payment choice; full accepted price T=S−D+F−Q. PaymentChoice is a typed adapter value. |
-| `confirmCheckout(hubId, addressId, lines(itemId, quantity), voucherCode?, paymentMethod, onlineOption?, simulatorOutcome?, quoteFingerprint, quotedTotal, checkoutToken)`<br>`models/UC-01/ssd_uc01_PartB.drawio#01S-M04` | `order.confirm, POST /order/confirm` → `PlaceOrderController.confirm_order(self, user_id: int, hub_id: int, address_id: Optional[int], quantities: Mapping[int, str], idempotency_token: str, quoted_total: Optional[int] = None, voucher_code: Optional[str] = None, payment: Optional[PaymentChoice] = None, quote_fingerprint: Optional[str] = None) -> OrderConfirmation`; P4-TARGET† F-04; F-07; P2-S05; P2-S13 | Simulator approve/decline choice precedes this request. Short atomic checkout begins before token lookup. Own existing token → existingOrder, no reprice, authorization or insertion (UC01-MG02). Foreign token → refusal. Unused token rechecks eligibility, raw radius, capacity, voucher and full consent.<br>Deterministic local simulator, no network/wait. COD skips authorise; ONLINE declined → zero Order/Line/Payment. Success atomically saves PLACED + snapshots + COD PENDING / ONLINE PAID, C=T (UC01-PC01–06). Any lock/write/commit failure rolls back all intended writes and releases authorization† (P2-S05/P2-S13). |
-| `viewReceipt(orderId)`<br>`models/UC-01/ssd_uc01_PartC.drawio#01S-M05` | `order.detail, GET /order/<int:order_id>` → `OrderTrackingController.get_order(self, user_id: int, order_id: int) -> OrderDetail`; P4-TARGET† F-06 | Read-only active role + own Customer / own kitchen hub checks; denied context discloses no foreign details. Receipt/offer amounts say refund owed, never paid out† (F-06 where applicable). Read snapshots, .total and offer attributes; no fabricated business getters. No persistent writes. |
-| `viewMyOrders()`<br>`models/UC-01/ssd_uc01_PartC.drawio#01S-M06` | `order.my_orders, GET /order/mine` → `OrderTrackingController.list_my_orders(self, user_id: int) -> list[OrderSummary]`; MATCH | Read-only active role + own Customer / own kitchen hub checks; denied context discloses no foreign details. Receipt/offer amounts say refund owed, never paid out (F-06 where applicable). Read snapshots, .total and offer attributes; no fabricated business getters. No persistent writes. |
-| `cancelOrder(orderId)`<br>`models/UC-01/ssd_uc01_PartC.drawio#01S-M07` | `order.cancel, POST /order/<int:order_id>/cancel` → `OrderTrackingController.cancel_order(self, user_id: int, order_id: int) -> OrderDetail`; P4-TARGET† F-02; P2-S13 | Guard: active own Customer; PLACED / CONFIRMED. Atomic CANCELLED + closed_at / reason; COD VOIDED; ONLINE REFUND_PENDING, refund_amount=C replaces any partial owed amount. No payout. Open offer WITHDRAWN; helpers are real module functions. Rowcount, busy and failure-through-COMMIT rollback†. Root-adopted P4-TARGET: release_payment persists the full-C refund amount together with state and checks every conditional save in the same transaction (F-02; P2-S01; P3-S03). |
+| `browseHubs()`<br>`models/UC-01/ssd_uc01_PartA.drawio#01S-M01` | `order.choose_hub, GET /order/hubs` → `PlaceOrderController.list_hubs(self) -> list[HubStatus]`; MATCH | Read .busy / .quiet on HubStatus; these are properties, never busy() / quiet() calls. No persistent writes. Active Customer gate belongs to view; select_hub also checks active Customer and hub. Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments. |
+| `selectHub(hubId)`<br>`models/UC-01/ssd_uc01_PartA.drawio#01S-M02` | `order.choose_items, GET /order/hubs/<int:hub_id>` → `PlaceOrderController.select_hub(self, user_id: int, hub_id: int) -> HubMenuView`; MATCH | Read .busy / .quiet on HubStatus; these are properties, never busy() / quiet() calls. No persistent writes. Active Customer gate belongs to view; select_hub also checks active Customer and hub. Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments. |
+| `requestQuote(hubId, addressId, lines(itemId, quantity), voucherCode?, paymentMethod, onlineOption?)`<br>`models/UC-01/ssd_uc01_PartA.drawio#01S-M03` | `order.quote, POST /order/quote` → `PlaceOrderController.request_quote(self, user_id: int, hub_id: int, address_id: Optional[int], quantities: Mapping[int, str], voucher_code: Optional[str] = None, payment: Optional[PaymentChoice] = None) -> Quote`; P4-TARGET† F-04; F-07; P3-S01 | Target: active hub/menu/brand, own active address, integer quantities, load < capacity. Invalid input/refused voucher → no saved rows. Busy suggestions ≤3 ranked (load/capacity, raw distance, ID). Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.<br>Read quote.item_subtotal / quote.total properties. Fingerprint binds hub/address, line IDs, quantities and prices, voucher + D, F, Q and payment choice; full accepted price T=S−D+F−Q. PaymentChoice is a typed adapter value. Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.<br>Read quote.item_subtotal / quote.total properties. Fingerprint binds hub/address, line IDs, quantities and prices, voucher + D, F, Q and payment choice; full accepted price T=S−D+F−Q. PaymentChoice is a typed adapter value. Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments. |
+| `confirmCheckout(hubId, addressId, lines(itemId, quantity), voucherCode?, paymentMethod, onlineOption?, simulatorOutcome?, quoteFingerprint, quotedTotal, checkoutToken)`<br>`models/UC-01/ssd_uc01_PartB.drawio#01S-M04` | `order.confirm, POST /order/confirm` → `PlaceOrderController.confirm_order(self, user_id: int, hub_id: int, address_id: Optional[int], quantities: Mapping[int, str], idempotency_token: str, quoted_total: Optional[int] = None, voucher_code: Optional[str] = None, payment: Optional[PaymentChoice] = None, quote_fingerprint: Optional[str] = None) -> OrderConfirmation`; P4-TARGET† F-04; F-07; P2-S05; P2-S13 | Simulator approve/decline choice precedes this request. Short atomic checkout begins before token lookup. Own existing token → existingOrder, no reprice, authorization or insertion (UC01-MG02). Foreign token → refusal. Unused token rechecks eligibility, raw radius, capacity, voucher and full consent. Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.<br>Simulator approve/decline choice precedes this request. Short atomic checkout begins before token lookup. Own existing token → existingOrder, no reprice, authorization or insertion (UC01-MG02). Foreign token → refusal. Unused token rechecks eligibility, raw radius, capacity, voucher and full consent. Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.<br>Deterministic local simulator, no network/wait. COD skips authorise; ONLINE declined → zero Order/Line/Payment. Success atomically saves PLACED + snapshots + COD PENDING / ONLINE PAID, C=T (UC01-PC01–06). Any lock/write/commit failure rolls back all intended writes and releases authorization† (P2-S05/P2-S13). Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.<br>Deterministic local simulator, no network/wait. COD skips authorise; ONLINE declined → zero Order/Line/Payment. Success atomically saves PLACED + snapshots + COD PENDING / ONLINE PAID, C=T (UC01-PC01–06). Any lock/write/commit failure rolls back all intended writes and releases authorization† (P2-S05/P2-S13). Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.<br>Deterministic local simulator, no network/wait. COD skips authorise; ONLINE declined → zero Order/Line/Payment. Success atomically saves PLACED + snapshots + COD PENDING / ONLINE PAID, C=T (UC01-PC01–06). Any lock/write/commit failure rolls back all intended writes and releases authorization† (P2-S05/P2-S13). Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments. |
+| `viewReceipt(orderId)`<br>`models/UC-01/ssd_uc01_PartC.drawio#01S-M05` | `order.detail, GET /order/<int:order_id>` → `OrderTrackingController.get_order(self, user_id: int, order_id: int) -> OrderDetail`; P4-TARGET† F-06 | Read-only active role + own Customer / own kitchen hub checks; denied context discloses no foreign details. Receipt/offer amounts say refund owed, never paid out† (F-06 where applicable). Read snapshots, .total and offer attributes; no fabricated business getters. No persistent writes. Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments. |
+| `viewMyOrders()`<br>`models/UC-01/ssd_uc01_PartC.drawio#01S-M06` | `order.my_orders, GET /order/mine` → `OrderTrackingController.list_my_orders(self, user_id: int) -> list[OrderSummary]`; MATCH | Read-only active role + own Customer / own kitchen hub checks; denied context discloses no foreign details. Receipt/offer amounts say refund owed, never paid out (F-06 where applicable). Read snapshots, .total and offer attributes; no fabricated business getters. No persistent writes. Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments. |
+| `cancelOrder(orderId)`<br>`models/UC-01/ssd_uc01_PartC.drawio#01S-M07` | `order.cancel, POST /order/<int:order_id>/cancel` → `OrderTrackingController.cancel_order(self, user_id: int, order_id: int) -> OrderDetail`; P4-TARGET† F-02; P2-S13 | Guard: active own Customer; PLACED / CONFIRMED. Atomic CANCELLED + closed_at / reason; COD VOIDED; ONLINE REFUND_PENDING, refund_amount=C replaces any partial owed amount. No payout. Open offer WITHDRAWN; helpers are real module functions. Rowcount, busy and failure-through-COMMIT rollback†. Root-adopted P4-TARGET: release_payment persists the full-C refund amount together with state and checks every conditional save in the same transaction (F-02; P2-S01; P3-S03). Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.<br>Guard: active own Customer; PLACED / CONFIRMED. Atomic CANCELLED + closed_at / reason; COD VOIDED; ONLINE REFUND_PENDING, refund_amount=C replaces any partial owed amount. No payout. Open offer WITHDRAWN; helpers are real module functions. Rowcount, busy and failure-through-COMMIT rollback†. Root-adopted P4-TARGET: release_payment persists the full-C refund amount together with state and checks every conditional save in the same transaction (F-02; P2-S01; P3-S03). Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments. |
 
 Operation guarantees are realized by these named controller methods and atomic/read boundaries. They remain Static / target obligations, not execution results.
 
@@ -254,79 +256,109 @@ Operation guarantees are realized by these named controller methods and atomic/r
 
 ![UC-01 browseHubs](../../../models/UC-01/seq_uc01_browseHubs.png)
 
-Figure 3.1.4.OP-13. UC-01 browseHubs design sequence — Author: 722I0004 · AI-assisted (Codex)
+Figure 3.1.4.OP-13. UC-01 browseHubs — Author: 722I0004 · AI-assisted (Codex)
 
-Read .busy / .quiet on HubStatus; these are properties, never busy() / quiet() calls. No persistent writes. Active Customer gate belongs to view; select_hub also checks active Customer and hub.
+Read .busy / .quiet on HubStatus; these are properties, never busy() / quiet() calls. No persistent writes. Active Customer gate belongs to view; select_hub also checks active Customer and hub. Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.
 
 
 ### OP-14 selectHub
 
 ![UC-01 selectHub](../../../models/UC-01/seq_uc01_selectHub.png)
 
-Figure 3.1.4.OP-14. UC-01 selectHub design sequence — Author: 722I0004 · AI-assisted (Codex)
+Figure 3.1.4.OP-14. UC-01 selectHub — Author: 722I0004 · AI-assisted (Codex)
 
-Read .busy / .quiet on HubStatus; these are properties, never busy() / quiet() calls. No persistent writes. Active Customer gate belongs to view; select_hub also checks active Customer and hub.
+Read .busy / .quiet on HubStatus; these are properties, never busy() / quiet() calls. No persistent writes. Active Customer gate belongs to view; select_hub also checks active Customer and hub. Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.
 
 
 ### OP-15 requestQuote
 
 ![UC-01 requestQuote — Part A](../../../models/UC-01/seq_uc01_requestQuote_PartA.png)
 
-Figure 3.1.4.OP-15A. UC-01 requestQuote design sequence — Author: 722I0004 · AI-assisted (Codex)
+Figure 3.1.4.OP-15A. UC-01 requestQuote — Part A — Author: 722I0004 · AI-assisted (Codex)
 
-Target: active hub/menu/brand, own active address, integer quantities, load < capacity. Invalid input/refused voucher → no saved rows. Busy suggestions ≤3 ranked (load/capacity, raw distance, ID).
+Target: active hub/menu/brand, own active address, integer quantities, load < capacity. Invalid input/refused voucher → no saved rows. Busy suggestions ≤3 ranked (load/capacity, raw distance, ID). Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.
 
 ![UC-01 requestQuote — Part B](../../../models/UC-01/seq_uc01_requestQuote_PartB.png)
 
-Figure 3.1.4.OP-15B. UC-01 requestQuote design sequence — Author: 722I0004 · AI-assisted (Codex)
+Figure 3.1.4.OP-15B. UC-01 requestQuote — Part B — Author: 722I0004 · AI-assisted (Codex)
 
-Read quote.item_subtotal / quote.total properties. Fingerprint binds hub/address, line IDs, quantities and prices, voucher + D, F, Q and payment choice; full accepted price T=S−D+F−Q. PaymentChoice is a typed adapter value.
+Read quote.item_subtotal / quote.total properties. Fingerprint binds hub/address, line IDs, quantities and prices, voucher + D, F, Q and payment choice; full accepted price T=S−D+F−Q. PaymentChoice is a typed adapter value. Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.
+
+![UC-01 requestQuote — Part C](../../../models/UC-01/seq_uc01_requestQuote_PartC.png)
+
+Figure 3.1.4.OP-15C. UC-01 requestQuote — Part C — Author: 722I0004 · AI-assisted (Codex)
+
+Read quote.item_subtotal / quote.total properties. Fingerprint binds hub/address, line IDs, quantities and prices, voucher + D, F, Q and payment choice; full accepted price T=S−D+F−Q. PaymentChoice is a typed adapter value. Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.
 
 
 ### OP-01 confirmCheckout
 
 ![UC-01 confirmCheckout — Part A](../../../models/UC-01/seq_uc01_confirmCheckout_PartA.png)
 
-Figure 3.1.4.OP-01A. UC-01 confirmCheckout design sequence — Author: 722I0004 · AI-assisted (Codex)
+Figure 3.1.4.OP-01A. UC-01 confirmCheckout — Part A — Author: 722I0004 · AI-assisted (Codex)
 
-Simulator approve/decline choice precedes this request. Short atomic checkout begins before token lookup. Own existing token → existingOrder, no reprice, authorization or insertion (UC01-MG02). Foreign token → refusal. Unused token rechecks eligibility, raw radius, capacity, voucher and full consent.
+Simulator approve/decline choice precedes this request. Short atomic checkout begins before token lookup. Own existing token → existingOrder, no reprice, authorization or insertion (UC01-MG02). Foreign token → refusal. Unused token rechecks eligibility, raw radius, capacity, voucher and full consent. Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.
 
 ![UC-01 confirmCheckout — Part B](../../../models/UC-01/seq_uc01_confirmCheckout_PartB.png)
 
-Figure 3.1.4.OP-01B. UC-01 confirmCheckout design sequence — Author: 722I0004 · AI-assisted (Codex)
+Figure 3.1.4.OP-01B. UC-01 confirmCheckout — Part B — Author: 722I0004 · AI-assisted (Codex)
 
-Deterministic local simulator, no network/wait. COD skips authorise; ONLINE declined → zero Order/Line/Payment. Success atomically saves PLACED + snapshots + COD PENDING / ONLINE PAID, C=T (UC01-PC01–06). Any lock/write/commit failure rolls back all intended writes and releases authorization† (P2-S05/P2-S13).
+Simulator approve/decline choice precedes this request. Short atomic checkout begins before token lookup. Own existing token → existingOrder, no reprice, authorization or insertion (UC01-MG02). Foreign token → refusal. Unused token rechecks eligibility, raw radius, capacity, voucher and full consent. Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.
+
+![UC-01 confirmCheckout — Part C](../../../models/UC-01/seq_uc01_confirmCheckout_PartC.png)
+
+Figure 3.1.4.OP-01C. UC-01 confirmCheckout — Part C — Author: 722I0004 · AI-assisted (Codex)
+
+Deterministic local simulator, no network/wait. COD skips authorise; ONLINE declined → zero Order/Line/Payment. Success atomically saves PLACED + snapshots + COD PENDING / ONLINE PAID, C=T (UC01-PC01–06). Any lock/write/commit failure rolls back all intended writes and releases authorization† (P2-S05/P2-S13). Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.
+
+![UC-01 confirmCheckout — Part D](../../../models/UC-01/seq_uc01_confirmCheckout_PartD.png)
+
+Figure 3.1.4.OP-01D. UC-01 confirmCheckout — Part D — Author: 722I0004 · AI-assisted (Codex)
+
+Deterministic local simulator, no network/wait. COD skips authorise; ONLINE declined → zero Order/Line/Payment. Success atomically saves PLACED + snapshots + COD PENDING / ONLINE PAID, C=T (UC01-PC01–06). Any lock/write/commit failure rolls back all intended writes and releases authorization† (P2-S05/P2-S13). Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.
+
+![UC-01 confirmCheckout — Part E](../../../models/UC-01/seq_uc01_confirmCheckout_PartE.png)
+
+Figure 3.1.4.OP-01E. UC-01 confirmCheckout — Part E — Author: 722I0004 · AI-assisted (Codex)
+
+Deterministic local simulator, no network/wait. COD skips authorise; ONLINE declined → zero Order/Line/Payment. Success atomically saves PLACED + snapshots + COD PENDING / ONLINE PAID, C=T (UC01-PC01–06). Any lock/write/commit failure rolls back all intended writes and releases authorization† (P2-S05/P2-S13). Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.
 
 
 ### OP-16 viewReceipt
 
 ![UC-01 viewReceipt](../../../models/UC-01/seq_uc01_viewReceipt.png)
 
-Figure 3.1.4.OP-16. UC-01 viewReceipt design sequence — Author: 722I0004 · AI-assisted (Codex)
+Figure 3.1.4.OP-16. UC-01 viewReceipt — Author: 722I0004 · AI-assisted (Codex)
 
-Read-only active role + own Customer / own kitchen hub checks; denied context discloses no foreign details. Receipt/offer amounts say refund owed, never paid out† (F-06 where applicable). Read snapshots, .total and offer attributes; no fabricated business getters. No persistent writes.
+Read-only active role + own Customer / own kitchen hub checks; denied context discloses no foreign details. Receipt/offer amounts say refund owed, never paid out† (F-06 where applicable). Read snapshots, .total and offer attributes; no fabricated business getters. No persistent writes. Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.
 
 
 ### OP-17 viewMyOrders
 
 ![UC-01 viewMyOrders](../../../models/UC-01/seq_uc01_viewMyOrders.png)
 
-Figure 3.1.4.OP-17. UC-01 viewMyOrders design sequence — Author: 722I0004 · AI-assisted (Codex)
+Figure 3.1.4.OP-17. UC-01 viewMyOrders — Author: 722I0004 · AI-assisted (Codex)
 
-Read-only active role + own Customer / own kitchen hub checks; denied context discloses no foreign details. Receipt/offer amounts say refund owed, never paid out (F-06 where applicable). Read snapshots, .total and offer attributes; no fabricated business getters. No persistent writes.
+Read-only active role + own Customer / own kitchen hub checks; denied context discloses no foreign details. Receipt/offer amounts say refund owed, never paid out (F-06 where applicable). Read snapshots, .total and offer attributes; no fabricated business getters. No persistent writes. Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.
 
 
 ### OP-07 cancelOrder
 
-![UC-01 cancelOrder](../../../models/UC-01/seq_uc01_cancelOrder.png)
+![UC-01 cancelOrder — Part A](../../../models/UC-01/seq_uc01_cancelOrder.png)
 
-Figure 3.1.4.OP-07. UC-01 cancelOrder design sequence — Author: 722I0004 · AI-assisted (Codex)
+Figure 3.1.4.OP-07A. UC-01 cancelOrder — Part A — Author: 722I0004 · AI-assisted (Codex)
 
-Guard: active own Customer; PLACED / CONFIRMED. Atomic CANCELLED + closed_at / reason; COD VOIDED; ONLINE REFUND_PENDING, refund_amount=C replaces any partial owed amount. No payout. Open offer WITHDRAWN; helpers are real module functions. Rowcount, busy and failure-through-COMMIT rollback†. Root-adopted P4-TARGET: release_payment persists the full-C refund amount together with state and checks every conditional save in the same transaction (F-02; P2-S01; P3-S03).
+Guard: active own Customer; PLACED / CONFIRMED. Atomic CANCELLED + closed_at / reason; COD VOIDED; ONLINE REFUND_PENDING, refund_amount=C replaces any partial owed amount. No payout. Open offer WITHDRAWN; helpers are real module functions. Rowcount, busy and failure-through-COMMIT rollback†. Root-adopted P4-TARGET: release_payment persists the full-C refund amount together with state and checks every conditional save in the same transaction (F-02; P2-S01; P3-S03). Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.
+
+![UC-01 cancelOrder — Part B](../../../models/UC-01/seq_uc01_cancelOrder_PartB.png)
+
+Figure 3.1.4.OP-07B. UC-01 cancelOrder — Part B — Author: 722I0004 · AI-assisted (Codex)
+
+Guard: active own Customer; PLACED / CONFIRMED. Atomic CANCELLED + closed_at / reason; COD VOIDED; ONLINE REFUND_PENDING, refund_amount=C replaces any partial owed amount. No payout. Open offer WITHDRAWN; helpers are real module functions. Rowcount, busy and failure-through-COMMIT rollback†. Root-adopted P4-TARGET: release_payment persists the full-C refund amount together with state and checks every conditional save in the same transaction (F-02; P2-S01; P3-S03). Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.
 
 ## 3.1.5 Final Design Class Diagram
 
-Changes from 3.1.2: **none in the selected member set**. Sequence reconciliation used the same selection from the outset: real route functions, controller methods, domain behavior, module helpers and implicit dataclass initializations are already present. Properties stay attribute reads. The final plates repeat the full selected exact signatures so every call receiver resolves; relation plates provide root-corrected navigation and layer dependencies. The pure-domain fingerprint inputs and full-refund helper target are synchronized with the reviewed shared model. Root-owned targets remain † until P4 and re-verification.
+Changes from 3.1.2: **none in the selected member set**. Sequence reconciliation used the same selection from the outset: real route functions, controller methods, domain behavior, module helpers and implicit dataclass initializations are already present. Properties stay attribute reads. The final plates repeat the full selected exact signatures so every call receiver resolves; relation plates provide root-corrected navigation and layer dependencies, with two separately attached multiplicity labels and a distinct role label on each association. Composition/generalization and domain navigation keep their own UML arrow styles. The pure-domain fingerprint inputs and full-refund helper target are synchronized with the reviewed shared model. Root-owned targets remain † until P4 and re-verification.
 
 ![UC-01 final — selected design members 1/9](../../../models/UC-01/dcd_uc01_final_PartA.png)
 

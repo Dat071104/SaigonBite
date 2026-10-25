@@ -80,64 +80,112 @@
         <mxCell id="text24" value="«entity» Customer" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
           <mxGeometry as="geometry" x="1047" y="863" width="476" height="27.599999999999998" />
         </mxCell>
-        <mxCell id="edge25" source="s0" target="t0" edge="1" parent="1" style="edgeStyle=none;endArrow=open;strokeColor=#004387;">
+        <mxCell id="dcd_relation_000" source="s0" target="t0" edge="1" parent="1" style="edgeStyle=none;endArrow=open;endFill=0;strokeColor=#004387;exitX=1.0;exitY=0.5058823529411764;exitPerimeter=0;entryX=0.0;entryY=0.5058823529411764;entryPerimeter=0;">
           <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="555" y="148" />
+            <mxPoint as="targetPoint" x="1035" y="148" />
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="text26" value="0..1 → 1 linked account" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
-          <mxGeometry as="geometry" x="575" y="109" width="440" height="27.599999999999998" />
+        <mxCell id="dcd_relation_000_source_multiplicity" value="0..1" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="565" y="110" width="70" height="27.599999999999998" />
         </mxCell>
-        <mxCell id="edge27" source="s1" target="t1" edge="1" parent="1" style="edgeStyle=none;endArrow=open;strokeColor=#004387;">
+        <mxCell id="dcd_relation_000_target_multiplicity" value="1" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="955" y="110" width="70" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="dcd_relation_000_role" value="linked account" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="690" y="158" width="330" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="dcd_relation_001" source="s1" target="t1" edge="1" parent="1" style="edgeStyle=none;endArrow=open;endFill=0;strokeColor=#004387;exitX=1.0;exitY=0.5058823529411764;exitPerimeter=0;entryX=0.0;entryY=0.5058823529411764;entryPerimeter=0;">
           <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="555" y="298" />
+            <mxPoint as="targetPoint" x="1035" y="298" />
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="text28" value="1 → 0..* owns" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
-          <mxGeometry as="geometry" x="575" y="259" width="440" height="27.599999999999998" />
+        <mxCell id="dcd_relation_001_source_multiplicity" value="1" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="565" y="260" width="70" height="27.599999999999998" />
         </mxCell>
-        <mxCell id="edge29" source="s2" target="t2" edge="1" parent="1" style="edgeStyle=none;endArrow=open;strokeColor=#004387;">
+        <mxCell id="dcd_relation_001_target_multiplicity" value="0..*" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="955" y="260" width="70" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="dcd_relation_001_role" value="owns" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="690" y="308" width="330" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="dcd_relation_002" source="s2" target="t2" edge="1" parent="1" style="edgeStyle=none;endArrow=open;endFill=0;strokeColor=#004387;exitX=1.0;exitY=0.5058823529411764;exitPerimeter=0;entryX=0.0;entryY=0.5058823529411764;entryPerimeter=0;">
           <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="555" y="448" />
+            <mxPoint as="targetPoint" x="1035" y="448" />
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="text30" value="1 → 0..* listings" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
-          <mxGeometry as="geometry" x="575" y="409" width="440" height="27.599999999999998" />
+        <mxCell id="dcd_relation_002_source_multiplicity" value="1" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="565" y="410" width="70" height="27.599999999999998" />
         </mxCell>
-        <mxCell id="edge31" source="s3" target="t3" edge="1" parent="1" style="edgeStyle=none;endArrow=open;strokeColor=#004387;">
+        <mxCell id="dcd_relation_002_target_multiplicity" value="0..*" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="955" y="410" width="70" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="dcd_relation_002_role" value="listings" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="690" y="458" width="330" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="dcd_relation_003" source="s3" target="t3" edge="1" parent="1" style="edgeStyle=none;endArrow=open;endFill=0;strokeColor=#004387;exitX=1.0;exitY=0.5058823529411764;exitPerimeter=0;entryX=0.0;entryY=0.5058823529411764;entryPerimeter=0;">
           <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="555" y="598" />
+            <mxPoint as="targetPoint" x="1035" y="598" />
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="text32" value="0..* → 1 item" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
-          <mxGeometry as="geometry" x="575" y="559" width="440" height="27.599999999999998" />
+        <mxCell id="dcd_relation_003_source_multiplicity" value="0..*" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="565" y="560" width="70" height="27.599999999999998" />
         </mxCell>
-        <mxCell id="edge33" source="s4" target="t4" edge="1" parent="1" style="edgeStyle=none;endArrow=open;strokeColor=#004387;">
+        <mxCell id="dcd_relation_003_target_multiplicity" value="1" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="955" y="560" width="70" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="dcd_relation_003_role" value="item" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="690" y="608" width="330" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="dcd_relation_004" source="s4" target="t4" edge="1" parent="1" style="edgeStyle=none;endArrow=open;endFill=0;strokeColor=#004387;exitX=1.0;exitY=0.5058823529411764;exitPerimeter=0;entryX=0.0;entryY=0.5058823529411764;entryPerimeter=0;">
           <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="555" y="748" />
+            <mxPoint as="targetPoint" x="1035" y="748" />
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="text34" value="1 → 0..* offers" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
-          <mxGeometry as="geometry" x="575" y="709" width="440" height="27.599999999999998" />
+        <mxCell id="dcd_relation_004_source_multiplicity" value="1" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="565" y="710" width="70" height="27.599999999999998" />
         </mxCell>
-        <mxCell id="edge35" source="s5" target="t5" edge="1" parent="1" style="edgeStyle=none;endArrow=open;strokeColor=#004387;">
+        <mxCell id="dcd_relation_004_target_multiplicity" value="0..*" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="955" y="710" width="70" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="dcd_relation_004_role" value="offers" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="690" y="758" width="330" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="dcd_relation_005" source="s5" target="t5" edge="1" parent="1" style="edgeStyle=none;endArrow=open;endFill=0;strokeColor=#004387;exitX=1.0;exitY=0.5058823529411764;exitPerimeter=0;entryX=0.0;entryY=0.5058823529411764;entryPerimeter=0;">
           <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="555" y="898" />
+            <mxPoint as="targetPoint" x="1035" y="898" />
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="text36" value="0..* → 1 customer" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
-          <mxGeometry as="geometry" x="575" y="859" width="440" height="27.599999999999998" />
+        <mxCell id="dcd_relation_005_source_multiplicity" value="0..*" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="565" y="860" width="70" height="27.599999999999998" />
         </mxCell>
-        <mxCell id="text37" value="Members: domain detail parts. Relationship parts A–F continue both ways." vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+        <mxCell id="dcd_relation_005_target_multiplicity" value="1" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="955" y="860" width="70" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="dcd_relation_005_role" value="customer" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="690" y="908" width="330" height="27.599999999999998" />
+        </mxCell>
+        <mxCell id="text49" value="Members: domain detail parts. Relationship parts A–F continue both ways." vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
           <mxGeometry as="geometry" x="35" y="1080" width="1530" height="27.599999999999998" />
         </mxCell>
-        <mxCell id="text38" value="† design target, not yet in code at C0 (see P4 input none on this view)." vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+        <mxCell id="text50" value="† design target, not yet in code at C0 (see P4 input none on this view)." vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
           <mxGeometry as="geometry" x="35" y="1112" width="1530" height="27.599999999999998" />
         </mxCell>
-        <mxCell id="text39" value="Figure 3.1.2.i.R1. UC-01 domain navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex)" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+        <mxCell id="text51" value="Figure 3.1.2.i.R1. UC-01 domain navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex)" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
           <mxGeometry as="geometry" x="35" y="1145" width="1530" height="27.599999999999998" />
         </mxCell>
-        <mxCell id="text40" value="Static / target design · 230 mm landscape · smallest text 9.78 pt · native draw.io / final placement UNTESTED" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+        <mxCell id="text52" value="Static / target design · 230 mm landscape · smallest text 9.78 pt · native draw.io / final placement UNTESTED" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
           <mxGeometry as="geometry" x="35" y="1171" width="1530" height="27.599999999999998" />
         </mxCell>
       </root>

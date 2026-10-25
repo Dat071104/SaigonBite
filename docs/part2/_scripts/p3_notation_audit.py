@@ -5,7 +5,7 @@ from pathlib import Path
 import html,math,re,xml.etree.ElementTree as ET
 
 def text(cell):
-    return html.unescape(re.sub(r'<[^>]+>','',cell.get('value',''))).strip()
+    return html.unescape(re.sub(r'<[^>]+>',' ',cell.get('value',''))).strip()
 
 def style(cell):
     return dict(part.split('=',1) for part in cell.get('style','').split(';') if '=' in part)
@@ -43,6 +43,11 @@ def audit(path,data,meta,model,check):
             canonical=[r for r in model.get('associations',[]) if all(r.get(n)==relation.get(n) for n in ('source','target','kind','role'))]
             if model:
                 check('DCD_model_end_values',name,any(all(r.get(side+'_multiplicity')==relation.get(side+'_multiplicity') for side in ('source','target')) for r in canonical),'Both drawn end values agree with the sole canonical relationship')
+            compact=lambda value:re.sub(r'\s+','',str(value))
+            sm,tm,role=relation.get('source_multiplicity',''),relation.get('target_multiplicity',''),relation.get('role','')
+            combined={compact(sm+' → '+tm+' '+role),compact(sm+' '+role+' '+tm)} if role else set()
+            detached=[cid for cid,cell in cells.items() if compact(text(cell)) in combined]
+            check('DCD_no_combined_end_summary',name,not detached,'Two separate end labels replace the old single combined multiplicity summary: '+str(detached))
             check('DCD_end_label_evidence',name,len(matches)==1,'Each association has one native edge and two separate end-label identities')
             if len(matches)!=1:continue
             proof=matches[0];edge=cells.get(proof.get('native_edge_id'));check('DCD_end_label_edge',name,edge is not None and edge.get('edge')=='1','Evidence resolves an actual editable edge')
@@ -74,7 +79,8 @@ def audit(path,data,meta,model,check):
     for fragment in meta.get('interaction_fragments',[]):
         fid=fragment.get('id');box=rect(fid);operator=fragment.get('operator');indices=fragment.get('message_indices',[])
         check('interaction_fragment_native',key+':'+str(fid),box is not None and operator in ('alt','opt','break','loop','critical'),'Guarded region is an actual native fragment rectangle')
-        check('interaction_fragment_nonempty',key+':'+str(fid),bool(indices) and bool(fragment.get('guard')),'A labelled branch contains actual guarded interaction messages')
+        meaningful=any(isinstance(i,int) and 0<=i<len(messages) and (messages[i].get('kind','call')!='note' or messages[i].get('draw_arrow')) for i in indices)
+        check('interaction_fragment_nonempty',key+':'+str(fid),meaningful and bool(fragment.get('guard')),'A labelled branch contains at least one actual interaction arrow, not just an explanatory note')
         if box:
             expected=tuple(float(fragment.get(n,-1)) for n in ('x','y','w','h'))
             check('interaction_fragment_geometry',key+':'+str(fid),all(abs(a-b)<=.75 for a,b in zip(box,expected)),'Evidence matches actual native bounds')
@@ -97,9 +103,6 @@ def audit(path,data,meta,model,check):
                     if not points and message.get('y') is not None:points=[(box[0]+box[2]/2,float(message['y']))]
                     inside=bool(points) and all(box[0]-.75<=x<=box[0]+box[2]+.75 and box[1]-.75<=y<=box[1]+box[3]+.75 for x,y in points)
                 check('guarded_message_containment',key+':'+str(fid)+':'+str(index),inside,'Actual native waypoint/message path lies inside its guarded operand region')
-    if kind=='sequence' and meta.get('op_id') in ('OP-07','OP-03','OP-06') and meta.get('UC') in ('UC-01','UC-05'):
-        result={'OP-07':'cancelledOrderAndAmounts','OP-03':'rejectedOrder','OP-06':'rejectedOrderAndAmounts'}[meta['op_id']]
-        check('SSD_success_result',key,any(m.get('kind')=='return' and result in ' '.join(str(m.get(n,'')) for n in ('method','arguments','label')) for m in messages),'Explicit dashed success return for frozen SSD outcome: '+result)
     # These renderer families were repaired for R1/R4. A missing proof must not
     # silently reduce the strengthened check to its former token-only scope.
     repaired=kind=='dao_sequence' or (kind=='sequence' and meta.get('UC') in ('UC-01','UC-05'))
@@ -107,3 +110,35 @@ def audit(path,data,meta,model,check):
         check('repaired_message_edge_coverage',key,all(m.get('native_edge_id') for m in messages if m.get('kind','call')!='note'),'Every actual message in repaired sequence families identifies its native edge')
         if meta.get('operation') in ('confirmCheckout','acceptReplacement'):
             check('repaired_guard_geometry',key,bool(meta.get('interaction_fragments')),'Risk-focused checkout/replacement continuations retain explicit guarded-region evidence')
+
+def audit_success_results(diagrams,check):
+    """A split operation returns once after commit, rather than on every page."""
+    groups={}
+    for path,data,meta in diagrams:
+        if meta.get('diagram_type')=='sequence' and meta.get('op_id') in ('OP-07','OP-03','OP-06') and meta.get('UC') in ('UC-01','UC-05'):
+            groups.setdefault((meta['UC'],meta['op_id'],meta['ssd_occurrence']),[]).append((path,data,meta))
+    for identity,parts in groups.items():
+        result={'OP-07':'cancelledOrderAndAmounts','OP-03':'rejectedOrder','OP-06':'rejectedOrderAndAmounts'}[identity[1]]
+        matches=[(p,d,m,index,message) for p,d,m in parts for index,message in enumerate(m.get('messages',[])) if message.get('kind')=='return' and result in ' '.join(str(message.get(n,'')) for n in ('method','arguments','label'))]
+        key=' / '.join(identity)
+        check('SSD_success_result',key,bool(matches),'Complete SSD occurrence has an explicit dashed success result: '+result)
+        for path,data,meta,index,message in matches:
+            check('SSD_success_result_visible',path.name,result in path.with_suffix('.svg').read_text(encoding='utf-8'),'Named outcome is actually present in the visible vector export')
+            operands=[f for f in meta.get('interaction_fragments',[]) if index in f.get('message_indices',[])]
+            check('SSD_success_result_after_commit',path.name,any(re.search(r'commit|committed',f.get('guard',''),re.I) for f in operands),'Success reply is inside a geometrically audited COMMIT-qualified operand')
+        if len(parts)>1:
+            labels={}
+            for index,(path,data,_) in enumerate(parts):
+                match=re.search(r'([A-Z]+)$',str(data.get('figure','')))
+                if match:labels[index]=match[1]
+            graph={i:set() for i in range(len(parts))}
+            for i,(_,data,_) in enumerate(parts):
+                for j,(_,other,_) in enumerate(parts):
+                    if i==j or i not in labels or j not in labels:continue
+                    a=str(data.get('continuation',''));b=str(other.get('continuation',''))
+                    if re.search(r'\bnext\s+Part\s+'+re.escape(labels[j])+r'\b',a,re.I) and re.search(r'\bprevious\s+Part\s+'+re.escape(labels[i])+r'\b',b,re.I):graph[i].add(j);graph[j].add(i)
+            seen={0};pending=[0]
+            while pending:
+                for node in graph[pending.pop()]-seen:seen.add(node);pending.append(node)
+            visible=all(str(data.get('continuation','')) in path.with_suffix('.svg').read_text(encoding='utf-8') for path,data,_ in parts)
+            check('SSD_success_continuation',key,len(seen)==len(parts) and visible,'Mutually linked Parts A/B form one connected request, and continuation text is visible on each export')

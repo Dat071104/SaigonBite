@@ -12,6 +12,17 @@ def git(*a):return subprocess.check_output(['git',*a],cwd=R,text=True,encoding='
 def main():
     p=argparse.ArgumentParser();p.add_argument('mode',choices=['prepare','receipt']);a=p.parse_args();start=read(N/'P3_start_hashes.json');protected=read(N/'P3_end_hash_check.json');stage=read(N/'P3_staging_manifest.json');cross=read(N/'P3-root'/f'design_crosscheck_{start["C0"][:7]}.json')
     assert protected['pass'] and cross['pass'] and not cross['incomplete_mode']
+    assert cross.get('evidence_hashes'),'Closure requires the post-review checker with current-source hash bindings'
+    for relative,digest in cross['evidence_hashes'].items():assert sha(R/relative)==digest,'Cross-check evidence changed; rerun full C6: '+relative
+    artifact=read(N/'P3-root/artifact_audit.json');assert artifact['pass'],'Assembled report artifact audit must pass'
+    assert artifact.get('source_hashes'),'Artifact audit must bind the final assembled report sources'
+    for relative,digest in artifact['source_hashes'].items():assert sha(R/relative)==digest,'Assembled report audit is stale: '+relative
+    assert len(artifact['figures'])==cross['figure_files'],'Artifact and cross-check figure sets differ'
+    visual=read(N/'P3-root/final_visual_coverage.json')
+    assert visual['pass'] and visual['figures']==cross['figure_files'],'Current visual inspection coverage is incomplete'
+    for record in visual['records'].values():
+        for ext,digest in record['hashes'].items():assert sha((R/record['source']).with_suffix('.'+ext))==digest,'Inspected diagram changed: '+record['source']
+        assert sha(Path(record['independent_raster']))==record['independent_raster_sha256'],'Independent visual proof changed'
     assert git('branch','--show-current')=='part2'
     assert not git('diff',start['C0'],'--','saigonbite','tests','db','app.py','init_db.py')
     assert stage['workbook_unchanged'] and stage['eLearning_files']==0 and stage['no_external_upload']

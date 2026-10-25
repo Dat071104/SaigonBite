@@ -14,41 +14,45 @@
 <rect x="1425.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
 <text x="1430.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">KitchenBoard</text>
 <polyline points="1510.0,170 1510.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
-<rect x="30" y="565" width="1540" height="475" fill="white" stroke="#004387" stroke-width="2"/>
-<polyline points="90.0,565 90.0,1040" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
-<polyline points="563.3333333333333,565 563.3333333333333,1040" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
-<polyline points="1036.6666666666665,565 1036.6666666666665,1040" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
-<polyline points="1510.0,565 1510.0,1040" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
-<text x="40" y="590.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">alt [eligible main path; guards / effects in the operation note]</text>
-<polyline points="30,910 1570,910" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
-<text x="40" y="935.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">[denied / stale / invalid or failed atomic save] UC05-MG01</text>
-<rect x="35" y="220" width="1530" height="102.80000000000001" fill="#FFF8E9" stroke="#004387" stroke-width="2"/>
-<text x="45" y="247.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Read-only active role + own Customer / own kitchen hub checks; denied context discloses no foreign details. Receipt/offer amounts say</text>
-<text x="45" y="274.92" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">refund owed, never paid out (F-06 where applicable). Read snapshots, .total and offer attributes; no fabricated business getters. No persistent</text>
-<text x="45" y="302.52" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">writes.</text>
-<rect x="35" y="1010" width="1530" height="65" fill="#FFF8E9" stroke="#004387" stroke-width="2"/>
-<text x="45" y="1037.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Persistence: loaded/saved through data access — see 4.3.2.</text>
+<rect x="30" y="565" width="1540" height="455" fill="white" stroke="#004387" stroke-width="2"/>
+<text x="40" y="590.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">alt [authorized success / refusal]</text>
+<rect x="30" y="605" width="1540" height="305" fill="white" stroke="#004387" stroke-width="2"/>
+<text x="40" y="630.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">opt [guards pass; authorized read]</text>
+<rect x="30" y="910" width="1540" height="110" fill="white" stroke="#004387" stroke-width="2"/>
+<text x="40" y="935.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">opt [otherwise; UC05-MG01]</text>
+<polyline points="90.0,170 90.0,1020" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="563.3333333333333,170 563.3333333333333,1020" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="1036.6666666666665,170 1036.6666666666665,1020" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="1510.0,170 1510.0,1020" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="35" y="175" width="1530" height="65" fill="#FFF8E9" stroke="#004387" stroke-width="2"/>
+<text x="45" y="202.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Authorized role and own-customer / own-hub scope are checked. Read only: zero persistent writes. UC05-MG01 applies on refusal.</text>
+<rect x="35" y="1030" width="1530" height="45" fill="#FFF8E9" stroke="#004387" stroke-width="2"/>
+<text x="45" y="1057.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">loaded/saved through data access — see 4.3.2</text>
 <polyline points="90.0,483 563.3333333333333,483" fill="none" stroke="#004387" stroke-width="2"/>
 <polyline points="549.3333333333333,490.0 563.3333333333333,483 549.3333333333333,476.0" fill="none" stroke="#004387" stroke-width="2"/>
+<polygon data-message-arrow="filled-synchronous" points="549.3333333333333,490.0 563.3333333333333,483 549.3333333333333,476.0" fill="#004387" stroke="#004387"/>
 <text x="105.0" y="442.12" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">viewKitchenOrders()</text>
 <text x="105.0" y="469.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">→ kitchen.board [HTTP adapter]</text>
 <polyline points="563.3333333333333,553 1036.6666666666665,553" fill="none" stroke="#004387" stroke-width="2"/>
 <polyline points="1022.6666666666665,560.0 1036.6666666666665,553 1022.6666666666665,546.0" fill="none" stroke="#004387" stroke-width="2"/>
+<polygon data-message-arrow="filled-synchronous" points="1022.6666666666665,560.0 1036.6666666666665,553 1022.6666666666665,546.0" fill="#004387" stroke="#004387"/>
 <text x="578.3333333333333" y="539.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">board(user_id)</text>
 <rect x="1031.6666666666665" y="553" width="10" height="25" fill="#DAE9F5" stroke="#004387" stroke-width="2"/>
-<polyline points="1036.6666666666665,675 1510.0,675" fill="none" stroke="#004387" stroke-width="2"/>
-<polyline points="1496.0,682.0 1510.0,675 1496.0,668.0" fill="none" stroke="#004387" stroke-width="2"/>
-<text x="1051.6666666666665" y="634.12" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">«create» KitchenBoard (implicit dataclass</text>
-<text x="1051.6666666666665" y="661.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">initialization)</text>
-<rect x="1505.0" y="675" width="10" height="25" fill="#DAE9F5" stroke="#004387" stroke-width="2"/>
-<polyline points="1036.6666666666665,745 563.3333333333333,745" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
-<polyline points="577.3333333333333,738.0 563.3333333333333,745 577.3333333333333,752.0" fill="none" stroke="#004387" stroke-width="2"/>
-<text x="578.3333333333333" y="731.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">result / controlled refusal</text>
+<polyline points="1036.6666666666665,716 1510.0,716" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="1496.0,723.0 1510.0,716 1496.0,709.0" fill="none" stroke="#004387" stroke-width="2"/>
+<polygon data-message-arrow="filled-synchronous" points="1496.0,723.0 1510.0,716 1496.0,709.0" fill="#004387" stroke="#004387"/>
+<text x="1051.6666666666665" y="675.12" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">«create» KitchenBoard (implicit dataclass</text>
+<text x="1051.6666666666665" y="702.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">initialization)</text>
+<rect x="1505.0" y="716" width="10" height="25" fill="#DAE9F5" stroke="#004387" stroke-width="2"/>
+<polyline points="1036.6666666666665,816 563.3333333333333,816" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="577.3333333333333,809.0 563.3333333333333,816 577.3333333333333,823.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="578.3333333333333" y="775.12" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">ownHubOrdersAndOffers [authorized</text>
+<text x="578.3333333333333" y="802.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">read]</text>
 <polyline points="1036.6666666666665,1000 563.3333333333333,1000" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
 <polyline points="577.3333333333333,993.0 563.3333333333333,1000 577.3333333333333,1007.0" fill="none" stroke="#004387" stroke-width="2"/>
-<text x="578.3333333333333" y="986.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">refusal / controlled failure; UC05-MG01</text>
+<text x="578.3333333333333" y="986.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">refusal</text>
 <text x="35" y="1102.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Complete design operation; failure path is the alternative operand above.</text>
 <text x="35" y="1134.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">† design target, not yet in code at C0 (see P4 input none on this view).</text>
-<text x="35" y="1167.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Figure 3.5.4.OP-19. UC-05 viewKitchenOrders design sequence — Author: 722I0004 · AI-assisted (Codex)</text>
+<text x="35" y="1167.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Figure 3.5.4.OP-19. UC-05 viewKitchenOrders — Author: 722I0004 · AI-assisted (Codex)</text>
 <text x="35" y="1193.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Static / target design · 230 mm landscape · smallest text 9.78 pt · native draw.io / final placement UNTESTED</text>
 </svg>

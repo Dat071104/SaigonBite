@@ -1,0 +1,237 @@
+{
+  "UC": "UC-01",
+  "stem": "seq_uc01_confirmCheckout_PartE",
+  "title": "UC-01 confirmCheckout — Part E",
+  "figure": "3.1.4.OP-01E",
+  "caption": "UC-01 confirmCheckout — Part E",
+  "P4_input": "F-04; F-07; P2-S05; P2-S13",
+  "phase3": {
+    "diagram_type": "sequence",
+    "UC": "UC-01",
+    "op_id": "OP-01",
+    "operation": "confirmCheckout",
+    "parameters": "hubId, addressId, lines(itemId, quantity), voucherCode?, paymentMethod, onlineOption?, simulatorOutcome?, quoteFingerprint, quotedTotal, checkoutToken",
+    "ssd_occurrence": "models/UC-01/ssd_uc01_PartB.drawio#01S-M04",
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Customer",
+        "role": "actor",
+        "label": "Customer"
+      },
+      {
+        "id": "view",
+        "class": "order",
+        "role": "view",
+        "label": "«view»\norder"
+      },
+      {
+        "id": "ctrl",
+        "class": "PlaceOrderController",
+        "role": "controller",
+        "label": "PlaceOrderController"
+      },
+      {
+        "id": "sim",
+        "class": "PaymentGatewaySimulator",
+        "role": "gateway",
+        "label": "«gateway»\nPaymentGatewaySimulator"
+      },
+      {
+        "id": "order",
+        "class": "Order",
+        "role": "domain",
+        "label": "Order"
+      },
+      {
+        "id": "pay",
+        "class": "Payment",
+        "role": "domain",
+        "label": "Payment"
+      }
+    ],
+    "messages": [
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "placedOrderAndReceipt [COMMIT succeeded]",
+        "guard": "all saves + COMMIT succeed",
+        "PC_MG": "UC01-PC01–06",
+        "label": "placedOrderAndReceipt [COMMIT succeeded]",
+        "y": 420,
+        "native_edge_id": "message_000",
+        "source_anchor_id": "message_000_source",
+        "target_anchor_id": "message_000_target",
+        "native_points": [
+          [
+            658.0,
+            420
+          ],
+          [
+            374.0,
+            420
+          ]
+        ]
+      },
+      {
+        "from": "ctrl",
+        "to": "sim",
+        "method": "release",
+        "kind": "call",
+        "arguments": "reference",
+        "guard": "atomic failure AND ONLINE reference exists",
+        "PC_MG": "UC01-MG01",
+        "label": "release(reference) [failure through COMMIT]",
+        "y": 720,
+        "receiver_signature": "release(self, reference: str) -> None",
+        "status": "MATCH",
+        "P4_input": "",
+        "native_edge_id": "message_001",
+        "source_anchor_id": "message_001_source",
+        "target_anchor_id": "message_001_target",
+        "native_points": [
+          [
+            658.0,
+            720
+          ],
+          [
+            942.0,
+            720
+          ]
+        ]
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "refusal (zero new Order / Payment / Line)",
+        "guard": "atomic save / lock / COMMIT failure",
+        "PC_MG": "UC01-MG01",
+        "label": "refusal (zero new Order / Payment / Line)",
+        "y": 980,
+        "native_edge_id": "message_002",
+        "source_anchor_id": "message_002_source",
+        "target_anchor_id": "message_002_target",
+        "native_points": [
+          [
+            658.0,
+            980
+          ],
+          [
+            374.0,
+            980
+          ]
+        ]
+      }
+    ],
+    "elements": [
+      {
+        "class": "order",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "PlaceOrderController",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "PaymentGatewaySimulator",
+        "attributes": [],
+        "methods": [
+          "release"
+        ]
+      },
+      {
+        "class": "Order",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "Payment",
+        "attributes": [],
+        "methods": []
+      }
+    ],
+    "dependencies": [],
+    "states": [],
+    "interaction_fragments": [
+      {
+        "id": "checkout_outcome",
+        "operator": "alt",
+        "guard": "atomic attempt / COMMIT outcome",
+        "x": 30,
+        "y": 250,
+        "w": 1540,
+        "h": 770,
+        "message_indices": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "id": "committed_operand",
+        "operator": "opt",
+        "guard": "all saves + COMMIT succeed; UC01-PC01–06",
+        "x": 30,
+        "y": 285,
+        "w": 1540,
+        "h": 195,
+        "message_indices": [
+          0
+        ],
+        "parent": "checkout_outcome"
+      },
+      {
+        "id": "failed_operand",
+        "operator": "opt",
+        "guard": "write / lock / COMMIT failure: rollback; UC01-MG01",
+        "x": 30,
+        "y": 480,
+        "w": 1540,
+        "h": 540,
+        "message_indices": [
+          1,
+          2
+        ],
+        "parent": "checkout_outcome"
+      },
+      {
+        "id": "release_opt",
+        "operator": "opt",
+        "guard": "ONLINE authorization obtained AND reference exists",
+        "x": 50,
+        "y": 560,
+        "w": 1500,
+        "h": 250,
+        "message_indices": [
+          1
+        ],
+        "parent": "failed_operand"
+      }
+    ]
+  },
+  "frames": [],
+  "notes": [
+    {
+      "y": 175,
+      "h": 65,
+      "text": "Exactly one outcome. Success RETAINS the authorization and never executes release. On atomic failure, release runs only for an obtained ONLINE reference; COD skips it. All new writes roll back."
+    },
+    {
+      "y": 1030,
+      "h": 45,
+      "text": "loaded/saved through data access — see 4.3.2"
+    }
+  ],
+  "continuation": "confirmCheckout: Part E of A–E; previous Part D; end of this request.",
+  "realisation_note": "Deterministic local simulator, no network/wait. COD skips authorise; ONLINE declined → zero Order/Line/Payment. Success atomically saves PLACED + snapshots + COD PENDING / ONLINE PAID, C=T (UC01-PC01–06). Any lock/write/commit failure rolls back all intended writes and releases authorization† (P2-S05/P2-S13). Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets.",
+  "review_repair_version": "R1-R4"
+}

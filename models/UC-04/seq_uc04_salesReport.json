@@ -3,32 +3,50 @@
   "title": "UC-04 sequence — salesReport(startDateVN, endDateVN, hubId?)",
   "canvas": {
     "width": 4200,
-    "height": 3000,
+    "height": 3100,
     "font_size": 60,
     "placed_width_mm": 230
   },
   "nodes": [
     {
+      "id": "controller_refusal_opt",
+      "kind": "frame",
+      "x": 70,
+      "y": 2580,
+      "w": 4060,
+      "h": 310,
+      "lines": [],
+      "stroke": "#B03A2E"
+    },
+    {
+      "id": "accepted_operand",
+      "kind": "frame",
+      "x": 70,
+      "y": 560,
+      "w": 4060,
+      "h": 1770,
+      "lines": [],
+      "stroke": "#004387"
+    },
+    {
+      "id": "refusal_operand",
+      "kind": "frame",
+      "x": 70,
+      "y": 2330,
+      "w": 4060,
+      "h": 650,
+      "lines": [],
+      "stroke": "#004387"
+    },
+    {
       "id": "alt_frame",
       "kind": "frame",
       "x": 70,
-      "y": 400,
+      "y": 560,
       "w": 4060,
-      "h": 2500,
+      "h": 2420,
       "lines": [],
       "dashed": false
-    },
-    {
-      "id": "alt_title",
-      "kind": "text",
-      "x": 100,
-      "y": 402,
-      "w": 4000,
-      "h": 65,
-      "lines": [
-        "alt [authenticated actor, valid input, accepted operation]"
-      ],
-      "bold": true
     },
     {
       "id": "ll_actor",
@@ -54,7 +72,7 @@
       "id": "life_bottom_actor",
       "kind": "anchor",
       "x": 180.0,
-      "y": 2875,
+      "y": 2975,
       "w": 2,
       "h": 2
     },
@@ -82,7 +100,7 @@
       "id": "life_bottom_view",
       "kind": "anchor",
       "x": 728.5714285714286,
-      "y": 2875,
+      "y": 2975,
       "w": 2,
       "h": 2
     },
@@ -111,7 +129,7 @@
       "id": "life_bottom_ctrl",
       "kind": "anchor",
       "x": 1277.142857142857,
-      "y": 2875,
+      "y": 2975,
       "w": 2,
       "h": 2
     },
@@ -139,7 +157,7 @@
       "id": "life_bottom_base",
       "kind": "anchor",
       "x": 1825.7142857142858,
-      "y": 2875,
+      "y": 2975,
       "w": 2,
       "h": 2
     },
@@ -168,7 +186,7 @@
       "id": "life_bottom_helper",
       "kind": "anchor",
       "x": 2374.285714285714,
-      "y": 2875,
+      "y": 2975,
       "w": 2,
       "h": 2
     },
@@ -196,7 +214,7 @@
       "id": "life_bottom_period",
       "kind": "anchor",
       "x": 2922.8571428571427,
-      "y": 2875,
+      "y": 2975,
       "w": 2,
       "h": 2
     },
@@ -224,7 +242,7 @@
       "id": "life_bottom_row",
       "kind": "anchor",
       "x": 3471.4285714285716,
-      "y": 2875,
+      "y": 2975,
       "w": 2,
       "h": 2
     },
@@ -253,7 +271,7 @@
       "id": "life_bottom_report",
       "kind": "anchor",
       "x": 4020.0,
-      "y": 2875,
+      "y": 2975,
       "w": 2,
       "h": 2
     },
@@ -261,86 +279,86 @@
       "id": "activation_view",
       "kind": "activation",
       "x": 713.5714285714286,
-      "y": 550,
+      "y": 490,
       "w": 30,
-      "h": 1760
+      "h": 1411
     },
     {
       "id": "activation_ctrl",
       "kind": "activation",
       "x": 1262.142857142857,
-      "y": 880,
+      "y": 858,
       "w": 30,
-      "h": 1320
+      "h": 959
     },
     {
       "id": "activation_base",
       "kind": "activation",
       "x": 1810.7142857142858,
-      "y": 1210,
+      "y": 1110,
       "w": 30,
-      "h": 110
+      "h": 35
     },
     {
       "id": "activation_helper",
       "kind": "activation",
       "x": 2359.285714285714,
-      "y": 1430,
+      "y": 1278,
       "w": 30,
-      "h": 110
+      "h": 35
     },
     {
       "id": "activation_period",
       "kind": "activation",
       "x": 2907.8571428571427,
-      "y": 1540,
+      "y": 1362,
       "w": 30,
-      "h": 110
+      "h": 35
     },
     {
       "id": "activation_row",
       "kind": "activation",
       "x": 3456.4285714285716,
-      "y": 1760,
+      "y": 1530,
       "w": 30,
-      "h": 220
+      "h": 119
     },
     {
       "id": "activation_report",
       "kind": "activation",
       "x": 4005.0,
-      "y": 1980,
+      "y": 1698,
       "w": 30,
-      "h": 110
+      "h": 35
     },
     {
       "id": "m00_s",
       "kind": "anchor",
       "x": 180.0,
-      "y": 550,
+      "y": 490,
       "w": 2,
       "h": 2
     },
     {
       "id": "m00_t",
       "kind": "anchor",
-      "x": 728.5714285714286,
-      "y": 550,
+      "x": 713.5714285714286,
+      "y": 490,
       "w": 2,
       "h": 2
     },
     {
       "id": "m01_s",
       "kind": "anchor",
-      "x": 728.5714285714286,
-      "y": 660,
+      "x": 743.5714285714286,
+      "y": 690,
       "w": 2,
       "h": 2
     },
     {
       "id": "m01_t",
       "kind": "anchor",
-      "x": 848.5714285714286,
+      "x": 743.5714285714286,
       "y": 705,
       "w": 2,
       "h": 2
@@ -348,216 +366,216 @@
     {
       "id": "m02_s",
       "kind": "anchor",
-      "x": 728.5714285714286,
-      "y": 770,
+      "x": 743.5714285714286,
+      "y": 774,
       "w": 2,
       "h": 2
     },
     {
       "id": "m02_t",
       "kind": "anchor",
-      "x": 848.5714285714286,
-      "y": 815,
+      "x": 743.5714285714286,
+      "y": 789,
       "w": 2,
       "h": 2
     },
     {
       "id": "m03_s",
       "kind": "anchor",
-      "x": 728.5714285714286,
-      "y": 880,
+      "x": 743.5714285714286,
+      "y": 858,
       "w": 2,
       "h": 2
     },
     {
       "id": "m03_t",
       "kind": "anchor",
-      "x": 1277.142857142857,
-      "y": 880,
+      "x": 1262.142857142857,
+      "y": 858,
       "w": 2,
       "h": 2
     },
     {
       "id": "m04_s",
       "kind": "anchor",
-      "x": 728.5714285714286,
-      "y": 990,
+      "x": 743.5714285714286,
+      "y": 942,
       "w": 2,
       "h": 2
     },
     {
       "id": "m04_t",
       "kind": "anchor",
-      "x": 1277.142857142857,
-      "y": 990,
+      "x": 1262.142857142857,
+      "y": 942,
       "w": 2,
       "h": 2
     },
     {
       "id": "m05_s",
       "kind": "anchor",
-      "x": 1277.142857142857,
-      "y": 1100,
+      "x": 1292.142857142857,
+      "y": 1026,
       "w": 2,
       "h": 2
     },
     {
       "id": "m05_t",
       "kind": "anchor",
-      "x": 1397.142857142857,
-      "y": 1145,
+      "x": 1292.142857142857,
+      "y": 1041,
       "w": 2,
       "h": 2
     },
     {
       "id": "m06_s",
       "kind": "anchor",
-      "x": 1277.142857142857,
-      "y": 1210,
+      "x": 1292.142857142857,
+      "y": 1110,
       "w": 2,
       "h": 2
     },
     {
       "id": "m06_t",
       "kind": "anchor",
-      "x": 1825.7142857142858,
-      "y": 1210,
+      "x": 1810.7142857142858,
+      "y": 1110,
       "w": 2,
       "h": 2
     },
     {
       "id": "m07_s",
       "kind": "anchor",
-      "x": 1277.142857142857,
-      "y": 1320,
+      "x": 1292.142857142857,
+      "y": 1194,
       "w": 2,
       "h": 2
     },
     {
       "id": "m07_t",
       "kind": "anchor",
-      "x": 1397.142857142857,
-      "y": 1365,
+      "x": 1292.142857142857,
+      "y": 1209,
       "w": 2,
       "h": 2
     },
     {
       "id": "m08_s",
       "kind": "anchor",
-      "x": 1277.142857142857,
-      "y": 1430,
+      "x": 1292.142857142857,
+      "y": 1278,
       "w": 2,
       "h": 2
     },
     {
       "id": "m08_t",
       "kind": "anchor",
-      "x": 2374.285714285714,
-      "y": 1430,
+      "x": 2359.285714285714,
+      "y": 1278,
       "w": 2,
       "h": 2
     },
     {
       "id": "m09_s",
       "kind": "anchor",
-      "x": 1277.142857142857,
-      "y": 1540,
+      "x": 1292.142857142857,
+      "y": 1362,
       "w": 2,
       "h": 2
     },
     {
       "id": "m09_t",
       "kind": "anchor",
-      "x": 2922.8571428571427,
-      "y": 1540,
+      "x": 2907.8571428571427,
+      "y": 1362,
       "w": 2,
       "h": 2
     },
     {
       "id": "m10_s",
       "kind": "anchor",
-      "x": 1277.142857142857,
-      "y": 1650,
+      "x": 1292.142857142857,
+      "y": 1446,
       "w": 2,
       "h": 2
     },
     {
       "id": "m10_t",
       "kind": "anchor",
-      "x": 1397.142857142857,
-      "y": 1695,
+      "x": 1292.142857142857,
+      "y": 1461,
       "w": 2,
       "h": 2
     },
     {
       "id": "m12_s",
       "kind": "anchor",
-      "x": 1277.142857142857,
-      "y": 1760,
+      "x": 1292.142857142857,
+      "y": 1530,
       "w": 2,
       "h": 2
     },
     {
       "id": "m12_t",
       "kind": "anchor",
-      "x": 3471.4285714285716,
-      "y": 1760,
+      "x": 3456.4285714285716,
+      "y": 1530,
       "w": 2,
       "h": 2
     },
     {
       "id": "m13_s",
       "kind": "anchor",
-      "x": 1277.142857142857,
-      "y": 1870,
+      "x": 1292.142857142857,
+      "y": 1614,
       "w": 2,
       "h": 2
     },
     {
       "id": "m13_t",
       "kind": "anchor",
-      "x": 3471.4285714285716,
-      "y": 1870,
+      "x": 3456.4285714285716,
+      "y": 1614,
       "w": 2,
       "h": 2
     },
     {
       "id": "m14_s",
       "kind": "anchor",
-      "x": 1277.142857142857,
-      "y": 1980,
+      "x": 1292.142857142857,
+      "y": 1698,
       "w": 2,
       "h": 2
     },
     {
       "id": "m14_t",
       "kind": "anchor",
-      "x": 4020.0,
-      "y": 1980,
+      "x": 4005.0,
+      "y": 1698,
       "w": 2,
       "h": 2
     },
     {
       "id": "m17_s",
       "kind": "anchor",
-      "x": 1277.142857142857,
-      "y": 2090,
+      "x": 1262.142857142857,
+      "y": 1782,
       "w": 2,
       "h": 2
     },
     {
       "id": "m17_t",
       "kind": "anchor",
-      "x": 728.5714285714286,
-      "y": 2090,
+      "x": 743.5714285714286,
+      "y": 1782,
       "w": 2,
       "h": 2
     },
     {
       "id": "m18_s",
       "kind": "anchor",
-      "x": 728.5714285714286,
-      "y": 2200,
+      "x": 713.5714285714286,
+      "y": 1866,
       "w": 2,
       "h": 2
     },
@@ -565,7 +583,7 @@
       "id": "m18_t",
       "kind": "anchor",
       "x": 180.0,
-      "y": 2200,
+      "y": 1866,
       "w": 2,
       "h": 2
     },
@@ -573,7 +591,7 @@
       "id": "interaction_notes",
       "kind": "note",
       "x": 105,
-      "y": 2377,
+      "y": 1976,
       "w": 3990,
       "h": 168,
       "lines": [
@@ -582,25 +600,12 @@
       ]
     },
     {
-      "id": "else_label",
-      "kind": "text",
-      "x": 105,
-      "y": 2572,
-      "w": 3990,
-      "h": 65,
-      "lines": [
-        "else [refusal / invalid filter / rollback / read unavailable / zero denominator]"
-      ],
-      "bold": true,
-      "color": "#B03A2E"
-    },
-    {
       "id": "branch_note",
       "kind": "note",
       "x": 105,
-      "y": 2660,
+      "y": 2410,
       "w": 3990,
-      "h": 235,
+      "h": 160,
       "lines": [
         "else [E01 non-manager → UC04-MG02; E02 invalid/reversed dates or unknown hub; E03 read unavailable] →",
         "deny/refuse/unavailable; UC04-MG01, zero writes."
@@ -610,7 +615,7 @@
       "id": "sep_a",
       "kind": "anchor",
       "x": 90,
-      "y": 2570,
+      "y": 2330,
       "w": 2,
       "h": 2
     },
@@ -618,9 +623,114 @@
       "id": "sep_b",
       "kind": "anchor",
       "x": 4110,
-      "y": 2570,
+      "y": 2330,
       "w": 2,
       "h": 2
+    },
+    {
+      "id": "m19_s",
+      "kind": "anchor",
+      "x": 1262.142857142857,
+      "y": 2840,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m19_t",
+      "kind": "anchor",
+      "x": 743.5714285714286,
+      "y": 2840,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m20_s",
+      "kind": "anchor",
+      "x": 713.5714285714286,
+      "y": 2960,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m20_t",
+      "kind": "anchor",
+      "x": 180.0,
+      "y": 2960,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "alt_title",
+      "kind": "text",
+      "x": 100,
+      "y": 562,
+      "w": 4000,
+      "h": 65,
+      "lines": [
+        "alt [active Manager; valid filters; read completes, including empty results]"
+      ],
+      "bold": true,
+      "background": "#FFFFFF"
+    },
+    {
+      "id": "else_label",
+      "kind": "text",
+      "x": 105,
+      "y": 2334,
+      "w": 3990,
+      "h": 65,
+      "lines": [
+        "else [non-manager / invalid filter / read unavailable] · alt operand"
+      ],
+      "bold": true,
+      "color": "#B03A2E",
+      "background": "#FFFFFF"
+    },
+    {
+      "id": "controller_refusal_opt_title",
+      "kind": "text",
+      "x": 105,
+      "y": 2582,
+      "w": 3990,
+      "h": 65,
+      "lines": [
+        "opt [request reaches controller]"
+      ],
+      "bold": true,
+      "color": "#B03A2E",
+      "background": "#FFFFFF"
+    },
+    {
+      "id": "failure_call_s",
+      "kind": "anchor",
+      "x": 743.5714285714286,
+      "y": 2720,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "failure_call_t",
+      "kind": "anchor",
+      "x": 1262.142857142857,
+      "y": 2720,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "failure_ctrl_activation",
+      "kind": "activation",
+      "x": 1262.142857142857,
+      "y": 2720,
+      "w": 30,
+      "h": 120
+    },
+    {
+      "id": "failure_view_activation",
+      "kind": "activation",
+      "x": 713.5714285714286,
+      "y": 2720,
+      "w": 30,
+      "h": 240
     }
   ],
   "edges": [
@@ -635,7 +745,7 @@
         ],
         [
           180.0,
-          2875
+          2975
         ]
       ],
       "dashed": true,
@@ -654,7 +764,7 @@
         ],
         [
           728.5714285714286,
-          2875
+          2975
         ]
       ],
       "dashed": true,
@@ -673,7 +783,7 @@
         ],
         [
           1277.142857142857,
-          2875
+          2975
         ]
       ],
       "dashed": true,
@@ -692,7 +802,7 @@
         ],
         [
           1825.7142857142858,
-          2875
+          2975
         ]
       ],
       "dashed": true,
@@ -711,7 +821,7 @@
         ],
         [
           2374.285714285714,
-          2875
+          2975
         ]
       ],
       "dashed": true,
@@ -730,7 +840,7 @@
         ],
         [
           2922.8571428571427,
-          2875
+          2975
         ]
       ],
       "dashed": true,
@@ -749,7 +859,7 @@
         ],
         [
           3471.4285714285716,
-          2875
+          2975
         ]
       ],
       "dashed": true,
@@ -768,7 +878,7 @@
         ],
         [
           4020.0,
-          2875
+          2975
         ]
       ],
       "dashed": true,
@@ -783,11 +893,11 @@
       "points": [
         [
           180.0,
-          550
+          490
         ],
         [
-          728.5714285714286,
-          550
+          713.5714285714286,
+          490
         ]
       ],
       "dashed": false,
@@ -797,7 +907,7 @@
       "label": "salesReport(startDateVN, endDateVN, hubId?)",
       "label_box": [
         80,
-        478,
+        418,
         1390,
         64
       ]
@@ -808,19 +918,19 @@
       "target": "m01_t",
       "points": [
         [
-          728.5714285714286,
-          660
+          743.5714285714286,
+          690
         ],
         [
           848.5714285714286,
-          660
+          690
         ],
         [
           848.5714285714286,
           705
         ],
         [
-          728.5714285714286,
+          743.5714285714286,
           705
         ]
       ],
@@ -831,7 +941,7 @@
       "label": "sales †()",
       "label_box": [
         608.5714285714286,
-        588,
+        618,
         360,
         64
       ]
@@ -842,20 +952,20 @@
       "target": "m02_t",
       "points": [
         [
-          728.5714285714286,
-          770
+          743.5714285714286,
+          774
         ],
         [
           848.5714285714286,
-          770
+          774
         ],
         [
           848.5714285714286,
-          815
+          789
         ],
         [
-          728.5714285714286,
-          815
+          743.5714285714286,
+          789
         ]
       ],
       "dashed": false,
@@ -865,7 +975,7 @@
       "label": "_filtered(sales template; query args)",
       "label_box": [
         183.57142857142856,
-        698,
+        702,
         1210,
         64
       ]
@@ -876,12 +986,12 @@
       "target": "m03_t",
       "points": [
         [
-          728.5714285714286,
-          880
+          743.5714285714286,
+          858
         ],
         [
-          1277.142857142857,
-          880
+          1262.142857142857,
+          858
         ]
       ],
       "dashed": false,
@@ -891,7 +1001,7 @@
       "label": "all_hubs()",
       "label_box": [
         802.8571428571429,
-        808,
+        786,
         400,
         64
       ]
@@ -902,12 +1012,12 @@
       "target": "m04_t",
       "points": [
         [
-          728.5714285714286,
-          990
+          743.5714285714286,
+          942
         ],
         [
-          1277.142857142857,
-          990
+          1262.142857142857,
+          942
         ]
       ],
       "dashed": false,
@@ -917,7 +1027,7 @@
       "label": "sales_report †(user_id, date_from=startDateVN, date_to=endDateVN, hub_id=hubId)",
       "label_box": [
         80,
-        918,
+        870,
         2470,
         64
       ]
@@ -928,20 +1038,20 @@
       "target": "m05_t",
       "points": [
         [
-          1277.142857142857,
-          1100
+          1292.142857142857,
+          1026
         ],
         [
           1397.142857142857,
-          1100
+          1026
         ],
         [
           1397.142857142857,
-          1145
+          1041
         ],
         [
-          1277.142857142857,
-          1145
+          1292.142857142857,
+          1041
         ]
       ],
       "dashed": false,
@@ -951,7 +1061,7 @@
       "label": "_require_manager(user_id)",
       "label_box": [
         912.1428571428571,
-        1028,
+        954,
         850,
         64
       ]
@@ -962,12 +1072,12 @@
       "target": "m06_t",
       "points": [
         [
-          1277.142857142857,
-          1210
+          1292.142857142857,
+          1110
         ],
         [
-          1825.7142857142858,
-          1210
+          1810.7142857142858,
+          1110
         ]
       ],
       "dashed": false,
@@ -977,7 +1087,7 @@
       "label": "_require_user(user_id, Role.MANAGER)",
       "label_box": [
         961.4285714285716,
-        1138,
+        1038,
         1180,
         64
       ]
@@ -988,20 +1098,20 @@
       "target": "m07_t",
       "points": [
         [
-          1277.142857142857,
-          1320
+          1292.142857142857,
+          1194
         ],
         [
           1397.142857142857,
-          1320
+          1194
         ],
         [
           1397.142857142857,
-          1365
+          1209
         ],
         [
-          1277.142857142857,
-          1365
+          1292.142857142857,
+          1209
         ]
       ],
       "dashed": false,
@@ -1011,7 +1121,7 @@
       "label": "_period(date_from, date_to)",
       "label_box": [
         882.1428571428571,
-        1248,
+        1122,
         910,
         64
       ]
@@ -1022,12 +1132,12 @@
       "target": "m08_t",
       "points": [
         [
-          1277.142857142857,
-          1430
+          1292.142857142857,
+          1278
         ],
         [
-          2374.285714285714,
-          1430
+          2359.285714285714,
+          1278
         ]
       ],
       "dashed": false,
@@ -1037,7 +1147,7 @@
       "label": "vn_day_start_utc(start date and end date + 1 day)",
       "label_box": [
         1040.7142857142858,
-        1358,
+        1206,
         1570,
         64
       ]
@@ -1048,12 +1158,12 @@
       "target": "m09_t",
       "points": [
         [
-          1277.142857142857,
-          1540
+          1292.142857142857,
+          1362
         ],
         [
-          2922.8571428571427,
-          1540
+          2907.8571428571427,
+          1362
         ]
       ],
       "dashed": false,
@@ -1063,7 +1173,7 @@
       "label": "«create» Period(VN dates; UTC [start, end+1))",
       "label_box": [
         1375.0,
-        1468,
+        1290,
         1450,
         64
       ]
@@ -1074,20 +1184,20 @@
       "target": "m10_t",
       "points": [
         [
-          1277.142857142857,
-          1650
+          1292.142857142857,
+          1446
         ],
         [
           1397.142857142857,
-          1650
+          1446
         ],
         [
           1397.142857142857,
-          1695
+          1461
         ],
         [
-          1277.142857142857,
-          1695
+          1292.142857142857,
+          1461
         ]
       ],
       "dashed": false,
@@ -1097,7 +1207,7 @@
       "label": "_hub(hub_id)",
       "label_box": [
         1107.142857142857,
-        1578,
+        1374,
         460,
         64
       ]
@@ -1108,12 +1218,12 @@
       "target": "m12_t",
       "points": [
         [
-          1277.142857142857,
-          1760
+          1292.142857142857,
+          1530
         ],
         [
-          3471.4285714285716,
-          1760
+          3456.4285714285716,
+          1530
         ]
       ],
       "dashed": false,
@@ -1123,7 +1233,7 @@
       "label": "«create» SalesRow(row values from read result)",
       "label_box": [
         1634.2857142857142,
-        1688,
+        1458,
         1480,
         64
       ]
@@ -1134,12 +1244,12 @@
       "target": "m13_t",
       "points": [
         [
-          1277.142857142857,
-          1870
+          1292.142857142857,
+          1614
         ],
         [
-          3471.4285714285716,
-          1870
+          3456.4285714285716,
+          1614
         ]
       ],
       "dashed": false,
@@ -1149,7 +1259,7 @@
       "label": "add(row)",
       "label_box": [
         2194.285714285714,
-        1798,
+        1542,
         360,
         64
       ]
@@ -1160,12 +1270,12 @@
       "target": "m14_t",
       "points": [
         [
-          1277.142857142857,
-          1980
+          1292.142857142857,
+          1698
         ],
         [
-          4020.0,
-          1980
+          4005.0,
+          1698
         ]
       ],
       "dashed": false,
@@ -1175,7 +1285,7 @@
       "label": "«create» SalesReport(period, hub, rows, totals, top_items)",
       "label_box": [
         1728.5714285714284,
-        1908,
+        1626,
         1840,
         64
       ]
@@ -1186,22 +1296,22 @@
       "target": "m17_t",
       "points": [
         [
-          1277.142857142857,
-          2090
+          1262.142857142857,
+          1782
         ],
         [
-          728.5714285714286,
-          2090
+          743.5714285714286,
+          1782
         ]
       ],
       "dashed": true,
-      "arrow": "block",
+      "arrow": "open",
       "color": "#004387",
       "width": 3,
       "label": "return sales_report: operationalSalesAndRefundsOwed",
       "label_box": [
         187.8571428571429,
-        2018,
+        1710,
         1630,
         64
       ]
@@ -1212,22 +1322,22 @@
       "target": "m18_t",
       "points": [
         [
-          728.5714285714286,
-          2200
+          713.5714285714286,
+          1866
         ],
         [
           180.0,
-          2200
+          1866
         ]
       ],
       "dashed": true,
-      "arrow": "block",
+      "arrow": "open",
       "color": "#004387",
       "width": 3,
-      "label": "return salesReport: operationalSalesAndRefundsOwed | invalidFilter | denied",
+      "label": "return salesReport: operationalSalesAndRefundsOwed",
       "label_box": [
         80,
-        2128,
+        1794,
         2350,
         64
       ]
@@ -1239,17 +1349,95 @@
       "points": [
         [
           90,
-          2570
+          2330
         ],
         [
           4110,
-          2570
+          2330
         ]
       ],
       "dashed": true,
       "arrow": "none",
       "color": "#004387",
       "width": 2
+    },
+    {
+      "id": "msg_20",
+      "source": "m19_s",
+      "target": "m19_t",
+      "points": [
+        [
+          1262.142857142857,
+          2840
+        ],
+        [
+          743.5714285714286,
+          2840
+        ]
+      ],
+      "dashed": true,
+      "arrow": "open",
+      "color": "#B03A2E",
+      "width": 3,
+      "label": "return sales_report: invalidFilter | denied (technical read failure returns no figures)",
+      "label_box": [
+        90,
+        2768,
+        2710,
+        64
+      ]
+    },
+    {
+      "id": "msg_21",
+      "source": "m20_s",
+      "target": "m20_t",
+      "points": [
+        [
+          713.5714285714286,
+          2960
+        ],
+        [
+          180.0,
+          2960
+        ]
+      ],
+      "dashed": true,
+      "arrow": "open",
+      "color": "#B03A2E",
+      "width": 3,
+      "label": "return salesReport: invalidFilter | denied (technical read failure returns no figures)",
+      "label_box": [
+        90,
+        2888,
+        2680,
+        64
+      ]
+    },
+    {
+      "id": "msg_19",
+      "source": "failure_call_s",
+      "target": "failure_call_t",
+      "points": [
+        [
+          743.5714285714286,
+          2720
+        ],
+        [
+          1262.142857142857,
+          2720
+        ]
+      ],
+      "dashed": false,
+      "arrow": "block",
+      "color": "#B03A2E",
+      "width": 3,
+      "label": "sales_report †(user_id, date_from=startDateVN, date_to=endDateVN, hub_id=hubId)",
+      "label_box": [
+        90,
+        2648,
+        2410,
+        64
+      ]
     }
   ],
   "footer": "Author: 722I0004 · AI-assisted (Codex) · Static design at C0; target behavior is not runtime evidence.",
@@ -1803,7 +1991,8 @@
         "kind": "ssd",
         "arguments": "startDateVN, endDateVN, hubId?",
         "guard": "active Manager; valid dates and optional existing hub",
-        "PC_MG": []
+        "PC_MG": [],
+        "native_edge_id": "msg_00"
       },
       {
         "from": "view",
@@ -1818,7 +2007,8 @@
         "parameters": [],
         "return": "Any",
         "P4_input": "F-09",
-        "return_type": "Any"
+        "return_type": "Any",
+        "native_edge_id": "msg_01"
       },
       {
         "from": "view",
@@ -1848,7 +2038,8 @@
         ],
         "return": "Any",
         "P4_input": "",
-        "return_type": "Any"
+        "return_type": "Any",
+        "native_edge_id": "msg_02"
       },
       {
         "from": "view",
@@ -1871,7 +2062,8 @@
         ],
         "return": "list[Hub]",
         "P4_input": "",
-        "return_type": "list[Hub]"
+        "return_type": "list[Hub]",
+        "native_edge_id": "msg_03"
       },
       {
         "from": "view",
@@ -1926,7 +2118,8 @@
         ],
         "return": "SalesReport",
         "P4_input": "F-03; F-09",
-        "return_type": "SalesReport"
+        "return_type": "SalesReport",
+        "native_edge_id": "msg_04"
       },
       {
         "from": "ctrl",
@@ -1956,7 +2149,8 @@
         ],
         "return": "None",
         "P4_input": "",
-        "return_type": "None"
+        "return_type": "None",
+        "native_edge_id": "msg_05"
       },
       {
         "from": "ctrl",
@@ -2000,7 +2194,8 @@
         ],
         "return": "UserAccount",
         "P4_input": "",
-        "return_type": "UserAccount"
+        "return_type": "UserAccount",
+        "native_edge_id": "msg_06"
       },
       {
         "from": "ctrl",
@@ -2037,7 +2232,8 @@
         ],
         "return": "Period",
         "P4_input": "",
-        "return_type": "Period"
+        "return_type": "Period",
+        "native_edge_id": "msg_07"
       },
       {
         "from": "ctrl",
@@ -2060,7 +2256,8 @@
         ],
         "return": "str",
         "P4_input": "",
-        "return_type": "str"
+        "return_type": "str",
+        "native_edge_id": "msg_08"
       },
       {
         "from": "ctrl",
@@ -2069,7 +2266,8 @@
         "kind": "create",
         "arguments": "VN dates; UTC [start, end+1)",
         "guard": "",
-        "PC_MG": []
+        "PC_MG": [],
+        "native_edge_id": "msg_09"
       },
       {
         "from": "ctrl",
@@ -2099,7 +2297,8 @@
         ],
         "return": "Optional[Hub]",
         "P4_input": "",
-        "return_type": "Optional[Hub]"
+        "return_type": "Optional[Hub]",
+        "native_edge_id": "msg_10"
       },
       {
         "from": "ctrl",
@@ -2108,7 +2307,8 @@
         "kind": "note",
         "arguments": "Read-only SELECTs; see 4.3.2.",
         "guard": "",
-        "PC_MG": []
+        "PC_MG": [],
+        "native_note_id": "interaction_notes"
       },
       {
         "from": "ctrl",
@@ -2117,7 +2317,8 @@
         "kind": "create",
         "arguments": "row values from read result",
         "guard": "",
-        "PC_MG": []
+        "PC_MG": [],
+        "native_edge_id": "msg_12"
       },
       {
         "from": "ctrl",
@@ -2147,7 +2348,8 @@
         ],
         "return": "None",
         "P4_input": "",
-        "return_type": "None"
+        "return_type": "None",
+        "native_edge_id": "msg_13"
       },
       {
         "from": "ctrl",
@@ -2156,7 +2358,8 @@
         "kind": "create",
         "arguments": "period, hub, rows, totals, top_items",
         "guard": "",
-        "PC_MG": []
+        "PC_MG": [],
+        "native_edge_id": "msg_14"
       },
       {
         "from": "view",
@@ -2179,7 +2382,8 @@
         ],
         "return": "int",
         "P4_input": "F-03",
-        "return_type": "int"
+        "return_type": "int",
+        "native_note_id": "interaction_notes"
       },
       {
         "from": "view",
@@ -2191,7 +2395,8 @@
         "PC_MG": [],
         "status": "P4-TARGET",
         "P4_input": "F-09",
-        "target_type": "list[tuple[int, str, int, int]]"
+        "target_type": "list[tuple[int, str, int, int]]",
+        "native_note_id": "interaction_notes"
       },
       {
         "from": "ctrl",
@@ -2200,16 +2405,99 @@
         "kind": "return",
         "arguments": "operationalSalesAndRefundsOwed",
         "guard": "",
-        "PC_MG": []
+        "PC_MG": [],
+        "native_edge_id": "msg_17"
       },
       {
         "from": "view",
         "to": "actor",
         "method": "salesReport",
         "kind": "return",
-        "arguments": "operationalSalesAndRefundsOwed | invalidFilter | denied",
+        "arguments": "operationalSalesAndRefundsOwed",
         "guard": "",
-        "PC_MG": []
+        "PC_MG": [],
+        "native_edge_id": "msg_18"
+      },
+      {
+        "from": "view",
+        "to": "ctrl",
+        "method": "sales_report",
+        "kind": "call",
+        "arguments": "user_id, date_from=startDateVN, date_to=endDateVN, hub_id=hubId",
+        "guard": "request reaches controller; guard/filter/save/read then refuses",
+        "PC_MG": [
+          "UC04-MG01",
+          "UC04-MG02"
+        ],
+        "status": "P4-TARGET",
+        "signature": "sales_report(self, user_id: int, date_from: Optional[str]=None, date_to: Optional[str]=None, hub_id: Optional[int]=None) -> SalesReport",
+        "parameters": [
+          {
+            "name": "self",
+            "type": "Any",
+            "annotated": false,
+            "default": null,
+            "kind": "positional_or_keyword"
+          },
+          {
+            "name": "user_id",
+            "type": "int",
+            "annotated": true,
+            "default": null,
+            "kind": "positional_or_keyword"
+          },
+          {
+            "name": "date_from",
+            "type": "Optional[str]",
+            "annotated": true,
+            "default": "None",
+            "kind": "positional_or_keyword"
+          },
+          {
+            "name": "date_to",
+            "type": "Optional[str]",
+            "annotated": true,
+            "default": "None",
+            "kind": "positional_or_keyword"
+          },
+          {
+            "name": "hub_id",
+            "type": "Optional[int]",
+            "annotated": true,
+            "default": "None",
+            "kind": "positional_or_keyword"
+          }
+        ],
+        "return": "SalesReport",
+        "P4_input": "F-03; F-09",
+        "return_type": "SalesReport",
+        "native_edge_id": "msg_19"
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "sales_report",
+        "kind": "return",
+        "arguments": "invalidFilter | denied (technical read failure returns no figures)",
+        "guard": "controller was invoked and then rejected or failed; otherwise the view denies directly",
+        "PC_MG": [
+          "UC04-MG01",
+          "UC04-MG02"
+        ],
+        "native_edge_id": "msg_20"
+      },
+      {
+        "from": "view",
+        "to": "actor",
+        "method": "salesReport",
+        "kind": "return",
+        "arguments": "invalidFilter | denied (technical read failure returns no figures)",
+        "guard": "else [E01 non-manager → UC04-MG02; E02 invalid/reversed dates or unknown hub; E03 read unavailable] → deny/refuse/unavailable; UC04-MG01, zero writes.",
+        "PC_MG": [
+          "UC04-MG01",
+          "UC04-MG02"
+        ],
+        "native_edge_id": "msg_21"
       }
     ],
     "states": [
@@ -2223,12 +2511,70 @@
     ],
     "main_outcome": "Operational, not accounting. Empty sums/counts are zero; archived orders included; refunds owed is separate from T.",
     "alternate_outcome": "else [E01 non-manager → UC04-MG02; E02 invalid/reversed dates or unknown hub; E03 read unavailable] → deny/refuse/unavailable; UC04-MG01, zero writes.",
-    "shared_transaction_target": "Read-only; UC04-MG01 applies to every result and refusal."
+    "shared_transaction_target": "Read-only; UC04-MG01 applies to every result and refusal.",
+    "interaction_fragments": [
+      {
+        "id": "accepted_operand",
+        "operator": "alt",
+        "guard": "alt [active Manager; valid filters; read completes, including empty results]",
+        "x": 70,
+        "y": 560,
+        "w": 4060,
+        "h": 1770,
+        "message_indices": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          12,
+          13,
+          14,
+          17,
+          18
+        ],
+        "guard_label_id": "alt_title"
+      },
+      {
+        "id": "refusal_operand",
+        "operator": "alt",
+        "guard": "else [non-manager / invalid filter / read unavailable]",
+        "x": 70,
+        "y": 2330,
+        "w": 4060,
+        "h": 650,
+        "message_indices": [
+          19,
+          20,
+          21
+        ],
+        "guard_label_id": "else_label"
+      },
+      {
+        "id": "controller_refusal_opt",
+        "operator": "opt",
+        "guard": "[request reaches controller]",
+        "x": 70,
+        "y": 2580,
+        "w": 4060,
+        "h": 310,
+        "message_indices": [
+          19,
+          20
+        ],
+        "guard_label_id": "controller_refusal_opt_title"
+      }
+    ]
   },
   "render_receipt": {
     "canvas": [
       4200,
-      3000
+      3100
     ],
     "minimum_font_px": 60,
     "placed_width_mm": 230,

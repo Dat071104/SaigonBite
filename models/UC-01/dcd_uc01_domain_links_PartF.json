@@ -51,12 +51,13 @@
           188
         ]
       ],
-      "label": "→  «use»",
+      "label": "«use»",
       "labelpos": [
-        575,
-        109
+        690,
+        110
       ],
-      "labelwidth": 440
+      "labelwidth": 330,
+      "native_edge_id": "dcd_relation_000"
     }
   ],
   "phase3": {
@@ -83,7 +84,8 @@
         "allowed_on_layered_diagram": true
       }
     ],
-    "states": []
+    "states": [],
+    "association_end_labels": []
   },
   "continuation": "Members: domain detail parts. Relationship parts A–F continue both ways.",
   "P4_input": "none on this view",

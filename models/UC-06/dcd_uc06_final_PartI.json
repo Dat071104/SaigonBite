@@ -222,6 +222,25 @@
         "class": "HubMenuItem",
         "classification": "association class"
       }
+    ],
+    "association_end_labels": [
+      {
+        "source": "HubMenuItem",
+        "target": "MenuItem",
+        "kind": "association",
+        "role": "item",
+        "native_edge_id": "dep0",
+        "source_label_id": "dep0_source_mult",
+        "target_label_id": "dep0_target_mult",
+        "source_endpoint": [
+          575,
+          563
+        ],
+        "target_endpoint": [
+          690,
+          585
+        ]
+      }
     ]
   },
   "qa": {
@@ -234,7 +253,7 @@
     "minimum_pt": 9.779527559055119,
     "connected_edges": 5,
     "xml_valid": true,
-    "native_text_cells": 10,
+    "native_text_cells": 12,
     "native_minimum_font_px": 18.0,
     "native_minimum_pt": 9.779527559055119,
     "native_explicit_font_styles": true

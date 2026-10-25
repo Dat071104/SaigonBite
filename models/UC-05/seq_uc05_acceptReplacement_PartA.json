@@ -3,7 +3,7 @@
   "stem": "seq_uc05_acceptReplacement_PartA",
   "title": "UC-05 acceptReplacement — Part A",
   "figure": "3.5.4.OP-05A",
-  "caption": "UC-05 acceptReplacement design sequence",
+  "caption": "UC-05 acceptReplacement — Part A",
   "P4_input": "F-02; F-05; P2-S09; P2-S11; P2-S13",
   "phase3": {
     "diagram_type": "sequence",
@@ -54,10 +54,23 @@
         "guard": "",
         "PC_MG": "",
         "label": "acceptReplacement(orderId, offerId)\n→ order.answer_replacement [HTTP adapter]",
-        "y": 508,
+        "y": 360,
         "receiver_signature": "answer_replacement(order_id: int)",
         "status": "MATCH",
-        "P4_input": ""
+        "P4_input": "",
+        "native_edge_id": "message_000",
+        "source_anchor_id": "message_000_source",
+        "target_anchor_id": "message_000_target",
+        "native_points": [
+          [
+            90.0,
+            360
+          ],
+          [
+            445.0,
+            360
+          ]
+        ]
       },
       {
         "from": "view",
@@ -68,10 +81,23 @@
         "guard": "eligible/main operand (see frame and operation table)",
         "PC_MG": "UC05-PC04; UC05-MG01",
         "label": "answer_replacement†(user_id, order_id, offer_id, True)",
-        "y": 578,
+        "y": 460,
         "receiver_signature": "answer_replacement(self, user_id: int, order_id: int, offer_id: int, accept: bool) -> OrderDetail",
         "status": "P4-TARGET",
-        "P4_input": "F-05; F-02; P2-S09; P2-S11; P2-S13"
+        "P4_input": "F-05; F-02; P2-S09; P2-S11; P2-S13",
+        "native_edge_id": "message_001",
+        "source_anchor_id": "message_001_source",
+        "target_anchor_id": "message_001_target",
+        "native_points": [
+          [
+            445.0,
+            460
+          ],
+          [
+            800.0,
+            460
+          ]
+        ]
       },
       {
         "from": "ctrl",
@@ -79,24 +105,58 @@
         "method": "_own_order",
         "kind": "call",
         "arguments": "customer, order_id",
-        "guard": "active owner",
+        "guard": "active Customer",
         "PC_MG": "UC05-MG01",
         "label": "_own_order(customer, order_id)",
-        "y": 700,
+        "y": 610,
         "receiver_signature": "_own_order(self, customer: Customer, order_id: int) -> Order",
         "status": "MATCH",
-        "P4_input": ""
+        "P4_input": "",
+        "native_edge_id": "message_002",
+        "source_anchor_id": "message_002_source",
+        "target_anchor_id": "message_002_target",
+        "native_points": [
+          [
+            800.0,
+            610
+          ],
+          [
+            845.0,
+            610
+          ],
+          [
+            845.0,
+            635
+          ],
+          [
+            800.0,
+            635
+          ]
+        ]
       },
       {
         "from": "ctrl",
         "to": "view",
         "method": "",
         "kind": "return",
-        "arguments": "",
-        "guard": "denied / stale / invalid or atomic save failure",
+        "arguments": "staleRefusal",
+        "guard": "wrong owner / non-PLACED / not exact open offer",
         "PC_MG": "UC05-MG01",
-        "label": "refusal / controlled failure; UC05-MG01",
-        "y": 1000
+        "label": "staleRefusal",
+        "y": 805,
+        "native_edge_id": "message_003",
+        "source_anchor_id": "message_003_source",
+        "target_anchor_id": "message_003_target",
+        "native_points": [
+          [
+            800.0,
+            805
+          ],
+          [
+            445.0,
+            805
+          ]
+        ]
       }
     ],
     "elements": [
@@ -139,41 +199,54 @@
         "class": "ReplacementOffer",
         "attribute": "state",
         "values": [
-          "OFFERED",
-          "WITHDRAWN"
+          "OFFERED"
+        ]
+      }
+    ],
+    "interaction_fragments": [
+      {
+        "id": "active_owner_opt",
+        "operator": "opt",
+        "guard": "active Customer; resolve own order",
+        "x": 30,
+        "y": 490,
+        "w": 1540,
+        "h": 180,
+        "message_indices": [
+          2
+        ]
+      },
+      {
+        "id": "stale_break",
+        "operator": "break",
+        "guard": "wrong owner / non-PLACED / not exact open OFFERED; UC05-MG01",
+        "x": 30,
+        "y": 690,
+        "w": 1540,
+        "h": 165,
+        "message_indices": [
+          3
         ]
       }
     ]
   },
-  "frames": [
-    {
-      "id": "alt",
-      "y": 590,
-      "h": 450,
-      "label": "alt [eligible main path; guards / effects in the operation note]",
-      "operands": [
-        [
-          910,
-          "[denied / stale / invalid or failed atomic save] UC05-MG01"
-        ]
-      ]
-    }
-  ],
+  "frames": [],
   "notes": [
     {
-      "y": 220,
-      "h": 102.80000000000001,
-      "text": "Before mutation†: active owner + own PLACED + exact open OFFERED belongs to order. Recheck target active, active Brand, listed + AVAILABLE at same hub. Ineligible owner/state/offer → staleRefusal, 0 changed rows. Invalid target → only exact offer WITHDRAWN† with returned reason; Order/lines/payment unchanged (MG01)."
+      "y": 175,
+      "h": 65,
+      "text": "Recheck active owner, own PLACED and exact open OFFERED belonging to the order. Stale/repeated/terminal answers terminate without mutation. Eligible responses continue to the exclusive target branches."
     },
     {
-      "y": 1010,
-      "h": 65,
-      "text": "Persistence: loaded/saved through data access — see 4.3.2."
+      "y": 1030,
+      "h": 45,
+      "text": "loaded/saved through data access — see 4.3.2"
     }
   ],
-  "continuation": "Part A ↔ PartB. Same lifelines / same operation; no second request.",
-  "realisation_note": "Before mutation†: active owner + own PLACED + exact open OFFERED belongs to order. Recheck target active, active Brand, listed + AVAILABLE at same hub. Ineligible owner/state/offer → staleRefusal, 0 changed rows. Invalid target → only exact offer WITHDRAWN† with returned reason; Order/lines/payment unchanged (MG01).",
+  "continuation": "acceptReplacement: Part A of A–C; previous none; next Part B; same request, no new human wait.",
+  "realisation_note": "Before mutation†: active owner + own PLACED + exact open OFFERED belongs to order. Recheck target active, active Brand, listed + AVAILABLE at same hub. Ineligible owner/state/offer → staleRefusal, 0 changed rows. Invalid target → only exact offer WITHDRAWN† with returned reason; Order/lines/payment unchanged (MG01). Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.",
   "shared_model_source": "models/shared/design_model.json",
   "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
-  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets.",
+  "review_repair_version": "R1-R4"
 }

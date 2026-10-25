@@ -1,63 +1,73 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1250" viewBox="0 0 1600 1250"><rect width="100%" height="100%" fill="white"/>
 <text x="35" y="41.040000000000006" font-family="Arial" font-size="28" font-weight="bold" fill="#202B36">UC-02 takeDelivery — DAO sequence / Part C</text>
 <text x="35" y="76.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Same request and transaction across all parts; focus 3/5. Mechanical reads: responsibility table (report 4.3.2).</text>
+<rect data-fragment-id="fragment_seqdao_uc02_takeDelivery_PartC_1" x="25" y="232" width="1550" height="475.72" fill="none" stroke="#004387" stroke-width="2"/>
+<rect data-fragment-id="fragment_seqdao_uc02_takeDelivery_PartC_2" x="37" y="599.04" width="1526" height="103.68000000000006" fill="none" stroke="#004387" stroke-width="2"/>
 <rect x="29.85714285714286" y="100" width="180.28571428571428" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
 <text x="36.85714285714286" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Shipper</text>
-<polyline points="120.0,220 120.0,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<polyline points="120.0,220 120.0,1026" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
 <rect x="224.14285714285714" y="100" width="180.28571428571428" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
 <text x="231.14285714285714" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">«view»</text>
 <text x="231.14285714285714" y="155.16" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">delivery</text>
-<polyline points="314.2857142857143,220 314.2857142857143,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<polyline points="314.2857142857143,220 314.2857142857143,1026" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
 <rect x="418.42857142857144" y="100" width="180.28571428571428" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
 <text x="425.42857142857144" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Delivery</text>
 <text x="425.42857142857144" y="155.16" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Controller</text>
-<polyline points="508.57142857142856,220 508.57142857142856,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<polyline points="508.57142857142856,220 508.57142857142856,1026" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
 <rect x="612.7142857142858" y="100" width="180.28571428571428" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
 <text x="619.7142857142858" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">controllers.com</text>
 <text x="619.7142857142858" y="155.16" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">mon</text>
-<polyline points="702.8571428571429,220 702.8571428571429,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<polyline points="702.8571428571429,220 702.8571428571429,1026" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
 <rect x="807.0" y="100" width="180.28571428571428" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
 <text x="814.0" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Order</text>
-<polyline points="897.1428571428571,220 897.1428571428571,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<polyline points="897.1428571428571,220 897.1428571428571,1026" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
 <rect x="1001.2857142857144" y="100" width="180.28571428571428" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
 <text x="1008.2857142857144" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Delivery</text>
-<polyline points="1091.4285714285716,220 1091.4285714285716,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<polyline points="1091.4285714285716,220 1091.4285714285716,1026" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
 <rect x="1195.5714285714287" y="100" width="180.28571428571428" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
 <text x="1202.5714285714287" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">«DAO»</text>
 <text x="1202.5714285714287" y="155.16" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Order</text>
 <text x="1202.5714285714287" y="183.0" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">DAO</text>
-<polyline points="1285.7142857142858,220 1285.7142857142858,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<polyline points="1285.7142857142858,220 1285.7142857142858,1026" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
 <rect x="1389.857142857143" y="100" width="180.28571428571428" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
 <text x="1396.857142857143" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">:Database</text>
 <text x="1396.857142857143" y="155.16" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">«resource»</text>
-<polyline points="1480.0,220 1480.0,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
-<rect x="42" y="241" width="1516" height="30.839999999999996" fill="white"/>
-<text x="45" y="264.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">move_order(orders, order, OrderState.OUT_FOR_DELIVERY, now)</text>
-<polyline points="508.57142857142856,341 702.8571428571429,341" fill="none" stroke="#004387" stroke-width="2"/>
-<polyline points="690.2508834242054,347.08951747755725 702.8571428571429,341 690.2508834242054,334.91048252244275" fill="none" stroke="#004387" stroke-width="2"/>
-<rect x="697.8571428571429" y="341" width="10" height="18" stroke="#004387" fill="#DAE9F5" stroke-width="2"/>
-<rect x="42" y="366" width="1516" height="30.839999999999996" fill="white"/>
-<text x="45" y="389.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">move_to(OrderState.OUT_FOR_DELIVERY)</text>
-<polyline points="702.8571428571429,466 897.1428571428571,466" fill="none" stroke="#004387" stroke-width="2"/>
-<polyline points="884.5365977099196,472.08951747755725 897.1428571428571,466 884.5365977099196,459.91048252244275" fill="none" stroke="#004387" stroke-width="2"/>
-<rect x="892.1428571428571" y="466" width="10" height="18" stroke="#004387" fill="#DAE9F5" stroke-width="2"/>
-<rect x="42" y="491" width="1516" height="30.839999999999996" fill="white"/>
-<text x="45" y="514.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">change_state(order_id, OrderState.READY, OrderState.OUT_FOR_DELIVERY, now)</text>
-<polyline points="702.8571428571429,591 1285.7142857142858,591" fill="none" stroke="#004387" stroke-width="2"/>
-<polyline points="1273.1080262813482,597.0895174775573 1285.7142857142858,591 1273.1080262813482,584.9104825224427" fill="none" stroke="#004387" stroke-width="2"/>
-<rect x="1280.7142857142858" y="591" width="10" height="18" stroke="#004387" fill="#DAE9F5" stroke-width="2"/>
-<rect x="42" y="616" width="1516" height="30.839999999999996" fill="white"/>
-<text x="45" y="639.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">SQL note: UPDATE orders by id AND state = ? (READY); set OUT_FOR_DELIVERY.</text>
-<polyline points="1285.7142857142858,716 1480.0,716" fill="none" stroke="#004387" stroke-width="2"/>
-<polyline points="1467.3937405670624,722.0895174775573 1480.0,716 1467.3937405670624,709.9104825224427" fill="none" stroke="#004387" stroke-width="2"/>
-<rect x="42" y="741" width="1516" height="30.839999999999996" fill="white"/>
-<text x="45" y="764.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">rowcount == 1; † helper checks bool; 0 rows → ROLLBACK pickup too</text>
-<polyline points="1285.7142857142858,841 702.8571428571429,841" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
-<polyline points="715.4634022900804,834.9104825224427 702.8571428571429,841 715.4634022900804,847.0895174775573" fill="none" stroke="#004387" stroke-width="2"/>
-<rect x="42" y="866" width="1516" height="30.839999999999996" fill="white"/>
-<text x="45" y="889.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">COMMIT†: paired Delivery PICKED_UP + Order OUT_FOR_DELIVERY; UC02-PC01.</text>
-<polyline points="508.57142857142856,966 1480.0,966" fill="none" stroke="#004387" stroke-width="2"/>
-<polyline points="1467.3937405670624,972.0895174775573 1480.0,966 1467.3937405670624,959.9104825224427" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="1480.0,220 1480.0,1026" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<rect x="28" y="232" width="90" height="30.839999999999996" fill="white"/>
+<text x="31" y="255.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">opt</text>
+<rect x="124" y="232" width="1444" height="30.839999999999996" fill="white"/>
+<text x="127" y="255.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">[take rowcount == 1; no earlier failure (continued from Part B)]</text>
+<rect x="40" y="599.04" width="90" height="30.839999999999996" fill="white"/>
+<text x="43" y="622.36" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">opt</text>
+<rect x="136" y="599.04" width="1420" height="30.839999999999996" fill="white"/>
+<text x="139" y="622.36" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">[order change rowcount == 1; zero/False breaks to Part E]</text>
+<rect x="62" y="268.84000000000003" width="1476" height="30.839999999999996" fill="white"/>
+<text x="65" y="292.16" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">move_order(orders, order, OrderState.OUT_FOR_DELIVERY, now)</text>
+<polyline points="508.57142857142856,308.68 702.8571428571429,308.68" fill="none" stroke="#004387" stroke-width="2"/>
+<polygon data-edge-head="message0" points="690.2508834242054,314.7695174775572 702.8571428571429,308.68 690.2508834242054,302.5904825224428" fill="#004387" stroke="#004387" stroke-width="2"/>
+<rect x="697.8571428571429" y="308.68" width="10" height="18" stroke="#004387" fill="#DAE9F5" stroke-width="2"/>
+<rect x="62" y="334.68" width="1476" height="30.839999999999996" fill="white"/>
+<text x="65" y="358.0" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">move_to(OrderState.OUT_FOR_DELIVERY)</text>
+<polyline points="702.8571428571429,374.52 897.1428571428571,374.52" fill="none" stroke="#004387" stroke-width="2"/>
+<polygon data-edge-head="message1" points="884.5365977099196,380.60951747755723 897.1428571428571,374.52 884.5365977099196,368.43048252244273" fill="#004387" stroke="#004387" stroke-width="2"/>
+<rect x="892.1428571428571" y="374.52" width="10" height="18" stroke="#004387" fill="#DAE9F5" stroke-width="2"/>
+<rect x="62" y="400.52" width="1476" height="30.839999999999996" fill="white"/>
+<text x="65" y="423.84" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">change_state(order_id, OrderState.READY, OrderState.OUT_FOR_DELIVERY, now)</text>
+<polyline points="702.8571428571429,440.35999999999996 1285.7142857142858,440.35999999999996" fill="none" stroke="#004387" stroke-width="2"/>
+<polygon data-edge-head="message2" points="1273.1080262813482,446.44951747755715 1285.7142857142858,440.35999999999996 1273.1080262813482,434.27048252244276" fill="#004387" stroke="#004387" stroke-width="2"/>
+<rect x="1280.7142857142858" y="440.35999999999996" width="10" height="18" stroke="#004387" fill="#DAE9F5" stroke-width="2"/>
+<rect x="62" y="466.35999999999996" width="1476" height="30.839999999999996" fill="white"/>
+<text x="65" y="489.67999999999995" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">SQL note: UPDATE orders by id AND state = ? (READY); set OUT_FOR_DELIVERY.</text>
+<polyline points="1285.7142857142858,506.19999999999993 1480.0,506.19999999999993" fill="none" stroke="#004387" stroke-width="2"/>
+<polygon data-edge-head="message3" points="1467.3937405670624,512.2895174775572 1480.0,506.19999999999993 1467.3937405670624,500.1104825224427" fill="#004387" stroke="#004387" stroke-width="2"/>
+<rect x="62" y="532.1999999999999" width="1476" height="30.839999999999996" fill="white"/>
+<text x="65" y="555.52" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">rowcount == 1; † helper checks bool; 0 rows → ROLLBACK pickup too</text>
+<polyline points="1285.7142857142858,572.04 702.8571428571429,572.04" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<polyline data-edge-head="message4" points="715.4634022900804,565.9504825224427 702.8571428571429,572.04 715.4634022900804,578.1295174775572" fill="none" stroke="#004387" stroke-width="2"/>
+<rect x="62" y="635.88" width="1476" height="30.839999999999996" fill="white"/>
+<text x="65" y="659.2" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">COMMIT†: paired Delivery PICKED_UP + Order OUT_FOR_DELIVERY; UC02-PC01.</text>
+<polyline points="508.57142857142856,675.72 1480.0,675.72" fill="none" stroke="#004387" stroke-width="2"/>
+<polygon data-edge-head="message5" points="1467.3937405670624,681.8095174775573 1480.0,675.72 1467.3937405670624,669.6304825224428" fill="#004387" stroke="#004387" stroke-width="2"/>
 <text x="35" y="1057.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">From seqdao_uc02_takeDelivery_PartB → this part → seqdao_uc02_takeDelivery_PartD.</text>
 <text x="35" y="1092.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Transaction key (whole request): BEGIN IMMEDIATE → checked rowcount / inserts → COMMIT; failure → ROLLBACK if active. Busy: retry,</text>
 <text x="35" y="1120.1599999999999" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">nothing changed.</text>

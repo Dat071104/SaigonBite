@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200"><rect width="100%" height="100%" fill="white"/>
+<text x="35" y="42.040000000000006" font-family="Arial" font-size="28" font-weight="bold" fill="#202B36">UC-01 confirmCheckout — Part D</text>
+<rect x="5.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="10.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Customer</text>
+<polyline points="90.0,170 90.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="289.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="294.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">«view»</text>
+<text x="294.0" y="131.92" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">order</text>
+<polyline points="374.0,170 374.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="573.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="578.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">PlaceOrderCo</text>
+<text x="578.0" y="131.92" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">ntroller</text>
+<polyline points="658.0,170 658.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="857.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="862.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">«gateway»</text>
+<text x="862.0" y="131.92" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">PaymentGate</text>
+<text x="862.0" y="159.51999999999998" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">waySimulator</text>
+<polyline points="942.0,170 942.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="1141.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="1146.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Order</text>
+<polyline points="1226.0,170 1226.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="1425.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="1430.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Payment</text>
+<polyline points="1510.0,170 1510.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="30" y="250" width="1540" height="770" fill="white" stroke="#004387" stroke-width="2"/>
+<text x="40" y="275.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">opt [unused eligible request AND (COD OR approved ONLINE)]</text>
+<polyline points="90.0,170 90.0,1020" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="374.0,170 374.0,1020" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="658.0,170 658.0,1020" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="942.0,170 942.0,1020" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="1226.0,170 1226.0,1020" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="1510.0,170 1510.0,1020" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="35" y="175" width="1530" height="65" fill="#FFF8E9" stroke="#004387" stroke-width="2"/>
+<text x="45" y="202.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Create PLACED Order/line/address/price snapshots and Payment: COD PENDING or ONLINE PAID, C=T. This is the atomic attempt, not a</text>
+<text x="45" y="229.92" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">success reply. Save/COMMIT outcome is exclusively Part E.</text>
+<rect x="35" y="1030" width="1530" height="45" fill="#FFF8E9" stroke="#004387" stroke-width="2"/>
+<text x="45" y="1057.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">loaded/saved through data access — see 4.3.2</text>
+<polyline points="658.0,470 1226.0,470" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="1212.0,477.0 1226.0,470 1212.0,463.0" fill="none" stroke="#004387" stroke-width="2"/>
+<polygon data-message-arrow="filled-synchronous" points="1212.0,477.0 1226.0,470 1212.0,463.0" fill="#004387" stroke="#004387"/>
+<text x="673.0" y="456.71999999999997" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">place(customer.id, quote, token, now)</text>
+<rect x="1221.0" y="470" width="10" height="25" fill="#DAE9F5" stroke="#004387" stroke-width="2"/>
+<polyline points="658.0,700 1510.0,700" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="1496.0,707.0 1510.0,700 1496.0,693.0" fill="none" stroke="#004387" stroke-width="2"/>
+<polygon data-message-arrow="filled-synchronous" points="1496.0,707.0 1510.0,700 1496.0,693.0" fill="#004387" stroke="#004387"/>
+<text x="673.0" y="686.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">«create» Payment (implicit dataclass initialization)</text>
+<rect x="1505.0" y="700" width="10" height="25" fill="#DAE9F5" stroke="#004387" stroke-width="2"/>
+<text x="35" y="1102.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">confirmCheckout: Part D of A–E; previous Part C; next Part E; same request, no new human wait.</text>
+<text x="35" y="1134.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">† design target, not yet in code at C0 (see P4 input F-04; F-07; P2-S05; P2-S13).</text>
+<text x="35" y="1167.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Figure 3.1.4.OP-01D. UC-01 confirmCheckout — Part D — Author: 722I0004 · AI-assisted (Codex)</text>
+<text x="35" y="1193.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Static / target design · 230 mm landscape · smallest text 9.78 pt · native draw.io / final placement UNTESTED</text>
+</svg>

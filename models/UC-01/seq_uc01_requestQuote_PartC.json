@@ -1,0 +1,286 @@
+{
+  "UC": "UC-01",
+  "stem": "seq_uc01_requestQuote_PartC",
+  "title": "UC-01 requestQuote — Part C",
+  "figure": "3.1.4.OP-15C",
+  "caption": "UC-01 requestQuote — Part C",
+  "P4_input": "F-04; F-07; P3-S01",
+  "phase3": {
+    "diagram_type": "sequence",
+    "UC": "UC-01",
+    "op_id": "OP-15",
+    "operation": "requestQuote",
+    "parameters": "hubId, addressId, lines(itemId, quantity), voucherCode?, paymentMethod, onlineOption?",
+    "ssd_occurrence": "models/UC-01/ssd_uc01_PartA.drawio#01S-M03",
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Customer",
+        "role": "actor",
+        "label": "Customer"
+      },
+      {
+        "id": "view",
+        "class": "order",
+        "role": "view",
+        "label": "«view»\norder"
+      },
+      {
+        "id": "ctrl",
+        "class": "PlaceOrderController",
+        "role": "controller",
+        "label": "PlaceOrderController"
+      },
+      {
+        "id": "voucher",
+        "class": "Voucher",
+        "role": "domain",
+        "label": "Voucher"
+      },
+      {
+        "id": "quote",
+        "class": "Quote",
+        "role": "domain",
+        "label": "Quote"
+      }
+    ],
+    "messages": [
+      {
+        "from": "ctrl",
+        "to": "voucher",
+        "method": "problem",
+        "kind": "call",
+        "arguments": "quote.item_subtotal, today",
+        "guard": "voucher provided",
+        "PC_MG": "",
+        "label": "problem(quote.item_subtotal, today)",
+        "y": 400,
+        "receiver_signature": "problem(self, item_subtotal: int, today: str) -> Optional[str]",
+        "status": "MATCH",
+        "P4_input": "",
+        "native_edge_id": "message_000",
+        "source_anchor_id": "message_000_source",
+        "target_anchor_id": "message_000_target",
+        "native_points": [
+          [
+            800.0,
+            400
+          ],
+          [
+            1155.0,
+            400
+          ]
+        ]
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "refusal",
+        "guard": "problem(...) result is not None",
+        "PC_MG": "UC01-MG01",
+        "label": "refusal",
+        "y": 530,
+        "native_edge_id": "message_001",
+        "source_anchor_id": "message_001_source",
+        "target_anchor_id": "message_001_target",
+        "native_points": [
+          [
+            800.0,
+            530
+          ],
+          [
+            445.0,
+            530
+          ]
+        ]
+      },
+      {
+        "from": "ctrl",
+        "to": "voucher",
+        "method": "discount_for",
+        "kind": "call",
+        "arguments": "quote.item_subtotal",
+        "guard": "voucher provided and problem is None",
+        "PC_MG": "",
+        "label": "discount_for(quote.item_subtotal)",
+        "y": 650,
+        "receiver_signature": "discount_for(self, item_subtotal: int) -> int",
+        "status": "MATCH",
+        "P4_input": "",
+        "native_edge_id": "message_002",
+        "source_anchor_id": "message_002_source",
+        "target_anchor_id": "message_002_target",
+        "native_points": [
+          [
+            800.0,
+            650
+          ],
+          [
+            1155.0,
+            650
+          ]
+        ]
+      },
+      {
+        "from": "ctrl",
+        "to": "quote",
+        "method": "fingerprint",
+        "kind": "call",
+        "arguments": "payment.method, payment.option",
+        "guard": "no voucher or valid voucher",
+        "PC_MG": "",
+        "label": "fingerprint†(payment.method, payment.option) [F-07]",
+        "y": 860,
+        "argument_bindings": {
+          "payment_method": "payment.method",
+          "online_option": "payment.option"
+        },
+        "receiver_signature": "fingerprint(self, payment_method: PaymentMethod, online_option: Optional[OnlineOption] = None) -> str",
+        "status": "GAP",
+        "P4_input": "F-07",
+        "native_edge_id": "message_003",
+        "source_anchor_id": "message_003_source",
+        "target_anchor_id": "message_003_target",
+        "native_points": [
+          [
+            800.0,
+            860
+          ],
+          [
+            1510.0,
+            860
+          ]
+        ]
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "quoteWithFingerprintAndSDFQT",
+        "guard": "quote eligible",
+        "PC_MG": "read only; UC01-MG01 on refusal",
+        "label": "quoteWithFingerprintAndSDFQT",
+        "y": 980,
+        "native_edge_id": "message_004",
+        "source_anchor_id": "message_004_source",
+        "target_anchor_id": "message_004_target",
+        "native_points": [
+          [
+            800.0,
+            980
+          ],
+          [
+            445.0,
+            980
+          ]
+        ]
+      }
+    ],
+    "elements": [
+      {
+        "class": "order",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "PlaceOrderController",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "Voucher",
+        "attributes": [],
+        "methods": [
+          "discount_for",
+          "problem"
+        ]
+      },
+      {
+        "class": "Quote",
+        "attributes": [],
+        "methods": [
+          "fingerprint"
+        ]
+      }
+    ],
+    "dependencies": [],
+    "states": [],
+    "interaction_fragments": [
+      {
+        "id": "voucher_opt",
+        "operator": "opt",
+        "guard": "voucher provided (otherwise skip all voucher calls)",
+        "x": 30,
+        "y": 250,
+        "w": 1540,
+        "h": 460,
+        "message_indices": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "id": "voucher_invalid_break",
+        "operator": "break",
+        "guard": "problem(...) result is not None; UC01-MG01",
+        "x": 50,
+        "y": 430,
+        "w": 1500,
+        "h": 130,
+        "message_indices": [
+          1
+        ],
+        "parent": "voucher_opt"
+      },
+      {
+        "id": "voucher_valid_opt",
+        "operator": "opt",
+        "guard": "problem(...) result is None",
+        "x": 50,
+        "y": 560,
+        "w": 1500,
+        "h": 140,
+        "message_indices": [
+          2
+        ],
+        "parent": "voucher_opt"
+      },
+      {
+        "id": "full_quote_opt",
+        "operator": "opt",
+        "guard": "no voucher OR valid voucher; full quote eligible",
+        "x": 30,
+        "y": 720,
+        "w": 1540,
+        "h": 300,
+        "message_indices": [
+          3,
+          4
+        ]
+      }
+    ]
+  },
+  "frames": [],
+  "notes": [
+    {
+      "y": 175,
+      "h": 65,
+      "text": "Optional voucher validity is checked before discount_for. Invalid voucher terminates; it cannot fall through to pricing/fingerprint. Return full S/D/F/Q/T and the content fingerprint. No writes."
+    },
+    {
+      "y": 1030,
+      "h": 45,
+      "text": "loaded/saved through data access — see 4.3.2"
+    }
+  ],
+  "continuation": "requestQuote: Part C of A–C; previous Part B; end of this request.",
+  "realisation_note": "Read quote.item_subtotal / quote.total properties. Fingerprint binds hub/address, line IDs, quantities and prices, voucher + D, F, Q and payment choice; full accepted price T=S−D+F−Q. PaymentChoice is a typed adapter value. Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets.",
+  "review_repair_version": "R1-R4"
+}

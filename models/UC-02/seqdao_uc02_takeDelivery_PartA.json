@@ -72,8 +72,16 @@
         "base_label": "takeDelivery(orderId) → delivery.pick_up [HTTP adapter]",
         "fragment": false,
         "draw_arrow": false,
-        "y": 341,
-        "edge_id": "message0"
+        "y": 270.84,
+        "edge_id": "message0",
+        "label_box": [
+          65,
+          232,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message0",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "view",
@@ -90,8 +98,16 @@
         "receiver_signature": "pick_up(self, user_id: int, order_id: int) -> DeliveryView",
         "status": "P4-TARGET",
         "P4_input": "P2-S13; P3-S03",
-        "y": 466,
-        "edge_id": "message1"
+        "y": 374.5199999999999,
+        "edge_id": "message1",
+        "label_box": [
+          65,
+          335.67999999999995,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message1",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "ctrl",
@@ -108,8 +124,16 @@
         "receiver_signature": "_require_shipper(self, user_id: int) -> UserAccount",
         "status": "MATCH",
         "P4_input": "",
-        "y": 591,
-        "edge_id": "message2"
+        "y": 440.3599999999999,
+        "edge_id": "message2",
+        "label_box": [
+          65,
+          401.5199999999999,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message2",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "ctrl",
@@ -126,8 +150,16 @@
         "receiver_signature": "_require_user(self, user_id: int, *roles: Role, message: str='Your account cannot do this.') -> UserAccount",
         "status": "MATCH",
         "P4_input": "",
-        "y": 716,
-        "edge_id": "message3"
+        "y": 513.1999999999998,
+        "edge_id": "message3",
+        "label_box": [
+          65,
+          474.3599999999999,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message3",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "ctrl",
@@ -141,8 +173,16 @@
         "base_label": "BEGIN IMMEDIATE†; acquire write transaction before live-state checks.",
         "fragment": false,
         "draw_arrow": true,
-        "y": 841,
-        "edge_id": "message4"
+        "y": 579.0399999999998,
+        "edge_id": "message4",
+        "label_box": [
+          65,
+          540.1999999999998,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message4",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "ctrl",
@@ -159,8 +199,16 @@
         "receiver_signature": "get_by_order_id(self, order_id: int) -> Optional[Delivery]",
         "status": "MATCH",
         "P4_input": "",
-        "y": 966,
-        "edge_id": "message5"
+        "y": 644.8799999999999,
+        "edge_id": "message5",
+        "label_box": [
+          65,
+          606.0399999999998,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message5",
+        "arrow_style": "closed_filled_synchronous"
       }
     ],
     "elements": [
@@ -238,7 +286,29 @@
         "allowed_on_layered_diagram": true
       }
     ],
-    "states": []
+    "states": [],
+    "interaction_fragments": [
+      {
+        "id": "fragment_seqdao_uc02_takeDelivery_PartA_1",
+        "operator": "opt",
+        "guard": "request reached controller; role/BEGIN failure breaks to Part E",
+        "start_index": 1,
+        "end_index": 5,
+        "message_indices": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "x": 25,
+        "y": 297.84,
+        "w": 1550,
+        "h": 374.0399999999999,
+        "depth": 0,
+        "guard_height": 32.84
+      }
+    ]
   },
   "placed_width_mm": 230,
   "source_design_sequences": [
@@ -312,39 +382,51 @@
         55.67999999999999
       ],
       [
-        45,
-        242,
-        1510,
+        31,
+        298.84,
+        84,
         27.839999999999996
       ],
       [
-        45,
-        367,
-        1510,
+        127,
+        298.84,
+        1438,
         27.839999999999996
       ],
       [
-        45,
-        492,
-        1510,
+        65,
+        232,
+        1470,
         27.839999999999996
       ],
       [
-        45,
-        617,
-        1510,
+        65,
+        335.67999999999995,
+        1470,
         27.839999999999996
       ],
       [
-        45,
-        742,
-        1510,
+        65,
+        401.5199999999999,
+        1470,
         27.839999999999996
       ],
       [
-        45,
-        867,
-        1510,
+        65,
+        474.3599999999999,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        540.1999999999998,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        606.0399999999998,
+        1470,
         27.839999999999996
       ],
       [
@@ -386,13 +468,15 @@
         "points": [
           [
             120.0,
-            341
+            270.84
           ],
           [
             346.66666666666663,
-            341
+            270.84
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message1",
@@ -401,13 +485,15 @@
         "points": [
           [
             346.66666666666663,
-            466
+            374.5199999999999
           ],
           [
             573.3333333333333,
-            466
+            374.5199999999999
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message2",
@@ -416,21 +502,23 @@
         "points": [
           [
             573.3333333333333,
-            591
+            440.3599999999999
           ],
           [
             608.3333333333333,
-            591
+            440.3599999999999
           ],
           [
             608.3333333333333,
-            613
+            462.3599999999999
           ],
           [
             573.3333333333333,
-            613
+            462.3599999999999
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message3",
@@ -439,13 +527,15 @@
         "points": [
           [
             573.3333333333333,
-            716
+            513.1999999999998
           ],
           [
             800.0,
-            716
+            513.1999999999998
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message4",
@@ -454,13 +544,15 @@
         "points": [
           [
             573.3333333333333,
-            841
+            579.0399999999998
           ],
           [
             1480.0,
-            841
+            579.0399999999998
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message5",
@@ -469,15 +561,25 @@
         "points": [
           [
             573.3333333333333,
-            966
+            644.8799999999999
           ],
           [
             1253.3333333333333,
-            966
+            644.8799999999999
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       }
     ],
     "author_native_cell": true
+  },
+  "independent_review_repair": {
+    "findings": [
+      "R1",
+      "R4"
+    ],
+    "preserved_source": "D:\\RAD\\FINAL\\Part2\\notes\\P3_trash\\P3-F\\independent_review_R1_R4_20261025_192108\\UC-02\\seqdao_uc02_takeDelivery_PartA.json",
+    "scope": "Actual guarded regions and synchronous arrowheads; no shared-model/app/status changes."
   }
 }

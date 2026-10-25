@@ -1,0 +1,283 @@
+{
+  "UC": "UC-05",
+  "stem": "seq_uc05_declineReplacement_PartB",
+  "title": "UC-05 declineReplacement — Part B",
+  "figure": "3.5.4.OP-06B",
+  "caption": "UC-05 declineReplacement — Part B",
+  "P4_input": "F-02; P2-S01; P2-S13; P3-S03",
+  "phase3": {
+    "diagram_type": "sequence",
+    "UC": "UC-05",
+    "op_id": "OP-06",
+    "operation": "declineReplacement",
+    "parameters": "orderId, offerId",
+    "ssd_occurrence": "models/UC-05/ssd_uc05_PartC.drawio#05S-M09",
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Customer",
+        "role": "actor",
+        "label": "Customer"
+      },
+      {
+        "id": "view",
+        "class": "order",
+        "role": "view",
+        "label": "«view»\norder"
+      },
+      {
+        "id": "ctrl",
+        "class": "OrderTrackingController",
+        "role": "controller",
+        "label": "OrderTrackingController"
+      },
+      {
+        "id": "common",
+        "class": "controllers.common",
+        "role": "controller",
+        "label": "controllers.common"
+      },
+      {
+        "id": "order",
+        "class": "Order",
+        "role": "domain",
+        "label": "Order"
+      },
+      {
+        "id": "pay",
+        "class": "Payment",
+        "role": "domain",
+        "label": "Payment"
+      }
+    ],
+    "messages": [
+      {
+        "from": "ctrl",
+        "to": "common",
+        "method": "release_payment",
+        "kind": "call",
+        "arguments": "payments, order.id, now",
+        "guard": "eligible attempt from A",
+        "PC_MG": "",
+        "label": "release_payment†(payments, order.id, now)",
+        "y": 360,
+        "receiver_signature": "release_payment(payments: PaymentDAO, order_id: int, now: str) -> Payment",
+        "status": "P4-TARGET",
+        "P4_input": "F-02; P2-S01; P3-S03",
+        "native_edge_id": "message_000",
+        "source_anchor_id": "message_000_source",
+        "target_anchor_id": "message_000_target",
+        "native_points": [
+          [
+            658.0,
+            360
+          ],
+          [
+            942.0,
+            360
+          ]
+        ]
+      },
+      {
+        "from": "common",
+        "to": "pay",
+        "method": "release_for_unfulfilled_order",
+        "kind": "call",
+        "arguments": "",
+        "guard": "eligible attempt from A",
+        "PC_MG": "",
+        "label": "release_for_unfulfilled_order†() [full C owed]",
+        "y": 500,
+        "receiver_signature": "release_for_unfulfilled_order(self) -> None",
+        "status": "P4-TARGET",
+        "P4_input": "F-02; P2-S01",
+        "native_edge_id": "message_001",
+        "source_anchor_id": "message_001_source",
+        "target_anchor_id": "message_001_target",
+        "native_points": [
+          [
+            942.0,
+            500
+          ],
+          [
+            1510.0,
+            500
+          ]
+        ]
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "rejectedOrderAndAmounts [COMMIT succeeded]",
+        "guard": "all atomic saves + COMMIT succeed",
+        "PC_MG": "UC05-MG01",
+        "label": "rejectedOrderAndAmounts [COMMIT succeeded]",
+        "y": 750,
+        "native_edge_id": "message_002",
+        "source_anchor_id": "message_002_source",
+        "target_anchor_id": "message_002_target",
+        "native_points": [
+          [
+            658.0,
+            750
+          ],
+          [
+            374.0,
+            750
+          ]
+        ]
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "controlledFailure",
+        "guard": "atomic save or COMMIT failed; rollback",
+        "PC_MG": "UC05-MG01",
+        "label": "controlledFailure",
+        "y": 960,
+        "native_edge_id": "message_003",
+        "source_anchor_id": "message_003_source",
+        "target_anchor_id": "message_003_target",
+        "native_points": [
+          [
+            658.0,
+            960
+          ],
+          [
+            374.0,
+            960
+          ]
+        ]
+      }
+    ],
+    "elements": [
+      {
+        "class": "order",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "OrderTrackingController",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "controllers.common",
+        "attributes": [],
+        "methods": [
+          "release_payment"
+        ]
+      },
+      {
+        "class": "Order",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "Payment",
+        "attributes": [],
+        "methods": [
+          "release_for_unfulfilled_order"
+        ]
+      }
+    ],
+    "dependencies": [],
+    "states": [
+      {
+        "class": "Payment",
+        "attribute": "state",
+        "values": [
+          "VOIDED",
+          "REFUND_PENDING"
+        ]
+      },
+      {
+        "class": "ReplacementOffer",
+        "attribute": "state",
+        "values": [
+          "DECLINED"
+        ]
+      }
+    ],
+    "interaction_fragments": [
+      {
+        "id": "continued_attempt",
+        "operator": "opt",
+        "guard": "eligible operation continued from Part A",
+        "x": 30,
+        "y": 250,
+        "w": 1540,
+        "h": 770,
+        "message_indices": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "id": "commit_outcome",
+        "operator": "alt",
+        "guard": "atomic save / COMMIT outcome",
+        "x": 30,
+        "y": 560,
+        "w": 1540,
+        "h": 460,
+        "message_indices": [
+          2,
+          3
+        ],
+        "parent": "continued_attempt"
+      },
+      {
+        "id": "committed_operand",
+        "operator": "opt",
+        "guard": "all saves and COMMIT succeed",
+        "x": 30,
+        "y": 605,
+        "w": 1540,
+        "h": 200,
+        "message_indices": [
+          2
+        ],
+        "parent": "commit_outcome"
+      },
+      {
+        "id": "rollback_operand",
+        "operator": "opt",
+        "guard": "write / lock / COMMIT failure; rollback; UC05-MG01",
+        "x": 30,
+        "y": 805,
+        "w": 1540,
+        "h": 215,
+        "message_indices": [
+          3
+        ],
+        "parent": "commit_outcome"
+      }
+    ]
+  },
+  "frames": [],
+  "notes": [
+    {
+      "y": 175,
+      "h": 65,
+      "text": "BR-17: COD VOIDED; ONLINE REFUND_PENDING with full captured C owed (not C + partial). Offer DECLINED. Full state/amount persistence and failure-through-COMMIT rollback remain P4 targets."
+    },
+    {
+      "y": 1030,
+      "h": 45,
+      "text": "loaded/saved through data access — see 4.3.2"
+    }
+  ],
+  "continuation": "declineReplacement: Part B of A–B; previous Part A; end of this request.",
+  "realisation_note": "Guard: active own Customer; PLACED; exact open OFFERED with matching order/offer IDs. SUC03-PC04: atomic REJECTED + closed_at / reason; COD VOIDED; ONLINE REFUND_PENDING, refund_amount=C replaces any partial owed amount. No payout. Open offer DECLINED; helpers are real module functions. Rowcount, busy and failure-through-COMMIT rollback†. Root-adopted P4-TARGET: release_payment persists the full-C refund amount together with state and checks every conditional save in the same transaction (F-02; P2-S01; P3-S03). Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets.",
+  "review_repair_version": "R1-R4"
+}

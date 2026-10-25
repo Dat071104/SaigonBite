@@ -89,7 +89,7 @@ def refresh_from_shared(spec,input_path):
         # self-call return loop. Preserve the existing branch frames and padding.
         xs={l['id']:90+i*(1420/max(1,len(phase['lifelines'])-1)) for i,l in enumerate(phase['lifelines'])}
         messages=phase['messages']
-        for i,message in enumerate(messages[1:],1):
+        for i,message in ([] if phase.get('interaction_fragments') else enumerate(messages[1:],1)):
             previous=messages[i-1]
             if previous['from']!=previous['to'] or message['kind']=='return':continue
             width=max(420,abs(xs[message['from']]-xs[message['to']])-30)
@@ -98,7 +98,7 @@ def refresh_from_shared(spec,input_path):
             if needed>0:
                 for later in messages[i:]:
                     if later['kind']!='return' or not later.get('guard'):later['y']+=needed
-        for frame in spec.get('frames',[]):
+        for frame in ([] if phase.get('interaction_fragments') else spec.get('frames',[])):
             if frame.get('operands'):
                 last=max(x['y']+25 for x in messages if x['kind'] not in ['return','ssd'])
                 assert last<=frame['operands'][0][0],(spec['stem'],'longer reviewed label needs a new split')
@@ -110,27 +110,36 @@ def refresh_from_shared(spec,input_path):
         if row['status']=='MATCH' and all(message.get('status','MATCH')=='MATCH' for message in phase['messages']):
             for note in spec.get('notes',[]):note['text']=note['text'].replace('†','')
             spec['realisation_note']=spec.get('realisation_note','').replace('†','')
+        # Common metadata describes this actual continuation, never inherited
+        # states from a previous split or effects present only in prose.
+        displayed=' '.join([m.get('label','') for m in phase['messages']]+[n['text'] for n in spec.get('notes',[])]+[f.get('guard',f.get('label','')) for f in phase.get('interaction_fragments',spec.get('frames',[]))])
+        phase['states']=[]
+        for enum,owner in [('OrderState','Order'),('PaymentState','Payment'),('OfferState','ReplacementOffer')]:
+            values=[str(v['name'] if isinstance(v,dict) else v) for v in classes[enum]['enum_members']]
+            shown=[v for v in values if re.search(r'\b'+re.escape(v)+r'\b',displayed)]
+            if shown:phase['states'].append({'class':owner,'attribute':'state','values':shown})
     spec['P4_input']='; '.join(sorted(p4)) or 'none on this view'
     spec['shared_model_source']='models/shared/design_model.json';spec['shared_model_sha256']=hashlib.sha256(modelpath.read_bytes()).hexdigest()
     spec['refresh_policy']='Explicit shared-model statuses only; matching signatures never clear behavioral targets.'
     return spec
 class Canvas:
     def __init__(self,spec):
-        self.s=spec;self.im=Image.new('RGB',(W,H),'white');self.d=ImageDraw.Draw(self.im);self.svg=[f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}"><rect width="100%" height="100%" fill="white"/>'];self.mx=ET.Element('mxfile',host='SaigonBite P3-A',type='device');dia=ET.SubElement(self.mx,'diagram',name=spec['title'],id=spec['stem']);mod=ET.SubElement(dia,'mxGraphModel',page='1',pageWidth=str(W),pageHeight=str(H));self.root=ET.SubElement(mod,'root');ET.SubElement(self.root,'mxCell',id='0');ET.SubElement(self.root,'mxCell',id='1',parent='0');self.i=0;self.bounds=[]
+        self.s=spec;self.im=Image.new('RGB',(W,H),'white');self.d=ImageDraw.Draw(self.im);self.svg=[f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}"><rect width="100%" height="100%" fill="white"/>'];self.mx=ET.Element('mxfile',host='SaigonBite P3-A',type='device');dia=ET.SubElement(self.mx,'diagram',name=spec['title'],id=spec['stem']);mod=ET.SubElement(dia,'mxGraphModel',page='1',pageWidth=str(W),pageHeight=str(H));self.root=ET.SubElement(mod,'root');ET.SubElement(self.root,'mxCell',id='0');ET.SubElement(self.root,'mxCell',id='1',parent='0');self.i=0;self.bounds=[];self.boxes={}
         self.text(35,16,spec['title'],1530,28,True)
     def vertex(self,id,x,y,w,h,label='',style=''):
+        self.boxes[id]=(x,y,w,h)
         c=ET.SubElement(self.root,'mxCell',id=id,value=label,vertex='1',parent='1',style=style+'fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;');ET.SubElement(c,'mxGeometry',x=str(x),y=str(y),width=str(w),height=str(h),attrib={'as':'geometry'})
-    def text(self,x,y,s,w,n=24,b=False):
+    def text(self,x,y,s,w,n=24,b=False,id=None):
         lines=wrap(s,w,n);lh=n*1.15
         for j,ln in enumerate(lines):
             yy=y+j*lh;self.d.text((x,yy),ln,font=font(n,b),fill=INK);self.svg.append(f'<text x="{x}" y="{yy+n*.93}" font-family="Arial" font-size="{n}" font-weight="{"bold" if b else "normal"}" fill="{INK}">{escape(ln)}</text>')
             assert font(n,b).getlength(ln)<=w+2,(self.s['stem'],ln,w)
-        self.vertex('text'+str(self.i),x,y,w,max(lh,len(lines)*lh),'\n'.join(lines),'text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;');self.i+=1
+        self.vertex(id or 'text'+str(self.i),x,y,w,max(lh,len(lines)*lh),'\n'.join(lines),'text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;');self.i+=1
         assert y+len(lines)*lh<=1202,(self.s['stem'],s,y)
         return len(lines)*lh
     def rect(self,x,y,w,h,fill='white',id=None,style=''):
         self.d.rectangle((x,y,x+w,y+h),fill=fill,outline=BLUE,width=2);self.svg.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="{fill}" stroke="{BLUE}" stroke-width="2"/>');self.vertex(id or 'rect'+str(self.i),x,y,w,h,'','fillColor='+fill+';strokeColor='+BLUE+';'+style);self.i+=1
-    def line(self,pts,dash=False,arrow=False,source=None,target=None,kind='dependency'):
+    def line(self,pts,dash=False,arrow=False,source=None,target=None,kind='dependency',edge_id=None):
         for a,b in zip(pts,pts[1:]):
             if dash:
                 l=math.dist(a,b);n=max(1,int(l/9))
@@ -141,10 +150,15 @@ class Canvas:
             a,b=pts[-2:];dx,dy=b[0]-a[0],b[1]-a[1];l=math.hypot(dx,dy);ux,uy=dx/l,dy/l;p=[(b[0]-ux*14-uy*7,b[1]-uy*14+ux*7),b,(b[0]-ux*14+uy*7,b[1]-uy*14-ux*7)];self.d.line(p,fill=BLUE,width=2);self.svg.append('<polyline points="'+' '.join(f'{x},{y}' for x,y in p)+'" fill="none" stroke="'+BLUE+'" stroke-width="2"/>')
             if kind=='generalization':
                 self.d.polygon(p,fill='white',outline=BLUE,width=2);self.svg.append('<polygon points="'+' '.join(f'{x},{y}' for x,y in p)+'" fill="white" stroke="'+BLUE+'"/>')
+            if kind=='sync_call':
+                self.d.polygon(p,fill=BLUE,outline=BLUE,width=2);self.svg.append('<polygon data-message-arrow="filled-synchronous" points="'+' '.join(f'{x},{y}' for x,y in p)+'" fill="'+BLUE+'" stroke="'+BLUE+'"/>')
             if kind=='composition':
                 a,b=pts[:2];dx,dy=b[0]-a[0],b[1]-a[1];l=math.hypot(dx,dy);ux,uy=dx/l,dy/l;p=[a,(a[0]+ux*12-uy*7,a[1]+uy*12+ux*7),(a[0]+ux*24,a[1]+uy*24),(a[0]+ux*12+uy*7,a[1]+uy*12-ux*7)];self.d.polygon(p,fill=BLUE);self.svg.append('<polygon points="'+' '.join(f'{x},{y}' for x,y in p)+'" fill="'+BLUE+'"/>')
         if source and target:
-            c=ET.SubElement(self.root,'mxCell',id='edge'+str(self.i),source=source,target=target,edge='1',parent='1',style='edgeStyle=none;endArrow='+('block' if kind=='generalization' else 'open')+';'+('dashed=1;' if dash else '')+('startArrow=diamond;startFill=1;' if kind=='composition' else '')+'strokeColor='+BLUE+';');g=ET.SubElement(c,'mxGeometry',relative='1',attrib={'as':'geometry'});arr=ET.SubElement(g,'Array',attrib={'as':'points'})
+            style='edgeStyle=none;endArrow='+('block' if kind in ['generalization','sync_call'] else 'open')+';endFill='+('1' if kind=='sync_call' else '0')+';'+('dashed=1;' if dash else '')+('startArrow=diamond;startFill=1;' if kind=='composition' else '')+'strokeColor='+BLUE+';'
+            for prefix,node,point in [('exit',source,pts[0]),('entry',target,pts[-1])]:
+                x,y,w,h=self.boxes[node];style+=f'{prefix}X={(point[0]-x)/w};{prefix}Y={(point[1]-y)/h};{prefix}Perimeter=0;'
+            c=ET.SubElement(self.root,'mxCell',id=edge_id or 'edge'+str(self.i),source=source,target=target,edge='1',parent='1',style=style);g=ET.SubElement(c,'mxGeometry',relative='1',attrib={'as':'geometry'});ET.SubElement(g,'mxPoint',x=str(pts[0][0]),y=str(pts[0][1]),attrib={'as':'sourcePoint'});ET.SubElement(g,'mxPoint',x=str(pts[-1][0]),y=str(pts[-1][1]),attrib={'as':'targetPoint'});arr=ET.SubElement(g,'Array',attrib={'as':'points'})
             for x,y in pts[1:-1]:ET.SubElement(arr,'mxPoint',x=str(x),y=str(y))
             self.i+=1
     def finish(self,out):
@@ -166,29 +180,46 @@ def render(spec,out):
                 if i:c.line([(x,yy-4),(x+w,yy-4)])
                 yy+=c.text(x+12,yy,'\n'.join(comp),w-24,24,i==0)+10
             assert yy<y+h+3,(spec['stem'],card['id'],yy,y+h)
-        for e in spec.get('edges',[]):
-            c.line(e['points'],e['kind']=='dependency',True,e['source'],e['target'],e['kind']);c.text(*e['labelpos'],e['label'],e.get('labelwidth',1000))
+        spec['phase3']['association_end_labels']=[]
+        for i,e in enumerate(spec.get('edges',[])):
+            eid=e['native_edge_id']=f'dcd_relation_{i:03d}';c.line(e['points'],e['kind']=='dependency',True,e['source'],e['target'],e['kind'],eid)
+            relation=spec['phase3']['dependencies'][i]
+            if e['kind'] not in ['dependency','generalization']:
+                (sx,sy),(tx,ty)=e['points'][0],e['points'][-1];sid=eid+'_source_multiplicity';tid=eid+'_target_multiplicity'
+                c.text(sx+10,sy-38,str(relation['source_multiplicity']),70,id=sid);c.text(tx-80,ty-38,str(relation['target_multiplicity']),70,id=tid)
+                role=relation.get('role','');c.text(sx+135,sy+10,role,330,id=eid+'_role')
+                spec['phase3']['association_end_labels'].append({'source':relation['source'],'target':relation['target'],'kind':relation['kind'],'role':role,'native_edge_id':eid,'source_label_id':sid,'target_label_id':tid,'source_endpoint':[sx,sy],'target_endpoint':[tx,ty],'source_card_id':e['source'],'target_card_id':e['target']})
+            else:
+                label=('is a' if e['kind']=='generalization' else '«use»'+('†' if relation.get('status') in ['P4-TARGET','GAP'] else ''))
+                c.text(e['points'][0][0]+135,e['points'][0][1]-38,label,330,id=eid+'_role')
         for n in spec.get('notes',[]):c.text(n['x'],n['y'],n['text'],n['w'])
     else:
         lines=spec['phase3']['lifelines'];xs={n['id']:90+i*(1420/max(1,len(lines)-1)) for i,n in enumerate(lines)}
         for n in lines:
             x=xs[n['id']];c.rect(x-85,76,170,94,'#F1F6FA',n['id']);c.text(x-80,82,n.get('label',n['class']),160);c.line([(x,170),(x,1060)],True)
-        for f in spec.get('frames',[]):
+        for f in ([] if spec['phase3'].get('interaction_fragments') else spec.get('frames',[])):
             c.rect(30,f['y'],1540,f['h'],'white',f['id'],'shape=umlFrame;fillColor=none;')
             # Redraw lifelines over the transparent combined fragment.
             for x in xs.values():c.line([(x,f['y']),(x,f['y']+f['h'])],True)
             c.text(40,f['y']+3,f['label'],1520,24,True)
             for yy,label in f.get('operands',[]):
                 c.line([(30,yy),(1570,yy)],True);c.text(40,yy+3,label,1520,24,True)
+        for f in spec['phase3'].get('interaction_fragments',[]):
+            x,y,w,h=f['x'],f['y'],f['w'],f['h'];c.rect(x,y,w,h,'white',f['id'],'shape=umlFrame;fillColor=none;')
+            label=('['+f['guard']+']' if f['operator']=='operand' else f['operator']+' ['+f['guard']+']')
+            c.text(x+10,y+3,label,w-20,24,True,id=f['id']+'_guard')
+        if spec['phase3'].get('interaction_fragments'):
+            for x in xs.values():c.line([(x,170),(x,1020)],True)
         for n in spec.get('notes',[]):
             c.rect(35,n['y'],1530,n.get('h',80),'#FFF8E9');c.text(45,n['y']+5,n['text'],1510)
-        for msg in spec['phase3']['messages']:
+        for index,msg in enumerate(spec['phase3']['messages']):
             if msg['kind']=='note':continue
             a,b=xs[msg['from']],xs[msg['to']];y=msg['y'];label=msg['label'];ls=wrap(label,max(420,abs(b-a)-30),24);labelw=max(420,abs(b-a)-30);lx=max(40,min(a,b)+15)
             if a==b:
                 pts=[(a,y),(a+45,y),(a+45,y+25),(a,y+25)];lx=max(40,min(a-370,1100));labelw=450
             else:pts=[(a,y),(b,y)]
-            c.line(pts,msg['kind']=='return',True,msg['from'],msg['to']);c.text(lx,y-8-len(wrap(label,labelw))*27.6,label,labelw)
+            eid=msg['native_edge_id']=f'message_{index:03d}';source=eid+'_source';target=eid+'_target';c.vertex(source,pts[0][0]-.5,pts[0][1]-.5,1,1,'','opacity=0;strokeColor=none;fillColor=none;');c.vertex(target,pts[-1][0]-.5,pts[-1][1]-.5,1,1,'','opacity=0;strokeColor=none;fillColor=none;');msg['source_anchor_id']=source;msg['target_anchor_id']=target;msg['native_points']=pts
+            c.line(pts,msg['kind']=='return',True,source,target,'reply' if msg['kind']=='return' else 'sync_call',eid);c.text(lx,y-8-len(wrap(label,labelw))*27.6,label,labelw,id=eid+'_label')
             if msg['kind'] not in ['return','ssd']:
                 c.rect(b-5,y,10,25,'#DAE9F5')
     c.finish(out)
@@ -197,3 +228,5 @@ if __name__=='__main__':
     spec=refresh_from_shared(json.loads(inp.read_text(encoding='utf-8')),inp)
     inp.write_text(json.dumps(spec,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
     render(spec,inp.with_suffix(''))
+    inp.write_text(json.dumps(spec,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+

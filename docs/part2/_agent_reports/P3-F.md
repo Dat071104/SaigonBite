@@ -77,3 +77,39 @@ No shared-model change request. Integrate after both Wave 2 final handoffs, then
 - Primary template/rubric and supplied balanced-diagrams skill extraction in `Part2/notes/P3_primary_sources.json`; immutable Phase 2 ledger, descriptions and PC/MG register; P2 brief/root.
 - Frozen shared design model, annotations and operation realisation; selected C0 AST controller/DAO bodies and SQL/rowcount facts in `wave2_DAO_inputs.json`. No application import.
 - Matching III 3.x.4 reports, JSONs and all relevant generators (read receipts in `read_sources_receipt.json`); original P2/P3 PIL/SVG/mxGraph generation pattern.
+
+## Independent review repair R1/R4
+
+Author: 722I0004 · AI-assisted (Codex)
+
+The independent review was read in full. Its original **NOT READY** verdict remains untouched. The earlier lane-local checks did not establish actual branch containment or synchronous head style; those omissions explain why the original structural pass did not settle R1/R4. This section records a separate post-fix worker assessment for the F lane only, with no G3 or runtime-status promotion.
+
+**R1 — repaired actual guarded regions.** All 43 DAO plates now use real `opt` / `break` / `loop` rectangles enclosing the arrows their guards control: **102 actual fragments**. Empty note-headed alt boxes were removed. `phase3.interaction_fragments` records the native rectangle ID/operator/guard/geometry and exact zero-based message indices; each actual message carries `native_edge_id`. Native XML and SVG rectangle bounds and complete message paths, including self-call bends, are checked.
+
+- Checkout existing-token replay/refusal ends the request; it skips repricing/auth/INSERTs. The decline break contains actual rollback and refusal. Only COD/approved success enters inserts/COMMIT. Part G has disjoint success-END and failure operands; the failure operand contains optional authorization release, optional active-transaction rollback and exclusive Busy/non-Busy replies. A successful return cannot fall through into release/rollback.
+- Replacement Part C encloses exact-offer withdrawal, SQL, checked result, false-result rollback/refusal, or true-result withdrawal-only COMMIT/result, inside an invalid-target terminal break. It preserves Order/Line/Payment. Valid-target Parts D–F are a separate continued guarded operand containing the line/totals/payment/offer/COMMIT work; failures enter G, while successful acceptance ends. Invalid-target C never falls through into D–F.
+- Pickup/delivery, hub archive, rejection and item update have terminal success breaks and exclusive failure continuations. Final failure plates actually enclose rollback plus Busy/refusal arrows. Rollback is nested under active-transaction opt, so failed BEGIN with no active transaction skips it. Early guard/refusal breaks and named failure continuations skip later writes.
+- Sales-report denial and invalid-date returns are in terminal breaks before SELECT work; loop/read continuations remain read-only (MG01).
+
+**R4 — repaired rendered arrow roles.** All **89 metadata method-call arrows** have closed filled synchronous heads. The complete synchronous set is **167 arrows** including real methods, SSD requests, construction and database SQL/transaction requests. All **58 replies** are dashed/open. Native XML uses block/endFill=1 for synchronous requests and dashed/open for replies; SVG has corresponding closed filled polygons or open polylines, and PNG matches. Attribute/property note arrows retain their separate open annotation role. Domain navigability/DCDs are outside this lane.
+
+**Evidence and exact scope.** `Part2/notes/P3-F/R1_R4_semantic_qa.json`: **7681 checks, zero failures**, own files only; no global checker was run. `R1_R4_generation.json` and `R1_R4_final_receipt.json` record 43 plates/102 fragments/167 synchronous arrows/58 replies. `R1_R4_visual_qa.json` records **43 fresh independently rasterized SVGs** with process PID/stdout/stderr log, exit, dimensions, mtime and source/raster hashes. All 43 changed PNGs and 43 fresh SVG rasters were opened in `R1_R4_paired_sheet_01…15.png`; critical checkout/replacement plates were also opened at full size. Physical proofs are `*_R1_R4_A4_{PNG,SVG}.png`. No clipping or branch/guard/author overlap remained in this visual review. Minimum text remains 24 px = 9.78 pt at 230 mm; native/vector font styles agree.
+
+All eight SSD identities, every existing lifeline, all method calls/arguments/full signatures, selected elements/dependencies/states and target statuses are preserved against the archived pre-repair sources. All 43 adjacent generators AST-parse; all 129 report links resolve. The report prose was reread and updated to explain actual break semantics and exclusive continuations. The 215 figure members and two report files are the complete repository repair write set (217 files); exact hashes are in `R1_R4_owned_manifest.json`. Old bytes are retained in `D:\RAD\FINAL\Part2\notes\P3_trash\P3-F\independent_review_R1_R4_20261025_192108` and root also supplied `P3_trash/before_independent_review_repairs.zip`.
+
+**Branch coverage by operation**
+
+| UC / operation | Actual fragments |
+|---|---|
+| UC-01 / confirmCheckout | 20 |
+| UC-02 / takeDelivery | 10 |
+| UC-02 / confirmDelivered | 13 |
+| UC-03 / archiveHub | 11 |
+| UC-04 / salesReport | 9 |
+| UC-05 / rejectOrder | 14 |
+| UC-05 / acceptReplacement | 15 |
+| UC-06 / updateMenuItem | 10 |
+
+**BLOCKED / ASSUMED:** no repair blocker remains. Continued guarded operands repeat their condition and name the origin/next failure part; a continuation is still the same SSD request. No new project method, model change or architecture decision is proposed. The model remains frozen at `fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b`. No application code/import/test/SQL/Git/network/other-lane/shared-model write occurred. Native draw.io editing, final DOCX/PDF placement and all runtime/concurrency/payment qualification remain UNTESTED. Root owns post-barrier global checking, assembly, original-review disposition, checklist/AI log and final assessment.
+
+**Requests to root:** none for the shared model. Integrate this lane only after all four repair workers have successful final handoffs; use the fresh R1/R4 receipt/manifest rather than the historical pre-review visual receipt.

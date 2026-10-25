@@ -184,16 +184,27 @@ def render(spec,path):
         if e.get("arrow","block")!="none":
             a,b=pts[-2:]; ang=math.atan2(b[1]-a[1],b[0]-a[0])
             points=[b,(b[0]-18*math.cos(ang-.42),b[1]-18*math.sin(ang-.42)),(b[0]-18*math.cos(ang+.42),b[1]-18*math.sin(ang+.42))]
-            D.polygon([(int(x*2),int(y*2)) for x,y in points],fill=color)
             if e.get("arrow")=="open":
-                svg.append('<polyline points="'+" ".join(f"{x},{y}" for x,y in points[1:]+[b])+f'" fill="none" stroke="{color}" stroke-width="{width}"/>')
+                D.line([(int(x*2),int(y*2)) for x,y in [points[1],b,points[2]]],fill=color,width=width*2)
+            else:
+                D.polygon([(int(x*2),int(y*2)) for x,y in points],fill=color)
+            if e.get("arrow")=="open":
+                svg.append('<polyline points="'+" ".join(f"{x},{y}" for x,y in [points[1],b,points[2]])+f'" fill="none" stroke="{color}" stroke-width="{width}"/>')
             else:
                 svg.append('<polygon points="'+" ".join(f"{x},{y}" for x,y in points)+f'" fill="{color}"/>')
         if e.get("label"):
             pending_edge_labels.append((e,color,pts))
         c=ET.SubElement(root,"mxCell",id=e["id"],value=e.get("label","").replace(chr(92)+"n",chr(10)),edge="1",parent="1",source=src,target=dst,style=f"edgeStyle=none;html=0;endArrow={e.get('arrow','block')};strokeColor={color};strokeWidth={width};fontSize={FS};"+("dashed=1;" if dash else ""))
+        if e.get("arrow")=="open":c.set("style",c.get("style","")+"endFill=0;")
+        elif e.get("arrow")!="none":c.set("style",c.get("style","")+"endFill=1;")
+        if e.get("association"):
+            sx,sy,sw,sh=boxes[src];tx,ty,tw,th=boxes[dst]
+            c.set("style",c.get("style","")+f"exitX={(pts[0][0]-sx)/sw};exitY={(pts[0][1]-sy)/sh};exitPerimeter=0;entryX={(pts[-1][0]-tx)/tw};entryY={(pts[-1][1]-ty)/th};entryPerimeter=0;")
         g=ET.SubElement(c,"mxGeometry",relative="1",attrib={"as":"geometry"}); arr=ET.SubElement(g,"Array",attrib={"as":"points"})
         for x,y in pts[1:-1]: ET.SubElement(arr,"mxPoint",x=str(x),y=str(y))
+        if e.get("association"):
+            ET.SubElement(g,"mxPoint",x=str(pts[0][0]),y=str(pts[0][1]),attrib={"as":"sourcePoint"})
+            ET.SubElement(g,"mxPoint",x=str(pts[-1][0]),y=str(pts[-1][1]),attrib={"as":"targetPoint"})
     # Draw class/lifeline boxes after connectors so the boxes mask connector segments cleanly.
     for n in spec.get("nodes",[]):
         if n.get("kind")!="anchor": draw_node(n)

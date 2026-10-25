@@ -75,22 +75,62 @@
         "receiver_signature": "get_by_id(self, order_id: int) -> Optional[Order]",
         "status": "MATCH",
         "P4_input": "",
-        "y": 341,
-        "edge_id": "message0"
+        "y": 270.84,
+        "edge_id": "message0",
+        "label_box": [
+          65,
+          232,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message0",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "ctrl",
-        "to": "ctrl",
+        "to": "db",
         "method": "",
         "kind": "note",
         "arguments": "",
         "guard": "",
         "PC_MG": "UC05-PC02",
-        "label": "Guard own hub + Order PLACED; wrong hub / stale state → refusal unchanged.",
-        "base_label": "Guard own hub + Order PLACED; wrong hub / stale state → refusal unchanged.",
-        "fragment": true,
-        "draw_arrow": false,
-        "y": 466
+        "label": "ROLLBACK† if active: wrong owning hub or Order not PLACED; no rejection saved.",
+        "base_label": "ROLLBACK† if active: wrong owning hub or Order not PLACED; no rejection saved.",
+        "fragment": false,
+        "draw_arrow": true,
+        "y": 374.5199999999999,
+        "label_box": [
+          65,
+          335.67999999999995,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message1",
+        "edge_id": "message1",
+        "arrow_style": "closed_filled_synchronous"
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC05-PC02",
+        "label": "Own-hub/state refusal; END request.",
+        "base_label": "Own-hub/state refusal; END request.",
+        "fragment": false,
+        "draw_arrow": true,
+        "y": 440.3599999999999,
+        "label_box": [
+          65,
+          401.5199999999999,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message2",
+        "edge_id": "message2",
+        "arrow_style": "dashed_open_reply"
       },
       {
         "from": "ctrl",
@@ -107,8 +147,16 @@
         "receiver_signature": "move_order(orders: OrderDAO, order: Order, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> None",
         "status": "MATCH",
         "P4_input": "",
-        "y": 591,
-        "edge_id": "message2"
+        "y": 549.04,
+        "edge_id": "message3",
+        "label_box": [
+          65,
+          510.19999999999993,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message3",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "obj5",
@@ -125,8 +173,16 @@
         "receiver_signature": "move_to(self, new_state: OrderState) -> None",
         "status": "MATCH",
         "P4_input": "",
-        "y": 716,
-        "edge_id": "message3"
+        "y": 614.88,
+        "edge_id": "message4",
+        "label_box": [
+          65,
+          576.04,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message4",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "obj5",
@@ -143,8 +199,16 @@
         "receiver_signature": "change_state(self, order_id: int, from_state: OrderState, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> bool",
         "status": "MATCH",
         "P4_input": "",
-        "y": 841,
-        "edge_id": "message4"
+        "y": 680.72,
+        "edge_id": "message5",
+        "label_box": [
+          65,
+          641.88,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message5",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "obj4",
@@ -158,8 +222,16 @@
         "base_label": "SQL note: UPDATE orders by id AND state = ? (PLACED); save REJECTED, reason and closed_at.",
         "fragment": false,
         "draw_arrow": true,
-        "y": 966,
-        "edge_id": "message5"
+        "y": 746.5600000000001,
+        "edge_id": "message6",
+        "label_box": [
+          65,
+          707.72,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message6",
+        "arrow_style": "closed_filled_synchronous"
       }
     ],
     "elements": [
@@ -251,6 +323,44 @@
           "REJECTED"
         ]
       }
+    ],
+    "interaction_fragments": [
+      {
+        "id": "fragment_seqdao_uc05_rejectOrder_PartB_1",
+        "operator": "break",
+        "guard": "own-hub PLACED guard fails; END request",
+        "start_index": 1,
+        "end_index": 2,
+        "message_indices": [
+          1,
+          2
+        ],
+        "x": 25,
+        "y": 297.84,
+        "w": 1550,
+        "h": 169.51999999999992,
+        "depth": 0,
+        "guard_height": 32.84
+      },
+      {
+        "id": "fragment_seqdao_uc05_rejectOrder_PartB_2",
+        "operator": "opt",
+        "guard": "own-hub PLACED + valid reason; no prior failure",
+        "start_index": 3,
+        "end_index": 6,
+        "message_indices": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "x": 25,
+        "y": 472.3599999999999,
+        "w": 1550,
+        "h": 301.20000000000016,
+        "depth": 0,
+        "guard_height": 32.84
+      }
     ]
   },
   "placed_width_mm": 230,
@@ -325,45 +435,69 @@
         55.67999999999999
       ],
       [
-        45,
-        242,
-        1510,
+        31,
+        298.84,
+        84,
         27.839999999999996
       ],
       [
-        42,
-        367,
-        56,
+        127,
+        298.84,
+        1438,
         27.839999999999996
       ],
       [
-        110,
-        372,
-        1440,
+        31,
+        473.3599999999999,
+        84,
         27.839999999999996
       ],
       [
-        45,
-        492,
-        1510,
+        127,
+        473.3599999999999,
+        1438,
         27.839999999999996
       ],
       [
-        45,
-        617,
-        1510,
+        65,
+        232,
+        1470,
         27.839999999999996
       ],
       [
-        45,
-        742,
-        1510,
+        65,
+        335.67999999999995,
+        1470,
         27.839999999999996
       ],
       [
-        45,
-        867,
-        1510,
+        65,
+        401.5199999999999,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        510.19999999999993,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        576.04,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        641.88,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        707.72,
+        1470,
         27.839999999999996
       ],
       [
@@ -405,13 +539,32 @@
         "points": [
           [
             573.3333333333333,
-            341
+            270.84
           ],
           [
             1253.3333333333333,
-            341
+            270.84
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
+      },
+      {
+        "id": "message1",
+        "source": "m1s",
+        "target": "m1t",
+        "points": [
+          [
+            573.3333333333333,
+            374.5199999999999
+          ],
+          [
+            1480.0,
+            374.5199999999999
+          ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message2",
@@ -420,13 +573,15 @@
         "points": [
           [
             573.3333333333333,
-            591
+            440.3599999999999
           ],
           [
-            800.0,
-            591
+            346.66666666666663,
+            440.3599999999999
           ]
-        ]
+        ],
+        "filled": false,
+        "dashed": true
       },
       {
         "id": "message3",
@@ -434,14 +589,16 @@
         "target": "m3t",
         "points": [
           [
-            800.0,
-            716
+            573.3333333333333,
+            549.04
           ],
           [
-            1026.6666666666665,
-            716
+            800.0,
+            549.04
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message4",
@@ -450,13 +607,15 @@
         "points": [
           [
             800.0,
-            841
+            614.88
           ],
           [
-            1253.3333333333333,
-            841
+            1026.6666666666665,
+            614.88
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message5",
@@ -464,16 +623,43 @@
         "target": "m5t",
         "points": [
           [
+            800.0,
+            680.72
+          ],
+          [
             1253.3333333333333,
-            966
+            680.72
+          ]
+        ],
+        "filled": true,
+        "dashed": false
+      },
+      {
+        "id": "message6",
+        "source": "m6s",
+        "target": "m6t",
+        "points": [
+          [
+            1253.3333333333333,
+            746.5600000000001
           ],
           [
             1480.0,
-            966
+            746.5600000000001
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       }
     ],
     "author_native_cell": true
+  },
+  "independent_review_repair": {
+    "findings": [
+      "R1",
+      "R4"
+    ],
+    "preserved_source": "D:\\RAD\\FINAL\\Part2\\notes\\P3_trash\\P3-F\\independent_review_R1_R4_20261025_192108\\UC-05\\seqdao_uc05_rejectOrder_PartB.json",
+    "scope": "Actual guarded regions and synchronous arrowheads; no shared-model/app/status changes."
   }
 }

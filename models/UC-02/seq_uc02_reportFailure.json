@@ -3,32 +3,50 @@
   "title": "UC-02 sequence — reportFailure(orderId, reason)",
   "canvas": {
     "width": 4200,
-    "height": 3000,
+    "height": 3100,
     "font_size": 60,
     "placed_width_mm": 230
   },
   "nodes": [
     {
+      "id": "controller_refusal_opt",
+      "kind": "frame",
+      "x": 70,
+      "y": 2580,
+      "w": 4060,
+      "h": 310,
+      "lines": [],
+      "stroke": "#B03A2E"
+    },
+    {
+      "id": "accepted_operand",
+      "kind": "frame",
+      "x": 70,
+      "y": 560,
+      "w": 4060,
+      "h": 1770,
+      "lines": [],
+      "stroke": "#004387"
+    },
+    {
+      "id": "refusal_operand",
+      "kind": "frame",
+      "x": 70,
+      "y": 2330,
+      "w": 4060,
+      "h": 650,
+      "lines": [],
+      "stroke": "#004387"
+    },
+    {
       "id": "alt_frame",
       "kind": "frame",
       "x": 70,
-      "y": 400,
+      "y": 560,
       "w": 4060,
-      "h": 2500,
+      "h": 2420,
       "lines": [],
       "dashed": false
-    },
-    {
-      "id": "alt_title",
-      "kind": "text",
-      "x": 100,
-      "y": 402,
-      "w": 4000,
-      "h": 65,
-      "lines": [
-        "alt [authenticated actor, valid input, accepted operation]"
-      ],
-      "bold": true
     },
     {
       "id": "ll_actor",
@@ -54,7 +72,7 @@
       "id": "life_bottom_actor",
       "kind": "anchor",
       "x": 180.0,
-      "y": 2875,
+      "y": 2975,
       "w": 2,
       "h": 2
     },
@@ -82,7 +100,7 @@
       "id": "life_bottom_view",
       "kind": "anchor",
       "x": 660.0,
-      "y": 2875,
+      "y": 2975,
       "w": 2,
       "h": 2
     },
@@ -111,7 +129,7 @@
       "id": "life_bottom_ctrl",
       "kind": "anchor",
       "x": 1140.0,
-      "y": 2875,
+      "y": 2975,
       "w": 2,
       "h": 2
     },
@@ -140,7 +158,7 @@
       "id": "life_bottom_base",
       "kind": "anchor",
       "x": 1620.0,
-      "y": 2875,
+      "y": 2975,
       "w": 2,
       "h": 2
     },
@@ -168,7 +186,7 @@
       "id": "life_bottom_delivery",
       "kind": "anchor",
       "x": 2100.0,
-      "y": 2875,
+      "y": 2975,
       "w": 2,
       "h": 2
     },
@@ -197,7 +215,7 @@
       "id": "life_bottom_helper",
       "kind": "anchor",
       "x": 2580.0,
-      "y": 2875,
+      "y": 2975,
       "w": 2,
       "h": 2
     },
@@ -225,7 +243,7 @@
       "id": "life_bottom_order",
       "kind": "anchor",
       "x": 3060.0,
-      "y": 2875,
+      "y": 2975,
       "w": 2,
       "h": 2
     },
@@ -253,7 +271,7 @@
       "id": "life_bottom_payment",
       "kind": "anchor",
       "x": 3540.0,
-      "y": 2875,
+      "y": 2975,
       "w": 2,
       "h": 2
     },
@@ -282,7 +300,7 @@
       "id": "life_bottom_row",
       "kind": "anchor",
       "x": 4020.0,
-      "y": 2875,
+      "y": 2975,
       "w": 2,
       "h": 2
     },
@@ -290,295 +308,295 @@
       "id": "activation_view",
       "kind": "activation",
       "x": 645.0,
-      "y": 550,
+      "y": 490,
       "w": 30,
-      "h": 1755
+      "h": 1327
     },
     {
       "id": "activation_ctrl",
       "kind": "activation",
       "x": 1125.0,
-      "y": 784,
+      "y": 774,
       "w": 30,
-      "h": 1404
+      "h": 959
     },
     {
       "id": "activation_base",
       "kind": "activation",
       "x": 1605.0,
-      "y": 1018,
+      "y": 942,
       "w": 30,
-      "h": 117
+      "h": 35
     },
     {
       "id": "activation_delivery",
       "kind": "activation",
       "x": 2085.0,
-      "y": 1252,
+      "y": 1110,
       "w": 30,
-      "h": 117
+      "h": 35
     },
     {
       "id": "activation_helper",
       "kind": "activation",
       "x": 2565.0,
-      "y": 1369,
+      "y": 1194,
       "w": 30,
-      "h": 468
+      "h": 287
     },
     {
       "id": "activation_order",
       "kind": "activation",
       "x": 3045.0,
-      "y": 1486,
+      "y": 1278,
       "w": 30,
-      "h": 117
+      "h": 35
     },
     {
       "id": "activation_payment",
       "kind": "activation",
       "x": 3525.0,
-      "y": 1720,
+      "y": 1446,
       "w": 30,
-      "h": 117
+      "h": 35
     },
     {
       "id": "activation_row",
       "kind": "activation",
       "x": 4005.0,
-      "y": 1954,
+      "y": 1614,
       "w": 30,
-      "h": 117
+      "h": 35
     },
     {
       "id": "m00_s",
       "kind": "anchor",
       "x": 180.0,
-      "y": 550,
+      "y": 490,
       "w": 2,
       "h": 2
     },
     {
       "id": "m00_t",
       "kind": "anchor",
-      "x": 660.0,
-      "y": 550,
+      "x": 645.0,
+      "y": 490,
       "w": 2,
       "h": 2
     },
     {
       "id": "m01_s",
       "kind": "anchor",
-      "x": 660.0,
-      "y": 667,
+      "x": 675.0,
+      "y": 690,
       "w": 2,
       "h": 2
     },
     {
       "id": "m01_t",
       "kind": "anchor",
-      "x": 780.0,
-      "y": 712,
+      "x": 675.0,
+      "y": 705,
       "w": 2,
       "h": 2
     },
     {
       "id": "m02_s",
       "kind": "anchor",
-      "x": 660.0,
-      "y": 784,
+      "x": 675.0,
+      "y": 774,
       "w": 2,
       "h": 2
     },
     {
       "id": "m02_t",
       "kind": "anchor",
-      "x": 1140.0,
-      "y": 784,
+      "x": 1125.0,
+      "y": 774,
       "w": 2,
       "h": 2
     },
     {
       "id": "m03_s",
       "kind": "anchor",
-      "x": 1140.0,
-      "y": 901,
+      "x": 1155.0,
+      "y": 858,
       "w": 2,
       "h": 2
     },
     {
       "id": "m03_t",
       "kind": "anchor",
-      "x": 1260.0,
-      "y": 946,
+      "x": 1155.0,
+      "y": 873,
       "w": 2,
       "h": 2
     },
     {
       "id": "m04_s",
       "kind": "anchor",
-      "x": 1140.0,
-      "y": 1018,
+      "x": 1155.0,
+      "y": 942,
       "w": 2,
       "h": 2
     },
     {
       "id": "m04_t",
       "kind": "anchor",
-      "x": 1620.0,
-      "y": 1018,
+      "x": 1605.0,
+      "y": 942,
       "w": 2,
       "h": 2
     },
     {
       "id": "m05_s",
       "kind": "anchor",
-      "x": 1140.0,
-      "y": 1135,
+      "x": 1155.0,
+      "y": 1026,
       "w": 2,
       "h": 2
     },
     {
       "id": "m05_t",
       "kind": "anchor",
-      "x": 1260.0,
-      "y": 1180,
+      "x": 1155.0,
+      "y": 1041,
       "w": 2,
       "h": 2
     },
     {
       "id": "m08_s",
       "kind": "anchor",
-      "x": 1140.0,
-      "y": 1252,
+      "x": 1155.0,
+      "y": 1110,
       "w": 2,
       "h": 2
     },
     {
       "id": "m08_t",
       "kind": "anchor",
-      "x": 2100.0,
-      "y": 1252,
+      "x": 2085.0,
+      "y": 1110,
       "w": 2,
       "h": 2
     },
     {
       "id": "m09_s",
       "kind": "anchor",
-      "x": 1140.0,
-      "y": 1369,
+      "x": 1155.0,
+      "y": 1194,
       "w": 2,
       "h": 2
     },
     {
       "id": "m09_t",
       "kind": "anchor",
-      "x": 2580.0,
-      "y": 1369,
+      "x": 2565.0,
+      "y": 1194,
       "w": 2,
       "h": 2
     },
     {
       "id": "m10_s",
       "kind": "anchor",
-      "x": 2580.0,
-      "y": 1486,
+      "x": 2595.0,
+      "y": 1278,
       "w": 2,
       "h": 2
     },
     {
       "id": "m10_t",
       "kind": "anchor",
-      "x": 3060.0,
-      "y": 1486,
+      "x": 3045.0,
+      "y": 1278,
       "w": 2,
       "h": 2
     },
     {
       "id": "m11_s",
       "kind": "anchor",
-      "x": 1140.0,
-      "y": 1603,
+      "x": 1155.0,
+      "y": 1362,
       "w": 2,
       "h": 2
     },
     {
       "id": "m11_t",
       "kind": "anchor",
-      "x": 2580.0,
-      "y": 1603,
+      "x": 2565.0,
+      "y": 1362,
       "w": 2,
       "h": 2
     },
     {
       "id": "m12_s",
       "kind": "anchor",
-      "x": 2580.0,
-      "y": 1720,
+      "x": 2595.0,
+      "y": 1446,
       "w": 2,
       "h": 2
     },
     {
       "id": "m12_t",
       "kind": "anchor",
-      "x": 3540.0,
-      "y": 1720,
+      "x": 3525.0,
+      "y": 1446,
       "w": 2,
       "h": 2
     },
     {
       "id": "m14_s",
       "kind": "anchor",
-      "x": 1140.0,
-      "y": 1837,
+      "x": 1155.0,
+      "y": 1530,
       "w": 2,
       "h": 2
     },
     {
       "id": "m14_t",
       "kind": "anchor",
-      "x": 1260.0,
-      "y": 1882,
+      "x": 1155.0,
+      "y": 1545,
       "w": 2,
       "h": 2
     },
     {
       "id": "m15_s",
       "kind": "anchor",
-      "x": 1140.0,
-      "y": 1954,
+      "x": 1155.0,
+      "y": 1614,
       "w": 2,
       "h": 2
     },
     {
       "id": "m15_t",
       "kind": "anchor",
-      "x": 4020.0,
-      "y": 1954,
+      "x": 4005.0,
+      "y": 1614,
       "w": 2,
       "h": 2
     },
     {
       "id": "m16_s",
       "kind": "anchor",
-      "x": 1140.0,
-      "y": 2071,
+      "x": 1125.0,
+      "y": 1698,
       "w": 2,
       "h": 2
     },
     {
       "id": "m16_t",
       "kind": "anchor",
-      "x": 660.0,
-      "y": 2071,
+      "x": 675.0,
+      "y": 1698,
       "w": 2,
       "h": 2
     },
     {
       "id": "m17_s",
       "kind": "anchor",
-      "x": 660.0,
-      "y": 2188,
+      "x": 645.0,
+      "y": 1782,
       "w": 2,
       "h": 2
     },
@@ -586,7 +604,7 @@
       "id": "m17_t",
       "kind": "anchor",
       "x": 180.0,
-      "y": 2188,
+      "y": 1782,
       "w": 2,
       "h": 2
     },
@@ -594,44 +612,31 @@
       "id": "interaction_notes",
       "kind": "note",
       "x": 105,
-      "y": 2377,
+      "y": 1892,
       "w": 3990,
       "h": 168,
       "lines": [
         "validation: Require reason, PICKED_UP and assigned active shipper.   •   transaction: BEGIN IMMEDIATE; guard before writes.   •",
-        "commit: Save failure times and BR-17 together; rollback on error."
+        "commit: COMMIT succeeds before the success result; paired changes persist together (P4 target)."
       ]
-    },
-    {
-      "id": "else_label",
-      "kind": "text",
-      "x": 105,
-      "y": 2572,
-      "w": 3990,
-      "h": 65,
-      "lines": [
-        "else [refusal / invalid filter / rollback / read unavailable / zero denominator]"
-      ],
-      "bold": true,
-      "color": "#B03A2E"
     },
     {
       "id": "branch_note",
       "kind": "note",
       "x": 105,
-      "y": 2660,
+      "y": 2410,
       "w": 3990,
-      "h": 235,
+      "h": 160,
       "lines": [
-        "else [E01/E03/E05/E06: denied, stale/wrong shipper, blank reason, busy or save/COMMIT failure] → refusal/rollback;",
-        "UC02-MG01; no partial update."
+        "else [E01/E03/E05/E06: denied, stale/wrong shipper, blank reason, busy or save/COMMIT failure] → refusal/rollback; UC02-MG01;",
+        "no partial update."
       ]
     },
     {
       "id": "sep_a",
       "kind": "anchor",
       "x": 90,
-      "y": 2570,
+      "y": 2330,
       "w": 2,
       "h": 2
     },
@@ -639,9 +644,114 @@
       "id": "sep_b",
       "kind": "anchor",
       "x": 4110,
-      "y": 2570,
+      "y": 2330,
       "w": 2,
       "h": 2
+    },
+    {
+      "id": "m18_s",
+      "kind": "anchor",
+      "x": 1125.0,
+      "y": 2840,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m18_t",
+      "kind": "anchor",
+      "x": 675.0,
+      "y": 2840,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m19_s",
+      "kind": "anchor",
+      "x": 645.0,
+      "y": 2960,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m19_t",
+      "kind": "anchor",
+      "x": 180.0,
+      "y": 2960,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "alt_title",
+      "kind": "text",
+      "x": 100,
+      "y": 562,
+      "w": 4000,
+      "h": 65,
+      "lines": [
+        "alt [accepted operation; guards pass; command save commits]"
+      ],
+      "bold": true,
+      "background": "#FFFFFF"
+    },
+    {
+      "id": "else_label",
+      "kind": "text",
+      "x": 105,
+      "y": 2334,
+      "w": 3990,
+      "h": 65,
+      "lines": [
+        "else [request refused / guard or atomic-save failure] · alt operand"
+      ],
+      "bold": true,
+      "color": "#B03A2E",
+      "background": "#FFFFFF"
+    },
+    {
+      "id": "controller_refusal_opt_title",
+      "kind": "text",
+      "x": 105,
+      "y": 2582,
+      "w": 3990,
+      "h": 65,
+      "lines": [
+        "opt [request reaches controller]"
+      ],
+      "bold": true,
+      "color": "#B03A2E",
+      "background": "#FFFFFF"
+    },
+    {
+      "id": "failure_call_s",
+      "kind": "anchor",
+      "x": 675.0,
+      "y": 2720,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "failure_call_t",
+      "kind": "anchor",
+      "x": 1125.0,
+      "y": 2720,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "failure_ctrl_activation",
+      "kind": "activation",
+      "x": 1125.0,
+      "y": 2720,
+      "w": 30,
+      "h": 120
+    },
+    {
+      "id": "failure_view_activation",
+      "kind": "activation",
+      "x": 645.0,
+      "y": 2720,
+      "w": 30,
+      "h": 240
     }
   ],
   "edges": [
@@ -656,7 +766,7 @@
         ],
         [
           180.0,
-          2875
+          2975
         ]
       ],
       "dashed": true,
@@ -675,7 +785,7 @@
         ],
         [
           660.0,
-          2875
+          2975
         ]
       ],
       "dashed": true,
@@ -694,7 +804,7 @@
         ],
         [
           1140.0,
-          2875
+          2975
         ]
       ],
       "dashed": true,
@@ -713,7 +823,7 @@
         ],
         [
           1620.0,
-          2875
+          2975
         ]
       ],
       "dashed": true,
@@ -732,7 +842,7 @@
         ],
         [
           2100.0,
-          2875
+          2975
         ]
       ],
       "dashed": true,
@@ -751,7 +861,7 @@
         ],
         [
           2580.0,
-          2875
+          2975
         ]
       ],
       "dashed": true,
@@ -770,7 +880,7 @@
         ],
         [
           3060.0,
-          2875
+          2975
         ]
       ],
       "dashed": true,
@@ -789,7 +899,7 @@
         ],
         [
           3540.0,
-          2875
+          2975
         ]
       ],
       "dashed": true,
@@ -808,7 +918,7 @@
         ],
         [
           4020.0,
-          2875
+          2975
         ]
       ],
       "dashed": true,
@@ -823,11 +933,11 @@
       "points": [
         [
           180.0,
-          550
+          490
         ],
         [
-          660.0,
-          550
+          645.0,
+          490
         ]
       ],
       "dashed": false,
@@ -837,7 +947,7 @@
       "label": "reportFailure(orderId, reason)",
       "label_box": [
         80,
-        478,
+        418,
         1000,
         64
       ]
@@ -848,20 +958,20 @@
       "target": "m01_t",
       "points": [
         [
-          660.0,
-          667
+          675.0,
+          690
         ],
         [
           780.0,
-          667
+          690
         ],
         [
           780.0,
-          712
+          705
         ],
         [
-          660.0,
-          712
+          675.0,
+          705
         ]
       ],
       "dashed": false,
@@ -871,7 +981,7 @@
       "label": "failed(order_id)",
       "label_box": [
         430.0,
-        595,
+        618,
         580,
         64
       ]
@@ -882,12 +992,12 @@
       "target": "m02_t",
       "points": [
         [
-          660.0,
-          784
+          675.0,
+          774
         ],
         [
-          1140.0,
-          784
+          1125.0,
+          774
         ]
       ],
       "dashed": false,
@@ -897,7 +1007,7 @@
       "label": "report_failure †(user_id, order_id, reason)",
       "label_box": [
         205.0,
-        712,
+        702,
         1390,
         64
       ]
@@ -908,20 +1018,20 @@
       "target": "m03_t",
       "points": [
         [
-          1140.0,
-          901
+          1155.0,
+          858
         ],
         [
           1260.0,
-          901
+          858
         ],
         [
           1260.0,
-          946
+          873
         ],
         [
-          1140.0,
-          946
+          1155.0,
+          873
         ]
       ],
       "dashed": false,
@@ -931,7 +1041,7 @@
       "label": "_require_shipper(user_id)",
       "label_box": [
         775.0,
-        829,
+        786,
         850,
         64
       ]
@@ -942,12 +1052,12 @@
       "target": "m04_t",
       "points": [
         [
-          1140.0,
-          1018
+          1155.0,
+          942
         ],
         [
-          1620.0,
-          1018
+          1605.0,
+          942
         ]
       ],
       "dashed": false,
@@ -957,7 +1067,7 @@
       "label": "_require_user(user_id, Role.SHIPPER)",
       "label_box": [
         790.0,
-        946,
+        870,
         1180,
         64
       ]
@@ -968,20 +1078,20 @@
       "target": "m05_t",
       "points": [
         [
-          1140.0,
-          1135
+          1155.0,
+          1026
         ],
         [
           1260.0,
-          1135
+          1026
         ],
         [
           1260.0,
-          1180
+          1041
         ],
         [
-          1140.0,
-          1180
+          1155.0,
+          1041
         ]
       ],
       "dashed": false,
@@ -991,7 +1101,7 @@
       "label": "_own_active_delivery(shipper, order_id)",
       "label_box": [
         565.0,
-        1063,
+        954,
         1270,
         64
       ]
@@ -1002,12 +1112,12 @@
       "target": "m08_t",
       "points": [
         [
-          1140.0,
-          1252
+          1155.0,
+          1110
         ],
         [
-          2100.0,
-          1252
+          2085.0,
+          1110
         ]
       ],
       "dashed": false,
@@ -1017,7 +1127,7 @@
       "label": "move_to(DeliveryState.FAILED)",
       "label_box": [
         1135.0,
-        1180,
+        1038,
         970,
         64
       ]
@@ -1028,12 +1138,12 @@
       "target": "m09_t",
       "points": [
         [
-          1140.0,
-          1369
+          1155.0,
+          1194
         ],
         [
-          2580.0,
-          1369
+          2565.0,
+          1194
         ]
       ],
       "dashed": false,
@@ -1043,7 +1153,7 @@
       "label": "move_order(orders, order, OrderState.DELIVERY_FAILED, now)",
       "label_box": [
         940.0,
-        1297,
+        1122,
         1840,
         64
       ]
@@ -1054,12 +1164,12 @@
       "target": "m10_t",
       "points": [
         [
-          2580.0,
-          1486
+          2595.0,
+          1278
         ],
         [
-          3060.0,
-          1486
+          3045.0,
+          1278
         ]
       ],
       "dashed": false,
@@ -1069,7 +1179,7 @@
       "label": "move_to(OrderState.DELIVERY_FAILED)",
       "label_box": [
         2245.0,
-        1414,
+        1206,
         1150,
         64
       ]
@@ -1080,12 +1190,12 @@
       "target": "m11_t",
       "points": [
         [
-          1140.0,
-          1603
+          1155.0,
+          1362
         ],
         [
-          2580.0,
-          1603
+          2565.0,
+          1362
         ]
       ],
       "dashed": false,
@@ -1095,7 +1205,7 @@
       "label": "release_payment †(payments, order_id, now)",
       "label_box": [
         1210.0,
-        1531,
+        1290,
         1300,
         64
       ]
@@ -1106,12 +1216,12 @@
       "target": "m12_t",
       "points": [
         [
-          2580.0,
-          1720
+          2595.0,
+          1446
         ],
         [
-          3540.0,
-          1720
+          3525.0,
+          1446
         ]
       ],
       "dashed": false,
@@ -1121,7 +1231,7 @@
       "label": "release_for_unfulfilled_order †(† set ONLINE refund_amount=C (replace partial); COD→VOIDED)",
       "label_box": [
         1290,
-        1648,
+        1374,
         2830,
         64
       ]
@@ -1132,20 +1242,20 @@
       "target": "m14_t",
       "points": [
         [
-          1140.0,
-          1837
+          1155.0,
+          1530
         ],
         [
           1260.0,
-          1837
+          1530
         ],
         [
           1260.0,
-          1882
+          1545
         ],
         [
-          1140.0,
-          1882
+          1155.0,
+          1545
         ]
       ],
       "dashed": false,
@@ -1155,7 +1265,7 @@
       "label": "get_delivery(user_id, order_id; committed result)",
       "label_box": [
         415.0,
-        1765,
+        1458,
         1570,
         64
       ]
@@ -1166,12 +1276,12 @@
       "target": "m15_t",
       "points": [
         [
-          1140.0,
-          1954
+          1155.0,
+          1614
         ],
         [
-          4020.0,
-          1954
+          4005.0,
+          1614
         ]
       ],
       "dashed": false,
@@ -1181,7 +1291,7 @@
       "label": "«create» DeliveryView(delivery, order, payment, hub, customer)",
       "label_box": [
         1600.0,
-        1882,
+        1542,
         1960,
         64
       ]
@@ -1192,22 +1302,22 @@
       "target": "m16_t",
       "points": [
         [
-          1140.0,
-          2071
+          1125.0,
+          1698
         ],
         [
-          660.0,
-          2071
+          675.0,
+          1698
         ]
       ],
       "dashed": true,
-      "arrow": "block",
+      "arrow": "open",
       "color": "#004387",
       "width": 3,
       "label": "return report_failure: failedOrderAndPayment",
       "label_box": [
         190.0,
-        1999,
+        1626,
         1420,
         64
       ]
@@ -1218,22 +1328,22 @@
       "target": "m17_t",
       "points": [
         [
-          660.0,
-          2188
+          645.0,
+          1782
         ],
         [
           180.0,
-          2188
+          1782
         ]
       ],
       "dashed": true,
-      "arrow": "block",
+      "arrow": "open",
       "color": "#004387",
       "width": 3,
-      "label": "return reportFailure: failedOrderAndPayment | refusal",
+      "label": "return reportFailure: failedOrderAndPayment",
       "label_box": [
         80,
-        2116,
+        1710,
         1690,
         64
       ]
@@ -1245,17 +1355,95 @@
       "points": [
         [
           90,
-          2570
+          2330
         ],
         [
           4110,
-          2570
+          2330
         ]
       ],
       "dashed": true,
       "arrow": "none",
       "color": "#004387",
       "width": 2
+    },
+    {
+      "id": "msg_19",
+      "source": "m18_s",
+      "target": "m18_t",
+      "points": [
+        [
+          1125.0,
+          2840
+        ],
+        [
+          675.0,
+          2840
+        ]
+      ],
+      "dashed": true,
+      "arrow": "open",
+      "color": "#B03A2E",
+      "width": 3,
+      "label": "return report_failure: refusal",
+      "label_box": [
+        400.0,
+        2768,
+        1000,
+        64
+      ]
+    },
+    {
+      "id": "msg_20",
+      "source": "m19_s",
+      "target": "m19_t",
+      "points": [
+        [
+          645.0,
+          2960
+        ],
+        [
+          180.0,
+          2960
+        ]
+      ],
+      "dashed": true,
+      "arrow": "open",
+      "color": "#B03A2E",
+      "width": 3,
+      "label": "return reportFailure: refusal",
+      "label_box": [
+        90,
+        2888,
+        970,
+        64
+      ]
+    },
+    {
+      "id": "msg_18",
+      "source": "failure_call_s",
+      "target": "failure_call_t",
+      "points": [
+        [
+          675.0,
+          2720
+        ],
+        [
+          1125.0,
+          2720
+        ]
+      ],
+      "dashed": false,
+      "arrow": "block",
+      "color": "#B03A2E",
+      "width": 3,
+      "label": "report_failure †(user_id, order_id, reason)",
+      "label_box": [
+        235.0,
+        2648,
+        1330,
+        64
+      ]
     }
   ],
   "footer": "Author: 722I0004 · AI-assisted (Codex) · Static design at C0; target behavior is not runtime evidence.",
@@ -1984,7 +2172,8 @@
         "PC_MG": [
           "UC02-PC03",
           "UC02-MG01"
-        ]
+        ],
+        "native_edge_id": "msg_00"
       },
       {
         "from": "view",
@@ -2007,7 +2196,8 @@
         ],
         "return": "Any",
         "P4_input": "",
-        "return_type": "Any"
+        "return_type": "Any",
+        "native_edge_id": "msg_01"
       },
       {
         "from": "view",
@@ -2054,7 +2244,8 @@
         ],
         "return": "DeliveryView",
         "P4_input": "F-02; P2-S13",
-        "return_type": "DeliveryView"
+        "return_type": "DeliveryView",
+        "native_edge_id": "msg_02"
       },
       {
         "from": "ctrl",
@@ -2084,7 +2275,8 @@
         ],
         "return": "UserAccount",
         "P4_input": "",
-        "return_type": "UserAccount"
+        "return_type": "UserAccount",
+        "native_edge_id": "msg_03"
       },
       {
         "from": "ctrl",
@@ -2128,7 +2320,8 @@
         ],
         "return": "UserAccount",
         "P4_input": "",
-        "return_type": "UserAccount"
+        "return_type": "UserAccount",
+        "native_edge_id": "msg_04"
       },
       {
         "from": "ctrl",
@@ -2165,7 +2358,8 @@
         ],
         "return": "Delivery",
         "P4_input": "",
-        "return_type": "Delivery"
+        "return_type": "Delivery",
+        "native_edge_id": "msg_05"
       },
       {
         "from": "ctrl",
@@ -2174,7 +2368,8 @@
         "kind": "note",
         "arguments": "Require reason, PICKED_UP and assigned active shipper.",
         "guard": "",
-        "PC_MG": []
+        "PC_MG": [],
+        "native_note_id": "interaction_notes"
       },
       {
         "from": "ctrl",
@@ -2183,7 +2378,8 @@
         "kind": "note",
         "arguments": "BEGIN IMMEDIATE; guard before writes.",
         "guard": "",
-        "PC_MG": []
+        "PC_MG": [],
+        "native_note_id": "interaction_notes"
       },
       {
         "from": "ctrl",
@@ -2213,7 +2409,8 @@
         ],
         "return": "None",
         "P4_input": "",
-        "return_type": "None"
+        "return_type": "None",
+        "native_edge_id": "msg_08"
       },
       {
         "from": "ctrl",
@@ -2264,7 +2461,8 @@
         ],
         "return": "None",
         "P4_input": "",
-        "return_type": "None"
+        "return_type": "None",
+        "native_edge_id": "msg_09"
       },
       {
         "from": "helper",
@@ -2294,7 +2492,8 @@
         ],
         "return": "None",
         "P4_input": "",
-        "return_type": "None"
+        "return_type": "None",
+        "native_edge_id": "msg_10"
       },
       {
         "from": "ctrl",
@@ -2331,7 +2530,8 @@
         ],
         "return": "Payment",
         "P4_input": "F-02; P2-S01; P3-S03",
-        "return_type": "Payment"
+        "return_type": "Payment",
+        "native_edge_id": "msg_11"
       },
       {
         "from": "helper",
@@ -2354,16 +2554,18 @@
         ],
         "return": "None",
         "P4_input": "F-02; P2-S01",
-        "return_type": "None"
+        "return_type": "None",
+        "native_edge_id": "msg_12"
       },
       {
         "from": "ctrl",
         "to": "ctrl",
         "method": "commit",
         "kind": "note",
-        "arguments": "Save failure times and BR-17 together; rollback on error.",
+        "arguments": "COMMIT succeeds before the success result; paired changes persist together (P4 target).",
         "guard": "",
-        "PC_MG": []
+        "PC_MG": [],
+        "native_note_id": "interaction_notes"
       },
       {
         "from": "ctrl",
@@ -2400,7 +2602,8 @@
         ],
         "return": "DeliveryView",
         "P4_input": "",
-        "return_type": "DeliveryView"
+        "return_type": "DeliveryView",
+        "native_edge_id": "msg_14"
       },
       {
         "from": "ctrl",
@@ -2409,7 +2612,8 @@
         "kind": "create",
         "arguments": "delivery, order, payment, hub, customer",
         "guard": "",
-        "PC_MG": []
+        "PC_MG": [],
+        "native_edge_id": "msg_15"
       },
       {
         "from": "ctrl",
@@ -2418,16 +2622,89 @@
         "kind": "return",
         "arguments": "failedOrderAndPayment",
         "guard": "",
-        "PC_MG": []
+        "PC_MG": [],
+        "native_edge_id": "msg_16"
       },
       {
         "from": "view",
         "to": "actor",
         "method": "reportFailure",
         "kind": "return",
-        "arguments": "failedOrderAndPayment | refusal",
+        "arguments": "failedOrderAndPayment",
         "guard": "",
-        "PC_MG": []
+        "PC_MG": [],
+        "native_edge_id": "msg_17"
+      },
+      {
+        "from": "view",
+        "to": "ctrl",
+        "method": "report_failure",
+        "kind": "call",
+        "arguments": "user_id, order_id, reason",
+        "guard": "request reaches controller; guard/filter/save/read then refuses",
+        "PC_MG": [
+          "UC02-MG01"
+        ],
+        "status": "P4-TARGET",
+        "signature": "report_failure(self, user_id: int, order_id: int, reason: str) -> DeliveryView",
+        "parameters": [
+          {
+            "name": "self",
+            "type": "Any",
+            "annotated": false,
+            "default": null,
+            "kind": "positional_or_keyword"
+          },
+          {
+            "name": "user_id",
+            "type": "int",
+            "annotated": true,
+            "default": null,
+            "kind": "positional_or_keyword"
+          },
+          {
+            "name": "order_id",
+            "type": "int",
+            "annotated": true,
+            "default": null,
+            "kind": "positional_or_keyword"
+          },
+          {
+            "name": "reason",
+            "type": "str",
+            "annotated": true,
+            "default": null,
+            "kind": "positional_or_keyword"
+          }
+        ],
+        "return": "DeliveryView",
+        "P4_input": "F-02; P2-S13",
+        "return_type": "DeliveryView",
+        "native_edge_id": "msg_18"
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "report_failure",
+        "kind": "return",
+        "arguments": "refusal",
+        "guard": "controller was invoked and then rejected or failed; otherwise the view denies directly",
+        "PC_MG": [
+          "UC02-MG01"
+        ],
+        "native_edge_id": "msg_19"
+      },
+      {
+        "from": "view",
+        "to": "actor",
+        "method": "reportFailure",
+        "kind": "return",
+        "arguments": "refusal",
+        "guard": "else [E01/E03/E05/E06: denied, stale/wrong shipper, blank reason, busy or save/COMMIT failure] → refusal/rollback; UC02-MG01; no partial update.",
+        "PC_MG": [
+          "UC02-MG01"
+        ],
+        "native_edge_id": "msg_20"
       }
     ],
     "states": [
@@ -2460,12 +2737,69 @@
     ],
     "main_outcome": "Delivery FAILED + reason; Order DELIVERY_FAILED; COD VOIDED or ONLINE REFUND_PENDING with refund_amount=C replacing partial. No payout claimed.",
     "alternate_outcome": "else [E01/E03/E05/E06: denied, stale/wrong shipper, blank reason, busy or save/COMMIT failure] → refusal/rollback; UC02-MG01; no partial update.",
-    "shared_transaction_target": "P2-S13; P3-S03: guarded writes, COMMIT failure and busy handling remain P4 targets; read operations write nothing."
+    "shared_transaction_target": "P2-S13; P3-S03: guarded writes, COMMIT failure and busy handling remain P4 targets; read operations write nothing.",
+    "interaction_fragments": [
+      {
+        "id": "accepted_operand",
+        "operator": "alt",
+        "guard": "alt [accepted operation; guards pass; command save commits]",
+        "x": 70,
+        "y": 560,
+        "w": 4060,
+        "h": 1770,
+        "message_indices": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          8,
+          9,
+          10,
+          11,
+          12,
+          14,
+          15,
+          16,
+          17
+        ],
+        "guard_label_id": "alt_title"
+      },
+      {
+        "id": "refusal_operand",
+        "operator": "alt",
+        "guard": "else [request refused / guard or atomic-save failure]",
+        "x": 70,
+        "y": 2330,
+        "w": 4060,
+        "h": 650,
+        "message_indices": [
+          18,
+          19,
+          20
+        ],
+        "guard_label_id": "else_label"
+      },
+      {
+        "id": "controller_refusal_opt",
+        "operator": "opt",
+        "guard": "[request reaches controller]",
+        "x": 70,
+        "y": 2580,
+        "w": 4060,
+        "h": 310,
+        "message_indices": [
+          18,
+          19
+        ],
+        "guard_label_id": "controller_refusal_opt_title"
+      }
+    ]
   },
   "render_receipt": {
     "canvas": [
       4200,
-      3000
+      3100
     ],
     "minimum_font_px": 60,
     "placed_width_mm": 230,

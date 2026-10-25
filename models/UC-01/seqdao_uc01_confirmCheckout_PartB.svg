@@ -1,63 +1,73 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1250" viewBox="0 0 1600 1250"><rect width="100%" height="100%" fill="white"/>
 <text x="35" y="41.040000000000006" font-family="Arial" font-size="28" font-weight="bold" fill="#202B36">UC-01 confirmCheckout — DAO sequence / Part B</text>
 <text x="35" y="76.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Same request and transaction across all parts; focus 2/7. Mechanical reads: responsibility table (report 4.3.2).</text>
+<rect data-fragment-id="fragment_seqdao_uc01_confirmCheckout_PartB_1" x="25" y="363.67999999999995" width="1550" height="131.52000000000004" fill="none" stroke="#004387" stroke-width="2"/>
+<rect data-fragment-id="fragment_seqdao_uc01_confirmCheckout_PartB_2" x="25" y="500.2" width="1550" height="242.36000000000007" fill="none" stroke="#004387" stroke-width="2"/>
 <rect x="13.666666666666671" y="100" width="212.66666666666666" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
 <text x="20.66666666666667" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Customer</text>
-<polyline points="120.0,220 120.0,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<polyline points="120.0,220 120.0,1026" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
 <rect x="240.33333333333331" y="100" width="212.66666666666666" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
 <text x="247.33333333333331" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">«view»</text>
 <text x="247.33333333333331" y="155.16" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">order</text>
-<polyline points="346.66666666666663,220 346.66666666666663,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<polyline points="346.66666666666663,220 346.66666666666663,1026" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
 <rect x="466.99999999999994" y="100" width="212.66666666666666" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
 <text x="473.99999999999994" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Place</text>
 <text x="473.99999999999994" y="155.16" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Order</text>
 <text x="473.99999999999994" y="183.0" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Controller</text>
-<polyline points="573.3333333333333,220 573.3333333333333,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<polyline points="573.3333333333333,220 573.3333333333333,1026" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
 <rect x="693.6666666666666" y="100" width="212.66666666666666" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
 <text x="700.6666666666666" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Quote</text>
-<polyline points="800.0,220 800.0,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<polyline points="800.0,220 800.0,1026" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
 <rect x="920.3333333333331" y="100" width="212.66666666666666" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
 <text x="927.3333333333331" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">«DAO»</text>
 <text x="927.3333333333331" y="155.16" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Order</text>
 <text x="927.3333333333331" y="183.0" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">DAO</text>
-<polyline points="1026.6666666666665,220 1026.6666666666665,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<polyline points="1026.6666666666665,220 1026.6666666666665,1026" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
 <rect x="1147.0" y="100" width="212.66666666666666" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
 <text x="1154.0" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">«DAO»</text>
 <text x="1154.0" y="155.16" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Customer</text>
 <text x="1154.0" y="183.0" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">DAO</text>
-<polyline points="1253.3333333333333,220 1253.3333333333333,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<polyline points="1253.3333333333333,220 1253.3333333333333,1026" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
 <rect x="1373.6666666666667" y="100" width="212.66666666666666" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
 <text x="1380.6666666666667" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">:Database</text>
 <text x="1380.6666666666667" y="155.16" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">«resource»</text>
-<polyline points="1480.0,220 1480.0,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
-<rect x="42" y="241" width="1516" height="30.839999999999996" fill="white"/>
-<text x="45" y="264.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">SQL note: SELECT orders by idempotency_token; _load SELECT order_line snapshots.</text>
-<polyline points="1026.6666666666665,341 1480.0,341" fill="none" stroke="#004387" stroke-width="2"/>
-<polyline points="1467.3937405670624,347.08951747755725 1480.0,341 1467.3937405670624,334.91048252244275" fill="none" stroke="#004387" stroke-width="2"/>
-<rect x="42" y="366" width="1516" height="30.839999999999996" fill="white"/>
-<text x="45" y="389.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">existing Order | None; token lookup precedes authorization</text>
-<polyline points="1026.6666666666665,466 573.3333333333333,466" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
-<polyline points="585.9395927662707,459.91048252244275 573.3333333333333,466 585.9395927662707,472.08951747755725" fill="none" stroke="#004387" stroke-width="2"/>
-<rect x="35" y="492" width="1530" height="111" stroke="#004387" fill="#FFF8E9" stroke-width="2"/>
-<rect x="35" y="492" width="66" height="32" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
-<text x="42" y="514.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">alt</text>
-<text x="110" y="519.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">[token exists] Existing own token: return original order/receipt; COMMIT read path; no authorization, repricing or INSERT. Foreign</text>
-<text x="110" y="547.1600000000001" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">token: refuse without revealing order; ROLLBACK if active.</text>
-<rect x="42" y="616" width="1516" height="30.839999999999996" fill="white"/>
-<text x="45" y="639.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">[new token] _build_quote(customer, hub_id, address_id, quantities, voucher_code)</text>
-<polyline points="573.3333333333333,716 608.3333333333333,716 608.3333333333333,738 573.3333333333333,738" fill="none" stroke="#004387" stroke-width="2"/>
-<polyline points="585.9395927662707,731.9104825224427 573.3333333333333,738 585.9395927662707,744.0895174775573" fill="none" stroke="#004387" stroke-width="2"/>
-<rect x="568.3333333333333" y="716" width="10" height="18" stroke="#004387" fill="#DAE9F5" stroke-width="2"/>
-<rect x="42" y="741" width="1516" height="30.839999999999996" fill="white"/>
-<text x="45" y="764.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">get_address(address_id, customer.id)</text>
-<polyline points="573.3333333333333,841 1253.3333333333333,841" fill="none" stroke="#004387" stroke-width="2"/>
-<polyline points="1240.7270739003957,847.0895174775573 1253.3333333333333,841 1240.7270739003957,834.9104825224427" fill="none" stroke="#004387" stroke-width="2"/>
-<rect x="1248.3333333333333" y="841" width="10" height="18" stroke="#004387" fill="#DAE9F5" stroke-width="2"/>
-<rect x="42" y="866" width="1516" height="30.839999999999996" fill="white"/>
-<text x="45" y="889.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">SQL note: SELECT address: id + owner + archived_at IS NULL.</text>
-<polyline points="1253.3333333333333,966 1480.0,966" fill="none" stroke="#004387" stroke-width="2"/>
-<polyline points="1467.3937405670624,972.0895174775573 1480.0,966 1467.3937405670624,959.9104825224427" fill="none" stroke="#004387" stroke-width="2"/>
-<text x="35" y="1057.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">From seqdao_uc01_confirmCheckout_PartA → this part → seqdao_uc01_confirmCheckout_PartC.</text>
+<polyline points="1480.0,220 1480.0,1026" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<rect x="28" y="363.67999999999995" width="90" height="30.839999999999996" fill="white"/>
+<text x="31" y="386.99999999999994" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">break</text>
+<rect x="124" y="363.67999999999995" width="1444" height="30.839999999999996" fill="white"/>
+<text x="127" y="386.99999999999994" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">[token exists (own replay or foreign refusal); END this request]</text>
+<rect x="28" y="500.2" width="90" height="30.839999999999996" fill="white"/>
+<text x="31" y="523.52" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">opt</text>
+<rect x="124" y="500.2" width="1444" height="30.839999999999996" fill="white"/>
+<text x="127" y="523.52" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">[new token only; existing-token break skips all remaining parts]</text>
+<rect x="62" y="231" width="1476" height="30.839999999999996" fill="white"/>
+<text x="65" y="254.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">SQL note: SELECT orders by idempotency_token; _load SELECT order_line snapshots.</text>
+<polyline points="1026.6666666666665,270.84 1480.0,270.84" fill="none" stroke="#004387" stroke-width="2"/>
+<polygon data-edge-head="message0" points="1467.3937405670624,276.92951747755717 1480.0,270.84 1467.3937405670624,264.7504825224428" fill="#004387" stroke="#004387" stroke-width="2"/>
+<rect x="62" y="296.84" width="1476" height="30.839999999999996" fill="white"/>
+<text x="65" y="320.15999999999997" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">existing Order | None; token lookup precedes authorization</text>
+<polyline points="1026.6666666666665,336.67999999999995 573.3333333333333,336.67999999999995" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<polyline data-edge-head="message1" points="585.9395927662707,330.5904825224427 573.3333333333333,336.67999999999995 585.9395927662707,342.7695174775572" fill="none" stroke="#004387" stroke-width="2"/>
+<rect x="62" y="400.52" width="1476" height="58.67999999999999" fill="white"/>
+<text x="65" y="423.84" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Own token: COMMIT read path and return original receipt. Foreign token: ROLLBACK if active and refuse. END; no authorization,</text>
+<text x="65" y="451.67999999999995" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">repricing or INSERT.</text>
+<polyline points="573.3333333333333,468.2 346.66666666666663,468.2" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<polyline data-edge-head="message2" points="359.2729260996041,462.11048252244274 346.66666666666663,468.2 359.2729260996041,474.2895174775572" fill="none" stroke="#004387" stroke-width="2"/>
+<rect x="62" y="537.04" width="1476" height="30.839999999999996" fill="white"/>
+<text x="65" y="560.36" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">[new token] _build_quote(customer, hub_id, address_id, quantities, voucher_code)</text>
+<polyline points="573.3333333333333,576.88 608.3333333333333,576.88 608.3333333333333,598.88 573.3333333333333,598.88" fill="none" stroke="#004387" stroke-width="2"/>
+<polygon data-edge-head="message3" points="585.9395927662707,592.7904825224427 573.3333333333333,598.88 585.9395927662707,604.9695174775572" fill="#004387" stroke="#004387" stroke-width="2"/>
+<rect x="568.3333333333333" y="576.88" width="10" height="18" stroke="#004387" fill="#DAE9F5" stroke-width="2"/>
+<rect x="62" y="609.88" width="1476" height="30.839999999999996" fill="white"/>
+<text x="65" y="633.2" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">get_address(address_id, customer.id)</text>
+<polyline points="573.3333333333333,649.72 1253.3333333333333,649.72" fill="none" stroke="#004387" stroke-width="2"/>
+<polygon data-edge-head="message4" points="1240.7270739003957,655.8095174775573 1253.3333333333333,649.72 1240.7270739003957,643.6304825224428" fill="#004387" stroke="#004387" stroke-width="2"/>
+<rect x="1248.3333333333333" y="649.72" width="10" height="18" stroke="#004387" fill="#DAE9F5" stroke-width="2"/>
+<rect x="62" y="675.72" width="1476" height="30.839999999999996" fill="white"/>
+<text x="65" y="699.0400000000001" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">SQL note: SELECT address: id + owner + archived_at IS NULL.</text>
+<polyline points="1253.3333333333333,715.5600000000001 1480.0,715.5600000000001" fill="none" stroke="#004387" stroke-width="2"/>
+<polygon data-edge-head="message5" points="1467.3937405670624,721.6495174775573 1480.0,715.5600000000001 1467.3937405670624,709.4704825224428" fill="#004387" stroke="#004387" stroke-width="2"/>
+<text x="35" y="1057.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Existing-token break END; only new token continues Part C. Failures continue Part G; no replay authorization.</text>
 <text x="35" y="1092.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Transaction key (whole request): BEGIN IMMEDIATE → checked rowcount / inserts → COMMIT; failure → ROLLBACK if active. Busy: retry,</text>
 <text x="35" y="1120.1599999999999" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">nothing changed.</text>
 <text x="35" y="1152.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">† design target, not yet in code at C0: F-04; F-07; P2-S05; P2-S13; P2-S12 connection settings; MATCH is Static only.</text>

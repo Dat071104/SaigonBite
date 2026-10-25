@@ -2,7 +2,7 @@
 
 Author: 722I0004 · AI-assisted (Codex)
 
-25/10/2026, Asia/Bangkok. Scope: target design only, Section III and IV 4.1–4.3.2. No application import, execution, tests or runtime qualification. All code observations are **Static**.
+25–26/10/2026, Asia/Bangkok. Scope: target design only, Section III and IV 4.1–4.3.2. No application import, execution, tests or runtime qualification. All code observations are **Static**.
 
 ## Sources read
 
@@ -101,7 +101,27 @@ Root preserved 2,430 current model/document files and the reviewer bytes in P3_t
 
 Root repaired the three package dependencies to actual dashed/open arrows in native XML, SVG and PNG, using an explicit local visual-preset adapter without modifying the frozen P2 renderer. Both current export forms were opened; review_package_qa.json checks all three styles and binds the fresh independent raster. Root is strengthening C6 to inspect actual fragment containment, native end-label geometry, success returns and call/reply styles. The earlier structural pass is not used to waive any of these findings.
 
-⟦PENDING: all-four repair handoffs, root dispositions and post-fix semantic/visual checks, full cross-check and integrity/staging closure⟧.
+All four successful repair handoffs arrived before root read A/B-fix/C/F together. F, then C, then A completed while their reports stayed closed; B-fix's final handoff released the barrier. No shared-model change was requested or adopted. Root accepted the notation repairs and separately handled R-A07 below.
+
+### Root dispositions after the independent review
+
+| Finding | Disposition and current evidence |
+|---|---|
+| R1 MEDIUM: guarded alternatives | Fixed. A adds actual exclusive outcome/compensation regions; F has102 actual guarded fragments with terminal invalid-target withdrawal and separate valid continuation; B adds real accepted/refusal operands plus conditional controller invocation. C fixes missing native dividers/lifelines while retaining its existing semantic operands. Root checks actual native bounds, visible guards and contained message paths. Root opened checkout E/DAO G and replacement DAO C/D in both PNG/independent-SVG forms; success cannot enter compensation and invalid withdrawal cannot fall through to valid writes. |
+| R2 MEDIUM: detached multiplicities | Fixed across all six UC families: A93association projections/186end labels; B41/82; C10/20. Two native text cells carry the actual canonical end values beside attached endpoints; role text is separate. Root checks canonical values, actual native label text, adjacency and attachment, and rejects the former combined format. UC01 relationship A, UC06 domain A and UC02 all-layer were opened in both forms. |
+| R3 LOW: missing success returns | Fixed. cancelOrder/rejectOrder/declineReplacement continue explicitly to PartB, with cancelledOrderAndAmounts/rejectedOrder/rejectedOrderAndAmounts as dashed open replies inside successful COMMIT-qualified operands. Root opened all three current PartB pairs. Exact SSD occurrence identity and failure paths remain unchanged. |
+| R4 LOW: arrow roles | Fixed for the reported package and sequence roles. The package has three actual dashed/open dependencies. Actual synchronous sequence requests have filled closed heads; replies are dashed/open. B/C additionally repaired replies and native parity found in their own audit. A's twelve inheritance projections explicitly retain hollow triangles. Root checks native role styles and inspected the changed vector/raster samples. |
+| R-A07: result required prematurely on each part | Accepted as a checker correction. The first combined run found exactly three per-page failures on the first pages of the split commands. C6 now aggregates by UC/op_id/immutable SSD occurrence, requires a visible named result inside a COMMIT-qualified native operand, and verifies a connected mutually linked continuation graph with visible text. It does not demand a premature success on PartA. The preserved original missing-result case still fails the regression. |
+
+The strengthened full C0 check passes **24,849 checks, zero failures**, without incomplete mode: **397 figure/source sets**, **52 report-III sequence views**, **43 DAO views**, **41 SSD occurrences**, and **30 main PC/MG anchors**. Responsibility statuses remain10MATCH/28P4-TARGET/3GAP; the model SHA remains fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b. No target was promoted from a signature match.
+
+`notation_auditor_regression.json` still rejects the preserved erroneous package arrows, combined end-label cells, out-of-frame replacement messages, missing success result and open synchronous calls. `final_visual_coverage.json` reconciles every current PNG/SVG/native set and independent-raster hash with completed inspection receipts: A140/B68/C72/D6/E68/F43. Workers inspected every changed pair; root independently reopened eleven critical post-repair pairs plus the package pair. Root's sample does not claim all397 were personally reopened. A's historical per-row visual_qa inspection string was not rewritten by its renderer; the opened wave4_sheet_manifest and wave4_receipt bind the92 changed pairs, and unchanged pairs retain their exact inspected hashes.
+
+Reports were reassembled after repairs. The artifact audit passes **2,019 checks**, all links resolve, future4.3.3–6 bodies are P5/P7 pending only, and all required headings remain exact. Traceability stays40/52 design-linked, with the12 supporting-only/non-operation rows explicitly accounted for in traceability_scope_rationale.json. Future code/test/result columns remain blank. P4_design_inputs.csv remains121rows/96elements with operation IDs or explicit shared scope.
+
+**Root post-fix assessment:** R1–R4 are resolved in the design artifacts and the P3 target-design scope is ready for G3 closure after the final integrity/staging receipt. This is root's assessment of the repaired state. The sole review's original NOT READY verdict for d85d067 is unchanged; no second independent approval is claimed. Runtime correctness, P4 implementation, native draw.io/Excel and final DOCX/PDF placement remain unqualified. Closure receipts record the final immutable-source and staging gates.
+
+On 26/10 approximately00:09 Bangkok (25/10 17:09UTC), the owner again requested continuation. F's successful repair handoff was already recorded and remains unopened; C had stopped on a usage-limit error and A/B-fix had no successful repair handoffs recorded. Live ordinaryUsageAllowed=true; root resumed the same A/B-fix/C identities and confirmed them running. No replacement, reset/purchase, model/config change or restart was made. The four-worker report barrier remains closed. A fresh receipt resume_hash_check_20261026_0009.json confirms all1,730 protected bytes unchanged, the exact controlling prompt match and the locked plan hash; decision_log.md has no working-tree change. Pending lecturer discussion dated26/10 is still a plan, not a claim that it happened.
 
 ## Marking evidence pointers
 
@@ -127,6 +147,13 @@ Fresh primary marking workbook: the physical rows below are verified in P3-root/
 ## P4 design inputs
 
 The element-specific register is `docs/part2/design/design_annotations.json` (P4_inputs and target dependencies), joined to SSD op IDs in `operation_realisation.csv`. `docs/part2/design/P4_design_inputs.csv` currently carries 121 rows for 96 member/schema/import/dependency elements; shared/supporting obligations are explicit where there is no main-UC op ID. Existing F-01…09 and P2-S01…18 remain P2-root inputs; design additions P3-S01…04 above do not imply execution. The register is regenerated after final integration; the exact rerun command follows closure.
+
+After each P4 commit, rerun against the committed code while retaining behavioral targets until their obligations are reviewed:
+
+```powershell
+Set-Location -LiteralPath 'D:\RAD\FINAL\SaigonBite'
+& 'C:\Users\ADMIN\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe' -X utf8 -I 'docs/part2/_scripts/p3_design_crosscheck.py' --commit HEAD
+```
 
 ## Pending owner facts and limits
 

@@ -148,7 +148,7 @@
   },
   "selection_contract": "Every class/member is selected from shared model. Domain *_id attributes retained only in tables. All/final are operation projections; union includes every sequence call receiver method.",
   "continuation": "Each figure part is needed; no unsuffixed first-page alias.",
-  "model_sha256": "bd415d6b5874d373cd5eb928dc9b218d27d499e36052589304912a2c33cdd437",
+  "model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
   "dependency_refresh": "Render-time filter of approved canonical dependencies; mediated MenuController/HubMenuItem relation remains logical, not a direct Python call.",
   "native_text_policy": {
     "DCD": {
@@ -163,5 +163,7 @@
   },
   "association_classes": [
     "HubMenuItem"
-  ]
+  ],
+  "association_end_label_policy": "At render time each canonical nondependency/noninheritance association receives separate editable multiplicity text cells adjacent to its attached source/target endpoints, plus a separate role label. phase3.association_end_labels identifies the actual cells and polyline endpoints.",
+  "sequence_native_policy": "Each actual message identifies its native edge and y coordinate; the alt frame and its three operands identify actual native bounds, divider/guard cells and zero-based contained message indices. Calls have solid filled heads; returns have dashed open heads."
 }

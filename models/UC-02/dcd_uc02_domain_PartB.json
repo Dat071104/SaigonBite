@@ -3,7 +3,7 @@
   "title": "UC-02 .2 DCD domain — Part B",
   "canvas": {
     "width": 2600,
-    "height": 2272,
+    "height": 3072,
     "font_size": 50,
     "placed_width_mm": 170
   },
@@ -87,7 +87,7 @@
       "id": "Customer",
       "kind": "class",
       "x": 80,
-      "y": 795,
+      "y": 1315,
       "w": 793,
       "h": 552,
       "header_h": 137,
@@ -108,7 +108,7 @@
       "id": "Hub",
       "kind": "class",
       "x": 903,
-      "y": 795,
+      "y": 1315,
       "w": 793,
       "h": 552,
       "header_h": 137,
@@ -129,7 +129,7 @@
       "id": "UserAccount",
       "kind": "class",
       "x": 1726,
-      "y": 795,
+      "y": 1315,
       "w": 793,
       "h": 552,
       "header_h": 137,
@@ -151,7 +151,7 @@
       "id": "Role",
       "kind": "class",
       "x": 80,
-      "y": 1377,
+      "y": 2177,
       "w": 793,
       "h": 369,
       "header_h": 137,
@@ -169,17 +169,287 @@
       "id": "legend",
       "kind": "note",
       "x": 80,
-      "y": 1788,
+      "y": 2588,
       "w": 2440,
       "h": 372,
       "lines": [
         "Part A continues here. Domain FK scalars are omitted in favour of these navigable",
-        "associations. Domain associations/navigation and multiplicities: Customer (0..1) —",
-        "linked account — UserAccount (1); Order (0..*) — customer — Customer (1); Order",
-        "(0..*) — hub — Hub (1); Order (1) — payment — Payment (1); Order (1) — delivery —",
-        "Delivery (0..1); Delivery (0..*) — assigned shipper — UserAccount (0..1);",
-        "UserAccount (0..*) — kitchen hub — Hub (0..1)."
+        "associations. Multiplicities are separate labels at the actual attached ends; each",
+        "role has its own label."
       ]
+    },
+    {
+      "id": "association_00_source_mult",
+      "kind": "text",
+      "x": 406.5,
+      "y": 1791,
+      "w": 140,
+      "h": 64,
+      "lines": [
+        "0..1"
+      ],
+      "align": "center",
+      "color": "#004387"
+    },
+    {
+      "id": "association_00_target_mult",
+      "kind": "text",
+      "x": 1920.3333333333333,
+      "y": 1791,
+      "w": 140,
+      "h": 64,
+      "lines": [
+        "1"
+      ],
+      "align": "center",
+      "color": "#004387"
+    },
+    {
+      "id": "association_00_role",
+      "kind": "text",
+      "x": 998.4166666666665,
+      "y": 1893,
+      "w": 470,
+      "h": 64,
+      "lines": [
+        "linked account"
+      ],
+      "align": "center",
+      "color": "#004387"
+    },
+    {
+      "id": "association_01_source_mult",
+      "kind": "text",
+      "x": 168.6,
+      "y": 689,
+      "w": 140,
+      "h": 64,
+      "lines": [
+        "0..*"
+      ],
+      "align": "center",
+      "color": "#004387"
+    },
+    {
+      "id": "association_01_target_mult",
+      "kind": "text",
+      "x": 406.5,
+      "y": 1239,
+      "w": 140,
+      "h": 64,
+      "lines": [
+        "1"
+      ],
+      "align": "center",
+      "color": "#004387"
+    },
+    {
+      "id": "association_01_role",
+      "kind": "text",
+      "x": 1259.3,
+      "y": 791,
+      "w": 290,
+      "h": 64,
+      "lines": [
+        "customer"
+      ],
+      "align": "center",
+      "color": "#004387"
+    },
+    {
+      "id": "association_02_source_mult",
+      "kind": "text",
+      "x": 327.2,
+      "y": 689,
+      "w": 140,
+      "h": 64,
+      "lines": [
+        "0..*"
+      ],
+      "align": "center",
+      "color": "#004387"
+    },
+    {
+      "id": "association_02_target_mult",
+      "kind": "text",
+      "x": 1229.5,
+      "y": 1239,
+      "w": 140,
+      "h": 64,
+      "lines": [
+        "1"
+      ],
+      "align": "center",
+      "color": "#004387"
+    },
+    {
+      "id": "association_02_role",
+      "kind": "text",
+      "x": 1373.6,
+      "y": 871,
+      "w": 220,
+      "h": 64,
+      "lines": [
+        "hub"
+      ],
+      "align": "center",
+      "color": "#004387"
+    },
+    {
+      "id": "association_03_source_mult",
+      "kind": "text",
+      "x": 485.79999999999995,
+      "y": 689,
+      "w": 140,
+      "h": 64,
+      "lines": [
+        "1"
+      ],
+      "align": "center",
+      "color": "#004387"
+    },
+    {
+      "id": "association_03_target_mult",
+      "kind": "text",
+      "x": 2052.5,
+      "y": 689,
+      "w": 140,
+      "h": 64,
+      "lines": [
+        "1"
+      ],
+      "align": "center",
+      "color": "#004387"
+    },
+    {
+      "id": "association_03_role",
+      "kind": "text",
+      "x": 1209.15,
+      "y": 951,
+      "w": 260,
+      "h": 64,
+      "lines": [
+        "payment"
+      ],
+      "align": "center",
+      "color": "#004387"
+    },
+    {
+      "id": "association_04_source_mult",
+      "kind": "text",
+      "x": 644.4,
+      "y": 689,
+      "w": 140,
+      "h": 64,
+      "lines": [
+        "1"
+      ],
+      "align": "center",
+      "color": "#004387"
+    },
+    {
+      "id": "association_04_target_mult",
+      "kind": "text",
+      "x": 1097.3333333333333,
+      "y": 689,
+      "w": 140,
+      "h": 64,
+      "lines": [
+        "0..1"
+      ],
+      "align": "center",
+      "color": "#004387"
+    },
+    {
+      "id": "association_04_role",
+      "kind": "text",
+      "x": 795.8666666666666,
+      "y": 1031,
+      "w": 290,
+      "h": 64,
+      "lines": [
+        "delivery"
+      ],
+      "align": "center",
+      "color": "#004387"
+    },
+    {
+      "id": "association_05_source_mult",
+      "kind": "text",
+      "x": 1361.6666666666665,
+      "y": 689,
+      "w": 140,
+      "h": 64,
+      "lines": [
+        "0..*"
+      ],
+      "align": "center",
+      "color": "#004387"
+    },
+    {
+      "id": "association_05_target_mult",
+      "kind": "text",
+      "x": 2052.5,
+      "y": 1239,
+      "w": 140,
+      "h": 64,
+      "lines": [
+        "0..1"
+      ],
+      "align": "center",
+      "color": "#004387"
+    },
+    {
+      "id": "association_05_role",
+      "kind": "text",
+      "x": 1735.8333333333333,
+      "y": 1111,
+      "w": 530,
+      "h": 64,
+      "lines": [
+        "assigned shipper"
+      ],
+      "align": "center",
+      "color": "#004387"
+    },
+    {
+      "id": "association_06_source_mult",
+      "kind": "text",
+      "x": 2184.6666666666665,
+      "y": 1791,
+      "w": 140,
+      "h": 64,
+      "lines": [
+        "0..*"
+      ],
+      "align": "center",
+      "color": "#004387"
+    },
+    {
+      "id": "association_06_target_mult",
+      "kind": "text",
+      "x": 1229.5,
+      "y": 1791,
+      "w": 140,
+      "h": 64,
+      "lines": [
+        "0..1"
+      ],
+      "align": "center",
+      "color": "#004387"
+    },
+    {
+      "id": "association_06_role",
+      "kind": "text",
+      "x": 1587.0833333333333,
+      "y": 1973,
+      "w": 380,
+      "h": 64,
+      "lines": [
+        "kitchen hub"
+      ],
+      "align": "center",
+      "color": "#004387"
     }
   ],
   "edges": [
@@ -190,19 +460,19 @@
       "points": [
         [
           2122.5,
-          1347
+          1867
         ],
         [
           2122.5,
-          1362.0
+          2162.0
         ],
         [
           476.5,
-          1362.0
+          2162.0
         ],
         [
           476.5,
-          1377
+          2177
         ]
       ],
       "dashed": true,
@@ -217,23 +487,28 @@
       "target": "UserAccount",
       "points": [
         [
-          873,
-          1071.0
+          476.5,
+          1867
         ],
         [
-          1299.5,
-          1071.0
+          476.5,
+          1967
         ],
         [
-          1726,
-          1071.0
+          1990.3333333333333,
+          1967
+        ],
+        [
+          1990.3333333333333,
+          1867
         ]
       ],
       "dashed": false,
-      "arrow": "block",
+      "arrow": "open",
       "color": "#004387",
       "width": 2,
-      "label": ""
+      "label": "",
+      "association": true
     },
     {
       "id": "dep_02",
@@ -241,27 +516,36 @@
       "target": "Customer",
       "points": [
         [
-          476.5,
+          238.6,
           765
         ],
         [
-          476.5,
-          780.0
+          238.6,
+          865
+        ],
+        [
+          2570,
+          865
+        ],
+        [
+          2570,
+          1215
         ],
         [
           476.5,
-          780.0
+          1215
         ],
         [
           476.5,
-          795
+          1315
         ]
       ],
       "dashed": false,
-      "arrow": "block",
+      "arrow": "open",
       "color": "#004387",
       "width": 2,
-      "label": ""
+      "label": "",
+      "association": true
     },
     {
       "id": "dep_03",
@@ -269,27 +553,36 @@
       "target": "Hub",
       "points": [
         [
-          476.5,
+          397.2,
           765
         ],
         [
-          476.5,
-          780.0
+          397.2,
+          945
+        ],
+        [
+          2570,
+          945
+        ],
+        [
+          2570,
+          1215
         ],
         [
           1299.5,
-          780.0
+          1215
         ],
         [
           1299.5,
-          795
+          1315
         ]
       ],
       "dashed": false,
-      "arrow": "block",
+      "arrow": "open",
       "color": "#004387",
       "width": 2,
-      "label": ""
+      "label": "",
+      "association": true
     },
     {
       "id": "dep_04",
@@ -297,23 +590,28 @@
       "target": "Payment",
       "points": [
         [
-          873,
-          489.0
+          555.8,
+          765
         ],
         [
-          1299.5,
-          489.0
+          555.8,
+          1025
         ],
         [
-          1726,
-          489.0
+          2122.5,
+          1025
+        ],
+        [
+          2122.5,
+          765
         ]
       ],
       "dashed": false,
-      "arrow": "block",
+      "arrow": "open",
       "color": "#004387",
       "width": 2,
-      "label": ""
+      "label": "",
+      "association": true
     },
     {
       "id": "dep_05",
@@ -321,23 +619,28 @@
       "target": "Delivery",
       "points": [
         [
-          873,
-          489.0
+          714.4,
+          765
         ],
         [
-          888.0,
-          489.0
+          714.4,
+          1105
         ],
         [
-          903,
-          489.0
+          1167.3333333333333,
+          1105
+        ],
+        [
+          1167.3333333333333,
+          765
         ]
       ],
       "dashed": false,
-      "arrow": "block",
+      "arrow": "open",
       "color": "#004387",
       "width": 2,
-      "label": ""
+      "label": "",
+      "association": true
     },
     {
       "id": "dep_06",
@@ -345,27 +648,36 @@
       "target": "UserAccount",
       "points": [
         [
-          1299.5,
+          1431.6666666666665,
           765
         ],
         [
-          1299.5,
-          780.0
+          1431.6666666666665,
+          1185
+        ],
+        [
+          2570,
+          1185
+        ],
+        [
+          2570,
+          1215
         ],
         [
           2122.5,
-          780.0
+          1215
         ],
         [
           2122.5,
-          795
+          1315
         ]
       ],
       "dashed": false,
-      "arrow": "block",
+      "arrow": "open",
       "color": "#004387",
       "width": 2,
-      "label": ""
+      "label": "",
+      "association": true
     },
     {
       "id": "dep_07",
@@ -373,23 +685,28 @@
       "target": "Hub",
       "points": [
         [
-          1726,
-          1071.0
+          2254.6666666666665,
+          1867
         ],
         [
-          1711.0,
-          1071.0
+          2254.6666666666665,
+          2047
         ],
         [
-          1696,
-          1071.0
+          1299.5,
+          2047
+        ],
+        [
+          1299.5,
+          1867
         ]
       ],
       "dashed": false,
-      "arrow": "block",
+      "arrow": "open",
       "color": "#004387",
       "width": 2,
-      "label": ""
+      "label": "",
+      "association": true
     }
   ],
   "footer": "Author: 722I0004 · AI-assisted (Codex) · Static design at C0; † targets remain for P4.",
@@ -655,12 +972,140 @@
         "status": "MATCH",
         "evidence": "domain model 2.1.7; code identifiers / typed fields"
       }
+    ],
+    "association_end_labels": [
+      {
+        "source": "Customer",
+        "target": "UserAccount",
+        "kind": "association",
+        "role": "linked account",
+        "native_edge_id": "dep_01",
+        "source_label_id": "association_00_source_mult",
+        "target_label_id": "association_00_target_mult",
+        "role_label_id": "association_00_role",
+        "source_endpoint": [
+          476.5,
+          1867
+        ],
+        "target_endpoint": [
+          1990.3333333333333,
+          1867
+        ]
+      },
+      {
+        "source": "Order",
+        "target": "Customer",
+        "kind": "association",
+        "role": "customer",
+        "native_edge_id": "dep_02",
+        "source_label_id": "association_01_source_mult",
+        "target_label_id": "association_01_target_mult",
+        "role_label_id": "association_01_role",
+        "source_endpoint": [
+          238.6,
+          765
+        ],
+        "target_endpoint": [
+          476.5,
+          1315
+        ]
+      },
+      {
+        "source": "Order",
+        "target": "Hub",
+        "kind": "association",
+        "role": "hub",
+        "native_edge_id": "dep_03",
+        "source_label_id": "association_02_source_mult",
+        "target_label_id": "association_02_target_mult",
+        "role_label_id": "association_02_role",
+        "source_endpoint": [
+          397.2,
+          765
+        ],
+        "target_endpoint": [
+          1299.5,
+          1315
+        ]
+      },
+      {
+        "source": "Order",
+        "target": "Payment",
+        "kind": "association",
+        "role": "payment",
+        "native_edge_id": "dep_04",
+        "source_label_id": "association_03_source_mult",
+        "target_label_id": "association_03_target_mult",
+        "role_label_id": "association_03_role",
+        "source_endpoint": [
+          555.8,
+          765
+        ],
+        "target_endpoint": [
+          2122.5,
+          765
+        ]
+      },
+      {
+        "source": "Order",
+        "target": "Delivery",
+        "kind": "association",
+        "role": "delivery",
+        "native_edge_id": "dep_05",
+        "source_label_id": "association_04_source_mult",
+        "target_label_id": "association_04_target_mult",
+        "role_label_id": "association_04_role",
+        "source_endpoint": [
+          714.4,
+          765
+        ],
+        "target_endpoint": [
+          1167.3333333333333,
+          765
+        ]
+      },
+      {
+        "source": "Delivery",
+        "target": "UserAccount",
+        "kind": "association",
+        "role": "assigned shipper",
+        "native_edge_id": "dep_06",
+        "source_label_id": "association_05_source_mult",
+        "target_label_id": "association_05_target_mult",
+        "role_label_id": "association_05_role",
+        "source_endpoint": [
+          1431.6666666666665,
+          765
+        ],
+        "target_endpoint": [
+          2122.5,
+          1315
+        ]
+      },
+      {
+        "source": "UserAccount",
+        "target": "Hub",
+        "kind": "association",
+        "role": "kitchen hub",
+        "native_edge_id": "dep_07",
+        "source_label_id": "association_06_source_mult",
+        "target_label_id": "association_06_target_mult",
+        "role_label_id": "association_06_role",
+        "source_endpoint": [
+          2254.6666666666665,
+          1867
+        ],
+        "target_endpoint": [
+          1299.5,
+          1867
+        ]
+      }
     ]
   },
   "render_receipt": {
     "canvas": [
       2600,
-      2272
+      3072
     ],
     "minimum_font_px": 50,
     "placed_width_mm": 170,

@@ -5,7 +5,7 @@
   "figure": "4.3.2.5.OP-05.B",
   "part": "Part B",
   "scope": "Same request and transaction across all parts; focus 2/7. Mechanical reads: responsibility table (report 4.3.2).",
-  "continuation": "From seqdao_uc05_acceptReplacement_PartA → this part → seqdao_uc05_acceptReplacement_PartC.",
+  "continuation": "Guard/stale refusal break END. Invalid target enters Part C; valid target skips Part C and continues Part D.",
   "transaction_summary": "Transaction key (whole request): BEGIN IMMEDIATE → checked rowcount / inserts → COMMIT; failure → ROLLBACK if active. Busy: retry, nothing changed.",
   "target_note": "† design target, not yet in code at C0: F-02; F-05; P2-S09; P2-S11; P2-S13; P3-S03; P2-S12 connection settings; MATCH is Static only.",
   "phase3": {
@@ -81,8 +81,16 @@
         "receiver_signature": "get_open(self, order_id: int) -> Optional[ReplacementOffer]",
         "status": "MATCH",
         "P4_input": "",
-        "y": 341,
-        "edge_id": "message0"
+        "y": 270.84,
+        "edge_id": "message0",
+        "label_box": [
+          65,
+          232,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message0",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "ctrl",
@@ -96,8 +104,16 @@
         "base_label": "Read ReplacementOffer.id, order_line_id, new_menu_item_id, new_item_name, new_unit_price and state; values from exact open offer.",
         "fragment": false,
         "draw_arrow": true,
-        "y": 466,
-        "edge_id": "message1"
+        "y": 336.67999999999995,
+        "edge_id": "message1",
+        "label_box": [
+          65,
+          297.84,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message1",
+        "arrow_style": "open_attribute_note"
       },
       {
         "from": "obj5",
@@ -111,22 +127,62 @@
         "base_label": "SQL note: SELECT replacement_offer by order_id AND state = 'OFFERED'.",
         "fragment": false,
         "draw_arrow": true,
-        "y": 591,
-        "edge_id": "message2"
+        "y": 402.5199999999999,
+        "edge_id": "message2",
+        "label_box": [
+          65,
+          363.67999999999995,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message2",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "ctrl",
-        "to": "ctrl",
+        "to": "db",
         "method": "",
         "kind": "note",
         "arguments": "",
         "guard": "",
         "PC_MG": "UC05-PC04; UC05-MG01",
-        "label": "† Require owner + Order PLACED + exact open offer.id = offer_id. Wrong owner / missing / stale / repeated answer → refuse unchanged; ROLLBACK if active; UC05-MG01.",
-        "base_label": "† Require owner + Order PLACED + exact open offer.id = offer_id. Wrong owner / missing / stale / repeated answer → refuse unchanged; ROLLBACK if active; UC05-MG01.",
-        "fragment": true,
-        "draw_arrow": false,
-        "y": 716
+        "label": "ROLLBACK† if active: wrong owner, non-PLACED order, missing/stale/non-exact open offer; UC05-MG01.",
+        "base_label": "ROLLBACK† if active: wrong owner, non-PLACED order, missing/stale/non-exact open offer; UC05-MG01.",
+        "fragment": false,
+        "draw_arrow": true,
+        "y": 506.1999999999999,
+        "label_box": [
+          65,
+          467.3599999999999,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message3",
+        "edge_id": "message3",
+        "arrow_style": "closed_filled_synchronous"
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC05-PC04; UC05-MG01",
+        "label": "Guard/stale refusal; Order/Line/Payment unchanged; END request.",
+        "base_label": "Guard/stale refusal; Order/Line/Payment unchanged; END request.",
+        "fragment": false,
+        "draw_arrow": true,
+        "y": 572.0399999999998,
+        "label_box": [
+          65,
+          533.1999999999998,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message4",
+        "edge_id": "message4",
+        "arrow_style": "dashed_open_reply"
       },
       {
         "from": "ctrl",
@@ -143,8 +199,16 @@
         "receiver_signature": "get_available_item(self, hub_id: int, menu_item_id: int) -> Optional[MenuItem]",
         "status": "MATCH",
         "P4_input": "",
-        "y": 841,
-        "edge_id": "message4"
+        "y": 680.7199999999999,
+        "edge_id": "message5",
+        "label_box": [
+          65,
+          641.8799999999999,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message5",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "obj6",
@@ -158,8 +222,16 @@
         "base_label": "SQL note: SELECT hub_menu_item + menu_item + brand; listed, is_available=1 and both archive timestamps NULL.",
         "fragment": false,
         "draw_arrow": true,
-        "y": 966,
-        "edge_id": "message5"
+        "y": 746.56,
+        "edge_id": "message6",
+        "label_box": [
+          65,
+          707.7199999999999,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message6",
+        "arrow_style": "closed_filled_synchronous"
       }
     ],
     "elements": [
@@ -240,6 +312,42 @@
         "values": [
           "OFFERED"
         ]
+      }
+    ],
+    "interaction_fragments": [
+      {
+        "id": "fragment_seqdao_uc05_acceptReplacement_PartB_1",
+        "operator": "break",
+        "guard": "owner + PLACED + exact open OFFERED guard fails; END request",
+        "start_index": 3,
+        "end_index": 4,
+        "message_indices": [
+          3,
+          4
+        ],
+        "x": 25,
+        "y": 429.5199999999999,
+        "w": 1550,
+        "h": 169.51999999999992,
+        "depth": 0,
+        "guard_height": 32.84
+      },
+      {
+        "id": "fragment_seqdao_uc05_acceptReplacement_PartB_2",
+        "operator": "opt",
+        "guard": "owner + PLACED + exact open offer verified; recheck target eligibility F-05",
+        "start_index": 5,
+        "end_index": 6,
+        "message_indices": [
+          5,
+          6
+        ],
+        "x": 25,
+        "y": 604.0399999999998,
+        "w": 1550,
+        "h": 169.5200000000001,
+        "depth": 0,
+        "guard_height": 32.84
       }
     ]
   },
@@ -322,45 +430,69 @@
         55.67999999999999
       ],
       [
-        45,
-        242,
-        1510,
+        31,
+        430.5199999999999,
+        84,
         27.839999999999996
       ],
       [
-        45,
-        367,
-        1510,
+        127,
+        430.5199999999999,
+        1438,
         27.839999999999996
       ],
       [
-        45,
-        492,
-        1510,
+        31,
+        605.0399999999998,
+        84,
         27.839999999999996
       ],
       [
-        42,
-        617,
-        56,
+        127,
+        605.0399999999998,
+        1438,
         27.839999999999996
       ],
       [
-        110,
-        622,
-        1440,
-        55.67999999999999
-      ],
-      [
-        45,
-        742,
-        1510,
+        65,
+        232,
+        1470,
         27.839999999999996
       ],
       [
-        45,
-        867,
-        1510,
+        65,
+        297.84,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        363.67999999999995,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        467.3599999999999,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        533.1999999999998,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        641.8799999999999,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        707.7199999999999,
+        1470,
         27.839999999999996
       ],
       [
@@ -402,13 +534,15 @@
         "points": [
           [
             508.57142857142856,
-            341
+            270.84
           ],
           [
             1091.4285714285716,
-            341
+            270.84
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message1",
@@ -417,13 +551,15 @@
         "points": [
           [
             508.57142857142856,
-            466
+            336.67999999999995
           ],
           [
             897.1428571428571,
-            466
+            336.67999999999995
           ]
-        ]
+        ],
+        "filled": false,
+        "dashed": false
       },
       {
         "id": "message2",
@@ -432,13 +568,32 @@
         "points": [
           [
             1091.4285714285716,
-            591
+            402.5199999999999
           ],
           [
             1480.0,
-            591
+            402.5199999999999
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
+      },
+      {
+        "id": "message3",
+        "source": "m3s",
+        "target": "m3t",
+        "points": [
+          [
+            508.57142857142856,
+            506.1999999999999
+          ],
+          [
+            1480.0,
+            506.1999999999999
+          ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message4",
@@ -447,13 +602,15 @@
         "points": [
           [
             508.57142857142856,
-            841
+            572.0399999999998
           ],
           [
-            1285.7142857142858,
-            841
+            314.2857142857143,
+            572.0399999999998
           ]
-        ]
+        ],
+        "filled": false,
+        "dashed": true
       },
       {
         "id": "message5",
@@ -461,16 +618,43 @@
         "target": "m5t",
         "points": [
           [
+            508.57142857142856,
+            680.7199999999999
+          ],
+          [
             1285.7142857142858,
-            966
+            680.7199999999999
+          ]
+        ],
+        "filled": true,
+        "dashed": false
+      },
+      {
+        "id": "message6",
+        "source": "m6s",
+        "target": "m6t",
+        "points": [
+          [
+            1285.7142857142858,
+            746.56
           ],
           [
             1480.0,
-            966
+            746.56
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       }
     ],
     "author_native_cell": true
+  },
+  "independent_review_repair": {
+    "findings": [
+      "R1",
+      "R4"
+    ],
+    "preserved_source": "D:\\RAD\\FINAL\\Part2\\notes\\P3_trash\\P3-F\\independent_review_R1_R4_20261025_192108\\UC-05\\seqdao_uc05_acceptReplacement_PartB.json",
+    "scope": "Actual guarded regions and synchronous arrowheads; no shared-model/app/status changes."
   }
 }

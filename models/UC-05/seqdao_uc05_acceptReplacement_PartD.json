@@ -5,7 +5,7 @@
   "figure": "4.3.2.5.OP-05.D",
   "part": "Part D",
   "scope": "Same request and transaction across all parts; focus 4/7. Mechanical reads: responsibility table (report 4.3.2).",
-  "continuation": "From seqdao_uc05_acceptReplacement_PartC → this part → seqdao_uc05_acceptReplacement_PartE.",
+  "continuation": "VALID target only → Part E if all saves True; any failure → Part G. Invalid-target Part C break already END.",
   "transaction_summary": "Transaction key (whole request): BEGIN IMMEDIATE → checked rowcount / inserts → COMMIT; failure → ROLLBACK if active. Busy: retry, nothing changed.",
   "target_note": "† design target, not yet in code at C0: F-02; F-05; P2-S09; P2-S11; P2-S13; P3-S03; P2-S12 connection settings; MATCH is Static only.",
   "phase3": {
@@ -60,13 +60,19 @@
         "method": "",
         "kind": "note",
         "arguments": "",
-        "guard": "target valid",
+        "guard": "",
         "PC_MG": "UC05-PC04; UC05-MG01",
-        "label": "Valid branch below is mutually exclusive with invalid-target branch; same request, no second system operation.",
-        "base_label": "Valid branch below is mutually exclusive with invalid-target branch; same request, no second system operation.",
-        "fragment": true,
+        "label": "Continue VALID-target operand from Part B. The invalid-target Part C operand exits; it cannot fall through here.",
+        "base_label": "Continue VALID-target operand from Part B. The invalid-target Part C operand exits; it cannot fall through here.",
+        "fragment": false,
         "draw_arrow": false,
-        "y": 341
+        "y": 297.68,
+        "label_box": [
+          65,
+          273.84000000000003,
+          1470,
+          27.84
+        ]
       },
       {
         "from": "ctrl",
@@ -83,8 +89,16 @@
         "receiver_signature": "replace_line(self, line_id: int, menu_item_id: int, item_name: str, unit_price: int) -> None",
         "status": "MATCH",
         "P4_input": "",
-        "y": 466,
-        "edge_id": "message1"
+        "y": 358.52,
+        "edge_id": "message1",
+        "label_box": [
+          65,
+          319.68,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message1",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "ctrl",
@@ -98,7 +112,13 @@
         "base_label": "Whole line, unchanged quantity, offered price/name. Dnew = min(Dold, Snew); F and Q unchanged; Tnew = Snew − Dnew + F − Q. Read Order.total as property. Order stays PLACED; no auto-confirm.",
         "fragment": false,
         "draw_arrow": false,
-        "y": 591
+        "y": 441.2,
+        "label_box": [
+          65,
+          389.52,
+          1470,
+          55.68
+        ]
       },
       {
         "from": "ctrl",
@@ -115,8 +135,16 @@
         "receiver_signature": "save_lines_and_totals(self, order: Order) -> bool",
         "status": "P4-TARGET",
         "P4_input": "P2-S09; P2-S11; P3-S03",
-        "y": 716,
-        "edge_id": "message3"
+        "y": 502.03999999999996,
+        "edge_id": "message3",
+        "label_box": [
+          65,
+          463.2,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message3",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "obj4",
@@ -130,8 +158,16 @@
         "base_label": "SQL note: † UPDATE each order_line by id + order_id; UPDATE orders by id AND state = ? (PLACED); save Snew,Dnew,Tnew.",
         "fragment": false,
         "draw_arrow": true,
-        "y": 841,
-        "edge_id": "message4"
+        "y": 567.88,
+        "edge_id": "message4",
+        "label_box": [
+          65,
+          529.04,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message4",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "obj4",
@@ -141,12 +177,20 @@
         "arguments": "",
         "guard": "",
         "PC_MG": "UC05-PC04; UC05-MG01",
-        "label": "† every intended line/header rowcount == 1; check bool; any 0 / False → ROLLBACK",
-        "base_label": "† every intended line/header rowcount == 1; check bool; any 0 / False → ROLLBACK",
+        "label": "† every intended line/header rowcount == 1; check bool; any 0 / False → ROLLBACK False breaks to Part G; only True continues Part E.",
+        "base_label": "† every intended line/header rowcount == 1; check bool; any 0 / False → ROLLBACK False breaks to Part G; only True continues Part E.",
         "fragment": false,
         "draw_arrow": false,
-        "y": 966,
-        "edge_id": "message5"
+        "y": 633.72,
+        "edge_id": "message5",
+        "label_box": [
+          65,
+          594.88,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message5",
+        "arrow_style": "dashed_open_reply"
       }
     ],
     "elements": [
@@ -210,6 +254,27 @@
         "values": [
           "PLACED"
         ]
+      }
+    ],
+    "interaction_fragments": [
+      {
+        "id": "fragment_seqdao_uc05_acceptReplacement_PartD_1",
+        "operator": "opt",
+        "guard": "target VALID + owner/PLACED/exact offer; continue valid operand to Parts E/F",
+        "start_index": 0,
+        "end_index": 5,
+        "message_indices": [
+          1,
+          3,
+          4,
+          5
+        ],
+        "x": 25,
+        "y": 232,
+        "w": 1550,
+        "h": 428.72,
+        "depth": 0,
+        "guard_height": 32.84
       }
     ]
   },
@@ -280,45 +345,51 @@
         55.67999999999999
       ],
       [
-        42,
-        242,
-        56,
+        31,
+        233,
+        84,
         27.839999999999996
       ],
       [
-        110,
-        247,
-        1440,
+        127,
+        233,
+        1438,
         27.839999999999996
       ],
       [
-        45,
-        367,
-        1510,
+        65,
+        273.84000000000003,
+        1470,
         27.839999999999996
       ],
       [
-        45,
-        497,
-        1510,
+        65,
+        319.68,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        389.52,
+        1470,
         55.67999999999999
       ],
       [
-        45,
-        617,
-        1510,
+        65,
+        463.2,
+        1470,
         27.839999999999996
       ],
       [
-        45,
-        742,
-        1510,
+        65,
+        529.04,
+        1470,
         27.839999999999996
       ],
       [
-        45,
-        867,
-        1510,
+        65,
+        594.88,
+        1470,
         27.839999999999996
       ],
       [
@@ -360,13 +431,15 @@
         "points": [
           [
             664.0,
-            466
+            358.52
           ],
           [
             936.0,
-            466
+            358.52
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message3",
@@ -375,13 +448,15 @@
         "points": [
           [
             664.0,
-            716
+            502.03999999999996
           ],
           [
             1208.0,
-            716
+            502.03999999999996
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message4",
@@ -390,13 +465,15 @@
         "points": [
           [
             1208.0,
-            841
+            567.88
           ],
           [
             1480.0,
-            841
+            567.88
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message5",
@@ -405,15 +482,25 @@
         "points": [
           [
             1208.0,
-            966
+            633.72
           ],
           [
             664.0,
-            966
+            633.72
           ]
-        ]
+        ],
+        "filled": false,
+        "dashed": true
       }
     ],
     "author_native_cell": true
+  },
+  "independent_review_repair": {
+    "findings": [
+      "R1",
+      "R4"
+    ],
+    "preserved_source": "D:\\RAD\\FINAL\\Part2\\notes\\P3_trash\\P3-F\\independent_review_R1_R4_20261025_192108\\UC-05\\seqdao_uc05_acceptReplacement_PartD.json",
+    "scope": "Actual guarded regions and synchronous arrowheads; no shared-model/app/status changes."
   }
 }

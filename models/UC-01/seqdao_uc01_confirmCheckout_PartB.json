@@ -5,7 +5,7 @@
   "figure": "4.3.2.1.OP-01.B",
   "part": "Part B",
   "scope": "Same request and transaction across all parts; focus 2/7. Mechanical reads: responsibility table (report 4.3.2).",
-  "continuation": "From seqdao_uc01_confirmCheckout_PartA → this part → seqdao_uc01_confirmCheckout_PartC.",
+  "continuation": "Existing-token break END; only new token continues Part C. Failures continue Part G; no replay authorization.",
   "transaction_summary": "Transaction key (whole request): BEGIN IMMEDIATE → checked rowcount / inserts → COMMIT; failure → ROLLBACK if active. Busy: retry, nothing changed.",
   "target_note": "† design target, not yet in code at C0: F-04; F-07; P2-S05; P2-S13; P2-S12 connection settings; MATCH is Static only.",
   "phase3": {
@@ -72,8 +72,16 @@
         "base_label": "SQL note: SELECT orders by idempotency_token; _load SELECT order_line snapshots.",
         "fragment": false,
         "draw_arrow": true,
-        "y": 341,
-        "edge_id": "message0"
+        "y": 270.84,
+        "edge_id": "message0",
+        "label_box": [
+          65,
+          232,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message0",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "obj4",
@@ -87,22 +95,39 @@
         "base_label": "existing Order | None; token lookup precedes authorization",
         "fragment": false,
         "draw_arrow": false,
-        "y": 466,
-        "edge_id": "message1"
+        "y": 336.67999999999995,
+        "edge_id": "message1",
+        "label_box": [
+          65,
+          297.84,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message1",
+        "arrow_style": "dashed_open_reply"
       },
       {
         "from": "ctrl",
-        "to": "ctrl",
+        "to": "view",
         "method": "",
-        "kind": "note",
+        "kind": "return",
         "arguments": "",
-        "guard": "token exists",
+        "guard": "",
         "PC_MG": "UC01-PC01; UC01-PC02; UC01-PC03; UC01-PC04; UC01-PC05; UC01-PC06; UC01-MG01; UC01-MG02; UC01-MG03",
-        "label": "Existing own token: return original order/receipt; COMMIT read path; no authorization, repricing or INSERT. Foreign token: refuse without revealing order; ROLLBACK if active.",
-        "base_label": "Existing own token: return original order/receipt; COMMIT read path; no authorization, repricing or INSERT. Foreign token: refuse without revealing order; ROLLBACK if active.",
-        "fragment": true,
-        "draw_arrow": false,
-        "y": 591
+        "label": "Own token: COMMIT read path and return original receipt. Foreign token: ROLLBACK if active and refuse. END; no authorization, repricing or INSERT.",
+        "base_label": "Own token: COMMIT read path and return original receipt. Foreign token: ROLLBACK if active and refuse. END; no authorization, repricing or INSERT.",
+        "fragment": false,
+        "draw_arrow": true,
+        "y": 468.2,
+        "label_box": [
+          65,
+          401.52,
+          1470,
+          55.68
+        ],
+        "native_edge_id": "message2",
+        "edge_id": "message2",
+        "arrow_style": "dashed_open_reply"
       },
       {
         "from": "ctrl",
@@ -119,8 +144,16 @@
         "receiver_signature": "_build_quote(self, customer: Customer, hub_id: int, address_id: Optional[int], quantities: Mapping[int, str], voucher_code: Optional[str]) -> Quote",
         "status": "MATCH",
         "P4_input": "",
-        "y": 716,
-        "edge_id": "message3"
+        "y": 576.88,
+        "edge_id": "message3",
+        "label_box": [
+          65,
+          538.04,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message3",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "ctrl",
@@ -137,8 +170,16 @@
         "receiver_signature": "get_address(self, address_id: int, customer_id: int) -> Optional[Address]",
         "status": "MATCH",
         "P4_input": "",
-        "y": 841,
-        "edge_id": "message4"
+        "y": 649.72,
+        "edge_id": "message4",
+        "label_box": [
+          65,
+          610.88,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message4",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "obj5",
@@ -152,8 +193,16 @@
         "base_label": "SQL note: SELECT address: id + owner + archived_at IS NULL.",
         "fragment": false,
         "draw_arrow": true,
-        "y": 966,
-        "edge_id": "message5"
+        "y": 715.5600000000001,
+        "edge_id": "message5",
+        "label_box": [
+          65,
+          676.72,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message5",
+        "arrow_style": "closed_filled_synchronous"
       }
     ],
     "elements": [
@@ -206,7 +255,43 @@
         "allowed_on_layered_diagram": true
       }
     ],
-    "states": []
+    "states": [],
+    "interaction_fragments": [
+      {
+        "id": "fragment_seqdao_uc01_confirmCheckout_PartB_1",
+        "operator": "break",
+        "guard": "token exists (own replay or foreign refusal); END this request",
+        "start_index": 2,
+        "end_index": 2,
+        "message_indices": [
+          2
+        ],
+        "x": 25,
+        "y": 363.67999999999995,
+        "w": 1550,
+        "h": 131.52000000000004,
+        "depth": 0,
+        "guard_height": 32.84
+      },
+      {
+        "id": "fragment_seqdao_uc01_confirmCheckout_PartB_2",
+        "operator": "opt",
+        "guard": "new token only; existing-token break skips all remaining parts",
+        "start_index": 3,
+        "end_index": 5,
+        "message_indices": [
+          3,
+          4,
+          5
+        ],
+        "x": 25,
+        "y": 500.2,
+        "w": 1550,
+        "h": 242.36000000000007,
+        "depth": 0,
+        "guard_height": 32.84
+      }
+    ]
   },
   "placed_width_mm": 230,
   "source_design_sequences": [
@@ -281,45 +366,63 @@
         55.67999999999999
       ],
       [
-        45,
-        242,
-        1510,
+        31,
+        364.67999999999995,
+        84,
         27.839999999999996
       ],
       [
-        45,
-        367,
-        1510,
+        127,
+        364.67999999999995,
+        1438,
         27.839999999999996
       ],
       [
-        42,
-        492,
-        56,
+        31,
+        501.2,
+        84,
         27.839999999999996
       ],
       [
-        110,
-        497,
-        1440,
+        127,
+        501.2,
+        1438,
+        27.839999999999996
+      ],
+      [
+        65,
+        232,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        297.84,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        401.52,
+        1470,
         55.67999999999999
       ],
       [
-        45,
-        617,
-        1510,
+        65,
+        538.04,
+        1470,
         27.839999999999996
       ],
       [
-        45,
-        742,
-        1510,
+        65,
+        610.88,
+        1470,
         27.839999999999996
       ],
       [
-        45,
-        867,
-        1510,
+        65,
+        676.72,
+        1470,
         27.839999999999996
       ],
       [
@@ -361,13 +464,15 @@
         "points": [
           [
             1026.6666666666665,
-            341
+            270.84
           ],
           [
             1480.0,
-            341
+            270.84
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message1",
@@ -376,13 +481,32 @@
         "points": [
           [
             1026.6666666666665,
-            466
+            336.67999999999995
           ],
           [
             573.3333333333333,
-            466
+            336.67999999999995
           ]
-        ]
+        ],
+        "filled": false,
+        "dashed": true
+      },
+      {
+        "id": "message2",
+        "source": "m2s",
+        "target": "m2t",
+        "points": [
+          [
+            573.3333333333333,
+            468.2
+          ],
+          [
+            346.66666666666663,
+            468.2
+          ]
+        ],
+        "filled": false,
+        "dashed": true
       },
       {
         "id": "message3",
@@ -391,21 +515,23 @@
         "points": [
           [
             573.3333333333333,
-            716
+            576.88
           ],
           [
             608.3333333333333,
-            716
+            576.88
           ],
           [
             608.3333333333333,
-            738
+            598.88
           ],
           [
             573.3333333333333,
-            738
+            598.88
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message4",
@@ -414,13 +540,15 @@
         "points": [
           [
             573.3333333333333,
-            841
+            649.72
           ],
           [
             1253.3333333333333,
-            841
+            649.72
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message5",
@@ -429,15 +557,25 @@
         "points": [
           [
             1253.3333333333333,
-            966
+            715.5600000000001
           ],
           [
             1480.0,
-            966
+            715.5600000000001
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       }
     ],
     "author_native_cell": true
+  },
+  "independent_review_repair": {
+    "findings": [
+      "R1",
+      "R4"
+    ],
+    "preserved_source": "D:\\RAD\\FINAL\\Part2\\notes\\P3_trash\\P3-F\\independent_review_R1_R4_20261025_192108\\UC-01\\seqdao_uc01_confirmCheckout_PartB.json",
+    "scope": "Actual guarded regions and synchronous arrowheads; no shared-model/app/status changes."
   }
 }

@@ -3,7 +3,7 @@
   "stem": "seq_uc01_confirmCheckout_PartB",
   "title": "UC-01 confirmCheckout — Part B",
   "figure": "3.1.4.OP-01B",
-  "caption": "UC-01 confirmCheckout design sequence",
+  "caption": "UC-01 confirmCheckout — Part B",
   "P4_input": "F-04; F-07; P2-S05; P2-S13",
   "phase3": {
     "diagram_type": "sequence",
@@ -32,99 +32,126 @@
         "label": "PlaceOrderController"
       },
       {
-        "id": "sim",
-        "class": "PaymentGatewaySimulator",
-        "role": "gateway",
-        "label": "«gateway»\nPaymentGatewaySimulator"
-      },
-      {
-        "id": "order",
-        "class": "Order",
+        "id": "quote",
+        "class": "Quote",
         "role": "domain",
-        "label": "Order"
-      },
-      {
-        "id": "pay",
-        "class": "Payment",
-        "role": "domain",
-        "label": "Payment"
+        "label": "Quote"
       }
     ],
     "messages": [
       {
         "from": "ctrl",
-        "to": "sim",
-        "method": "authorise",
+        "to": "ctrl",
+        "method": "_build_quote",
         "kind": "call",
-        "arguments": "quote.total, payment.option, payment.outcome",
-        "guard": "unused eligible ONLINE",
+        "arguments": "customer, hub_id, address_id, quantities, voucher_code",
+        "guard": "unused token",
         "PC_MG": "",
-        "label": "authorise(quote.total, option, outcome) [ONLINE]",
-        "y": 483,
-        "receiver_signature": "authorise(self, amount: int, option: OnlineOption, outcome: str) -> Authorisation",
+        "label": "_build_quote(customer, hub_id, address_id, quantities, voucher_code)",
+        "y": 420,
+        "receiver_signature": "_build_quote(self, customer: Customer, hub_id: int, address_id: Optional[int], quantities: Mapping[int, str], voucher_code: Optional[str]) -> Quote",
         "status": "MATCH",
-        "P4_input": ""
+        "P4_input": "",
+        "native_edge_id": "message_000",
+        "source_anchor_id": "message_000_source",
+        "target_anchor_id": "message_000_target",
+        "native_points": [
+          [
+            1036.6666666666665,
+            420
+          ],
+          [
+            1081.6666666666665,
+            420
+          ],
+          [
+            1081.6666666666665,
+            445
+          ],
+          [
+            1036.6666666666665,
+            445
+          ]
+        ]
       },
       {
         "from": "ctrl",
-        "to": "order",
-        "method": "place",
+        "to": "quote",
+        "method": "fingerprint",
         "kind": "call",
-        "arguments": "customer.id, quote, token, now",
-        "guard": "eligible/main operand (see frame and operation table)",
+        "arguments": "payment.method, payment.option",
+        "guard": "quote rebuilt, not busy",
         "PC_MG": "",
-        "label": "place(customer.id, quote, token, now)",
-        "y": 553,
-        "receiver_signature": "place(cls, customer_id: int, quote: Quote, idempotency_token: str, placed_at: str) -> 'Order'",
-        "status": "MATCH",
-        "P4_input": ""
-      },
-      {
-        "from": "ctrl",
-        "to": "pay",
-        "method": "Payment",
-        "kind": "create",
-        "arguments": "order_id, method, state, amount, created_at",
-        "guard": "eligible/main operand (see frame and operation table)",
-        "PC_MG": "",
-        "label": "«create» Payment (implicit dataclass initialization)",
-        "y": 623
-      },
-      {
-        "from": "ctrl",
-        "to": "sim",
-        "method": "release",
-        "kind": "call",
-        "arguments": "reference",
-        "guard": "authorized then any save/commit failure",
-        "PC_MG": "UC01-MG01",
-        "label": "release(reference) [failure through COMMIT]",
-        "y": 693,
-        "receiver_signature": "release(self, reference: str) -> None",
-        "status": "MATCH",
-        "P4_input": ""
+        "label": "fingerprint†(payment.method, payment.option) [compare fingerprint AND T]",
+        "y": 620,
+        "argument_bindings": {
+          "payment_method": "payment.method",
+          "online_option": "payment.option"
+        },
+        "receiver_signature": "fingerprint(self, payment_method: PaymentMethod, online_option: Optional[OnlineOption] = None) -> str",
+        "status": "GAP",
+        "P4_input": "F-07",
+        "native_edge_id": "message_001",
+        "source_anchor_id": "message_001_source",
+        "target_anchor_id": "message_001_target",
+        "native_points": [
+          [
+            1036.6666666666665,
+            620
+          ],
+          [
+            1510.0,
+            620
+          ]
+        ]
       },
       {
         "from": "ctrl",
         "to": "view",
         "method": "",
         "kind": "return",
-        "arguments": "placedOrderAndReceipt | existingOrder | revisedQuote | refusal | busySuggestions",
-        "guard": "",
-        "PC_MG": "UC01-PC01; UC01-PC02; UC01-PC03; UC01-PC04; UC01-PC05; UC01-PC06; UC01-MG01; UC01-MG02; UC01-MG03",
-        "label": "result / controlled refusal",
-        "y": 763
+        "arguments": "busySuggestions",
+        "guard": "busy hub",
+        "PC_MG": "UC01-MG03; UC01-MG01",
+        "label": "busySuggestions",
+        "y": 790,
+        "native_edge_id": "message_002",
+        "source_anchor_id": "message_002_source",
+        "target_anchor_id": "message_002_target",
+        "native_points": [
+          [
+            1036.6666666666665,
+            790
+          ],
+          [
+            563.3333333333333,
+            790
+          ]
+        ]
       },
       {
         "from": "ctrl",
         "to": "view",
         "method": "",
         "kind": "return",
-        "arguments": "",
-        "guard": "denied / stale / invalid or atomic save failure",
+        "arguments": "refusal / revisedQuote",
+        "guard": "invalid guard or changed fingerprint OR T",
         "PC_MG": "UC01-MG01",
-        "label": "refusal / controlled failure; UC01-MG01",
-        "y": 1000
+        "label": "refusal / revisedQuote",
+        "y": 985,
+        "native_edge_id": "message_003",
+        "source_anchor_id": "message_003_source",
+        "target_anchor_id": "message_003_target",
+        "native_points": [
+          [
+            1036.6666666666665,
+            985
+          ],
+          [
+            563.3333333333333,
+            985
+          ]
+        ]
       }
     ],
     "elements": [
@@ -136,77 +163,95 @@
       {
         "class": "PlaceOrderController",
         "attributes": [],
-        "methods": []
-      },
-      {
-        "class": "PaymentGatewaySimulator",
-        "attributes": [],
         "methods": [
-          "authorise",
-          "release"
+          "_build_quote"
         ]
       },
       {
-        "class": "Order",
+        "class": "Quote",
         "attributes": [],
         "methods": [
-          "place"
+          "fingerprint"
         ]
-      },
-      {
-        "class": "Payment",
-        "attributes": [],
-        "methods": []
       }
     ],
     "dependencies": [],
-    "states": [
+    "states": [],
+    "interaction_fragments": [
       {
-        "class": "Order",
-        "attribute": "state",
-        "values": [
-          "PLACED"
+        "id": "unused_opt",
+        "operator": "opt",
+        "guard": "unused token; continue the same short checkout",
+        "x": 30,
+        "y": 250,
+        "w": 1540,
+        "h": 770,
+        "message_indices": [
+          0,
+          1,
+          2,
+          3
         ]
       },
       {
-        "class": "Payment",
-        "attribute": "state",
-        "values": [
-          "PENDING",
-          "PAID"
-        ]
+        "id": "valid_quote_opt",
+        "operator": "opt",
+        "guard": "rebuilt quote valid and non-busy",
+        "x": 30,
+        "y": 470,
+        "w": 1540,
+        "h": 200,
+        "message_indices": [
+          1
+        ],
+        "parent": "unused_opt"
+      },
+      {
+        "id": "busy_break",
+        "operator": "break",
+        "guard": "hub busy; nothing saved; UC01-MG03 / MG01",
+        "x": 30,
+        "y": 680,
+        "w": 1540,
+        "h": 150,
+        "message_indices": [
+          2
+        ],
+        "parent": "unused_opt"
+      },
+      {
+        "id": "consent_break",
+        "operator": "break",
+        "guard": "invalid guard OR fingerprint OR T differs; UC01-MG01",
+        "x": 30,
+        "y": 830,
+        "w": 1540,
+        "h": 190,
+        "message_indices": [
+          3
+        ],
+        "parent": "unused_opt"
       }
     ]
   },
-  "frames": [
-    {
-      "id": "alt",
-      "y": 180,
-      "h": 860,
-      "label": "alt [COD / approved ONLINE + commit / declined or atomic failure; UC01-PC01–06, UC01-MG01]",
-      "operands": [
-        [
-          900,
-          "[denied / stale / invalid or failed atomic save] UC01-MG01"
-        ]
-      ]
-    }
-  ],
+  "frames": [],
   "notes": [
     {
-      "y": 220,
-      "h": 102.80000000000001,
-      "text": "Deterministic local simulator, no network/wait. COD skips authorise; ONLINE declined → zero Order/Line/Payment. Success atomically saves PLACED + snapshots + COD PENDING / ONLINE PAID, C=T (UC01-PC01–06). Any lock/write/commit failure rolls back all intended writes and releases authorization† (P2-S05/P2-S13)."
+      "y": 175,
+      "h": 65,
+      "text": "Recheck current ownership, menu/listing, quantity, raw radius, capacity, voucher and payment choice. Compare BOTH full fingerprint and T. Failure ends the attempt before authorization or insertion."
     },
     {
-      "y": 1010,
-      "h": 65,
-      "text": "Persistence: loaded/saved through data access — see 4.3.2."
+      "y": 1030,
+      "h": 45,
+      "text": "loaded/saved through data access — see 4.3.2"
     }
   ],
-  "continuation": "Part B ↔ PartA. Same lifelines / same operation; no second request.",
-  "realisation_note": "Deterministic local simulator, no network/wait. COD skips authorise; ONLINE declined → zero Order/Line/Payment. Success atomically saves PLACED + snapshots + COD PENDING / ONLINE PAID, C=T (UC01-PC01–06). Any lock/write/commit failure rolls back all intended writes and releases authorization† (P2-S05/P2-S13).",
+  "continuation": "confirmCheckout: Part B of A–E; previous Part A; next Part C; same request, no new human wait.",
+  "realisation_note": "Simulator approve/decline choice precedes this request. Short atomic checkout begins before token lookup. Own existing token → existingOrder, no reprice, authorization or insertion (UC01-MG02). Foreign token → refusal. Unused token rechecks eligibility, raw radius, capacity, voucher and full consent. Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.",
+  "self_call_clearance_polished": true,
   "shared_model_source": "models/shared/design_model.json",
   "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
-  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets.",
+  "review_repair_version": "R1-R4"
 }

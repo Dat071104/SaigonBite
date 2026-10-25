@@ -111,12 +111,13 @@
           188
         ]
       ],
-      "label": "→  «use»",
+      "label": "«use»",
       "labelpos": [
-        575,
-        109
+        690,
+        110
       ],
-      "labelwidth": 440
+      "labelwidth": 330,
+      "native_edge_id": "dcd_relation_000"
     },
     {
       "source": "s1",
@@ -132,12 +133,13 @@
           338
         ]
       ],
-      "label": "→  «use»",
+      "label": "«use»",
       "labelpos": [
-        575,
-        259
+        690,
+        260
       ],
-      "labelwidth": 440
+      "labelwidth": 330,
+      "native_edge_id": "dcd_relation_001"
     },
     {
       "source": "s2",
@@ -153,12 +155,13 @@
           488
         ]
       ],
-      "label": "→  «use»",
+      "label": "«use»",
       "labelpos": [
-        575,
-        409
+        690,
+        410
       ],
-      "labelwidth": 440
+      "labelwidth": 330,
+      "native_edge_id": "dcd_relation_002"
     }
   ],
   "phase3": {
@@ -221,7 +224,8 @@
         "allowed_on_layered_diagram": true
       }
     ],
-    "states": []
+    "states": [],
+    "association_end_labels": []
   },
   "continuation": "Members: domain detail parts. Relationship parts A–E continue both ways.",
   "P4_input": "none on this view",

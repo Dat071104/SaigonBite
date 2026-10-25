@@ -110,7 +110,9 @@
         "kind": "ssd",
         "arguments": "hubId?",
         "guard": "",
-        "PC_MG": ""
+        "PC_MG": "",
+        "native_edge_id": "msg1",
+        "y": 190
       },
       {
         "from": "view",
@@ -119,7 +121,9 @@
         "kind": "call",
         "arguments": "uid(), hub_id=hubId",
         "guard": "",
-        "PC_MG": ""
+        "PC_MG": "",
+        "native_edge_id": "msg2",
+        "y": 275
       },
       {
         "from": "controller",
@@ -128,7 +132,9 @@
         "kind": "call",
         "arguments": "uid()",
         "guard": "",
-        "PC_MG": ""
+        "PC_MG": "",
+        "native_edge_id": "msg3",
+        "y": 345
       },
       {
         "from": "controller",
@@ -137,7 +143,9 @@
         "kind": "return",
         "arguments": "",
         "guard": "denied / invalid / stale",
-        "PC_MG": "UC06-MG01 / UC06-MG02"
+        "PC_MG": "UC06-MG01 / UC06-MG02",
+        "native_edge_id": "msg4",
+        "y": 540
       },
       {
         "from": "view",
@@ -146,7 +154,9 @@
         "kind": "return",
         "arguments": "",
         "guard": "denied / invalid / stale",
-        "PC_MG": "UC06-MG01 / UC06-MG02"
+        "PC_MG": "UC06-MG01 / UC06-MG02",
+        "native_edge_id": "msg5",
+        "y": 570
       },
       {
         "from": "controller",
@@ -155,7 +165,9 @@
         "kind": "note",
         "arguments": "name, price, archived_at",
         "guard": "valid",
-        "PC_MG": ""
+        "PC_MG": "",
+        "native_edge_id": "msg6",
+        "y": 700
       },
       {
         "from": "controller",
@@ -164,7 +176,9 @@
         "kind": "return",
         "arguments": "",
         "guard": "success",
-        "PC_MG": "authorized read; zero writes"
+        "PC_MG": "authorized read; zero writes",
+        "native_edge_id": "msg7",
+        "y": 920
       },
       {
         "from": "view",
@@ -173,7 +187,9 @@
         "kind": "return",
         "arguments": "",
         "guard": "",
-        "PC_MG": ""
+        "PC_MG": "",
+        "native_edge_id": "msg8",
+        "y": 970
       },
       {
         "from": "controller",
@@ -182,7 +198,9 @@
         "kind": "return",
         "arguments": "",
         "guard": "technical failure",
-        "PC_MG": "UC06-MG01 / UC06-MG02"
+        "PC_MG": "UC06-MG01 / UC06-MG02",
+        "native_edge_id": "msg9",
+        "y": 1110
       },
       {
         "from": "view",
@@ -191,10 +209,73 @@
         "kind": "return",
         "arguments": "",
         "guard": "technical failure",
-        "PC_MG": "UC06-MG01 / UC06-MG02"
+        "PC_MG": "UC06-MG01 / UC06-MG02",
+        "native_edge_id": "msg10",
+        "y": 1120
       }
     ],
-    "states": []
+    "states": [],
+    "interaction_fragments": [
+      {
+        "id": "alt",
+        "operator": "alt",
+        "guard": "denied / missing target",
+        "x": 30,
+        "y": 410,
+        "w": 1140,
+        "h": 715,
+        "message_indices": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "operands": [
+          {
+            "guard": "denied / missing target",
+            "guard_label_id": "alt_label",
+            "x": 30,
+            "y": 410,
+            "w": 1140,
+            "h": 170,
+            "bottom_divider_id": "divide1",
+            "message_indices": [
+              3,
+              4
+            ]
+          },
+          {
+            "guard": "authorized; valid; selected change completes",
+            "guard_label_id": "guardok",
+            "x": 30,
+            "y": 580,
+            "w": 1140,
+            "h": 420,
+            "bottom_divider_id": "divide2",
+            "message_indices": [
+              5,
+              6,
+              7
+            ]
+          },
+          {
+            "guard": "technical read/save failure",
+            "guard_label_id": "fail_guard",
+            "x": 30,
+            "y": 1000,
+            "w": 1140,
+            "h": 125,
+            "message_indices": [
+              8,
+              9
+            ]
+          }
+        ]
+      }
+    ]
   },
   "qa": {
     "canvas": [

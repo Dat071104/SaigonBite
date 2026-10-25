@@ -195,6 +195,59 @@
         "class": "HubMenuItem",
         "classification": "association class"
       }
+    ],
+    "association_end_labels": [
+      {
+        "source": "Hub",
+        "target": "HubMenuItem",
+        "kind": "association",
+        "role": "listings",
+        "native_edge_id": "dep0",
+        "source_label_id": "dep0_source_mult",
+        "target_label_id": "dep0_target_mult",
+        "source_endpoint": [
+          550,
+          372
+        ],
+        "target_endpoint": [
+          715,
+          218
+        ]
+      },
+      {
+        "source": "HubMenuItem",
+        "target": "MenuItem",
+        "kind": "association",
+        "role": "item",
+        "native_edge_id": "dep1",
+        "source_label_id": "dep1_source_mult",
+        "target_label_id": "dep1_target_mult",
+        "source_endpoint": [
+          902.5,
+          218
+        ],
+        "target_endpoint": [
+          902.5,
+          450
+        ]
+      },
+      {
+        "source": "Brand",
+        "target": "MenuItem",
+        "kind": "association",
+        "role": "offers",
+        "native_edge_id": "dep2",
+        "source_label_id": "dep2_source_mult",
+        "target_label_id": "dep2_target_mult",
+        "source_endpoint": [
+          550,
+          600
+        ],
+        "target_endpoint": [
+          715,
+          666
+        ]
+      }
     ]
   },
   "qa": {
@@ -207,7 +260,7 @@
     "minimum_pt": 9.779527559055119,
     "connected_edges": 3,
     "xml_valid": true,
-    "native_text_cells": 11,
+    "native_text_cells": 17,
     "native_minimum_font_px": 18.0,
     "native_minimum_pt": 9.779527559055119,
     "native_explicit_font_styles": true

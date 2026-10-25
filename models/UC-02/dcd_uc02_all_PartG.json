@@ -3,7 +3,7 @@
   "title": "UC-02 .2 DCD all — Part G",
   "canvas": {
     "width": 2600,
-    "height": 3461,
+    "height": 3741,
     "font_size": 50,
     "placed_width_mm": 170
   },
@@ -175,7 +175,7 @@
       "id": "layer_data_access",
       "kind": "layer",
       "x": 40,
-      "y": 2550,
+      "y": 2830,
       "w": 2520,
       "h": 70,
       "lines": [
@@ -186,7 +186,7 @@
       "id": "DeliveryDAO",
       "kind": "class",
       "x": 80,
-      "y": 2628,
+      "y": 2908,
       "w": 793,
       "h": 369,
       "header_h": 137,
@@ -204,7 +204,7 @@
       "id": "OrderDAO",
       "kind": "class",
       "x": 903,
-      "y": 2628,
+      "y": 2908,
       "w": 793,
       "h": 369,
       "header_h": 137,
@@ -222,7 +222,7 @@
       "id": "PaymentDAO",
       "kind": "class",
       "x": 1726,
-      "y": 2628,
+      "y": 2908,
       "w": 793,
       "h": 369,
       "header_h": 137,
@@ -240,7 +240,7 @@
       "id": "legend",
       "kind": "note",
       "x": 80,
-      "y": 3039,
+      "y": 3319,
       "w": 2440,
       "h": 310,
       "lines": [
@@ -249,6 +249,84 @@
         "targets, not C0 implementation. Corrected model: delivery.move_to resolves to Delivery;",
         "controller calls to Delivery/Payment are downward."
       ]
+    },
+    {
+      "id": "association_00_source_mult",
+      "kind": "text",
+      "x": 1097.3333333333333,
+      "y": 2432,
+      "w": 140,
+      "h": 64,
+      "lines": [
+        "1"
+      ],
+      "align": "center",
+      "color": "#004387"
+    },
+    {
+      "id": "association_00_target_mult",
+      "kind": "text",
+      "x": 2052.5,
+      "y": 2432,
+      "w": 140,
+      "h": 64,
+      "lines": [
+        "1"
+      ],
+      "align": "center",
+      "color": "#004387"
+    },
+    {
+      "id": "association_00_role",
+      "kind": "text",
+      "x": 1514.9166666666665,
+      "y": 2534,
+      "w": 260,
+      "h": 64,
+      "lines": [
+        "payment"
+      ],
+      "align": "center",
+      "color": "#004387"
+    },
+    {
+      "id": "association_01_source_mult",
+      "kind": "text",
+      "x": 1361.6666666666665,
+      "y": 2432,
+      "w": 140,
+      "h": 64,
+      "lines": [
+        "1"
+      ],
+      "align": "center",
+      "color": "#004387"
+    },
+    {
+      "id": "association_01_target_mult",
+      "kind": "text",
+      "x": 406.5,
+      "y": 2432,
+      "w": 140,
+      "h": 64,
+      "lines": [
+        "0..1"
+      ],
+      "align": "center",
+      "color": "#004387"
+    },
+    {
+      "id": "association_01_role",
+      "kind": "text",
+      "x": 809.0833333333333,
+      "y": 2614,
+      "w": 290,
+      "h": 64,
+      "lines": [
+        "delivery"
+      ],
+      "align": "center",
+      "color": "#004387"
     }
   ],
   "edges": [
@@ -271,7 +349,7 @@
         ],
         [
           476.5,
-          2628
+          2908
         ]
       ],
       "dashed": true,
@@ -299,7 +377,7 @@
         ],
         [
           1299.5,
-          2628
+          2908
         ]
       ],
       "dashed": true,
@@ -327,7 +405,7 @@
         ],
         [
           2122.5,
-          2628
+          2908
         ]
       ],
       "dashed": true,
@@ -398,23 +476,28 @@
       "target": "Payment",
       "points": [
         [
-          1696,
-          2232.0
+          1167.3333333333333,
+          2508
         ],
         [
-          1711.0,
-          2232.0
+          1167.3333333333333,
+          2608
         ],
         [
-          1726,
-          2232.0
+          2122.5,
+          2608
+        ],
+        [
+          2122.5,
+          2508
         ]
       ],
       "dashed": false,
-      "arrow": "block",
+      "arrow": "open",
       "color": "#004387",
       "width": 2,
-      "label": ""
+      "label": "",
+      "association": true
     },
     {
       "id": "dep_08",
@@ -422,23 +505,28 @@
       "target": "Delivery",
       "points": [
         [
-          903,
-          2232.0
+          1431.6666666666665,
+          2508
         ],
         [
-          888.0,
-          2232.0
+          1431.6666666666665,
+          2688
         ],
         [
-          873,
-          2232.0
+          476.5,
+          2688
+        ],
+        [
+          476.5,
+          2508
         ]
       ],
       "dashed": false,
-      "arrow": "block",
+      "arrow": "open",
       "color": "#004387",
       "width": 2,
-      "label": ""
+      "label": "",
+      "association": true
     },
     {
       "id": "repair_dep_7",
@@ -487,7 +575,7 @@
         ],
         [
           1299.5,
-          2628
+          2908
         ]
       ],
       "dashed": true,
@@ -543,7 +631,7 @@
         ],
         [
           2122.5,
-          2628
+          2908
         ]
       ],
       "dashed": true,
@@ -1119,12 +1207,50 @@
         "status": "MATCH",
         "evidence": "domain model 2.1.7; code identifiers / typed fields"
       }
+    ],
+    "association_end_labels": [
+      {
+        "source": "Order",
+        "target": "Payment",
+        "kind": "association",
+        "role": "payment",
+        "native_edge_id": "dep_07",
+        "source_label_id": "association_00_source_mult",
+        "target_label_id": "association_00_target_mult",
+        "role_label_id": "association_00_role",
+        "source_endpoint": [
+          1167.3333333333333,
+          2508
+        ],
+        "target_endpoint": [
+          2122.5,
+          2508
+        ]
+      },
+      {
+        "source": "Order",
+        "target": "Delivery",
+        "kind": "association",
+        "role": "delivery",
+        "native_edge_id": "dep_08",
+        "source_label_id": "association_01_source_mult",
+        "target_label_id": "association_01_target_mult",
+        "role_label_id": "association_01_role",
+        "source_endpoint": [
+          1431.6666666666665,
+          2508
+        ],
+        "target_endpoint": [
+          476.5,
+          2508
+        ]
+      }
     ]
   },
   "render_receipt": {
     "canvas": [
       2600,
-      3461
+      3741
     ],
     "minimum_font_px": 50,
     "placed_width_mm": 170,

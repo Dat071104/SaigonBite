@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200"><rect width="100%" height="100%" fill="white"/>
+<text x="35" y="42.040000000000006" font-family="Arial" font-size="28" font-weight="bold" fill="#202B36">UC-05 acceptReplacement — Part C</text>
+<rect x="5.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="10.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Customer</text>
+<polyline points="90.0,170 90.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="360.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="365.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">«view»</text>
+<text x="365.0" y="131.92" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">order</text>
+<polyline points="445.0,170 445.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="715.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="720.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">OrderTracking</text>
+<text x="720.0" y="131.92" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Controller</text>
+<polyline points="800.0,170 800.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="1070.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="1075.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Order</text>
+<polyline points="1155.0,170 1155.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="1425.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="1430.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Payment</text>
+<polyline points="1510.0,170 1510.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="30" y="270" width="1540" height="750" fill="white" stroke="#004387" stroke-width="2"/>
+<text x="40" y="295.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">opt [eligible valid-target path continued from Part B]</text>
+<rect x="30" y="310" width="1540" height="710" fill="white" stroke="#004387" stroke-width="2"/>
+<text x="40" y="335.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">alt [atomic save / COMMIT outcome]</text>
+<rect x="30" y="350" width="1540" height="300" fill="white" stroke="#004387" stroke-width="2"/>
+<text x="40" y="375.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">opt [all saves + COMMIT succeed; UC05-PC04]</text>
+<rect x="30" y="650" width="1540" height="370" fill="white" stroke="#004387" stroke-width="2"/>
+<text x="40" y="675.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">opt [save / lock / COMMIT fails: rollback every intended change; UC05-MG01]</text>
+<polyline points="90.0,170 90.0,1020" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="445.0,170 445.0,1020" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="800.0,170 800.0,1020" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="1155.0,170 1155.0,1020" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="1510.0,170 1510.0,1020" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="35" y="175" width="1530" height="65" fill="#FFF8E9" stroke="#004387" stroke-width="2"/>
+<text x="45" y="202.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Dnew=min(Dold,Snew); F/Q and captured C unchanged. COD payable=Tnew; ONLINE stays PAID, owed=C−Tnew. Offer ACCEPTED; Order</text>
+<text x="45" y="229.92" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">stays PLACED. No automatic confirmation or payout.</text>
+<rect x="35" y="1030" width="1530" height="45" fill="#FFF8E9" stroke="#004387" stroke-width="2"/>
+<text x="45" y="1057.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">loaded/saved through data access — see 4.3.2</text>
+<polyline points="800.0,540 445.0,540" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="459.0,533.0 445.0,540 459.0,547.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="460.0" y="499.12" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">acceptedOrderAndAmounts [COMMIT</text>
+<text x="460.0" y="526.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">succeeded]</text>
+<polyline points="800.0,900 445.0,900" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="459.0,893.0 445.0,900 459.0,907.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="460.0" y="886.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">controlledFailure</text>
+<text x="35" y="1102.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">acceptReplacement: Part C of A–C; previous Part B; end of this request.</text>
+<text x="35" y="1134.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">† design target, not yet in code at C0 (see P4 input F-02; F-05; P2-S09; P2-S11; P2-S13).</text>
+<text x="35" y="1167.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Figure 3.5.4.OP-05C. UC-05 acceptReplacement — Part C — Author: 722I0004 · AI-assisted (Codex)</text>
+<text x="35" y="1193.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Static / target design · 230 mm landscape · smallest text 9.78 pt · native draw.io / final placement UNTESTED</text>
+</svg>

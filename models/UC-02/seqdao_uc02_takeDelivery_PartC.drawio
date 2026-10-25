@@ -11,160 +11,178 @@
         <mxCell id="txt1" vertex="1" parent="1" value="Same request and transaction across all parts; focus 3/5. Mechanical reads: responsibility table (report 4.3.2)." style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
           <mxGeometry as="geometry" x="35" y="54" width="1530" height="27.839999999999996" />
         </mxCell>
+        <mxCell id="fragment_seqdao_uc02_takeDelivery_PartC_1" vertex="1" parent="1" value="" style="shape=umlFrame;fillColor=none;strokeColor=#004387;">
+          <mxGeometry as="geometry" x="25" y="232" width="1550" height="475.72" />
+        </mxCell>
+        <mxCell id="fragment_seqdao_uc02_takeDelivery_PartC_2" vertex="1" parent="1" value="" style="shape=umlFrame;fillColor=none;strokeColor=#004387;">
+          <mxGeometry as="geometry" x="37" y="599.04" width="1526" height="103.68000000000006" />
+        </mxCell>
         <mxCell id="actor" vertex="1" parent="1" value="" style="fillColor=#F1F6FA;strokeColor=#004387;">
           <mxGeometry as="geometry" x="29.85714285714286" y="100" width="180.28571428571428" height="120" />
         </mxCell>
-        <mxCell id="txt3" vertex="1" parent="1" value="Shipper" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+        <mxCell id="txt5" vertex="1" parent="1" value="Shipper" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
           <mxGeometry as="geometry" x="36.85714285714286" y="105" width="166.28571428571428" height="27.839999999999996" />
         </mxCell>
         <mxCell id="view" vertex="1" parent="1" value="" style="fillColor=#F1F6FA;strokeColor=#004387;">
           <mxGeometry as="geometry" x="224.14285714285714" y="100" width="180.28571428571428" height="120" />
         </mxCell>
-        <mxCell id="txt5" vertex="1" parent="1" value="«view»&#10;delivery" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+        <mxCell id="txt7" vertex="1" parent="1" value="«view»&#10;delivery" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
           <mxGeometry as="geometry" x="231.14285714285714" y="105" width="166.28571428571428" height="55.67999999999999" />
         </mxCell>
         <mxCell id="ctrl" vertex="1" parent="1" value="" style="fillColor=#F1F6FA;strokeColor=#004387;">
           <mxGeometry as="geometry" x="418.42857142857144" y="100" width="180.28571428571428" height="120" />
         </mxCell>
-        <mxCell id="txt7" vertex="1" parent="1" value="Delivery&#10;Controller" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+        <mxCell id="txt9" vertex="1" parent="1" value="Delivery&#10;Controller" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
           <mxGeometry as="geometry" x="425.42857142857144" y="105" width="166.28571428571428" height="55.67999999999999" />
         </mxCell>
         <mxCell id="obj6" vertex="1" parent="1" value="" style="fillColor=#F1F6FA;strokeColor=#004387;">
           <mxGeometry as="geometry" x="612.7142857142858" y="100" width="180.28571428571428" height="120" />
         </mxCell>
-        <mxCell id="txt9" vertex="1" parent="1" value="controllers.com&#10;mon" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+        <mxCell id="txt11" vertex="1" parent="1" value="controllers.com&#10;mon" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
           <mxGeometry as="geometry" x="619.7142857142858" y="105" width="166.28571428571428" height="55.67999999999999" />
         </mxCell>
         <mxCell id="obj7" vertex="1" parent="1" value="" style="fillColor=#F1F6FA;strokeColor=#004387;">
           <mxGeometry as="geometry" x="807.0" y="100" width="180.28571428571428" height="120" />
         </mxCell>
-        <mxCell id="txt11" vertex="1" parent="1" value="Order" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+        <mxCell id="txt13" vertex="1" parent="1" value="Order" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
           <mxGeometry as="geometry" x="814.0" y="105" width="166.28571428571428" height="27.839999999999996" />
         </mxCell>
         <mxCell id="obj10" vertex="1" parent="1" value="" style="fillColor=#F1F6FA;strokeColor=#004387;">
           <mxGeometry as="geometry" x="1001.2857142857144" y="100" width="180.28571428571428" height="120" />
         </mxCell>
-        <mxCell id="txt13" vertex="1" parent="1" value="Delivery" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+        <mxCell id="txt15" vertex="1" parent="1" value="Delivery" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
           <mxGeometry as="geometry" x="1008.2857142857144" y="105" width="166.28571428571428" height="27.839999999999996" />
         </mxCell>
         <mxCell id="obj5" vertex="1" parent="1" value="" style="fillColor=#F1F6FA;strokeColor=#004387;">
           <mxGeometry as="geometry" x="1195.5714285714287" y="100" width="180.28571428571428" height="120" />
         </mxCell>
-        <mxCell id="txt15" vertex="1" parent="1" value="«DAO»&#10;Order&#10;DAO" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+        <mxCell id="txt17" vertex="1" parent="1" value="«DAO»&#10;Order&#10;DAO" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
           <mxGeometry as="geometry" x="1202.5714285714287" y="105" width="166.28571428571428" height="83.51999999999998" />
         </mxCell>
         <mxCell id="db" vertex="1" parent="1" value="" style="fillColor=#F1F6FA;strokeColor=#004387;">
           <mxGeometry as="geometry" x="1389.857142857143" y="100" width="180.28571428571428" height="120" />
         </mxCell>
-        <mxCell id="txt17" vertex="1" parent="1" value=":Database&#10;«resource»" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+        <mxCell id="txt19" vertex="1" parent="1" value=":Database&#10;«resource»" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
           <mxGeometry as="geometry" x="1396.857142857143" y="105" width="166.28571428571428" height="55.67999999999999" />
         </mxCell>
-        <mxCell id="txt18" vertex="1" parent="1" value="move_order(orders, order, OrderState.OUT_FOR_DELIVERY, now)" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
-          <mxGeometry as="geometry" x="45" y="242" width="1510" height="27.839999999999996" />
+        <mxCell id="fragment_seqdao_uc02_takeDelivery_PartC_1_operator" vertex="1" parent="1" value="opt" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=1;">
+          <mxGeometry as="geometry" x="31" y="233" width="84" height="27.839999999999996" />
+        </mxCell>
+        <mxCell id="fragment_seqdao_uc02_takeDelivery_PartC_1_guard" vertex="1" parent="1" value="[take rowcount == 1; no earlier failure (continued from Part B)]" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="127" y="233" width="1438" height="27.839999999999996" />
+        </mxCell>
+        <mxCell id="fragment_seqdao_uc02_takeDelivery_PartC_2_operator" vertex="1" parent="1" value="opt" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=1;">
+          <mxGeometry as="geometry" x="43" y="600.04" width="84" height="27.839999999999996" />
+        </mxCell>
+        <mxCell id="fragment_seqdao_uc02_takeDelivery_PartC_2_guard" vertex="1" parent="1" value="[order change rowcount == 1; zero/False breaks to Part E]" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="139" y="600.04" width="1414" height="27.839999999999996" />
+        </mxCell>
+        <mxCell id="txt24" vertex="1" parent="1" value="move_order(orders, order, OrderState.OUT_FOR_DELIVERY, now)" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="65" y="269.84000000000003" width="1470" height="27.839999999999996" />
         </mxCell>
         <mxCell id="m0s" vertex="1" parent="1" value="" style="opacity=0;">
-          <mxGeometry as="geometry" x="508.57142857142856" y="341" width="0" height="0" />
+          <mxGeometry as="geometry" x="508.57142857142856" y="308.68" width="0" height="0" />
         </mxCell>
         <mxCell id="m0t" vertex="1" parent="1" value="" style="opacity=0;">
-          <mxGeometry as="geometry" x="702.8571428571429" y="341" width="0" height="0" />
+          <mxGeometry as="geometry" x="702.8571428571429" y="308.68" width="0" height="0" />
         </mxCell>
-        <mxCell id="message0" edge="1" parent="1" source="m0s" target="m0t" style="edgeStyle=none;endArrow=open;strokeColor=#004387;exitX=0.5;entryX=0.5;exitPerimeter=0;entryPerimeter=0;">
-          <mxGeometry as="geometry" relative="1">
-            <Array as="points" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="box20" vertex="1" parent="1" value="" style="fillColor=#DAE9F5;strokeColor=#004387;">
-          <mxGeometry as="geometry" x="697.8571428571429" y="341" width="10" height="18" />
-        </mxCell>
-        <mxCell id="txt21" vertex="1" parent="1" value="move_to(OrderState.OUT_FOR_DELIVERY)" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
-          <mxGeometry as="geometry" x="45" y="367" width="1510" height="27.839999999999996" />
-        </mxCell>
-        <mxCell id="m1s" vertex="1" parent="1" value="" style="opacity=0;">
-          <mxGeometry as="geometry" x="702.8571428571429" y="466" width="0" height="0" />
-        </mxCell>
-        <mxCell id="m1t" vertex="1" parent="1" value="" style="opacity=0;">
-          <mxGeometry as="geometry" x="897.1428571428571" y="466" width="0" height="0" />
-        </mxCell>
-        <mxCell id="message1" edge="1" parent="1" source="m1s" target="m1t" style="edgeStyle=none;endArrow=open;strokeColor=#004387;exitX=0.5;entryX=0.5;exitPerimeter=0;entryPerimeter=0;">
-          <mxGeometry as="geometry" relative="1">
-            <Array as="points" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="box23" vertex="1" parent="1" value="" style="fillColor=#DAE9F5;strokeColor=#004387;">
-          <mxGeometry as="geometry" x="892.1428571428571" y="466" width="10" height="18" />
-        </mxCell>
-        <mxCell id="txt24" vertex="1" parent="1" value="change_state(order_id, OrderState.READY, OrderState.OUT_FOR_DELIVERY, now)" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
-          <mxGeometry as="geometry" x="45" y="492" width="1510" height="27.839999999999996" />
-        </mxCell>
-        <mxCell id="m2s" vertex="1" parent="1" value="" style="opacity=0;">
-          <mxGeometry as="geometry" x="702.8571428571429" y="591" width="0" height="0" />
-        </mxCell>
-        <mxCell id="m2t" vertex="1" parent="1" value="" style="opacity=0;">
-          <mxGeometry as="geometry" x="1285.7142857142858" y="591" width="0" height="0" />
-        </mxCell>
-        <mxCell id="message2" edge="1" parent="1" source="m2s" target="m2t" style="edgeStyle=none;endArrow=open;strokeColor=#004387;exitX=0.5;entryX=0.5;exitPerimeter=0;entryPerimeter=0;">
+        <mxCell id="message0" edge="1" parent="1" source="m0s" target="m0t" style="edgeStyle=none;endArrow=block;endFill=1;strokeColor=#004387;exitX=0.5;entryX=0.5;exitPerimeter=0;entryPerimeter=0;">
           <mxGeometry as="geometry" relative="1">
             <Array as="points" />
           </mxGeometry>
         </mxCell>
         <mxCell id="box26" vertex="1" parent="1" value="" style="fillColor=#DAE9F5;strokeColor=#004387;">
-          <mxGeometry as="geometry" x="1280.7142857142858" y="591" width="10" height="18" />
+          <mxGeometry as="geometry" x="697.8571428571429" y="308.68" width="10" height="18" />
         </mxCell>
-        <mxCell id="txt27" vertex="1" parent="1" value="SQL note: UPDATE orders by id AND state = ? (READY); set OUT_FOR_DELIVERY." style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
-          <mxGeometry as="geometry" x="45" y="617" width="1510" height="27.839999999999996" />
+        <mxCell id="txt27" vertex="1" parent="1" value="move_to(OrderState.OUT_FOR_DELIVERY)" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="65" y="335.68" width="1470" height="27.839999999999996" />
+        </mxCell>
+        <mxCell id="m1s" vertex="1" parent="1" value="" style="opacity=0;">
+          <mxGeometry as="geometry" x="702.8571428571429" y="374.52" width="0" height="0" />
+        </mxCell>
+        <mxCell id="m1t" vertex="1" parent="1" value="" style="opacity=0;">
+          <mxGeometry as="geometry" x="897.1428571428571" y="374.52" width="0" height="0" />
+        </mxCell>
+        <mxCell id="message1" edge="1" parent="1" source="m1s" target="m1t" style="edgeStyle=none;endArrow=block;endFill=1;strokeColor=#004387;exitX=0.5;entryX=0.5;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="box29" vertex="1" parent="1" value="" style="fillColor=#DAE9F5;strokeColor=#004387;">
+          <mxGeometry as="geometry" x="892.1428571428571" y="374.52" width="10" height="18" />
+        </mxCell>
+        <mxCell id="txt30" vertex="1" parent="1" value="change_state(order_id, OrderState.READY, OrderState.OUT_FOR_DELIVERY, now)" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="65" y="401.52" width="1470" height="27.839999999999996" />
+        </mxCell>
+        <mxCell id="m2s" vertex="1" parent="1" value="" style="opacity=0;">
+          <mxGeometry as="geometry" x="702.8571428571429" y="440.35999999999996" width="0" height="0" />
+        </mxCell>
+        <mxCell id="m2t" vertex="1" parent="1" value="" style="opacity=0;">
+          <mxGeometry as="geometry" x="1285.7142857142858" y="440.35999999999996" width="0" height="0" />
+        </mxCell>
+        <mxCell id="message2" edge="1" parent="1" source="m2s" target="m2t" style="edgeStyle=none;endArrow=block;endFill=1;strokeColor=#004387;exitX=0.5;entryX=0.5;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="box32" vertex="1" parent="1" value="" style="fillColor=#DAE9F5;strokeColor=#004387;">
+          <mxGeometry as="geometry" x="1280.7142857142858" y="440.35999999999996" width="10" height="18" />
+        </mxCell>
+        <mxCell id="txt33" vertex="1" parent="1" value="SQL note: UPDATE orders by id AND state = ? (READY); set OUT_FOR_DELIVERY." style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="65" y="467.35999999999996" width="1470" height="27.839999999999996" />
         </mxCell>
         <mxCell id="m3s" vertex="1" parent="1" value="" style="opacity=0;">
-          <mxGeometry as="geometry" x="1285.7142857142858" y="716" width="0" height="0" />
+          <mxGeometry as="geometry" x="1285.7142857142858" y="506.19999999999993" width="0" height="0" />
         </mxCell>
         <mxCell id="m3t" vertex="1" parent="1" value="" style="opacity=0;">
-          <mxGeometry as="geometry" x="1480.0" y="716" width="0" height="0" />
+          <mxGeometry as="geometry" x="1480.0" y="506.19999999999993" width="0" height="0" />
         </mxCell>
-        <mxCell id="message3" edge="1" parent="1" source="m3s" target="m3t" style="edgeStyle=none;endArrow=open;strokeColor=#004387;exitX=0.5;entryX=0.5;exitPerimeter=0;entryPerimeter=0;">
+        <mxCell id="message3" edge="1" parent="1" source="m3s" target="m3t" style="edgeStyle=none;endArrow=block;endFill=1;strokeColor=#004387;exitX=0.5;entryX=0.5;exitPerimeter=0;entryPerimeter=0;">
           <mxGeometry as="geometry" relative="1">
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="txt29" vertex="1" parent="1" value="rowcount == 1; † helper checks bool; 0 rows → ROLLBACK pickup too" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
-          <mxGeometry as="geometry" x="45" y="742" width="1510" height="27.839999999999996" />
+        <mxCell id="txt35" vertex="1" parent="1" value="rowcount == 1; † helper checks bool; 0 rows → ROLLBACK pickup too" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="65" y="533.1999999999999" width="1470" height="27.839999999999996" />
         </mxCell>
         <mxCell id="m4s" vertex="1" parent="1" value="" style="opacity=0;">
-          <mxGeometry as="geometry" x="1285.7142857142858" y="841" width="0" height="0" />
+          <mxGeometry as="geometry" x="1285.7142857142858" y="572.04" width="0" height="0" />
         </mxCell>
         <mxCell id="m4t" vertex="1" parent="1" value="" style="opacity=0;">
-          <mxGeometry as="geometry" x="702.8571428571429" y="841" width="0" height="0" />
+          <mxGeometry as="geometry" x="702.8571428571429" y="572.04" width="0" height="0" />
         </mxCell>
-        <mxCell id="message4" edge="1" parent="1" source="m4s" target="m4t" style="edgeStyle=none;endArrow=open;strokeColor=#004387;dashed=1;exitX=0.5;entryX=0.5;exitPerimeter=0;entryPerimeter=0;">
+        <mxCell id="message4" edge="1" parent="1" source="m4s" target="m4t" style="edgeStyle=none;endArrow=open;endFill=0;strokeColor=#004387;dashed=1;exitX=0.5;entryX=0.5;exitPerimeter=0;entryPerimeter=0;">
           <mxGeometry as="geometry" relative="1">
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="txt31" vertex="1" parent="1" value="COMMIT†: paired Delivery PICKED_UP + Order OUT_FOR_DELIVERY; UC02-PC01." style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
-          <mxGeometry as="geometry" x="45" y="867" width="1510" height="27.839999999999996" />
+        <mxCell id="txt37" vertex="1" parent="1" value="COMMIT†: paired Delivery PICKED_UP + Order OUT_FOR_DELIVERY; UC02-PC01." style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="65" y="636.88" width="1470" height="27.839999999999996" />
         </mxCell>
         <mxCell id="m5s" vertex="1" parent="1" value="" style="opacity=0;">
-          <mxGeometry as="geometry" x="508.57142857142856" y="966" width="0" height="0" />
+          <mxGeometry as="geometry" x="508.57142857142856" y="675.72" width="0" height="0" />
         </mxCell>
         <mxCell id="m5t" vertex="1" parent="1" value="" style="opacity=0;">
-          <mxGeometry as="geometry" x="1480.0" y="966" width="0" height="0" />
+          <mxGeometry as="geometry" x="1480.0" y="675.72" width="0" height="0" />
         </mxCell>
-        <mxCell id="message5" edge="1" parent="1" source="m5s" target="m5t" style="edgeStyle=none;endArrow=open;strokeColor=#004387;exitX=0.5;entryX=0.5;exitPerimeter=0;entryPerimeter=0;">
+        <mxCell id="message5" edge="1" parent="1" source="m5s" target="m5t" style="edgeStyle=none;endArrow=block;endFill=1;strokeColor=#004387;exitX=0.5;entryX=0.5;exitPerimeter=0;entryPerimeter=0;">
           <mxGeometry as="geometry" relative="1">
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="txt33" vertex="1" parent="1" value="From seqdao_uc02_takeDelivery_PartB → this part → seqdao_uc02_takeDelivery_PartD." style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+        <mxCell id="txt39" vertex="1" parent="1" value="From seqdao_uc02_takeDelivery_PartB → this part → seqdao_uc02_takeDelivery_PartD." style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
           <mxGeometry as="geometry" x="35" y="1035" width="1530" height="27.839999999999996" />
         </mxCell>
-        <mxCell id="txt34" vertex="1" parent="1" value="Transaction key (whole request): BEGIN IMMEDIATE → checked rowcount / inserts → COMMIT; failure → ROLLBACK if active. Busy: retry,&#10;nothing changed." style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+        <mxCell id="txt40" vertex="1" parent="1" value="Transaction key (whole request): BEGIN IMMEDIATE → checked rowcount / inserts → COMMIT; failure → ROLLBACK if active. Busy: retry,&#10;nothing changed." style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
           <mxGeometry as="geometry" x="35" y="1070" width="1530" height="55.67999999999999" />
         </mxCell>
-        <mxCell id="txt35" vertex="1" parent="1" value="† design target, not yet in code at C0: P2-S13; P3-S03; P2-S12 connection settings; MATCH is Static only." style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+        <mxCell id="txt41" vertex="1" parent="1" value="† design target, not yet in code at C0: P2-S13; P3-S03; P2-S12 connection settings; MATCH is Static only." style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
           <mxGeometry as="geometry" x="35" y="1130" width="1530" height="27.839999999999996" />
         </mxCell>
-        <mxCell id="txt36" vertex="1" parent="1" value="Figure 4.3.2.2.OP-10.C. takeDelivery / Part C — Author: 722I0004 · AI-assisted (Codex)" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+        <mxCell id="txt42" vertex="1" parent="1" value="Figure 4.3.2.2.OP-10.C. takeDelivery / Part C — Author: 722I0004 · AI-assisted (Codex)" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
           <mxGeometry as="geometry" x="35" y="1190" width="1530" height="27.839999999999996" />
         </mxCell>
-        <mxCell id="txt37" vertex="1" parent="1" value="Static only · 230 mm landscape · minimum 9.78 pt · native draw.io and final DOCX/PDF placement UNTESTED" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+        <mxCell id="txt43" vertex="1" parent="1" value="Static only · 230 mm landscape · minimum 9.78 pt · native draw.io and final DOCX/PDF placement UNTESTED" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
           <mxGeometry as="geometry" x="35" y="1220" width="1530" height="27.839999999999996" />
         </mxCell>
       </root>

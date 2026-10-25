@@ -3,7 +3,7 @@
   "stem": "seq_uc01_requestQuote_PartA",
   "title": "UC-01 requestQuote — Part A",
   "figure": "3.1.4.OP-15A",
-  "caption": "UC-01 requestQuote design sequence",
+  "caption": "UC-01 requestQuote — Part A",
   "P4_input": "F-04; F-07; P3-S01",
   "phase3": {
     "diagram_type": "sequence",
@@ -54,10 +54,23 @@
         "guard": "",
         "PC_MG": "",
         "label": "requestQuote(hubId, addressId, lines(itemId, quantity), voucherCode?, paymentMethod, onlineOption?)\n→ order.quote† [HTTP adapter]",
-        "y": 445,
+        "y": 390,
         "receiver_signature": "quote()",
         "status": "P4-TARGET",
-        "P4_input": "F-07"
+        "P4_input": "F-07",
+        "native_edge_id": "message_000",
+        "source_anchor_id": "message_000_source",
+        "target_anchor_id": "message_000_target",
+        "native_points": [
+          [
+            90.0,
+            390
+          ],
+          [
+            445.0,
+            390
+          ]
+        ]
       },
       {
         "from": "view",
@@ -68,10 +81,47 @@
         "guard": "eligible/main operand (see frame and operation table)",
         "PC_MG": "Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation",
         "label": "request_quote†(user_id, hub_id, address_id, quantities, voucher_code, payment)",
-        "y": 538,
+        "y": 510,
         "receiver_signature": "request_quote(self, user_id: int, hub_id: int, address_id: Optional[int], quantities: Mapping[int, str], voucher_code: Optional[str] = None, payment: Optional[PaymentChoice] = None) -> Quote",
         "status": "P4-TARGET",
-        "P4_input": "F-04; F-07; P3-S01"
+        "P4_input": "F-04; F-07; P3-S01",
+        "native_edge_id": "message_001",
+        "source_anchor_id": "message_001_source",
+        "target_anchor_id": "message_001_target",
+        "native_points": [
+          [
+            445.0,
+            510
+          ],
+          [
+            800.0,
+            510
+          ]
+        ]
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "refusal",
+        "guard": "invalid actor/address/input",
+        "PC_MG": "UC01-MG01",
+        "label": "refusal",
+        "y": 655,
+        "native_edge_id": "message_002",
+        "source_anchor_id": "message_002_source",
+        "target_anchor_id": "message_002_target",
+        "native_points": [
+          [
+            800.0,
+            655
+          ],
+          [
+            445.0,
+            655
+          ]
+        ]
       },
       {
         "from": "ctrl",
@@ -79,13 +129,34 @@
         "method": "_build_quote",
         "kind": "call",
         "arguments": "customer, hub_id, address_id, quantities, voucher_code",
-        "guard": "eligible/main operand (see frame and operation table)",
+        "guard": "basic guards pass",
         "PC_MG": "",
         "label": "_build_quote(customer, hub_id, address_id, quantities, voucher_code)",
-        "y": 655,
+        "y": 840,
         "receiver_signature": "_build_quote(self, customer: Customer, hub_id: int, address_id: Optional[int], quantities: Mapping[int, str], voucher_code: Optional[str]) -> Quote",
         "status": "MATCH",
-        "P4_input": ""
+        "P4_input": "",
+        "native_edge_id": "message_003",
+        "source_anchor_id": "message_003_source",
+        "target_anchor_id": "message_003_target",
+        "native_points": [
+          [
+            800.0,
+            840
+          ],
+          [
+            845.0,
+            840
+          ],
+          [
+            845.0,
+            865
+          ],
+          [
+            800.0,
+            865
+          ]
+        ]
       },
       {
         "from": "ctrl",
@@ -93,52 +164,26 @@
         "method": "distance_to",
         "kind": "call",
         "arguments": "address",
-        "guard": "eligible/main operand (see frame and operation table)",
+        "guard": "own valid address",
         "PC_MG": "",
         "label": "distance_to†(address) [raw ≤ 8.0 km]",
-        "y": 750,
+        "y": 970,
         "receiver_signature": "distance_to(self, address: Address) -> float",
         "status": "P4-TARGET",
-        "P4_input": "F-04"
-      },
-      {
-        "from": "ctrl",
-        "to": "voucher",
-        "method": "problem",
-        "kind": "call",
-        "arguments": "quote.item_subtotal, today",
-        "guard": "eligible/main operand (see frame and operation table)",
-        "PC_MG": "",
-        "label": "problem(quote.item_subtotal, today)",
-        "y": 815,
-        "receiver_signature": "problem(self, item_subtotal: int, today: str) -> Optional[str]",
-        "status": "MATCH",
-        "P4_input": ""
-      },
-      {
-        "from": "ctrl",
-        "to": "voucher",
-        "method": "discount_for",
-        "kind": "call",
-        "arguments": "quote.item_subtotal",
-        "guard": "eligible/main operand (see frame and operation table)",
-        "PC_MG": "",
-        "label": "discount_for(quote.item_subtotal)",
-        "y": 880,
-        "receiver_signature": "discount_for(self, item_subtotal: int) -> int",
-        "status": "MATCH",
-        "P4_input": ""
-      },
-      {
-        "from": "ctrl",
-        "to": "view",
-        "method": "",
-        "kind": "return",
-        "arguments": "",
-        "guard": "denied / stale / invalid or atomic save failure",
-        "PC_MG": "UC01-MG01",
-        "label": "refusal / controlled failure; UC01-MG01",
-        "y": 1000
+        "P4_input": "F-04",
+        "native_edge_id": "message_004",
+        "source_anchor_id": "message_004_source",
+        "target_anchor_id": "message_004_target",
+        "native_points": [
+          [
+            800.0,
+            970
+          ],
+          [
+            1155.0,
+            970
+          ]
+        ]
       }
     ],
     "elements": [
@@ -167,45 +212,57 @@
       {
         "class": "Voucher",
         "attributes": [],
-        "methods": [
-          "discount_for",
-          "problem"
-        ]
+        "methods": []
       }
     ],
     "dependencies": [],
-    "states": []
-  },
-  "frames": [
-    {
-      "id": "alt",
-      "y": 550,
-      "h": 490,
-      "label": "alt [eligible main path; guards / effects in the operation note]",
-      "operands": [
-        [
-          910,
-          "[denied / stale / invalid or failed atomic save] UC01-MG01"
+    "states": [],
+    "interaction_fragments": [
+      {
+        "id": "invalid_break",
+        "operator": "break",
+        "guard": "actor / ownership / address / input guard denied; UC01-MG01",
+        "x": 30,
+        "y": 545,
+        "w": 1540,
+        "h": 140,
+        "message_indices": [
+          2
         ]
-      ]
-    }
-  ],
+      },
+      {
+        "id": "quote_build_opt",
+        "operator": "opt",
+        "guard": "basic guards pass; _build_quote continues through B–C",
+        "x": 30,
+        "y": 700,
+        "w": 1540,
+        "h": 320,
+        "message_indices": [
+          3,
+          4
+        ]
+      }
+    ]
+  },
+  "frames": [],
   "notes": [
     {
-      "y": 220,
-      "h": 90,
-      "text": "Target: active hub/menu/brand, own active address, integer quantities, load < capacity. Details / guards: report operation table."
+      "y": 175,
+      "h": 65,
+      "text": "Read only; authenticate the Customer and use an own active address and eligible input. District-centroid distance is checked raw. The helper continues on B–C; no persistent Quote is stored."
     },
     {
-      "y": 1010,
-      "h": 65,
-      "text": "Persistence: loaded/saved through data access — see 4.3.2."
+      "y": 1030,
+      "h": 45,
+      "text": "loaded/saved through data access — see 4.3.2"
     }
   ],
-  "continuation": "Part A ↔ PartB. Same lifelines / same operation; no second request.",
-  "realisation_note": "Target: active hub/menu/brand, own active address, integer quantities, load < capacity. Invalid input/refused voucher → no saved rows. Busy suggestions ≤3 ranked (load/capacity, raw distance, ID).",
+  "continuation": "requestQuote: Part A of A–C; previous none; next Part B; same request, no new human wait.",
+  "realisation_note": "Target: active hub/menu/brand, own active address, integer quantities, load < capacity. Invalid input/refused voucher → no saved rows. Busy suggestions ≤3 ranked (load/capacity, raw distance, ID). Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.",
   "self_call_clearance_polished": true,
   "shared_model_source": "models/shared/design_model.json",
   "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
-  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets.",
+  "review_repair_version": "R1-R4"
 }

@@ -3,7 +3,7 @@
   "stem": "seq_uc01_browseHubs",
   "title": "UC-01 browseHubs",
   "figure": "3.1.4.OP-13",
-  "caption": "UC-01 browseHubs design sequence",
+  "caption": "UC-01 browseHubs",
   "P4_input": "none on this view",
   "phase3": {
     "diagram_type": "sequence",
@@ -51,7 +51,20 @@
         "y": 455,
         "receiver_signature": "choose_hub()",
         "status": "MATCH",
-        "P4_input": ""
+        "P4_input": "",
+        "native_edge_id": "message_000",
+        "source_anchor_id": "message_000_source",
+        "target_anchor_id": "message_000_target",
+        "native_points": [
+          [
+            90.0,
+            455
+          ],
+          [
+            563.3333333333333,
+            455
+          ]
+        ]
       },
       {
         "from": "view",
@@ -65,7 +78,20 @@
         "y": 525,
         "receiver_signature": "list_hubs(self) -> list[HubStatus]",
         "status": "MATCH",
-        "P4_input": ""
+        "P4_input": "",
+        "native_edge_id": "message_001",
+        "source_anchor_id": "message_001_source",
+        "target_anchor_id": "message_001_target",
+        "native_points": [
+          [
+            563.3333333333333,
+            525
+          ],
+          [
+            1036.6666666666665,
+            525
+          ]
+        ]
       },
       {
         "from": "ctrl",
@@ -73,32 +99,71 @@
         "method": "HubStatus",
         "kind": "create",
         "arguments": "hub, load",
-        "guard": "eligible/main operand (see frame and operation table)",
+        "guard": "all operation guards pass",
         "PC_MG": "",
         "label": "«create» HubStatus (implicit dataclass initialization)",
-        "y": 647
+        "y": 688,
+        "native_edge_id": "message_002",
+        "source_anchor_id": "message_002_source",
+        "target_anchor_id": "message_002_target",
+        "native_points": [
+          [
+            1036.6666666666665,
+            688
+          ],
+          [
+            1510.0,
+            688
+          ]
+        ]
       },
       {
         "from": "ctrl",
         "to": "view",
         "method": "",
         "kind": "return",
-        "arguments": "activeHubsWithLoadAndCapacity",
-        "guard": "",
-        "PC_MG": "Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation",
-        "label": "result / controlled refusal",
-        "y": 717
-      },
-      {
-        "from": "ctrl",
-        "to": "view",
-        "method": "",
-        "kind": "return",
-        "arguments": "",
-        "guard": "denied / stale / invalid or atomic save failure",
+        "arguments": "activeHubsWithLoadAndCapacity [authorized read]",
+        "guard": "authorized read",
         "PC_MG": "UC01-MG01",
-        "label": "refusal / controlled failure; UC01-MG01",
-        "y": 1000
+        "label": "activeHubsWithLoadAndCapacity [authorized read]",
+        "y": 788,
+        "native_edge_id": "message_003",
+        "source_anchor_id": "message_003_source",
+        "target_anchor_id": "message_003_target",
+        "native_points": [
+          [
+            1036.6666666666665,
+            788
+          ],
+          [
+            563.3333333333333,
+            788
+          ]
+        ]
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "refusal",
+        "guard": "not authorized / guard denied / atomic save failed",
+        "PC_MG": "UC01-MG01",
+        "label": "refusal",
+        "y": 1000,
+        "native_edge_id": "message_004",
+        "source_anchor_id": "message_004_source",
+        "target_anchor_id": "message_004_target",
+        "native_points": [
+          [
+            1036.6666666666665,
+            1000
+          ],
+          [
+            563.3333333333333,
+            1000
+          ]
+        ]
       }
     ],
     "elements": [
@@ -123,37 +188,68 @@
       }
     ],
     "dependencies": [],
-    "states": []
-  },
-  "frames": [
-    {
-      "id": "alt",
-      "y": 537,
-      "h": 503,
-      "label": "alt [eligible main path; guards / effects in the operation note]",
-      "operands": [
-        [
-          910,
-          "[denied / stale / invalid or failed atomic save] UC01-MG01"
+    "states": [],
+    "interaction_fragments": [
+      {
+        "id": "result_alt",
+        "operator": "alt",
+        "guard": "authorized success / refusal",
+        "x": 30,
+        "y": 537,
+        "w": 1540,
+        "h": 483,
+        "message_indices": [
+          2,
+          3,
+          4
         ]
-      ]
-    }
-  ],
+      },
+      {
+        "id": "success_operand",
+        "operator": "opt",
+        "guard": "guards pass; authorized read",
+        "x": 30,
+        "y": 577,
+        "w": 1540,
+        "h": 333,
+        "message_indices": [
+          2,
+          3
+        ],
+        "parent": "result_alt"
+      },
+      {
+        "id": "failure_operand",
+        "operator": "opt",
+        "guard": "otherwise; UC01-MG01",
+        "x": 30,
+        "y": 910,
+        "w": 1540,
+        "h": 110,
+        "message_indices": [
+          4
+        ],
+        "parent": "result_alt"
+      }
+    ]
+  },
+  "frames": [],
   "notes": [
     {
-      "y": 220,
-      "h": 75.2,
-      "text": "Read .busy / .quiet on HubStatus; these are properties, never busy() / quiet() calls. No persistent writes. Active Customer gate belongs to view; select_hub also checks active Customer and hub."
+      "y": 175,
+      "h": 65,
+      "text": "Authorized role and own-customer / own-hub scope are checked. Read only: zero persistent writes. UC01-MG01 applies on refusal."
     },
     {
-      "y": 1010,
-      "h": 65,
-      "text": "Persistence: loaded/saved through data access — see 4.3.2."
+      "y": 1030,
+      "h": 45,
+      "text": "loaded/saved through data access — see 4.3.2"
     }
   ],
   "continuation": "Complete design operation; failure path is the alternative operand above.",
-  "realisation_note": "Read .busy / .quiet on HubStatus; these are properties, never busy() / quiet() calls. No persistent writes. Active Customer gate belongs to view; select_hub also checks active Customer and hub.",
+  "realisation_note": "Read .busy / .quiet on HubStatus; these are properties, never busy() / quiet() calls. No persistent writes. Active Customer gate belongs to view; select_hub also checks active Customer and hub. Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.",
   "shared_model_source": "models/shared/design_model.json",
   "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
-  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets.",
+  "review_repair_version": "R1-R4"
 }

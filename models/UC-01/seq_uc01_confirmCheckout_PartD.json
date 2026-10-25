@@ -1,0 +1,188 @@
+{
+  "UC": "UC-01",
+  "stem": "seq_uc01_confirmCheckout_PartD",
+  "title": "UC-01 confirmCheckout — Part D",
+  "figure": "3.1.4.OP-01D",
+  "caption": "UC-01 confirmCheckout — Part D",
+  "P4_input": "F-04; F-07; P2-S05; P2-S13",
+  "phase3": {
+    "diagram_type": "sequence",
+    "UC": "UC-01",
+    "op_id": "OP-01",
+    "operation": "confirmCheckout",
+    "parameters": "hubId, addressId, lines(itemId, quantity), voucherCode?, paymentMethod, onlineOption?, simulatorOutcome?, quoteFingerprint, quotedTotal, checkoutToken",
+    "ssd_occurrence": "models/UC-01/ssd_uc01_PartB.drawio#01S-M04",
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Customer",
+        "role": "actor",
+        "label": "Customer"
+      },
+      {
+        "id": "view",
+        "class": "order",
+        "role": "view",
+        "label": "«view»\norder"
+      },
+      {
+        "id": "ctrl",
+        "class": "PlaceOrderController",
+        "role": "controller",
+        "label": "PlaceOrderController"
+      },
+      {
+        "id": "sim",
+        "class": "PaymentGatewaySimulator",
+        "role": "gateway",
+        "label": "«gateway»\nPaymentGatewaySimulator"
+      },
+      {
+        "id": "order",
+        "class": "Order",
+        "role": "domain",
+        "label": "Order"
+      },
+      {
+        "id": "pay",
+        "class": "Payment",
+        "role": "domain",
+        "label": "Payment"
+      }
+    ],
+    "messages": [
+      {
+        "from": "ctrl",
+        "to": "order",
+        "method": "place",
+        "kind": "call",
+        "arguments": "customer.id, quote, token, now",
+        "guard": "COD or approved ONLINE",
+        "PC_MG": "",
+        "label": "place(customer.id, quote, token, now)",
+        "y": 470,
+        "receiver_signature": "place(cls, customer_id: int, quote: Quote, idempotency_token: str, placed_at: str) -> 'Order'",
+        "status": "MATCH",
+        "P4_input": "",
+        "native_edge_id": "message_000",
+        "source_anchor_id": "message_000_source",
+        "target_anchor_id": "message_000_target",
+        "native_points": [
+          [
+            658.0,
+            470
+          ],
+          [
+            1226.0,
+            470
+          ]
+        ]
+      },
+      {
+        "from": "ctrl",
+        "to": "pay",
+        "method": "Payment",
+        "kind": "create",
+        "arguments": "order_id, method, state, amount, created_at",
+        "guard": "COD or approved ONLINE",
+        "PC_MG": "",
+        "label": "«create» Payment (implicit dataclass initialization)",
+        "y": 700,
+        "native_edge_id": "message_001",
+        "source_anchor_id": "message_001_source",
+        "target_anchor_id": "message_001_target",
+        "native_points": [
+          [
+            658.0,
+            700
+          ],
+          [
+            1510.0,
+            700
+          ]
+        ]
+      }
+    ],
+    "elements": [
+      {
+        "class": "order",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "PlaceOrderController",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "PaymentGatewaySimulator",
+        "attributes": [],
+        "methods": []
+      },
+      {
+        "class": "Order",
+        "attributes": [],
+        "methods": [
+          "place"
+        ]
+      },
+      {
+        "class": "Payment",
+        "attributes": [],
+        "methods": []
+      }
+    ],
+    "dependencies": [],
+    "states": [
+      {
+        "class": "Order",
+        "attribute": "state",
+        "values": [
+          "PLACED"
+        ]
+      },
+      {
+        "class": "Payment",
+        "attribute": "state",
+        "values": [
+          "PENDING",
+          "PAID"
+        ]
+      }
+    ],
+    "interaction_fragments": [
+      {
+        "id": "payment_permits_opt",
+        "operator": "opt",
+        "guard": "unused eligible request AND (COD OR approved ONLINE)",
+        "x": 30,
+        "y": 250,
+        "w": 1540,
+        "h": 770,
+        "message_indices": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "frames": [],
+  "notes": [
+    {
+      "y": 175,
+      "h": 65,
+      "text": "Create PLACED Order/line/address/price snapshots and Payment: COD PENDING or ONLINE PAID, C=T. This is the atomic attempt, not a success reply. Save/COMMIT outcome is exclusively Part E."
+    },
+    {
+      "y": 1030,
+      "h": 45,
+      "text": "loaded/saved through data access — see 4.3.2"
+    }
+  ],
+  "continuation": "confirmCheckout: Part D of A–E; previous Part C; next Part E; same request, no new human wait.",
+  "realisation_note": "Deterministic local simulator, no network/wait. COD skips authorise; ONLINE declined → zero Order/Line/Payment. Success atomically saves PLACED + snapshots + COD PENDING / ONLINE PAID, C=T (UC01-PC01–06). Any lock/write/commit failure rolls back all intended writes and releases authorization† (P2-S05/P2-S13). Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.",
+  "shared_model_source": "models/shared/design_model.json",
+  "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets.",
+  "review_repair_version": "R1-R4"
+}

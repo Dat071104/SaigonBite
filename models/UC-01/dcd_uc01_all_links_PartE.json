@@ -201,12 +201,13 @@
           188
         ]
       ],
-      "label": "→  «use»",
+      "label": "«use»",
       "labelpos": [
-        575,
-        109
+        690,
+        110
       ],
-      "labelwidth": 440
+      "labelwidth": 330,
+      "native_edge_id": "dcd_relation_000"
     },
     {
       "source": "s1",
@@ -222,12 +223,13 @@
           338
         ]
       ],
-      "label": "→  «use»",
+      "label": "«use»",
       "labelpos": [
-        575,
-        259
+        690,
+        260
       ],
-      "labelwidth": 440
+      "labelwidth": 330,
+      "native_edge_id": "dcd_relation_001"
     },
     {
       "source": "s2",
@@ -243,12 +245,13 @@
           488
         ]
       ],
-      "label": "→  «use»",
+      "label": "«use»",
       "labelpos": [
-        575,
-        409
+        690,
+        410
       ],
-      "labelwidth": 440
+      "labelwidth": 330,
+      "native_edge_id": "dcd_relation_002"
     },
     {
       "source": "s3",
@@ -264,12 +267,13 @@
           638
         ]
       ],
-      "label": "→  «use»",
+      "label": "«use»",
       "labelpos": [
-        575,
-        559
+        690,
+        560
       ],
-      "labelwidth": 440
+      "labelwidth": 330,
+      "native_edge_id": "dcd_relation_003"
     },
     {
       "source": "s4",
@@ -285,12 +289,13 @@
           788
         ]
       ],
-      "label": "→  «use»",
+      "label": "«use»",
       "labelpos": [
-        575,
-        709
+        690,
+        710
       ],
-      "labelwidth": 440
+      "labelwidth": 330,
+      "native_edge_id": "dcd_relation_004"
     },
     {
       "source": "s5",
@@ -306,12 +311,13 @@
           938
         ]
       ],
-      "label": "→  «use»",
+      "label": "«use»",
       "labelpos": [
-        575,
-        859
+        690,
+        860
       ],
-      "labelwidth": 440
+      "labelwidth": 330,
+      "native_edge_id": "dcd_relation_005"
     }
   ],
   "phase3": {
@@ -408,7 +414,8 @@
         "allowed_on_layered_diagram": true
       }
     ],
-    "states": []
+    "states": [],
+    "association_end_labels": []
   },
   "continuation": "Members: all detail parts. Relationship parts A–N continue both ways.",
   "P4_input": "none on this view",

@@ -72,8 +72,16 @@
         "base_label": "† menu_item_id, snapshot name, quantity, revenue; ID retained in SalesReport.top_items",
         "fragment": false,
         "draw_arrow": false,
-        "y": 341,
-        "edge_id": "message0"
+        "y": 308.68,
+        "edge_id": "message0",
+        "label_box": [
+          65,
+          269.84000000000003,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message0",
+        "arrow_style": "dashed_open_reply"
       },
       {
         "from": "ctrl",
@@ -87,8 +95,16 @@
         "base_label": "«create» SalesReport(period, hub, rows, totals, top_items); non-persisted; item ID retained†.",
         "fragment": false,
         "draw_arrow": false,
-        "y": 466,
-        "edge_id": "message1"
+        "y": 374.52,
+        "edge_id": "message1",
+        "label_box": [
+          65,
+          335.68,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message1",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "ctrl",
@@ -102,7 +118,13 @@
         "base_label": "ALL branches: SELECT only; no BEGIN IMMEDIATE, INSERT, UPDATE or DELETE. Empty data → zero counts / empty top list. UC04-MG01; UC04-PC01.",
         "fragment": false,
         "draw_arrow": false,
-        "y": 591
+        "y": 457.2,
+        "label_box": [
+          65,
+          405.52,
+          1470,
+          55.68
+        ]
       },
       {
         "from": "ctrl",
@@ -116,8 +138,16 @@
         "base_label": "operational sales and refunds owed, or controlled read/filter refusal",
         "fragment": false,
         "draw_arrow": false,
-        "y": 716,
-        "edge_id": "message3"
+        "y": 518.04,
+        "edge_id": "message3",
+        "label_box": [
+          65,
+          479.2,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message3",
+        "arrow_style": "dashed_open_reply"
       }
     ],
     "elements": [
@@ -155,7 +185,27 @@
       }
     ],
     "dependencies": [],
-    "states": []
+    "states": [],
+    "interaction_fragments": [
+      {
+        "id": "fragment_seqdao_uc04_salesReport_PartD_1",
+        "operator": "break",
+        "guard": "authorized valid-filter SELECTs completed; return read-only report and END",
+        "start_index": 0,
+        "end_index": 3,
+        "message_indices": [
+          0,
+          1,
+          3
+        ],
+        "x": 25,
+        "y": 232,
+        "w": 1550,
+        "h": 313.03999999999996,
+        "depth": 0,
+        "guard_height": 32.84
+      }
+    ]
   },
   "placed_width_mm": 230,
   "source_design_sequences": [
@@ -229,27 +279,39 @@
         55.67999999999999
       ],
       [
-        45,
-        242,
-        1510,
+        31,
+        233,
+        84,
         27.839999999999996
       ],
       [
-        45,
-        367,
-        1510,
+        127,
+        233,
+        1438,
         27.839999999999996
       ],
       [
-        45,
-        497,
-        1510,
+        65,
+        269.84000000000003,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        335.68,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        405.52,
+        1470,
         55.67999999999999
       ],
       [
-        45,
-        617,
-        1510,
+        65,
+        479.2,
+        1470,
         27.839999999999996
       ],
       [
@@ -291,13 +353,15 @@
         "points": [
           [
             1253.3333333333333,
-            341
+            308.68
           ],
           [
             573.3333333333333,
-            341
+            308.68
           ]
-        ]
+        ],
+        "filled": false,
+        "dashed": true
       },
       {
         "id": "message1",
@@ -306,13 +370,15 @@
         "points": [
           [
             573.3333333333333,
-            466
+            374.52
           ],
           [
             1026.6666666666665,
-            466
+            374.52
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message3",
@@ -321,15 +387,25 @@
         "points": [
           [
             573.3333333333333,
-            716
+            518.04
           ],
           [
             346.66666666666663,
-            716
+            518.04
           ]
-        ]
+        ],
+        "filled": false,
+        "dashed": true
       }
     ],
     "author_native_cell": true
+  },
+  "independent_review_repair": {
+    "findings": [
+      "R1",
+      "R4"
+    ],
+    "preserved_source": "D:\\RAD\\FINAL\\Part2\\notes\\P3_trash\\P3-F\\independent_review_R1_R4_20261025_192108\\UC-04\\seqdao_uc04_salesReport_PartD.json",
+    "scope": "Actual guarded regions and synchronous arrowheads; no shared-model/app/status changes."
   }
 }

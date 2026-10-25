@@ -5,7 +5,7 @@
   "figure": "4.3.2.2.OP-10.D",
   "part": "Part D",
   "scope": "Same request and transaction across all parts; focus 4/5. Mechanical reads: responsibility table (report 4.3.2).",
-  "continuation": "From seqdao_uc02_takeDelivery_PartC → this part → seqdao_uc02_takeDelivery_PartE.",
+  "continuation": "Success break END. Only failure from Parts A-C enters Part E; this is a sibling handler, not success fallthrough.",
   "transaction_summary": "Transaction key (whole request): BEGIN IMMEDIATE → checked rowcount / inserts → COMMIT; failure → ROLLBACK if active. Busy: retry, nothing changed.",
   "target_note": "† design target, not yet in code at C0: P2-S13; P3-S03; P2-S12 connection settings; MATCH is Static only.",
   "phase3": {
@@ -75,8 +75,16 @@
         "receiver_signature": "get_delivery(self, user_id: int, order_id: int) -> DeliveryView",
         "status": "MATCH",
         "P4_input": "",
-        "y": 341,
-        "edge_id": "message0"
+        "y": 308.68,
+        "edge_id": "message0",
+        "label_box": [
+          65,
+          269.84000000000003,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message0",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "ctrl",
@@ -90,8 +98,16 @@
         "base_label": "«create» DeliveryView(delivery, order, payment, hub, customer); committed result projection",
         "fragment": false,
         "draw_arrow": false,
-        "y": 466,
-        "edge_id": "message1"
+        "y": 381.52,
+        "edge_id": "message1",
+        "label_box": [
+          65,
+          342.68,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message1",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "ctrl",
@@ -105,7 +121,13 @@
         "base_label": "«create» DeliveryView(delivery, order, payment, hub, customer) after committed reread; omitted contact/history reads use actual DAOs (responsibility table).",
         "fragment": false,
         "draw_arrow": false,
-        "y": 591
+        "y": 464.2,
+        "label_box": [
+          65,
+          412.52,
+          1470,
+          55.68
+        ]
       },
       {
         "from": "ctrl",
@@ -119,8 +141,16 @@
         "base_label": "assigned delivery; one winner for competing takes",
         "fragment": false,
         "draw_arrow": false,
-        "y": 716,
-        "edge_id": "message3"
+        "y": 525.04,
+        "edge_id": "message3",
+        "label_box": [
+          65,
+          486.2,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message3",
+        "arrow_style": "dashed_open_reply"
       },
       {
         "from": "ctrl",
@@ -130,26 +160,37 @@
         "arguments": "",
         "guard": "",
         "PC_MG": "UC02-PC01; UC02-MG01",
-        "label": "Guard refusal / 0 rows / False DAO result: stop; ROLLBACK all intended writes if transaction active. ",
-        "base_label": "Guard refusal / 0 rows / False DAO result: stop; ROLLBACK all intended writes if transaction active. ",
-        "fragment": true,
+        "label": "Failure continuation only: Part E performs cleanup and refusal; success break above has ended this request.",
+        "base_label": "Failure continuation only: Part E performs cleanup and refusal; success break above has ended this request.",
+        "fragment": false,
         "draw_arrow": false,
-        "y": 841
+        "y": 584.88,
+        "label_box": [
+          65,
+          561.04,
+          1470,
+          27.84
+        ]
       },
       {
         "from": "ctrl",
-        "to": "db",
+        "to": "ctrl",
         "method": "",
         "kind": "note",
         "arguments": "",
-        "guard": "transaction or COMMIT failed",
+        "guard": "",
         "PC_MG": "UC02-PC01; UC02-MG01",
-        "label": "ROLLBACK† if active after write or COMMIT failure; do not issue unconditional rollback after a failed BEGIN.",
-        "base_label": "ROLLBACK† if active after write or COMMIT failure; do not issue unconditional rollback after a failed BEGIN.",
+        "label": "Part E covers guard / 0-row / write / COMMIT errors; failed BEGIN rolls back only if transaction active.",
+        "base_label": "Part E covers guard / 0-row / write / COMMIT errors; failed BEGIN rolls back only if transaction active.",
         "fragment": false,
-        "draw_arrow": true,
-        "y": 966,
-        "edge_id": "message5"
+        "draw_arrow": false,
+        "y": 634.72,
+        "label_box": [
+          65,
+          610.88,
+          1470,
+          27.84
+        ]
       }
     ],
     "elements": [
@@ -189,7 +230,27 @@
       }
     ],
     "dependencies": [],
-    "states": []
+    "states": [],
+    "interaction_fragments": [
+      {
+        "id": "fragment_seqdao_uc02_takeDelivery_PartD_1",
+        "operator": "break",
+        "guard": "COMMIT succeeded; return success and END request",
+        "start_index": 0,
+        "end_index": 3,
+        "message_indices": [
+          0,
+          1,
+          3
+        ],
+        "x": 25,
+        "y": 232,
+        "w": 1550,
+        "h": 320.03999999999996,
+        "depth": 0,
+        "guard_height": 32.84
+      }
+    ]
   },
   "placed_width_mm": 230,
   "source_design_sequences": [
@@ -263,45 +324,51 @@
         55.67999999999999
       ],
       [
-        45,
-        242,
-        1510,
+        31,
+        233,
+        84,
         27.839999999999996
       ],
       [
-        45,
-        367,
-        1510,
+        127,
+        233,
+        1438,
         27.839999999999996
       ],
       [
-        45,
-        497,
-        1510,
+        65,
+        269.84000000000003,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        342.68,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        412.52,
+        1470,
         55.67999999999999
       ],
       [
-        45,
-        617,
-        1510,
+        65,
+        486.2,
+        1470,
         27.839999999999996
       ],
       [
-        42,
-        742,
-        56,
+        65,
+        561.04,
+        1470,
         27.839999999999996
       ],
       [
-        110,
-        747,
-        1440,
-        27.839999999999996
-      ],
-      [
-        45,
-        867,
-        1510,
+        65,
+        610.88,
+        1470,
         27.839999999999996
       ],
       [
@@ -343,21 +410,23 @@
         "points": [
           [
             573.3333333333333,
-            341
+            308.68
           ],
           [
             608.3333333333333,
-            341
+            308.68
           ],
           [
             608.3333333333333,
-            363
+            330.68
           ],
           [
             573.3333333333333,
-            363
+            330.68
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message1",
@@ -366,13 +435,15 @@
         "points": [
           [
             573.3333333333333,
-            466
+            381.52
           ],
           [
             800.0,
-            466
+            381.52
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message3",
@@ -381,30 +452,25 @@
         "points": [
           [
             573.3333333333333,
-            716
+            525.04
           ],
           [
             346.66666666666663,
-            716
+            525.04
           ]
-        ]
-      },
-      {
-        "id": "message5",
-        "source": "m5s",
-        "target": "m5t",
-        "points": [
-          [
-            573.3333333333333,
-            966
-          ],
-          [
-            1480.0,
-            966
-          ]
-        ]
+        ],
+        "filled": false,
+        "dashed": true
       }
     ],
     "author_native_cell": true
+  },
+  "independent_review_repair": {
+    "findings": [
+      "R1",
+      "R4"
+    ],
+    "preserved_source": "D:\\RAD\\FINAL\\Part2\\notes\\P3_trash\\P3-F\\independent_review_R1_R4_20261025_192108\\UC-02\\seqdao_uc02_takeDelivery_PartD.json",
+    "scope": "Actual guarded regions and synchronous arrowheads; no shared-model/app/status changes."
   }
 }

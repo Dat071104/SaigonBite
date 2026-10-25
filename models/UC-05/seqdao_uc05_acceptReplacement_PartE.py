@@ -67,7 +67,7 @@ class Canvas:
   self.cell(id or 'txt'+str(self.i),x,y,w,h,'\n'.join(lines),f'text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize={n};fontStyle={1 if b else 0};');self.i+=1;self.bounds.append([x,y,w,h]);return h
  def rect(self,x,y,w,h,fill='white',id=None):
   self.dr.rectangle((x,y,x+w,y+h),outline=BLUE,fill=fill,width=2);self.s.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" stroke="{BLUE}" fill="{fill}" stroke-width="2"/>');self.cell(id or 'box'+str(self.i),x,y,w,h,'',f'fillColor={fill};strokeColor={BLUE};');self.i+=1
- def line(self,pts,dash=False,arrow=False,source=None,target=None,eid=None):
+ def line(self,pts,dash=False,arrow=False,source=None,target=None,eid=None,filled=False):
   for a,b in zip(pts,pts[1:]):
    if dash:
     count=max(1,int(math.dist(a,b)/8))
@@ -75,15 +75,17 @@ class Canvas:
    else:self.dr.line([a,b],fill=BLUE,width=2)
   self.s.append('<polyline points="'+' '.join(f'{x},{y}' for x,y in pts)+f'" fill="none" stroke="{BLUE}" stroke-width="2"'+(' stroke-dasharray="7 7"' if dash else '')+'/>')
   if arrow:
-   a,b=pts[-2:];angle=math.atan2(b[1]-a[1],b[0]-a[0]);p=[(b[0]-14*math.cos(angle-.45),b[1]-14*math.sin(angle-.45)),b,(b[0]-14*math.cos(angle+.45),b[1]-14*math.sin(angle+.45))];self.dr.line(p,fill=BLUE,width=2);self.s.append('<polyline points="'+' '.join(f'{x},{y}' for x,y in p)+f'" fill="none" stroke="{BLUE}" stroke-width="2"/>')
+   a,b=pts[-2:];angle=math.atan2(b[1]-a[1],b[0]-a[0]);p=[(b[0]-14*math.cos(angle-.45),b[1]-14*math.sin(angle-.45)),b,(b[0]-14*math.cos(angle+.45),b[1]-14*math.sin(angle+.45))]
+   if filled:self.dr.polygon(p,fill=BLUE);self.s.append('<polygon data-edge-head="'+str(eid)+'" points="'+' '.join(f'{x},{y}' for x,y in p)+f'" fill="{BLUE}" stroke="{BLUE}" stroke-width="2"/>')
+   else:self.dr.line(p,fill=BLUE,width=2);self.s.append('<polyline data-edge-head="'+str(eid)+'" points="'+' '.join(f'{x},{y}' for x,y in p)+f'" fill="none" stroke="{BLUE}" stroke-width="2"/>')
   if source:
-   id=eid or 'edge'+str(self.i);c=ET.SubElement(self.root,'mxCell',id=id,edge='1',parent='1',source=source,target=target,style='edgeStyle=none;endArrow=open;strokeColor='+BLUE+';'+('dashed=1;' if dash else '')+'exitX=0.5;entryX=0.5;exitPerimeter=0;entryPerimeter=0;');g=ET.SubElement(c,'mxGeometry',relative='1',attrib={'as':'geometry'});a=ET.SubElement(g,'Array',attrib={'as':'points'})
+   id=eid or 'edge'+str(self.i);c=ET.SubElement(self.root,'mxCell',id=id,edge='1',parent='1',source=source,target=target,style='edgeStyle=none;endArrow='+('block;endFill=1;' if filled else 'open;endFill=0;')+'strokeColor='+BLUE+';'+('dashed=1;' if dash else '')+'exitX=0.5;entryX=0.5;exitPerimeter=0;entryPerimeter=0;');g=ET.SubElement(c,'mxGeometry',relative='1',attrib={'as':'geometry'});a=ET.SubElement(g,'Array',attrib={'as':'points'})
    for x,y in pts[1:-1]:ET.SubElement(a,'mxPoint',x=str(x),y=str(y))
-   self.edges.append({'id':id,'source':source,'target':target,'points':pts});self.i+=1
+   self.edges.append({'id':id,'source':source,'target':target,'points':pts,'filled':filled,'dashed':dash});self.i+=1
  def finish(self,p):
   self.s.append('</svg>');p.with_suffix('.svg').write_text('\n'.join(self.s),encoding='utf-8');self.im.save(p.with_suffix('.png'));ET.indent(self.mx);ET.ElementTree(self.mx).write(p.with_suffix('.drawio'),encoding='utf-8',xml_declaration=True)
   self.d['render_receipt']={'canvas':[W,H],'minimum_font_px':FS,'placed_width_mm':230,'minimum_pt':FS*230*72/(W*25.4),'native_font_matches_svg':True,'label_bounds':self.bounds,'edges':self.edges,'author_native_cell':True};p.with_suffix('.json').write_text(json.dumps(self.d,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-def render(d,p):
+def old_render(d,p):
  c=Canvas(d);c.text(35,15,d['title'],1530,28,True);c.text(35,54,d['scope'],1530)
  lfs=d['phase3']['lifelines'];xs={l['id']:120+i*1360/max(1,len(lfs)-1) for i,l in enumerate(lfs)};bw=min(224,1360/max(1,len(lfs)-1)-14)
  for l in lfs:
@@ -106,6 +108,57 @@ def render(d,p):
   src=f'm{i}s';dst=f'm{i}t';c.cell(src,a,yy,0,0,'','opacity=0;');c.cell(dst,b,yy+(22 if a==b else 0),0,0,'','opacity=0;')
   pts=[(a,yy),(a+35,yy),(a+35,yy+22),(a,yy+22)] if a==b else [(a,yy),(b,yy)]
   c.line(pts,kind=='return',True,src,dst,'message'+str(i));msg['edge_id']='message'+str(i)
+  if kind in ('call','create'):c.rect(b-5,yy,10,18,'#DAE9F5')
+ c.text(35,1035,d['continuation'],1530)
+ c.text(35,1070,d['transaction_summary'],1530)
+ c.text(35,1130,d['target_note'],1530)
+ c.text(35,1190,'Figure '+d['figure']+'. '+d['phase3']['operation']+' / '+d['part']+' — Author: 722I0004 · AI-assisted (Codex)',1530)
+ c.text(35,1220,'Static only · 230 mm landscape · minimum 9.78 pt · native draw.io and final DOCX/PDF placement UNTESTED',1530)
+ c.finish(p)
+def is_arrow(m):return m['kind']!='note' or bool(m.get('draw_arrow'))
+def layout(d):
+ messages=d['phase3']['messages'];fragments=d['phase3']['interaction_fragments'];y=232;rows=[]
+ for i,msg in enumerate(messages):
+  opened=sorted([f for f in fragments if f['start_index']==i],key=lambda f:(-f['end_index'],f['id']))
+  for f in opened:
+   f['x']=25+12*f.get('depth',0);f['y']=y;f['w']=1550-24*f.get('depth',0)
+   f['guard_height']=max(30,len(wrap('['+f['guard']+']',f['w']-120))*27.84+5);y+=f['guard_height']+5
+  label=msg['label'];text_width=1470
+  if msg.get('guard'):label='['+msg['guard']+'] '+label
+  h=len(wrap(label,text_width))*27.84;top=y
+  if is_arrow(msg):
+   ay=top+h+11;bottom=ay+(24 if msg['from']==msg['to'] else 17)
+   msg['y']=ay;msg['label_box']=[65,top,text_width,h];msg['native_edge_id']='message'+str(i);msg['edge_id']=msg['native_edge_id']
+  else:
+   bottom=top+h+12;msg['y']=top+h;msg['label_box']=[65,top+4,text_width,h];msg.pop('native_edge_id',None);msg.pop('edge_id',None)
+  rows.append((top,bottom,label));y=bottom+10
+  closed=sorted([f for f in fragments if f['end_index']==i],key=lambda f:f.get('depth',0),reverse=True)
+  for f in closed:
+   f['h']=y-f['y'];f['message_indices']=[j for j in range(f['start_index'],f['end_index']+1) if is_arrow(messages[j])];assert f['message_indices'],(d['stem'],'empty guarded frame',f)
+   y+=5
+ assert y<=1026,(d['stem'],'split required',y)
+ return rows
+def render(d,p):
+ c=Canvas(d);rows=layout(d);c.text(35,15,d['title'],1530,28,True);c.text(35,54,d['scope'],1530)
+ assert len(wrap(d['continuation'],1530))==1,(d['stem'],'continuation needs a shorter line')
+ lfs=d['phase3']['lifelines'];xs={l['id']:120+i*1360/max(1,len(lfs)-1) for i,l in enumerate(lfs)};bw=min(224,1360/max(1,len(lfs)-1)-14)
+ # Actual enclosing rectangles are drawn before messages and remain transparent.
+ for f in d['phase3']['interaction_fragments']:
+  x,y,w,h=(f[k] for k in ('x','y','w','h'));c.dr.rectangle((x,y,x+w,y+h),outline=BLUE,width=2);c.s.append(f'<rect data-fragment-id="{f["id"]}" x="{x}" y="{y}" width="{w}" height="{h}" fill="none" stroke="{BLUE}" stroke-width="2"/>');c.cell(f['id'],x,y,w,h,'','shape=umlFrame;fillColor=none;strokeColor='+BLUE+';');c.i+=1
+ for l in lfs:
+  x=xs[l['id']];c.rect(x-bw/2,100,bw,120,'#F1F6FA',l['id']);label=re.sub(r'(?<=[a-z])(?=[A-Z])','\n',l.get('label',l['class']));c.text(x-bw/2+7,105,label,bw-14);c.line([(x,220),(x,1026)],True)
+ for f in d['phase3']['interaction_fragments']:
+  x,y,w,h=(f[k] for k in ('x','y','w','h'));c.text(x+6,y+1,f['operator'],84,b=True,bg=True,id=f['id']+'_operator');c.text(x+102,y+1,'['+f['guard']+']',w-112,bg=True,id=f['id']+'_guard')
+ for i,(msg,row) in enumerate(zip(d['phase3']['messages'],rows)):
+  top,bottom,label=row;kind=msg['kind']
+  if not is_arrow(msg):
+   c.rect(55,top,1490,bottom-top,'#FFF8E9');c.text(65,top+4,label,1470);continue
+  c.text(65,top,label,1470,bg=True);a,b=xs[msg['from']],xs[msg['to']];yy=msg['y'];src=f'm{i}s';dst=f'm{i}t';c.cell(src,a,yy,0,0,'','opacity=0;');c.cell(dst,b,yy+(22 if a==b else 0),0,0,'','opacity=0;');pts=[(a,yy),(a+35,yy),(a+35,yy+22),(a,yy+22)] if a==b else [(a,yy),(b,yy)]
+  # Actual methods, SSD requests, construction and DB requests are synchronous.
+  # Attribute/property notes keep their separate open annotation arrow.
+  database=next(l for l in lfs if l['id']==msg['to'])['role']=='database'
+  filled=kind in ('call','ssd','create') or (database and kind!='return')
+  c.line(pts,kind=='return',True,src,dst,msg['native_edge_id'],filled=filled);msg['arrow_style']='closed_filled_synchronous' if filled else 'dashed_open_reply' if kind=='return' else 'open_attribute_note'
   if kind in ('call','create'):c.rect(b-5,yy,10,18,'#DAE9F5')
  c.text(35,1035,d['continuation'],1530)
  c.text(35,1070,d['transaction_summary'],1530)

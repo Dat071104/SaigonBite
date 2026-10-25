@@ -8,7 +8,7 @@ Author: 722I0004 · AI-assisted (Codex)
 
 ### 3.6.2 Design Class Diagram
 
-Each sheet is generated from the shared model. Method-rich layer views and operation projections are split at 230 mm landscape width; sequences use 170 mm portrait width; all parts must be retained. The full typed class table resolves members omitted in narrow operation projections. A downward dashed arrow is a dependency; a solid domain association has multiplicities and navigability. Domain classes own no application dependency.
+Each sheet is generated from the shared model. Method-rich layer views and operation projections are split at 230 mm landscape width; sequences use 170 mm portrait width; all parts must be retained. The full typed class table resolves members omitted in narrow operation projections. A downward dashed arrow is a dependency; a solid domain association has multiplicities and navigability. Each displayed association has two separate multiplicity labels next to its attached endpoints and a separate role name. Generalization has no multiplicities. Domain classes own no application dependency.
 
 #### i. Domain design class
 
@@ -136,7 +136,7 @@ Figure 3.6.2vJ. UC-06 all projection 10 — Author: 722I0004 · AI-assisted (Cod
 
 Place the following sequence figures at **170 mm portrait width** (23 px minimum source text = 9.236 pt at placement). DCD sheets use **230 mm landscape width** (18 px = 9.780 pt).
 
-Each exact SSD boundary request maps to a real blueprint route adapter and controller method. The active server session supplies uid(); camelCase names map to validated Python arguments/form keys in .1. The domain objects are dataclasses: a create arrow denotes implicit construction and a note denotes state inspection; no invented domain archive/update method is called. Return labels name outcomes, not callable methods. Persistence is a note referring to 4.3.2; Section III contains no DAO lifeline or SQL. Every guard is checked again at the mutation boundary. Technical-failure operands require rollback before acknowledging a no-change outcome.
+Each exact SSD boundary request maps to a real blueprint route adapter and controller method. The active server session supplies uid(); camelCase names map to validated Python arguments/form keys in .1. The domain objects are dataclasses: a create arrow denotes implicit construction and a note denotes state inspection; no invented domain archive/update method is called. Return labels name outcomes, not callable methods. Persistence is a note referring to 4.3.2; Section III contains no DAO lifeline or SQL. Every guard is checked again at the mutation boundary. Technical-failure operands require rollback before acknowledging a no-change outcome. The actual alt frame separates refusal, successful completion and technical failure with operand dividers. Solid filled heads denote synchronous calls; dashed open heads denote returns.
 
 The listCatalogue PartA/PartB/PartC figures preserve three distinct SSD occurrences of OP-25; they deliberately retain the same system request. Hub-filter routing may use `admin.hub_menu(hub_id)` instead of `admin.catalogue()`; the displayed module role remains `admin`. The GAP wrapper and initial-availability targets remain daggered. OP-41 current-parent context is pinned; no reparent/restore is introduced.
 

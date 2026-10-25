@@ -66,8 +66,16 @@
         "base_label": "hub aggregate rows: orders, S, D, F−Q, T, refund owed; no order_line join",
         "fragment": false,
         "draw_arrow": false,
-        "y": 341,
-        "edge_id": "message0"
+        "y": 308.68,
+        "edge_id": "message0",
+        "label_box": [
+          65,
+          269.84000000000003,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message0",
+        "arrow_style": "dashed_open_reply"
       },
       {
         "from": "ctrl",
@@ -81,8 +89,16 @@
         "base_label": "«create» SalesRow from each SELECT row; non-persisted. Total row starts at zero.",
         "fragment": false,
         "draw_arrow": false,
-        "y": 466,
-        "edge_id": "message1"
+        "y": 412.35999999999996,
+        "edge_id": "message1",
+        "label_box": [
+          65,
+          373.52,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message1",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "ctrl",
@@ -99,8 +115,16 @@
         "receiver_signature": "add(self, other: 'SalesRow') -> None",
         "status": "MATCH",
         "P4_input": "",
-        "y": 591,
-        "edge_id": "message2"
+        "y": 478.19999999999993,
+        "edge_id": "message2",
+        "label_box": [
+          65,
+          439.35999999999996,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message2",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "ctrl",
@@ -114,7 +138,13 @@
         "base_label": "SalesRow.net† is property access: operational sales = T; refund owed disclosed separately, never subtracted again (F-03). No metric correctness measured.",
         "fragment": false,
         "draw_arrow": false,
-        "y": 716
+        "y": 565.8799999999999,
+        "label_box": [
+          65,
+          514.1999999999999,
+          1470,
+          55.68
+        ]
       },
       {
         "from": "ctrl",
@@ -131,8 +161,16 @@
         "receiver_signature": "top_items(self, start_utc: str, end_utc: str, hub_id: Optional[int], limit: int=10) -> list[sqlite3.Row]",
         "status": "P4-TARGET",
         "P4_input": "F-09",
-        "y": 841,
-        "edge_id": "message4"
+        "y": 626.7199999999999,
+        "edge_id": "message4",
+        "label_box": [
+          65,
+          587.8799999999999,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message4",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "obj4",
@@ -146,8 +184,16 @@
         "base_label": "SQL note: SELECT order_line + orders + delivery; delivered finish period. † F-09 GROUP BY menu_item_id; snapshot name is label, not identity.",
         "fragment": false,
         "draw_arrow": true,
-        "y": 966,
-        "edge_id": "message5"
+        "y": 720.3999999999999,
+        "edge_id": "message5",
+        "label_box": [
+          65,
+          653.7199999999999,
+          1470,
+          55.68
+        ],
+        "native_edge_id": "message5",
+        "arrow_style": "closed_filled_synchronous"
       }
     ],
     "elements": [
@@ -204,7 +250,46 @@
         "allowed_on_layered_diagram": true
       }
     ],
-    "states": []
+    "states": [],
+    "interaction_fragments": [
+      {
+        "id": "fragment_seqdao_uc04_salesReport_PartC_1",
+        "operator": "opt",
+        "guard": "authorized valid-filter read continuation from Part B; UC04-MG01",
+        "start_index": 0,
+        "end_index": 5,
+        "message_indices": [
+          0,
+          1,
+          2,
+          4,
+          5
+        ],
+        "x": 25,
+        "y": 232,
+        "w": 1550,
+        "h": 515.3999999999999,
+        "depth": 0,
+        "guard_height": 32.84
+      },
+      {
+        "id": "fragment_seqdao_uc04_salesReport_PartC_2",
+        "operator": "loop",
+        "guard": "for each hub result row; empty set leaves zero totals",
+        "start_index": 1,
+        "end_index": 2,
+        "message_indices": [
+          1,
+          2
+        ],
+        "x": 37,
+        "y": 335.68,
+        "w": 1526,
+        "h": 169.51999999999992,
+        "depth": 1,
+        "guard_height": 32.84
+      }
+    ]
   },
   "placed_width_mm": 230,
   "source_design_sequences": [
@@ -272,39 +357,63 @@
         55.67999999999999
       ],
       [
-        45,
-        242,
-        1510,
+        31,
+        233,
+        84,
         27.839999999999996
       ],
       [
-        45,
-        367,
-        1510,
+        127,
+        233,
+        1438,
         27.839999999999996
       ],
       [
-        45,
-        492,
-        1510,
+        43,
+        336.68,
+        84,
         27.839999999999996
       ],
       [
-        45,
-        622,
-        1510,
+        139,
+        336.68,
+        1414,
+        27.839999999999996
+      ],
+      [
+        65,
+        269.84000000000003,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        373.52,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        439.35999999999996,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        514.1999999999999,
+        1470,
         55.67999999999999
       ],
       [
-        45,
-        742,
-        1510,
+        65,
+        587.8799999999999,
+        1470,
         27.839999999999996
       ],
       [
-        45,
-        867,
-        1510,
+        65,
+        653.7199999999999,
+        1470,
         55.67999999999999
       ],
       [
@@ -346,13 +455,15 @@
         "points": [
           [
             1208.0,
-            341
+            308.68
           ],
           [
             664.0,
-            341
+            308.68
           ]
-        ]
+        ],
+        "filled": false,
+        "dashed": true
       },
       {
         "id": "message1",
@@ -361,13 +472,15 @@
         "points": [
           [
             664.0,
-            466
+            412.35999999999996
           ],
           [
             936.0,
-            466
+            412.35999999999996
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message2",
@@ -376,13 +489,15 @@
         "points": [
           [
             664.0,
-            591
+            478.19999999999993
           ],
           [
             936.0,
-            591
+            478.19999999999993
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message4",
@@ -391,13 +506,15 @@
         "points": [
           [
             664.0,
-            841
+            626.7199999999999
           ],
           [
             1208.0,
-            841
+            626.7199999999999
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message5",
@@ -406,15 +523,25 @@
         "points": [
           [
             1208.0,
-            966
+            720.3999999999999
           ],
           [
             1480.0,
-            966
+            720.3999999999999
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       }
     ],
     "author_native_cell": true
+  },
+  "independent_review_repair": {
+    "findings": [
+      "R1",
+      "R4"
+    ],
+    "preserved_source": "D:\\RAD\\FINAL\\Part2\\notes\\P3_trash\\P3-F\\independent_review_R1_R4_20261025_192108\\UC-04\\seqdao_uc04_salesReport_PartC.json",
+    "scope": "Actual guarded regions and synchronous arrowheads; no shared-model/app/status changes."
   }
 }

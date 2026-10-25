@@ -3,7 +3,7 @@
   "title": "UC-02 .5 Final DCD",
   "canvas": {
     "width": 2600,
-    "height": 3217,
+    "height": 3417,
     "font_size": 50,
     "placed_width_mm": 170
   },
@@ -162,7 +162,7 @@
       "id": "layer_data_access",
       "kind": "layer",
       "x": 40,
-      "y": 2306,
+      "y": 2506,
       "w": 2520,
       "h": 70,
       "lines": [
@@ -173,7 +173,7 @@
       "id": "DeliveryDAO",
       "kind": "class",
       "x": 80,
-      "y": 2384,
+      "y": 2584,
       "w": 1205,
       "h": 369,
       "header_h": 137,
@@ -191,7 +191,7 @@
       "id": "UserDAO",
       "kind": "class",
       "x": 1315,
-      "y": 2384,
+      "y": 2584,
       "w": 1205,
       "h": 369,
       "header_h": 137,
@@ -209,7 +209,7 @@
       "id": "legend",
       "kind": "note",
       "x": 80,
-      "y": 2795,
+      "y": 2995,
       "w": 2440,
       "h": 310,
       "lines": [
@@ -218,6 +218,45 @@
         "targets, not C0 implementation. Corrected model: delivery.move_to resolves to Delivery;",
         "controller calls to Delivery/Payment are downward."
       ]
+    },
+    {
+      "id": "association_00_source_mult",
+      "kind": "text",
+      "x": 1847.5,
+      "y": 2188,
+      "w": 140,
+      "h": 64,
+      "lines": [
+        "0..*"
+      ],
+      "align": "center",
+      "color": "#004387"
+    },
+    {
+      "id": "association_00_target_mult",
+      "kind": "text",
+      "x": 612.5,
+      "y": 2188,
+      "w": 140,
+      "h": 64,
+      "lines": [
+        "0..1"
+      ],
+      "align": "center",
+      "color": "#004387"
+    },
+    {
+      "id": "association_00_role",
+      "kind": "text",
+      "x": 1035.0,
+      "y": 2290,
+      "w": 530,
+      "h": 64,
+      "lines": [
+        "assigned shipper"
+      ],
+      "align": "center",
+      "color": "#004387"
     }
   ],
   "edges": [
@@ -240,7 +279,7 @@
         ],
         [
           1917.5,
-          2384
+          2584
         ]
       ],
       "dashed": true,
@@ -268,7 +307,7 @@
         ],
         [
           682.5,
-          2384
+          2584
         ]
       ],
       "dashed": true,
@@ -339,23 +378,28 @@
       "target": "UserAccount",
       "points": [
         [
-          1315,
-          2049.0
+          1917.5,
+          2264
         ],
         [
-          1300.0,
-          2049.0
+          1917.5,
+          2364
         ],
         [
-          1285,
-          2049.0
+          682.5,
+          2364
+        ],
+        [
+          682.5,
+          2264
         ]
       ],
       "dashed": false,
-      "arrow": "block",
+      "arrow": "open",
       "color": "#004387",
       "width": 2,
-      "label": ""
+      "label": "",
+      "association": true
     },
     {
       "id": "repair_dep_5",
@@ -770,12 +814,32 @@
         "status": "MATCH",
         "evidence": "AST class base"
       }
+    ],
+    "association_end_labels": [
+      {
+        "source": "Delivery",
+        "target": "UserAccount",
+        "kind": "association",
+        "role": "assigned shipper",
+        "native_edge_id": "dep_04",
+        "source_label_id": "association_00_source_mult",
+        "target_label_id": "association_00_target_mult",
+        "role_label_id": "association_00_role",
+        "source_endpoint": [
+          1917.5,
+          2264
+        ],
+        "target_endpoint": [
+          682.5,
+          2264
+        ]
+      }
     ]
   },
   "render_receipt": {
     "canvas": [
       2600,
-      3217
+      3417
     ],
     "minimum_font_px": 50,
     "placed_width_mm": 170,

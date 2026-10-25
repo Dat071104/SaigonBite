@@ -151,3 +151,58 @@ Its `snapshot_manifest.json` retains original source paths and hashes; `P3-C/rep
 All 72 source/export sets were regenerated. **20 PNG/SVG views changed** (15 DCDs for classification/dependencies/adapter targets and 5 sequences for adapter daggers); the other 52 visual pairs remain byte-identical to their previously inspected forms. Every changed PNG and independently Edge-rasterized SVG was reopened through **repair_pairs_01.png–repair_pairs_05.png**. Dense `dcd_uc06_final_PartH`, `dcd_uc06_view_PartB` and `seq_uc06_listItemAtHub` were also reopened full size in both forms. No new clipping, label overlap or arrow-through-class text was observed. The original 17 sequence native-source repairs are additionally covered by the exhaustive XML/SVG text-line audit even where visual PNG/SVG bytes did not change.
 
 The exact original repo write set was retained: owned 72 diagram families, two class tables, two CRC files, two selectors, two report sources and this report. Scratch helpers/proofs remain in P3-C, with the explicit superseded-byte archive above. No shared model/inventory/matrix, app, tests, schema, frozen Phase 1/2, Git or configuration was written or executed; no child agent or external action was introduced. Root's integrated cross-check, review and G3 decision remain root-owned. This repair has no remaining access blocker or new assumption requiring a decision.
+
+## Independent review repair — Wave 4 R2 and owned sequence notation audit
+
+Author: 722I0004 · AI-assisted (Codex)
+
+**Lane C repair complete.** The independent review was read in full. Its historical verdict is preserved verbatim: **“Verdict: NOT READY for an unqualified G3/B5 closure at the reviewed artifact state.”** This section records a bounded correction of the owned UC-03/UC-06 figures; it does not replace that verdict or make the root's integrated G3 decision.
+
+### R2 — actual adjacent association-end labels
+
+The current renderer and all **55 owned DCD families** now produce separate editable source and target multiplicity text cells beside the actual attached polyline endpoints. The role name occupies its own text cell. All **10 displayed association occurrences** were corrected across these eight views:
+
+- `dcd_uc06_domain_PartA` and `dcd_uc06_domain_PartB`;
+- `dcd_uc06_all_PartH`, `PartI`, `PartJ` and their three `final` counterparts.
+
+UC-03's filtered sheets contain no nondependency association, so no artificial relationship was added. The other 47 DCD PNG/SVG pairs remain byte-identical to the preserved reviewed forms. Canonical Hub → HubMenuItem `1` / `0..*`, Brand → MenuItem `1` / `0..*`, and HubMenuItem → MenuItem `0..*` / `1` values remain unchanged. HubMenuItem retains its association-class classification and the logical controller dependency mediated by MenuDAO. There is no displayed inheritance/composition occurrence in these repaired association views; inheritance is explicitly excluded from multiplicity-label generation. Relationship kinds and navigation flags were preserved.
+
+Every DCD JSON has `phase3.association_end_labels` (empty when there is no eligible association). Each occurrence identifies its source, target, kind, role, actual native edge ID, two actual multiplicity-cell IDs and both polyline endpoint coordinates. The receipt verifies the edge's native source/target identities, reconstructs its actual endpoints from the native connection-point styles and rectangle bounds, and compares those coordinates to the metadata. All endpoints touch their class rectangles. Each actual label cell contains exactly its respective canonical multiplicity; no combined multiplicity summary survives. The source/target label centres are within 48 source pixels of their own endpoint, and all end/role label boxes are disjoint from class rectangles and from one another. Geometry was checked from XML, rather than accepted from metadata alone.
+
+### Conditional R1/R4 repair found by the required owned-sequence audit
+
+The 17 exported sequence figures already placed refusal, successful completion and technical failure in distinct actual regions. No business message, guard, result, order or PC/MG qualification was moved or invented. The native XML audit nevertheless found a real parity defect: all four dashed lifelines and both operand dividers were missing from the editable source, although they appeared in SVG/PNG. The line helper emitted an editable native cell only for an attached message edge. It now also emits editable native straight-line cells for these six decorations. Their native geometry matches the existing exported lines, including dividers at y=580 and y=1000.
+
+Synchronous calls already had solid filled heads and retain them. The strengthened arrow audit exposed dashed replies with closed heads in this family; their native, SVG and PNG arrowheads are now consistently **open**, while their paths and result labels are unchanged. This is the genuinely needed correction allowed by the conditional sequence scope. All **170 actual messages** now identify their actual `native_edge_id` and y coordinate. Each of the 17 actual alt rectangles has `interaction_fragments` metadata with operator, visible guard, actual x/y/w/h and zero-based contained message indices; its three operand records identify the real guard/divider cells and exclusive message sets. Every operand contains actual arrows. No empty explanatory box stands in for control flow.
+
+The before/after semantic check proves that every original specification field outside presentation metadata, every selected element/dependency/state, and every message contract field is unchanged. Five UC-03 and twelve UC-06 occurrence identities remain intact, including all three listCatalogue occurrences. P4 behavioral targets and daggers were not promoted based on symbol/signature existence.
+
+### Source, prose, maintenance and local validation
+
+The shared model stayed read-only at SHA-256 **fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b**. Generators still read the sole model dynamically for declarations, signatures, status markers and canonical relationships; end labels use those same render-time relationship values. The documented reviewed-signature refresh command, `P3-C/repair_refresh.py`, now reads the synchronized repaired `renderer.py`, so it will not restore the old label or native-line pattern. A direct owned `.py` invocation also rerenders the existing adjacent JSON. Synthetic formatter checks reconfirm that a changed target signature keeps its dagger and only an explicitly reviewed MATCH clears it; no canonical status was changed.
+
+Both owned III report sources were reread and now explain the separate end labels, actual operands and filled-call/open-reply notation. The two owned view-selector JSON files record the current model hash and notation policy. The existing class tables and CRC cards were reread and remain applicable; no declaration or responsibility change was needed. The five exact template headings, includes, persistence reference and P4/native-editing qualifications were retained.
+
+Evidence under `Part2/notes/P3-C/`:
+
+- `R2_audit.json`: **72 diagram sets**, **593 checks** from root's read-only `p3_notation_audit.audit` applied only to these owned files, **zero failures**, all 10 association attachments/end-label geometries verified; native and SVG text-line/font/bold multisets match for every figure. Additional lane checks cover no label overlaps, semantic preservation and native operands/lifelines. No global checker was run.
+- `semantic_audit.json`: all 72 figure specifications, **278 connected native message/dependency edges**, final receiver-method coverage, exact frozen SSD parameters/occurrences, domain FK suppression and report links/headings pass.
+- `reproducibility.json`: all 72 generator ASTs parse; all 72 export/proof receipt hashes agree; standalone `seq_uc03_getHub.py` and `dcd_uc06_final_PartH.py` rebuilds are byte-identical.
+- `R2_forward_maintenance.json`: sole-model refresh and reviewed-status formatter probes; these are artifact-maintenance checks, not application tests.
+- `R2_visual_receipts.json`, `R2_visual_review.json`, `visual_receipts.json` and `R2_final_receipt.json`: fresh proof, viewing and file-hash evidence.
+
+Native and vector minima remain **18 px / 9.7795 pt at 230 mm** for DCDs and **23 px / 9.2362 pt at 170 mm** for sequences, including footer, guard and author text. No font threshold was relaxed. Native draw.io editing/render-engine behavior, native Excel and final DOCX/PDF placement remain **UNTESTED**.
+
+### Preservation and visual QA
+
+All 369 reviewed lane repo files were preserved before their relevant writes in `Part2/notes/P3_trash/P3-C_review_R2_20261025T122332Z/`: the original 284-file snapshot plus the 85 sequence files added before the conditional native repair. The snapshot's original and sequence manifests retain their hashes. `R2_snapshot.json` records the scope and the native defect justifying the conditional extension. Root's `before_independent_review_repairs.zip` remains separate. No source was deleted.
+
+There are **25 changed visual pairs**: eight DCDs and all 17 sequence figures. Each changed PNG and a **fresh independently Edge-rasterized SVG** was opened in `R2_pairs_01.png` through `R2_pairs_13.png`. The dense domain Part A, final Part H and listItemAtHub sequence were additionally opened at original full resolution in both forms. Separate end labels are close to the correct attached ends; role text is distinct; arrowheads, dividers and footer text are visible. No new clipping or overlap was observed. Hidden Edge subprocesses retained logs and exit codes. The 47 unchanged visual pairs retain their prior inspected bytes and proof receipts.
+
+### Files written, checklist continuity and remaining root work
+
+Repo writes are confined to owned 55 DCD and conditionally repaired 17 sequence `.py/.json/.drawio/.png/.svg` families, `docs/part2/design/uc03_view.json`, `uc06_view.json`, `III_3-3_UC-03.md`, `III_3-6_UC-06.md`, and this appended report. Some deterministic exports were rewritten byte-identically. Scratch helpers, proofs, logs and receipts stay inside P3-C, with superseded bytes in the own trash directory. Class/CRC files were inspected but not changed. The current per-file byte changes and all 369 final lane hashes are in `R2_final_receipt.json`.
+
+This sustains the lane's P3-34–P3-45 deliverables and marking items 21–23 evidence with corrected notation; it awards no grade or runtime readiness. No application code/import/execution, application test, SQL/schema, frozen P1/P2, shared-model/inventory/matrix, Git, configuration or other-lane write was performed. No subagent or external communication was introduced.
+
+**BLOCKED / ASSUMED:** no access blocker or new business assumption. The conditional sequence repair is justified by the retained native precheck, not by a discretionary redesign. **Requests to root:** after all four successful repair handoffs, perform the integrated notation/full cross-check and record P3-71/post-fix G3 assessment separately from the preserved independent-review verdict. No shared-model edit is requested by lane C.

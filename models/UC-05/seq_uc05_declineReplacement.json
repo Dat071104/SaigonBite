@@ -1,10 +1,10 @@
 {
   "UC": "UC-05",
   "stem": "seq_uc05_declineReplacement",
-  "title": "UC-05 declineReplacement",
-  "figure": "3.5.4.OP-06",
-  "caption": "UC-05 declineReplacement design sequence",
-  "P4_input": "F-02; F-05; P2-S01; P2-S09; P2-S11; P2-S13; P3-S03",
+  "title": "UC-05 declineReplacement — Part A",
+  "figure": "3.5.4.OP-06A",
+  "caption": "UC-05 declineReplacement — Part A",
+  "P4_input": "F-02; F-05; P2-S09; P2-S11; P2-S13",
   "phase3": {
     "diagram_type": "sequence",
     "UC": "UC-05",
@@ -60,10 +60,23 @@
         "guard": "",
         "PC_MG": "",
         "label": "declineReplacement(orderId, offerId)\n→ order.answer_replacement [HTTP adapter]",
-        "y": 418,
+        "y": 360,
         "receiver_signature": "answer_replacement(order_id: int)",
         "status": "MATCH",
-        "P4_input": ""
+        "P4_input": "",
+        "native_edge_id": "message_000",
+        "source_anchor_id": "message_000_source",
+        "target_anchor_id": "message_000_target",
+        "native_points": [
+          [
+            90.0,
+            360
+          ],
+          [
+            374.0,
+            360
+          ]
+        ]
       },
       {
         "from": "view",
@@ -74,10 +87,47 @@
         "guard": "eligible/main operand (see frame and operation table)",
         "PC_MG": "SUC03-PC04; UC05-MG01 (decline/reject and BR-17; stale or failed save leaves Order unchanged)",
         "label": "answer_replacement†(user_id, order_id, offer_id, False)",
-        "y": 483,
+        "y": 460,
         "receiver_signature": "answer_replacement(self, user_id: int, order_id: int, offer_id: int, accept: bool) -> OrderDetail",
         "status": "P4-TARGET",
-        "P4_input": "F-05; F-02; P2-S09; P2-S11; P2-S13"
+        "P4_input": "F-05; F-02; P2-S09; P2-S11; P2-S13",
+        "native_edge_id": "message_001",
+        "source_anchor_id": "message_001_source",
+        "target_anchor_id": "message_001_target",
+        "native_points": [
+          [
+            374.0,
+            460
+          ],
+          [
+            658.0,
+            460
+          ]
+        ]
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "staleRefusal",
+        "guard": "ineligible",
+        "PC_MG": "UC05-MG01",
+        "label": "staleRefusal",
+        "y": 615,
+        "native_edge_id": "message_002",
+        "source_anchor_id": "message_002_source",
+        "target_anchor_id": "message_002_target",
+        "native_points": [
+          [
+            658.0,
+            615
+          ],
+          [
+            374.0,
+            615
+          ]
+        ]
       },
       {
         "from": "ctrl",
@@ -85,13 +135,26 @@
         "method": "move_order",
         "kind": "call",
         "arguments": "orders, order, OrderState.REJECTED, now, DECLINED_REASON",
-        "guard": "eligible/main operand (see frame and operation table)",
+        "guard": "eligible",
         "PC_MG": "",
         "label": "move_order(orders, order, OrderState.REJECTED, now, DECLINED_REASON)",
-        "y": 628,
+        "y": 810,
         "receiver_signature": "move_order(orders: OrderDAO, order: Order, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> None",
         "status": "MATCH",
-        "P4_input": ""
+        "P4_input": "",
+        "native_edge_id": "message_003",
+        "source_anchor_id": "message_003_source",
+        "target_anchor_id": "message_003_target",
+        "native_points": [
+          [
+            658.0,
+            810
+          ],
+          [
+            942.0,
+            810
+          ]
+        ]
       },
       {
         "from": "common",
@@ -99,52 +162,26 @@
         "method": "move_to",
         "kind": "call",
         "arguments": "OrderState.REJECTED",
-        "guard": "eligible/main operand (see frame and operation table)",
+        "guard": "eligible",
         "PC_MG": "",
         "label": "move_to(OrderState.REJECTED)",
-        "y": 693,
+        "y": 950,
         "receiver_signature": "move_to(self, new_state: OrderState) -> None",
         "status": "MATCH",
-        "P4_input": ""
-      },
-      {
-        "from": "ctrl",
-        "to": "common",
-        "method": "release_payment",
-        "kind": "call",
-        "arguments": "payments, order.id, now",
-        "guard": "eligible/main operand (see frame and operation table)",
-        "PC_MG": "",
-        "label": "release_payment†(payments, order.id, now)",
-        "y": 758,
-        "receiver_signature": "release_payment(payments: PaymentDAO, order_id: int, now: str) -> Payment",
-        "status": "P4-TARGET",
-        "P4_input": "F-02; P2-S01; P3-S03"
-      },
-      {
-        "from": "common",
-        "to": "pay",
-        "method": "release_for_unfulfilled_order",
-        "kind": "call",
-        "arguments": "",
-        "guard": "eligible/main operand (see frame and operation table)",
-        "PC_MG": "",
-        "label": "release_for_unfulfilled_order†() [full C owed]",
-        "y": 823,
-        "receiver_signature": "release_for_unfulfilled_order(self) -> None",
-        "status": "P4-TARGET",
-        "P4_input": "F-02; P2-S01"
-      },
-      {
-        "from": "ctrl",
-        "to": "view",
-        "method": "",
-        "kind": "return",
-        "arguments": "",
-        "guard": "denied / stale / invalid or atomic save failure",
-        "PC_MG": "UC05-MG01",
-        "label": "refusal / controlled failure; UC05-MG01",
-        "y": 1000
+        "P4_input": "",
+        "native_edge_id": "message_004",
+        "source_anchor_id": "message_004_source",
+        "target_anchor_id": "message_004_target",
+        "native_points": [
+          [
+            942.0,
+            950
+          ],
+          [
+            1226.0,
+            950
+          ]
+        ]
       }
     ],
     "elements": [
@@ -166,8 +203,7 @@
         "class": "controllers.common",
         "attributes": [],
         "methods": [
-          "move_order",
-          "release_payment"
+          "move_order"
         ]
       },
       {
@@ -180,9 +216,7 @@
       {
         "class": "Payment",
         "attributes": [],
-        "methods": [
-          "release_for_unfulfilled_order"
-        ]
+        "methods": []
       }
     ],
     "dependencies": [],
@@ -196,52 +230,58 @@
         ]
       },
       {
-        "class": "Payment",
-        "attribute": "state",
-        "values": [
-          "VOIDED",
-          "REFUND_PENDING"
-        ]
-      },
-      {
         "class": "ReplacementOffer",
         "attribute": "state",
         "values": [
-          "OFFERED",
-          "DECLINED"
+          "OFFERED"
+        ]
+      }
+    ],
+    "interaction_fragments": [
+      {
+        "id": "ineligible_break",
+        "operator": "break",
+        "guard": "role / owner / hub / state / reason or exact-offer guard denied",
+        "x": 30,
+        "y": 490,
+        "w": 1540,
+        "h": 160,
+        "message_indices": [
+          2
+        ]
+      },
+      {
+        "id": "eligible_attempt",
+        "operator": "opt",
+        "guard": "all operation guards pass; atomic attempt continues in Part B",
+        "x": 30,
+        "y": 670,
+        "w": 1540,
+        "h": 350,
+        "message_indices": [
+          3,
+          4
         ]
       }
     ]
   },
-  "frames": [
-    {
-      "id": "alt",
-      "y": 495,
-      "h": 545,
-      "label": "alt [eligible main path; guards / effects in the operation note]",
-      "operands": [
-        [
-          910,
-          "[denied / stale / invalid or failed atomic save] UC05-MG01"
-        ]
-      ]
-    }
-  ],
+  "frames": [],
   "notes": [
     {
-      "y": 220,
-      "h": 90,
-      "text": "Own PLACED + exact open OFFERED: atomic offer DECLINED + Order REJECTED + closed_at / reason. COD VOIDED; ONLINE REFUND_PENDING, refund_amount=C (BR-17; SUC03-PC04). Stale / denied: no changes. Busy / write / COMMIT failure: rollback all (UC05-MG01)."
+      "y": 175,
+      "h": 65,
+      "text": "Own active Customer; PLACED plus the exact open OFFERED offer. Denied/stale requests terminate before mutation. No reply denotes success before COMMIT."
     },
     {
-      "y": 1010,
-      "h": 65,
-      "text": "Persistence: loaded/saved through data access — see 4.3.2."
+      "y": 1030,
+      "h": 45,
+      "text": "loaded/saved through data access — see 4.3.2"
     }
   ],
-  "continuation": "Complete design operation; failure path is the alternative operand above.",
-  "realisation_note": "Guard: active own Customer; PLACED; exact open OFFERED with matching order/offer IDs. SUC03-PC04: atomic REJECTED + closed_at / reason; COD VOIDED; ONLINE REFUND_PENDING, refund_amount=C replaces any partial owed amount. No payout. Open offer DECLINED; helpers are real module functions. Rowcount, busy and failure-through-COMMIT rollback†. Root-adopted P4-TARGET: release_payment persists the full-C refund amount together with state and checks every conditional save in the same transaction (F-02; P2-S01; P3-S03).",
+  "continuation": "declineReplacement: Part A of A–B; previous none; next Part B; same request, no new human wait.",
+  "realisation_note": "Guard: active own Customer; PLACED; exact open OFFERED with matching order/offer IDs. SUC03-PC04: atomic REJECTED + closed_at / reason; COD VOIDED; ONLINE REFUND_PENDING, refund_amount=C replaces any partial owed amount. No payout. Open offer DECLINED; helpers are real module functions. Rowcount, busy and failure-through-COMMIT rollback†. Root-adopted P4-TARGET: release_payment persists the full-C refund amount together with state and checks every conditional save in the same transaction (F-02; P2-S01; P3-S03). Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.",
   "shared_model_source": "models/shared/design_model.json",
   "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
-  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets.",
+  "review_repair_version": "R1-R4"
 }

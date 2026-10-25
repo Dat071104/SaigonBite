@@ -80,53 +80,65 @@
         <mxCell id="text24" value="«enumeration» PaymentMethod" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
           <mxGeometry as="geometry" x="1047" y="903" width="476" height="27.599999999999998" />
         </mxCell>
-        <mxCell id="edge25" source="s0" target="t0" edge="1" parent="1" style="edgeStyle=none;endArrow=open;dashed=1;strokeColor=#004387;">
+        <mxCell id="dcd_relation_000" source="s0" target="t0" edge="1" parent="1" style="edgeStyle=none;endArrow=open;endFill=0;dashed=1;strokeColor=#004387;exitX=1.0;exitY=0.5058823529411764;exitPerimeter=0;entryX=0.0;entryY=0.5058823529411764;entryPerimeter=0;">
           <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="555" y="148" />
+            <mxPoint as="targetPoint" x="1035" y="188" />
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="text26" value="→ «use»" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
-          <mxGeometry as="geometry" x="575" y="109" width="440" height="27.599999999999998" />
+        <mxCell id="dcd_relation_000_role" value="«use»" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="690" y="110" width="330" height="27.599999999999998" />
         </mxCell>
-        <mxCell id="edge27" source="s1" target="t1" edge="1" parent="1" style="edgeStyle=none;endArrow=open;dashed=1;strokeColor=#004387;">
+        <mxCell id="dcd_relation_001" source="s1" target="t1" edge="1" parent="1" style="edgeStyle=none;endArrow=open;endFill=0;dashed=1;strokeColor=#004387;exitX=1.0;exitY=0.5058823529411764;exitPerimeter=0;entryX=0.0;entryY=0.5058823529411764;entryPerimeter=0;">
           <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="555" y="298" />
+            <mxPoint as="targetPoint" x="1035" y="338" />
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="text28" value="→ «use»" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
-          <mxGeometry as="geometry" x="575" y="259" width="440" height="27.599999999999998" />
+        <mxCell id="dcd_relation_001_role" value="«use»" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="690" y="260" width="330" height="27.599999999999998" />
         </mxCell>
-        <mxCell id="edge29" source="s2" target="t2" edge="1" parent="1" style="edgeStyle=none;endArrow=open;dashed=1;strokeColor=#004387;">
+        <mxCell id="dcd_relation_002" source="s2" target="t2" edge="1" parent="1" style="edgeStyle=none;endArrow=open;endFill=0;dashed=1;strokeColor=#004387;exitX=1.0;exitY=0.5058823529411764;exitPerimeter=0;entryX=0.0;entryY=0.5058823529411764;entryPerimeter=0;">
           <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="555" y="448" />
+            <mxPoint as="targetPoint" x="1035" y="488" />
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="text30" value="→ «use»" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
-          <mxGeometry as="geometry" x="575" y="409" width="440" height="27.599999999999998" />
+        <mxCell id="dcd_relation_002_role" value="«use»" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="690" y="410" width="330" height="27.599999999999998" />
         </mxCell>
-        <mxCell id="edge31" source="s3" target="t3" edge="1" parent="1" style="edgeStyle=none;endArrow=open;dashed=1;strokeColor=#004387;">
+        <mxCell id="dcd_relation_003" source="s3" target="t3" edge="1" parent="1" style="edgeStyle=none;endArrow=open;endFill=0;dashed=1;strokeColor=#004387;exitX=1.0;exitY=0.5058823529411764;exitPerimeter=0;entryX=0.0;entryY=0.5058823529411764;entryPerimeter=0;">
           <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="555" y="598" />
+            <mxPoint as="targetPoint" x="1035" y="638" />
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="text32" value="→ «use»" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
-          <mxGeometry as="geometry" x="575" y="559" width="440" height="27.599999999999998" />
+        <mxCell id="dcd_relation_003_role" value="«use»" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="690" y="560" width="330" height="27.599999999999998" />
         </mxCell>
-        <mxCell id="edge33" source="s4" target="t4" edge="1" parent="1" style="edgeStyle=none;endArrow=open;dashed=1;strokeColor=#004387;">
+        <mxCell id="dcd_relation_004" source="s4" target="t4" edge="1" parent="1" style="edgeStyle=none;endArrow=open;endFill=0;dashed=1;strokeColor=#004387;exitX=1.0;exitY=0.5058823529411764;exitPerimeter=0;entryX=0.0;entryY=0.5058823529411764;entryPerimeter=0;">
           <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="555" y="748" />
+            <mxPoint as="targetPoint" x="1035" y="788" />
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="text34" value="→ «use»" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
-          <mxGeometry as="geometry" x="575" y="709" width="440" height="27.599999999999998" />
+        <mxCell id="dcd_relation_004_role" value="«use»" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="690" y="710" width="330" height="27.599999999999998" />
         </mxCell>
-        <mxCell id="edge35" source="s5" target="t5" edge="1" parent="1" style="edgeStyle=none;endArrow=open;dashed=1;strokeColor=#004387;">
+        <mxCell id="dcd_relation_005" source="s5" target="t5" edge="1" parent="1" style="edgeStyle=none;endArrow=open;endFill=0;dashed=1;strokeColor=#004387;exitX=1.0;exitY=0.5058823529411764;exitPerimeter=0;entryX=0.0;entryY=0.5058823529411764;entryPerimeter=0;">
           <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="555" y="898" />
+            <mxPoint as="targetPoint" x="1035" y="938" />
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="text36" value="→ «use»" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
-          <mxGeometry as="geometry" x="575" y="859" width="440" height="27.599999999999998" />
+        <mxCell id="dcd_relation_005_role" value="«use»" vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
+          <mxGeometry as="geometry" x="690" y="860" width="330" height="27.599999999999998" />
         </mxCell>
         <mxCell id="text37" value="Members: all detail parts. Relationship parts A–N continue both ways." vertex="1" parent="1" style="text;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;whiteSpace=wrap;html=0;">
           <mxGeometry as="geometry" x="35" y="1080" width="1530" height="27.599999999999998" />

@@ -5,7 +5,7 @@
   "figure": "4.3.2.5.OP-05.G",
   "part": "Part G",
   "scope": "Same request and transaction across all parts; focus 7/7. Mechanical reads: responsibility table (report 4.3.2).",
-  "continuation": "From seqdao_uc05_acceptReplacement_PartF → this part → response boundary.",
+  "continuation": "Failure only from A/B or VALID-target D-F. Committed withdrawal-only C and accepted F already END; no fallthrough.",
   "transaction_summary": "Transaction key (whole request): BEGIN IMMEDIATE → checked rowcount / inserts → COMMIT; failure → ROLLBACK if active. Busy: retry, nothing changed.",
   "target_note": "† design target, not yet in code at C0: F-02; F-05; P2-S09; P2-S11; P2-S13; P3-S03; P2-S12 connection settings; MATCH is Static only.",
   "phase3": {
@@ -56,32 +56,26 @@
     "messages": [
       {
         "from": "ctrl",
-        "to": "ctrl",
-        "method": "",
-        "kind": "note",
-        "arguments": "",
-        "guard": "",
-        "PC_MG": "UC05-PC04; UC05-MG01",
-        "label": "Guard refusal / 0 rows / False DAO result: stop; ROLLBACK all intended writes if transaction active. Exception: a successful invalid-target-only withdrawal is intentionally COMMITTED.",
-        "base_label": "Guard refusal / 0 rows / False DAO result: stop; ROLLBACK all intended writes if transaction active. Exception: a successful invalid-target-only withdrawal is intentionally COMMITTED.",
-        "fragment": true,
-        "draw_arrow": false,
-        "y": 341
-      },
-      {
-        "from": "ctrl",
         "to": "db",
         "method": "",
         "kind": "note",
         "arguments": "",
-        "guard": "transaction or COMMIT failed",
+        "guard": "transaction active",
         "PC_MG": "UC05-PC04; UC05-MG01",
-        "label": "ROLLBACK† if active after write or COMMIT failure; do not issue unconditional rollback after a failed BEGIN.",
-        "base_label": "ROLLBACK† if active after write or COMMIT failure; do not issue unconditional rollback after a failed BEGIN.",
+        "label": "ROLLBACK† only if transaction active; no rollback after failed BEGIN with no active transaction.",
+        "base_label": "ROLLBACK† only if transaction active; no rollback after failed BEGIN with no active transaction.",
         "fragment": false,
         "draw_arrow": true,
-        "y": 466,
-        "edge_id": "message1"
+        "y": 374.35999999999996,
+        "label_box": [
+          65,
+          335.52,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message0",
+        "edge_id": "message0",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "ctrl",
@@ -89,14 +83,45 @@
         "method": "",
         "kind": "return",
         "arguments": "",
-        "guard": "database is locked: rollback if active; failed BEGIN has no active transaction",
+        "guard": "",
         "PC_MG": "UC05-PC04; UC05-MG01",
         "label": "Busy, please retry; nothing was changed",
         "base_label": "Busy, please retry; nothing was changed",
         "fragment": false,
-        "draw_arrow": false,
-        "y": 591,
-        "edge_id": "message2"
+        "draw_arrow": true,
+        "y": 483.0399999999999,
+        "label_box": [
+          65,
+          444.19999999999993,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message1",
+        "edge_id": "message1",
+        "arrow_style": "dashed_open_reply"
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": "UC05-PC04; UC05-MG01",
+        "label": "Refusal / controlledFailure; nothing was changed; END request.",
+        "base_label": "Refusal / controlledFailure; nothing was changed; END request.",
+        "fragment": false,
+        "draw_arrow": true,
+        "y": 591.72,
+        "label_box": [
+          65,
+          552.88,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message2",
+        "edge_id": "message2",
+        "arrow_style": "dashed_open_reply"
       }
     ],
     "elements": [
@@ -126,7 +151,75 @@
       }
     ],
     "dependencies": [],
-    "states": []
+    "states": [],
+    "interaction_fragments": [
+      {
+        "id": "fragment_seqdao_uc05_acceptReplacement_PartG_1",
+        "operator": "break",
+        "guard": "guard / 0-row / write / COMMIT failure from Parts A/B or VALID-target D-F; successful withdrawal-only Part C already END; successful request has already ended",
+        "start_index": 0,
+        "end_index": 2,
+        "message_indices": [
+          0,
+          1,
+          2
+        ],
+        "x": 25,
+        "y": 232,
+        "w": 1550,
+        "h": 391.72,
+        "depth": 0,
+        "guard_height": 60.68
+      },
+      {
+        "id": "fragment_seqdao_uc05_acceptReplacement_PartG_2",
+        "operator": "opt",
+        "guard": "transaction active; skip after failed BEGIN without an active transaction",
+        "start_index": 0,
+        "end_index": 0,
+        "message_indices": [
+          0
+        ],
+        "x": 37,
+        "y": 297.68,
+        "w": 1526,
+        "h": 103.67999999999995,
+        "depth": 1,
+        "guard_height": 32.84
+      },
+      {
+        "id": "fragment_seqdao_uc05_acceptReplacement_PartG_3",
+        "operator": "break",
+        "guard": "database is locked; return Busy and END request",
+        "start_index": 1,
+        "end_index": 1,
+        "message_indices": [
+          1
+        ],
+        "x": 37,
+        "y": 406.35999999999996,
+        "w": 1526,
+        "h": 103.67999999999995,
+        "depth": 1,
+        "guard_height": 32.84
+      },
+      {
+        "id": "fragment_seqdao_uc05_acceptReplacement_PartG_4",
+        "operator": "break",
+        "guard": "failure is not database is locked; controlled refusal and END request",
+        "start_index": 2,
+        "end_index": 2,
+        "message_indices": [
+          2
+        ],
+        "x": 37,
+        "y": 515.04,
+        "w": 1526,
+        "h": 103.68000000000006,
+        "depth": 1,
+        "guard_height": 32.84
+      }
+    ]
   },
   "placed_width_mm": 230,
   "source_design_sequences": [
@@ -195,27 +288,69 @@
         55.67999999999999
       ],
       [
-        42,
-        242,
-        56,
+        31,
+        233,
+        84,
         27.839999999999996
       ],
       [
-        110,
-        247,
-        1440,
+        127,
+        233,
+        1438,
         55.67999999999999
       ],
       [
-        45,
-        367,
-        1510,
+        43,
+        298.68,
+        84,
         27.839999999999996
       ],
       [
-        45,
-        492,
-        1510,
+        139,
+        298.68,
+        1414,
+        27.839999999999996
+      ],
+      [
+        43,
+        407.35999999999996,
+        84,
+        27.839999999999996
+      ],
+      [
+        139,
+        407.35999999999996,
+        1414,
+        27.839999999999996
+      ],
+      [
+        43,
+        516.04,
+        84,
+        27.839999999999996
+      ],
+      [
+        139,
+        516.04,
+        1414,
+        27.839999999999996
+      ],
+      [
+        65,
+        335.52,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        444.19999999999993,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        552.88,
+        1470,
         27.839999999999996
       ],
       [
@@ -251,19 +386,38 @@
     ],
     "edges": [
       {
+        "id": "message0",
+        "source": "m0s",
+        "target": "m0t",
+        "points": [
+          [
+            664.0,
+            374.35999999999996
+          ],
+          [
+            1480.0,
+            374.35999999999996
+          ]
+        ],
+        "filled": true,
+        "dashed": false
+      },
+      {
         "id": "message1",
         "source": "m1s",
         "target": "m1t",
         "points": [
           [
             664.0,
-            466
+            483.0399999999999
           ],
           [
-            1480.0,
-            466
+            392.0,
+            483.0399999999999
           ]
-        ]
+        ],
+        "filled": false,
+        "dashed": true
       },
       {
         "id": "message2",
@@ -272,15 +426,25 @@
         "points": [
           [
             664.0,
-            591
+            591.72
           ],
           [
             392.0,
-            591
+            591.72
           ]
-        ]
+        ],
+        "filled": false,
+        "dashed": true
       }
     ],
     "author_native_cell": true
+  },
+  "independent_review_repair": {
+    "findings": [
+      "R1",
+      "R4"
+    ],
+    "preserved_source": "D:\\RAD\\FINAL\\Part2\\notes\\P3_trash\\P3-F\\independent_review_R1_R4_20261025_192108\\UC-05\\seqdao_uc05_acceptReplacement_PartG.json",
+    "scope": "Actual guarded regions and synchronous arrowheads; no shared-model/app/status changes."
   }
 }

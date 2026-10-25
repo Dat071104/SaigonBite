@@ -5,7 +5,7 @@
   "figure": "4.3.2.1.OP-01.F",
   "part": "Part F",
   "scope": "Same request and transaction across all parts; focus 6/7. Mechanical reads: responsibility table (report 4.3.2).",
-  "continuation": "From seqdao_uc01_confirmCheckout_PartE → this part → seqdao_uc01_confirmCheckout_PartG.",
+  "continuation": "COMMIT success continues Part G success break; write/COMMIT failure continues Part G failure break exclusively.",
   "transaction_summary": "Transaction key (whole request): BEGIN IMMEDIATE → checked rowcount / inserts → COMMIT; failure → ROLLBACK if active. Busy: retry, nothing changed.",
   "target_note": "† design target, not yet in code at C0: F-04; F-07; P2-S05; P2-S13; P2-S12 connection settings; MATCH is Static only.",
   "phase3": {
@@ -78,8 +78,16 @@
         "base_label": "SQL note: INSERT orders (UNIQUE token, CHECK totals); INSERT order_line for each line; expect one header + N lines; FK/constraint errors fail transaction.",
         "fragment": false,
         "draw_arrow": true,
-        "y": 341,
-        "edge_id": "message0"
+        "y": 336.52000000000004,
+        "edge_id": "message0",
+        "label_box": [
+          65,
+          269.84000000000003,
+          1470,
+          55.68
+        ],
+        "native_edge_id": "message0",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "obj4",
@@ -93,8 +101,16 @@
         "base_label": "new order_id; insert cardinality/constraints enforced (not a state UPDATE rowcount)",
         "fragment": false,
         "draw_arrow": false,
-        "y": 466,
-        "edge_id": "message1"
+        "y": 402.36,
+        "edge_id": "message1",
+        "label_box": [
+          65,
+          363.52000000000004,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message1",
+        "arrow_style": "dashed_open_reply"
       },
       {
         "from": "ctrl",
@@ -108,8 +124,16 @@
         "base_label": "«create» Payment: COD / PENDING, ONLINE / PAID; amount = T, refund owed = 0",
         "fragment": false,
         "draw_arrow": false,
-        "y": 591,
-        "edge_id": "message2"
+        "y": 468.2,
+        "edge_id": "message2",
+        "label_box": [
+          65,
+          429.36,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message2",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "ctrl",
@@ -126,8 +150,16 @@
         "receiver_signature": "insert(self, payment: Payment) -> int",
         "status": "MATCH",
         "P4_input": "",
-        "y": 716,
-        "edge_id": "message3"
+        "y": 534.04,
+        "edge_id": "message3",
+        "label_box": [
+          65,
+          495.2,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message3",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "obj13",
@@ -141,8 +173,16 @@
         "base_label": "SQL note: INSERT payment: exactly one per order; UNIQUE order_id, FK and enum CHECK; expect one new identity.",
         "fragment": false,
         "draw_arrow": true,
-        "y": 841,
-        "edge_id": "message4"
+        "y": 599.88,
+        "edge_id": "message4",
+        "label_box": [
+          65,
+          561.04,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message4",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "ctrl",
@@ -156,8 +196,16 @@
         "base_label": "COMMIT† only after header + all lines + payment succeed; ONLINE captured amount C = T at success.",
         "fragment": false,
         "draw_arrow": true,
-        "y": 966,
-        "edge_id": "message5"
+        "y": 703.5600000000001,
+        "edge_id": "message5",
+        "label_box": [
+          65,
+          664.72,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message5",
+        "arrow_style": "closed_filled_synchronous"
       }
     ],
     "elements": [
@@ -220,6 +268,45 @@
           "PENDING",
           "PAID"
         ]
+      }
+    ],
+    "interaction_fragments": [
+      {
+        "id": "fragment_seqdao_uc01_confirmCheckout_PartF_1",
+        "operator": "opt",
+        "guard": "new token; COD or approved ONLINE; all earlier guards/inserts succeeded (continued from Part E)",
+        "start_index": 0,
+        "end_index": 5,
+        "message_indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "x": 25,
+        "y": 232,
+        "w": 1550,
+        "h": 503.56000000000006,
+        "depth": 0,
+        "guard_height": 32.84
+      },
+      {
+        "id": "fragment_seqdao_uc01_confirmCheckout_PartF_2",
+        "operator": "opt",
+        "guard": "all insert cardinalities and constraints succeeded; otherwise break to Part G failure",
+        "start_index": 5,
+        "end_index": 5,
+        "message_indices": [
+          5
+        ],
+        "x": 37,
+        "y": 626.88,
+        "w": 1526,
+        "h": 103.68000000000006,
+        "depth": 1,
+        "guard_height": 32.84
       }
     ]
   },
@@ -302,39 +389,63 @@
         55.67999999999999
       ],
       [
-        45,
-        242,
-        1510,
+        31,
+        233,
+        84,
+        27.839999999999996
+      ],
+      [
+        127,
+        233,
+        1438,
+        27.839999999999996
+      ],
+      [
+        43,
+        627.88,
+        84,
+        27.839999999999996
+      ],
+      [
+        139,
+        627.88,
+        1414,
+        27.839999999999996
+      ],
+      [
+        65,
+        269.84000000000003,
+        1470,
         55.67999999999999
       ],
       [
-        45,
-        367,
-        1510,
+        65,
+        363.52000000000004,
+        1470,
         27.839999999999996
       ],
       [
-        45,
-        492,
-        1510,
+        65,
+        429.36,
+        1470,
         27.839999999999996
       ],
       [
-        45,
-        617,
-        1510,
+        65,
+        495.2,
+        1470,
         27.839999999999996
       ],
       [
-        45,
-        742,
-        1510,
+        65,
+        561.04,
+        1470,
         27.839999999999996
       ],
       [
-        45,
-        867,
-        1510,
+        65,
+        664.72,
+        1470,
         27.839999999999996
       ],
       [
@@ -376,13 +487,15 @@
         "points": [
           [
             1091.4285714285716,
-            341
+            336.52000000000004
           ],
           [
             1480.0,
-            341
+            336.52000000000004
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message1",
@@ -391,13 +504,15 @@
         "points": [
           [
             1091.4285714285716,
-            466
+            402.36
           ],
           [
             508.57142857142856,
-            466
+            402.36
           ]
-        ]
+        ],
+        "filled": false,
+        "dashed": true
       },
       {
         "id": "message2",
@@ -406,13 +521,15 @@
         "points": [
           [
             508.57142857142856,
-            591
+            468.2
           ],
           [
             897.1428571428571,
-            591
+            468.2
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message3",
@@ -421,13 +538,15 @@
         "points": [
           [
             508.57142857142856,
-            716
+            534.04
           ],
           [
             1285.7142857142858,
-            716
+            534.04
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message4",
@@ -436,13 +555,15 @@
         "points": [
           [
             1285.7142857142858,
-            841
+            599.88
           ],
           [
             1480.0,
-            841
+            599.88
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message5",
@@ -451,15 +572,25 @@
         "points": [
           [
             508.57142857142856,
-            966
+            703.5600000000001
           ],
           [
             1480.0,
-            966
+            703.5600000000001
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       }
     ],
     "author_native_cell": true
+  },
+  "independent_review_repair": {
+    "findings": [
+      "R1",
+      "R4"
+    ],
+    "preserved_source": "D:\\RAD\\FINAL\\Part2\\notes\\P3_trash\\P3-F\\independent_review_R1_R4_20261025_192108\\UC-01\\seqdao_uc01_confirmCheckout_PartF.json",
+    "scope": "Actual guarded regions and synchronous arrowheads; no shared-model/app/status changes."
   }
 }

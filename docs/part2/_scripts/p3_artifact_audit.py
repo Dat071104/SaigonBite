@@ -38,5 +38,9 @@ def main():
         files={ext:hashlib.sha256(path.with_suffix(ext).read_bytes()).hexdigest() for ext in ('.py','.json','.drawio','.svg','.png') if path.with_suffix(ext).is_file()}
         figures.append({'stem':path.relative_to(R).with_suffix('').as_posix(),'hashes':files,'diagram_type':data['phase3'].get('diagram_type')})
         check(path.stem+':source-set',len(files)==5,'Generator+JSON+editable source+both exports')
-    failures=[c for c in checks if not c['pass']];out={'author':'722I0004 · AI-assisted (Codex)','pass':not failures,'checks':checks,'failures':failures,'figures':figures,'counts':dict(collections.Counter(f['diagram_type'] for f in figures))};N.mkdir(exist_ok=True);(N/'artifact_audit.json').write_text(json.dumps(out,indent=2,ensure_ascii=False),encoding='utf-8');print(json.dumps({'pass':out['pass'],'checks':len(checks),'figures':len(figures),'counts':out['counts'],'failures':failures[:20]},indent=2,ensure_ascii=False));assert out['pass']
+    sources={III,IV,D/'traceability.csv',Path(__file__),Path(__file__).with_name('p3_assemble.py')}
+    sources.update((D/'report').glob('III_3-*.md'));sources.update((D/'report').glob('IV_4-*.md'))
+    sources.update(D.glob('UC-*/design_classes.md'));sources.update(D.glob('UC-*/crc.md'))
+    source_hashes={p.relative_to(R).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(sources)}
+    failures=[c for c in checks if not c['pass']];out={'author':'722I0004 · AI-assisted (Codex)','pass':not failures,'checks':checks,'failures':failures,'figures':figures,'source_hashes':source_hashes,'counts':dict(collections.Counter(f['diagram_type'] for f in figures))};N.mkdir(exist_ok=True);(N/'artifact_audit.json').write_text(json.dumps(out,indent=2,ensure_ascii=False),encoding='utf-8');print(json.dumps({'pass':out['pass'],'checks':len(checks),'figures':len(figures),'counts':out['counts'],'failures':failures[:20]},indent=2,ensure_ascii=False));assert out['pass']
 if __name__=='__main__':main()

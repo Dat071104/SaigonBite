@@ -559,5 +559,6 @@
     ]
   },
   "filter_note": "Tables retain all attributes; diagrams project first four non-FK typed fields and selected exact operations. Enum members retained. Repeated class identities across parts are the same class.",
-  "shared_model_sha256": "bd415d6b5874d373cd5eb928dc9b218d27d499e36052589304912a2c33cdd437"
+  "shared_model_sha256": "bd415d6b5874d373cd5eb928dc9b218d27d499e36052589304912a2c33cdd437",
+  "review_repair": "R1-R4; true end labels / actual fragments / returns / filled calls"
 }

@@ -26,23 +26,35 @@
 <text x="1047" y="885.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">«entity» OrderLine</text>
 <polyline points="555,148 1035,148" fill="none" stroke="#004387" stroke-width="2"/>
 <polyline points="1021.0,155.0 1035,148 1021.0,141.0" fill="none" stroke="#004387" stroke-width="2"/>
-<text x="575" y="131.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">0..* → 1 hub</text>
+<text x="565" y="132.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">0..*</text>
+<text x="955" y="132.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">1</text>
+<text x="690" y="180.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">hub</text>
 <polyline points="555,298 1035,298" fill="none" stroke="#004387" stroke-width="2"/>
 <polyline points="1021.0,305.0 1035,298 1021.0,291.0" fill="none" stroke="#004387" stroke-width="2"/>
-<text x="575" y="281.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">0..* → 1 address</text>
+<text x="565" y="282.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">0..*</text>
+<text x="955" y="282.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">1</text>
+<text x="690" y="330.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">address</text>
 <polyline points="555,448 1035,448" fill="none" stroke="#004387" stroke-width="2"/>
 <polyline points="1021.0,455.0 1035,448 1021.0,441.0" fill="none" stroke="#004387" stroke-width="2"/>
 <polygon points="555,448 567.0,455.0 579.0,448.0 567.0,441.0" fill="#004387"/>
-<text x="575" y="431.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">1 → 1..* lines</text>
+<text x="565" y="432.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">1</text>
+<text x="955" y="432.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">1..*</text>
+<text x="690" y="480.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">lines</text>
 <polyline points="555,598 1035,598" fill="none" stroke="#004387" stroke-width="2"/>
 <polyline points="1021.0,605.0 1035,598 1021.0,591.0" fill="none" stroke="#004387" stroke-width="2"/>
-<text x="575" y="581.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">1 → 1 payment</text>
+<text x="565" y="582.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">1</text>
+<text x="955" y="582.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">1</text>
+<text x="690" y="630.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">payment</text>
 <polyline points="555,748 1035,748" fill="none" stroke="#004387" stroke-width="2"/>
 <polyline points="1021.0,755.0 1035,748 1021.0,741.0" fill="none" stroke="#004387" stroke-width="2"/>
-<text x="575" y="731.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">1 → 0..* offers</text>
+<text x="565" y="732.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">1</text>
+<text x="955" y="732.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">0..*</text>
+<text x="690" y="780.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">offers</text>
 <polyline points="555,898 1035,898" fill="none" stroke="#004387" stroke-width="2"/>
 <polyline points="1021.0,905.0 1035,898 1021.0,891.0" fill="none" stroke="#004387" stroke-width="2"/>
-<text x="575" y="881.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">0..* → 1 for line</text>
+<text x="565" y="882.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">0..*</text>
+<text x="955" y="882.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">1</text>
+<text x="690" y="930.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">for line</text>
 <text x="35" y="1102.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Members: all detail parts. Relationship parts A–L continue both ways.</text>
 <text x="35" y="1134.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">† design target, not yet in code at C0 (see P4 input none on this view).</text>
 <text x="35" y="1167.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Figure 3.5.2.v.R2. UC-05 all navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex)</text>

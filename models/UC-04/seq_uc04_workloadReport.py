@@ -148,8 +148,8 @@ def render(spec,path):
         if kind=="lifeline":
             D.rectangle((x*2,y*2,(x+w)*2,(y+h)*2),fill=PALE,outline=BLUE,width=4)
             svg.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="{PALE}" stroke="{BLUE}" stroke-width="2"/>')
-            draw_text(n.get("lines",[]),x+4,y+2,w-8,h-4,FS,True,BLUE)
-            cell(nid,"\\n".join(n.get("lines",[])),x,y,w,h,f"rounded=0;whiteSpace=wrap;html=0;fillColor={PALE};strokeColor={BLUE};fontSize={FS};fontStyle=1;fontColor={BLUE};")
+            draw_text(n.get("lines",[]),x+4,y+2,w-8,h-4,FS,n.get("bold",True),BLUE)
+            cell(nid,"\\n".join(n.get("lines",[])),x,y,w,h,f"rounded=0;whiteSpace=wrap;html=0;fillColor={PALE};strokeColor={BLUE};fontSize={FS};fontStyle={1 if n.get('bold',True) else 0};fontColor={BLUE};")
             return
         if kind=="activation":
             D.rectangle((x*2,y*2,(x+w)*2,(y+h)*2),fill="#D7E5F3",outline=BLUE,width=2)
@@ -161,9 +161,12 @@ def render(spec,path):
             cell(nid,"",x,y,w,h,"opacity=0;strokeOpacity=0;fillOpacity=0;")
             return
         if kind=="text":
+            if n.get("background"):
+                D.rectangle((x*2,y*2,(x+w)*2,(y+h)*2),fill=n["background"])
+                svg.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="{n["background"]}" stroke="none"/>')
             lines=n.get("lines",[])
             draw_text(lines,x,y,w,h,FS,n.get("bold",False),n.get("color",BLUE),n.get("align","left"))
-            cell(nid,"\\n".join(lines),x,y,w,h,f"text;html=0;whiteSpace=wrap;align={n.get('align','left')};verticalAlign=middle;strokeColor=none;fillColor=none;fontSize={FS};fontColor={n.get('color',BLUE)};")
+            cell(nid,"\\n".join(lines),x,y,w,h,f"text;html=0;whiteSpace=wrap;align={n.get('align','left')};verticalAlign=middle;strokeColor=none;fillColor={n.get('background','none')};fontSize={FS};fontColor={n.get('color',BLUE)};")
             return
     for n in spec.get("nodes",[]):
         boxes[n["id"]]=(n["x"],n["y"],n["w"],n["h"])
@@ -184,16 +187,27 @@ def render(spec,path):
         if e.get("arrow","block")!="none":
             a,b=pts[-2:]; ang=math.atan2(b[1]-a[1],b[0]-a[0])
             points=[b,(b[0]-18*math.cos(ang-.42),b[1]-18*math.sin(ang-.42)),(b[0]-18*math.cos(ang+.42),b[1]-18*math.sin(ang+.42))]
-            D.polygon([(int(x*2),int(y*2)) for x,y in points],fill=color)
             if e.get("arrow")=="open":
-                svg.append('<polyline points="'+" ".join(f"{x},{y}" for x,y in points[1:]+[b])+f'" fill="none" stroke="{color}" stroke-width="{width}"/>')
+                D.line([(int(x*2),int(y*2)) for x,y in [points[1],b,points[2]]],fill=color,width=width*2)
+            else:
+                D.polygon([(int(x*2),int(y*2)) for x,y in points],fill=color)
+            if e.get("arrow")=="open":
+                svg.append('<polyline points="'+" ".join(f"{x},{y}" for x,y in [points[1],b,points[2]])+f'" fill="none" stroke="{color}" stroke-width="{width}"/>')
             else:
                 svg.append('<polygon points="'+" ".join(f"{x},{y}" for x,y in points)+f'" fill="{color}"/>')
         if e.get("label"):
             pending_edge_labels.append((e,color,pts))
         c=ET.SubElement(root,"mxCell",id=e["id"],value=e.get("label","").replace(chr(92)+"n",chr(10)),edge="1",parent="1",source=src,target=dst,style=f"edgeStyle=none;html=0;endArrow={e.get('arrow','block')};strokeColor={color};strokeWidth={width};fontSize={FS};"+("dashed=1;" if dash else ""))
+        if e.get("arrow")=="open":c.set("style",c.get("style","")+"endFill=0;")
+        elif e.get("arrow")!="none":c.set("style",c.get("style","")+"endFill=1;")
+        if e.get("association"):
+            sx,sy,sw,sh=boxes[src];tx,ty,tw,th=boxes[dst]
+            c.set("style",c.get("style","")+f"exitX={(pts[0][0]-sx)/sw};exitY={(pts[0][1]-sy)/sh};exitPerimeter=0;entryX={(pts[-1][0]-tx)/tw};entryY={(pts[-1][1]-ty)/th};entryPerimeter=0;")
         g=ET.SubElement(c,"mxGeometry",relative="1",attrib={"as":"geometry"}); arr=ET.SubElement(g,"Array",attrib={"as":"points"})
         for x,y in pts[1:-1]: ET.SubElement(arr,"mxPoint",x=str(x),y=str(y))
+        if e.get("association") or e["id"].startswith("msg_"):
+            ET.SubElement(g,"mxPoint",x=str(pts[0][0]),y=str(pts[0][1]),attrib={"as":"sourcePoint"})
+            ET.SubElement(g,"mxPoint",x=str(pts[-1][0]),y=str(pts[-1][1]),attrib={"as":"targetPoint"})
     # Draw class/lifeline boxes after connectors so the boxes mask connector segments cleanly.
     for n in spec.get("nodes",[]):
         if n.get("kind")!="anchor": draw_node(n)
@@ -201,9 +215,9 @@ def render(spec,path):
     # compact white backing behind the text so lifelines remain visible.
     for e,color,pts in pending_edge_labels:
         lx,ly,lw,lh=e.get("label_box",(pts[len(pts)//2][0]-180,pts[len(pts)//2][1]-30,360,60))
-        D.rectangle((int(lx*2),int(ly*2),int((lx+lw)*2),int((ly+lh)*2)),fill=WHITE)
+        D.rectangle((int(lx*2),int((ly+10)*2),int((lx+lw)*2),int((ly+lh)*2)),fill=WHITE)
         draw_text(e["label"].split("\\n"),lx,ly,lw,lh,FS,True,color)
-        svg.append(f'<rect x="{lx}" y="{ly}" width="{lw}" height="{lh}" fill="white" fill-opacity="0.88" stroke="none"/>')
+        svg.append(f'<rect x="{lx}" y="{ly+10}" width="{lw}" height="{lh-10}" fill="white" fill-opacity="0.88" stroke="none"/>')
         for i,line in enumerate(e["label"].split("\\n")):
             cy=ly+FS+i*(FS+6)
             svg.append(f'<text x="{lx+lw/2}" y="{cy}" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="{FS}" font-weight="bold" fill="{color}">{escape(line)}</text>')

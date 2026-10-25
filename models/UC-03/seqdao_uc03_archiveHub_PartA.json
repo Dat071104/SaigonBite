@@ -66,8 +66,16 @@
         "base_label": "archiveHub(hubId) → admin.archive_hub [HTTP adapter]",
         "fragment": false,
         "draw_arrow": false,
-        "y": 341,
-        "edge_id": "message0"
+        "y": 270.84,
+        "edge_id": "message0",
+        "label_box": [
+          65,
+          232,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message0",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "view",
@@ -84,8 +92,16 @@
         "receiver_signature": "archive_hub(self, user_id: int, hub_id: int) -> Hub",
         "status": "P4-TARGET",
         "P4_input": "P2-S13; P3-S03",
-        "y": 466,
-        "edge_id": "message1"
+        "y": 374.5199999999999,
+        "edge_id": "message1",
+        "label_box": [
+          65,
+          335.67999999999995,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message1",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "ctrl",
@@ -102,8 +118,16 @@
         "receiver_signature": "_require_admin(self, user_id: int) -> None",
         "status": "MATCH",
         "P4_input": "",
-        "y": 591,
-        "edge_id": "message2"
+        "y": 440.3599999999999,
+        "edge_id": "message2",
+        "label_box": [
+          65,
+          401.5199999999999,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message2",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "ctrl",
@@ -117,8 +141,16 @@
         "base_label": "BEGIN IMMEDIATE†; acquire write transaction before live-state checks.",
         "fragment": false,
         "draw_arrow": true,
-        "y": 716,
-        "edge_id": "message3"
+        "y": 513.1999999999998,
+        "edge_id": "message3",
+        "label_box": [
+          65,
+          474.3599999999999,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message3",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "ctrl",
@@ -135,8 +167,16 @@
         "receiver_signature": "get_including_archived(self, hub_id: int) -> Optional[Hub]",
         "status": "MATCH",
         "P4_input": "",
-        "y": 841,
-        "edge_id": "message4"
+        "y": 579.0399999999998,
+        "edge_id": "message4",
+        "label_box": [
+          65,
+          540.1999999999998,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message4",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "obj4",
@@ -150,8 +190,16 @@
         "base_label": "SQL note: SELECT hub by id, including archived history.",
         "fragment": false,
         "draw_arrow": true,
-        "y": 966,
-        "edge_id": "message5"
+        "y": 644.8799999999999,
+        "edge_id": "message5",
+        "label_box": [
+          65,
+          606.0399999999998,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message5",
+        "arrow_style": "closed_filled_synchronous"
       }
     ],
     "elements": [
@@ -208,7 +256,29 @@
         "allowed_on_layered_diagram": true
       }
     ],
-    "states": []
+    "states": [],
+    "interaction_fragments": [
+      {
+        "id": "fragment_seqdao_uc03_archiveHub_PartA_1",
+        "operator": "opt",
+        "guard": "request reached controller; Admin/BEGIN failure breaks to Part D",
+        "start_index": 1,
+        "end_index": 5,
+        "message_indices": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "x": 25,
+        "y": 297.84,
+        "w": 1550,
+        "h": 374.0399999999999,
+        "depth": 0,
+        "guard_height": 32.84
+      }
+    ]
   },
   "placed_width_mm": 230,
   "source_design_sequences": [
@@ -276,39 +346,51 @@
         55.67999999999999
       ],
       [
-        45,
-        242,
-        1510,
+        31,
+        298.84,
+        84,
         27.839999999999996
       ],
       [
-        45,
-        367,
-        1510,
+        127,
+        298.84,
+        1438,
         27.839999999999996
       ],
       [
-        45,
-        492,
-        1510,
+        65,
+        232,
+        1470,
         27.839999999999996
       ],
       [
-        45,
-        617,
-        1510,
+        65,
+        335.67999999999995,
+        1470,
         27.839999999999996
       ],
       [
-        45,
-        742,
-        1510,
+        65,
+        401.5199999999999,
+        1470,
         27.839999999999996
       ],
       [
-        45,
-        867,
-        1510,
+        65,
+        474.3599999999999,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        540.1999999999998,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        606.0399999999998,
+        1470,
         27.839999999999996
       ],
       [
@@ -350,13 +432,15 @@
         "points": [
           [
             120.0,
-            341
+            270.84
           ],
           [
             392.0,
-            341
+            270.84
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message1",
@@ -365,13 +449,15 @@
         "points": [
           [
             392.0,
-            466
+            374.5199999999999
           ],
           [
             664.0,
-            466
+            374.5199999999999
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message2",
@@ -380,21 +466,23 @@
         "points": [
           [
             664.0,
-            591
+            440.3599999999999
           ],
           [
             699.0,
-            591
+            440.3599999999999
           ],
           [
             699.0,
-            613
+            462.3599999999999
           ],
           [
             664.0,
-            613
+            462.3599999999999
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message3",
@@ -403,13 +491,15 @@
         "points": [
           [
             664.0,
-            716
+            513.1999999999998
           ],
           [
             1480.0,
-            716
+            513.1999999999998
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message4",
@@ -418,13 +508,15 @@
         "points": [
           [
             664.0,
-            841
+            579.0399999999998
           ],
           [
             1208.0,
-            841
+            579.0399999999998
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message5",
@@ -433,15 +525,25 @@
         "points": [
           [
             1208.0,
-            966
+            644.8799999999999
           ],
           [
             1480.0,
-            966
+            644.8799999999999
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       }
     ],
     "author_native_cell": true
+  },
+  "independent_review_repair": {
+    "findings": [
+      "R1",
+      "R4"
+    ],
+    "preserved_source": "D:\\RAD\\FINAL\\Part2\\notes\\P3_trash\\P3-F\\independent_review_R1_R4_20261025_192108\\UC-03\\seqdao_uc03_archiveHub_PartA.json",
+    "scope": "Actual guarded regions and synchronous arrowheads; no shared-model/app/status changes."
   }
 }

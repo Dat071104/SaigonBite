@@ -5,7 +5,7 @@
   "figure": "4.3.2.4.OP-26.A",
   "part": "Part A",
   "scope": "Same read-only request across all parts; focus 1/4. Mechanical reads: responsibility table (report 4.3.2).",
-  "continuation": "From request boundary → this part → seqdao_uc04_salesReport_PartB.",
+  "continuation": "Manager denial break END; authorized Manager alone continues Part B. Every path remains read-only.",
   "transaction_summary": "Read-only on ALL paths; SELECT only; UC04-MG01. No BEGIN IMMEDIATE, business write or write-transaction retry.",
   "target_note": "† design target, not yet in code at C0: F-03; F-09; P2-S12 connection settings; MATCH is Static only.",
   "phase3": {
@@ -72,8 +72,16 @@
         "base_label": "salesReport(startDateVN, endDateVN, hubId?) → reports.sales [HTTP adapter]",
         "fragment": false,
         "draw_arrow": false,
-        "y": 341,
-        "edge_id": "message0"
+        "y": 270.84,
+        "edge_id": "message0",
+        "label_box": [
+          65,
+          232,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message0",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "view",
@@ -90,8 +98,16 @@
         "receiver_signature": "sales_report(self, user_id: int, date_from: Optional[str]=None, date_to: Optional[str]=None, hub_id: Optional[int]=None) -> SalesReport",
         "status": "P4-TARGET",
         "P4_input": "F-03; F-09",
-        "y": 466,
-        "edge_id": "message1"
+        "y": 336.67999999999995,
+        "edge_id": "message1",
+        "label_box": [
+          65,
+          297.84,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message1",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "ctrl",
@@ -108,8 +124,16 @@
         "receiver_signature": "_require_manager(self, user_id: int) -> None",
         "status": "MATCH",
         "P4_input": "",
-        "y": 591,
-        "edge_id": "message2"
+        "y": 402.5199999999999,
+        "edge_id": "message2",
+        "label_box": [
+          65,
+          363.67999999999995,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message2",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "ctrl",
@@ -126,22 +150,39 @@
         "receiver_signature": "_require_user(self, user_id: int, *roles: Role, message: str='Your account cannot do this.') -> UserAccount",
         "status": "MATCH",
         "P4_input": "",
-        "y": 716,
-        "edge_id": "message3"
+        "y": 475.3599999999999,
+        "edge_id": "message3",
+        "label_box": [
+          65,
+          436.5199999999999,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message3",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "ctrl",
-        "to": "ctrl",
+        "to": "view",
         "method": "",
-        "kind": "note",
+        "kind": "return",
         "arguments": "",
         "guard": "",
         "PC_MG": "UC04-PC01; UC04-MG01; UC04-MG02",
-        "label": "Manager denial → refusal before report queries. UC04-MG02; UC04-MG01 read-only on denial, invalid filter, empty and success paths.",
-        "base_label": "Manager denial → refusal before report queries. UC04-MG02; UC04-MG01 read-only on denial, invalid filter, empty and success paths.",
-        "fragment": true,
-        "draw_arrow": false,
-        "y": 841
+        "label": "Manager denied; UC04-MG02; SELECT-only UC04-MG01; END request before report queries.",
+        "base_label": "Manager denied; UC04-MG02; SELECT-only UC04-MG01; END request before report queries.",
+        "fragment": false,
+        "draw_arrow": true,
+        "y": 579.04,
+        "label_box": [
+          65,
+          540.1999999999999,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message4",
+        "edge_id": "message4",
+        "arrow_style": "dashed_open_reply"
       },
       {
         "from": "ctrl",
@@ -158,8 +199,16 @@
         "receiver_signature": "_period(self, date_from: Optional[str], date_to: Optional[str]) -> Period",
         "status": "MATCH",
         "P4_input": "",
-        "y": 966,
-        "edge_id": "message5"
+        "y": 687.72,
+        "edge_id": "message5",
+        "label_box": [
+          65,
+          648.88,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message5",
+        "arrow_style": "closed_filled_synchronous"
       }
     ],
     "elements": [
@@ -227,7 +276,41 @@
         "evidence": "AST class base"
       }
     ],
-    "states": []
+    "states": [],
+    "interaction_fragments": [
+      {
+        "id": "fragment_seqdao_uc04_salesReport_PartA_1",
+        "operator": "break",
+        "guard": "active Manager authorization fails; END request",
+        "start_index": 4,
+        "end_index": 4,
+        "message_indices": [
+          4
+        ],
+        "x": 25,
+        "y": 502.3599999999999,
+        "w": 1550,
+        "h": 103.68000000000006,
+        "depth": 0,
+        "guard_height": 32.84
+      },
+      {
+        "id": "fragment_seqdao_uc04_salesReport_PartA_2",
+        "operator": "opt",
+        "guard": "active Manager authorized; no denial",
+        "start_index": 5,
+        "end_index": 5,
+        "message_indices": [
+          5
+        ],
+        "x": 25,
+        "y": 611.04,
+        "w": 1550,
+        "h": 110.68000000000006,
+        "depth": 0,
+        "guard_height": 32.84
+      }
+    ]
   },
   "placed_width_mm": 230,
   "source_design_sequences": [
@@ -301,45 +384,63 @@
         55.67999999999999
       ],
       [
-        45,
-        242,
-        1510,
+        31,
+        503.3599999999999,
+        84,
         27.839999999999996
       ],
       [
-        45,
-        367,
-        1510,
+        127,
+        503.3599999999999,
+        1438,
         27.839999999999996
       ],
       [
-        45,
-        492,
-        1510,
+        31,
+        612.04,
+        84,
         27.839999999999996
       ],
       [
-        45,
-        617,
-        1510,
+        127,
+        612.04,
+        1438,
         27.839999999999996
       ],
       [
-        42,
-        742,
-        56,
+        65,
+        232,
+        1470,
         27.839999999999996
       ],
       [
-        110,
-        747,
-        1440,
+        65,
+        297.84,
+        1470,
         27.839999999999996
       ],
       [
-        45,
-        867,
-        1510,
+        65,
+        363.67999999999995,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        436.5199999999999,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        540.1999999999999,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        648.88,
+        1470,
         27.839999999999996
       ],
       [
@@ -381,13 +482,15 @@
         "points": [
           [
             120.0,
-            341
+            270.84
           ],
           [
             346.66666666666663,
-            341
+            270.84
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message1",
@@ -396,13 +499,15 @@
         "points": [
           [
             346.66666666666663,
-            466
+            336.67999999999995
           ],
           [
             573.3333333333333,
-            466
+            336.67999999999995
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message2",
@@ -411,21 +516,23 @@
         "points": [
           [
             573.3333333333333,
-            591
+            402.5199999999999
           ],
           [
             608.3333333333333,
-            591
+            402.5199999999999
           ],
           [
             608.3333333333333,
-            613
+            424.5199999999999
           ],
           [
             573.3333333333333,
-            613
+            424.5199999999999
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message3",
@@ -434,13 +541,32 @@
         "points": [
           [
             573.3333333333333,
-            716
+            475.3599999999999
           ],
           [
             1026.6666666666665,
-            716
+            475.3599999999999
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
+      },
+      {
+        "id": "message4",
+        "source": "m4s",
+        "target": "m4t",
+        "points": [
+          [
+            573.3333333333333,
+            579.04
+          ],
+          [
+            346.66666666666663,
+            579.04
+          ]
+        ],
+        "filled": false,
+        "dashed": true
       },
       {
         "id": "message5",
@@ -449,23 +575,33 @@
         "points": [
           [
             573.3333333333333,
-            966
+            687.72
           ],
           [
             608.3333333333333,
-            966
+            687.72
           ],
           [
             608.3333333333333,
-            988
+            709.72
           ],
           [
             573.3333333333333,
-            988
+            709.72
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       }
     ],
     "author_native_cell": true
+  },
+  "independent_review_repair": {
+    "findings": [
+      "R1",
+      "R4"
+    ],
+    "preserved_source": "D:\\RAD\\FINAL\\Part2\\notes\\P3_trash\\P3-F\\independent_review_R1_R4_20261025_192108\\UC-04\\seqdao_uc04_salesReport_PartA.json",
+    "scope": "Actual guarded regions and synchronous arrowheads; no shared-model/app/status changes."
   }
 }

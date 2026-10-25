@@ -247,6 +247,7 @@ def main():
         check('frozen_SSD_native_pointer',row['SSD message'],node in native_ids[source],'Ledger points to a real immutable SSD node/edge')
     check('responsibility_coverage','41 frozen SSD occurrences',len(realisation)==len(membership)==41,f'{len(realisation)} rows / {len(membership)} ledger occurrences')
     seqs=[(p,d,m) for p,d,m in diagrams if m.get('diagram_type')=='sequence'];dao=[(p,d,m) for p,d,m in diagrams if m.get('diagram_type')=='dao_sequence'];finals=collections.defaultdict(lambda:collections.defaultdict(set))
+    _notation_module.audit_success_results(seqs,check)
     for path,data,meta in diagrams:
         if meta.get('diagram_type')=='dcd' and ('_final' in path.stem or meta.get('final')):
             uc=meta.get('UC');match=re.search(r'uc(\d\d)',path.stem)
@@ -341,10 +342,13 @@ def main():
     for violation in violations:
         accounted=any(x.get('source')==violation['source'] and x.get('target')==violation['target'] for x in listed)
         check('actual_import_accounted',violation['source']+':'+str(violation['line'])+'->'+violation['target'],accounted,'Actual forbidden direction must be listed, not drawn as allowed','P4-TARGET' if accounted else None)
-    failures=[c for c in checks if c['result']=='FAIL'];summary={'author':model['author'],'C0':model['C0'],'audited_commit':commit,'evidence_label':'Static','app_executed':False,'read_only':args.read_only,'incomplete_mode':args.allow_incomplete,'figure_files':len(diagrams),'design_sequence_views':len(seqs),'DAO_sequence_views':len(dao),'SSD_occurrences_covered':len(covered),'anchor_count':len(anchors),'checks':len(checks),'failures':len(failures),'pass':not failures,'status_counts':dict(collections.Counter(r['status'] for r in realisation)),'import_violations':violations,'results':checks}
+    evidence_files={Path(__file__),Path(__file__).with_name('p3_notation_audit.py'),Path(__file__).with_name('p3_code_inventory.py'),R/'models/shared/design_model.json',D/'design_annotations.json',D/'operation_realisation.csv',D/'class_table_mapping.csv'}
+    evidence_files.update(path.with_suffix(ext) for path,_,_ in diagrams for ext in ('.py','.json','.drawio','.svg','.png') if path.with_suffix(ext).is_file())
+    evidence_hashes={path.relative_to(R).as_posix():hashlib.sha256(path.read_bytes()).hexdigest() for path in sorted(evidence_files)}
+    failures=[c for c in checks if c['result']=='FAIL'];summary={'author':model['author'],'C0':model['C0'],'audited_commit':commit,'evidence_label':'Static','app_executed':False,'read_only':args.read_only,'incomplete_mode':args.allow_incomplete,'figure_files':len(diagrams),'design_sequence_views':len(seqs),'DAO_sequence_views':len(dao),'SSD_occurrences_covered':len(covered),'anchor_count':len(anchors),'checks':len(checks),'failures':len(failures),'pass':not failures,'status_counts':dict(collections.Counter(r['status'] for r in realisation)),'import_violations':violations,'evidence_hashes':evidence_hashes,'results':checks}
     if not args.read_only:
         N.mkdir(parents=True,exist_ok=True);(N/f'design_crosscheck_{commit[:7]}.json').write_text(json.dumps(summary,indent=2,ensure_ascii=False),encoding='utf-8')
         with (D/'design_consistency.csv').open('w',encoding='utf-8',newline='') as f:w=csv.DictWriter(f,fieldnames=list(consistency[0]));w.writeheader();w.writerows(consistency)
-    print(json.dumps({k:v for k,v in summary.items() if k not in ('results','import_violations')},indent=2));print('FAILURES:',json.dumps(failures[:40],indent=2,ensure_ascii=False))
+    print(json.dumps({k:v for k,v in summary.items() if k not in ('results','import_violations','evidence_hashes')},indent=2));print('FAILURES:',json.dumps(failures[:40],indent=2,ensure_ascii=False))
     return 0 if not failures else 1
 if __name__=='__main__':raise SystemExit(main())

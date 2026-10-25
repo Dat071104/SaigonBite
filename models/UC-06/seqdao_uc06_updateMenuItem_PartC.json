@@ -5,7 +5,7 @@
   "figure": "4.3.2.6.OP-41.C",
   "part": "Part C",
   "scope": "Same request and transaction across all parts; focus 3/4. Mechanical reads: responsibility table (report 4.3.2).",
-  "continuation": "From seqdao_uc06_updateMenuItem_PartB → this part → seqdao_uc06_updateMenuItem_PartD.",
+  "continuation": "Success break END. Validation/duplicate/0-row/write/COMMIT failures alone enter Part D; snapshots unchanged.",
   "transaction_summary": "Transaction key (whole request): BEGIN IMMEDIATE → checked rowcount / inserts → COMMIT; failure → ROLLBACK if active. Busy: retry, nothing changed.",
   "target_note": "† design target, not yet in code at C0: P2-S13; P3-S03; P2-S12 connection settings; MATCH is Static only.",
   "phase3": {
@@ -66,8 +66,16 @@
         "base_label": "rowcount == 1; † controller checks bool; 0 / False → ROLLBACK",
         "fragment": false,
         "draw_arrow": false,
-        "y": 341,
-        "edge_id": "message0"
+        "y": 270.84,
+        "edge_id": "message0",
+        "label_box": [
+          65,
+          232,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message0",
+        "arrow_style": "dashed_open_reply"
       },
       {
         "from": "ctrl",
@@ -81,7 +89,13 @@
         "base_label": "UC06-MG01: UPDATE menu_item only. No order_line UPDATE; historical item_name, unit_price and quantity snapshots remain unchanged; price edits affect future quotes.",
         "fragment": false,
         "draw_arrow": false,
-        "y": 466
+        "y": 391.35999999999996,
+        "label_box": [
+          65,
+          339.67999999999995,
+          1470,
+          55.68
+        ]
       },
       {
         "from": "ctrl",
@@ -95,8 +109,16 @@
         "base_label": "COMMIT† catalog update; UC06-PC01; duplicates/invalid price refused UC06-MG02.",
         "fragment": false,
         "draw_arrow": true,
-        "y": 591,
-        "edge_id": "message2"
+        "y": 452.19999999999993,
+        "edge_id": "message2",
+        "label_box": [
+          65,
+          413.35999999999996,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message2",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "ctrl",
@@ -113,8 +135,16 @@
         "receiver_signature": "get_item(self, item_id: int) -> Optional[MenuItem]",
         "status": "MATCH",
         "P4_input": "",
-        "y": 716,
-        "edge_id": "message3"
+        "y": 555.88,
+        "edge_id": "message3",
+        "label_box": [
+          65,
+          517.04,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message3",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "ctrl",
@@ -128,8 +158,16 @@
         "base_label": "updated MenuItem; old order lines preserved",
         "fragment": false,
         "draw_arrow": false,
-        "y": 841,
-        "edge_id": "message4"
+        "y": 621.72,
+        "edge_id": "message4",
+        "label_box": [
+          65,
+          582.88,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message4",
+        "arrow_style": "dashed_open_reply"
       },
       {
         "from": "ctrl",
@@ -139,11 +177,17 @@
         "arguments": "",
         "guard": "",
         "PC_MG": "UC06-PC01; UC06-MG01; UC06-MG02",
-        "label": "Guard refusal / 0 rows / False DAO result: stop; ROLLBACK all intended writes if transaction active. ",
-        "base_label": "Guard refusal / 0 rows / False DAO result: stop; ROLLBACK all intended writes if transaction active. ",
-        "fragment": true,
+        "label": "Exclusive failure continuation: Part D performs rollback if active and returns refusal/Busy; success break END skips it.",
+        "base_label": "Exclusive failure continuation: Part D performs rollback if active and returns refusal/Busy; success break END skips it.",
+        "fragment": false,
         "draw_arrow": false,
-        "y": 966
+        "y": 686.5600000000001,
+        "label_box": [
+          65,
+          662.72,
+          1470,
+          27.84
+        ]
       }
     ],
     "elements": [
@@ -187,7 +231,44 @@
         "P4_input": "P2-S14"
       }
     ],
-    "states": []
+    "states": [],
+    "interaction_fragments": [
+      {
+        "id": "fragment_seqdao_uc06_updateMenuItem_PartC_1",
+        "operator": "opt",
+        "guard": "update returned rowcount == 1; otherwise break to Part D",
+        "start_index": 1,
+        "end_index": 4,
+        "message_indices": [
+          2,
+          3,
+          4
+        ],
+        "x": 25,
+        "y": 297.84,
+        "w": 1550,
+        "h": 355.88000000000005,
+        "depth": 0,
+        "guard_height": 32.84
+      },
+      {
+        "id": "fragment_seqdao_uc06_updateMenuItem_PartC_2",
+        "operator": "break",
+        "guard": "COMMIT succeeded; return success and END request",
+        "start_index": 3,
+        "end_index": 4,
+        "message_indices": [
+          3,
+          4
+        ],
+        "x": 37,
+        "y": 479.19999999999993,
+        "w": 1526,
+        "h": 169.5200000000001,
+        "depth": 1,
+        "guard_height": 32.84
+      }
+    ]
   },
   "placed_width_mm": 230,
   "source_design_sequences": [
@@ -255,45 +336,63 @@
         55.67999999999999
       ],
       [
-        45,
-        242,
-        1510,
+        31,
+        298.84,
+        84,
         27.839999999999996
       ],
       [
-        45,
-        372,
-        1510,
+        127,
+        298.84,
+        1438,
+        27.839999999999996
+      ],
+      [
+        43,
+        480.19999999999993,
+        84,
+        27.839999999999996
+      ],
+      [
+        139,
+        480.19999999999993,
+        1414,
+        27.839999999999996
+      ],
+      [
+        65,
+        232,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        339.67999999999995,
+        1470,
         55.67999999999999
       ],
       [
-        45,
-        492,
-        1510,
+        65,
+        413.35999999999996,
+        1470,
         27.839999999999996
       ],
       [
-        45,
-        617,
-        1510,
+        65,
+        517.04,
+        1470,
         27.839999999999996
       ],
       [
-        45,
-        742,
-        1510,
+        65,
+        582.88,
+        1470,
         27.839999999999996
       ],
       [
-        42,
-        867,
-        56,
-        27.839999999999996
-      ],
-      [
-        110,
-        872,
-        1440,
+        65,
+        662.72,
+        1470,
         27.839999999999996
       ],
       [
@@ -335,13 +434,15 @@
         "points": [
           [
             1208.0,
-            341
+            270.84
           ],
           [
             664.0,
-            341
+            270.84
           ]
-        ]
+        ],
+        "filled": false,
+        "dashed": true
       },
       {
         "id": "message2",
@@ -350,13 +451,15 @@
         "points": [
           [
             664.0,
-            591
+            452.19999999999993
           ],
           [
             1480.0,
-            591
+            452.19999999999993
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message3",
@@ -365,13 +468,15 @@
         "points": [
           [
             664.0,
-            716
+            555.88
           ],
           [
             1208.0,
-            716
+            555.88
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message4",
@@ -380,15 +485,25 @@
         "points": [
           [
             664.0,
-            841
+            621.72
           ],
           [
             392.0,
-            841
+            621.72
           ]
-        ]
+        ],
+        "filled": false,
+        "dashed": true
       }
     ],
     "author_native_cell": true
+  },
+  "independent_review_repair": {
+    "findings": [
+      "R1",
+      "R4"
+    ],
+    "preserved_source": "D:\\RAD\\FINAL\\Part2\\notes\\P3_trash\\P3-F\\independent_review_R1_R4_20261025_192108\\UC-06\\seqdao_uc06_updateMenuItem_PartC.json",
+    "scope": "Actual guarded regions and synchronous arrowheads; no shared-model/app/status changes."
   }
 }

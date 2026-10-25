@@ -3,7 +3,7 @@
   "title": "UC-02 .2 DCD domain — Part A",
   "canvas": {
     "width": 2600,
-    "height": 2114,
+    "height": 2394,
     "font_size": 50,
     "placed_width_mm": 170
   },
@@ -114,7 +114,7 @@
       "id": "DeliveryState",
       "kind": "class",
       "x": 80,
-      "y": 1405,
+      "y": 1685,
       "w": 793,
       "h": 369,
       "header_h": 137,
@@ -132,7 +132,7 @@
       "id": "OrderState",
       "kind": "class",
       "x": 903,
-      "y": 1405,
+      "y": 1685,
       "w": 793,
       "h": 369,
       "header_h": 137,
@@ -150,7 +150,7 @@
       "id": "PaymentState",
       "kind": "class",
       "x": 1726,
-      "y": 1405,
+      "y": 1685,
       "w": 793,
       "h": 369,
       "header_h": 137,
@@ -168,14 +168,91 @@
       "id": "legend",
       "kind": "note",
       "x": 80,
-      "y": 1816,
+      "y": 2096,
       "w": 2440,
       "h": 186,
       "lines": [
-        "Lifecycle classes continue in Part B for party/hub associations. Domain",
-        "associations/navigation and multiplicities: Order (1) — payment — Payment (1);",
-        "Order (1) — delivery — Delivery (0..1)."
+        "Lifecycle classes continue in Part B for party/hub associations. Multiplicities",
+        "are separate labels at the actual attached ends; each role has its own label."
       ]
+    },
+    {
+      "id": "association_00_source_mult",
+      "kind": "text",
+      "x": 1097.3333333333333,
+      "y": 1299,
+      "w": 140,
+      "h": 64,
+      "lines": [
+        "1"
+      ],
+      "align": "center",
+      "color": "#004387"
+    },
+    {
+      "id": "association_00_target_mult",
+      "kind": "text",
+      "x": 2052.5,
+      "y": 1299,
+      "w": 140,
+      "h": 64,
+      "lines": [
+        "1"
+      ],
+      "align": "center",
+      "color": "#004387"
+    },
+    {
+      "id": "association_00_role",
+      "kind": "text",
+      "x": 1514.9166666666665,
+      "y": 1401,
+      "w": 260,
+      "h": 64,
+      "lines": [
+        "payment"
+      ],
+      "align": "center",
+      "color": "#004387"
+    },
+    {
+      "id": "association_01_source_mult",
+      "kind": "text",
+      "x": 1361.6666666666665,
+      "y": 1299,
+      "w": 140,
+      "h": 64,
+      "lines": [
+        "1"
+      ],
+      "align": "center",
+      "color": "#004387"
+    },
+    {
+      "id": "association_01_target_mult",
+      "kind": "text",
+      "x": 406.5,
+      "y": 1299,
+      "w": 140,
+      "h": 64,
+      "lines": [
+        "0..1"
+      ],
+      "align": "center",
+      "color": "#004387"
+    },
+    {
+      "id": "association_01_role",
+      "kind": "text",
+      "x": 809.0833333333333,
+      "y": 1481,
+      "w": 290,
+      "h": 64,
+      "lines": [
+        "delivery"
+      ],
+      "align": "center",
+      "color": "#004387"
     }
   ],
   "edges": [
@@ -190,15 +267,15 @@
         ],
         [
           2122.5,
-          1390.0
+          1670.0
         ],
         [
           2122.5,
-          1390.0
+          1670.0
         ],
         [
           2122.5,
-          1405
+          1685
         ]
       ],
       "dashed": true,
@@ -218,15 +295,15 @@
         ],
         [
           1299.5,
-          1390.0
+          1670.0
         ],
         [
           1299.5,
-          1390.0
+          1670.0
         ],
         [
           1299.5,
-          1405
+          1685
         ]
       ],
       "dashed": true,
@@ -246,15 +323,15 @@
         ],
         [
           476.5,
-          1390.0
+          1670.0
         ],
         [
           476.5,
-          1390.0
+          1670.0
         ],
         [
           476.5,
-          1405
+          1685
         ]
       ],
       "dashed": true,
@@ -269,23 +346,28 @@
       "target": "Payment",
       "points": [
         [
-          1696,
-          794.0
+          1167.3333333333333,
+          1375
         ],
         [
-          1711.0,
-          794.0
+          1167.3333333333333,
+          1475
         ],
         [
-          1726,
-          794.0
+          2122.5,
+          1475
+        ],
+        [
+          2122.5,
+          1375
         ]
       ],
       "dashed": false,
-      "arrow": "block",
+      "arrow": "open",
       "color": "#004387",
       "width": 2,
-      "label": ""
+      "label": "",
+      "association": true
     },
     {
       "id": "dep_04",
@@ -293,23 +375,28 @@
       "target": "Delivery",
       "points": [
         [
-          903,
-          794.0
+          1431.6666666666665,
+          1375
         ],
         [
-          888.0,
-          794.0
+          1431.6666666666665,
+          1555
         ],
         [
-          873,
-          794.0
+          476.5,
+          1555
+        ],
+        [
+          476.5,
+          1375
         ]
       ],
       "dashed": false,
-      "arrow": "block",
+      "arrow": "open",
       "color": "#004387",
       "width": 2,
-      "label": ""
+      "label": "",
+      "association": true
     }
   ],
   "footer": "Author: 722I0004 · AI-assisted (Codex) · Static design at C0; † targets remain for P4.",
@@ -620,12 +707,50 @@
         "status": "MATCH",
         "evidence": "domain model 2.1.7; code identifiers / typed fields"
       }
+    ],
+    "association_end_labels": [
+      {
+        "source": "Order",
+        "target": "Payment",
+        "kind": "association",
+        "role": "payment",
+        "native_edge_id": "dep_03",
+        "source_label_id": "association_00_source_mult",
+        "target_label_id": "association_00_target_mult",
+        "role_label_id": "association_00_role",
+        "source_endpoint": [
+          1167.3333333333333,
+          1375
+        ],
+        "target_endpoint": [
+          2122.5,
+          1375
+        ]
+      },
+      {
+        "source": "Order",
+        "target": "Delivery",
+        "kind": "association",
+        "role": "delivery",
+        "native_edge_id": "dep_04",
+        "source_label_id": "association_01_source_mult",
+        "target_label_id": "association_01_target_mult",
+        "role_label_id": "association_01_role",
+        "source_endpoint": [
+          1431.6666666666665,
+          1375
+        ],
+        "target_endpoint": [
+          476.5,
+          1375
+        ]
+      }
     ]
   },
   "render_receipt": {
     "canvas": [
       2600,
-      2114
+      2394
     ],
     "minimum_font_px": 50,
     "placed_width_mm": 170,

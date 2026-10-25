@@ -1,59 +1,72 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1250" viewBox="0 0 1600 1250"><rect width="100%" height="100%" fill="white"/>
 <text x="35" y="41.040000000000006" font-family="Arial" font-size="28" font-weight="bold" fill="#202B36">UC-05 rejectOrder — DAO sequence / Part E</text>
 <text x="35" y="76.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Same request and transaction across all parts; focus 5/6. Mechanical reads: responsibility table (report 4.3.2).</text>
+<rect data-fragment-id="fragment_seqdao_uc05_rejectOrder_PartE_1" x="25" y="232" width="1550" height="452.72" fill="none" stroke="#004387" stroke-width="2"/>
+<rect data-fragment-id="fragment_seqdao_uc05_rejectOrder_PartE_2" x="37" y="467.35999999999996" width="1526" height="212.36000000000007" fill="none" stroke="#004387" stroke-width="2"/>
+<rect data-fragment-id="fragment_seqdao_uc05_rejectOrder_PartE_3" x="49" y="571.04" width="1502" height="103.68000000000006" fill="none" stroke="#004387" stroke-width="2"/>
 <rect x="13.666666666666671" y="100" width="212.66666666666666" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
 <text x="20.66666666666667" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Kitchen staff</text>
-<polyline points="120.0,220 120.0,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<polyline points="120.0,220 120.0,1026" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
 <rect x="240.33333333333331" y="100" width="212.66666666666666" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
 <text x="247.33333333333331" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">«view»</text>
 <text x="247.33333333333331" y="155.16" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">kitchen</text>
-<polyline points="346.66666666666663,220 346.66666666666663,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<polyline points="346.66666666666663,220 346.66666666666663,1026" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
 <rect x="466.99999999999994" y="100" width="212.66666666666666" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
 <text x="473.99999999999994" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Kitchen</text>
 <text x="473.99999999999994" y="155.16" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Controller</text>
-<polyline points="573.3333333333333,220 573.3333333333333,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<polyline points="573.3333333333333,220 573.3333333333333,1026" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
 <rect x="693.6666666666666" y="100" width="212.66666666666666" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
 <text x="700.6666666666666" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">controllers.commo</text>
 <text x="700.6666666666666" y="155.16" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">n</text>
-<polyline points="800.0,220 800.0,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<polyline points="800.0,220 800.0,1026" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
 <rect x="920.3333333333331" y="100" width="212.66666666666666" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
 <text x="927.3333333333331" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Order</text>
-<polyline points="1026.6666666666665,220 1026.6666666666665,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<polyline points="1026.6666666666665,220 1026.6666666666665,1026" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
 <rect x="1147.0" y="100" width="212.66666666666666" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
 <text x="1154.0" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">«DAO»</text>
 <text x="1154.0" y="155.16" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Payment</text>
 <text x="1154.0" y="183.0" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">DAO</text>
-<polyline points="1253.3333333333333,220 1253.3333333333333,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<polyline points="1253.3333333333333,220 1253.3333333333333,1026" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
 <rect x="1373.6666666666667" y="100" width="212.66666666666666" height="120" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
 <text x="1380.6666666666667" y="127.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">:Database</text>
 <text x="1380.6666666666667" y="155.16" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">«resource»</text>
-<polyline points="1480.0,220 1480.0,1030" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
-<rect x="42" y="241" width="1516" height="30.839999999999996" fill="white"/>
-<text x="45" y="264.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">change_state(order.id, previous_state, payment.state, now)</text>
-<polyline points="800.0,341 1253.3333333333333,341" fill="none" stroke="#004387" stroke-width="2"/>
-<polyline points="1240.7270739003957,347.08951747755725 1253.3333333333333,341 1240.7270739003957,334.91048252244275" fill="none" stroke="#004387" stroke-width="2"/>
-<rect x="1248.3333333333333" y="341" width="10" height="18" stroke="#004387" fill="#DAE9F5" stroke-width="2"/>
-<rect x="42" y="366" width="1516" height="30.839999999999996" fill="white"/>
-<text x="45" y="389.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">SQL note: UPDATE payment by order_id AND state = ? (previous state); VOIDED or REFUND_PENDING.</text>
-<polyline points="1253.3333333333333,466 1480.0,466" fill="none" stroke="#004387" stroke-width="2"/>
-<polyline points="1467.3937405670624,472.08951747755725 1480.0,466 1467.3937405670624,459.91048252244275" fill="none" stroke="#004387" stroke-width="2"/>
-<rect x="42" y="491" width="1516" height="30.839999999999996" fill="white"/>
-<text x="45" y="514.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">rowcount == 1; † helper checks True; 0 / False → ROLLBACK all prior writes</text>
-<polyline points="1253.3333333333333,591 800.0,591" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
-<polyline points="812.6062594329375,584.9104825224427 800.0,591 812.6062594329375,597.0895174775573" fill="none" stroke="#004387" stroke-width="2"/>
-<rect x="42" y="616" width="1516" height="30.839999999999996" fill="white"/>
-<text x="45" y="639.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">COMMIT† only after rejection + optional offer WITHDRAWN + full-C obligation/state persist; UC05-PC02.</text>
-<polyline points="573.3333333333333,716 1480.0,716" fill="none" stroke="#004387" stroke-width="2"/>
-<polyline points="1467.3937405670624,722.0895174775573 1480.0,716 1467.3937405670624,709.9104825224427" fill="none" stroke="#004387" stroke-width="2"/>
-<rect x="42" y="741" width="1516" height="30.839999999999996" fill="white"/>
-<text x="45" y="764.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">rejected Order and reason; refund owed, no payout</text>
-<polyline points="573.3333333333333,841 346.66666666666663,841" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
-<polyline points="359.2729260996041,834.9104825224427 346.66666666666663,841 359.2729260996041,847.0895174775573" fill="none" stroke="#004387" stroke-width="2"/>
-<rect x="35" y="867" width="1530" height="111" stroke="#004387" fill="#FFF8E9" stroke-width="2"/>
-<rect x="35" y="867" width="66" height="32" stroke="#004387" fill="#F1F6FA" stroke-width="2"/>
-<text x="42" y="889.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">alt</text>
-<text x="110" y="894.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Guard refusal / 0 rows / False DAO result: stop; ROLLBACK all intended writes if transaction active.</text>
-<text x="35" y="1057.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">From seqdao_uc05_rejectOrder_PartD → this part → seqdao_uc05_rejectOrder_PartF.</text>
+<polyline points="1480.0,220 1480.0,1026" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<rect x="28" y="232" width="90" height="30.839999999999996" fill="white"/>
+<text x="31" y="255.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">opt</text>
+<rect x="124" y="232" width="1444" height="30.839999999999996" fill="white"/>
+<text x="127" y="255.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">[amount save returned True; False breaks to Part F]</text>
+<rect x="40" y="467.35999999999996" width="90" height="30.839999999999996" fill="white"/>
+<text x="43" y="490.67999999999995" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">opt</text>
+<rect x="136" y="467.35999999999996" width="1420" height="30.839999999999996" fill="white"/>
+<text x="139" y="490.67999999999995" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">[payment state change rowcount == 1; otherwise break to Part F]</text>
+<rect x="52" y="571.04" width="90" height="30.839999999999996" fill="white"/>
+<text x="55" y="594.36" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">break</text>
+<rect x="148" y="571.04" width="1396" height="30.839999999999996" fill="white"/>
+<text x="151" y="594.36" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">[COMMIT succeeded; return success and END request]</text>
+<rect x="62" y="268.84000000000003" width="1476" height="30.839999999999996" fill="white"/>
+<text x="65" y="292.16" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">change_state(order.id, previous_state, payment.state, now)</text>
+<polyline points="800.0,308.68 1253.3333333333333,308.68" fill="none" stroke="#004387" stroke-width="2"/>
+<polygon data-edge-head="message0" points="1240.7270739003957,314.7695174775572 1253.3333333333333,308.68 1240.7270739003957,302.5904825224428" fill="#004387" stroke="#004387" stroke-width="2"/>
+<rect x="1248.3333333333333" y="308.68" width="10" height="18" stroke="#004387" fill="#DAE9F5" stroke-width="2"/>
+<rect x="62" y="334.68" width="1476" height="30.839999999999996" fill="white"/>
+<text x="65" y="358.0" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">SQL note: UPDATE payment by order_id AND state = ? (previous state); VOIDED or REFUND_PENDING.</text>
+<polyline points="1253.3333333333333,374.52 1480.0,374.52" fill="none" stroke="#004387" stroke-width="2"/>
+<polygon data-edge-head="message1" points="1467.3937405670624,380.60951747755723 1480.0,374.52 1467.3937405670624,368.43048252244273" fill="#004387" stroke="#004387" stroke-width="2"/>
+<rect x="62" y="400.52" width="1476" height="30.839999999999996" fill="white"/>
+<text x="65" y="423.84" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">rowcount == 1; † helper checks True; 0 / False → ROLLBACK all prior writes</text>
+<polyline points="1253.3333333333333,440.35999999999996 800.0,440.35999999999996" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<polyline data-edge-head="message2" points="812.6062594329375,434.2704825224427 800.0,440.35999999999996 812.6062594329375,446.44951747755715" fill="none" stroke="#004387" stroke-width="2"/>
+<rect x="62" y="504.19999999999993" width="1476" height="30.839999999999996" fill="white"/>
+<text x="65" y="527.52" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">COMMIT† only after rejection + optional offer WITHDRAWN + full-C obligation/state persist; UC05-PC02.</text>
+<polyline points="573.3333333333333,544.04 1480.0,544.04" fill="none" stroke="#004387" stroke-width="2"/>
+<polygon data-edge-head="message3" points="1467.3937405670624,550.1295174775572 1480.0,544.04 1467.3937405670624,537.9504825224427" fill="#004387" stroke="#004387" stroke-width="2"/>
+<rect x="62" y="607.88" width="1476" height="30.839999999999996" fill="white"/>
+<text x="65" y="631.2" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">rejected Order and reason; refund owed, no payout</text>
+<polyline points="573.3333333333333,647.72 346.66666666666663,647.72" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="7 7"/>
+<polyline data-edge-head="message4" points="359.2729260996041,641.6304825224428 346.66666666666663,647.72 359.2729260996041,653.8095174775573" fill="none" stroke="#004387" stroke-width="2"/>
+<rect x="55" y="689.72" width="1490" height="39.84000000000003" stroke="#004387" fill="#FFF8E9" stroke-width="2"/>
+<text x="65" y="716.0400000000001" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Exclusive failure continuation: Part F rolls back active transaction and returns refusal/Busy; success break END skips it.</text>
+<text x="35" y="1057.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Success break END. Guard/0-row/write/COMMIT failure only continues Part F; no refund payout occurs.</text>
 <text x="35" y="1092.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Transaction key (whole request): BEGIN IMMEDIATE → checked rowcount / inserts → COMMIT; failure → ROLLBACK if active. Busy: retry,</text>
 <text x="35" y="1120.1599999999999" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">nothing changed.</text>
 <text x="35" y="1152.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">† design target, not yet in code at C0: F-02; P2-S01; P2-S13; P3-S03; P2-S12 connection settings; MATCH is Static only.</text>

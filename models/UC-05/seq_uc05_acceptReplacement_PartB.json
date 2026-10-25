@@ -3,7 +3,7 @@
   "stem": "seq_uc05_acceptReplacement_PartB",
   "title": "UC-05 acceptReplacement — Part B",
   "figure": "3.5.4.OP-05B",
-  "caption": "UC-05 acceptReplacement design sequence",
+  "caption": "UC-05 acceptReplacement — Part B",
   "P4_input": "F-02; F-05; P2-S09; P2-S11; P2-S13",
   "phase3": {
     "diagram_type": "sequence",
@@ -38,48 +38,87 @@
         "label": "Order"
       },
       {
-        "id": "pay",
-        "class": "Payment",
+        "id": "offer",
+        "class": "ReplacementOffer",
         "role": "domain",
-        "label": "Payment"
+        "label": "ReplacementOffer"
       }
     ],
     "messages": [
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "withdrawnOfferAndReason [withdrawal COMMIT succeeded]",
+        "guard": "target invalid; exact-offer withdrawal committed",
+        "PC_MG": "UC05-MG01",
+        "label": "withdrawnOfferAndReason [withdrawal COMMIT succeeded]",
+        "y": 480,
+        "native_edge_id": "message_000",
+        "source_anchor_id": "message_000_source",
+        "target_anchor_id": "message_000_target",
+        "native_points": [
+          [
+            800.0,
+            480
+          ],
+          [
+            445.0,
+            480
+          ]
+        ]
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "controlledFailure",
+        "guard": "invalid-target withdrawal save failed; rollback",
+        "PC_MG": "UC05-MG01",
+        "label": "controlledFailure",
+        "y": 620,
+        "native_edge_id": "message_001",
+        "source_anchor_id": "message_001_source",
+        "target_anchor_id": "message_001_target",
+        "native_points": [
+          [
+            800.0,
+            620
+          ],
+          [
+            445.0,
+            620
+          ]
+        ]
+      },
       {
         "from": "ctrl",
         "to": "order",
         "method": "replace_line",
         "kind": "call",
         "arguments": "offer.order_line_id, offer.new_menu_item_id, offer.new_item_name, offer.new_unit_price",
-        "guard": "valid acceptance only",
+        "guard": "eligible and target valid",
         "PC_MG": "UC05-PC04",
         "label": "replace_line(offer.order_line_id, offer.new_menu_item_id, offer.new_item_name, offer.new_unit_price)",
-        "y": 563,
+        "y": 900,
         "receiver_signature": "replace_line(self, line_id: int, menu_item_id: int, item_name: str, unit_price: int) -> None",
         "status": "MATCH",
-        "P4_input": ""
-      },
-      {
-        "from": "ctrl",
-        "to": "view",
-        "method": "",
-        "kind": "return",
-        "arguments": "acceptedOrderAndAmounts | withdrawnOfferAndReason | staleRefusal | controlledFailure",
-        "guard": "",
-        "PC_MG": "UC05-PC04; UC05-MG01",
-        "label": "result / controlled refusal",
-        "y": 633
-      },
-      {
-        "from": "ctrl",
-        "to": "view",
-        "method": "",
-        "kind": "return",
-        "arguments": "",
-        "guard": "denied / stale / invalid or atomic save failure",
-        "PC_MG": "UC05-MG01",
-        "label": "refusal / controlled failure; UC05-MG01",
-        "y": 1000
+        "P4_input": "",
+        "native_edge_id": "message_002",
+        "source_anchor_id": "message_002_source",
+        "target_anchor_id": "message_002_target",
+        "native_points": [
+          [
+            800.0,
+            900
+          ],
+          [
+            1155.0,
+            900
+          ]
+        ]
       }
     ],
     "elements": [
@@ -101,7 +140,7 @@
         ]
       },
       {
-        "class": "Payment",
+        "class": "ReplacementOffer",
         "attributes": [],
         "methods": []
       }
@@ -109,57 +148,114 @@
     "dependencies": [],
     "states": [
       {
-        "class": "Order",
-        "attribute": "state",
-        "values": [
-          "PLACED"
-        ]
-      },
-      {
-        "class": "Payment",
-        "attribute": "state",
-        "values": [
-          "PAID"
-        ]
-      },
-      {
         "class": "ReplacementOffer",
         "attribute": "state",
         "values": [
-          "ACCEPTED"
+          "WITHDRAWN"
         ]
+      }
+    ],
+    "interaction_fragments": [
+      {
+        "id": "target_alt",
+        "operator": "alt",
+        "guard": "target eligibility: invalid OR valid (exclusive)",
+        "x": 30,
+        "y": 250,
+        "w": 1540,
+        "h": 770,
+        "message_indices": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "id": "invalid_target_operand",
+        "operator": "opt",
+        "guard": "target invalid: withdraw exact offer only; Order unchanged",
+        "x": 30,
+        "y": 285,
+        "w": 1540,
+        "h": 375,
+        "message_indices": [
+          0,
+          1
+        ],
+        "parent": "target_alt"
+      },
+      {
+        "id": "withdrawal_outcome",
+        "operator": "alt",
+        "guard": "withdrawal-only atomic outcome",
+        "x": 50,
+        "y": 330,
+        "w": 1500,
+        "h": 330,
+        "message_indices": [
+          0,
+          1
+        ],
+        "parent": "invalid_target_operand"
+      },
+      {
+        "id": "withdrawal_committed",
+        "operator": "opt",
+        "guard": "withdrawal COMMIT succeeds",
+        "x": 50,
+        "y": 370,
+        "w": 1500,
+        "h": 145,
+        "message_indices": [
+          0
+        ],
+        "parent": "withdrawal_outcome"
+      },
+      {
+        "id": "withdrawal_failed",
+        "operator": "opt",
+        "guard": "withdrawal save fails: rollback; UC05-MG01",
+        "x": 50,
+        "y": 515,
+        "w": 1500,
+        "h": 145,
+        "message_indices": [
+          1
+        ],
+        "parent": "withdrawal_outcome"
+      },
+      {
+        "id": "valid_target_operand",
+        "operator": "opt",
+        "guard": "target still ACTIVE / active brand / listed + AVAILABLE at own hub",
+        "x": 30,
+        "y": 660,
+        "w": 1540,
+        "h": 360,
+        "message_indices": [
+          2
+        ],
+        "parent": "target_alt"
       }
     ]
   },
-  "frames": [
-    {
-      "id": "alt",
-      "y": 180,
-      "h": 860,
-      "label": "alt [all conditional saves + commit → UC05-PC04 / failed atomic save → controlledFailure; UC05-MG01]",
-      "operands": [
-        [
-          900,
-          "[denied / stale / invalid or failed atomic save] UC05-MG01"
-        ]
-      ]
-    }
-  ],
+  "frames": [],
   "notes": [
     {
-      "y": 220,
-      "h": 130.4,
-      "text": "Valid acceptance continues atomically: use offered price, whole line, same quantity; Snew; Dnew=min(Dold,Snew), F/Q unchanged; Tnew=Snew−Dnew+F−Q. Read Order.total property, set offer ACCEPTED through data access. COD amount=Tnew; ONLINE state PAID, C unchanged, refund_amount=C−Tnew. Order stays PLACED (PC04), never auto-confirms. Any conditional 0-row/lock/write/commit failure → complete rollback†, MG01."
+      "y": 175,
+      "h": 65,
+      "text": "Invalid target changes only the exact offer to WITHDRAWN, with a returned reason. It cannot execute replace_line. Valid target alone applies offered price to the whole linked line, same quantity."
     },
     {
-      "y": 1010,
-      "h": 65,
-      "text": "Persistence: loaded/saved through data access — see 4.3.2."
+      "y": 1030,
+      "h": 45,
+      "text": "loaded/saved through data access — see 4.3.2"
     }
   ],
-  "continuation": "Part B ↔ PartA. Same lifelines / same operation; no second request.",
-  "realisation_note": "Valid acceptance continues atomically: use offered price, whole line, same quantity; Snew; Dnew=min(Dold,Snew), F/Q unchanged; Tnew=Snew−Dnew+F−Q. Read Order.total property, set offer ACCEPTED through data access. COD amount=Tnew; ONLINE state PAID, C unchanged, refund_amount=C−Tnew. Order stays PLACED (PC04), never auto-confirms. Any conditional 0-row/lock/write/commit failure → complete rollback†, MG01.",
+  "continuation": "acceptReplacement: Part B of A–C; previous Part A; next Part C; same request, no new human wait.",
+  "realisation_note": "Valid acceptance continues atomically: use offered price, whole line, same quantity; Snew; Dnew=min(Dold,Snew), F/Q unchanged; Tnew=Snew−Dnew+F−Q. Read Order.total property, set offer ACCEPTED through data access. COD amount=Tnew; ONLINE state PAID, C unchanged, refund_amount=C−Tnew. Order stays PLACED (PC04), never auto-confirms. Any conditional 0-row/lock/write/commit failure → complete rollback†, MG01. Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.",
   "shared_model_source": "models/shared/design_model.json",
   "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
-  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets.",
+  "review_repair_version": "R1-R4"
 }

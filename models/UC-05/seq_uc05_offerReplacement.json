@@ -3,7 +3,7 @@
   "stem": "seq_uc05_offerReplacement",
   "title": "UC-05 offerReplacement",
   "figure": "3.5.4.OP-04",
-  "caption": "UC-05 offerReplacement design sequence",
+  "caption": "UC-05 offerReplacement",
   "P4_input": "F-05; P2-S09; P2-S13",
   "phase3": {
     "diagram_type": "sequence",
@@ -57,7 +57,20 @@
         "y": 508,
         "receiver_signature": "offer(order_id: int)",
         "status": "MATCH",
-        "P4_input": ""
+        "P4_input": "",
+        "native_edge_id": "message_000",
+        "source_anchor_id": "message_000_source",
+        "target_anchor_id": "message_000_target",
+        "native_points": [
+          [
+            90.0,
+            508
+          ],
+          [
+            445.0,
+            508
+          ]
+        ]
       },
       {
         "from": "view",
@@ -71,7 +84,20 @@
         "y": 578,
         "receiver_signature": "offer_replacement(self, user_id: int, order_id: int, order_line_id: int, new_menu_item_id: int) -> ReplacementOffer",
         "status": "P4-TARGET",
-        "P4_input": "F-05; P2-S09; P2-S13"
+        "P4_input": "F-05; P2-S09; P2-S13",
+        "native_edge_id": "message_001",
+        "source_anchor_id": "message_001_source",
+        "target_anchor_id": "message_001_target",
+        "native_points": [
+          [
+            445.0,
+            578
+          ],
+          [
+            800.0,
+            578
+          ]
+        ]
       },
       {
         "from": "ctrl",
@@ -79,13 +105,26 @@
         "method": "line",
         "kind": "call",
         "arguments": "order_line_id",
-        "guard": "eligible/main operand (see frame and operation table)",
+        "guard": "all operation guards pass",
         "PC_MG": "",
         "label": "line(order_line_id)",
-        "y": 700,
+        "y": 714,
         "receiver_signature": "line(self, line_id: int) -> Optional[OrderLine]",
         "status": "MATCH",
-        "P4_input": ""
+        "P4_input": "",
+        "native_edge_id": "message_002",
+        "source_anchor_id": "message_002_source",
+        "target_anchor_id": "message_002_target",
+        "native_points": [
+          [
+            800.0,
+            714
+          ],
+          [
+            1155.0,
+            714
+          ]
+        ]
       },
       {
         "from": "ctrl",
@@ -93,32 +132,71 @@
         "method": "ReplacementOffer",
         "kind": "create",
         "arguments": "order, linked line, source/target snapshots, OFFERED, now",
-        "guard": "eligible/main operand (see frame and operation table)",
+        "guard": "all operation guards pass",
         "PC_MG": "",
         "label": "«create» ReplacementOffer (implicit dataclass initialization)",
-        "y": 770
+        "y": 786,
+        "native_edge_id": "message_003",
+        "source_anchor_id": "message_003_source",
+        "target_anchor_id": "message_003_target",
+        "native_points": [
+          [
+            800.0,
+            786
+          ],
+          [
+            1510.0,
+            786
+          ]
+        ]
       },
       {
         "from": "ctrl",
         "to": "view",
         "method": "",
         "kind": "return",
-        "arguments": "offeredReplacement | refusal",
-        "guard": "",
-        "PC_MG": "UC05-PC03; UC05-MG01",
-        "label": "result / controlled refusal",
-        "y": 840
-      },
-      {
-        "from": "ctrl",
-        "to": "view",
-        "method": "",
-        "kind": "return",
-        "arguments": "",
-        "guard": "denied / stale / invalid or atomic save failure",
+        "arguments": "offeredReplacement [COMMIT succeeded]",
+        "guard": "committed",
         "PC_MG": "UC05-MG01",
-        "label": "refusal / controlled failure; UC05-MG01",
-        "y": 1000
+        "label": "offeredReplacement [COMMIT succeeded]",
+        "y": 886,
+        "native_edge_id": "message_004",
+        "source_anchor_id": "message_004_source",
+        "target_anchor_id": "message_004_target",
+        "native_points": [
+          [
+            800.0,
+            886
+          ],
+          [
+            445.0,
+            886
+          ]
+        ]
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "refusal",
+        "guard": "not authorized / guard denied / atomic save failed",
+        "PC_MG": "UC05-MG01",
+        "label": "refusal",
+        "y": 1000,
+        "native_edge_id": "message_005",
+        "source_anchor_id": "message_005_source",
+        "target_anchor_id": "message_005_target",
+        "native_points": [
+          [
+            800.0,
+            1000
+          ],
+          [
+            445.0,
+            1000
+          ]
+        ]
       }
     ],
     "elements": [
@@ -150,52 +228,70 @@
       }
     ],
     "dependencies": [],
-    "states": [
+    "states": [],
+    "interaction_fragments": [
       {
-        "class": "Order",
-        "attribute": "state",
-        "values": [
-          "PLACED"
+        "id": "result_alt",
+        "operator": "alt",
+        "guard": "authorized success / refusal",
+        "x": 30,
+        "y": 590,
+        "w": 1540,
+        "h": 430,
+        "message_indices": [
+          2,
+          3,
+          4,
+          5
         ]
       },
       {
-        "class": "ReplacementOffer",
-        "attribute": "state",
-        "values": [
-          "OFFERED"
-        ]
+        "id": "success_operand",
+        "operator": "opt",
+        "guard": "guards pass and all atomic saves + COMMIT succeed",
+        "x": 30,
+        "y": 630,
+        "w": 1540,
+        "h": 281,
+        "message_indices": [
+          2,
+          3,
+          4
+        ],
+        "parent": "result_alt"
+      },
+      {
+        "id": "failure_operand",
+        "operator": "opt",
+        "guard": "otherwise; UC05-MG01",
+        "x": 30,
+        "y": 911,
+        "w": 1540,
+        "h": 109,
+        "message_indices": [
+          5
+        ],
+        "parent": "result_alt"
       }
     ]
   },
-  "frames": [
-    {
-      "id": "alt",
-      "y": 590,
-      "h": 450,
-      "label": "alt [eligible main path; guards / effects in the operation note]",
-      "operands": [
-        [
-          910,
-          "[denied / stale / invalid or failed atomic save] UC05-MG01"
-        ]
-      ]
-    }
-  ],
+  "frames": [],
   "notes": [
     {
-      "y": 220,
-      "h": 102.80000000000001,
-      "text": "Active own-hub PLACED; no open offer. Source currently sold out/unlisted/archived. Target active + active Brand, same-hub listed/available, different and absent from other lines; offered unit price ≤ source snapshot. Atomic OFFERED with unchanged quantity/Order PLACED (PC03). Fail/lock/commit rollback†; no request waits for Customer."
+      "y": 175,
+      "h": 65,
+      "text": "Authorized role and own-customer / own-hub scope are checked. Mutations return success only after atomic save and COMMIT. UC05-MG01 applies on refusal."
     },
     {
-      "y": 1010,
-      "h": 65,
-      "text": "Persistence: loaded/saved through data access — see 4.3.2."
+      "y": 1030,
+      "h": 45,
+      "text": "loaded/saved through data access — see 4.3.2"
     }
   ],
   "continuation": "Complete design operation; failure path is the alternative operand above.",
-  "realisation_note": "Active own-hub PLACED; no open offer. Source currently sold out/unlisted/archived. Target active + active Brand, same-hub listed/available, different and absent from other lines; offered unit price ≤ source snapshot. Atomic OFFERED with unchanged quantity/Order PLACED (PC03). Fail/lock/commit rollback†; no request waits for Customer.",
+  "realisation_note": "Active own-hub PLACED; no open offer. Source currently sold out/unlisted/archived. Target active + active Brand, same-hub listed/available, different and absent from other lines; offered unit price ≤ source snapshot. Atomic OFFERED with unchanged quantity/Order PLACED (PC03). Fail/lock/commit rollback†; no request waits for Customer. Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.",
   "shared_model_source": "models/shared/design_model.json",
   "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
-  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets.",
+  "review_repair_version": "R1-R4"
 }

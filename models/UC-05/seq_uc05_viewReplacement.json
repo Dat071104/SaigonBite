@@ -3,7 +3,7 @@
   "stem": "seq_uc05_viewReplacement",
   "title": "UC-05 viewReplacement",
   "figure": "3.5.4.OP-18",
-  "caption": "UC-05 viewReplacement design sequence",
+  "caption": "UC-05 viewReplacement",
   "P4_input": "F-06",
   "phase3": {
     "diagram_type": "sequence",
@@ -51,7 +51,20 @@
         "y": 483,
         "receiver_signature": "detail(order_id: int)",
         "status": "MATCH",
-        "P4_input": ""
+        "P4_input": "",
+        "native_edge_id": "message_000",
+        "source_anchor_id": "message_000_source",
+        "target_anchor_id": "message_000_target",
+        "native_points": [
+          [
+            90.0,
+            483
+          ],
+          [
+            563.3333333333333,
+            483
+          ]
+        ]
       },
       {
         "from": "view",
@@ -65,7 +78,20 @@
         "y": 553,
         "receiver_signature": "get_order(self, user_id: int, order_id: int) -> OrderDetail",
         "status": "MATCH",
-        "P4_input": ""
+        "P4_input": "",
+        "native_edge_id": "message_001",
+        "source_anchor_id": "message_001_source",
+        "target_anchor_id": "message_001_target",
+        "native_points": [
+          [
+            563.3333333333333,
+            553
+          ],
+          [
+            1036.6666666666665,
+            553
+          ]
+        ]
       },
       {
         "from": "ctrl",
@@ -73,32 +99,71 @@
         "method": "OrderDetail",
         "kind": "create",
         "arguments": "typed attributes loaded for authorized result",
-        "guard": "eligible/main operand (see frame and operation table)",
+        "guard": "all operation guards pass",
         "PC_MG": "",
         "label": "«create» OrderDetail (implicit dataclass initialization)",
-        "y": 675
+        "y": 716,
+        "native_edge_id": "message_002",
+        "source_anchor_id": "message_002_source",
+        "target_anchor_id": "message_002_target",
+        "native_points": [
+          [
+            1036.6666666666665,
+            716
+          ],
+          [
+            1510.0,
+            716
+          ]
+        ]
       },
       {
         "from": "ctrl",
         "to": "view",
         "method": "",
         "kind": "return",
-        "arguments": "originalAndOfferedLineQuantityTotalRefundOwed | refusal",
-        "guard": "",
-        "PC_MG": "Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation",
-        "label": "result / controlled refusal",
-        "y": 745
-      },
-      {
-        "from": "ctrl",
-        "to": "view",
-        "method": "",
-        "kind": "return",
-        "arguments": "",
-        "guard": "denied / stale / invalid or atomic save failure",
+        "arguments": "originalAndOfferedLineQuantityTotalRefundOwed [authorized read]",
+        "guard": "authorized read",
         "PC_MG": "UC05-MG01",
-        "label": "refusal / controlled failure; UC05-MG01",
-        "y": 1000
+        "label": "originalAndOfferedLineQuantityTotalRefundOwed [authorized read]",
+        "y": 816,
+        "native_edge_id": "message_003",
+        "source_anchor_id": "message_003_source",
+        "target_anchor_id": "message_003_target",
+        "native_points": [
+          [
+            1036.6666666666665,
+            816
+          ],
+          [
+            563.3333333333333,
+            816
+          ]
+        ]
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "",
+        "kind": "return",
+        "arguments": "refusal",
+        "guard": "not authorized / guard denied / atomic save failed",
+        "PC_MG": "UC05-MG01",
+        "label": "refusal",
+        "y": 1000,
+        "native_edge_id": "message_004",
+        "source_anchor_id": "message_004_source",
+        "target_anchor_id": "message_004_target",
+        "native_points": [
+          [
+            1036.6666666666665,
+            1000
+          ],
+          [
+            563.3333333333333,
+            1000
+          ]
+        ]
       }
     ],
     "elements": [
@@ -123,37 +188,68 @@
       }
     ],
     "dependencies": [],
-    "states": []
-  },
-  "frames": [
-    {
-      "id": "alt",
-      "y": 565,
-      "h": 475,
-      "label": "alt [eligible main path; guards / effects in the operation note]",
-      "operands": [
-        [
-          910,
-          "[denied / stale / invalid or failed atomic save] UC05-MG01"
+    "states": [],
+    "interaction_fragments": [
+      {
+        "id": "result_alt",
+        "operator": "alt",
+        "guard": "authorized success / refusal",
+        "x": 30,
+        "y": 565,
+        "w": 1540,
+        "h": 455,
+        "message_indices": [
+          2,
+          3,
+          4
         ]
-      ]
-    }
-  ],
+      },
+      {
+        "id": "success_operand",
+        "operator": "opt",
+        "guard": "guards pass; authorized read",
+        "x": 30,
+        "y": 605,
+        "w": 1540,
+        "h": 305,
+        "message_indices": [
+          2,
+          3
+        ],
+        "parent": "result_alt"
+      },
+      {
+        "id": "failure_operand",
+        "operator": "opt",
+        "guard": "otherwise; UC05-MG01",
+        "x": 30,
+        "y": 910,
+        "w": 1540,
+        "h": 110,
+        "message_indices": [
+          4
+        ],
+        "parent": "result_alt"
+      }
+    ]
+  },
+  "frames": [],
   "notes": [
     {
-      "y": 220,
-      "h": 102.80000000000001,
-      "text": "Read-only active role + own Customer / own kitchen hub checks; denied context discloses no foreign details. Receipt/offer amounts say refund owed, never paid out† (F-06 where applicable). Read snapshots, .total and offer attributes; no fabricated business getters. No persistent writes."
+      "y": 175,
+      "h": 65,
+      "text": "Authorized role and own-customer / own-hub scope are checked. Read only: zero persistent writes. UC05-MG01 applies on refusal."
     },
     {
-      "y": 1010,
-      "h": 65,
-      "text": "Persistence: loaded/saved through data access — see 4.3.2."
+      "y": 1030,
+      "h": 45,
+      "text": "loaded/saved through data access — see 4.3.2"
     }
   ],
   "continuation": "Complete design operation; failure path is the alternative operand above.",
-  "realisation_note": "Read-only active role + own Customer / own kitchen hub checks; denied context discloses no foreign details. Receipt/offer amounts say refund owed, never paid out† (F-06 where applicable). Read snapshots, .total and offer attributes; no fabricated business getters. No persistent writes.",
+  "realisation_note": "Read-only active role + own Customer / own kitchen hub checks; denied context discloses no foreign details. Receipt/offer amounts say refund owed, never paid out† (F-06 where applicable). Read snapshots, .total and offer attributes; no fabricated business getters. No persistent writes. Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.",
   "shared_model_source": "models/shared/design_model.json",
   "shared_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
-  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets."
+  "refresh_policy": "Explicit shared-model statuses only; matching signatures never clear behavioral targets.",
+  "review_repair_version": "R1-R4"
 }

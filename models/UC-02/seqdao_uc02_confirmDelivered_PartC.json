@@ -81,8 +81,16 @@
         "receiver_signature": "move_to(self, new_state: PaymentState) -> None",
         "status": "MATCH",
         "P4_input": "",
-        "y": 341,
-        "edge_id": "message0"
+        "y": 308.68,
+        "edge_id": "message0",
+        "label_box": [
+          65,
+          269.84000000000003,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message0",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "ctrl",
@@ -99,8 +107,16 @@
         "receiver_signature": "change_state(self, order_id: int, from_state: PaymentState, to_state: PaymentState, now: str) -> bool",
         "status": "MATCH",
         "P4_input": "",
-        "y": 466,
-        "edge_id": "message1"
+        "y": 374.52,
+        "edge_id": "message1",
+        "label_box": [
+          65,
+          335.68,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message1",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "obj5",
@@ -114,8 +130,16 @@
         "base_label": "SQL note: UPDATE payment by order_id AND state = ? (PENDING).",
         "fragment": false,
         "draw_arrow": true,
-        "y": 591,
-        "edge_id": "message2"
+        "y": 440.35999999999996,
+        "edge_id": "message2",
+        "label_box": [
+          65,
+          401.52,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message2",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "obj5",
@@ -129,8 +153,16 @@
         "base_label": "rowcount == 1; bool checked; 0 / False → ROLLBACK; ONLINE skips this write",
         "fragment": false,
         "draw_arrow": false,
-        "y": 716,
-        "edge_id": "message3"
+        "y": 506.19999999999993,
+        "edge_id": "message3",
+        "label_box": [
+          65,
+          467.35999999999996,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message3",
+        "arrow_style": "dashed_open_reply"
       },
       {
         "from": "ctrl",
@@ -147,8 +179,16 @@
         "receiver_signature": "move_to(self, new_state: DeliveryState) -> None",
         "status": "MATCH",
         "P4_input": "",
-        "y": 841,
-        "edge_id": "message4"
+        "y": 614.88,
+        "edge_id": "message4",
+        "label_box": [
+          65,
+          576.04,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message4",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "ctrl",
@@ -165,8 +205,16 @@
         "receiver_signature": "finish(self, order_id: int, shipper_id: int, to_state: DeliveryState, now: str, failure_reason: Optional[str]=None, cash_collected: Optional[int]=None) -> bool",
         "status": "MATCH",
         "P4_input": "",
-        "y": 966,
-        "edge_id": "message5"
+        "y": 680.72,
+        "edge_id": "message5",
+        "label_box": [
+          65,
+          641.88,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message5",
+        "arrow_style": "closed_filled_synchronous"
       }
     ],
     "elements": [
@@ -281,6 +329,44 @@
           "PAID"
         ]
       }
+    ],
+    "interaction_fragments": [
+      {
+        "id": "fragment_seqdao_uc02_confirmDelivered_PartC_1",
+        "operator": "opt",
+        "guard": "COD and cash == T exactly",
+        "start_index": 0,
+        "end_index": 3,
+        "message_indices": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "x": 25,
+        "y": 232,
+        "w": 1550,
+        "h": 301.19999999999993,
+        "depth": 0,
+        "guard_height": 32.84
+      },
+      {
+        "id": "fragment_seqdao_uc02_confirmDelivered_PartC_2",
+        "operator": "opt",
+        "guard": "ONLINE with no cash OR COD payment rowcount == 1; zero/False breaks to Part F",
+        "start_index": 4,
+        "end_index": 5,
+        "message_indices": [
+          4,
+          5
+        ],
+        "x": 25,
+        "y": 538.1999999999999,
+        "w": 1550,
+        "h": 169.5200000000001,
+        "depth": 0,
+        "guard_height": 32.84
+      }
     ]
   },
   "placed_width_mm": 230,
@@ -361,39 +447,63 @@
         55.67999999999999
       ],
       [
-        45,
-        242,
-        1510,
+        31,
+        233,
+        84,
         27.839999999999996
       ],
       [
-        45,
-        367,
-        1510,
+        127,
+        233,
+        1438,
         27.839999999999996
       ],
       [
-        45,
-        492,
-        1510,
+        31,
+        539.1999999999999,
+        84,
         27.839999999999996
       ],
       [
-        45,
-        617,
-        1510,
+        127,
+        539.1999999999999,
+        1438,
         27.839999999999996
       ],
       [
-        45,
-        742,
-        1510,
+        65,
+        269.84000000000003,
+        1470,
         27.839999999999996
       ],
       [
-        45,
-        867,
-        1510,
+        65,
+        335.68,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        401.52,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        467.35999999999996,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        576.04,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        641.88,
+        1470,
         27.839999999999996
       ],
       [
@@ -435,13 +545,15 @@
         "points": [
           [
             508.57142857142856,
-            341
+            308.68
           ],
           [
             702.8571428571429,
-            341
+            308.68
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message1",
@@ -450,13 +562,15 @@
         "points": [
           [
             508.57142857142856,
-            466
+            374.52
           ],
           [
             1285.7142857142858,
-            466
+            374.52
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message2",
@@ -465,13 +579,15 @@
         "points": [
           [
             1285.7142857142858,
-            591
+            440.35999999999996
           ],
           [
             1480.0,
-            591
+            440.35999999999996
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message3",
@@ -480,13 +596,15 @@
         "points": [
           [
             1285.7142857142858,
-            716
+            506.19999999999993
           ],
           [
             508.57142857142856,
-            716
+            506.19999999999993
           ]
-        ]
+        ],
+        "filled": false,
+        "dashed": true
       },
       {
         "id": "message4",
@@ -495,13 +613,15 @@
         "points": [
           [
             508.57142857142856,
-            841
+            614.88
           ],
           [
             897.1428571428571,
-            841
+            614.88
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message5",
@@ -510,15 +630,25 @@
         "points": [
           [
             508.57142857142856,
-            966
+            680.72
           ],
           [
             1091.4285714285716,
-            966
+            680.72
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       }
     ],
     "author_native_cell": true
+  },
+  "independent_review_repair": {
+    "findings": [
+      "R1",
+      "R4"
+    ],
+    "preserved_source": "D:\\RAD\\FINAL\\Part2\\notes\\P3_trash\\P3-F\\independent_review_R1_R4_20261025_192108\\UC-02\\seqdao_uc02_confirmDelivered_PartC.json",
+    "scope": "Actual guarded regions and synchronous arrowheads; no shared-model/app/status changes."
   }
 }

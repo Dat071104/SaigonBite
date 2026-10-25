@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200"><rect width="100%" height="100%" fill="white"/>
+<text x="35" y="42.040000000000006" font-family="Arial" font-size="28" font-weight="bold" fill="#202B36">UC-05 rejectOrder — Part B</text>
+<rect x="5.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="10.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Kitchen staff</text>
+<polyline points="90.0,170 90.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="289.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="294.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">«view»</text>
+<text x="294.0" y="131.92" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">kitchen</text>
+<polyline points="374.0,170 374.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="573.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="578.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">KitchenControl</text>
+<text x="578.0" y="131.92" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">ler</text>
+<polyline points="658.0,170 658.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="857.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="862.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">controllers.co</text>
+<text x="862.0" y="131.92" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">mmon</text>
+<polyline points="942.0,170 942.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="1141.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="1146.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Order</text>
+<polyline points="1226.0,170 1226.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="1425.0" y="76" width="170" height="94" fill="#F1F6FA" stroke="#004387" stroke-width="2"/>
+<text x="1430.0" y="104.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Payment</text>
+<polyline points="1510.0,170 1510.0,1060" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="30" y="250" width="1540" height="770" fill="white" stroke="#004387" stroke-width="2"/>
+<text x="40" y="275.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">opt [eligible operation continued from Part A]</text>
+<rect x="30" y="560" width="1540" height="460" fill="white" stroke="#004387" stroke-width="2"/>
+<text x="40" y="585.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">alt [atomic save / COMMIT outcome]</text>
+<rect x="30" y="605" width="1540" height="200" fill="white" stroke="#004387" stroke-width="2"/>
+<text x="40" y="630.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">opt [all saves and COMMIT succeed]</text>
+<rect x="30" y="805" width="1540" height="215" fill="white" stroke="#004387" stroke-width="2"/>
+<text x="40" y="830.32" font-family="Arial" font-size="24" font-weight="bold" fill="#202B36">opt [write / lock / COMMIT failure; rollback; UC05-MG01]</text>
+<polyline points="90.0,170 90.0,1020" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="374.0,170 374.0,1020" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="658.0,170 658.0,1020" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="942.0,170 942.0,1020" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="1226.0,170 1226.0,1020" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="1510.0,170 1510.0,1020" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<rect x="35" y="175" width="1530" height="65" fill="#FFF8E9" stroke="#004387" stroke-width="2"/>
+<text x="45" y="202.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">BR-17: COD VOIDED; ONLINE REFUND_PENDING with full captured C owed (not C + partial). Offer WITHDRAWN. Full state/amount</text>
+<text x="45" y="229.92" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">persistence and failure-through-COMMIT rollback remain P4 targets.</text>
+<rect x="35" y="1030" width="1530" height="45" fill="#FFF8E9" stroke="#004387" stroke-width="2"/>
+<text x="45" y="1057.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">loaded/saved through data access — see 4.3.2</text>
+<polyline points="658.0,360 942.0,360" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="928.0,367.0 942.0,360 928.0,353.0" fill="none" stroke="#004387" stroke-width="2"/>
+<polygon data-message-arrow="filled-synchronous" points="928.0,367.0 942.0,360 928.0,353.0" fill="#004387" stroke="#004387"/>
+<text x="673.0" y="319.12" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">release_payment†(payments, order.id,</text>
+<text x="673.0" y="346.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">now)</text>
+<rect x="937.0" y="360" width="10" height="25" fill="#DAE9F5" stroke="#004387" stroke-width="2"/>
+<polyline points="942.0,500 1510.0,500" fill="none" stroke="#004387" stroke-width="2"/>
+<polyline points="1496.0,507.0 1510.0,500 1496.0,493.0" fill="none" stroke="#004387" stroke-width="2"/>
+<polygon data-message-arrow="filled-synchronous" points="1496.0,507.0 1510.0,500 1496.0,493.0" fill="#004387" stroke="#004387"/>
+<text x="957.0" y="486.71999999999997" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">release_for_unfulfilled_order†() [full C owed]</text>
+<rect x="1505.0" y="500" width="10" height="25" fill="#DAE9F5" stroke="#004387" stroke-width="2"/>
+<polyline points="658.0,750 374.0,750" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="388.0,743.0 374.0,750 388.0,757.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="389.0" y="736.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">rejectedOrder [COMMIT succeeded]</text>
+<polyline points="658.0,960 374.0,960" fill="none" stroke="#004387" stroke-width="2" stroke-dasharray="8 7"/>
+<polyline points="388.0,953.0 374.0,960 388.0,967.0" fill="none" stroke="#004387" stroke-width="2"/>
+<text x="389.0" y="946.72" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">refusal</text>
+<text x="35" y="1102.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">rejectOrder: Part B of A–B; previous Part A; end of this request.</text>
+<text x="35" y="1134.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">† design target, not yet in code at C0 (see P4 input F-02; P2-S01; P2-S13; P3-S03).</text>
+<text x="35" y="1167.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Figure 3.5.4.OP-03B. UC-05 rejectOrder — Part B — Author: 722I0004 · AI-assisted (Codex)</text>
+<text x="35" y="1193.32" font-family="Arial" font-size="24" font-weight="normal" fill="#202B36">Static / target design · 230 mm landscape · smallest text 9.78 pt · native draw.io / final placement UNTESTED</text>
+</svg>

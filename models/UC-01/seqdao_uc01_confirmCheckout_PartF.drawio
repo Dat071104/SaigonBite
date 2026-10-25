@@ -11,157 +11,175 @@
         <mxCell id="txt1" vertex="1" parent="1" value="Same request and transaction across all parts; focus 6/7. Mechanical reads: responsibility table (report 4.3.2)." style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
           <mxGeometry as="geometry" x="35" y="54" width="1530" height="27.839999999999996" />
         </mxCell>
+        <mxCell id="fragment_seqdao_uc01_confirmCheckout_PartF_1" vertex="1" parent="1" value="" style="shape=umlFrame;fillColor=none;strokeColor=#004387;">
+          <mxGeometry as="geometry" x="25" y="232" width="1550" height="503.56000000000006" />
+        </mxCell>
+        <mxCell id="fragment_seqdao_uc01_confirmCheckout_PartF_2" vertex="1" parent="1" value="" style="shape=umlFrame;fillColor=none;strokeColor=#004387;">
+          <mxGeometry as="geometry" x="37" y="626.88" width="1526" height="103.68000000000006" />
+        </mxCell>
         <mxCell id="actor" vertex="1" parent="1" value="" style="fillColor=#F1F6FA;strokeColor=#004387;">
           <mxGeometry as="geometry" x="29.85714285714286" y="100" width="180.28571428571428" height="120" />
         </mxCell>
-        <mxCell id="txt3" vertex="1" parent="1" value="Customer" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+        <mxCell id="txt5" vertex="1" parent="1" value="Customer" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
           <mxGeometry as="geometry" x="36.85714285714286" y="105" width="166.28571428571428" height="27.839999999999996" />
         </mxCell>
         <mxCell id="view" vertex="1" parent="1" value="" style="fillColor=#F1F6FA;strokeColor=#004387;">
           <mxGeometry as="geometry" x="224.14285714285714" y="100" width="180.28571428571428" height="120" />
         </mxCell>
-        <mxCell id="txt5" vertex="1" parent="1" value="«view»&#10;order" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+        <mxCell id="txt7" vertex="1" parent="1" value="«view»&#10;order" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
           <mxGeometry as="geometry" x="231.14285714285714" y="105" width="166.28571428571428" height="55.67999999999999" />
         </mxCell>
         <mxCell id="ctrl" vertex="1" parent="1" value="" style="fillColor=#F1F6FA;strokeColor=#004387;">
           <mxGeometry as="geometry" x="418.42857142857144" y="100" width="180.28571428571428" height="120" />
         </mxCell>
-        <mxCell id="txt7" vertex="1" parent="1" value="Place&#10;Order&#10;Controller" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+        <mxCell id="txt9" vertex="1" parent="1" value="Place&#10;Order&#10;Controller" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
           <mxGeometry as="geometry" x="425.42857142857144" y="105" width="166.28571428571428" height="83.51999999999998" />
         </mxCell>
         <mxCell id="obj9" vertex="1" parent="1" value="" style="fillColor=#F1F6FA;strokeColor=#004387;">
           <mxGeometry as="geometry" x="612.7142857142858" y="100" width="180.28571428571428" height="120" />
         </mxCell>
-        <mxCell id="txt9" vertex="1" parent="1" value="Quote" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+        <mxCell id="txt11" vertex="1" parent="1" value="Quote" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
           <mxGeometry as="geometry" x="619.7142857142858" y="105" width="166.28571428571428" height="27.839999999999996" />
         </mxCell>
         <mxCell id="obj12" vertex="1" parent="1" value="" style="fillColor=#F1F6FA;strokeColor=#004387;">
           <mxGeometry as="geometry" x="807.0" y="100" width="180.28571428571428" height="120" />
         </mxCell>
-        <mxCell id="txt11" vertex="1" parent="1" value="Payment" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+        <mxCell id="txt13" vertex="1" parent="1" value="Payment" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
           <mxGeometry as="geometry" x="814.0" y="105" width="166.28571428571428" height="27.839999999999996" />
         </mxCell>
         <mxCell id="obj4" vertex="1" parent="1" value="" style="fillColor=#F1F6FA;strokeColor=#004387;">
           <mxGeometry as="geometry" x="1001.2857142857144" y="100" width="180.28571428571428" height="120" />
         </mxCell>
-        <mxCell id="txt13" vertex="1" parent="1" value="«DAO»&#10;Order&#10;DAO" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+        <mxCell id="txt15" vertex="1" parent="1" value="«DAO»&#10;Order&#10;DAO" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
           <mxGeometry as="geometry" x="1008.2857142857144" y="105" width="166.28571428571428" height="83.51999999999998" />
         </mxCell>
         <mxCell id="obj13" vertex="1" parent="1" value="" style="fillColor=#F1F6FA;strokeColor=#004387;">
           <mxGeometry as="geometry" x="1195.5714285714287" y="100" width="180.28571428571428" height="120" />
         </mxCell>
-        <mxCell id="txt15" vertex="1" parent="1" value="«DAO»&#10;Payment&#10;DAO" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+        <mxCell id="txt17" vertex="1" parent="1" value="«DAO»&#10;Payment&#10;DAO" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
           <mxGeometry as="geometry" x="1202.5714285714287" y="105" width="166.28571428571428" height="83.51999999999998" />
         </mxCell>
         <mxCell id="db" vertex="1" parent="1" value="" style="fillColor=#F1F6FA;strokeColor=#004387;">
           <mxGeometry as="geometry" x="1389.857142857143" y="100" width="180.28571428571428" height="120" />
         </mxCell>
-        <mxCell id="txt17" vertex="1" parent="1" value=":Database&#10;«resource»" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+        <mxCell id="txt19" vertex="1" parent="1" value=":Database&#10;«resource»" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
           <mxGeometry as="geometry" x="1396.857142857143" y="105" width="166.28571428571428" height="55.67999999999999" />
         </mxCell>
-        <mxCell id="txt18" vertex="1" parent="1" value="SQL note: INSERT orders (UNIQUE token, CHECK totals); INSERT order_line for each line; expect one header + N lines; FK/constraint errors&#10;fail transaction." style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
-          <mxGeometry as="geometry" x="45" y="242" width="1510" height="55.67999999999999" />
+        <mxCell id="fragment_seqdao_uc01_confirmCheckout_PartF_1_operator" vertex="1" parent="1" value="opt" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=1;">
+          <mxGeometry as="geometry" x="31" y="233" width="84" height="27.839999999999996" />
+        </mxCell>
+        <mxCell id="fragment_seqdao_uc01_confirmCheckout_PartF_1_guard" vertex="1" parent="1" value="[new token; COD or approved ONLINE; all earlier guards/inserts succeeded (continued from Part E)]" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="127" y="233" width="1438" height="27.839999999999996" />
+        </mxCell>
+        <mxCell id="fragment_seqdao_uc01_confirmCheckout_PartF_2_operator" vertex="1" parent="1" value="opt" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=1;">
+          <mxGeometry as="geometry" x="43" y="627.88" width="84" height="27.839999999999996" />
+        </mxCell>
+        <mxCell id="fragment_seqdao_uc01_confirmCheckout_PartF_2_guard" vertex="1" parent="1" value="[all insert cardinalities and constraints succeeded; otherwise break to Part G failure]" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="139" y="627.88" width="1414" height="27.839999999999996" />
+        </mxCell>
+        <mxCell id="txt24" vertex="1" parent="1" value="SQL note: INSERT orders (UNIQUE token, CHECK totals); INSERT order_line for each line; expect one header + N lines; FK/constraint&#10;errors fail transaction." style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="65" y="269.84000000000003" width="1470" height="55.67999999999999" />
         </mxCell>
         <mxCell id="m0s" vertex="1" parent="1" value="" style="opacity=0;">
-          <mxGeometry as="geometry" x="1091.4285714285716" y="341" width="0" height="0" />
+          <mxGeometry as="geometry" x="1091.4285714285716" y="336.52000000000004" width="0" height="0" />
         </mxCell>
         <mxCell id="m0t" vertex="1" parent="1" value="" style="opacity=0;">
-          <mxGeometry as="geometry" x="1480.0" y="341" width="0" height="0" />
+          <mxGeometry as="geometry" x="1480.0" y="336.52000000000004" width="0" height="0" />
         </mxCell>
-        <mxCell id="message0" edge="1" parent="1" source="m0s" target="m0t" style="edgeStyle=none;endArrow=open;strokeColor=#004387;exitX=0.5;entryX=0.5;exitPerimeter=0;entryPerimeter=0;">
+        <mxCell id="message0" edge="1" parent="1" source="m0s" target="m0t" style="edgeStyle=none;endArrow=block;endFill=1;strokeColor=#004387;exitX=0.5;entryX=0.5;exitPerimeter=0;entryPerimeter=0;">
           <mxGeometry as="geometry" relative="1">
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="txt20" vertex="1" parent="1" value="new order_id; insert cardinality/constraints enforced (not a state UPDATE rowcount)" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
-          <mxGeometry as="geometry" x="45" y="367" width="1510" height="27.839999999999996" />
+        <mxCell id="txt26" vertex="1" parent="1" value="new order_id; insert cardinality/constraints enforced (not a state UPDATE rowcount)" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="65" y="363.52000000000004" width="1470" height="27.839999999999996" />
         </mxCell>
         <mxCell id="m1s" vertex="1" parent="1" value="" style="opacity=0;">
-          <mxGeometry as="geometry" x="1091.4285714285716" y="466" width="0" height="0" />
+          <mxGeometry as="geometry" x="1091.4285714285716" y="402.36" width="0" height="0" />
         </mxCell>
         <mxCell id="m1t" vertex="1" parent="1" value="" style="opacity=0;">
-          <mxGeometry as="geometry" x="508.57142857142856" y="466" width="0" height="0" />
+          <mxGeometry as="geometry" x="508.57142857142856" y="402.36" width="0" height="0" />
         </mxCell>
-        <mxCell id="message1" edge="1" parent="1" source="m1s" target="m1t" style="edgeStyle=none;endArrow=open;strokeColor=#004387;dashed=1;exitX=0.5;entryX=0.5;exitPerimeter=0;entryPerimeter=0;">
+        <mxCell id="message1" edge="1" parent="1" source="m1s" target="m1t" style="edgeStyle=none;endArrow=open;endFill=0;strokeColor=#004387;dashed=1;exitX=0.5;entryX=0.5;exitPerimeter=0;entryPerimeter=0;">
           <mxGeometry as="geometry" relative="1">
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="txt22" vertex="1" parent="1" value="«create» Payment: COD / PENDING, ONLINE / PAID; amount = T, refund owed = 0" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
-          <mxGeometry as="geometry" x="45" y="492" width="1510" height="27.839999999999996" />
+        <mxCell id="txt28" vertex="1" parent="1" value="«create» Payment: COD / PENDING, ONLINE / PAID; amount = T, refund owed = 0" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="65" y="429.36" width="1470" height="27.839999999999996" />
         </mxCell>
         <mxCell id="m2s" vertex="1" parent="1" value="" style="opacity=0;">
-          <mxGeometry as="geometry" x="508.57142857142856" y="591" width="0" height="0" />
+          <mxGeometry as="geometry" x="508.57142857142856" y="468.2" width="0" height="0" />
         </mxCell>
         <mxCell id="m2t" vertex="1" parent="1" value="" style="opacity=0;">
-          <mxGeometry as="geometry" x="897.1428571428571" y="591" width="0" height="0" />
+          <mxGeometry as="geometry" x="897.1428571428571" y="468.2" width="0" height="0" />
         </mxCell>
-        <mxCell id="message2" edge="1" parent="1" source="m2s" target="m2t" style="edgeStyle=none;endArrow=open;strokeColor=#004387;exitX=0.5;entryX=0.5;exitPerimeter=0;entryPerimeter=0;">
+        <mxCell id="message2" edge="1" parent="1" source="m2s" target="m2t" style="edgeStyle=none;endArrow=block;endFill=1;strokeColor=#004387;exitX=0.5;entryX=0.5;exitPerimeter=0;entryPerimeter=0;">
           <mxGeometry as="geometry" relative="1">
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="box24" vertex="1" parent="1" value="" style="fillColor=#DAE9F5;strokeColor=#004387;">
-          <mxGeometry as="geometry" x="892.1428571428571" y="591" width="10" height="18" />
+        <mxCell id="box30" vertex="1" parent="1" value="" style="fillColor=#DAE9F5;strokeColor=#004387;">
+          <mxGeometry as="geometry" x="892.1428571428571" y="468.2" width="10" height="18" />
         </mxCell>
-        <mxCell id="txt25" vertex="1" parent="1" value="insert(payment)" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
-          <mxGeometry as="geometry" x="45" y="617" width="1510" height="27.839999999999996" />
+        <mxCell id="txt31" vertex="1" parent="1" value="insert(payment)" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="65" y="495.2" width="1470" height="27.839999999999996" />
         </mxCell>
         <mxCell id="m3s" vertex="1" parent="1" value="" style="opacity=0;">
-          <mxGeometry as="geometry" x="508.57142857142856" y="716" width="0" height="0" />
+          <mxGeometry as="geometry" x="508.57142857142856" y="534.04" width="0" height="0" />
         </mxCell>
         <mxCell id="m3t" vertex="1" parent="1" value="" style="opacity=0;">
-          <mxGeometry as="geometry" x="1285.7142857142858" y="716" width="0" height="0" />
+          <mxGeometry as="geometry" x="1285.7142857142858" y="534.04" width="0" height="0" />
         </mxCell>
-        <mxCell id="message3" edge="1" parent="1" source="m3s" target="m3t" style="edgeStyle=none;endArrow=open;strokeColor=#004387;exitX=0.5;entryX=0.5;exitPerimeter=0;entryPerimeter=0;">
+        <mxCell id="message3" edge="1" parent="1" source="m3s" target="m3t" style="edgeStyle=none;endArrow=block;endFill=1;strokeColor=#004387;exitX=0.5;entryX=0.5;exitPerimeter=0;entryPerimeter=0;">
           <mxGeometry as="geometry" relative="1">
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="box27" vertex="1" parent="1" value="" style="fillColor=#DAE9F5;strokeColor=#004387;">
-          <mxGeometry as="geometry" x="1280.7142857142858" y="716" width="10" height="18" />
+        <mxCell id="box33" vertex="1" parent="1" value="" style="fillColor=#DAE9F5;strokeColor=#004387;">
+          <mxGeometry as="geometry" x="1280.7142857142858" y="534.04" width="10" height="18" />
         </mxCell>
-        <mxCell id="txt28" vertex="1" parent="1" value="SQL note: INSERT payment: exactly one per order; UNIQUE order_id, FK and enum CHECK; expect one new identity." style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
-          <mxGeometry as="geometry" x="45" y="742" width="1510" height="27.839999999999996" />
+        <mxCell id="txt34" vertex="1" parent="1" value="SQL note: INSERT payment: exactly one per order; UNIQUE order_id, FK and enum CHECK; expect one new identity." style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="65" y="561.04" width="1470" height="27.839999999999996" />
         </mxCell>
         <mxCell id="m4s" vertex="1" parent="1" value="" style="opacity=0;">
-          <mxGeometry as="geometry" x="1285.7142857142858" y="841" width="0" height="0" />
+          <mxGeometry as="geometry" x="1285.7142857142858" y="599.88" width="0" height="0" />
         </mxCell>
         <mxCell id="m4t" vertex="1" parent="1" value="" style="opacity=0;">
-          <mxGeometry as="geometry" x="1480.0" y="841" width="0" height="0" />
+          <mxGeometry as="geometry" x="1480.0" y="599.88" width="0" height="0" />
         </mxCell>
-        <mxCell id="message4" edge="1" parent="1" source="m4s" target="m4t" style="edgeStyle=none;endArrow=open;strokeColor=#004387;exitX=0.5;entryX=0.5;exitPerimeter=0;entryPerimeter=0;">
+        <mxCell id="message4" edge="1" parent="1" source="m4s" target="m4t" style="edgeStyle=none;endArrow=block;endFill=1;strokeColor=#004387;exitX=0.5;entryX=0.5;exitPerimeter=0;entryPerimeter=0;">
           <mxGeometry as="geometry" relative="1">
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="txt30" vertex="1" parent="1" value="COMMIT† only after header + all lines + payment succeed; ONLINE captured amount C = T at success." style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
-          <mxGeometry as="geometry" x="45" y="867" width="1510" height="27.839999999999996" />
+        <mxCell id="txt36" vertex="1" parent="1" value="COMMIT† only after header + all lines + payment succeed; ONLINE captured amount C = T at success." style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+          <mxGeometry as="geometry" x="65" y="664.72" width="1470" height="27.839999999999996" />
         </mxCell>
         <mxCell id="m5s" vertex="1" parent="1" value="" style="opacity=0;">
-          <mxGeometry as="geometry" x="508.57142857142856" y="966" width="0" height="0" />
+          <mxGeometry as="geometry" x="508.57142857142856" y="703.5600000000001" width="0" height="0" />
         </mxCell>
         <mxCell id="m5t" vertex="1" parent="1" value="" style="opacity=0;">
-          <mxGeometry as="geometry" x="1480.0" y="966" width="0" height="0" />
+          <mxGeometry as="geometry" x="1480.0" y="703.5600000000001" width="0" height="0" />
         </mxCell>
-        <mxCell id="message5" edge="1" parent="1" source="m5s" target="m5t" style="edgeStyle=none;endArrow=open;strokeColor=#004387;exitX=0.5;entryX=0.5;exitPerimeter=0;entryPerimeter=0;">
+        <mxCell id="message5" edge="1" parent="1" source="m5s" target="m5t" style="edgeStyle=none;endArrow=block;endFill=1;strokeColor=#004387;exitX=0.5;entryX=0.5;exitPerimeter=0;entryPerimeter=0;">
           <mxGeometry as="geometry" relative="1">
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="txt32" vertex="1" parent="1" value="From seqdao_uc01_confirmCheckout_PartE → this part → seqdao_uc01_confirmCheckout_PartG." style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+        <mxCell id="txt38" vertex="1" parent="1" value="COMMIT success continues Part G success break; write/COMMIT failure continues Part G failure break exclusively." style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
           <mxGeometry as="geometry" x="35" y="1035" width="1530" height="27.839999999999996" />
         </mxCell>
-        <mxCell id="txt33" vertex="1" parent="1" value="Transaction key (whole request): BEGIN IMMEDIATE → checked rowcount / inserts → COMMIT; failure → ROLLBACK if active. Busy: retry,&#10;nothing changed." style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+        <mxCell id="txt39" vertex="1" parent="1" value="Transaction key (whole request): BEGIN IMMEDIATE → checked rowcount / inserts → COMMIT; failure → ROLLBACK if active. Busy: retry,&#10;nothing changed." style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
           <mxGeometry as="geometry" x="35" y="1070" width="1530" height="55.67999999999999" />
         </mxCell>
-        <mxCell id="txt34" vertex="1" parent="1" value="† design target, not yet in code at C0: F-04; F-07; P2-S05; P2-S13; P2-S12 connection settings; MATCH is Static only." style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+        <mxCell id="txt40" vertex="1" parent="1" value="† design target, not yet in code at C0: F-04; F-07; P2-S05; P2-S13; P2-S12 connection settings; MATCH is Static only." style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
           <mxGeometry as="geometry" x="35" y="1130" width="1530" height="27.839999999999996" />
         </mxCell>
-        <mxCell id="txt35" vertex="1" parent="1" value="Figure 4.3.2.1.OP-01.F. confirmCheckout / Part F — Author: 722I0004 · AI-assisted (Codex)" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+        <mxCell id="txt41" vertex="1" parent="1" value="Figure 4.3.2.1.OP-01.F. confirmCheckout / Part F — Author: 722I0004 · AI-assisted (Codex)" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
           <mxGeometry as="geometry" x="35" y="1190" width="1530" height="27.839999999999996" />
         </mxCell>
-        <mxCell id="txt36" vertex="1" parent="1" value="Static only · 230 mm landscape · minimum 9.78 pt · native draw.io and final DOCX/PDF placement UNTESTED" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
+        <mxCell id="txt42" vertex="1" parent="1" value="Static only · 230 mm landscape · minimum 9.78 pt · native draw.io and final DOCX/PDF placement UNTESTED" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=0;">
           <mxGeometry as="geometry" x="35" y="1220" width="1530" height="27.839999999999996" />
         </mxCell>
       </root>

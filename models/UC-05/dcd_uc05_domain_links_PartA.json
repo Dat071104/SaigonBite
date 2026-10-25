@@ -201,12 +201,13 @@
           148
         ]
       ],
-      "label": "0..1 → 1 linked account",
+      "label": "linked account",
       "labelpos": [
-        575,
-        109
+        690,
+        158
       ],
-      "labelwidth": 440
+      "labelwidth": 330,
+      "native_edge_id": "dcd_relation_000"
     },
     {
       "source": "s1",
@@ -222,12 +223,13 @@
           298
         ]
       ],
-      "label": "1 → 0..* owns",
+      "label": "owns",
       "labelpos": [
-        575,
-        259
+        690,
+        308
       ],
-      "labelwidth": 440
+      "labelwidth": 330,
+      "native_edge_id": "dcd_relation_001"
     },
     {
       "source": "s2",
@@ -243,12 +245,13 @@
           448
         ]
       ],
-      "label": "1 → 0..* listings",
+      "label": "listings",
       "labelpos": [
-        575,
-        409
+        690,
+        458
       ],
-      "labelwidth": 440
+      "labelwidth": 330,
+      "native_edge_id": "dcd_relation_002"
     },
     {
       "source": "s3",
@@ -264,12 +267,13 @@
           598
         ]
       ],
-      "label": "0..* → 1 item",
+      "label": "item",
       "labelpos": [
-        575,
-        559
+        690,
+        608
       ],
-      "labelwidth": 440
+      "labelwidth": 330,
+      "native_edge_id": "dcd_relation_003"
     },
     {
       "source": "s4",
@@ -285,12 +289,13 @@
           748
         ]
       ],
-      "label": "1 → 0..* offers",
+      "label": "offers",
       "labelpos": [
-        575,
-        709
+        690,
+        758
       ],
-      "labelwidth": 440
+      "labelwidth": 330,
+      "native_edge_id": "dcd_relation_004"
     },
     {
       "source": "s5",
@@ -306,12 +311,13 @@
           898
         ]
       ],
-      "label": "0..* → 1 customer",
+      "label": "customer",
       "labelpos": [
-        575,
-        859
+        690,
+        908
       ],
-      "labelwidth": 440
+      "labelwidth": 330,
+      "native_edge_id": "dcd_relation_005"
     }
   ],
   "phase3": {
@@ -426,7 +432,123 @@
         "evidence": "domain model 2.1.7; code identifiers / typed fields"
       }
     ],
-    "states": []
+    "states": [],
+    "association_end_labels": [
+      {
+        "source": "Customer",
+        "target": "UserAccount",
+        "kind": "association",
+        "role": "linked account",
+        "native_edge_id": "dcd_relation_000",
+        "source_label_id": "dcd_relation_000_source_multiplicity",
+        "target_label_id": "dcd_relation_000_target_multiplicity",
+        "source_endpoint": [
+          555,
+          148
+        ],
+        "target_endpoint": [
+          1035,
+          148
+        ],
+        "source_card_id": "s0",
+        "target_card_id": "t0"
+      },
+      {
+        "source": "Customer",
+        "target": "Address",
+        "kind": "association",
+        "role": "owns",
+        "native_edge_id": "dcd_relation_001",
+        "source_label_id": "dcd_relation_001_source_multiplicity",
+        "target_label_id": "dcd_relation_001_target_multiplicity",
+        "source_endpoint": [
+          555,
+          298
+        ],
+        "target_endpoint": [
+          1035,
+          298
+        ],
+        "source_card_id": "s1",
+        "target_card_id": "t1"
+      },
+      {
+        "source": "Hub",
+        "target": "HubMenuItem",
+        "kind": "association",
+        "role": "listings",
+        "native_edge_id": "dcd_relation_002",
+        "source_label_id": "dcd_relation_002_source_multiplicity",
+        "target_label_id": "dcd_relation_002_target_multiplicity",
+        "source_endpoint": [
+          555,
+          448
+        ],
+        "target_endpoint": [
+          1035,
+          448
+        ],
+        "source_card_id": "s2",
+        "target_card_id": "t2"
+      },
+      {
+        "source": "HubMenuItem",
+        "target": "MenuItem",
+        "kind": "association",
+        "role": "item",
+        "native_edge_id": "dcd_relation_003",
+        "source_label_id": "dcd_relation_003_source_multiplicity",
+        "target_label_id": "dcd_relation_003_target_multiplicity",
+        "source_endpoint": [
+          555,
+          598
+        ],
+        "target_endpoint": [
+          1035,
+          598
+        ],
+        "source_card_id": "s3",
+        "target_card_id": "t3"
+      },
+      {
+        "source": "Brand",
+        "target": "MenuItem",
+        "kind": "association",
+        "role": "offers",
+        "native_edge_id": "dcd_relation_004",
+        "source_label_id": "dcd_relation_004_source_multiplicity",
+        "target_label_id": "dcd_relation_004_target_multiplicity",
+        "source_endpoint": [
+          555,
+          748
+        ],
+        "target_endpoint": [
+          1035,
+          748
+        ],
+        "source_card_id": "s4",
+        "target_card_id": "t4"
+      },
+      {
+        "source": "Order",
+        "target": "Customer",
+        "kind": "association",
+        "role": "customer",
+        "native_edge_id": "dcd_relation_005",
+        "source_label_id": "dcd_relation_005_source_multiplicity",
+        "target_label_id": "dcd_relation_005_target_multiplicity",
+        "source_endpoint": [
+          555,
+          898
+        ],
+        "target_endpoint": [
+          1035,
+          898
+        ],
+        "source_card_id": "s5",
+        "target_card_id": "t5"
+      }
+    ]
   },
   "continuation": "Members: domain detail parts. Relationship parts A–E continue both ways.",
   "P4_input": "none on this view",

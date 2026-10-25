@@ -3,32 +3,50 @@
   "title": "UC-04 sequence — workloadReport()",
   "canvas": {
     "width": 4200,
-    "height": 3000,
+    "height": 3100,
     "font_size": 60,
     "placed_width_mm": 230
   },
   "nodes": [
     {
+      "id": "controller_refusal_opt",
+      "kind": "frame",
+      "x": 70,
+      "y": 2580,
+      "w": 4060,
+      "h": 310,
+      "lines": [],
+      "stroke": "#B03A2E"
+    },
+    {
+      "id": "accepted_operand",
+      "kind": "frame",
+      "x": 70,
+      "y": 560,
+      "w": 4060,
+      "h": 1770,
+      "lines": [],
+      "stroke": "#004387"
+    },
+    {
+      "id": "refusal_operand",
+      "kind": "frame",
+      "x": 70,
+      "y": 2330,
+      "w": 4060,
+      "h": 650,
+      "lines": [],
+      "stroke": "#004387"
+    },
+    {
       "id": "alt_frame",
       "kind": "frame",
       "x": 70,
-      "y": 400,
+      "y": 560,
       "w": 4060,
-      "h": 2500,
+      "h": 2420,
       "lines": [],
       "dashed": false
-    },
-    {
-      "id": "alt_title",
-      "kind": "text",
-      "x": 100,
-      "y": 402,
-      "w": 4000,
-      "h": 65,
-      "lines": [
-        "alt [authenticated actor, valid input, accepted operation]"
-      ],
-      "bold": true
     },
     {
       "id": "ll_actor",
@@ -54,7 +72,7 @@
       "id": "life_bottom_actor",
       "kind": "anchor",
       "x": 180.0,
-      "y": 2875,
+      "y": 2975,
       "w": 2,
       "h": 2
     },
@@ -82,7 +100,7 @@
       "id": "life_bottom_view",
       "kind": "anchor",
       "x": 820.0,
-      "y": 2875,
+      "y": 2975,
       "w": 2,
       "h": 2
     },
@@ -111,7 +129,7 @@
       "id": "life_bottom_ctrl",
       "kind": "anchor",
       "x": 1460.0,
-      "y": 2875,
+      "y": 2975,
       "w": 2,
       "h": 2
     },
@@ -139,7 +157,7 @@
       "id": "life_bottom_base",
       "kind": "anchor",
       "x": 2100.0,
-      "y": 2875,
+      "y": 2975,
       "w": 2,
       "h": 2
     },
@@ -167,7 +185,7 @@
       "id": "life_bottom_hubstatus",
       "kind": "anchor",
       "x": 2740.0,
-      "y": 2875,
+      "y": 2975,
       "w": 2,
       "h": 2
     },
@@ -195,7 +213,7 @@
       "id": "life_bottom_row",
       "kind": "anchor",
       "x": 3380.0,
-      "y": 2875,
+      "y": 2975,
       "w": 2,
       "h": 2
     },
@@ -224,7 +242,7 @@
       "id": "life_bottom_report",
       "kind": "anchor",
       "x": 4020.0,
-      "y": 2875,
+      "y": 2975,
       "w": 2,
       "h": 2
     },
@@ -232,199 +250,199 @@
       "id": "activation_view",
       "kind": "activation",
       "x": 805.0,
-      "y": 550,
+      "y": 490,
       "w": 30,
-      "h": 1300
+      "h": 907
     },
     {
       "id": "activation_ctrl",
       "kind": "activation",
       "x": 1445.0,
-      "y": 810,
+      "y": 774,
       "w": 30,
-      "h": 910
+      "h": 539
     },
     {
       "id": "activation_base",
       "kind": "activation",
       "x": 2085.0,
-      "y": 1070,
+      "y": 942,
       "w": 30,
-      "h": 130
+      "h": 35
     },
     {
       "id": "activation_hubstatus",
       "kind": "activation",
       "x": 2725.0,
-      "y": 1200,
+      "y": 1026,
       "w": 30,
-      "h": 130
+      "h": 35
     },
     {
       "id": "activation_row",
       "kind": "activation",
       "x": 3365.0,
-      "y": 1330,
+      "y": 1110,
       "w": 30,
-      "h": 130
+      "h": 35
     },
     {
       "id": "activation_report",
       "kind": "activation",
       "x": 4005.0,
-      "y": 1460,
+      "y": 1194,
       "w": 30,
-      "h": 130
+      "h": 35
     },
     {
       "id": "m00_s",
       "kind": "anchor",
       "x": 180.0,
-      "y": 550,
+      "y": 490,
       "w": 2,
       "h": 2
     },
     {
       "id": "m00_t",
       "kind": "anchor",
-      "x": 820.0,
-      "y": 550,
+      "x": 805.0,
+      "y": 490,
       "w": 2,
       "h": 2
     },
     {
       "id": "m01_s",
       "kind": "anchor",
-      "x": 820.0,
-      "y": 680,
+      "x": 835.0,
+      "y": 690,
       "w": 2,
       "h": 2
     },
     {
       "id": "m01_t",
       "kind": "anchor",
-      "x": 940.0,
-      "y": 725,
+      "x": 835.0,
+      "y": 705,
       "w": 2,
       "h": 2
     },
     {
       "id": "m02_s",
       "kind": "anchor",
-      "x": 820.0,
-      "y": 810,
+      "x": 835.0,
+      "y": 774,
       "w": 2,
       "h": 2
     },
     {
       "id": "m02_t",
       "kind": "anchor",
-      "x": 1460.0,
-      "y": 810,
+      "x": 1445.0,
+      "y": 774,
       "w": 2,
       "h": 2
     },
     {
       "id": "m03_s",
       "kind": "anchor",
-      "x": 1460.0,
-      "y": 940,
+      "x": 1475.0,
+      "y": 858,
       "w": 2,
       "h": 2
     },
     {
       "id": "m03_t",
       "kind": "anchor",
-      "x": 1580.0,
-      "y": 985,
+      "x": 1475.0,
+      "y": 873,
       "w": 2,
       "h": 2
     },
     {
       "id": "m04_s",
       "kind": "anchor",
-      "x": 1460.0,
-      "y": 1070,
+      "x": 1475.0,
+      "y": 942,
       "w": 2,
       "h": 2
     },
     {
       "id": "m04_t",
       "kind": "anchor",
-      "x": 2100.0,
-      "y": 1070,
+      "x": 2085.0,
+      "y": 942,
       "w": 2,
       "h": 2
     },
     {
       "id": "m06_s",
       "kind": "anchor",
-      "x": 1460.0,
-      "y": 1200,
+      "x": 1475.0,
+      "y": 1026,
       "w": 2,
       "h": 2
     },
     {
       "id": "m06_t",
       "kind": "anchor",
-      "x": 2740.0,
-      "y": 1200,
+      "x": 2725.0,
+      "y": 1026,
       "w": 2,
       "h": 2
     },
     {
       "id": "m08_s",
       "kind": "anchor",
-      "x": 1460.0,
-      "y": 1330,
+      "x": 1475.0,
+      "y": 1110,
       "w": 2,
       "h": 2
     },
     {
       "id": "m08_t",
       "kind": "anchor",
-      "x": 3380.0,
-      "y": 1330,
+      "x": 3365.0,
+      "y": 1110,
       "w": 2,
       "h": 2
     },
     {
       "id": "m09_s",
       "kind": "anchor",
-      "x": 1460.0,
-      "y": 1460,
+      "x": 1475.0,
+      "y": 1194,
       "w": 2,
       "h": 2
     },
     {
       "id": "m09_t",
       "kind": "anchor",
-      "x": 4020.0,
-      "y": 1460,
+      "x": 4005.0,
+      "y": 1194,
       "w": 2,
       "h": 2
     },
     {
       "id": "m10_s",
       "kind": "anchor",
-      "x": 1460.0,
-      "y": 1590,
+      "x": 1445.0,
+      "y": 1278,
       "w": 2,
       "h": 2
     },
     {
       "id": "m10_t",
       "kind": "anchor",
-      "x": 820.0,
-      "y": 1590,
+      "x": 835.0,
+      "y": 1278,
       "w": 2,
       "h": 2
     },
     {
       "id": "m11_s",
       "kind": "anchor",
-      "x": 820.0,
-      "y": 1720,
+      "x": 805.0,
+      "y": 1362,
       "w": 2,
       "h": 2
     },
@@ -432,7 +450,7 @@
       "id": "m11_t",
       "kind": "anchor",
       "x": 180.0,
-      "y": 1720,
+      "y": 1362,
       "w": 2,
       "h": 2
     },
@@ -440,7 +458,7 @@
       "id": "interaction_notes",
       "kind": "note",
       "x": 105,
-      "y": 2449,
+      "y": 1472,
       "w": 3990,
       "h": 96,
       "lines": [
@@ -448,25 +466,12 @@
       ]
     },
     {
-      "id": "else_label",
-      "kind": "text",
-      "x": 105,
-      "y": 2572,
-      "w": 3990,
-      "h": 65,
-      "lines": [
-        "else [refusal / invalid filter / rollback / read unavailable / zero denominator]"
-      ],
-      "bold": true,
-      "color": "#B03A2E"
-    },
-    {
       "id": "branch_note",
       "kind": "note",
       "x": 105,
-      "y": 2660,
+      "y": 2410,
       "w": 3990,
-      "h": 235,
+      "h": 160,
       "lines": [
         "else [E01 non-manager → UC04-MG02; E03 read unavailable] → deny/unavailable; UC04-MG01, zero writes."
       ]
@@ -475,7 +480,7 @@
       "id": "sep_a",
       "kind": "anchor",
       "x": 90,
-      "y": 2570,
+      "y": 2330,
       "w": 2,
       "h": 2
     },
@@ -483,9 +488,114 @@
       "id": "sep_b",
       "kind": "anchor",
       "x": 4110,
-      "y": 2570,
+      "y": 2330,
       "w": 2,
       "h": 2
+    },
+    {
+      "id": "m12_s",
+      "kind": "anchor",
+      "x": 1445.0,
+      "y": 2840,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m12_t",
+      "kind": "anchor",
+      "x": 835.0,
+      "y": 2840,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m13_s",
+      "kind": "anchor",
+      "x": 805.0,
+      "y": 2960,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "m13_t",
+      "kind": "anchor",
+      "x": 180.0,
+      "y": 2960,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "alt_title",
+      "kind": "text",
+      "x": 100,
+      "y": 562,
+      "w": 4000,
+      "h": 65,
+      "lines": [
+        "alt [active Manager; current snapshot read completes, including empty rows]"
+      ],
+      "bold": true,
+      "background": "#FFFFFF"
+    },
+    {
+      "id": "else_label",
+      "kind": "text",
+      "x": 105,
+      "y": 2334,
+      "w": 3990,
+      "h": 65,
+      "lines": [
+        "else [non-manager / read unavailable] · alt operand"
+      ],
+      "bold": true,
+      "color": "#B03A2E",
+      "background": "#FFFFFF"
+    },
+    {
+      "id": "controller_refusal_opt_title",
+      "kind": "text",
+      "x": 105,
+      "y": 2582,
+      "w": 3990,
+      "h": 65,
+      "lines": [
+        "opt [request reaches controller]"
+      ],
+      "bold": true,
+      "color": "#B03A2E",
+      "background": "#FFFFFF"
+    },
+    {
+      "id": "failure_call_s",
+      "kind": "anchor",
+      "x": 835.0,
+      "y": 2720,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "failure_call_t",
+      "kind": "anchor",
+      "x": 1445.0,
+      "y": 2720,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "failure_ctrl_activation",
+      "kind": "activation",
+      "x": 1445.0,
+      "y": 2720,
+      "w": 30,
+      "h": 120
+    },
+    {
+      "id": "failure_view_activation",
+      "kind": "activation",
+      "x": 805.0,
+      "y": 2720,
+      "w": 30,
+      "h": 240
     }
   ],
   "edges": [
@@ -500,7 +610,7 @@
         ],
         [
           180.0,
-          2875
+          2975
         ]
       ],
       "dashed": true,
@@ -519,7 +629,7 @@
         ],
         [
           820.0,
-          2875
+          2975
         ]
       ],
       "dashed": true,
@@ -538,7 +648,7 @@
         ],
         [
           1460.0,
-          2875
+          2975
         ]
       ],
       "dashed": true,
@@ -557,7 +667,7 @@
         ],
         [
           2100.0,
-          2875
+          2975
         ]
       ],
       "dashed": true,
@@ -576,7 +686,7 @@
         ],
         [
           2740.0,
-          2875
+          2975
         ]
       ],
       "dashed": true,
@@ -595,7 +705,7 @@
         ],
         [
           3380.0,
-          2875
+          2975
         ]
       ],
       "dashed": true,
@@ -614,7 +724,7 @@
         ],
         [
           4020.0,
-          2875
+          2975
         ]
       ],
       "dashed": true,
@@ -629,11 +739,11 @@
       "points": [
         [
           180.0,
-          550
+          490
         ],
         [
-          820.0,
-          550
+          805.0,
+          490
         ]
       ],
       "dashed": false,
@@ -643,7 +753,7 @@
       "label": "workloadReport()",
       "label_box": [
         210.0,
-        478,
+        418,
         580,
         64
       ]
@@ -654,20 +764,20 @@
       "target": "m01_t",
       "points": [
         [
-          820.0,
-          680
+          835.0,
+          690
         ],
         [
           940.0,
-          680
+          690
         ],
         [
           940.0,
-          725
+          705
         ],
         [
-          820.0,
-          725
+          835.0,
+          705
         ]
       ],
       "dashed": false,
@@ -677,7 +787,7 @@
       "label": "workload()",
       "label_box": [
         680.0,
-        608,
+        618,
         400,
         64
       ]
@@ -688,12 +798,12 @@
       "target": "m02_t",
       "points": [
         [
-          820.0,
-          810
+          835.0,
+          774
         ],
         [
-          1460.0,
-          810
+          1445.0,
+          774
         ]
       ],
       "dashed": false,
@@ -703,7 +813,7 @@
       "label": "workload_report †(user_id)",
       "label_box": [
         700.0,
-        738,
+        702,
         880,
         64
       ]
@@ -714,20 +824,20 @@
       "target": "m03_t",
       "points": [
         [
-          1460.0,
-          940
+          1475.0,
+          858
         ],
         [
           1580.0,
-          940
+          858
         ],
         [
           1580.0,
-          985
+          873
         ],
         [
-          1460.0,
-          985
+          1475.0,
+          873
         ]
       ],
       "dashed": false,
@@ -737,7 +847,7 @@
       "label": "_require_manager(user_id)",
       "label_box": [
         1095.0,
-        868,
+        786,
         850,
         64
       ]
@@ -748,12 +858,12 @@
       "target": "m04_t",
       "points": [
         [
-          1460.0,
-          1070
+          1475.0,
+          942
         ],
         [
-          2100.0,
-          1070
+          2085.0,
+          942
         ]
       ],
       "dashed": false,
@@ -763,7 +873,7 @@
       "label": "_require_user(user_id, Role.MANAGER)",
       "label_box": [
         1190.0,
-        998,
+        870,
         1180,
         64
       ]
@@ -774,12 +884,12 @@
       "target": "m06_t",
       "points": [
         [
-          1460.0,
-          1200
+          1475.0,
+          1026
         ],
         [
-          2740.0,
-          1200
+          2725.0,
+          1026
         ]
       ],
       "dashed": false,
@@ -789,7 +899,7 @@
       "label": "«create» HubStatus(hub, cooking load = PLACED + CONFIRMED + PREPARING)",
       "label_box": [
         1000.0,
-        1128,
+        954,
         2200,
         64
       ]
@@ -800,12 +910,12 @@
       "target": "m08_t",
       "points": [
         [
-          1460.0,
-          1330
+          1475.0,
+          1110
         ],
         [
-          3380.0,
-          1330
+          3365.0,
+          1110
         ]
       ],
       "dashed": false,
@@ -815,7 +925,7 @@
       "label": "«create» WorkloadRow(status, counts)",
       "label_box": [
         1830.0,
-        1258,
+        1038,
         1180,
         64
       ]
@@ -826,12 +936,12 @@
       "target": "m09_t",
       "points": [
         [
-          1460.0,
-          1460
+          1475.0,
+          1194
         ],
         [
-          4020.0,
-          1460
+          4005.0,
+          1194
         ]
       ],
       "dashed": false,
@@ -841,7 +951,7 @@
       "label": "«create» WorkloadReport(as_of=now, rows)",
       "label_box": [
         2090.0,
-        1388,
+        1122,
         1300,
         64
       ]
@@ -852,22 +962,22 @@
       "target": "m10_t",
       "points": [
         [
-          1460.0,
-          1590
+          1445.0,
+          1278
         ],
         [
-          820.0,
-          1590
+          835.0,
+          1278
         ]
       ],
       "dashed": true,
-      "arrow": "block",
+      "arrow": "open",
       "color": "#004387",
       "width": 3,
       "label": "return workload_report: currentHubLoadCapacityReadyOutForDelivery",
       "label_box": [
         115.0,
-        1518,
+        1206,
         2050,
         64
       ]
@@ -878,22 +988,22 @@
       "target": "m11_t",
       "points": [
         [
-          820.0,
-          1720
+          805.0,
+          1362
         ],
         [
           180.0,
-          1720
+          1362
         ]
       ],
       "dashed": true,
-      "arrow": "block",
+      "arrow": "open",
       "color": "#004387",
       "width": 3,
-      "label": "return workloadReport: currentHubLoadCapacityReadyOutForDelivery | denied",
+      "label": "return workloadReport: currentHubLoadCapacityReadyOutForDelivery",
       "label_box": [
         80,
-        1648,
+        1290,
         2290,
         64
       ]
@@ -905,17 +1015,95 @@
       "points": [
         [
           90,
-          2570
+          2330
         ],
         [
           4110,
-          2570
+          2330
         ]
       ],
       "dashed": true,
       "arrow": "none",
       "color": "#004387",
       "width": 2
+    },
+    {
+      "id": "msg_13",
+      "source": "m12_s",
+      "target": "m12_t",
+      "points": [
+        [
+          1445.0,
+          2840
+        ],
+        [
+          835.0,
+          2840
+        ]
+      ],
+      "dashed": true,
+      "arrow": "open",
+      "color": "#B03A2E",
+      "width": 3,
+      "label": "return workload_report: denied (technical read failure returns no figures)",
+      "label_box": [
+        90,
+        2768,
+        2320,
+        64
+      ]
+    },
+    {
+      "id": "msg_14",
+      "source": "m13_s",
+      "target": "m13_t",
+      "points": [
+        [
+          805.0,
+          2960
+        ],
+        [
+          180.0,
+          2960
+        ]
+      ],
+      "dashed": true,
+      "arrow": "open",
+      "color": "#B03A2E",
+      "width": 3,
+      "label": "return workloadReport: denied (technical read failure returns no figures)",
+      "label_box": [
+        90,
+        2888,
+        2290,
+        64
+      ]
+    },
+    {
+      "id": "msg_12",
+      "source": "failure_call_s",
+      "target": "failure_call_t",
+      "points": [
+        [
+          835.0,
+          2720
+        ],
+        [
+          1445.0,
+          2720
+        ]
+      ],
+      "dashed": false,
+      "arrow": "block",
+      "color": "#B03A2E",
+      "width": 3,
+      "label": "workload_report †(user_id)",
+      "label_box": [
+        730.0,
+        2648,
+        820,
+        64
+      ]
     }
   ],
   "footer": "Author: 722I0004 · AI-assisted (Codex) · Static design at C0; target behavior is not runtime evidence.",
@@ -1258,7 +1446,8 @@
         "kind": "ssd",
         "arguments": "",
         "guard": "active Manager; no date or hub parameters",
-        "PC_MG": []
+        "PC_MG": [],
+        "native_edge_id": "msg_00"
       },
       {
         "from": "view",
@@ -1273,7 +1462,8 @@
         "parameters": [],
         "return": "Any",
         "P4_input": "",
-        "return_type": "Any"
+        "return_type": "Any",
+        "native_edge_id": "msg_01"
       },
       {
         "from": "view",
@@ -1307,7 +1497,8 @@
         ],
         "return": "WorkloadReport",
         "P4_input": "P2-S18",
-        "return_type": "WorkloadReport"
+        "return_type": "WorkloadReport",
+        "native_edge_id": "msg_02"
       },
       {
         "from": "ctrl",
@@ -1337,7 +1528,8 @@
         ],
         "return": "None",
         "P4_input": "",
-        "return_type": "None"
+        "return_type": "None",
+        "native_edge_id": "msg_03"
       },
       {
         "from": "ctrl",
@@ -1381,7 +1573,8 @@
         ],
         "return": "UserAccount",
         "P4_input": "",
-        "return_type": "UserAccount"
+        "return_type": "UserAccount",
+        "native_edge_id": "msg_04"
       },
       {
         "from": "ctrl",
@@ -1390,7 +1583,8 @@
         "kind": "note",
         "arguments": "Read all retained hubs and open-order counts.",
         "guard": "",
-        "PC_MG": []
+        "PC_MG": [],
+        "native_note_id": "interaction_notes"
       },
       {
         "from": "ctrl",
@@ -1399,7 +1593,8 @@
         "kind": "create",
         "arguments": "hub, cooking load = PLACED + CONFIRMED + PREPARING",
         "guard": "",
-        "PC_MG": []
+        "PC_MG": [],
+        "native_edge_id": "msg_06"
       },
       {
         "from": "ctrl",
@@ -1422,7 +1617,8 @@
         ],
         "return": "int",
         "P4_input": "",
-        "return_type": "int"
+        "return_type": "int",
+        "native_note_id": "interaction_notes"
       },
       {
         "from": "ctrl",
@@ -1431,7 +1627,8 @@
         "kind": "create",
         "arguments": "status, counts",
         "guard": "",
-        "PC_MG": []
+        "PC_MG": [],
+        "native_edge_id": "msg_08"
       },
       {
         "from": "ctrl",
@@ -1440,7 +1637,8 @@
         "kind": "create",
         "arguments": "as_of=now, rows",
         "guard": "",
-        "PC_MG": []
+        "PC_MG": [],
+        "native_edge_id": "msg_09"
       },
       {
         "from": "ctrl",
@@ -1449,16 +1647,78 @@
         "kind": "return",
         "arguments": "currentHubLoadCapacityReadyOutForDelivery",
         "guard": "",
-        "PC_MG": []
+        "PC_MG": [],
+        "native_edge_id": "msg_10"
       },
       {
         "from": "view",
         "to": "actor",
         "method": "workloadReport",
         "kind": "return",
-        "arguments": "currentHubLoadCapacityReadyOutForDelivery | denied",
+        "arguments": "currentHubLoadCapacityReadyOutForDelivery",
         "guard": "",
-        "PC_MG": []
+        "PC_MG": [],
+        "native_edge_id": "msg_11"
+      },
+      {
+        "from": "view",
+        "to": "ctrl",
+        "method": "workload_report",
+        "kind": "call",
+        "arguments": "user_id",
+        "guard": "request reaches controller; guard/filter/save/read then refuses",
+        "PC_MG": [
+          "UC04-MG01",
+          "UC04-MG02"
+        ],
+        "status": "P4-TARGET",
+        "signature": "workload_report(self, user_id: int) -> WorkloadReport",
+        "parameters": [
+          {
+            "name": "self",
+            "type": "Any",
+            "annotated": false,
+            "default": null,
+            "kind": "positional_or_keyword"
+          },
+          {
+            "name": "user_id",
+            "type": "int",
+            "annotated": true,
+            "default": null,
+            "kind": "positional_or_keyword"
+          }
+        ],
+        "return": "WorkloadReport",
+        "P4_input": "P2-S18",
+        "return_type": "WorkloadReport",
+        "native_edge_id": "msg_12"
+      },
+      {
+        "from": "ctrl",
+        "to": "view",
+        "method": "workload_report",
+        "kind": "return",
+        "arguments": "denied (technical read failure returns no figures)",
+        "guard": "controller was invoked and then rejected or failed; otherwise the view denies directly",
+        "PC_MG": [
+          "UC04-MG01",
+          "UC04-MG02"
+        ],
+        "native_edge_id": "msg_13"
+      },
+      {
+        "from": "view",
+        "to": "actor",
+        "method": "workloadReport",
+        "kind": "return",
+        "arguments": "denied (technical read failure returns no figures)",
+        "guard": "else [E01 non-manager → UC04-MG02; E03 read unavailable] → deny/unavailable; UC04-MG01, zero writes.",
+        "PC_MG": [
+          "UC04-MG01",
+          "UC04-MG02"
+        ],
+        "native_edge_id": "msg_14"
       }
     ],
     "states": [
@@ -1476,12 +1736,64 @@
     ],
     "main_outcome": "† P2-S18 target includes archived hubs with zero open work, labelled archived; this is a current snapshot marked now.",
     "alternate_outcome": "else [E01 non-manager → UC04-MG02; E03 read unavailable] → deny/unavailable; UC04-MG01, zero writes.",
-    "shared_transaction_target": "Read-only; UC04-MG01 applies to every result and refusal."
+    "shared_transaction_target": "Read-only; UC04-MG01 applies to every result and refusal.",
+    "interaction_fragments": [
+      {
+        "id": "accepted_operand",
+        "operator": "alt",
+        "guard": "alt [active Manager; current snapshot read completes, including empty rows]",
+        "x": 70,
+        "y": 560,
+        "w": 4060,
+        "h": 1770,
+        "message_indices": [
+          1,
+          2,
+          3,
+          4,
+          6,
+          8,
+          9,
+          10,
+          11
+        ],
+        "guard_label_id": "alt_title"
+      },
+      {
+        "id": "refusal_operand",
+        "operator": "alt",
+        "guard": "else [non-manager / read unavailable]",
+        "x": 70,
+        "y": 2330,
+        "w": 4060,
+        "h": 650,
+        "message_indices": [
+          12,
+          13,
+          14
+        ],
+        "guard_label_id": "else_label"
+      },
+      {
+        "id": "controller_refusal_opt",
+        "operator": "opt",
+        "guard": "[request reaches controller]",
+        "x": 70,
+        "y": 2580,
+        "w": 4060,
+        "h": 310,
+        "message_indices": [
+          12,
+          13
+        ],
+        "guard_label_id": "controller_refusal_opt_title"
+      }
+    ]
   },
   "render_receipt": {
     "canvas": [
       4200,
-      3000
+      3100
     ],
     "minimum_font_px": 60,
     "placed_width_mm": 230,

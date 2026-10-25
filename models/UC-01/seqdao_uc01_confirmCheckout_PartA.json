@@ -66,8 +66,16 @@
         "base_label": "confirmCheckout(hubId, addressId, lines(itemId, quantity), voucherCode?, paymentMethod, onlineOption?, simulatorOutcome?, quoteFingerprint, quotedTotal, checkoutToken) → order.confirm [HTTP adapter]",
         "fragment": false,
         "draw_arrow": false,
-        "y": 341,
-        "edge_id": "message0"
+        "y": 298.68,
+        "edge_id": "message0",
+        "label_box": [
+          65,
+          232,
+          1470,
+          55.68
+        ],
+        "native_edge_id": "message0",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "view",
@@ -84,8 +92,16 @@
         "receiver_signature": "confirm_order(self, user_id: int, hub_id: int, address_id: Optional[int], quantities: Mapping[int, str], idempotency_token: str, quoted_total: Optional[int] = None, voucher_code: Optional[str] = None, payment: Optional[PaymentChoice] = None, quote_fingerprint: Optional[str] = None) -> OrderConfirmation",
         "status": "P4-TARGET",
         "P4_input": "F-04; F-07; P2-S05; P2-S13",
-        "y": 466,
-        "edge_id": "message1"
+        "y": 402.35999999999996,
+        "edge_id": "message1",
+        "label_box": [
+          65,
+          363.52,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message1",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "ctrl",
@@ -102,8 +118,16 @@
         "receiver_signature": "_require_customer(self, user_id: int) -> Customer",
         "status": "MATCH",
         "P4_input": "",
-        "y": 591,
-        "edge_id": "message2"
+        "y": 468.19999999999993,
+        "edge_id": "message2",
+        "label_box": [
+          65,
+          429.35999999999996,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message2",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "ctrl",
@@ -117,7 +141,13 @@
         "base_label": "Active customer / nonempty token / allowed PaymentChoice. User simulator choice happens before the transaction; deterministic local decision has no network or wait.",
         "fragment": false,
         "draw_arrow": false,
-        "y": 716
+        "y": 557.8799999999999,
+        "label_box": [
+          65,
+          506.19999999999993,
+          1470,
+          55.68
+        ]
       },
       {
         "from": "ctrl",
@@ -131,8 +161,16 @@
         "base_label": "BEGIN IMMEDIATE†; acquire write transaction before live-state checks.",
         "fragment": false,
         "draw_arrow": true,
-        "y": 841,
-        "edge_id": "message4"
+        "y": 618.7199999999999,
+        "edge_id": "message4",
+        "label_box": [
+          65,
+          579.8799999999999,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message4",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "ctrl",
@@ -149,8 +187,16 @@
         "receiver_signature": "get_by_token(self, token: str) -> Optional[Order]",
         "status": "MATCH",
         "P4_input": "",
-        "y": 966,
-        "edge_id": "message5"
+        "y": 684.56,
+        "edge_id": "message5",
+        "label_box": [
+          65,
+          645.7199999999999,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message5",
+        "arrow_style": "closed_filled_synchronous"
       }
     ],
     "elements": [
@@ -207,7 +253,28 @@
         "allowed_on_layered_diagram": true
       }
     ],
-    "states": []
+    "states": [],
+    "interaction_fragments": [
+      {
+        "id": "fragment_seqdao_uc01_confirmCheckout_PartA_1",
+        "operator": "opt",
+        "guard": "request reached controller; authentication/BEGIN failure breaks to Part G before any business write",
+        "start_index": 1,
+        "end_index": 5,
+        "message_indices": [
+          1,
+          2,
+          4,
+          5
+        ],
+        "x": 25,
+        "y": 325.68,
+        "w": 1550,
+        "h": 385.87999999999994,
+        "depth": 0,
+        "guard_height": 32.84
+      }
+    ]
   },
   "placed_width_mm": 230,
   "source_design_sequences": [
@@ -276,39 +343,51 @@
         55.67999999999999
       ],
       [
-        45,
-        242,
-        1510,
+        31,
+        326.68,
+        84,
+        27.839999999999996
+      ],
+      [
+        127,
+        326.68,
+        1438,
+        27.839999999999996
+      ],
+      [
+        65,
+        232,
+        1470,
         55.67999999999999
       ],
       [
-        45,
-        367,
-        1510,
+        65,
+        363.52,
+        1470,
         27.839999999999996
       ],
       [
-        45,
-        492,
-        1510,
+        65,
+        429.35999999999996,
+        1470,
         27.839999999999996
       ],
       [
-        45,
-        622,
-        1510,
+        65,
+        506.19999999999993,
+        1470,
         55.67999999999999
       ],
       [
-        45,
-        742,
-        1510,
+        65,
+        579.8799999999999,
+        1470,
         27.839999999999996
       ],
       [
-        45,
-        867,
-        1510,
+        65,
+        645.7199999999999,
+        1470,
         27.839999999999996
       ],
       [
@@ -350,13 +429,15 @@
         "points": [
           [
             120.0,
-            341
+            298.68
           ],
           [
             392.0,
-            341
+            298.68
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message1",
@@ -365,13 +446,15 @@
         "points": [
           [
             392.0,
-            466
+            402.35999999999996
           ],
           [
             664.0,
-            466
+            402.35999999999996
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message2",
@@ -380,21 +463,23 @@
         "points": [
           [
             664.0,
-            591
+            468.19999999999993
           ],
           [
             699.0,
-            591
+            468.19999999999993
           ],
           [
             699.0,
-            613
+            490.19999999999993
           ],
           [
             664.0,
-            613
+            490.19999999999993
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message4",
@@ -403,13 +488,15 @@
         "points": [
           [
             664.0,
-            841
+            618.7199999999999
           ],
           [
             1480.0,
-            841
+            618.7199999999999
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message5",
@@ -418,15 +505,25 @@
         "points": [
           [
             664.0,
-            966
+            684.56
           ],
           [
             1208.0,
-            966
+            684.56
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       }
     ],
     "author_native_cell": true
+  },
+  "independent_review_repair": {
+    "findings": [
+      "R1",
+      "R4"
+    ],
+    "preserved_source": "D:\\RAD\\FINAL\\Part2\\notes\\P3_trash\\P3-F\\independent_review_R1_R4_20261025_192108\\UC-01\\seqdao_uc01_confirmCheckout_PartA.json",
+    "scope": "Actual guarded regions and synchronous arrowheads; no shared-model/app/status changes."
   }
 }

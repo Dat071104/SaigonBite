@@ -84,8 +84,16 @@
         "base_label": "SQL note: UPDATE delivery by order_id + assigned shipper_id AND state = 'PICKED_UP'; set DELIVERED + finished_at + cash.",
         "fragment": false,
         "draw_arrow": true,
-        "y": 341,
-        "edge_id": "message0"
+        "y": 308.68,
+        "edge_id": "message0",
+        "label_box": [
+          65,
+          269.84000000000003,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message0",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "obj4",
@@ -99,8 +107,16 @@
         "base_label": "rowcount == 1; bool checked; 0 / False → ROLLBACK earlier COD write",
         "fragment": false,
         "draw_arrow": false,
-        "y": 466,
-        "edge_id": "message1"
+        "y": 374.52,
+        "edge_id": "message1",
+        "label_box": [
+          65,
+          335.68,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message1",
+        "arrow_style": "dashed_open_reply"
       },
       {
         "from": "ctrl",
@@ -117,8 +133,16 @@
         "receiver_signature": "move_order(orders: OrderDAO, order: Order, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> None",
         "status": "MATCH",
         "P4_input": "",
-        "y": 591,
-        "edge_id": "message2"
+        "y": 483.2,
+        "edge_id": "message2",
+        "label_box": [
+          65,
+          444.36,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message2",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "obj8",
@@ -135,8 +159,16 @@
         "receiver_signature": "move_to(self, new_state: OrderState) -> None",
         "status": "MATCH",
         "P4_input": "",
-        "y": 716,
-        "edge_id": "message3"
+        "y": 549.04,
+        "edge_id": "message3",
+        "label_box": [
+          65,
+          510.2,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message3",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "obj8",
@@ -153,8 +185,16 @@
         "receiver_signature": "change_state(self, order_id: int, from_state: OrderState, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> bool",
         "status": "MATCH",
         "P4_input": "",
-        "y": 841,
-        "edge_id": "message4"
+        "y": 614.88,
+        "edge_id": "message4",
+        "label_box": [
+          65,
+          576.04,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message4",
+        "arrow_style": "closed_filled_synchronous"
       },
       {
         "from": "obj10",
@@ -168,8 +208,16 @@
         "base_label": "SQL note: UPDATE orders by id AND state = ? (OUT_FOR_DELIVERY); set DELIVERED + closed_at.",
         "fragment": false,
         "draw_arrow": true,
-        "y": 966,
-        "edge_id": "message5"
+        "y": 680.72,
+        "edge_id": "message5",
+        "label_box": [
+          65,
+          641.88,
+          1470,
+          27.84
+        ],
+        "native_edge_id": "message5",
+        "arrow_style": "closed_filled_synchronous"
       }
     ],
     "elements": [
@@ -271,6 +319,44 @@
           "DELIVERED"
         ]
       }
+    ],
+    "interaction_fragments": [
+      {
+        "id": "fragment_seqdao_uc02_confirmDelivered_PartD_1",
+        "operator": "opt",
+        "guard": "finish was attempted on valid assigned delivery (continued from Part C)",
+        "start_index": 0,
+        "end_index": 1,
+        "message_indices": [
+          0,
+          1
+        ],
+        "x": 25,
+        "y": 232,
+        "w": 1550,
+        "h": 169.51999999999998,
+        "depth": 0,
+        "guard_height": 32.84
+      },
+      {
+        "id": "fragment_seqdao_uc02_confirmDelivered_PartD_2",
+        "operator": "opt",
+        "guard": "finish rowcount == 1; zero/False breaks to Part F, undoing COD change",
+        "start_index": 2,
+        "end_index": 5,
+        "message_indices": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "x": 25,
+        "y": 406.52,
+        "w": 1550,
+        "h": 301.20000000000005,
+        "depth": 0,
+        "guard_height": 32.84
+      }
     ]
   },
   "placed_width_mm": 230,
@@ -357,39 +443,63 @@
         55.67999999999999
       ],
       [
-        45,
-        242,
-        1510,
+        31,
+        233,
+        84,
         27.839999999999996
       ],
       [
-        45,
-        367,
-        1510,
+        127,
+        233,
+        1438,
         27.839999999999996
       ],
       [
-        45,
-        492,
-        1510,
+        31,
+        407.52,
+        84,
         27.839999999999996
       ],
       [
-        45,
-        617,
-        1510,
+        127,
+        407.52,
+        1438,
         27.839999999999996
       ],
       [
-        45,
-        742,
-        1510,
+        65,
+        269.84000000000003,
+        1470,
         27.839999999999996
       ],
       [
-        45,
-        867,
-        1510,
+        65,
+        335.68,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        444.36,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        510.2,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        576.04,
+        1470,
+        27.839999999999996
+      ],
+      [
+        65,
+        641.88,
+        1470,
         27.839999999999996
       ],
       [
@@ -431,13 +541,15 @@
         "points": [
           [
             1140.0,
-            341
+            308.68
           ],
           [
             1480.0,
-            341
+            308.68
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message1",
@@ -446,13 +558,15 @@
         "points": [
           [
             1140.0,
-            466
+            374.52
           ],
           [
             460.0,
-            466
+            374.52
           ]
-        ]
+        ],
+        "filled": false,
+        "dashed": true
       },
       {
         "id": "message2",
@@ -461,13 +575,15 @@
         "points": [
           [
             460.0,
-            591
+            483.2
           ],
           [
             630.0,
-            591
+            483.2
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message3",
@@ -476,13 +592,15 @@
         "points": [
           [
             630.0,
-            716
+            549.04
           ],
           [
             970.0,
-            716
+            549.04
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message4",
@@ -491,13 +609,15 @@
         "points": [
           [
             630.0,
-            841
+            614.88
           ],
           [
             1310.0,
-            841
+            614.88
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       },
       {
         "id": "message5",
@@ -506,15 +626,25 @@
         "points": [
           [
             1310.0,
-            966
+            680.72
           ],
           [
             1480.0,
-            966
+            680.72
           ]
-        ]
+        ],
+        "filled": true,
+        "dashed": false
       }
     ],
     "author_native_cell": true
+  },
+  "independent_review_repair": {
+    "findings": [
+      "R1",
+      "R4"
+    ],
+    "preserved_source": "D:\\RAD\\FINAL\\Part2\\notes\\P3_trash\\P3-F\\independent_review_R1_R4_20261025_192108\\UC-02\\seqdao_uc02_confirmDelivered_PartD.json",
+    "scope": "Actual guarded regions and synchronous arrowheads; no shared-model/app/status changes."
   }
 }

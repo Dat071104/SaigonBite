@@ -269,3 +269,4 @@ Target collaborators for `fingerprint†`: **PaymentMethod** and **OnlineOption*
 | Class | Responsibilities (knows / does) | Collaborators |
 |---|---|---|
 | CustomerType | Knows LOCAL, TOURIST. Does typed value / enumeration initialization and attribute access. Hold typed business state and its local rules. | Customer, LocalCustomer, TouristCustomer |
+
