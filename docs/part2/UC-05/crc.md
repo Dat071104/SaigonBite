@@ -225,4 +225,3 @@ Collaborators below resolve real AST constructor/function calls or typed collabo
 | Class | Responsibilities (knows / does) | Collaborators |
 |---|---|---|
 | CustomerType | Knows LOCAL, TOURIST. Does typed value / enumeration initialization and attribute access. Hold typed business state and its local rules. | Customer, LocalCustomer, TouristCustomer |
-

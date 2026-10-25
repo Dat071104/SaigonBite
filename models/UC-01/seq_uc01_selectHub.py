@@ -229,4 +229,3 @@ if __name__=='__main__':
     inp.write_text(json.dumps(spec,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
     render(spec,inp.with_suffix(''))
     inp.write_text(json.dumps(spec,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
-
