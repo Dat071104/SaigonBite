@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1360" viewBox="0 0 1800 1360">
 <rect width="100%" height="100%" fill="white"/>
 <polyline points="1000,250 730,250" fill="none" stroke="#52616F" stroke-width="3"/>
-<polyline points="730,670 850,670 850,500 1150,500 1150,433" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="730,670 850,670 850,500 1150,500 1150,402" fill="none" stroke="#52616F" stroke-width="3"/>
 <polyline points="1000,700 730,700" fill="none" stroke="#52616F" stroke-width="3"/>
 <rect x="80" y="120" width="650" height="344" fill="#F4F8FB" stroke="#004387" stroke-width="3"/>
 <path d="M80,172 H730" stroke="#004387" stroke-width="2"/>
@@ -22,10 +22,10 @@
 <tspan x="30" dy="0">Static schema v2 at C0 = 45ac762; full SQL mapping and notes are in §4.3.1.</tspan>
 </text>
 <text x="930" y="215" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
-<tspan x="930" dy="0">0..1</tspan>
+<tspan x="930" dy="0">0..*</tspan>
 </text>
 <text x="740" y="215" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
-<tspan x="740" dy="0">0..*</tspan>
+<tspan x="740" dy="0">0..1</tspan>
 </text>
 <text x="740" y="635" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
 <tspan x="740" dy="0">0..1</tspan>
@@ -33,11 +33,11 @@
 <text x="1160" y="438" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
 <tspan x="1160" dy="0">1</tspan>
 </text>
-<text x="950" y="665" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
-<tspan x="950" dy="0">1</tspan>
+<text x="935" y="665" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="935" dy="0">0..*</tspan>
 </text>
 <text x="735" y="720" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
-<tspan x="735" dy="0">0..*</tspan>
+<tspan x="735" dy="0">1</tspan>
 </text>
 <text x="94" y="132" fill="#202B36" font-family="Arial, sans-serif" font-size="28" font-weight="700" dominant-baseline="hanging">
 <tspan x="94" dy="0">hub</tspan>

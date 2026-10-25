@@ -155,12 +155,12 @@ REF_POSITIONS = {
 # (part, child table, FK column, parent table, child endpoint, parent endpoint,
 #  route points, child-end multiplicity, parent-end multiplicity, label locations)
 EDGE_LAYOUTS = [
-    ("PartA", "user_account", "hub_id", "hub", (1000, 250), (730, 250), [(1000, 250), (730, 250)], "0..1", "0..*", (930, 215, 740, 215)),
-    ("PartA", "customer", "user_id", "user_account", (730, 670), (1150, 433), [(730, 670), (850, 670), (850, 500), (1150, 500), (1150, 433)], "0..1", "1", (740, 635, 1160, 438)),
-    ("PartA", "address", "customer_id", "customer", (1000, 700), (730, 700), [(1000, 700), (730, 700)], "1", "0..*", (950, 665, 735, 720)),
+    ("PartA", "user_account", "hub_id", "hub", (1000, 250), (730, 250), [(1000, 250), (730, 250)], "0..*", "0..1", (930, 215, 740, 215)),
+    ("PartA", "customer", "user_id", "user_account", (730, 670), (1150, 402), [(730, 670), (850, 670), (850, 500), (1150, 500), (1150, 402)], "0..1", "1", (740, 635, 1160, 438)),
+    ("PartA", "address", "customer_id", "customer", (1000, 700), (730, 700), [(1000, 700), (730, 700)], "0..*", "1", (935, 665, 735, 720)),
     ("PartB", "menu_item", "brand_id", "brand", (1000, 270), (680, 270), [(1000, 270), (680, 270)], "0..*", "1", (930, 235, 685, 275)),
-    ("PartB", "hub_menu_item", "menu_item_id", "menu_item", (1300, 600), (1300, 391), [(1300, 600), (1300, 391)], "1", "0..*", (1310, 550, 1310, 405)),
-    ("PartB", "hub_menu_item", "hub_id", "hub", (1300, 758), (1300, 850), [(1300, 758), (1300, 850)], "1", "0..*", (1310, 770, 1360, 825)),
+    ("PartB", "hub_menu_item", "menu_item_id", "menu_item", (1300, 600), (1300, 391), [(1300, 600), (1300, 391)], "0..*", "1", (1310, 550, 1310, 405)),
+    ("PartB", "hub_menu_item", "hub_id", "hub", (1300, 758), (1300, 850), [(1300, 758), (1300, 850)], "0..*", "1", (1310, 770, 1360, 825)),
     ("PartC", "orders", "customer_id", "customer", (680, 180), (830, 170), [(680, 180), (830, 170)], "0..*", "1", (685, 150, 780, 145)),
     ("PartC", "orders", "hub_id", "hub", (680, 360), (830, 350), [(680, 360), (830, 350)], "0..*", "1", (685, 330, 780, 325)),
     ("PartC", "orders", "address_id", "address", (680, 540), (830, 530), [(680, 540), (830, 530)], "0..*", "1", (685, 510, 780, 505)),
@@ -358,6 +358,8 @@ def add_edges(p, part: str, schema: dict) -> list[dict]:
     for i, (edge_part, child, column, parent, child_pt, parent_pt, points, child_mult, parent_mult, labels) in enumerate(EDGE_LAYOUTS):
         if edge_part != part:
             continue
+        relationship = fk_relationship(schema, child, column, parent)
+        assert (child_mult, parent_mult) == (relationship["parent_to_child"], relationship["child_to_parent"]), (part, child, column, "UML multiplicities belong at the opposite relation end")
         child_id = child if child in TABLE_POSITIONS[part] else f"ref_{child}"
         parent_id = parent if parent in TABLE_POSITIONS[part] else f"ref_{parent}"
         if part == "PartB" and parent == "hub":
