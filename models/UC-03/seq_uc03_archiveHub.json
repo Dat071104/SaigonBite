@@ -1,0 +1,212 @@
+{
+  "type": "sequence",
+  "title": "UC-03: archiveHub",
+  "UC": "UC-03",
+  "op_id": "OP-36",
+  "operation": "archiveHub",
+  "parameters": "hubId",
+  "ssd_occurrence": "models/UC-03/ssd_uc03.drawio#M03-05",
+  "reject_guard": "denied / archived target / open orders > 0",
+  "controller": "HubController",
+  "method": "archive_hub",
+  "view_method": "archive_hub",
+  "arguments": "uid(), hubId",
+  "domain": "Hub",
+  "domain_note": "id, archived_at",
+  "domain_attributes": [
+    "id",
+    "archived_at"
+  ],
+  "effect": "no open orders; archive flag; history retained",
+  "create": null,
+  "PC": "UC03-PC02",
+  "MG": "UC03-MG01",
+  "read": false,
+  "result": "savedRecord",
+  "status": "P4-TARGET",
+  "P4_input": "P2-S13; P3-S03",
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "states": [],
+  "phase3": {
+    "diagram_type": "sequence",
+    "UC": "UC-03",
+    "op_id": "OP-36",
+    "operation": "archiveHub",
+    "parameters": "hubId",
+    "ssd_occurrence": "models/UC-03/ssd_uc03.drawio#M03-05",
+    "elements": [
+      {
+        "class": "admin",
+        "attributes": [],
+        "methods": [
+          "archive_hub"
+        ]
+      },
+      {
+        "class": "HubController",
+        "attributes": [],
+        "methods": [
+          "archive_hub",
+          "_require_admin"
+        ]
+      },
+      {
+        "class": "Hub",
+        "attributes": [
+          "id",
+          "archived_at"
+        ],
+        "methods": []
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "admin",
+        "target": "HubController",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "HubController",
+        "target": "Hub",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      }
+    ],
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Admin",
+        "role": "actor"
+      },
+      {
+        "id": "view",
+        "class": "admin",
+        "role": "view"
+      },
+      {
+        "id": "controller",
+        "class": "HubController",
+        "role": "controller"
+      },
+      {
+        "id": "domain",
+        "class": "Hub",
+        "role": "domain"
+      }
+    ],
+    "messages": [
+      {
+        "from": "actor",
+        "to": "view",
+        "method": "archiveHub",
+        "kind": "ssd",
+        "arguments": "hubId",
+        "guard": "",
+        "PC_MG": ""
+      },
+      {
+        "from": "view",
+        "to": "controller",
+        "method": "archive_hub",
+        "kind": "call",
+        "arguments": "uid(), hubId",
+        "guard": "",
+        "PC_MG": ""
+      },
+      {
+        "from": "controller",
+        "to": "controller",
+        "method": "_require_admin",
+        "kind": "call",
+        "arguments": "uid()",
+        "guard": "",
+        "PC_MG": ""
+      },
+      {
+        "from": "controller",
+        "to": "view",
+        "method": "refusal",
+        "kind": "return",
+        "arguments": "",
+        "guard": "denied / invalid / stale",
+        "PC_MG": "UC03-MG01"
+      },
+      {
+        "from": "view",
+        "to": "actor",
+        "method": "response",
+        "kind": "return",
+        "arguments": "",
+        "guard": "denied / invalid / stale",
+        "PC_MG": "UC03-MG01"
+      },
+      {
+        "from": "controller",
+        "to": "domain",
+        "method": "attributes",
+        "kind": "note",
+        "arguments": "id, archived_at",
+        "guard": "valid",
+        "PC_MG": ""
+      },
+      {
+        "from": "controller",
+        "to": "view",
+        "method": "result",
+        "kind": "return",
+        "arguments": "",
+        "guard": "success",
+        "PC_MG": "UC03-PC02"
+      },
+      {
+        "from": "view",
+        "to": "actor",
+        "method": "response",
+        "kind": "return",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": ""
+      },
+      {
+        "from": "controller",
+        "to": "view",
+        "method": "controlledFailure",
+        "kind": "return",
+        "arguments": "",
+        "guard": "technical failure",
+        "PC_MG": "UC03-MG01"
+      },
+      {
+        "from": "view",
+        "to": "actor",
+        "method": "response",
+        "kind": "return",
+        "arguments": "",
+        "guard": "technical failure",
+        "PC_MG": "UC03-MG01"
+      }
+    ],
+    "states": []
+  },
+  "qa": {
+    "canvas": [
+      1200,
+      1250
+    ],
+    "placed_width_mm": 170,
+    "minimum_font_px": 23,
+    "minimum_pt": 9.236220472440946,
+    "connected_edges": 10,
+    "xml_valid": true,
+    "native_text_cells": 24,
+    "native_minimum_font_px": 23.0,
+    "native_minimum_pt": 9.236220472440946,
+    "native_explicit_font_styles": true
+  },
+  "controller_signature": "archive_hub(self, user_id: int, hub_id: int) -> Hub"
+}

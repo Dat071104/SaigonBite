@@ -1,0 +1,214 @@
+{
+  "type": "sequence",
+  "title": "UC-03: getHub",
+  "UC": "UC-03",
+  "op_id": "OP-24",
+  "operation": "getHub",
+  "parameters": "hubId",
+  "ssd_occurrence": "models/UC-03/ssd_uc03.drawio#M03-02",
+  "reject_guard": "denied / missing target",
+  "controller": "HubController",
+  "method": "get_hub",
+  "view_method": "edit_hub",
+  "arguments": "uid(), hubId",
+  "domain": "Hub",
+  "domain_note": "code, max_active_orders, archived_at",
+  "domain_attributes": [
+    "code",
+    "max_active_orders",
+    "archived_at"
+  ],
+  "effect": "zero writes; load + open-order archive guard",
+  "create": null,
+  "PC": "authorized read; zero writes",
+  "MG": "UC03-MG01",
+  "read": true,
+  "result": "hubAndArchiveGuard",
+  "status": "MATCH",
+  "P4_input": "none; Static MATCH",
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "states": [],
+  "phase3": {
+    "diagram_type": "sequence",
+    "UC": "UC-03",
+    "op_id": "OP-24",
+    "operation": "getHub",
+    "parameters": "hubId",
+    "ssd_occurrence": "models/UC-03/ssd_uc03.drawio#M03-02",
+    "elements": [
+      {
+        "class": "admin",
+        "attributes": [],
+        "methods": [
+          "edit_hub"
+        ]
+      },
+      {
+        "class": "HubController",
+        "attributes": [],
+        "methods": [
+          "get_hub",
+          "_require_admin"
+        ]
+      },
+      {
+        "class": "Hub",
+        "attributes": [
+          "code",
+          "max_active_orders",
+          "archived_at"
+        ],
+        "methods": []
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "admin",
+        "target": "HubController",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "HubController",
+        "target": "Hub",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      }
+    ],
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Admin",
+        "role": "actor"
+      },
+      {
+        "id": "view",
+        "class": "admin",
+        "role": "view"
+      },
+      {
+        "id": "controller",
+        "class": "HubController",
+        "role": "controller"
+      },
+      {
+        "id": "domain",
+        "class": "Hub",
+        "role": "domain"
+      }
+    ],
+    "messages": [
+      {
+        "from": "actor",
+        "to": "view",
+        "method": "getHub",
+        "kind": "ssd",
+        "arguments": "hubId",
+        "guard": "",
+        "PC_MG": ""
+      },
+      {
+        "from": "view",
+        "to": "controller",
+        "method": "get_hub",
+        "kind": "call",
+        "arguments": "uid(), hubId",
+        "guard": "",
+        "PC_MG": ""
+      },
+      {
+        "from": "controller",
+        "to": "controller",
+        "method": "_require_admin",
+        "kind": "call",
+        "arguments": "uid()",
+        "guard": "",
+        "PC_MG": ""
+      },
+      {
+        "from": "controller",
+        "to": "view",
+        "method": "refusal",
+        "kind": "return",
+        "arguments": "",
+        "guard": "denied / invalid / stale",
+        "PC_MG": "UC03-MG01"
+      },
+      {
+        "from": "view",
+        "to": "actor",
+        "method": "response",
+        "kind": "return",
+        "arguments": "",
+        "guard": "denied / invalid / stale",
+        "PC_MG": "UC03-MG01"
+      },
+      {
+        "from": "controller",
+        "to": "domain",
+        "method": "attributes",
+        "kind": "note",
+        "arguments": "code, max_active_orders, archived_at",
+        "guard": "valid",
+        "PC_MG": ""
+      },
+      {
+        "from": "controller",
+        "to": "view",
+        "method": "result",
+        "kind": "return",
+        "arguments": "",
+        "guard": "success",
+        "PC_MG": "authorized read; zero writes"
+      },
+      {
+        "from": "view",
+        "to": "actor",
+        "method": "response",
+        "kind": "return",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": ""
+      },
+      {
+        "from": "controller",
+        "to": "view",
+        "method": "controlledFailure",
+        "kind": "return",
+        "arguments": "",
+        "guard": "technical failure",
+        "PC_MG": "UC03-MG01"
+      },
+      {
+        "from": "view",
+        "to": "actor",
+        "method": "response",
+        "kind": "return",
+        "arguments": "",
+        "guard": "technical failure",
+        "PC_MG": "UC03-MG01"
+      }
+    ],
+    "states": []
+  },
+  "qa": {
+    "canvas": [
+      1200,
+      1250
+    ],
+    "placed_width_mm": 170,
+    "minimum_font_px": 23,
+    "minimum_pt": 9.236220472440946,
+    "connected_edges": 10,
+    "xml_valid": true,
+    "native_text_cells": 24,
+    "native_minimum_font_px": 23.0,
+    "native_minimum_pt": 9.236220472440946,
+    "native_explicit_font_styles": true
+  },
+  "controller_signature": "get_hub(self, user_id: int, hub_id: int) -> HubAdminView"
+}

@@ -1,0 +1,174 @@
+{
+  "type": "dcd",
+  "title": "UC-03 final: getHub (2/5)",
+  "model_source": "models/shared/design_model.json",
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "boxes": [
+    {
+      "class": "admin",
+      "attributes": [],
+      "methods": [
+        "edit_hub"
+      ],
+      "xyw": [
+        100,
+        80,
+        1050
+      ]
+    },
+    {
+      "class": "HubController",
+      "attributes": [
+        "hubs"
+      ],
+      "methods": [
+        "get_hub",
+        "_require_admin"
+      ],
+      "xyw": [
+        100,
+        260,
+        1050
+      ]
+    },
+    {
+      "class": "Hub",
+      "attributes": [
+        "code",
+        "max_active_orders",
+        "archived_at"
+      ],
+      "methods": [],
+      "xyw": [
+        100,
+        435,
+        510
+      ]
+    },
+    {
+      "class": "HubDAO",
+      "attributes": [
+        "conn"
+      ],
+      "methods": [
+        "get_including_archived"
+      ],
+      "xyw": [
+        100,
+        615,
+        1050
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "source": "HubController",
+      "target": "Hub",
+      "kind": "dependency",
+      "status": "MATCH",
+      "source_evidence": "AST call or typed attribute/signature",
+      "allowed_on_layered_diagram": true
+    },
+    {
+      "source": "HubController",
+      "target": "HubDAO",
+      "kind": "dependency",
+      "status": "MATCH",
+      "source_evidence": "AST call or typed attribute/signature",
+      "allowed_on_layered_diagram": true
+    },
+    {
+      "source": "admin",
+      "target": "HubController",
+      "kind": "dependency",
+      "status": "MATCH",
+      "source_evidence": "AST call or typed attribute/signature",
+      "allowed_on_layered_diagram": true
+    }
+  ],
+  "continuation": "dcd_uc03_final_PartA–PartE: continued operation projections. Full typed members in .1 and layer sheets.",
+  "P4_input": "none; Static MATCH",
+  "phase3": {
+    "diagram_type": "dcd",
+    "elements": [
+      {
+        "class": "admin",
+        "attributes": [],
+        "methods": [
+          "edit_hub"
+        ]
+      },
+      {
+        "class": "HubController",
+        "attributes": [
+          "hubs"
+        ],
+        "methods": [
+          "get_hub",
+          "_require_admin"
+        ]
+      },
+      {
+        "class": "Hub",
+        "attributes": [
+          "code",
+          "max_active_orders",
+          "archived_at"
+        ],
+        "methods": []
+      },
+      {
+        "class": "HubDAO",
+        "attributes": [
+          "conn"
+        ],
+        "methods": [
+          "get_including_archived"
+        ]
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "HubController",
+        "target": "Hub",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "HubController",
+        "target": "HubDAO",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "admin",
+        "target": "HubController",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      }
+    ],
+    "states": [],
+    "association_classes": []
+  },
+  "qa": {
+    "canvas": [
+      1200,
+      850
+    ],
+    "placed_width_mm": 230,
+    "minimum_font_px": 18,
+    "minimum_pt": 9.779527559055119,
+    "connected_edges": 3,
+    "xml_valid": true,
+    "native_text_cells": 8,
+    "native_minimum_font_px": 18.0,
+    "native_minimum_pt": 9.779527559055119,
+    "native_explicit_font_styles": true
+  }
+}

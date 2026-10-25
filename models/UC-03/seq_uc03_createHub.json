@@ -1,0 +1,226 @@
+{
+  "type": "sequence",
+  "title": "UC-03: createHub",
+  "UC": "UC-03",
+  "op_id": "OP-34",
+  "operation": "createHub",
+  "parameters": "code, name, address, latitude, longitude, baseDeliveryFee, capacity",
+  "ssd_occurrence": "models/UC-03/ssd_uc03.drawio#M03-03",
+  "reject_guard": "denied / duplicate code / invalid capacity or fields",
+  "controller": "HubController",
+  "method": "create_hub",
+  "view_method": "new_hub",
+  "arguments": "uid(), form",
+  "domain": "Hub",
+  "domain_note": "code, name, address_text, latitude, longitude, base_delivery_fee, max_active_orders",
+  "domain_attributes": [
+    "id"
+  ],
+  "effect": "archived_at=None (ACTIVE); assign identity; old orders unchanged",
+  "create": "id=0, validated attributes",
+  "PC": "UC03-PC01",
+  "MG": "UC03-MG01",
+  "read": false,
+  "result": "savedRecord",
+  "status": "P4-TARGET",
+  "P4_input": "P2-S13; P3-S03",
+  "C0": "45ac76221b0a103174c7c01d17577e6e49cfd665",
+  "states": [
+    {
+      "class": "Hub",
+      "attribute": "archived_at",
+      "values": [
+        "None"
+      ]
+    }
+  ],
+  "phase3": {
+    "diagram_type": "sequence",
+    "UC": "UC-03",
+    "op_id": "OP-34",
+    "operation": "createHub",
+    "parameters": "code, name, address, latitude, longitude, baseDeliveryFee, capacity",
+    "ssd_occurrence": "models/UC-03/ssd_uc03.drawio#M03-03",
+    "elements": [
+      {
+        "class": "admin",
+        "attributes": [],
+        "methods": [
+          "new_hub"
+        ]
+      },
+      {
+        "class": "HubController",
+        "attributes": [],
+        "methods": [
+          "create_hub",
+          "_require_admin"
+        ]
+      },
+      {
+        "class": "Hub",
+        "attributes": [
+          "id"
+        ],
+        "methods": []
+      }
+    ],
+    "dependencies": [
+      {
+        "source": "admin",
+        "target": "HubController",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      },
+      {
+        "source": "HubController",
+        "target": "Hub",
+        "kind": "dependency",
+        "status": "MATCH",
+        "source_evidence": "AST call or typed attribute/signature",
+        "allowed_on_layered_diagram": true
+      }
+    ],
+    "lifelines": [
+      {
+        "id": "actor",
+        "class": "Admin",
+        "role": "actor"
+      },
+      {
+        "id": "view",
+        "class": "admin",
+        "role": "view"
+      },
+      {
+        "id": "controller",
+        "class": "HubController",
+        "role": "controller"
+      },
+      {
+        "id": "domain",
+        "class": "Hub",
+        "role": "domain"
+      }
+    ],
+    "messages": [
+      {
+        "from": "actor",
+        "to": "view",
+        "method": "createHub",
+        "kind": "ssd",
+        "arguments": "code, name, address, latitude, longitude, baseDeliveryFee, capacity",
+        "guard": "",
+        "PC_MG": ""
+      },
+      {
+        "from": "view",
+        "to": "controller",
+        "method": "create_hub",
+        "kind": "call",
+        "arguments": "uid(), form",
+        "guard": "",
+        "PC_MG": ""
+      },
+      {
+        "from": "controller",
+        "to": "controller",
+        "method": "_require_admin",
+        "kind": "call",
+        "arguments": "uid()",
+        "guard": "",
+        "PC_MG": ""
+      },
+      {
+        "from": "controller",
+        "to": "view",
+        "method": "refusal",
+        "kind": "return",
+        "arguments": "",
+        "guard": "denied / invalid / stale",
+        "PC_MG": "UC03-MG01"
+      },
+      {
+        "from": "view",
+        "to": "actor",
+        "method": "response",
+        "kind": "return",
+        "arguments": "",
+        "guard": "denied / invalid / stale",
+        "PC_MG": "UC03-MG01"
+      },
+      {
+        "from": "controller",
+        "to": "domain",
+        "method": "Hub",
+        "kind": "create",
+        "arguments": "id=0, validated attributes",
+        "guard": "valid",
+        "PC_MG": ""
+      },
+      {
+        "from": "controller",
+        "to": "view",
+        "method": "result",
+        "kind": "return",
+        "arguments": "",
+        "guard": "success",
+        "PC_MG": "UC03-PC01"
+      },
+      {
+        "from": "view",
+        "to": "actor",
+        "method": "response",
+        "kind": "return",
+        "arguments": "",
+        "guard": "",
+        "PC_MG": ""
+      },
+      {
+        "from": "controller",
+        "to": "view",
+        "method": "controlledFailure",
+        "kind": "return",
+        "arguments": "",
+        "guard": "technical failure",
+        "PC_MG": "UC03-MG01"
+      },
+      {
+        "from": "view",
+        "to": "actor",
+        "method": "response",
+        "kind": "return",
+        "arguments": "",
+        "guard": "technical failure",
+        "PC_MG": "UC03-MG01"
+      }
+    ],
+    "states": [
+      {
+        "class": "Hub",
+        "attribute": "archived_at",
+        "values": [
+          "None"
+        ]
+      }
+    ]
+  },
+  "qa": {
+    "canvas": [
+      1200,
+      1250
+    ],
+    "placed_width_mm": 170,
+    "minimum_font_px": 23,
+    "minimum_pt": 9.236220472440946,
+    "connected_edges": 10,
+    "xml_valid": true,
+    "native_text_cells": 24,
+    "native_minimum_font_px": 23.0,
+    "native_minimum_pt": 9.236220472440946,
+    "native_explicit_font_styles": true
+  },
+  "controller_signature": "create_hub(self, user_id: int, form: Mapping[str, str]) -> Hub"
+}
