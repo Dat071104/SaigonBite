@@ -31,6 +31,7 @@ The repo was clean on `part2` before creating the preflight helper. C0 is **45ac
 | P3-S01 | PlaceOrderController.suggest_hubs sorts `(load/capacity, id)` | BR-04 requires `(load/capacity, raw distance, id)`; F-04 also covers raw range. P4.3. |
 | P3-S02 | HubController.list_hubs has only user_id and always list_all | Honor optional includeArchived in OP-23 with default True; no removal of retained history. P4.2. |
 | P3-S03 | Several controller mutation calls discard boolean DAO results; shared transaction helper omits COMMIT-error rollback | Conditional-save rowcount outcomes and controlled busy/commit failure are design targets in P4.1 and the affected UC subphase. P2-S13 remains the shared COMMIT finding. |
+| P3-S04 | Strict import audit: 43 cross-layer records plus presentation.auth→root NAV, 44 records/23 pairs | Explicit boundary disposition in P4.9; no implicit persistence-mapper exception. A static policy finding does not prove runtime failure. |
 
 ## Shared mapping decisions
 
@@ -43,7 +44,34 @@ The repo was clean on `part2` before creating the preflight helper. C0 is **45ac
 
 ## Wave 1 integration
 
-⟦PENDING: read all four completed reports together, apply and record every request, regenerate affected model views, then commit six UC packages and architecture/mapping⟧.
+All four Wave 1 successful final handoffs arrived before root opened the reports. All requests were then read as one bundle. Originals are preserved in `Part2/notes/P3_trash/wave1_preintegration.zip`, with 1,746-file manifest in `P3-root/wave1_preintegration_manifest.json`. Accepted requests and evidence are recorded in `P3-root/wave1_adoption.json`.
+
+| Requests | Root decision and reason |
+|---|---|
+| A R-A01 | Accepted: Quote.fingerprint uses domain PaymentMethod/OnlineOption parameters; a domain class must not depend on the controller PaymentChoice type. F-07 / P4.3 remains explicit. |
+| A R-A02; B-1 | Accepted: typed Order/Delivery local receivers are not identically named Flask modules. Removed false upward navigation and added source-backed controller/common/entity dependencies, including DeliveryController→Payment. |
+| A R-A03; D-1 | Accepted: layered DCDs draw only downward dependencies. All 44 strict import finding records /23 module pairs remain accounted for as P3-S04/P4.9, with no mapper exception or runtime-failure claim. |
+| A R-A04 | Accepted: release_payment must persist the checked amount/refund and state within the transaction. Changing an in-memory state alone does not establish the SUC guarantee. |
+| A R-A05 | Accepted: cancel/decline writes cite their supporting contracts; they are not labelled as queries with no persistent effect. Frozen main PC/MG anchors remain unchanged. |
+| B-2 | Accepted: menu_item_id travels through ReportDAO grouping, SalesReport.top_items and presentation. The target tuple is (item ID, snapshot name, quantity, revenue), F-09/P4.8. |
+| B-3; C-R3 | Accepted: target signature, parameter and return metadata agree. SQL extraction resolves literal fragments passed to execute methods and excludes a docstring's false table `an`; this is an inventory correction, not an app defect. |
+| C-R1 / C-R2 | Accepted: mediated MenuController→HubMenuItem responsibility and HubMenuItem association-class metadata; no invented Python method. |
+| C message kinds | Accepted: only call messages resolve as receiver methods; SSD, create, return and note roles have their own checks. |
+| D-2 | Accepted: customer constraints P2-S03/S07 are P4.7 inputs and created_at P2-S02 is P4.1. P2-S08 has a real created_at fallback and needs no invented fix. |
+
+Root's first 273-figure integration diagnostic found 200 failing checks: 68 missing native author labels, 68 footer legibility failures and 46 upward DCD dependencies in B; 17 native-font discrepancies in C; and one missing DeliveryController→Payment model dependency. The latter was corrected in the shared model. These are recorded defects to repair, not waived checks. Root dispatched three disjoint repair lanes: same A/C identities and a new Sol/high B-repair worker after original B had completed. Their report barrier applies to the entire three-worker batch. No report or unfinished artifact in this repair batch is read before all three final handoffs.
+
+Root also replaced the package metadata's fictional `Database` class label with the actual `database (module)` role, clarified 14 bootstrap imports including app.py, and accepted D's request in section 4.2. Both the changed direct PNG and independently rasterized SVG were opened and inspected; `P3-root/package_integration_qa.json` records the source hashes. Native application opening remains UNTESTED.
+
+⟦PENDING: complete the repair barrier, validate regenerated views, and commit the six UC packages plus architecture/mapping⟧.
+
+### Wave 1 usage interruption and same-identity recovery
+
+At 18:08 UTC (25/10 01:08 Asia/Bangkok), runtime status showed A/B/C/D errored with `usage_limit_exceeded`, all before a final report. The owner explicitly said to continue root and subagents. The live account tool returned `ordinaryUsageAllowed=true`; root resumed the same p3_a/p3_b/p3_c/p3_d identities with followup_task, preserving their lanes/drafts. No replacement, model/config change, credit purchase or reset was made. Metadata-only process/file timestamp/status inspection did not open unfinished reports or inspect worker artifact contents. The four-report barrier remains mandatory. Root prepared independent inventory/signature metadata corrections in its own scripts while the wave runs; shared model regeneration waits for integration.
+
+Post-resumption runtime checks confirmed all four running. At 18:37 UTC, A/C/D had final notifications and B remained running with generation log timestamps in that minute. The next bounded liveness check at approximately 19:06 UTC again found B running; its builder and visual-audit metadata had fresh timestamps at 02:04–02:06 local time. No stalled-worker recovery or replacement was warranted. The three completed reports remained unopened while B finished.
+
+B subsequently stopped on another usage-limit error before its final report. On the owner's second explicit continuation, 25/10 03:22 UTC / 10:22 Bangkok, the live account tool again returned ordinaryUsageAllowed=true. Root resumed the same p3_b identity from the latest 02:13 local QA files, with no restart, replacement, model/config change or credit action. A/C/D stayed completed; their reports remained unopened pending B's successful final handoff. Resume checks re-established the branch/HEAD and app-diff boundary before continuing.
 
 ## Wave 2 / Wave 3 integration
 

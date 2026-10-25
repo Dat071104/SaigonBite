@@ -37,8 +37,8 @@
         "status": "GAP",
         "P4_input": "F-07",
         "P4_subphase": "P4.3",
-        "reason": "Canonical content fingerprint binds hub, address, line IDs/quantities/prices, voucher+D, F, Q and payment choice.",
-        "signature": "fingerprint(self, payment: PaymentChoice) -> str"
+        "reason": "Bind all consent fields with pure-domain enum inputs; the controller adapts PaymentChoice.",
+        "signature": "fingerprint(self, payment_method: PaymentMethod, online_option: Optional[OnlineOption] = None) -> str"
       }
     ],
     "Hub": [
@@ -162,7 +162,7 @@
         "status": "P4-TARGET",
         "P4_input": "F-03; F-09",
         "P4_subphase": "P4.8",
-        "reason": "Expose T without subtracting refund owed twice; top items retain menu_item_id identity."
+        "reason": "Expose T without subtracting refund owed twice; top items retain menu_item_id identity. Carry menu_item_id into SalesReport.top_items and presentation."
       },
       {
         "name": "workload_report",
@@ -353,6 +353,14 @@
         "P4_subphase": "P4.7",
         "reason": "Minimal per-ID closed-order archive preserves history and child rows; existing batch operation remains separately named.",
         "signature": "archive_order(self, user_id: int, order_id: int) -> Order"
+      },
+      {
+        "name": "archive",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S13; P3-S03",
+        "P4_subphase": "P4.1 + P4.7",
+        "reason": "Controlled commit/busy handling is inherited from the target transaction helper; check conditional update outcomes."
       }
     ],
     "UserAccount": [
@@ -366,6 +374,223 @@
         "type": "str",
         "visibility": "+",
         "annotated": true
+      }
+    ],
+    "controllers.common": [
+      {
+        "name": "release_payment",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "F-02; P2-S01; P3-S03",
+        "P4_subphase": "P4.4",
+        "reason": "Persist full captured C as refund_amount together with state; changing only the domain object does not save the amount. Check conditional save results in the same transaction."
+      }
+    ],
+    "domain.rules": [
+      {
+        "name": "distance_km",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "F-04",
+        "P4_subphase": "P4.3",
+        "reason": "Return raw Haversine distance for radius and fee decisions; round only display/storage after checks."
+      }
+    ],
+    "data_access.database": [
+      {
+        "name": "connect",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S12",
+        "P4_subphase": "P4.1 / P6",
+        "reason": "Apply the required per-connection WAL/NORMAL/foreign-key/busy-timeout configuration; timeout=10 already exists."
+      },
+      {
+        "name": "immediate_transaction",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S13; P3-S03",
+        "P4_subphase": "P4.1",
+        "reason": "Rollback and surface a controlled failure for BEGIN/write/COMMIT failures; current COMMIT occurs outside its except block."
+      }
+    ],
+    "ReportDAO": [
+      {
+        "name": "top_items",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "F-09",
+        "P4_subphase": "P4.8",
+        "reason": "Select and group by menu_item_id; snapshot name is a label, never the grouping identity."
+      }
+    ],
+    "SalesReport": [
+      {
+        "name": "top_items",
+        "kind": "attribute",
+        "status": "P4-TARGET",
+        "P4_input": "F-09",
+        "P4_subphase": "P4.8",
+        "reason": "Carry (menu_item_id, snapshot_name, quantity, revenue) through the controller and presentation.",
+        "type": "list[tuple[int, str, int, int]]",
+        "visibility": "+",
+        "annotated": true
+      }
+    ],
+    "order": [
+      {
+        "name": "confirm",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "F-07; P2-S05",
+        "P4_subphase": "P4.3",
+        "reason": "Bind the posted fingerprint/payment choice to the target confirm method; retain controlled results through COMMIT."
+      },
+      {
+        "name": "quote",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "F-07",
+        "P4_subphase": "P4.3",
+        "reason": "Pass payment choice into target quoting and render the full fingerprint."
+      }
+    ],
+    "admin": [
+      {
+        "name": "hubs",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P3-S02",
+        "P4_subphase": "P4.2",
+        "reason": "Read optional includeArchived and pass it to the target controller parameter."
+      },
+      {
+        "name": "catalogue",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S14",
+        "P4_subphase": "P4.6",
+        "reason": "Delegate the composite catalogue request to list_catalogue."
+      },
+      {
+        "name": "hub_menu",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S14",
+        "P4_subphase": "P4.6",
+        "reason": "Delegate optional hub catalogue projection to list_catalogue."
+      },
+      {
+        "name": "list_item",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S15",
+        "P4_subphase": "P4.6",
+        "reason": "Pass initial available into one atomic listing insert."
+      }
+    ],
+    "reports": [
+      {
+        "name": "sales",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "F-09",
+        "P4_subphase": "P4.8",
+        "reason": "Render the new identity-preserving top-items shape; template unpacking must retain the item identity."
+      }
+    ],
+    "AccountController": [
+      {
+        "name": "register",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S13; P3-S03",
+        "P4_subphase": "P4.1 + P4.7",
+        "reason": "Controlled commit/busy handling is inherited from the target transaction helper; check conditional update outcomes."
+      },
+      {
+        "name": "update_profile",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S13; P3-S03",
+        "P4_subphase": "P4.1 + P4.7",
+        "reason": "Controlled commit/busy handling is inherited from the target transaction helper; check conditional update outcomes."
+      },
+      {
+        "name": "add_address",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S13; P3-S03",
+        "P4_subphase": "P4.1 + P4.7",
+        "reason": "Controlled commit/busy handling is inherited from the target transaction helper; check conditional update outcomes."
+      },
+      {
+        "name": "update_address",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S13; P3-S03",
+        "P4_subphase": "P4.1 + P4.7",
+        "reason": "Controlled commit/busy handling is inherited from the target transaction helper; check conditional update outcomes."
+      },
+      {
+        "name": "archive_address",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S13; P3-S03",
+        "P4_subphase": "P4.1 + P4.7",
+        "reason": "Controlled commit/busy handling is inherited from the target transaction helper; check conditional update outcomes."
+      }
+    ],
+    "UserAdminController": [
+      {
+        "name": "create_staff",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S13; P3-S03",
+        "P4_subphase": "P4.1 + P4.7",
+        "reason": "Controlled commit/busy handling is inherited from the target transaction helper; check conditional update outcomes."
+      },
+      {
+        "name": "update_user",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S13; P3-S03",
+        "P4_subphase": "P4.1 + P4.7",
+        "reason": "Controlled commit/busy handling is inherited from the target transaction helper; check conditional update outcomes."
+      },
+      {
+        "name": "set_active",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S13; P3-S03",
+        "P4_subphase": "P4.1 + P4.7",
+        "reason": "Controlled commit/busy handling is inherited from the target transaction helper; check conditional update outcomes."
+      }
+    ],
+    "VoucherController": [
+      {
+        "name": "create_voucher",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S13; P3-S03",
+        "P4_subphase": "P4.1 + P4.7",
+        "reason": "Controlled commit/busy handling is inherited from the target transaction helper; check conditional update outcomes."
+      },
+      {
+        "name": "update_voucher",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S13; P3-S03",
+        "P4_subphase": "P4.1 + P4.7",
+        "reason": "Controlled commit/busy handling is inherited from the target transaction helper; check conditional update outcomes."
+      },
+      {
+        "name": "archive_voucher",
+        "kind": "method",
+        "status": "P4-TARGET",
+        "P4_input": "P2-S13; P3-S03",
+        "P4_subphase": "P4.1 + P4.7",
+        "reason": "Controlled commit/busy handling is inherited from the target transaction helper; check conditional update outcomes."
       }
     ]
   },
@@ -382,7 +607,18 @@
     "admin": "Translate administrator maintenance routes; never provide business decisions.",
     "delivery": "Translate shipper requests and render contact and cash information.",
     "kitchen": "Translate own-hub kitchen actions and render their results.",
-    "reports": "Translate Manager filters and render read-only report results."
+    "reports": "Translate Manager filters and render read-only report results.",
+    "UserAccount": "Hold account identity, role, active flag and optional kitchen-hub assignment.",
+    "Address": "Hold an owned delivery location and archive flag.",
+    "Brand": "Group menu items and retain the archived brand identity.",
+    "MenuItem": "Hold current catalogue text, whole-VND price and archive flag.",
+    "Voucher": "Check date/subtotal eligibility and calculate the bounded discount.",
+    "OrderLine": "Retain item/name/price/quantity snapshots and derive the line total.",
+    "Delivery": "Hold assignment, paired lifecycle times, cash and failure outcome.",
+    "LocalCustomer": "Specialize the Customer type and permitted payment options for a local customer.",
+    "TouristCustomer": "Specialize Customer identity and permitted payment options for a tourist.",
+    "HubStatus": "Derive busy, quiet and load percentage from current load and capacity.",
+    "Authorisation": "Carry the local simulator decision, reference and message; not persisted."
   },
   "associations": [
     {
@@ -630,6 +866,114 @@
       "status": "P4-TARGET",
       "P4_input": "P2-S06",
       "allowed_on_layered_diagram": true
+    },
+    {
+      "source": "controllers.common",
+      "target": "Order",
+      "kind": "dependency",
+      "status": "MATCH",
+      "P4_input": "",
+      "allowed_on_layered_diagram": true,
+      "source_evidence": "C0 order.move_to via typed Order parameter"
+    },
+    {
+      "source": "controllers.common",
+      "target": "Payment",
+      "kind": "dependency",
+      "status": "MATCH",
+      "P4_input": "",
+      "allowed_on_layered_diagram": true,
+      "source_evidence": "C0 payment.release_for_unfulfilled_order"
+    },
+    {
+      "source": "PlaceOrderController",
+      "target": "Hub",
+      "kind": "dependency",
+      "status": "MATCH",
+      "P4_input": "",
+      "allowed_on_layered_diagram": true,
+      "source_evidence": "C0 hub.distance_to"
+    },
+    {
+      "source": "PlaceOrderController",
+      "target": "Voucher",
+      "kind": "dependency",
+      "status": "MATCH",
+      "P4_input": "",
+      "allowed_on_layered_diagram": true,
+      "source_evidence": "C0 voucher.problem / discount_for"
+    },
+    {
+      "source": "PlaceOrderController",
+      "target": "domain.rules",
+      "kind": "dependency",
+      "status": "MATCH",
+      "P4_input": "",
+      "allowed_on_layered_diagram": true,
+      "source_evidence": "C0 fee / quiet / busy rule calls"
+    },
+    {
+      "source": "OrderTrackingController",
+      "target": "Order",
+      "kind": "dependency",
+      "status": "MATCH",
+      "P4_input": "",
+      "allowed_on_layered_diagram": true,
+      "source_evidence": "C0 order.replace_line"
+    },
+    {
+      "source": "KitchenController",
+      "target": "Order",
+      "kind": "dependency",
+      "status": "MATCH",
+      "P4_input": "",
+      "allowed_on_layered_diagram": true,
+      "source_evidence": "C0 order.line"
+    },
+    {
+      "source": "DeliveryController",
+      "target": "Delivery",
+      "kind": "dependency",
+      "status": "MATCH",
+      "P4_input": "",
+      "allowed_on_layered_diagram": true,
+      "source_evidence": "C0 local delivery.move_to"
+    },
+    {
+      "source": "Quote",
+      "target": "PaymentMethod",
+      "kind": "dependency",
+      "status": "P4-TARGET",
+      "P4_input": "F-07",
+      "allowed_on_layered_diagram": true,
+      "source_evidence": "Pure-domain fingerprint parameter"
+    },
+    {
+      "source": "Quote",
+      "target": "OnlineOption",
+      "kind": "dependency",
+      "status": "P4-TARGET",
+      "P4_input": "F-07",
+      "allowed_on_layered_diagram": true,
+      "source_evidence": "Pure-domain fingerprint parameter"
+    },
+    {
+      "source": "MenuController",
+      "target": "HubMenuItem",
+      "kind": "dependency",
+      "status": "MATCH",
+      "P4_input": "P2-S15",
+      "allowed_on_layered_diagram": true,
+      "source_evidence": "Logical persistence responsibility mediated by MenuDAO; attribute note, not a direct Python method call"
+    },
+    {
+      "source": "DeliveryController",
+      "target": "Payment",
+      "kind": "dependency",
+      "status": "MATCH",
+      "P4_input": "",
+      "allowed_on_layered_diagram": true,
+      "source_evidence": "C0 local payment.move_to in confirm_delivered"
     }
   ],
   "P4_inputs": [
@@ -658,7 +1002,7 @@
       "element": "Quote.fingerprint",
       "P4 input": "F-07",
       "P4 subphase": "P4.3",
-      "reason": "Canonical content fingerprint binds hub, address, line IDs/quantities/prices, voucher+D, F, Q and payment choice.",
+      "reason": "Bind all consent fields with pure-domain enum inputs; the controller adapts PaymentChoice.",
       "status": "GAP"
     },
     {
@@ -683,13 +1027,6 @@
       "status": "P4-TARGET"
     },
     {
-      "element": "KitchenController.reject_order",
-      "P4 input": "F-02; P2-S13",
-      "P4 subphase": "P4.4",
-      "reason": "BR-17 full C refund owed and atomic state/amount writes, including COMMIT rollback.",
-      "status": "P4-TARGET"
-    },
-    {
       "element": "OrderTrackingController.cancel_order",
       "P4 input": "F-02; P2-S13",
       "P4 subphase": "P4.4",
@@ -697,9 +1034,9 @@
       "status": "P4-TARGET"
     },
     {
-      "element": "DeliveryController.report_failure",
+      "element": "KitchenController.reject_order",
       "P4 input": "F-02; P2-S13",
-      "P4 subphase": "P4.4 / P4.5",
+      "P4 subphase": "P4.4",
       "reason": "BR-17 full C refund owed and atomic state/amount writes, including COMMIT rollback.",
       "status": "P4-TARGET"
     },
@@ -711,10 +1048,59 @@
       "status": "P4-TARGET"
     },
     {
+      "element": "KitchenController.confirm_order",
+      "P4 input": "P2-S13; P3-S03",
+      "P4 subphase": "P4.1 + P4.4",
+      "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "KitchenController.start_preparing",
+      "P4 input": "P2-S13; P3-S03",
+      "P4 subphase": "P4.1 + P4.4",
+      "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "KitchenController.mark_ready",
+      "P4 input": "P2-S13; P3-S03",
+      "P4 subphase": "P4.1 + P4.4",
+      "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "KitchenController.set_availability",
+      "P4 input": "P2-S13; P3-S03",
+      "P4 subphase": "P4.1 + P4.4",
+      "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "DeliveryController.report_failure",
+      "P4 input": "F-02; P2-S13",
+      "P4 subphase": "P4.4 / P4.5",
+      "reason": "BR-17 full C refund owed and atomic state/amount writes, including COMMIT rollback.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "DeliveryController.pick_up",
+      "P4 input": "P2-S13; P3-S03",
+      "P4 subphase": "P4.1 + P4.5",
+      "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "DeliveryController.confirm_delivered",
+      "P4 input": "P2-S13; P3-S03",
+      "P4 subphase": "P4.1 + P4.5",
+      "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete.",
+      "status": "P4-TARGET"
+    },
+    {
       "element": "ReportController.sales_report",
       "P4 input": "F-03; F-09",
       "P4 subphase": "P4.8",
-      "reason": "Expose T without subtracting refund owed twice; top items retain menu_item_id identity.",
+      "reason": "Expose T without subtracting refund owed twice; top items retain menu_item_id identity. Carry menu_item_id into SalesReport.top_items and presentation.",
       "status": "P4-TARGET"
     },
     {
@@ -739,55 +1125,6 @@
       "status": "P4-TARGET"
     },
     {
-      "element": "MenuController.list_catalogue",
-      "P4 input": "P2-S14",
-      "P4 subphase": "P4.6",
-      "reason": "One public SSD operation composes catalogue, all hubs, and optional hub listings; retain catalogue/hub_menu as helpers.",
-      "status": "GAP"
-    },
-    {
-      "element": "MenuController.list_item_at_hub",
-      "P4 input": "P2-S15; P2-S13",
-      "P4 subphase": "P4.6",
-      "reason": "Insert the requested initial availability in the same transaction.",
-      "status": "P4-TARGET"
-    },
-    {
-      "element": "MenuDAO.add_listing",
-      "P4 input": "P2-S15",
-      "P4 subphase": "P4.6",
-      "reason": "Set available in the INSERT, never as a second independently committed operation.",
-      "status": "P4-TARGET"
-    },
-    {
-      "element": "OrderDAO.save_lines_and_totals",
-      "P4 input": "P2-S09; P2-S11; P3-S03",
-      "P4 subphase": "P4.4",
-      "reason": "Apply replacement only to expected PLACED order and check each affected line/header rowcount.",
-      "status": "P4-TARGET"
-    },
-    {
-      "element": "PaymentDAO.set_amounts",
-      "P4 input": "F-02; P3-S03",
-      "P4 subphase": "P4.4",
-      "reason": "Persist full/partial refund obligations atomically and expose the conditional save outcome.",
-      "status": "P4-TARGET"
-    },
-    {
-      "element": "OrderArchiveController.archive_order",
-      "P4 input": "P2-S06",
-      "P4 subphase": "P4.7",
-      "reason": "Minimal per-ID closed-order archive preserves history and child rows; existing batch operation remains separately named.",
-      "status": "GAP"
-    },
-    {
-      "element": "OrderDAO.archive_one",
-      "P4 input": "P2-S06",
-      "P4 subphase": "P4.7",
-      "reason": "Conditional per-ID terminal archive; return whether exactly one row changed.",
-      "status": "GAP"
-    },
-    {
       "element": "HubController.create_hub",
       "P4 input": "P2-S13; P3-S03",
       "P4 subphase": "P4.1 + P4.2",
@@ -806,6 +1143,20 @@
       "P4 input": "P2-S13; P3-S03",
       "P4 subphase": "P4.1 + P4.2",
       "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "MenuController.list_catalogue",
+      "P4 input": "P2-S14",
+      "P4 subphase": "P4.6",
+      "reason": "One public SSD operation composes catalogue, all hubs, and optional hub listings; retain catalogue/hub_menu as helpers.",
+      "status": "GAP"
+    },
+    {
+      "element": "MenuController.list_item_at_hub",
+      "P4 input": "P2-S15; P2-S13",
+      "P4 subphase": "P4.6",
+      "reason": "Insert the requested initial availability in the same transaction.",
       "status": "P4-TARGET"
     },
     {
@@ -865,45 +1216,45 @@
       "status": "P4-TARGET"
     },
     {
-      "element": "KitchenController.confirm_order",
-      "P4 input": "P2-S13; P3-S03",
-      "P4 subphase": "P4.1 + P4.4",
-      "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete.",
+      "element": "MenuDAO.add_listing",
+      "P4 input": "P2-S15",
+      "P4 subphase": "P4.6",
+      "reason": "Set available in the INSERT, never as a second independently committed operation.",
       "status": "P4-TARGET"
     },
     {
-      "element": "KitchenController.start_preparing",
-      "P4 input": "P2-S13; P3-S03",
-      "P4 subphase": "P4.1 + P4.4",
-      "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete.",
+      "element": "OrderDAO.save_lines_and_totals",
+      "P4 input": "P2-S09; P2-S11; P3-S03",
+      "P4 subphase": "P4.4",
+      "reason": "Apply replacement only to expected PLACED order and check each affected line/header rowcount.",
       "status": "P4-TARGET"
     },
     {
-      "element": "KitchenController.mark_ready",
-      "P4 input": "P2-S13; P3-S03",
-      "P4 subphase": "P4.1 + P4.4",
-      "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete.",
+      "element": "OrderDAO.archive_one",
+      "P4 input": "P2-S06",
+      "P4 subphase": "P4.7",
+      "reason": "Conditional per-ID terminal archive; return whether exactly one row changed.",
+      "status": "GAP"
+    },
+    {
+      "element": "PaymentDAO.set_amounts",
+      "P4 input": "F-02; P3-S03",
+      "P4 subphase": "P4.4",
+      "reason": "Persist full/partial refund obligations atomically and expose the conditional save outcome.",
       "status": "P4-TARGET"
     },
     {
-      "element": "KitchenController.set_availability",
-      "P4 input": "P2-S13; P3-S03",
-      "P4 subphase": "P4.1 + P4.4",
-      "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete.",
-      "status": "P4-TARGET"
+      "element": "OrderArchiveController.archive_order",
+      "P4 input": "P2-S06",
+      "P4 subphase": "P4.7",
+      "reason": "Minimal per-ID closed-order archive preserves history and child rows; existing batch operation remains separately named.",
+      "status": "GAP"
     },
     {
-      "element": "DeliveryController.pick_up",
+      "element": "OrderArchiveController.archive",
       "P4 input": "P2-S13; P3-S03",
-      "P4 subphase": "P4.1 + P4.5",
-      "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete.",
-      "status": "P4-TARGET"
-    },
-    {
-      "element": "DeliveryController.confirm_delivered",
-      "P4 input": "P2-S13; P3-S03",
-      "P4 subphase": "P4.1 + P4.5",
-      "reason": "Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete.",
+      "P4 subphase": "P4.1 + P4.7",
+      "reason": "Controlled commit/busy handling is inherited from the target transaction helper; check conditional update outcomes.",
       "status": "P4-TARGET"
     },
     {
@@ -912,6 +1263,335 @@
       "P4 subphase": "P4.1",
       "reason": "Required by schema contract; missing from code and SQL at C0.",
       "status": "GAP"
+    },
+    {
+      "element": "controllers.common.release_payment",
+      "P4 input": "F-02; P2-S01; P3-S03",
+      "P4 subphase": "P4.4",
+      "reason": "Persist full captured C as refund_amount together with state; changing only the domain object does not save the amount. Check conditional save results in the same transaction.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "domain.rules.distance_km",
+      "P4 input": "F-04",
+      "P4 subphase": "P4.3",
+      "reason": "Return raw Haversine distance for radius and fee decisions; round only display/storage after checks.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "data_access.database.connect",
+      "P4 input": "P2-S12",
+      "P4 subphase": "P4.1 / P6",
+      "reason": "Apply the required per-connection WAL/NORMAL/foreign-key/busy-timeout configuration; timeout=10 already exists.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "data_access.database.immediate_transaction",
+      "P4 input": "P2-S13; P3-S03",
+      "P4 subphase": "P4.1",
+      "reason": "Rollback and surface a controlled failure for BEGIN/write/COMMIT failures; current COMMIT occurs outside its except block.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "ReportDAO.top_items",
+      "P4 input": "F-09",
+      "P4 subphase": "P4.8",
+      "reason": "Select and group by menu_item_id; snapshot name is a label, never the grouping identity.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "SalesReport.top_items",
+      "P4 input": "F-09",
+      "P4 subphase": "P4.8",
+      "reason": "Carry (menu_item_id, snapshot_name, quantity, revenue) through the controller and presentation.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "order.confirm",
+      "P4 input": "F-07; P2-S05",
+      "P4 subphase": "P4.3",
+      "reason": "Bind the posted fingerprint/payment choice to the target confirm method; retain controlled results through COMMIT.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "order.quote",
+      "P4 input": "F-07",
+      "P4 subphase": "P4.3",
+      "reason": "Pass payment choice into target quoting and render the full fingerprint.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "admin.hubs",
+      "P4 input": "P3-S02",
+      "P4 subphase": "P4.2",
+      "reason": "Read optional includeArchived and pass it to the target controller parameter.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "admin.catalogue",
+      "P4 input": "P2-S14",
+      "P4 subphase": "P4.6",
+      "reason": "Delegate the composite catalogue request to list_catalogue.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "admin.hub_menu",
+      "P4 input": "P2-S14",
+      "P4 subphase": "P4.6",
+      "reason": "Delegate optional hub catalogue projection to list_catalogue.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "admin.list_item",
+      "P4 input": "P2-S15",
+      "P4 subphase": "P4.6",
+      "reason": "Pass initial available into one atomic listing insert.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "reports.sales",
+      "P4 input": "F-09",
+      "P4 subphase": "P4.8",
+      "reason": "Render the new identity-preserving top-items shape; template unpacking must retain the item identity.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "AccountController.register",
+      "P4 input": "P2-S13; P3-S03",
+      "P4 subphase": "P4.1 + P4.7",
+      "reason": "Controlled commit/busy handling is inherited from the target transaction helper; check conditional update outcomes.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "AccountController.update_profile",
+      "P4 input": "P2-S13; P3-S03",
+      "P4 subphase": "P4.1 + P4.7",
+      "reason": "Controlled commit/busy handling is inherited from the target transaction helper; check conditional update outcomes.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "AccountController.add_address",
+      "P4 input": "P2-S13; P3-S03",
+      "P4 subphase": "P4.1 + P4.7",
+      "reason": "Controlled commit/busy handling is inherited from the target transaction helper; check conditional update outcomes.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "AccountController.update_address",
+      "P4 input": "P2-S13; P3-S03",
+      "P4 subphase": "P4.1 + P4.7",
+      "reason": "Controlled commit/busy handling is inherited from the target transaction helper; check conditional update outcomes.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "AccountController.archive_address",
+      "P4 input": "P2-S13; P3-S03",
+      "P4 subphase": "P4.1 + P4.7",
+      "reason": "Controlled commit/busy handling is inherited from the target transaction helper; check conditional update outcomes.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "UserAdminController.create_staff",
+      "P4 input": "P2-S13; P3-S03",
+      "P4 subphase": "P4.1 + P4.7",
+      "reason": "Controlled commit/busy handling is inherited from the target transaction helper; check conditional update outcomes.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "UserAdminController.update_user",
+      "P4 input": "P2-S13; P3-S03",
+      "P4 subphase": "P4.1 + P4.7",
+      "reason": "Controlled commit/busy handling is inherited from the target transaction helper; check conditional update outcomes.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "UserAdminController.set_active",
+      "P4 input": "P2-S13; P3-S03",
+      "P4 subphase": "P4.1 + P4.7",
+      "reason": "Controlled commit/busy handling is inherited from the target transaction helper; check conditional update outcomes.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "VoucherController.create_voucher",
+      "P4 input": "P2-S13; P3-S03",
+      "P4 subphase": "P4.1 + P4.7",
+      "reason": "Controlled commit/busy handling is inherited from the target transaction helper; check conditional update outcomes.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "VoucherController.update_voucher",
+      "P4 input": "P2-S13; P3-S03",
+      "P4 subphase": "P4.1 + P4.7",
+      "reason": "Controlled commit/busy handling is inherited from the target transaction helper; check conditional update outcomes.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "VoucherController.archive_voucher",
+      "P4 input": "P2-S13; P3-S03",
+      "P4 subphase": "P4.1 + P4.7",
+      "reason": "Controlled commit/busy handling is inherited from the target transaction helper; check conditional update outcomes.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "saigonbite.data_access.customer_dao -> saigonbite.business.domain",
+      "P4 input": "P3-S04",
+      "P4 subphase": "P4.9",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "saigonbite.data_access.delivery_dao -> saigonbite.business.domain",
+      "P4 input": "P3-S04",
+      "P4 subphase": "P4.9",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "saigonbite.data_access.hub_dao -> saigonbite.business.domain",
+      "P4 input": "P3-S04",
+      "P4 subphase": "P4.9",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "saigonbite.data_access.hub_dao -> saigonbite.business.domain.rules",
+      "P4 input": "P3-S04",
+      "P4 subphase": "P4.9",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "saigonbite.data_access.menu_dao -> saigonbite.business.domain",
+      "P4 input": "P3-S04",
+      "P4 subphase": "P4.9",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "saigonbite.data_access.offer_dao -> saigonbite.business.domain",
+      "P4 input": "P3-S04",
+      "P4 subphase": "P4.9",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "saigonbite.data_access.order_dao -> saigonbite.business.domain",
+      "P4 input": "P3-S04",
+      "P4 subphase": "P4.9",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "saigonbite.data_access.order_dao -> saigonbite.business.domain.rules",
+      "P4 input": "P3-S04",
+      "P4 subphase": "P4.9",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "saigonbite.data_access.payment_dao -> saigonbite.business.domain",
+      "P4 input": "P3-S04",
+      "P4 subphase": "P4.9",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "saigonbite.data_access.payment_gateway -> saigonbite.business.domain",
+      "P4 input": "P3-S04",
+      "P4 subphase": "P4.9",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "saigonbite.data_access.user_dao -> saigonbite.business.domain",
+      "P4 input": "P3-S04",
+      "P4 subphase": "P4.9",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "saigonbite.data_access.voucher_dao -> saigonbite.business.domain",
+      "P4 input": "P3-S04",
+      "P4 subphase": "P4.9",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "saigonbite.presentation.account -> saigonbite.business.domain",
+      "P4 input": "P3-S04",
+      "P4 subphase": "P4.9",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "saigonbite.presentation.account -> saigonbite.business.domain.rules",
+      "P4 input": "P3-S04",
+      "P4 subphase": "P4.9",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "saigonbite.presentation.admin -> saigonbite.business.domain",
+      "P4 input": "P3-S04",
+      "P4 subphase": "P4.9",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "saigonbite.presentation.auth -> saigonbite",
+      "P4 input": "P3-S04",
+      "P4 subphase": "P4.9",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "saigonbite.presentation.auth -> saigonbite.business.domain",
+      "P4 input": "P3-S04",
+      "P4 subphase": "P4.9",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "saigonbite.presentation.db -> saigonbite.data_access",
+      "P4 input": "P3-S04",
+      "P4 subphase": "P4.9",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "saigonbite.presentation.delivery -> saigonbite.business.domain",
+      "P4 input": "P3-S04",
+      "P4 subphase": "P4.9",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "saigonbite.presentation.kitchen -> saigonbite.business.domain",
+      "P4 input": "P3-S04",
+      "P4 subphase": "P4.9",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "saigonbite.presentation.order -> saigonbite.business.domain",
+      "P4 input": "P3-S04",
+      "P4 subphase": "P4.9",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "saigonbite.presentation.order -> saigonbite.data_access",
+      "P4 input": "P3-S04",
+      "P4 subphase": "P4.9",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed.",
+      "status": "P4-TARGET"
+    },
+    {
+      "element": "saigonbite.presentation.reports -> saigonbite.business.domain",
+      "P4 input": "P3-S04",
+      "P4 subphase": "P4.9",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed.",
+      "status": "P4-TARGET"
     }
   ],
   "count_interpretation": {
@@ -920,5 +1600,289 @@
     "UC06_occurrences": 12,
     "UC06_distinct_operations": 10,
     "resolution": "Preserve all 41 SSD occurrences: listCatalogue occurs separately in UC06 SSD Parts A/B/C, with three design-sequence views. The 39 distinct UC/operation pairs are never misreported as 41 distinct operations."
-  }
+  },
+  "class_annotations": {
+    "HubMenuItem": {
+      "association_class": true,
+      "association_class_note": "Association class of Hub and MenuItem; one hub_menu_item row per pair, with independent is_available."
+    }
+  },
+  "import_violations": [
+    {
+      "source": "saigonbite.data_access.customer_dao",
+      "target": "saigonbite.business.domain",
+      "records": 3,
+      "lines": [
+        6
+      ],
+      "P4_input": "P3-S04",
+      "P4_subphase": "P4.9",
+      "status": "P4-TARGET",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed."
+    },
+    {
+      "source": "saigonbite.data_access.delivery_dao",
+      "target": "saigonbite.business.domain",
+      "records": 2,
+      "lines": [
+        8
+      ],
+      "P4_input": "P3-S04",
+      "P4_subphase": "P4.9",
+      "status": "P4-TARGET",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed."
+    },
+    {
+      "source": "saigonbite.data_access.hub_dao",
+      "target": "saigonbite.business.domain",
+      "records": 4,
+      "lines": [
+        6
+      ],
+      "P4_input": "P3-S04",
+      "P4_subphase": "P4.9",
+      "status": "P4-TARGET",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed."
+    },
+    {
+      "source": "saigonbite.data_access.hub_dao",
+      "target": "saigonbite.business.domain.rules",
+      "records": 1,
+      "lines": [
+        6
+      ],
+      "P4_input": "P3-S04",
+      "P4_subphase": "P4.9",
+      "status": "P4-TARGET",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed."
+    },
+    {
+      "source": "saigonbite.data_access.menu_dao",
+      "target": "saigonbite.business.domain",
+      "records": 3,
+      "lines": [
+        7
+      ],
+      "P4_input": "P3-S04",
+      "P4_subphase": "P4.9",
+      "status": "P4-TARGET",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed."
+    },
+    {
+      "source": "saigonbite.data_access.offer_dao",
+      "target": "saigonbite.business.domain",
+      "records": 2,
+      "lines": [
+        7
+      ],
+      "P4_input": "P3-S04",
+      "P4_subphase": "P4.9",
+      "status": "P4-TARGET",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed."
+    },
+    {
+      "source": "saigonbite.data_access.order_dao",
+      "target": "saigonbite.business.domain",
+      "records": 3,
+      "lines": [
+        6
+      ],
+      "P4_input": "P3-S04",
+      "P4_subphase": "P4.9",
+      "status": "P4-TARGET",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed."
+    },
+    {
+      "source": "saigonbite.data_access.order_dao",
+      "target": "saigonbite.business.domain.rules",
+      "records": 1,
+      "lines": [
+        6
+      ],
+      "P4_input": "P3-S04",
+      "P4_subphase": "P4.9",
+      "status": "P4-TARGET",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed."
+    },
+    {
+      "source": "saigonbite.data_access.payment_dao",
+      "target": "saigonbite.business.domain",
+      "records": 4,
+      "lines": [
+        6
+      ],
+      "P4_input": "P3-S04",
+      "P4_subphase": "P4.9",
+      "status": "P4-TARGET",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed."
+    },
+    {
+      "source": "saigonbite.data_access.payment_gateway",
+      "target": "saigonbite.business.domain",
+      "records": 1,
+      "lines": [
+        18
+      ],
+      "P4_input": "P3-S04",
+      "P4_subphase": "P4.9",
+      "status": "P4-TARGET",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed."
+    },
+    {
+      "source": "saigonbite.data_access.user_dao",
+      "target": "saigonbite.business.domain",
+      "records": 2,
+      "lines": [
+        6
+      ],
+      "P4_input": "P3-S04",
+      "P4_subphase": "P4.9",
+      "status": "P4-TARGET",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed."
+    },
+    {
+      "source": "saigonbite.data_access.voucher_dao",
+      "target": "saigonbite.business.domain",
+      "records": 2,
+      "lines": [
+        7
+      ],
+      "P4_input": "P3-S04",
+      "P4_subphase": "P4.9",
+      "status": "P4-TARGET",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed."
+    },
+    {
+      "source": "saigonbite.presentation.account",
+      "target": "saigonbite.business.domain",
+      "records": 1,
+      "lines": [
+        6
+      ],
+      "P4_input": "P3-S04",
+      "P4_subphase": "P4.9",
+      "status": "P4-TARGET",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed."
+    },
+    {
+      "source": "saigonbite.presentation.account",
+      "target": "saigonbite.business.domain.rules",
+      "records": 1,
+      "lines": [
+        6
+      ],
+      "P4_input": "P3-S04",
+      "P4_subphase": "P4.9",
+      "status": "P4-TARGET",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed."
+    },
+    {
+      "source": "saigonbite.presentation.admin",
+      "target": "saigonbite.business.domain",
+      "records": 2,
+      "lines": [
+        7
+      ],
+      "P4_input": "P3-S04",
+      "P4_subphase": "P4.9",
+      "status": "P4-TARGET",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed."
+    },
+    {
+      "source": "saigonbite.presentation.auth",
+      "target": "saigonbite",
+      "records": 1,
+      "lines": [
+        63
+      ],
+      "P4_input": "P3-S04",
+      "P4_subphase": "P4.9",
+      "status": "P4-TARGET",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed."
+    },
+    {
+      "source": "saigonbite.presentation.auth",
+      "target": "saigonbite.business.domain",
+      "records": 2,
+      "lines": [
+        10
+      ],
+      "P4_input": "P3-S04",
+      "P4_subphase": "P4.9",
+      "status": "P4-TARGET",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed."
+    },
+    {
+      "source": "saigonbite.presentation.db",
+      "target": "saigonbite.data_access",
+      "records": 1,
+      "lines": [
+        7
+      ],
+      "P4_input": "P3-S04",
+      "P4_subphase": "P4.9",
+      "status": "P4-TARGET",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed."
+    },
+    {
+      "source": "saigonbite.presentation.delivery",
+      "target": "saigonbite.business.domain",
+      "records": 1,
+      "lines": [
+        5
+      ],
+      "P4_input": "P3-S04",
+      "P4_subphase": "P4.9",
+      "status": "P4-TARGET",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed."
+    },
+    {
+      "source": "saigonbite.presentation.kitchen",
+      "target": "saigonbite.business.domain",
+      "records": 1,
+      "lines": [
+        6
+      ],
+      "P4_input": "P3-S04",
+      "P4_subphase": "P4.9",
+      "status": "P4-TARGET",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed."
+    },
+    {
+      "source": "saigonbite.presentation.order",
+      "target": "saigonbite.business.domain",
+      "records": 3,
+      "lines": [
+        16
+      ],
+      "P4_input": "P3-S04",
+      "P4_subphase": "P4.9",
+      "status": "P4-TARGET",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed."
+    },
+    {
+      "source": "saigonbite.presentation.order",
+      "target": "saigonbite.data_access",
+      "records": 2,
+      "lines": [
+        17
+      ],
+      "P4_input": "P3-S04",
+      "P4_subphase": "P4.9",
+      "status": "P4-TARGET",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed."
+    },
+    {
+      "source": "saigonbite.presentation.reports",
+      "target": "saigonbite.business.domain",
+      "records": 1,
+      "lines": [
+        5
+      ],
+      "P4_input": "P3-S04",
+      "P4_subphase": "P4.9",
+      "status": "P4-TARGET",
+      "reason": "Strict package boundary requires explicit disposition; a type/materialisation import is not claimed to be an observed runtime failure. No mapper exception is assumed."
+    }
+  ]
 }

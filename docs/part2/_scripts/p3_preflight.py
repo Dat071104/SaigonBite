@@ -36,7 +36,14 @@ def main():
             names=set(old) if group=='phase2_models' else set(old)|set(now)
             differences[group]=[n for n in sorted(names) if old.get(n)!=now.get(n)]
         app_diff=git('diff',start['C0'],'--','saigonbite','tests','db','app.py','init_db.py')
-        out={'C0':start['C0'],'HEAD':git('rev-parse','HEAD'),'counts':{k:len(v) for k,v in start['protected'].items()},'changes':differences,'app_diff_empty':not app_diff,'pass':not any(differences.values()) and not app_diff}
+        # In addition to the byte boundaries, protect every pre-existing tracked
+        # source (including old agent reports/scripts). New P3 paths are allowed.
+        # Git handles the repository's working-tree line-ending normalization;
+        # this supplements, and never replaces, the binary start/end checks.
+        prior_deltas=git('diff','--diff-filter=MDRT','--name-only',start['C0']).splitlines()
+        allowed={'docs/part2/ai_usage_log.md','docs/part2/traceability.csv'}
+        unexpected=[name for name in prior_deltas if name not in allowed]
+        out={'C0':start['C0'],'HEAD':git('rev-parse','HEAD'),'counts':{k:len(v) for k,v in start['protected'].items()},'changes':differences,'app_diff_empty':not app_diff,'preexisting_repo_deltas':prior_deltas,'unexpected_preexisting_repo_deltas':unexpected,'pass':not any(differences.values()) and not app_diff and not unexpected}
         (NOTES/'P3_end_hash_check.json').write_text(json.dumps(out,indent=2),encoding='utf-8'); print(json.dumps(out,indent=2));assert out['pass'];return
     assert not target.exists(),'Start manifest already exists; never overwrite it'
     assert git('branch','--show-current')=='part2'

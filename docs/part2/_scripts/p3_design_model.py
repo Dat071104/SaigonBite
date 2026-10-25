@@ -2,7 +2,7 @@
 Author: 722I0004 · AI-assisted (Codex). Does not import the application.
 """
 from pathlib import Path
-import copy,csv,json,re
+import ast,copy,csv,json,re
 R=Path(__file__).resolve().parents[3];D=R/'docs/part2/design'
 def read(p):return json.loads(p.read_text(encoding='utf-8'))
 def layer(path):
@@ -39,6 +39,14 @@ def build():
             if existing is None:
                 existing={'visibility':'-' if override['name'].startswith('_') else '+','annotated':True,'inferred':False,'source_kind':'proposed'};bucket.append(existing)
             existing.update(override)
+            if kind=='method' and override.get('signature'):
+                node=ast.parse('def '+override['signature']+':\n pass').body[0]
+                existing['return']=ast.unparse(node.returns) if node.returns else 'Any'
+                existing['return_annotated']=node.returns is not None
+                # Full target signature is authoritative; never leave baseline
+                # parameter/return metadata attached to a changed signature.
+                params=node.args.posonlyargs+node.args.args;defaults=[None]*(len(params)-len(node.args.defaults))+node.args.defaults
+                existing['parameters']=[{'name':p.arg,'type':ast.unparse(p.annotation) if p.annotation else 'Any','annotated':p.annotation is not None,'default':ast.unparse(v) if v is not None else None,'kind':'positional_or_keyword'} for p,v in zip(params,defaults)]
         if any(x['status']!='MATCH' for x in c['methods']+c['attributes']):c['status']='P4-TARGET'
     dependencies=[]
     for name,c in classes.items():
@@ -50,16 +58,31 @@ def build():
                 if parts[0]=='self' and len(parts)>2:
                     dest=attrs.get(parts[1]);
                     if dest in classes:calls.add(dest)
-                elif parts[0] in classes and parts[0]!=name:calls.add(parts[0])
+                elif parts[0] in classes and parts[0]!=name:
+                    # Local entity variables named order/delivery are not the
+                    # identically named Flask blueprint modules.
+                    if not (c['layer']!='view' and classes[parts[0]].get('source_kind')=='blueprint'):calls.add(parts[0])
                 elif len(parts)==1:
                     for module_name,module_class in classes.items():
                         if module_class['source_kind']=='module' and any(x['name']==target for x in module_class['methods']):calls.add(module_name)
         for a in c['attributes']:
             for dest in re.findall(r'\b[A-Za-z_]\w*\b',a['type']):
                 if dest in classes and dest!=name:calls.add(dest)
-        for dest in sorted(calls):dependencies.append({'source':name,'target':dest,'kind':'dependency','status':'MATCH','source_evidence':'AST call or typed attribute','allowed_on_layered_diagram':not (c['layer']=='domain' and classes[dest]['layer']!='domain') and not (c['layer']=='data_access' and classes[dest]['layer'] in ('controller','view'))})
+        for method in c['methods']:
+            for dest in re.findall(r'\b[A-Za-z_]\w*\b',method.get('signature','')):
+                if dest in classes and dest!=name:calls.add(dest)
+        rank={'view':0,'controller':1,'domain':2,'data_access':3}
+        for dest in sorted(calls):dependencies.append({'source':name,'target':dest,'kind':'dependency','status':'MATCH','source_evidence':'AST call or typed attribute/signature','allowed_on_layered_diagram':rank[classes[dest]['layer']]>=rank[c['layer']] and not (c['layer']=='domain' and classes[dest]['layer']!='domain')})
     for dep in annotations.get('target_dependencies',[]):dependencies.append(dep)
-    model={'author':inventory['author'],'C0':inventory['commit'],'evidence_label':'Static / target design','classes':classes,'associations':annotations['associations'],'dependencies':dependencies,'annotations_source':'docs/part2/design/design_annotations.json','operation_rows':list(csv.DictReader((D/'operation_realisation.csv').open(encoding='utf-8-sig',newline=''))),'notation':{'domain_fk_attributes':'Retained in inventory and mapping; omitted on domain DCD in favor of named associations.','generated_constructors':'Dataclass initialization is implicit; use a create message plus field note rather than inventing public methods.','status':'MATCH means static code correspondence only. A behavior target stays marked until reviewed evidence clears it.'}}
+    for name,fields in annotations.get('class_annotations',{}).items():
+        if name in classes:classes[name].update(fields)
+    associations=copy.deepcopy(annotations['associations'])
+    for name,c in classes.items():
+        for base in c.get('bases',[]):
+            if base in classes and not any(x['source']==name and x['target']==base and x['kind']=='generalization' for x in associations):associations.append({'source':name,'target':base,'source_multiplicity':None,'target_multiplicity':None,'role':'inherits','kind':'generalization','navigable':False,'status':'MATCH','evidence':'AST class base'})
+    for relation in associations:
+        if relation['kind']=='generalization':relation['source_multiplicity']=None;relation['target_multiplicity']=None
+    model={'author':inventory['author'],'C0':inventory['commit'],'evidence_label':'Static / target design','classes':classes,'associations':associations,'dependencies':dependencies,'annotations_source':'docs/part2/design/design_annotations.json','operation_rows':list(csv.DictReader((D/'operation_realisation.csv').open(encoding='utf-8-sig',newline=''))),'notation':{'domain_fk_attributes':'Retained in inventory and mapping; omitted on domain DCD in favor of named associations.','generated_constructors':'Dataclass initialization is implicit; use a create message plus field note rather than inventing public methods.','status':'MATCH means static code correspondence only. A behavior target stays marked until reviewed evidence clears it.'}}
     (R/'models/shared/design_model.json').write_text(json.dumps(model,indent=2,ensure_ascii=False),encoding='utf-8');print('Shared model:',len(classes),'class/module roles,',len(model['operation_rows']),'SSD occurrences')
     return model
 if __name__=='__main__':build()
