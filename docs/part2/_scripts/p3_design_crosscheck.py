@@ -297,6 +297,19 @@ def main():
                     check('dao_transaction',key+':'+token,token.lower() in text.lower(),'Required transaction/conditional save notation')
                 check('dao_busy_outcome',key,'busy' in text.lower() and 'retry' in text.lower(),'Visible busy/retry outcome; rollback/atomicity checked separately')
     if not args.allow_incomplete:
+        subsystem=[m for p,_,m in diagrams if p.stem.startswith('dcd_subsystem_')]
+        check('subsystem_DCD','section 4.1',bool(subsystem) and (R/'docs/part2/report/IV_4-1_subsystem_dcd.md').is_file(),'Subsystem projections and report source must exist')
+        roles={e['class'] for m in subsystem for e in m.get('elements',[])}
+        check('subsystem_role_coverage','sole model',roles==set(model['classes']),'Every canonical class/module role has a subsystem view')
+        for bucket in ('methods','attributes'):
+            actual_members=collections.Counter((e['class'],name) for m in subsystem for e in m.get('elements',[]) for name in names(e.get(bucket,[])))
+            expected_members={(cls,item['name']) for cls,c in model['classes'].items() for item in c[bucket] if bucket!='attributes' or not item.get('diagram_omit')}
+            check('subsystem_member_coverage',bucket,set(actual_members)==expected_members and all(count==1 for count in actual_members.values()),'Every declared method/non-omitted attribute appears exactly once across continued member cards')
+        relation_fields=('source','target','kind','role','source_multiplicity','target_multiplicity','navigable')
+        relation_key=lambda relation:tuple(relation.get(field) for field in relation_fields)
+        actual_relations=collections.Counter(relation_key(dep) for m in subsystem for dep in m.get('dependencies',[]) if dep.get('kind')!='dependency')
+        expected_relations=collections.Counter(relation_key(dep) for dep in model['associations'])
+        check('subsystem_association_coverage','sole model',actual_relations==expected_relations,'All associations/generalizations retain direction, end multiplicities, role and navigation')
         for m in membership:check('SSD_sequence_coverage',m['SSD message'],m['SSD message'] in covered,m['UC']+' '+m['operation'])
         for uc in range(1,7):check('final_DCD',f'UC-{uc:02}',bool(finals[f'UC-{uc:02}']),'Final design class views exist')
         required={'UC-01':['confirmCheckout'],'UC-02':['takeDelivery','confirmDelivered'],'UC-03':['archiveHub'],'UC-04':['salesReport'],'UC-05':['rejectOrder','acceptReplacement'],'UC-06':['updateMenuItem']}

@@ -16,11 +16,11 @@ One typed table per participating class/module follows.
 
 HubStatus and Hub are the real domain participants. Period, report rows and report results belong to the actual controller module; no Report domain class or lifecycle is invented.
 
-![UC-04 domain design classes: No Report domain class or lifecycle exists; report values stay in the controller module.](../../../models/UC-04/dcd_uc04_domain_PartA.png)
+![UC-04 domain design classes: No Report domain class or lifecycle exists; report values stay in the controller module.](../../../models/UC-04/dcd_uc04_domain.png)
 
 Figure 3.4.2.i-A. UC-04 domain design classes: No Report domain class or lifecycle exists; report values stay in the controller module. — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-04/dcd_uc04_domain_PartA.drawio) · [SVG](../../../models/UC-04/dcd_uc04_domain_PartA.svg) · [Generator](../../../models/UC-04/dcd_uc04_domain_PartA.py) · [Data](../../../models/UC-04/dcd_uc04_domain_PartA.json)
+[Editable draw.io](../../../models/UC-04/dcd_uc04_domain.drawio) · [SVG](../../../models/UC-04/dcd_uc04_domain.svg) · [Generator](../../../models/UC-04/dcd_uc04_domain.py) · [Data](../../../models/UC-04/dcd_uc04_domain.json)
 
 ### ii. Controller
 

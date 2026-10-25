@@ -16,6 +16,10 @@ def main():
                 try:file.relative_to(R.resolve());valid=True
                 except ValueError:valid=False
                 check(path.name+':source_image:'+value,valid,'Repo artifact source; no hand-made staging source')
+        for target in re.findall(r'(?<!!)\[[^\]]*\]\(([^)]+)\)',text):
+            value=target.strip('<>').split('#',1)[0]
+            if not value or re.match(r'[A-Za-z]+:',value):continue
+            check(path.name+':link:'+value,(path.parent/value).resolve().is_file(),'Editable source/vector/data/report links resolve, not just image embeds')
         for caption in re.findall(r'^\*{0,2}Figure\s+[34][.\w -]*\..*$',text,re.M):check(path.name+':caption:'+caption[:65],'722I0004' in caption and 'AI-assisted' in caption,'Figure caption attribution')
     for uc in range(1,7):
         for number in range(1,6):check(f'heading:3.{uc}.{number}',bool(re.search(r'^### 3\.'+str(uc)+r'\.'+str(number)+r' ',texts[III.name],re.M)),'Required exact template subsection level')

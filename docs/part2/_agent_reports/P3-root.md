@@ -85,7 +85,13 @@ The later three-worker repair batch had fresh scratch timestamps at approximatel
 
 E and F were dispatched on 25/10 after all six package commits, both generic workers explicitly selected as gpt-6.1-sol / high. E owns only subsystem DCD/report4.1; F owns only seqdao prefixes/report4.3.2. Shared model is frozen at SHA256 fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b. Root will not open either unfinished report or artifact before both successful final handoffs. Metadata-only liveness/recovery stays bounded; no model/config change or replacement is inferred.
 
-⟦PENDING: complete E/F barrier, integrate subsystem/DAO design, rerun full cross-check and assemble reports⟧.
+Both successful final handoffs were received before root opened E/F reports together. Neither requested a shared-model change; root accepts both packages with no status promotion. The model remains SHA256 fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b. E is committed as e33678d (subsystem DCD); F as ce62686 (eight DAO operations). Worker-local checks and all-image inspection receipts remain distinct from root verification.
+
+The full C0 cross-check passes **20,297 checks, zero failures**, without incomplete mode: 389 figure/source sets, 44 design-sequence views, 43 DAO views, all 41 SSD occurrences and 30 PC/MG anchors. Root added explicit 4.1 presence, all-104-role, exact-once 365-method/278-attribute and all-38-association coverage guards. Root opened the dense subsystem declaration and composition figures and the paired replacement sequence proof. Every owned PNG/SVG was opened by its worker; proofs and hashes are retained under P3-E/P3-F.
+
+Assembly resolves all includes and exact III/IV headings. Its first audit caught a stale UC-04 domain filename in five links; root preserved the source in P3_trash/report_link_reconciliation and changed the references to the actual dcd_uc04_domain stem. No figure changed. The strengthened audit checks ordinary source/vector links as well as images and now passes 1,987 checks. Traceability links 40/52 requirement rows to their applicable main-UC design operations; all future evidence columns remain blank and original statuses remain Analysed/Planned. The P4 register is 121 rows/96 elements, including 64 operation-linked and 57 explicitly shared/supporting rows. Report 4.3.3–6 contains only P5/P7 pending markers.
+
+On the owner's continuation at 25/10 approximately 11:52 UTC /18:52 Bangkok, the native agent registry initially exposed only root. The live account tool reported ordinaryUsageAllowed=true. Root sent follow-up tasks to the same p3_e/p3_f identities to recover their existing workstreams, without replacing either worker or changing model/configuration. No report or unfinished worker artifact was opened. The original prompt still equals its saved controlling copy; the locked plan hash remains cbadf1c3833fecba16769d9036cb4ebfe1e563f845379ab3559dbe6f990790f3. A fresh binary check found all 1,730 original protected files unchanged (P3-root/resume_hash_check_20261025_1154.json). The E/F barrier remains closed until both successful final handoffs.
 
 ## Wave 4 independent review
 
@@ -93,7 +99,24 @@ E and F were dispatched on 25/10 after all six package commits, both generic wor
 
 ## Marking evidence pointers
 
-Fresh primary marking workbook: items 20–24 at physical Checklist rows 33–37; Part 3 item 33 at row 47. P2-III Excellent is Rubric Guide row 9; P2-IV row 10. Final pointers and scope limits follow integration.
+Fresh primary marking workbook: the physical rows below are verified in P3-root/marking_rows.json; no full implementation score is claimed.
+
+| Item / physical row | Evidence or scoped gap |
+|---|---|
+| 20 / Checklist 33: author on diagrams/use cases | All six III titles and captions; native editable-source author checks and each worker's exported image proofs. |
+| 21 / Checklist 34: per-UC layered DCD | III 3.1.2–3.6.2, each five projections i–v; four package roles express presentation/business/data-access tiers. |
+| 22 / Checklist 35: CRC and sequences | UC-01…06/crc.md and III 3.x.4; all 41 exact frozen SSD occurrences, receiver methods and 30 PC/MG anchors checked. No communication diagrams. |
+| 23 / Checklist 36: final DCD | III 3.1.5–3.6.5, dcd_uc0x_final views and sequence receiver reconciliation; shared subsystem 4.1 supplies supporting declarations. |
+| 24 / Checklist 37: packages, mapping, SQL | IV4.2 package/import audit and IV4.3.1 schema-v2 mapping, 13 tables/110 columns/18 FKs. SQL excerpts are explicitly P7 pending in4.3.4; item24 is not claimed fully satisfied by P3 alone. |
+| Part3 item33 / Checklist47: design model shown | These DCD/CRC/sequence sources are presentation inputs. No presentation delivery, slide or video completion is claimed. |
+| P2-III Excellent / Rubric Guide9: layered classes | Typed class tables, per-UC five-view DCDs, real blueprint routes; forbidden imports disclosed separately. |
+| P2-III Excellent / row9: DCD/CRC/sequence consistent with analysis | Frozen descriptions/SSD pointers and PC/MG register; operation_realisation.csv, design_consistency.csv, full static cross-check and independent review. |
+| P2-III Excellent / row9: complete final DCD | All six final views declare every actual/marked-target sequence receiver method, with visible inherited receivers checked. |
+| P2-IV Excellent / row10: database mapping and SQL | Mapping and ERD supplied and statically checked; SQL excerpts and execution qualification remain P7/later evidence. |
+| P2-IV Excellent / row10: code follows design | Explicit MATCH/P4-TARGET/GAP inventory and P4_design_inputs.csv are design inputs; application conformance remains P4 work. |
+| P2-IV Excellent / row10: UI traces to SSDs | Design route responsibility is mapped; actual UI evidence remains P5 in4.3.3. |
+| P2-IV Excellent / row10: integrated working system | Transaction/DAO design in4.3.2; runtime integration remains P5 in4.3.6. |
+| P2-IV Excellent / row10: source files included | Every actual design figure has generator/JSON/editable source/PNG/SVG. Final tagged source/release links remain P7; no push/tag is invented. |
 
 ## P4 design inputs
 
