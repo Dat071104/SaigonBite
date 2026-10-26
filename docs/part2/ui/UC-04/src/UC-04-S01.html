@@ -1,0 +1,52 @@
+<!--screen
+id: UC-04-S01
+title: Sales report
+role: MANAGER
+viewport: 1440x900
+nav: Sales|Workload|Delivery
+active: Sales
+who: Manager<span class="role"> · Manager</span>
+wide: yes
+-->
+<div class="page-head">
+  <h1>Sales</h1>
+  <p class="muted">Delivered orders, counted on the day they were delivered (Ho Chi Minh City time). Rejected, cancelled and failed orders are not sales.</p>
+</div>
+<form method="get" class="filter" aria-label="Report filter">
+  <div class="field"><label for="from">From</label><input type="date" id="from" name="from" value="2026-10-21"></div>
+  <div class="field"><label for="to">To (inclusive)</label><input type="date" id="to" name="to" value="2026-10-27"></div>
+  <div class="field"><label for="hub">Hub</label>
+    <select id="hub" name="hub"><option value="">All hubs</option><option value="1">SaigonBite District 1 Hub</option><option value="2">SaigonBite Binh Thanh Hub</option><option value="3">SaigonBite District 3 Hub (archived)</option></select></div>
+  <button type="submit" class="secondary" data-goto="UC-04-S04" data-trigger="press button (Show, a period with no delivered orders)">Show</button>
+</form>
+<div class="table-scroll" role="region" aria-label="Sales by hub" tabindex="0">
+<table class="data" id="sales-table">
+  <thead><tr><th>Hub</th><th class="num">Orders</th><th class="num">Dishes</th><th class="num">Vouchers</th>
+    <th class="num">Delivery fees</th><th class="num">Total</th><th class="num">Refunds owed</th><th class="num">Net</th></tr></thead>
+  <tbody>
+    <tr><td>{{p:Hub||SaigonBite District 1 Hub}}</td><td class="num">{{p:Orders||2}}</td><td class="num">{{p:Dishes||190,000 VND}}</td>
+      <td class="num">-{{p:Vouchers||13,000 VND}}</td><td class="num">{{p:Delivery fees||25,000 VND}}</td>
+      <td class="num">{{p:Total||202,000 VND}}</td><td class="num">{{p:Refunds owed||0 VND}}</td><td class="num">{{p:Net||202,000 VND}}</td></tr>
+    <tr><td>{{p:Hub||SaigonBite Binh Thanh Hub}}</td><td class="num">{{p:Orders||1}}</td><td class="num">{{p:Dishes||80,000 VND}}</td>
+      <td class="num">-{{p:Vouchers||20,000 VND}}</td><td class="num">{{p:Delivery fees||17,000 VND}}</td>
+      <td class="num">{{p:Total||77,000 VND}}</td><td class="num">{{p:Refunds owed||0 VND}}</td><td class="num">{{p:Net||77,000 VND}}</td></tr>
+    <tr class="total-row" id="sales-total"><td>All hubs</td><td class="num">{{p:Orders||3}}</td><td class="num">{{p:Dishes||270,000 VND}}</td>
+      <td class="num">-{{p:Vouchers||33,000 VND}}</td><td class="num">{{p:Delivery fees||42,000 VND}}</td>
+      <td class="num">{{p:Total||279,000 VND}}</td><td class="num">{{p:Refunds owed||0 VND}}</td><td class="num">{{p:Net||279,000 VND}}</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="muted">Delivery fees are after the quiet-hub discount. Total = dishes - vouchers + delivery fees. Net sales equal this adjusted total; refund owed is shown separately and is not deducted twice. Refunds are simulated obligations, not payouts.</p>
+<section aria-labelledby="top-h">
+  <h2 id="top-h">Best-selling dishes</h2>
+  <table class="data" id="top-items">
+    <thead><tr><th>Dish</th><th class="num">Quantity</th><th class="num">Revenue</th></tr></thead>
+    <tbody>
+      <tr><td>{{p:Dish||Goi cuon}}</td><td class="num">{{p:Quantity||2}}</td><td class="num">{{p:Revenue||70,000 VND}}</td></tr>
+      <tr><td>{{p:Dish||Com tam suon bi cha}}</td><td class="num">{{p:Quantity||1}}</td><td class="num">{{p:Revenue||60,000 VND}}</td></tr>
+      <tr><td>{{p:Dish||Che thai}}</td><td class="num">{{p:Quantity||2}}</td><td class="num">{{p:Revenue||60,000 VND}}</td></tr>
+      <tr><td>{{p:Dish||Pho ga}}</td><td class="num">{{p:Quantity||1}}</td><td class="num">{{p:Revenue||50,000 VND}}</td></tr>
+      <tr><td>{{p:Dish||Tra da}}</td><td class="num">{{p:Quantity||3}}</td><td class="num">{{p:Revenue||30,000 VND}}</td></tr>
+    </tbody>
+  </table>
+</section>

@@ -1,0 +1,22 @@
+<!--screen
+id: UC-04-S05
+title: Filter refused: From is after To
+role: MANAGER
+viewport: 1440x900
+nav: Sales|Workload|Delivery
+active: Sales
+who: Manager<span class="role"> · Manager</span>
+wide: yes
+-->
+<div class="page-head">
+  <h1>Sales</h1>
+  <p class="muted">Delivered orders, counted on the day they were delivered (Ho Chi Minh City time). Rejected, cancelled and failed orders are not sales.</p>
+</div>
+<form method="get" class="filter" aria-label="Report filter">
+  <div class="field"><label for="from">From</label><input type="date" id="from" name="from" value="2026-12-31"></div>
+  <div class="field"><label for="to">To (inclusive)</label><input type="date" id="to" name="to" value="2026-01-01"></div>
+  <div class="field"><label for="hub">Hub</label>
+    <select id="hub" name="hub"><option value="">All hubs</option><option value="1">SaigonBite District 1 Hub</option><option value="2">SaigonBite Binh Thanh Hub</option><option value="3">SaigonBite District 3 Hub (archived)</option></select></div>
+  <button type="submit" class="secondary">Show</button>
+</form>
+<div class="flash error" id="form-error" role="alert">The first day must be on or before the last day.</div>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport-px" content="1440x900">
+<meta name="screen-id" content="UC-04-S03">
+<meta name="author" content="722I0004 · AI-assisted (Claude Sonnet 5.5)">
+<title>UC-04-S03 Delivery performance (wireframe)</title>
+<link rel="stylesheet" href="../../_kit/wireframe.css">
+</head>
+<body class="wide">
+  <header class="topbar">
+    <div class="wrap">
+      <span class="brand">SaigonBite</span>
+      <nav class="account" aria-label="Account"><span class="who">Manager<span class="role"> · Manager</span></span><button type="button" class="secondary">Log out</button></nav>
+    </div>
+    <div class="wrap"><nav class="mainnav" aria-label="Main"><a href="#">Sales</a><a href="#">Workload</a><a href="#" aria-current="page">Delivery</a></nav></div>
+  </header>
+  <main id="content">
+    <div class="wrap">
+<div class="page-head">
+  <h1>Delivery performance</h1>
+  <p class="muted">Deliveries that ended in the period. Wait = ready until picked up; ride = picked up until delivered.
+    Failure rate = failed / (delivered + failed).</p>
+</div>
+<form method="get" class="filter" aria-label="Report filter">
+  <div class="field"><label for="from">From</label><input type="date" id="from" name="from" value="2026-10-21"></div>
+  <div class="field"><label for="to">To (inclusive)</label><input type="date" id="to" name="to" value="2026-10-27"></div>
+  <div class="field"><label for="hub">Hub</label>
+    <select id="hub" name="hub"><option value="">All hubs</option><option value="1">SaigonBite District 1 Hub</option><option value="2">SaigonBite Binh Thanh Hub</option><option value="3">SaigonBite District 3 Hub (archived)</option></select></div>
+  <button type="submit" class="secondary">Show</button>
+</form>
+<section aria-labelledby="hub-h">
+  <h2 id="hub-h">By hub</h2>
+  <table class="data" id="delivery-by-hub"><thead><tr><th></th><th class="num">Delivered</th><th class="num">Failed</th><th class="num">Failure rate</th><th class="num">Avg wait</th><th class="num">Avg ride</th></tr></thead>
+    <tbody>
+    <tr><td><span class="ph">Hub</span></td><td class="num"><span class="ph">Delivered</span></td><td class="num"><span class="ph">Failed</span></td><td class="num"><span class="ph">Failure rate</span></td><td class="num"><span class="ph">Avg wait</span></td><td class="num"><span class="ph">Avg ride</span></td></tr>
+    <tr><td><span class="ph">Hub</span></td><td class="num"><span class="ph">Delivered</span></td><td class="num"><span class="ph">Failed</span></td><td class="num"><span class="ph">Failure rate</span></td><td class="num"><span class="ph">Avg wait</span></td><td class="num"><span class="ph">Avg ride</span></td></tr>
+    </tbody>
+    <tbody class="total-row" id="delivery-overall">
+    <tr><td>All deliveries</td><td class="num"><span class="ph">Delivered</span></td><td class="num"><span class="ph">Failed</span></td><td class="num"><span class="ph">Failure rate</span></td><td class="num"><span class="ph">Avg wait</span></td><td class="num"><span class="ph">Avg ride</span></td></tr>
+    </tbody>
+  </table>
+</section>
+<section aria-labelledby="shipper-h">
+  <h2 id="shipper-h">By shipper</h2>
+  <table class="data" id="delivery-by-shipper"><thead><tr><th></th><th class="num">Delivered</th><th class="num">Failed</th><th class="num">Failure rate</th><th class="num">Avg wait</th><th class="num">Avg ride</th></tr></thead>
+    <tbody>
+    <tr><td><span class="ph">Shipper</span></td><td class="num"><span class="ph">Delivered</span></td><td class="num"><span class="ph">Failed</span></td><td class="num"><span class="ph">Failure rate</span></td><td class="num"><span class="ph">Avg wait</span></td><td class="num"><span class="ph">Avg ride</span></td></tr>
+    <tr><td><span class="ph">Shipper</span></td><td class="num"><span class="ph">Delivered</span></td><td class="num"><span class="ph">Failed</span></td><td class="num"><span class="ph">Failure rate</span></td><td class="num"><span class="ph">Avg wait</span></td><td class="num"><span class="ph">Avg ride</span></td></tr>
+    </tbody>
+  </table>
+</section>
+    </div>
+  </main>
+  <footer>
+    <div class="wrap">
+      <p>Wireframe UC-04-S03 · Delivery performance</p>
+      <p class="wf-note">Low-fidelity layout: real labels, placeholder values. 722I0004 · AI-assisted (Claude Sonnet 5.5). Authored as HTML/CSS; assembled and linked in Figma by the owner.</p>
+    </div>
+  </footer>
+</body>
+</html>

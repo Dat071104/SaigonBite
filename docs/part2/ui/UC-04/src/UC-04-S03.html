@@ -1,0 +1,43 @@
+<!--screen
+id: UC-04-S03
+title: Delivery performance
+role: MANAGER
+viewport: 1440x900
+nav: Sales|Workload|Delivery
+active: Delivery
+who: Manager<span class="role"> · Manager</span>
+wide: yes
+-->
+<div class="page-head">
+  <h1>Delivery performance</h1>
+  <p class="muted">Deliveries that ended in the period. Wait = ready until picked up; ride = picked up until delivered.
+    Failure rate = failed / (delivered + failed).</p>
+</div>
+<form method="get" class="filter" aria-label="Report filter">
+  <div class="field"><label for="from">From</label><input type="date" id="from" name="from" value="2026-10-21"></div>
+  <div class="field"><label for="to">To (inclusive)</label><input type="date" id="to" name="to" value="2026-10-27"></div>
+  <div class="field"><label for="hub">Hub</label>
+    <select id="hub" name="hub"><option value="">All hubs</option><option value="1">SaigonBite District 1 Hub</option><option value="2">SaigonBite Binh Thanh Hub</option><option value="3">SaigonBite District 3 Hub (archived)</option></select></div>
+  <button type="submit" class="secondary">Show</button>
+</form>
+<section aria-labelledby="hub-h">
+  <h2 id="hub-h">By hub</h2>
+  <table class="data" id="delivery-by-hub"><thead><tr><th></th><th class="num">Delivered</th><th class="num">Failed</th><th class="num">Failure rate</th><th class="num">Avg wait</th><th class="num">Avg ride</th></tr></thead>
+    <tbody>
+    <tr><td>{{p:Hub||SaigonBite District 1 Hub}}</td><td class="num">{{p:Delivered||2}}</td><td class="num">{{p:Failed||1}}</td><td class="num">{{p:Failure rate||33.3%}}</td><td class="num">{{p:Avg wait||1.7 min (n=3)}}</td><td class="num">{{p:Avg ride||7.5 min (n=2)}}</td></tr>
+    <tr><td>{{p:Hub||SaigonBite Binh Thanh Hub}}</td><td class="num">{{p:Delivered||1}}</td><td class="num">{{p:Failed||1}}</td><td class="num">{{p:Failure rate||50.0%}}</td><td class="num">{{p:Avg wait||12.5 min (n=2)}}</td><td class="num">{{p:Avg ride||30.0 min (n=1)}}</td></tr>
+    </tbody>
+    <tbody class="total-row" id="delivery-overall">
+    <tr><td>All deliveries</td><td class="num">{{p:Delivered||3}}</td><td class="num">{{p:Failed||2}}</td><td class="num">{{p:Failure rate||40.0%}}</td><td class="num">{{p:Avg wait||6.0 min (n=5)}}</td><td class="num">{{p:Avg ride||15.0 min (n=3)}}</td></tr>
+    </tbody>
+  </table>
+</section>
+<section aria-labelledby="shipper-h">
+  <h2 id="shipper-h">By shipper</h2>
+  <table class="data" id="delivery-by-shipper"><thead><tr><th></th><th class="num">Delivered</th><th class="num">Failed</th><th class="num">Failure rate</th><th class="num">Avg wait</th><th class="num">Avg ride</th></tr></thead>
+    <tbody>
+    <tr><td>{{p:Shipper||Shipper One}}</td><td class="num">{{p:Delivered||0}}</td><td class="num">{{p:Failed||2}}</td><td class="num">{{p:Failure rate||100.0%}}</td><td class="num">{{p:Avg wait||5.0 min (n=2)}}</td><td class="num">{{p:Avg ride||n/a (n=0)}}</td></tr>
+    <tr><td>{{p:Shipper||Shipper Two}}</td><td class="num">{{p:Delivered||3}}</td><td class="num">{{p:Failed||0}}</td><td class="num">{{p:Failure rate||0.0%}}</td><td class="num">{{p:Avg wait||6.7 min (n=3)}}</td><td class="num">{{p:Avg ride||15.0 min (n=3)}}</td></tr>
+    </tbody>
+  </table>
+</section>

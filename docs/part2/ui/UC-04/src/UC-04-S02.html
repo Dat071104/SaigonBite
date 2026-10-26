@@ -1,0 +1,26 @@
+<!--screen
+id: UC-04-S02
+title: Hub workload now
+role: MANAGER
+viewport: 1440x900
+nav: Sales|Workload|Delivery
+active: Workload
+who: Manager<span class="role"> · Manager</span>
+wide: yes
+-->
+<div class="page-head">
+  <h1>Hub workload now</h1>
+  <p class="muted">As of {{p:As of||01:06, 27/10/2026}}. Load = new + confirmed + preparing orders. A hub is busy at its capacity and quiet below a quarter of it.</p>
+</div>
+<table class="data" id="workload-table">
+  <thead><tr><th>Hub</th><th class="num">New</th><th class="num">Confirmed</th><th class="num">Preparing</th>
+    <th class="num">Load / capacity</th><th class="num">Load %</th><th>Status</th><th class="num">Ready</th><th class="num">On the way</th></tr></thead>
+  <tbody>
+    <tr><td>{{p:Hub||SaigonBite District 1 Hub}}</td><td class="num">{{p:New||1}}</td><td class="num">{{p:Confirmed||0}}</td><td class="num">{{p:Preparing||0}}</td>
+      <td class="num">{{p:Load / capacity||1 / 12}}</td><td class="num">{{p:Load %||8%}}</td><td><span class="badge good">Quiet</span></td><td class="num">{{p:Ready||1}}</td><td class="num">{{p:On the way||0}}</td></tr>
+    <tr><td>{{p:Hub||SaigonBite Binh Thanh Hub}}</td><td class="num">{{p:New||1}}</td><td class="num">{{p:Confirmed||0}}</td><td class="num">{{p:Preparing||0}}</td>
+      <td class="num">{{p:Load / capacity||1 / 10}}</td><td class="num">{{p:Load %||10%}}</td><td><span class="badge good">Quiet</span></td><td class="num">{{p:Ready||0}}</td><td class="num">{{p:On the way||0}}</td></tr>
+    <tr><td>{{p:Hub||SaigonBite District 3 Hub}} (Archived)</td><td class="num">{{p:New||0}}</td><td class="num">{{p:Confirmed||0}}</td><td class="num">{{p:Preparing||0}}</td>
+      <td class="num">{{p:Load / capacity||0 / 6}}</td><td class="num">{{p:Load %||0%}}</td><td><span class="badge good">Quiet</span></td><td class="num">{{p:Ready||0}}</td><td class="num">{{p:On the way||0}}</td></tr>
+  </tbody>
+</table>

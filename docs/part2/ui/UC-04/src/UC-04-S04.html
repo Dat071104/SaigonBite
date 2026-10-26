@@ -1,0 +1,34 @@
+<!--screen
+id: UC-04-S04
+title: Empty period shows n/a
+role: MANAGER
+viewport: 1440x900
+nav: Sales|Workload|Delivery
+active: Sales
+who: Manager<span class="role"> · Manager</span>
+wide: yes
+-->
+<div class="page-head">
+  <h1>Sales</h1>
+  <p class="muted">Delivered orders, counted on the day they were delivered (Ho Chi Minh City time). Rejected, cancelled and failed orders are not sales.</p>
+</div>
+<form method="get" class="filter" aria-label="Report filter">
+  <div class="field"><label for="from">From</label><input type="date" id="from" name="from" value="2030-01-01"></div>
+  <div class="field"><label for="to">To (inclusive)</label><input type="date" id="to" name="to" value="2030-01-31"></div>
+  <div class="field"><label for="hub">Hub</label>
+    <select id="hub" name="hub"><option value="">All hubs</option><option value="1">SaigonBite District 1 Hub</option><option value="2">SaigonBite Binh Thanh Hub</option><option value="3">SaigonBite District 3 Hub (archived)</option></select></div>
+  <button type="submit" class="secondary">Show</button>
+</form>
+<div class="table-scroll" role="region" aria-label="Sales by hub" tabindex="0">
+<table class="data" id="sales-table">
+  <thead><tr><th>Hub</th><th class="num">Orders</th><th class="num">Dishes</th><th class="num">Vouchers</th>
+    <th class="num">Delivery fees</th><th class="num">Total</th><th class="num">Refunds owed</th><th class="num">Net</th></tr></thead>
+  <tbody>
+    <tr><td colspan="8">No delivered orders in this period.</td></tr>
+    <tr class="total-row" id="sales-total"><td>All hubs</td><td class="num">{{p:Orders||0}}</td><td class="num">{{p:Dishes||0 VND}}</td>
+      <td class="num">{{p:Vouchers||0 VND}}</td><td class="num">{{p:Delivery fees||0 VND}}</td>
+      <td class="num">{{p:Total||0 VND}}</td><td class="num">{{p:Refunds owed||0 VND}}</td><td class="num">{{p:Net||0 VND}}</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="muted">Delivery fees are after the quiet-hub discount. Total = dishes - vouchers + delivery fees. Net sales equal this adjusted total; refund owed is shown separately and is not deducted twice. Refunds are simulated obligations, not payouts.</p>
