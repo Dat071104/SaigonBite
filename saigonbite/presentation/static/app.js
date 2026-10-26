@@ -55,6 +55,35 @@
     showTourist();
   }
 
+  // Quote page: the consent fingerprint is bound to the payment choice (BR-10), and the quote was priced
+  // before the customer chose how to pay. When the choice differs, fetch the fingerprint of the chosen
+  // payment (a quote request writes nothing) and then send the form, so one click is enough and no false
+  // "price changed" notice appears. quoted_total stays as shown: a real price change is still caught.
+  var pay = document.querySelector("fieldset.payment");
+  if (pay && pay.form && pay.form.dataset.requoteUrl) {
+    var cform = pay.form;
+    cform.addEventListener("submit", function (e) {
+      var chosen = cform.querySelector("input[name=payment]:checked");
+      if (!chosen || chosen.value === cform.dataset.quotedPayment || cform.dataset.fingerprintReady) return;
+      e.preventDefault(); e.stopImmediatePropagation();
+      var button = cform.querySelector("button[type=submit]");
+      if (button) { button.disabled = true; button.textContent = button.dataset.busy || "Sending..."; }
+      var body = new FormData();
+      ["csrf_token", "hub_id", "address_id", "voucher_code"].forEach(function (n) { body.append(n, cform.elements[n].value); });
+      cform.querySelectorAll("input[type=hidden][name^=qty_]").forEach(function (i) { body.append(i.name, i.value); });
+      body.append("payment", chosen.value);
+      var send = function () { cform.dataset.fingerprintReady = "1"; cform.submit(); };
+      fetch(cform.dataset.requoteUrl, { method: "POST", body: body, credentials: "same-origin" })
+        .then(function (r) { return r.text(); })
+        .then(function (html) {
+          var found = new DOMParser().parseFromString(html, "text/html").querySelector("input[name=quote_fingerprint]");
+          if (found) cform.elements.quote_fingerprint.value = found.value;
+          send();
+        })
+        .catch(send);
+    });
+  }
+
   // One click is enough: show that the order is being sent (the server also ignores repeats)
   document.querySelectorAll("form[data-once]").forEach(function (f) {
     f.addEventListener("submit", function () {

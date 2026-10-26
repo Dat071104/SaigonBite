@@ -28,7 +28,7 @@
     <tr class="total-row"><td colspan="3">Total</td><td class="num" id="total">{{ quote.total|vnd }}</td></tr>
   </tbody>
 </table>
-<form method="post" action="{{ url_for('order.confirm') }}" data-once>
+<form method="post" action="{{ url_for('order.confirm') }}" data-once data-quoted-payment="{{ payment }}" data-requote-url="{{ url_for('order.quote') }}">
   {{ csrf() }}
   <input type="hidden" name="hub_id" value="{{ quote.hub.id }}">
   <input type="hidden" name="address_id" value="{{ quote.address.id }}">
