@@ -11,6 +11,12 @@ def uid() -> int:
     return current_user.account.id
 
 
+def boolean_value(raw: str) -> bool:
+    if raw not in ('0','1'):
+        raise ValidationError('Choose a valid availability or active status (0 or 1).')
+    return raw == '1'
+
+
 def act(action: Callable[[], object], success: str, back: str):
     """Post/redirect/get for a button: run the controller method, flash the outcome, go back.
 

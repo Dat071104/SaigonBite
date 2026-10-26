@@ -7,7 +7,7 @@ from saigonbite.business.controllers import (STAFF_ROLES, HubController, MenuCon
 from saigonbite.business.domain import DiscountType, Role
 from saigonbite.presentation.auth import role_required
 from saigonbite.presentation.db import get_db
-from saigonbite.presentation.helpers import act, uid
+from saigonbite.presentation.helpers import act, uid, boolean_value
 
 bp = Blueprint("admin", __name__, url_prefix="/admin")
 
@@ -70,7 +70,8 @@ def _menu() -> MenuController:
 @bp.get("/menu")
 @role_required(Role.ADMIN)
 def catalogue():
-    return render_template("admin/catalogue.html", c=_menu().catalogue(uid()), hubs=_hubs().list_hubs(uid()))
+    view = _menu().list_catalogue(uid())
+    return render_template("admin/catalogue.html", c=view['catalogue'], hubs=view['hubs'])
 
 
 @bp.post("/brands")
@@ -124,14 +125,14 @@ def archive_item(item_id: int):
 @bp.get("/hubs/<int:hub_id>/menu")
 @role_required(Role.ADMIN)
 def hub_menu(hub_id: int):
-    return render_template("admin/hub_menu.html", m=_menu().hub_menu(uid(), hub_id))
+    return render_template("admin/hub_menu.html", m=_menu().list_catalogue(uid(), hub_id)['hub_menu'])
 
 
 @bp.post("/hubs/<int:hub_id>/menu")
 @role_required(Role.ADMIN)
 def list_item(hub_id: int):
     item_id = request.form.get("item_id", type=int) or 0
-    return act(lambda: _menu().list_item_at_hub(uid(), hub_id, item_id), "The dish is on the hub's menu.",
+    return act(lambda: _menu().list_item_at_hub(uid(), hub_id, item_id,boolean_value(request.form.get('available','1'))), "The dish is on the hub's menu.",
                url_for("admin.hub_menu", hub_id=hub_id))
 
 
@@ -145,8 +146,7 @@ def unlist_item(hub_id: int, item_id: int):
 @bp.post("/hubs/<int:hub_id>/menu/<int:item_id>/availability")
 @role_required(Role.ADMIN)
 def hub_item_availability(hub_id: int, item_id: int):
-    available = request.form.get("available") == "1"
-    return act(lambda: _menu().set_availability(uid(), hub_id, item_id, available), "Availability updated.",
+    return act(lambda: _menu().set_availability(uid(), hub_id, item_id, boolean_value(request.form.get('available',''))), "Availability updated.",
                url_for("admin.hub_menu", hub_id=hub_id))
 
 

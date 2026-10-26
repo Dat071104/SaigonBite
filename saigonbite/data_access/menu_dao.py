@@ -96,9 +96,9 @@ class MenuDAO:
                                 (hub_id, item_id)).fetchone()
         return row is not None
 
-    def add_listing(self, hub_id: int, item_id: int) -> None:
-        self.conn.execute("INSERT INTO hub_menu_item (hub_id, menu_item_id, is_available) VALUES (?, ?, 1)",
-                          (hub_id, item_id))
+    def add_listing(self, hub_id: int, item_id: int, available: bool = True) -> None:
+        self.conn.execute("INSERT INTO hub_menu_item (hub_id, menu_item_id, is_available) VALUES (?, ?, ?)",
+                          (hub_id, item_id,1 if available else 0))
 
     def remove_listing(self, hub_id: int, item_id: int) -> bool:
         cur = self.conn.execute("DELETE FROM hub_menu_item WHERE hub_id = ? AND menu_item_id = ?", (hub_id, item_id))

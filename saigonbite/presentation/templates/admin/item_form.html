@@ -13,6 +13,8 @@
   {% if not item %}
     {% set options = [] %}{% for b in brands if not b.archived_at %}{% set _ = options.append((b.id, b.name)) %}{% endfor %}
     {{ select('brand_id', 'Brand', options, v.get('brand_id'), placeholder='Choose a brand') }}
+  {% else %}
+    <input type="hidden" name="brand_id" value="{{ item.brand_id }}">
   {% endif %}
   {{ field('name', 'Dish name', v.get('name')) }}
   {{ field('description', 'Description', v.get('description'), required=false) }}

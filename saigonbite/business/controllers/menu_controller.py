@@ -19,7 +19,7 @@ from __future__ import annotations
 
 import sqlite3
 from dataclasses import dataclass
-from typing import Mapping
+from typing import Mapping, Optional
 
 from saigonbite.business.domain import Brand, Hub, HubMenuItem, MenuItem, Role
 from saigonbite.data_access import HubDAO, MenuDAO, immediate_transaction
@@ -53,6 +53,16 @@ class MenuController(BaseController):
         self._require_admin(user_id)
         return Catalogue(brands=self.menu.list_brands(), items=self.menu.list_items())
 
+    def list_catalogue(self, user_id: int, hub_id: Optional[int] = None) -> dict[str, object]:
+        """One SSD operation composes catalogue, retained hubs and applicable listings."""
+        self._require_admin(user_id)
+        catalogue = self.catalogue(user_id)
+        hubs = self.hubs.list_all()
+        selected = self.hub_menu(user_id,hub_id) if hub_id is not None else None
+        return dict(catalogue=catalogue,brands=catalogue.brands,items=catalogue.items,hubs=hubs,
+                    hub_menu=selected,listings={h.id:self.menu.list_hub_items(h.id)
+                    for h in hubs if hub_id is None or h.id==hub_id})
+
     # ---- brands ------------------------------------------------------------------------
 
     def create_brand(self, user_id: int, name: str) -> Brand:
@@ -71,7 +81,8 @@ class MenuController(BaseController):
             self._active_brand(brand_id)
             if self.menu.brand_name_exists(name, except_id=brand_id):
                 raise ValidationError(f"A brand called {name} already exists.")
-            self.menu.rename_brand(brand_id, name)
+            if not self.menu.rename_brand(brand_id, name):
+                raise ConflictError('The brand changed before saving.')
         return self.menu.get_brand(brand_id)
 
     def archive_brand(self, user_id: int, brand_id: int) -> Brand:
@@ -79,7 +90,8 @@ class MenuController(BaseController):
         self._require_admin(user_id)
         with immediate_transaction(self.conn):
             self._active_brand(brand_id)
-            self.menu.archive_brand(brand_id, self._now())
+            if not self.menu.archive_brand(brand_id, self._now()):
+                raise ConflictError('The brand changed before archive.')
         return self.menu.get_brand(brand_id)
 
     # ---- menu items --------------------------------------------------------------------
@@ -99,17 +111,26 @@ class MenuController(BaseController):
         self._require_admin(user_id)
         with immediate_transaction(self.conn):
             current = self._active_item(item_id)
+            self._active_brand(current.brand_id)
+            try:
+                context = int(form.get('brand_id') or 0)
+            except ValueError:
+                context = 0
+            if context != current.brand_id:
+                raise ValidationError('The brand context must match the current parent; reparenting is not supported.')
             item = self._parse_item({**form, "brand_id": str(current.brand_id)}, item_id=item_id)
             if self.menu.item_name_exists(current.brand_id, item.name, except_id=item_id):
                 raise ValidationError(f"{current.brand_name} already has a dish called {item.name}.")
-            self.menu.update_item(item)
+            if not self.menu.update_item(item):
+                raise ConflictError('The item changed before saving.')
         return self.menu.get_item(item_id)
 
     def archive_item(self, user_id: int, item_id: int) -> MenuItem:
         self._require_admin(user_id)
         with immediate_transaction(self.conn):
             self._active_item(item_id)
-            self.menu.archive_item(item_id, self._now())
+            if not self.menu.archive_item(item_id, self._now()):
+                raise ConflictError('The item changed before archive.')
         return self.menu.get_item(item_id)
 
     # ---- hub listings ------------------------------------------------------------------
@@ -124,9 +145,11 @@ class MenuController(BaseController):
                       if i.archived_at is None and i.brand_id in active_brands and i.id not in listed_ids]
         return HubMenu(hub=hub, listed=listed, not_listed=not_listed)
 
-    def list_item_at_hub(self, user_id: int, hub_id: int, item_id: int) -> None:
+    def list_item_at_hub(self, user_id: int, hub_id: int, item_id: int, available: bool = True) -> None:
         self._require_admin(user_id)
         with immediate_transaction(self.conn):
+            if type(available) is not bool:
+                raise ValidationError('Availability must be true or false.')
             hub = self._hub(hub_id)
             if hub.archived_at is not None:
                 raise ConflictError(f"{hub.name} is archived.")
@@ -135,7 +158,7 @@ class MenuController(BaseController):
                 raise ConflictError(f"The brand {item.brand_name} is archived.")
             if self.menu.is_listed(hub_id, item_id):
                 raise ConflictError(f"{item.name} is already on the menu of {hub.name}.")
-            self.menu.add_listing(hub_id, item_id)
+            self.menu.add_listing(hub_id, item_id, available)
 
     def unlist_item_at_hub(self, user_id: int, hub_id: int, item_id: int) -> None:
         """Removes the listing row (the only physical delete): orders reference the menu item, not the listing."""
@@ -148,7 +171,11 @@ class MenuController(BaseController):
     def set_availability(self, user_id: int, hub_id: int, item_id: int, available: bool) -> None:
         self._require_admin(user_id)
         with immediate_transaction(self.conn):
-            self._hub(hub_id)
+            if type(available) is not bool:
+                raise ValidationError('Availability must be true or false.')
+            if self._hub(hub_id).archived_at is not None:
+                raise ConflictError('The hub is archived.')
+            self._active_brand(self._active_item(item_id).brand_id)
             if not self.menu.set_available(hub_id, item_id, available):
                 raise NotFoundError("This dish is not on the hub's menu.")
 

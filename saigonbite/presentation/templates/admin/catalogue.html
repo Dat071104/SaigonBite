@@ -53,8 +53,8 @@
 <section aria-labelledby="hubmenu-h">
   <h2 id="hubmenu-h">Menus per hub</h2>
   <ul class="plain">
-    {% for v in hubs if not v.status.hub.archived_at %}
-    <li><a href="{{ url_for('admin.hub_menu', hub_id=v.status.hub.id) }}">{{ v.status.hub.name }}</a></li>
+    {% for h in hubs if not h.archived_at %}
+    <li><a href="{{ url_for('admin.hub_menu', hub_id=h.id) }}">{{ h.name }}</a></li>
     {% endfor %}
   </ul>
 </section>

@@ -6,7 +6,7 @@ from saigonbite.business.controllers import KitchenController
 from saigonbite.business.domain import Role
 from saigonbite.presentation.auth import role_required
 from saigonbite.presentation.db import get_db
-from saigonbite.presentation.helpers import act, uid
+from saigonbite.presentation.helpers import act, uid, boolean_value
 
 bp = Blueprint("kitchen", __name__, url_prefix="/kitchen")
 
@@ -75,6 +75,5 @@ def availability():
 @bp.post("/availability/<int:item_id>")
 @role_required(Role.KITCHEN_STAFF)
 def set_availability(item_id: int):
-    available = request.form.get("available") == "1"
-    return act(lambda: _controller().set_availability(uid(), item_id, available),
+    return act(lambda: _controller().set_availability(uid(), item_id, boolean_value(request.form.get('available',''))),
                "Availability updated.", url_for("kitchen.availability"))
