@@ -1,6 +1,6 @@
 {
   "author": "722I0004 · AI-assisted (Codex)",
-  "current_subphase": "STOP at G4; evidence closure",
+  "current_subphase": "STOP at G4; P4-B02 closure complete",
   "completed_ids": [
     "P4-001",
     "P4-002",
@@ -125,6 +125,7 @@
     "P4-121",
     "P4-122",
     "P4-123",
+    "P4-124",
     "P4-125",
     "P4-126",
     "P4-127",
@@ -134,21 +135,19 @@
     "P4-131",
     "P4-132",
     "P4-133",
-    "P4-136",
-    "P4-139",
-    "P4-140",
-    "P4-142",
-    "P4-143"
-  ],
-  "remaining_ids": [
-    "P4-124",
     "P4-134",
     "P4-135",
+    "P4-136",
     "P4-137",
     "P4-138",
+    "P4-139",
+    "P4-140",
     "P4-141",
+    "P4-142",
+    "P4-143",
     "P4-144"
   ],
+  "remaining_ids": [],
   "completed_subphases": [
     "P4.1",
     "P4.2",
@@ -160,13 +159,13 @@
     "P4.8",
     "P4.9"
   ],
-  "last_code_commit": "4a661ea255207842abc4f6e835f0f1e76f21567b",
-  "last_log": "D:\\RAD\\FINAL\\Part2\\notes\\P4-root\\closure_full_4a661ea_20261026T063106244066.log",
+  "last_code_commit": "7301cde6fd9d8060e85432e5be087e80d3d73438",
+  "last_log": "D:\\RAD\\FINAL\\Part2\\notes\\P4_B02\\full_7301cde_20261026T074525226224.log",
   "mode": "sequential",
   "workers": 0,
-  "blocker": "P4-B02: 12 DAO→domain pairs conflict with frozen architecture",
-  "exact_resume_command": "Do not enter P5. Read p4_architecture_conflict.md and post-commit Part2/notes/P4_final_receipt.json.",
-  "resume_condition": "Specific owner authorization of architecture/model revision or documented mapper exception, then implementation and verification. A2 mapping authorization does not cover this.",
-  "G4": "BLOCKED",
-  "checkpoint_scope": "Before evidence commit; final receipt and external checklist record subsequent post-commit checks."
+  "blocker": null,
+  "exact_resume_command": "Handoff only. Read Part2/notes/P4_B02_final_receipt.json and Part2/notes/P4_B02/P5_handoff.md; await separate P5 prompt.",
+  "resume_condition": "No P5 execution authorized by B02 closure",
+  "G4": "READY",
+  "checkpoint_scope": "Current B02 evidence, supersedes only current gate disposition; original P4 BLOCKED receipt/report remain unchanged"
 }

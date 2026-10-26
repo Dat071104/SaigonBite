@@ -1,0 +1,181 @@
+{
+  "author": "722I0004 · AI-assisted (Codex)",
+  "amendment": "SB-P4-B02-20261026",
+  "G4": "READY; post-commit final receipt is authoritative",
+  "workers": 0,
+  "old_blocked_receipt": {
+    "path": "D:\\RAD\\FINAL\\Part2\\notes\\P4_final_receipt.json",
+    "sha256": "cd86c7cbf1a4f7aa5fb9c6202e722dd3ac7d4fc21511e89bb0b5a933d0d5992f",
+    "verdict": "BLOCKED at historical checkpoint; unchanged"
+  },
+  "tested_commit": "7301cde6fd9d8060e85432e5be087e80d3d73438",
+  "full_execution": {
+    "receipt": "D:\\RAD\\FINAL\\Part2\\notes\\P4_B02\\full_7301cde_20261026T074525226224.json",
+    "sha256": "25c8f08593eb3b087546a907c5eddecf4300a7e7639ef412212e16d27737224a",
+    "nodes": 915,
+    "outcomes": {
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "historical_nodes_missing": [],
+    "log": "D:\\RAD\\FINAL\\Part2\\notes\\P4_B02\\full_7301cde_20261026T074525226224.log",
+    "junit": "D:\\RAD\\FINAL\\Part2\\notes\\P4_B02\\full_7301cde_20261026T074525226224.xml"
+  },
+  "targeted": {
+    "receipt": "D:\\RAD\\FINAL\\Part2\\notes\\P4_B02\\targeted_7301cde_20261026T074450811617.json",
+    "nodes": 38,
+    "negative_rejections": 32,
+    "valid_acceptance_checks": 6
+  },
+  "active_audit": {
+    "path": "D:\\RAD\\FINAL\\Part2\\notes\\P4_B02\\active_7301cde_20261026T074523902539.audit.json",
+    "sha256": "0e74ee0c9f8733ebccd084f099fb6cae12de7426b2363a75cd399d213d8073a9",
+    "pass": true,
+    "module_count": 48,
+    "exact_dependency_set": true,
+    "pairs": [
+      {
+        "source": "saigonbite.data_access.customer_dao",
+        "target": "saigonbite.business.domain",
+        "symbols": [
+          "Address",
+          "Customer",
+          "make_customer"
+        ]
+      },
+      {
+        "source": "saigonbite.data_access.delivery_dao",
+        "target": "saigonbite.business.domain",
+        "symbols": [
+          "Delivery",
+          "DeliveryState"
+        ]
+      },
+      {
+        "source": "saigonbite.data_access.hub_dao",
+        "target": "saigonbite.business.domain",
+        "symbols": [
+          "ACTIVE_ORDER_STATES",
+          "Hub",
+          "HubMenuItem",
+          "MenuItem"
+        ]
+      },
+      {
+        "source": "saigonbite.data_access.hub_dao",
+        "target": "saigonbite.business.domain.rules",
+        "symbols": [
+          "rules"
+        ]
+      },
+      {
+        "source": "saigonbite.data_access.menu_dao",
+        "target": "saigonbite.business.domain",
+        "symbols": [
+          "Brand",
+          "HubMenuItem",
+          "MenuItem"
+        ]
+      },
+      {
+        "source": "saigonbite.data_access.offer_dao",
+        "target": "saigonbite.business.domain",
+        "symbols": [
+          "OfferState",
+          "ReplacementOffer"
+        ]
+      },
+      {
+        "source": "saigonbite.data_access.order_dao",
+        "target": "saigonbite.business.domain",
+        "symbols": [
+          "Order",
+          "OrderLine",
+          "OrderState"
+        ]
+      },
+      {
+        "source": "saigonbite.data_access.order_dao",
+        "target": "saigonbite.business.domain.rules",
+        "symbols": [
+          "rules"
+        ]
+      },
+      {
+        "source": "saigonbite.data_access.payment_dao",
+        "target": "saigonbite.business.domain",
+        "symbols": [
+          "OnlineOption",
+          "Payment",
+          "PaymentMethod",
+          "PaymentState"
+        ]
+      },
+      {
+        "source": "saigonbite.data_access.payment_gateway",
+        "target": "saigonbite.business.domain",
+        "symbols": [
+          "OnlineOption"
+        ]
+      },
+      {
+        "source": "saigonbite.data_access.user_dao",
+        "target": "saigonbite.business.domain",
+        "symbols": [
+          "Role",
+          "UserAccount"
+        ]
+      },
+      {
+        "source": "saigonbite.data_access.voucher_dao",
+        "target": "saigonbite.business.domain",
+        "symbols": [
+          "DiscountType",
+          "Voucher"
+        ]
+      }
+    ],
+    "import_records": 617,
+    "name_uses": 101,
+    "method_use_review": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\implementation\\architecture_amendment\\runtime_use_review.json",
+    "limits": "Static structural checks + manually reviewed semantic AST seals; no arbitrary dynamic Python proof"
+  },
+  "legacy": {
+    "receipt": "D:\\RAD\\FINAL\\Part2\\notes\\P4_B02\\legacy_7301cde_20261026T074435788823.json",
+    "checks": 24835,
+    "failures": 0,
+    "strict_findings": 28,
+    "interpretation": "Static P3 consistency with accounted strict-direction findings; not active policy authority"
+  },
+  "dispositions": {
+    "input_rows": 121,
+    "elements": 96,
+    "changed_source_rows": [
+      "78",
+      "79",
+      "80",
+      "81",
+      "82",
+      "83",
+      "84",
+      "85",
+      "86",
+      "87",
+      "88",
+      "89"
+    ],
+    "retained_prior_verification": true,
+    "retained_dependencies": 12
+  },
+  "protection": {
+    "path": "D:\\RAD\\FINAL\\Part2\\notes\\P4_B02\\qualified_protection.json",
+    "sha256": "6b89dce257def96da8f2188d0cfae6252b727804f27f0d93517c517871374dec",
+    "checked": 95359,
+    "pass": true
+  },
+  "P5_handoff": "D:\\RAD\\FINAL\\Part2\\notes\\P4_B02\\P5_handoff.md",
+  "owner_pending": "L/Q facts, approval and official deadline unknown; 31 October checkpoint retained",
+  "no_external_action": true,
+  "stop": "G4; P5-P8 NOT RUN"
+}
