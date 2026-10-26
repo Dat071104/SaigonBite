@@ -265,3 +265,13 @@ section > * + * { margin-top: 12px; }
    table is 967 px wide at 768 px) --------------------------------------------------------------------- */
 .table-scroll { overflow-x: auto; }
 .table-scroll:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+/* ---- P5.1 refinement R4: shipper cards are surfaces, the cash to collect is the key figure and the action
+   fills the width on a phone; an order link never wraps ("Order / 3") ---------------------------------- */
+.panel.card { background: var(--surface); padding: 16px; }
+.panel.card > * + * { margin-top: 8px; }
+.cash { font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums; }
+table.data td:first-child a { white-space: nowrap; }
+@media (max-width: 479px) {
+  .panel.card .actions .btn:not(.link), .panel.card .actions button { width: 100%; min-height: 48px; }
+}
