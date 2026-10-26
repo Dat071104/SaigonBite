@@ -1,0 +1,22 @@
+uc,from,goto,trigger,label,x,y,w,h
+UC-01,UC-01-S01,UC-01-S03,click link,Order from this hub,32,480,326,48
+UC-01,UC-01-S02,UC-01-S03,click link,SaigonBite District 1 Hub,32,494,176,21
+UC-01,UC-01-S02,UC-01-S03,click link,Order from this hub,32,695,326,48
+UC-01,UC-01-S03,UC-01-S04,press button,See the quote,231,1124,143,48
+UC-01,UC-01-S03,UC-01-S01,click link,Choose another hub,16,1208,156,44
+UC-01,UC-01-S04,UC-01-S08,press button (cash on delivery),Confirm order,16,1120,358,48
+UC-01,UC-01-S04,UC-01-S03,click link,Change items,16,1180,107,44
+UC-01,UC-01-S05,UC-01-S08,press button,Confirm order,16,1216,358,48
+UC-01,UC-01-S05,UC-01-S03,click link,Change items,16,1276,107,44
+UC-01,UC-01-S06,UC-01-S08,press button (approve),Approve payment,16,395,358,48
+UC-01,UC-01-S06,UC-01-S07,press button (decline),Decline payment,16,455,358,48
+UC-01,UC-01-S07,UC-01-S06,press button (online payment chosen),Confirm order,16,1143,358,48
+UC-01,UC-01-S07,UC-01-S03,click link,Change items,16,1203,107,44
+UC-01,UC-01-S08,UC-01-S09,click link,Follow this order,16,1077,358,48
+UC-01,UC-01-S08,UC-01-S01,click link,Place another order,16,1137,358,48
+UC-01,UC-01-S09,UC-01-S10,click link,Printable receipt,16,753,115,44
+UC-01,UC-01-S09,UC-01-S12,press button,Cancel this order,16,809,358,48
+UC-01,UC-01-S09,UC-01-S11,click link,All my orders,16,869,105,44
+UC-01,UC-01-S11,UC-01-S09,click link,Order 12,16,197,62,44
+UC-01,UC-01-S12,UC-01-S10,click link,Printable receipt,16,735,115,44
+UC-01,UC-01-S12,UC-01-S11,click link,All my orders,147,735,105,44

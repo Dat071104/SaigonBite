@@ -1,0 +1,34 @@
+Skip to content
+SaigonBite
+Manager · Manager
+Log out
+Sales
+Workload
+Delivery
+Sales
+
+Delivered orders, counted on the day they were delivered (Ho Chi Minh City time). Rejected, cancelled and failed orders are not sales.
+
+From
+To (inclusive)
+Hub
+All hubs
+SaigonBite District 1 Hub
+SaigonBite Binh Thanh Hub
+SaigonBite District 3 Hub (archived)
+Show
+Hub	Orders	Dishes	Vouchers	Delivery fees	Total	Refunds owed	Net
+SaigonBite District 1 Hub	2	190,000 VND	-13,000 VND	25,000 VND	202,000 VND	0 VND	202,000 VND
+SaigonBite Binh Thanh Hub	1	80,000 VND	-20,000 VND	17,000 VND	77,000 VND	0 VND	77,000 VND
+All hubs	3	270,000 VND	-33,000 VND	42,000 VND	279,000 VND	0 VND	279,000 VND
+
+Delivery fees are after the quiet-hub discount. Total = dishes - vouchers + delivery fees. Net sales equal this adjusted total; refund owed is shown separately and is not deducted twice. Refunds are simulated obligations, not payouts.
+
+Best-selling dishes
+Dish	Quantity	Revenue
+Goi cuon	2	70,000 VND
+Com tam suon bi cha	1	60,000 VND
+Che thai	2	60,000 VND
+Pho ga	1	50,000 VND
+Tra da	3	30,000 VND
+SaigonBite · food from our kitchen hubs in Ho Chi Minh City · demo system, synthetic data

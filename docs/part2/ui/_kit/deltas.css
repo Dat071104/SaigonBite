@@ -1,0 +1,46 @@
+/* Refinement deltas R1-R4 (design target), shared by wireframes and mockups.
+   Author: 722I0004 · AI-assisted (Claude Sonnet 5.5). The same rules are applied to the real stylesheet in the
+   P5.1 refinement commits (docs/part2/ui/refinement_log.md). */
+/* ---- Refinement deltas (design target) ------------------------------------------------------------ */
+/* R1 tap targets of at least 44 px */
+.brand { display: inline-flex; align-items: center; min-height: 44px; }
+.mainnav a { display: inline-flex; align-items: center; min-height: 44px; padding: 0; }
+.actions a:not(.btn) { display: inline-flex; align-items: center; min-height: 44px; }
+.card-head a { display: inline-flex; align-items: center; min-height: 44px; }
+.card .actions button, .card .actions .btn:not(.link) { min-height: 44px; }
+.row-actions a, .row-actions button.link { display: inline-flex; align-items: center; min-height: 44px; }
+
+/* R2 My orders on a phone: one row per order, no sideways scroll */
+@media (max-width: 479px) {
+  .my-orders thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .my-orders tr { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; padding: 8px 0; }
+  .my-orders tbody tr + tr { border-top: 1px solid var(--surface-2); }
+  .my-orders td, .my-orders tbody tr + tr td { display: block; padding: 0; border: 0; }
+  .my-orders td:nth-child(1) { grid-column: 1; align-self: center; font-weight: 600; }
+  .my-orders td:nth-child(5) { grid-column: 2; grid-row: 1; align-self: center; text-align: right; }
+  .my-orders td:nth-child(2), .my-orders td:nth-child(3) { grid-column: 1 / -1; color: var(--muted); }
+  .my-orders td:nth-child(4) { grid-column: 1 / -1; }
+  .my-orders td:nth-child(1) a { display: inline-flex; align-items: center; min-height: 44px; }
+}
+
+/* R3 wide report tables scroll inside their own box instead of widening the page */
+.table-scroll { overflow-x: auto; }
+.table-scroll:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+/* R4 shipper cards: a card is a surface; the cash to collect is the key figure; the action is full width on a phone */
+.panel.card { background: var(--surface); padding: 16px; }
+.panel.card > * + * { margin-top: 8px; }
+.cash { font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums; }
+table.data td:first-child a { white-space: nowrap; }
+@media (max-width: 479px) {
+  .panel.card .actions .btn:not(.link), .panel.card .actions button { width: 100%; min-height: 48px; }
+}
+
+
+/* R1 (cont.): short link labels ("Edit", "Hubs", "Back") are at least 44 px wide as well */
+.mainnav a, .row-actions a, .row-actions button.link, .btn.link, .card-head a { min-width: 44px; justify-content: center; }
+
+/* ---- P5.1 refinement R6: a destructive action that is not the final irreversible step is an outline in the
+   danger colour (A6: destructive actions use danger and ask for confirmation) -------------------------- */
+button.danger-outline { background: transparent; color: var(--danger); border-color: var(--danger); }
+button.danger-outline:hover { background: var(--danger-bg); color: var(--danger); border-color: var(--danger); }

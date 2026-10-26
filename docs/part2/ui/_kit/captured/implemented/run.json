@@ -1,0 +1,84 @@
+{
+ "mode": "implemented",
+ "orders": {
+  "A_cod": 9,
+  "B_online": 10,
+  "C_cancel": 11,
+  "BT_fill": 12,
+  "D_decline": 13,
+  "E_withdrawn": 14
+ },
+ "date": "2026-10-27",
+ "versions": {
+  "playwright": "1.64.1",
+  "edge": "156.0.4314.42",
+  "python": "3.14.4"
+ },
+ "events": {
+  "customer": [
+   [
+    "http",
+    "409 POST http://127.0.0.1:5102/order/confirm"
+   ],
+   [
+    "console.error",
+    "Failed to load resource: the server responded with a status of 409 (CONFLICT)"
+   ],
+   [
+    "http",
+    "402 POST http://127.0.0.1:5102/order/confirm"
+   ],
+   [
+    "console.error",
+    "Failed to load resource: the server responded with a status of 402 (PAYMENT REQUIRED)"
+   ],
+   [
+    "http",
+    "409 POST http://127.0.0.1:5102/order/quote"
+   ],
+   [
+    "console.error",
+    "Failed to load resource: the server responded with a status of 409 (CONFLICT)"
+   ]
+  ],
+  "shipper": [
+   [
+    "http",
+    "403 GET http://127.0.0.1:5102/delivery/orders/9"
+   ],
+   [
+    "console.error",
+    "Failed to load resource: the server responded with a status of 403 (FORBIDDEN)"
+   ]
+  ],
+  "admin": [
+   [
+    "http",
+    "400 POST http://127.0.0.1:5102/admin/hubs/new"
+   ],
+   [
+    "console.error",
+    "Failed to load resource: the server responded with a status of 400 (BAD REQUEST)"
+   ],
+   [
+    "http",
+    "400 POST http://127.0.0.1:5102/admin/items/new"
+   ],
+   [
+    "console.error",
+    "Failed to load resource: the server responded with a status of 400 (BAD REQUEST)"
+   ]
+  ],
+  "manager": [
+   [
+    "http",
+    "400 GET http://127.0.0.1:5102/reports/sales?from=2026-12-31&to=2026-01-01"
+   ],
+   [
+    "console.error",
+    "Failed to load resource: the server responded with a status of 400 (BAD REQUEST)"
+   ]
+  ]
+ },
+ "db": "D:\\RAD\\FINAL\\Part2\\notes\\P5\\db\\capture_implemented_1793039081.db"
+}

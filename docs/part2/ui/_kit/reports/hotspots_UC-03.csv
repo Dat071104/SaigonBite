@@ -1,0 +1,15 @@
+uc,from,goto,trigger,label,x,y,w,h
+UC-03,UC-03-S01,UC-03-S04,click link,New hub,160,226,108,48
+UC-03,UC-03-S01,UC-03-S02,click link,Edit,1176,359,44,44
+UC-03,UC-03-S01,UC-03-S02,click link,Edit,1176,428,44,44
+UC-03,UC-03-S02,UC-03-S03,press button,Save hub,384,730,108,48
+UC-03,UC-03-S02,UC-03-S01,click link,Back,508,732,44,44
+UC-03,UC-03-S03,UC-03-S04,click link,New hub,160,298,108,48
+UC-03,UC-03-S03,UC-03-S02,click link,Edit,1176,431,44,44
+UC-03,UC-03-S03,UC-03-S02,click link,Edit,1176,500,44,44
+UC-03,UC-03-S04,UC-03-S05,press button (capacity 600),Save hub,384,698,108,48
+UC-03,UC-03-S04,UC-03-S01,click link,Back,508,700,44,44
+UC-03,UC-03-S05,UC-03-S01,click link,Back,508,772,44,44
+UC-03,UC-03-S06,UC-03-S04,click link,New hub,160,298,108,48
+UC-03,UC-03-S06,UC-03-S02,click link,Edit,1176,431,44,44
+UC-03,UC-03-S06,UC-03-S02,click link,Edit,1176,500,44,44

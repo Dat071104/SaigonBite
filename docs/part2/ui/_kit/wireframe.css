@@ -1,0 +1,22 @@
+/* Wireframe kit: greyscale boxes, real labels, the same grid and type scale as the app.
+   Author: 722I0004 · AI-assisted (Claude Sonnet 5.5). No colour: one grey ramp replaces the app tokens, so the
+   frame (top bar, 720 px measure, gutters, 8 px radius, 48 px controls) stays identical to the real screens. */
+@import url("../../../../saigonbite/presentation/static/style.css");
+@import url("deltas.css");
+:root {
+  --ground: #ffffff; --surface: #f1f1f1; --surface-2: #dddddd; --ink: #222222; --muted: #555555;
+  --accent: #444444; --accent-press: #333333; --danger: #444444; --danger-bg: #e4e4e4; --control: #777777;
+}
+a { color: #222; }
+.btn, button { background: #cfcfcf; color: #222; border: 1px solid #555; }
+.btn:hover, button:hover { background: #bbb; color: #222; border-color: #555; }
+.btn.secondary, button.secondary { background: transparent; border: 1px dashed #555; }
+.btn.link, button.link { background: none; border: 0; color: #222; }
+button.danger { background: #bdbdbd; border-color: #444; color: #222; }
+.panel, .card, .item, .column, .flash, .topbar, .summary-bar { outline: 1px solid #9a9a9a; outline-offset: -1px; }
+.flash.error, .flash.success, .flash.info, .flash.notice, .attention { background: #e4e4e4; color: #222; }
+.badge, .badge.good, .badge.warn { background: #e4e4e4; color: #222; border: 1px solid #888; }
+.ph { color: #555; background: #e4e4e4; border-radius: 2px; padding: 0 4px; font-style: normal; }
+input, select { border-color: #777; }
+.wf-note { color: #555; font-size: 14px; }
+footer { border-top: 1px dashed #aaa; }

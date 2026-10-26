@@ -1,0 +1,16 @@
+uc,from,goto,trigger,label,x,y,w,h
+UC-05,UC-05-S01,UC-05-S02,click link,Order 9,184,508,55,44
+UC-05,UC-05-S01,UC-05-S02,click link,Reject or replace,184,676,129,44
+UC-05,UC-05-S02,UC-05-S03,press button,Send the offer,384,888,145,48
+UC-05,UC-05-S02,UC-05-S04,press button,Reject order,384,1142,130,48
+UC-05,UC-05-S02,UC-05-S01,click link,Back to the board,360,1238,137,44
+UC-05,UC-05-S03,UC-05-S04,press button,Reject order,384,948,130,48
+UC-05,UC-05-S03,UC-05-S01,click link,Back to the board,360,1044,137,44
+UC-05,UC-05-S04,UC-05-S01,click link,Back to the board,360,669,137,44
+UC-05,UC-05-S05,UC-05-S06,click link,Order 9,16,927,55,44
+UC-05,UC-05-S06,UC-05-S07,press button,Accept Pho ga,32,493,326,48
+UC-05,UC-05-S06,UC-05-S08,press button,Decline,32,553,326,48
+UC-05,UC-05-S06,UC-05-S05,click link,All my orders,16,1265,105,44
+UC-05,UC-05-S07,UC-05-S05,click link,All my orders,16,1037,105,44
+UC-05,UC-05-S08,UC-05-S05,click link,All my orders,147,879,105,44
+UC-05,UC-05-S09,UC-05-S05,click link,All my orders,16,939,105,44

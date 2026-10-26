@@ -1,0 +1,16 @@
+uc,from,goto,trigger,label,x,y,w,h
+UC-02,UC-02-S01,UC-02-S02,click link,Order 7,32,329,55,44
+UC-02,UC-02-S01,UC-02-S02,click link,Order 9,32,591,55,44
+UC-02,UC-02-S01,UC-02-S03,press button (Pick up this order),Pick up this order,32,761,169,48
+UC-02,UC-02-S01,UC-02-S02,click link,Order 14,32,853,62,44
+UC-02,UC-02-S02,UC-02-S03,press button (Pick up this order),Pick up this order,16,440,169,48
+UC-02,UC-02-S02,UC-02-S01,click link,All deliveries,16,512,100,44
+UC-02,UC-02-S03,UC-02-S06,press button,Confirm delivery,32,726,326,48
+UC-02,UC-02-S03,UC-02-S07,press button,Report failed delivery,32,964,326,48
+UC-02,UC-02-S03,UC-02-S01,click link,All deliveries,16,1052,100,44
+UC-02,UC-02-S04,UC-02-S01,click link,Back to deliveries,16,389,358,48
+UC-02,UC-02-S05,UC-02-S06,press button,Confirm delivery,32,750,326,48
+UC-02,UC-02-S05,UC-02-S07,press button,Report failed delivery,32,988,326,48
+UC-02,UC-02-S05,UC-02-S01,click link,All deliveries,16,1076,100,44
+UC-02,UC-02-S06,UC-02-S01,click link,All deliveries,16,658,100,44
+UC-02,UC-02-S07,UC-02-S01,click link,All deliveries,16,630,100,44

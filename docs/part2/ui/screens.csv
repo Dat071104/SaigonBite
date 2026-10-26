@@ -1,0 +1,48 @@
+uc,screen_id,name,role,viewport,routes,ssd_ops,occurrences,controller_methods,kind,template
+UC-01,UC-01-S01,Choose a kitchen hub,CUSTOMER,390x844,GET /order/hubs,OP-13,UC-01#01S-M01,PlaceOrderController.list_hubs,goal,order/hubs.html
+UC-01,UC-01-S02,"Hub is full, quieter hubs suggested",CUSTOMER,390x844,POST /order/quote -> 409,OP-15,UC-01#01S-M03,PlaceOrderController.request_quote,alternative,order/hubs.html
+UC-01,UC-01-S03,"Choose dishes, address and voucher",CUSTOMER,390x844,GET /order/hubs/<id>,OP-14,UC-01#01S-M02,PlaceOrderController.select_hub,goal,order/menu.html
+UC-01,UC-01-S04,Check the quote and choose payment,CUSTOMER,390x844,POST /order/quote,OP-15,UC-01#01S-M03,PlaceOrderController.request_quote,goal,order/quote.html
+UC-01,UC-01-S05,"Quote changed, check it again",CUSTOMER,390x844,POST /order/confirm -> 409,OP-01,UC-01#01S-M04,PlaceOrderController.confirm_order,alternative,order/quote.html
+UC-01,UC-01-S06,Online payment simulator,CUSTOMER,390x844,POST /order/confirm (ONLINE),OP-01,UC-01#01S-M04,PlaceOrderController.confirm_order,goal (online),order/payment_simulator.html
+UC-01,UC-01-S07,Online payment declined,CUSTOMER,390x844,POST /order/confirm -> 402,OP-01,UC-01#01S-M04,PlaceOrderController.confirm_order,alternative,order/quote.html
+UC-01,UC-01-S08,Order placed,CUSTOMER,390x844,POST /order/confirm -> GET /order/<id>/confirmation,OP-01,UC-01#01S-M04,PlaceOrderController.confirm_order,goal,order/confirmation.html
+UC-01,UC-01-S09,Follow an order,CUSTOMER,390x844,GET /order/<id>,OP-16 OP-07,UC-01#01S-M05 UC-01#01S-M07,OrderTrackingController.cancel_order OrderTrackingController.get_order,goal,order/detail.html
+UC-01,UC-01-S10,Receipt,CUSTOMER,390x844,GET /order/<id>/receipt,OP-16,UC-01#01S-M05,OrderTrackingController.get_order,goal,order/receipt.html
+UC-01,UC-01-S11,My orders,CUSTOMER,390x844,GET /order/mine,OP-17,UC-01#01S-M06,OrderTrackingController.list_my_orders,goal,order/my_orders.html
+UC-01,UC-01-S12,Order cancelled,CUSTOMER,390x844,POST /order/<id>/cancel -> GET /order/<id>,OP-07,UC-01#01S-M07,OrderTrackingController.cancel_order,alternative,order/detail.html
+UC-05,UC-05-S01,Kitchen board,KITCHEN_STAFF,1440x900,GET /kitchen/,OP-19,UC-05#05S-M01,KitchenController.board,goal,kitchen/board.html
+UC-05,UC-05-S02,"Kitchen order: confirm, offer a replacement or reject",KITCHEN_STAFF,1440x900,GET /kitchen/orders/<id>,OP-20 OP-02 OP-03 OP-04,UC-05#05S-M02 UC-05#05S-M03 UC-05#05S-M04 UC-05#05S-M05,KitchenController.confirm_order KitchenController.get_order KitchenController.offer_replacement KitchenController.reject_order,goal,kitchen/order.html
+UC-05,UC-05-S03,"Replacement offered, waiting for the customer",KITCHEN_STAFF,1440x900,POST /kitchen/orders/<id>/offer,OP-04,UC-05#05S-M05,KitchenController.offer_replacement,goal,kitchen/order.html
+UC-05,UC-05-S04,Order rejected with a reason,KITCHEN_STAFF,1440x900,POST /kitchen/orders/<id>/reject,OP-03,UC-05#05S-M04,KitchenController.reject_order,alternative,kitchen/order.html
+UC-05,UC-05-S05,My orders: your answer is needed,CUSTOMER,390x844,GET /order/mine,OP-17,UC-05#05S-M06,OrderTrackingController.list_my_orders,goal,order/my_orders.html
+UC-05,UC-05-S06,Replacement offer: accept or decline,CUSTOMER,390x844,GET /order/<id>,OP-18 OP-05 OP-06,UC-05#05S-M07 UC-05#05S-M08 UC-05#05S-M09,OrderTrackingController.answer_replacement OrderTrackingController.get_order,goal,order/detail.html
+UC-05,UC-05-S07,Replacement accepted,CUSTOMER,390x844,POST /order/<id>/replacement (accept),OP-05,UC-05#05S-M08,OrderTrackingController.answer_replacement,goal,order/detail.html
+UC-05,UC-05-S08,Replacement declined,CUSTOMER,390x844,POST /order/<id>/replacement (decline),OP-06,UC-05#05S-M09,OrderTrackingController.answer_replacement,alternative,order/detail.html
+UC-05,UC-05-S09,Offer withdrawn: replacement ran out,CUSTOMER,390x844,"POST /order/<id>/replacement (accept, dish gone)",OP-05,UC-05#05S-M08,OrderTrackingController.answer_replacement,alternative,order/detail.html
+UC-02,UC-02-S01,Deliveries: ready for pickup,SHIPPER,390x844,GET /delivery/,OP-21,UC-02#M01,DeliveryController.board,goal,delivery/board.html
+UC-02,UC-02-S02,Delivery waiting for pickup,SHIPPER,390x844,GET /delivery/orders/<id>,OP-22 OP-10,UC-02#M02 UC-02#M03,DeliveryController.get_delivery DeliveryController.pick_up,goal,delivery/detail.html
+UC-02,UC-02-S03,Picked up: deliver or report a problem,SHIPPER,390x844,POST /delivery/orders/<id>/pickup,OP-10 OP-11 OP-12,UC-02#M03 UC-02#M04 UC-02#M05,DeliveryController.confirm_delivered DeliveryController.pick_up DeliveryController.report_failure,goal,delivery/detail.html
+UC-02,UC-02-S04,Pick-up lost to another shipper,SHIPPER,390x844,POST /delivery/orders/<id>/pickup -> conflict,OP-10,UC-02#M03,DeliveryController.pick_up,alternative,error.html
+UC-02,UC-02-S05,Cash amount refused,SHIPPER,390x844,POST /delivery/orders/<id>/delivered -> error,OP-11,UC-02#M04,DeliveryController.confirm_delivered,alternative,delivery/detail.html
+UC-02,UC-02-S06,"Delivered, cash collected",SHIPPER,390x844,POST /delivery/orders/<id>/delivered,OP-11,UC-02#M04,DeliveryController.confirm_delivered,goal,delivery/detail.html
+UC-02,UC-02-S07,Failed delivery recorded,SHIPPER,390x844,POST /delivery/orders/<id>/failed,OP-12,UC-02#M05,DeliveryController.report_failure,alternative,delivery/detail.html
+UC-03,UC-03-S01,Hubs and kitchen capacity,ADMIN,1440x900,GET /admin/hubs,OP-23,UC-03#M03-01,HubController.list_hubs,goal,admin/hubs.html
+UC-03,UC-03-S02,Edit a hub,ADMIN,1440x900,GET /admin/hubs/<id>,OP-24 OP-35,UC-03#M03-02 UC-03#M03-04,HubController.get_hub HubController.update_hub,goal,admin/hub_form.html
+UC-03,UC-03-S03,Hub saved,ADMIN,1440x900,POST /admin/hubs/<id> -> GET /admin/hubs,OP-35,UC-03#M03-04,HubController.update_hub,goal,admin/hubs.html
+UC-03,UC-03-S04,New hub,ADMIN,1440x900,GET /admin/hubs/new,OP-34,UC-03#M03-03,HubController.create_hub,goal,admin/hub_form.html
+UC-03,UC-03-S05,Hub form refused: capacity out of range,ADMIN,1440x900,POST /admin/hubs/new -> 400,OP-34 OP-35,UC-03#M03-03 UC-03#M03-04,HubController.create_hub HubController.update_hub,alternative,admin/hub_form.html
+UC-03,UC-03-S06,Hub archived,ADMIN,1440x900,POST /admin/hubs/<id>/archive,OP-36,UC-03#M03-05,HubController.archive_hub,goal,admin/hubs.html
+UC-06,UC-06-S01,Brands and dishes,ADMIN,1440x900,GET /admin/menu,OP-25 OP-25 OP-37 OP-38 OP-39 OP-42,UC-06#M06-A01 UC-06#M06-B01 UC-06#M06-A02 UC-06#M06-A03 UC-06#M06-A04 UC-06#M06-B04,MenuController.archive_brand MenuController.archive_item MenuController.create_brand MenuController.list_catalogue MenuController.rename_brand,goal,admin/catalogue.html
+UC-06,UC-06-S02,Brand created and renamed,ADMIN,1440x900,"POST /admin/brands, POST /admin/brands/<id>",OP-37 OP-38,UC-06#M06-A02 UC-06#M06-A03,MenuController.create_brand MenuController.rename_brand,goal,admin/catalogue.html
+UC-06,UC-06-S03,New dish,ADMIN,1440x900,GET /admin/items/new,OP-40,UC-06#M06-B02,MenuController.create_item,goal,admin/item_form.html
+UC-06,UC-06-S04,Edit a dish,ADMIN,1440x900,GET /admin/items/<id>,OP-41,UC-06#M06-B03,MenuController.update_item,goal,admin/item_form.html
+UC-06,UC-06-S05,Dish form refused: price,ADMIN,1440x900,POST /admin/items/new -> 400,OP-40 OP-41,UC-06#M06-B02 UC-06#M06-B03,MenuController.create_item MenuController.update_item,alternative,admin/item_form.html
+UC-06,UC-06-S06,Menu of a hub,ADMIN,1440x900,GET /admin/hubs/<id>/menu,OP-25 OP-43 OP-44 OP-45,UC-06#M06-C01 UC-06#M06-C02 UC-06#M06-C03 UC-06#M06-C04,MenuController.list_catalogue MenuController.list_item_at_hub MenuController.set_availability MenuController.unlist_item_at_hub,goal,admin/hub_menu.html
+UC-06,UC-06-S07,Dish added to the hub menu and marked sold out,ADMIN,1440x900,"POST /admin/hubs/<id>/menu, POST .../availability",OP-43 OP-44,UC-06#M06-C02 UC-06#M06-C03,MenuController.list_item_at_hub MenuController.set_availability,goal,admin/hub_menu.html
+UC-06,UC-06-S08,Archived brand and dish stay listed as archived,ADMIN,1440x900,"POST /admin/brands/<id>/archive, POST /admin/items/<id>/archive",OP-39 OP-42 OP-45,UC-06#M06-A04 UC-06#M06-B04 UC-06#M06-C04,MenuController.archive_brand MenuController.archive_item MenuController.unlist_item_at_hub,alternative,admin/catalogue.html
+UC-04,UC-04-S01,Sales report,MANAGER,1440x900,GET /reports/sales,OP-26,UC-04#M01,ReportController.sales_report,goal,reports/sales.html
+UC-04,UC-04-S02,Hub workload now,MANAGER,1440x900,GET /reports/workload,OP-27,UC-04#M02,ReportController.workload_report,goal,reports/workload.html
+UC-04,UC-04-S03,Delivery performance,MANAGER,1440x900,GET /reports/delivery,OP-28,UC-04#M03,ReportController.delivery_report,goal,reports/delivery.html
+UC-04,UC-04-S04,Empty period shows n/a,MANAGER,1440x900,GET /reports/sales?from=..&to=..,OP-26 OP-28,UC-04#M01 UC-04#M03,ReportController.delivery_report ReportController.sales_report,alternative,reports/sales.html
+UC-04,UC-04-S05,Filter refused: From is after To,MANAGER,1440x900,GET /reports/sales -> 400,OP-26,UC-04#M01,ReportController.sales_report,alternative,reports/sales.html

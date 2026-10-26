@@ -1,0 +1,18 @@
+role,width,page,overflow,scrollWidth,tap_small,summary
+kitchen,768,/kitchen/,False,768,7,tap<44px: 7
+kitchen,768,/kitchen/orders/9,False,768,4,tap<44px: 4
+kitchen,768,/kitchen/availability,False,768,4,tap<44px: 4
+admin,768,/admin/hubs,False,768,7,tap<44px: 7
+admin,768,/admin/hubs/1,False,768,8,tap<44px: 8
+admin,768,/admin/menu,False,768,21,tap<44px: 21
+admin,768,/admin/hubs/2/menu,False,768,21,tap<44px: 21
+admin,768,/admin/items/4,False,768,8,tap<44px: 8
+admin,768,/admin/archive,False,768,7,tap<44px: 7
+manager,768,/reports/sales,True,967,5,overflow 967>768 | tap<44px: 5
+manager,768,/reports/workload,False,768,5,tap<44px: 5
+manager,768,/reports/delivery,False,768,5,tap<44px: 5
+customer,360,/order/hubs,False,360,5,tap<44px: 5
+customer,360,/order/hubs/1,False,360,5,tap<44px: 5
+customer,360,/order/mine,False,450,5,tap<44px: 5
+customer,360,/order/9,False,360,6,tap<44px: 6
+shipper,360,/delivery/,False,360,4,tap<44px: 4

@@ -1,0 +1,11 @@
+/* Mockup kit: the app's own stylesheet (so tokens, type and components cannot drift into a second palette),
+   plus the refinement deltas the mockups show. Author: 722I0004 · AI-assisted (Claude Sonnet 5.5).
+   Every rule below the marker is also applied to the real app in the P5.1 refinement commits listed in
+   docs/part2/ui/refinement_log.md; none of them adds a colour, a font or a size outside the house scale. */
+@import url("../../../../saigonbite/presentation/static/style.css");
+@import url("deltas.css");
+
+/* Refinement deltas: see deltas.css. */
+
+/* mockup-only: annotation line under the footer */
+.mk-note { color: var(--muted); font-size: 14px; }
