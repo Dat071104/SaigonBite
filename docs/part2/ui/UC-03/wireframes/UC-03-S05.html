@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport-px" content="1440x900">
+<meta name="screen-id" content="UC-03-S05">
+<meta name="author" content="722I0004 · AI-assisted (Claude Sonnet 5.5)">
+<title>UC-03-S05 Hub form refused: capacity out of range (wireframe)</title>
+<link rel="stylesheet" href="../../_kit/wireframe.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <span class="brand">SaigonBite</span>
+      <nav class="account" aria-label="Account"><span class="who">Admin<span class="role"> · Admin</span></span><button type="button" class="secondary">Log out</button></nav>
+    </div>
+    <div class="wrap"><nav class="mainnav" aria-label="Main"><a href="#">Hubs</a><a href="#">Brands and menu</a><a href="#">Vouchers</a><a href="#">Users</a><a href="#">Archive orders</a></nav></div>
+  </header>
+  <main id="content">
+    <div class="wrap">
+<div class="page-head">
+  <h1>New hub</h1>
+</div>
+<div class="flash error" id="form-error" role="alert">The kitchen capacity must be between 1 and 500.</div>
+<form class="panel stack">
+  <div class="field"><label for="f-code">Hub code <span class="hint">for example HUB-D3</span></label><input type="text" id="f-code" name="code" value="HUB-D3" required></div>
+  <div class="field"><label for="f-name">Name</label><input type="text" id="f-name" name="name" value="SaigonBite District 3 Hub" required></div>
+  <div class="field"><label for="f-address_text">Address</label><input type="text" id="f-address_text" name="address_text" value="88 Vo Van Tan, Ward 6, District 3, Ho Chi Minh City" required></div>
+  <div class="two">
+    <div class="field"><label for="f-latitude">Latitude</label><input type="number" id="f-latitude" name="latitude" value="10.7790" required step="0.0001"></div>
+    <div class="field"><label for="f-longitude">Longitude</label><input type="number" id="f-longitude" name="longitude" value="106.6860" required step="0.0001"></div>
+  </div>
+  <div class="two">
+    <div class="field"><label for="f-max_active_orders">Kitchen capacity (orders) <span class="hint">1 to 500</span></label><input type="number" id="f-max_active_orders" name="max_active_orders" value="600" required min="1" max="500" step="1"></div>
+    <div class="field"><label for="f-base_delivery_fee">Base delivery fee (VND) <span class="hint">plus 3,000 VND per km</span></label><input type="number" id="f-base_delivery_fee" name="base_delivery_fee" value="12000" required min="0" step="1000"></div>
+  </div>
+  <div class="actions"><button type="submit">Save hub</button><a class="btn link" href="#" data-goto="UC-03-S01">Back</a></div>
+</form>
+    </div>
+  </main>
+  <footer>
+    <div class="wrap">
+      <p>Wireframe UC-03-S05 · Hub form refused: capacity out of range</p>
+      <p class="wf-note">Low-fidelity layout: real labels, placeholder values. 722I0004 · AI-assisted (Claude Sonnet 5.5). Authored as HTML/CSS; assembled and linked in Figma by the owner.</p>
+    </div>
+  </footer>
+</body>
+</html>

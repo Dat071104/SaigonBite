@@ -1,0 +1,25 @@
+<!--screen
+id: UC-03-S03
+title: Hub saved
+role: ADMIN
+viewport: 1440x900
+nav: Hubs|Brands and menu|Vouchers|Users|Archive orders
+active: Hubs
+who: Admin<span class="role"> · Admin</span>
+wide: yes
+-->
+<div class="flash success" role="status">The hub is saved.</div>
+<div class="page-head">
+  <h1>Hubs and kitchen capacity</h1>
+  <p class="muted">Load = orders still to cook (new, confirmed, preparing). A hub at its capacity takes no new orders; below a quarter of it, delivery is 5,000 VND cheaper.</p>
+</div>
+<div class="actions"><a class="btn" href="#" data-goto="UC-03-S04">New hub</a></div>
+<table class="data" id="hub-table">
+  <thead><tr><th>Code</th><th>Hub</th><th class="num">Load / capacity</th><th>Now</th><th class="num">Base fee</th><th>Open orders</th><th></th></tr></thead>
+  <tbody>
+    <tr><td>{{p:Code||HUB-D1}}</td><td>{{p:Hub||SaigonBite District 1 Hub}}</td><td class="num">{{p:Load / capacity||1 / 12}}</td><td><span class="badge good">Quiet</span></td><td class="num">{{p:Base fee||12,000 VND}}</td><td>{{p:Open orders||2}}</td>
+      <td class="row-actions"><a href="#" data-goto="UC-03-S02">Edit</a> <a href="#">Menu</a></td></tr>
+    <tr><td>{{p:Code||HUB-BT}}</td><td>{{p:Hub||SaigonBite Binh Thanh Hub}}</td><td class="num">{{p:Load / capacity||1 / 10}}</td><td><span class="badge good">Quiet</span></td><td class="num">{{p:Base fee||10,000 VND}}</td><td>{{p:Open orders||1}}</td>
+      <td class="row-actions"><a href="#" data-goto="UC-03-S02">Edit</a> <a href="#">Menu</a></td></tr>
+  </tbody>
+</table>
