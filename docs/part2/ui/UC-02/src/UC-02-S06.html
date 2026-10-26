@@ -1,0 +1,25 @@
+<!--screen
+id: UC-02-S06
+title: Delivered, cash collected
+role: SHIPPER
+viewport: 390x844
+nav: Deliveries
+active: Deliveries
+who: Shipper Two
+-->
+<div class="flash success" role="status">Order {{p:N||9}} is delivered.</div>
+<div class="page-head">
+  <h1>Order {{p:N||9}}</h1>
+  <p class="muted"><span class="badge" id="delivery-state">Delivered</span> · from {{p:Hub name||SaigonBite District 1 Hub}}</p>
+</div>
+<dl class="facts">
+  <dt>Deliver to</dt><dd>{{p:Address||12 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City}} ({{p:Distance||0.39 km}})</dd>
+  <dt>Customer</dt><dd>{{p:Customer||Tran Thi Mai}} · <a href="#">{{p:Phone||0901234567}}</a></dd>
+  <dt>Payment</dt><dd id="cash-info">Cash on delivery</dd>
+  <dt>Ready</dt><dd>{{p:Time||01:05, 27/10/2026}}</dd>
+  <dt>Picked up</dt><dd>{{p:Time||01:05, 27/10/2026}}</dd>
+  <dt>Finished</dt><dd>{{p:Time||01:05, 27/10/2026}}</dd>
+  <dt>Cash collected</dt><dd>{{p:Cash||70,000 VND}}</dd>
+</dl>
+<ul class="plain"><li>1 x {{p:Dish||Pho ga}}</li><li>1 x {{p:Dish||Tra da}}</li></ul>
+<div class="actions"><a class="btn link" href="#" data-goto="UC-02-S01">All deliveries</a></div>

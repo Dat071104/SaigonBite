@@ -1,0 +1,18 @@
+<!--screen
+id: UC-02-S04
+title: Pick-up lost to another shipper
+role: SHIPPER
+viewport: 390x844
+nav: Deliveries
+active: Deliveries
+who: Shipper One
+-->
+<div class="flash error" role="alert">Order {{p:N||9}} has already been picked up. Nothing was changed.</div>
+<div class="page-head">
+  <h1>Not allowed</h1>
+  <p class="muted">Error 403</p>
+</div>
+<div class="flash error" role="alert">Another shipper is delivering this order.</div>
+<div class="actions">
+  <a class="btn secondary" href="#" data-goto="UC-02-S01">Back to deliveries</a>
+</div>

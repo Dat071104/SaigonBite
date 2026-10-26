@@ -1,0 +1,21 @@
+<!--screen
+id: UC-02-S02
+title: Delivery waiting for pickup
+role: SHIPPER
+viewport: 390x844
+nav: Deliveries
+active: Deliveries
+who: Shipper One
+-->
+<div class="page-head">
+  <h1>Order {{p:N||9}}</h1>
+  <p class="muted"><span class="badge" id="delivery-state">Awaiting pickup</span> · from {{p:Hub name||SaigonBite District 1 Hub}}</p>
+</div>
+<dl class="facts">
+  <dt>Deliver to</dt><dd>{{p:Address||12 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City}} ({{p:Distance||0.39 km}})</dd>
+  <dt>Payment</dt><dd id="cash-info">Collect <strong class="cash">{{p:Cash||70,000 VND}}</strong> in cash</dd>
+  <dt>Ready</dt><dd>{{p:Time||01:05, 27/10/2026}}</dd>
+</dl>
+<ul class="plain"><li>1 x {{p:Dish||Pho ga}}</li><li>1 x {{p:Dish||Tra da}}</li></ul>
+<div class="actions"><form class="inline"><button type="button" data-goto="UC-02-S03" data-trigger="press button (Pick up this order)">Pick up this order</button></form></div>
+<div class="actions"><a class="btn link" href="#" data-goto="UC-02-S01">All deliveries</a></div>

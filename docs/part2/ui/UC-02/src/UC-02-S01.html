@@ -1,0 +1,47 @@
+<!--screen
+id: UC-02-S01
+title: Deliveries: ready for pickup
+role: SHIPPER
+viewport: 390x844
+nav: Deliveries
+active: Deliveries
+who: Shipper One
+-->
+<div class="page-head">
+  <h1>Deliveries</h1>
+</div>
+<section aria-labelledby="mine-h">
+  <h2 id="mine-h">On my bike</h2>
+  <p class="muted">Nothing picked up.</p>
+</section>
+<section aria-labelledby="wait-h">
+  <h2 id="wait-h">Ready for pickup</h2>
+  <article class="panel card" id="waiting-7">
+    <p class="card-head"><a href="#" data-goto="UC-02-S02">Order {{p:N||7}}</a> <span class="muted">ready since {{p:Ready time||10:15, 23/10/2026}}</span></p>
+    <p>{{p:Hub name||SaigonBite District 1 Hub}} → {{p:Address||12 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City}} ({{p:Distance||0.39 km}})</p>
+    <p>Cash on delivery: <strong class="cash">{{p:Cash||65,000 VND}}</strong></p>
+    <div class="actions"><form class="inline"><button type="button">Pick up this order</button></form></div>
+  </article>
+  <article class="panel card" id="waiting-9">
+    <p class="card-head"><a href="#" data-goto="UC-02-S02">Order {{p:N||9}}</a> <span class="muted">ready since {{p:Ready time||01:05, 27/10/2026}}</span></p>
+    <p>{{p:Hub name||SaigonBite District 1 Hub}} → {{p:Address||12 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City}} ({{p:Distance||0.39 km}})</p>
+    <p>Cash on delivery: <strong class="cash">{{p:Cash||70,000 VND}}</strong></p>
+    <div class="actions"><form class="inline"><button type="button" data-goto="UC-02-S03" data-trigger="press button (Pick up this order)">Pick up this order</button></form></div>
+  </article>
+  <article class="panel card" id="waiting-14">
+    <p class="card-head"><a href="#" data-goto="UC-02-S02">Order {{p:N||14}}</a> <span class="muted">ready since {{p:Ready time||01:05, 27/10/2026}}</span></p>
+    <p>{{p:Hub name||SaigonBite District 1 Hub}} → {{p:Address||12 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City}} ({{p:Distance||0.39 km}})</p>
+    <p>Cash on delivery: <strong class="cash">{{p:Cash||75,000 VND}}</strong></p>
+    <div class="actions"><form class="inline"><button type="button">Pick up this order</button></form></div>
+  </article>
+</section>
+<section aria-labelledby="done-h">
+  <h2 id="done-h">My recent deliveries</h2>
+  <table class="data">
+    <thead><tr><th>Order</th><th>Finished</th><th>Result</th><th class="num">Cash</th></tr></thead>
+    <tbody>
+      <tr><td><a href="#">Order {{p:N||3}}</a></td><td>{{p:Time||12:50, 21/10/2026}}</td><td>Failed</td><td class="num">{{p:Cash||0 VND}}</td></tr>
+      <tr><td><a href="#">Order {{p:N||1}}</a></td><td>{{p:Time||11:55, 20/10/2026}}</td><td>Delivered</td><td class="num">{{p:Cash||130,000 VND}}</td></tr>
+    </tbody>
+  </table>
+</section>

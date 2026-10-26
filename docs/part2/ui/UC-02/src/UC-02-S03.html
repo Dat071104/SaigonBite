@@ -1,0 +1,43 @@
+<!--screen
+id: UC-02-S03
+title: Picked up: deliver or report a problem
+role: SHIPPER
+viewport: 390x844
+nav: Deliveries
+active: Deliveries
+who: Shipper Two
+-->
+<div class="flash success" role="status">You picked up order {{p:N||9}}.</div>
+<div class="page-head">
+  <h1>Order {{p:N||9}}</h1>
+  <p class="muted"><span class="badge" id="delivery-state">Picked up</span> · from {{p:Hub name||SaigonBite District 1 Hub}}</p>
+</div>
+<dl class="facts">
+  <dt>Deliver to</dt><dd>{{p:Address||12 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City}} ({{p:Distance||0.39 km}})</dd>
+  <dt>Customer</dt><dd>{{p:Customer||Tran Thi Mai}} · <a href="#">{{p:Phone||0901234567}}</a></dd>
+  <dt>Payment</dt><dd id="cash-info">Collect <strong class="cash">{{p:Cash||70,000 VND}}</strong> in cash</dd>
+  <dt>Ready</dt><dd>{{p:Time||01:05, 27/10/2026}}</dd>
+  <dt>Picked up</dt><dd>{{p:Time||01:05, 27/10/2026}}</dd>
+</dl>
+<ul class="plain"><li>1 x {{p:Dish||Pho ga}}</li><li>1 x {{p:Dish||Tra da}}</li></ul>
+<section class="panel" aria-labelledby="ok-h">
+  <h2 id="ok-h">Delivered</h2>
+  <form class="stack" data-once>
+    <div class="field">
+      <label for="cash">Cash collected (VND)</label>
+      <input type="number" id="cash" name="cash_collected" min="0" step="1" inputmode="numeric" required>
+    </div>
+    <div class="actions"><button type="submit" data-goto="UC-02-S06">Confirm delivery</button></div>
+  </form>
+</section>
+<section class="panel" aria-labelledby="fail-h">
+  <h2 id="fail-h">Could not deliver</h2>
+  <form class="stack">
+    <div class="field">
+      <label for="reason">What happened</label>
+      <input type="text" id="reason" name="reason" maxlength="200" required placeholder="Customer did not answer, address not found ...">
+    </div>
+    <div class="actions"><button type="submit" class="danger" data-goto="UC-02-S07">Report failed delivery</button></div>
+  </form>
+</section>
+<div class="actions"><a class="btn link" href="#" data-goto="UC-02-S01">All deliveries</a></div>
