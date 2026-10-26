@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% from "_form.html" import csrf %}
+{% from "order/_names.html" import online_option %}
 {% block title %}Check your order · SaigonBite{% endblock %}
 {% block content %}
 {% set step = 3 %}{% include "order/_steps.html" %}
@@ -43,7 +44,7 @@
     <legend>How will you pay?</legend>
     <label class="choice"><input type="radio" name="payment" value="COD"{% if payment == 'COD' %} checked{% endif %}> Cash to the driver on delivery</label>
     {% for option in options %}
-    <label class="choice"><input type="radio" name="payment" value="ONLINE:{{ option.value }}"{% if payment == 'ONLINE:' ~ option.value %} checked{% endif %}> Pay now online: {{ option|label|lower }}</label>
+    <label class="choice"><input type="radio" name="payment" value="ONLINE:{{ option.value }}"{% if payment == 'ONLINE:' ~ option.value %} checked{% endif %}> Pay now online: {{ online_option(option) }}</label>
     {% endfor %}
   </fieldset>
   <div class="actions">

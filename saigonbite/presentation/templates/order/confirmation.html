@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "order/_names.html" import online_option %}
 {% block title %}Order {{ result.order.id }} · SaigonBite{% endblock %}
 {% block content %}
 {% set order = result.order %}
@@ -16,7 +17,7 @@
 <dl class="facts">
   <dt>Order number</dt><dd><strong id="order-id">{{ order.id }}</strong></dd>
   <dt>Status</dt><dd><span id="order-state">{{ order.state.value }}</span>, waiting for the kitchen to confirm</dd>
-  <dt>Payment</dt><dd>{% if cod %}<span id="payment-method">COD</span> (cash on delivery), <span id="payment-state">{{ result.payment.state.value }}</span> until the driver collects it{% else %}<span id="payment-method">ONLINE</span> ({{ result.payment.online_option|label|lower }}), <span id="payment-state">{{ result.payment.state.value }}</span>{% endif %}</dd>
+  <dt>Payment</dt><dd>{% if cod %}<span id="payment-method">COD</span> (cash on delivery), <span id="payment-state">{{ result.payment.state.value }}</span> until the driver collects it{% else %}<span id="payment-method">ONLINE</span> ({{ online_option(result.payment.online_option) }}), <span id="payment-state">{{ result.payment.state.value }}</span>{% endif %}</dd>
   <dt>Placed</dt><dd>{{ order.placed_at|vn_time }}</dd>
 </dl>
 <div class="panel">

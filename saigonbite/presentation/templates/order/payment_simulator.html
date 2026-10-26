@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% from "_form.html" import csrf %}
+{% from "order/_names.html" import online_option %}
 {% block title %}Payment simulator · SaigonBite{% endblock %}
 {% block content %}
 <div class="page-head">
@@ -8,7 +9,7 @@
 </div>
 <div class="panel sim">
   <p>Amount: <strong class="big" id="sim-amount">{{ (amount or 0)|vnd }}</strong></p>
-  <p>Method: <strong>{{ option|label }}</strong></p>
+  <p>Method: <strong>{{ online_option(option) }}</strong></p>
 </div>
 <form method="post" action="{{ url_for('order.confirm') }}" data-once>
   {{ csrf() }}

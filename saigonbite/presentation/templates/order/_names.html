@@ -1,0 +1,2 @@
+{# Display names of the online payment options (the stored values are codes such as BANK_QR). #}
+{% macro online_option(option) %}{{ {'E_WALLET': 'E-wallet', 'BANK_QR': 'Bank QR code', 'INTERNATIONAL_CARD': 'International card'}.get(option.value, option.value) }}{% endmacro %}
