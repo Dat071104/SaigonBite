@@ -204,3 +204,24 @@ def test_profile_second_save_failure_rolls_back_and_http_stale_is_controlled(cli
     login(client,'customer')
     assert client.post('/account',data=registration()).status_code==409
     assert facts(db_path)==before;conn.close()
+
+
+def test_archive_populated_aggregate_keeps_delivery_offer_refund_receipt_and_report(client,db_path):
+    from .test_p4_kitchen import oracle_order,offer_for
+    from saigonbite.business.controllers import KitchenController,OrderTrackingController,DeliveryController,ReportController
+    conn=connect(db_path);o=oracle_order(conn,True);offer=offer_for(conn,o)
+    OrderTrackingController(conn).answer_replacement(1,o.id,offer.id,True)
+    kitchen=KitchenController(conn);kitchen.confirm_order(2,o.id);kitchen.start_preparing(2,o.id);kitchen.mark_ready(2,o.id)
+    delivery=DeliveryController(conn);delivery.pick_up(3,o.id);delivery.confirm_delivered(3,o.id,None)
+    before=facts(db_path);login(client,'admin')
+    assert client.post(f'/admin/archive/{o.id}').status_code==303
+    after=facts(db_path)
+    for table in ('order_line','payment','delivery','replacement_offer'):assert before[table]==after[table] and after[table]
+    history=client.get(f'/admin/archive/{o.id}').get_data(as_text=True)
+    assert 'Accepted' in history and 'Delivered' in history and 'Refund owed' in history and '10,000 VND' in history
+    assert OrderArchiveController(conn).orders.list_for_customer(1)==[]
+    login(client,'customer');receipt=client.get(f'/order/{o.id}/receipt')
+    assert receipt.status_code==200 and b'90,000 VND' in receipt.data and b'10,000 VND' in receipt.data
+    day=ReportController(conn)._today_vn();report=ReportController(conn).sales_report(5,day,day)
+    assert report.totals.orders==1 and report.totals.total==90000 and report.totals.refunds_owed==10000
+    conn.close()
