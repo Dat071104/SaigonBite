@@ -14,7 +14,8 @@ ROOT=Path(__file__).resolve().parents[1]
 
 @pytest.fixture
 def oracle(db_path):
-    receipt=json.loads((ROOT.parent/'Part2/notes/P4_report_oracle_preregistered.json').read_text())
+    # Byte-identical copy of Part2/notes/P4_report_oracle_preregistered.json, kept in the repo so a fresh clone runs.
+    receipt=json.loads((ROOT/'tests/fixtures/report_oracle_preregistered.json').read_text(encoding='utf-8'))
     for path,digest in receipt['files'].items():assert hashlib.sha256((ROOT/path).read_bytes()).hexdigest()==digest
     conn=connect(db_path);conn.executescript((ROOT/'tests/fixtures/report_oracle.sql').read_text(encoding='utf-8'))
     yield conn,ReportController(conn),db_path
