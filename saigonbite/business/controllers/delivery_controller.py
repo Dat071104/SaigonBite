@@ -14,6 +14,7 @@ Delivery, Order and Payment change together in one transaction:
 from __future__ import annotations
 
 import sqlite3
+import re
 from dataclasses import dataclass
 from typing import Optional
 
@@ -78,7 +79,7 @@ class DeliveryController(BaseController):
         shipper = self._require_shipper(user_id)
         with immediate_transaction(self.conn):
             delivery = self._delivery(order_id)
-            if delivery.state is not DeliveryState.AWAITING_PICKUP:
+            if delivery.state is not DeliveryState.AWAITING_PICKUP or delivery.shipper_id is not None:
                 raise ConflictError(f"Order {order_id} has already been picked up. Nothing was changed.")
             now = self._now()
             if not self.deliveries.take(order_id, shipper.id, now):
@@ -93,15 +94,18 @@ class DeliveryController(BaseController):
         with immediate_transaction(self.conn):
             delivery = self._own_active_delivery(shipper, order_id)
             payment = self.payments.get_by_order_id(order_id)
+            order = self.orders.get_by_id(order_id)
             cash = self._parse_cash(cash_collected)
             now = self._now()
             if payment.method is PaymentMethod.COD:
-                if cash != payment.amount:
+                if cash != order.total or payment.amount != order.total:
                     raise ValidationError(f"Collect exactly {payment.amount:,} VND in cash and enter that amount.")
                 payment.move_to(PaymentState.PAID)
                 if not self.payments.change_state(order_id, PaymentState.PENDING, PaymentState.PAID, now):
                     raise ConflictError("The payment was already recorded. Nothing was changed.")
             else:
+                if payment.state is not PaymentState.PAID:
+                    raise ConflictError('The online payment is not in a fulfilled-payment state.')
                 if cash not in (None, 0):
                     raise ValidationError("This order was paid online. Do not take cash from the customer.")
                 cash = None
@@ -145,13 +149,18 @@ class DeliveryController(BaseController):
             raise AuthorizationError("Only the shipper who picked up this order can finish it.")
         if delivery.state is not DeliveryState.PICKED_UP:
             raise ConflictError(f"This delivery is already {delivery.state.value}. Nothing was changed.")
+        if self.orders.get_by_id(order_id).state is not OrderState.OUT_FOR_DELIVERY:
+            raise ConflictError('The order is no longer out for delivery. Nothing was changed.')
         return delivery
 
     @staticmethod
     def _parse_cash(raw: Optional[str]) -> Optional[int]:
-        raw = (raw or "").replace(",", "").replace(".", "").strip()
+        raw = (raw or "").strip()
         if raw == "":
             return None
+        if not re.fullmatch(r'(?:[0-9]+|[0-9]{1,3}(?:,[0-9]{3})+|[0-9]{1,3}(?:\.[0-9]{3})+)',raw):
+            raise ValidationError('Enter a nonnegative whole VND amount, with optional thousands separators.')
+        raw = raw.replace(',', '').replace('.', '')
         try:
             value = int(raw)
         except ValueError:

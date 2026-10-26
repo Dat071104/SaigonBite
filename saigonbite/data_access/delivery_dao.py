@@ -48,7 +48,7 @@ class DeliveryDAO:
         """AWAITING_PICKUP -> PICKED_UP for this shipper. Only the first of two competing shippers wins."""
         cur = self.conn.execute(
             "UPDATE delivery SET shipper_id = ?, state = 'PICKED_UP', picked_up_at = ? "
-            "WHERE order_id = ? AND state = 'AWAITING_PICKUP'", (shipper_id, now, order_id))
+            "WHERE order_id = ? AND state = 'AWAITING_PICKUP' AND shipper_id IS NULL", (shipper_id, now, order_id))
         return cur.rowcount == 1
 
     def finish(self, order_id: int, shipper_id: int, to_state: DeliveryState, now: str,

@@ -16,8 +16,8 @@ from typing import Mapping, Optional
 
 from werkzeug.security import generate_password_hash
 
-from saigonbite.business.domain import Hub, Role, UserAccount
-from saigonbite.data_access import HubDAO, immediate_transaction
+from saigonbite.business.domain import DeliveryState, Hub, Role, UserAccount
+from saigonbite.data_access import DeliveryDAO, HubDAO, immediate_transaction
 
 from .common import BaseController
 from .errors import ConflictError, NotFoundError, ValidationError
@@ -85,6 +85,8 @@ class UserAdminController(BaseController):
             raise ConflictError("You cannot deactivate your own account.")
         with immediate_transaction(self.conn):
             user = self._target(target_id)
+            if not active and user.role is Role.SHIPPER and DeliveryDAO(self.conn).list_for_shipper(target_id,DeliveryState.PICKED_UP):
+                raise ConflictError('A shipper holding a picked-up delivery cannot be deactivated.')
             if not self.users.set_active(target_id, active):
                 raise ConflictError(f"{user.username} is already {'active' if active else 'deactivated'}.")
         return self._target(target_id)
