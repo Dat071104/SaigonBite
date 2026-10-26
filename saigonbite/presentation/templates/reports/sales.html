@@ -15,14 +15,14 @@
   <tbody>
   {% for r in report.rows %}
     <tr><td>{{ r.label }}</td><td class="num">{{ r.orders }}</td><td class="num">{{ r.item_sales|vnd }}</td>
-      <td class="num">-{{ r.voucher_discounts|vnd }}</td><td class="num">{{ r.delivery_fees|vnd }}</td>
+      <td class="num">{% if r.voucher_discounts %}-{% endif %}{{ r.voucher_discounts|vnd }}</td><td class="num">{{ r.delivery_fees|vnd }}</td>
       <td class="num">{{ r.total|vnd }}</td><td class="num">{{ r.refunds_owed|vnd }}</td><td class="num">{{ r.net|vnd }}</td></tr>
   {% else %}
     <tr><td colspan="8">No delivered orders in this period.</td></tr>
   {% endfor %}
   {% set t = report.totals %}
     <tr class="total-row" id="sales-total"><td>{{ t.label }}</td><td class="num">{{ t.orders }}</td><td class="num">{{ t.item_sales|vnd }}</td>
-      <td class="num">-{{ t.voucher_discounts|vnd }}</td><td class="num">{{ t.delivery_fees|vnd }}</td>
+      <td class="num">{% if t.voucher_discounts %}-{% endif %}{{ t.voucher_discounts|vnd }}</td><td class="num">{{ t.delivery_fees|vnd }}</td>
       <td class="num">{{ t.total|vnd }}</td><td class="num">{{ t.refunds_owed|vnd }}</td><td class="num">{{ t.net|vnd }}</td></tr>
   </tbody>
 </table>
