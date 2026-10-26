@@ -1,5 +1,6 @@
 """Manager routes: UC-04 Produce management reports (read-only, GET only)."""
 from flask import Blueprint, render_template, request
+import sqlite3
 
 from saigonbite.business.controllers import ReportController, ValidationError
 from saigonbite.business.domain import Role
@@ -8,6 +9,17 @@ from saigonbite.presentation.db import get_db
 from saigonbite.presentation.helpers import uid
 
 bp = Blueprint("reports", __name__, url_prefix="/reports")
+
+
+@bp.errorhandler(sqlite3.OperationalError)
+def unavailable_data(exc):
+    if getattr(exc,'sqlite_errorcode',None) in (sqlite3.SQLITE_BUSY,sqlite3.SQLITE_LOCKED):
+        return render_template('error.html',code=503,title='Please retry',
+                               message='The database is busy. No figures were calculated; please retry.'),503
+    if str(exc).startswith('no such table:'):
+        return render_template('error.html',code=503,title='Report data unavailable',
+                               message='Required report data is unavailable. No figures were calculated.'),503
+    raise exc
 
 
 def _controller() -> ReportController:

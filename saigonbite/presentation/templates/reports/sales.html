@@ -25,7 +25,7 @@
       <td class="num">{{ t.total|vnd }}</td><td class="num">{{ t.refunds_owed|vnd }}</td><td class="num">{{ t.net|vnd }}</td></tr>
   </tbody>
 </table>
-<p class="muted">Delivery fees are after the quiet-hub discount. Total = dishes - vouchers + delivery fees.</p>
+<p class="muted">Delivery fees are after the quiet-hub discount. Total = dishes - vouchers + delivery fees. Net sales equal this adjusted total; refund owed is shown separately and is not deducted twice. Refunds are simulated obligations, not payouts.</p>
 {% if report.top_items %}
 <section aria-labelledby="top-h">
   <h2 id="top-h">Best-selling dishes</h2>

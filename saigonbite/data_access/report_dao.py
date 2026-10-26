@@ -33,13 +33,15 @@ class ReportDAO:
     def top_items(self, start_utc: str, end_utc: str, hub_id: Optional[int], limit: int = 10) -> list[sqlite3.Row]:
         """Dishes sold on DELIVERED orders in the period, by revenue (line level, so the join is correct here)."""
         return self.conn.execute(
-            "SELECT ol.item_name, SUM(ol.quantity) AS quantity, SUM(ol.unit_price * ol.quantity) AS revenue "
-            "FROM order_line ol "
-            "JOIN orders o ON o.id = ol.order_id "
-            "JOIN delivery d ON d.order_id = o.id "
-            "WHERE o.state = 'DELIVERED' AND d.finished_at >= ? AND d.finished_at < ? "
-            "  AND (? IS NULL OR o.hub_id = ?) "
-            "GROUP BY ol.item_name ORDER BY revenue DESC, ol.item_name LIMIT ?",
+            "WITH eligible AS (SELECT ol.*, d.finished_at FROM order_line ol "
+            "JOIN orders o ON o.id=ol.order_id JOIN delivery d ON d.order_id=o.id "
+            "WHERE o.state='DELIVERED' AND d.finished_at >= ? AND d.finished_at < ? "
+            "AND (? IS NULL OR o.hub_id=?)) "
+            "SELECT ol.menu_item_id, "
+            "(SELECT n.item_name FROM eligible n WHERE n.menu_item_id=ol.menu_item_id "
+            "ORDER BY n.finished_at DESC,n.order_id DESC,n.id DESC LIMIT 1) AS item_name, "
+            "SUM(ol.quantity) AS quantity, SUM(ol.unit_price * ol.quantity) AS revenue "
+            "FROM eligible ol GROUP BY ol.menu_item_id ORDER BY revenue DESC, ol.menu_item_id LIMIT ?",
             (start_utc, end_utc, hub_id, hub_id, limit)).fetchall()
 
     def open_orders_by_hub_and_state(self) -> list[sqlite3.Row]:

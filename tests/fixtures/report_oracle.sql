@@ -1,0 +1,32 @@
+-- Hand-authored oracle; run only on a fresh schema.sql + seed.sql database.
+-- Author: 722I0004 · AI-assisted (Codex). No production report/domain calculation used.
+UPDATE hub SET archived_at='2026-10-21T00:00:00+00:00' WHERE id=2;
+INSERT INTO orders(id,customer_id,hub_id,address_id,delivery_address_text,distance_km,state,item_subtotal,voucher_id,voucher_discount,delivery_fee,quiet_discount,total_amount,idempotency_token,placed_at,closed_at,archived_at) VALUES
+(101,1,1,1,'Snapshot A',1,'DELIVERED',90000,1,10000,15000,5000,90000,'oracle101','2026-10-18T01:00:00+00:00','2026-10-20T05:00:00+00:00',NULL),
+(102,1,2,1,'Snapshot B',1,'DELIVERED',60000,NULL,0,10000,0,70000,'oracle102','2026-10-19T01:00:00+00:00','2026-10-20T16:59:00+00:00','2026-10-21T00:00:00+00:00'),
+(103,1,1,1,'Next VN day',1,'DELIVERED',20000,NULL,0,10000,0,30000,'oracle103','2026-10-20T01:00:00+00:00','2026-10-20T17:01:00+00:00',NULL),
+(104,1,1,1,'Previous VN day',1,'DELIVERED',20000,NULL,0,10000,0,30000,'oracle104','2026-10-18T01:00:00+00:00','2026-10-19T16:59:00+00:00',NULL),
+(105,1,1,1,'Cancelled',1,'CANCELLED',90000,1,10000,15000,5000,90000,'oracle105','2026-10-19T01:00:00+00:00','2026-10-20T05:00:00+00:00',NULL),
+(106,1,1,1,'Rejected',1,'REJECTED',50000,NULL,0,10000,0,60000,'oracle106','2026-10-19T01:00:00+00:00','2026-10-20T05:00:00+00:00',NULL),
+(107,1,2,1,'Failed',1,'DELIVERY_FAILED',50000,NULL,0,10000,0,60000,'oracle107','2026-10-19T01:00:00+00:00','2026-10-20T10:00:00+00:00',NULL),
+(108,1,2,1,'Open retained hub',1,'PLACED',50000,NULL,0,10000,0,60000,'oracle108','2026-10-19T01:00:00+00:00',NULL,NULL);
+INSERT INTO order_line(order_id,menu_item_id,item_name,unit_price,quantity) VALUES
+(101,1,'Shared name',40000,1),(101,2,'Shared name',50000,1),
+(102,1,'Renamed snapshot',30000,2),(103,3,'Outside',20000,1),(104,3,'Outside',20000,1),
+(105,1,'Cancelled snapshot',45000,2),(106,1,'Rejected snapshot',50000,1),
+(107,1,'Failed snapshot',50000,1),(108,1,'Open snapshot',50000,1);
+INSERT INTO payment(order_id,method,online_option,state,amount,refund_amount,created_at,updated_at) VALUES
+(101,'ONLINE','E_WALLET','PAID',100000,10000,'2026-10-18T01:00:00+00:00','2026-10-20T05:00:00+00:00'),
+(102,'COD',NULL,'PAID',70000,0,'2026-10-19T01:00:00+00:00','2026-10-20T16:59:00+00:00'),
+(103,'COD',NULL,'PAID',30000,0,'2026-10-20T01:00:00+00:00','2026-10-20T17:01:00+00:00'),
+(104,'COD',NULL,'PAID',30000,0,'2026-10-18T01:00:00+00:00','2026-10-19T16:59:00+00:00'),
+(105,'ONLINE','E_WALLET','REFUND_PENDING',100000,100000,'2026-10-19T01:00:00+00:00','2026-10-20T05:00:00+00:00'),
+(106,'COD',NULL,'VOIDED',60000,0,'2026-10-19T01:00:00+00:00','2026-10-20T05:00:00+00:00'),
+(107,'ONLINE','E_WALLET','REFUND_PENDING',60000,60000,'2026-10-19T01:00:00+00:00','2026-10-20T10:00:00+00:00'),
+(108,'COD',NULL,'PENDING',60000,0,'2026-10-19T01:00:00+00:00','2026-10-19T01:00:00+00:00');
+INSERT INTO delivery(order_id,shipper_id,state,ready_at,picked_up_at,finished_at,failure_reason) VALUES
+(101,3,'DELIVERED','2026-10-20T04:30:00+00:00','2026-10-20T04:40:00+00:00','2026-10-20T05:00:00+00:00',NULL),
+(102,3,'DELIVERED','2026-10-20T16:09:00+00:00','2026-10-20T16:29:00+00:00','2026-10-20T16:59:00+00:00',NULL),
+(103,3,'DELIVERED','2026-10-20T16:31:00+00:00','2026-10-20T16:41:00+00:00','2026-10-20T17:01:00+00:00',NULL),
+(104,3,'DELIVERED','2026-10-19T16:29:00+00:00','2026-10-19T16:39:00+00:00','2026-10-19T16:59:00+00:00',NULL),
+(107,3,'FAILED','2026-10-20T09:20:00+00:00','2026-10-20T09:50:00+00:00','2026-10-20T10:00:00+00:00','Synthetic failure');

@@ -48,7 +48,9 @@ class SalesRow:
 
     @property
     def net(self) -> int:
-        return self.total - self.refunds_owed
+        # BR-24: reduced T already reflects accepted replacement pricing.
+        # The difference from original charge is an obligation, not another sales deduction.
+        return self.total
 
     def add(self, other: "SalesRow") -> None:
         for name in ("orders", "item_sales", "voucher_discounts", "delivery_fees", "total", "refunds_owed"):
@@ -149,7 +151,7 @@ class ReportController(BaseController):
         for r in self.reports.open_orders_by_hub_and_state():
             counts.setdefault(r["hub_id"], {})[OrderState(r["state"])] = r["n"]
         rows = []
-        for hub in self.hubs.list_active():
+        for hub in self.hubs.list_all():
             per_state = counts.get(hub.id, {})
             load = sum(per_state.get(s, 0) for s in (OrderState.PLACED, OrderState.CONFIRMED, OrderState.PREPARING))
             rows.append(WorkloadRow(status=HubStatus(hub, load), counts=per_state))
