@@ -1,0 +1,60 @@
+<!--screen
+id: UC-05-S01
+title: Kitchen board
+role: KITCHEN_STAFF
+viewport: 1440x900
+nav: Kitchen board|Availability
+active: Kitchen board
+who: Kitchen Staff D1 · Kitchen staff
+wide: yes
+-->
+<div class="page-head">
+  <h1>{{p:Hub name||SaigonBite District 1 Hub}}</h1>
+  <p class="muted">Kitchen capacity {{p:Capacity||12}} orders. New, confirmed and preparing orders count towards it.</p>
+</div>
+<div class="board">
+  <section class="column" aria-labelledby="col-PLACED">
+    <h2 id="col-PLACED">New <span class="count">{{p:N||5}}</span></h2>
+    <article class="card" id="order-8">
+      <p class="card-head"><a href="#">Order {{p:N||8}}</a> <span class="muted">{{p:Placed time||10:10, 23/10/2026}}</span></p>
+      <ul class="plain"><li>1 x {{p:Dish||Goi cuon}}</li></ul>
+      <div class="actions"><form class="inline"><button type="button">Confirm</button></form> <a class="btn link" href="#">Reject or replace</a></div>
+    </article>
+    <article class="card" id="order-9">
+      <p class="card-head"><a href="#" data-goto="UC-05-S02">Order {{p:N||9}}</a> <span class="muted">{{p:Placed time||01:05, 27/10/2026}}</span></p>
+      <ul class="plain"><li>1 x {{p:Dish||Com tam suon bi cha}}</li><li>1 x {{p:Dish||Tra da}}</li></ul>
+      <div class="actions"><form class="inline"><button type="button">Confirm</button></form> <a class="btn link" href="#" data-goto="UC-05-S02">Reject or replace</a></div>
+    </article>
+    <article class="card" id="order-10">
+      <p class="card-head"><a href="#">Order {{p:N||10}}</a> <span class="muted">{{p:Placed time||01:05, 27/10/2026}}</span></p>
+      <ul class="plain"><li>2 x {{p:Dish||Pho bo tai}}</li></ul>
+      <div class="actions"><form class="inline"><button type="button">Confirm</button></form> <a class="btn link" href="#">Reject or replace</a></div>
+    </article>
+    <article class="card" id="order-13">
+      <p class="card-head"><a href="#">Order {{p:N||13}}</a> <span class="muted">{{p:Placed time||01:05, 27/10/2026}}</span></p>
+      <ul class="plain"><li>1 x {{p:Dish||Com tam suon bi cha}}</li></ul>
+      <div class="actions"><form class="inline"><button type="button">Confirm</button></form> <a class="btn link" href="#">Reject or replace</a></div>
+    </article>
+    <article class="card" id="order-14">
+      <p class="card-head"><a href="#">Order {{p:N||14}}</a> <span class="muted">{{p:Placed time||01:05, 27/10/2026}}</span></p>
+      <ul class="plain"><li>2 x {{p:Dish||Banh mi thit nuong}}</li></ul>
+      <div class="actions"><form class="inline"><button type="button">Confirm</button></form> <a class="btn link" href="#">Reject or replace</a></div>
+    </article>
+  </section>
+  <section class="column" aria-labelledby="col-CONFIRMED">
+    <h2 id="col-CONFIRMED">Confirmed <span class="count">{{p:N||0}}</span></h2>
+    <p class="muted">None</p>
+  </section>
+  <section class="column" aria-labelledby="col-PREPARING">
+    <h2 id="col-PREPARING">Preparing <span class="count">{{p:N||0}}</span></h2>
+    <p class="muted">None</p>
+  </section>
+  <section class="column" aria-labelledby="col-READY">
+    <h2 id="col-READY">Ready for pickup <span class="count">{{p:N||1}}</span></h2>
+    <article class="card" id="order-7">
+      <p class="card-head"><a href="#">Order {{p:N||7}}</a> <span class="muted">{{p:Placed time||10:00, 23/10/2026}}</span></p>
+      <ul class="plain"><li>1 x {{p:Dish||Pho bo tai}}</li></ul>
+      <div class="actions"><span class="muted">Waiting for a shipper since {{p:Ready time||10:15, 23/10/2026}}</span></div>
+    </article>
+  </section>
+</div>

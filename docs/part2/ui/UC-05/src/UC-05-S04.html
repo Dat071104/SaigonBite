@@ -1,0 +1,26 @@
+<!--screen
+id: UC-05-S04
+title: Order rejected with a reason
+role: KITCHEN_STAFF
+viewport: 1440x900
+nav: Kitchen board|Availability
+active: Kitchen board
+who: Kitchen Staff D1 · Kitchen staff
+-->
+<div class="flash success" role="status">Order {{p:N||10}} is rejected and the customer is told why.</div>
+<div class="page-head">
+  <h1>Order {{p:N||10}}</h1>
+  <p class="muted">Placed {{p:Placed time||01:05, 27/10/2026}} · <span class="badge" id="order-state">Rejected</span> · {{p:Payment||ONLINE (paid)}}</p>
+</div>
+<table class="order-lines">
+  <thead><tr><th>Dish</th><th class="num col-unit">Unit price</th><th class="num col-qty">Qty</th><th class="num">Amount</th></tr></thead>
+  <tbody>
+    <tr><td>{{p:Dish||Pho bo tai}}<span class="line-detail">2 x 55,000 VND</span></td><td class="num col-unit">55,000 VND</td><td class="num col-qty">2</td><td class="num">{{p:Amount||110,000 VND}}</td></tr>
+    <tr class="sum-row"><td colspan="3">Dishes</td><td class="num">{{p:S||110,000 VND}}</td></tr>
+    <tr class="sum-row"><td colspan="3">Delivery fee (0.39 km)</td><td class="num">{{p:F||15,000 VND}}</td></tr>
+    <tr class="sum-row"><td colspan="3">Quiet hub discount</td><td class="num">{{p:Q||-5,000 VND}}</td></tr>
+    <tr class="total-row"><td colspan="3">Total</td><td class="num">{{p:T||120,000 VND}}</td></tr>
+  </tbody>
+</table>
+<p class="muted">Reason: {{p:Reason||The pho broth has run out for today.}}</p>
+<div class="actions"><a class="btn link" href="#" data-goto="UC-05-S01">Back to the board</a></div>

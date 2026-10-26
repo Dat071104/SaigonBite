@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport-px" content="1440x900">
+<meta name="screen-id" content="UC-05-S03">
+<meta name="author" content="722I0004 · AI-assisted (Claude Sonnet 5.5)">
+<title>UC-05-S03 Replacement offered, waiting for the customer (wireframe)</title>
+<link rel="stylesheet" href="../../_kit/wireframe.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <span class="brand">SaigonBite</span>
+      <nav class="account" aria-label="Account"><span class="who">Kitchen Staff D1 · Kitchen staff</span><button type="button" class="secondary">Log out</button></nav>
+    </div>
+    <div class="wrap"><nav class="mainnav" aria-label="Main"><a href="#" aria-current="page">Kitchen board</a><a href="#">Availability</a></nav></div>
+  </header>
+  <main id="content">
+    <div class="wrap">
+<div class="flash success" role="status">The replacement is offered. The order waits for the customer's answer.</div>
+<div class="page-head">
+  <h1>Order <span class="ph">N</span></h1>
+  <p class="muted">Placed <span class="ph">Placed time</span> · <span class="badge" id="order-state">Placed</span> · <span class="ph">Payment</span></p>
+</div>
+<table class="order-lines">
+  <thead><tr><th>Dish</th><th class="num col-unit">Unit price</th><th class="num col-qty">Qty</th><th class="num">Amount</th></tr></thead>
+  <tbody>
+    <tr><td><span class="ph">Dish</span><span class="line-detail">1 x 60,000 VND</span></td><td class="num col-unit">60,000 VND</td><td class="num col-qty">1</td><td class="num"><span class="ph">Amount</span></td></tr>
+    <tr><td><span class="ph">Dish</span><span class="line-detail">1 x 10,000 VND</span></td><td class="num col-unit">10,000 VND</td><td class="num col-qty">1</td><td class="num"><span class="ph">Amount</span></td></tr>
+    <tr class="sum-row"><td colspan="3">Dishes</td><td class="num"><span class="ph">S</span></td></tr>
+    <tr class="sum-row"><td colspan="3">Delivery fee (0.39 km)</td><td class="num"><span class="ph">F</span></td></tr>
+    <tr class="sum-row"><td colspan="3">Quiet hub discount</td><td class="num"><span class="ph">Q</span></td></tr>
+    <tr class="total-row"><td colspan="3">Total</td><td class="num"><span class="ph">T</span></td></tr>
+  </tbody>
+</table>
+<div class="panel attention"><p>Replacement offered: <span class="ph">Original dish</span> → <strong><span class="ph">Replacement dish</span></strong>.
+  Waiting for the customer to accept or decline. You can confirm the order after the answer.</p></div>
+<section class="panel" aria-labelledby="rej-h">
+  <h2 id="rej-h">Reject the order</h2>
+  <form class="stack">
+    <div class="field">
+      <label for="reason">Reason for the customer</label>
+      <input type="text" id="reason" name="reason" maxlength="200" required>
+    </div>
+    <div class="actions"><button type="submit" class="danger" data-goto="UC-05-S04">Reject order</button></div>
+  </form>
+</section>
+<div class="actions"><a class="btn link" href="#" data-goto="UC-05-S01">Back to the board</a></div>
+    </div>
+  </main>
+  <footer>
+    <div class="wrap">
+      <p>Wireframe UC-05-S03 · Replacement offered, waiting for the customer</p>
+      <p class="wf-note">Low-fidelity layout: real labels, placeholder values. 722I0004 · AI-assisted (Claude Sonnet 5.5). Authored as HTML/CSS; assembled and linked in Figma by the owner.</p>
+    </div>
+  </footer>
+</body>
+</html>

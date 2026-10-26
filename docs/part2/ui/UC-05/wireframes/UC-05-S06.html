@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport-px" content="390x844">
+<meta name="screen-id" content="UC-05-S06">
+<meta name="author" content="722I0004 · AI-assisted (Claude Sonnet 5.5)">
+<title>UC-05-S06 Replacement offer: accept or decline (wireframe)</title>
+<link rel="stylesheet" href="../../_kit/wireframe.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <span class="brand">SaigonBite</span>
+      <nav class="account" aria-label="Account"><span class="who">Tran Thi Mai</span><button type="button" class="secondary">Log out</button></nav>
+    </div>
+    <div class="wrap"><nav class="mainnav" aria-label="Main"><a href="#">Order food</a><a href="#" aria-current="page">My orders</a><a href="#">Profile</a></nav></div>
+  </header>
+  <main id="content">
+    <div class="wrap">
+<div class="page-head">
+  <h1>Order <span class="ph">N</span></h1>
+  <p class="muted"><span class="ph">Hub name</span> · placed <span class="ph">Time</span></p>
+</div>
+<section class="panel attention" id="replacement-offer" aria-labelledby="offer-h">
+  <h2 id="offer-h">The kitchen asks about a replacement</h2>
+  <p><span class="ph">Original dish</span> has run out. The kitchen offers <strong><span class="ph">Replacement dish</span></strong>
+     at <span class="ph">New price</span> instead of <span class="ph">Old price</span>.</p>
+  <p>If you accept, the new total is <strong id="new-total"><span class="ph">New total</span></strong>
+     (now <span class="ph">Total</span>). If you decline, the order is not cooked.</p>
+  <form class="actions">
+    <button type="submit" name="decision" value="accept" data-goto="UC-05-S07">Accept <span class="ph">Replacement dish</span></button>
+    <button type="submit" name="decision" value="decline" class="secondary" data-goto="UC-05-S08">Decline</button>
+  </form>
+</section>
+<dl class="facts">
+  <dt>Status</dt><dd><span class="badge" id="order-state">Placed</span></dd>
+  <dt>Payment</dt><dd id="payment">COD, pending</dd>
+  <dt>Deliver to</dt><dd><span class="ph">Address</span></dd>
+</dl>
+<table class="order-lines">
+  <thead><tr><th>Dish</th><th class="num col-unit">Unit price</th><th class="num col-qty">Qty</th><th class="num">Amount</th></tr></thead>
+  <tbody>
+    <tr><td><span class="ph">Dish</span><span class="line-detail">1 x 60,000 VND</span></td><td class="num col-unit">60,000 VND</td><td class="num col-qty">1</td><td class="num"><span class="ph">Amount</span></td></tr>
+    <tr><td><span class="ph">Dish</span><span class="line-detail">1 x 10,000 VND</span></td><td class="num col-unit">10,000 VND</td><td class="num col-qty">1</td><td class="num"><span class="ph">Amount</span></td></tr>
+    <tr class="sum-row"><td colspan="3">Dishes</td><td class="num"><span class="ph">S</span></td></tr>
+    <tr class="sum-row"><td colspan="3">Delivery fee (0.39 km)</td><td class="num"><span class="ph">F</span></td></tr>
+    <tr class="sum-row"><td colspan="3">Quiet hub discount</td><td class="num"><span class="ph">Q</span></td></tr>
+    <tr class="total-row"><td colspan="3">Total</td><td class="num"><span class="ph">T</span></td></tr>
+  </tbody>
+</table>
+<div class="actions">
+  <a href="#">Printable receipt</a>
+  <button type="button" class="secondary danger-outline">Cancel this order</button>
+  <a class="btn link" href="#" data-goto="UC-05-S05">All my orders</a>
+</div>
+    </div>
+  </main>
+  <footer>
+    <div class="wrap">
+      <p>Wireframe UC-05-S06 · Replacement offer: accept or decline</p>
+      <p class="wf-note">Low-fidelity layout: real labels, placeholder values. 722I0004 · AI-assisted (Claude Sonnet 5.5). Authored as HTML/CSS; assembled and linked in Figma by the owner.</p>
+    </div>
+  </footer>
+</body>
+</html>

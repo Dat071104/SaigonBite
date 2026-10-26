@@ -1,0 +1,54 @@
+<!--screen
+id: UC-05-S02
+title: Kitchen order: confirm, offer a replacement or reject
+role: KITCHEN_STAFF
+viewport: 1440x900
+nav: Kitchen board|Availability
+active: Kitchen board
+who: Kitchen Staff D1 · Kitchen staff
+-->
+<div class="page-head">
+  <h1>Order {{p:N||9}}</h1>
+  <p class="muted">Placed {{p:Placed time||01:05, 27/10/2026}} · <span class="badge" id="order-state">Placed</span> · {{p:Payment||COD}}</p>
+</div>
+<table class="order-lines">
+  <thead><tr><th>Dish</th><th class="num col-unit">Unit price</th><th class="num col-qty">Qty</th><th class="num">Amount</th></tr></thead>
+  <tbody>
+    <tr><td>{{p:Dish||Com tam suon bi cha}}<span class="line-detail">1 x 60,000 VND</span></td><td class="num col-unit">60,000 VND</td><td class="num col-qty">1</td><td class="num">{{p:Amount||60,000 VND}}</td></tr>
+    <tr><td>{{p:Dish||Tra da}}<span class="line-detail">1 x 10,000 VND</span></td><td class="num col-unit">10,000 VND</td><td class="num col-qty">1</td><td class="num">{{p:Amount||10,000 VND}}</td></tr>
+    <tr class="sum-row"><td colspan="3">Dishes</td><td class="num">{{p:S||70,000 VND}}</td></tr>
+    <tr class="sum-row"><td colspan="3">Delivery fee (0.39 km)</td><td class="num">{{p:F||15,000 VND}}</td></tr>
+    <tr class="sum-row"><td colspan="3">Quiet hub discount</td><td class="num">{{p:Q||-5,000 VND}}</td></tr>
+    <tr class="total-row"><td colspan="3">Total</td><td class="num">{{p:T||80,000 VND}}</td></tr>
+  </tbody>
+</table>
+<div class="actions"><form class="inline"><button type="button">Confirm order</button></form></div>
+<section class="panel" aria-labelledby="repl-h">
+  <h2 id="repl-h">Offer a replacement</h2>
+  <p class="muted">If a dish has run out, offer one available dish at the same or a lower price. The customer decides.</p>
+  <form class="stack">
+    <div class="field">
+      <label for="replacement">Replace</label>
+      <select id="replacement" name="replacement">
+        <option value="">Choose the dish and its replacement</option>
+        <option>Com tam suon bi cha → Pho bo tai (55,000 VND)</option>
+        <option>Com tam suon bi cha → Pho ga (50,000 VND)</option>
+        <option>Com tam suon bi cha → Goi cuon (35,000 VND)</option>
+        <option>Com tam suon bi cha → Banh mi thit nuong (30,000 VND)</option>
+        <option>Com tam suon bi cha → Banh mi op la (25,000 VND)</option>
+      </select>
+    </div>
+    <div class="actions"><button type="submit" class="secondary" data-goto="UC-05-S03">Send the offer</button></div>
+  </form>
+</section>
+<section class="panel" aria-labelledby="rej-h">
+  <h2 id="rej-h">Reject the order</h2>
+  <form class="stack">
+    <div class="field">
+      <label for="reason">Reason for the customer</label>
+      <input type="text" id="reason" name="reason" maxlength="200" required>
+    </div>
+    <div class="actions"><button type="submit" class="danger" data-goto="UC-05-S04">Reject order</button></div>
+  </form>
+</section>
+<div class="actions"><a class="btn link" href="#" data-goto="UC-05-S01">Back to the board</a></div>
