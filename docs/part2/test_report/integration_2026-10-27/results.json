@@ -1,0 +1,2439 @@
+{
+ "environment": {
+  "commit": "252ada102510ffd1bca9d50288f7ea44e9ff9149",
+  "git_status": [
+   "?? docs/part2/test_report/integration_2026-10-27/",
+   "?? docs/part2/ui/"
+  ],
+  "versions": {
+   "playwright": "1.64.1",
+   "edge": "156.0.4314.42",
+   "python": "3.14.4"
+  },
+  "main_db": "D:\\RAD\\FINAL\\Part2\\notes\\P5\\db\\main_t4.db",
+  "oracle_db": "D:\\RAD\\FINAL\\Part2\\notes\\P5\\db\\oracle_t4.db",
+  "server": "local Flask development server (python -m flask run), debug off, ports 5100 (main) and 5101 (oracle)",
+  "started": "2026-10-27T01:22:48",
+  "finished": "2026-10-27T01:23:01",
+  "all_events": {
+   "main/customer": [
+    [
+     "http",
+     "400 POST http://127.0.0.1:5100/order/quote"
+    ],
+    [
+     "console.error",
+     "Failed to load resource: the server responded with a status of 400 (BAD REQUEST)"
+    ],
+    [
+     "http",
+     "400 POST http://127.0.0.1:5100/order/quote"
+    ],
+    [
+     "console.error",
+     "Failed to load resource: the server responded with a status of 400 (BAD REQUEST)"
+    ],
+    [
+     "http",
+     "402 POST http://127.0.0.1:5100/order/confirm"
+    ],
+    [
+     "console.error",
+     "Failed to load resource: the server responded with a status of 402 (PAYMENT REQUIRED)"
+    ],
+    [
+     "http",
+     "400 POST http://127.0.0.1:5100/order/9/cancel"
+    ],
+    [
+     "console.error",
+     "Failed to load resource: the server responded with a status of 400 (BAD REQUEST)"
+    ]
+   ],
+   "main/tourist": [
+    [
+     "http",
+     "409 POST http://127.0.0.1:5100/order/quote"
+    ],
+    [
+     "console.error",
+     "Failed to load resource: the server responded with a status of 409 (CONFLICT)"
+    ]
+   ],
+   "main/kitchen": [
+    [
+     "http",
+     "400 POST http://127.0.0.1:5100/kitchen/availability/1"
+    ],
+    [
+     "console.error",
+     "Failed to load resource: the server responded with a status of 400 (BAD REQUEST)"
+    ]
+   ],
+   "main/kitchen_bt": [
+    [
+     "http",
+     "403 GET http://127.0.0.1:5100/kitchen/orders/11"
+    ],
+    [
+     "console.error",
+     "Failed to load resource: the server responded with a status of 403 (FORBIDDEN)"
+    ],
+    [
+     "http",
+     "403 POST http://127.0.0.1:5100/kitchen/orders/11/confirm"
+    ],
+    [
+     "console.error",
+     "Failed to load resource: the server responded with a status of 403 (FORBIDDEN)"
+    ]
+   ],
+   "main/shipper2": [
+    [
+     "http",
+     "403 GET http://127.0.0.1:5100/delivery/orders/11"
+    ],
+    [
+     "console.error",
+     "Failed to load resource: the server responded with a status of 403 (FORBIDDEN)"
+    ]
+   ],
+   "main/admin": [
+    [
+     "http",
+     "400 POST http://127.0.0.1:5100/admin/hubs/2"
+    ],
+    [
+     "console.error",
+     "Failed to load resource: the server responded with a status of 400 (BAD REQUEST)"
+    ],
+    [
+     "http",
+     "400 POST http://127.0.0.1:5100/admin/hubs/2"
+    ],
+    [
+     "console.error",
+     "Failed to load resource: the server responded with a status of 400 (BAD REQUEST)"
+    ]
+   ]
+  }
+ },
+ "steps": [
+  {
+   "scenario": "S1",
+   "step": "1.1",
+   "role": "admin",
+   "action": "open Hubs",
+   "expected": "HUB-D1 shows 1 / 12 Quiet; HUB-BT shows 0 / 8 Quiet",
+   "checks": [
+    {
+     "check": "text contains: Hubs and kitchen capacity",
+     "ok": true
+    },
+    {
+     "check": "D1 row 1 / 12",
+     "ok": true
+    },
+    {
+     "check": "D1 quiet",
+     "ok": true
+    },
+    {
+     "check": "BT row 0 / 8",
+     "ok": true
+    },
+    {
+     "check": "BT quiet",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Hubs and kitchen capacity Load = orders still to cook (new, confirmed, preparing). A hub at its capacity takes no new orders; below a quarter of it, delivery is 5,000 VND cheaper. New hub Code Hub Load / capacity Now Base fee Open orders HUB-D1 SaigonBite District 1 Hub 1 / 12 Quiet 12,000 VND 2 Edit Menu HUB-BT SaigonBite Binh Thanh Hub 0 / 8 Quiet 10,000 VND 0 Edit Menu Archive",
+   "screenshots": [
+    "S1_1.1_admin.png"
+   ],
+   "order": null,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S1",
+   "step": "1.2",
+   "role": "admin",
+   "action": "Edit D1, capacity 14, Save hub",
+   "expected": "banner 'The hub is saved.'; D1 row 1 / 14",
+   "checks": [
+    {
+     "check": "text contains: The hub is saved.",
+     "ok": true
+    },
+    {
+     "check": "D1 row 1 / 14",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "The hub is saved. Hubs and kitchen capacity Load = orders still to cook (new, confirmed, preparing). A hub at its capacity takes no new orders; below a quarter of it, delivery is 5,000 VND cheaper. New hub Code Hub Load / capacity Now Base fee Open orders HUB-D1 SaigonBite District 1 Hub 1 / 14 Quiet 12,000 VND 2 Edit Menu HUB-BT SaigonBite Binh Thanh Hub 0 / 8 Quiet 10,000 VND 0 Edit Menu Archive",
+   "screenshots": [
+    "S1_1.2_admin.png"
+   ],
+   "order": null,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S1",
+   "step": "1.3",
+   "role": "admin",
+   "action": "D1 menu: add Sweet Che House: Che thai, Available",
+   "expected": "banner 'The dish is on the hub's menu.'; row Che thai Sweet Che House 30,000 VND Available",
+   "checks": [
+    {
+     "check": "text contains: The dish is on the hub's menu.",
+     "ok": true
+    },
+    {
+     "check": "row has Che thai",
+     "ok": true
+    },
+    {
+     "check": "row has Sweet Che House",
+     "ok": true
+    },
+    {
+     "check": "row has 30,000 VND",
+     "ok": true
+    },
+    {
+     "check": "row has Available",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "The dish is on the hub's menu. Menu of SaigonBite District 1 Hub The dishes this hub cooks. Kitchen staff can also mark a dish sold out for the day. Dish Brand Price Status Pho bo tai Pho Saigon Kitchen 55,000 VND Available Sold out Remove from menu Pho ga Pho Saigon Kitchen 50,000 VND Available Sold out Remove from menu Goi cuon Pho Saigon Kitchen 35,000 VND Available Sold out Remove from menu Com tam suon bi cha Com Tam Corner 60,000 VND Available Sold out Remove from menu Com tam ga nuong Com Tam Corner 55,000 VND Sold out Available Remove from menu Tra da Com Tam Corner 10,000 VND Available Sold out Remove from menu Banh mi thit nuong Banh Mi Express 30,000 VND Available Sold out Remove ",
+   "screenshots": [
+    "S1_1.3_admin.png"
+   ],
+   "order": null,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S1",
+   "step": "1.4",
+   "role": "customer",
+   "action": "D1 menu",
+   "expected": "Sweet Che House / Che thai 30,000 VND with a quantity field; Com tam ga nuong Sold out without a field",
+   "checks": [
+    {
+     "check": "text contains: Sweet Che House",
+     "ok": true
+    },
+    {
+     "check": "text contains: Che thai",
+     "ok": true
+    },
+    {
+     "check": "text contains: 30,000 VND",
+     "ok": true
+    },
+    {
+     "check": "text contains: Com tam ga nuong",
+     "ok": true
+    },
+    {
+     "check": "text contains: Sold out",
+     "ok": true
+    },
+    {
+     "check": "qty field for Che thai",
+     "ok": true
+    },
+    {
+     "check": "no qty field for sold-out dish 5",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Kitchen Dishes Confirm Done SaigonBite District 1 Hub 45 Le Loi, Ben Nghe Ward, District 1, Ho Chi Minh City \u00b7 delivery from 15,000 VND This kitchen is quiet: 5,000 VND off the delivery fee. Pho Saigon Kitchen Pho bo tai Beef noodle soup with rare beef 55,000 VND \u2212 + Pho ga Chicken noodle soup 50,000 VND \u2212 + Goi cuon Fresh spring rolls, 2 pieces 35,000 VND \u2212 + Com Tam Corner Com tam suon bi cha Broken rice, grilled pork, shredded pork skin, egg meatloaf 60,000 VND \u2212 + Com tam ga nuong Broken rice with grilled chicken Sold out Tra da Iced tea 10,000 VND \u2212 + Banh Mi Express Banh mi thit nuong Baguette with grilled pork 30,000 VND \u2212 + Banh mi op la Baguette with fried eggs 25,000 VND \u2212 + Sweet ",
+   "screenshots": [
+    "S1_1.4_customer.png"
+   ],
+   "order": null,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S1",
+   "step": "1.5",
+   "role": "admin",
+   "action": "archive the dish Banh mi op la",
+   "expected": "banner 'The dish is archived. It can no longer be ordered.'; row shows Archived",
+   "checks": [
+    {
+     "check": "text contains: The dish is archived. It can no longer be ordered.",
+     "ok": true
+    },
+    {
+     "check": "row Archived",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "The dish is archived. It can no longer be ordered. Brands and menu Archived brands and dishes can no longer be ordered. Orders already placed keep the name and price they had. Brands Brand Rename Pho Saigon Kitchen Rename Archive Com Tam Corner Rename Archive Banh Mi Express Rename Archive Sweet Che House Rename Archive New brand name Add brand Dishes New dish Dish Brand Price Pho bo tai Beef noodle soup with rare beef Pho Saigon Kitchen 55,000 VND Edit Archive Pho ga Chicken noodle soup Pho Saigon Kitchen 50,000 VND Edit Archive Goi cuon Fresh spring rolls, 2 pieces Pho Saigon Kitchen 35,000 VND Edit Archive Com tam suon bi cha Broken rice, grilled pork, shredded pork skin, egg meatloaf Com",
+   "screenshots": [
+    "S1_1.5_admin.png"
+   ],
+   "order": null,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S1",
+   "step": "1.6",
+   "role": "customer",
+   "action": "reload the D1 menu",
+   "expected": "Banh mi op la is not on the page",
+   "checks": [
+    {
+     "check": "Banh mi op la absent",
+     "ok": true
+    },
+    {
+     "check": "no qty_8 field",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Kitchen Dishes Confirm Done SaigonBite District 1 Hub 45 Le Loi, Ben Nghe Ward, District 1, Ho Chi Minh City \u00b7 delivery from 15,000 VND This kitchen is quiet: 5,000 VND off the delivery fee. Pho Saigon Kitchen Pho bo tai Beef noodle soup with rare beef 55,000 VND \u2212 + Pho ga Chicken noodle soup 50,000 VND \u2212 + Goi cuon Fresh spring rolls, 2 pieces 35,000 VND \u2212 + Com Tam Corner Com tam suon bi cha Broken rice, grilled pork, shredded pork skin, egg meatloaf 60,000 VND \u2212 + Com tam ga nuong Broken rice with grilled chicken Sold out Tra da Iced tea 10,000 VND \u2212 + Banh Mi Express Banh mi thit nuong Baguette with grilled pork 30,000 VND \u2212 + Sweet Che House Che thai Thai-style sweet dessert soup 30,00",
+   "screenshots": [
+    "S1_1.6_customer.png"
+   ],
+   "order": null,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S1",
+   "step": "1.7",
+   "role": "customer",
+   "action": "post qty_5 = 1 (sold-out dish) by script",
+   "expected": "HTTP 400 on the menu page, 'Item 5 is not available at SaigonBite District 1 Hub.', no quote",
+   "checks": [
+    {
+     "check": "HTTP 400",
+     "ok": true
+    },
+    {
+     "check": "message item 5",
+     "ok": true
+    },
+    {
+     "check": "no quote table",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Kitchen Dishes Confirm Done SaigonBite District 1 Hub 45 Le Loi, Ben Nghe Ward, District 1, Ho Chi Minh City \u00b7 delivery from 15,000 VND This kitchen is quiet: 5,000 VND off the delivery fee. Item 5 is not available at SaigonBite District 1 Hub. Pho Saigon Kitchen Pho bo tai Beef noodle soup with rare beef 55,000 VND \u2212 + Pho ga Chicken noodle soup 50,000 VND \u2212 + Goi cuon Fresh spring rolls, 2 pieces 35,000 VND \u2212 + Com Tam Corner Com tam suon bi cha Broken rice, grilled pork, shredded pork skin, egg meatloaf 60,000 VND \u2212 + Com tam ga nuong Broken rice with grilled chicken Sold out Tra da Iced tea 10,000 VND \u2212 + Banh Mi Express Banh mi thit nuong Baguette with grilled pork 30,000 VND \u2212 + Sweet ",
+   "screenshots": [
+    "S1_1.7_customer.png"
+   ],
+   "order": null,
+   "events": [
+    "customer: http 400 POST http://127.0.0.1:5100/order/quote",
+    "customer: console.error Failed to load resource: the server responded with a status of 400 (BAD REQUEST)"
+   ],
+   "extra": {
+    "status": 400
+   }
+  },
+  {
+   "scenario": "S1",
+   "step": "1.8",
+   "role": "customer",
+   "action": "post qty_8 = 1 (archived dish) by script",
+   "expected": "HTTP 400 on the menu page, 'Item 8 is not available at SaigonBite District 1 Hub.', no quote",
+   "checks": [
+    {
+     "check": "HTTP 400",
+     "ok": true
+    },
+    {
+     "check": "message item 8",
+     "ok": true
+    },
+    {
+     "check": "no quote table",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Kitchen Dishes Confirm Done SaigonBite District 1 Hub 45 Le Loi, Ben Nghe Ward, District 1, Ho Chi Minh City \u00b7 delivery from 15,000 VND This kitchen is quiet: 5,000 VND off the delivery fee. Item 8 is not available at SaigonBite District 1 Hub. Pho Saigon Kitchen Pho bo tai Beef noodle soup with rare beef 55,000 VND \u2212 + Pho ga Chicken noodle soup 50,000 VND \u2212 + Goi cuon Fresh spring rolls, 2 pieces 35,000 VND \u2212 + Com Tam Corner Com tam suon bi cha Broken rice, grilled pork, shredded pork skin, egg meatloaf 60,000 VND \u2212 + Com tam ga nuong Broken rice with grilled chicken Sold out Tra da Iced tea 10,000 VND \u2212 + Banh Mi Express Banh mi thit nuong Baguette with grilled pork 30,000 VND \u2212 + Sweet ",
+   "screenshots": [
+    "S1_1.8_customer.png"
+   ],
+   "order": null,
+   "events": [
+    "customer: http 400 POST http://127.0.0.1:5100/order/quote",
+    "customer: console.error Failed to load resource: the server responded with a status of 400 (BAD REQUEST)"
+   ],
+   "extra": {
+    "status": 400
+   }
+  },
+  {
+   "scenario": "S1",
+   "step": "1.9",
+   "role": "customer",
+   "action": "order 1 x Che thai COD at D1",
+   "expected": "quote 30,000 + 15,000 - 5,000 = 40,000; 'Order 9 is placed', 40,000 VND, PLACED",
+   "checks": [
+    {
+     "check": "text contains: Dishes 30,000 VND",
+     "ok": true
+    },
+    {
+     "check": "text contains: Delivery fee (0.39 km) 15,000 VND",
+     "ok": true
+    },
+    {
+     "check": "text contains: Quiet hub discount -5,000 VND",
+     "ok": true
+    },
+    {
+     "check": "text contains: Total 40,000 VND",
+     "ok": true
+    },
+    {
+     "check": "text contains: Order 9 is placed",
+     "ok": true
+    },
+    {
+     "check": "text contains: 40,000 VND",
+     "ok": true
+    },
+    {
+     "check": "state PLACED",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Kitchen Dishes Confirm Done Check your order Nothing is ordered until you press Confirm order. SaigonBite District 1 Hub Deliver to 12 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City \u00b7 0.39 km approximate Delivery fee = base fee + 3,000 VND per started kilometre (minimum one). Dish Amount Che thai 1 x 30,000 VND 30,000 VND Dishes 30,000 VND Delivery fee (0.39 km) 15,000 VND Quiet hub discount -5,000 VND Total 40,000 VND How will you pay? Cash to the driver on delivery Pay now online: E-wallet Pay now online: Bank QR code Confirm order Change items || Kitchen Dishes Confirm Done Order 9 is placed The kitchen will confirm it shortly. Have this amount ready in cash for the driver: 40,00",
+   "screenshots": [
+    "S1_1.9_customer.png"
+   ],
+   "order": 9,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S2",
+   "step": "2.1",
+   "role": "admin",
+   "action": "Edit BT capacity 1",
+   "expected": "banner 'The hub is saved.'; BT row 0 / 1",
+   "checks": [
+    {
+     "check": "text contains: The hub is saved.",
+     "ok": true
+    },
+    {
+     "check": "BT 0 / 1",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "The hub is saved. Hubs and kitchen capacity Load = orders still to cook (new, confirmed, preparing). A hub at its capacity takes no new orders; below a quarter of it, delivery is 5,000 VND cheaper. New hub Code Hub Load / capacity Now Base fee Open orders HUB-D1 SaigonBite District 1 Hub 2 / 14 Quiet 12,000 VND 3 Edit Menu HUB-BT SaigonBite Binh Thanh Hub 0 / 1 Quiet 10,000 VND 0 Edit Menu Archive",
+   "screenshots": [
+    "S2_2.1_admin.png"
+   ],
+   "order": null,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S2",
+   "step": "2.2",
+   "role": "customer",
+   "action": "order 1 x Com tam suon bi cha at BT",
+   "expected": "quote 60,000 + 25,000 - 5,000 = 80,000; 'Order 10 is placed'",
+   "checks": [
+    {
+     "check": "text contains: Dishes 60,000 VND",
+     "ok": true
+    },
+    {
+     "check": "text contains: Delivery fee (4.06 km) 25,000 VND",
+     "ok": true
+    },
+    {
+     "check": "text contains: Quiet hub discount -5,000 VND",
+     "ok": true
+    },
+    {
+     "check": "text contains: Total 80,000 VND",
+     "ok": true
+    },
+    {
+     "check": "text contains: Order 10 is placed",
+     "ok": true
+    },
+    {
+     "check": "text contains: 80,000 VND",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Kitchen Dishes Confirm Done Check your order Nothing is ordered until you press Confirm order. SaigonBite Binh Thanh Hub Deliver to 12 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City \u00b7 4.06 km approximate Delivery fee = base fee + 3,000 VND per started kilometre (minimum one). Dish Amount Com tam suon bi cha 1 x 60,000 VND 60,000 VND Dishes 60,000 VND Delivery fee (4.06 km) 25,000 VND Quiet hub discount -5,000 VND Total 80,000 VND How will you pay? Cash to the driver on delivery Pay now online: E-wallet Pay now online: Bank QR code Confirm order Change items || Kitchen Dishes Confirm Done Order 10 is placed The kitchen will confirm it shortly. Have this amount ready in cash for the d",
+   "screenshots": [
+    "S2_2.2_customer.png"
+   ],
+   "order": 10,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S2",
+   "step": "2.3",
+   "role": "admin",
+   "action": "open Hubs",
+   "expected": "BT shows 1 / 1 and Busy",
+   "checks": [
+    {
+     "check": "1 / 1",
+     "ok": true
+    },
+    {
+     "check": "Busy",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "HUB-BT SaigonBite Binh Thanh Hub 1 / 1 Busy 10,000 VND 1 Edit Menu",
+   "screenshots": [
+    "S2_2.3_admin.png"
+   ],
+   "order": null,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S2",
+   "step": "2.4",
+   "role": "tourist",
+   "action": "order at the full BT hub",
+   "expected": "HTTP 409; 'too busy' banner; suggestion D1 with 'Quiet: 5,000 VND off delivery'; BT card 'Busy now'; no quote",
+   "checks": [
+    {
+     "check": "HTTP 409",
+     "ok": true
+    },
+    {
+     "check": "text contains: SaigonBite Binh Thanh Hub is too busy to take new orders right now.",
+     "ok": true
+    },
+    {
+     "check": "text contains: These hubs can take your order now",
+     "ok": true
+    },
+    {
+     "check": "text contains: Busy now",
+     "ok": true
+    },
+    {
+     "check": "suggestion D1",
+     "ok": true
+    },
+    {
+     "check": "quiet note",
+     "ok": true
+    },
+    {
+     "check": "no quote",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Kitchen Dishes Confirm Done Choose a kitchen hub Each hub cooks for several brands. The delivery fee is the hub's base fee plus 3,000 VND per started km, up to 8 km. SaigonBite Binh Thanh Hub is too busy to take new orders right now. These hubs can take your order now SaigonBite District 1 Hub Quiet: 5,000 VND off delivery SaigonBite District 1 Hub 45 Le Loi, Ben Nghe Ward, District 1, Ho Chi Minh City Delivery from 15,000 VND Quiet now 5,000 VND off the delivery fee. Order from this hub SaigonBite Binh Thanh Hub 210 Xo Viet Nghe Tinh, Ward 21, Binh Thanh District, Ho Chi Minh City Delivery from 13,000 VND Busy now This kitchen is full. Please choose another hub. Order from this hub",
+   "screenshots": [
+    "S2_2.4_tourist.png"
+   ],
+   "order": null,
+   "events": [
+    "tourist: http 409 POST http://127.0.0.1:5100/order/quote",
+    "tourist: console.error Failed to load resource: the server responded with a status of 409 (CONFLICT)"
+   ],
+   "extra": {
+    "status": 409
+   }
+  },
+  {
+   "scenario": "S2",
+   "step": "2.5",
+   "role": "tourist",
+   "action": "follow the suggestion, fresh quote at D1",
+   "expected": "D1 quote: 55,000 + 15,000 - 5,000 = 65,000",
+   "checks": [
+    {
+     "check": "text contains: SaigonBite District 1 Hub",
+     "ok": true
+    },
+    {
+     "check": "text contains: Dishes 55,000 VND",
+     "ok": true
+    },
+    {
+     "check": "text contains: Delivery fee (0.06 km) 15,000 VND",
+     "ok": true
+    },
+    {
+     "check": "text contains: Quiet hub discount -5,000 VND",
+     "ok": true
+    },
+    {
+     "check": "text contains: Total 65,000 VND",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Kitchen Dishes Confirm Done Check your order Nothing is ordered until you press Confirm order. SaigonBite District 1 Hub Deliver to Rex Hotel, 141 Nguyen Hue, District 1, Ho Chi Minh City \u00b7 0.06 km approximate Delivery fee = base fee + 3,000 VND per started kilometre (minimum one). Dish Amount Pho bo tai 1 x 55,000 VND 55,000 VND Dishes 55,000 VND Delivery fee (0.06 km) 15,000 VND Quiet hub discount -5,000 VND Total 65,000 VND How will you pay? Cash to the driver on delivery Pay now online: International card Confirm order Change items",
+   "screenshots": [
+    "S2_2.5_tourist.png"
+   ],
+   "order": null,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S2",
+   "step": "2.6",
+   "role": "tourist",
+   "action": "leave without confirming (database check)",
+   "expected": "still 10 orders and 10 payment rows; nothing from steps 2.4 and 2.5",
+   "checks": [
+    {
+     "check": "10 orders",
+     "ok": true
+    },
+    {
+     "check": "10 payments",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "[{\"id\": 1, \"customer_id\": 1, \"hub_id\": 1, \"state\": \"DELIVERED\", \"total_amount\": 130000}, {\"id\": 2, \"customer_id\": 2, \"hub_id\": 1, \"state\": \"DELIVERED\", \"total_amount\": 132000}, {\"id\": 3, \"customer_id\": 1, \"hub_id\": 2, \"state\": \"DELIVERY_FAILED\", \"total_amount\": 80000}, {\"id\": 4, \"customer_id\": 1, \"hub_id\": 1, \"state\": \"REJECTED\", \"total_amount\": 60000}, {\"id\": 5, \"customer_id\": 1, \"hub_id\": 1, \"state\": \"CANCELLED\", \"total_amount\": 60000}, {\"id\": 6, \"customer_id\": 2, \"hub_id\": 2, \"state\": \"DELIVERED\", \"total_amount\": 77000}, {\"id\": 7, \"customer_id\": 1, \"hub_id\": 1, \"state\": \"READY\", \"total_amount\": 65000}, {\"id\": 8, \"customer_id\": 2, \"hub_id\": 1, \"state\": \"PLACED\", \"total_amount\": 45000}, {\"i",
+   "screenshots": [
+    "S2_2.6_tourist.png"
+   ],
+   "order": null,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S2",
+   "step": "2.7",
+   "role": "admin",
+   "action": "restore BT capacity 8",
+   "expected": "banner 'The hub is saved.'; BT 1 / 8",
+   "checks": [
+    {
+     "check": "text contains: The hub is saved.",
+     "ok": true
+    },
+    {
+     "check": "BT 1 / 8",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "The hub is saved. Hubs and kitchen capacity Load = orders still to cook (new, confirmed, preparing). A hub at its capacity takes no new orders; below a quarter of it, delivery is 5,000 VND cheaper. New hub Code Hub Load / capacity Now Base fee Open orders HUB-D1 SaigonBite District 1 Hub 2 / 14 Quiet 12,000 VND 3 Edit Menu HUB-BT SaigonBite Binh Thanh Hub 1 / 8 Quiet 10,000 VND 1 Edit Menu",
+   "screenshots": [
+    "S2_2.7_admin.png"
+   ],
+   "order": null,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S3",
+   "step": "3.1",
+   "role": "customer",
+   "action": "order 2 x Pho ga at D1",
+   "expected": "quote 100,000 + 15,000 - 5,000 = 110,000; 'Order 11 is placed'",
+   "checks": [
+    {
+     "check": "text contains: Dishes 100,000 VND",
+     "ok": true
+    },
+    {
+     "check": "text contains: Delivery fee (0.39 km) 15,000 VND",
+     "ok": true
+    },
+    {
+     "check": "text contains: Quiet hub discount -5,000 VND",
+     "ok": true
+    },
+    {
+     "check": "text contains: Total 110,000 VND",
+     "ok": true
+    },
+    {
+     "check": "text contains: Order 11 is placed",
+     "ok": true
+    },
+    {
+     "check": "text contains: 110,000 VND",
+     "ok": true
+    },
+    {
+     "check": "PLACED",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Kitchen Dishes Confirm Done Check your order Nothing is ordered until you press Confirm order. SaigonBite District 1 Hub Deliver to 12 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City \u00b7 0.39 km approximate Delivery fee = base fee + 3,000 VND per started kilometre (minimum one). Dish Amount Pho ga 2 x 50,000 VND 100,000 VND Dishes 100,000 VND Delivery fee (0.39 km) 15,000 VND Quiet hub discount -5,000 VND Total 110,000 VND How will you pay? Cash to the driver on delivery Pay now online: E-wallet Pay now online: Bank QR code Confirm order Change items || Kitchen Dishes Confirm Done Order 11 is placed The kitchen will confirm it shortly. Have this amount ready in cash for the driver: 110",
+   "screenshots": [
+    "S3_3.1_customer.png"
+   ],
+   "order": 11,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S3",
+   "step": "3.2",
+   "role": "kitchen",
+   "action": "D1 Kitchen board",
+   "expected": "heading D1; card Order 11 in New with 2 x Pho ga and Confirm; New shows 3",
+   "checks": [
+    {
+     "check": "text contains: SaigonBite District 1 Hub",
+     "ok": true
+    },
+    {
+     "check": "card Order 11",
+     "ok": true
+    },
+    {
+     "check": "2 x Pho ga",
+     "ok": true
+    },
+    {
+     "check": "Confirm button",
+     "ok": true
+    },
+    {
+     "check": "New 3",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "SaigonBite District 1 Hub Kitchen capacity 14 orders. New, confirmed and preparing orders count towards it. New 3 Order 8 10:10, 23/10/2026 1 x Goi cuon Confirm Reject or replace Order 9 01:22, 27/10/2026 1 x Che thai Confirm Reject or replace Order 11 01:22, 27/10/2026 2 x Pho ga Confirm Reject or replace Confirmed 0 None Preparing 0 None Ready for pickup 1 Order 7 10:00, 23/10/2026 1 x Pho bo tai Waiting for a shipper since 10:15, 23/10/2026",
+   "screenshots": [
+    "S3_3.2_kitchen.png"
+   ],
+   "order": 11,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S3",
+   "step": "3.3",
+   "role": "kitchen_bt",
+   "action": "BT Kitchen board",
+   "expected": "heading BT; card Order 10; no Order 11",
+   "checks": [
+    {
+     "check": "text contains: SaigonBite Binh Thanh Hub",
+     "ok": true
+    },
+    {
+     "check": "card Order 10",
+     "ok": true
+    },
+    {
+     "check": "no card 11",
+     "ok": true
+    },
+    {
+     "check": "no text Order 11",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "SaigonBite Binh Thanh Hub Kitchen capacity 8 orders. New, confirmed and preparing orders count towards it. New 1 Order 10 01:22, 27/10/2026 1 x Com tam suon bi cha Confirm Reject or replace Confirmed 0 None Preparing 0 None Ready for pickup 0 None",
+   "screenshots": [
+    "S3_3.3_kitchen_bt.png"
+   ],
+   "order": null,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S3",
+   "step": "3.4",
+   "role": "kitchen_bt",
+   "action": "type /kitchen/orders/11",
+   "expected": "HTTP 403 Not allowed, 'This order belongs to another hub.'",
+   "checks": [
+    {
+     "check": "HTTP 403",
+     "ok": true
+    },
+    {
+     "check": "text contains: Not allowed",
+     "ok": true
+    },
+    {
+     "check": "text contains: This order belongs to another hub.",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Not allowed Error 403 This order belongs to another hub. Back to kitchen board",
+   "screenshots": [
+    "S3_3.4_kitchen_bt.png"
+   ],
+   "order": 11,
+   "events": [
+    "kitchen_bt: http 403 GET http://127.0.0.1:5100/kitchen/orders/11",
+    "kitchen_bt: console.error Failed to load resource: the server responded with a status of 403 (FORBIDDEN)"
+   ],
+   "extra": {
+    "status": 403
+   }
+  },
+  {
+   "scenario": "S3",
+   "step": "3.5",
+   "role": "kitchen_bt",
+   "action": "post Confirm for order 11 from the BT session",
+   "expected": "HTTP 403, 'This order belongs to another hub.'; order 11 stays PLACED, confirmed_at empty",
+   "checks": [
+    {
+     "check": "HTTP 403",
+     "ok": true
+    },
+    {
+     "check": "text contains: This order belongs to another hub.",
+     "ok": true
+    },
+    {
+     "check": "PLACED",
+     "ok": true
+    },
+    {
+     "check": "not confirmed",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Not allowed Error 403 This order belongs to another hub. Back to kitchen board",
+   "screenshots": [
+    "S3_3.5_kitchen_bt.png"
+   ],
+   "order": 11,
+   "events": [
+    "kitchen_bt: http 403 POST http://127.0.0.1:5100/kitchen/orders/11/confirm",
+    "kitchen_bt: console.error Failed to load resource: the server responded with a status of 403 (FORBIDDEN)"
+   ],
+   "extra": {
+    "status": 403,
+    "db": {
+     "state": "PLACED",
+     "confirmed_at": null
+    }
+   }
+  },
+  {
+   "scenario": "S3",
+   "step": "3.6",
+   "role": "kitchen",
+   "action": "open Order 11",
+   "expected": "2 x Pho ga, Total 110,000, Placed, Confirm order and Reject order buttons and the Offer a replacement section",
+   "checks": [
+    {
+     "check": "text contains: Pho ga",
+     "ok": true
+    },
+    {
+     "check": "text contains: 110,000 VND",
+     "ok": true
+    },
+    {
+     "check": "text contains: Placed",
+     "ok": true
+    },
+    {
+     "check": "Confirm order button",
+     "ok": true
+    },
+    {
+     "check": "Reject order button",
+     "ok": true
+    },
+    {
+     "check": "Offer a replacement section",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Order 11 Placed 01:22, 27/10/2026 \u00b7 Placed \u00b7 COD Dish Unit price Qty Amount Pho ga 50,000 VND 2 100,000 VND Dishes 100,000 VND Delivery fee (0.39 km) 15,000 VND Quiet hub discount -5,000 VND Total 110,000 VND Confirm order Offer a replacement If a dish has run out, offer one available dish at the same or a lower price. The customer decides. Replace Choose the dish and its replacement Pho ga \u2192 Goi cuon (35,000 VND) Pho ga \u2192 Tra da (10,000 VND) Pho ga \u2192 Banh mi thit nuong (30,000 VND) Pho ga \u2192 Che thai (30,000 VND) Send the offer Reject the order Reason for the customer Reject order Back to the board",
+   "screenshots": [
+    "S3_3.6_kitchen.png"
+   ],
+   "order": 11,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S4",
+   "step": "4.1",
+   "role": "kitchen",
+   "action": "mark Pho ga sold out",
+   "expected": "banner 'Availability updated.'; Pho ga Sold out with 'Available again'",
+   "checks": [
+    {
+     "check": "text contains: Availability updated.",
+     "ok": true
+    },
+    {
+     "check": "row Sold out",
+     "ok": true
+    },
+    {
+     "check": "Available again",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Availability updated. Dishes at SaigonBite District 1 Hub Mark a dish sold out when an ingredient runs out; customers can no longer add it. Dish Brand Status Pho bo tai Pho Saigon Kitchen Available Mark sold out Pho ga Pho Saigon Kitchen Sold out Available again Goi cuon Pho Saigon Kitchen Available Mark sold out Com tam suon bi cha Com Tam Corner Available Mark sold out Com tam ga nuong Com Tam Corner Sold out Available again Tra da Com Tam Corner Available Mark sold out Banh mi thit nuong Banh Mi Express Available Mark sold out Che thai Sweet Che House Available Mark sold out",
+   "screenshots": [
+    "S4_4.1_kitchen.png"
+   ],
+   "order": null,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S4",
+   "step": "4.2",
+   "role": "kitchen",
+   "action": "offer Pho ga -> Goi cuon (35,000 VND)",
+   "expected": "banner 'The replacement is offered...'; 'Replacement offered: Pho ga \u2192 Goi cuon'; no Confirm button",
+   "checks": [
+    {
+     "check": "text contains: The replacement is offered. The order waits for the customer's answer.",
+     "ok": true
+    },
+    {
+     "check": "text contains: Replacement offered: Pho ga \u2192 Goi cuon",
+     "ok": true
+    },
+    {
+     "check": "text contains: Waiting for the customer",
+     "ok": true
+    },
+    {
+     "check": "no Confirm order button",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "The replacement is offered. The order waits for the customer's answer. Order 11 Placed 01:22, 27/10/2026 \u00b7 Placed \u00b7 COD Dish Unit price Qty Amount Pho ga 50,000 VND 2 100,000 VND Dishes 100,000 VND Delivery fee (0.39 km) 15,000 VND Quiet hub discount -5,000 VND Total 110,000 VND Replacement offered: Pho ga \u2192 Goi cuon. Waiting for the customer to accept or decline. You can confirm the order after the answer. Reject the order Reason for the customer Reject order Back to the board",
+   "screenshots": [
+    "S4_4.2_kitchen.png"
+   ],
+   "order": 11,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S4",
+   "step": "4.3",
+   "role": "customer",
+   "action": "My orders, then Order 11",
+   "expected": "'Your answer needed'; panel: Pho ga has run out... Goi cuon at 35,000 VND instead of 50,000 VND; new total 80,000 VND (now 110,000 VND)",
+   "checks": [
+    {
+     "check": "My orders shows Your answer needed",
+     "ok": true
+    },
+    {
+     "check": "text contains: The kitchen asks about a replacement",
+     "ok": true
+    },
+    {
+     "check": "text contains: Pho ga has run out. The kitchen offers Goi cuon at 35,000 VND instead of 50,000 VND.",
+     "ok": true
+    },
+    {
+     "check": "text contains: the new total is 80,000 VND (now 110,000 VND)",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Order 11 SaigonBite District 1 Hub \u00b7 placed 01:22, 27/10/2026 The kitchen asks about a replacement Pho ga has run out. The kitchen offers Goi cuon at 35,000 VND instead of 50,000 VND. If you accept, the new total is 80,000 VND (now 110,000 VND). If you decline, the order is not cooked. Accept Goi cuon Decline Status Placed Payment COD, pending Deliver to 12 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City Dish Amount Pho ga 2 x 50,000 VND 100,000 VND Dishes 100,000 VND Delivery fee (0.39 km) 15,000 VND Quiet hub discount -5,000 VND Total 110,000 VND Printable receipt Cancel this order All my orders",
+   "screenshots": [
+    "S4_4.3_customer.png"
+   ],
+   "order": 11,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S4",
+   "step": "4.4",
+   "role": "customer",
+   "action": "Accept Goi cuon",
+   "expected": "banner 'Replacement accepted...'; Goi cuon 2 x 35,000 = 70,000; Total 80,000; panel gone",
+   "checks": [
+    {
+     "check": "text contains: Replacement accepted. The kitchen may now confirm your order.",
+     "ok": true
+    },
+    {
+     "check": "text contains: Goi cuon",
+     "ok": true
+    },
+    {
+     "check": "text contains: 70,000 VND",
+     "ok": true
+    },
+    {
+     "check": "text contains: Total 80,000 VND",
+     "ok": true
+    },
+    {
+     "check": "panel gone",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Replacement accepted. The kitchen may now confirm your order. Order 11 SaigonBite District 1 Hub \u00b7 placed 01:22, 27/10/2026 Status Placed Payment COD, pending Deliver to 12 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City Dish Amount Goi cuon 2 x 35,000 VND 70,000 VND Dishes 70,000 VND Delivery fee (0.39 km) 15,000 VND Quiet hub discount -5,000 VND Total 80,000 VND Replacement history: Pho ga \u2192 Goi cuon (accepted) Printable receipt Cancel this order All my orders",
+   "screenshots": [
+    "S4_4.4_customer.png"
+   ],
+   "order": 11,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S4",
+   "step": "4.5",
+   "role": "kitchen",
+   "action": "Confirm order, Start preparing, Mark ready",
+   "expected": "three banners; Order 11 under Ready for pickup",
+   "checks": [
+    {
+     "check": "text contains: Order 11 is confirmed.",
+     "ok": true
+    },
+    {
+     "check": "text contains: Order 11 is being prepared.",
+     "ok": true
+    },
+    {
+     "check": "text contains: Order 11 is ready. Shippers can now pick it up.",
+     "ok": true
+    },
+    {
+     "check": "in Ready column",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Order 11 is confirmed. SaigonBite District 1 Hub Kitchen capacity 14 orders. New, confirmed and preparing orders count towards it. New 2 Order 8 10:10, 23/10/2026 1 x Goi cuon Confirm Reject or replace Order 9 01:22, 27/10/2026 1 x Che thai Confirm Reject or replace Confirmed 1 Order 11 01:22, 27/10/2026 2 x Goi cuon Start preparing Preparing 0 None Ready for pickup 1 Order 7 10:00, 23/10/2026 1 x Pho bo tai Waiting for a shipper since 10:15, 23/10/2026 | Order 11 is being prepared. SaigonBite District 1 Hub Kitchen capacity 14 orders. New, confirmed and preparing orders count towards it. New 2 Order 8 10:10, 23/10/2026 1 x Goi cuon Confirm Reject or replace Order 9 01:22, 27/10/2026 1 x Che",
+   "screenshots": [
+    "S4_4.5_kitchen.png"
+   ],
+   "order": 11,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S4",
+   "step": "4.6",
+   "role": "customer",
+   "action": "open Order 11",
+   "expected": "Status Ready",
+   "checks": [
+    {
+     "check": "Ready badge",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Order 11 SaigonBite District 1 Hub \u00b7 placed 01:22, 27/10/2026 Status Ready Payment COD, pending Deliver to 12 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City Confirmed 01:22, 27/10/2026 Ready 01:22, 27/10/2026 Dish Amount Goi cuon 2 x 35,000 VND 70,000 VND Dishes 70,000 VND Delivery fee (0.39 km) 15,000 VND Quiet hub discount -5,000 VND Total 80,000 VND Replacement history: Pho ga \u2192 Goi cuon (accepted) Printable receipt All my orders",
+   "screenshots": [
+    "S4_4.6_customer.png"
+   ],
+   "order": 11,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S4",
+   "step": "4.7",
+   "role": "kitchen",
+   "action": "Pho ga available again",
+   "expected": "banner 'Availability updated.'; Pho ga Available",
+   "checks": [
+    {
+     "check": "text contains: Availability updated.",
+     "ok": true
+    },
+    {
+     "check": "row Available",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Availability updated. Dishes at SaigonBite District 1 Hub Mark a dish sold out when an ingredient runs out; customers can no longer add it. Dish Brand Status Pho bo tai Pho Saigon Kitchen Available Mark sold out Pho ga Pho Saigon Kitchen Available Mark sold out Goi cuon Pho Saigon Kitchen Available Mark sold out Com tam suon bi cha Com Tam Corner Available Mark sold out Com tam ga nuong Com Tam Corner Sold out Available again Tra da Com Tam Corner Available Mark sold out Banh mi thit nuong Banh Mi Express Available Mark sold out Che thai Sweet Che House Available Mark sold out",
+   "screenshots": [
+    "S4_4.7_kitchen.png"
+   ],
+   "order": null,
+   "events": [],
+   "extra": {
+    "db_checks": {
+     "one delivery row for order 11": true,
+     "offer ACCEPTED": true
+    }
+   }
+  },
+  {
+   "scenario": "S5",
+   "step": "5.1",
+   "role": "shipper",
+   "action": "open Deliveries (both shippers)",
+   "expected": "Order 11 under Ready for pickup with 'Cash on delivery: 80,000 VND'; also Order 7 (65,000 VND)",
+   "checks": [
+    {
+     "check": "shipper sees Order 11 80,000",
+     "ok": true
+    },
+    {
+     "check": "shipper2 sees Order 11 80,000",
+     "ok": true
+    },
+    {
+     "check": "Order 7 65,000",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Deliveries On my bike Nothing picked up. Ready for pickup Order 7 ready since 10:15, 23/10/2026 SaigonBite District 1 Hub \u2192 12 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City (0.39 km) Cash on delivery: 65,000 VND Pick up this order Order 11 ready since 01:22, 27/10/2026 SaigonBite District 1 Hub \u2192 12 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City (0.39 km) Cash on delivery: 80,000 VND Pick up this order My recent deliveries Order Finished Result Cash Order 3 12:50, 21/10/2026 Failed 0 VND Order 1 11:55, 20/10/2026 Delivered 130,000 VND",
+   "screenshots": [
+    "S5_5.1_shipper.png",
+    "S5_5.1_shipper2.png"
+   ],
+   "order": 11,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S5",
+   "step": "5.2",
+   "role": "shipper+shipper2",
+   "action": "press Pick up this order in both profiles together",
+   "expected": "exactly one winner 'You picked up order 11.' + Picked up; the other 'Order 11 has already been picked up. Nothing was changed.' and 'Back to deliveries'",
+   "checks": [
+    {
+     "check": "exactly one winner",
+     "ok": true
+    },
+    {
+     "check": "winner badge Picked up",
+     "ok": true
+    },
+    {
+     "check": "loser banner",
+     "ok": true
+    },
+    {
+     "check": "loser has Back to deliveries",
+     "ok": true
+    },
+    {
+     "check": "one shipper on the delivery",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "winner=shipper: You picked up order 11. Order 11 Picked up \u00b7 from SaigonBite District 1 Hub Deliver to 12 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City (0.39 km) Customer Tran Thi Mai \u00b7 0901234567 Payment Collect 80,000 VND in cash Ready 01:22, 27/10/2026 Picked up 01:22, 27/10/2026 2 x Goi cuon Delivered Cash collected (VND) Confirm delivery Could not deliver What happened Report failed delivery All deliveries || loser=shipper2: Order 11 has already been picked up. Nothing was changed. Not allowed Error 403 Another shipper is delivering this order. Back to deliveries",
+   "screenshots": [
+    "S5_5.2_shipper_winner.png",
+    "S5_5.2_shipper2_loser.png"
+   ],
+   "order": 11,
+   "events": [
+    "shipper2: http 403 GET http://127.0.0.1:5100/delivery/orders/11",
+    "shipper2: console.error Failed to load resource: the server responded with a status of 403 (FORBIDDEN)"
+   ],
+   "extra": {
+    "winner": "shipper",
+    "loser": "shipper2",
+    "dispatch_ms": [
+     5,
+     12
+    ],
+    "delivery_row": {
+     "shipper_id": 3,
+     "state": "PICKED_UP"
+    }
+   }
+  },
+  {
+   "scenario": "S5",
+   "step": "5.3",
+   "role": "shipper",
+   "action": "enter 79,000 as cash",
+   "expected": "refused: 'Collect exactly 80,000 VND in cash and enter that amount.'; still Picked up",
+   "checks": [
+    {
+     "check": "text contains: Collect exactly 80,000 VND in cash and enter that amount.",
+     "ok": true
+    },
+    {
+     "check": "still Picked up",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Collect exactly 80,000 VND in cash and enter that amount. Order 11 Picked up \u00b7 from SaigonBite District 1 Hub Deliver to 12 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City (0.39 km) Customer Tran Thi Mai \u00b7 0901234567 Payment Collect 80,000 VND in cash Ready 01:22, 27/10/2026 Picked up 01:22, 27/10/2026 2 x Goi cuon Delivered Cash collected (VND) Confirm delivery Could not deliver What happened Report failed delivery All deliveries",
+   "screenshots": [
+    "S5_5.3_shipper.png"
+   ],
+   "order": 11,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S5",
+   "step": "5.4",
+   "role": "shipper",
+   "action": "enter 80,000",
+   "expected": "banner 'Order 11 is delivered.'; Delivered; Cash collected 80,000 VND",
+   "checks": [
+    {
+     "check": "text contains: Order 11 is delivered.",
+     "ok": true
+    },
+    {
+     "check": "text contains: Cash collected",
+     "ok": true
+    },
+    {
+     "check": "text contains: 80,000 VND",
+     "ok": true
+    },
+    {
+     "check": "badge Delivered",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Order 11 is delivered. Order 11 Delivered \u00b7 from SaigonBite District 1 Hub Deliver to 12 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City (0.39 km) Customer Tran Thi Mai \u00b7 0901234567 Payment Cash on delivery Ready 01:22, 27/10/2026 Picked up 01:22, 27/10/2026 Finished 01:22, 27/10/2026 Cash collected 80,000 VND 2 x Goi cuon All deliveries",
+   "screenshots": [
+    "S5_5.4_shipper.png"
+   ],
+   "order": 11,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S5",
+   "step": "5.5",
+   "role": "customer",
+   "action": "open Order 11 and its receipt",
+   "expected": "Delivered; payment 'COD, paid'; receipt PAID, 80,000 VND, Total T 80,000 VND, Refund owed 0 VND",
+   "checks": [
+    {
+     "check": "Delivered",
+     "ok": true
+    },
+    {
+     "check": "text contains: Delivered",
+     "ok": true
+    },
+    {
+     "check": "text contains: COD, paid",
+     "ok": true
+    },
+    {
+     "check": "text contains: Payment state PAID",
+     "ok": true
+    },
+    {
+     "check": "text contains: Payment amount 80,000 VND",
+     "ok": true
+    },
+    {
+     "check": "text contains: Total T 80,000 VND",
+     "ok": true
+    },
+    {
+     "check": "text contains: Refund owed, payout pending 0 VND",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Order 11 SaigonBite District 1 Hub \u00b7 placed 01:22, 27/10/2026 Status Delivered Payment COD, paid Deliver to 12 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City Confirmed 01:22, 27/10/2026 Ready 01:22, 27/10/2026 On the way 01:22, 27/10/2026 Finished 01:22, 27/10/2026 Dish Amount Goi cuon 2 x 35,000 VND 70,000 VND Dishes 70,000 VND Delivery fee (0.39 km) 15,000 VND Quiet hub discount -5,000 VND Total 80,000 VND Replacement history: Pho ga \u2192 Goi cuon (accepted) Printable receipt All my orders || Receipt \u00b7 Order 11 Placed 01:22, 27/10/2026 \u00b7 SaigonBite District 1 Hub 12 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City \u00b7 Approximate distance 0.39 km Dish Amount Goi cuon 2 x 35,000 ",
+   "screenshots": [
+    "S5_5.5_customer_receipt.png"
+   ],
+   "order": 11,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S6",
+   "step": "6a.1",
+   "role": "customer",
+   "action": "order 1 x Tra da, pay online E-wallet, Confirm order",
+   "expected": "next screen is the Payment simulator: Amount 20,000 VND, Method E-wallet; no 'price changed' notice",
+   "checks": [
+    {
+     "check": "text contains: Payment simulator",
+     "ok": true
+    },
+    {
+     "check": "text contains: Amount: 20,000 VND",
+     "ok": true
+    },
+    {
+     "check": "text contains: Method: E-wallet",
+     "ok": true
+    },
+    {
+     "check": "no false notice",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Payment simulator Stands in for the payment provider in this demo. No card or wallet details are asked for and no money moves. Amount: 20,000 VND Method: E-wallet Approve payment Decline payment",
+   "screenshots": [
+    "S6_6a.1_customer.png"
+   ],
+   "order": null,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S6",
+   "step": "6a.2",
+   "role": "customer",
+   "action": "Decline payment",
+   "expected": "HTTP 402 quote page 'The payment was declined. No order was placed. Try again or choose cash on delivery.'",
+   "checks": [
+    {
+     "check": "HTTP 402",
+     "ok": true
+    },
+    {
+     "check": "text contains: The payment was declined. No order was placed. Try again or choose cash on delivery.",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Kitchen Dishes Confirm Done Check your order Nothing is ordered until you press Confirm order. The payment was declined. No order was placed. Try again or choose cash on delivery. SaigonBite District 1 Hub Deliver to 12 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City \u00b7 0.39 km approximate Delivery fee = base fee + 3,000 VND per started kilometre (minimum one). Dish Amount Tra da 1 x 10,000 VND 10,000 VND Dishes 10,000 VND Delivery fee (0.39 km) 15,000 VND Quiet hub discount -5,000 VND Total 20,000 VND How will you pay? Cash to the driver on delivery Pay now online: E-wallet Pay now online: Bank QR code Confirm order Change items",
+   "screenshots": [
+    "S6_6a.2_customer.png"
+   ],
+   "order": null,
+   "events": [
+    "customer: http 402 POST http://127.0.0.1:5100/order/confirm",
+    "customer: console.error Failed to load resource: the server responded with a status of 402 (PAYMENT REQUIRED)"
+   ],
+   "extra": {
+    "status": 402
+   }
+  },
+  {
+   "scenario": "S6",
+   "step": "6a.3",
+   "role": "customer",
+   "action": "database check",
+   "expected": "11 orders and 11 payment rows; no order 12",
+   "checks": [
+    {
+     "check": "11 orders",
+     "ok": true
+    },
+    {
+     "check": "11 payments",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "orders=11 payments=11",
+   "screenshots": [
+    "S6_6a.3_customer.png"
+   ],
+   "order": null,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S6",
+   "step": "6b.1",
+   "role": "customer",
+   "action": "order 1 x Pho bo tai online E-wallet, Approve payment",
+   "expected": "'Order 12 is placed', 65,000 VND, ONLINE PAID, 'You paid online'",
+   "checks": [
+    {
+     "check": "text contains: Order 12 is placed",
+     "ok": true
+    },
+    {
+     "check": "text contains: 65,000 VND",
+     "ok": true
+    },
+    {
+     "check": "text contains: You paid online",
+     "ok": true
+    },
+    {
+     "check": "ONLINE",
+     "ok": true
+    },
+    {
+     "check": "PAID",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Kitchen Dishes Confirm Done Order 12 is placed The kitchen will confirm it shortly. You paid online: 65,000 VND Order number 12 Status PLACED, waiting for the kitchen to confirm Payment ONLINE (E-wallet), PAID Placed 01:22, 27/10/2026 Hub: SaigonBite District 1 Hub Deliver to: 12 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City Dish Amount Pho bo tai 1 x 55,000 VND 55,000 VND Dishes 55,000 VND Delivery fee (0.39 km) 15,000 VND Quiet hub discount -5,000 VND Total 65,000 VND Follow this order Place another order",
+   "screenshots": [
+    "S6_6b.1_customer.png"
+   ],
+   "order": 12,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S6",
+   "step": "6b.2",
+   "role": "kitchen",
+   "action": "reject Order 12 with a reason",
+   "expected": "banner 'Order 12 is rejected and the customer is told why.'",
+   "checks": [
+    {
+     "check": "text contains: Order 12 is rejected and the customer is told why.",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Order 12 is rejected and the customer is told why. Order 12 Placed 01:22, 27/10/2026 \u00b7 Rejected \u00b7 ONLINE (paid) Dish Unit price Qty Amount Pho bo tai 55,000 VND 1 55,000 VND Dishes 55,000 VND Delivery fee (0.39 km) 15,000 VND Quiet hub discount -5,000 VND Total 65,000 VND Reason: The beef has run out for today. Back to the board",
+   "screenshots": [
+    "S6_6b.2_kitchen.png"
+   ],
+   "order": 12,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S6",
+   "step": "6b.3",
+   "role": "customer",
+   "action": "open Order 12 and its receipt",
+   "expected": "Rejected + reason; payment refund pending with 65,000 VND named as a refund owed (payout pending), never refunded; receipt: captured C 65,000, REFUND_PENDING, Refund owed 65,000",
+   "checks": [
+    {
+     "check": "text contains: Rejected",
+     "ok": true
+    },
+    {
+     "check": "text contains: The beef has run out for today.",
+     "ok": true
+    },
+    {
+     "check": "text contains: refund pending",
+     "ok": true
+    },
+    {
+     "check": "text contains: 65,000 VND",
+     "ok": true
+    },
+    {
+     "check": "order page names it a refund owed",
+     "ok": true
+    },
+    {
+     "check": "text contains: captured C 65,000 VND",
+     "ok": true
+    },
+    {
+     "check": "text contains: Payment state REFUND_PENDING",
+     "ok": true
+    },
+    {
+     "check": "text contains: Refund owed, payout pending 65,000 VND",
+     "ok": true
+    },
+    {
+     "check": "no 'Refunded' state",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Order 12 SaigonBite District 1 Hub \u00b7 placed 01:22, 27/10/2026 Status Rejected \u00b7 The beef has run out for today. Payment ONLINE (E-wallet), refund pending \u00b7 refund owed 65,000 VND, payout pending Deliver to 12 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City Finished 01:22, 27/10/2026 Dish Amount Pho bo tai 1 x 55,000 VND 55,000 VND Dishes 55,000 VND Delivery fee (0.39 km) 15,000 VND Quiet hub discount -5,000 VND Total 65,000 VND Printable receipt All my orders || Receipt \u00b7 Order 12 Placed 01:22, 27/10/2026 \u00b7 SaigonBite District 1 Hub 12 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City \u00b7 Approximate distance 0.39 km Dish Amount Pho bo tai 1 x 55,000 VND 55,000 VND Dishes 55,000 ",
+   "screenshots": [
+    "S6_6b.3_customer_receipt.png"
+   ],
+   "order": 12,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S6",
+   "step": "6c.1",
+   "role": "customer",
+   "action": "order 1 x Tra da COD",
+   "expected": "'Order 13 is placed', 20,000 VND",
+   "checks": [
+    {
+     "check": "text contains: Order 13 is placed",
+     "ok": true
+    },
+    {
+     "check": "text contains: 20,000 VND",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Kitchen Dishes Confirm Done Order 13 is placed The kitchen will confirm it shortly. Have this amount ready in cash for the driver: 20,000 VND Order number 13 Status PLACED, waiting for the kitchen to confirm Payment COD (cash on delivery), PENDING until the driver collects it Placed 01:22, 27/10/2026 Hub: SaigonBite District 1 Hub Deliver to: 12 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City Dish Amount Tra da 1 x 10,000 VND 10,000 VND Dishes 10,000 VND Delivery fee (0.39 km) 15,000 VND Quiet hub discount -5,000 VND Total 20,000 VND Follow this order Place another order",
+   "screenshots": [
+    "S6_6c.1_customer.png"
+   ],
+   "order": 13,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S6",
+   "step": "6c.2",
+   "role": "customer",
+   "action": "Cancel this order (confirmation accepted)",
+   "expected": "banner 'Order 13 is cancelled.'; Cancelled; payment 'COD, voided'",
+   "checks": [
+    {
+     "check": "text contains: Order 13 is cancelled.",
+     "ok": true
+    },
+    {
+     "check": "text contains: COD, voided",
+     "ok": true
+    },
+    {
+     "check": "Cancelled badge",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Order 13 is cancelled. Order 13 SaigonBite District 1 Hub \u00b7 placed 01:22, 27/10/2026 Status Cancelled Payment COD, voided Deliver to 12 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City Finished 01:22, 27/10/2026 Dish Amount Tra da 1 x 10,000 VND 10,000 VND Dishes 10,000 VND Delivery fee (0.39 km) 15,000 VND Quiet hub discount -5,000 VND Total 20,000 VND Printable receipt All my orders",
+   "screenshots": [
+    "S6_6c.2_customer.png"
+   ],
+   "order": 13,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S6",
+   "step": "6c.3",
+   "role": "kitchen",
+   "action": "open the Kitchen board",
+   "expected": "no card for Order 13",
+   "checks": [
+    {
+     "check": "no card 13",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "SaigonBite District 1 Hub Kitchen capacity 14 orders. New, confirmed and preparing orders count towards it. New 2 Order 8 10:10, 23/10/2026 1 x Goi cuon Confirm Reject or replace Order 9 01:22, 27/10/2026 1 x Che thai Confirm Reject or replace Confirmed 0 None Preparing 0 None Ready for pickup 1 Order 7 10:00, 23/10/2026 1 x Pho bo tai Waiting for a shipper since 10:15, 23/10/2026",
+   "screenshots": [
+    "S6_6c.3_kitchen.png"
+   ],
+   "order": 13,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S6",
+   "step": "6d.1",
+   "role": "shipper",
+   "action": "pick up demo Order 7",
+   "expected": "banner 'You picked up order 7.'; Picked up",
+   "checks": [
+    {
+     "check": "text contains: You picked up order 7.",
+     "ok": true
+    },
+    {
+     "check": "badge",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "You picked up order 7. Order 7 Picked up \u00b7 from SaigonBite District 1 Hub Deliver to 12 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City (0.39 km) Customer Tran Thi Mai \u00b7 0901234567 Payment Collect 65,000 VND in cash Ready 10:15, 23/10/2026 Picked up 01:22, 27/10/2026 1 x Pho bo tai Delivered Cash collected (VND) Confirm delivery Could not deliver What happened Report failed delivery All deliveries",
+   "screenshots": [
+    "S6_6d.1_shipper.png"
+   ],
+   "order": 7,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S6",
+   "step": "6d.2",
+   "role": "shipper",
+   "action": "Report failed delivery with a reason",
+   "expected": "banner 'The failed delivery of order 7 is recorded. Bring the food back to the hub.'; Failed; Problem shows the reason",
+   "checks": [
+    {
+     "check": "text contains: The failed delivery of order 7 is recorded. Bring the food back to the hub.",
+     "ok": true
+    },
+    {
+     "check": "text contains: Customer did not answer the phone.",
+     "ok": true
+    },
+    {
+     "check": "badge Failed",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "The failed delivery of order 7 is recorded. Bring the food back to the hub. Order 7 Failed \u00b7 from SaigonBite District 1 Hub Deliver to 12 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City (0.39 km) Customer Tran Thi Mai \u00b7 0901234567 Payment Cash on delivery Ready 10:15, 23/10/2026 Picked up 01:22, 27/10/2026 Finished 01:22, 27/10/2026 Problem Customer did not answer the phone. 1 x Pho bo tai All deliveries",
+   "screenshots": [
+    "S6_6d.2_shipper.png"
+   ],
+   "order": 7,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S6",
+   "step": "6d.3",
+   "role": "customer",
+   "action": "open Order 7",
+   "expected": "Delivery failed; Delivery problem shows the reason; payment 'COD, voided'",
+   "checks": [
+    {
+     "check": "text contains: Delivery problem",
+     "ok": true
+    },
+    {
+     "check": "text contains: Customer did not answer the phone.",
+     "ok": true
+    },
+    {
+     "check": "text contains: COD, voided",
+     "ok": true
+    },
+    {
+     "check": "state",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Order 7 SaigonBite District 1 Hub \u00b7 placed 10:00, 23/10/2026 Status Delivery failed Payment COD, voided Deliver to 12 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City Confirmed 10:01, 23/10/2026 Ready 10:15, 23/10/2026 On the way 01:22, 27/10/2026 Finished 01:22, 27/10/2026 Delivery problem Customer did not answer the phone. Dish Amount Pho bo tai 1 x 55,000 VND 55,000 VND Dishes 55,000 VND Delivery fee (0.39 km) 15,000 VND Quiet hub discount -5,000 VND Total 65,000 VND Printable receipt All my orders",
+   "screenshots": [
+    "S6_6d.3_customer.png"
+   ],
+   "order": 7,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S7",
+   "step": "7.1",
+   "role": "manager",
+   "action": "Sales 2026-10-20, all hubs (oracle DB)",
+   "expected": "D1 1/90,000/-10,000/10,000/90,000/10,000/90,000; BT 1/60,000/0/10,000/70,000/0/70,000; All 2/150,000/-10,000/20,000/160,000/10,000/160,000; top items 3 & 1",
+   "checks": [
+    {
+     "check": "District 1 row",
+     "ok": true
+    },
+    {
+     "check": "Binh Thanh row",
+     "ok": true
+    },
+    {
+     "check": "All hubs row",
+     "ok": true
+    },
+    {
+     "check": "top item 1",
+     "ok": true
+    },
+    {
+     "check": "top item 2",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "{\"rows\": [[\"SaigonBite District 1 Hub\", \"1\", \"90,000 VND\", \"-10,000 VND\", \"10,000 VND\", \"90,000 VND\", \"10,000 VND\", \"90,000 VND\"], [\"SaigonBite Binh Thanh Hub\", \"1\", \"60,000 VND\", \"0 VND\", \"10,000 VND\", \"70,000 VND\", \"0 VND\", \"70,000 VND\"], [\"All hubs\", \"2\", \"150,000 VND\", \"-10,000 VND\", \"20,000 VND\", \"160,000 VND\", \"10,000 VND\", \"160,000 VND\"]], \"total\": [\"All hubs\", \"2\", \"150,000 VND\", \"-10,000 VND\", \"20,000 VND\", \"160,000 VND\", \"10,000 VND\", \"160,000 VND\"], \"top\": [[\"Renamed snapshot\", \"3\", \"100,000 VND\"], [\"Shared name\", \"1\", \"50,000 VND\"]]}",
+   "screenshots": [
+    "S7_7.1_manager.png"
+   ],
+   "order": null,
+   "events": [],
+   "extra": {
+    "rows": [
+     [
+      "SaigonBite District 1 Hub",
+      "1",
+      "90,000 VND",
+      "-10,000 VND",
+      "10,000 VND",
+      "90,000 VND",
+      "10,000 VND",
+      "90,000 VND"
+     ],
+     [
+      "SaigonBite Binh Thanh Hub",
+      "1",
+      "60,000 VND",
+      "0 VND",
+      "10,000 VND",
+      "70,000 VND",
+      "0 VND",
+      "70,000 VND"
+     ],
+     [
+      "All hubs",
+      "2",
+      "150,000 VND",
+      "-10,000 VND",
+      "20,000 VND",
+      "160,000 VND",
+      "10,000 VND",
+      "160,000 VND"
+     ]
+    ],
+    "total": [
+     "All hubs",
+     "2",
+     "150,000 VND",
+     "-10,000 VND",
+     "20,000 VND",
+     "160,000 VND",
+     "10,000 VND",
+     "160,000 VND"
+    ],
+    "top": [
+     [
+      "Renamed snapshot",
+      "3",
+      "100,000 VND"
+     ],
+     [
+      "Shared name",
+      "1",
+      "50,000 VND"
+     ]
+    ]
+   }
+  },
+  {
+   "scenario": "S7",
+   "step": "7.2",
+   "role": "manager",
+   "action": "same period, hub = Binh Thanh",
+   "expected": "1 order, total 70,000 VND, refunds owed 0, net 70,000",
+   "checks": [
+    {
+     "check": "total row",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "[\"SaigonBite Binh Thanh Hub\", \"1\", \"60,000 VND\", \"0 VND\", \"10,000 VND\", \"70,000 VND\", \"0 VND\", \"70,000 VND\"]",
+   "screenshots": [
+    "S7_7.2_manager.png"
+   ],
+   "order": null,
+   "events": [],
+   "extra": {
+    "total": [
+     "SaigonBite Binh Thanh Hub",
+     "1",
+     "60,000 VND",
+     "0 VND",
+     "10,000 VND",
+     "70,000 VND",
+     "0 VND",
+     "70,000 VND"
+    ]
+   }
+  },
+  {
+   "scenario": "S7",
+   "step": "7.3",
+   "role": "manager",
+   "action": "Delivery performance 2026-10-20",
+   "expected": "overall 2/1/33.3%/20.0 min (n=3)/25.0 min (n=2); D1 1/0/0.0%/10.0 (n=1)/20.0 (n=1); BT 1/1/50.0%/25.0 (n=2)/30.0 (n=1); one shipper = overall",
+   "checks": [
+    {
+     "check": "overall",
+     "ok": true
+    },
+    {
+     "check": "District 1",
+     "ok": true
+    },
+    {
+     "check": "Binh Thanh",
+     "ok": true
+    },
+    {
+     "check": "shipper row",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "{\"overall\": [\"All deliveries\", \"2\", \"1\", \"33.3%\", \"20.0 min (n=3)\", \"25.0 min (n=2)\"], \"hubs\": [[\"SaigonBite District 1 Hub\", \"1\", \"0\", \"0.0%\", \"10.0 min (n=1)\", \"20.0 min (n=1)\"], [\"SaigonBite Binh Thanh Hub\", \"1\", \"1\", \"50.0%\", \"25.0 min (n=2)\", \"30.0 min (n=1)\"]], \"shipper\": [\"Shipper One\", \"2\", \"1\", \"33.3%\", \"20.0 min (n=3)\", \"25.0 min (n=2)\"]}",
+   "screenshots": [
+    "S7_7.3_manager.png"
+   ],
+   "order": null,
+   "events": [],
+   "extra": {
+    "overall": [
+     "All deliveries",
+     "2",
+     "1",
+     "33.3%",
+     "20.0 min (n=3)",
+     "25.0 min (n=2)"
+    ],
+    "hubs": [
+     [
+      "SaigonBite District 1 Hub",
+      "1",
+      "0",
+      "0.0%",
+      "10.0 min (n=1)",
+      "20.0 min (n=1)"
+     ],
+     [
+      "SaigonBite Binh Thanh Hub",
+      "1",
+      "1",
+      "50.0%",
+      "25.0 min (n=2)",
+      "30.0 min (n=1)"
+     ]
+    ],
+    "shipper": [
+     "Shipper One",
+     "2",
+     "1",
+     "33.3%",
+     "20.0 min (n=3)",
+     "25.0 min (n=2)"
+    ]
+   }
+  },
+  {
+   "scenario": "S7",
+   "step": "7.4",
+   "role": "manager",
+   "action": "Workload now",
+   "expected": "D1: New 0 Confirmed 0 Preparing 0, 0 / 12; Binh Thanh (Archived): New 1, 1 / 8",
+   "checks": [
+    {
+     "check": "D1",
+     "ok": true
+    },
+    {
+     "check": "BT",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "[[\"SaigonBite District 1 Hub\", \"0\", \"0\", \"0\", \"0 / 12\", \"0%\", \"Quiet\", \"0\", \"0\"], [\"SaigonBite Binh Thanh Hub (Archived)\", \"1\", \"0\", \"0\", \"1 / 8\", \"12%\", \"Quiet\", \"0\", \"0\"]]",
+   "screenshots": [
+    "S7_7.4_manager.png"
+   ],
+   "order": null,
+   "events": [],
+   "extra": {
+    "d1": [
+     "SaigonBite District 1 Hub",
+     "0",
+     "0",
+     "0",
+     "0 / 12",
+     "0%",
+     "Quiet",
+     "0",
+     "0"
+    ],
+    "bt": [
+     "SaigonBite Binh Thanh Hub (Archived)",
+     "1",
+     "0",
+     "0",
+     "1 / 8",
+     "12%",
+     "Quiet",
+     "0",
+     "0"
+    ]
+   }
+  },
+  {
+   "scenario": "S7",
+   "step": "7.5",
+   "role": "manager",
+   "action": "empty day 2026-01-01 (Sales, Delivery)",
+   "expected": "Sales 'No delivered orders in this period.' and 0 / 0 VND; Delivery n/a, n/a (n=0), n/a (n=0)",
+   "checks": [
+    {
+     "check": "text contains: No delivered orders in this period.",
+     "ok": true
+    },
+    {
+     "check": "sales total zeros",
+     "ok": true
+    },
+    {
+     "check": "delivery n/a",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Sales Delivered orders, counted on the day they were delivered (Ho Chi Minh City time). Rejected, cancelled and failed orders are not sales. From To (inclusive) Hub All hubs SaigonBite District 1 Hub SaigonBite Binh Thanh Hub (archived) Show Hub Orders Dishes Vouchers Delivery fees Total Refunds owed Net No delivered orders in this period. All hubs 0 0 VND 0 VND 0 VND 0 VND 0 VND 0 VND Delivery fees are after the quiet-hub discount. Total = dishes - vouchers + delivery fees. Net sales equal this adjusted total; refund owed is shown separately and is not deducted twice. Refunds are simulated obligations, not payouts. || [\"All deliveries\", \"0\", \"0\", \"n/a\", \"n/a (n=0)\", \"n/a (n=0)\"]",
+   "screenshots": [
+    "S7_7.5_manager_delivery.png"
+   ],
+   "order": null,
+   "events": [],
+   "extra": {
+    "sales_total": [
+     "All hubs",
+     "0",
+     "0 VND",
+     "0 VND",
+     "0 VND",
+     "0 VND",
+     "0 VND",
+     "0 VND"
+    ],
+    "delivery_overall": [
+     "All deliveries",
+     "0",
+     "0",
+     "n/a",
+     "n/a (n=0)",
+     "n/a (n=0)"
+    ]
+   }
+  },
+  {
+   "scenario": "S7",
+   "step": "7.6",
+   "role": "manager",
+   "action": "Sales 2026-10-01 to 2026-10-27, main DB",
+   "expected": "(reference text for 7.8)",
+   "checks": [
+    {
+     "check": "table present",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Hub Orders Dishes Vouchers Delivery fees Total Refunds owed Net SaigonBite District 1 Hub 3 320,000 VND -13,000 VND 35,000 VND 342,000 VND 0 VND 342,000 VND SaigonBite Binh Thanh Hub 1 80,000 VND -20,000 VND 17,000 VND 77,000 VND 0 VND 77,000 VND All hubs 4 400,000 VND -33,000 VND 52,000 VND 419,000 VND 0 VND 419,000 VND",
+   "screenshots": [
+    "S7_7.6_manager.png"
+   ],
+   "order": null,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S7",
+   "step": "7.7",
+   "role": "admin",
+   "action": "archive closed order 1",
+   "expected": "banner 'The closed order is archived. Its history and reports are kept.'; Recently archived lists order 1; the history page opens",
+   "checks": [
+    {
+     "check": "text contains: The closed order is archived. Its history and reports are kept.",
+     "ok": true
+    },
+    {
+     "check": "text contains: Recently archived",
+     "ok": true
+    },
+    {
+     "check": "history page 200",
+     "ok": true
+    },
+    {
+     "check": "history heading",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "The closed order is archived. Its history and reports are kept. Archive finished orders Delivered, failed, rejected and cancelled orders closed before the chosen day leave the operational screens. Nothing is deleted, and the reports still count them. Open orders are never archived. Closed order ID Archive this order Closed before (Ho Chi Minh City day) Count orders Recently archived Order Status Closed Archived Total 1 Delivered 11:55, 20/10/2026 01:23, 27/10/2026 130,000 VND || Archived order 1 Delivered \u00b7 11:55, 20/10/2026 12 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City Pho bo tai \u00d7 2 at 55,000 VND Tra da \u00d7 1 at 10,000 VND Subtotal 120,000 VND Voucher discount 0 VND Delivery fee",
+   "screenshots": [
+    "S7_7.7_admin.png"
+   ],
+   "order": 1,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S7",
+   "step": "7.8",
+   "role": "customer+manager",
+   "action": "open the receipt of order 1; repeat the sales report",
+   "expected": "receipt opens (Receipt \u00b7 Order 1, Total T 130,000 VND); Sales table text identical; My orders no longer lists Order 1",
+   "checks": [
+    {
+     "check": "receipt 200",
+     "ok": true
+    },
+    {
+     "check": "text contains: Receipt \u00b7 Order 1",
+     "ok": true
+    },
+    {
+     "check": "text contains: Total T 130,000 VND",
+     "ok": true
+    },
+    {
+     "check": "sales table identical",
+     "ok": true
+    },
+    {
+     "check": "My orders without Order 1",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Receipt \u00b7 Order 1 Placed 11:00, 20/10/2026 \u00b7 SaigonBite District 1 Hub 12 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City \u00b7 Approximate distance 0.39 km Dish Amount Pho bo tai 2 x 55,000 VND 110,000 VND Tra da 1 x 10,000 VND 10,000 VND Dishes 120,000 VND Delivery fee (0.39 km) 15,000 VND Quiet hub discount -5,000 VND Total 130,000 VND Item subtotal S 120,000 VND Voucher discount D 0 VND Delivery fee F 15,000 VND Quiet discount Q 5,000 VND Total T 130,000 VND Payment method COD Payment state PAID Payment amount 130,000 VND Refund owed, payout pending 0 VND || identical=True",
+   "screenshots": [
+    "S7_7.8_customer_my_orders.png",
+    "S7_7.8_manager.png"
+   ],
+   "order": 1,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S7",
+   "step": "7.9",
+   "role": "admin",
+   "action": "archive open order 9",
+   "expected": "banner 'Only a closed, unarchived order can be archived.'; order 9 stays unarchived",
+   "checks": [
+    {
+     "check": "text contains: Only a closed, unarchived order can be archived.",
+     "ok": true
+    },
+    {
+     "check": "order 9 archived_at empty",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Only a closed, unarchived order can be archived. Archive finished orders Delivered, failed, rejected and cancelled orders closed before the chosen day leave the operational screens. Nothing is deleted, and the reports still count them. Open orders are never archived. Closed order ID Archive this order Closed before (Ho Chi Minh City day) Count orders Recently archived Order Status Closed Archived Total 1 Delivered 11:55, 20/10/2026 01:23, 27/10/2026 130,000 VND",
+   "screenshots": [
+    "S7_7.9_admin.png"
+   ],
+   "order": 9,
+   "events": [],
+   "extra": {}
+  },
+  {
+   "scenario": "S8",
+   "step": "8.1",
+   "role": "all roles",
+   "action": "every post form seen during S1 to S7",
+   "expected": "0 post forms without a non-empty csrf_token",
+   "checks": [
+    {
+     "check": "310 post forms seen, none without a token",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "310 post forms on 38 distinct role/page pairs; missing: 0",
+   "screenshots": [
+    "S8_8.1_admin.png"
+   ],
+   "order": null,
+   "events": [],
+   "extra": {
+    "forms": 310,
+    "pages": [
+     [
+      "admin",
+      "/admin/archive"
+     ],
+     [
+      "admin",
+      "/admin/archive/<id>"
+     ],
+     [
+      "admin",
+      "/admin/hubs"
+     ],
+     [
+      "admin",
+      "/admin/hubs/<id>"
+     ],
+     [
+      "admin",
+      "/admin/hubs/<id>/menu"
+     ],
+     [
+      "admin",
+      "/admin/menu"
+     ],
+     [
+      "admin",
+      "/login"
+     ],
+     [
+      "customer",
+      "/login"
+     ],
+     [
+      "customer",
+      "/order/<id>"
+     ],
+     [
+      "customer",
+      "/order/<id>/confirmation"
+     ],
+     [
+      "customer",
+      "/order/<id>/receipt"
+     ],
+     [
+      "customer",
+      "/order/confirm"
+     ],
+     [
+      "customer",
+      "/order/hubs"
+     ],
+     [
+      "customer",
+      "/order/hubs/<id>"
+     ],
+     [
+      "customer",
+      "/order/mine"
+     ],
+     [
+      "customer",
+      "/order/quote"
+     ],
+     [
+      "kitchen",
+      "/kitchen/"
+     ],
+     [
+      "kitchen",
+      "/kitchen/availability"
+     ],
+     [
+      "kitchen",
+      "/kitchen/orders/<id>"
+     ],
+     [
+      "kitchen",
+      "/login"
+     ],
+     [
+      "kitchen_bt",
+      "/kitchen/"
+     ],
+     [
+      "kitchen_bt",
+      "/kitchen/orders/<id>"
+     ],
+     [
+      "kitchen_bt",
+      "/kitchen/orders/<id>/confirm"
+     ],
+     [
+      "kitchen_bt",
+      "/login"
+     ],
+     [
+      "manager",
+      "/login"
+     ],
+     [
+      "manager",
+      "/reports/delivery"
+     ],
+     [
+      "manager",
+      "/reports/sales"
+     ],
+     [
+      "manager",
+      "/reports/workload"
+     ],
+     [
+      "shipper",
+      "/delivery/"
+     ],
+     [
+      "shipper",
+      "/delivery/orders/<id>"
+     ],
+     [
+      "shipper",
+      "/login"
+     ],
+     [
+      "shipper2",
+      "/delivery/"
+     ],
+     [
+      "shipper2",
+      "/delivery/orders/<id>"
+     ],
+     [
+      "shipper2",
+      "/login"
+     ],
+     [
+      "tourist",
+      "/login"
+     ],
+     [
+      "tourist",
+      "/order/hubs"
+     ],
+     [
+      "tourist",
+      "/order/hubs/<id>"
+     ],
+     [
+      "tourist",
+      "/order/quote"
+     ]
+    ],
+    "missing": []
+   }
+  },
+  {
+   "scenario": "S8",
+   "step": "8.2",
+   "role": "admin",
+   "action": "Save hub BT with the csrf_token removed",
+   "expected": "HTTP 400 'Form expired' with the expiry message; BT still 1 / 8",
+   "checks": [
+    {
+     "check": "HTTP 400",
+     "ok": true
+    },
+    {
+     "check": "text contains: Form expired",
+     "ok": true
+    },
+    {
+     "check": "text contains: This form has expired or did not come from SaigonBite. Go back, reload the page and try again.",
+     "ok": true
+    },
+    {
+     "check": "BT unchanged 1 / 8",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Form expired Error 400 This form has expired or did not come from SaigonBite. Go back, reload the page and try again. Back to hubs",
+   "screenshots": [
+    "S8_8.2_admin.png"
+   ],
+   "order": null,
+   "events": [
+    "admin: http 400 POST http://127.0.0.1:5100/admin/hubs/2",
+    "admin: console.error Failed to load resource: the server responded with a status of 400 (BAD REQUEST)"
+   ],
+   "extra": {
+    "status": 400
+   }
+  },
+  {
+   "scenario": "S8",
+   "step": "8.3",
+   "role": "admin",
+   "action": "Save hub BT with the csrf_token changed",
+   "expected": "HTTP 400 'Form expired' with the expiry message; BT still 1 / 8",
+   "checks": [
+    {
+     "check": "HTTP 400",
+     "ok": true
+    },
+    {
+     "check": "text contains: Form expired",
+     "ok": true
+    },
+    {
+     "check": "text contains: This form has expired or did not come from SaigonBite. Go back, reload the page and try again.",
+     "ok": true
+    },
+    {
+     "check": "BT unchanged 1 / 8",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Form expired Error 400 This form has expired or did not come from SaigonBite. Go back, reload the page and try again. Back to hubs",
+   "screenshots": [
+    "S8_8.3_admin.png"
+   ],
+   "order": null,
+   "events": [
+    "admin: http 400 POST http://127.0.0.1:5100/admin/hubs/2",
+    "admin: console.error Failed to load resource: the server responded with a status of 400 (BAD REQUEST)"
+   ],
+   "extra": {
+    "status": 400
+   }
+  },
+  {
+   "scenario": "S8",
+   "step": "8.4",
+   "role": "kitchen",
+   "action": "Mark sold out Pho bo tai with the csrf_token removed",
+   "expected": "HTTP 400 Form expired; Pho bo tai still Available",
+   "checks": [
+    {
+     "check": "HTTP 400",
+     "ok": true
+    },
+    {
+     "check": "text contains: Form expired",
+     "ok": true
+    },
+    {
+     "check": "still Available",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Form expired Error 400 This form has expired or did not come from SaigonBite. Go back, reload the page and try again. Back to kitchen board",
+   "screenshots": [
+    "S8_8.4_kitchen.png"
+   ],
+   "order": null,
+   "events": [
+    "kitchen: http 400 POST http://127.0.0.1:5100/kitchen/availability/1",
+    "kitchen: console.error Failed to load resource: the server responded with a status of 400 (BAD REQUEST)"
+   ],
+   "extra": {
+    "status": 400
+   }
+  },
+  {
+   "scenario": "S8",
+   "step": "8.5",
+   "role": "customer",
+   "action": "Cancel this order 9 with the csrf_token removed",
+   "expected": "HTTP 400 Form expired; order 9 still PLACED",
+   "checks": [
+    {
+     "check": "HTTP 400",
+     "ok": true
+    },
+    {
+     "check": "text contains: Form expired",
+     "ok": true
+    },
+    {
+     "check": "order 9 PLACED",
+     "ok": true
+    }
+   ],
+   "result": "PASS",
+   "failed_checks": [],
+   "actual": "Form expired Error 400 This form has expired or did not come from SaigonBite. Go back, reload the page and try again. Back to order food",
+   "screenshots": [
+    "S8_8.5_customer.png"
+   ],
+   "order": 9,
+   "events": [
+    "customer: http 400 POST http://127.0.0.1:5100/order/9/cancel",
+    "customer: console.error Failed to load resource: the server responded with a status of 400 (BAD REQUEST)"
+   ],
+   "extra": {
+    "status": 400
+   }
+  }
+ ]
+}

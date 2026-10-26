@@ -1,0 +1,44 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.2, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\RAD\FINAL\SaigonBite
+configfile: pytest.ini
+testpaths: tests
+collected 928 items
+
+tests\test_deploy.py ..                                                  [  0%]
+tests\test_docs_consistency.py ...........                               [  1%]
+tests\test_domain.py ............                                        [  2%]
+tests\test_p4_accounts.py .......................................        [  6%]
+tests\test_p4_catalogue.py ...........................                   [  9%]
+tests\test_p4_delivery.py .........................                      [ 12%]
+tests\test_p4_dependency_policy.py ..................................... [ 16%]
+.                                                                        [ 16%]
+tests\test_p4_foundation.py .................                            [ 18%]
+tests\test_p4_hubs.py .....................                              [ 20%]
+tests\test_p4_kitchen.py ....................................            [ 24%]
+tests\test_p4_ordering.py ................................               [ 28%]
+tests\test_p4_permissions.py ........................................... [ 32%]
+........................................................................ [ 40%]
+........................................................................ [ 48%]
+........................................................................ [ 55%]
+........................................................................ [ 63%]
+........................................................................ [ 71%]
+........................................................................ [ 79%]
+........................................................................ [ 86%]
+...............                                                          [ 88%]
+tests\test_p4_regression_evidence.py ........                            [ 89%]
+tests\test_p4_report_oracle.py ..............                            [ 90%]
+tests\test_p5_browser_constraints.py .....                               [ 91%]
+tests\test_p5_error_page.py ..                                           [ 91%]
+tests\test_p5_quote_payment_switch.py ...                                [ 92%]
+tests\test_p5_screen_text.py ...                                         [ 92%]
+tests\test_review_findings.py .......                                    [ 93%]
+tests\test_seed.py ......                                                [ 93%]
+tests\test_uc01_access.py ...................                            [ 95%]
+tests\test_uc01_confirm.py .....                                         [ 96%]
+tests\test_uc01_idempotency.py .....                                     [ 96%]
+tests\test_uc01_quote.py ....                                            [ 97%]
+tests\test_uc01_validation.py .........................                  [100%]
+
+- generated xml file: D:\RAD\FINAL\SaigonBite\docs\part2\test_report\2026-10-27_252ada1.xml -
+============================ 928 passed in 52.58s =============================

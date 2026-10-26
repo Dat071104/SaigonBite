@@ -1,0 +1,54 @@
+{
+ "orders": [
+  {
+   "id": 7,
+   "state": "DELIVERY_FAILED",
+   "total_amount": 65000
+  },
+  {
+   "id": 12,
+   "state": "REJECTED",
+   "total_amount": 65000
+  },
+  {
+   "id": 13,
+   "state": "CANCELLED",
+   "total_amount": 20000
+  }
+ ],
+ "payments": [
+  {
+   "order_id": 7,
+   "method": "COD",
+   "state": "VOIDED",
+   "amount": 65000,
+   "refund_amount": 0
+  },
+  {
+   "order_id": 12,
+   "method": "ONLINE",
+   "state": "REFUND_PENDING",
+   "amount": 65000,
+   "refund_amount": 65000
+  },
+  {
+   "order_id": 13,
+   "method": "COD",
+   "state": "VOIDED",
+   "amount": 20000,
+   "refund_amount": 0
+  }
+ ],
+ "delivery7": [
+  {
+   "order_id": 7,
+   "state": "FAILED",
+   "failure_reason": "Customer did not answer the phone."
+  }
+ ],
+ "count": [
+  {
+   "n": 13
+  }
+ ]
+}

@@ -1,0 +1,2042 @@
+[
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/login",
+  "action": "/login",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/hubs",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "tourist",
+  "url": "http://127.0.0.1:5100/login",
+  "action": "/login",
+  "token_len": 43
+ },
+ {
+  "role": "tourist",
+  "url": "http://127.0.0.1:5100/order/hubs",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/login",
+  "action": "/login",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/",
+  "action": "/kitchen/orders/8/confirm",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen_bt",
+  "url": "http://127.0.0.1:5100/login",
+  "action": "/login",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen_bt",
+  "url": "http://127.0.0.1:5100/kitchen/",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "shipper",
+  "url": "http://127.0.0.1:5100/login",
+  "action": "/login",
+  "token_len": 43
+ },
+ {
+  "role": "shipper",
+  "url": "http://127.0.0.1:5100/delivery/",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "shipper",
+  "url": "http://127.0.0.1:5100/delivery/",
+  "action": "/delivery/orders/7/pickup",
+  "token_len": 43
+ },
+ {
+  "role": "shipper2",
+  "url": "http://127.0.0.1:5100/login",
+  "action": "/login",
+  "token_len": 43
+ },
+ {
+  "role": "shipper2",
+  "url": "http://127.0.0.1:5100/delivery/",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "shipper2",
+  "url": "http://127.0.0.1:5100/delivery/",
+  "action": "/delivery/orders/7/pickup",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/login",
+  "action": "/login",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs",
+  "action": "/admin/hubs/2/archive",
+  "token_len": 43
+ },
+ {
+  "role": "manager",
+  "url": "http://127.0.0.1:5100/login",
+  "action": "/login",
+  "token_len": 43
+ },
+ {
+  "role": "manager",
+  "url": "http://127.0.0.1:5100/reports/sales",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "manager",
+  "url": "http://127.0.0.1:5101/login",
+  "action": "/login",
+  "token_len": 43
+ },
+ {
+  "role": "manager",
+  "url": "http://127.0.0.1:5101/reports/sales",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs",
+  "action": "/admin/hubs/2/archive",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1",
+  "action": "/admin/hubs/1",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs",
+  "action": "/admin/hubs/2/archive",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu/1/availability",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu/1/remove",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu/2/availability",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu/2/remove",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu/3/availability",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu/3/remove",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu/4/availability",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu/4/remove",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu/5/availability",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu/5/remove",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu/6/availability",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu/6/remove",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu/7/availability",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu/7/remove",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu/8/availability",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu/8/remove",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu/1/availability",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu/1/remove",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu/2/availability",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu/2/remove",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu/3/availability",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu/3/remove",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu/4/availability",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu/4/remove",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu/5/availability",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu/5/remove",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu/6/availability",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu/6/remove",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu/7/availability",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu/7/remove",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu/8/availability",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu/8/remove",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu/9/availability",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu/9/remove",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/1/menu",
+  "action": "/admin/hubs/1/menu",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/hubs",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/hubs/1",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/hubs/1",
+  "action": "/order/quote",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/brands/1",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/brands/1/archive",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/brands/2",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/brands/2/archive",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/brands/3",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/brands/3/archive",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/brands/4",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/brands/4/archive",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/brands",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/items/1/archive",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/items/2/archive",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/items/3/archive",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/items/4/archive",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/items/5/archive",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/items/6/archive",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/items/7/archive",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/items/8/archive",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/items/9/archive",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/items/10/archive",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/brands/1",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/brands/1/archive",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/brands/2",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/brands/2/archive",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/brands/3",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/brands/3/archive",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/brands/4",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/brands/4/archive",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/brands",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/items/1/archive",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/items/2/archive",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/items/3/archive",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/items/4/archive",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/items/5/archive",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/items/6/archive",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/items/7/archive",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/items/9/archive",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/menu",
+  "action": "/admin/items/10/archive",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/hubs/1",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/hubs/1",
+  "action": "/order/quote",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/hubs/1",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/hubs/1",
+  "action": "/order/quote",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/quote",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/quote",
+  "action": "/order/quote",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/hubs/1",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/hubs/1",
+  "action": "/order/quote",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/quote",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/quote",
+  "action": "/order/quote",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/hubs/1",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/hubs/1",
+  "action": "/order/quote",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/quote",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/quote",
+  "action": "/order/confirm",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/9/confirmation",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/2",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/2",
+  "action": "/admin/hubs/2",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/2",
+  "action": "/admin/hubs/2/archive",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs",
+  "action": "/admin/hubs/2/archive",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/hubs/2",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/hubs/2",
+  "action": "/order/quote",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/quote",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/quote",
+  "action": "/order/confirm",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/10/confirmation",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "tourist",
+  "url": "http://127.0.0.1:5100/order/hubs/2",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "tourist",
+  "url": "http://127.0.0.1:5100/order/hubs/2",
+  "action": "/order/quote",
+  "token_len": 43
+ },
+ {
+  "role": "tourist",
+  "url": "http://127.0.0.1:5100/order/quote",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "tourist",
+  "url": "http://127.0.0.1:5100/order/hubs/1",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "tourist",
+  "url": "http://127.0.0.1:5100/order/hubs/1",
+  "action": "/order/quote",
+  "token_len": 43
+ },
+ {
+  "role": "tourist",
+  "url": "http://127.0.0.1:5100/order/quote",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "tourist",
+  "url": "http://127.0.0.1:5100/order/quote",
+  "action": "/order/confirm",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/2",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/2",
+  "action": "/admin/hubs/2",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/hubs/1",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/hubs/1",
+  "action": "/order/quote",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/quote",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/quote",
+  "action": "/order/confirm",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/11/confirmation",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/",
+  "action": "/kitchen/orders/8/confirm",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/",
+  "action": "/kitchen/orders/9/confirm",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/",
+  "action": "/kitchen/orders/11/confirm",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen_bt",
+  "url": "http://127.0.0.1:5100/kitchen/",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen_bt",
+  "url": "http://127.0.0.1:5100/kitchen/",
+  "action": "/kitchen/orders/10/confirm",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen_bt",
+  "url": "http://127.0.0.1:5100/kitchen/orders/11",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen_bt",
+  "url": "http://127.0.0.1:5100/kitchen/orders/11/confirm",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/orders/11",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/orders/11",
+  "action": "/kitchen/orders/11/confirm",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/orders/11",
+  "action": "/kitchen/orders/11/offer",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/orders/11",
+  "action": "/kitchen/orders/11/reject",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/1",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/2",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/3",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/4",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/5",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/6",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/7",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/9",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/1",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/2",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/3",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/4",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/5",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/6",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/7",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/9",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/orders/11",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/orders/11",
+  "action": "/kitchen/orders/11/confirm",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/orders/11",
+  "action": "/kitchen/orders/11/offer",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/orders/11",
+  "action": "/kitchen/orders/11/reject",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/orders/11",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/orders/11",
+  "action": "/kitchen/orders/11/reject",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/mine",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/11",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/11",
+  "action": "/order/11/replacement",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/11",
+  "action": "/order/11/cancel",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/11",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/11",
+  "action": "/order/11/cancel",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/orders/11",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/orders/11",
+  "action": "/kitchen/orders/11/confirm",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/orders/11",
+  "action": "/kitchen/orders/11/offer",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/orders/11",
+  "action": "/kitchen/orders/11/reject",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/",
+  "action": "/kitchen/orders/8/confirm",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/",
+  "action": "/kitchen/orders/9/confirm",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/",
+  "action": "/kitchen/orders/11/prepare",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/",
+  "action": "/kitchen/orders/8/confirm",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/",
+  "action": "/kitchen/orders/9/confirm",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/",
+  "action": "/kitchen/orders/11/ready",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/",
+  "action": "/kitchen/orders/8/confirm",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/",
+  "action": "/kitchen/orders/9/confirm",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/11",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/1",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/2",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/3",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/4",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/5",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/6",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/7",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/9",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/1",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/2",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/3",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/4",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/5",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/6",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/7",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/9",
+  "token_len": 43
+ },
+ {
+  "role": "shipper",
+  "url": "http://127.0.0.1:5100/delivery/",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "shipper",
+  "url": "http://127.0.0.1:5100/delivery/",
+  "action": "/delivery/orders/7/pickup",
+  "token_len": 43
+ },
+ {
+  "role": "shipper",
+  "url": "http://127.0.0.1:5100/delivery/",
+  "action": "/delivery/orders/11/pickup",
+  "token_len": 43
+ },
+ {
+  "role": "shipper2",
+  "url": "http://127.0.0.1:5100/delivery/",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "shipper2",
+  "url": "http://127.0.0.1:5100/delivery/",
+  "action": "/delivery/orders/7/pickup",
+  "token_len": 43
+ },
+ {
+  "role": "shipper2",
+  "url": "http://127.0.0.1:5100/delivery/",
+  "action": "/delivery/orders/11/pickup",
+  "token_len": 43
+ },
+ {
+  "role": "shipper",
+  "url": "http://127.0.0.1:5100/delivery/orders/11",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "shipper",
+  "url": "http://127.0.0.1:5100/delivery/orders/11",
+  "action": "/delivery/orders/11/pickup",
+  "token_len": 43
+ },
+ {
+  "role": "shipper2",
+  "url": "http://127.0.0.1:5100/delivery/orders/11",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "shipper2",
+  "url": "http://127.0.0.1:5100/delivery/orders/11",
+  "action": "/delivery/orders/11/pickup",
+  "token_len": 43
+ },
+ {
+  "role": "shipper",
+  "url": "http://127.0.0.1:5100/delivery/orders/11",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "shipper",
+  "url": "http://127.0.0.1:5100/delivery/orders/11",
+  "action": "/delivery/orders/11/delivered",
+  "token_len": 43
+ },
+ {
+  "role": "shipper",
+  "url": "http://127.0.0.1:5100/delivery/orders/11",
+  "action": "/delivery/orders/11/failed",
+  "token_len": 43
+ },
+ {
+  "role": "shipper2",
+  "url": "http://127.0.0.1:5100/delivery/orders/11",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "shipper",
+  "url": "http://127.0.0.1:5100/delivery/orders/11",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "shipper",
+  "url": "http://127.0.0.1:5100/delivery/orders/11",
+  "action": "/delivery/orders/11/delivered",
+  "token_len": 43
+ },
+ {
+  "role": "shipper",
+  "url": "http://127.0.0.1:5100/delivery/orders/11",
+  "action": "/delivery/orders/11/failed",
+  "token_len": 43
+ },
+ {
+  "role": "shipper",
+  "url": "http://127.0.0.1:5100/delivery/orders/11",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/11",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/11/receipt",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/hubs/1",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/hubs/1",
+  "action": "/order/quote",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/quote",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/quote",
+  "action": "/order/confirm",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/confirm",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/confirm",
+  "action": "/order/confirm",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/confirm",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/confirm",
+  "action": "/order/confirm",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/hubs/1",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/hubs/1",
+  "action": "/order/quote",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/quote",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/quote",
+  "action": "/order/confirm",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/confirm",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/confirm",
+  "action": "/order/confirm",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/12/confirmation",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/orders/12",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/orders/12",
+  "action": "/kitchen/orders/12/confirm",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/orders/12",
+  "action": "/kitchen/orders/12/offer",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/orders/12",
+  "action": "/kitchen/orders/12/reject",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/orders/12",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/12",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/12/receipt",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/hubs/1",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/hubs/1",
+  "action": "/order/quote",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/quote",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/quote",
+  "action": "/order/confirm",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/13/confirmation",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/13",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/13",
+  "action": "/order/13/cancel",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/13",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/",
+  "action": "/kitchen/orders/8/confirm",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/",
+  "action": "/kitchen/orders/9/confirm",
+  "token_len": 43
+ },
+ {
+  "role": "shipper",
+  "url": "http://127.0.0.1:5100/delivery/",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "shipper",
+  "url": "http://127.0.0.1:5100/delivery/",
+  "action": "/delivery/orders/7/pickup",
+  "token_len": 43
+ },
+ {
+  "role": "shipper",
+  "url": "http://127.0.0.1:5100/delivery/orders/7",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "shipper",
+  "url": "http://127.0.0.1:5100/delivery/orders/7",
+  "action": "/delivery/orders/7/delivered",
+  "token_len": 43
+ },
+ {
+  "role": "shipper",
+  "url": "http://127.0.0.1:5100/delivery/orders/7",
+  "action": "/delivery/orders/7/failed",
+  "token_len": 43
+ },
+ {
+  "role": "shipper",
+  "url": "http://127.0.0.1:5100/delivery/orders/7",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/7",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "manager",
+  "url": "http://127.0.0.1:5101/reports/sales",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "manager",
+  "url": "http://127.0.0.1:5101/reports/sales",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "manager",
+  "url": "http://127.0.0.1:5101/reports/sales",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "manager",
+  "url": "http://127.0.0.1:5101/reports/delivery",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "manager",
+  "url": "http://127.0.0.1:5101/reports/delivery",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "manager",
+  "url": "http://127.0.0.1:5101/reports/workload",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "manager",
+  "url": "http://127.0.0.1:5101/reports/sales",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "manager",
+  "url": "http://127.0.0.1:5101/reports/sales",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "manager",
+  "url": "http://127.0.0.1:5101/reports/delivery",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "manager",
+  "url": "http://127.0.0.1:5101/reports/delivery",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "manager",
+  "url": "http://127.0.0.1:5100/reports/sales",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "manager",
+  "url": "http://127.0.0.1:5100/reports/sales",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/archive",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/archive",
+  "action": "",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/archive",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/archive",
+  "action": "",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/archive/1",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/1/receipt",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "manager",
+  "url": "http://127.0.0.1:5100/reports/sales",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "manager",
+  "url": "http://127.0.0.1:5100/reports/sales",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/mine",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/archive",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/archive",
+  "action": "",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/archive",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/archive",
+  "action": "",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/2",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/2",
+  "action": "/admin/hubs/2",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/2",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/2",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/2",
+  "action": "/admin/hubs/2",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs/2",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "admin",
+  "url": "http://127.0.0.1:5100/admin/hubs",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/1",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/2",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/3",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/4",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/5",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/6",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/7",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/9",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability/1",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/1",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/2",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/3",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/4",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/5",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/6",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/7",
+  "token_len": 43
+ },
+ {
+  "role": "kitchen",
+  "url": "http://127.0.0.1:5100/kitchen/availability",
+  "action": "/kitchen/availability/9",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/9",
+  "action": "/logout",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/9",
+  "action": "/order/9/cancel",
+  "token_len": 43
+ },
+ {
+  "role": "customer",
+  "url": "http://127.0.0.1:5100/order/9/cancel",
+  "action": "/logout",
+  "token_len": 43
+ }
+]

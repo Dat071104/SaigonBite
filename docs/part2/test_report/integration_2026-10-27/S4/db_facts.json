@@ -1,0 +1,23 @@
+{
+ "order11": [
+  {
+   "id": 11,
+   "state": "READY",
+   "total_amount": 80000
+  }
+ ],
+ "delivery": [
+  {
+   "order_id": 11,
+   "state": "AWAITING_PICKUP",
+   "shipper_id": null
+  }
+ ],
+ "offers": [
+  {
+   "id": 1,
+   "order_id": 11,
+   "state": "ACCEPTED"
+  }
+ ]
+}

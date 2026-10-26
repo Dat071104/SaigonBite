@@ -1,0 +1,25 @@
+{
+ "bt_capacity": [
+  {
+   "id": 1,
+   "max_active_orders": 14
+  },
+  {
+   "id": 2,
+   "max_active_orders": 8
+  }
+ ],
+ "item1_hub1": [
+  {
+   "hub_id": 1,
+   "menu_item_id": 1,
+   "is_available": 1
+  }
+ ],
+ "order9": [
+  {
+   "id": 9,
+   "state": "PLACED"
+  }
+ ]
+}

@@ -1,0 +1,50 @@
+[
+ {
+  "id": 101,
+  "hub_id": 1,
+  "state": "DELIVERED",
+  "total_amount": 90000
+ },
+ {
+  "id": 102,
+  "hub_id": 2,
+  "state": "DELIVERED",
+  "total_amount": 70000
+ },
+ {
+  "id": 103,
+  "hub_id": 1,
+  "state": "DELIVERED",
+  "total_amount": 30000
+ },
+ {
+  "id": 104,
+  "hub_id": 1,
+  "state": "DELIVERED",
+  "total_amount": 30000
+ },
+ {
+  "id": 105,
+  "hub_id": 1,
+  "state": "CANCELLED",
+  "total_amount": 90000
+ },
+ {
+  "id": 106,
+  "hub_id": 1,
+  "state": "REJECTED",
+  "total_amount": 60000
+ },
+ {
+  "id": 107,
+  "hub_id": 2,
+  "state": "DELIVERY_FAILED",
+  "total_amount": 60000
+ },
+ {
+  "id": 108,
+  "hub_id": 2,
+  "state": "PLACED",
+  "total_amount": 60000
+ }
+]

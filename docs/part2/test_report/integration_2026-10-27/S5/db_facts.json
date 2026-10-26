@@ -1,0 +1,24 @@
+{
+ "delivery": [
+  {
+   "order_id": 11,
+   "state": "DELIVERED",
+   "shipper_id": 3,
+   "cash_collected": 80000
+  }
+ ],
+ "payment": [
+  {
+   "order_id": 11,
+   "method": "COD",
+   "state": "PAID",
+   "amount": 80000
+  }
+ ],
+ "order": [
+  {
+   "id": 11,
+   "state": "DELIVERED"
+  }
+ ]
+}
