@@ -1,0 +1,149 @@
+UC,from frame,hotspot label,x,y,w,h,to frame,trigger
+UC-01,UC01-S01 Choose a kitchen hub,Order from this hub,32,480,326,48,"UC01-S03 Choose dishes, address and voucher",click link
+UC-01,"UC01-S02 Hub is full, quieter hubs suggested",SaigonBite District 1 Hub,32,494,176,21,"UC01-S03 Choose dishes, address and voucher",click link
+UC-01,"UC01-S02 Hub is full, quieter hubs suggested",Order from this hub,32,695,326,48,"UC01-S03 Choose dishes, address and voucher",click link
+UC-01,"UC01-S03 Choose dishes, address and voucher",See the quote,231,1124,143,48,UC01-S04 Check the quote and choose payment,press button
+UC-01,"UC01-S03 Choose dishes, address and voucher",Choose another hub,16,1208,156,44,UC01-S01 Choose a kitchen hub,click link
+UC-01,UC01-S04 Check the quote and choose payment,Confirm order,16,1120,358,48,UC01-S08 Order placed,press button (cash on delivery)
+UC-01,UC01-S04 Check the quote and choose payment,Change items,16,1180,107,44,"UC01-S03 Choose dishes, address and voucher",click link
+UC-01,"UC01-S05 Quote changed, check it again",Confirm order,16,1216,358,48,UC01-S08 Order placed,press button
+UC-01,"UC01-S05 Quote changed, check it again",Change items,16,1276,107,44,"UC01-S03 Choose dishes, address and voucher",click link
+UC-01,UC01-S06 Online payment simulator,Approve payment,16,395,358,48,UC01-S08 Order placed,press button (approve)
+UC-01,UC01-S06 Online payment simulator,Decline payment,16,455,358,48,UC01-S07 Online payment declined,press button (decline)
+UC-01,UC01-S07 Online payment declined,Confirm order,16,1143,358,48,UC01-S06 Online payment simulator,press button (online payment chosen)
+UC-01,UC01-S07 Online payment declined,Change items,16,1203,107,44,"UC01-S03 Choose dishes, address and voucher",click link
+UC-01,UC01-S08 Order placed,Follow this order,16,1077,358,48,UC01-S09 Follow an order,click link
+UC-01,UC01-S08 Order placed,Place another order,16,1137,358,48,UC01-S01 Choose a kitchen hub,click link
+UC-01,UC01-S09 Follow an order,Printable receipt,16,753,115,44,UC01-S10 Receipt,click link
+UC-01,UC01-S09 Follow an order,Cancel this order,16,809,358,48,UC01-S12 Order cancelled,press button
+UC-01,UC01-S09 Follow an order,All my orders,16,869,105,44,UC01-S11 My orders,click link
+UC-01,UC01-S11 My orders,Order 12,16,197,62,44,UC01-S09 Follow an order,click link
+UC-01,UC01-S12 Order cancelled,Printable receipt,16,735,115,44,UC01-S10 Receipt,click link
+UC-01,UC01-S12 Order cancelled,All my orders,147,735,105,44,UC01-S11 My orders,click link
+UC-02,UC02-S01 Deliveries - ready for pickup,Order 7,32,329,55,44,UC02-S02 Delivery waiting for pickup,click link
+UC-02,UC02-S01 Deliveries - ready for pickup,Order 9,32,591,55,44,UC02-S02 Delivery waiting for pickup,click link
+UC-02,UC02-S01 Deliveries - ready for pickup,Pick up this order,32,761,169,48,UC02-S03 Picked up - deliver or report a problem,press button (Pick up this order)
+UC-02,UC02-S01 Deliveries - ready for pickup,Order 14,32,853,62,44,UC02-S02 Delivery waiting for pickup,click link
+UC-02,UC02-S02 Delivery waiting for pickup,Pick up this order,16,440,169,48,UC02-S03 Picked up - deliver or report a problem,press button (Pick up this order)
+UC-02,UC02-S02 Delivery waiting for pickup,All deliveries,16,512,100,44,UC02-S01 Deliveries - ready for pickup,click link
+UC-02,UC02-S03 Picked up - deliver or report a problem,Confirm delivery,32,726,326,48,"UC02-S06 Delivered, cash collected",press button
+UC-02,UC02-S03 Picked up - deliver or report a problem,Report failed delivery,32,964,326,48,UC02-S07 Failed delivery recorded,press button
+UC-02,UC02-S03 Picked up - deliver or report a problem,All deliveries,16,1052,100,44,UC02-S01 Deliveries - ready for pickup,click link
+UC-02,UC02-S04 Pick-up lost to another shipper,Back to deliveries,16,389,358,48,UC02-S01 Deliveries - ready for pickup,click link
+UC-02,UC02-S05 Cash amount refused,Confirm delivery,32,750,326,48,"UC02-S06 Delivered, cash collected",press button
+UC-02,UC02-S05 Cash amount refused,Report failed delivery,32,988,326,48,UC02-S07 Failed delivery recorded,press button
+UC-02,UC02-S05 Cash amount refused,All deliveries,16,1076,100,44,UC02-S01 Deliveries - ready for pickup,click link
+UC-02,"UC02-S06 Delivered, cash collected",All deliveries,16,658,100,44,UC02-S01 Deliveries - ready for pickup,click link
+UC-02,UC02-S07 Failed delivery recorded,All deliveries,16,630,100,44,UC02-S01 Deliveries - ready for pickup,click link
+UC-03,UC03-S01 Hubs and kitchen capacity,New hub,160,226,108,48,UC03-S04 New hub,click link
+UC-03,UC03-S01 Hubs and kitchen capacity,Edit,1176,359,44,44,UC03-S02 Edit a hub,click link
+UC-03,UC03-S01 Hubs and kitchen capacity,Edit,1176,428,44,44,UC03-S02 Edit a hub,click link
+UC-03,UC03-S02 Edit a hub,Save hub,384,730,108,48,UC03-S03 Hub saved,press button
+UC-03,UC03-S02 Edit a hub,Back,508,732,44,44,UC03-S01 Hubs and kitchen capacity,click link
+UC-03,UC03-S03 Hub saved,New hub,160,298,108,48,UC03-S04 New hub,click link
+UC-03,UC03-S03 Hub saved,Edit,1176,431,44,44,UC03-S02 Edit a hub,click link
+UC-03,UC03-S03 Hub saved,Edit,1176,500,44,44,UC03-S02 Edit a hub,click link
+UC-03,UC03-S04 New hub,Save hub,384,698,108,48,UC03-S05 Hub form refused - capacity out of range,press button (capacity 600)
+UC-03,UC03-S04 New hub,Back,508,700,44,44,UC03-S01 Hubs and kitchen capacity,click link
+UC-03,UC03-S05 Hub form refused - capacity out of range,Back,508,772,44,44,UC03-S01 Hubs and kitchen capacity,click link
+UC-03,UC03-S06 Hub archived,New hub,160,298,108,48,UC03-S04 New hub,click link
+UC-03,UC03-S06 Hub archived,Edit,1176,431,44,44,UC03-S02 Edit a hub,click link
+UC-03,UC03-S06 Hub archived,Edit,1176,500,44,44,UC03-S02 Edit a hub,click link
+UC-04,UC04-S01 Sales report,Show,1198,258,82,48,UC04-S04 Empty period shows n-a,"press button (Show, a period with no delivered orders)"
+UC-05,UC05-S01 Kitchen board,Order 9,184,508,55,44,"UC05-S02 Kitchen order - confirm, offer a replacement or reject",click link
+UC-05,UC05-S01 Kitchen board,Reject or replace,184,676,129,44,"UC05-S02 Kitchen order - confirm, offer a replacement or reject",click link
+UC-05,"UC05-S02 Kitchen order - confirm, offer a replacement or reject",Send the offer,384,888,145,48,"UC05-S03 Replacement offered, waiting for the customer",press button
+UC-05,"UC05-S02 Kitchen order - confirm, offer a replacement or reject",Reject order,384,1142,130,48,UC05-S04 Order rejected with a reason,press button
+UC-05,"UC05-S02 Kitchen order - confirm, offer a replacement or reject",Back to the board,360,1238,137,44,UC05-S01 Kitchen board,click link
+UC-05,"UC05-S03 Replacement offered, waiting for the customer",Reject order,384,948,130,48,UC05-S04 Order rejected with a reason,press button
+UC-05,"UC05-S03 Replacement offered, waiting for the customer",Back to the board,360,1044,137,44,UC05-S01 Kitchen board,click link
+UC-05,UC05-S04 Order rejected with a reason,Back to the board,360,669,137,44,UC05-S01 Kitchen board,click link
+UC-05,UC05-S05 My orders - your answer is needed,Order 9,16,927,55,44,UC05-S06 Replacement offer - accept or decline,click link
+UC-05,UC05-S06 Replacement offer - accept or decline,Accept Pho ga,32,493,326,48,UC05-S07 Replacement accepted,press button
+UC-05,UC05-S06 Replacement offer - accept or decline,Decline,32,553,326,48,UC05-S08 Replacement declined,press button
+UC-05,UC05-S06 Replacement offer - accept or decline,All my orders,16,1265,105,44,UC05-S05 My orders - your answer is needed,click link
+UC-05,UC05-S07 Replacement accepted,All my orders,16,1037,105,44,UC05-S05 My orders - your answer is needed,click link
+UC-05,UC05-S08 Replacement declined,All my orders,147,879,105,44,UC05-S05 My orders - your answer is needed,click link
+UC-05,UC05-S09 Offer withdrawn - replacement ran out,All my orders,16,939,105,44,UC05-S05 My orders - your answer is needed,click link
+UC-06,UC06-S01 Brands and dishes,Rename,1029,337,100,48,UC06-S02 Brand created and renamed,press button (Rename)
+UC-06,UC06-S01 Brands and dishes,Archive,1218,325,62,44,UC06-S08 Archived brand and dish stay listed as archived,press button
+UC-06,UC06-S01 Brands and dishes,Rename,1029,422,100,48,UC06-S02 Brand created and renamed,press button (Rename)
+UC-06,UC06-S01 Brands and dishes,Archive,1218,410,62,44,UC06-S08 Archived brand and dish stay listed as archived,press button
+UC-06,UC06-S01 Brands and dishes,Rename,1029,507,100,48,UC06-S02 Brand created and renamed,press button (Rename)
+UC-06,UC06-S01 Brands and dishes,Archive,1218,495,62,44,UC06-S08 Archived brand and dish stay listed as archived,press button
+UC-06,UC06-S01 Brands and dishes,Rename,1029,592,100,48,UC06-S02 Brand created and renamed,press button (Rename)
+UC-06,UC06-S01 Brands and dishes,Archive,1218,580,62,44,UC06-S08 Archived brand and dish stay listed as archived,press button
+UC-06,UC06-S01 Brands and dishes,Add brand,1161,664,119,48,UC06-S02 Brand created and renamed,press button (Add brand)
+UC-06,UC06-S01 Brands and dishes,New dish,160,774,109,48,UC06-S03 New dish,click link
+UC-06,UC06-S01 Brands and dishes,Edit,1158,895,44,44,UC06-S04 Edit a dish,click link
+UC-06,UC06-S01 Brands and dishes,Archive,1218,895,62,44,UC06-S08 Archived brand and dish stay listed as archived,press button
+UC-06,UC06-S01 Brands and dishes,Edit,1158,968,44,44,UC06-S04 Edit a dish,click link
+UC-06,UC06-S01 Brands and dishes,Archive,1218,968,62,44,UC06-S08 Archived brand and dish stay listed as archived,press button
+UC-06,UC06-S01 Brands and dishes,Edit,1158,1041,44,44,UC06-S04 Edit a dish,click link
+UC-06,UC06-S01 Brands and dishes,Archive,1218,1041,62,44,UC06-S08 Archived brand and dish stay listed as archived,press button
+UC-06,UC06-S01 Brands and dishes,Edit,1158,1114,44,44,UC06-S04 Edit a dish,click link
+UC-06,UC06-S01 Brands and dishes,Archive,1218,1114,62,44,UC06-S08 Archived brand and dish stay listed as archived,press button
+UC-06,UC06-S01 Brands and dishes,Edit,1158,1187,44,44,UC06-S04 Edit a dish,click link
+UC-06,UC06-S01 Brands and dishes,Archive,1218,1187,62,44,UC06-S08 Archived brand and dish stay listed as archived,press button
+UC-06,UC06-S01 Brands and dishes,SaigonBite District 1 Hub,160,1310,176,21,UC06-S06 Menu of a hub,click link
+UC-06,UC06-S01 Brands and dishes,SaigonBite Binh Thanh Hub,160,1338,193,21,UC06-S06 Menu of a hub,click link
+UC-06,UC06-S02 Brand created and renamed,Rename,1029,409,100,48,UC06-S02 Brand created and renamed,press button (Rename)
+UC-06,UC06-S02 Brand created and renamed,Archive,1218,397,62,44,UC06-S08 Archived brand and dish stay listed as archived,press button
+UC-06,UC06-S02 Brand created and renamed,Rename,1029,494,100,48,UC06-S02 Brand created and renamed,press button (Rename)
+UC-06,UC06-S02 Brand created and renamed,Archive,1218,482,62,44,UC06-S08 Archived brand and dish stay listed as archived,press button
+UC-06,UC06-S02 Brand created and renamed,Rename,1029,579,100,48,UC06-S02 Brand created and renamed,press button (Rename)
+UC-06,UC06-S02 Brand created and renamed,Archive,1218,567,62,44,UC06-S08 Archived brand and dish stay listed as archived,press button
+UC-06,UC06-S02 Brand created and renamed,Rename,1029,664,100,48,UC06-S02 Brand created and renamed,press button (Rename)
+UC-06,UC06-S02 Brand created and renamed,Archive,1218,652,62,44,UC06-S08 Archived brand and dish stay listed as archived,press button
+UC-06,UC06-S02 Brand created and renamed,Rename,1029,749,100,48,UC06-S02 Brand created and renamed,press button (Rename)
+UC-06,UC06-S02 Brand created and renamed,Archive,1218,737,62,44,UC06-S08 Archived brand and dish stay listed as archived,press button
+UC-06,UC06-S02 Brand created and renamed,Add brand,1161,821,119,48,UC06-S02 Brand created and renamed,press button (Add brand)
+UC-06,UC06-S02 Brand created and renamed,New dish,160,931,109,48,UC06-S03 New dish,click link
+UC-06,UC06-S02 Brand created and renamed,Edit,1158,1052,44,44,UC06-S04 Edit a dish,click link
+UC-06,UC06-S02 Brand created and renamed,Archive,1218,1052,62,44,UC06-S08 Archived brand and dish stay listed as archived,press button
+UC-06,UC06-S02 Brand created and renamed,Edit,1158,1125,44,44,UC06-S04 Edit a dish,click link
+UC-06,UC06-S02 Brand created and renamed,Archive,1218,1125,62,44,UC06-S08 Archived brand and dish stay listed as archived,press button
+UC-06,UC06-S02 Brand created and renamed,Edit,1158,1198,44,44,UC06-S04 Edit a dish,click link
+UC-06,UC06-S02 Brand created and renamed,Archive,1218,1198,62,44,UC06-S08 Archived brand and dish stay listed as archived,press button
+UC-06,UC06-S02 Brand created and renamed,Edit,1158,1271,44,44,UC06-S04 Edit a dish,click link
+UC-06,UC06-S02 Brand created and renamed,Archive,1218,1271,62,44,UC06-S08 Archived brand and dish stay listed as archived,press button
+UC-06,UC06-S02 Brand created and renamed,Edit,1158,1344,44,44,UC06-S04 Edit a dish,click link
+UC-06,UC06-S02 Brand created and renamed,Archive,1218,1344,62,44,UC06-S08 Archived brand and dish stay listed as archived,press button
+UC-06,UC06-S02 Brand created and renamed,SaigonBite District 1 Hub,160,1467,176,21,UC06-S06 Menu of a hub,click link
+UC-06,UC06-S02 Brand created and renamed,SaigonBite Binh Thanh Hub,160,1495,193,21,UC06-S06 Menu of a hub,click link
+UC-06,UC06-S03 New dish,Save dish,384,602,110,48,UC06-S05 Dish form refused - price,press button (price 0)
+UC-06,UC06-S03 New dish,Back,510,604,44,44,UC06-S01 Brands and dishes,click link
+UC-06,UC06-S04 Edit a dish,Back,510,556,44,44,UC06-S01 Brands and dishes,click link
+UC-06,UC06-S05 Dish form refused - price,Back,510,676,44,44,UC06-S01 Brands and dishes,click link
+UC-06,UC06-S06 Menu of a hub,Sold out,843,287,69,44,UC06-S07 Dish added to the hub menu and marked sold out,press button (Sold out)
+UC-06,UC06-S06 Menu of a hub,Sold out,843,360,69,44,UC06-S07 Dish added to the hub menu and marked sold out,press button (Sold out)
+UC-06,UC06-S06 Menu of a hub,Sold out,843,429,69,44,UC06-S07 Dish added to the hub menu and marked sold out,press button (Sold out)
+UC-06,UC06-S06 Menu of a hub,Sold out,843,498,69,44,UC06-S07 Dish added to the hub menu and marked sold out,press button (Sold out)
+UC-06,UC06-S06 Menu of a hub,Add to menu,360,638,137,48,UC06-S07 Dish added to the hub menu and marked sold out,press button (Add to menu)
+UC-06,UC06-S06 Menu of a hub,Brands and menu,360,710,135,44,UC06-S01 Brands and dishes,click link
+UC-06,UC06-S07 Dish added to the hub menu and marked sold out,Sold out,843,359,69,44,UC06-S07 Dish added to the hub menu and marked sold out,press button (Sold out)
+UC-06,UC06-S07 Dish added to the hub menu and marked sold out,Sold out,843,432,69,44,UC06-S07 Dish added to the hub menu and marked sold out,press button (Sold out)
+UC-06,UC06-S07 Dish added to the hub menu and marked sold out,Sold out,843,505,69,44,UC06-S07 Dish added to the hub menu and marked sold out,press button (Sold out)
+UC-06,UC06-S07 Dish added to the hub menu and marked sold out,Available,839,578,74,44,UC06-S07 Dish added to the hub menu and marked sold out,press button (Available)
+UC-06,UC06-S07 Dish added to the hub menu and marked sold out,Add to menu,360,718,137,48,UC06-S07 Dish added to the hub menu and marked sold out,press button (Add to menu)
+UC-06,UC06-S07 Dish added to the hub menu and marked sold out,Brands and menu,360,790,135,44,UC06-S01 Brands and dishes,click link
+UC-06,UC06-S08 Archived brand and dish stay listed as archived,Rename,1042,409,100,48,UC06-S02 Brand created and renamed,press button (Rename)
+UC-06,UC06-S08 Archived brand and dish stay listed as archived,Archive,1218,397,62,44,UC06-S08 Archived brand and dish stay listed as archived,press button
+UC-06,UC06-S08 Archived brand and dish stay listed as archived,Rename,1042,494,100,48,UC06-S02 Brand created and renamed,press button (Rename)
+UC-06,UC06-S08 Archived brand and dish stay listed as archived,Archive,1218,482,62,44,UC06-S08 Archived brand and dish stay listed as archived,press button
+UC-06,UC06-S08 Archived brand and dish stay listed as archived,Rename,1042,579,100,48,UC06-S02 Brand created and renamed,press button (Rename)
+UC-06,UC06-S08 Archived brand and dish stay listed as archived,Archive,1218,567,62,44,UC06-S08 Archived brand and dish stay listed as archived,press button
+UC-06,UC06-S08 Archived brand and dish stay listed as archived,Rename,1042,664,100,48,UC06-S02 Brand created and renamed,press button (Rename)
+UC-06,UC06-S08 Archived brand and dish stay listed as archived,Archive,1218,652,62,44,UC06-S08 Archived brand and dish stay listed as archived,press button
+UC-06,UC06-S08 Archived brand and dish stay listed as archived,Add brand,1161,786,119,48,UC06-S02 Brand created and renamed,press button (Add brand)
+UC-06,UC06-S08 Archived brand and dish stay listed as archived,New dish,160,896,109,48,UC06-S03 New dish,click link
+UC-06,UC06-S08 Archived brand and dish stay listed as archived,Edit,1158,1017,44,44,UC06-S04 Edit a dish,click link
+UC-06,UC06-S08 Archived brand and dish stay listed as archived,Archive,1218,1017,62,44,UC06-S08 Archived brand and dish stay listed as archived,press button
+UC-06,UC06-S08 Archived brand and dish stay listed as archived,Edit,1158,1090,44,44,UC06-S04 Edit a dish,click link
+UC-06,UC06-S08 Archived brand and dish stay listed as archived,Archive,1218,1090,62,44,UC06-S08 Archived brand and dish stay listed as archived,press button
+UC-06,UC06-S08 Archived brand and dish stay listed as archived,Edit,1158,1163,44,44,UC06-S04 Edit a dish,click link
+UC-06,UC06-S08 Archived brand and dish stay listed as archived,Archive,1218,1163,62,44,UC06-S08 Archived brand and dish stay listed as archived,press button
+UC-06,UC06-S08 Archived brand and dish stay listed as archived,Edit,1158,1236,44,44,UC06-S04 Edit a dish,click link
+UC-06,UC06-S08 Archived brand and dish stay listed as archived,Archive,1218,1236,62,44,UC06-S08 Archived brand and dish stay listed as archived,press button
+UC-06,UC06-S08 Archived brand and dish stay listed as archived,SaigonBite District 1 Hub,160,1433,176,21,UC06-S06 Menu of a hub,click link
+UC-06,UC06-S08 Archived brand and dish stay listed as archived,SaigonBite Binh Thanh Hub,160,1461,193,21,UC06-S06 Menu of a hub,click link

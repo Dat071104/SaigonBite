@@ -1,0 +1,1 @@
+OWNER-PENDING. This page is for your own sketches (paper photos or Figma freehand), one per `UC-0x/sketch_brief.md` row. No sketch image has been generated or imitated. Put your photos in `docs/part2/ui/UC-0x/sketch/` as well, with the real date.
