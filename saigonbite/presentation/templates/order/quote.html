@@ -23,7 +23,7 @@
   {% endfor %}
     <tr class="sum-row"><td colspan="3">Dishes</td><td class="num" id="item-subtotal">{{ quote.item_subtotal|vnd }}</td></tr>
     {% if quote.voucher %}<tr class="sum-row"><td colspan="3">Voucher {{ quote.voucher.code }}</td><td class="num" id="voucher-discount">-{{ quote.voucher_discount|vnd }}</td></tr>{% endif %}
-    <tr class="sum-row"><td colspan="3">Delivery fee ({{ quote.distance_km }} km)</td><td class="num" id="delivery-fee">{{ quote.delivery_fee|vnd }}</td></tr>
+    <tr class="sum-row"><td colspan="3">Delivery fee ({{ '%.2f'|format(quote.distance_km) }} km)</td><td class="num" id="delivery-fee">{{ quote.delivery_fee|vnd }}</td></tr>
     {% if quote.quiet_discount %}<tr class="sum-row"><td colspan="3">Quiet hub discount</td><td class="num" id="quiet-discount">-{{ quote.quiet_discount|vnd }}</td></tr>{% endif %}
     <tr class="total-row"><td colspan="3">Total</td><td class="num" id="total">{{ quote.total|vnd }}</td></tr>
   </tbody>
