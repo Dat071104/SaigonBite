@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport-px" content="1440x900">
+<meta name="screen-id" content="UC-06-S01">
+<meta name="author" content="722I0004 · AI-assisted (Claude Sonnet 5.5)">
+<title>UC-06-S01 Brands and dishes (wireframe)</title>
+<link rel="stylesheet" href="../../_kit/wireframe.css">
+</head>
+<body class="wide">
+  <header class="topbar">
+    <div class="wrap">
+      <span class="brand">SaigonBite</span>
+      <nav class="account" aria-label="Account"><span class="who">Admin<span class="role"> · Admin</span></span><button type="button" class="secondary">Log out</button></nav>
+    </div>
+    <div class="wrap"><nav class="mainnav" aria-label="Main"><a href="#">Hubs</a><a href="#" aria-current="page">Brands and menu</a><a href="#">Vouchers</a><a href="#">Users</a><a href="#">Archive orders</a></nav></div>
+  </header>
+  <main id="content">
+    <div class="wrap">
+<div class="page-head">
+  <h1>Brands and menu</h1>
+  <p class="muted">Archived brands and dishes can no longer be ordered. Orders already placed keep the name and price they had.</p>
+</div>
+
+<section aria-labelledby="brands-h">
+  <h2 id="brands-h">Brands</h2>
+  <table class="data" id="brand-table">
+    <thead><tr><th>Brand</th><th>Rename</th><th></th></tr></thead>
+    <tbody>
+    <tr><td><span class="ph">Brand</span></td><td>
+      <form class="inline-form"><input type="text" name="name" value="Pho Saigon Kitchen" aria-label="New name for Pho Saigon Kitchen" required>
+        <button type="button" class="secondary" data-goto="UC-06-S02" data-trigger="press button (Rename)">Rename</button></form></td>
+      <td class="row-actions"><form class="inline"><button type="button" class="link" data-goto="UC-06-S08">Archive</button></form></td></tr>
+    <tr><td><span class="ph">Brand</span></td><td>
+      <form class="inline-form"><input type="text" name="name" value="Com Tam Corner" aria-label="New name for Com Tam Corner" required>
+        <button type="button" class="secondary" data-goto="UC-06-S02" data-trigger="press button (Rename)">Rename</button></form></td>
+      <td class="row-actions"><form class="inline"><button type="button" class="link" data-goto="UC-06-S08">Archive</button></form></td></tr>
+    <tr><td><span class="ph">Brand</span></td><td>
+      <form class="inline-form"><input type="text" name="name" value="Banh Mi Express" aria-label="New name for Banh Mi Express" required>
+        <button type="button" class="secondary" data-goto="UC-06-S02" data-trigger="press button (Rename)">Rename</button></form></td>
+      <td class="row-actions"><form class="inline"><button type="button" class="link" data-goto="UC-06-S08">Archive</button></form></td></tr>
+    <tr><td><span class="ph">Brand</span></td><td>
+      <form class="inline-form"><input type="text" name="name" value="Sweet Che House" aria-label="New name for Sweet Che House" required>
+        <button type="button" class="secondary" data-goto="UC-06-S02" data-trigger="press button (Rename)">Rename</button></form></td>
+      <td class="row-actions"><form class="inline"><button type="button" class="link" data-goto="UC-06-S08">Archive</button></form></td></tr>
+    </tbody>
+  </table>
+  <form class="inline-form">
+    <label for="new-brand" class="visually-hidden">New brand name</label>
+    <input type="text" id="new-brand" name="name" placeholder="New brand name" required>
+    <button type="button" data-goto="UC-06-S02" data-trigger="press button (Add brand)">Add brand</button>
+  </form>
+</section>
+
+<section aria-labelledby="items-h">
+  <h2 id="items-h">Dishes</h2>
+  <div class="actions"><a class="btn" href="#" data-goto="UC-06-S03">New dish</a></div>
+  <table class="data" id="item-table">
+    <thead><tr><th>Dish</th><th>Brand</th><th class="num">Price</th><th></th></tr></thead>
+    <tbody>
+    <tr><td><span class="ph">Dish</span><br><span class="muted"><span class="ph">Description</span></span></td>
+      <td><span class="ph">Brand</span></td><td class="num"><span class="ph">Price</span></td>
+      <td class="row-actions"><a href="#" data-goto="UC-06-S04">Edit</a>
+        <form class="inline"><button type="button" class="link" data-goto="UC-06-S08">Archive</button></form></td></tr>
+    <tr><td><span class="ph">Dish</span><br><span class="muted"><span class="ph">Description</span></span></td>
+      <td><span class="ph">Brand</span></td><td class="num"><span class="ph">Price</span></td>
+      <td class="row-actions"><a href="#" data-goto="UC-06-S04">Edit</a>
+        <form class="inline"><button type="button" class="link" data-goto="UC-06-S08">Archive</button></form></td></tr>
+    <tr><td><span class="ph">Dish</span><br><span class="muted"><span class="ph">Description</span></span></td>
+      <td><span class="ph">Brand</span></td><td class="num"><span class="ph">Price</span></td>
+      <td class="row-actions"><a href="#" data-goto="UC-06-S04">Edit</a>
+        <form class="inline"><button type="button" class="link" data-goto="UC-06-S08">Archive</button></form></td></tr>
+    <tr><td><span class="ph">Dish</span><br><span class="muted"><span class="ph">Description</span></span></td>
+      <td><span class="ph">Brand</span></td><td class="num"><span class="ph">Price</span></td>
+      <td class="row-actions"><a href="#" data-goto="UC-06-S04">Edit</a>
+        <form class="inline"><button type="button" class="link" data-goto="UC-06-S08">Archive</button></form></td></tr>
+    <tr><td><span class="ph">Dish</span><br><span class="muted"><span class="ph">Description</span></span></td>
+      <td><span class="ph">Brand</span></td><td class="num"><span class="ph">Price</span></td>
+      <td class="row-actions"><a href="#" data-goto="UC-06-S04">Edit</a>
+        <form class="inline"><button type="button" class="link" data-goto="UC-06-S08">Archive</button></form></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section aria-labelledby="hubmenu-h">
+  <h2 id="hubmenu-h">Menus per hub</h2>
+  <ul class="plain">
+    <li><a href="#" data-goto="UC-06-S06"><span class="ph">Hub</span></a></li>
+    <li><a href="#" data-goto="UC-06-S06"><span class="ph">Hub</span></a></li>
+  </ul>
+</section>
+    </div>
+  </main>
+  <footer>
+    <div class="wrap">
+      <p>Wireframe UC-06-S01 · Brands and dishes</p>
+      <p class="wf-note">Low-fidelity layout: real labels, placeholder values. 722I0004 · AI-assisted (Claude Sonnet 5.5). Authored as HTML/CSS; assembled and linked in Figma by the owner.</p>
+    </div>
+  </footer>
+</body>
+</html>

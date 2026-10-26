@@ -1,0 +1,36 @@
+<!--screen
+id: UC-06-S06
+title: Menu of a hub
+role: ADMIN
+viewport: 1440x900
+nav: Hubs|Brands and menu|Vouchers|Users|Archive orders
+who: Admin<span class="role"> · Admin</span>
+-->
+<div class="page-head">
+  <h1>Menu of {{p:Hub name||SaigonBite Binh Thanh Hub}}</h1>
+  <p class="muted">The dishes this hub cooks. Kitchen staff can also mark a dish sold out for the day.</p>
+</div>
+<table class="data" id="listing-table">
+  <thead><tr><th>Dish</th><th>Brand</th><th class="num">Price</th><th>Status</th><th></th></tr></thead>
+  <tbody>
+    <tr><td>{{p:Dish||Com tam suon bi cha}}</td><td>{{p:Brand||Com Tam Corner}}</td><td class="num">{{p:Price||60,000 VND}}</td><td><span class="badge good">Available</span></td>
+      <td class="row-actions"><form class="inline"><button type="button" class="link" data-goto="UC-06-S07" data-trigger="press button (Sold out)">Sold out</button></form>
+        <form class="inline"><button type="button" class="link">Remove from menu</button></form></td></tr>
+    <tr><td>{{p:Dish||Tra da}}</td><td>{{p:Brand||Com Tam Corner}}</td><td class="num">{{p:Price||10,000 VND}}</td><td><span class="badge good">Available</span></td>
+      <td class="row-actions"><form class="inline"><button type="button" class="link" data-goto="UC-06-S07" data-trigger="press button (Sold out)">Sold out</button></form>
+        <form class="inline"><button type="button" class="link">Remove from menu</button></form></td></tr>
+    <tr><td>{{p:Dish||Banh mi op la}}</td><td>{{p:Brand||Banh Mi Express}}</td><td class="num">{{p:Price||25,000 VND}}</td><td><span class="badge good">Available</span></td>
+      <td class="row-actions"><form class="inline"><button type="button" class="link" data-goto="UC-06-S07" data-trigger="press button (Sold out)">Sold out</button></form>
+        <form class="inline"><button type="button" class="link">Remove from menu</button></form></td></tr>
+    <tr><td>{{p:Dish||Che chuoi}}</td><td>{{p:Brand||Sweet Che House}}</td><td class="num">{{p:Price||28,000 VND}}</td><td><span class="badge good">Available</span></td>
+      <td class="row-actions"><form class="inline"><button type="button" class="link" data-goto="UC-06-S07" data-trigger="press button (Sold out)">Sold out</button></form>
+        <form class="inline"><button type="button" class="link">Remove from menu</button></form></td></tr>
+  </tbody>
+</table>
+<form class="inline-form">
+  <label for="item_id" class="visually-hidden">Dish to add</label>
+  <select id="item_id" name="item_id"><option value="Pho Saigon Kitchen: Pho bo tai (55,000 VND)">Pho Saigon Kitchen: Pho bo tai (55,000 VND)</option><option value="Pho Saigon Kitchen: Pho ga (50,000 VND)">Pho Saigon Kitchen: Pho ga (50,000 VND)</option><option value="Pho Saigon Kitchen: Goi cuon (35,000 VND)">Pho Saigon Kitchen: Goi cuon (35,000 VND)</option><option value="Che Hue Kitchen: Che troi nuoc (32,000 VND)">Che Hue Kitchen: Che troi nuoc (32,000 VND)</option></select>
+  <label>Initial availability <select name="available"><option value="1">Available</option><option value="0">Sold out</option></select></label>
+  <button type="button" data-goto="UC-06-S07" data-trigger="press button (Add to menu)">Add to menu</button>
+</form>
+<div class="actions"><a class="btn link" href="#" data-goto="UC-06-S01">Brands and menu</a><a class="btn link" href="#">Hubs</a></div>

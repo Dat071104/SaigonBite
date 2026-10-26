@@ -1,0 +1,82 @@
+<!--screen
+id: UC-06-S08
+title: Archived brand and dish stay listed as archived
+role: ADMIN
+viewport: 1440x900
+nav: Hubs|Brands and menu|Vouchers|Users|Archive orders
+active: Brands and menu
+who: Admin<span class="role"> · Admin</span>
+wide: yes
+-->
+<div class="flash success" role="status">The brand is archived. Its dishes can no longer be ordered.</div>
+<div class="page-head">
+  <h1>Brands and menu</h1>
+  <p class="muted">Archived brands and dishes can no longer be ordered. Orders already placed keep the name and price they had.</p>
+</div>
+
+<section aria-labelledby="brands-h">
+  <h2 id="brands-h">Brands</h2>
+  <table class="data" id="brand-table">
+    <thead><tr><th>Brand</th><th>Rename</th><th></th></tr></thead>
+    <tbody>
+    <tr><td>{{p:Brand||Pho Saigon Kitchen}}</td><td>
+      <form class="inline-form"><input type="text" name="name" value="Pho Saigon Kitchen" aria-label="New name for Pho Saigon Kitchen" required>
+        <button type="button" class="secondary" data-goto="UC-06-S02" data-trigger="press button (Rename)">Rename</button></form></td>
+      <td class="row-actions"><form class="inline"><button type="button" class="link" data-goto="UC-06-S08">Archive</button></form></td></tr>
+    <tr><td>{{p:Brand||Com Tam Corner}}</td><td>
+      <form class="inline-form"><input type="text" name="name" value="Com Tam Corner" aria-label="New name for Com Tam Corner" required>
+        <button type="button" class="secondary" data-goto="UC-06-S02" data-trigger="press button (Rename)">Rename</button></form></td>
+      <td class="row-actions"><form class="inline"><button type="button" class="link" data-goto="UC-06-S08">Archive</button></form></td></tr>
+    <tr><td>{{p:Brand||Banh Mi Express}}</td><td>
+      <form class="inline-form"><input type="text" name="name" value="Banh Mi Express" aria-label="New name for Banh Mi Express" required>
+        <button type="button" class="secondary" data-goto="UC-06-S02" data-trigger="press button (Rename)">Rename</button></form></td>
+      <td class="row-actions"><form class="inline"><button type="button" class="link" data-goto="UC-06-S08">Archive</button></form></td></tr>
+    <tr><td>{{p:Brand||Sweet Che House}}</td><td>
+      <form class="inline-form"><input type="text" name="name" value="Sweet Che House" aria-label="New name for Sweet Che House" required>
+        <button type="button" class="secondary" data-goto="UC-06-S02" data-trigger="press button (Rename)">Rename</button></form></td>
+      <td class="row-actions"><form class="inline"><button type="button" class="link" data-goto="UC-06-S08">Archive</button></form></td></tr>
+    <tr class="archived"><td>{{p:Brand||Che Hue Kitchen}} <span class="badge">Archived</span></td><td></td><td class="row-actions"></td></tr>
+    </tbody>
+  </table>
+  <form class="inline-form">
+    <label for="new-brand" class="visually-hidden">New brand name</label>
+    <input type="text" id="new-brand" name="name" placeholder="New brand name" required>
+    <button type="button" data-goto="UC-06-S02" data-trigger="press button (Add brand)">Add brand</button>
+  </form>
+</section>
+
+<section aria-labelledby="items-h">
+  <h2 id="items-h">Dishes</h2>
+  <div class="actions"><a class="btn" href="#" data-goto="UC-06-S03">New dish</a></div>
+  <table class="data" id="item-table">
+    <thead><tr><th>Dish</th><th>Brand</th><th class="num">Price</th><th></th></tr></thead>
+    <tbody>
+    <tr><td>{{p:Dish||Pho bo tai}}<br><span class="muted">{{p:Description||Beef noodle soup with rare beef}}</span></td>
+      <td>{{p:Brand||Pho Saigon Kitchen}}</td><td class="num">{{p:Price||55,000 VND}}</td>
+      <td class="row-actions"><a href="#" data-goto="UC-06-S04">Edit</a>
+        <form class="inline"><button type="button" class="link" data-goto="UC-06-S08">Archive</button></form></td></tr>
+    <tr><td>{{p:Dish||Com tam suon bi cha}}<br><span class="muted">{{p:Description||Broken rice, grilled pork, shredded pork skin, egg meatloaf}}</span></td>
+      <td>{{p:Brand||Com Tam Corner}}</td><td class="num">{{p:Price||60,000 VND}}</td>
+      <td class="row-actions"><a href="#" data-goto="UC-06-S04">Edit</a>
+        <form class="inline"><button type="button" class="link" data-goto="UC-06-S08">Archive</button></form></td></tr>
+    <tr><td>{{p:Dish||Tra da}}<br><span class="muted">{{p:Description||Iced tea}}</span></td>
+      <td>{{p:Brand||Com Tam Corner}}</td><td class="num">{{p:Price||10,000 VND}}</td>
+      <td class="row-actions"><a href="#" data-goto="UC-06-S04">Edit</a>
+        <form class="inline"><button type="button" class="link" data-goto="UC-06-S08">Archive</button></form></td></tr>
+    <tr><td>{{p:Dish||Che chuoi}}<br><span class="muted">{{p:Description||Banana in coconut milk}}</span></td>
+      <td>{{p:Brand||Sweet Che House}}</td><td class="num">{{p:Price||28,000 VND}}</td>
+      <td class="row-actions"><a href="#" data-goto="UC-06-S04">Edit</a>
+        <form class="inline"><button type="button" class="link" data-goto="UC-06-S08">Archive</button></form></td></tr>
+    <tr class="archived"><td>{{p:Dish||Che troi nuoc}} <span class="badge">Archived</span><br><span class="muted">{{p:Description||Sticky rice balls in ginger syrup}}</span></td>
+      <td>{{p:Brand||Che Hue Kitchen}}</td><td class="num">{{p:Price||32,000 VND}}</td><td class="row-actions"></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section aria-labelledby="hubmenu-h">
+  <h2 id="hubmenu-h">Menus per hub</h2>
+  <ul class="plain">
+    <li><a href="#" data-goto="UC-06-S06">{{p:Hub||SaigonBite District 1 Hub}}</a></li>
+    <li><a href="#" data-goto="UC-06-S06">{{p:Hub||SaigonBite Binh Thanh Hub}}</a></li>
+  </ul>
+</section>

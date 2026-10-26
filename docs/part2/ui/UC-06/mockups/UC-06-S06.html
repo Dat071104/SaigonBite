@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport-px" content="1440x900">
+<meta name="screen-id" content="UC-06-S06">
+<meta name="author" content="722I0004 · AI-assisted (Claude Sonnet 5.5)">
+<title>UC-06-S06 Menu of a hub (mockup)</title>
+<link rel="stylesheet" href="../../_kit/mockup.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <span class="brand">SaigonBite</span>
+      <nav class="account" aria-label="Account"><span class="who">Admin<span class="role"> · Admin</span></span><button type="button" class="secondary">Log out</button></nav>
+    </div>
+    <div class="wrap"><nav class="mainnav" aria-label="Main"><a href="#">Hubs</a><a href="#">Brands and menu</a><a href="#">Vouchers</a><a href="#">Users</a><a href="#">Archive orders</a></nav></div>
+  </header>
+  <main id="content">
+    <div class="wrap">
+<div class="page-head">
+  <h1>Menu of SaigonBite Binh Thanh Hub</h1>
+  <p class="muted">The dishes this hub cooks. Kitchen staff can also mark a dish sold out for the day.</p>
+</div>
+<table class="data" id="listing-table">
+  <thead><tr><th>Dish</th><th>Brand</th><th class="num">Price</th><th>Status</th><th></th></tr></thead>
+  <tbody>
+    <tr><td>Com tam suon bi cha</td><td>Com Tam Corner</td><td class="num">60,000 VND</td><td><span class="badge good">Available</span></td>
+      <td class="row-actions"><form class="inline"><button type="button" class="link" data-goto="UC-06-S07" data-trigger="press button (Sold out)">Sold out</button></form>
+        <form class="inline"><button type="button" class="link">Remove from menu</button></form></td></tr>
+    <tr><td>Tra da</td><td>Com Tam Corner</td><td class="num">10,000 VND</td><td><span class="badge good">Available</span></td>
+      <td class="row-actions"><form class="inline"><button type="button" class="link" data-goto="UC-06-S07" data-trigger="press button (Sold out)">Sold out</button></form>
+        <form class="inline"><button type="button" class="link">Remove from menu</button></form></td></tr>
+    <tr><td>Banh mi op la</td><td>Banh Mi Express</td><td class="num">25,000 VND</td><td><span class="badge good">Available</span></td>
+      <td class="row-actions"><form class="inline"><button type="button" class="link" data-goto="UC-06-S07" data-trigger="press button (Sold out)">Sold out</button></form>
+        <form class="inline"><button type="button" class="link">Remove from menu</button></form></td></tr>
+    <tr><td>Che chuoi</td><td>Sweet Che House</td><td class="num">28,000 VND</td><td><span class="badge good">Available</span></td>
+      <td class="row-actions"><form class="inline"><button type="button" class="link" data-goto="UC-06-S07" data-trigger="press button (Sold out)">Sold out</button></form>
+        <form class="inline"><button type="button" class="link">Remove from menu</button></form></td></tr>
+  </tbody>
+</table>
+<form class="inline-form">
+  <label for="item_id" class="visually-hidden">Dish to add</label>
+  <select id="item_id" name="item_id"><option value="Pho Saigon Kitchen: Pho bo tai (55,000 VND)">Pho Saigon Kitchen: Pho bo tai (55,000 VND)</option><option value="Pho Saigon Kitchen: Pho ga (50,000 VND)">Pho Saigon Kitchen: Pho ga (50,000 VND)</option><option value="Pho Saigon Kitchen: Goi cuon (35,000 VND)">Pho Saigon Kitchen: Goi cuon (35,000 VND)</option><option value="Che Hue Kitchen: Che troi nuoc (32,000 VND)">Che Hue Kitchen: Che troi nuoc (32,000 VND)</option></select>
+  <label>Initial availability <select name="available"><option value="1">Available</option><option value="0">Sold out</option></select></label>
+  <button type="button" data-goto="UC-06-S07" data-trigger="press button (Add to menu)">Add to menu</button>
+</form>
+<div class="actions"><a class="btn link" href="#" data-goto="UC-06-S01">Brands and menu</a><a class="btn link" href="#">Hubs</a></div>
+    </div>
+  </main>
+  <footer>
+    <div class="wrap">
+      <p>Mockup UC-06-S06 · Menu of a hub</p>
+      <p class="mk-note">Design target: real names and amounts read from the running app. 722I0004 · AI-assisted (Claude Sonnet 5.5). Authored as HTML/CSS; assembled and linked in Figma by the owner.</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!--screen
+id: UC-06-S04
+title: Edit a dish
+role: ADMIN
+viewport: 1440x900
+nav: Hubs|Brands and menu|Vouchers|Users|Archive orders
+who: Admin<span class="role"> · Admin</span>
+-->
+<div class="page-head">
+  <h1>{{p:Dish||Com tam suon bi cha}}</h1>
+  <p class="muted">{{p:Brand||Com Tam Corner}} · a new price applies to new orders only</p>
+</div>
+<form class="panel stack">
+  <input type="hidden" name="brand_id" value="2">
+  <div class="field"><label for="f-name">Dish name</label><input type="text" id="f-name" name="name" value="Com tam suon bi cha" required></div>
+  <div class="field"><label for="f-description">Description</label><input type="text" id="f-description" name="description" value="Broken rice, grilled pork, shredded pork skin, egg meatloaf"></div>
+  <div class="field"><label for="f-price">Price (VND)</label><input type="number" id="f-price" name="price" value="60000" required min="1000" step="1000"></div>
+  <div class="actions"><button type="submit">Save dish</button><a class="btn link" href="#" data-goto="UC-06-S01">Back</a></div>
+</form>

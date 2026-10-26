@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport-px" content="1440x900">
+<meta name="screen-id" content="UC-06-S03">
+<meta name="author" content="722I0004 · AI-assisted (Claude Sonnet 5.5)">
+<title>UC-06-S03 New dish (mockup)</title>
+<link rel="stylesheet" href="../../_kit/mockup.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <span class="brand">SaigonBite</span>
+      <nav class="account" aria-label="Account"><span class="who">Admin<span class="role"> · Admin</span></span><button type="button" class="secondary">Log out</button></nav>
+    </div>
+    <div class="wrap"><nav class="mainnav" aria-label="Main"><a href="#">Hubs</a><a href="#">Brands and menu</a><a href="#">Vouchers</a><a href="#">Users</a><a href="#">Archive orders</a></nav></div>
+  </header>
+  <main id="content">
+    <div class="wrap">
+<div class="page-head">
+  <h1>New dish</h1>
+</div>
+<form class="panel stack">
+  <div class="field"><label for="f-brand_id">Brand</label><select id="f-brand_id" name="brand_id"><option value="">Choose a brand</option><option value="Pho Saigon Kitchen">Pho Saigon Kitchen</option><option value="Com Tam Corner">Com Tam Corner</option><option value="Banh Mi Express">Banh Mi Express</option><option value="Sweet Che House">Sweet Che House</option><option value="Che Hue Kitchen">Che Hue Kitchen</option></select></div>
+  <div class="field"><label for="f-name">Dish name</label><input type="text" id="f-name" name="name" value="" required></div>
+  <div class="field"><label for="f-description">Description</label><input type="text" id="f-description" name="description" value=""></div>
+  <div class="field"><label for="f-price">Price (VND)</label><input type="number" id="f-price" name="price" value="" required min="1000" step="1000"></div>
+  <div class="actions"><button type="submit" data-goto="UC-06-S05" data-trigger="press button (price 0)">Save dish</button><a class="btn link" href="#" data-goto="UC-06-S01">Back</a></div>
+</form>
+    </div>
+  </main>
+  <footer>
+    <div class="wrap">
+      <p>Mockup UC-06-S03 · New dish</p>
+      <p class="mk-note">Design target: real names and amounts read from the running app. 722I0004 · AI-assisted (Claude Sonnet 5.5). Authored as HTML/CSS; assembled and linked in Figma by the owner.</p>
+    </div>
+  </footer>
+</body>
+</html>
