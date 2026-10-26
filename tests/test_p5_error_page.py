@@ -2,7 +2,7 @@
 race and is sent to a delivery that now belongs to someone else) was offered only "Back to the home page";
 the error page now links to the user's own first screen.
 
-Author: 722I0004 · AI-assisted (Claude Sonnet 5.5)
+Author: 722I0004 Â· AI-assisted (Claude Sonnet 5.5)
 """
 from .conftest import login
 

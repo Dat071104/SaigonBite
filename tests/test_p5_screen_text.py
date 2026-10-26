@@ -1,7 +1,7 @@
 """P5-D04 regression: the quote table printed the raw distance ("Delivery fee (0.38971718085988794 km)");
 every other screen shows two decimals.
 
-Author: 722I0004 · AI-assisted (Claude Sonnet 5.5)
+Author: 722I0004 Â· AI-assisted (Claude Sonnet 5.5)
 """
 import re
 
