@@ -46,6 +46,7 @@ CREATE TABLE hub_menu_item (
 );
 
 CREATE TABLE user_account (
+    created_at     TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%S+00:00', 'now')),
     id             INTEGER PRIMARY KEY,
     username       TEXT NOT NULL UNIQUE,
     password_hash  TEXT NOT NULL,

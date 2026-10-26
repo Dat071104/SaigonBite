@@ -5,13 +5,13 @@ from typing import Optional
 
 from saigonbite.business.domain import Role, UserAccount
 
-_USER_COLUMNS = "id, username, password_hash, display_name, role, hub_id, is_active"
+_USER_COLUMNS = "id, username, password_hash, display_name, role, hub_id, is_active, created_at"
 
 
 def _to_user(row: sqlite3.Row) -> UserAccount:
     return UserAccount(id=row["id"], username=row["username"], password_hash=row["password_hash"],
                        display_name=row["display_name"], role=Role(row["role"]),
-                       is_active=bool(row["is_active"]), hub_id=row["hub_id"])
+                       is_active=bool(row["is_active"]), hub_id=row["hub_id"], created_at=row["created_at"])
 
 
 class UserDAO:
@@ -34,10 +34,10 @@ class UserDAO:
 
     def insert(self, user: UserAccount) -> int:
         return self.conn.execute(
-            "INSERT INTO user_account (username, password_hash, display_name, role, hub_id, is_active) "
-            "VALUES (?, ?, ?, ?, ?, ?)",
+            "INSERT INTO user_account (username, password_hash, display_name, role, hub_id, is_active, created_at) "
+            "VALUES (?, ?, ?, ?, ?, ?, COALESCE(NULLIF(?, ''), strftime('%Y-%m-%dT%H:%M:%S+00:00', 'now')))",
             (user.username, user.password_hash, user.display_name, user.role.value, user.hub_id,
-             1 if user.is_active else 0)).lastrowid
+             1 if user.is_active else 0, user.created_at)).lastrowid
 
     def update(self, user: UserAccount) -> None:
         """Display name, hub assignment and password hash. The role and username never change."""

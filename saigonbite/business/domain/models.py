@@ -75,6 +75,7 @@ class UserAccount:
     role: Role
     is_active: bool = True
     hub_id: Optional[int] = None          # set for KITCHEN_STAFF only
+    created_at: str = ""
 
 
 @dataclass
