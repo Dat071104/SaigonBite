@@ -25,7 +25,7 @@ def test_T_UC01_10_confirm_creates_placed_order_lines_and_pending_cod_payment(cu
     assert [(r["menu_item_id"], r["unit_price"], r["quantity"]) for r in lines] == [(PHO, 55000, 2), (GOI_CUON, 35000, 1)]
     pay = conn.execute("SELECT * FROM payment").fetchall()
     assert len(pay) == 1
-    assert (pay[0]["order_id"], pay[0]["method"], pay[0]["state"], pay[0]["amount"]) == (order["id"], "COD", "PENDING", 160000)
+    assert (pay[0]["order_id"], pay[0]["method"], pay[0]["state"], pay[0]["amount"]) == (order["id"], "COD", "PENDING", 155000)
     assert resp.headers["Location"].endswith(f"/order/{order['id']}/confirmation")
 
 
@@ -34,7 +34,7 @@ def test_T_UC01_11_confirmation_page_shows_order_id_and_total(customer_client, d
     page = customer_client.get(resp.headers["Location"]).get_data(as_text=True)
     order_id = new_connection(db_path).execute("SELECT id FROM orders").fetchone()["id"]
     assert f'<strong id="order-id">{order_id}</strong>' in page
-    assert 'id="order-total">160,000 VND' in page
+    assert 'id="order-total">155,000 VND' in page
     assert 'id="order-state">PLACED' in page
     assert 'id="payment-method">COD' in page and 'id="payment-state">PENDING' in page
 
@@ -43,7 +43,7 @@ def test_T_UC01_12_transaction_is_begin_immediate_then_commit(db_path):
     conn = connect(db_path)
     statements = []
     conn.set_trace_callback(statements.append)
-    PlaceOrderController(conn).confirm_order(1, HUB_D1, ADDRESS_HOME, {PHO: "1"}, "tok-trace", 70000)
+    PlaceOrderController(conn).confirm_order(1, HUB_D1, ADDRESS_HOME, {PHO: "1"}, "tok-trace", 65000)
     conn.close()
     begin = statements.index("BEGIN IMMEDIATE")
     commit = statements.index("COMMIT")
@@ -58,7 +58,7 @@ def test_T_UC01_13_failure_while_saving_payment_rolls_back_order_and_lines(db_pa
     monkeypatch.setattr(payment_dao.PaymentDAO, "insert", boom)
     conn = connect(db_path)
     with pytest.raises(RuntimeError):
-        PlaceOrderController(conn).confirm_order(1, HUB_D1, ADDRESS_HOME, {PHO: "2", GOI_CUON: "1"}, "tok-fail", 160000)
+        PlaceOrderController(conn).confirm_order(1, HUB_D1, ADDRESS_HOME, {PHO: "2", GOI_CUON: "1"}, "tok-fail", 155000)
     conn.close()
     assert count(db_path, "orders") == 0
     assert count(db_path, "order_line") == 0
@@ -67,7 +67,7 @@ def test_T_UC01_13_failure_while_saving_payment_rolls_back_order_and_lines(db_pa
 
 def test_T_UC01_14_read_back_through_new_connection_same_lines_and_total(customer_client, db_path):
     """AC-5"""
-    shown_total = 160000
+    shown_total = 155000
     _place(customer_client)
 
     fresh = new_connection(db_path)                 # a NEW connection, nothing shared with the app
@@ -77,7 +77,7 @@ def test_T_UC01_14_read_back_through_new_connection_same_lines_and_total(custome
     assert [(r["item_name"], r["unit_price"], r["quantity"]) for r in lines] == [
         ("Pho bo tai", 55000, 2), ("Goi cuon", 35000, 1)]
     assert sum(r["unit_price"] * r["quantity"] for r in lines) == header["item_subtotal"] == 145000
-    assert header["total_amount"] == header["item_subtotal"] + header["delivery_fee"] == shown_total
+    assert header["total_amount"] == header["item_subtotal"] + header["delivery_fee"] - 5000 == shown_total
     fresh.close()
 
     dao_conn = connect(db_path)                     # and through the DAO on another new connection

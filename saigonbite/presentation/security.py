@@ -2,7 +2,7 @@
 
 One random token per session; every POST must send it back in the csrf_token field. This is separate
 from the checkout's idempotency token, which stops a double submit, not a forged request.
-Tests switch it off with CSRF_ENABLED=False, except the tests of this module.
+Tests send explicit session-bound tokens; protection stays enabled.
 """
 import hmac
 import secrets
@@ -23,10 +23,10 @@ def init_csrf(app: Flask) -> None:
 
     @app.before_request
     def _check_csrf():
-        if request.method != "POST" or not current_app.config.get("CSRF_ENABLED", True):
+        if request.method not in ("POST", "PUT", "PATCH", "DELETE"):
             return None
         expected = session.get(FIELD)
         sent = request.form.get(FIELD, "")
-        if not expected or not hmac.compare_digest(expected, sent):
+        if not expected or not hmac.compare_digest(expected.encode('utf-8'), sent.encode('utf-8')):
             abort(400, description="csrf")
         return None

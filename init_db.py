@@ -1,13 +1,13 @@
-"""Create or upgrade the SaigonBite SQLite database.
+"""Create a fresh SaigonBite v2 database or validate an existing version read-only.
 
 Usage:  python init_db.py            (creates instance/saigonbite.db: schema, seed and demo history)
         python init_db.py --no-demo  (schema and seed only, no demo orders)
         python init_db.py --force    (delete and recreate an existing database)
-        python init_db.py --migrate  (upgrade an existing database with db/migrations; never deletes data)
+        python init_db.py --migrate  (validate v2; refuse unsupported versions without writes)
         python init_db.py --db PATH  (use another file, e.g. for tests)
 
-The schema version is kept in PRAGMA user_version. A deployed database is upgraded with --migrate,
-never recreated, so routine deployments keep the orders (plan §2.2).
+The schema version is kept in PRAGMA user_version. No migrations are provided.
+Use a new path for fresh v2 and preserve retained databases and their sidecars.
 """
 import argparse
 import glob
@@ -15,6 +15,7 @@ import os
 import re
 import sqlite3
 import sys
+from pathlib import Path
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SCHEMA_PATH = os.path.join(ROOT, "db", "schema.sql")
@@ -32,6 +33,8 @@ def schema_version() -> int:
 
 def build_database(db_path: str, demo: bool = False) -> None:
     """Create a new database file at db_path with schema and seed data (and the demo history if asked)."""
+    if os.path.exists(db_path):
+        raise FileExistsError('Fresh v2 requires a new database path; existing data is preserved.')
     parent = os.path.dirname(db_path)
     if parent:
         os.makedirs(parent, exist_ok=True)
@@ -50,25 +53,19 @@ def build_database(db_path: str, demo: bool = False) -> None:
 
 
 def migrate(db_path: str) -> list[str]:
-    """Apply db/migrations/NNN_name.sql files whose number is above the database's user_version.
-
-    Each file runs in one transaction and ends by setting user_version to its number. Returns the
-    names of the files applied.
-    """
-    conn = sqlite3.connect(db_path)
-    applied = []
+    """Validate current v2 read-only. Refuse old/future versions; never claim an upgrade."""
+    path = Path(db_path).resolve()
+    if not path.is_file():
+        raise ValueError('Database not found; choose a new path for fresh v2.')
+    conn = sqlite3.connect(path.as_uri() + '?mode=ro', uri=True)
     try:
         current = conn.execute("PRAGMA user_version").fetchone()[0]
-        for path in sorted(glob.glob(os.path.join(MIGRATIONS_DIR, "*.sql"))):
-            number = int(os.path.basename(path).split("_", 1)[0])
-            if number <= current:
-                continue
-            with open(path, encoding="utf-8") as f:
-                conn.executescript("BEGIN;\n" + f.read() + f"\nPRAGMA user_version = {number};\nCOMMIT;")
-            applied.append(os.path.basename(path))
+        if current != schema_version():
+            raise ValueError(f'Unsupported schema version {current}. No migration is provided. '
+                             'Use a new path for fresh v2; preserve the existing database.')
     finally:
         conn.close()
-    return applied
+    return []
 
 
 def main(argv=None) -> int:
@@ -83,7 +80,11 @@ def main(argv=None) -> int:
         if not os.path.exists(args.db):
             print(f"Database not found: {args.db}", file=sys.stderr)
             return 1
-        applied = migrate(args.db)
+        try:
+            applied = migrate(args.db)
+        except ValueError as exc:
+            print(str(exc), file=sys.stderr)
+            return 1
         print("Applied: " + (", ".join(applied) if applied else "nothing, the database is up to date"))
         return 0
 

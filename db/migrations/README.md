@@ -1,6 +1,9 @@
-# Migrations
+# Fresh v2 only
 
-One file per schema change, named `NNN_short_name.sql` (NNN above the current `PRAGMA user_version`).
-`python init_db.py --migrate` applies the new files in order, each in one transaction, and sets the version.
-schema.sql always shows the latest schema and sets the same version, so a new database needs no migration.
-None yet: version 2 is the first schema deployed to the cloud.
+Author: 722I0004 · AI-assisted (Codex).
+
+No migration scripts exist. `python init_db.py --db NEW_ABSOLUTE_PATH --no-demo` creates a fresh v2 database. Preserve existing files and their WAL/SHM companions; never use `--force` on retained data.
+
+`--migrate --db EXISTING_PATH` opens read-only to check `user_version`. Version 2 succeeds without changes. Versions 0, 1 and future versions return nonzero with a fresh-v2 refusal; a missing path returns nonzero without creation. This validates, never upgrades. No deployment is claimed.
+
+Run P4 tests through `docs/part2/_scripts/p4_execute.py MODE [pytest arguments]`; it uses fresh file-backed DBs under `Part2/notes/P4_test_scratch/` and records commands and executable hashes.

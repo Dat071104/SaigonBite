@@ -2,6 +2,8 @@
 import os
 import sqlite3
 import sys
+import secrets
+from flask.testing import FlaskClient
 
 import pytest
 
@@ -29,7 +31,21 @@ def db_path(tmp_path):
 
 @pytest.fixture
 def app(db_path):
-    return create_app({"TESTING": True, "DATABASE": db_path, "SECRET_KEY": "test-secret"})
+    application = create_app({"TESTING": True, "DATABASE": db_path, "SECRET_KEY": "test-secret"})
+    application.test_client_class = SessionFormClient
+    return application
+
+
+class SessionFormClient(FlaskClient):
+    """Explicit valid-token requests by default; csrf=False exercises missing-token denial."""
+    def open(self, *args, **kwargs):
+        attach = kwargs.pop('csrf', True)
+        if kwargs.get('method', 'GET').upper() in ('POST', 'PUT', 'PATCH', 'DELETE') and attach:
+            with self.session_transaction() as state:
+                token = state.setdefault('csrf_token', secrets.token_urlsafe(32))
+            kwargs['data'] = {**(kwargs.get('data') or {})}
+            kwargs['data'].setdefault('csrf_token', token)
+        return super().open(*args, **kwargs)
 
 
 @pytest.fixture
@@ -65,23 +81,18 @@ def count(db_path, table):
 
 
 def _seed_prices():
-    """Menu prices and hub fees from seed.sql, so tests can post the total the quote page shows."""
-    from init_db import SCHEMA_PATH, SEED_PATH
-    conn = sqlite3.connect(":memory:")
-    conn.executescript(open(SCHEMA_PATH, encoding="utf-8").read())
-    conn.executescript(open(SEED_PATH, encoding="utf-8").read())
-    prices = dict(conn.execute("SELECT id, price FROM menu_item"))
-    fees = dict(conn.execute("SELECT id, delivery_fee_flat FROM hub"))
-    conn.close()
-    return prices, fees
+    """Independent fixed seed oracle, evaluated lazily; no production-pricing call or DB query.
 
-
-PRICES, FEES = _seed_prices()
+    BR-07: D1 12000+3000*1=15000; BT 10000+3000*5=25000.
+    Both seeded hubs are initially quiet: BR-03 subtracts 5000 at checkout.
+    """
+    return {1:55000,2:50000,3:35000,4:60000,5:55000,6:10000,7:30000,8:25000,9:30000,10:28000}, {1:15000,2:25000}
 
 
 def quoted_total(hub_id, quantities):
     """The total the quote page shows for valid quantities (seed prices)."""
-    return FEES[hub_id] + sum(PRICES[i] * int(q) for i, q in quantities.items() if str(q).strip())
+    prices, fees = _seed_prices()
+    return fees[hub_id] - 5000 + sum(prices[i] * int(q) for i, q in quantities.items() if str(q).strip())
 
 
 def checkout_form(token="tok-1", hub_id=HUB_D1, address_id=ADDRESS_HOME, quantities=None):
@@ -108,7 +119,7 @@ def add_second_customer(db_path):
                  (generate_password_hash("dev-other", method="pbkdf2:sha256:1000"),))
     conn.execute("INSERT INTO customer (id, user_id, full_name, phone, customer_type) "
                  "VALUES (10, 10, 'Other Customer', '0900000000', 'LOCAL')")
-    conn.execute("INSERT INTO address (id, customer_id, label, full_address) "
-                 "VALUES (10, 10, 'Home', '1 Other Street, District 3, Ho Chi Minh City')")
+    conn.execute("INSERT INTO address (id, customer_id, label, full_address, district, latitude, longitude) "
+                 "VALUES (10, 10, 'Home', '1 Other Street, District 3, Ho Chi Minh City', 'District 3', 10.7843, 106.6844)")
     conn.commit()
     conn.close()

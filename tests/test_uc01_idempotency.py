@@ -47,12 +47,14 @@ def test_T_UC01_33_different_tokens_create_different_orders(customer_client, db_
 
 def test_T_UC01_34_concurrent_submits_with_one_token_still_create_one_order(db_path):
     results, errors = [], []
+    barrier = threading.Barrier(5, timeout=10)
 
     def submit():
         conn = connect(db_path)
         try:
+            barrier.wait()
             results.append(PlaceOrderController(conn).confirm_order(
-                1, HUB_D1, ADDRESS_HOME, {PHO: "1"}, "race-token", 70000))
+                1, HUB_D1, ADDRESS_HOME, {PHO: "1"}, "race-token", 65000))
         except Exception as exc:        # pragma: no cover - would fail the assertions below
             errors.append(exc)
         finally:
@@ -62,7 +64,8 @@ def test_T_UC01_34_concurrent_submits_with_one_token_still_create_one_order(db_p
     for t in threads:
         t.start()
     for t in threads:
-        t.join()
+        t.join(timeout=20)
+        assert not t.is_alive()
     assert not errors
     assert len({r.order.id for r in results}) == 1
     assert sum(1 for r in results if r.created) == 1

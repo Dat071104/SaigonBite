@@ -10,6 +10,8 @@ def connect(db_path: str) -> sqlite3.Connection:
     conn = sqlite3.connect(db_path, timeout=10, isolation_level=None)
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON")
+    conn.execute("PRAGMA journal_mode = WAL")
+    conn.execute("PRAGMA synchronous = NORMAL")
     return conn
 
 
@@ -20,11 +22,16 @@ def immediate_transaction(conn: sqlite3.Connection):
     BEGIN IMMEDIATE takes SQLite's write lock at once, so two checkouts cannot interleave
     their read-then-insert steps (risk R-03 in the plan; the capacity count joins it in I2).
     """
-    conn.execute("BEGIN IMMEDIATE")
+    started = False
     try:
+        conn.execute("BEGIN IMMEDIATE")
+        started = True
         yield conn
-    except BaseException:
-        conn.execute("ROLLBACK")
-        raise
-    else:
         conn.execute("COMMIT")
+    except BaseException:
+        if started and conn.in_transaction:
+            try:
+                conn.rollback()
+            except sqlite3.Error:
+                pass  # Preserve the original BEGIN/body/COMMIT failure.
+        raise

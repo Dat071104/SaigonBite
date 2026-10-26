@@ -1,6 +1,7 @@
 """AC-9 (second sentence): docs/i1 use the same names as the code and the schema."""
 import os
 import re
+import subprocess
 
 import pytest
 
@@ -21,7 +22,8 @@ def read(name):
 
 
 def schema_tables():
-    sql = open(SCHEMA_PATH, encoding="utf-8").read()
+    # I1 documents describe their immutable submitted schema, not later v2 tables.
+    sql = subprocess.check_output(['git','show','i1-evidence:db/schema.sql'], cwd=ROOT, text=True)
     return re.findall(r"CREATE TABLE (\w+)", sql)
 
 

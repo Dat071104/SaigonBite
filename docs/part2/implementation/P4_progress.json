@@ -1,6 +1,6 @@
 {
-  "author": "722I0004 · AI-assisted (Codex)",
-  "current_subphase": "P4.1 ENTRY BLOCKED",
+  "author": "722I0004 \u00b7 AI-assisted (Codex)",
+  "current_subphase": "P4.2",
   "completed_ids": [
     "P4-001",
     "P4-004",
@@ -149,13 +149,15 @@
     "P4-143",
     "P4-144"
   ],
-  "completed_subphases": [],
-  "last_code_commit": "6e8cafe245c87d3aab7f99535960ad5d7111d320",
-  "last_log": "docs/part2/test_report/p4_baseline_collection.log",
+  "completed_subphases": [
+    "P4.1"
+  ],
+  "last_code_commit": "77589e5aa2662db91fd1ef4cc70c3273e4e4d160",
+  "last_log": "D:\\RAD\\FINAL\\Part2\\notes\\P4-root\\foundation_gate_77589e5_20261026T032026259753.log",
   "mode": "sequential",
   "workers": 0,
-  "blocker": "P4-B01: adding mandatory created_at fails unchanged checker against protected mapping",
-  "exact_resume_command": "Get-Content -LiteralPath D:/RAD/FINAL/SaigonBite/docs/part2/implementation/P4_progress.json -Raw",
-  "resume_condition": "Owner authorizes a narrow mapping-boundary amendment; verify start hashes and resume existing run at P4.1. Do not rerun preflight main or regenerate snapshots.",
-  "G4": "BLOCKED"
+  "blocker": null,
+  "exact_resume_command": "Read docs/part2/implementation/P4_progress.json; continue P4.2",
+  "resume_condition": "Continue existing P4 run; preserve snapshots and all prior receipts.",
+  "G4": "IN PROGRESS"
 }

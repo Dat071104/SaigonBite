@@ -1,0 +1,23 @@
+[
+  {
+    "file": "test_uc01_confirm.py",
+    "BR": "BR-03; BR-07; BR-11",
+    "before": "bce1491d3cbe2fedb187fca811050bd7138d1d1a8831f8f4209cd9c6e3aa3532",
+    "after": "bcb730cf747763ae8d960793a7dbcc1ccf1b0a0fa877c962e76d051d352fd57a",
+    "retained": "All original test identities and assertion branches retained; current pricing and synchronization"
+  },
+  {
+    "file": "test_review_findings.py",
+    "BR": "BR-03; BR-07; BR-11",
+    "before": "613364b62bea483c85d7f94fec51c7193f1d212de4a59ecaa74c8791436d2928",
+    "after": "4ed03f3428f4c50a64d21e3e0137e9e823d005f138ace44b4702ed848248d39b",
+    "retained": "All original test identities and assertion branches retained; current pricing and synchronization"
+  },
+  {
+    "file": "test_uc01_idempotency.py",
+    "BR": "BR-03; BR-07; BR-11",
+    "before": "d8ee5531f8f65eb303df795650dae1ad3824ad3be61e6af75cad9c43b3907ea6",
+    "after": "88a63784e18d509fa789e5d91aba72a9910072b00cb09674de4c74c25addfefa",
+    "retained": "All original test identities and assertion branches retained; current pricing and synchronization"
+  }
+]

@@ -1,5 +1,5 @@
 -- SaigonBite schema v2 (Part 2: six main use cases and their supporting use cases).
--- Table names map 1:1 to domain classes (docs/part2/domain_model.md):
+-- Table names map 1:1 to domain classes (models/shared/design_model.json):
 --   hub, brand, menu_item, hub_menu_item, user_account, customer, address, voucher,
 --   orders (class Order), order_line (OrderLine), payment (Payment), delivery (Delivery),
 --   replacement_offer (ReplacementOffer).
@@ -77,7 +77,7 @@ CREATE TABLE address (
     label        TEXT NOT NULL,          -- Home, Office, Hotel ...
     full_address TEXT NOT NULL,
     district     TEXT NOT NULL,
-    latitude     REAL NOT NULL,          -- from the district list (no map service, A-12)
+    latitude     REAL NOT NULL,          -- from the district list (no map service, A-14)
     longitude    REAL NOT NULL,
     archived_at  TEXT                    -- NULL = usable; orders keep their own copy of the text
 );

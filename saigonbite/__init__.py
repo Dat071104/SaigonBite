@@ -8,6 +8,7 @@ Three layers, four roles:
 """
 import logging
 import os
+import sqlite3
 
 from flask import Flask, render_template
 
@@ -50,7 +51,7 @@ def _production_config(app: Flask) -> None:
     if len(secret) < 32 or secret == "dev-only-secret-change-me":
         raise RuntimeError("SAIGONBITE_SECRET_KEY must be set to a random value of at least 32 characters "
                            "when SAIGONBITE_ENV=production.")
-    https = os.environ.get("SAIGONBITE_HTTPS", "1") == "1"
+    https = True
     app.config.update(SECRET_KEY=secret, SESSION_COOKIE_SECURE=https, REMEMBER_COOKIE_SECURE=https,
                       SESSION_COOKIE_SAMESITE="Lax", DEBUG=False)
     app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1)
@@ -106,6 +107,12 @@ def create_app(test_config: dict | None = None) -> Flask:
     @app.errorhandler(ConflictError)
     def _conflict(exc):
         return _page(409, "Already changed", str(exc))
+
+    @app.errorhandler(sqlite3.OperationalError)
+    def _database_busy(exc):
+        if getattr(exc, 'sqlite_errorcode', None) in (sqlite3.SQLITE_BUSY, sqlite3.SQLITE_LOCKED):
+            return _page(503, "Please retry", "The database is busy. Nothing was saved; please retry.")
+        raise exc
 
     @app.errorhandler(400)
     def _bad_request(exc):

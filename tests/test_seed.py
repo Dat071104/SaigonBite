@@ -25,7 +25,8 @@ def test_T_SEED_01_at_least_two_hubs_with_capacity_and_menu(db_path):
 def test_T_SEED_02_one_local_customer_with_an_address(db_path):
     conn = new_connection(db_path)
     rows = conn.execute("SELECT id, customer_type FROM customer").fetchall()
-    assert len(rows) == 1 and rows[0]["customer_type"] == "LOCAL"
+    assert len(rows) == 2 and {r['customer_type'] for r in rows} == {'LOCAL', 'TOURIST'}
+    assert sum(r['customer_type'] == 'LOCAL' for r in rows) == 1  # BR-12 v2 includes both subtypes.
     assert conn.execute("SELECT COUNT(*) FROM address WHERE customer_id = ?", (rows[0]["id"],)).fetchone()[0] >= 1
 
 
