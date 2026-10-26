@@ -21,7 +21,7 @@
   <h2 id="wait-h">Ready for pickup</h2>
   {% for v in board.waiting %}
   <article class="panel card" id="waiting-{{ v.order.id }}">
-    <p class="card-head">Order {{ v.order.id }} <span class="muted">ready since {{ v.delivery.ready_at|vn_time }}</span></p>
+    <p class="card-head"><a href="{{ url_for('delivery.detail', order_id=v.order.id) }}">Order {{ v.order.id }}</a> <span class="muted">ready since {{ v.delivery.ready_at|vn_time }}</span></p>
     <p>{{ v.hub.name }} → {{ v.order.delivery_address_text }} ({{ v.order.distance_km }} km)</p>
     <p>{% if v.cash_to_collect %}Cash on delivery: <strong class="cash">{{ v.cash_to_collect|vnd }}</strong>{% else %}Paid online{% endif %}</p>
     <div class="actions">{{ button(url_for('delivery.pick_up', order_id=v.order.id), 'Pick up this order') }}</div>
