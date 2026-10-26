@@ -1,6 +1,6 @@
 {
   "author": "722I0004 \u00b7 AI-assisted (Codex)",
-  "current_subphase": "P4.2",
+  "current_subphase": "P4.3",
   "completed_ids": [
     "P4-001",
     "P4-004",
@@ -150,14 +150,15 @@
     "P4-144"
   ],
   "completed_subphases": [
-    "P4.1"
+    "P4.1",
+    "P4.2"
   ],
-  "last_code_commit": "77589e5aa2662db91fd1ef4cc70c3273e4e4d160",
-  "last_log": "D:\\RAD\\FINAL\\Part2\\notes\\P4-root\\foundation_gate_77589e5_20261026T032026259753.log",
+  "last_code_commit": "42628cd1eb7f8a9cacfafaa79d53841158238aed",
+  "last_log": "D:\\RAD\\FINAL\\Part2\\notes\\P4-root\\hub_gate_fixed_42628cd_20261026T032311822523.log",
   "mode": "sequential",
   "workers": 0,
   "blocker": null,
-  "exact_resume_command": "Read docs/part2/implementation/P4_progress.json; continue P4.2",
+  "exact_resume_command": "Read docs/part2/implementation/P4_progress.json; continue P4.3",
   "resume_condition": "Continue existing P4 run; preserve snapshots and all prior receipts.",
   "G4": "IN PROGRESS"
 }

@@ -50,15 +50,18 @@ def test_T_UC01_34_concurrent_submits_with_one_token_still_create_one_order(db_p
     barrier = threading.Barrier(5, timeout=10)
 
     def submit():
-        conn = connect(db_path)
+        conn = None
         try:
+            conn = connect(db_path)
             barrier.wait()
             results.append(PlaceOrderController(conn).confirm_order(
                 1, HUB_D1, ADDRESS_HOME, {PHO: "1"}, "race-token", 65000))
         except Exception as exc:        # pragma: no cover - would fail the assertions below
             errors.append(exc)
+            barrier.abort()
         finally:
-            conn.close()
+            if conn is not None:
+                conn.close()
 
     threads = [threading.Thread(target=submit) for _ in range(5)]
     for t in threads:

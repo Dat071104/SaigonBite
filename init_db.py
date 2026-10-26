@@ -40,6 +40,8 @@ def build_database(db_path: str, demo: bool = False) -> None:
         os.makedirs(parent, exist_ok=True)
     conn = sqlite3.connect(db_path)
     try:
+        conn.execute('PRAGMA journal_mode = WAL')
+        conn.execute('PRAGMA synchronous = NORMAL')
         scripts = [SCHEMA_PATH, SEED_PATH] + ([DEMO_PATH] if demo else [])
         for path in scripts:
             with open(path, encoding="utf-8") as f:

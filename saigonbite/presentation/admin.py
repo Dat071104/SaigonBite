@@ -34,7 +34,8 @@ def _hubs() -> HubController:
 @bp.get("/hubs")
 @role_required(Role.ADMIN)
 def hubs():
-    return render_template("admin/hubs.html", hubs=_hubs().list_hubs(uid()))
+    include_archived = request.args.get('includeArchived', 'true').lower() not in ('0', 'false')
+    return render_template("admin/hubs.html", hubs=_hubs().list_hubs(uid(), include_archived))
 
 
 @bp.route("/hubs/new", methods=["GET", "POST"])

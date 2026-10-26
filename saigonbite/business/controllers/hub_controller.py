@@ -43,11 +43,11 @@ class HubController(BaseController):
         super().__init__(conn, clock)
         self.hubs = HubDAO(conn)
 
-    def list_hubs(self, user_id: int) -> list[HubAdminView]:
+    def list_hubs(self, user_id: int, include_archived: bool = True) -> list[HubAdminView]:
         self._require_admin(user_id)
         loads = self.hubs.active_loads()
         return [HubAdminView(HubStatus(h, loads.get(h.id, 0)), self.hubs.open_order_count(h.id))
-                for h in self.hubs.list_all()]
+                for h in (self.hubs.list_all() if include_archived else self.hubs.list_active())]
 
     def get_hub(self, user_id: int, hub_id: int) -> HubAdminView:
         self._require_admin(user_id)
@@ -62,6 +62,8 @@ class HubController(BaseController):
         with immediate_transaction(self.conn):
             if self.hubs.code_exists(hub.code):
                 raise ValidationError(f"The code {hub.code} is already used by another hub.")
+            if any(h.name.casefold() == hub.name.casefold() for h in self.hubs.list_all()):
+                raise ValidationError('The hub name is already retained by another hub.')
             hub.id = self.hubs.insert(hub)
         return hub
 
@@ -77,7 +79,10 @@ class HubController(BaseController):
                 raise ConflictError(f"{current.name} is archived and can no longer be changed.")
             if self.hubs.code_exists(hub.code, except_id=hub_id):
                 raise ValidationError(f"The code {hub.code} is already used by another hub.")
-            self.hubs.update(hub)
+            if any(h.id != hub_id and h.name.casefold() == hub.name.casefold() for h in self.hubs.list_all()):
+                raise ValidationError('The hub name is already retained by another hub.')
+            if not self.hubs.update(hub):
+                raise ConflictError('The hub changed before saving. Please reload.')
         return hub
 
     def archive_hub(self, user_id: int, hub_id: int) -> Hub:
@@ -94,7 +99,8 @@ class HubController(BaseController):
             if open_orders:
                 raise ConflictError(f"{hub.name} still has {open_orders} open order(s). "
                                     "Archive it when they are finished.")
-            self.hubs.archive(hub_id, self._now())
+            if not self.hubs.archive(hub_id, self._now()):
+                raise ConflictError('The hub changed before archive. Please reload.')
         return self.hubs.get_including_archived(hub_id)
 
     # ---- internals ---------------------------------------------------------------------
