@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport-px" content="390x844">
+<meta name="screen-id" content="UC-01-S05">
+<meta name="author" content="722I0004 · AI-assisted (Claude Sonnet 5.5)">
+<title>UC-01-S05 Quote changed, check it again (wireframe)</title>
+<link rel="stylesheet" href="../../_kit/wireframe.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <span class="brand">SaigonBite</span>
+      <nav class="account" aria-label="Account"><span class="who">Tran Thi Mai</span><button type="button" class="secondary">Log out</button></nav>
+    </div>
+    <div class="wrap"><nav class="mainnav" aria-label="Main"><a href="#" aria-current="page">Order food</a><a href="#">My orders</a><a href="#">Profile</a></nav></div>
+  </header>
+  <main id="content">
+    <div class="wrap">
+<nav aria-label="Order steps"><ol class="steps"><li>Kitchen</li><li>Dishes</li><li aria-current="step">Confirm</li><li>Done</li></ol></nav>
+<div class="page-head">
+  <h1>Check your order</h1>
+  <p class="muted">Nothing is ordered until you press Confirm order.</p>
+</div>
+<div class="flash notice" id="quote-changed" role="status">The price changed since your quote. Please check the new total and confirm again.</div>
+<div class="panel">
+  <p><strong><span class="ph">Hub name</span></strong></p>
+  <p class="muted">Deliver to <span class="ph">Address</span> · <span id="distance"><span class="ph">N km</span> approximate</span></p>
+  <p>Delivery fee = base fee + 3,000 VND per started kilometre (minimum one).</p>
+</div>
+<table id="quote-table" class="order-lines">
+  <thead><tr><th>Dish</th><th class="num col-unit">Unit price</th><th class="num col-qty">Qty</th><th class="num">Amount</th></tr></thead>
+  <tbody>
+    <tr><td><span class="ph">Dish</span><span class="line-detail">1 x 61,000 VND</span></td><td class="num col-unit">61,000 VND</td><td class="num col-qty">1</td><td class="num"><span class="ph">Amount</span></td></tr>
+    <tr><td><span class="ph">Dish</span><span class="line-detail">1 x 10,000 VND</span></td><td class="num col-unit">10,000 VND</td><td class="num col-qty">1</td><td class="num"><span class="ph">Amount</span></td></tr>
+    <tr class="sum-row"><td colspan="3">Dishes</td><td class="num"><span class="ph">S</span></td></tr>
+    <tr class="sum-row"><td colspan="3">Delivery fee (0.39 km)</td><td class="num"><span class="ph">F</span></td></tr>
+    <tr class="sum-row"><td colspan="3">Quiet hub discount</td><td class="num"><span class="ph">Q</span></td></tr>
+    <tr class="total-row"><td colspan="3">Total</td><td class="num"><span class="ph">T</span></td></tr>
+  </tbody>
+</table>
+<form>
+  <fieldset class="panel payment">
+    <legend>How will you pay?</legend>
+    <label class="choice"><input type="radio" name="payment" checked> Cash to the driver on delivery</label>
+    <label class="choice"><input type="radio" name="payment"> Pay now online: E-wallet</label>
+    <label class="choice"><input type="radio" name="payment"> Pay now online: Bank QR code</label>
+  </fieldset>
+  <div class="actions">
+    <button type="submit" data-goto="UC-01-S08">Confirm order</button>
+    <a class="btn link" href="#" data-goto="UC-01-S03">Change items</a>
+  </div>
+</form>
+    </div>
+  </main>
+  <footer>
+    <div class="wrap">
+      <p>Wireframe UC-01-S05 · Quote changed, check it again</p>
+      <p class="wf-note">Low-fidelity layout: real labels, placeholder values. 722I0004 · AI-assisted (Claude Sonnet 5.5). Authored as HTML/CSS; assembled and linked in Figma by the owner.</p>
+    </div>
+  </footer>
+</body>
+</html>

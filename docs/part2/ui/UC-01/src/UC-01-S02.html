@@ -1,0 +1,40 @@
+<!--screen
+id: UC-01-S02
+title: Hub is full, quieter hubs suggested
+role: CUSTOMER
+viewport: 390x844
+nav: Order food|My orders|Profile
+active: Order food
+who: Tran Thi Mai
+-->
+<nav aria-label="Order steps"><ol class="steps"><li aria-current="step">Kitchen</li><li>Dishes</li><li>Confirm</li><li>Done</li></ol></nav>
+<div class="page-head">
+  <h1>Choose a kitchen hub</h1>
+  <p class="muted">Each hub cooks for several brands. The delivery fee is the hub's base fee plus 3,000 VND per started km, up to 8 km.</p>
+</div>
+<div class="flash error" id="hub-error" role="alert">{{p:Hub name||SaigonBite Binh Thanh Hub}} is too busy to take new orders right now.</div>
+<section class="panel" id="suggestions" aria-labelledby="sugg">
+  <h2 id="sugg">These hubs can take your order now</h2>
+  <ul class="plain">
+    <li><a href="#" data-goto="UC-01-S03">{{p:Hub name||SaigonBite District 1 Hub}}</a></li>
+  </ul>
+</section>
+<ul class="hubs">
+  <li class="panel hub">
+    <div>
+      <h2>{{p:Hub name||SaigonBite District 1 Hub}}</h2>
+      <p class="muted">{{p:Hub address||45 Le Loi, Ben Nghe Ward, District 1, Ho Chi Minh City}}</p>
+      <p class="fee">Delivery from <span class="price">{{p:Fee VND||15,000 VND}}</span></p>
+    </div>
+    <a class="btn" href="#" data-goto="UC-01-S03" aria-label="Order from SaigonBite District 1 Hub">Order from this hub</a>
+  </li>
+  <li class="panel hub">
+    <div>
+      <h2>{{p:Hub name||SaigonBite Binh Thanh Hub}}</h2>
+      <p class="muted">{{p:Hub address||210 Xo Viet Nghe Tinh, Ward 21, Binh Thanh District, Ho Chi Minh City}}</p>
+      <p class="fee">Delivery from <span class="price">{{p:Fee VND||13,000 VND}}</span></p>
+      <p><span class="badge warn">Busy now</span> This kitchen is full. Please choose another hub.</p>
+    </div>
+    <a class="btn secondary" href="#" aria-label="Order from SaigonBite Binh Thanh Hub">Order from this hub</a>
+  </li>
+</ul>

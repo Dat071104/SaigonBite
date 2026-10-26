@@ -1,0 +1,33 @@
+<!--screen
+id: UC-01-S12
+title: Order cancelled
+role: CUSTOMER
+viewport: 390x844
+nav: Order food|My orders|Profile
+active: My orders
+who: Tran Thi Mai
+-->
+<div class="flash success" role="status">Order {{p:N||11}} is cancelled.</div>
+<div class="page-head">
+  <h1>Order {{p:N||11}}</h1>
+  <p class="muted">{{p:Hub name||SaigonBite District 1 Hub}} · placed {{p:Time||00:52, 27/10/2026}}</p>
+</div>
+<dl class="facts">
+  <dt>Status</dt><dd><span class="badge" id="order-state">Cancelled</span></dd>
+  <dt>Payment</dt><dd>COD, voided</dd>
+  <dt>Deliver to</dt><dd>{{p:Address||12 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City}}</dd>
+  <dt>Finished</dt><dd>{{p:Time||00:52, 27/10/2026}}</dd>
+</dl>
+<table class="order-lines">
+  <thead><tr><th>Dish</th><th class="num col-unit">Unit price</th><th class="num col-qty">Qty</th><th class="num">Amount</th></tr></thead>
+  <tbody>
+    <tr><td>{{p:Dish||Goi cuon}}<span class="line-detail">1 x 35,000 VND</span></td><td class="num col-unit">35,000 VND</td><td class="num col-qty">1</td><td class="num">{{p:Amount||35,000 VND}}</td></tr>
+    <tr class="sum-row"><td colspan="3">Dishes</td><td class="num">{{p:S||35,000 VND}}</td></tr>
+    <tr class="sum-row"><td colspan="3">Delivery fee (0.39 km)</td><td class="num">{{p:F||15,000 VND}}</td></tr>
+    <tr class="total-row"><td colspan="3">Total</td><td class="num">{{p:T||50,000 VND}}</td></tr>
+  </tbody>
+</table>
+<div class="actions">
+  <a href="#" data-goto="UC-01-S10">Printable receipt</a>
+  <a class="btn link" href="#" data-goto="UC-01-S11">All my orders</a>
+</div>

@@ -1,0 +1,51 @@
+<!--screen
+id: UC-01-S03
+title: Choose dishes, address and voucher
+role: CUSTOMER
+viewport: 390x844
+nav: Order food|My orders|Profile
+active: Order food
+who: Tran Thi Mai
+-->
+<nav aria-label="Order steps"><ol class="steps"><li>Kitchen</li><li aria-current="step">Dishes</li><li>Confirm</li><li>Done</li></ol></nav>
+<div class="page-head">
+  <h1>{{p:Hub name||SaigonBite District 1 Hub}}</h1>
+  <p class="muted">{{p:Hub address||45 Le Loi, Ben Nghe Ward, District 1, Ho Chi Minh City}} · delivery from <span class="price">{{p:Fee VND||15,000 VND}}</span></p>
+</div>
+<div class="flash success" role="status">This kitchen is quiet: 5,000 VND off the delivery fee.</div>
+<form>
+  <section class="brand-group" aria-labelledby="brand-1">
+    <h2 id="brand-1">{{p:Brand||Com Tam Corner}}</h2>
+    <ul class="items">
+      <li class="item chosen">
+        <div><p class="name">{{p:Dish||Com tam suon bi cha}}</p><p class="desc">{{p:Description||Broken rice, grilled pork, shredded pork skin, egg meatloaf}}</p><p class="price">{{p:Price VND||60,000 VND}}</p></div>
+        <div class="qty"><button type="button" class="secondary" aria-label="One less Com tam suon bi cha">&minus;</button><input type="number" value="1" aria-label="Quantity of Com tam suon bi cha"><button type="button" class="secondary" aria-label="One more Com tam suon bi cha">+</button></div>
+      </li>
+      <li class="item soldout">
+        <div><p class="name">{{p:Dish||Com tam ga nuong}}</p><p class="desc">{{p:Description||Broken rice with grilled chicken}}</p></div>
+        <span class="soldout-label">Sold out</span>
+      </li>
+      <li class="item chosen">
+        <div><p class="name">{{p:Dish||Tra da}}</p><p class="desc">{{p:Description||Iced tea}}</p><p class="price">{{p:Price VND||10,000 VND}}</p></div>
+        <div class="qty"><button type="button" class="secondary" aria-label="One less Tra da">&minus;</button><input type="number" value="1" aria-label="Quantity of Tra da"><button type="button" class="secondary" aria-label="One more Tra da">+</button></div>
+      </li>
+    </ul>
+  </section>
+  <div class="panel" style="margin-top:32px">
+    <div class="field">
+      <label for="address_id">Deliver to</label>
+      <select id="address_id"><option>Home: 12 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City</option></select>
+      <p class="hint"><a href="#">Add an address</a></p>
+    </div>
+    <div class="field">
+      <label for="voucher_code">Voucher code <span class="hint">optional, one per order</span></label>
+      <input type="text" id="voucher_code" autocapitalize="characters" autocomplete="off">
+    </div>
+    <p>You choose cash on delivery or online payment on the next page.</p>
+  </div>
+  <div class="summary-bar">
+    <p><span class="count">{{p:N items||2 items}}</span> · <span class="subtotal price">{{p:Subtotal VND||70,000 VND}}</span></p>
+    <button type="submit" data-goto="UC-01-S04">See the quote</button>
+  </div>
+</form>
+<div class="actions"><a class="btn link" href="#" data-goto="UC-01-S01">Choose another hub</a></div>

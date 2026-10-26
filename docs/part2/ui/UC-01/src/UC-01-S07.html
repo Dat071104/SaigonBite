@@ -1,0 +1,42 @@
+<!--screen
+id: UC-01-S07
+title: Online payment declined
+role: CUSTOMER
+viewport: 390x844
+nav: Order food|My orders|Profile
+active: Order food
+who: Tran Thi Mai
+-->
+<nav aria-label="Order steps"><ol class="steps"><li>Kitchen</li><li>Dishes</li><li aria-current="step">Confirm</li><li>Done</li></ol></nav>
+<div class="page-head">
+  <h1>Check your order</h1>
+  <p class="muted">Nothing is ordered until you press Confirm order.</p>
+</div>
+<div class="flash error" id="quote-changed" role="alert">{{p:Declined message||The payment was declined. No order was placed. Try again or choose cash on delivery.}}</div>
+<div class="panel">
+  <p><strong>{{p:Hub name||SaigonBite District 1 Hub}}</strong></p>
+  <p class="muted">Deliver to {{p:Address||12 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City}} · <span id="distance">{{p:N km||0.39 km}} approximate</span></p>
+  <p>Delivery fee = base fee + 3,000 VND per started kilometre (minimum one).</p>
+</div>
+<table class="order-lines">
+  <thead><tr><th>Dish</th><th class="num col-unit">Unit price</th><th class="num col-qty">Qty</th><th class="num">Amount</th></tr></thead>
+  <tbody>
+    <tr><td>{{p:Dish||Pho bo tai}}<span class="line-detail">2 x 55,000 VND</span></td><td class="num col-unit">55,000 VND</td><td class="num col-qty">2</td><td class="num">{{p:Amount||110,000 VND}}</td></tr>
+    <tr class="sum-row"><td colspan="3">Dishes</td><td class="num">{{p:S||110,000 VND}}</td></tr>
+    <tr class="sum-row"><td colspan="3">Delivery fee (0.39 km)</td><td class="num">{{p:F||15,000 VND}}</td></tr>
+    <tr class="sum-row"><td colspan="3">Quiet hub discount</td><td class="num">{{p:Q||-5,000 VND}}</td></tr>
+    <tr class="total-row"><td colspan="3">Total</td><td class="num">{{p:T||120,000 VND}}</td></tr>
+  </tbody>
+</table>
+<form>
+  <fieldset class="panel payment">
+    <legend>How will you pay?</legend>
+    <label class="choice"><input type="radio" name="payment" checked> Cash to the driver on delivery</label>
+    <label class="choice"><input type="radio" name="payment"> Pay now online: E-wallet</label>
+    <label class="choice"><input type="radio" name="payment"> Pay now online: Bank QR code</label>
+  </fieldset>
+  <div class="actions">
+    <button type="submit" data-goto="UC-01-S06" data-trigger="press button (online payment chosen)">Confirm order</button>
+    <a class="btn link" href="#" data-goto="UC-01-S03">Change items</a>
+  </div>
+</form>

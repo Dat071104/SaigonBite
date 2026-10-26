@@ -1,0 +1,23 @@
+<!--screen
+id: UC-01-S06
+title: Online payment simulator
+role: CUSTOMER
+viewport: 390x844
+nav: Order food|My orders|Profile
+active: Order food
+who: Tran Thi Mai
+-->
+<div class="page-head">
+  <h1>Payment simulator</h1>
+  <p class="muted">Stands in for the payment provider in this demo. No card or wallet details are asked for and no money moves.</p>
+</div>
+<div class="panel sim">
+  <p>Amount: <strong class="big" id="sim-amount">{{p:Total VND||120,000 VND}}</strong></p>
+  <p>Method: <strong>E-wallet</strong></p>
+</div>
+<form>
+  <div class="actions">
+    <button type="submit" data-goto="UC-01-S08" data-trigger="press button (approve)">Approve payment</button>
+    <button type="submit" class="secondary" data-goto="UC-01-S07" data-trigger="press button (decline)">Decline payment</button>
+  </div>
+</form>

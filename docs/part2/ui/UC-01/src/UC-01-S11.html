@@ -1,0 +1,22 @@
+<!--screen
+id: UC-01-S11
+title: My orders
+role: CUSTOMER
+viewport: 390x844
+nav: Order food|My orders|Profile
+active: My orders
+who: Tran Thi Mai
+-->
+<div class="page-head">
+  <h1>My orders</h1>
+</div>
+<table class="data my-orders">
+  <thead><tr><th>Order</th><th>Placed</th><th>Hub</th><th>Status</th><th class="num">Total</th></tr></thead>
+  <tbody>
+    <tr><td><a href="#" data-goto="UC-01-S09">Order {{p:N||12}}</a></td><td>{{p:Time||00:50, 27/10/2026}}</td><td>{{p:Hub||SaigonBite Binh Thanh Hub}}</td><td><span class="badge">Placed</span></td><td class="num">{{p:Total||80,000 VND}}</td></tr>
+    <tr><td><a href="#">Order {{p:N||11}}</a></td><td>{{p:Time||00:49, 27/10/2026}}</td><td>{{p:Hub||SaigonBite District 1 Hub}}</td><td><span class="badge">Cancelled</span></td><td class="num">{{p:Total||50,000 VND}}</td></tr>
+    <tr><td><a href="#">Order {{p:N||10}}</a></td><td>{{p:Time||00:49, 27/10/2026}}</td><td>{{p:Hub||SaigonBite District 1 Hub}}</td><td><span class="badge">Placed</span></td><td class="num">{{p:Total||120,000 VND}}</td></tr>
+    <tr><td><a href="#">Order {{p:N||9}}</a></td><td>{{p:Time||00:49, 27/10/2026}}</td><td>{{p:Hub||SaigonBite District 1 Hub}}</td><td><span class="badge">Placed</span></td><td class="num">{{p:Total||80,000 VND}}</td></tr>
+    <tr><td><a href="#">Order {{p:N||1}}</a></td><td>{{p:Time||11:00, 20/10/2026}}</td><td>{{p:Hub||SaigonBite District 1 Hub}}</td><td><span class="badge">Delivered</span></td><td class="num">{{p:Total||130,000 VND}}</td></tr>
+  </tbody>
+</table>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport-px" content="390x844">
+<meta name="screen-id" content="UC-01-S02">
+<meta name="author" content="722I0004 · AI-assisted (Claude Sonnet 5.5)">
+<title>UC-01-S02 Hub is full, quieter hubs suggested (mockup)</title>
+<link rel="stylesheet" href="../../_kit/mockup.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <span class="brand">SaigonBite</span>
+      <nav class="account" aria-label="Account"><span class="who">Tran Thi Mai</span><button type="button" class="secondary">Log out</button></nav>
+    </div>
+    <div class="wrap"><nav class="mainnav" aria-label="Main"><a href="#" aria-current="page">Order food</a><a href="#">My orders</a><a href="#">Profile</a></nav></div>
+  </header>
+  <main id="content">
+    <div class="wrap">
+<nav aria-label="Order steps"><ol class="steps"><li aria-current="step">Kitchen</li><li>Dishes</li><li>Confirm</li><li>Done</li></ol></nav>
+<div class="page-head">
+  <h1>Choose a kitchen hub</h1>
+  <p class="muted">Each hub cooks for several brands. The delivery fee is the hub's base fee plus 3,000 VND per started km, up to 8 km.</p>
+</div>
+<div class="flash error" id="hub-error" role="alert">SaigonBite Binh Thanh Hub is too busy to take new orders right now.</div>
+<section class="panel" id="suggestions" aria-labelledby="sugg">
+  <h2 id="sugg">These hubs can take your order now</h2>
+  <ul class="plain">
+    <li><a href="#" data-goto="UC-01-S03">SaigonBite District 1 Hub</a></li>
+  </ul>
+</section>
+<ul class="hubs">
+  <li class="panel hub">
+    <div>
+      <h2>SaigonBite District 1 Hub</h2>
+      <p class="muted">45 Le Loi, Ben Nghe Ward, District 1, Ho Chi Minh City</p>
+      <p class="fee">Delivery from <span class="price">15,000 VND</span></p>
+    </div>
+    <a class="btn" href="#" data-goto="UC-01-S03" aria-label="Order from SaigonBite District 1 Hub">Order from this hub</a>
+  </li>
+  <li class="panel hub">
+    <div>
+      <h2>SaigonBite Binh Thanh Hub</h2>
+      <p class="muted">210 Xo Viet Nghe Tinh, Ward 21, Binh Thanh District, Ho Chi Minh City</p>
+      <p class="fee">Delivery from <span class="price">13,000 VND</span></p>
+      <p><span class="badge warn">Busy now</span> This kitchen is full. Please choose another hub.</p>
+    </div>
+    <a class="btn secondary" href="#" aria-label="Order from SaigonBite Binh Thanh Hub">Order from this hub</a>
+  </li>
+</ul>
+    </div>
+  </main>
+  <footer>
+    <div class="wrap">
+      <p>Mockup UC-01-S02 · Hub is full, quieter hubs suggested</p>
+      <p class="mk-note">Design target: real names and amounts read from the running app. 722I0004 · AI-assisted (Claude Sonnet 5.5). Authored as HTML/CSS; assembled and linked in Figma by the owner.</p>
+    </div>
+  </footer>
+</body>
+</html>
