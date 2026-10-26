@@ -19,7 +19,7 @@ def test_T_UC01_40_anonymous_get_redirects_to_login(client, path):
 
 @pytest.mark.parametrize("path", PROTECTED_POSTS)
 def test_T_UC01_41_anonymous_post_redirects_to_login_and_creates_no_order(client, db_path, path):
-    resp = client.post(path, data=checkout_form())
+    resp = client.post(path, data=checkout_form(client=client))
     assert resp.status_code == 302
     assert resp.headers["Location"].startswith("/login")
     assert count(db_path, "orders") == 0
@@ -31,7 +31,7 @@ def test_T_UC01_42_non_customer_roles_get_403_and_cannot_place_an_order(client, 
     for path in PROTECTED_GETS:
         assert client.get(path).status_code == 403
     for path in PROTECTED_POSTS:
-        assert client.post(path, data=checkout_form(token=f"t-{username}")).status_code == 403
+        assert client.post(path, data=checkout_form(client=client, token=f"t-{username}")).status_code == 403
     assert count(db_path, "orders") == 0
 
 
@@ -47,7 +47,7 @@ def test_T_UC01_43_controller_refuses_non_customer_users_even_if_the_view_is_byp
 def test_T_UC01_44_a_customer_cannot_open_another_customers_order(client, db_path):
     add_second_customer(db_path)
     login(client, "customer")
-    client.post("/order/confirm", data=checkout_form(token="owner-token"))
+    client.post("/order/confirm", data=checkout_form(client=client, token="owner-token"))
     other = client.application.test_client()
     other.post("/login", data={"username": "other", "password": "dev-other"})
     assert other.get("/order/1/confirmation").status_code == 403

@@ -9,6 +9,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from typing import Optional
+import hashlib
+import json
 
 from . import rules
 from .enums import (CustomerType, DeliveryState, DiscountType, OfferState, OnlineOption, OrderState,
@@ -237,6 +239,18 @@ class Quote:
     voucher: Optional[Voucher] = None
     voucher_discount: int = 0
 
+    def fingerprint(self, payment_method: PaymentMethod, online_option: Optional[OnlineOption] = None) -> str:
+        """Pure BR-10 consent identity: bind content and every money/payment component."""
+        values = dict(hub=vars(self.hub), address=vars(self.address),
+            lines=[(x.menu_item_id,x.item_name,x.unit_price,x.quantity)
+                   for x in sorted(self.lines,key=lambda x:x.menu_item_id)],
+            voucher=vars(self.voucher) if self.voucher else None,
+            distance=self.distance_km,S=self.item_subtotal,D=self.voucher_discount,
+            F=self.delivery_fee,Q=self.quiet_discount,T=self.total,
+            method=payment_method.value,option=online_option.value if online_option else None)
+        return hashlib.sha256(json.dumps(values,sort_keys=True,separators=(',',':'),
+                                        default=lambda x:x.value).encode('utf-8')).hexdigest()
+
     @property
     def item_subtotal(self) -> int:
         return sum(line.line_total for line in self.lines)
@@ -308,7 +322,7 @@ class Order:
         return cls(customer_id=customer_id, hub_id=quote.hub.id, address_id=quote.address.id,
                    state=OrderState.PLACED, delivery_fee=quote.delivery_fee,
                    idempotency_token=idempotency_token, placed_at=placed_at,
-                   delivery_address_text=quote.address.full_address, distance_km=quote.distance_km,
+                   delivery_address_text=quote.address.full_address, distance_km=round(quote.distance_km,2),
                    voucher_id=quote.voucher.id if quote.voucher else None,
                    voucher_discount=quote.voucher_discount, quiet_discount=quote.quiet_discount,
                    lines=[OrderLine(l.menu_item_id, l.item_name, l.unit_price, l.quantity)

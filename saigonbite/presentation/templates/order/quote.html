@@ -10,7 +10,8 @@
 {% if notice %}<div class="flash {{ notice_kind }}" id="quote-changed" role="{{ 'alert' if notice_kind == 'error' else 'status' }}">{{ notice }}</div>{% endif %}
 <div class="panel">
   <p><strong>{{ quote.hub.name }}</strong></p>
-  <p class="muted">Deliver to {{ quote.address.full_address }} · <span id="distance">{{ quote.distance_km }} km</span></p>
+  <p class="muted">Deliver to {{ quote.address.full_address }} · <span id="distance">{{ '%.2f'|format(quote.distance_km) }} km approximate</span></p>
+  <p>Delivery fee = base fee + 3,000 VND per started kilometre (minimum one).</p>
 </div>
 <table id="quote-table" class="order-lines">
   <thead><tr><th>Dish</th><th class="num col-unit">Unit price</th><th class="num col-qty">Qty</th><th class="num">Amount</th></tr></thead>
@@ -34,6 +35,7 @@
   <input type="hidden" name="voucher_code" value="{{ quote.voucher.code if quote.voucher else '' }}">
   <input type="hidden" name="idempotency_token" value="{{ idempotency_token }}">
   <input type="hidden" name="quoted_total" value="{{ quote.total }}">
+  <input type="hidden" name="quote_fingerprint" value="{{ consent }}">
   {% for item_id, qty in quantities.items() %}
     <input type="hidden" name="qty_{{ item_id }}" value="{{ qty }}">
   {% endfor %}

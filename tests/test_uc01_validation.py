@@ -28,7 +28,7 @@ def _assert_nothing_written(db_path):
 @pytest.mark.parametrize("name,overrides,message", CASES, ids=[c[0] for c in CASES])
 def test_T_UC01_20_confirm_rejects_invalid_input_without_creating_an_order(
         customer_client, db_path, name, overrides, message):
-    resp = customer_client.post("/order/confirm", data=checkout_form(token=f"tok-{name}", **overrides))
+    resp = customer_client.post("/order/confirm", data=checkout_form(client=customer_client, token=f"tok-{name}", **overrides))
     page = resp.get_data(as_text=True)
     assert resp.status_code == 400
     assert message in page
@@ -38,7 +38,7 @@ def test_T_UC01_20_confirm_rejects_invalid_input_without_creating_an_order(
 
 @pytest.mark.parametrize("name,overrides,message", CASES, ids=[c[0] for c in CASES])
 def test_T_UC01_21_quote_rejects_the_same_invalid_input(customer_client, db_path, name, overrides, message):
-    data = checkout_form(token="unused", **overrides)
+    data = checkout_form(client=customer_client, token="unused", **overrides)
     del data["idempotency_token"]
     resp = customer_client.post("/order/quote", data=data)
     assert resp.status_code == 400
@@ -48,14 +48,14 @@ def test_T_UC01_21_quote_rejects_the_same_invalid_input(customer_client, db_path
 
 def test_T_UC01_22_another_customers_address_is_refused(customer_client, db_path):
     add_second_customer(db_path)
-    resp = customer_client.post("/order/confirm", data=checkout_form(address_id=10))
+    resp = customer_client.post("/order/confirm", data=checkout_form(client=customer_client, address_id=10))
     assert resp.status_code == 400
     assert "delivery address is not valid" in resp.get_data(as_text=True)
     _assert_nothing_written(db_path)
 
 
 def test_T_UC01_23_missing_idempotency_token_creates_no_order(customer_client, db_path):
-    data = checkout_form()
+    data = checkout_form(client=customer_client)
     del data["idempotency_token"]
     resp = customer_client.post("/order/confirm", data=data)
     assert resp.status_code == 400

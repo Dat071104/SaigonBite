@@ -95,7 +95,7 @@ def quoted_total(hub_id, quantities):
     return fees[hub_id] - 5000 + sum(prices[i] * int(q) for i, q in quantities.items() if str(q).strip())
 
 
-def checkout_form(token="tok-1", hub_id=HUB_D1, address_id=ADDRESS_HOME, quantities=None):
+def checkout_form(token="tok-1", hub_id=HUB_D1, address_id=ADDRESS_HOME, quantities=None, client=None):
     """Form data as the quote page would post it to /order/confirm (with the quoted total when it can be computed)."""
     data = {"hub_id": hub_id, "idempotency_token": token}
     if address_id is not None:
@@ -107,6 +107,12 @@ def checkout_form(token="tok-1", hub_id=HUB_D1, address_id=ADDRESS_HOME, quantit
         data["quoted_total"] = quoted_total(hub_id, quantities)
     except (KeyError, ValueError, TypeError):
         pass                            # invalid input: the request is refused before the totals are compared
+    if client is not None:
+        import re
+        page = client.post('/order/quote',data=data)
+        match = re.search(r'name="quote_fingerprint" value="([^"]+)"',page.get_data(as_text=True))
+        if match:
+            data['quote_fingerprint'] = match[1]
     return data
 
 

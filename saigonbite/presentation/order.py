@@ -71,7 +71,13 @@ def _render_menu(hub_id: int, error: str | None, quantities: dict[int, str], add
 
 def _render_quote(q, quantities: dict[int, str], notice: str | None, status: int, payment: str = "COD",
                   notice_kind: str = "notice"):
-    return render_template("order/quote.html", quote=q, quantities=quantities, notice=notice,
+    method, _, option = payment.partition(':')
+    try:
+        consent = q.fingerprint(PaymentMethod(method), OnlineOption(option) if option else None)
+    except ValueError:
+        payment = 'COD'
+        consent = q.fingerprint(PaymentMethod.COD)
+    return render_template("order/quote.html", quote=q, quantities=quantities, notice=notice, consent=consent,
                            notice_kind=notice_kind, idempotency_token=uuid.uuid4().hex,
                            options=_controller().payment_options(uid()), payment=payment), status
 
@@ -98,14 +104,15 @@ def quote():
     voucher_code = request.form.get("voucher_code", "")
     quantities = _read_quantities(request.form)
     try:
-        q = _controller().request_quote(uid(), hub_id, address_id, quantities, voucher_code)
+        choice = _read_payment(request.form)
+        q = _controller().request_quote(uid(), hub_id, address_id, quantities, voucher_code, choice)
     except HubUnavailableError as exc:
         return _render_hubs(str(exc), exc.suggestions, 409)
     except ValidationError as exc:
         if not hub_id:
             return _render_hubs(str(exc), status=400)
         return _render_menu(hub_id, str(exc), quantities, address_id, voucher_code, 400)
-    return _render_quote(q, quantities, None, 200)
+    return _render_quote(q, quantities, None, 200, request.form.get('payment','COD'))
 
 
 @bp.post("/confirm")
@@ -123,10 +130,14 @@ def confirm():
             # The online payment goes to the provider (our simulator) first; nothing is saved yet.
             if payment.option not in controller.payment_options(uid()):
                 raise ValidationError("This payment option is not offered to your account.")
+            q = controller.request_quote(uid(),hub_id,address_id,quantities,voucher_code,payment)
+            if form.get('quote_fingerprint') != q.fingerprint(payment.method,payment.option) or form.get('quoted_total',type=int) != q.total:
+                raise QuoteChangedError(q)
             return render_template("order/payment_simulator.html", form=form, option=payment.option,
                                    amount=form.get("quoted_total", type=int))
         result = controller.confirm_order(uid(), hub_id, address_id, quantities, form.get("idempotency_token", ""),
-                                          form.get("quoted_total", type=int), voucher_code, payment)
+                                          form.get("quoted_total", type=int), voucher_code, payment,
+                                          form.get('quote_fingerprint'))
     except QuoteChangedError as exc:
         return _render_quote(exc.quote, quantities, str(exc), 409, form.get("payment", "COD"))
     except PaymentDeclinedError as exc:

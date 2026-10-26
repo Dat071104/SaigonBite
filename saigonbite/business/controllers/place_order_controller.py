@@ -78,15 +78,18 @@ class PlaceOrderController(BaseController):
         return self._require_customer(user_id).online_options
 
     def request_quote(self, user_id: int, hub_id: int, address_id: Optional[int],
-                      quantities: Mapping[int, str], voucher_code: Optional[str] = None) -> Quote:
+                      quantities: Mapping[int, str], voucher_code: Optional[str] = None,
+                      payment: Optional[PaymentChoice] = None) -> Quote:
         """Price the cart. Writes nothing."""
         customer = self._require_customer(user_id)
+        self._check_payment_choice(customer, payment or PaymentChoice())
         return self._build_quote(customer, hub_id, address_id, quantities, voucher_code)
 
     def confirm_order(self, user_id: int, hub_id: int, address_id: Optional[int],
                       quantities: Mapping[int, str], idempotency_token: str,
                       quoted_total: Optional[int] = None, voucher_code: Optional[str] = None,
-                      payment: Optional[PaymentChoice] = None) -> OrderConfirmation:
+                      payment: Optional[PaymentChoice] = None,
+                      quote_fingerprint: Optional[str] = None) -> OrderConfirmation:
         """Create Order(PLACED) + OrderLines + Payment in ONE transaction.
 
         Payment is COD PENDING, or ONLINE PAID when the simulator approved it (A-06: the money is taken
@@ -103,41 +106,37 @@ class PlaceOrderController(BaseController):
         if not token:
             raise ValidationError("This order form has expired. Please start the order again.")
         payment = payment or PaymentChoice()
-        self._check_payment_choice(customer, payment)
-
-        with immediate_transaction(self.conn):
-            existing = self.orders.get_by_token(token)
-            if existing is not None:
-                if existing.customer_id != customer.id:
-                    raise AuthorizationError("This order belongs to another customer.")
-                return self._confirmation(existing, created=False)
-
-            # Re-validate and re-price inside the write lock: never trust the quote page.
-            quote = self._build_quote(customer, hub_id, address_id, quantities, voucher_code)
-            if quoted_total is None:
-                raise QuoteChangedError(quote, QuoteChangedError.MISSING)
-            if quoted_total != quote.total:
-                raise QuoteChangedError(quote)
-
-            reference = None
-            if payment.method is PaymentMethod.ONLINE:
-                auth = self.gateway.authorise(quote.total, payment.option, payment.outcome)
-                if not auth.approved:
-                    raise PaymentDeclinedError(quote, f"{auth.message} No order was placed. "
-                                                      "Try again or choose cash on delivery.")
-                reference = auth.reference
-            now = self._now()
-            try:
+        reference = None
+        try:
+            with immediate_transaction(self.conn):
+                customer = self._require_customer(user_id)
+                existing = self.orders.get_by_token(token)
+                if existing is not None:
+                    if existing.customer_id != customer.id:
+                        raise AuthorizationError("This order belongs to another customer.")
+                    return self._confirmation(existing, created=False)
+                self._check_payment_choice(customer, payment)
+                quote = self._build_quote(customer, hub_id, address_id, quantities, voucher_code)
+                if quoted_total is None or not quote_fingerprint:
+                    raise QuoteChangedError(quote, QuoteChangedError.MISSING)
+                if quoted_total != quote.total or quote_fingerprint != quote.fingerprint(payment.method,payment.option):
+                    raise QuoteChangedError(quote)
+                if payment.method is PaymentMethod.ONLINE:
+                    auth = self.gateway.authorise(quote.total, payment.option, payment.outcome)
+                    if not auth.approved:
+                        raise PaymentDeclinedError(quote, f"{auth.message} No order was placed. Try again or choose cash on delivery.")
+                    reference = auth.reference
+                now = self._now()
                 order = Order.place(customer.id, quote, token, now)
                 order.id = self.orders.insert(order)
                 self.payments.insert(Payment(
                     order_id=order.id, method=payment.method, online_option=payment.option,
                     provider_ref=reference, amount=order.total, created_at=now,
                     state=PaymentState.PAID if payment.method is PaymentMethod.ONLINE else PaymentState.PENDING))
-            except BaseException:
-                if reference:
-                    self.gateway.release(reference)
-                raise
+        except BaseException:
+            if reference:
+                self.gateway.release(reference)
+            raise
         return self._confirmation(self.orders.get_by_id(order.id), created=True)
 
     def get_confirmation(self, user_id: int, order_id: int) -> OrderConfirmation:
@@ -166,8 +165,11 @@ class PlaceOrderController(BaseController):
 
     @staticmethod
     def _check_payment_choice(customer: Customer, payment: PaymentChoice) -> None:
+        if not isinstance(payment.method, PaymentMethod):
+            raise ValidationError('Please choose a valid payment method.')
         if payment.method is PaymentMethod.COD:
-            payment.option = None
+            if payment.option is not None:
+                raise ValidationError('Cash on delivery has no online option.')
             return
         if payment.option not in customer.online_options:
             allowed = ", ".join(o.value.replace("_", " ").lower() for o in customer.online_options)
@@ -183,7 +185,8 @@ class PlaceOrderController(BaseController):
             if address is not None and status.hub.distance_to(address) > rules.MAX_DELIVERY_KM:
                 continue
             options.append(status)
-        options.sort(key=lambda s: (s.load / s.hub.max_active_orders, s.hub.id))
+        options.sort(key=lambda s: (s.load / s.hub.max_active_orders,
+                                   s.hub.distance_to(address) if address is not None else 0, s.hub.id))
         return options[:rules.MAX_SUGGESTIONS]
 
     def _build_quote(self, customer: Customer, hub_id: int, address_id: Optional[int],

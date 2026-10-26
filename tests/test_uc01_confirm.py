@@ -7,10 +7,11 @@ from saigonbite.data_access import OrderDAO, PaymentDAO, connect
 from saigonbite.data_access import payment_dao
 
 from .conftest import GOI_CUON, HUB_D1, PHO, ADDRESS_HOME, checkout_form, count, new_connection
+from .p4_helpers import place
 
 
 def _place(client, **kw):
-    resp = client.post("/order/confirm", data=checkout_form(**kw))
+    resp = client.post("/order/confirm", data=checkout_form(client=client, **kw))
     assert resp.status_code == 303
     return resp
 
@@ -43,7 +44,7 @@ def test_T_UC01_12_transaction_is_begin_immediate_then_commit(db_path):
     conn = connect(db_path)
     statements = []
     conn.set_trace_callback(statements.append)
-    PlaceOrderController(conn).confirm_order(1, HUB_D1, ADDRESS_HOME, {PHO: "1"}, "tok-trace", 65000)
+    place(conn,lines={PHO:'1'},token='tok-trace')
     conn.close()
     begin = statements.index("BEGIN IMMEDIATE")
     commit = statements.index("COMMIT")
@@ -58,7 +59,7 @@ def test_T_UC01_13_failure_while_saving_payment_rolls_back_order_and_lines(db_pa
     monkeypatch.setattr(payment_dao.PaymentDAO, "insert", boom)
     conn = connect(db_path)
     with pytest.raises(RuntimeError):
-        PlaceOrderController(conn).confirm_order(1, HUB_D1, ADDRESS_HOME, {PHO: "2", GOI_CUON: "1"}, "tok-fail", 155000)
+        place(conn,lines={PHO:'2',GOI_CUON:'1'},token='tok-fail')
     conn.close()
     assert count(db_path, "orders") == 0
     assert count(db_path, "order_line") == 0
