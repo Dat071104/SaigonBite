@@ -60,7 +60,8 @@ class VoucherController(BaseController):
                 raise ConflictError(f"{current.code} is archived and can no longer be changed.")
             if self.vouchers.code_exists(voucher.code, except_id=voucher_id):
                 raise ValidationError(f"The code {voucher.code} already exists.")
-            self.vouchers.update(voucher)
+            if not self.vouchers.update(voucher):
+                raise ConflictError('The voucher changed; reload and retry.')
         return voucher
 
     def archive_voucher(self, user_id: int, voucher_id: int) -> Voucher:

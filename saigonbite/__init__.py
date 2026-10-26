@@ -108,6 +108,12 @@ def create_app(test_config: dict | None = None) -> Flask:
     def _conflict(exc):
         return _page(409, "Already changed", str(exc))
 
+    from saigonbite.data_access.database import StaleWriteError
+
+    @app.errorhandler(StaleWriteError)
+    def _stale_write(exc):
+        return _page(409, "Already changed", str(exc))
+
     @app.errorhandler(sqlite3.OperationalError)
     def _database_busy(exc):
         if getattr(exc, 'sqlite_errorcode', None) in (sqlite3.SQLITE_BUSY, sqlite3.SQLITE_LOCKED):

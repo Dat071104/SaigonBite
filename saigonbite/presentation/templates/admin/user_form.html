@@ -8,6 +8,14 @@
   {% if user %}<p class="muted">{{ user.role|label }}</p>{% endif %}
 </div>
 {{ error_box(error) }}
+{% if customer %}
+<section class="panel"><h2>Linked customer profile</h2>
+  <dl><dt>Name</dt><dd>{{ customer.full_name }}</dd><dt>Type</dt><dd>{{ customer.customer_type|label }}</dd>
+  <dt>Phone</dt><dd>{{ customer.phone or 'Not supplied' }}</dd><dt>Email</dt><dd>{{ customer.email or 'Not supplied' }}</dd>
+  <dt>Passport</dt><dd>{{ customer.passport_no or 'Not applicable' }}</dd><dt>Nationality</dt><dd>{{ customer.nationality or 'Not applicable' }}</dd></dl>
+  <p>Customer details are maintained by the customer. Admin can deactivate the linked account from Users.</p>
+</section>
+{% else %}
 <form method="post" class="panel stack" action="{{ url_for('admin.edit_user', user_id=user.id) if user else url_for('admin.new_user') }}">
   {{ csrf() }}
   {% if not user %}
@@ -23,4 +31,5 @@
   {{ field('password', 'New password' if user else 'Password', '', type='password', hint='leave empty to keep it' if user else 'at least 6 characters', required=not user, attrs='autocomplete="new-password"') }}
   <div class="actions"><button type="submit">Save account</button><a class="btn link" href="{{ url_for('admin.users') }}">Back</a></div>
 </form>
+{% endif %}
 {% endblock %}

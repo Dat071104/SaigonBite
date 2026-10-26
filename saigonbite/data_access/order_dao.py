@@ -87,6 +87,12 @@ class OrderDAO:
 
     # ---- archive (SUC-09) ---------------------------------------------------------------
 
+    def archive_one(self, order_id: int, now: str) -> bool:
+        cur = self.conn.execute(
+            f"UPDATE orders SET archived_at = ? WHERE id = ? AND archived_at IS NULL AND state IN ({_TERMINAL}) AND closed_at IS NOT NULL",
+            (now, order_id))
+        return cur.rowcount == 1
+
     def count_archivable(self, closed_before: str) -> int:
         return self.conn.execute(
             f"SELECT COUNT(*) FROM orders WHERE archived_at IS NULL AND state IN ({_TERMINAL}) AND closed_at < ?",

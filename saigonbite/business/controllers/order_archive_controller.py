@@ -16,10 +16,10 @@ from dataclasses import dataclass
 from datetime import date
 
 from saigonbite.business.domain import Order, Role
-from saigonbite.data_access import OrderDAO, immediate_transaction
+from saigonbite.data_access import DeliveryDAO, OrderDAO, PaymentDAO, ReplacementOfferDAO, immediate_transaction
 
 from .common import BaseController, vn_day_start_utc
-from .errors import ValidationError
+from .errors import ConflictError, NotFoundError, ValidationError
 
 
 @dataclass
@@ -48,6 +48,24 @@ class OrderArchiveController(BaseController):
     def list_archived(self, user_id: int) -> list[Order]:
         self._require_admin(user_id)
         return self.orders.list_archived()
+
+    def archive_order(self, user_id: int, order_id: int) -> Order:
+        with immediate_transaction(self.conn):
+            self._require_admin(user_id)
+            if self.orders.get_by_id(order_id) is None:
+                raise NotFoundError('Order not found.')
+            if not self.orders.archive_one(order_id, self._now()):
+                raise ConflictError('Only a closed, unarchived order can be archived.')
+        return self.orders.get_by_id(order_id)
+
+    def archived_history(self, user_id: int, order_id: int) -> dict[str, object]:
+        self._require_admin(user_id)
+        order = self.orders.get_by_id(order_id)
+        if order is None or order.archived_at is None:
+            raise NotFoundError('Archived order not found.')
+        return dict(order=order, payment=PaymentDAO(self.conn).get_by_order_id(order_id),
+                    delivery=DeliveryDAO(self.conn).get_by_order_id(order_id),
+                    offers=ReplacementOfferDAO(self.conn).list_for_order(order_id))
 
     def _require_admin(self, user_id: int) -> None:
         self._require_user(user_id, Role.ADMIN, message="Only administrators can archive orders.")

@@ -68,8 +68,20 @@ CREATE TABLE customer (
     passport_no    TEXT,                 -- required for TOURIST
     nationality    TEXT,
     CHECK ((customer_type = 'LOCAL' AND phone IS NOT NULL)
-        OR (customer_type = 'TOURIST' AND passport_no IS NOT NULL AND email IS NOT NULL))
+        OR (customer_type = 'TOURIST' AND passport_no IS NOT NULL AND email IS NOT NULL AND nationality IS NOT NULL AND length(trim(nationality)) >= 2))
 );
+
+
+-- P4: profile ownership is a CUSTOMER account, in both update directions.
+CREATE TRIGGER customer_role_insert BEFORE INSERT ON customer
+WHEN NOT EXISTS (SELECT 1 FROM user_account WHERE id=NEW.user_id AND role='CUSTOMER')
+BEGIN SELECT RAISE(ABORT, 'A customer profile requires a CUSTOMER account'); END;
+CREATE TRIGGER customer_role_update BEFORE UPDATE OF user_id ON customer
+WHEN NOT EXISTS (SELECT 1 FROM user_account WHERE id=NEW.user_id AND role='CUSTOMER')
+BEGIN SELECT RAISE(ABORT, 'A customer profile requires a CUSTOMER account'); END;
+CREATE TRIGGER linked_customer_role BEFORE UPDATE OF role ON user_account
+WHEN NEW.role != 'CUSTOMER' AND EXISTS (SELECT 1 FROM customer WHERE user_id=OLD.id)
+BEGIN SELECT RAISE(ABORT, 'A linked customer account must keep its CUSTOMER role'); END;
 
 CREATE TABLE address (
     id           INTEGER PRIMARY KEY,

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Archived order {{ order.id }} · SaigonBite{% endblock %}
+{% block content %}
+<h1>Archived order {{ order.id }}</h1>
+<p>{{ order.state|label }} · {{ order.closed_at|vn_time }}</p>
+<p>{{ order.delivery_address_text }}</p>
+<ul>{% for line in order.lines %}<li>{{ line.item_name }} × {{ line.quantity }} at {{ line.unit_price|vnd }}</li>{% endfor %}</ul>
+<dl><dt>Subtotal</dt><dd>{{ order.item_subtotal|vnd }}</dd><dt>Voucher discount</dt><dd>{{ order.voucher_discount|vnd }}</dd>
+<dt>Delivery fee</dt><dd>{{ order.delivery_fee|vnd }}</dd><dt>Quiet discount</dt><dd>{{ order.quiet_discount|vnd }}</dd>
+<dt>Total</dt><dd>{{ order.total|vnd }}</dd></dl>
+{% if payment %}<p>Payment {{ payment.method|label }} · {{ payment.state|label }} · {{ payment.amount|vnd }}. Refund owed (simulated; no payout): {{ payment.refund_amount|vnd }}</p>{% endif %}
+{% if delivery %}<p>Delivery {{ delivery.state|label }} · {{ delivery.finished_at|vn_time }} · {{ delivery.failure_reason or '' }}</p>{% endif %}
+<ul>{% for offer in offers %}<li>{{ offer.original_item_name }} → {{ offer.new_item_name }} · {{ offer.state|label }}</li>{% endfor %}</ul>
+{% endblock %}

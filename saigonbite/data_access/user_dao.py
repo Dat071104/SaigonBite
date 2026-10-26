@@ -4,6 +4,7 @@ import sqlite3
 from typing import Optional
 
 from saigonbite.business.domain import Role, UserAccount
+from .database import StaleWriteError
 
 _USER_COLUMNS = "id, username, password_hash, display_name, role, hub_id, is_active, created_at"
 
@@ -41,9 +42,11 @@ class UserDAO:
 
     def update(self, user: UserAccount) -> None:
         """Display name, hub assignment and password hash. The role and username never change."""
-        self.conn.execute(
-            "UPDATE user_account SET display_name = ?, hub_id = ?, password_hash = ? WHERE id = ?",
-            (user.display_name, user.hub_id, user.password_hash, user.id))
+        cur = self.conn.execute(
+            "UPDATE user_account SET display_name = ?, hub_id = ?, password_hash = ? WHERE id = ? AND role = ?",
+            (user.display_name, user.hub_id, user.password_hash, user.id, user.role.value))
+        if cur.rowcount != 1:
+            raise StaleWriteError('The account changed; reload and retry.')
 
     def set_active(self, user_id: int, active: bool) -> bool:
         cur = self.conn.execute("UPDATE user_account SET is_active = ? WHERE id = ? AND is_active = ?",

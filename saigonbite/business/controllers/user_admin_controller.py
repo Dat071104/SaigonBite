@@ -17,7 +17,7 @@ from typing import Mapping, Optional
 from werkzeug.security import generate_password_hash
 
 from saigonbite.business.domain import DeliveryState, Hub, Role, UserAccount
-from saigonbite.data_access import DeliveryDAO, HubDAO, immediate_transaction
+from saigonbite.data_access import CustomerDAO, DeliveryDAO, HubDAO, immediate_transaction
 
 from .common import BaseController
 from .errors import ConflictError, NotFoundError, ValidationError
@@ -41,6 +41,11 @@ class UserAdminController(BaseController):
     def get_user(self, user_id: int, target_id: int) -> UserAccount:
         self._require_admin(user_id)
         return self._target(target_id)
+
+    def get_customer(self, user_id: int, target_id: int):
+        self._require_admin(user_id)
+        self._target(target_id)
+        return CustomerDAO(self.conn).get_by_user_id(target_id)
 
     def create_staff(self, user_id: int, form: Mapping[str, str]) -> UserAccount:
         self._require_admin(user_id)
@@ -109,7 +114,7 @@ class UserAdminController(BaseController):
             hub = self.hubs.get(int(raw_hub_id or 0))
         except ValueError:
             hub = None
-        if hub is None:
+        if hub is None or hub.archived_at is not None:
             raise ValidationError("Kitchen staff need an active hub to work in.")
         return hub.id
 

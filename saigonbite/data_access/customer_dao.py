@@ -4,6 +4,7 @@ import sqlite3
 from typing import Optional
 
 from saigonbite.business.domain import Address, Customer, make_customer
+from .database import StaleWriteError
 
 _CUSTOMER_COLUMNS = "id, user_id, full_name, customer_type, phone, email, passport_no, nationality"
 _ADDRESS_COLUMNS = "id, customer_id, label, full_address, district, latitude, longitude, archived_at"
@@ -38,10 +39,12 @@ class CustomerDAO:
              customer.email, customer.passport_no, customer.nationality)).lastrowid
 
     def update(self, customer: Customer) -> None:
-        self.conn.execute(
-            "UPDATE customer SET full_name = ?, phone = ?, email = ?, passport_no = ?, nationality = ? WHERE id = ?",
+        cur = self.conn.execute(
+            "UPDATE customer SET full_name = ?, phone = ?, email = ?, passport_no = ?, nationality = ? WHERE id = ? AND user_id = ? AND customer_type = ?",
             (customer.full_name, customer.phone, customer.email, customer.passport_no, customer.nationality,
-             customer.id))
+             customer.id, customer.user_id, customer.customer_type.value))
+        if cur.rowcount != 1:
+            raise StaleWriteError('The profile changed; reload and retry.')
 
     # ---- addresses ---------------------------------------------------------------------
 

@@ -5,6 +5,10 @@ import sqlite3
 from contextlib import contextmanager
 
 
+class StaleWriteError(RuntimeError):
+    """A conditional persistence operation did not update its one expected row."""
+
+
 def connect(db_path: str) -> sqlite3.Connection:
     """Open a connection in autocommit mode so transactions are explicit (BEGIN IMMEDIATE)."""
     conn = sqlite3.connect(db_path, timeout=10, isolation_level=None)

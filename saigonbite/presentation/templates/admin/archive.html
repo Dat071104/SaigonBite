@@ -8,6 +8,11 @@
     Nothing is deleted, and the reports still count them. Open orders are never archived.</p>
 </div>
 {{ error_box(error) }}
+<form method="post" id="archive-one" action="" onsubmit="this.action='{{ url_for('admin.archive') }}/'+this.elements.order_id.value">
+  {{ csrf() }}<label for="order_id">Closed order ID</label>
+  <input id="order_id" name="order_id" type="number" min="1" required>
+  <button type="submit">Archive this order</button>
+</form>
 <form method="get" action="{{ url_for('admin.archive') }}" class="inline-form">
   <label for="closed_before">Closed before (Ho Chi Minh City day)</label>
   <input type="date" id="closed_before" name="closed_before" value="{{ day }}" required>
@@ -31,7 +36,7 @@
     <thead><tr><th>Order</th><th>Status</th><th>Closed</th><th>Archived</th><th class="num">Total</th></tr></thead>
     <tbody>
     {% for o in archived %}
-      <tr><td>{{ o.id }}</td><td>{{ o.state|label }}</td><td>{{ o.closed_at|vn_time }}</td><td>{{ o.archived_at|vn_time }}</td><td class="num">{{ o.total|vnd }}</td></tr>
+      <tr><td><a href="{{ url_for('admin.archived_history', order_id=o.id) }}">{{ o.id }}</a></td><td>{{ o.state|label }}</td><td>{{ o.closed_at|vn_time }}</td><td>{{ o.archived_at|vn_time }}</td><td class="num">{{ o.total|vnd }}</td></tr>
     {% endfor %}
     </tbody>
   </table>

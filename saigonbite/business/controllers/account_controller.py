@@ -64,7 +64,7 @@ class AccountController(BaseController):
             if self.users.get_by_username(username) is not None:
                 raise ValidationError(f"The username {username} is taken. Please choose another one.")
             user = UserAccount(id=0, username=username, password_hash=generate_password_hash(password),
-                               display_name=customer.full_name, role=Role.CUSTOMER)
+                               display_name=customer.full_name, role=Role.CUSTOMER, created_at=self._now())
             user.id = self.users.insert(user)
             customer.user_id = user.id
             customer.id = self.customers.insert(customer)
@@ -75,9 +75,9 @@ class AccountController(BaseController):
         return Profile(user=user, customer=customer, addresses=self.customers.list_addresses(customer.id))
 
     def update_profile(self, user_id: int, form: Mapping[str, str]) -> Profile:
-        user, customer = self._require_customer(user_id)
-        self._fill_customer(customer, form)
         with immediate_transaction(self.conn):
+            user, customer = self._require_customer(user_id)
+            self._fill_customer(customer, form)
             self.customers.update(customer)
             user.display_name = customer.full_name
             self.users.update(user)

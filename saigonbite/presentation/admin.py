@@ -202,7 +202,7 @@ def users():
 def new_user():
     return _form_page("admin/user_form.html", lambda: _users().create_staff(uid(), request.form),
                       "The account is created.", url_for("admin.users"), user=None, roles=STAFF_ROLES,
-                      hubs=_users().hubs_for_staff())
+                      hubs=_users().hubs_for_staff(), customer=None)
 
 
 @bp.route("/users/<int:user_id>", methods=["GET", "POST"])
@@ -211,15 +211,14 @@ def edit_user(user_id: int):
     user = _users().get_user(uid(), user_id)
     return _form_page("admin/user_form.html", lambda: _users().update_user(uid(), user_id, request.form),
                       "The account is saved.", url_for("admin.users"), user=user, roles=STAFF_ROLES,
-                      hubs=_users().hubs_for_staff())
+                      hubs=_users().hubs_for_staff(), customer=_users().get_customer(uid(), user_id))
 
 
 @bp.post("/users/<int:user_id>/active")
 @role_required(Role.ADMIN)
 def set_user_active(user_id: int):
-    active = request.form.get("active") == "1"
-    return act(lambda: _users().set_active(uid(), user_id, active),
-               "The account is active again." if active else "The account is deactivated and cannot log in.",
+    return act(lambda: _users().set_active(uid(), user_id, boolean_value(request.form.get('active',''))),
+               "Account activation updated.",
                url_for("admin.users"))
 
 
@@ -227,6 +226,19 @@ def set_user_active(user_id: int):
 
 def _archive() -> OrderArchiveController:
     return OrderArchiveController(get_db())
+
+
+@bp.post('/archive/<int:order_id>')
+@role_required(Role.ADMIN)
+def archive_order(order_id: int):
+    return act(lambda: _archive().archive_order(uid(), order_id),
+               'The closed order is archived. Its history and reports are kept.', url_for('admin.archive'))
+
+
+@bp.get('/archive/<int:order_id>')
+@role_required(Role.ADMIN)
+def archived_history(order_id: int):
+    return render_template('admin/archived_history.html', **_archive().archived_history(uid(), order_id))
 
 
 @bp.get("/archive")
