@@ -1,0 +1,314 @@
+{
+  "author": "722I0004 · AI-assisted (Codex)",
+  "scope": "Controlling sources and frozen design/analysis inputs; hash index is not a native-format verification claim",
+  "sources": [
+    {
+      "path": "D:\\RAD\\FINAL\\Part2\\codex\\P4_ADVISOR_REVIEW.md",
+      "sha256": "f29afffde5f3d06144e34a5e202fa82b2846f775707ae5666904eeb8c6c711ea"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\Part2\\codex\\P4_PROMPT.md",
+      "sha256": "d389194ef82880a0f7c62af293d82b04d5ea7d449687d3c65aa2bb495d1def4b"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\PLAN_SaigonBite_Part2_Final.md",
+      "sha256": "cbadf1c3833fecba16769d9036cb4ebfe1e563f845379ab3559dbe6f990790f3"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\_agent_reports\\P2-root.md",
+      "sha256": "8ae9c65c9491d956e8d9a817b8b9eefbdb98d85c2e91d8ff6711d92a644325f5"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\_agent_reports\\P3-review.md",
+      "sha256": "e738c01c10e34b5241aecfc62b4865dc005b678a085e6a622e41222cdb9ac891"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\_agent_reports\\P3-root.md",
+      "sha256": "018ab003121ee68a701a4ed4d8468830c60a7791924e9dc564df2db7e2d23af2"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\ai_usage_log.md",
+      "sha256": "5642ffb1ac027671011eb61ed5aa9bdb0eb22bd74a83c5b34d04b19ca01459b2"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\analysis_consistency.csv",
+      "sha256": "3066747676d8a80022d29eea9afdf6e659de12f6a77ad9d32f6369bfb979bdc1"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\baseline_2026-10-23.md",
+      "sha256": "20fb6e91cb8a82d64bbef891279d0e75d501fe93ca10bc465598dd97303532b6"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\decision_log.md",
+      "sha256": "808721468fcc81786f40b9cd5c892af9c03816adb4e7a741723e2a491ba26eb4"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\design\\class_table_mapping.csv",
+      "sha256": "9f22f332c15361d995c0f8a28e44f27ddb8c2c3640f936910114f27f5b76b3bb"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\design\\code_inventory.json",
+      "sha256": "e73df85a602630878fbddceda9c18e9d45cf063c20e1a4e8e14dd3a1c9d9a703"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\design\\design_annotations.json",
+      "sha256": "90920b755d32b717cf89240c2c4a203e2eb44657d9be098265f7177a980e93bf"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\design\\design_consistency.csv",
+      "sha256": "8842b9e05ab5d2f64732223c1693f95fa1c25960b1f6b27e0b50929e0975a645"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\design\\operation_realisation.csv",
+      "sha256": "b4222cd95da63972d50f57551882b3716eddc39a959c9a0cf3879b9bd8195ffc"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\design\\P4_design_inputs.csv",
+      "sha256": "a5a80518a5b456fbfc3c2b060a4e8a06776993b32aa32c6f1499811706285cb7"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\design\\uc01_view.json",
+      "sha256": "351a084d1f3297751221d384c5ad2e3edb03d03376597fc0ed44ed1cd23ffd4b"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\design\\uc02_view.json",
+      "sha256": "d0106700cfe598dd4b0d78abefec7bad9ff4ca46eafccd27bea488e146577864"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\design\\uc03_view.json",
+      "sha256": "e32a15dcd2e4a97d61a9321394631f59ce681bb84db42177a33849cb157bc6d9"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\design\\uc04_view.json",
+      "sha256": "95e2556138eb0727ebb36b75caa9214409ee4dae4a9d36babea0967235aa4bf8"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\design\\uc05_view.json",
+      "sha256": "62277b11cc87cf90adac2d504f5589c157f1870956976998803636aed21abd4c"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\design\\uc06_view.json",
+      "sha256": "59107ca5650fcc217e1ad3e7c00b4f3c1a88a15ea103e5d1325f890b454ba338"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\pc_mg_register.csv",
+      "sha256": "5ec0f82049106ba000da7de4e1f01eebc21fe21c48c344e556f32b585c6c159a"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\report\\I_1-1_vision.md",
+      "sha256": "1ad32558d95318a73a2cbc7f2d3a0ce88a5b79b0271710a3f719784b682fcac7"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\report\\I_1-2_org_gantt.md",
+      "sha256": "73af1ea524b6ba1b5916db628bd932e55a2888a56d814e691d684d3fa044a647"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\report\\I_1-3_iterations_backlog_risks.md",
+      "sha256": "c4496e75f93ac463a07eb26f2818b23fc7f68f38a792742894ed682c5fcbc166"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\report\\I_1-4_narrative_assumptions.md",
+      "sha256": "c18aecb1e12e563d9f8bc98f0e5e5fc84978ce718178d06d3691690f1043c948"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\report\\I_1-5_1-6_process.md",
+      "sha256": "5f031cf8d422c036452f83e4a7fb66a5254190b274261fbb3d1105977edb8280"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\report\\I_1-7_requirements.md",
+      "sha256": "bc8d5e0b784016069aa2dbfbdcf7ac6e29bff9ff1c7ec3511c69c6b51ec98154"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\report\\I_business_requirements.md",
+      "sha256": "cb2afe9b5d04ed7d26c3a0d4f1519ee13e31c59569e53bef8b9409aeba526786"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\report\\II_2-1-6_2-1-7_models.md",
+      "sha256": "11d19d880fdc66ce315dbaf90d93d84490cb6f283b839b0ccc048e335e52f757"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\report\\II_2-1_team_analysis.md",
+      "sha256": "d55eca1494797f974f4448b018ffcaf2c3c1d7d7634c534846fd12c2f07d6067"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\report\\II_2-2-1_UC-01.md",
+      "sha256": "031732697c76a454f1de526d7a8f308307c5eb34ec84c9cda08aff30795aa4a1"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\report\\II_2-2-2_UC-02.md",
+      "sha256": "99d2970df9d4c47a0b4a50a8a4181e5b504ab906873abf0c8ae0f2f3b5efbeba"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\report\\II_2-2-3_UC-03.md",
+      "sha256": "09ebcd96ace4e13923862f6fb82246d5e8fd53a3327ee95115791f7b5d549981"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\report\\II_2-2-4_UC-04.md",
+      "sha256": "59f0c2e211c09e8157bbdc5a0827a98174fbe5ccd18f5660f8662c8a547ad21e"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\report\\II_2-2-5_UC-05.md",
+      "sha256": "cc293195173df855f5a352d9a93f660f2258a07b135a17b9681aa40445d4ecc5"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\report\\II_2-2-6_UC-06.md",
+      "sha256": "d15f79ded45b9cbf92927ab2d95b012b09ada367dab1a3b5ef85853135d208a3"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\report\\II_2-3_crud.md",
+      "sha256": "1bb7078ad4ec7c9efd9629dfab7325c25c608edecffe3b06fe50807a042cefd6"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\report\\II_state_machines.md",
+      "sha256": "79e6858cd5bdab7b6a7a1de4ceddfcf35d0304343e7257afe09da0165a349fc6"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\report\\II_system_requirements_analysis.md",
+      "sha256": "6f42c121ea9c8e3db5aeef637b7b836a2486201d7a1c7cf8919a0e67116d6a3f"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\report\\III_3-1_UC-01.md",
+      "sha256": "259b008688c70392dfd62c40d1c4e7fc018a49f4bb2e108828df8e4e4effb63b"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\report\\III_3-2_UC-02.md",
+      "sha256": "92c352177fc78ea3726f94f4518bb981c5ae739b24c7ae71decde31355127b96"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\report\\III_3-3_UC-03.md",
+      "sha256": "c40645aea9c2c4aefa556ea1d49b5066f0eeef0eb6ee9580bfebaa64ef57d92c"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\report\\III_3-4_UC-04.md",
+      "sha256": "4fbf4ad227d42148ecc57e21341d8705a210a1d961fe688742aee25928576add"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\report\\III_3-5_UC-05.md",
+      "sha256": "ea3041e0650993faba584b1a58f5122e0984c4a621fb784e9f07a5bc4d94417c"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\report\\III_3-6_UC-06.md",
+      "sha256": "193195de98c338866ecd6ec5f5f93f6d87dac6687fd4d109b72499a6f945bd19"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\report\\III_system_requirements_design.md",
+      "sha256": "a54c840b882eaa1382450893074a9bda7f06c3f0931766841f81f72d97f343c3"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\report\\IV_4-1_subsystem_dcd.md",
+      "sha256": "fdbb1452967b9feff3ed9894260881a9a7885d3697ecdf30205570ec1c2fbe56"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\report\\IV_4-2_package.md",
+      "sha256": "de2db7e56236cc0349f9b490d03e2486b186e028b949ea240a2686ac3bcee2eb"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\report\\IV_4-3-1_mapping.md",
+      "sha256": "188d7ee11b03572f897720768786685db76f82fadc28c0f4e54ee581b759a5f6"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\report\\IV_4-3-2_dao_sequences.md",
+      "sha256": "b02d220b87a4d804e3419f26f98cfb78c5ae13d864d728d4eeae3c2407270462"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\report\\IV_system_requirements_implementation.md",
+      "sha256": "4085650048c2f34e7348c6d4e1ce9628e37ff0ee06cd5877d3011cb9ea1b77c0"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\rules.md",
+      "sha256": "c60dd4d03b438ba7066f793a0db562f07f5b190bd4c21997aa0d086825362f92"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\ssd_flow_membership.csv",
+      "sha256": "e32bff844ca6341466266637a45401245c490e03718e29557593be31b0266e59"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\ssd_operations.csv",
+      "sha256": "a463ee5f8e91d3e42b5ed63e53da4b4094ab0a44cbcbd97e9f1399e9047fb133"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\SUC.md",
+      "sha256": "2f1ef43d25358a13aca8b9f128fa9627083621c52e63756fe13c48b08d2c82d5"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\traceability.csv",
+      "sha256": "bce594488f52baa2049a974c9cbf0cad0467ac45b94e905bf331857c379e34f7"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\UC-01\\crc.md",
+      "sha256": "8dda000a168f452ef8dd13a9d6a530150c1a61d4c452d3e8625cfe557761027f"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\UC-01\\description.md",
+      "sha256": "b13f82878571a8f2f1912a00889cb7aae414efc12798db46b77ccb1495258e3b"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\UC-01\\design_classes.md",
+      "sha256": "8c7fff345d8aae1d17605d7b7ca0dd24e68299cc05f1a768f3d59980b4f6e468"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\UC-02\\crc.md",
+      "sha256": "e06028b8c38715bc40ba254c958df4bb8175229a0d78c3111d2fdf9033c21574"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\UC-02\\description.md",
+      "sha256": "71a64c911d07dd9163b7d004d6bd90b229564dc96742b5a5171763d74ddfa54e"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\UC-02\\design_classes.md",
+      "sha256": "f539c430c8fa013d57b04fba28373adb1ec92dc8d37d3096c750efb8687a6cd2"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\UC-03\\crc.md",
+      "sha256": "8696e52a9b70f92322854a7222965111bec3a3a2f7e1dac6b6cabf24de8a68ee"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\UC-03\\description.md",
+      "sha256": "daa3c8297819d7043b0815831650cefd029eb71aa128e743a0e8574df37618f7"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\UC-03\\design_classes.md",
+      "sha256": "b8394bdeef215d5eefd20e0bb135f2bce7766fa1eaabdde94c7e6ce6ae865911"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\UC-04\\crc.md",
+      "sha256": "b25ed79c2cff6230413a2e00fb797dda567dfbc04063397c2a8edfd4b19a8e0a"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\UC-04\\description.md",
+      "sha256": "fd1c255899f1872bb7db23ee5ac621b13a19c0bb078b06e2b6c2995356ae3164"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\UC-04\\design_classes.md",
+      "sha256": "74d0ac7a4a8a5d114abfd9fb419204a25e1fc71afb157db962ce96f26d03594b"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\UC-05\\crc.md",
+      "sha256": "cd3dea50c90ad171a8c6a7981e7c0fc2a60b87924ce7f1c474945b0cd200a9d4"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\UC-05\\description.md",
+      "sha256": "23370d848df8f5cadb8a4a4900d792b9ac53dbe59aad69f6a7f64e64f108f6eb"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\UC-05\\design_classes.md",
+      "sha256": "7b49720c559faa35c78ac41e5f56e47e2d2909c0e64a6e4b3845c34ab3db7831"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\UC-06\\crc.md",
+      "sha256": "e130c94e23e7d3b647bcd3a5942966729c5789112eb37d1a3accd8d2116aaf7e"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\UC-06\\description.md",
+      "sha256": "f0fbc43bef838f34b4187eaeee0a504b15b11ce12062684e8072dfeb67cc5cc7"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\UC-06\\design_classes.md",
+      "sha256": "a8b6973d496d9d855b40aca0329481ac0bbab0ccec81eca9fc40db2d6b81e441"
+    },
+    {
+      "path": "D:\\RAD\\FINAL\\SaigonBite\\models\\shared\\design_model.json",
+      "sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b"
+    }
+  ]
+}

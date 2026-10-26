@@ -1,21 +1,19 @@
 {
-  "author": "722I0004 \u00b7 AI-assisted (Codex)",
-  "current_subphase": "G4 root assessment",
+  "author": "722I0004 · AI-assisted (Codex)",
+  "current_subphase": "STOP at G4; evidence closure",
   "completed_ids": [
     "P4-001",
+    "P4-002",
+    "P4-003",
     "P4-004",
     "P4-005",
     "P4-006",
     "P4-007",
-    "P4-011",
-    "P4-012"
-  ],
-  "remaining_ids": [
-    "P4-002",
-    "P4-003",
     "P4-008",
     "P4-009",
     "P4-010",
+    "P4-011",
+    "P4-012",
     "P4-013",
     "P4-014",
     "P4-015",
@@ -127,7 +125,6 @@
     "P4-121",
     "P4-122",
     "P4-123",
-    "P4-124",
     "P4-125",
     "P4-126",
     "P4-127",
@@ -137,16 +134,19 @@
     "P4-131",
     "P4-132",
     "P4-133",
-    "P4-134",
-    "P4-135",
     "P4-136",
-    "P4-137",
-    "P4-138",
     "P4-139",
     "P4-140",
-    "P4-141",
     "P4-142",
-    "P4-143",
+    "P4-143"
+  ],
+  "remaining_ids": [
+    "P4-124",
+    "P4-134",
+    "P4-135",
+    "P4-137",
+    "P4-138",
+    "P4-141",
     "P4-144"
   ],
   "completed_subphases": [
@@ -160,12 +160,13 @@
     "P4.8",
     "P4.9"
   ],
-  "last_code_commit": "487072606df226591daadabc48a9ac22a91035a0",
-  "last_log": "D:\\RAD\\FINAL\\Part2\\notes\\P4-root\\p49_guards_4870726_20261026T061831354953.log",
+  "last_code_commit": "4a661ea255207842abc4f6e835f0f1e76f21567b",
+  "last_log": "D:\\RAD\\FINAL\\Part2\\notes\\P4-root\\closure_full_4a661ea_20261026T063106244066.log",
   "mode": "sequential",
   "workers": 0,
-  "blocker": null,
-  "exact_resume_command": "Read docs/part2/implementation/P4_progress.json; continue G4 root assessment",
-  "resume_condition": "Continue existing P4 run; preserve snapshots and all prior receipts.",
-  "G4": "IN PROGRESS"
+  "blocker": "P4-B02: 12 DAO→domain pairs conflict with frozen architecture",
+  "exact_resume_command": "Do not enter P5. Read p4_architecture_conflict.md and post-commit Part2/notes/P4_final_receipt.json.",
+  "resume_condition": "Specific owner authorization of architecture/model revision or documented mapper exception, then implementation and verification. A2 mapping authorization does not cover this.",
+  "G4": "BLOCKED",
+  "checkpoint_scope": "Before evidence commit; final receipt and external checklist record subsequent post-commit checks."
 }
