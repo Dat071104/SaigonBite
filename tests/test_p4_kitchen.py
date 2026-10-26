@@ -161,14 +161,14 @@ def test_receipt_stored_snapshot_read_only_own_and_truthful(client,app,db_path,m
     t=OrderTrackingController(conn);t.answer_replacement(1,o.id,offer.id,True)
     conn.execute("UPDATE menu_item SET name='New master name',price=99999 WHERE id=2")
     conn.close();login(client,'customer');before=facts(db_path);attempts=[]
-    original=db_module.connect
+    original=db_module.open_request_connection
     def observed(path):
         c=original(path)
         def authorize(action,*args):
             if action in (sqlite3.SQLITE_INSERT,sqlite3.SQLITE_UPDATE,sqlite3.SQLITE_DELETE):attempts.append(action);return sqlite3.SQLITE_DENY
             return sqlite3.SQLITE_OK
         c.set_authorizer(authorize);return c
-    monkeypatch.setattr(db_module,'connect',observed)
+    monkeypatch.setattr(db_module,'open_request_connection',observed)
     response=client.get(f'/order/{o.id}/receipt');page=response.get_data(as_text=True)
     assert response.status_code==200 and not attempts and facts(db_path)==before
     for text in ['Pho ga','90,000 VND','10,000 VND','100,000 VND','Simulated payment','Approximate',

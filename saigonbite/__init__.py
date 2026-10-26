@@ -62,6 +62,7 @@ def create_app(test_config: dict | None = None) -> Flask:
                 template_folder="presentation/templates",
                 static_folder="presentation/static")
     app.config.from_mapping(
+        ROLE_HOME_ENDPOINTS={role: links[0][0] for role, links in NAV.items()},
         SECRET_KEY=os.environ.get("SAIGONBITE_SECRET_KEY", "dev-only-secret-change-me"),
         DATABASE=os.environ.get("SAIGONBITE_DATABASE") or os.path.join(app.instance_path, "saigonbite.db"),
         SESSION_COOKIE_HTTPONLY=True,

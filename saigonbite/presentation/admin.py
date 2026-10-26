@@ -4,7 +4,7 @@ from flask import Blueprint, flash, redirect, render_template, request, url_for
 
 from saigonbite.business.controllers import (STAFF_ROLES, HubController, MenuController, OrderArchiveController,
                                              UserAdminController, ValidationError, VoucherController)
-from saigonbite.business.domain import DiscountType, Role
+from saigonbite.business.controllers.presentation_contract import DiscountType, Role
 from saigonbite.presentation.auth import role_required
 from saigonbite.presentation.db import get_db
 from saigonbite.presentation.helpers import act, uid, boolean_value

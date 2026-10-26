@@ -1,0 +1,470 @@
+[
+  {
+    "rule": "/",
+    "method": "GET",
+    "endpoint": "main.home",
+    "roles": "PUBLIC"
+  },
+  {
+    "rule": "/favicon.ico",
+    "method": "GET",
+    "endpoint": "main.favicon",
+    "roles": "PUBLIC"
+  },
+  {
+    "rule": "/login",
+    "method": "GET",
+    "endpoint": "auth.login",
+    "roles": "PUBLIC"
+  },
+  {
+    "rule": "/login",
+    "method": "POST",
+    "endpoint": "auth.login",
+    "roles": "PUBLIC"
+  },
+  {
+    "rule": "/logout",
+    "method": "POST",
+    "endpoint": "auth.logout",
+    "roles": "PUBLIC"
+  },
+  {
+    "rule": "/order/hubs",
+    "method": "GET",
+    "endpoint": "order.choose_hub",
+    "roles": "CUSTOMER"
+  },
+  {
+    "rule": "/order/hubs/<int:hub_id>",
+    "method": "GET",
+    "endpoint": "order.choose_items",
+    "roles": "CUSTOMER"
+  },
+  {
+    "rule": "/order/quote",
+    "method": "POST",
+    "endpoint": "order.quote",
+    "roles": "CUSTOMER"
+  },
+  {
+    "rule": "/order/confirm",
+    "method": "POST",
+    "endpoint": "order.confirm",
+    "roles": "CUSTOMER"
+  },
+  {
+    "rule": "/order/<int:order_id>/confirmation",
+    "method": "GET",
+    "endpoint": "order.confirmation",
+    "roles": "CUSTOMER"
+  },
+  {
+    "rule": "/order/mine",
+    "method": "GET",
+    "endpoint": "order.my_orders",
+    "roles": "CUSTOMER"
+  },
+  {
+    "rule": "/order/<int:order_id>",
+    "method": "GET",
+    "endpoint": "order.detail",
+    "roles": "CUSTOMER"
+  },
+  {
+    "rule": "/order/<int:order_id>/receipt",
+    "method": "GET",
+    "endpoint": "order.receipt",
+    "roles": "CUSTOMER"
+  },
+  {
+    "rule": "/order/<int:order_id>/replacement",
+    "method": "POST",
+    "endpoint": "order.answer_replacement",
+    "roles": "CUSTOMER"
+  },
+  {
+    "rule": "/order/<int:order_id>/cancel",
+    "method": "POST",
+    "endpoint": "order.cancel",
+    "roles": "CUSTOMER"
+  },
+  {
+    "rule": "/register",
+    "method": "GET",
+    "endpoint": "account.register",
+    "roles": "PUBLIC"
+  },
+  {
+    "rule": "/register",
+    "method": "POST",
+    "endpoint": "account.register",
+    "roles": "PUBLIC"
+  },
+  {
+    "rule": "/account",
+    "method": "GET",
+    "endpoint": "account.profile",
+    "roles": "CUSTOMER"
+  },
+  {
+    "rule": "/account",
+    "method": "POST",
+    "endpoint": "account.update_profile",
+    "roles": "CUSTOMER"
+  },
+  {
+    "rule": "/account/addresses/new",
+    "method": "GET",
+    "endpoint": "account.new_address",
+    "roles": "CUSTOMER"
+  },
+  {
+    "rule": "/account/addresses/new",
+    "method": "POST",
+    "endpoint": "account.new_address",
+    "roles": "CUSTOMER"
+  },
+  {
+    "rule": "/account/addresses/<int:address_id>",
+    "method": "GET",
+    "endpoint": "account.edit_address",
+    "roles": "CUSTOMER"
+  },
+  {
+    "rule": "/account/addresses/<int:address_id>",
+    "method": "POST",
+    "endpoint": "account.edit_address",
+    "roles": "CUSTOMER"
+  },
+  {
+    "rule": "/account/addresses/<int:address_id>/archive",
+    "method": "POST",
+    "endpoint": "account.archive_address",
+    "roles": "CUSTOMER"
+  },
+  {
+    "rule": "/kitchen/",
+    "method": "GET",
+    "endpoint": "kitchen.board",
+    "roles": "KITCHEN_STAFF"
+  },
+  {
+    "rule": "/kitchen/orders/<int:order_id>",
+    "method": "GET",
+    "endpoint": "kitchen.order",
+    "roles": "KITCHEN_STAFF"
+  },
+  {
+    "rule": "/kitchen/orders/<int:order_id>/confirm",
+    "method": "POST",
+    "endpoint": "kitchen.confirm",
+    "roles": "KITCHEN_STAFF"
+  },
+  {
+    "rule": "/kitchen/orders/<int:order_id>/reject",
+    "method": "POST",
+    "endpoint": "kitchen.reject",
+    "roles": "KITCHEN_STAFF"
+  },
+  {
+    "rule": "/kitchen/orders/<int:order_id>/offer",
+    "method": "POST",
+    "endpoint": "kitchen.offer",
+    "roles": "KITCHEN_STAFF"
+  },
+  {
+    "rule": "/kitchen/orders/<int:order_id>/prepare",
+    "method": "POST",
+    "endpoint": "kitchen.prepare",
+    "roles": "KITCHEN_STAFF"
+  },
+  {
+    "rule": "/kitchen/orders/<int:order_id>/ready",
+    "method": "POST",
+    "endpoint": "kitchen.ready",
+    "roles": "KITCHEN_STAFF"
+  },
+  {
+    "rule": "/kitchen/availability",
+    "method": "GET",
+    "endpoint": "kitchen.availability",
+    "roles": "KITCHEN_STAFF"
+  },
+  {
+    "rule": "/kitchen/availability/<int:item_id>",
+    "method": "POST",
+    "endpoint": "kitchen.set_availability",
+    "roles": "KITCHEN_STAFF"
+  },
+  {
+    "rule": "/delivery/",
+    "method": "GET",
+    "endpoint": "delivery.board",
+    "roles": "SHIPPER"
+  },
+  {
+    "rule": "/delivery/orders/<int:order_id>",
+    "method": "GET",
+    "endpoint": "delivery.detail",
+    "roles": "SHIPPER"
+  },
+  {
+    "rule": "/delivery/orders/<int:order_id>/pickup",
+    "method": "POST",
+    "endpoint": "delivery.pick_up",
+    "roles": "SHIPPER"
+  },
+  {
+    "rule": "/delivery/orders/<int:order_id>/delivered",
+    "method": "POST",
+    "endpoint": "delivery.delivered",
+    "roles": "SHIPPER"
+  },
+  {
+    "rule": "/delivery/orders/<int:order_id>/failed",
+    "method": "POST",
+    "endpoint": "delivery.failed",
+    "roles": "SHIPPER"
+  },
+  {
+    "rule": "/admin/hubs",
+    "method": "GET",
+    "endpoint": "admin.hubs",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/admin/",
+    "method": "GET",
+    "endpoint": "admin.hubs",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/admin/hubs/new",
+    "method": "GET",
+    "endpoint": "admin.new_hub",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/admin/hubs/new",
+    "method": "POST",
+    "endpoint": "admin.new_hub",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/admin/hubs/<int:hub_id>",
+    "method": "GET",
+    "endpoint": "admin.edit_hub",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/admin/hubs/<int:hub_id>",
+    "method": "POST",
+    "endpoint": "admin.edit_hub",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/admin/hubs/<int:hub_id>/archive",
+    "method": "POST",
+    "endpoint": "admin.archive_hub",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/admin/menu",
+    "method": "GET",
+    "endpoint": "admin.catalogue",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/admin/brands",
+    "method": "POST",
+    "endpoint": "admin.create_brand",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/admin/brands/<int:brand_id>",
+    "method": "POST",
+    "endpoint": "admin.rename_brand",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/admin/brands/<int:brand_id>/archive",
+    "method": "POST",
+    "endpoint": "admin.archive_brand",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/admin/items/new",
+    "method": "GET",
+    "endpoint": "admin.new_item",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/admin/items/new",
+    "method": "POST",
+    "endpoint": "admin.new_item",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/admin/items/<int:item_id>",
+    "method": "GET",
+    "endpoint": "admin.edit_item",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/admin/items/<int:item_id>",
+    "method": "POST",
+    "endpoint": "admin.edit_item",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/admin/items/<int:item_id>/archive",
+    "method": "POST",
+    "endpoint": "admin.archive_item",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/admin/hubs/<int:hub_id>/menu",
+    "method": "GET",
+    "endpoint": "admin.hub_menu",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/admin/hubs/<int:hub_id>/menu",
+    "method": "POST",
+    "endpoint": "admin.list_item",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/admin/hubs/<int:hub_id>/menu/<int:item_id>/remove",
+    "method": "POST",
+    "endpoint": "admin.unlist_item",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/admin/hubs/<int:hub_id>/menu/<int:item_id>/availability",
+    "method": "POST",
+    "endpoint": "admin.hub_item_availability",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/admin/vouchers",
+    "method": "GET",
+    "endpoint": "admin.vouchers",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/admin/vouchers/new",
+    "method": "GET",
+    "endpoint": "admin.new_voucher",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/admin/vouchers/new",
+    "method": "POST",
+    "endpoint": "admin.new_voucher",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/admin/vouchers/<int:voucher_id>",
+    "method": "GET",
+    "endpoint": "admin.edit_voucher",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/admin/vouchers/<int:voucher_id>",
+    "method": "POST",
+    "endpoint": "admin.edit_voucher",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/admin/vouchers/<int:voucher_id>/archive",
+    "method": "POST",
+    "endpoint": "admin.archive_voucher",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/admin/users",
+    "method": "GET",
+    "endpoint": "admin.users",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/admin/users/new",
+    "method": "GET",
+    "endpoint": "admin.new_user",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/admin/users/new",
+    "method": "POST",
+    "endpoint": "admin.new_user",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/admin/users/<int:user_id>",
+    "method": "GET",
+    "endpoint": "admin.edit_user",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/admin/users/<int:user_id>",
+    "method": "POST",
+    "endpoint": "admin.edit_user",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/admin/users/<int:user_id>/active",
+    "method": "POST",
+    "endpoint": "admin.set_user_active",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/admin/archive/<int:order_id>",
+    "method": "POST",
+    "endpoint": "admin.archive_order",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/admin/archive/<int:order_id>",
+    "method": "GET",
+    "endpoint": "admin.archived_history",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/admin/archive",
+    "method": "GET",
+    "endpoint": "admin.archive",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/admin/archive",
+    "method": "POST",
+    "endpoint": "admin.archive_orders",
+    "roles": "ADMIN"
+  },
+  {
+    "rule": "/reports/sales",
+    "method": "GET",
+    "endpoint": "reports.sales",
+    "roles": "MANAGER"
+  },
+  {
+    "rule": "/reports/",
+    "method": "GET",
+    "endpoint": "reports.sales",
+    "roles": "MANAGER"
+  },
+  {
+    "rule": "/reports/workload",
+    "method": "GET",
+    "endpoint": "reports.workload",
+    "roles": "MANAGER"
+  },
+  {
+    "rule": "/reports/delivery",
+    "method": "GET",
+    "endpoint": "reports.delivery",
+    "roles": "MANAGER"
+  }
+]

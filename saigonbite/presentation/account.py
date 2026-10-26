@@ -3,13 +3,13 @@ from flask import Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_user
 
 from saigonbite.business.controllers import AccountController, NotFoundError, ValidationError
-from saigonbite.business.domain import Role, rules
+from saigonbite.business.controllers.presentation_contract import Role, district_choices
 from saigonbite.presentation.auth import SessionUser, role_required
 from saigonbite.presentation.db import get_db
 from saigonbite.presentation.helpers import act, uid
 
 bp = Blueprint("account", __name__)
-DISTRICTS = [(name, name) for name in rules.DISTRICTS]
+DISTRICTS = district_choices()
 
 
 def _controller() -> AccountController:

@@ -12,7 +12,7 @@
   <tbody>
   {% for r in report.rows %}
     {# OrderState is a str enum, so the counts can be read with the state names #}
-    <tr id="workload-{{ r.status.hub.id }}"><td>{{ r.status.hub.name }}</td>
+    <tr id="workload-{{ r.status.hub.id }}"><td>{{ r.status.hub.name }}{% if r.status.hub.archived_at %} (Archived){% endif %}</td>
       <td class="num">{{ r.counts.get('PLACED', 0) }}</td><td class="num">{{ r.counts.get('CONFIRMED', 0) }}</td>
       <td class="num">{{ r.counts.get('PREPARING', 0) }}</td>
       <td class="num">{{ r.status.load }} / {{ r.status.hub.max_active_orders }}</td><td class="num">{{ r.status.load_percent }}%</td>

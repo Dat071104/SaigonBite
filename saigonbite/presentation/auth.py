@@ -7,7 +7,7 @@ from flask_login import LoginManager, UserMixin, current_user, login_user, logou
 from werkzeug.exceptions import HTTPException
 
 from saigonbite.business.controllers import AuthController
-from saigonbite.business.domain import Role, UserAccount
+from saigonbite.business.controllers.presentation_contract import Role, UserAccount
 from saigonbite.presentation.db import get_db
 
 bp = Blueprint("auth", __name__)
@@ -60,8 +60,7 @@ def role_required(*roles: Role):
 
 def home_for(role: Role) -> str:
     """The first screen of each role (the first link of its navigation)."""
-    from saigonbite import NAV
-    return url_for(NAV[role.value][0][0])
+    return url_for(current_app.config['ROLE_HOME_ENDPOINTS'][role.value])
 
 
 def _safe_next(target: str | None) -> str | None:

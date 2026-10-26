@@ -10,12 +10,27 @@ import sqlite3
 from typing import Optional
 
 
+class ReportDataUnavailable(RuntimeError):
+    """Required report relationships are absent; do not replace them with zero."""
+
+
 class ReportDAO:
     def __init__(self, conn: sqlite3.Connection):
         self.conn = conn
 
+    def assert_complete(self) -> None:
+        missing = self.conn.execute(
+            "SELECT COUNT(*) FROM orders o LEFT JOIN payment p ON p.order_id=o.id "
+            "LEFT JOIN delivery d ON d.order_id=o.id WHERE "
+            "(o.state='DELIVERED' AND (p.id IS NULL OR d.id IS NULL OR d.state!='DELIVERED' OR d.finished_at IS NULL)) "
+            "OR (o.state='DELIVERY_FAILED' AND (p.id IS NULL OR d.id IS NULL OR d.state!='FAILED' OR d.finished_at IS NULL))"
+        ).fetchone()[0]
+        if missing:
+            raise ReportDataUnavailable('Required report data is incomplete. No figures were calculated.')
+
     def sales_by_hub(self, start_utc: str, end_utc: str, hub_id: Optional[int]) -> list[sqlite3.Row]:
         """DELIVERED orders whose delivery finished in [start_utc, end_utc), one row per hub."""
+        self.assert_complete()
         return self.conn.execute(
             "SELECT h.id AS hub_id, h.name AS hub_name, COUNT(*) AS orders, "
             "       SUM(o.item_subtotal) AS item_sales, SUM(o.voucher_discount) AS voucher_discounts, "
@@ -53,6 +68,7 @@ class ReportDAO:
 
     def finished_deliveries(self, start_utc: str, end_utc: str, hub_id: Optional[int]) -> list[sqlite3.Row]:
         """Deliveries that ended (DELIVERED or FAILED) in [start_utc, end_utc)."""
+        self.assert_complete()
         return self.conn.execute(
             "SELECT o.id AS order_id, o.hub_id, h.name AS hub_name, d.state, d.ready_at, d.picked_up_at, "
             "       d.finished_at, d.shipper_id, u.display_name AS shipper_name "

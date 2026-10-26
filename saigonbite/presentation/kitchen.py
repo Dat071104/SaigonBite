@@ -3,7 +3,7 @@ SUC-06 (availability at my hub). Every controller call checks the staff member's
 from flask import Blueprint, render_template, request, url_for
 
 from saigonbite.business.controllers import KitchenController
-from saigonbite.business.domain import Role
+from saigonbite.business.controllers.presentation_contract import Role
 from saigonbite.presentation.auth import role_required
 from saigonbite.presentation.db import get_db
 from saigonbite.presentation.helpers import act, uid, boolean_value

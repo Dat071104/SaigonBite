@@ -37,5 +37,10 @@ def immediate_transaction(conn: sqlite3.Connection):
             try:
                 conn.rollback()
             except sqlite3.Error:
-                pass  # Preserve the original BEGIN/body/COMMIT failure.
+                # A failed rollback must not return an active transaction to a caller.
+                # Closing SQLite rolls back pending work; preserve the original error.
+                try:
+                    conn.close()
+                except sqlite3.Error:
+                    pass
         raise

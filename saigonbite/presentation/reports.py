@@ -3,12 +3,18 @@ from flask import Blueprint, render_template, request
 import sqlite3
 
 from saigonbite.business.controllers import ReportController, ValidationError
-from saigonbite.business.domain import Role
+from saigonbite.business.controllers.report_controller import ReportDataUnavailable
+from saigonbite.business.controllers.presentation_contract import Role
 from saigonbite.presentation.auth import role_required
 from saigonbite.presentation.db import get_db
 from saigonbite.presentation.helpers import uid
 
 bp = Blueprint("reports", __name__, url_prefix="/reports")
+
+
+@bp.errorhandler(ReportDataUnavailable)
+def incomplete_data(exc):
+    return render_template('error.html',code=503,title='Report data unavailable',message=str(exc)),503
 
 
 @bp.errorhandler(sqlite3.OperationalError)
@@ -29,7 +35,10 @@ def _controller() -> ReportController:
 def _filtered(template: str, run):
     args = request.args
     try:
-        report = run(args.get("from") or None, args.get("to") or None, args.get("hub", type=int))
+        raw_hub=args.get('hub','')
+        if raw_hub and (not raw_hub.isascii() or not raw_hub.isdigit()):
+            raise ValidationError('Choose a valid hub ID.')
+        report = run(args.get("from") or None, args.get("to") or None, int(raw_hub) if raw_hub else None)
     except ValidationError as exc:
         return render_template(template, report=None, error=str(exc), args=args,
                                hubs=_controller().all_hubs()), 400

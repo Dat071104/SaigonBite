@@ -31,7 +31,7 @@
   <h2 id="top-h">Best-selling dishes</h2>
   <table class="data" id="top-items">
     <thead><tr><th>Dish</th><th class="num">Quantity</th><th class="num">Revenue</th></tr></thead>
-    <tbody>{% for name, qty, revenue in report.top_items %}<tr><td>{{ name }}</td><td class="num">{{ qty }}</td><td class="num">{{ revenue|vnd }}</td></tr>{% endfor %}</tbody>
+    <tbody>{% for item_id, name, qty, revenue in report.top_items %}<tr data-item-id="{{ item_id }}"><td>{{ name }}</td><td class="num">{{ qty }}</td><td class="num">{{ revenue|vnd }}</td></tr>{% endfor %}</tbody>
   </table>
 </section>
 {% endif %}

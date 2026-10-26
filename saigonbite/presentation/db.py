@@ -4,7 +4,7 @@ import sqlite3
 
 from flask import current_app, g
 
-from saigonbite.data_access import connect
+from saigonbite.business.controllers.presentation_contract import open_request_connection
 
 
 def get_db() -> sqlite3.Connection:
@@ -12,7 +12,7 @@ def get_db() -> sqlite3.Connection:
         path = current_app.config["DATABASE"]
         if not os.path.exists(path):
             raise RuntimeError(f"Database not found at {path}. Run: python init_db.py")
-        g.db = connect(path)
+        g.db = open_request_connection(path)
     return g.db
 
 

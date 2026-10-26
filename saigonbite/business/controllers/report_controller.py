@@ -20,6 +20,7 @@ from typing import Optional
 
 from saigonbite.business.domain import Hub, HubStatus, OrderState, Role
 from saigonbite.data_access import HubDAO, ReportDAO
+from saigonbite.data_access.report_dao import ReportDataUnavailable
 
 from .common import BaseController, vn_day_start_utc
 from .errors import ValidationError
@@ -63,7 +64,7 @@ class SalesReport:
     hub: Optional[Hub]
     rows: list[SalesRow]
     totals: SalesRow
-    top_items: list[tuple[str, int, int]]      # name, quantity, revenue
+    top_items: list[tuple[int, str, int, int]]      # item ID, snapshot name, quantity, revenue
 
 
 @dataclass
@@ -141,7 +142,7 @@ class ReportController(BaseController):
         totals = SalesRow(label="All hubs" if hub is None else hub.name)
         for row in rows:
             totals.add(row)
-        top = [(r["item_name"], r["quantity"], r["revenue"])
+        top = [(r["menu_item_id"], r["item_name"], r["quantity"], r["revenue"])
                for r in self.reports.top_items(period.start_utc, period.end_utc, hub_id)]
         return SalesReport(period=period, hub=hub, rows=rows, totals=totals, top_items=top)
 
@@ -188,7 +189,7 @@ class ReportController(BaseController):
         self._require_user(user_id, Role.MANAGER, message="Only managers can read the reports.")
 
     def _hub(self, hub_id: Optional[int]) -> Optional[Hub]:
-        if not hub_id:
+        if hub_id is None:
             return None
         hub = self.hubs.get_including_archived(hub_id)
         if hub is None:

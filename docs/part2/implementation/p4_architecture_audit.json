@@ -1,0 +1,2565 @@
+{
+  "author": "722I0004 \u00b7 AI-assisted (Codex)",
+  "revision": "487072606df226591daadabc48a9ac22a91035a0",
+  "source_hashes": {
+    "saigonbite/__init__.py": "662ad112e97b4b0bce2ad59e8aa424556c514805a960c51cdc87d2b08ac49871",
+    "saigonbite/business/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "saigonbite/data_access/customer_dao.py": "339e8cebff9119e7f500e6e007d8da3ad1f8f66d1260ac9c87fd4a679a997270",
+    "saigonbite/data_access/database.py": "01fa888bd293550d89b7c0d425d5b9956dab1315d230247b7e37722b61af34a7",
+    "saigonbite/data_access/delivery_dao.py": "556b8a3a4f2712fc5fb4d693ba514656df3660b8915513809654fdbd2f19a2ed",
+    "saigonbite/data_access/hub_dao.py": "8ed98b693817a03a153633bf6f060cf417e1c674f98eeee2681c81fd05a9ed62",
+    "saigonbite/data_access/menu_dao.py": "01c81392a8e9198285b21ff52b7533567f812356eac2b79980a1f9ef52e5eefc",
+    "saigonbite/data_access/offer_dao.py": "388ff197ec614a79418e67703da1f311f72061c18f8b12bae691eff340edfdaf",
+    "saigonbite/data_access/order_dao.py": "70977afb13605c8615ed2647ff7fd0aecd35eac9f3d2e976ab4ec16923896634",
+    "saigonbite/data_access/payment_dao.py": "ae7cdba65ce06f1079c51ea723d4ee4c704138d12683bed0864a32e3b6cbc176",
+    "saigonbite/data_access/payment_gateway.py": "bb3fd7712bd02d4703fa0b9ae0c1d3104c55f9c3f377f34eafed9827e9b5db9a",
+    "saigonbite/data_access/report_dao.py": "8d8229c4feee182f6acb6cfb5ee582ca2fe9fd8d535239cab16603ebbfa82931",
+    "saigonbite/data_access/user_dao.py": "733218bbd7eec897656c511cefbf35896ad2ffd1da8050eb0263a7e0ce83c5a4",
+    "saigonbite/data_access/voucher_dao.py": "f488df9a389c17eb66b52888ce87e873948b8f5b59aaf288da984fe1c512fed5",
+    "saigonbite/data_access/__init__.py": "841ea80968b518ca95b24e561446bbc8ae016b670bae22782b450ef137f0e5b4",
+    "saigonbite/presentation/account.py": "4aaa982cd481faf25f9b81638cbb7ccc1e6cc4df24b8006907a5fc5425b7774b",
+    "saigonbite/presentation/admin.py": "13b4b898edf462f36ab66c6bb32797f540fe7999aa70438f7c9b81d50196c5f1",
+    "saigonbite/presentation/auth.py": "934c132dc7326761474f16591df191822eede76430981bec8db7ef27f5d89420",
+    "saigonbite/presentation/db.py": "d8c13349e700ebb9f1bbba6c3d2a59067e3cafc3805cd6e5de1c0e93958f9f1d",
+    "saigonbite/presentation/delivery.py": "dd1b856f8af694523cc4d91078dc217d52882326447351c375cd22b6e698e09d",
+    "saigonbite/presentation/helpers.py": "913a21b93f0a2b6f8dad90880380fc80decad7be67f5ba1d46da5a66ae2e09f0",
+    "saigonbite/presentation/kitchen.py": "dcd13061b08dc7c3897ab08b84bcaa85214824d2fb380c9385620a82105dd973",
+    "saigonbite/presentation/main.py": "31f435e10464055089c4c8457e469d8f5d9e6428eef412aadbded3eaa9ea0fc7",
+    "saigonbite/presentation/order.py": "cb1ebbfdd014ea6aaf04c9c33d58a2aeb2ead308e523cb3246f3b7e1ebc1547e",
+    "saigonbite/presentation/reports.py": "f907cc5b3425281c33c27db9085bcb4895c48d26e9cbb5b4e54db8f27323e4cd",
+    "saigonbite/presentation/security.py": "6424304c7a48efefa188704cd34763d32d44cac86e67a2020f7cd3f9046e0fa2",
+    "saigonbite/presentation/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "saigonbite/business/controllers/account_controller.py": "0bcbac78996c7cd5ef07afa5e5cbcf5d235d69be0355a00d3268235af696b408",
+    "saigonbite/business/controllers/auth_controller.py": "9df72147401be9b15e9b4da049becdbc32eca171ff2cf053d60c21698da8653c",
+    "saigonbite/business/controllers/common.py": "2ba5df4a33d590cbd3dd70ed7a88aa3c729c0a416ab62fccc6b96bbc3f3f5782",
+    "saigonbite/business/controllers/delivery_controller.py": "f49dc3fd4fa910cb8e0d7fbd375e784c4601448987488f2134bc673e9fc9a87a",
+    "saigonbite/business/controllers/errors.py": "82766eac6c3a90f8de620da3b3d20e6edb9af98776bb76537bbc1373e0ce314b",
+    "saigonbite/business/controllers/hub_controller.py": "0cd4a1a7d1c2c8a01203a06120dd8baf008f1044c2a5904cd9a219ee7643fb07",
+    "saigonbite/business/controllers/kitchen_controller.py": "5d585882d7c11b289c52b30453fc596dc9dc5ea094300710900dcd45dcb712d5",
+    "saigonbite/business/controllers/menu_controller.py": "0b80b9ab63002b71fbddaab2ddaf65b4447e9d0886f6f7520757cc62a5d4839e",
+    "saigonbite/business/controllers/order_archive_controller.py": "d6c3b25d97c522c15575590b71ae2416ce6fdd589e3ebb99f7d5a6d268dbd8c8",
+    "saigonbite/business/controllers/order_tracking_controller.py": "3f2340771ae4edf1d0b2042697725eb00a437c885a174fc5b353f8476f33b1e7",
+    "saigonbite/business/controllers/place_order_controller.py": "e484b40bdb00b6fdd59ffa2060439c9211defbb6660764b26368954fcee13ab2",
+    "saigonbite/business/controllers/presentation_contract.py": "3e1975205437e49ca152d570d918bd65d7f338c9cdd829392327cbd7d79725f7",
+    "saigonbite/business/controllers/report_controller.py": "3d0bbf03ad4ffdf6ce311d08f23cc1f8249ab536fed87d33a555a9ae790a044f",
+    "saigonbite/business/controllers/user_admin_controller.py": "70d72ce700823664853245b92e601cdf99a47178ae46a0600b186e9ac537d821",
+    "saigonbite/business/controllers/voucher_controller.py": "9737ec16dc563d9e2a800fc0bd13662449cbcb130eb110dab56bebbdf2923928",
+    "saigonbite/business/controllers/__init__.py": "6cfc8253d287f5f1f4ee3d67ec5097ff21d7856059920844b895518b3d206e4c",
+    "saigonbite/business/domain/enums.py": "51c49e0725a9f65caafd6a9d4445aa86e38d75f221032272827507dc0c076c12",
+    "saigonbite/business/domain/models.py": "2eb6a94695724c1645855f58925f27fe8a5a06bb588859b3cc0ac31854a479ba",
+    "saigonbite/business/domain/rules.py": "78f7bf22516a638c7ab68181348c1119e39999390857f518cc84dfdea44e4645",
+    "saigonbite/business/domain/__init__.py": "f75360dd0991c91eab8f1564e71eec2b3d3c5db6bafc59845ff52eef89f47c0a"
+  },
+  "records": [
+    {
+      "source": "saigonbite.__init__",
+      "target": "saigonbite.business.controllers",
+      "name": "AuthorizationError",
+      "line": 78
+    },
+    {
+      "source": "saigonbite.__init__",
+      "target": "saigonbite.business.controllers",
+      "name": "ConflictError",
+      "line": 78
+    },
+    {
+      "source": "saigonbite.__init__",
+      "target": "saigonbite.business.controllers",
+      "name": "NotFoundError",
+      "line": 78
+    },
+    {
+      "source": "saigonbite.__init__",
+      "target": "saigonbite.presentation.account",
+      "name": "account",
+      "line": 79
+    },
+    {
+      "source": "saigonbite.__init__",
+      "target": "saigonbite.presentation.admin",
+      "name": "admin",
+      "line": 79
+    },
+    {
+      "source": "saigonbite.__init__",
+      "target": "saigonbite.presentation.auth",
+      "name": "auth",
+      "line": 79
+    },
+    {
+      "source": "saigonbite.__init__",
+      "target": "saigonbite.presentation.db",
+      "name": "db",
+      "line": 79
+    },
+    {
+      "source": "saigonbite.__init__",
+      "target": "saigonbite.presentation.delivery",
+      "name": "delivery",
+      "line": 79
+    },
+    {
+      "source": "saigonbite.__init__",
+      "target": "saigonbite.presentation.kitchen",
+      "name": "kitchen",
+      "line": 79
+    },
+    {
+      "source": "saigonbite.__init__",
+      "target": "saigonbite.presentation.main",
+      "name": "main",
+      "line": 79
+    },
+    {
+      "source": "saigonbite.__init__",
+      "target": "saigonbite.presentation.order",
+      "name": "order",
+      "line": 79
+    },
+    {
+      "source": "saigonbite.__init__",
+      "target": "saigonbite.presentation.reports",
+      "name": "reports",
+      "line": 79
+    },
+    {
+      "source": "saigonbite.__init__",
+      "target": "saigonbite.presentation.security",
+      "name": "security",
+      "line": 79
+    },
+    {
+      "source": "saigonbite.__init__",
+      "target": "saigonbite.data_access.database",
+      "name": "StaleWriteError",
+      "line": 112
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.account_controller",
+      "name": "AccountController",
+      "line": 1
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.account_controller",
+      "name": "Profile",
+      "line": 1
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.auth_controller",
+      "name": "AuthController",
+      "line": 2
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.delivery_controller",
+      "name": "DeliveryController",
+      "line": 3
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.delivery_controller",
+      "name": "DeliveryView",
+      "line": 3
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.delivery_controller",
+      "name": "ShipperBoard",
+      "line": 3
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.errors",
+      "name": "AuthorizationError",
+      "line": 4
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.errors",
+      "name": "BusinessError",
+      "line": 4
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.errors",
+      "name": "ConflictError",
+      "line": 4
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.errors",
+      "name": "HubUnavailableError",
+      "line": 4
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.errors",
+      "name": "NotFoundError",
+      "line": 4
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.errors",
+      "name": "PaymentDeclinedError",
+      "line": 4
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.errors",
+      "name": "QuoteChangedError",
+      "line": 4
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.errors",
+      "name": "ValidationError",
+      "line": 4
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.hub_controller",
+      "name": "HubAdminView",
+      "line": 6
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.hub_controller",
+      "name": "HubController",
+      "line": 6
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.kitchen_controller",
+      "name": "KitchenBoard",
+      "line": 7
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.kitchen_controller",
+      "name": "KitchenController",
+      "line": 7
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.kitchen_controller",
+      "name": "KitchenOrderView",
+      "line": 7
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.menu_controller",
+      "name": "Catalogue",
+      "line": 8
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.menu_controller",
+      "name": "HubMenu",
+      "line": 8
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.menu_controller",
+      "name": "MenuController",
+      "line": 8
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.order_archive_controller",
+      "name": "ArchivePreview",
+      "line": 9
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.order_archive_controller",
+      "name": "OrderArchiveController",
+      "line": 9
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.order_tracking_controller",
+      "name": "OrderDetail",
+      "line": 10
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.order_tracking_controller",
+      "name": "OrderSummary",
+      "line": 10
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.order_tracking_controller",
+      "name": "OrderTrackingController",
+      "line": 10
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.place_order_controller",
+      "name": "HubMenuView",
+      "line": 11
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.place_order_controller",
+      "name": "OrderConfirmation",
+      "line": 11
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.place_order_controller",
+      "name": "PaymentChoice",
+      "line": 11
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.place_order_controller",
+      "name": "PlaceOrderController",
+      "line": 11
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.report_controller",
+      "name": "DeliveryReport",
+      "line": 12
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.report_controller",
+      "name": "ReportController",
+      "line": 12
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.report_controller",
+      "name": "SalesReport",
+      "line": 12
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.report_controller",
+      "name": "WorkloadReport",
+      "line": 12
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.user_admin_controller",
+      "name": "STAFF_ROLES",
+      "line": 13
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.user_admin_controller",
+      "name": "UserAdminController",
+      "line": 13
+    },
+    {
+      "source": "saigonbite.business.controllers.__init__",
+      "target": "saigonbite.business.controllers.__init__.voucher_controller",
+      "name": "VoucherController",
+      "line": 14
+    },
+    {
+      "source": "saigonbite.business.controllers.account_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Address",
+      "line": 22
+    },
+    {
+      "source": "saigonbite.business.controllers.account_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Customer",
+      "line": 22
+    },
+    {
+      "source": "saigonbite.business.controllers.account_controller",
+      "target": "saigonbite.business.domain",
+      "name": "CustomerType",
+      "line": 22
+    },
+    {
+      "source": "saigonbite.business.controllers.account_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Role",
+      "line": 22
+    },
+    {
+      "source": "saigonbite.business.controllers.account_controller",
+      "target": "saigonbite.business.domain",
+      "name": "UserAccount",
+      "line": 22
+    },
+    {
+      "source": "saigonbite.business.controllers.account_controller",
+      "target": "saigonbite.business.domain",
+      "name": "make_customer",
+      "line": 22
+    },
+    {
+      "source": "saigonbite.business.controllers.account_controller",
+      "target": "saigonbite.business.domain.rules",
+      "name": "rules",
+      "line": 22
+    },
+    {
+      "source": "saigonbite.business.controllers.account_controller",
+      "target": "saigonbite.data_access",
+      "name": "CustomerDAO",
+      "line": 23
+    },
+    {
+      "source": "saigonbite.business.controllers.account_controller",
+      "target": "saigonbite.data_access",
+      "name": "immediate_transaction",
+      "line": 23
+    },
+    {
+      "source": "saigonbite.business.controllers.account_controller",
+      "target": "saigonbite.business.controllers.common",
+      "name": "BaseController",
+      "line": 25
+    },
+    {
+      "source": "saigonbite.business.controllers.account_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "AuthorizationError",
+      "line": 26
+    },
+    {
+      "source": "saigonbite.business.controllers.account_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "NotFoundError",
+      "line": 26
+    },
+    {
+      "source": "saigonbite.business.controllers.account_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "ValidationError",
+      "line": 26
+    },
+    {
+      "source": "saigonbite.business.controllers.auth_controller",
+      "target": "saigonbite.business.domain",
+      "name": "UserAccount",
+      "line": 8
+    },
+    {
+      "source": "saigonbite.business.controllers.auth_controller",
+      "target": "saigonbite.data_access",
+      "name": "UserDAO",
+      "line": 9
+    },
+    {
+      "source": "saigonbite.business.controllers.common",
+      "target": "saigonbite.business.domain",
+      "name": "InvalidTransition",
+      "line": 9
+    },
+    {
+      "source": "saigonbite.business.controllers.common",
+      "target": "saigonbite.business.domain",
+      "name": "Order",
+      "line": 9
+    },
+    {
+      "source": "saigonbite.business.controllers.common",
+      "target": "saigonbite.business.domain",
+      "name": "OrderState",
+      "line": 9
+    },
+    {
+      "source": "saigonbite.business.controllers.common",
+      "target": "saigonbite.business.domain",
+      "name": "Payment",
+      "line": 9
+    },
+    {
+      "source": "saigonbite.business.controllers.common",
+      "target": "saigonbite.business.domain",
+      "name": "Role",
+      "line": 9
+    },
+    {
+      "source": "saigonbite.business.controllers.common",
+      "target": "saigonbite.business.domain",
+      "name": "UserAccount",
+      "line": 9
+    },
+    {
+      "source": "saigonbite.business.controllers.common",
+      "target": "saigonbite.data_access",
+      "name": "OrderDAO",
+      "line": 10
+    },
+    {
+      "source": "saigonbite.business.controllers.common",
+      "target": "saigonbite.data_access",
+      "name": "PaymentDAO",
+      "line": 10
+    },
+    {
+      "source": "saigonbite.business.controllers.common",
+      "target": "saigonbite.data_access",
+      "name": "UserDAO",
+      "line": 10
+    },
+    {
+      "source": "saigonbite.business.controllers.common",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "AuthorizationError",
+      "line": 12
+    },
+    {
+      "source": "saigonbite.business.controllers.common",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "ConflictError",
+      "line": 12
+    },
+    {
+      "source": "saigonbite.business.controllers.delivery_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Customer",
+      "line": 21
+    },
+    {
+      "source": "saigonbite.business.controllers.delivery_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Delivery",
+      "line": 21
+    },
+    {
+      "source": "saigonbite.business.controllers.delivery_controller",
+      "target": "saigonbite.business.domain",
+      "name": "DeliveryState",
+      "line": 21
+    },
+    {
+      "source": "saigonbite.business.controllers.delivery_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Hub",
+      "line": 21
+    },
+    {
+      "source": "saigonbite.business.controllers.delivery_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Order",
+      "line": 21
+    },
+    {
+      "source": "saigonbite.business.controllers.delivery_controller",
+      "target": "saigonbite.business.domain",
+      "name": "OrderState",
+      "line": 21
+    },
+    {
+      "source": "saigonbite.business.controllers.delivery_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Payment",
+      "line": 21
+    },
+    {
+      "source": "saigonbite.business.controllers.delivery_controller",
+      "target": "saigonbite.business.domain",
+      "name": "PaymentMethod",
+      "line": 21
+    },
+    {
+      "source": "saigonbite.business.controllers.delivery_controller",
+      "target": "saigonbite.business.domain",
+      "name": "PaymentState",
+      "line": 21
+    },
+    {
+      "source": "saigonbite.business.controllers.delivery_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Role",
+      "line": 21
+    },
+    {
+      "source": "saigonbite.business.controllers.delivery_controller",
+      "target": "saigonbite.business.domain",
+      "name": "UserAccount",
+      "line": 21
+    },
+    {
+      "source": "saigonbite.business.controllers.delivery_controller",
+      "target": "saigonbite.data_access",
+      "name": "CustomerDAO",
+      "line": 23
+    },
+    {
+      "source": "saigonbite.business.controllers.delivery_controller",
+      "target": "saigonbite.data_access",
+      "name": "DeliveryDAO",
+      "line": 23
+    },
+    {
+      "source": "saigonbite.business.controllers.delivery_controller",
+      "target": "saigonbite.data_access",
+      "name": "HubDAO",
+      "line": 23
+    },
+    {
+      "source": "saigonbite.business.controllers.delivery_controller",
+      "target": "saigonbite.data_access",
+      "name": "OrderDAO",
+      "line": 23
+    },
+    {
+      "source": "saigonbite.business.controllers.delivery_controller",
+      "target": "saigonbite.data_access",
+      "name": "PaymentDAO",
+      "line": 23
+    },
+    {
+      "source": "saigonbite.business.controllers.delivery_controller",
+      "target": "saigonbite.data_access",
+      "name": "immediate_transaction",
+      "line": 23
+    },
+    {
+      "source": "saigonbite.business.controllers.delivery_controller",
+      "target": "saigonbite.business.controllers.common",
+      "name": "BaseController",
+      "line": 26
+    },
+    {
+      "source": "saigonbite.business.controllers.delivery_controller",
+      "target": "saigonbite.business.controllers.common",
+      "name": "move_order",
+      "line": 26
+    },
+    {
+      "source": "saigonbite.business.controllers.delivery_controller",
+      "target": "saigonbite.business.controllers.common",
+      "name": "release_payment",
+      "line": 26
+    },
+    {
+      "source": "saigonbite.business.controllers.delivery_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "AuthorizationError",
+      "line": 27
+    },
+    {
+      "source": "saigonbite.business.controllers.delivery_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "ConflictError",
+      "line": 27
+    },
+    {
+      "source": "saigonbite.business.controllers.delivery_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "NotFoundError",
+      "line": 27
+    },
+    {
+      "source": "saigonbite.business.controllers.delivery_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "ValidationError",
+      "line": 27
+    },
+    {
+      "source": "saigonbite.business.controllers.hub_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Hub",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.hub_controller",
+      "target": "saigonbite.business.domain",
+      "name": "HubStatus",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.hub_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Role",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.hub_controller",
+      "target": "saigonbite.data_access",
+      "name": "HubDAO",
+      "line": 19
+    },
+    {
+      "source": "saigonbite.business.controllers.hub_controller",
+      "target": "saigonbite.data_access",
+      "name": "immediate_transaction",
+      "line": 19
+    },
+    {
+      "source": "saigonbite.business.controllers.hub_controller",
+      "target": "saigonbite.business.controllers.common",
+      "name": "BaseController",
+      "line": 21
+    },
+    {
+      "source": "saigonbite.business.controllers.hub_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "ConflictError",
+      "line": 22
+    },
+    {
+      "source": "saigonbite.business.controllers.hub_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "NotFoundError",
+      "line": 22
+    },
+    {
+      "source": "saigonbite.business.controllers.hub_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "ValidationError",
+      "line": 22
+    },
+    {
+      "source": "saigonbite.business.controllers.kitchen_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Delivery",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.kitchen_controller",
+      "target": "saigonbite.business.domain",
+      "name": "DeliveryState",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.kitchen_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Hub",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.kitchen_controller",
+      "target": "saigonbite.business.domain",
+      "name": "HubMenuItem",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.kitchen_controller",
+      "target": "saigonbite.business.domain",
+      "name": "MenuItem",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.kitchen_controller",
+      "target": "saigonbite.business.domain",
+      "name": "OfferState",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.kitchen_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Order",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.kitchen_controller",
+      "target": "saigonbite.business.domain",
+      "name": "OrderState",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.kitchen_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Payment",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.kitchen_controller",
+      "target": "saigonbite.business.domain",
+      "name": "ReplacementOffer",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.kitchen_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Role",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.kitchen_controller",
+      "target": "saigonbite.business.domain",
+      "name": "UserAccount",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.kitchen_controller",
+      "target": "saigonbite.data_access",
+      "name": "DeliveryDAO",
+      "line": 20
+    },
+    {
+      "source": "saigonbite.business.controllers.kitchen_controller",
+      "target": "saigonbite.data_access",
+      "name": "HubDAO",
+      "line": 20
+    },
+    {
+      "source": "saigonbite.business.controllers.kitchen_controller",
+      "target": "saigonbite.data_access",
+      "name": "MenuDAO",
+      "line": 20
+    },
+    {
+      "source": "saigonbite.business.controllers.kitchen_controller",
+      "target": "saigonbite.data_access",
+      "name": "OrderDAO",
+      "line": 20
+    },
+    {
+      "source": "saigonbite.business.controllers.kitchen_controller",
+      "target": "saigonbite.data_access",
+      "name": "PaymentDAO",
+      "line": 20
+    },
+    {
+      "source": "saigonbite.business.controllers.kitchen_controller",
+      "target": "saigonbite.data_access",
+      "name": "ReplacementOfferDAO",
+      "line": 20
+    },
+    {
+      "source": "saigonbite.business.controllers.kitchen_controller",
+      "target": "saigonbite.data_access",
+      "name": "immediate_transaction",
+      "line": 20
+    },
+    {
+      "source": "saigonbite.business.controllers.kitchen_controller",
+      "target": "saigonbite.business.controllers.common",
+      "name": "BaseController",
+      "line": 23
+    },
+    {
+      "source": "saigonbite.business.controllers.kitchen_controller",
+      "target": "saigonbite.business.controllers.common",
+      "name": "move_order",
+      "line": 23
+    },
+    {
+      "source": "saigonbite.business.controllers.kitchen_controller",
+      "target": "saigonbite.business.controllers.common",
+      "name": "release_payment",
+      "line": 23
+    },
+    {
+      "source": "saigonbite.business.controllers.kitchen_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "AuthorizationError",
+      "line": 24
+    },
+    {
+      "source": "saigonbite.business.controllers.kitchen_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "ConflictError",
+      "line": 24
+    },
+    {
+      "source": "saigonbite.business.controllers.kitchen_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "NotFoundError",
+      "line": 24
+    },
+    {
+      "source": "saigonbite.business.controllers.kitchen_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "ValidationError",
+      "line": 24
+    },
+    {
+      "source": "saigonbite.business.controllers.menu_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Brand",
+      "line": 24
+    },
+    {
+      "source": "saigonbite.business.controllers.menu_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Hub",
+      "line": 24
+    },
+    {
+      "source": "saigonbite.business.controllers.menu_controller",
+      "target": "saigonbite.business.domain",
+      "name": "HubMenuItem",
+      "line": 24
+    },
+    {
+      "source": "saigonbite.business.controllers.menu_controller",
+      "target": "saigonbite.business.domain",
+      "name": "MenuItem",
+      "line": 24
+    },
+    {
+      "source": "saigonbite.business.controllers.menu_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Role",
+      "line": 24
+    },
+    {
+      "source": "saigonbite.business.controllers.menu_controller",
+      "target": "saigonbite.data_access",
+      "name": "HubDAO",
+      "line": 25
+    },
+    {
+      "source": "saigonbite.business.controllers.menu_controller",
+      "target": "saigonbite.data_access",
+      "name": "MenuDAO",
+      "line": 25
+    },
+    {
+      "source": "saigonbite.business.controllers.menu_controller",
+      "target": "saigonbite.data_access",
+      "name": "immediate_transaction",
+      "line": 25
+    },
+    {
+      "source": "saigonbite.business.controllers.menu_controller",
+      "target": "saigonbite.business.controllers.common",
+      "name": "BaseController",
+      "line": 27
+    },
+    {
+      "source": "saigonbite.business.controllers.menu_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "ConflictError",
+      "line": 28
+    },
+    {
+      "source": "saigonbite.business.controllers.menu_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "NotFoundError",
+      "line": 28
+    },
+    {
+      "source": "saigonbite.business.controllers.menu_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "ValidationError",
+      "line": 28
+    },
+    {
+      "source": "saigonbite.business.controllers.order_archive_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Order",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.order_archive_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Role",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.order_archive_controller",
+      "target": "saigonbite.data_access",
+      "name": "DeliveryDAO",
+      "line": 19
+    },
+    {
+      "source": "saigonbite.business.controllers.order_archive_controller",
+      "target": "saigonbite.data_access",
+      "name": "OrderDAO",
+      "line": 19
+    },
+    {
+      "source": "saigonbite.business.controllers.order_archive_controller",
+      "target": "saigonbite.data_access",
+      "name": "PaymentDAO",
+      "line": 19
+    },
+    {
+      "source": "saigonbite.business.controllers.order_archive_controller",
+      "target": "saigonbite.data_access",
+      "name": "ReplacementOfferDAO",
+      "line": 19
+    },
+    {
+      "source": "saigonbite.business.controllers.order_archive_controller",
+      "target": "saigonbite.data_access",
+      "name": "immediate_transaction",
+      "line": 19
+    },
+    {
+      "source": "saigonbite.business.controllers.order_archive_controller",
+      "target": "saigonbite.business.controllers.common",
+      "name": "BaseController",
+      "line": 21
+    },
+    {
+      "source": "saigonbite.business.controllers.order_archive_controller",
+      "target": "saigonbite.business.controllers.common",
+      "name": "vn_day_start_utc",
+      "line": 21
+    },
+    {
+      "source": "saigonbite.business.controllers.order_archive_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "ConflictError",
+      "line": 22
+    },
+    {
+      "source": "saigonbite.business.controllers.order_archive_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "NotFoundError",
+      "line": 22
+    },
+    {
+      "source": "saigonbite.business.controllers.order_archive_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "ValidationError",
+      "line": 22
+    },
+    {
+      "source": "saigonbite.business.controllers.order_tracking_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Customer",
+      "line": 13
+    },
+    {
+      "source": "saigonbite.business.controllers.order_tracking_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Delivery",
+      "line": 13
+    },
+    {
+      "source": "saigonbite.business.controllers.order_tracking_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Hub",
+      "line": 13
+    },
+    {
+      "source": "saigonbite.business.controllers.order_tracking_controller",
+      "target": "saigonbite.business.domain",
+      "name": "OfferState",
+      "line": 13
+    },
+    {
+      "source": "saigonbite.business.controllers.order_tracking_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Order",
+      "line": 13
+    },
+    {
+      "source": "saigonbite.business.controllers.order_tracking_controller",
+      "target": "saigonbite.business.domain",
+      "name": "OrderState",
+      "line": 13
+    },
+    {
+      "source": "saigonbite.business.controllers.order_tracking_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Payment",
+      "line": 13
+    },
+    {
+      "source": "saigonbite.business.controllers.order_tracking_controller",
+      "target": "saigonbite.business.domain",
+      "name": "PaymentMethod",
+      "line": 13
+    },
+    {
+      "source": "saigonbite.business.controllers.order_tracking_controller",
+      "target": "saigonbite.business.domain",
+      "name": "ReplacementOffer",
+      "line": 13
+    },
+    {
+      "source": "saigonbite.business.controllers.order_tracking_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Role",
+      "line": 13
+    },
+    {
+      "source": "saigonbite.business.controllers.order_tracking_controller",
+      "target": "saigonbite.data_access",
+      "name": "CustomerDAO",
+      "line": 15
+    },
+    {
+      "source": "saigonbite.business.controllers.order_tracking_controller",
+      "target": "saigonbite.data_access",
+      "name": "DeliveryDAO",
+      "line": 15
+    },
+    {
+      "source": "saigonbite.business.controllers.order_tracking_controller",
+      "target": "saigonbite.data_access",
+      "name": "HubDAO",
+      "line": 15
+    },
+    {
+      "source": "saigonbite.business.controllers.order_tracking_controller",
+      "target": "saigonbite.data_access",
+      "name": "OrderDAO",
+      "line": 15
+    },
+    {
+      "source": "saigonbite.business.controllers.order_tracking_controller",
+      "target": "saigonbite.data_access",
+      "name": "PaymentDAO",
+      "line": 15
+    },
+    {
+      "source": "saigonbite.business.controllers.order_tracking_controller",
+      "target": "saigonbite.data_access",
+      "name": "ReplacementOfferDAO",
+      "line": 15
+    },
+    {
+      "source": "saigonbite.business.controllers.order_tracking_controller",
+      "target": "saigonbite.data_access",
+      "name": "immediate_transaction",
+      "line": 15
+    },
+    {
+      "source": "saigonbite.business.controllers.order_tracking_controller",
+      "target": "saigonbite.business.controllers.common",
+      "name": "BaseController",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.order_tracking_controller",
+      "target": "saigonbite.business.controllers.common",
+      "name": "move_order",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.order_tracking_controller",
+      "target": "saigonbite.business.controllers.common",
+      "name": "release_payment",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.order_tracking_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "AuthorizationError",
+      "line": 19
+    },
+    {
+      "source": "saigonbite.business.controllers.order_tracking_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "ConflictError",
+      "line": 19
+    },
+    {
+      "source": "saigonbite.business.controllers.order_tracking_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "NotFoundError",
+      "line": 19
+    },
+    {
+      "source": "saigonbite.business.controllers.place_order_controller",
+      "target": "saigonbite.business.domain",
+      "name": "MAX_QUANTITY",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.place_order_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Address",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.place_order_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Customer",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.place_order_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Hub",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.place_order_controller",
+      "target": "saigonbite.business.domain",
+      "name": "HubMenuItem",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.place_order_controller",
+      "target": "saigonbite.business.domain",
+      "name": "HubStatus",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.place_order_controller",
+      "target": "saigonbite.business.domain",
+      "name": "OnlineOption",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.place_order_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Order",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.place_order_controller",
+      "target": "saigonbite.business.domain",
+      "name": "OrderLine",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.place_order_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Payment",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.place_order_controller",
+      "target": "saigonbite.business.domain",
+      "name": "PaymentMethod",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.place_order_controller",
+      "target": "saigonbite.business.domain",
+      "name": "PaymentState",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.place_order_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Quote",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.place_order_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Role",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.place_order_controller",
+      "target": "saigonbite.business.domain.rules",
+      "name": "rules",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.place_order_controller",
+      "target": "saigonbite.data_access",
+      "name": "CustomerDAO",
+      "line": 21
+    },
+    {
+      "source": "saigonbite.business.controllers.place_order_controller",
+      "target": "saigonbite.data_access",
+      "name": "HubDAO",
+      "line": 21
+    },
+    {
+      "source": "saigonbite.business.controllers.place_order_controller",
+      "target": "saigonbite.data_access",
+      "name": "OrderDAO",
+      "line": 21
+    },
+    {
+      "source": "saigonbite.business.controllers.place_order_controller",
+      "target": "saigonbite.data_access",
+      "name": "PaymentDAO",
+      "line": 21
+    },
+    {
+      "source": "saigonbite.business.controllers.place_order_controller",
+      "target": "saigonbite.data_access",
+      "name": "PaymentGatewaySimulator",
+      "line": 21
+    },
+    {
+      "source": "saigonbite.business.controllers.place_order_controller",
+      "target": "saigonbite.data_access",
+      "name": "VoucherDAO",
+      "line": 21
+    },
+    {
+      "source": "saigonbite.business.controllers.place_order_controller",
+      "target": "saigonbite.data_access",
+      "name": "immediate_transaction",
+      "line": 21
+    },
+    {
+      "source": "saigonbite.business.controllers.place_order_controller",
+      "target": "saigonbite.business.controllers.common",
+      "name": "BaseController",
+      "line": 24
+    },
+    {
+      "source": "saigonbite.business.controllers.place_order_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "AuthorizationError",
+      "line": 25
+    },
+    {
+      "source": "saigonbite.business.controllers.place_order_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "HubUnavailableError",
+      "line": 25
+    },
+    {
+      "source": "saigonbite.business.controllers.place_order_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "NotFoundError",
+      "line": 25
+    },
+    {
+      "source": "saigonbite.business.controllers.place_order_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "PaymentDeclinedError",
+      "line": 25
+    },
+    {
+      "source": "saigonbite.business.controllers.place_order_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "QuoteChangedError",
+      "line": 25
+    },
+    {
+      "source": "saigonbite.business.controllers.place_order_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "ValidationError",
+      "line": 25
+    },
+    {
+      "source": "saigonbite.business.controllers.presentation_contract",
+      "target": "saigonbite.business.domain",
+      "name": "DiscountType",
+      "line": 6
+    },
+    {
+      "source": "saigonbite.business.controllers.presentation_contract",
+      "target": "saigonbite.business.domain",
+      "name": "OnlineOption",
+      "line": 6
+    },
+    {
+      "source": "saigonbite.business.controllers.presentation_contract",
+      "target": "saigonbite.business.domain",
+      "name": "PaymentMethod",
+      "line": 6
+    },
+    {
+      "source": "saigonbite.business.controllers.presentation_contract",
+      "target": "saigonbite.business.domain",
+      "name": "Role",
+      "line": 6
+    },
+    {
+      "source": "saigonbite.business.controllers.presentation_contract",
+      "target": "saigonbite.business.domain",
+      "name": "UserAccount",
+      "line": 6
+    },
+    {
+      "source": "saigonbite.business.controllers.presentation_contract",
+      "target": "saigonbite.business.domain.rules",
+      "name": "rules",
+      "line": 6
+    },
+    {
+      "source": "saigonbite.business.controllers.presentation_contract",
+      "target": "saigonbite.data_access",
+      "name": "APPROVE",
+      "line": 7
+    },
+    {
+      "source": "saigonbite.business.controllers.presentation_contract",
+      "target": "saigonbite.data_access",
+      "name": "DECLINE",
+      "line": 7
+    },
+    {
+      "source": "saigonbite.business.controllers.presentation_contract",
+      "target": "saigonbite.data_access",
+      "name": "connect",
+      "line": 7
+    },
+    {
+      "source": "saigonbite.business.controllers.report_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Hub",
+      "line": 21
+    },
+    {
+      "source": "saigonbite.business.controllers.report_controller",
+      "target": "saigonbite.business.domain",
+      "name": "HubStatus",
+      "line": 21
+    },
+    {
+      "source": "saigonbite.business.controllers.report_controller",
+      "target": "saigonbite.business.domain",
+      "name": "OrderState",
+      "line": 21
+    },
+    {
+      "source": "saigonbite.business.controllers.report_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Role",
+      "line": 21
+    },
+    {
+      "source": "saigonbite.business.controllers.report_controller",
+      "target": "saigonbite.data_access",
+      "name": "HubDAO",
+      "line": 22
+    },
+    {
+      "source": "saigonbite.business.controllers.report_controller",
+      "target": "saigonbite.data_access",
+      "name": "ReportDAO",
+      "line": 22
+    },
+    {
+      "source": "saigonbite.business.controllers.report_controller",
+      "target": "saigonbite.data_access.report_dao",
+      "name": "ReportDataUnavailable",
+      "line": 23
+    },
+    {
+      "source": "saigonbite.business.controllers.report_controller",
+      "target": "saigonbite.business.controllers.common",
+      "name": "BaseController",
+      "line": 25
+    },
+    {
+      "source": "saigonbite.business.controllers.report_controller",
+      "target": "saigonbite.business.controllers.common",
+      "name": "vn_day_start_utc",
+      "line": 25
+    },
+    {
+      "source": "saigonbite.business.controllers.report_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "ValidationError",
+      "line": 26
+    },
+    {
+      "source": "saigonbite.business.controllers.user_admin_controller",
+      "target": "saigonbite.business.domain",
+      "name": "DeliveryState",
+      "line": 19
+    },
+    {
+      "source": "saigonbite.business.controllers.user_admin_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Hub",
+      "line": 19
+    },
+    {
+      "source": "saigonbite.business.controllers.user_admin_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Role",
+      "line": 19
+    },
+    {
+      "source": "saigonbite.business.controllers.user_admin_controller",
+      "target": "saigonbite.business.domain",
+      "name": "UserAccount",
+      "line": 19
+    },
+    {
+      "source": "saigonbite.business.controllers.user_admin_controller",
+      "target": "saigonbite.data_access",
+      "name": "CustomerDAO",
+      "line": 20
+    },
+    {
+      "source": "saigonbite.business.controllers.user_admin_controller",
+      "target": "saigonbite.data_access",
+      "name": "DeliveryDAO",
+      "line": 20
+    },
+    {
+      "source": "saigonbite.business.controllers.user_admin_controller",
+      "target": "saigonbite.data_access",
+      "name": "HubDAO",
+      "line": 20
+    },
+    {
+      "source": "saigonbite.business.controllers.user_admin_controller",
+      "target": "saigonbite.data_access",
+      "name": "immediate_transaction",
+      "line": 20
+    },
+    {
+      "source": "saigonbite.business.controllers.user_admin_controller",
+      "target": "saigonbite.business.controllers.common",
+      "name": "BaseController",
+      "line": 22
+    },
+    {
+      "source": "saigonbite.business.controllers.user_admin_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "ConflictError",
+      "line": 23
+    },
+    {
+      "source": "saigonbite.business.controllers.user_admin_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "NotFoundError",
+      "line": 23
+    },
+    {
+      "source": "saigonbite.business.controllers.user_admin_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "ValidationError",
+      "line": 23
+    },
+    {
+      "source": "saigonbite.business.controllers.voucher_controller",
+      "target": "saigonbite.business.domain",
+      "name": "DiscountType",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.voucher_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Role",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.voucher_controller",
+      "target": "saigonbite.business.domain",
+      "name": "Voucher",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.business.controllers.voucher_controller",
+      "target": "saigonbite.data_access",
+      "name": "VoucherDAO",
+      "line": 19
+    },
+    {
+      "source": "saigonbite.business.controllers.voucher_controller",
+      "target": "saigonbite.data_access",
+      "name": "immediate_transaction",
+      "line": 19
+    },
+    {
+      "source": "saigonbite.business.controllers.voucher_controller",
+      "target": "saigonbite.business.controllers.common",
+      "name": "BaseController",
+      "line": 21
+    },
+    {
+      "source": "saigonbite.business.controllers.voucher_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "ConflictError",
+      "line": 22
+    },
+    {
+      "source": "saigonbite.business.controllers.voucher_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "NotFoundError",
+      "line": 22
+    },
+    {
+      "source": "saigonbite.business.controllers.voucher_controller",
+      "target": "saigonbite.business.controllers.errors",
+      "name": "ValidationError",
+      "line": 22
+    },
+    {
+      "source": "saigonbite.business.domain.__init__",
+      "target": "saigonbite.business.domain.__init__",
+      "name": "rules",
+      "line": 1
+    },
+    {
+      "source": "saigonbite.business.domain.__init__",
+      "target": "saigonbite.business.domain.__init__.enums",
+      "name": "CustomerType",
+      "line": 2
+    },
+    {
+      "source": "saigonbite.business.domain.__init__",
+      "target": "saigonbite.business.domain.__init__.enums",
+      "name": "DeliveryState",
+      "line": 2
+    },
+    {
+      "source": "saigonbite.business.domain.__init__",
+      "target": "saigonbite.business.domain.__init__.enums",
+      "name": "DiscountType",
+      "line": 2
+    },
+    {
+      "source": "saigonbite.business.domain.__init__",
+      "target": "saigonbite.business.domain.__init__.enums",
+      "name": "OfferState",
+      "line": 2
+    },
+    {
+      "source": "saigonbite.business.domain.__init__",
+      "target": "saigonbite.business.domain.__init__.enums",
+      "name": "OnlineOption",
+      "line": 2
+    },
+    {
+      "source": "saigonbite.business.domain.__init__",
+      "target": "saigonbite.business.domain.__init__.enums",
+      "name": "OrderState",
+      "line": 2
+    },
+    {
+      "source": "saigonbite.business.domain.__init__",
+      "target": "saigonbite.business.domain.__init__.enums",
+      "name": "PaymentMethod",
+      "line": 2
+    },
+    {
+      "source": "saigonbite.business.domain.__init__",
+      "target": "saigonbite.business.domain.__init__.enums",
+      "name": "PaymentState",
+      "line": 2
+    },
+    {
+      "source": "saigonbite.business.domain.__init__",
+      "target": "saigonbite.business.domain.__init__.enums",
+      "name": "Role",
+      "line": 2
+    },
+    {
+      "source": "saigonbite.business.domain.__init__",
+      "target": "saigonbite.business.domain.__init__.models",
+      "name": "ACTIVE_ORDER_STATES",
+      "line": 4
+    },
+    {
+      "source": "saigonbite.business.domain.__init__",
+      "target": "saigonbite.business.domain.__init__.models",
+      "name": "ALLOWED_TRANSITIONS",
+      "line": 4
+    },
+    {
+      "source": "saigonbite.business.domain.__init__",
+      "target": "saigonbite.business.domain.__init__.models",
+      "name": "DELIVERY_TRANSITIONS",
+      "line": 4
+    },
+    {
+      "source": "saigonbite.business.domain.__init__",
+      "target": "saigonbite.business.domain.__init__.models",
+      "name": "MAX_QUANTITY",
+      "line": 4
+    },
+    {
+      "source": "saigonbite.business.domain.__init__",
+      "target": "saigonbite.business.domain.__init__.models",
+      "name": "OFFER_TRANSITIONS",
+      "line": 4
+    },
+    {
+      "source": "saigonbite.business.domain.__init__",
+      "target": "saigonbite.business.domain.__init__.models",
+      "name": "PAYMENT_TRANSITIONS",
+      "line": 4
+    },
+    {
+      "source": "saigonbite.business.domain.__init__",
+      "target": "saigonbite.business.domain.__init__.models",
+      "name": "Address",
+      "line": 4
+    },
+    {
+      "source": "saigonbite.business.domain.__init__",
+      "target": "saigonbite.business.domain.__init__.models",
+      "name": "Brand",
+      "line": 4
+    },
+    {
+      "source": "saigonbite.business.domain.__init__",
+      "target": "saigonbite.business.domain.__init__.models",
+      "name": "Customer",
+      "line": 4
+    },
+    {
+      "source": "saigonbite.business.domain.__init__",
+      "target": "saigonbite.business.domain.__init__.models",
+      "name": "Delivery",
+      "line": 4
+    },
+    {
+      "source": "saigonbite.business.domain.__init__",
+      "target": "saigonbite.business.domain.__init__.models",
+      "name": "Hub",
+      "line": 4
+    },
+    {
+      "source": "saigonbite.business.domain.__init__",
+      "target": "saigonbite.business.domain.__init__.models",
+      "name": "HubMenuItem",
+      "line": 4
+    },
+    {
+      "source": "saigonbite.business.domain.__init__",
+      "target": "saigonbite.business.domain.__init__.models",
+      "name": "HubStatus",
+      "line": 4
+    },
+    {
+      "source": "saigonbite.business.domain.__init__",
+      "target": "saigonbite.business.domain.__init__.models",
+      "name": "InvalidTransition",
+      "line": 4
+    },
+    {
+      "source": "saigonbite.business.domain.__init__",
+      "target": "saigonbite.business.domain.__init__.models",
+      "name": "LocalCustomer",
+      "line": 4
+    },
+    {
+      "source": "saigonbite.business.domain.__init__",
+      "target": "saigonbite.business.domain.__init__.models",
+      "name": "MenuItem",
+      "line": 4
+    },
+    {
+      "source": "saigonbite.business.domain.__init__",
+      "target": "saigonbite.business.domain.__init__.models",
+      "name": "Order",
+      "line": 4
+    },
+    {
+      "source": "saigonbite.business.domain.__init__",
+      "target": "saigonbite.business.domain.__init__.models",
+      "name": "OrderLine",
+      "line": 4
+    },
+    {
+      "source": "saigonbite.business.domain.__init__",
+      "target": "saigonbite.business.domain.__init__.models",
+      "name": "Payment",
+      "line": 4
+    },
+    {
+      "source": "saigonbite.business.domain.__init__",
+      "target": "saigonbite.business.domain.__init__.models",
+      "name": "Quote",
+      "line": 4
+    },
+    {
+      "source": "saigonbite.business.domain.__init__",
+      "target": "saigonbite.business.domain.__init__.models",
+      "name": "ReplacementOffer",
+      "line": 4
+    },
+    {
+      "source": "saigonbite.business.domain.__init__",
+      "target": "saigonbite.business.domain.__init__.models",
+      "name": "TouristCustomer",
+      "line": 4
+    },
+    {
+      "source": "saigonbite.business.domain.__init__",
+      "target": "saigonbite.business.domain.__init__.models",
+      "name": "UserAccount",
+      "line": 4
+    },
+    {
+      "source": "saigonbite.business.domain.__init__",
+      "target": "saigonbite.business.domain.__init__.models",
+      "name": "Voucher",
+      "line": 4
+    },
+    {
+      "source": "saigonbite.business.domain.__init__",
+      "target": "saigonbite.business.domain.__init__.models",
+      "name": "make_customer",
+      "line": 4
+    },
+    {
+      "source": "saigonbite.business.domain.models",
+      "target": "saigonbite.business.domain.rules",
+      "name": "rules",
+      "line": 15
+    },
+    {
+      "source": "saigonbite.business.domain.models",
+      "target": "saigonbite.business.domain.enums",
+      "name": "CustomerType",
+      "line": 16
+    },
+    {
+      "source": "saigonbite.business.domain.models",
+      "target": "saigonbite.business.domain.enums",
+      "name": "DeliveryState",
+      "line": 16
+    },
+    {
+      "source": "saigonbite.business.domain.models",
+      "target": "saigonbite.business.domain.enums",
+      "name": "DiscountType",
+      "line": 16
+    },
+    {
+      "source": "saigonbite.business.domain.models",
+      "target": "saigonbite.business.domain.enums",
+      "name": "OfferState",
+      "line": 16
+    },
+    {
+      "source": "saigonbite.business.domain.models",
+      "target": "saigonbite.business.domain.enums",
+      "name": "OnlineOption",
+      "line": 16
+    },
+    {
+      "source": "saigonbite.business.domain.models",
+      "target": "saigonbite.business.domain.enums",
+      "name": "OrderState",
+      "line": 16
+    },
+    {
+      "source": "saigonbite.business.domain.models",
+      "target": "saigonbite.business.domain.enums",
+      "name": "PaymentMethod",
+      "line": 16
+    },
+    {
+      "source": "saigonbite.business.domain.models",
+      "target": "saigonbite.business.domain.enums",
+      "name": "PaymentState",
+      "line": 16
+    },
+    {
+      "source": "saigonbite.business.domain.models",
+      "target": "saigonbite.business.domain.enums",
+      "name": "Role",
+      "line": 16
+    },
+    {
+      "source": "saigonbite.business.domain.rules",
+      "target": "saigonbite.business.domain.enums",
+      "name": "CustomerType",
+      "line": 10
+    },
+    {
+      "source": "saigonbite.business.domain.rules",
+      "target": "saigonbite.business.domain.enums",
+      "name": "OnlineOption",
+      "line": 10
+    },
+    {
+      "source": "saigonbite.business.domain.rules",
+      "target": "saigonbite.business.domain.enums",
+      "name": "OrderState",
+      "line": 10
+    },
+    {
+      "source": "saigonbite.data_access.__init__",
+      "target": "saigonbite.data_access.__init__.customer_dao",
+      "name": "CustomerDAO",
+      "line": 1
+    },
+    {
+      "source": "saigonbite.data_access.__init__",
+      "target": "saigonbite.data_access.__init__.database",
+      "name": "connect",
+      "line": 2
+    },
+    {
+      "source": "saigonbite.data_access.__init__",
+      "target": "saigonbite.data_access.__init__.database",
+      "name": "immediate_transaction",
+      "line": 2
+    },
+    {
+      "source": "saigonbite.data_access.__init__",
+      "target": "saigonbite.data_access.__init__.delivery_dao",
+      "name": "DeliveryDAO",
+      "line": 3
+    },
+    {
+      "source": "saigonbite.data_access.__init__",
+      "target": "saigonbite.data_access.__init__.hub_dao",
+      "name": "HubDAO",
+      "line": 4
+    },
+    {
+      "source": "saigonbite.data_access.__init__",
+      "target": "saigonbite.data_access.__init__.menu_dao",
+      "name": "MenuDAO",
+      "line": 5
+    },
+    {
+      "source": "saigonbite.data_access.__init__",
+      "target": "saigonbite.data_access.__init__.offer_dao",
+      "name": "ReplacementOfferDAO",
+      "line": 6
+    },
+    {
+      "source": "saigonbite.data_access.__init__",
+      "target": "saigonbite.data_access.__init__.order_dao",
+      "name": "OrderDAO",
+      "line": 7
+    },
+    {
+      "source": "saigonbite.data_access.__init__",
+      "target": "saigonbite.data_access.__init__.payment_dao",
+      "name": "PaymentDAO",
+      "line": 8
+    },
+    {
+      "source": "saigonbite.data_access.__init__",
+      "target": "saigonbite.data_access.__init__.payment_gateway",
+      "name": "APPROVE",
+      "line": 9
+    },
+    {
+      "source": "saigonbite.data_access.__init__",
+      "target": "saigonbite.data_access.__init__.payment_gateway",
+      "name": "DECLINE",
+      "line": 9
+    },
+    {
+      "source": "saigonbite.data_access.__init__",
+      "target": "saigonbite.data_access.__init__.payment_gateway",
+      "name": "Authorisation",
+      "line": 9
+    },
+    {
+      "source": "saigonbite.data_access.__init__",
+      "target": "saigonbite.data_access.__init__.payment_gateway",
+      "name": "PaymentGatewaySimulator",
+      "line": 9
+    },
+    {
+      "source": "saigonbite.data_access.__init__",
+      "target": "saigonbite.data_access.__init__.report_dao",
+      "name": "ReportDAO",
+      "line": 10
+    },
+    {
+      "source": "saigonbite.data_access.__init__",
+      "target": "saigonbite.data_access.__init__.user_dao",
+      "name": "UserDAO",
+      "line": 11
+    },
+    {
+      "source": "saigonbite.data_access.__init__",
+      "target": "saigonbite.data_access.__init__.voucher_dao",
+      "name": "VoucherDAO",
+      "line": 12
+    },
+    {
+      "source": "saigonbite.data_access.customer_dao",
+      "target": "saigonbite.business.domain",
+      "name": "Address",
+      "line": 6
+    },
+    {
+      "source": "saigonbite.data_access.customer_dao",
+      "target": "saigonbite.business.domain",
+      "name": "Customer",
+      "line": 6
+    },
+    {
+      "source": "saigonbite.data_access.customer_dao",
+      "target": "saigonbite.business.domain",
+      "name": "make_customer",
+      "line": 6
+    },
+    {
+      "source": "saigonbite.data_access.customer_dao",
+      "target": "saigonbite.data_access.database",
+      "name": "StaleWriteError",
+      "line": 7
+    },
+    {
+      "source": "saigonbite.data_access.delivery_dao",
+      "target": "saigonbite.business.domain",
+      "name": "Delivery",
+      "line": 8
+    },
+    {
+      "source": "saigonbite.data_access.delivery_dao",
+      "target": "saigonbite.business.domain",
+      "name": "DeliveryState",
+      "line": 8
+    },
+    {
+      "source": "saigonbite.data_access.hub_dao",
+      "target": "saigonbite.business.domain",
+      "name": "ACTIVE_ORDER_STATES",
+      "line": 6
+    },
+    {
+      "source": "saigonbite.data_access.hub_dao",
+      "target": "saigonbite.business.domain",
+      "name": "Hub",
+      "line": 6
+    },
+    {
+      "source": "saigonbite.data_access.hub_dao",
+      "target": "saigonbite.business.domain",
+      "name": "HubMenuItem",
+      "line": 6
+    },
+    {
+      "source": "saigonbite.data_access.hub_dao",
+      "target": "saigonbite.business.domain",
+      "name": "MenuItem",
+      "line": 6
+    },
+    {
+      "source": "saigonbite.data_access.hub_dao",
+      "target": "saigonbite.business.domain.rules",
+      "name": "rules",
+      "line": 6
+    },
+    {
+      "source": "saigonbite.data_access.menu_dao",
+      "target": "saigonbite.business.domain",
+      "name": "Brand",
+      "line": 7
+    },
+    {
+      "source": "saigonbite.data_access.menu_dao",
+      "target": "saigonbite.business.domain",
+      "name": "HubMenuItem",
+      "line": 7
+    },
+    {
+      "source": "saigonbite.data_access.menu_dao",
+      "target": "saigonbite.business.domain",
+      "name": "MenuItem",
+      "line": 7
+    },
+    {
+      "source": "saigonbite.data_access.offer_dao",
+      "target": "saigonbite.business.domain",
+      "name": "OfferState",
+      "line": 7
+    },
+    {
+      "source": "saigonbite.data_access.offer_dao",
+      "target": "saigonbite.business.domain",
+      "name": "ReplacementOffer",
+      "line": 7
+    },
+    {
+      "source": "saigonbite.data_access.order_dao",
+      "target": "saigonbite.business.domain",
+      "name": "Order",
+      "line": 6
+    },
+    {
+      "source": "saigonbite.data_access.order_dao",
+      "target": "saigonbite.business.domain",
+      "name": "OrderLine",
+      "line": 6
+    },
+    {
+      "source": "saigonbite.data_access.order_dao",
+      "target": "saigonbite.business.domain",
+      "name": "OrderState",
+      "line": 6
+    },
+    {
+      "source": "saigonbite.data_access.order_dao",
+      "target": "saigonbite.business.domain.rules",
+      "name": "rules",
+      "line": 6
+    },
+    {
+      "source": "saigonbite.data_access.payment_dao",
+      "target": "saigonbite.business.domain",
+      "name": "OnlineOption",
+      "line": 6
+    },
+    {
+      "source": "saigonbite.data_access.payment_dao",
+      "target": "saigonbite.business.domain",
+      "name": "Payment",
+      "line": 6
+    },
+    {
+      "source": "saigonbite.data_access.payment_dao",
+      "target": "saigonbite.business.domain",
+      "name": "PaymentMethod",
+      "line": 6
+    },
+    {
+      "source": "saigonbite.data_access.payment_dao",
+      "target": "saigonbite.business.domain",
+      "name": "PaymentState",
+      "line": 6
+    },
+    {
+      "source": "saigonbite.data_access.payment_gateway",
+      "target": "saigonbite.business.domain",
+      "name": "OnlineOption",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.data_access.user_dao",
+      "target": "saigonbite.business.domain",
+      "name": "Role",
+      "line": 6
+    },
+    {
+      "source": "saigonbite.data_access.user_dao",
+      "target": "saigonbite.business.domain",
+      "name": "UserAccount",
+      "line": 6
+    },
+    {
+      "source": "saigonbite.data_access.user_dao",
+      "target": "saigonbite.data_access.database",
+      "name": "StaleWriteError",
+      "line": 7
+    },
+    {
+      "source": "saigonbite.data_access.voucher_dao",
+      "target": "saigonbite.business.domain",
+      "name": "DiscountType",
+      "line": 7
+    },
+    {
+      "source": "saigonbite.data_access.voucher_dao",
+      "target": "saigonbite.business.domain",
+      "name": "Voucher",
+      "line": 7
+    },
+    {
+      "source": "saigonbite.presentation.account",
+      "target": "saigonbite.business.controllers",
+      "name": "AccountController",
+      "line": 5
+    },
+    {
+      "source": "saigonbite.presentation.account",
+      "target": "saigonbite.business.controllers",
+      "name": "NotFoundError",
+      "line": 5
+    },
+    {
+      "source": "saigonbite.presentation.account",
+      "target": "saigonbite.business.controllers",
+      "name": "ValidationError",
+      "line": 5
+    },
+    {
+      "source": "saigonbite.presentation.account",
+      "target": "saigonbite.business.controllers.presentation_contract",
+      "name": "Role",
+      "line": 6
+    },
+    {
+      "source": "saigonbite.presentation.account",
+      "target": "saigonbite.business.controllers.presentation_contract",
+      "name": "district_choices",
+      "line": 6
+    },
+    {
+      "source": "saigonbite.presentation.account",
+      "target": "saigonbite.presentation.auth",
+      "name": "SessionUser",
+      "line": 7
+    },
+    {
+      "source": "saigonbite.presentation.account",
+      "target": "saigonbite.presentation.auth",
+      "name": "role_required",
+      "line": 7
+    },
+    {
+      "source": "saigonbite.presentation.account",
+      "target": "saigonbite.presentation.db",
+      "name": "get_db",
+      "line": 8
+    },
+    {
+      "source": "saigonbite.presentation.account",
+      "target": "saigonbite.presentation.helpers",
+      "name": "act",
+      "line": 9
+    },
+    {
+      "source": "saigonbite.presentation.account",
+      "target": "saigonbite.presentation.helpers",
+      "name": "uid",
+      "line": 9
+    },
+    {
+      "source": "saigonbite.presentation.admin",
+      "target": "saigonbite.business.controllers",
+      "name": "STAFF_ROLES",
+      "line": 5
+    },
+    {
+      "source": "saigonbite.presentation.admin",
+      "target": "saigonbite.business.controllers",
+      "name": "HubController",
+      "line": 5
+    },
+    {
+      "source": "saigonbite.presentation.admin",
+      "target": "saigonbite.business.controllers",
+      "name": "MenuController",
+      "line": 5
+    },
+    {
+      "source": "saigonbite.presentation.admin",
+      "target": "saigonbite.business.controllers",
+      "name": "OrderArchiveController",
+      "line": 5
+    },
+    {
+      "source": "saigonbite.presentation.admin",
+      "target": "saigonbite.business.controllers",
+      "name": "UserAdminController",
+      "line": 5
+    },
+    {
+      "source": "saigonbite.presentation.admin",
+      "target": "saigonbite.business.controllers",
+      "name": "ValidationError",
+      "line": 5
+    },
+    {
+      "source": "saigonbite.presentation.admin",
+      "target": "saigonbite.business.controllers",
+      "name": "VoucherController",
+      "line": 5
+    },
+    {
+      "source": "saigonbite.presentation.admin",
+      "target": "saigonbite.business.controllers.presentation_contract",
+      "name": "DiscountType",
+      "line": 7
+    },
+    {
+      "source": "saigonbite.presentation.admin",
+      "target": "saigonbite.business.controllers.presentation_contract",
+      "name": "Role",
+      "line": 7
+    },
+    {
+      "source": "saigonbite.presentation.admin",
+      "target": "saigonbite.presentation.auth",
+      "name": "role_required",
+      "line": 8
+    },
+    {
+      "source": "saigonbite.presentation.admin",
+      "target": "saigonbite.presentation.db",
+      "name": "get_db",
+      "line": 9
+    },
+    {
+      "source": "saigonbite.presentation.admin",
+      "target": "saigonbite.presentation.helpers",
+      "name": "act",
+      "line": 10
+    },
+    {
+      "source": "saigonbite.presentation.admin",
+      "target": "saigonbite.presentation.helpers",
+      "name": "uid",
+      "line": 10
+    },
+    {
+      "source": "saigonbite.presentation.admin",
+      "target": "saigonbite.presentation.helpers",
+      "name": "boolean_value",
+      "line": 10
+    },
+    {
+      "source": "saigonbite.presentation.auth",
+      "target": "saigonbite.business.controllers",
+      "name": "AuthController",
+      "line": 9
+    },
+    {
+      "source": "saigonbite.presentation.auth",
+      "target": "saigonbite.business.controllers.presentation_contract",
+      "name": "Role",
+      "line": 10
+    },
+    {
+      "source": "saigonbite.presentation.auth",
+      "target": "saigonbite.business.controllers.presentation_contract",
+      "name": "UserAccount",
+      "line": 10
+    },
+    {
+      "source": "saigonbite.presentation.auth",
+      "target": "saigonbite.presentation.db",
+      "name": "get_db",
+      "line": 11
+    },
+    {
+      "source": "saigonbite.presentation.db",
+      "target": "saigonbite.business.controllers.presentation_contract",
+      "name": "open_request_connection",
+      "line": 7
+    },
+    {
+      "source": "saigonbite.presentation.delivery",
+      "target": "saigonbite.business.controllers",
+      "name": "DeliveryController",
+      "line": 4
+    },
+    {
+      "source": "saigonbite.presentation.delivery",
+      "target": "saigonbite.business.controllers.presentation_contract",
+      "name": "Role",
+      "line": 5
+    },
+    {
+      "source": "saigonbite.presentation.delivery",
+      "target": "saigonbite.presentation.auth",
+      "name": "role_required",
+      "line": 6
+    },
+    {
+      "source": "saigonbite.presentation.delivery",
+      "target": "saigonbite.presentation.db",
+      "name": "get_db",
+      "line": 7
+    },
+    {
+      "source": "saigonbite.presentation.delivery",
+      "target": "saigonbite.presentation.helpers",
+      "name": "act",
+      "line": 8
+    },
+    {
+      "source": "saigonbite.presentation.delivery",
+      "target": "saigonbite.presentation.helpers",
+      "name": "uid",
+      "line": 8
+    },
+    {
+      "source": "saigonbite.presentation.helpers",
+      "target": "saigonbite.business.controllers",
+      "name": "ConflictError",
+      "line": 7
+    },
+    {
+      "source": "saigonbite.presentation.helpers",
+      "target": "saigonbite.business.controllers",
+      "name": "ValidationError",
+      "line": 7
+    },
+    {
+      "source": "saigonbite.presentation.kitchen",
+      "target": "saigonbite.business.controllers",
+      "name": "KitchenController",
+      "line": 5
+    },
+    {
+      "source": "saigonbite.presentation.kitchen",
+      "target": "saigonbite.business.controllers.presentation_contract",
+      "name": "Role",
+      "line": 6
+    },
+    {
+      "source": "saigonbite.presentation.kitchen",
+      "target": "saigonbite.presentation.auth",
+      "name": "role_required",
+      "line": 7
+    },
+    {
+      "source": "saigonbite.presentation.kitchen",
+      "target": "saigonbite.presentation.db",
+      "name": "get_db",
+      "line": 8
+    },
+    {
+      "source": "saigonbite.presentation.kitchen",
+      "target": "saigonbite.presentation.helpers",
+      "name": "act",
+      "line": 9
+    },
+    {
+      "source": "saigonbite.presentation.kitchen",
+      "target": "saigonbite.presentation.helpers",
+      "name": "uid",
+      "line": 9
+    },
+    {
+      "source": "saigonbite.presentation.kitchen",
+      "target": "saigonbite.presentation.helpers",
+      "name": "boolean_value",
+      "line": 9
+    },
+    {
+      "source": "saigonbite.presentation.order",
+      "target": "saigonbite.business.controllers",
+      "name": "HubUnavailableError",
+      "line": 13
+    },
+    {
+      "source": "saigonbite.presentation.order",
+      "target": "saigonbite.business.controllers",
+      "name": "OrderTrackingController",
+      "line": 13
+    },
+    {
+      "source": "saigonbite.presentation.order",
+      "target": "saigonbite.business.controllers",
+      "name": "PaymentChoice",
+      "line": 13
+    },
+    {
+      "source": "saigonbite.presentation.order",
+      "target": "saigonbite.business.controllers",
+      "name": "PaymentDeclinedError",
+      "line": 13
+    },
+    {
+      "source": "saigonbite.presentation.order",
+      "target": "saigonbite.business.controllers",
+      "name": "PlaceOrderController",
+      "line": 13
+    },
+    {
+      "source": "saigonbite.presentation.order",
+      "target": "saigonbite.business.controllers",
+      "name": "QuoteChangedError",
+      "line": 13
+    },
+    {
+      "source": "saigonbite.presentation.order",
+      "target": "saigonbite.business.controllers",
+      "name": "ValidationError",
+      "line": 13
+    },
+    {
+      "source": "saigonbite.presentation.order",
+      "target": "saigonbite.business.controllers",
+      "name": "AuthorizationError",
+      "line": 16
+    },
+    {
+      "source": "saigonbite.presentation.order",
+      "target": "saigonbite.business.controllers",
+      "name": "NotFoundError",
+      "line": 16
+    },
+    {
+      "source": "saigonbite.presentation.order",
+      "target": "saigonbite.business.controllers",
+      "name": "ConflictError",
+      "line": 16
+    },
+    {
+      "source": "saigonbite.presentation.order",
+      "target": "saigonbite.business.controllers.presentation_contract",
+      "name": "OnlineOption",
+      "line": 17
+    },
+    {
+      "source": "saigonbite.presentation.order",
+      "target": "saigonbite.business.controllers.presentation_contract",
+      "name": "PaymentMethod",
+      "line": 17
+    },
+    {
+      "source": "saigonbite.presentation.order",
+      "target": "saigonbite.business.controllers.presentation_contract",
+      "name": "Role",
+      "line": 17
+    },
+    {
+      "source": "saigonbite.presentation.order",
+      "target": "saigonbite.business.controllers.presentation_contract",
+      "name": "APPROVE",
+      "line": 17
+    },
+    {
+      "source": "saigonbite.presentation.order",
+      "target": "saigonbite.business.controllers.presentation_contract",
+      "name": "DECLINE",
+      "line": 17
+    },
+    {
+      "source": "saigonbite.presentation.order",
+      "target": "saigonbite.presentation.auth",
+      "name": "role_required",
+      "line": 18
+    },
+    {
+      "source": "saigonbite.presentation.order",
+      "target": "saigonbite.presentation.db",
+      "name": "get_db",
+      "line": 19
+    },
+    {
+      "source": "saigonbite.presentation.order",
+      "target": "saigonbite.presentation.helpers",
+      "name": "act",
+      "line": 20
+    },
+    {
+      "source": "saigonbite.presentation.order",
+      "target": "saigonbite.presentation.helpers",
+      "name": "uid",
+      "line": 20
+    },
+    {
+      "source": "saigonbite.presentation.reports",
+      "target": "saigonbite.business.controllers",
+      "name": "ReportController",
+      "line": 5
+    },
+    {
+      "source": "saigonbite.presentation.reports",
+      "target": "saigonbite.business.controllers",
+      "name": "ValidationError",
+      "line": 5
+    },
+    {
+      "source": "saigonbite.presentation.reports",
+      "target": "saigonbite.business.controllers.report_controller",
+      "name": "ReportDataUnavailable",
+      "line": 6
+    },
+    {
+      "source": "saigonbite.presentation.reports",
+      "target": "saigonbite.business.controllers.presentation_contract",
+      "name": "Role",
+      "line": 7
+    },
+    {
+      "source": "saigonbite.presentation.reports",
+      "target": "saigonbite.presentation.auth",
+      "name": "role_required",
+      "line": 8
+    },
+    {
+      "source": "saigonbite.presentation.reports",
+      "target": "saigonbite.presentation.db",
+      "name": "get_db",
+      "line": 9
+    },
+    {
+      "source": "saigonbite.presentation.reports",
+      "target": "saigonbite.presentation.helpers",
+      "name": "uid",
+      "line": 10
+    }
+  ],
+  "domain_io_calls": [],
+  "view_sql_calls": [],
+  "registered_pairs": 23,
+  "historical_records": 44,
+  "resolved_pairs": 11,
+  "blocked_pairs": 12,
+  "G4": "BLOCKED",
+  "evidence_label": "Static; not a runtime behavior result"
+}

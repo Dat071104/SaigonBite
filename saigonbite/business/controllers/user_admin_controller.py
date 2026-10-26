@@ -74,6 +74,8 @@ class UserAdminController(BaseController):
         self._require_admin(user_id)
         with immediate_transaction(self.conn):
             user = self._target(target_id)
+            if ('role' in form and form['role'] != user.role.value) or ('username' in form and form['username'].strip().lower() != user.username):
+                raise ValidationError('The existing username and role cannot be changed.')
             if user.role is Role.CUSTOMER:
                 raise ConflictError("Customers keep their own profile. You can only deactivate a customer account.")
             user.display_name = self._display_name(form)

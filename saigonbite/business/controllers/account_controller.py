@@ -77,6 +77,8 @@ class AccountController(BaseController):
     def update_profile(self, user_id: int, form: Mapping[str, str]) -> Profile:
         with immediate_transaction(self.conn):
             user, customer = self._require_customer(user_id)
+            if 'customer_type' in form and form['customer_type'] != customer.customer_type.value:
+                raise ValidationError('The registered customer type cannot be changed.')
             self._fill_customer(customer, form)
             self.customers.update(customer)
             user.display_name = customer.full_name

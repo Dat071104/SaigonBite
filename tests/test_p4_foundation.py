@@ -99,12 +99,12 @@ def test_real_second_connection_write_lock_is_controlled(app,db_path,monkeypatch
     before=facts(db_path)
     holder=connect(db_path)
     holder.execute('BEGIN IMMEDIATE')
-    original=db_module.connect
+    original=db_module.open_request_connection
     def short_wait(path):
         conn=original(path)
         conn.execute('PRAGMA busy_timeout=25') # Bounded test wait; production default separately asserted.
         return conn
-    monkeypatch.setattr(db_module,'connect',short_wait)
+    monkeypatch.setattr(db_module,'open_request_connection',short_wait)
     try:
         client=app.test_client()
         login(client,'customer')

@@ -14,8 +14,7 @@ from saigonbite.business.controllers import (HubUnavailableError, OrderTrackingC
                                              PaymentDeclinedError, PlaceOrderController, QuoteChangedError,
                                              ValidationError)
 from saigonbite.business.controllers import AuthorizationError, NotFoundError, ConflictError
-from saigonbite.business.domain import OnlineOption, PaymentMethod, Role
-from saigonbite.data_access import APPROVE, DECLINE
+from saigonbite.business.controllers.presentation_contract import OnlineOption, PaymentMethod, Role, APPROVE, DECLINE
 from saigonbite.presentation.auth import role_required
 from saigonbite.presentation.db import get_db
 from saigonbite.presentation.helpers import act, uid
@@ -186,6 +185,8 @@ def receipt(order_id: int):
 @bp.post("/<int:order_id>/replacement")
 @role_required(Role.CUSTOMER)
 def answer_replacement(order_id: int):
+    if request.form.get('decision') not in ('accept','decline'):
+        return render_template('error.html',code=400,title='Invalid answer',message='Choose accept or decline.'),400
     accept = request.form.get("decision") == "accept"
     offer_id = request.form.get("offer_id", type=int) or 0
     try:

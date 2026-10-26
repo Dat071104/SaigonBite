@@ -36,7 +36,7 @@ def test_sales_reduced_total_no_double_refund_multiline_and_archived_identity(or
 
 def test_top_items_use_id_and_latest_eligible_snapshot_name(oracle):
     conn,c,path=oracle;r=c.sales_report(5,'2026-10-20','2026-10-20')
-    assert r.top_items==[('Renamed snapshot',3,100000),('Shared name',1,50000)]
+    assert r.top_items==[(1,'Renamed snapshot',3,100000),(2,'Shared name',1,50000)]
     rows=c.reports.top_items(r.period.start_utc,r.period.end_utc,None)
     assert [r['menu_item_id'] for r in rows]==[1,2]
 
@@ -85,6 +85,7 @@ def test_report_manager_authorization_and_rendered_truth(client,oracle):
     login(client,'customer');assert client.get('/reports/sales').status_code==403
     login(client,'manager');response=client.get('/reports/sales?from=2026-10-20&to=2026-10-20')
     assert response.status_code==200 and b'160,000 VND' in response.data and b'Refunds owed' in response.data
+    assert b'data-item-id="1"' in response.data and b'data-item-id="2"' in response.data
     assert facts(path)==before
 
 
@@ -93,3 +94,16 @@ def test_report_unavailable_data_is_controlled_without_figures(client,db_path):
     login(client,'manager');response=client.get('/reports/sales?from=2026-10-20&to=2026-10-20')
     assert response.status_code==503 and b'Report data unavailable' in response.data
     assert b'id="sales-total"' not in response.data and b'VND' not in response.data
+
+
+@pytest.mark.parametrize('hub',['abc','0','-1','999','1 OR 1=1'])
+def test_invalid_report_hub_never_silently_becomes_all_hubs(client,hub):
+    login(client,'manager')
+    assert client.get('/reports/sales',query_string={'hub':hub}).status_code==400
+
+
+def test_missing_report_relationship_never_becomes_zero_sales(client,oracle):
+    conn,_,path=oracle;conn.execute('DELETE FROM payment WHERE order_id=101');before=facts(path)
+    login(client,'manager');response=client.get('/reports/sales?from=2026-10-20&to=2026-10-20')
+    assert response.status_code==503 and b'incomplete' in response.data and b'id="sales-total"' not in response.data
+    assert facts(path)==before

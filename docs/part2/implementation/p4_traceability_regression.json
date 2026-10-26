@@ -1,0 +1,34 @@
+{
+  "rows": 52,
+  "exact_token_join": true,
+  "negative_examples": [
+    {
+      "req_id": "FR-01",
+      "rejected": true,
+      "errors": [
+        "FR-01: design mismatch AccountController.register"
+      ]
+    },
+    {
+      "req_id": "FR-02",
+      "rejected": true,
+      "errors": [
+        "FR-02: design mismatch AccountController.archive_address",
+        "FR-02: design mismatch AccountController.add_address",
+        "FR-02: design mismatch AccountController.update_profile",
+        "FR-02: design mismatch AccountController.get_profile",
+        "FR-02: design mismatch AccountController.update_address"
+      ]
+    },
+    {
+      "req_id": "FR-03",
+      "rejected": true,
+      "errors": [
+        "FR-03: design mismatch UserAdminController.set_active",
+        "FR-03: design mismatch AuthController.get_user",
+        "FR-03: design mismatch AuthController.authenticate",
+        "FR-03: design mismatch auth.logout"
+      ]
+    }
+  ]
+}
