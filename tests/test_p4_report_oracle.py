@@ -50,8 +50,16 @@ def test_delivery_means_sample_sizes_and_failure_denominator(oracle):
 
 
 def test_workload_now_retains_archived_hubs_and_empty_values(oracle):
-    _,c,_=oracle;r=c.workload_report(5)
+    conn,c,_=oracle;r=c.workload_report(5)
     assert [(x.status.hub.id,x.status.load) for x in r.rows]==[(1,0),(2,1)]
+    assert [{s.value:n for s,n in x.counts.items()} for x in r.rows]==[{}, {'PLACED':1}]
+    # Controlled workload-only counterexamples; expected counts are literal, independent of the query.
+    conn.execute("UPDATE orders SET state='READY' WHERE id=108")
+    ready=c.workload_report(5).rows[1]
+    assert ready.status.load==0 and ready.counts.get('READY')==1 and ready.counts.get('OUT_FOR_DELIVERY',0)==0
+    conn.execute("UPDATE orders SET state='OUT_FOR_DELIVERY' WHERE id=108")
+    riding=c.workload_report(5).rows[1]
+    assert riding.status.load==0 and riding.counts.get('OUT_FOR_DELIVERY')==1 and riding.counts.get('READY',0)==0
     empty=c.sales_report(5,'2026-01-01','2026-01-01')
     assert empty.rows==[] and empty.top_items==[] and empty.totals.total==0
     d=c.delivery_report(5,'2026-01-01','2026-01-01').overall
@@ -86,6 +94,10 @@ def test_report_manager_authorization_and_rendered_truth(client,oracle):
     login(client,'manager');response=client.get('/reports/sales?from=2026-10-20&to=2026-10-20')
     assert response.status_code==200 and b'160,000 VND' in response.data and b'Refunds owed' in response.data
     assert b'data-item-id="1"' in response.data and b'data-item-id="2"' in response.data
+    workload=client.get('/reports/workload?from=1900-01-01&to=1900-01-02&hub=1')
+    assert workload.status_code==200 and b'workload-1' in workload.data and b'workload-2' in workload.data and b'(Archived)' in workload.data
+    empty=client.get('/reports/delivery?from=2026-01-01&to=2026-01-01')
+    assert empty.status_code==200 and b'n/a' in empty.data and b'(n=0)' in empty.data
     assert facts(path)==before
 
 
