@@ -6,5 +6,8 @@
   <p class="muted">Error {{ code }}</p>
 </div>
 <div class="flash error" role="alert">{{ message }}</div>
-<div class="actions"><a class="btn secondary" href="{{ url_for('main.home') }}">Back to the home page</a></div>
+<div class="actions">
+  {% if nav_links %}<a class="btn secondary" href="{{ url_for(nav_links[0][0]) }}">Back to {{ nav_links[0][1]|lower }}</a>
+  {% else %}<a class="btn secondary" href="{{ url_for('main.home') }}">Back to the home page</a>{% endif %}
+</div>
 {% endblock %}
