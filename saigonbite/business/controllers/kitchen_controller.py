@@ -104,7 +104,8 @@ class KitchenController(BaseController):
             move_order(self.orders, order, OrderState.REJECTED, now, reason)
             offer = self.offers.get_open(order.id)
             if offer is not None:
-                self.offers.decide(offer.id, OfferState.WITHDRAWN, now)
+                if not self.offers.decide(offer.id, OfferState.WITHDRAWN, now):
+                    raise ConflictError('The open offer changed. Please reload.')
             release_payment(self.payments, order.id, now)
         return order
 
@@ -122,6 +123,8 @@ class KitchenController(BaseController):
             line = order.line(order_line_id)
             if line is None:
                 raise ValidationError("Choose a dish of this order to replace.")
+            if self.hubs.get_available_item(order.hub_id, line.menu_item_id) is not None:
+                raise ValidationError('A replacement requires a currently unavailable source dish.')
             item = self.hubs.get_available_item(order.hub_id, new_menu_item_id) if new_menu_item_id else None
             if item is None:
                 raise ValidationError("The replacement must be a dish available at this hub.")
@@ -143,6 +146,8 @@ class KitchenController(BaseController):
         staff = self._require_staff(user_id)
         with immediate_transaction(self.conn):
             order = self._hub_order(staff, order_id)
+            if self.offers.get_open(order.id) is not None:
+                raise ConflictError('The customer has not answered the open offer.')
             move_order(self.orders, order, OrderState.PREPARING, self._now())
         return order
 
@@ -165,6 +170,10 @@ class KitchenController(BaseController):
     def set_availability(self, user_id: int, menu_item_id: int, available: bool) -> None:
         staff = self._require_staff(user_id)
         with immediate_transaction(self.conn):
+            if type(available) is not bool:
+                raise ValidationError('Availability must be true or false.')
+            if not any(x.item.id == menu_item_id for x in self.hubs.list_menu(staff.hub_id)):
+                raise NotFoundError('The active dish is not on your hub menu.')
             if not self.menu.set_available(staff.hub_id, menu_item_id, available):
                 raise NotFoundError("This dish is not on your hub's menu.")
 

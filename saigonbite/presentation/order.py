@@ -8,11 +8,12 @@ Routes stay thin: they read the form, call the controller and render the result.
 """
 import uuid
 
-from flask import Blueprint, redirect, render_template, request, url_for
+from flask import Blueprint, flash, redirect, render_template, request, url_for
 
 from saigonbite.business.controllers import (HubUnavailableError, OrderTrackingController, PaymentChoice,
                                              PaymentDeclinedError, PlaceOrderController, QuoteChangedError,
                                              ValidationError)
+from saigonbite.business.controllers import AuthorizationError, NotFoundError, ConflictError
 from saigonbite.business.domain import OnlineOption, PaymentMethod, Role
 from saigonbite.data_access import APPROVE, DECLINE
 from saigonbite.presentation.auth import role_required
@@ -172,16 +173,30 @@ def detail(order_id: int):
     return render_template("order/detail.html", d=_tracking().get_order(uid(), order_id))
 
 
+@bp.get('/<int:order_id>/receipt')
+@role_required(Role.CUSTOMER)
+def receipt(order_id: int):
+    try:
+        d = _tracking().get_order(uid(),order_id)
+    except AuthorizationError:
+        raise NotFoundError('Receipt not found.') from None
+    return render_template('order/receipt.html',d=d)
+
+
 @bp.post("/<int:order_id>/replacement")
 @role_required(Role.CUSTOMER)
 def answer_replacement(order_id: int):
     accept = request.form.get("decision") == "accept"
     offer_id = request.form.get("offer_id", type=int) or 0
-    return act(lambda: _tracking().answer_replacement(uid(), order_id, offer_id, accept),
-               "Thank you. The kitchen will now confirm your order." if accept
-               else "You declined the replacement, so the order will not be cooked. "
-                    "An online payment is refunded in full.",
-               url_for("order.detail", order_id=order_id))
+    try:
+        result = _tracking().answer_replacement(uid(), order_id, offer_id, accept)
+    except (ValidationError,ConflictError) as exc:
+        flash(str(exc),'error')
+    else:
+        flash(result.notice or ('Replacement accepted. The kitchen may now confirm your order.' if accept
+              else 'Replacement declined. An online captured payment is owed back in full; payout is pending.'),
+              'notice' if result.notice else 'success')
+    return redirect(url_for('order.detail',order_id=order_id),code=303)
 
 
 @bp.post("/<int:order_id>/cancel")

@@ -15,8 +15,8 @@
   <p>{{ o.original_item_name }} has run out. The kitchen offers <strong>{{ o.new_item_name }}</strong>
      at {{ o.new_unit_price|vnd }} instead of {{ o.original_unit_price|vnd }}.</p>
   <p>If you accept, the new total is <strong id="new-total">{{ d.total_if_accepted|vnd }}</strong>
-     (now {{ order.total|vnd }}).{% if d.payment.method.value == 'ONLINE' %} The difference is refunded to you.{% endif %}
-     If you decline, the order is not cooked{% if d.payment.method.value == 'ONLINE' %} and your payment is refunded in full{% endif %}.</p>
+     (now {{ order.total|vnd }}).{% if d.payment.method.value == 'ONLINE' %} The difference is a refund owed; payout is pending.{% endif %}
+     If you decline, the order is not cooked{% if d.payment.method.value == 'ONLINE' %} and the full captured amount is owed back, pending payout{% endif %}.</p>
   <form method="post" action="{{ url_for('order.answer_replacement', order_id=order.id) }}" class="actions">
     {{ csrf() }}
     <input type="hidden" name="offer_id" value="{{ o.id }}">
@@ -46,6 +46,7 @@
 {% endif %}
 
 <div class="actions">
+  <a href="{{ url_for('order.receipt',order_id=order.id) }}">Printable receipt</a>
   {% if d.can_cancel %}{{ button(url_for('order.cancel', order_id=order.id), 'Cancel this order', 'secondary', confirm='Cancel order ' ~ order.id ~ '?') }}{% endif %}
   <a class="btn link" href="{{ url_for('order.my_orders') }}">All my orders</a>
 </div>

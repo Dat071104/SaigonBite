@@ -66,4 +66,6 @@ def release_payment(payments: PaymentDAO, order_id: int, now: str) -> Payment:
         raise ConflictError(f"The payment of order {order_id} is {from_state.value}. Nothing was changed.") from None
     if not payments.change_state(order_id, from_state, payment.state, now):
         raise ConflictError(f"The payment of order {order_id} was changed by someone else. Please reload.")
+    if not payments.set_amounts(order_id, payment.amount, payment.refund_amount, now):
+        raise ConflictError('The payment amounts changed before saving. Please reload.')
     return payment

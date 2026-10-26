@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Receipt {{ d.order.id }} · SaigonBite{% endblock %}
+{% block content %}
+{% set order=d.order %}
+<h1>Receipt · Order {{ order.id }}</h1>
+<p>Placed {{ order.placed_at|vn_time }} · {{ d.hub.name }}</p>
+<p>{{ order.delivery_address_text }} · Approximate distance {{ '%.2f'|format(order.distance_km) }} km</p>
+{% include "order/_lines.html" %}
+<dl class="facts">
+  <dt>Item subtotal S</dt><dd>{{ order.item_subtotal|vnd }}</dd>
+  <dt>Voucher discount D</dt><dd>{{ order.voucher_discount|vnd }}</dd>
+  <dt>Delivery fee F</dt><dd>{{ order.delivery_fee|vnd }}</dd>
+  <dt>Quiet discount Q</dt><dd>{{ order.quiet_discount|vnd }}</dd>
+  <dt>Total T</dt><dd>{{ order.total|vnd }}</dd>
+  <dt>Payment method</dt><dd>{{ d.payment.method.value }}{% if d.payment.online_option %} · {{ d.payment.online_option.value }}{% endif %}</dd>
+  <dt>Payment state</dt><dd>{{ d.payment.state.value }}</dd>
+  <dt>Payment amount{% if d.payment.method.value=='ONLINE' %} captured C{% endif %}</dt><dd>{{ d.payment.amount|vnd }}</dd>
+  <dt>Refund owed, payout pending</dt><dd>{{ d.payment.refund_amount|vnd }}</dd>
+</dl>
+{% if d.payment.method.value=='ONLINE' %}<p>Simulated payment. No real money moves. Refund owed is an obligation; payout has not occurred.</p>{% endif %}
+{% endblock %}

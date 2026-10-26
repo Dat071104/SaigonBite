@@ -29,6 +29,7 @@ class OrderDetail:
     delivery: Optional[Delivery]
     open_offer: Optional[ReplacementOffer]
     offers: list[ReplacementOffer]
+    notice: Optional[str] = None  # Ephemeral result message, never a stored withdrawal-reason column.
 
     @property
     def can_cancel(self) -> bool:
@@ -78,29 +79,38 @@ class OrderTrackingController(BaseController):
         ONLINE records the difference as refund owed (payment stays PAID).
         Decline: the order is REJECTED and the payment released (A-06)."""
         customer = self._require_customer(user_id)
+        notice = None
         with immediate_transaction(self.conn):
             order = self._own_order(customer, order_id)
             offer = self.offers.get_open(order.id)
-            if offer is None or offer.id != offer_id:
+            if order.state is not OrderState.PLACED or offer is None or offer.id != offer_id:
                 raise ConflictError("This replacement offer is no longer open. Nothing was changed.")
             now = self._now()
-            if accept:
-                old_total = order.total
+            target_valid = self.hubs.get_available_item(order.hub_id,offer.new_menu_item_id) is not None
+            if accept and not target_valid:
+                if not self.offers.decide(offer.id,OfferState.WITHDRAWN,now):
+                    raise ConflictError('The offer changed. Please reload.')
+                notice = 'The replacement is no longer available. The offer was withdrawn; your order and payment are unchanged.'
+            elif accept:
                 order.replace_line(offer.order_line_id, offer.new_menu_item_id, offer.new_item_name,
                                    offer.new_unit_price)
-                self.orders.save_lines_and_totals(order)
+                if not self.orders.save_lines_and_totals(order):
+                    raise ConflictError('The order lines changed. Please reload.')
                 payment = self.payments.get_by_order_id(order.id)
                 if payment.method is PaymentMethod.COD:
-                    self.payments.set_amounts(order.id, order.total, 0, now)
+                    saved = self.payments.set_amounts(order.id, order.total, 0, now)
                 else:
-                    self.payments.set_amounts(order.id, payment.amount,
-                                              payment.refund_amount + old_total - order.total, now)
-                self.offers.decide(offer.id, OfferState.ACCEPTED, now)
+                    saved = self.payments.set_amounts(order.id, payment.amount, payment.amount - order.total, now)
+                if not saved or not self.offers.decide(offer.id, OfferState.ACCEPTED, now):
+                    raise ConflictError('The payment or offer changed. Please reload.')
             else:
-                self.offers.decide(offer.id, OfferState.DECLINED, now)
+                if not self.offers.decide(offer.id, OfferState.DECLINED, now):
+                    raise ConflictError('The offer changed. Please reload.')
                 move_order(self.orders, order, OrderState.REJECTED, now, DECLINED_REASON)
                 release_payment(self.payments, order.id, now)
-        return self.get_order(user_id, order_id)
+        result = self.get_order(user_id, order_id)
+        result.notice = notice
+        return result
 
     def cancel_order(self, user_id: int, order_id: int) -> OrderDetail:
         """Q3: allowed while PLACED or CONFIRMED (before cooking). An open offer is withdrawn."""
@@ -111,7 +121,8 @@ class OrderTrackingController(BaseController):
             move_order(self.orders, order, OrderState.CANCELLED, now)
             offer = self.offers.get_open(order.id)
             if offer is not None:
-                self.offers.decide(offer.id, OfferState.WITHDRAWN, now)
+                if not self.offers.decide(offer.id, OfferState.WITHDRAWN, now):
+                    raise ConflictError('The offer changed. Please reload.')
             release_payment(self.payments, order.id, now)
         return self.get_order(user_id, order_id)
 

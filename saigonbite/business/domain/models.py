@@ -37,7 +37,7 @@ ALLOWED_TRANSITIONS: dict[OrderState, frozenset[OrderState]] = {
 PAYMENT_TRANSITIONS: dict[PaymentState, frozenset[PaymentState]] = {
     PaymentState.PENDING: frozenset({PaymentState.PAID, PaymentState.VOIDED}),
     PaymentState.PAID: frozenset({PaymentState.REFUND_PENDING}),
-    PaymentState.REFUND_PENDING: frozenset({PaymentState.REFUNDED}),
+    PaymentState.REFUND_PENDING: frozenset(),  # Payout is deferred, never a running transition.
     PaymentState.FAILED: frozenset(),
     PaymentState.VOIDED: frozenset(),
     PaymentState.REFUNDED: frozenset(),
@@ -280,6 +280,7 @@ class Payment:
     def release_for_unfulfilled_order(self) -> None:
         """Rejection, cancellation or failed delivery (A-06): COD is voided, an online payment is owed back."""
         self.move_to(PaymentState.VOIDED if self.method is PaymentMethod.COD else PaymentState.REFUND_PENDING)
+        self.refund_amount = self.amount if self.method is PaymentMethod.ONLINE else 0
 
 
 @dataclass
@@ -342,6 +343,8 @@ class Order:
     def replace_line(self, line_id: int, menu_item_id: int, item_name: str, unit_price: int) -> None:
         """Apply an accepted replacement. The voucher discount agreed at checkout is kept,
         but never more than the new item subtotal, so the total can only stay the same or fall."""
+        if self.state is not OrderState.PLACED:
+            raise InvalidTransition('Only a PLACED order can accept a replacement.')
         line = self.line(line_id)
         if line is None:
             raise ValueError(f"Order {self.id} has no line {line_id}")

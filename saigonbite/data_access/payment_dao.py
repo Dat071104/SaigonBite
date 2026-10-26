@@ -36,7 +36,8 @@ class PaymentDAO:
             (to_state.value, now, order_id, from_state.value))
         return cur.rowcount == 1
 
-    def set_amounts(self, order_id: int, amount: int, refund_amount: int, now: str) -> None:
+    def set_amounts(self, order_id: int, amount: int, refund_amount: int, now: str) -> bool:
         """After an accepted replacement: COD follows the new total; ONLINE records the difference owed."""
-        self.conn.execute("UPDATE payment SET amount = ?, refund_amount = ?, updated_at = ? WHERE order_id = ?",
+        cur = self.conn.execute("UPDATE payment SET amount = ?, refund_amount = ?, updated_at = ? WHERE order_id = ?",
                           (amount, refund_amount, now, order_id))
+        return cur.rowcount == 1

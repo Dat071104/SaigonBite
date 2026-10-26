@@ -72,15 +72,18 @@ class OrderDAO:
         cur = self.conn.execute(f"UPDATE orders SET {sets} WHERE id = ? AND state = ?", params)
         return cur.rowcount == 1
 
-    def save_lines_and_totals(self, order: Order) -> None:
+    def save_lines_and_totals(self, order: Order) -> bool:
         """Persist an accepted replacement: the changed lines and the recomputed totals."""
         for line in order.lines:
-            self.conn.execute(
+            cur = self.conn.execute(
                 "UPDATE order_line SET menu_item_id = ?, item_name = ?, unit_price = ? WHERE id = ? AND order_id = ?",
                 (line.menu_item_id, line.item_name, line.unit_price, line.id, order.id))
-        self.conn.execute(
-            "UPDATE orders SET item_subtotal = ?, voucher_discount = ?, total_amount = ? WHERE id = ?",
+            if cur.rowcount != 1:
+                return False
+        cur = self.conn.execute(
+            "UPDATE orders SET item_subtotal = ?, voucher_discount = ?, total_amount = ? WHERE id = ? AND state = 'PLACED'",
             (order.item_subtotal, order.voucher_discount, order.total, order.id))
+        return cur.rowcount == 1
 
     # ---- archive (SUC-09) ---------------------------------------------------------------
 
