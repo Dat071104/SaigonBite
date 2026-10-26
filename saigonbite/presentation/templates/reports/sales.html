@@ -8,6 +8,7 @@
 </div>
 {% include "reports/_filter.html" %}
 {% if report %}
+<div class="table-scroll" role="region" aria-label="Sales by hub" tabindex="0">
 <table class="data" id="sales-table">
   <thead><tr><th>Hub</th><th class="num">Orders</th><th class="num">Dishes</th><th class="num">Vouchers</th>
     <th class="num">Delivery fees</th><th class="num">Total</th><th class="num">Refunds owed</th><th class="num">Net</th></tr></thead>
@@ -25,6 +26,7 @@
       <td class="num">{{ t.total|vnd }}</td><td class="num">{{ t.refunds_owed|vnd }}</td><td class="num">{{ t.net|vnd }}</td></tr>
   </tbody>
 </table>
+</div>
 <p class="muted">Delivery fees are after the quiet-hub discount. Total = dishes - vouchers + delivery fees. Net sales equal this adjusted total; refund owed is shown separately and is not deducted twice. Refunds are simulated obligations, not payouts.</p>
 {% if report.top_items %}
 <section aria-labelledby="top-h">

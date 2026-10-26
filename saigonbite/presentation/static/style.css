@@ -260,3 +260,8 @@ section > * + * { margin-top: 12px; }
   .my-orders td:nth-child(4) { grid-column: 1 / -1; }
   .my-orders td:nth-child(1) a { display: inline-flex; align-items: center; min-height: 44px; }
 }
+
+/* ---- P5.1 refinement R3: a wide report table scrolls inside its own labelled box (measured: the sales
+   table is 967 px wide at 768 px) --------------------------------------------------------------------- */
+.table-scroll { overflow-x: auto; }
+.table-scroll:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
