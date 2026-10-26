@@ -1,0 +1,12 @@
+{
+  "tracked_model_files": 2327,
+  "existing_model_files": 2329,
+  "extra_model_files": [
+    "D:\\RAD\\FINAL\\SaigonBite\\models\\UC-01\\__pycache__\\activity_uc01.cpython-312.pyc",
+    "D:\\RAD\\FINAL\\SaigonBite\\models\\UC-04\\__pycache__\\activity_uc04_PartB.cpython-312.pyc"
+  ],
+  "staging_files": 2328,
+  "all_existing_bytes_in_start_manifest": true,
+  "disposition": "Historical 2327 counts tracked model artifacts; two pre-existing ignored pyc files raise actual on-disk count to 2329. Preserve and hash both; do not delete or exclude them.",
+  "tool_intervention": "First preflight stopped at count assertion after durable snapshot. Resume after snapshot with original bytes/manifests; no restart or test rerun."
+}

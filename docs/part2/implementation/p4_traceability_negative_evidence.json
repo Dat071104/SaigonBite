@@ -1,0 +1,54 @@
+{
+  "source_sha256": "9ce7257c8ef1147f9d95ea1914333f9faa9ae624db4f647ff9cf72781f430c30",
+  "rows": 52,
+  "examples": [
+    {
+      "Req ID": "FR-01",
+      "source": "Case p.1 registration feature; Plan §2.2 SUC-02; §3.1 BR-12/A-18",
+      "UC/SUC": "SUC-02; UC-01",
+      "PC/MG ID": "SUC02-PC01",
+      "activity/SSD/state ref": "docs/part2/SUC.md#SUC02-PC01",
+      "design operation": "DeliveryController.pick_up [P4-TARGET; OP-10; takeDelivery] + models/UC-02/seq_uc02_takeDelivery.drawio",
+      "screen/control": "",
+      "code method": "",
+      "test ID": "",
+      "result evidence": "",
+      "report section": "I.1.7; II.2.1.5 (supporting contract)",
+      "actual author": "722I0004",
+      "status": "Analysed"
+    },
+    {
+      "Req ID": "FR-02",
+      "source": "Case p.1 profile, address, and hotel features; Plan §2.2 SUC-02; §2.4 Address; §3.1 BR-12/A-18",
+      "UC/SUC": "SUC-02; UC-01",
+      "PC/MG ID": "SUC02-PC02; SUC02-PC03",
+      "activity/SSD/state ref": "docs/part2/SUC.md#SUC02-PC02; docs/part2/SUC.md#SUC02-PC03",
+      "design operation": "DeliveryController.confirm_delivered [P4-TARGET; OP-11; confirmDelivered] + models/UC-02/seq_uc02_confirmDelivered.drawio; DeliveryController.report_failure [P4-TARGET; OP-12; reportFailure] + models/UC-02/seq_uc02_reportFailure.drawio",
+      "screen/control": "",
+      "code method": "",
+      "test ID": "",
+      "result evidence": "",
+      "report section": "I.1.7; II.2.1.5 (supporting contract)",
+      "actual author": "722I0004",
+      "status": "Analysed"
+    },
+    {
+      "Req ID": "FR-03",
+      "source": "Requirements p.2 §2.1 minimum CRUD; Case p.2 private customer data; Plan §2.2 SUC-01/SUC-08; §4.4 UserAccount",
+      "UC/SUC": "SUC-01; SUC-08",
+      "PC/MG ID": "SUC01-PC01; SUC01-PC02; SUC08-PC02",
+      "activity/SSD/state ref": "docs/part2/SUC.md#SUC01-PC01; docs/part2/SUC.md#SUC01-PC02; docs/part2/SUC.md#SUC08-PC02",
+      "design operation": "PlaceOrderController.confirm_order [P4-TARGET; OP-01; confirmCheckout] + models/UC-01/seq_uc01_confirmCheckout_PartA.drawio; PlaceOrderController.confirm_order [P4-TARGET; OP-01; confirmCheckout] + models/UC-01/seq_uc01_confirmCheckout_PartB.drawio; PlaceOrderController.confirm_order [P4-TARGET; OP-01; confirmCheckout] + models/UC-01/seq_uc01_confirmCheckout_PartC.drawio; PlaceOrderController.confirm_order [P4-TARGET; OP-01; confirmCheckout] + models/UC-01/seq_uc01_confirmCheckout_PartD.drawio; PlaceOrderController.confirm_order [P4-TARGET; OP-01; confirmCheckout] + models/UC-01/seq_uc01_confirmCheckout_PartE.drawio",
+      "screen/control": "",
+      "code method": "",
+      "test ID": "",
+      "result evidence": "",
+      "report section": "I.1.7; II.2.1.5 (supporting contract)",
+      "actual author": "722I0004",
+      "status": "Analysed"
+    }
+  ],
+  "audit_status": "NOT RUN; no mapping repair before the foundation gate",
+  "required_join": "For all 52 rows: exact Req ID + complete UC/SUC IDs + complete PC/MG tokens. Resolve each token to its actual contract and operation; supporting-only rows cite supporting controllers and explicitly lack a standalone main-UC diagram. No ordinal or digit-substring join.",
+  "regression_plan": "Reject original FR-01->DeliveryController.pick_up, FR-02->delivery finish/failure, and FR-03->PlaceOrderController.confirm_order mappings. These regressions are NOT RUN."
+}

@@ -1,0 +1,10 @@
+
+STDERR:
+ImportError while loading conftest 'D:\RAD\FINAL\SaigonBite\tests\conftest.py'.
+tests\conftest.py:79: in <module>
+    PRICES, FEES = _seed_prices()
+                   ^^^^^^^^^^^^^^
+tests\conftest.py:74: in _seed_prices
+    fees = dict(conn.execute("SELECT id, delivery_fee_flat FROM hub"))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   sqlite3.OperationalError: no such column: delivery_fee_flat

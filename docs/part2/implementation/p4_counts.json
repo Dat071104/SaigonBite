@@ -1,0 +1,25 @@
+{
+  "design_rows": 121,
+  "design_elements": 96,
+  "operations": 38,
+  "main_anchors": 30,
+  "flow_rows": 41,
+  "flow_fields": [
+    "UC",
+    "operation",
+    "catalogue_id",
+    "parameters",
+    "description step",
+    "SSD message",
+    "BR"
+  ],
+  "supporting_PCs": 21,
+  "supporting_guard_sections": 9,
+  "supporting_failure_sections": 9,
+  "historical_test_functions": 56,
+  "catalogue_op_ids": 60,
+  "SSD_occurrences": 41,
+  "UC_operation_pairs": 39,
+  "listCatalogue_occurrences": 3,
+  "traceability_rows": 52
+}

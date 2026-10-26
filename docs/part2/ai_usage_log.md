@@ -63,3 +63,8 @@ Author: 722I0004 · AI-assisted (Codex)
 | Codex root,26/10/2026 (post-review integration) | Resolve R1–R4 and R-A07 without changing independent verdict | Read all4 repair reports after final B-fix; inspect actual critical export pairs; aggregate SSD continuations truthfully | R-A07 checker corrected;397 current visual sets reconciled;III/IV reassembled;no status promotion | 24,849 full C0 checks and2,019 artifact checks PASS;original erroneous cases rejected;original review hash unchanged;final integrity/staging receipts follow |
 
 | Codex root,26/10/2026 (closure) | Verify immutable boundaries and local submission staging | Binary manifest;mirror committed models;normalize Windows lookup keys without changing originals;archive actual prompts;clean final commit receipt | All1,730 protected files unchanged;2,327 model files mirrored;workbook unchanged;eLearning0;no external action | P3_end_hash_check.json,P3_staging_manifest.json,P3_prompt_archive.json and clean-head P3_final_receipt.json;native editing/final placement/runtime remain UNTESTED |
+
+
+## 26 October 2026 — P4 entry and frozen-contract blocker
+
+Author: 722I0004 · AI-assisted (Codex). Root used the owner-supplied P4 prompt to verify hashes, snapshot originals, inventory entry evidence, reproduce original collection failure and probe the unchanged static mapping auditor. No application edit, passing runtime test, delegation, independent approval or external action is claimed. P4-B01 blocks mandatory created_at against the protected absent-C0 mapping. See `_agent_reports/P4-root.md`, implementation registers and `Part2/notes/P4_final_receipt.json`.

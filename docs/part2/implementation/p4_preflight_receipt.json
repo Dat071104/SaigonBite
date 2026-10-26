@@ -1,0 +1,58 @@
+{
+  "author": "722I0004 · AI-assisted (Codex)",
+  "counts": {
+    "design_rows": 121,
+    "design_elements": 96,
+    "operations": 60,
+    "main_anchors": 30,
+    "flow_rows": 41,
+    "flow_fields": [
+      "UC",
+      "operation",
+      "catalogue_id",
+      "parameters",
+      "description step",
+      "SSD message",
+      "BR"
+    ],
+    "supporting_PCs": 21,
+    "supporting_guard_sections": 9,
+    "supporting_failure_sections": 9,
+    "historical_test_functions": 56
+  },
+  "baseline": {
+    "command": [
+      "D:\\RAD\\FINAL\\SaigonBite\\.venv\\Scripts\\python.exe",
+      "-m",
+      "pytest",
+      "--collect-only",
+      "--basetemp=D:\\RAD\\FINAL\\Part2\\notes\\P4_test_scratch\\baseline_pytest"
+    ],
+    "cwd": "D:\\RAD\\FINAL\\SaigonBite",
+    "started_at_utc": "2026-10-26T02:47:50.741989+00:00",
+    "ended_at_utc": "2026-10-26T02:47:51.989602+00:00",
+    "exit": 4,
+    "log": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\test_report\\p4_baseline_collection.log",
+    "log_sha256": "acd2dc9165729a11803bf561ecd517c68000e53aca16ae949649a4d8bd97dcef"
+  },
+  "environment": {
+    "command": [
+      "D:\\RAD\\FINAL\\SaigonBite\\.venv\\Scripts\\python.exe",
+      "-c",
+      "import sys, importlib.metadata as m; print(sys.version); print({p:m.version(p) for p in [\"flask\",\"flask-login\",\"pytest\",\"werkzeug\"]})"
+    ],
+    "cwd": "D:\\RAD\\FINAL\\SaigonBite",
+    "started_at_utc": "2026-10-26T02:47:50.431945+00:00",
+    "ended_at_utc": "2026-10-26T02:47:50.724719+00:00",
+    "exit": 0,
+    "log": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\test_report\\p4_environment.log",
+    "log_sha256": "97e2164592fc8a5cabc97f980f49392bb78aab60b5d3c454f629e2af40880b94"
+  },
+  "workers": 0,
+  "owner_answers": "No new answers in decision log",
+  "blocker": "P4-B01: required created_at versus protected mapping/checker",
+  "application_changed": false,
+  "protected_files": 95359,
+  "models": 2329,
+  "staging": 2328
+}

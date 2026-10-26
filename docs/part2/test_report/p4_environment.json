@@ -1,0 +1,13 @@
+{
+  "command": [
+    "D:\\RAD\\FINAL\\SaigonBite\\.venv\\Scripts\\python.exe",
+    "-c",
+    "import sys, importlib.metadata as m; print(sys.version); print({p:m.version(p) for p in [\"flask\",\"flask-login\",\"pytest\",\"werkzeug\"]})"
+  ],
+  "cwd": "D:\\RAD\\FINAL\\SaigonBite",
+  "started_at_utc": "2026-10-26T02:47:50.431945+00:00",
+  "ended_at_utc": "2026-10-26T02:47:50.724719+00:00",
+  "exit": 0,
+  "log": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\test_report\\p4_environment.log",
+  "log_sha256": "97e2164592fc8a5cabc97f980f49392bb78aab60b5d3c454f629e2af40880b94"
+}

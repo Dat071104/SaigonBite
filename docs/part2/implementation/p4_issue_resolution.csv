@@ -1,0 +1,33 @@
+id,baseline_observation,subphase,action,tests,commit,status
+F-01,See frozen P2/P3 reports or locked plan; not runtime-qualified,,Retain baseline; execution blocked by frozen mapping/checker conflict,,,NOT RUN
+F-02,See frozen P2/P3 reports or locked plan; not runtime-qualified,P4.4; P4.4 / P4.5,Retain baseline; execution blocked by frozen mapping/checker conflict,,,NOT RUN
+F-03,See frozen P2/P3 reports or locked plan; not runtime-qualified,P4.8,Retain baseline; execution blocked by frozen mapping/checker conflict,,,NOT RUN
+F-04,See frozen P2/P3 reports or locked plan; not runtime-qualified,P4.3,Retain baseline; execution blocked by frozen mapping/checker conflict,,,NOT RUN
+F-05,See frozen P2/P3 reports or locked plan; not runtime-qualified,P4.4,Retain baseline; execution blocked by frozen mapping/checker conflict,,,NOT RUN
+F-06,See frozen P2/P3 reports or locked plan; not runtime-qualified,,Retain baseline; execution blocked by frozen mapping/checker conflict,,,NOT RUN
+F-07,See frozen P2/P3 reports or locked plan; not runtime-qualified,P4.3,Retain baseline; execution blocked by frozen mapping/checker conflict,,,NOT RUN
+F-08,See frozen P2/P3 reports or locked plan; not runtime-qualified,,Retain baseline; execution blocked by frozen mapping/checker conflict,,,NOT RUN
+F-09,See frozen P2/P3 reports or locked plan; not runtime-qualified,P4.8,Retain baseline; execution blocked by frozen mapping/checker conflict,,,NOT RUN
+P2-S01,See frozen P2/P3 reports or locked plan; not runtime-qualified,P4.4,Retain baseline; execution blocked by frozen mapping/checker conflict,,,NOT RUN
+P2-S02,"user_account.created_at absent; frozen mapping row 30 is target gap; actual checker baseline 110/110, required candidate 110/111",P4.1,P4-B01: dependent implementation blocked by protected mapping and unchanged-checker mandate,Static probe: test_report/p4_frozen_mapping_conflict.json; behavioral cases NOT RUN,,BLOCKED
+P2-S03,See frozen P2/P3 reports or locked plan; not runtime-qualified,P4.7,Retain baseline; execution blocked by frozen mapping/checker conflict,,,NOT RUN
+P2-S04,See frozen P2/P3 reports or locked plan; not runtime-qualified,,Retain baseline; execution blocked by frozen mapping/checker conflict,,,NOT RUN
+P2-S05,See frozen P2/P3 reports or locked plan; not runtime-qualified,P4.3,Retain baseline; execution blocked by frozen mapping/checker conflict,,,NOT RUN
+P2-S06,See frozen P2/P3 reports or locked plan; not runtime-qualified,P4.7,Retain baseline; execution blocked by frozen mapping/checker conflict,,,NOT RUN
+P2-S07,See frozen P2/P3 reports or locked plan; not runtime-qualified,P4.7,Retain baseline; execution blocked by frozen mapping/checker conflict,,,NOT RUN
+P2-S08,Existing PaymentDAO updated_at-or-created_at fallback; no invented defect,,Retain baseline; execution blocked by frozen mapping/checker conflict,,,NOT RUN
+P2-S09,See frozen P2/P3 reports or locked plan; not runtime-qualified,P4.4,Retain baseline; execution blocked by frozen mapping/checker conflict,,,NOT RUN
+P2-S10,See frozen P2/P3 reports or locked plan; not runtime-qualified,,Retain baseline; execution blocked by frozen mapping/checker conflict,,,NOT RUN
+P2-S11,See frozen P2/P3 reports or locked plan; not runtime-qualified,P4.4,Retain baseline; execution blocked by frozen mapping/checker conflict,,,NOT RUN
+P2-S12,See frozen P2/P3 reports or locked plan; not runtime-qualified,P4.1 / P6,Retain baseline; execution blocked by frozen mapping/checker conflict,,,NOT RUN
+P2-S13,See frozen P2/P3 reports or locked plan; not runtime-qualified,P4.1; P4.1 + P4.2; P4.1 + P4.4; P4.1 + P4.5; P4.1 + P4.6; P4.1 + P4.7; P4.3; P4.4; P4.4 / P4.5; P4.6,Retain baseline; execution blocked by frozen mapping/checker conflict,,,NOT RUN
+P2-S14,See frozen P2/P3 reports or locked plan; not runtime-qualified,P4.6,Retain baseline; execution blocked by frozen mapping/checker conflict,,,NOT RUN
+P2-S15,See frozen P2/P3 reports or locked plan; not runtime-qualified,P4.6,Retain baseline; execution blocked by frozen mapping/checker conflict,,,NOT RUN
+P2-S16,See frozen P2/P3 reports or locked plan; not runtime-qualified,,Retain baseline; execution blocked by frozen mapping/checker conflict,,,NOT RUN
+P2-S17,See frozen P2/P3 reports or locked plan; not runtime-qualified,,Retain baseline; execution blocked by frozen mapping/checker conflict,,,NOT RUN
+P2-S18,See frozen P2/P3 reports or locked plan; not runtime-qualified,P4.8,Retain baseline; execution blocked by frozen mapping/checker conflict,,,NOT RUN
+P3-S01,See frozen P2/P3 reports or locked plan; not runtime-qualified,P4.3,Retain baseline; execution blocked by frozen mapping/checker conflict,,,NOT RUN
+P3-S02,See frozen P2/P3 reports or locked plan; not runtime-qualified,P4.2,Retain baseline; execution blocked by frozen mapping/checker conflict,,,NOT RUN
+P3-S03,See frozen P2/P3 reports or locked plan; not runtime-qualified,P4.1; P4.1 + P4.2; P4.1 + P4.4; P4.1 + P4.5; P4.1 + P4.6; P4.1 + P4.7; P4.4,Retain baseline; execution blocked by frozen mapping/checker conflict,,,NOT RUN
+P3-S04,See frozen P2/P3 reports or locked plan; not runtime-qualified,P4.9,Retain baseline; execution blocked by frozen mapping/checker conflict,,,NOT RUN
+P4-A01,See frozen P2/P3 reports or locked plan; not runtime-qualified,,Retain baseline; execution blocked by frozen mapping/checker conflict,,,NOT RUN

@@ -1,0 +1,92 @@
+{
+  "interpreter": "D:\\RAD\\FINAL\\SaigonBite\\.venv\\Scripts\\python.exe",
+  "version": "3.13.2 (tags/v3.13.2:4f8bb39, Feb  4 2025, 15:23:48) [MSC v.1942 64 bit (AMD64)]",
+  "requirements_sha256": "cc1a3a6c5f4516abf2c6f27929bc2ad17d3c1df4324817b109e8310fe7f4a48c",
+  "pins": [
+    {
+      "package": "Flask",
+      "expected": "3.1.3",
+      "actual": "3.1.3",
+      "match": true
+    },
+    {
+      "package": "Flask-Login",
+      "expected": "0.6.3",
+      "actual": "0.6.3",
+      "match": true
+    },
+    {
+      "package": "Werkzeug",
+      "expected": "3.1.9",
+      "actual": "3.1.9",
+      "match": true
+    },
+    {
+      "package": "Jinja2",
+      "expected": "3.1.6",
+      "actual": "3.1.6",
+      "match": true
+    },
+    {
+      "package": "itsdangerous",
+      "expected": "2.2.0",
+      "actual": "2.2.0",
+      "match": true
+    },
+    {
+      "package": "MarkupSafe",
+      "expected": "3.0.4",
+      "actual": "3.0.4",
+      "match": true
+    },
+    {
+      "package": "blinker",
+      "expected": "1.9.0",
+      "actual": "1.9.0",
+      "match": true
+    },
+    {
+      "package": "click",
+      "expected": "8.5.0",
+      "actual": "8.5.0",
+      "match": true
+    },
+    {
+      "package": "colorama",
+      "expected": "0.4.6",
+      "actual": "0.4.6",
+      "match": true
+    },
+    {
+      "package": "pytest",
+      "expected": "9.1.1",
+      "actual": "9.1.1",
+      "match": true
+    },
+    {
+      "package": "iniconfig",
+      "expected": "2.3.1",
+      "actual": "2.3.1",
+      "match": true
+    },
+    {
+      "package": "packaging",
+      "expected": "26.3",
+      "actual": "26.3",
+      "match": true
+    },
+    {
+      "package": "pluggy",
+      "expected": "1.7.0",
+      "actual": "1.7.0",
+      "match": true
+    },
+    {
+      "package": "Pygments",
+      "expected": "2.21.0",
+      "actual": "2.21.0",
+      "match": true
+    }
+  ],
+  "bundled_python": "3.12.14; Flask unavailable; static checker only"
+}

@@ -1,0 +1,30 @@
+{
+  "author": "722I0004 · AI-assisted (Codex)",
+  "label": "Static counterfactual",
+  "actual_app_changed": false,
+  "runtime_test": false,
+  "checker_sha256": "61ed57ba4cc29ccefde12c6df2640de7eb4a5809c4de9573be245cd8a9c1e22c",
+  "inventory_parser_sha256": "f9f68c882cbb5cc69a69289154078d21eb6881b921446626b1e8f5ffb4bcd0d3",
+  "mapping_sha256": "b9968ebfdc503cbff9957d1d1e2bea0863be1720b3773c25e27f3c4ec34ca4bc",
+  "baseline_schema_sha256": "3c69ba2ecda4bbbeab6f91ae0fd0e59153f6bbb2ae3f7cb517aeed1ba0e68794",
+  "candidate_schema_sha256": "ce0bfdf0a0fcdbca111112c0620c154dd415560c3ead8e44b9de11265a4a9c2c",
+  "candidate_change": "Add only user_account.created_at TEXT NOT NULL in memory",
+  "variants": {
+    "baseline": {
+      "checks": 328,
+      "failures": []
+    },
+    "required_created_at_candidate": {
+      "checks": 328,
+      "failures": [
+        {
+          "kind": "mapping_column_coverage",
+          "key": "schema columns",
+          "pass_": false,
+          "message": "110 primary mappings / 111 actual columns; each exactly once"
+        }
+      ]
+    }
+  },
+  "conflict": "Required column cannot pass unchanged checker with protected absent-C0 mapping."
+}

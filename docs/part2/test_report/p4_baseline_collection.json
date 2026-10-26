@@ -1,0 +1,15 @@
+{
+  "command": [
+    "D:\\RAD\\FINAL\\SaigonBite\\.venv\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "--collect-only",
+    "--basetemp=D:\\RAD\\FINAL\\Part2\\notes\\P4_test_scratch\\baseline_pytest"
+  ],
+  "cwd": "D:\\RAD\\FINAL\\SaigonBite",
+  "started_at_utc": "2026-10-26T02:47:50.741989+00:00",
+  "ended_at_utc": "2026-10-26T02:47:51.989602+00:00",
+  "exit": 4,
+  "log": "D:\\RAD\\FINAL\\SaigonBite\\docs\\part2\\test_report\\p4_baseline_collection.log",
+  "log_sha256": "acd2dc9165729a11803bf561ecd517c68000e53aca16ae949649a4d8bd97dcef"
+}

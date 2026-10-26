@@ -1,0 +1,70 @@
+id,kind,source,obligation,tests,meaningful_assertions,passing_execution,log,commit,status
+UC01-PC01,main anchor,pc_mg_register.csv,one PLACED order owned by the customer,,,,,,NOT RUN
+UC01-PC02,main anchor,pc_mg_register.csv,lines with snapshot names/prices,,,,,,NOT RUN
+UC01-PC03,main anchor,pc_mg_register.csv,address snapshot + distance,,,,,,NOT RUN
+UC01-PC04,main anchor,pc_mg_register.csv,S/D/F/Q/T stored and consistent,,,,,,NOT RUN
+UC01-PC05,main anchor,pc_mg_register.csv,"payment PENDING (COD) or PAID (ONLINE, amount C)",,,,,,NOT RUN
+UC01-PC06,main anchor,pc_mg_register.csv,hub load +1,,,,,,NOT RUN
+UC01-MG01,main anchor,pc_mg_register.csv,"refused/declined/invalid → no order, no payment, no line",,,,,,NOT RUN
+UC01-MG02,main anchor,pc_mg_register.csv,replay → same single order,,,,,,NOT RUN
+UC01-MG03,main anchor,pc_mg_register.csv,"busy → suggestions, nothing saved",,,,,,NOT RUN
+UC02-PC01,main anchor,pc_mg_register.csv,"one shipper assigned, Delivery PICKED_UP, order OUT_FOR_DELIVERY",,,,,,NOT RUN
+UC02-PC02,main anchor,pc_mg_register.csv,"delivered: Delivery DELIVERED, order DELIVERED, COD PAID with cash = T",,,,,,NOT RUN
+UC02-PC03,main anchor,pc_mg_register.csv,"failed: Delivery FAILED + reason, order DELIVERY_FAILED, BR-17",,,,,,NOT RUN
+UC02-MG01,main anchor,pc_mg_register.csv,second shipper / wrong shipper / wrong cash / repeat → 0 rows changed,,,,,,NOT RUN
+UC03-PC01,main anchor,pc_mg_register.csv,"hub created/updated with valid code, coordinates, fee, capacity",,,,,,NOT RUN
+UC03-PC02,main anchor,pc_mg_register.csv,"archived hub hidden from browse/checkout, visible in history/reports",,,,,,NOT RUN
+UC03-MG01,main anchor,pc_mg_register.csv,duplicate code / capacity < 1 / archive with open order → nothing changed,,,,,,NOT RUN
+UC04-PC01,main anchor,pc_mg_register.csv,"sales, workload, performance equal the hand oracle for the filter",,,,,,NOT RUN
+UC04-PC02,main anchor,pc_mg_register.csv,n/a on empty denominators,,,,,,NOT RUN
+UC04-MG01,main anchor,pc_mg_register.csv,0 rows written by any report request,,,,,,NOT RUN
+UC04-MG02,main anchor,pc_mg_register.csv,non-manager denied,,,,,,NOT RUN
+UC05-PC01,main anchor,pc_mg_register.csv,confirm: own-hub PLACED → CONFIRMED,,,,,,NOT RUN
+UC05-PC02,main anchor,pc_mg_register.csv,reject: REJECTED + reason + BR-17 + offer WITHDRAWN,,,,,,NOT RUN
+UC05-PC03,main anchor,pc_mg_register.csv,offer: one OFFERED offer per §3.3,,,,,,NOT RUN
+UC05-PC04,main anchor,pc_mg_register.csv,accepted offer applied per §3.3 5–7,,,,,,NOT RUN
+UC05-MG01,main anchor,pc_mg_register.csv,wrong hub / open offer / stale / invalid target → order unchanged,,,,,,NOT RUN
+UC06-PC01,main anchor,pc_mg_register.csv,"brand/item created, updated, archived",,,,,,NOT RUN
+UC06-PC02,main anchor,pc_mg_register.csv,"listing added/removed, availability per hub",,,,,,NOT RUN
+UC06-PC03,main anchor,pc_mg_register.csv,archived/sold-out items not orderable,,,,,,NOT RUN
+UC06-MG01,main anchor,pc_mg_register.csv,old order lines unchanged after price change/archive,,,,,,NOT RUN
+UC06-MG02,main anchor,pc_mg_register.csv,duplicates/invalid prices refused,,,,,,NOT RUN
+SUC01-PC01,supporting PC,SUC.md,A valid login establishes the authenticated role context used for authorization.,,,,,,NOT RUN
+SUC01-PC02,supporting PC,SUC.md,Logout invalidates the current session; an INACTIVE account is rejected on its next request.,,,,,,NOT RUN
+SUC-01/guard,guard,SUC.md,- **Guards:** Credentials and active status are checked under plan §5.4; no role or actor identity is trusted from a posted actor ID.,,,,,,NOT RUN
+SUC-01/failure,failure,SUC.md,- **Failure:** Invalid credentials or an inactive account yields a controlled denial and no domain-row mutation; repeated logout does not change domain data.,,,,,,NOT RUN
+SUC02-PC01,supporting PC,SUC.md,Registration creates an ACTIVE UserAccount and the matching Local or Tourist Customer subtype with required fields.,,,,,,NOT RUN
+SUC02-PC02,supporting PC,SUC.md,A valid profile edit updates only the customer's own details.,,,,,,NOT RUN
+SUC02-PC03,supporting PC,SUC.md,"An address can be added, read, updated or archived by its owner, while prior order address snapshots remain unchanged.",,,,,,NOT RUN
+SUC-02/guard,guard,SUC.md,"- **Guards:** BR-12: Local requires a Vietnamese mobile; Tourist requires passport number, nationality and email, with phone optional; an address may be labelled Hotel. BR-05 applies the address-distance rule at quote time. Passport details are visible only to that customer and Admin.",,,,,,NOT RUN
+SUC-02/failure,failure,SUC.md,"- **Failure:** Invalid or incomplete subtype data, duplicate identity, or an address not owned by the actor is refused without changing another account or any existing order snapshot.",,,,,,NOT RUN
+SUC03-PC01,supporting PC,SUC.md,The customer can read their own order status and history.,,,,,,NOT RUN
+SUC03-PC02,supporting PC,SUC.md,"The receipt shows the order ID/date, hub, address and line snapshots, S/D/F/Q/T, payment method/state and refund owed; ONLINE is labelled simulated.",,,,,,NOT RUN
+SUC03-PC03,supporting PC,SUC.md,"A valid acceptance applies the offered line and price, recalculates the total, and records any online refund owed without claiming payout.",,,,,,NOT RUN
+SUC03-PC04,supporting PC,SUC.md,A decline rejects the order and applies BR-17.,,,,,,NOT RUN
+SUC03-PC05,supporting PC,SUC.md,"If the target is no longer valid, the offer becomes WITHDRAWN and the order remains unchanged.",,,,,,NOT RUN
+SUC-03/guard,guard,SUC.md,- **Guards:** BR-12 and BR-13; replacement rules §3.3 clauses 4–8; BR-17 for unfulfilled outcomes. An answer cannot revive a cancelled or rejected order; stale/repeated answers do not mutate rows.,,,,,,NOT RUN
+SUC-03/failure,failure,SUC.md,"- **Failure:** Another customer's order, a non-open offer, a terminal order or a repeated answer is denied with no unauthorized or stale state change.",,,,,,NOT RUN
+SUC04-PC01,supporting PC,SUC.md,The order becomes CANCELLED and any OFFERED replacement becomes WITHDRAWN.,,,,,,NOT RUN
+SUC04-PC02,supporting PC,SUC.md,COD becomes VOIDED; ONLINE remains subject to BR-17 with the full captured amount C recorded as refund owed in REFUND_PENDING.,,,,,,NOT RUN
+SUC-04/guard,guard,SUC.md,- **Guards:** BR-15 permits cancellation only from PLACED or CONFIRMED; BR-17 defines the payment result. Cancellation after PREPARING is refused.,,,,,,NOT RUN
+SUC-04/failure,failure,SUC.md,"- **Failure:** An order not owned by the actor or outside the permitted states is refused without changing the order, offer or payment.",,,,,,NOT RUN
+SUC05-PC01,supporting PC,SUC.md,Starting preparation moves the own-hub order from CONFIRMED to PREPARING.,,,,,,NOT RUN
+SUC05-PC02,supporting PC,SUC.md,Marking it ready moves the order to READY and creates one Delivery in AWAITING_PICKUP with the ready time.,,,,,,NOT RUN
+SUC-05/guard,guard,SUC.md,- **Guards:** BR-26 and the no-open-offer rule in §3.3; each action requires its stated source state.,,,,,,NOT RUN
+SUC-05/failure,failure,SUC.md,"- **Failure:** Wrong hub, wrong source state or an open offer blocks the action with no state or delivery-row change.",,,,,,NOT RUN
+SUC06-PC01,supporting PC,SUC.md,The listing's availability changes between AVAILABLE and SOLD_OUT for the actor's own hub; MenuItem master data and historical order-line snapshots are unaffected.,,,,,,NOT RUN
+SUC-06/guard,guard,SUC.md,"- **Guards:** BR-19 and BR-26; availability is per hub, not a global MenuItem state.",,,,,,NOT RUN
+SUC-06/failure,failure,SUC.md,"- **Failure:** A missing listing, archived parent or different hub is refused without changing any listing.",,,,,,NOT RUN
+SUC07-PC01,supporting PC,SUC.md,"A voucher can be created, read and updated with its code, type, value, limits and validity dates.",,,,,,NOT RUN
+SUC07-PC02,supporting PC,SUC.md,Archiving makes it unusable for a later quote while preserving prior order discount snapshots.,,,,,,NOT RUN
+SUC-07/guard,guard,SUC.md,"- **Guards:** BR-08: at most one voucher per order; FIXED or PERCENT discount limits, minimum subtotal, inclusive Vietnam-calendar validity dates and archived-voucher rejection. Validity is checked on demand; no scheduled expiry transition is implied.",,,,,,NOT RUN
+SUC-07/failure,failure,SUC.md,"- **Failure:** Duplicate or invalid fields, an archived voucher, or a voucher outside its valid date window is refused for the request; prior orders are unchanged.",,,,,,NOT RUN
+SUC08-PC01,supporting PC,SUC.md,Admin can create and update staff account details and role/hub assignment.,,,,,,NOT RUN
+SUC08-PC02,supporting PC,SUC.md,An account may move between ACTIVE and INACTIVE; an inactive account is rejected at its next request. Admin can read permitted account details and linked Customer details.,,,,,,NOT RUN
+SUC-08/guard,guard,SUC.md,- **Guards:** BR-12 limits passport visibility to the Customer and Admin. BR-25 prevents deactivating a shipper who holds a PICKED_UP delivery; BR-26 scopes kitchen work to the assigned hub.,,,,,,NOT RUN
+SUC-08/failure,failure,SUC.md,"- **Failure:** Unauthorized fields, invalid role/hub, missing target, or a shipper with a PICKED_UP delivery is refused without changing the account.",,,,,,NOT RUN
+SUC09-PC01,supporting PC,SUC.md,Archiving hides the terminal Order and its children from operational lists without physically deleting them.,,,,,,NOT RUN
+SUC09-PC02,supporting PC,SUC.md,Admin can retrieve authorized archived history; receipts and reports continue to include the relevant snapshots and obligations.,,,,,,NOT RUN
+SUC-09/guard,guard,SUC.md,"- **Guards:** Terminal Order states; BR-24 keeps archived orders in reports. Archive is a lifecycle flag, not deletion of OrderLine, Payment, Delivery or ReplacementOffer history.",,,,,,NOT RUN
+SUC-09/failure,failure,SUC.md,- **Failure:** An open order or unauthorized archive request is refused with the Order and its children unchanged.,,,,,,NOT RUN
