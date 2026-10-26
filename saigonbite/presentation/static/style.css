@@ -275,3 +275,6 @@ table.data td:first-child a { white-space: nowrap; }
 @media (max-width: 479px) {
   .panel.card .actions .btn:not(.link), .panel.card .actions button { width: 100%; min-height: 48px; }
 }
+
+/* R1 (cont.): short link labels ("Edit", "Hubs", "Back") are at least 44 px wide as well */
+.mainnav a, .row-actions a, .row-actions button.link, .btn.link, .card-head a { min-width: 44px; justify-content: center; }
