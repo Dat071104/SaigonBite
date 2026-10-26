@@ -18,7 +18,7 @@
   {% endif %}
   {{ field('name', 'Dish name', v.get('name')) }}
   {{ field('description', 'Description', v.get('description'), required=false) }}
-  {{ field('price', 'Price (VND)', v.get('price'), type='number', attrs='min="1" step="1000"') }}
+  {{ field('price', 'Price (VND)', v.get('price'), type='number', attrs='min="1000" step="1000"') }}
   <div class="actions"><button type="submit">Save dish</button><a class="btn link" href="{{ url_for('admin.catalogue') }}">Back</a></div>
 </form>
 {% endblock %}
