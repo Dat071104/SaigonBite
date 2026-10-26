@@ -13,7 +13,7 @@
   {% if mine %}
   <dt>Customer</dt><dd>{{ v.customer.full_name }}{% if v.customer.phone %} · <a href="tel:{{ v.customer.phone }}">{{ v.customer.phone }}</a>{% endif %}</dd>
   {% endif %}
-  <dt>Payment</dt><dd id="cash-info">{% if v.cash_to_collect %}Collect <strong class="cash">{{ v.cash_to_collect|vnd }}</strong> in cash{% else %}Paid online: take no cash{% endif %}</dd>
+  <dt>Payment</dt><dd id="cash-info">{% if v.cash_to_collect and d.state.value in ('AWAITING_PICKUP', 'PICKED_UP') %}Collect <strong class="cash">{{ v.cash_to_collect|vnd }}</strong> in cash{% elif v.cash_to_collect %}Cash on delivery{% else %}Paid online: take no cash{% endif %}</dd>
   <dt>Ready</dt><dd>{{ d.ready_at|vn_time }}</dd>
   {% if d.picked_up_at %}<dt>Picked up</dt><dd>{{ d.picked_up_at|vn_time }}</dd>{% endif %}
   {% if d.finished_at %}<dt>Finished</dt><dd>{{ d.finished_at|vn_time }}</dd>{% endif %}
