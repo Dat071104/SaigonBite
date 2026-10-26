@@ -1,1 +1,5 @@
 *.sh text eol=lf
+# Byte-compared by tests (report-oracle seal, frozen Vercel static copy): same bytes on every checkout.
+tests/fixtures/report_oracle.sql text eol=lf
+tests/fixtures/report_oracle_expected.md text eol=lf
+public/static/* text eol=lf
