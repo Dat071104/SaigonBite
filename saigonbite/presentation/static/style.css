@@ -246,3 +246,17 @@ section > * + * { margin-top: 12px; }
 .card-head a { display: inline-flex; align-items: center; min-height: 44px; }
 .card .actions button, .card .actions .btn:not(.link) { min-height: 44px; }
 .row-actions a, .row-actions button.link { display: inline-flex; align-items: center; min-height: 44px; }
+
+/* ---- P5.1 refinement R2: My orders on a phone is one row per order (measured: 449 px wide on a 390 px
+   screen, 450 px on 360 px) ----------------------------------------------------------------------- */
+@media (max-width: 479px) {
+  .my-orders thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .my-orders tr { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; padding: 8px 0; }
+  .my-orders tbody tr + tr { border-top: 1px solid var(--surface-2); }
+  .my-orders td, .my-orders tbody tr + tr td { display: block; padding: 0; border: 0; }
+  .my-orders td:nth-child(1) { grid-column: 1; align-self: center; font-weight: 600; }
+  .my-orders td:nth-child(5) { grid-column: 2; grid-row: 1; align-self: center; text-align: right; }
+  .my-orders td:nth-child(2), .my-orders td:nth-child(3) { grid-column: 1 / -1; color: var(--muted); }
+  .my-orders td:nth-child(4) { grid-column: 1 / -1; }
+  .my-orders td:nth-child(1) a { display: inline-flex; align-items: center; min-height: 44px; }
+}
