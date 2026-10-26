@@ -31,7 +31,7 @@
   <dt>Status</dt><dd><span class="badge" id="order-state">{{ order.state|label }}</span>
     {% if order.reject_reason %}<span class="muted">· {{ order.reject_reason }}</span>{% endif %}</dd>
   <dt>Payment</dt><dd id="payment">{{ d.payment.method.value }}{% if d.payment.online_option %} ({{ online_option(d.payment.online_option) }}){% endif %}, {{ d.payment.state|label|lower }}
-    {% if d.payment.refund_amount %}· {{ d.payment.refund_amount|vnd }} to be refunded{% endif %}</dd>
+    {% if d.payment.refund_amount %}· refund owed {{ d.payment.refund_amount|vnd }}, payout pending{% endif %}</dd>
   <dt>Deliver to</dt><dd>{{ order.delivery_address_text }}</dd>
   {% if order.confirmed_at %}<dt>Confirmed</dt><dd>{{ order.confirmed_at|vn_time }}</dd>{% endif %}
   {% if order.ready_at %}<dt>Ready</dt><dd>{{ order.ready_at|vn_time }}</dd>{% endif %}
