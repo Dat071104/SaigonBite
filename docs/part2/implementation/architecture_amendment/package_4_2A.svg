@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1360" viewBox="0 0 1800 1360">
+<rect width="100%" height="100%" fill="white"/>
+<polyline points="900,300 900,410" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="890.0,390.0 900,410 910.0,390.0" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="600,620 600,690 425,690 425,760" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="415.0,740.0 425,760 435.0,740.0" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="1200,620 1200,690 1375,690 1375,760" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="1365.0,740.0 1375,760 1385.0,740.0" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="1375,980 1375,1050 425,1050 425,980" fill="none" stroke="#52616F" stroke-width="3" stroke-dasharray="10 7"/>
+<polyline points="435.0,1000.0 425,980 415.0,1000.0" fill="none" stroke="#52616F" stroke-width="3"/>
+<rect x="450" y="90" width="900" height="210" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<rect x="450" y="410" width="900" height="210" fill="#E9F4EF" stroke="#004387" stroke-width="3"/>
+<rect x="60" y="760" width="730" height="220" fill="#F2EFF9" stroke="#004387" stroke-width="3"/>
+<rect x="1010" y="760" width="730" height="220" fill="#FFF2E6" stroke="#004387" stroke-width="3"/>
+<rect x="60" y="1080" width="1680" height="190" fill="#FFF8E8" stroke="#004387" stroke-width="3"/>
+<text x="30" y="18" fill="#202B36" font-family="Arial, sans-serif" font-size="34" font-weight="700" dominant-baseline="hanging">
+<tspan x="30" dy="0">Current P4 package amendment | SB-P4-B02-20261026</tspan>
+</text>
+<text x="30" y="1294" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="30" dy="0">Figure 4.2A · Author: 722I0004 · AI-assisted (Codex)</tspan>
+</text>
+<text x="30" y="1325" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="30" dy="0">Current P4 dependency projection · team decision; no lecturer/client approval</tspan>
+</text>
+<text x="920" y="340" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="920" dy="0">runtime request</tspan>
+</text>
+<text x="65" y="655" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="65" dy="0">runtime domain calls</tspan>
+</text>
+<text x="1250" y="655" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1250" dy="0">runtime persistence calls</tspan>
+</text>
+<text x="530" y="1010" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="530" dy="0">source dependency: exact policy + use ledger only</tspan>
+</text>
+<text x="761.28125" y="133.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="761.28125" dy="0">«package» presentation</tspan>
+</text>
+<text x="699.9140625" y="164.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="699.9140625" dy="0">Routes, forms and result rendering</tspan>
+</text>
+<text x="629.8359375" y="195.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="629.8359375" dy="0">Use the named controller presentation contract</tspan>
+</text>
+<text x="638.5390625" y="226.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="638.5390625" dy="0">No direct DAO / domain / root imports or SQL</tspan>
+</text>
+<text x="717.9453125" y="453.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="717.9453125" dy="0">«package» business.controllers</tspan>
+</text>
+<text x="581.4296875" y="484.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="581.4296875" dy="0">Authorisation, current-state validation and orchestration</tspan>
+</text>
+<text x="607.453125" y="515.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="607.453125" dy="0">Owns write transactions via immediate_transaction</tspan>
+</text>
+<text x="628.375" y="546.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="628.375" dy="0">Invokes domain behavior and DAO persistence</tspan>
+</text>
+<text x="260.2734375" y="808.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="260.2734375" dy="0">«package» business.domain</tspan>
+</text>
+<text x="214.8046875" y="839.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="214.8046875" dy="0">Entities, enums, factories, pure rules</tspan>
+</text>
+<text x="218.3671875" y="870.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="218.3671875" dy="0">No outward application dependency</tspan>
+</text>
+<text x="237.2109375" y="901.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="237.2109375" dy="0">No persistence / network / UI I/O</tspan>
+</text>
+<text x="1234.8359375" y="808.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1234.8359375" dy="0">«package» data_access</tspan>
+</text>
+<text x="1149.359375" y="839.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1149.359375" dy="0">SQL mapping and guarded persistence</tspan>
+</text>
+<text x="1107.71875" y="870.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1107.71875" dy="0">Database helper implements caller transaction</tspan>
+</text>
+<text x="1135.8984375" y="901.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="1135.8984375" dy="0">Existing payment simulator enum adapter</tspan>
+</text>
+<text x="72" y="1092" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<tspan x="72" dy="0">Narrow permission: 12 directed pairs / 28 imported symbols, recomputed from the application.</tspan>
+<tspan x="72" dy="30.939999999999998">Mapper constructors/factory, stored-value properties and enum serialization; terminal/active SQL constants.</tspan>
+<tspan x="72" dy="30.939999999999998">Simulator: OnlineOption contract and .value logging. No workflow, pricing, refund or transaction decision in DAOs.</tspan>
+<tspan x="72" dy="30.939999999999998">Solid open arrow = runtime responsibility; dashed open arrow = admitted source dependency.</tspan>
+<tspan x="72" dy="30.939999999999998">Projection only: exact module/symbol/use details are in policy.json + symbol_use_review.json + dependency_overlay.json.</tspan>
+</text>
+</svg>

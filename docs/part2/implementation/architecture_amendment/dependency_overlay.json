@@ -1,0 +1,595 @@
+{
+  "id": "SB-P4-B02-20261026",
+  "scope": "Figure 4.2A current dependency-policy projection; frozen P3 class/method model plus overlay, no duplicate class authority. C0 package diagram is historical; DCD/SSD views are scoped declarations/interactions, never a complete current import graph.",
+  "model": {
+    "path": "models/shared/design_model.json",
+    "sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b"
+  },
+  "affected_frozen_declarations": {
+    "OrderState": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/OrderState",
+      "module": "saigonbite/business/domain/enums.py",
+      "declaration_sha256": "4ca4d93c29ce8a8b2576f12435696b7daccee454f05f39f334386670577de22c",
+      "method_pointers": []
+    },
+    "PaymentMethod": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/PaymentMethod",
+      "module": "saigonbite/business/domain/enums.py",
+      "declaration_sha256": "853268e3c852932c7fe8c66183e5902fb02bfc508178dd87695204fe8908a569",
+      "method_pointers": []
+    },
+    "OnlineOption": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/OnlineOption",
+      "module": "saigonbite/business/domain/enums.py",
+      "declaration_sha256": "0fb2cd0c34fa42445ad4d4e8550a916a65212d7ca1a147852167bf64a6a1d216",
+      "method_pointers": []
+    },
+    "PaymentState": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/PaymentState",
+      "module": "saigonbite/business/domain/enums.py",
+      "declaration_sha256": "6e514e8520cd310109f333b6520d9339b0cdfa91ff01489dda1830eb3fe50855",
+      "method_pointers": []
+    },
+    "DeliveryState": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/DeliveryState",
+      "module": "saigonbite/business/domain/enums.py",
+      "declaration_sha256": "5cf4c95b8c808fa8df7fefd14317df75dda173f4dc9e30e660e3d63a311fcf07",
+      "method_pointers": []
+    },
+    "OfferState": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/OfferState",
+      "module": "saigonbite/business/domain/enums.py",
+      "declaration_sha256": "c02d30105ab5a7f47b5d1a41192b0acb0f4405d55d1555a576518f4e83082da0",
+      "method_pointers": []
+    },
+    "Role": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/Role",
+      "module": "saigonbite/business/domain/enums.py",
+      "declaration_sha256": "9fa3691fec225791f3aed9c103bfd8bef4ce4feac6739fcbc662e1c8e6e55c10",
+      "method_pointers": []
+    },
+    "DiscountType": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/DiscountType",
+      "module": "saigonbite/business/domain/enums.py",
+      "declaration_sha256": "616b8463035efb99430fddb3c7b73fa28908d8d21ea6c57ba5b3ed8305546860",
+      "method_pointers": []
+    },
+    "UserAccount": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/UserAccount",
+      "module": "saigonbite/business/domain/models.py",
+      "declaration_sha256": "a9534fc1baf68aad2220530d1bea7269cbb09bf408d238813a34557099806e9a",
+      "method_pointers": []
+    },
+    "Customer": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/Customer",
+      "module": "saigonbite/business/domain/models.py",
+      "declaration_sha256": "9ec7a5c32053a3635f8ffc2a61a764daf7dfa3644ae36fcba08758ac732da91e",
+      "method_pointers": [
+        "#/classes/Customer/methods/0"
+      ]
+    },
+    "Address": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/Address",
+      "module": "saigonbite/business/domain/models.py",
+      "declaration_sha256": "124dbad5695ba22bd01a6364c70e8edebbec7a9248527efc86b23c7171c423b7",
+      "method_pointers": []
+    },
+    "Hub": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/Hub",
+      "module": "saigonbite/business/domain/models.py",
+      "declaration_sha256": "c60da831dcc0ecc3ff099c785d70bd3f3ab9e8374837550c9bc23c50a6e472c7",
+      "method_pointers": [
+        "#/classes/Hub/methods/0"
+      ]
+    },
+    "Brand": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/Brand",
+      "module": "saigonbite/business/domain/models.py",
+      "declaration_sha256": "c172df92a3cebb45b28a379ee2f226742ef33d209ee28fec3984b484127cd092",
+      "method_pointers": []
+    },
+    "MenuItem": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/MenuItem",
+      "module": "saigonbite/business/domain/models.py",
+      "declaration_sha256": "bec6a29aa1bca363dc0d2157153783817136d71d3ee516091d6bbbb8725e2b5f",
+      "method_pointers": []
+    },
+    "HubMenuItem": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/HubMenuItem",
+      "module": "saigonbite/business/domain/models.py",
+      "declaration_sha256": "3d6d0bf2566cd0314a54e901d5f140454424d395fe32a9b073985de9383b5c89",
+      "method_pointers": []
+    },
+    "Voucher": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/Voucher",
+      "module": "saigonbite/business/domain/models.py",
+      "declaration_sha256": "9c0e01234a954f0adf106c58f876993fac48f8a767a8dd3624d71274eb0f1288",
+      "method_pointers": [
+        "#/classes/Voucher/methods/0",
+        "#/classes/Voucher/methods/1"
+      ]
+    },
+    "OrderLine": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/OrderLine",
+      "module": "saigonbite/business/domain/models.py",
+      "declaration_sha256": "eb322eaa65b887be02554744e01b5bfd95c829253d58be077fb60bd3eaaedc18",
+      "method_pointers": [
+        "#/classes/OrderLine/methods/0"
+      ]
+    },
+    "Payment": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/Payment",
+      "module": "saigonbite/business/domain/models.py",
+      "declaration_sha256": "471dc056b4f99490072385554a771eb03187e4fd14fcaca228f3e3b4c361c114",
+      "method_pointers": [
+        "#/classes/Payment/methods/0",
+        "#/classes/Payment/methods/1"
+      ]
+    },
+    "Order": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/Order",
+      "module": "saigonbite/business/domain/models.py",
+      "declaration_sha256": "7c82c418defa07aa2c40e8822f586ecc0896f1b424d1fdf912a2be6dafb9f54d",
+      "method_pointers": [
+        "#/classes/Order/methods/0",
+        "#/classes/Order/methods/1",
+        "#/classes/Order/methods/2",
+        "#/classes/Order/methods/3",
+        "#/classes/Order/methods/4",
+        "#/classes/Order/methods/5",
+        "#/classes/Order/methods/6",
+        "#/classes/Order/methods/7"
+      ]
+    },
+    "Delivery": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/Delivery",
+      "module": "saigonbite/business/domain/models.py",
+      "declaration_sha256": "94d5c04f8489725c2a591bafd215d20122e73105b5398d941900195db7455212",
+      "method_pointers": [
+        "#/classes/Delivery/methods/0"
+      ]
+    },
+    "ReplacementOffer": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/ReplacementOffer",
+      "module": "saigonbite/business/domain/models.py",
+      "declaration_sha256": "076e5af658692b2335c6019628633ad0ef46fdc07ca53b9dfb4037414120886c",
+      "method_pointers": [
+        "#/classes/ReplacementOffer/methods/0"
+      ]
+    },
+    "CustomerDAO": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/CustomerDAO",
+      "module": "saigonbite/data_access/customer_dao.py",
+      "declaration_sha256": "4f832000378a04d05a0378e6f123f64452de941c93c2635852064fcccc783e6e",
+      "method_pointers": [
+        "#/classes/CustomerDAO/methods/0",
+        "#/classes/CustomerDAO/methods/1",
+        "#/classes/CustomerDAO/methods/2",
+        "#/classes/CustomerDAO/methods/3",
+        "#/classes/CustomerDAO/methods/4",
+        "#/classes/CustomerDAO/methods/5",
+        "#/classes/CustomerDAO/methods/6",
+        "#/classes/CustomerDAO/methods/7",
+        "#/classes/CustomerDAO/methods/8",
+        "#/classes/CustomerDAO/methods/9"
+      ]
+    },
+    "data_access.customer_dao": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/data_access.customer_dao",
+      "module": "saigonbite/data_access/customer_dao.py",
+      "declaration_sha256": "7de51fe230999a329332f0fe690d9e3b7cca550fb56d3139e5669d29a32e75f5",
+      "method_pointers": [
+        "#/classes/data_access.customer_dao/methods/0"
+      ]
+    },
+    "DeliveryDAO": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/DeliveryDAO",
+      "module": "saigonbite/data_access/delivery_dao.py",
+      "declaration_sha256": "e7757830f2a6e64cf87845fcfdb80f3e3d2bf9695c11ce480a724b929859e952",
+      "method_pointers": [
+        "#/classes/DeliveryDAO/methods/0",
+        "#/classes/DeliveryDAO/methods/1",
+        "#/classes/DeliveryDAO/methods/2",
+        "#/classes/DeliveryDAO/methods/3",
+        "#/classes/DeliveryDAO/methods/4",
+        "#/classes/DeliveryDAO/methods/5",
+        "#/classes/DeliveryDAO/methods/6"
+      ]
+    },
+    "data_access.delivery_dao": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/data_access.delivery_dao",
+      "module": "saigonbite/data_access/delivery_dao.py",
+      "declaration_sha256": "8906232c740e05e445f9b49174c9e540ec3075c0bab5c834156543962ae58948",
+      "method_pointers": [
+        "#/classes/data_access.delivery_dao/methods/0"
+      ]
+    },
+    "HubDAO": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/HubDAO",
+      "module": "saigonbite/data_access/hub_dao.py",
+      "declaration_sha256": "ec7ea67a5e7bb49c11ca5132b7e145fef4a2b6506cbae1776a565d76d6faa9b2",
+      "method_pointers": [
+        "#/classes/HubDAO/methods/0",
+        "#/classes/HubDAO/methods/1",
+        "#/classes/HubDAO/methods/2",
+        "#/classes/HubDAO/methods/3",
+        "#/classes/HubDAO/methods/4",
+        "#/classes/HubDAO/methods/5",
+        "#/classes/HubDAO/methods/6",
+        "#/classes/HubDAO/methods/7",
+        "#/classes/HubDAO/methods/8",
+        "#/classes/HubDAO/methods/9",
+        "#/classes/HubDAO/methods/10",
+        "#/classes/HubDAO/methods/11",
+        "#/classes/HubDAO/methods/12",
+        "#/classes/HubDAO/methods/13"
+      ]
+    },
+    "MenuDAO": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/MenuDAO",
+      "module": "saigonbite/data_access/menu_dao.py",
+      "declaration_sha256": "388b580a0341c14e94d668f877a09b52cf6c7e068e68834694c3f08a2f336078",
+      "method_pointers": [
+        "#/classes/MenuDAO/methods/0",
+        "#/classes/MenuDAO/methods/1",
+        "#/classes/MenuDAO/methods/2",
+        "#/classes/MenuDAO/methods/3",
+        "#/classes/MenuDAO/methods/4",
+        "#/classes/MenuDAO/methods/5",
+        "#/classes/MenuDAO/methods/6",
+        "#/classes/MenuDAO/methods/7",
+        "#/classes/MenuDAO/methods/8",
+        "#/classes/MenuDAO/methods/9",
+        "#/classes/MenuDAO/methods/10",
+        "#/classes/MenuDAO/methods/11",
+        "#/classes/MenuDAO/methods/12",
+        "#/classes/MenuDAO/methods/13",
+        "#/classes/MenuDAO/methods/14",
+        "#/classes/MenuDAO/methods/15",
+        "#/classes/MenuDAO/methods/16",
+        "#/classes/MenuDAO/methods/17"
+      ]
+    },
+    "ReplacementOfferDAO": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/ReplacementOfferDAO",
+      "module": "saigonbite/data_access/offer_dao.py",
+      "declaration_sha256": "066b1e2d5701193b7735becf9cac6100fbec2f311c84e8774f037887c7a6e8ff",
+      "method_pointers": [
+        "#/classes/ReplacementOfferDAO/methods/0",
+        "#/classes/ReplacementOfferDAO/methods/1",
+        "#/classes/ReplacementOfferDAO/methods/2",
+        "#/classes/ReplacementOfferDAO/methods/3",
+        "#/classes/ReplacementOfferDAO/methods/4"
+      ]
+    },
+    "data_access.offer_dao": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/data_access.offer_dao",
+      "module": "saigonbite/data_access/offer_dao.py",
+      "declaration_sha256": "89e54c16faf027ad17365747f6b8d2e57b91cde66c48f8c455586bb803695408",
+      "method_pointers": [
+        "#/classes/data_access.offer_dao/methods/0"
+      ]
+    },
+    "OrderDAO": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/OrderDAO",
+      "module": "saigonbite/data_access/order_dao.py",
+      "declaration_sha256": "4f7fcac7deae9d34937c282ac1848753b57267d828882bd2d60e4dcffbfb0e9b",
+      "method_pointers": [
+        "#/classes/OrderDAO/methods/0",
+        "#/classes/OrderDAO/methods/1",
+        "#/classes/OrderDAO/methods/2",
+        "#/classes/OrderDAO/methods/3",
+        "#/classes/OrderDAO/methods/4",
+        "#/classes/OrderDAO/methods/5",
+        "#/classes/OrderDAO/methods/6",
+        "#/classes/OrderDAO/methods/7",
+        "#/classes/OrderDAO/methods/8",
+        "#/classes/OrderDAO/methods/9",
+        "#/classes/OrderDAO/methods/10",
+        "#/classes/OrderDAO/methods/11",
+        "#/classes/OrderDAO/methods/12"
+      ]
+    },
+    "PaymentDAO": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/PaymentDAO",
+      "module": "saigonbite/data_access/payment_dao.py",
+      "declaration_sha256": "469ee83b07e117927a9be0eba540413abad85ba3ef2bcfd2757f2da902f55905",
+      "method_pointers": [
+        "#/classes/PaymentDAO/methods/0",
+        "#/classes/PaymentDAO/methods/1",
+        "#/classes/PaymentDAO/methods/2",
+        "#/classes/PaymentDAO/methods/3",
+        "#/classes/PaymentDAO/methods/4"
+      ]
+    },
+    "Authorisation": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/Authorisation",
+      "module": "saigonbite/data_access/payment_gateway.py",
+      "declaration_sha256": "7658b780b63cc5ef3c1dfc9fa9fae4d23d17db456291c094eb728b73a2c95a51",
+      "method_pointers": []
+    },
+    "PaymentGatewaySimulator": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/PaymentGatewaySimulator",
+      "module": "saigonbite/data_access/payment_gateway.py",
+      "declaration_sha256": "922266a6adb889a31baec14c4365abf6a2cbd72b2aaa25e0742b4344ea8b98b5",
+      "method_pointers": [
+        "#/classes/PaymentGatewaySimulator/methods/0",
+        "#/classes/PaymentGatewaySimulator/methods/1"
+      ]
+    },
+    "UserDAO": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/UserDAO",
+      "module": "saigonbite/data_access/user_dao.py",
+      "declaration_sha256": "a7b9d953e8694dc5f397b55664d25f2caffba8cdd8104bc01c4931696fe32c31",
+      "method_pointers": [
+        "#/classes/UserDAO/methods/0",
+        "#/classes/UserDAO/methods/1",
+        "#/classes/UserDAO/methods/2",
+        "#/classes/UserDAO/methods/3",
+        "#/classes/UserDAO/methods/4",
+        "#/classes/UserDAO/methods/5",
+        "#/classes/UserDAO/methods/6"
+      ]
+    },
+    "data_access.user_dao": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/data_access.user_dao",
+      "module": "saigonbite/data_access/user_dao.py",
+      "declaration_sha256": "51d2d064470f0482c085bb66c0c5a88e1d7b86c2a953f3b0d4b0ba627784e8ae",
+      "method_pointers": [
+        "#/classes/data_access.user_dao/methods/0"
+      ]
+    },
+    "VoucherDAO": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/VoucherDAO",
+      "module": "saigonbite/data_access/voucher_dao.py",
+      "declaration_sha256": "cd4cbf8fc641f4e75898b56b18aaa4b56f55e261b10c34be4e8fe21d347924b4",
+      "method_pointers": [
+        "#/classes/VoucherDAO/methods/0",
+        "#/classes/VoucherDAO/methods/1",
+        "#/classes/VoucherDAO/methods/2",
+        "#/classes/VoucherDAO/methods/3",
+        "#/classes/VoucherDAO/methods/4",
+        "#/classes/VoucherDAO/methods/5",
+        "#/classes/VoucherDAO/methods/6",
+        "#/classes/VoucherDAO/methods/7"
+      ]
+    },
+    "data_access.voucher_dao": {
+      "frozen_pointer": "models/shared/design_model.json#/classes/data_access.voucher_dao",
+      "module": "saigonbite/data_access/voucher_dao.py",
+      "declaration_sha256": "b7e7e1eefb623b11e7b8b2cc2d29bee30cc5629ff375557ea32b23ad4c6f5acf",
+      "method_pointers": [
+        "#/classes/data_access.voucher_dao/methods/0"
+      ]
+    }
+  },
+  "dependencies": [
+    {
+      "source": "saigonbite.data_access.customer_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "Address",
+        "Customer",
+        "make_customer"
+      ],
+      "use": "Typed entity parameters/results; row-to-correct-subtype materialisation by make_customer; address mapping and stored field serialization."
+    },
+    {
+      "source": "saigonbite.data_access.delivery_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "Delivery",
+        "DeliveryState"
+      ],
+      "use": "Delivery row reconstruction and enum serialization in guarded persistence predicates; no transition decision."
+    },
+    {
+      "source": "saigonbite.data_access.hub_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "ACTIVE_ORDER_STATES",
+        "Hub",
+        "HubMenuItem",
+        "MenuItem"
+      ],
+      "use": "Hub/menu row mapping; declared active-state set translated to SQL predicate values."
+    },
+    {
+      "source": "saigonbite.data_access.menu_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "Brand",
+        "HubMenuItem",
+        "MenuItem"
+      ],
+      "use": "Catalogue row/object mapping and stored persistence parameter serialization."
+    },
+    {
+      "source": "saigonbite.data_access.offer_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "OfferState",
+        "ReplacementOffer"
+      ],
+      "use": "Offer row reconstruction, enum serialization and guarded persistence updates; caller chooses outcome."
+    },
+    {
+      "source": "saigonbite.data_access.order_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "Order",
+        "OrderLine",
+        "OrderState"
+      ],
+      "use": "Aggregate/line row reconstruction; existing pure stored-value properties item_subtotal/total and fields serialized; caller decides transition."
+    },
+    {
+      "source": "saigonbite.data_access.payment_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "OnlineOption",
+        "Payment",
+        "PaymentMethod",
+        "PaymentState"
+      ],
+      "use": "Typed payment mapping and enum/value serialization; no authorisation/refund decision."
+    },
+    {
+      "source": "saigonbite.data_access.payment_gateway",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "OnlineOption"
+      ],
+      "use": "Existing simulator option enum contract, option.value rendering/logging; simulator is not a real provider."
+    },
+    {
+      "source": "saigonbite.data_access.user_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "Role",
+        "UserAccount"
+      ],
+      "use": "Account row reconstruction and role/stored-field serialization."
+    },
+    {
+      "source": "saigonbite.data_access.voucher_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "DiscountType",
+        "Voucher"
+      ],
+      "use": "Voucher row reconstruction and type/value serialization; no checkout discount calculation."
+    },
+    {
+      "source": "saigonbite.data_access.hub_dao",
+      "target": "saigonbite.business.domain.rules",
+      "symbols": [
+        "rules"
+      ],
+      "members": [
+        "TERMINAL_ORDER_STATES"
+      ],
+      "use": "Retained-order/archive SQL predicate constants."
+    },
+    {
+      "source": "saigonbite.data_access.order_dao",
+      "target": "saigonbite.business.domain.rules",
+      "symbols": [
+        "rules"
+      ],
+      "members": [
+        "TERMINAL_ORDER_STATES"
+      ],
+      "use": "Terminal SQL predicates and timestamp-column selection; caller owns transition decision."
+    }
+  ],
+  "actual_pairs": [
+    {
+      "source": "saigonbite.data_access.customer_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "Address",
+        "Customer",
+        "make_customer"
+      ]
+    },
+    {
+      "source": "saigonbite.data_access.delivery_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "Delivery",
+        "DeliveryState"
+      ]
+    },
+    {
+      "source": "saigonbite.data_access.hub_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "ACTIVE_ORDER_STATES",
+        "Hub",
+        "HubMenuItem",
+        "MenuItem"
+      ]
+    },
+    {
+      "source": "saigonbite.data_access.hub_dao",
+      "target": "saigonbite.business.domain.rules",
+      "symbols": [
+        "rules"
+      ]
+    },
+    {
+      "source": "saigonbite.data_access.menu_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "Brand",
+        "HubMenuItem",
+        "MenuItem"
+      ]
+    },
+    {
+      "source": "saigonbite.data_access.offer_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "OfferState",
+        "ReplacementOffer"
+      ]
+    },
+    {
+      "source": "saigonbite.data_access.order_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "Order",
+        "OrderLine",
+        "OrderState"
+      ]
+    },
+    {
+      "source": "saigonbite.data_access.order_dao",
+      "target": "saigonbite.business.domain.rules",
+      "symbols": [
+        "rules"
+      ]
+    },
+    {
+      "source": "saigonbite.data_access.payment_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "OnlineOption",
+        "Payment",
+        "PaymentMethod",
+        "PaymentState"
+      ]
+    },
+    {
+      "source": "saigonbite.data_access.payment_gateway",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "OnlineOption"
+      ]
+    },
+    {
+      "source": "saigonbite.data_access.user_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "Role",
+        "UserAccount"
+      ]
+    },
+    {
+      "source": "saigonbite.data_access.voucher_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "DiscountType",
+        "Voucher"
+      ]
+    }
+  ],
+  "manual_review": "Constructors/factory/enum calls are runtime uses, not annotation-only. Stored-value/property reads in OrderDAO serialization admitted by owner.",
+  "projection_impact": {
+    "models/shared/package_diagram": "Historical C0 strict graph, superseded only for exact mapper/enum dependencies by Figure 4.2A",
+    "models/shared/dcd_subsystem_*": "Frozen declaration/responsibility slices; overlay supplies current source dependencies, preserves all class/method/status/PC/MG identities",
+    "models/UC-*": "Frozen scoped interaction/class projections, not a complete import graph; no redraw or relocation"
+  },
+  "runtime_roles": "View requests controller; controller validates authorisation/current state, orchestrates and invokes write transaction; DAOs map/persist; simulator handles approved/declined test contract; domain never persists."
+}

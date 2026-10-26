@@ -1,0 +1,3850 @@
+[
+  {
+    "module": "saigonbite.data_access.customer_dao",
+    "method": "_to_customer",
+    "line": 13,
+    "semantic_sha256": "7ba8cf26814576f14e191dbeb3343d650d3ad3ac3227471ae9178cc1a18f4674",
+    "calls": [
+      {
+        "line": 16,
+        "call": "dict"
+      },
+      {
+        "line": 17,
+        "call": "make_customer"
+      },
+      {
+        "line": 17,
+        "call": "fields.pop"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 13,
+        "expression": "sqlite3.Row"
+      },
+      {
+        "line": 17,
+        "expression": "fields.pop"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.customer_dao",
+    "method": "__init__",
+    "line": 21,
+    "semantic_sha256": "23cc42dbdacf317a3cb48559ed30a3613c12f6adcda8d1077e882f96ad6b8251",
+    "calls": [],
+    "attribute_reads": [
+      {
+        "line": 21,
+        "expression": "sqlite3.Connection"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.customer_dao",
+    "method": "get_by_user_id",
+    "line": 26,
+    "semantic_sha256": "af332b6dc246f427fe003cef24bcb4d9f5ca4510a17074e92b884bfb608f39b3",
+    "calls": [
+      {
+        "line": 27,
+        "call": "_to_customer"
+      },
+      {
+        "line": 27,
+        "call": "self.conn.execute(f'SELECT {_CUSTOMER_COLUMNS} FROM customer WHERE user_id = ?', (user_id,)).fetchone"
+      },
+      {
+        "line": 27,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 27,
+        "expression": "self.conn.execute(f'SELECT {_CUSTOMER_COLUMNS} FROM customer WHERE user_id = ?', (user_id,)).fetchone"
+      },
+      {
+        "line": 27,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 27,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.customer_dao",
+    "method": "get",
+    "line": 30,
+    "semantic_sha256": "f1b54a37a73fd3d273fbf4c5682a54af33abe44a4c0b19302247022f975a774d",
+    "calls": [
+      {
+        "line": 31,
+        "call": "_to_customer"
+      },
+      {
+        "line": 31,
+        "call": "self.conn.execute(f'SELECT {_CUSTOMER_COLUMNS} FROM customer WHERE id = ?', (customer_id,)).fetchone"
+      },
+      {
+        "line": 31,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 31,
+        "expression": "self.conn.execute(f'SELECT {_CUSTOMER_COLUMNS} FROM customer WHERE id = ?', (customer_id,)).fetchone"
+      },
+      {
+        "line": 31,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 31,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.customer_dao",
+    "method": "insert",
+    "line": 34,
+    "semantic_sha256": "15d90e135f4d6c27d33fc46caff7ee307ac197634df1f63cddd156714fd99838",
+    "calls": [
+      {
+        "line": 35,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 35,
+        "expression": "self.conn.execute('INSERT INTO customer (user_id, full_name, customer_type, phone, email, passport_no, nationality) VALUES (?, ?, ?, ?, ?, ?, ?)', (customer.user_id, customer.full_name, customer.customer_type.value, customer.phone, customer.email, customer.passport_no, customer.nationality)).lastrowid"
+      },
+      {
+        "line": 35,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 35,
+        "expression": "self.conn"
+      },
+      {
+        "line": 38,
+        "expression": "customer.user_id"
+      },
+      {
+        "line": 38,
+        "expression": "customer.full_name"
+      },
+      {
+        "line": 38,
+        "expression": "customer.customer_type.value"
+      },
+      {
+        "line": 38,
+        "expression": "customer.phone"
+      },
+      {
+        "line": 39,
+        "expression": "customer.email"
+      },
+      {
+        "line": 39,
+        "expression": "customer.passport_no"
+      },
+      {
+        "line": 39,
+        "expression": "customer.nationality"
+      },
+      {
+        "line": 38,
+        "expression": "customer.customer_type"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.customer_dao",
+    "method": "update",
+    "line": 41,
+    "semantic_sha256": "1d6aad008d37cffaabf4ca579afedff1a318f941b2d324a965012beb39dd3b63",
+    "calls": [
+      {
+        "line": 42,
+        "call": "self.conn.execute"
+      },
+      {
+        "line": 47,
+        "call": "StaleWriteError"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 42,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 46,
+        "expression": "cur.rowcount"
+      },
+      {
+        "line": 42,
+        "expression": "self.conn"
+      },
+      {
+        "line": 44,
+        "expression": "customer.full_name"
+      },
+      {
+        "line": 44,
+        "expression": "customer.phone"
+      },
+      {
+        "line": 44,
+        "expression": "customer.email"
+      },
+      {
+        "line": 44,
+        "expression": "customer.passport_no"
+      },
+      {
+        "line": 44,
+        "expression": "customer.nationality"
+      },
+      {
+        "line": 45,
+        "expression": "customer.id"
+      },
+      {
+        "line": 45,
+        "expression": "customer.user_id"
+      },
+      {
+        "line": 45,
+        "expression": "customer.customer_type.value"
+      },
+      {
+        "line": 45,
+        "expression": "customer.customer_type"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.customer_dao",
+    "method": "list_addresses",
+    "line": 51,
+    "semantic_sha256": "ebef3253a196fd4866eed6a307b7fc873a7d814735e008668c06c56c11764fff",
+    "calls": [
+      {
+        "line": 53,
+        "call": "self.conn.execute(f'SELECT {_ADDRESS_COLUMNS} FROM address WHERE customer_id = ? AND archived_at IS NULL ORDER BY id', (customer_id,)).fetchall"
+      },
+      {
+        "line": 56,
+        "call": "Address"
+      },
+      {
+        "line": 53,
+        "call": "self.conn.execute"
+      },
+      {
+        "line": 56,
+        "call": "dict"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 53,
+        "expression": "self.conn.execute(f'SELECT {_ADDRESS_COLUMNS} FROM address WHERE customer_id = ? AND archived_at IS NULL ORDER BY id', (customer_id,)).fetchall"
+      },
+      {
+        "line": 53,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 53,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.customer_dao",
+    "method": "get_address",
+    "line": 58,
+    "semantic_sha256": "d71e88b514ca16c238190ac57be64a79349499603bf57542b0a8601e7321073d",
+    "calls": [
+      {
+        "line": 60,
+        "call": "self.conn.execute(f'SELECT {_ADDRESS_COLUMNS} FROM address WHERE id = ? AND customer_id = ? AND archived_at IS NULL', (address_id, customer_id)).fetchone"
+      },
+      {
+        "line": 63,
+        "call": "Address"
+      },
+      {
+        "line": 60,
+        "call": "self.conn.execute"
+      },
+      {
+        "line": 63,
+        "call": "dict"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 60,
+        "expression": "self.conn.execute(f'SELECT {_ADDRESS_COLUMNS} FROM address WHERE id = ? AND customer_id = ? AND archived_at IS NULL', (address_id, customer_id)).fetchone"
+      },
+      {
+        "line": 60,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 60,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.customer_dao",
+    "method": "insert_address",
+    "line": 65,
+    "semantic_sha256": "4b24813b9ea180b8f1a63a7a08a37d66869322c66e44854f7bcc6786ee32c01e",
+    "calls": [
+      {
+        "line": 66,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 66,
+        "expression": "self.conn.execute('INSERT INTO address (customer_id, label, full_address, district, latitude, longitude) VALUES (?, ?, ?, ?, ?, ?)', (address.customer_id, address.label, address.full_address, address.district, address.latitude, address.longitude)).lastrowid"
+      },
+      {
+        "line": 66,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 66,
+        "expression": "self.conn"
+      },
+      {
+        "line": 69,
+        "expression": "address.customer_id"
+      },
+      {
+        "line": 69,
+        "expression": "address.label"
+      },
+      {
+        "line": 69,
+        "expression": "address.full_address"
+      },
+      {
+        "line": 69,
+        "expression": "address.district"
+      },
+      {
+        "line": 69,
+        "expression": "address.latitude"
+      },
+      {
+        "line": 70,
+        "expression": "address.longitude"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.customer_dao",
+    "method": "update_address",
+    "line": 72,
+    "semantic_sha256": "36dd0b780025f318d3e6d405959ac86517131231c3ecb213d9085b2840ac02f6",
+    "calls": [
+      {
+        "line": 73,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 73,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 78,
+        "expression": "cur.rowcount"
+      },
+      {
+        "line": 73,
+        "expression": "self.conn"
+      },
+      {
+        "line": 76,
+        "expression": "address.label"
+      },
+      {
+        "line": 76,
+        "expression": "address.full_address"
+      },
+      {
+        "line": 76,
+        "expression": "address.district"
+      },
+      {
+        "line": 76,
+        "expression": "address.latitude"
+      },
+      {
+        "line": 76,
+        "expression": "address.longitude"
+      },
+      {
+        "line": 77,
+        "expression": "address.id"
+      },
+      {
+        "line": 77,
+        "expression": "address.customer_id"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.customer_dao",
+    "method": "archive_address",
+    "line": 80,
+    "semantic_sha256": "d5c5ba43b0e9c5ba75f1a7075e827a8b37ca58759c82fbae17e6bff3b770372c",
+    "calls": [
+      {
+        "line": 81,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 81,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 84,
+        "expression": "cur.rowcount"
+      },
+      {
+        "line": 81,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.database",
+    "method": "connect",
+    "line": 12,
+    "semantic_sha256": "a9d7a48d5c2524ace33bc0a0b9ef6820fa5f14963c61bd92b79f44b565c43303",
+    "calls": [
+      {
+        "line": 14,
+        "call": "sqlite3.connect"
+      },
+      {
+        "line": 16,
+        "call": "conn.execute"
+      },
+      {
+        "line": 17,
+        "call": "conn.execute"
+      },
+      {
+        "line": 18,
+        "call": "conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 12,
+        "expression": "sqlite3.Connection"
+      },
+      {
+        "line": 15,
+        "expression": "sqlite3.Row"
+      },
+      {
+        "line": 14,
+        "expression": "sqlite3.connect"
+      },
+      {
+        "line": 16,
+        "expression": "conn.execute"
+      },
+      {
+        "line": 17,
+        "expression": "conn.execute"
+      },
+      {
+        "line": 18,
+        "expression": "conn.execute"
+      }
+    ],
+    "manual_review": "Controller-invoked BEGIN/body/COMMIT/rollback implementation; no workflow transaction ownership."
+  },
+  {
+    "module": "saigonbite.data_access.database",
+    "method": "immediate_transaction",
+    "line": 23,
+    "semantic_sha256": "a91e542ef8244d14db6567222708e2d33ead36a83aa59a78c09b0bba63ee40c5",
+    "calls": [
+      {
+        "line": 31,
+        "call": "conn.execute"
+      },
+      {
+        "line": 34,
+        "call": "conn.execute"
+      },
+      {
+        "line": 38,
+        "call": "conn.rollback"
+      },
+      {
+        "line": 43,
+        "call": "conn.close"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 23,
+        "expression": "sqlite3.Connection"
+      },
+      {
+        "line": 31,
+        "expression": "conn.execute"
+      },
+      {
+        "line": 34,
+        "expression": "conn.execute"
+      },
+      {
+        "line": 36,
+        "expression": "conn.in_transaction"
+      },
+      {
+        "line": 39,
+        "expression": "sqlite3.Error"
+      },
+      {
+        "line": 38,
+        "expression": "conn.rollback"
+      },
+      {
+        "line": 44,
+        "expression": "sqlite3.Error"
+      },
+      {
+        "line": 43,
+        "expression": "conn.close"
+      }
+    ],
+    "manual_review": "Controller-invoked BEGIN/body/COMMIT/rollback implementation; no workflow transaction ownership."
+  },
+  {
+    "module": "saigonbite.data_access.delivery_dao",
+    "method": "_to_delivery",
+    "line": 14,
+    "semantic_sha256": "c121c8161c6566899808f6702373186954151f6f266d2846bb856b741b9ff204",
+    "calls": [
+      {
+        "line": 17,
+        "call": "dict"
+      },
+      {
+        "line": 18,
+        "call": "DeliveryState"
+      },
+      {
+        "line": 19,
+        "call": "Delivery"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 14,
+        "expression": "sqlite3.Row"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.delivery_dao",
+    "method": "__init__",
+    "line": 23,
+    "semantic_sha256": "23cc42dbdacf317a3cb48559ed30a3613c12f6adcda8d1077e882f96ad6b8251",
+    "calls": [],
+    "attribute_reads": [
+      {
+        "line": 23,
+        "expression": "sqlite3.Connection"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.delivery_dao",
+    "method": "insert",
+    "line": 26,
+    "semantic_sha256": "90463c8f01d1e6ff5eb6eb2b85ff3f029361dd7c746cbe3472bb6913a4e3682e",
+    "calls": [
+      {
+        "line": 27,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 27,
+        "expression": "self.conn.execute('INSERT INTO delivery (order_id, state, ready_at) VALUES (?, ?, ?)', (delivery.order_id, delivery.state.value, delivery.ready_at)).lastrowid"
+      },
+      {
+        "line": 27,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 27,
+        "expression": "self.conn"
+      },
+      {
+        "line": 29,
+        "expression": "delivery.order_id"
+      },
+      {
+        "line": 29,
+        "expression": "delivery.state.value"
+      },
+      {
+        "line": 29,
+        "expression": "delivery.ready_at"
+      },
+      {
+        "line": 29,
+        "expression": "delivery.state"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.delivery_dao",
+    "method": "get_by_order_id",
+    "line": 31,
+    "semantic_sha256": "32d62ce5e1ed568db5c4f841cfea9edd72fd0d1accfecab0c0699f343fb51206",
+    "calls": [
+      {
+        "line": 32,
+        "call": "_to_delivery"
+      },
+      {
+        "line": 32,
+        "call": "self.conn.execute(f'SELECT {_COLUMNS} FROM delivery WHERE order_id = ?', (order_id,)).fetchone"
+      },
+      {
+        "line": 32,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 32,
+        "expression": "self.conn.execute(f'SELECT {_COLUMNS} FROM delivery WHERE order_id = ?', (order_id,)).fetchone"
+      },
+      {
+        "line": 32,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 32,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.delivery_dao",
+    "method": "list_awaiting_pickup",
+    "line": 35,
+    "semantic_sha256": "7e33f938172fe1b0fd962a97f0e170275840f77a1a3af197c3607aa7331edf52",
+    "calls": [
+      {
+        "line": 36,
+        "call": "self.conn.execute(f\"SELECT {_COLUMNS} FROM delivery WHERE state = 'AWAITING_PICKUP' ORDER BY ready_at, id\").fetchall"
+      },
+      {
+        "line": 38,
+        "call": "_to_delivery"
+      },
+      {
+        "line": 36,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 36,
+        "expression": "self.conn.execute(f\"SELECT {_COLUMNS} FROM delivery WHERE state = 'AWAITING_PICKUP' ORDER BY ready_at, id\").fetchall"
+      },
+      {
+        "line": 36,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 36,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.delivery_dao",
+    "method": "list_for_shipper",
+    "line": 40,
+    "semantic_sha256": "7e2ed267fcc09f645ec915db4f3719eaac52579913dd5a46b00c1fea2851736d",
+    "calls": [
+      {
+        "line": 41,
+        "call": "self.conn.execute(f'SELECT {_COLUMNS} FROM delivery WHERE shipper_id = ? AND state = ? ORDER BY COALESCE(finished_at, picked_up_at) DESC, id DESC LIMIT 20', (shipper_id, state.value)).fetchall"
+      },
+      {
+        "line": 45,
+        "call": "_to_delivery"
+      },
+      {
+        "line": 41,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 41,
+        "expression": "self.conn.execute(f'SELECT {_COLUMNS} FROM delivery WHERE shipper_id = ? AND state = ? ORDER BY COALESCE(finished_at, picked_up_at) DESC, id DESC LIMIT 20', (shipper_id, state.value)).fetchall"
+      },
+      {
+        "line": 41,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 41,
+        "expression": "self.conn"
+      },
+      {
+        "line": 44,
+        "expression": "state.value"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.delivery_dao",
+    "method": "take",
+    "line": 47,
+    "semantic_sha256": "58fc400fbe84300480eb9b09fa6ef334cdd3b6265e4f78fe46c8261fab510c67",
+    "calls": [
+      {
+        "line": 49,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 49,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 52,
+        "expression": "cur.rowcount"
+      },
+      {
+        "line": 49,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.delivery_dao",
+    "method": "finish",
+    "line": 54,
+    "semantic_sha256": "75b3e65893eb5e9b789205b7c3d1349e077ebbd75dd02c53049e7782eb58bfd1",
+    "calls": [
+      {
+        "line": 57,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 57,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 61,
+        "expression": "cur.rowcount"
+      },
+      {
+        "line": 57,
+        "expression": "self.conn"
+      },
+      {
+        "line": 60,
+        "expression": "to_state.value"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.hub_dao",
+    "method": "__init__",
+    "line": 18,
+    "semantic_sha256": "23cc42dbdacf317a3cb48559ed30a3613c12f6adcda8d1077e882f96ad6b8251",
+    "calls": [],
+    "attribute_reads": [
+      {
+        "line": 18,
+        "expression": "sqlite3.Connection"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.hub_dao",
+    "method": "list_active",
+    "line": 23,
+    "semantic_sha256": "1eed6845151b6ee474b67dfd6025e2b51f84d3a2fb3a83da038f83b4b9d5cd11",
+    "calls": [
+      {
+        "line": 24,
+        "call": "self.conn.execute(f'SELECT {_HUB_COLUMNS} FROM hub WHERE archived_at IS NULL ORDER BY id').fetchall"
+      },
+      {
+        "line": 26,
+        "call": "Hub"
+      },
+      {
+        "line": 24,
+        "call": "self.conn.execute"
+      },
+      {
+        "line": 26,
+        "call": "dict"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 24,
+        "expression": "self.conn.execute(f'SELECT {_HUB_COLUMNS} FROM hub WHERE archived_at IS NULL ORDER BY id').fetchall"
+      },
+      {
+        "line": 24,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 24,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.hub_dao",
+    "method": "list_all",
+    "line": 28,
+    "semantic_sha256": "a89acce2808f4a761f5180c13442ed3d6ff9f1374f2e54a8d44ccbe6c70c55ff",
+    "calls": [
+      {
+        "line": 29,
+        "call": "self.conn.execute(f'SELECT {_HUB_COLUMNS} FROM hub ORDER BY archived_at IS NOT NULL, id').fetchall"
+      },
+      {
+        "line": 31,
+        "call": "Hub"
+      },
+      {
+        "line": 29,
+        "call": "self.conn.execute"
+      },
+      {
+        "line": 31,
+        "call": "dict"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 29,
+        "expression": "self.conn.execute(f'SELECT {_HUB_COLUMNS} FROM hub ORDER BY archived_at IS NOT NULL, id').fetchall"
+      },
+      {
+        "line": 29,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 29,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.hub_dao",
+    "method": "get",
+    "line": 33,
+    "semantic_sha256": "9d1513c30c52513e7f7b432f5a70bb27552515dcfdebe916d4e88cc0d1514284",
+    "calls": [
+      {
+        "line": 35,
+        "call": "self.conn.execute(f'SELECT {_HUB_COLUMNS} FROM hub WHERE id = ? AND archived_at IS NULL', (hub_id,)).fetchone"
+      },
+      {
+        "line": 37,
+        "call": "Hub"
+      },
+      {
+        "line": 35,
+        "call": "self.conn.execute"
+      },
+      {
+        "line": 37,
+        "call": "dict"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 35,
+        "expression": "self.conn.execute(f'SELECT {_HUB_COLUMNS} FROM hub WHERE id = ? AND archived_at IS NULL', (hub_id,)).fetchone"
+      },
+      {
+        "line": 35,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 35,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.hub_dao",
+    "method": "get_including_archived",
+    "line": 39,
+    "semantic_sha256": "08028e57b99c6d4df479faa3f22cd547c2d3e0a34972b3bd77398cdeb63f01bd",
+    "calls": [
+      {
+        "line": 41,
+        "call": "self.conn.execute(f'SELECT {_HUB_COLUMNS} FROM hub WHERE id = ?', (hub_id,)).fetchone"
+      },
+      {
+        "line": 42,
+        "call": "Hub"
+      },
+      {
+        "line": 41,
+        "call": "self.conn.execute"
+      },
+      {
+        "line": 42,
+        "call": "dict"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 41,
+        "expression": "self.conn.execute(f'SELECT {_HUB_COLUMNS} FROM hub WHERE id = ?', (hub_id,)).fetchone"
+      },
+      {
+        "line": 41,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 41,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.hub_dao",
+    "method": "code_exists",
+    "line": 44,
+    "semantic_sha256": "16da6f114076ed2b1f8809768a9ecf84ef75565ba5a9622d4da92fa28137ac02",
+    "calls": [
+      {
+        "line": 45,
+        "call": "self.conn.execute('SELECT 1 FROM hub WHERE code = ? AND id IS NOT ?', (code, except_id)).fetchone"
+      },
+      {
+        "line": 45,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 45,
+        "expression": "self.conn.execute('SELECT 1 FROM hub WHERE code = ? AND id IS NOT ?', (code, except_id)).fetchone"
+      },
+      {
+        "line": 45,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 45,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.hub_dao",
+    "method": "insert",
+    "line": 48,
+    "semantic_sha256": "044efe4cc3bc397bf0d46b458db685ebad4644c7813a1ec27c275f90b7892a8a",
+    "calls": [
+      {
+        "line": 49,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 54,
+        "expression": "cur.lastrowid"
+      },
+      {
+        "line": 49,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 49,
+        "expression": "self.conn"
+      },
+      {
+        "line": 52,
+        "expression": "hub.code"
+      },
+      {
+        "line": 52,
+        "expression": "hub.name"
+      },
+      {
+        "line": 52,
+        "expression": "hub.address_text"
+      },
+      {
+        "line": 52,
+        "expression": "hub.latitude"
+      },
+      {
+        "line": 52,
+        "expression": "hub.longitude"
+      },
+      {
+        "line": 52,
+        "expression": "hub.max_active_orders"
+      },
+      {
+        "line": 53,
+        "expression": "hub.base_delivery_fee"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.hub_dao",
+    "method": "update",
+    "line": 56,
+    "semantic_sha256": "be1790135f194e1c35e9f7c897925c12fa678418a6a2eb5971d34b9c5bb6a54a",
+    "calls": [
+      {
+        "line": 58,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 58,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 64,
+        "expression": "cur.rowcount"
+      },
+      {
+        "line": 58,
+        "expression": "self.conn"
+      },
+      {
+        "line": 62,
+        "expression": "hub.code"
+      },
+      {
+        "line": 62,
+        "expression": "hub.name"
+      },
+      {
+        "line": 62,
+        "expression": "hub.address_text"
+      },
+      {
+        "line": 62,
+        "expression": "hub.latitude"
+      },
+      {
+        "line": 62,
+        "expression": "hub.longitude"
+      },
+      {
+        "line": 62,
+        "expression": "hub.max_active_orders"
+      },
+      {
+        "line": 63,
+        "expression": "hub.base_delivery_fee"
+      },
+      {
+        "line": 63,
+        "expression": "hub.id"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.hub_dao",
+    "method": "archive",
+    "line": 66,
+    "semantic_sha256": "c2eedb3c57c36be936f98e90025c5aabf271a56a6c33f30c6207af833b1d654b",
+    "calls": [
+      {
+        "line": 67,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 67,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 69,
+        "expression": "cur.rowcount"
+      },
+      {
+        "line": 67,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.hub_dao",
+    "method": "active_load",
+    "line": 73,
+    "semantic_sha256": "0aba5b3ac8d71f245fa17a5799bf1eccae809defc3da891dd802f175e44249ee",
+    "calls": [
+      {
+        "line": 75,
+        "call": "self.conn.execute(f'SELECT COUNT(*) FROM orders WHERE hub_id = ? AND state IN ({_ACTIVE})', (hub_id,)).fetchone"
+      },
+      {
+        "line": 75,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 75,
+        "expression": "self.conn.execute(f'SELECT COUNT(*) FROM orders WHERE hub_id = ? AND state IN ({_ACTIVE})', (hub_id,)).fetchone"
+      },
+      {
+        "line": 75,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 75,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.hub_dao",
+    "method": "active_loads",
+    "line": 78,
+    "semantic_sha256": "5610646be9f4e81734c703889c31c2c07e699b3ffc8d5bde4aa5667b02c13bf9",
+    "calls": [
+      {
+        "line": 79,
+        "call": "self.conn.execute(f'SELECT hub_id, COUNT(*) AS n FROM orders WHERE state IN ({_ACTIVE}) GROUP BY hub_id').fetchall"
+      },
+      {
+        "line": 79,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 79,
+        "expression": "self.conn.execute(f'SELECT hub_id, COUNT(*) AS n FROM orders WHERE state IN ({_ACTIVE}) GROUP BY hub_id').fetchall"
+      },
+      {
+        "line": 79,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 79,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.hub_dao",
+    "method": "open_order_count",
+    "line": 83,
+    "semantic_sha256": "89dba4306f3b723564edc27e654f33ca366cd9c671f5c19e9ff5799e59881765",
+    "calls": [
+      {
+        "line": 85,
+        "call": "self.conn.execute(f'SELECT COUNT(*) FROM orders WHERE hub_id = ? AND state NOT IN ({_TERMINAL})', (hub_id,)).fetchone"
+      },
+      {
+        "line": 85,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 85,
+        "expression": "self.conn.execute(f'SELECT COUNT(*) FROM orders WHERE hub_id = ? AND state NOT IN ({_TERMINAL})', (hub_id,)).fetchone"
+      },
+      {
+        "line": 85,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 85,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.hub_dao",
+    "method": "list_menu",
+    "line": 90,
+    "semantic_sha256": "d23f86917e69bb906353cba9867258cafdd3a6fe9ef0c8e2e03faf340cba3bc3",
+    "calls": [
+      {
+        "line": 92,
+        "call": "self.conn.execute(f'SELECT m.id, m.brand_id, b.name AS brand_name, m.name, m.description, m.price,        hm.hub_id, hm.is_available FROM hub_menu_item hm JOIN menu_item m ON m.id = hm.menu_item_id JOIN brand b ON b.id = m.brand_id WHERE hm.hub_id = ? AND {_ORDERABLE} ORDER BY b.id, m.id', (hub_id,)).fetchall"
+      },
+      {
+        "line": 99,
+        "call": "HubMenuItem"
+      },
+      {
+        "line": 92,
+        "call": "self.conn.execute"
+      },
+      {
+        "line": 99,
+        "call": "bool"
+      },
+      {
+        "line": 100,
+        "call": "MenuItem"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 92,
+        "expression": "self.conn.execute(f'SELECT m.id, m.brand_id, b.name AS brand_name, m.name, m.description, m.price,        hm.hub_id, hm.is_available FROM hub_menu_item hm JOIN menu_item m ON m.id = hm.menu_item_id JOIN brand b ON b.id = m.brand_id WHERE hm.hub_id = ? AND {_ORDERABLE} ORDER BY b.id, m.id', (hub_id,)).fetchall"
+      },
+      {
+        "line": 92,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 92,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.hub_dao",
+    "method": "get_available_item",
+    "line": 104,
+    "semantic_sha256": "66007640c2a1da1b60fef30feebf979fc9dd0f8ab047cb71dbcaeba4ad4d3cb3",
+    "calls": [
+      {
+        "line": 106,
+        "call": "self.conn.execute(f'SELECT m.id, m.brand_id, b.name AS brand_name, m.name, m.description, m.price FROM hub_menu_item hm JOIN menu_item m ON m.id = hm.menu_item_id JOIN brand b ON b.id = m.brand_id WHERE hm.hub_id = ? AND hm.menu_item_id = ? AND hm.is_available = 1 AND {_ORDERABLE}', (hub_id, menu_item_id)).fetchone"
+      },
+      {
+        "line": 113,
+        "call": "MenuItem"
+      },
+      {
+        "line": 106,
+        "call": "self.conn.execute"
+      },
+      {
+        "line": 113,
+        "call": "dict"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 106,
+        "expression": "self.conn.execute(f'SELECT m.id, m.brand_id, b.name AS brand_name, m.name, m.description, m.price FROM hub_menu_item hm JOIN menu_item m ON m.id = hm.menu_item_id JOIN brand b ON b.id = m.brand_id WHERE hm.hub_id = ? AND hm.menu_item_id = ? AND hm.is_available = 1 AND {_ORDERABLE}', (hub_id, menu_item_id)).fetchone"
+      },
+      {
+        "line": 106,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 106,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.menu_dao",
+    "method": "__init__",
+    "line": 14,
+    "semantic_sha256": "23cc42dbdacf317a3cb48559ed30a3613c12f6adcda8d1077e882f96ad6b8251",
+    "calls": [],
+    "attribute_reads": [
+      {
+        "line": 14,
+        "expression": "sqlite3.Connection"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.menu_dao",
+    "method": "list_brands",
+    "line": 19,
+    "semantic_sha256": "d9349f7c11a767ab208350022651436b630579f5afe6e4f26f02801941ab853e",
+    "calls": [
+      {
+        "line": 20,
+        "call": "self.conn.execute('SELECT id, name, archived_at FROM brand ORDER BY archived_at IS NOT NULL, id').fetchall"
+      },
+      {
+        "line": 22,
+        "call": "Brand"
+      },
+      {
+        "line": 20,
+        "call": "self.conn.execute"
+      },
+      {
+        "line": 22,
+        "call": "dict"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 20,
+        "expression": "self.conn.execute('SELECT id, name, archived_at FROM brand ORDER BY archived_at IS NOT NULL, id').fetchall"
+      },
+      {
+        "line": 20,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 20,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.menu_dao",
+    "method": "get_brand",
+    "line": 24,
+    "semantic_sha256": "63a1c20618d7708a4b113dc7973c2f844d920754570b2c984bb37c8418478478",
+    "calls": [
+      {
+        "line": 25,
+        "call": "self.conn.execute('SELECT id, name, archived_at FROM brand WHERE id = ?', (brand_id,)).fetchone"
+      },
+      {
+        "line": 26,
+        "call": "Brand"
+      },
+      {
+        "line": 25,
+        "call": "self.conn.execute"
+      },
+      {
+        "line": 26,
+        "call": "dict"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 25,
+        "expression": "self.conn.execute('SELECT id, name, archived_at FROM brand WHERE id = ?', (brand_id,)).fetchone"
+      },
+      {
+        "line": 25,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 25,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.menu_dao",
+    "method": "brand_name_exists",
+    "line": 28,
+    "semantic_sha256": "0910efbd32bf56c28b3af8638df36c66f5034a3f0cad9ed87a176d1fcd791f54",
+    "calls": [
+      {
+        "line": 29,
+        "call": "self.conn.execute('SELECT 1 FROM brand WHERE lower(name) = lower(?) AND id IS NOT ?', (name, except_id)).fetchone"
+      },
+      {
+        "line": 29,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 29,
+        "expression": "self.conn.execute('SELECT 1 FROM brand WHERE lower(name) = lower(?) AND id IS NOT ?', (name, except_id)).fetchone"
+      },
+      {
+        "line": 29,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 29,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.menu_dao",
+    "method": "insert_brand",
+    "line": 33,
+    "semantic_sha256": "8265eb5f2a23aca21b6f4e97e1d667b2d96d3fc5e151a67dfa2d97a114a00562",
+    "calls": [
+      {
+        "line": 34,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 34,
+        "expression": "self.conn.execute('INSERT INTO brand (name) VALUES (?)', (name,)).lastrowid"
+      },
+      {
+        "line": 34,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 34,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.menu_dao",
+    "method": "rename_brand",
+    "line": 36,
+    "semantic_sha256": "fad8135dfaeeb568ebdf62c8dcc815c07d628c2421472a16724ac57cde81fe33",
+    "calls": [
+      {
+        "line": 37,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 37,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 38,
+        "expression": "cur.rowcount"
+      },
+      {
+        "line": 37,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.menu_dao",
+    "method": "archive_brand",
+    "line": 40,
+    "semantic_sha256": "cef80a2b68426e7a654f3f8a83a05f279a5f92e323fe6700e3a1f72b53f25284",
+    "calls": [
+      {
+        "line": 41,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 41,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 43,
+        "expression": "cur.rowcount"
+      },
+      {
+        "line": 41,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.menu_dao",
+    "method": "list_items",
+    "line": 47,
+    "semantic_sha256": "0fa3c9d5e636fbe69b92389800566824dc02af4615d6048fdba2bb63bb805696",
+    "calls": [
+      {
+        "line": 48,
+        "call": "self.conn.execute(_ITEM_SELECT + 'ORDER BY m.archived_at IS NOT NULL, b.id, m.id').fetchall"
+      },
+      {
+        "line": 49,
+        "call": "MenuItem"
+      },
+      {
+        "line": 48,
+        "call": "self.conn.execute"
+      },
+      {
+        "line": 49,
+        "call": "dict"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 48,
+        "expression": "self.conn.execute(_ITEM_SELECT + 'ORDER BY m.archived_at IS NOT NULL, b.id, m.id').fetchall"
+      },
+      {
+        "line": 48,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 48,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.menu_dao",
+    "method": "get_item",
+    "line": 51,
+    "semantic_sha256": "4e5245972ad879c9a5e671ee7bd1c977b8d8703e0dd5bfb0fe86c76a1d55eaa7",
+    "calls": [
+      {
+        "line": 52,
+        "call": "self.conn.execute(_ITEM_SELECT + 'WHERE m.id = ?', (item_id,)).fetchone"
+      },
+      {
+        "line": 53,
+        "call": "MenuItem"
+      },
+      {
+        "line": 52,
+        "call": "self.conn.execute"
+      },
+      {
+        "line": 53,
+        "call": "dict"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 52,
+        "expression": "self.conn.execute(_ITEM_SELECT + 'WHERE m.id = ?', (item_id,)).fetchone"
+      },
+      {
+        "line": 52,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 52,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.menu_dao",
+    "method": "item_name_exists",
+    "line": 55,
+    "semantic_sha256": "021d0ad775a3db1089ac7c1cefd736b7777e222fc866658b7d40f73335e26813",
+    "calls": [
+      {
+        "line": 56,
+        "call": "self.conn.execute('SELECT 1 FROM menu_item WHERE brand_id = ? AND lower(name) = lower(?) AND id IS NOT ?', (brand_id, name, except_id)).fetchone"
+      },
+      {
+        "line": 56,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 56,
+        "expression": "self.conn.execute('SELECT 1 FROM menu_item WHERE brand_id = ? AND lower(name) = lower(?) AND id IS NOT ?', (brand_id, name, except_id)).fetchone"
+      },
+      {
+        "line": 56,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 56,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.menu_dao",
+    "method": "insert_item",
+    "line": 61,
+    "semantic_sha256": "712d7c1e1ce24b8ba9a487c0dff2b588a49d3db9fe645dd0a00cdec8b829871c",
+    "calls": [
+      {
+        "line": 62,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 62,
+        "expression": "self.conn.execute('INSERT INTO menu_item (brand_id, name, description, price) VALUES (?, ?, ?, ?)', (item.brand_id, item.name, item.description, item.price)).lastrowid"
+      },
+      {
+        "line": 62,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 62,
+        "expression": "self.conn"
+      },
+      {
+        "line": 64,
+        "expression": "item.brand_id"
+      },
+      {
+        "line": 64,
+        "expression": "item.name"
+      },
+      {
+        "line": 64,
+        "expression": "item.description"
+      },
+      {
+        "line": 64,
+        "expression": "item.price"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.menu_dao",
+    "method": "update_item",
+    "line": 66,
+    "semantic_sha256": "5e07f57570fb2685b5500b424f07ce26cd8a528e25ee0008e6ffa931a6024fee",
+    "calls": [
+      {
+        "line": 68,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 68,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 71,
+        "expression": "cur.rowcount"
+      },
+      {
+        "line": 68,
+        "expression": "self.conn"
+      },
+      {
+        "line": 70,
+        "expression": "item.name"
+      },
+      {
+        "line": 70,
+        "expression": "item.description"
+      },
+      {
+        "line": 70,
+        "expression": "item.price"
+      },
+      {
+        "line": 70,
+        "expression": "item.id"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.menu_dao",
+    "method": "archive_item",
+    "line": 73,
+    "semantic_sha256": "a1c77867796d185d0832e6bd1ec6754d77c97ac47f12184204489051d37c4558",
+    "calls": [
+      {
+        "line": 74,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 74,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 76,
+        "expression": "cur.rowcount"
+      },
+      {
+        "line": 74,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.menu_dao",
+    "method": "list_hub_items",
+    "line": 80,
+    "semantic_sha256": "d471436bddb689e911e067115e7726e427c81893a90621e37081defe11d7f812",
+    "calls": [
+      {
+        "line": 82,
+        "call": "self.conn.execute('SELECT m.id, m.brand_id, b.name AS brand_name, m.name, m.description, m.price,        CASE WHEN m.archived_at IS NOT NULL THEN m.archived_at ELSE b.archived_at END AS archived_at,        hm.hub_id, hm.is_available FROM hub_menu_item hm JOIN menu_item m ON m.id = hm.menu_item_id JOIN brand b ON b.id = m.brand_id WHERE hm.hub_id = ? ORDER BY b.id, m.id', (hub_id,)).fetchall"
+      },
+      {
+        "line": 88,
+        "call": "HubMenuItem"
+      },
+      {
+        "line": 82,
+        "call": "self.conn.execute"
+      },
+      {
+        "line": 88,
+        "call": "bool"
+      },
+      {
+        "line": 89,
+        "call": "MenuItem"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 82,
+        "expression": "self.conn.execute('SELECT m.id, m.brand_id, b.name AS brand_name, m.name, m.description, m.price,        CASE WHEN m.archived_at IS NOT NULL THEN m.archived_at ELSE b.archived_at END AS archived_at,        hm.hub_id, hm.is_available FROM hub_menu_item hm JOIN menu_item m ON m.id = hm.menu_item_id JOIN brand b ON b.id = m.brand_id WHERE hm.hub_id = ? ORDER BY b.id, m.id', (hub_id,)).fetchall"
+      },
+      {
+        "line": 82,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 82,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.menu_dao",
+    "method": "is_listed",
+    "line": 94,
+    "semantic_sha256": "911d49a1ad26c07c1aba186488bbe90b7935ee23e47fad73ff48c69a7d9b5a6f",
+    "calls": [
+      {
+        "line": 95,
+        "call": "self.conn.execute('SELECT 1 FROM hub_menu_item WHERE hub_id = ? AND menu_item_id = ?', (hub_id, item_id)).fetchone"
+      },
+      {
+        "line": 95,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 95,
+        "expression": "self.conn.execute('SELECT 1 FROM hub_menu_item WHERE hub_id = ? AND menu_item_id = ?', (hub_id, item_id)).fetchone"
+      },
+      {
+        "line": 95,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 95,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.menu_dao",
+    "method": "add_listing",
+    "line": 99,
+    "semantic_sha256": "db474c0a14c867eb431795bfeeab79748c121b6b44afd9817b14b5738790828b",
+    "calls": [
+      {
+        "line": 100,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 100,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 100,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.menu_dao",
+    "method": "remove_listing",
+    "line": 103,
+    "semantic_sha256": "a90b1dd7d531c3e363848993f3f78fad73b11825a6bc2c0b7f816f68fbc136c3",
+    "calls": [
+      {
+        "line": 104,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 104,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 105,
+        "expression": "cur.rowcount"
+      },
+      {
+        "line": 104,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.menu_dao",
+    "method": "set_available",
+    "line": 107,
+    "semantic_sha256": "ec2bc228698de7abb0425f3b0752e52b147456bee1f606e4ba68370e6f00e7ea",
+    "calls": [
+      {
+        "line": 108,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 108,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 110,
+        "expression": "cur.rowcount"
+      },
+      {
+        "line": 108,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.offer_dao",
+    "method": "_to_offer",
+    "line": 13,
+    "semantic_sha256": "3e41127f7d0f36c67ffb81887fb1930343afdf96232e75de3513f2899bcc3290",
+    "calls": [
+      {
+        "line": 16,
+        "call": "dict"
+      },
+      {
+        "line": 17,
+        "call": "OfferState"
+      },
+      {
+        "line": 18,
+        "call": "ReplacementOffer"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 13,
+        "expression": "sqlite3.Row"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.offer_dao",
+    "method": "__init__",
+    "line": 22,
+    "semantic_sha256": "23cc42dbdacf317a3cb48559ed30a3613c12f6adcda8d1077e882f96ad6b8251",
+    "calls": [],
+    "attribute_reads": [
+      {
+        "line": 22,
+        "expression": "sqlite3.Connection"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.offer_dao",
+    "method": "insert",
+    "line": 25,
+    "semantic_sha256": "0fe523ffa851b27325809f7681f3fd77e269b1bf9c0fe0a18663892f1af561d9",
+    "calls": [
+      {
+        "line": 26,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 26,
+        "expression": "self.conn.execute('INSERT INTO replacement_offer (order_id, order_line_id, original_item_name, original_unit_price,     new_menu_item_id, new_item_name, new_unit_price, state, offered_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', (offer.order_id, offer.order_line_id, offer.original_item_name, offer.original_unit_price, offer.new_menu_item_id, offer.new_item_name, offer.new_unit_price, offer.state.value, offer.offered_at)).lastrowid"
+      },
+      {
+        "line": 26,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 26,
+        "expression": "self.conn"
+      },
+      {
+        "line": 30,
+        "expression": "offer.order_id"
+      },
+      {
+        "line": 30,
+        "expression": "offer.order_line_id"
+      },
+      {
+        "line": 30,
+        "expression": "offer.original_item_name"
+      },
+      {
+        "line": 30,
+        "expression": "offer.original_unit_price"
+      },
+      {
+        "line": 31,
+        "expression": "offer.new_menu_item_id"
+      },
+      {
+        "line": 31,
+        "expression": "offer.new_item_name"
+      },
+      {
+        "line": 31,
+        "expression": "offer.new_unit_price"
+      },
+      {
+        "line": 31,
+        "expression": "offer.state.value"
+      },
+      {
+        "line": 32,
+        "expression": "offer.offered_at"
+      },
+      {
+        "line": 31,
+        "expression": "offer.state"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.offer_dao",
+    "method": "get_open",
+    "line": 34,
+    "semantic_sha256": "41a73300714b4bef1fadeecf1d2048f81491a9fb6dc6def0cca75002074f6f50",
+    "calls": [
+      {
+        "line": 35,
+        "call": "_to_offer"
+      },
+      {
+        "line": 35,
+        "call": "self.conn.execute(f\"SELECT {_COLUMNS} FROM replacement_offer WHERE order_id = ? AND state = 'OFFERED'\", (order_id,)).fetchone"
+      },
+      {
+        "line": 35,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 35,
+        "expression": "self.conn.execute(f\"SELECT {_COLUMNS} FROM replacement_offer WHERE order_id = ? AND state = 'OFFERED'\", (order_id,)).fetchone"
+      },
+      {
+        "line": 35,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 35,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.offer_dao",
+    "method": "list_for_order",
+    "line": 39,
+    "semantic_sha256": "e05d855d5a4c1ce3bd1fdf99cc2b6ca9514a8b7b43bab71d733f3128e73ff775",
+    "calls": [
+      {
+        "line": 40,
+        "call": "self.conn.execute(f'SELECT {_COLUMNS} FROM replacement_offer WHERE order_id = ? ORDER BY id', (order_id,)).fetchall"
+      },
+      {
+        "line": 42,
+        "call": "_to_offer"
+      },
+      {
+        "line": 40,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 40,
+        "expression": "self.conn.execute(f'SELECT {_COLUMNS} FROM replacement_offer WHERE order_id = ? ORDER BY id', (order_id,)).fetchall"
+      },
+      {
+        "line": 40,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 40,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.offer_dao",
+    "method": "decide",
+    "line": 44,
+    "semantic_sha256": "7aead8ff59d2f89413ce842f4a25145af0e03300bd604e4d7c491ffdbe475fe9",
+    "calls": [
+      {
+        "line": 46,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 46,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 49,
+        "expression": "cur.rowcount"
+      },
+      {
+        "line": 46,
+        "expression": "self.conn"
+      },
+      {
+        "line": 48,
+        "expression": "to_state.value"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.order_dao",
+    "method": "__init__",
+    "line": 17,
+    "semantic_sha256": "23cc42dbdacf317a3cb48559ed30a3613c12f6adcda8d1077e882f96ad6b8251",
+    "calls": [],
+    "attribute_reads": [
+      {
+        "line": 17,
+        "expression": "sqlite3.Connection"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.order_dao",
+    "method": "insert",
+    "line": 20,
+    "semantic_sha256": "cf6a6696b1be30960120a721b4dda8a428eb84a2bcd5ec8e090d24dafaabc7e5",
+    "calls": [
+      {
+        "line": 22,
+        "call": "self.conn.execute"
+      },
+      {
+        "line": 32,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 30,
+        "expression": "cur.lastrowid"
+      },
+      {
+        "line": 31,
+        "expression": "order.lines"
+      },
+      {
+        "line": 22,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 22,
+        "expression": "self.conn"
+      },
+      {
+        "line": 27,
+        "expression": "order.customer_id"
+      },
+      {
+        "line": 27,
+        "expression": "order.hub_id"
+      },
+      {
+        "line": 27,
+        "expression": "order.address_id"
+      },
+      {
+        "line": 27,
+        "expression": "order.delivery_address_text"
+      },
+      {
+        "line": 27,
+        "expression": "order.distance_km"
+      },
+      {
+        "line": 28,
+        "expression": "order.state.value"
+      },
+      {
+        "line": 28,
+        "expression": "order.item_subtotal"
+      },
+      {
+        "line": 28,
+        "expression": "order.voucher_id"
+      },
+      {
+        "line": 28,
+        "expression": "order.voucher_discount"
+      },
+      {
+        "line": 28,
+        "expression": "order.delivery_fee"
+      },
+      {
+        "line": 29,
+        "expression": "order.quiet_discount"
+      },
+      {
+        "line": 29,
+        "expression": "order.total"
+      },
+      {
+        "line": 29,
+        "expression": "order.idempotency_token"
+      },
+      {
+        "line": 29,
+        "expression": "order.placed_at"
+      },
+      {
+        "line": 32,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 28,
+        "expression": "order.state"
+      },
+      {
+        "line": 32,
+        "expression": "self.conn"
+      },
+      {
+        "line": 35,
+        "expression": "line.menu_item_id"
+      },
+      {
+        "line": 35,
+        "expression": "line.item_name"
+      },
+      {
+        "line": 35,
+        "expression": "line.unit_price"
+      },
+      {
+        "line": 35,
+        "expression": "line.quantity"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.order_dao",
+    "method": "get_by_id",
+    "line": 38,
+    "semantic_sha256": "ea74efb6e31e9f2324ff15b0915cd49d73b36bdf03b3408653ad2e0091d75a31",
+    "calls": [
+      {
+        "line": 39,
+        "call": "self.conn.execute(f'SELECT {_ORDER_COLUMNS} FROM orders WHERE id = ?', (order_id,)).fetchone"
+      },
+      {
+        "line": 41,
+        "call": "self._load"
+      },
+      {
+        "line": 39,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 39,
+        "expression": "self.conn.execute(f'SELECT {_ORDER_COLUMNS} FROM orders WHERE id = ?', (order_id,)).fetchone"
+      },
+      {
+        "line": 41,
+        "expression": "self._load"
+      },
+      {
+        "line": 39,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 39,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.order_dao",
+    "method": "get_by_token",
+    "line": 43,
+    "semantic_sha256": "28326716b8b3e93264596771281519d3db9be53d1aa6a95f0ef01992a1bb9eef",
+    "calls": [
+      {
+        "line": 44,
+        "call": "self.conn.execute(f'SELECT {_ORDER_COLUMNS} FROM orders WHERE idempotency_token = ?', (token,)).fetchone"
+      },
+      {
+        "line": 46,
+        "call": "self._load"
+      },
+      {
+        "line": 44,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 44,
+        "expression": "self.conn.execute(f'SELECT {_ORDER_COLUMNS} FROM orders WHERE idempotency_token = ?', (token,)).fetchone"
+      },
+      {
+        "line": 46,
+        "expression": "self._load"
+      },
+      {
+        "line": 44,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 44,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.order_dao",
+    "method": "list_for_customer",
+    "line": 48,
+    "semantic_sha256": "34f52aa012ddb0f7b22bdcde52fb6836e8df0749646886e708e6e515cf334fdf",
+    "calls": [
+      {
+        "line": 49,
+        "call": "self.conn.execute(f'SELECT {_ORDER_COLUMNS} FROM orders WHERE customer_id = ? AND archived_at IS NULL ORDER BY placed_at DESC, id DESC', (customer_id,)).fetchall"
+      },
+      {
+        "line": 52,
+        "call": "self._load"
+      },
+      {
+        "line": 49,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 49,
+        "expression": "self.conn.execute(f'SELECT {_ORDER_COLUMNS} FROM orders WHERE customer_id = ? AND archived_at IS NULL ORDER BY placed_at DESC, id DESC', (customer_id,)).fetchall"
+      },
+      {
+        "line": 52,
+        "expression": "self._load"
+      },
+      {
+        "line": 49,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 49,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.order_dao",
+    "method": "list_for_hub",
+    "line": 54,
+    "semantic_sha256": "6daeedefdc645cc21fc2bd788c244205de998af2abe1b74aef1bd0ba8954a08f",
+    "calls": [
+      {
+        "line": 55,
+        "call": "list"
+      },
+      {
+        "line": 56,
+        "call": "', '.join"
+      },
+      {
+        "line": 57,
+        "call": "self.conn.execute(f'SELECT {_ORDER_COLUMNS} FROM orders WHERE hub_id = ? AND state IN ({marks}) AND archived_at IS NULL ORDER BY placed_at, id', (hub_id, *[s.value for s in states])).fetchall"
+      },
+      {
+        "line": 60,
+        "call": "self._load"
+      },
+      {
+        "line": 57,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 56,
+        "expression": "', '.join"
+      },
+      {
+        "line": 57,
+        "expression": "self.conn.execute(f'SELECT {_ORDER_COLUMNS} FROM orders WHERE hub_id = ? AND state IN ({marks}) AND archived_at IS NULL ORDER BY placed_at, id', (hub_id, *[s.value for s in states])).fetchall"
+      },
+      {
+        "line": 60,
+        "expression": "self._load"
+      },
+      {
+        "line": 57,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 57,
+        "expression": "self.conn"
+      },
+      {
+        "line": 59,
+        "expression": "s.value"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.order_dao",
+    "method": "change_state",
+    "line": 62,
+    "semantic_sha256": "2b2fc8de9045e0a54e8aef834b243a350956af5d564ac60d801e7efd311ee456",
+    "calls": [
+      {
+        "line": 72,
+        "call": "self.conn.execute"
+      },
+      {
+        "line": 69,
+        "call": "stamps.get"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 68,
+        "expression": "OrderState.CONFIRMED"
+      },
+      {
+        "line": 68,
+        "expression": "OrderState.READY"
+      },
+      {
+        "line": 72,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 73,
+        "expression": "cur.rowcount"
+      },
+      {
+        "line": 69,
+        "expression": "rules.TERMINAL_ORDER_STATES"
+      },
+      {
+        "line": 69,
+        "expression": "stamps.get"
+      },
+      {
+        "line": 71,
+        "expression": "from_state.value"
+      },
+      {
+        "line": 72,
+        "expression": "self.conn"
+      },
+      {
+        "line": 71,
+        "expression": "to_state.value"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.order_dao",
+    "method": "save_lines_and_totals",
+    "line": 75,
+    "semantic_sha256": "bedc028ec20c29f0b2c6bd0bb616204b306c1cc98904ce2ef5a1c91e7624f59b",
+    "calls": [
+      {
+        "line": 83,
+        "call": "self.conn.execute"
+      },
+      {
+        "line": 78,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 77,
+        "expression": "order.lines"
+      },
+      {
+        "line": 83,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 86,
+        "expression": "cur.rowcount"
+      },
+      {
+        "line": 78,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 81,
+        "expression": "cur.rowcount"
+      },
+      {
+        "line": 83,
+        "expression": "self.conn"
+      },
+      {
+        "line": 85,
+        "expression": "order.item_subtotal"
+      },
+      {
+        "line": 85,
+        "expression": "order.voucher_discount"
+      },
+      {
+        "line": 85,
+        "expression": "order.total"
+      },
+      {
+        "line": 85,
+        "expression": "order.id"
+      },
+      {
+        "line": 78,
+        "expression": "self.conn"
+      },
+      {
+        "line": 80,
+        "expression": "line.menu_item_id"
+      },
+      {
+        "line": 80,
+        "expression": "line.item_name"
+      },
+      {
+        "line": 80,
+        "expression": "line.unit_price"
+      },
+      {
+        "line": 80,
+        "expression": "line.id"
+      },
+      {
+        "line": 80,
+        "expression": "order.id"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.order_dao",
+    "method": "archive_one",
+    "line": 90,
+    "semantic_sha256": "add918ea1b16eb66df45ead40c19393c79e782c12eed597cca1a14f9c7a8ae3e",
+    "calls": [
+      {
+        "line": 91,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 91,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 94,
+        "expression": "cur.rowcount"
+      },
+      {
+        "line": 91,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.order_dao",
+    "method": "count_archivable",
+    "line": 96,
+    "semantic_sha256": "5e00f288c83998ae9c37f8e4b44d885f4669e6b3202f5a2c7a41040e4e4b2e85",
+    "calls": [
+      {
+        "line": 97,
+        "call": "self.conn.execute(f'SELECT COUNT(*) FROM orders WHERE archived_at IS NULL AND state IN ({_TERMINAL}) AND closed_at < ?', (closed_before,)).fetchone"
+      },
+      {
+        "line": 97,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 97,
+        "expression": "self.conn.execute(f'SELECT COUNT(*) FROM orders WHERE archived_at IS NULL AND state IN ({_TERMINAL}) AND closed_at < ?', (closed_before,)).fetchone"
+      },
+      {
+        "line": 97,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 97,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.order_dao",
+    "method": "archive_closed_before",
+    "line": 101,
+    "semantic_sha256": "7f938a6e12befd11b84c85fce762d4cc523076b828feaf3f04f352139f8a5fb6",
+    "calls": [
+      {
+        "line": 103,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 106,
+        "expression": "cur.rowcount"
+      },
+      {
+        "line": 103,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 103,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.order_dao",
+    "method": "list_archived",
+    "line": 108,
+    "semantic_sha256": "4210319ef3fbbf33c584c7f66d87b817659c16665df03ef956bc037124a8f583",
+    "calls": [
+      {
+        "line": 109,
+        "call": "self.conn.execute(f'SELECT {_ORDER_COLUMNS} FROM orders WHERE archived_at IS NOT NULL ORDER BY archived_at DESC, id DESC LIMIT ?', (limit,)).fetchall"
+      },
+      {
+        "line": 112,
+        "call": "self._load"
+      },
+      {
+        "line": 109,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 109,
+        "expression": "self.conn.execute(f'SELECT {_ORDER_COLUMNS} FROM orders WHERE archived_at IS NOT NULL ORDER BY archived_at DESC, id DESC LIMIT ?', (limit,)).fetchall"
+      },
+      {
+        "line": 112,
+        "expression": "self._load"
+      },
+      {
+        "line": 109,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 109,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.order_dao",
+    "method": "_load",
+    "line": 114,
+    "semantic_sha256": "d891a5a1323b9f1c7ecc13448970552d8bfa8e7f6a2dc77e2ef0d3a442cadcc0",
+    "calls": [
+      {
+        "line": 117,
+        "call": "self.conn.execute('SELECT id, menu_item_id, item_name, unit_price, quantity FROM order_line WHERE order_id = ? ORDER BY id', (row['id'],)).fetchall"
+      },
+      {
+        "line": 120,
+        "call": "dict"
+      },
+      {
+        "line": 121,
+        "call": "OrderState"
+      },
+      {
+        "line": 122,
+        "call": "Order"
+      },
+      {
+        "line": 117,
+        "call": "self.conn.execute"
+      },
+      {
+        "line": 122,
+        "call": "OrderLine"
+      },
+      {
+        "line": 122,
+        "call": "dict"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 117,
+        "expression": "self.conn.execute('SELECT id, menu_item_id, item_name, unit_price, quantity FROM order_line WHERE order_id = ? ORDER BY id', (row['id'],)).fetchall"
+      },
+      {
+        "line": 114,
+        "expression": "sqlite3.Row"
+      },
+      {
+        "line": 117,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 117,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.payment_dao",
+    "method": "__init__",
+    "line": 10,
+    "semantic_sha256": "23cc42dbdacf317a3cb48559ed30a3613c12f6adcda8d1077e882f96ad6b8251",
+    "calls": [],
+    "attribute_reads": [
+      {
+        "line": 10,
+        "expression": "sqlite3.Connection"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.payment_dao",
+    "method": "insert",
+    "line": 13,
+    "semantic_sha256": "206d9edd7f38523dd07302da133d77c89d4b1dfa32d55c8fdae15e2b17ad0de6",
+    "calls": [
+      {
+        "line": 14,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 20,
+        "expression": "cur.lastrowid"
+      },
+      {
+        "line": 14,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 14,
+        "expression": "self.conn"
+      },
+      {
+        "line": 17,
+        "expression": "payment.order_id"
+      },
+      {
+        "line": 17,
+        "expression": "payment.method.value"
+      },
+      {
+        "line": 18,
+        "expression": "payment.provider_ref"
+      },
+      {
+        "line": 19,
+        "expression": "payment.state.value"
+      },
+      {
+        "line": 19,
+        "expression": "payment.amount"
+      },
+      {
+        "line": 19,
+        "expression": "payment.created_at"
+      },
+      {
+        "line": 17,
+        "expression": "payment.method"
+      },
+      {
+        "line": 18,
+        "expression": "payment.online_option"
+      },
+      {
+        "line": 18,
+        "expression": "payment.online_option.value"
+      },
+      {
+        "line": 19,
+        "expression": "payment.state"
+      },
+      {
+        "line": 19,
+        "expression": "payment.updated_at"
+      },
+      {
+        "line": 19,
+        "expression": "payment.created_at"
+      },
+      {
+        "line": 18,
+        "expression": "payment.online_option"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.payment_dao",
+    "method": "get_by_order_id",
+    "line": 22,
+    "semantic_sha256": "54b7352a546d22a1d1f0d5af88b6ea551af26f1d9ca9a0efc012306aff4c4f72",
+    "calls": [
+      {
+        "line": 23,
+        "call": "self.conn.execute('SELECT id, order_id, method, online_option, provider_ref, state, amount, refund_amount,        created_at, updated_at FROM payment WHERE order_id = ?', (order_id,)).fetchone"
+      },
+      {
+        "line": 28,
+        "call": "Payment"
+      },
+      {
+        "line": 23,
+        "call": "self.conn.execute"
+      },
+      {
+        "line": 28,
+        "call": "PaymentMethod"
+      },
+      {
+        "line": 29,
+        "call": "PaymentState"
+      },
+      {
+        "line": 31,
+        "call": "OnlineOption"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 23,
+        "expression": "self.conn.execute('SELECT id, order_id, method, online_option, provider_ref, state, amount, refund_amount,        created_at, updated_at FROM payment WHERE order_id = ?', (order_id,)).fetchone"
+      },
+      {
+        "line": 23,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 23,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.payment_dao",
+    "method": "change_state",
+    "line": 33,
+    "semantic_sha256": "b015eceef637ba648d829ba6b18acc83fada9d590b4698dd3c3cac3cafeca2e1",
+    "calls": [
+      {
+        "line": 34,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 34,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 37,
+        "expression": "cur.rowcount"
+      },
+      {
+        "line": 34,
+        "expression": "self.conn"
+      },
+      {
+        "line": 36,
+        "expression": "to_state.value"
+      },
+      {
+        "line": 36,
+        "expression": "from_state.value"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.payment_dao",
+    "method": "set_amounts",
+    "line": 39,
+    "semantic_sha256": "75a921cf8409e3618914b97a5b50ece322b158e179cb3f435124fcbd9d6ec8b9",
+    "calls": [
+      {
+        "line": 41,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 41,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 43,
+        "expression": "cur.rowcount"
+      },
+      {
+        "line": 41,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.payment_gateway",
+    "method": "authorise",
+    "line": 34,
+    "semantic_sha256": "997ad961e1be50150a4200f249f6d15263a0b8791c4d58d5dadcf2b38d33ac0f",
+    "calls": [
+      {
+        "line": 39,
+        "call": "log.info"
+      },
+      {
+        "line": 40,
+        "call": "Authorisation"
+      },
+      {
+        "line": 37,
+        "call": "log.info"
+      },
+      {
+        "line": 38,
+        "call": "Authorisation"
+      },
+      {
+        "line": 36,
+        "call": "uuid.uuid4().hex[:12].upper"
+      },
+      {
+        "line": 36,
+        "call": "uuid.uuid4"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 39,
+        "expression": "log.info"
+      },
+      {
+        "line": 39,
+        "expression": "option.value"
+      },
+      {
+        "line": 37,
+        "expression": "log.info"
+      },
+      {
+        "line": 37,
+        "expression": "option.value"
+      },
+      {
+        "line": 36,
+        "expression": "uuid.uuid4().hex[:12].upper"
+      },
+      {
+        "line": 36,
+        "expression": "uuid.uuid4().hex"
+      },
+      {
+        "line": 36,
+        "expression": "uuid.uuid4"
+      }
+    ],
+    "manual_review": "Existing approve/decline simulator contract, no real provider or refund execution."
+  },
+  {
+    "module": "saigonbite.data_access.payment_gateway",
+    "method": "release",
+    "line": 42,
+    "semantic_sha256": "7477ee65c50080f529b7f64c9bae169934082f126cb2b268f51ca2853f07845d",
+    "calls": [
+      {
+        "line": 43,
+        "call": "log.info"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 43,
+        "expression": "log.info"
+      }
+    ],
+    "manual_review": "Existing approve/decline simulator contract, no real provider or refund execution."
+  },
+  {
+    "module": "saigonbite.data_access.report_dao",
+    "method": "__init__",
+    "line": 18,
+    "semantic_sha256": "23cc42dbdacf317a3cb48559ed30a3613c12f6adcda8d1077e882f96ad6b8251",
+    "calls": [],
+    "attribute_reads": [
+      {
+        "line": 18,
+        "expression": "sqlite3.Connection"
+      }
+    ],
+    "manual_review": "Read-only SQL report retrieval and completeness guard."
+  },
+  {
+    "module": "saigonbite.data_access.report_dao",
+    "method": "assert_complete",
+    "line": 21,
+    "semantic_sha256": "862ea1db645d900423427dabd0913aff8cf78b7dabefbd57dbd95ca2055b2993",
+    "calls": [
+      {
+        "line": 22,
+        "call": "self.conn.execute(\"SELECT COUNT(*) FROM orders o LEFT JOIN payment p ON p.order_id=o.id LEFT JOIN delivery d ON d.order_id=o.id WHERE (o.state='DELIVERED' AND (p.id IS NULL OR d.id IS NULL OR d.state!='DELIVERED' OR d.finished_at IS NULL)) OR (o.state='DELIVERY_FAILED' AND (p.id IS NULL OR d.id IS NULL OR d.state!='FAILED' OR d.finished_at IS NULL))\").fetchone"
+      },
+      {
+        "line": 29,
+        "call": "ReportDataUnavailable"
+      },
+      {
+        "line": 22,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 22,
+        "expression": "self.conn.execute(\"SELECT COUNT(*) FROM orders o LEFT JOIN payment p ON p.order_id=o.id LEFT JOIN delivery d ON d.order_id=o.id WHERE (o.state='DELIVERED' AND (p.id IS NULL OR d.id IS NULL OR d.state!='DELIVERED' OR d.finished_at IS NULL)) OR (o.state='DELIVERY_FAILED' AND (p.id IS NULL OR d.id IS NULL OR d.state!='FAILED' OR d.finished_at IS NULL))\").fetchone"
+      },
+      {
+        "line": 22,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 22,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Read-only SQL report retrieval and completeness guard."
+  },
+  {
+    "module": "saigonbite.data_access.report_dao",
+    "method": "sales_by_hub",
+    "line": 31,
+    "semantic_sha256": "bb3ae779ddca391cd25544c1de15fd7772246c1333a568fb296c973e3f63c329",
+    "calls": [
+      {
+        "line": 33,
+        "call": "self.assert_complete"
+      },
+      {
+        "line": 34,
+        "call": "self.conn.execute(\"SELECT h.id AS hub_id, h.name AS hub_name, COUNT(*) AS orders,        SUM(o.item_subtotal) AS item_sales, SUM(o.voucher_discount) AS voucher_discounts,        SUM(o.delivery_fee - o.quiet_discount) AS delivery_fees, SUM(o.total_amount) AS total,        SUM(p.refund_amount) AS refunds_owed FROM orders o JOIN delivery d ON d.order_id = o.id JOIN payment p ON p.order_id = o.id JOIN hub h ON h.id = o.hub_id WHERE o.state = 'DELIVERED' AND d.finished_at >= ? AND d.finished_at < ?   AND (? IS NULL OR o.hub_id = ?) GROUP BY h.id, h.name ORDER BY h.id\", (start_utc, end_utc, hub_id, hub_id)).fetchall"
+      },
+      {
+        "line": 34,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 31,
+        "expression": "sqlite3.Row"
+      },
+      {
+        "line": 33,
+        "expression": "self.assert_complete"
+      },
+      {
+        "line": 34,
+        "expression": "self.conn.execute(\"SELECT h.id AS hub_id, h.name AS hub_name, COUNT(*) AS orders,        SUM(o.item_subtotal) AS item_sales, SUM(o.voucher_discount) AS voucher_discounts,        SUM(o.delivery_fee - o.quiet_discount) AS delivery_fees, SUM(o.total_amount) AS total,        SUM(p.refund_amount) AS refunds_owed FROM orders o JOIN delivery d ON d.order_id = o.id JOIN payment p ON p.order_id = o.id JOIN hub h ON h.id = o.hub_id WHERE o.state = 'DELIVERED' AND d.finished_at >= ? AND d.finished_at < ?   AND (? IS NULL OR o.hub_id = ?) GROUP BY h.id, h.name ORDER BY h.id\", (start_utc, end_utc, hub_id, hub_id)).fetchall"
+      },
+      {
+        "line": 34,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 34,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Read-only SQL report retrieval and completeness guard."
+  },
+  {
+    "module": "saigonbite.data_access.report_dao",
+    "method": "top_items",
+    "line": 48,
+    "semantic_sha256": "31b132e121ba9b0b4625e1fbdd976b847eba33be1c96f9844960eb17deb3dd0a",
+    "calls": [
+      {
+        "line": 50,
+        "call": "self.conn.execute(\"WITH eligible AS (SELECT ol.*, d.finished_at FROM order_line ol JOIN orders o ON o.id=ol.order_id JOIN delivery d ON d.order_id=o.id WHERE o.state='DELIVERED' AND d.finished_at >= ? AND d.finished_at < ? AND (? IS NULL OR o.hub_id=?)) SELECT ol.menu_item_id, (SELECT n.item_name FROM eligible n WHERE n.menu_item_id=ol.menu_item_id ORDER BY n.finished_at DESC,n.order_id DESC,n.id DESC LIMIT 1) AS item_name, SUM(ol.quantity) AS quantity, SUM(ol.unit_price * ol.quantity) AS revenue FROM eligible ol GROUP BY ol.menu_item_id ORDER BY revenue DESC, ol.menu_item_id LIMIT ?\", (start_utc, end_utc, hub_id, hub_id, limit)).fetchall"
+      },
+      {
+        "line": 50,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 48,
+        "expression": "sqlite3.Row"
+      },
+      {
+        "line": 50,
+        "expression": "self.conn.execute(\"WITH eligible AS (SELECT ol.*, d.finished_at FROM order_line ol JOIN orders o ON o.id=ol.order_id JOIN delivery d ON d.order_id=o.id WHERE o.state='DELIVERED' AND d.finished_at >= ? AND d.finished_at < ? AND (? IS NULL OR o.hub_id=?)) SELECT ol.menu_item_id, (SELECT n.item_name FROM eligible n WHERE n.menu_item_id=ol.menu_item_id ORDER BY n.finished_at DESC,n.order_id DESC,n.id DESC LIMIT 1) AS item_name, SUM(ol.quantity) AS quantity, SUM(ol.unit_price * ol.quantity) AS revenue FROM eligible ol GROUP BY ol.menu_item_id ORDER BY revenue DESC, ol.menu_item_id LIMIT ?\", (start_utc, end_utc, hub_id, hub_id, limit)).fetchall"
+      },
+      {
+        "line": 50,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 50,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Read-only SQL report retrieval and completeness guard."
+  },
+  {
+    "module": "saigonbite.data_access.report_dao",
+    "method": "open_orders_by_hub_and_state",
+    "line": 62,
+    "semantic_sha256": "f9aaf5136354f3005b6fb752467c8fd87fde1ab2d51e1ac2e1f683cbca8f8cc9",
+    "calls": [
+      {
+        "line": 64,
+        "call": "self.conn.execute(\"SELECT hub_id, state, COUNT(*) AS n FROM orders WHERE state IN ('PLACED', 'CONFIRMED', 'PREPARING', 'READY', 'OUT_FOR_DELIVERY') GROUP BY hub_id, state\").fetchall"
+      },
+      {
+        "line": 64,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 62,
+        "expression": "sqlite3.Row"
+      },
+      {
+        "line": 64,
+        "expression": "self.conn.execute(\"SELECT hub_id, state, COUNT(*) AS n FROM orders WHERE state IN ('PLACED', 'CONFIRMED', 'PREPARING', 'READY', 'OUT_FOR_DELIVERY') GROUP BY hub_id, state\").fetchall"
+      },
+      {
+        "line": 64,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 64,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Read-only SQL report retrieval and completeness guard."
+  },
+  {
+    "module": "saigonbite.data_access.report_dao",
+    "method": "finished_deliveries",
+    "line": 69,
+    "semantic_sha256": "b1dc52cf70adfdc046b292bcb0bb06a6b2805a23b166dc018b7e18000a7cb74d",
+    "calls": [
+      {
+        "line": 71,
+        "call": "self.assert_complete"
+      },
+      {
+        "line": 72,
+        "call": "self.conn.execute(\"SELECT o.id AS order_id, o.hub_id, h.name AS hub_name, d.state, d.ready_at, d.picked_up_at,        d.finished_at, d.shipper_id, u.display_name AS shipper_name FROM delivery d JOIN orders o ON o.id = d.order_id JOIN hub h ON h.id = o.hub_id LEFT JOIN user_account u ON u.id = d.shipper_id WHERE d.state IN ('DELIVERED', 'FAILED') AND d.finished_at >= ? AND d.finished_at < ?   AND (? IS NULL OR o.hub_id = ?) ORDER BY o.hub_id, d.finished_at\", (start_utc, end_utc, hub_id, hub_id)).fetchall"
+      },
+      {
+        "line": 72,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 69,
+        "expression": "sqlite3.Row"
+      },
+      {
+        "line": 71,
+        "expression": "self.assert_complete"
+      },
+      {
+        "line": 72,
+        "expression": "self.conn.execute(\"SELECT o.id AS order_id, o.hub_id, h.name AS hub_name, d.state, d.ready_at, d.picked_up_at,        d.finished_at, d.shipper_id, u.display_name AS shipper_name FROM delivery d JOIN orders o ON o.id = d.order_id JOIN hub h ON h.id = o.hub_id LEFT JOIN user_account u ON u.id = d.shipper_id WHERE d.state IN ('DELIVERED', 'FAILED') AND d.finished_at >= ? AND d.finished_at < ?   AND (? IS NULL OR o.hub_id = ?) ORDER BY o.hub_id, d.finished_at\", (start_utc, end_utc, hub_id, hub_id)).fetchall"
+      },
+      {
+        "line": 72,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 72,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Read-only SQL report retrieval and completeness guard."
+  },
+  {
+    "module": "saigonbite.data_access.user_dao",
+    "method": "_to_user",
+    "line": 12,
+    "semantic_sha256": "f08fbbfb71001a823e837004657dfcd2ead1176025fbd816d72deb46da41d550",
+    "calls": [
+      {
+        "line": 13,
+        "call": "UserAccount"
+      },
+      {
+        "line": 14,
+        "call": "Role"
+      },
+      {
+        "line": 15,
+        "call": "bool"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 12,
+        "expression": "sqlite3.Row"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.user_dao",
+    "method": "__init__",
+    "line": 19,
+    "semantic_sha256": "23cc42dbdacf317a3cb48559ed30a3613c12f6adcda8d1077e882f96ad6b8251",
+    "calls": [],
+    "attribute_reads": [
+      {
+        "line": 19,
+        "expression": "sqlite3.Connection"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.user_dao",
+    "method": "get_by_id",
+    "line": 22,
+    "semantic_sha256": "b0337eb34d86001bbe660756cdc683346b7f74a13aa034109ce03712238102f5",
+    "calls": [
+      {
+        "line": 23,
+        "call": "self.conn.execute(f'SELECT {_USER_COLUMNS} FROM user_account WHERE id = ?', (user_id,)).fetchone"
+      },
+      {
+        "line": 24,
+        "call": "_to_user"
+      },
+      {
+        "line": 23,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 23,
+        "expression": "self.conn.execute(f'SELECT {_USER_COLUMNS} FROM user_account WHERE id = ?', (user_id,)).fetchone"
+      },
+      {
+        "line": 23,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 23,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.user_dao",
+    "method": "get_by_username",
+    "line": 26,
+    "semantic_sha256": "50ac3ae92bacdbb4e29fdb8afa5d12259c70a8482e4e03f2e8e80e42fc4dc9d7",
+    "calls": [
+      {
+        "line": 27,
+        "call": "self.conn.execute(f'SELECT {_USER_COLUMNS} FROM user_account WHERE username = ?', (username,)).fetchone"
+      },
+      {
+        "line": 29,
+        "call": "_to_user"
+      },
+      {
+        "line": 27,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 27,
+        "expression": "self.conn.execute(f'SELECT {_USER_COLUMNS} FROM user_account WHERE username = ?', (username,)).fetchone"
+      },
+      {
+        "line": 27,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 27,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.user_dao",
+    "method": "list_all",
+    "line": 31,
+    "semantic_sha256": "6fa0f29ee49ab931a22f0933d850acac0aaf5e7a6861dc2cb772bab4dab99287",
+    "calls": [
+      {
+        "line": 32,
+        "call": "self.conn.execute(f'SELECT {_USER_COLUMNS} FROM user_account ORDER BY is_active DESC, role, username').fetchall"
+      },
+      {
+        "line": 34,
+        "call": "_to_user"
+      },
+      {
+        "line": 32,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 32,
+        "expression": "self.conn.execute(f'SELECT {_USER_COLUMNS} FROM user_account ORDER BY is_active DESC, role, username').fetchall"
+      },
+      {
+        "line": 32,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 32,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.user_dao",
+    "method": "insert",
+    "line": 36,
+    "semantic_sha256": "1b0da596b3d0a3e34b8dbb1eece4e0846af4fe41c8c5abcab75f1ab7fc2ea3a9",
+    "calls": [
+      {
+        "line": 37,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 37,
+        "expression": "self.conn.execute(\"INSERT INTO user_account (username, password_hash, display_name, role, hub_id, is_active, created_at) VALUES (?, ?, ?, ?, ?, ?, COALESCE(NULLIF(?, ''), strftime('%Y-%m-%dT%H:%M:%S+00:00', 'now')))\", (user.username, user.password_hash, user.display_name, user.role.value, user.hub_id, 1 if user.is_active else 0, user.created_at)).lastrowid"
+      },
+      {
+        "line": 37,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 37,
+        "expression": "self.conn"
+      },
+      {
+        "line": 40,
+        "expression": "user.username"
+      },
+      {
+        "line": 40,
+        "expression": "user.password_hash"
+      },
+      {
+        "line": 40,
+        "expression": "user.display_name"
+      },
+      {
+        "line": 40,
+        "expression": "user.role.value"
+      },
+      {
+        "line": 40,
+        "expression": "user.hub_id"
+      },
+      {
+        "line": 41,
+        "expression": "user.created_at"
+      },
+      {
+        "line": 40,
+        "expression": "user.role"
+      },
+      {
+        "line": 41,
+        "expression": "user.is_active"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.user_dao",
+    "method": "update",
+    "line": 43,
+    "semantic_sha256": "02286b7331c990ceff7d88cca5d3bb3e1f04c7fe1422f73029d0eae90fc91681",
+    "calls": [
+      {
+        "line": 45,
+        "call": "self.conn.execute"
+      },
+      {
+        "line": 49,
+        "call": "StaleWriteError"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 45,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 48,
+        "expression": "cur.rowcount"
+      },
+      {
+        "line": 45,
+        "expression": "self.conn"
+      },
+      {
+        "line": 47,
+        "expression": "user.display_name"
+      },
+      {
+        "line": 47,
+        "expression": "user.hub_id"
+      },
+      {
+        "line": 47,
+        "expression": "user.password_hash"
+      },
+      {
+        "line": 47,
+        "expression": "user.id"
+      },
+      {
+        "line": 47,
+        "expression": "user.role.value"
+      },
+      {
+        "line": 47,
+        "expression": "user.role"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.user_dao",
+    "method": "set_active",
+    "line": 51,
+    "semantic_sha256": "8ced7c255e76948861ba8419a055342e2a2a8542ccf528a87f7dcd7d248028c1",
+    "calls": [
+      {
+        "line": 52,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 52,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 54,
+        "expression": "cur.rowcount"
+      },
+      {
+        "line": 52,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.voucher_dao",
+    "method": "_to_voucher",
+    "line": 13,
+    "semantic_sha256": "76efcfd09f26bf6679055338eb338f8e91bfaf29566cc354bbb7ffe963c89d2d",
+    "calls": [
+      {
+        "line": 16,
+        "call": "dict"
+      },
+      {
+        "line": 17,
+        "call": "DiscountType"
+      },
+      {
+        "line": 18,
+        "call": "Voucher"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 13,
+        "expression": "sqlite3.Row"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.voucher_dao",
+    "method": "__init__",
+    "line": 22,
+    "semantic_sha256": "23cc42dbdacf317a3cb48559ed30a3613c12f6adcda8d1077e882f96ad6b8251",
+    "calls": [],
+    "attribute_reads": [
+      {
+        "line": 22,
+        "expression": "sqlite3.Connection"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.voucher_dao",
+    "method": "get",
+    "line": 25,
+    "semantic_sha256": "7cd20d6df8950e4686273bfe005c630e5580efabc5b3b4c0c740847e3fe0548b",
+    "calls": [
+      {
+        "line": 26,
+        "call": "_to_voucher"
+      },
+      {
+        "line": 26,
+        "call": "self.conn.execute(f'SELECT {_COLUMNS} FROM voucher WHERE id = ?', (voucher_id,)).fetchone"
+      },
+      {
+        "line": 26,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 26,
+        "expression": "self.conn.execute(f'SELECT {_COLUMNS} FROM voucher WHERE id = ?', (voucher_id,)).fetchone"
+      },
+      {
+        "line": 26,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 26,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.voucher_dao",
+    "method": "get_by_code",
+    "line": 29,
+    "semantic_sha256": "2714259e855c9c48efa1a6280caa4b6fb29ffc22a7a9d5bccb54332ec94e5686",
+    "calls": [
+      {
+        "line": 31,
+        "call": "_to_voucher"
+      },
+      {
+        "line": 31,
+        "call": "self.conn.execute(f'SELECT {_COLUMNS} FROM voucher WHERE upper(code) = upper(?)', (code,)).fetchone"
+      },
+      {
+        "line": 31,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 31,
+        "expression": "self.conn.execute(f'SELECT {_COLUMNS} FROM voucher WHERE upper(code) = upper(?)', (code,)).fetchone"
+      },
+      {
+        "line": 31,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 31,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.voucher_dao",
+    "method": "list_all",
+    "line": 34,
+    "semantic_sha256": "827d7177e3f0a1f232e0d762e51a29672dff400bfa1b1375c334664b839f38c3",
+    "calls": [
+      {
+        "line": 35,
+        "call": "self.conn.execute(f'SELECT {_COLUMNS} FROM voucher ORDER BY archived_at IS NOT NULL, valid_until DESC, code').fetchall"
+      },
+      {
+        "line": 37,
+        "call": "_to_voucher"
+      },
+      {
+        "line": 35,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 35,
+        "expression": "self.conn.execute(f'SELECT {_COLUMNS} FROM voucher ORDER BY archived_at IS NOT NULL, valid_until DESC, code').fetchall"
+      },
+      {
+        "line": 35,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 35,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.voucher_dao",
+    "method": "code_exists",
+    "line": 39,
+    "semantic_sha256": "1eb26755b36579a9f678130ceab6239dca8a49f83b75e89f88a50da571b5deb4",
+    "calls": [
+      {
+        "line": 40,
+        "call": "self.conn.execute('SELECT 1 FROM voucher WHERE upper(code) = upper(?) AND id IS NOT ?', (code, except_id)).fetchone"
+      },
+      {
+        "line": 40,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 40,
+        "expression": "self.conn.execute('SELECT 1 FROM voucher WHERE upper(code) = upper(?) AND id IS NOT ?', (code, except_id)).fetchone"
+      },
+      {
+        "line": 40,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 40,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.voucher_dao",
+    "method": "insert",
+    "line": 44,
+    "semantic_sha256": "72070fd1c5ae86dac992e0ea27b1b7d78c88da6a328338a2d6936145de212d52",
+    "calls": [
+      {
+        "line": 45,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 45,
+        "expression": "self.conn.execute('INSERT INTO voucher (code, description, discount_type, discount_value, min_subtotal, max_discount,                      valid_from, valid_until) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', (v.code, v.description, v.discount_type.value, v.discount_value, v.min_subtotal, v.max_discount, v.valid_from, v.valid_until)).lastrowid"
+      },
+      {
+        "line": 45,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 45,
+        "expression": "self.conn"
+      },
+      {
+        "line": 48,
+        "expression": "v.code"
+      },
+      {
+        "line": 48,
+        "expression": "v.description"
+      },
+      {
+        "line": 48,
+        "expression": "v.discount_type.value"
+      },
+      {
+        "line": 48,
+        "expression": "v.discount_value"
+      },
+      {
+        "line": 48,
+        "expression": "v.min_subtotal"
+      },
+      {
+        "line": 48,
+        "expression": "v.max_discount"
+      },
+      {
+        "line": 49,
+        "expression": "v.valid_from"
+      },
+      {
+        "line": 49,
+        "expression": "v.valid_until"
+      },
+      {
+        "line": 48,
+        "expression": "v.discount_type"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.voucher_dao",
+    "method": "update",
+    "line": 51,
+    "semantic_sha256": "c141420b7aadfff041590f557149a2207bd493560c07743b409cad345535609f",
+    "calls": [
+      {
+        "line": 52,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 52,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 58,
+        "expression": "cur.rowcount"
+      },
+      {
+        "line": 52,
+        "expression": "self.conn"
+      },
+      {
+        "line": 56,
+        "expression": "v.code"
+      },
+      {
+        "line": 56,
+        "expression": "v.description"
+      },
+      {
+        "line": 56,
+        "expression": "v.discount_type.value"
+      },
+      {
+        "line": 56,
+        "expression": "v.discount_value"
+      },
+      {
+        "line": 56,
+        "expression": "v.min_subtotal"
+      },
+      {
+        "line": 56,
+        "expression": "v.max_discount"
+      },
+      {
+        "line": 57,
+        "expression": "v.valid_from"
+      },
+      {
+        "line": 57,
+        "expression": "v.valid_until"
+      },
+      {
+        "line": 57,
+        "expression": "v.id"
+      },
+      {
+        "line": 56,
+        "expression": "v.discount_type"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  },
+  {
+    "module": "saigonbite.data_access.voucher_dao",
+    "method": "archive",
+    "line": 60,
+    "semantic_sha256": "526646e9eefabbfb514baf4a2fb315f12d6e7c02c8fdfb89588dee493112c188",
+    "calls": [
+      {
+        "line": 61,
+        "call": "self.conn.execute"
+      }
+    ],
+    "attribute_reads": [
+      {
+        "line": 61,
+        "expression": "self.conn.execute"
+      },
+      {
+        "line": 63,
+        "expression": "cur.rowcount"
+      },
+      {
+        "line": 61,
+        "expression": "self.conn"
+      }
+    ],
+    "manual_review": "Stored field/property mapping, entity/enum/factory reconstruction, SQL serialization/conditional guard; caller owns business decision."
+  }
+]

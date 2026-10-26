@@ -1,0 +1,148 @@
+{
+  "author": "722I0004 · AI-assisted (Codex)",
+  "baseline": "c1c5d7e68714ab0f13c586cb95196d9a55b3ba30",
+  "review_method": "Root read mapper/adapter bodies, domain stored-value properties, SQL predicates and controller transaction call sites. Structural AST audit supplements manual semantic conclusions; exact seals fail closed on new uses, including instance methods not resolved by this bounded analyzer.",
+  "module_ast": {
+    "saigonbite.business.domain": "0a5c99177bfa8fce70db45c42016defc64e1502c8ef94e94d22c85c0ab8565ea",
+    "saigonbite.business.domain.enums": "fe61ce97b5ba88f0981569a1e866d1411ae1b05584c8d098934f42aff0f0b3ab",
+    "saigonbite.business.domain.models": "4ed77823addcd055629fc2dd0e79d5ebdaa74aebd99b265249e48a87d217ee33",
+    "saigonbite.business.domain.rules": "62deca002638c5ddb96bfdcca087f1c6b20a5d8db06ce711abe5f447c7ee022c",
+    "saigonbite.data_access": "4b216ec5fdb9fe45112c6097cbf91ce66eedf527ad1c1305fafe7ece3c36272d",
+    "saigonbite.data_access.customer_dao": "747f0561d869f0299e6ee14b7a3ef51c1f11d45db4ee5e1e6d79bf0160f56a19",
+    "saigonbite.data_access.database": "657f6867ed73d7baa4b67e30b1eb7a3e52433635eebc0e443f0c9c0bc87a2259",
+    "saigonbite.data_access.delivery_dao": "80bfd635f4a0fc6e890297b1dac7726a1c1917154ed1b7e7d25ce0786c7c1016",
+    "saigonbite.data_access.hub_dao": "c703734e2b6d5ed1b15e933c8364281dbddd4fc19eb9597ee525fcb001b641a9",
+    "saigonbite.data_access.menu_dao": "5f0f3f83c3ad9ebcd8c318837f259c5b3875e69adfbd5afd1a45c051a2a5950b",
+    "saigonbite.data_access.offer_dao": "df25ed151bd21be1e8f0c30e0798f2552daa8a918b99ad19f6727c90d40de9aa",
+    "saigonbite.data_access.order_dao": "9c310b1c3bc4a76992fb83f3a85ea3d457c9b570ea9fd01e467fff7add82de5e",
+    "saigonbite.data_access.payment_dao": "c4ad09a10a142b8d3ed4a69628c546ceefbc0aafb9f61655df627dbc55f4be46",
+    "saigonbite.data_access.payment_gateway": "2c65299d7c9a72c6308d05eaf2e9bde71b1ef536296c9c4f2e1e0a2a5640e22c",
+    "saigonbite.data_access.report_dao": "0b34b4baa6e31a6e2cd7f228ef1fb3ebb60ff9526be68fc97e3c405884d9d050",
+    "saigonbite.data_access.user_dao": "aca0996c2dabf2af8bdcda5596a0b55f38a2dc23919a109ca9b10d42587269a1",
+    "saigonbite.data_access.voucher_dao": "36bd79484d1ec266af630734c92fe677ab0ef7c2fd462da4b08d3d60c0cf2eb9"
+  },
+  "facade_ast": {
+    "saigonbite": "abbbb55deecd41df4338bcd50082ff00cbd4a4de450dce45ecf4fdd556c40360",
+    "saigonbite.business": "cd727d8852eccdc8151cf24f07b32805eaea5d08aacde7979afd5376a8d62b26",
+    "saigonbite.business.controllers": "c945639d1ae2468841dfac62a4635ae4bd2292b482fbda2e4cac834a9c54289b",
+    "saigonbite.business.controllers.account_controller": "5adc987ea563d9c793581ce08bb60e8768dffc7d40b707326a859b978f83832f",
+    "saigonbite.business.controllers.auth_controller": "55693656e43653b2b134191d0c6c93491f0f187ccc1228b964bb24ed0879693d",
+    "saigonbite.business.controllers.common": "c3c6e353bafe2f8eee4e5cce98e05f918e7c68c919a0ebe3cbbb80f0e72f6001",
+    "saigonbite.business.controllers.delivery_controller": "c4eb5a2f5555dedd778519b71c60eb3c4bb0377ea1d4bbf4348054f5f69af13a",
+    "saigonbite.business.controllers.errors": "fe90eb7bd4caa2f94c7401f9f7483741852b6beabc78b0063c58a0d87fb565c6",
+    "saigonbite.business.controllers.hub_controller": "d477b82ac1e1db87ba82fb2964c7620ba4ac76b45fe5949556a6f0df8dccc51f",
+    "saigonbite.business.controllers.kitchen_controller": "60ad1809e23904e8d6c7b70d5a62a78d77ff49f102b3bd2272a560f46e20ee62",
+    "saigonbite.business.controllers.menu_controller": "9b654b8a20ba3f8f265c639e46f068b41069e27a520cb1a8ca9de7fb75b9e223",
+    "saigonbite.business.controllers.order_archive_controller": "32d0575aedeb09b74ed3ddd39e46165274bbee02639c22d16c38308c1ba3f378",
+    "saigonbite.business.controllers.order_tracking_controller": "822b65135dfd3ca6745374e7908bd646d599c39d5f37c362575bf7d0a41d88df",
+    "saigonbite.business.controllers.place_order_controller": "40e61b7cda2e6d6297572d488d43627876ff9c6a4863a187937ea80d0a35c453",
+    "saigonbite.business.controllers.presentation_contract": "33a05be12c57a71875cac17d241b33f5e95e5bcbf9e432e61abd21b373f0cf34",
+    "saigonbite.business.controllers.report_controller": "73ed1ef300f9add5d0eaece3eb0d5846dc1e0c27cb7a2a6b41e5c1521f272d7b",
+    "saigonbite.business.controllers.user_admin_controller": "855748aab81ee378b321b5b32ba309b79d55a99ae452287fdd7d23ff51efba83",
+    "saigonbite.business.controllers.voucher_controller": "361798573a8d0be83c1f7213d4597eab22e4cc41d6b5740eb435fc16e27abf28",
+    "saigonbite.presentation": "cd727d8852eccdc8151cf24f07b32805eaea5d08aacde7979afd5376a8d62b26",
+    "saigonbite.presentation.account": "09d06d355517f288b8976e97428de67d39e62d9654b8de9c3c54326196095346",
+    "saigonbite.presentation.admin": "4c35eb5c05d550318dd4d5c0f66f871ac489d5965ba4ff3d5f47599f312a7895",
+    "saigonbite.presentation.auth": "74bd1b3ac2678f309077c701beb050c6fe08097df0a7d3986c34ae0dd7c46757",
+    "saigonbite.presentation.db": "6777e67e618d7f567627bee76b18961abad4402dafdb7522b2ece8915828e207",
+    "saigonbite.presentation.delivery": "d2798a2f0cd3fa38a3bec6f225e0644eb855d7867d6f90526f6ba4286b840579",
+    "saigonbite.presentation.helpers": "8601d422cf6489f3a47446e1921ba4a38168835b2048d5b79ff42e7afc0cc782",
+    "saigonbite.presentation.kitchen": "433ec1f29138de412ece8d9c23a036cc482178fc1034c9355d4201a460fa5a4f",
+    "saigonbite.presentation.main": "f07889277eec122fb46c1db53f326893bc1852ae4a2bec16be208f6871aaba3b",
+    "saigonbite.presentation.order": "979b05ff5acaea8369b26d9bbb9eda6af886816b702cccac8a4b12223697620d",
+    "saigonbite.presentation.reports": "19b9d48c92aefb24877d506fd85ffe8ebdda2a2c0b6897eed7e639a2bc733689",
+    "saigonbite.presentation.security": "c15ec54651556b2f6d32765bdc298785b99531178f926d7d99b65af0652ca77f",
+    "app": "79d31dbf3d2050dbbbbc7f531263d04314eba0d74ddf8052b100f383f7fa5294"
+  },
+  "view_contract_exports": {
+    "saigonbite.business.controllers.presentation_contract": [
+      "APPROVE",
+      "DECLINE",
+      "DiscountType",
+      "OnlineOption",
+      "PaymentMethod",
+      "Role",
+      "UserAccount"
+    ],
+    "saigonbite.business.controllers.report_controller": [
+      "ReportDataUnavailable"
+    ]
+  },
+  "bootstrap_imports": [
+    [
+      "saigonbite",
+      "saigonbite.business.controllers",
+      "AuthorizationError"
+    ],
+    [
+      "saigonbite",
+      "saigonbite.business.controllers",
+      "ConflictError"
+    ],
+    [
+      "saigonbite",
+      "saigonbite.business.controllers",
+      "NotFoundError"
+    ],
+    [
+      "saigonbite",
+      "saigonbite.presentation.account",
+      "<module>"
+    ],
+    [
+      "saigonbite",
+      "saigonbite.presentation.admin",
+      "<module>"
+    ],
+    [
+      "saigonbite",
+      "saigonbite.presentation.auth",
+      "<module>"
+    ],
+    [
+      "saigonbite",
+      "saigonbite.presentation.db",
+      "<module>"
+    ],
+    [
+      "saigonbite",
+      "saigonbite.presentation.delivery",
+      "<module>"
+    ],
+    [
+      "saigonbite",
+      "saigonbite.presentation.kitchen",
+      "<module>"
+    ],
+    [
+      "saigonbite",
+      "saigonbite.presentation.main",
+      "<module>"
+    ],
+    [
+      "saigonbite",
+      "saigonbite.presentation.order",
+      "<module>"
+    ],
+    [
+      "saigonbite",
+      "saigonbite.presentation.reports",
+      "<module>"
+    ],
+    [
+      "saigonbite",
+      "saigonbite.presentation.security",
+      "<module>"
+    ],
+    [
+      "saigonbite",
+      "saigonbite.data_access.database",
+      "StaleWriteError"
+    ],
+    [
+      "app",
+      "saigonbite",
+      "create_app"
+    ]
+  ]
+}

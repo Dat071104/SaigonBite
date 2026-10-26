@@ -1,0 +1,144 @@
+{
+  "id": "SB-P4-B02-20261026",
+  "author": "722I0004 · AI-assisted (Codex)",
+  "date": "2026-10-26 Asia/Bangkok",
+  "authority": "Actual owner continuation message pasted into this Sol session, explicitly authorizing this bounded team decision; companion prompt alone was not authorization.",
+  "authority_companion": {
+    "path": "D:/RAD/FINAL/Part2/codex/P4_B02_PROMPT.md",
+    "sha256": "24124cd6813e0f2b53b9e818968deacfda6dbb1bbd63fd39a5a58e195d3c0106"
+  },
+  "baseline": "c1c5d7e68714ab0f13c586cb95196d9a55b3ba30",
+  "frozen_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "dependencies": [
+    {
+      "source": "saigonbite.data_access.customer_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "Address",
+        "Customer",
+        "make_customer"
+      ],
+      "use": "Typed entity parameters/results; row-to-correct-subtype materialisation by make_customer; address mapping and stored field serialization."
+    },
+    {
+      "source": "saigonbite.data_access.delivery_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "Delivery",
+        "DeliveryState"
+      ],
+      "use": "Delivery row reconstruction and enum serialization in guarded persistence predicates; no transition decision."
+    },
+    {
+      "source": "saigonbite.data_access.hub_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "ACTIVE_ORDER_STATES",
+        "Hub",
+        "HubMenuItem",
+        "MenuItem"
+      ],
+      "use": "Hub/menu row mapping; declared active-state set translated to SQL predicate values."
+    },
+    {
+      "source": "saigonbite.data_access.menu_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "Brand",
+        "HubMenuItem",
+        "MenuItem"
+      ],
+      "use": "Catalogue row/object mapping and stored persistence parameter serialization."
+    },
+    {
+      "source": "saigonbite.data_access.offer_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "OfferState",
+        "ReplacementOffer"
+      ],
+      "use": "Offer row reconstruction, enum serialization and guarded persistence updates; caller chooses outcome."
+    },
+    {
+      "source": "saigonbite.data_access.order_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "Order",
+        "OrderLine",
+        "OrderState"
+      ],
+      "use": "Aggregate/line row reconstruction; existing pure stored-value properties item_subtotal/total and fields serialized; caller decides transition."
+    },
+    {
+      "source": "saigonbite.data_access.payment_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "OnlineOption",
+        "Payment",
+        "PaymentMethod",
+        "PaymentState"
+      ],
+      "use": "Typed payment mapping and enum/value serialization; no authorisation/refund decision."
+    },
+    {
+      "source": "saigonbite.data_access.payment_gateway",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "OnlineOption"
+      ],
+      "use": "Existing simulator option enum contract, option.value rendering/logging; simulator is not a real provider."
+    },
+    {
+      "source": "saigonbite.data_access.user_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "Role",
+        "UserAccount"
+      ],
+      "use": "Account row reconstruction and role/stored-field serialization."
+    },
+    {
+      "source": "saigonbite.data_access.voucher_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "DiscountType",
+        "Voucher"
+      ],
+      "use": "Voucher row reconstruction and type/value serialization; no checkout discount calculation."
+    },
+    {
+      "source": "saigonbite.data_access.hub_dao",
+      "target": "saigonbite.business.domain.rules",
+      "symbols": [
+        "rules"
+      ],
+      "members": [
+        "TERMINAL_ORDER_STATES"
+      ],
+      "use": "Retained-order/archive SQL predicate constants."
+    },
+    {
+      "source": "saigonbite.data_access.order_dao",
+      "target": "saigonbite.business.domain.rules",
+      "symbols": [
+        "rules"
+      ],
+      "members": [
+        "TERMINAL_ORDER_STATES"
+      ],
+      "use": "Terminal SQL predicates and timestamp-column selection; caller owns transition decision."
+    }
+  ],
+  "restrictions": [
+    "Domain independent of persistence/network/UI/controllers/root",
+    "Views use named controller contract; no direct domain/DAO/root/SQL",
+    "DAOs map and guard persistence, no workflow/authorization/pricing/refund decision or top-level transaction ownership",
+    "database.immediate_transaction is controller-invoked infrastructure; implementation remains in database helper",
+    "Composition root narrowly binds bootstrap imports",
+    "No new application-role cycle",
+    "New module/symbol/member/use requires explicit disposition; no automatic AST-seal renewal",
+    "No dynamic/wildcard/dependency hiding or relocation tricks"
+  ],
+  "acceptance": "Full application requires exact source/target/symbol sets. Synthetic subsets may pass only existing reviewed uses. Every semantic body change in DAO/domain/contract/root requires review; equality is conservative and intentionally rejects harmless unreviewed modifications too.",
+  "approval": "Team implementation decision; not lecturer/client approval; prior current-schema mapping permission is separate"
+}

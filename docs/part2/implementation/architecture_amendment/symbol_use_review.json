@@ -1,0 +1,1144 @@
+[
+  {
+    "source": "saigonbite.data_access.customer_dao",
+    "target": "saigonbite.business.domain",
+    "symbol": "Address",
+    "alias": "Address",
+    "effective": [
+      [
+        "saigonbite.business.domain.models",
+        "Address"
+      ]
+    ],
+    "import_line": 6,
+    "permitted_use": "Typed entity parameters/results; row-to-correct-subtype materialisation by make_customer; address mapping and stored field serialization.",
+    "members": [],
+    "sites": [
+      {
+        "line": 51,
+        "expression": "list[Address]",
+        "scope": "list_addresses",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 58,
+        "expression": "Optional[Address]",
+        "scope": "get_address",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 65,
+        "expression": "address: Address",
+        "scope": "insert_address",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 72,
+        "expression": "address: Address",
+        "scope": "update_address",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 56,
+        "expression": "Address(**dict(r))",
+        "scope": "list_addresses",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 63,
+        "expression": "Address(**dict(row))",
+        "scope": "get_address",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      }
+    ],
+    "manual_verdict": "ACCEPTED_EXPLICIT_POLICY; reviewed enclosing mapper/adapter body",
+    "body_seal": "747f0561d869f0299e6ee14b7a3ef51c1f11d45db4ee5e1e6d79bf0160f56a19"
+  },
+  {
+    "source": "saigonbite.data_access.customer_dao",
+    "target": "saigonbite.business.domain",
+    "symbol": "Customer",
+    "alias": "Customer",
+    "effective": [
+      [
+        "saigonbite.business.domain.models",
+        "Customer"
+      ]
+    ],
+    "import_line": 6,
+    "permitted_use": "Typed entity parameters/results; row-to-correct-subtype materialisation by make_customer; address mapping and stored field serialization.",
+    "members": [],
+    "sites": [
+      {
+        "line": 13,
+        "expression": "Optional[Customer]",
+        "scope": "_to_customer",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 26,
+        "expression": "Optional[Customer]",
+        "scope": "get_by_user_id",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 30,
+        "expression": "Optional[Customer]",
+        "scope": "get",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 34,
+        "expression": "customer: Customer",
+        "scope": "insert",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 41,
+        "expression": "customer: Customer",
+        "scope": "update",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      }
+    ],
+    "manual_verdict": "ACCEPTED_EXPLICIT_POLICY; reviewed enclosing mapper/adapter body",
+    "body_seal": "747f0561d869f0299e6ee14b7a3ef51c1f11d45db4ee5e1e6d79bf0160f56a19"
+  },
+  {
+    "source": "saigonbite.data_access.customer_dao",
+    "target": "saigonbite.business.domain",
+    "symbol": "make_customer",
+    "alias": "make_customer",
+    "effective": [
+      [
+        "saigonbite.business.domain.models",
+        "make_customer"
+      ]
+    ],
+    "import_line": 6,
+    "permitted_use": "Typed entity parameters/results; row-to-correct-subtype materialisation by make_customer; address mapping and stored field serialization.",
+    "members": [],
+    "sites": [
+      {
+        "line": 17,
+        "expression": "make_customer(fields.pop('customer_type'), **fields)",
+        "scope": "_to_customer",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      }
+    ],
+    "manual_verdict": "ACCEPTED_EXPLICIT_POLICY; reviewed enclosing mapper/adapter body",
+    "body_seal": "747f0561d869f0299e6ee14b7a3ef51c1f11d45db4ee5e1e6d79bf0160f56a19"
+  },
+  {
+    "source": "saigonbite.data_access.delivery_dao",
+    "target": "saigonbite.business.domain",
+    "symbol": "Delivery",
+    "alias": "Delivery",
+    "effective": [
+      [
+        "saigonbite.business.domain.models",
+        "Delivery"
+      ]
+    ],
+    "import_line": 8,
+    "permitted_use": "Delivery row reconstruction and enum serialization in guarded persistence predicates; no transition decision.",
+    "members": [],
+    "sites": [
+      {
+        "line": 14,
+        "expression": "Optional[Delivery]",
+        "scope": "_to_delivery",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 19,
+        "expression": "Delivery(**fields)",
+        "scope": "_to_delivery",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 31,
+        "expression": "Optional[Delivery]",
+        "scope": "get_by_order_id",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 35,
+        "expression": "list[Delivery]",
+        "scope": "list_awaiting_pickup",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 40,
+        "expression": "list[Delivery]",
+        "scope": "list_for_shipper",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 26,
+        "expression": "delivery: Delivery",
+        "scope": "insert",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      }
+    ],
+    "manual_verdict": "ACCEPTED_EXPLICIT_POLICY; reviewed enclosing mapper/adapter body",
+    "body_seal": "80bfd635f4a0fc6e890297b1dac7726a1c1917154ed1b7e7d25ce0786c7c1016"
+  },
+  {
+    "source": "saigonbite.data_access.delivery_dao",
+    "target": "saigonbite.business.domain",
+    "symbol": "DeliveryState",
+    "alias": "DeliveryState",
+    "effective": [
+      [
+        "saigonbite.business.domain.enums",
+        "DeliveryState"
+      ]
+    ],
+    "import_line": 8,
+    "permitted_use": "Delivery row reconstruction and enum serialization in guarded persistence predicates; no transition decision.",
+    "members": [],
+    "sites": [
+      {
+        "line": 18,
+        "expression": "DeliveryState(fields['state'])",
+        "scope": "_to_delivery",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 40,
+        "expression": "state: DeliveryState",
+        "scope": "list_for_shipper",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 54,
+        "expression": "to_state: DeliveryState",
+        "scope": "finish",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      }
+    ],
+    "manual_verdict": "ACCEPTED_EXPLICIT_POLICY; reviewed enclosing mapper/adapter body",
+    "body_seal": "80bfd635f4a0fc6e890297b1dac7726a1c1917154ed1b7e7d25ce0786c7c1016"
+  },
+  {
+    "source": "saigonbite.data_access.hub_dao",
+    "target": "saigonbite.business.domain",
+    "symbol": "ACTIVE_ORDER_STATES",
+    "alias": "ACTIVE_ORDER_STATES",
+    "effective": [
+      [
+        "saigonbite.business.domain.models",
+        "ACTIVE_ORDER_STATES"
+      ]
+    ],
+    "import_line": 6,
+    "permitted_use": "Hub/menu row mapping; declared active-state set translated to SQL predicate values.",
+    "members": [],
+    "sites": [
+      {
+        "line": 10,
+        "expression": " for s in ACTIVE_ORDER_STATES",
+        "scope": "<module>",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      }
+    ],
+    "manual_verdict": "ACCEPTED_EXPLICIT_POLICY; reviewed enclosing mapper/adapter body",
+    "body_seal": "c703734e2b6d5ed1b15e933c8364281dbddd4fc19eb9597ee525fcb001b641a9"
+  },
+  {
+    "source": "saigonbite.data_access.hub_dao",
+    "target": "saigonbite.business.domain",
+    "symbol": "Hub",
+    "alias": "Hub",
+    "effective": [
+      [
+        "saigonbite.business.domain.models",
+        "Hub"
+      ]
+    ],
+    "import_line": 6,
+    "permitted_use": "Hub/menu row mapping; declared active-state set translated to SQL predicate values.",
+    "members": [],
+    "sites": [
+      {
+        "line": 23,
+        "expression": "list[Hub]",
+        "scope": "list_active",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 28,
+        "expression": "list[Hub]",
+        "scope": "list_all",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 33,
+        "expression": "Optional[Hub]",
+        "scope": "get",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 39,
+        "expression": "Optional[Hub]",
+        "scope": "get_including_archived",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 48,
+        "expression": "hub: Hub",
+        "scope": "insert",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 56,
+        "expression": "hub: Hub",
+        "scope": "update",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 26,
+        "expression": "Hub(**dict(r))",
+        "scope": "list_active",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 31,
+        "expression": "Hub(**dict(r))",
+        "scope": "list_all",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 37,
+        "expression": "Hub(**dict(row))",
+        "scope": "get",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 42,
+        "expression": "Hub(**dict(row))",
+        "scope": "get_including_archived",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      }
+    ],
+    "manual_verdict": "ACCEPTED_EXPLICIT_POLICY; reviewed enclosing mapper/adapter body",
+    "body_seal": "c703734e2b6d5ed1b15e933c8364281dbddd4fc19eb9597ee525fcb001b641a9"
+  },
+  {
+    "source": "saigonbite.data_access.hub_dao",
+    "target": "saigonbite.business.domain",
+    "symbol": "HubMenuItem",
+    "alias": "HubMenuItem",
+    "effective": [
+      [
+        "saigonbite.business.domain.models",
+        "HubMenuItem"
+      ]
+    ],
+    "import_line": 6,
+    "permitted_use": "Hub/menu row mapping; declared active-state set translated to SQL predicate values.",
+    "members": [],
+    "sites": [
+      {
+        "line": 90,
+        "expression": "list[HubMenuItem]",
+        "scope": "list_menu",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 99,
+        "expression": "HubMenuItem(hub_id=r['hub_id'], is_available=bool(r['is_available']), item=MenuItem(id=r['id'], brand_id=r['brand_id'], brand_name=r['brand_name'], name=r['name'], description=r['description'], price=r['price']))",
+        "scope": "list_menu",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      }
+    ],
+    "manual_verdict": "ACCEPTED_EXPLICIT_POLICY; reviewed enclosing mapper/adapter body",
+    "body_seal": "c703734e2b6d5ed1b15e933c8364281dbddd4fc19eb9597ee525fcb001b641a9"
+  },
+  {
+    "source": "saigonbite.data_access.hub_dao",
+    "target": "saigonbite.business.domain",
+    "symbol": "MenuItem",
+    "alias": "MenuItem",
+    "effective": [
+      [
+        "saigonbite.business.domain.models",
+        "MenuItem"
+      ]
+    ],
+    "import_line": 6,
+    "permitted_use": "Hub/menu row mapping; declared active-state set translated to SQL predicate values.",
+    "members": [],
+    "sites": [
+      {
+        "line": 104,
+        "expression": "Optional[MenuItem]",
+        "scope": "get_available_item",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 113,
+        "expression": "MenuItem(**dict(r))",
+        "scope": "get_available_item",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 100,
+        "expression": "MenuItem(id=r['id'], brand_id=r['brand_id'], brand_name=r['brand_name'], name=r['name'], description=r['description'], price=r['price'])",
+        "scope": "list_menu",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      }
+    ],
+    "manual_verdict": "ACCEPTED_EXPLICIT_POLICY; reviewed enclosing mapper/adapter body",
+    "body_seal": "c703734e2b6d5ed1b15e933c8364281dbddd4fc19eb9597ee525fcb001b641a9"
+  },
+  {
+    "source": "saigonbite.data_access.menu_dao",
+    "target": "saigonbite.business.domain",
+    "symbol": "Brand",
+    "alias": "Brand",
+    "effective": [
+      [
+        "saigonbite.business.domain.models",
+        "Brand"
+      ]
+    ],
+    "import_line": 7,
+    "permitted_use": "Catalogue row/object mapping and stored persistence parameter serialization.",
+    "members": [],
+    "sites": [
+      {
+        "line": 19,
+        "expression": "list[Brand]",
+        "scope": "list_brands",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 24,
+        "expression": "Optional[Brand]",
+        "scope": "get_brand",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 22,
+        "expression": "Brand(**dict(r))",
+        "scope": "list_brands",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 26,
+        "expression": "Brand(**dict(row))",
+        "scope": "get_brand",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      }
+    ],
+    "manual_verdict": "ACCEPTED_EXPLICIT_POLICY; reviewed enclosing mapper/adapter body",
+    "body_seal": "5f0f3f83c3ad9ebcd8c318837f259c5b3875e69adfbd5afd1a45c051a2a5950b"
+  },
+  {
+    "source": "saigonbite.data_access.menu_dao",
+    "target": "saigonbite.business.domain",
+    "symbol": "HubMenuItem",
+    "alias": "HubMenuItem",
+    "effective": [
+      [
+        "saigonbite.business.domain.models",
+        "HubMenuItem"
+      ]
+    ],
+    "import_line": 7,
+    "permitted_use": "Catalogue row/object mapping and stored persistence parameter serialization.",
+    "members": [],
+    "sites": [
+      {
+        "line": 80,
+        "expression": "list[HubMenuItem]",
+        "scope": "list_hub_items",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 88,
+        "expression": "HubMenuItem(hub_id=r['hub_id'], is_available=bool(r['is_available']), item=MenuItem(id=r['id'], brand_id=r['brand_id'], brand_name=r['brand_name'], name=r['name'], description=r['description'], price=r['price'], archived_at=r['archived_at']))",
+        "scope": "list_hub_items",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      }
+    ],
+    "manual_verdict": "ACCEPTED_EXPLICIT_POLICY; reviewed enclosing mapper/adapter body",
+    "body_seal": "5f0f3f83c3ad9ebcd8c318837f259c5b3875e69adfbd5afd1a45c051a2a5950b"
+  },
+  {
+    "source": "saigonbite.data_access.menu_dao",
+    "target": "saigonbite.business.domain",
+    "symbol": "MenuItem",
+    "alias": "MenuItem",
+    "effective": [
+      [
+        "saigonbite.business.domain.models",
+        "MenuItem"
+      ]
+    ],
+    "import_line": 7,
+    "permitted_use": "Catalogue row/object mapping and stored persistence parameter serialization.",
+    "members": [],
+    "sites": [
+      {
+        "line": 47,
+        "expression": "list[MenuItem]",
+        "scope": "list_items",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 51,
+        "expression": "Optional[MenuItem]",
+        "scope": "get_item",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 61,
+        "expression": "item: MenuItem",
+        "scope": "insert_item",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 66,
+        "expression": "item: MenuItem",
+        "scope": "update_item",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 49,
+        "expression": "MenuItem(**dict(r))",
+        "scope": "list_items",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 53,
+        "expression": "MenuItem(**dict(row))",
+        "scope": "get_item",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 89,
+        "expression": "MenuItem(id=r['id'], brand_id=r['brand_id'], brand_name=r['brand_name'], name=r['name'], description=r['description'], price=r['price'], archived_at=r['archived_at'])",
+        "scope": "list_hub_items",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      }
+    ],
+    "manual_verdict": "ACCEPTED_EXPLICIT_POLICY; reviewed enclosing mapper/adapter body",
+    "body_seal": "5f0f3f83c3ad9ebcd8c318837f259c5b3875e69adfbd5afd1a45c051a2a5950b"
+  },
+  {
+    "source": "saigonbite.data_access.offer_dao",
+    "target": "saigonbite.business.domain",
+    "symbol": "OfferState",
+    "alias": "OfferState",
+    "effective": [
+      [
+        "saigonbite.business.domain.enums",
+        "OfferState"
+      ]
+    ],
+    "import_line": 7,
+    "permitted_use": "Offer row reconstruction, enum serialization and guarded persistence updates; caller chooses outcome.",
+    "members": [],
+    "sites": [
+      {
+        "line": 17,
+        "expression": "OfferState(fields['state'])",
+        "scope": "_to_offer",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 44,
+        "expression": "to_state: OfferState",
+        "scope": "decide",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      }
+    ],
+    "manual_verdict": "ACCEPTED_EXPLICIT_POLICY; reviewed enclosing mapper/adapter body",
+    "body_seal": "df25ed151bd21be1e8f0c30e0798f2552daa8a918b99ad19f6727c90d40de9aa"
+  },
+  {
+    "source": "saigonbite.data_access.offer_dao",
+    "target": "saigonbite.business.domain",
+    "symbol": "ReplacementOffer",
+    "alias": "ReplacementOffer",
+    "effective": [
+      [
+        "saigonbite.business.domain.models",
+        "ReplacementOffer"
+      ]
+    ],
+    "import_line": 7,
+    "permitted_use": "Offer row reconstruction, enum serialization and guarded persistence updates; caller chooses outcome.",
+    "members": [],
+    "sites": [
+      {
+        "line": 13,
+        "expression": "Optional[ReplacementOffer]",
+        "scope": "_to_offer",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 18,
+        "expression": "ReplacementOffer(**fields)",
+        "scope": "_to_offer",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 34,
+        "expression": "Optional[ReplacementOffer]",
+        "scope": "get_open",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 39,
+        "expression": "list[ReplacementOffer]",
+        "scope": "list_for_order",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 25,
+        "expression": "offer: ReplacementOffer",
+        "scope": "insert",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      }
+    ],
+    "manual_verdict": "ACCEPTED_EXPLICIT_POLICY; reviewed enclosing mapper/adapter body",
+    "body_seal": "df25ed151bd21be1e8f0c30e0798f2552daa8a918b99ad19f6727c90d40de9aa"
+  },
+  {
+    "source": "saigonbite.data_access.order_dao",
+    "target": "saigonbite.business.domain",
+    "symbol": "Order",
+    "alias": "Order",
+    "effective": [
+      [
+        "saigonbite.business.domain.models",
+        "Order"
+      ]
+    ],
+    "import_line": 6,
+    "permitted_use": "Aggregate/line row reconstruction; existing pure stored-value properties item_subtotal/total and fields serialized; caller decides transition.",
+    "members": [],
+    "sites": [
+      {
+        "line": 38,
+        "expression": "Optional[Order]",
+        "scope": "get_by_id",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 43,
+        "expression": "Optional[Order]",
+        "scope": "get_by_token",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 48,
+        "expression": "list[Order]",
+        "scope": "list_for_customer",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 54,
+        "expression": "list[Order]",
+        "scope": "list_for_hub",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 108,
+        "expression": "list[Order]",
+        "scope": "list_archived",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 114,
+        "expression": "Optional[Order]",
+        "scope": "_load",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 20,
+        "expression": "order: Order",
+        "scope": "insert",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 75,
+        "expression": "order: Order",
+        "scope": "save_lines_and_totals",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 122,
+        "expression": "Order(**fields, lines=[OrderLine(**dict(r)) for r in line_rows])",
+        "scope": "_load",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      }
+    ],
+    "manual_verdict": "ACCEPTED_EXPLICIT_POLICY; reviewed enclosing mapper/adapter body",
+    "body_seal": "9c310b1c3bc4a76992fb83f3a85ea3d457c9b570ea9fd01e467fff7add82de5e"
+  },
+  {
+    "source": "saigonbite.data_access.order_dao",
+    "target": "saigonbite.business.domain",
+    "symbol": "OrderLine",
+    "alias": "OrderLine",
+    "effective": [
+      [
+        "saigonbite.business.domain.models",
+        "OrderLine"
+      ]
+    ],
+    "import_line": 6,
+    "permitted_use": "Aggregate/line row reconstruction; existing pure stored-value properties item_subtotal/total and fields serialized; caller decides transition.",
+    "members": [],
+    "sites": [
+      {
+        "line": 122,
+        "expression": "OrderLine(**dict(r))",
+        "scope": "_load",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      }
+    ],
+    "manual_verdict": "ACCEPTED_EXPLICIT_POLICY; reviewed enclosing mapper/adapter body",
+    "body_seal": "9c310b1c3bc4a76992fb83f3a85ea3d457c9b570ea9fd01e467fff7add82de5e"
+  },
+  {
+    "source": "saigonbite.data_access.order_dao",
+    "target": "saigonbite.business.domain",
+    "symbol": "OrderState",
+    "alias": "OrderState",
+    "effective": [
+      [
+        "saigonbite.business.domain.enums",
+        "OrderState"
+      ]
+    ],
+    "import_line": 6,
+    "permitted_use": "Aggregate/line row reconstruction; existing pure stored-value properties item_subtotal/total and fields serialized; caller decides transition.",
+    "members": [],
+    "sites": [
+      {
+        "line": 62,
+        "expression": "from_state: OrderState",
+        "scope": "change_state",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 62,
+        "expression": "to_state: OrderState",
+        "scope": "change_state",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 121,
+        "expression": "OrderState(fields['state'])",
+        "scope": "_load",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 54,
+        "expression": "Iterable[OrderState]",
+        "scope": "list_for_hub",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 68,
+        "expression": "OrderState.CONFIRMED",
+        "scope": "change_state",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 68,
+        "expression": "OrderState.READY",
+        "scope": "change_state",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      }
+    ],
+    "manual_verdict": "ACCEPTED_EXPLICIT_POLICY; reviewed enclosing mapper/adapter body",
+    "body_seal": "9c310b1c3bc4a76992fb83f3a85ea3d457c9b570ea9fd01e467fff7add82de5e"
+  },
+  {
+    "source": "saigonbite.data_access.payment_dao",
+    "target": "saigonbite.business.domain",
+    "symbol": "OnlineOption",
+    "alias": "OnlineOption",
+    "effective": [
+      [
+        "saigonbite.business.domain.enums",
+        "OnlineOption"
+      ]
+    ],
+    "import_line": 6,
+    "permitted_use": "Typed payment mapping and enum/value serialization; no authorisation/refund decision.",
+    "members": [],
+    "sites": [
+      {
+        "line": 31,
+        "expression": "OnlineOption(r['online_option'])",
+        "scope": "get_by_order_id",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      }
+    ],
+    "manual_verdict": "ACCEPTED_EXPLICIT_POLICY; reviewed enclosing mapper/adapter body",
+    "body_seal": "c4ad09a10a142b8d3ed4a69628c546ceefbc0aafb9f61655df627dbc55f4be46"
+  },
+  {
+    "source": "saigonbite.data_access.payment_dao",
+    "target": "saigonbite.business.domain",
+    "symbol": "Payment",
+    "alias": "Payment",
+    "effective": [
+      [
+        "saigonbite.business.domain.models",
+        "Payment"
+      ]
+    ],
+    "import_line": 6,
+    "permitted_use": "Typed payment mapping and enum/value serialization; no authorisation/refund decision.",
+    "members": [],
+    "sites": [
+      {
+        "line": 22,
+        "expression": "Optional[Payment]",
+        "scope": "get_by_order_id",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 13,
+        "expression": "payment: Payment",
+        "scope": "insert",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 28,
+        "expression": "Payment(id=r['id'], order_id=r['order_id'], method=PaymentMethod(r['method']), state=PaymentState(r['state']), amount=r['amount'], created_at=r['created_at'], updated_at=r['updated_at'], refund_amount=r['refund_amount'], provider_ref=r['provider_ref'], online_option=OnlineOption(r['online_option']) if r['online_option'] else None)",
+        "scope": "get_by_order_id",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      }
+    ],
+    "manual_verdict": "ACCEPTED_EXPLICIT_POLICY; reviewed enclosing mapper/adapter body",
+    "body_seal": "c4ad09a10a142b8d3ed4a69628c546ceefbc0aafb9f61655df627dbc55f4be46"
+  },
+  {
+    "source": "saigonbite.data_access.payment_dao",
+    "target": "saigonbite.business.domain",
+    "symbol": "PaymentMethod",
+    "alias": "PaymentMethod",
+    "effective": [
+      [
+        "saigonbite.business.domain.enums",
+        "PaymentMethod"
+      ]
+    ],
+    "import_line": 6,
+    "permitted_use": "Typed payment mapping and enum/value serialization; no authorisation/refund decision.",
+    "members": [],
+    "sites": [
+      {
+        "line": 28,
+        "expression": "PaymentMethod(r['method'])",
+        "scope": "get_by_order_id",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      }
+    ],
+    "manual_verdict": "ACCEPTED_EXPLICIT_POLICY; reviewed enclosing mapper/adapter body",
+    "body_seal": "c4ad09a10a142b8d3ed4a69628c546ceefbc0aafb9f61655df627dbc55f4be46"
+  },
+  {
+    "source": "saigonbite.data_access.payment_dao",
+    "target": "saigonbite.business.domain",
+    "symbol": "PaymentState",
+    "alias": "PaymentState",
+    "effective": [
+      [
+        "saigonbite.business.domain.enums",
+        "PaymentState"
+      ]
+    ],
+    "import_line": 6,
+    "permitted_use": "Typed payment mapping and enum/value serialization; no authorisation/refund decision.",
+    "members": [],
+    "sites": [
+      {
+        "line": 33,
+        "expression": "from_state: PaymentState",
+        "scope": "change_state",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 33,
+        "expression": "to_state: PaymentState",
+        "scope": "change_state",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 29,
+        "expression": "PaymentState(r['state'])",
+        "scope": "get_by_order_id",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      }
+    ],
+    "manual_verdict": "ACCEPTED_EXPLICIT_POLICY; reviewed enclosing mapper/adapter body",
+    "body_seal": "c4ad09a10a142b8d3ed4a69628c546ceefbc0aafb9f61655df627dbc55f4be46"
+  },
+  {
+    "source": "saigonbite.data_access.payment_gateway",
+    "target": "saigonbite.business.domain",
+    "symbol": "OnlineOption",
+    "alias": "OnlineOption",
+    "effective": [
+      [
+        "saigonbite.business.domain.enums",
+        "OnlineOption"
+      ]
+    ],
+    "import_line": 18,
+    "permitted_use": "Existing simulator option enum contract, option.value rendering/logging; simulator is not a real provider.",
+    "members": [],
+    "sites": [
+      {
+        "line": 34,
+        "expression": "option: OnlineOption",
+        "scope": "authorise",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      }
+    ],
+    "manual_verdict": "ACCEPTED_EXPLICIT_POLICY; reviewed enclosing mapper/adapter body",
+    "body_seal": "2c65299d7c9a72c6308d05eaf2e9bde71b1ef536296c9c4f2e1e0a2a5640e22c"
+  },
+  {
+    "source": "saigonbite.data_access.user_dao",
+    "target": "saigonbite.business.domain",
+    "symbol": "Role",
+    "alias": "Role",
+    "effective": [
+      [
+        "saigonbite.business.domain.enums",
+        "Role"
+      ]
+    ],
+    "import_line": 6,
+    "permitted_use": "Account row reconstruction and role/stored-field serialization.",
+    "members": [],
+    "sites": [
+      {
+        "line": 14,
+        "expression": "Role(row['role'])",
+        "scope": "_to_user",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      }
+    ],
+    "manual_verdict": "ACCEPTED_EXPLICIT_POLICY; reviewed enclosing mapper/adapter body",
+    "body_seal": "aca0996c2dabf2af8bdcda5596a0b55f38a2dc23919a109ca9b10d42587269a1"
+  },
+  {
+    "source": "saigonbite.data_access.user_dao",
+    "target": "saigonbite.business.domain",
+    "symbol": "UserAccount",
+    "alias": "UserAccount",
+    "effective": [
+      [
+        "saigonbite.business.domain.models",
+        "UserAccount"
+      ]
+    ],
+    "import_line": 6,
+    "permitted_use": "Account row reconstruction and role/stored-field serialization.",
+    "members": [],
+    "sites": [
+      {
+        "line": 12,
+        "expression": "def _to_user(row: sqlite3.Row) -> UserAccount:\n    return UserAccount(id=row['id'], username=row['username'], password_hash=row['password_hash'], display_name=row['display_name'], role=Role(row['role']), is_active=bool(row['is_active']), hub_id=row['hub_id'], created_at=row['created_at'])",
+        "scope": "_to_user",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 13,
+        "expression": "UserAccount(id=row['id'], username=row['username'], password_hash=row['password_hash'], display_name=row['display_name'], role=Role(row['role']), is_active=bool(row['is_active']), hub_id=row['hub_id'], created_at=row['created_at'])",
+        "scope": "_to_user",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 22,
+        "expression": "Optional[UserAccount]",
+        "scope": "get_by_id",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 26,
+        "expression": "Optional[UserAccount]",
+        "scope": "get_by_username",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 31,
+        "expression": "list[UserAccount]",
+        "scope": "list_all",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 36,
+        "expression": "user: UserAccount",
+        "scope": "insert",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 43,
+        "expression": "user: UserAccount",
+        "scope": "update",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      }
+    ],
+    "manual_verdict": "ACCEPTED_EXPLICIT_POLICY; reviewed enclosing mapper/adapter body",
+    "body_seal": "aca0996c2dabf2af8bdcda5596a0b55f38a2dc23919a109ca9b10d42587269a1"
+  },
+  {
+    "source": "saigonbite.data_access.voucher_dao",
+    "target": "saigonbite.business.domain",
+    "symbol": "DiscountType",
+    "alias": "DiscountType",
+    "effective": [
+      [
+        "saigonbite.business.domain.enums",
+        "DiscountType"
+      ]
+    ],
+    "import_line": 7,
+    "permitted_use": "Voucher row reconstruction and type/value serialization; no checkout discount calculation.",
+    "members": [],
+    "sites": [
+      {
+        "line": 17,
+        "expression": "DiscountType(fields['discount_type'])",
+        "scope": "_to_voucher",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      }
+    ],
+    "manual_verdict": "ACCEPTED_EXPLICIT_POLICY; reviewed enclosing mapper/adapter body",
+    "body_seal": "36bd79484d1ec266af630734c92fe677ab0ef7c2fd462da4b08d3d60c0cf2eb9"
+  },
+  {
+    "source": "saigonbite.data_access.voucher_dao",
+    "target": "saigonbite.business.domain",
+    "symbol": "Voucher",
+    "alias": "Voucher",
+    "effective": [
+      [
+        "saigonbite.business.domain.models",
+        "Voucher"
+      ]
+    ],
+    "import_line": 7,
+    "permitted_use": "Voucher row reconstruction and type/value serialization; no checkout discount calculation.",
+    "members": [],
+    "sites": [
+      {
+        "line": 13,
+        "expression": "Optional[Voucher]",
+        "scope": "_to_voucher",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 18,
+        "expression": "Voucher(**fields)",
+        "scope": "_to_voucher",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 25,
+        "expression": "Optional[Voucher]",
+        "scope": "get",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 29,
+        "expression": "Optional[Voucher]",
+        "scope": "get_by_code",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 34,
+        "expression": "list[Voucher]",
+        "scope": "list_all",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 44,
+        "expression": "v: Voucher",
+        "scope": "insert",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 51,
+        "expression": "v: Voucher",
+        "scope": "update",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      }
+    ],
+    "manual_verdict": "ACCEPTED_EXPLICIT_POLICY; reviewed enclosing mapper/adapter body",
+    "body_seal": "36bd79484d1ec266af630734c92fe677ab0ef7c2fd462da4b08d3d60c0cf2eb9"
+  },
+  {
+    "source": "saigonbite.data_access.hub_dao",
+    "target": "saigonbite.business.domain.rules",
+    "symbol": "rules",
+    "alias": "rules",
+    "effective": [
+      [
+        "saigonbite.business.domain.rules",
+        "<module>"
+      ]
+    ],
+    "import_line": 6,
+    "permitted_use": "Retained-order/archive SQL predicate constants.",
+    "members": [
+      "TERMINAL_ORDER_STATES"
+    ],
+    "sites": [
+      {
+        "line": 11,
+        "expression": "rules.TERMINAL_ORDER_STATES",
+        "scope": "<module>",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      }
+    ],
+    "manual_verdict": "ACCEPTED_EXPLICIT_POLICY; reviewed enclosing mapper/adapter body",
+    "body_seal": "c703734e2b6d5ed1b15e933c8364281dbddd4fc19eb9597ee525fcb001b641a9"
+  },
+  {
+    "source": "saigonbite.data_access.order_dao",
+    "target": "saigonbite.business.domain.rules",
+    "symbol": "rules",
+    "alias": "rules",
+    "effective": [
+      [
+        "saigonbite.business.domain.rules",
+        "<module>"
+      ]
+    ],
+    "import_line": 6,
+    "permitted_use": "Terminal SQL predicates and timestamp-column selection; caller owns transition decision.",
+    "members": [
+      "TERMINAL_ORDER_STATES"
+    ],
+    "sites": [
+      {
+        "line": 11,
+        "expression": "rules.TERMINAL_ORDER_STATES",
+        "scope": "<module>",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      },
+      {
+        "line": 69,
+        "expression": "rules.TERMINAL_ORDER_STATES",
+        "scope": "change_state",
+        "kind": "annotation or runtime as expression shows; reviewed in full enclosing body"
+      }
+    ],
+    "manual_verdict": "ACCEPTED_EXPLICIT_POLICY; reviewed enclosing mapper/adapter body",
+    "body_seal": "9c310b1c3bc4a76992fb83f3a85ea3d457c9b570ea9fd01e467fff7add82de5e"
+  }
+]

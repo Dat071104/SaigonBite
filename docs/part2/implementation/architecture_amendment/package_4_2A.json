@@ -1,0 +1,277 @@
+{
+  "stem": "package_4_2A",
+  "width": 1800,
+  "height": 1360,
+  "font_min": 26,
+  "placed_width_mm": 230,
+  "min_placed_pt": 9.41732283464567,
+  "nodes": [
+    {
+      "id": "view",
+      "label": "\u00abpackage\u00bb presentation\nRoutes, forms and result rendering\nUse the named controller presentation contract\nNo direct DAO / domain / root imports or SQL",
+      "x": 450,
+      "y": 90,
+      "w": 900,
+      "h": 210,
+      "kind": "rect",
+      "fill": "#E7F0F6",
+      "attrs": null
+    },
+    {
+      "id": "controller",
+      "label": "\u00abpackage\u00bb business.controllers\nAuthorisation, current-state validation and orchestration\nOwns write transactions via immediate_transaction\nInvokes domain behavior and DAO persistence",
+      "x": 450,
+      "y": 410,
+      "w": 900,
+      "h": 210,
+      "kind": "rect",
+      "fill": "#E9F4EF",
+      "attrs": null
+    },
+    {
+      "id": "domain",
+      "label": "\u00abpackage\u00bb business.domain\nEntities, enums, factories, pure rules\nNo outward application dependency\nNo persistence / network / UI I/O",
+      "x": 60,
+      "y": 760,
+      "w": 730,
+      "h": 220,
+      "kind": "rect",
+      "fill": "#F2EFF9",
+      "attrs": null
+    },
+    {
+      "id": "dao",
+      "label": "\u00abpackage\u00bb data_access\nSQL mapping and guarded persistence\nDatabase helper implements caller transaction\nExisting payment simulator enum adapter",
+      "x": 1010,
+      "y": 760,
+      "w": 730,
+      "h": 220,
+      "kind": "rect",
+      "fill": "#FFF2E6",
+      "attrs": null
+    },
+    {
+      "id": "scope",
+      "label": "Narrow permission: 12 directed pairs / 28 imported symbols, recomputed from the application.\nMapper constructors/factory, stored-value properties and enum serialization; terminal/active SQL constants.\nSimulator: OnlineOption contract and .value logging. No workflow, pricing, refund or transaction decision in DAOs.\nSolid open arrow = runtime responsibility; dashed open arrow = admitted source dependency.\nProjection only: exact module/symbol/use details are in policy.json + symbol_use_review.json + dependency_overlay.json.",
+      "x": 60,
+      "y": 1080,
+      "w": 1680,
+      "h": 190,
+      "kind": "note",
+      "fill": "#FFF8E8",
+      "attrs": null
+    }
+  ],
+  "edges": [
+    {
+      "id": "request",
+      "source": "view",
+      "target": "controller",
+      "points": [
+        [
+          900,
+          300
+        ],
+        [
+          900,
+          410
+        ]
+      ],
+      "label": "runtime request",
+      "lx": 920,
+      "ly": 340,
+      "kind": "nav",
+      "ends": null
+    },
+    {
+      "id": "behavior",
+      "source": "controller",
+      "target": "domain",
+      "points": [
+        [
+          600,
+          620
+        ],
+        [
+          600,
+          690
+        ],
+        [
+          425,
+          690
+        ],
+        [
+          425,
+          760
+        ]
+      ],
+      "label": "runtime domain calls",
+      "lx": 65,
+      "ly": 655,
+      "kind": "nav",
+      "ends": null
+    },
+    {
+      "id": "persist",
+      "source": "controller",
+      "target": "dao",
+      "points": [
+        [
+          1200,
+          620
+        ],
+        [
+          1200,
+          690
+        ],
+        [
+          1375,
+          690
+        ],
+        [
+          1375,
+          760
+        ]
+      ],
+      "label": "runtime persistence calls",
+      "lx": 1250,
+      "ly": 655,
+      "kind": "nav",
+      "ends": null
+    },
+    {
+      "id": "mapper",
+      "source": "dao",
+      "target": "domain",
+      "points": [
+        [
+          1375,
+          980
+        ],
+        [
+          1375,
+          1050
+        ],
+        [
+          425,
+          1050
+        ],
+        [
+          425,
+          980
+        ]
+      ],
+      "label": "source dependency: exact policy + use ledger only",
+      "lx": 530,
+      "ly": 1010,
+      "kind": "include",
+      "ends": null
+    }
+  ],
+  "amendment": "SB-P4-B02-20261026",
+  "frozen_model_sha256": "fe3e521d4eea7c66c2819a1acbb67101ecfd3fe49162650fb2dc273195079a6b",
+  "actual_pairs": [
+    {
+      "source": "saigonbite.data_access.customer_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "Address",
+        "Customer",
+        "make_customer"
+      ]
+    },
+    {
+      "source": "saigonbite.data_access.delivery_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "Delivery",
+        "DeliveryState"
+      ]
+    },
+    {
+      "source": "saigonbite.data_access.hub_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "ACTIVE_ORDER_STATES",
+        "Hub",
+        "HubMenuItem",
+        "MenuItem"
+      ]
+    },
+    {
+      "source": "saigonbite.data_access.hub_dao",
+      "target": "saigonbite.business.domain.rules",
+      "symbols": [
+        "rules"
+      ]
+    },
+    {
+      "source": "saigonbite.data_access.menu_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "Brand",
+        "HubMenuItem",
+        "MenuItem"
+      ]
+    },
+    {
+      "source": "saigonbite.data_access.offer_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "OfferState",
+        "ReplacementOffer"
+      ]
+    },
+    {
+      "source": "saigonbite.data_access.order_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "Order",
+        "OrderLine",
+        "OrderState"
+      ]
+    },
+    {
+      "source": "saigonbite.data_access.order_dao",
+      "target": "saigonbite.business.domain.rules",
+      "symbols": [
+        "rules"
+      ]
+    },
+    {
+      "source": "saigonbite.data_access.payment_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "OnlineOption",
+        "Payment",
+        "PaymentMethod",
+        "PaymentState"
+      ]
+    },
+    {
+      "source": "saigonbite.data_access.payment_gateway",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "OnlineOption"
+      ]
+    },
+    {
+      "source": "saigonbite.data_access.user_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "Role",
+        "UserAccount"
+      ]
+    },
+    {
+      "source": "saigonbite.data_access.voucher_dao",
+      "target": "saigonbite.business.domain",
+      "symbols": [
+        "DiscountType",
+        "Voucher"
+      ]
+    }
+  ],
+  "native_editing": "UNTESTED",
+  "scope": "Current P4 projection; frozen P3 model remains declaration authority"
+}
