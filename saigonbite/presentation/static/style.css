@@ -278,3 +278,8 @@ table.data td:first-child a { white-space: nowrap; }
 
 /* R1 (cont.): short link labels ("Edit", "Hubs", "Back") are at least 44 px wide as well */
 .mainnav a, .row-actions a, .row-actions button.link, .btn.link, .card-head a { min-width: 44px; justify-content: center; }
+
+/* ---- P5.1 refinement R6: a destructive action that is not the final irreversible step is an outline in the
+   danger colour (A6: destructive actions use danger and ask for confirmation) -------------------------- */
+button.danger-outline { background: transparent; color: var(--danger); border-color: var(--danger); }
+button.danger-outline:hover { background: var(--danger-bg); color: var(--danger); border-color: var(--danger); }

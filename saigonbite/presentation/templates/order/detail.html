@@ -48,7 +48,7 @@
 
 <div class="actions">
   <a href="{{ url_for('order.receipt',order_id=order.id) }}">Printable receipt</a>
-  {% if d.can_cancel %}{{ button(url_for('order.cancel', order_id=order.id), 'Cancel this order', 'secondary', confirm='Cancel order ' ~ order.id ~ '?') }}{% endif %}
+  {% if d.can_cancel %}{{ button(url_for('order.cancel', order_id=order.id), 'Cancel this order', 'secondary danger-outline', confirm='Cancel order ' ~ order.id ~ '?') }}{% endif %}
   <a class="btn link" href="{{ url_for('order.my_orders') }}">All my orders</a>
 </div>
 {% endblock %}
