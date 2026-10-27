@@ -55,24 +55,15 @@ The four steps are: (1) create and activate the virtual environment, (2) install
 
 ```
 docker compose up --build -d                  # build and start, then open http://127.0.0.1:5000/
-docker compose --profile test run --rm tests  # run the tests inside the container
 docker compose down                           # stop (add -v to delete the database volume and reseed next start)
 ```
 
 The database is created and seeded on the first start and kept in the `saigonbite-db` volume.
-The same commands work on Windows, macOS (tested on a team member's Mac: app and full test suite) and Linux.
+Run `python -m pytest -q` from a full checkout: the suite checks historical Git objects and therefore is not run inside the Docker image, which excludes `.git`. The Docker image uses gunicorn and a non-root user.
 
-### Deploy on Vercel (demo)
+### Part 2 deployment
 
-Vercel runs the Flask `app` in `app.py` as a Python function (no Docker). Import the GitHub repository in Vercel,
-keep the defaults and add one environment variable, `SAIGONBITE_SECRET_KEY`, set to a long random string.
-
-- Only `/tmp` is writable on Vercel, so the database is created and seeded there on a cold start. It is a demo
-  database: it resets when the function restarts, and each running instance has its own copy. Use the seeded
-  accounts below; do not rely on orders staying.
-- Static files are served from `public/static/` (a copy of `saigonbite/presentation/static/`; a test keeps the
-  two the same).
-- `.vercelignore` keeps the virtual environment, tests and the Part 1 documents out of the bundle.
+Part 1 (I1) Vercel demo, retired for Part 2 (D-5). The Part 2 target is one GCP VM with Docker Compose, gunicorn, Caddy and a persistent SQLite database. See [deployment and recovery instructions](deploy/RUNBOOK.md); the Phase 6 evidence records whether the target is deployed and verified.
 
 ## Run the tests
 

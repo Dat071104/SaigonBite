@@ -1,0 +1,10 @@
+[Unit]
+Description=Nightly SaigonBite backup at 03:00 Vietnam time
+
+[Timer]
+OnCalendar=*-*-* 20:00:00 UTC
+Persistent=true
+Unit=saigonbite-backup.service
+
+[Install]
+WantedBy=timers.target

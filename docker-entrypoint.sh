@@ -1,7 +1,7 @@
 #!/bin/sh
-# Create and seed instance/saigonbite.db on first start; keep it on later starts.
 set -e
-if [ ! -f instance/saigonbite.db ]; then
-    python init_db.py
+DB="${SAIGONBITE_DATABASE:-instance/saigonbite.db}"
+if [ ! -f "$DB" ]; then
+    python init_db.py --db "$DB"
 fi
 exec "$@"

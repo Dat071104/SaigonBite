@@ -1,0 +1,38 @@
+services:
+  app:
+    image: saigonbite:${RELEASE_TAG:?RELEASE_TAG is required}
+    env_file: /srv/saigonbite/.env
+    volumes:
+      - /srv/saigonbite/data:/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/', timeout=5)"]
+      interval: 15s
+      timeout: 7s
+      retries: 5
+      start_period: 30s
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+  caddy:
+    image: caddy:2.10.2
+    environment:
+      SITE_HOST: ${SITE_HOST:?SITE_HOST is required}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - /srv/saigonbite/caddy_data:/data
+      - /srv/saigonbite/caddy_config:/config
+    depends_on:
+      app:
+        condition: service_healthy
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"

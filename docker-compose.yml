@@ -1,19 +1,14 @@
 services:
   web:
     build: .
-    image: saigonbite:i1
+    image: saigonbite:local
     ports:
-      - "5000:5000"
+      - "127.0.0.1:5000:8000"
     environment:
-      SAIGONBITE_SECRET_KEY: ${SAIGONBITE_SECRET_KEY:-dev-only-secret-change-me}
+      SAIGONBITE_DATABASE: /data/saigonbite.db
     volumes:
-      - saigonbite-db:/app/instance
-
-  tests:
-    image: saigonbite:i1
-    build: .
-    command: ["python", "-m", "pytest", "-q"]
-    profiles: ["test"]
+      - saigonbite-db:/data
+    restart: unless-stopped
 
 volumes:
   saigonbite-db:

@@ -1,0 +1,8 @@
+[Unit]
+Description=SaigonBite online SQLite backup and bucket copy
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/srv/saigonbite/bin/backup.sh
