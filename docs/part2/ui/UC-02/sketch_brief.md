@@ -1,8 +1,6 @@
-# UC-02 Deliver an order: sketch brief (for Dat to draw)
+# UC-02 Deliver an order: sketch brief (drawn in Figma by Codex (AI-assisted) on 27/10/2026)
 
-Author: 722I0004 · AI-assisted (Claude Sonnet 5.5). This is the brief only. The sketch itself is the owner's own paper or Figma-freehand drawing;
-no image imitating a hand-drawn sketch is generated. Put the photos in `sketch/` and write the real date you drew them in the file name
-or in `sketch/README.md`. Until then `trace.md` says `OWNER-PENDING`.
+Brief authored by 722I0004 with Claude Sonnet 5.5 assistance. Low-fidelity sketches were drawn from this brief in Figma by Codex (AI-assisted) on 27/10/2026; exports and attribution are in `sketch/README.md`.
 
 Device: the shipper's phone (390 × 844 portrait), one column. Draw one rectangle per screen, about 10 minutes for all of them.
 

@@ -44,7 +44,7 @@ The draft screens were built first (I1 to P4). The wireframes, mockups and refin
 
 | Artifact | Kind | Created |
 |---|---|---|
-| `sketch/` | sketch (owner) | OWNER-PENDING: no sketch photo exists yet |
+| `sketch/` | low-fidelity sketch drawn in Figma by Codex (AI-assisted); exported PNGs | 27/10/2026 |
 | `wireframes/UC-03-S01.png` | wireframe | 27/10/2026 |
 | `wireframes/UC-03-S02.png` | wireframe | 27/10/2026 |
 | `wireframes/UC-03-S03.png` | wireframe | 27/10/2026 |
@@ -63,3 +63,5 @@ The draft screens were built first (I1 to P4). The wireframes, mockups and refin
 | `implemented/UC-03-S04.png` | implemented screenshot | 27/10/2026 |
 | `implemented/UC-03-S05.png` | implemented screenshot | 27/10/2026 |
 | `implemented/UC-03-S06.png` | implemented screenshot | 27/10/2026 |
+
+Figma: [design file](https://www.figma.com/design/R8sYygIpfqzI6Nm2Gx2hDh) and [prototype](https://www.figma.com/proto/R8sYygIpfqzI6Nm2Gx2hDh/SaigonBite-Part-2-UI?node-id=4-3&starting-point-node-id=4%3A3&page-id=4%3A2&scaling=min-zoom&content-scaling=fixed), assembled and linked by Codex in Dat’s account on 27/10/2026. Wireframes and mockups were authored as HTML/CSS (AI-assisted) and exported to PNG.

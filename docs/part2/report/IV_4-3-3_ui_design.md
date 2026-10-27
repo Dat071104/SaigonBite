@@ -2,9 +2,9 @@
 
 Author: 722I0004 · AI-assisted (Claude Sonnet 5.5)
 
-**How this section was made, in order.** The first screens of the application were built during the draft build (I1 to P4). Phase P5.1 then photographed all 47 in-scope screens, measured and criticised them (`docs/part2/ui/_before/critique.md`), authored a wireframe and a mockup for every goal screen and key alternative as HTML/CSS with AI assistance, refined the real application where a measurement or an SSD result called for it (`docs/part2/ui/refinement_log.md`, 10 commits on branch `part2`) and photographed the real screens again. This is **UI design refinement after the draft build**; the real creation date of every artifact is in the `trace.md` of its use case (27/10/2026 for all wireframes, mockups and implemented screenshots; the sketches are the owner's and are not yet drawn).
+**How this section was made, in order.** The first screens of the application were built during the draft build (I1 to P4). Phase P5.1 then photographed all 47 in-scope screens, measured and criticised them (`docs/part2/ui/_before/critique.md`), authored a wireframe and a mockup for every goal screen and key alternative as HTML/CSS with AI assistance, refined the real application where a measurement or an SSD result called for it (`docs/part2/ui/refinement_log.md`, 10 commits on branch `part2`) and photographed the real screens again. This is **UI design refinement after the draft build**; the real creation date of every artifact is in the `trace.md` of its use case (27/10/2026 for all wireframes, mockups and implemented screenshots; the sketches were drawn in Figma by Codex (AI-assisted) on 27/10/2026).
 
-**Honest status of the progression.** Sketch: the brief for each use case exists (`UC-0x/sketch_brief.md`); the drawings are the owner's step and are `OWNER-PENDING`. Wireframe and mockup: authored as HTML/CSS and exported to PNG; they are not drawn natively in Figma. Prototype: PENDING (owner): the Figma file is built by the owner from `docs/part2/ui/figma_kit/` (steps in `FIGMA_STEPS.md`); the link is written here and in `Part2/content/links.json` only after it opens without signing in. The Figma kit (frames named `UC0x-Snn <screen name>`, `flows.csv` with 148 hotspots measured from the mockup pages, start frames) is ready in `docs/part2/ui/figma_kit/`.
+**Status of the progression.** Sketches were drawn from the briefs in Figma by Codex (AI-assisted) on 27/10/2026 and exported as 35 PNGs. Wireframes and mockups were authored as HTML/CSS (AI-assisted) and exported to PNG; they were not drawn natively in Figma. The four-page [Figma file](https://www.figma.com/design/R8sYygIpfqzI6Nm2Gx2hDh) was assembled and linked by Codex in Dat’s account; its [prototype](https://www.figma.com/proto/R8sYygIpfqzI6Nm2Gx2hDh/SaigonBite-Part-2-UI?node-id=4-3&starting-point-node-id=4%3A3&page-id=4%3A2&scaling=min-zoom&content-scaling=fixed) passed one logged-out navigation check per flow. Nineteen same-frame hotspots have no reaction because Figma does not navigate to the same frame; in the app these buttons reload that screen.
 
 **How the SSD became the UI.** Each use case has one table that follows every SSD operation occurrence (41 in all: the three `listCatalogue` occurrences are kept apart) to the screen and control that carries it, the inputs and the validation rules, the displayed result and the controller method (from the checked route/controller map; every controller call was verified against the view code). All 41 occurrences have at least one screen (`docs/part2/ui/coverage_check.md`). The implemented screens are Demonstrated by the browser run in `docs/part2/test_report/integration_2026-10-27/README.md` (60 of 60 steps, seven scenarios and the CSRF check).
 
@@ -12,7 +12,7 @@ Author: 722I0004 · AI-assisted (Claude Sonnet 5.5)
 
 Author: 722I0004 · AI-assisted (Claude Sonnet 5.5). Use case description: `docs/part2/UC-01/description.md`. Package: `docs/part2/ui/UC-01/`.
 
-Progression: sketch (owner, `OWNER-PENDING`; brief `docs/part2/ui/UC-01/sketch_brief.md`) → wireframe → mockup → prototype (PENDING (owner)) → implemented screen. 12 screens: UC-01-S01 (goal), UC-01-S02 (alternative), UC-01-S03 (goal), UC-01-S04 (goal), UC-01-S05 (alternative), UC-01-S06 (goal (online)), UC-01-S07 (alternative), UC-01-S08 (goal), UC-01-S09 (goal), UC-01-S10 (goal), UC-01-S11 (goal), UC-01-S12 (alternative).
+Progression: sketch (drawn in Figma by Codex; [images](../ui/UC-01/sketch/README.md); brief `docs/part2/ui/UC-01/sketch_brief.md`) → wireframe → mockup → [prototype](https://www.figma.com/proto/R8sYygIpfqzI6Nm2Gx2hDh/SaigonBite-Part-2-UI?node-id=4-3&starting-point-node-id=4%3A3&page-id=4%3A2&scaling=min-zoom&content-scaling=fixed) → implemented screen. 12 screens: UC-01-S01 (goal), UC-01-S02 (alternative), UC-01-S03 (goal), UC-01-S04 (goal), UC-01-S05 (alternative), UC-01-S06 (goal (online)), UC-01-S07 (alternative), UC-01-S08 (goal), UC-01-S09 (goal), UC-01-S10 (goal), UC-01-S11 (goal), UC-01-S12 (alternative).
 
 ### UC-01-S01 Choose a kitchen hub
 
@@ -237,7 +237,7 @@ Full comparison, design notes and artifact dates: `docs/part2/ui/UC-01/mockup_vs
 
 Author: 722I0004 · AI-assisted (Claude Sonnet 5.5). Use case description: `docs/part2/UC-05/description.md`. Package: `docs/part2/ui/UC-05/`.
 
-Progression: sketch (owner, `OWNER-PENDING`; brief `docs/part2/ui/UC-05/sketch_brief.md`) → wireframe → mockup → prototype (PENDING (owner)) → implemented screen. 9 screens: UC-05-S01 (goal), UC-05-S02 (goal), UC-05-S03 (goal), UC-05-S04 (alternative), UC-05-S05 (goal), UC-05-S06 (goal), UC-05-S07 (goal), UC-05-S08 (alternative), UC-05-S09 (alternative).
+Progression: sketch (drawn in Figma by Codex; [images](../ui/UC-05/sketch/README.md); brief `docs/part2/ui/UC-05/sketch_brief.md`) → wireframe → mockup → [prototype](https://www.figma.com/proto/R8sYygIpfqzI6Nm2Gx2hDh/SaigonBite-Part-2-UI?node-id=4-3&starting-point-node-id=4%3A3&page-id=4%3A2&scaling=min-zoom&content-scaling=fixed) → implemented screen. 9 screens: UC-05-S01 (goal), UC-05-S02 (goal), UC-05-S03 (goal), UC-05-S04 (alternative), UC-05-S05 (goal), UC-05-S06 (goal), UC-05-S07 (goal), UC-05-S08 (alternative), UC-05-S09 (alternative).
 
 ### UC-05-S01 Kitchen board
 
@@ -415,7 +415,7 @@ Full comparison, design notes and artifact dates: `docs/part2/ui/UC-05/mockup_vs
 
 Author: 722I0004 · AI-assisted (Claude Sonnet 5.5). Use case description: `docs/part2/UC-02/description.md`. Package: `docs/part2/ui/UC-02/`.
 
-Progression: sketch (owner, `OWNER-PENDING`; brief `docs/part2/ui/UC-02/sketch_brief.md`) → wireframe → mockup → prototype (PENDING (owner)) → implemented screen. 7 screens: UC-02-S01 (goal), UC-02-S02 (goal), UC-02-S03 (goal), UC-02-S04 (alternative), UC-02-S05 (alternative), UC-02-S06 (goal), UC-02-S07 (alternative).
+Progression: sketch (drawn in Figma by Codex; [images](../ui/UC-02/sketch/README.md); brief `docs/part2/ui/UC-02/sketch_brief.md`) → wireframe → mockup → [prototype](https://www.figma.com/proto/R8sYygIpfqzI6Nm2Gx2hDh/SaigonBite-Part-2-UI?node-id=4-3&starting-point-node-id=4%3A3&page-id=4%3A2&scaling=min-zoom&content-scaling=fixed) → implemented screen. 7 screens: UC-02-S01 (goal), UC-02-S02 (goal), UC-02-S03 (goal), UC-02-S04 (alternative), UC-02-S05 (alternative), UC-02-S06 (goal), UC-02-S07 (alternative).
 
 ### UC-02-S01 Deliveries: ready for pickup
 
@@ -557,7 +557,7 @@ Full comparison, design notes and artifact dates: `docs/part2/ui/UC-02/mockup_vs
 
 Author: 722I0004 · AI-assisted (Claude Sonnet 5.5). Use case description: `docs/part2/UC-03/description.md`. Package: `docs/part2/ui/UC-03/`.
 
-Progression: sketch (owner, `OWNER-PENDING`; brief `docs/part2/ui/UC-03/sketch_brief.md`) → wireframe → mockup → prototype (PENDING (owner)) → implemented screen. 6 screens: UC-03-S01 (goal), UC-03-S02 (goal), UC-03-S03 (goal), UC-03-S04 (goal), UC-03-S05 (alternative), UC-03-S06 (goal).
+Progression: sketch (drawn in Figma by Codex; [images](../ui/UC-03/sketch/README.md); brief `docs/part2/ui/UC-03/sketch_brief.md`) → wireframe → mockup → [prototype](https://www.figma.com/proto/R8sYygIpfqzI6Nm2Gx2hDh/SaigonBite-Part-2-UI?node-id=4-3&starting-point-node-id=4%3A3&page-id=4%3A2&scaling=min-zoom&content-scaling=fixed) → implemented screen. 6 screens: UC-03-S01 (goal), UC-03-S02 (goal), UC-03-S03 (goal), UC-03-S04 (goal), UC-03-S05 (alternative), UC-03-S06 (goal).
 
 ### UC-03-S01 Hubs and kitchen capacity
 
@@ -680,7 +680,7 @@ Full comparison, design notes and artifact dates: `docs/part2/ui/UC-03/mockup_vs
 
 Author: 722I0004 · AI-assisted (Claude Sonnet 5.5). Use case description: `docs/part2/UC-06/description.md`. Package: `docs/part2/ui/UC-06/`.
 
-Progression: sketch (owner, `OWNER-PENDING`; brief `docs/part2/ui/UC-06/sketch_brief.md`) → wireframe → mockup → prototype (PENDING (owner)) → implemented screen. 8 screens: UC-06-S01 (goal), UC-06-S02 (goal), UC-06-S03 (goal), UC-06-S04 (goal), UC-06-S05 (alternative), UC-06-S06 (goal), UC-06-S07 (goal), UC-06-S08 (alternative).
+Progression: sketch (drawn in Figma by Codex; [images](../ui/UC-06/sketch/README.md); brief `docs/part2/ui/UC-06/sketch_brief.md`) → wireframe → mockup → [prototype](https://www.figma.com/proto/R8sYygIpfqzI6Nm2Gx2hDh/SaigonBite-Part-2-UI?node-id=4-3&starting-point-node-id=4%3A3&page-id=4%3A2&scaling=min-zoom&content-scaling=fixed) → implemented screen. 8 screens: UC-06-S01 (goal), UC-06-S02 (goal), UC-06-S03 (goal), UC-06-S04 (goal), UC-06-S05 (alternative), UC-06-S06 (goal), UC-06-S07 (goal), UC-06-S08 (alternative).
 
 ### UC-06-S01 Brands and dishes
 
@@ -842,7 +842,7 @@ Full comparison, design notes and artifact dates: `docs/part2/ui/UC-06/mockup_vs
 
 Author: 722I0004 · AI-assisted (Claude Sonnet 5.5). Use case description: `docs/part2/UC-04/description.md`. Package: `docs/part2/ui/UC-04/`.
 
-Progression: sketch (owner, `OWNER-PENDING`; brief `docs/part2/ui/UC-04/sketch_brief.md`) → wireframe → mockup → prototype (PENDING (owner)) → implemented screen. 5 screens: UC-04-S01 (goal), UC-04-S02 (goal), UC-04-S03 (goal), UC-04-S04 (alternative), UC-04-S05 (alternative).
+Progression: sketch (drawn in Figma by Codex; [images](../ui/UC-04/sketch/README.md); brief `docs/part2/ui/UC-04/sketch_brief.md`) → wireframe → mockup → [prototype](https://www.figma.com/proto/R8sYygIpfqzI6Nm2Gx2hDh/SaigonBite-Part-2-UI?node-id=4-3&starting-point-node-id=4%3A3&page-id=4%3A2&scaling=min-zoom&content-scaling=fixed) → implemented screen. 5 screens: UC-04-S01 (goal), UC-04-S02 (goal), UC-04-S03 (goal), UC-04-S04 (alternative), UC-04-S05 (alternative).
 
 ### UC-04-S01 Sales report
 
@@ -946,7 +946,7 @@ Full comparison, design notes and artifact dates: `docs/part2/ui/UC-04/mockup_vs
 
 ## 4.3.3.7 Prototype link
 
-Prototype (Figma): PENDING (owner): the Figma file is built by the owner from `docs/part2/ui/figma_kit/` (steps in `FIGMA_STEPS.md`); the link is written here and in `Part2/content/links.json` only after it opens without signing in.
+Prototype (Figma): [open the prototype](https://www.figma.com/proto/R8sYygIpfqzI6Nm2Gx2hDh/SaigonBite-Part-2-UI?node-id=4-3&starting-point-node-id=4%3A3&page-id=4%3A2&scaling=min-zoom&content-scaling=fixed); [design file](https://www.figma.com/design/R8sYygIpfqzI6Nm2Gx2hDh).
 
 ## 4.3.3.8 Integration evidence for the implemented screens
 

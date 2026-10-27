@@ -1,3 +1,11 @@
+# Figma prototype and source kit
+
+## Built on 27/10/2026
+
+The [Edu file](https://www.figma.com/design/R8sYygIpfqzI6Nm2Gx2hDh) has four pages: Sketch, Wireframe, Mockup and Prototype. Codex (AI-assisted) drew 35 low-fidelity sketches from the briefs in Figma, and assembled and linked the file in Dat’s account using the Desktop plugin. Wireframes and mockups were authored as HTML/CSS (AI-assisted) and exported to PNG; they were not drawn natively in Figma. The Prototype page contains 47 mockup image frames, 148 hotspots, 129 navigation reactions and six flow starts. The 19 same-frame hotspots have no reaction; the corresponding app controls reload the same screen. Dat set Anyone with the link to can view. The [prototype](https://www.figma.com/proto/R8sYygIpfqzI6Nm2Gx2hDh/SaigonBite-Part-2-UI?node-id=4-3&starting-point-node-id=4%3A3&page-id=4%3A2&scaling=min-zoom&content-scaling=fixed) passed six logged-out flow checks (one transition each). See `Part2/evidence/figma/check.md`.
+
+## Original manual recipe (historical; superseded by the build above)
+
 # Build the Figma prototype (owner step, about 45 minutes)
 
 Author: 722I0004 · AI-assisted (Claude Sonnet 5.5). The frames in this folder are **HTML/CSS wireframes and mockups authored with AI assistance and exported to PNG**.
