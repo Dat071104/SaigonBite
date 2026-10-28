@@ -1,0 +1,66 @@
+{
+  "source": "docs/part2/report/II_2-2-4_UC-04.md",
+  "sha256_before": "59f0c2e211c09e8157bbdc5a0827a98174fbe5ccd18f5660f8662c8a547ad21e",
+  "numeric_tokens": [
+    "0",
+    "004",
+    "04",
+    "1",
+    "10.67 pt",
+    "2",
+    "2.16",
+    "2.17",
+    "2.2.4",
+    "2.3",
+    "2.4",
+    "2.5",
+    "2.6",
+    "20",
+    "21",
+    "22",
+    "23",
+    "230 mm",
+    "24",
+    "26",
+    "27",
+    "28",
+    "3",
+    "4",
+    "722"
+  ],
+  "identifiers": [
+    "722I0004",
+    "BR-20",
+    "BR-21",
+    "BR-22",
+    "BR-23",
+    "BR-24",
+    "OP-26",
+    "UC-04",
+    "UC04-MG01",
+    "UC04-MG02",
+    "UC04-PC01",
+    "UC04-PC02"
+  ],
+  "states": [
+    "DELIVERED"
+  ],
+  "links": [
+    "../../../models/UC-04/activity_uc04_PartA.png",
+    "../../../models/UC-04/activity_uc04_PartB.png",
+    "../../../models/UC-04/activity_uc04_PartC.png",
+    "../../../models/UC-04/ssd_uc04.png"
+  ],
+  "headings": [
+    "# 2.2.4 Use Case 4: Produce management reports: sales, workload, delivery performance (author: 722I0004)",
+    "### i. Fully developed use case description",
+    "### ii. Activity diagram for Use Case 4",
+    "### iii. System sequence diagram for Use Case 4",
+    "### iv. State machine diagram for Use Case 4"
+  ],
+  "meaning_lock_status": "PROSE REVIEWED; numeric/identifier tokens retained",
+  "sha256_after": "59f0c2e211c09e8157bbdc5a0827a98174fbe5ccd18f5660f8662c8a547ad21e",
+  "missing_numbers": [],
+  "missing_ids": [],
+  "review_notes": "Analysis prose reviewed; protected descriptions and state-machine includes require separate source and table verification."
+}

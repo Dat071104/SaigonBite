@@ -25,10 +25,10 @@ Properties have signatures for traceability but are read as attributes; dataclas
 | Attribute | `+ gateway: Any` **inferred** | MATCH |
 | Operation | `+ list_hubs(self) -> list[HubStatus]` | MATCH |
 | Operation | `+ select_hub(self, user_id: int, hub_id: int) -> HubMenuView` | MATCH |
-| Operation | `+ request_quote(self, user_id: int, hub_id: int, address_id: Optional[int], quantities: Mapping[int, str], voucher_code: Optional[str] = None, payment: Optional[PaymentChoice] = None) -> Quote` | P4 scoped evidence (P4.3; resolution rows 2); F-04; F-07; P3-S01; Use raw distance; include payment choice and a full quote fingerprint; rank suggestions by load ratio, distance and ID. |
-| Operation | `+ confirm_order(self, user_id: int, hub_id: int, address_id: Optional[int], quantities: Mapping[int, str], idempotency_token: str, quoted_total: Optional[int] = None, voucher_code: Optional[str] = None, payment: Optional[PaymentChoice] = None, quote_fingerprint: Optional[str] = None) -> OrderConfirmation` | P4 scoped evidence (P4.3; resolution rows 3); F-04; F-07; P2-S05; P2-S13; Compare full fingerprint and T; release simulator authorization on every failure through COMMIT. |
+| Operation | `+ request_quote(self, user_id: int, hub_id: int, address_id: Optional[int], quantities: Mapping[int, str], voucher_code: Optional[str] = None, payment: Optional[PaymentChoice] = None) -> Quote` | P4 scoped evidence (P4.3; resolution rows 2); C0 rationale: F-04; F-07; P3-S01; Use raw distance; include payment choice and a full quote fingerprint; rank suggestions by load ratio, distance and ID. |
+| Operation | `+ confirm_order(self, user_id: int, hub_id: int, address_id: Optional[int], quantities: Mapping[int, str], idempotency_token: str, quoted_total: Optional[int] = None, voucher_code: Optional[str] = None, payment: Optional[PaymentChoice] = None, quote_fingerprint: Optional[str] = None) -> OrderConfirmation` | P4 scoped evidence (P4.3; resolution rows 3); C0 rationale: F-04; F-07; P2-S05; P2-S13; Compare full fingerprint and T; release simulator authorization on every failure through COMMIT. |
 | Operation | `- _build_quote(self, customer: Customer, hub_id: int, address_id: Optional[int], quantities: Mapping[int, str], voucher_code: Optional[str]) -> Quote` | MATCH |
-| Operation | `+ suggest_hubs(self, exclude_hub_id: int, address: Optional[Address]) -> list[HubStatus]` | P4 scoped evidence (P4.3; resolution rows 4); P3-S01; F-04; Draft sorts by load ratio then ID; BR-04 requires distance as the second key and raw distance for range. |
+| Operation | `+ suggest_hubs(self, exclude_hub_id: int, address: Optional[Address]) -> list[HubStatus]` | P4 scoped evidence (P4.3; resolution rows 4); C0 rationale: P3-S01; F-04; Draft sorts by load ratio then ID; BR-04 requires distance as the second key and raw distance for range. |
 | Operation | `- _require_customer(self, user_id: int) -> Customer` | MATCH |
 | Operation | `- _check_payment_choice(customer: Customer, payment: PaymentChoice) -> None` | MATCH |
 
@@ -45,8 +45,8 @@ Properties have signatures for traceability but are read as attributes; dataclas
 |---|---|---|
 | Operation | `+ choose_hub() -> Any [inferred return]` **inferred unannotated parameter/return** | MATCH |
 | Operation | `+ choose_items(hub_id: int) -> Any [inferred return]` **inferred unannotated parameter/return** | MATCH |
-| Operation | `+ quote() -> Any [inferred return]` **inferred unannotated parameter/return** | P4 scoped evidence (P4.3; resolution rows 61); F-07; Pass payment choice into target quoting and render the full fingerprint. |
-| Operation | `+ confirm() -> Any [inferred return]` **inferred unannotated parameter/return** | P4 scoped evidence (P4.3; resolution rows 60); F-07; P2-S05; Bind the posted fingerprint/payment choice to the target confirm method; retain controlled results through COMMIT. |
+| Operation | `+ quote() -> Any [inferred return]` **inferred unannotated parameter/return** | P4 scoped evidence (P4.3; resolution rows 61); C0 rationale: F-07; Pass payment choice into target quoting and render the full fingerprint. |
+| Operation | `+ confirm() -> Any [inferred return]` **inferred unannotated parameter/return** | P4 scoped evidence (P4.3; resolution rows 60); C0 rationale: F-07; P2-S05; Bind the posted fingerprint/payment choice to the target confirm method; retain controlled results through COMMIT. |
 | Operation | `+ detail(order_id: int) -> Any [inferred return]` **inferred unannotated parameter/return** | MATCH |
 | Operation | `+ my_orders() -> Any [inferred return]` **inferred unannotated parameter/return** | MATCH |
 | Operation | `+ cancel(order_id: int) -> Any [inferred return]` **inferred unannotated parameter/return** | MATCH |
@@ -137,7 +137,7 @@ Properties have signatures for traceability but are read as attributes; dataclas
 | Attribute | `+ max_active_orders: int` | MATCH |
 | Attribute | `+ base_delivery_fee: int` | MATCH |
 | Attribute | `+ archived_at: Optional[str]` | MATCH |
-| Operation | `+ distance_to(self, address: Address) -> float` | P4 scoped evidence (P4.3; resolution rows 7, 8); F-04; Keep raw Haversine precision through the radius and fee decisions; round only presentation/storage. |
+| Operation | `+ distance_to(self, address: Address) -> float` | P4 scoped evidence (P4.3; resolution rows 7, 8); C0 rationale: F-04; Keep raw Haversine precision through the radius and fee decisions; round only presentation/storage. |
 
 ## Quote
 
@@ -158,7 +158,7 @@ Properties have signatures for traceability but are read as attributes; dataclas
 | Attribute | `+ quiet_discount: int` | MATCH |
 | Attribute | `+ voucher: Optional[Voucher]` | MATCH |
 | Attribute | `+ voucher_discount: int` | MATCH |
-| Operation | `+ fingerprint(self, payment_method: PaymentMethod, online_option: Optional[OnlineOption] = None) -> str` | P4 scoped evidence (P4.3; resolution rows 5, 6); F-07; Bind all consent fields with pure-domain enum inputs; the controller adapts PaymentChoice. |
+| Operation | `+ fingerprint(self, payment_method: PaymentMethod, online_option: Optional[OnlineOption] = None) -> str` | P4 scoped evidence (P4.3; resolution rows 5, 6); C0 rationale: F-07; Bind all consent fields with pure-domain enum inputs; the controller adapts PaymentChoice. |
 | Read-only property | `+ total(self) -> int {property; read as .total}` | MATCH |
 
 ## Voucher
@@ -282,7 +282,7 @@ Properties have signatures for traceability but are read as attributes; dataclas
 | Operation | `+ get_by_order_id(self, order_id: int) -> Optional[Payment]` | MATCH |
 | Operation | `+ insert(self, payment: Payment) -> int` | MATCH |
 | Operation | `+ change_state(self, order_id: int, from_state: PaymentState, to_state: PaymentState, now: str) -> bool` | MATCH |
-| Operation | `+ set_amounts(self, order_id: int, amount: int, refund_amount: int, now: str) -> bool` | P4 scoped evidence (P4.4; resolution rows 46, 47, 48, 49, 50); F-02; P3-S03; Persist full/partial refund obligations atomically and expose the conditional save outcome. |
+| Operation | `+ set_amounts(self, order_id: int, amount: int, refund_amount: int, now: str) -> bool` | P4 scoped evidence (P4.4; resolution rows 46, 47, 48, 49, 50); C0 rationale: F-02; P3-S03; Persist full/partial refund obligations atomically and expose the conditional save outcome. |
 
 ## OrderTrackingController
 
@@ -303,7 +303,7 @@ Properties have signatures for traceability but are read as attributes; dataclas
 | Attribute | `+ offers: ReplacementOfferDAO` **inferred** | MATCH |
 | Operation | `+ get_order(self, user_id: int, order_id: int) -> OrderDetail` | MATCH |
 | Operation | `+ list_my_orders(self, user_id: int) -> list[OrderSummary]` | MATCH |
-| Operation | `+ cancel_order(self, user_id: int, order_id: int) -> OrderDetail` | P4 scoped evidence (P4.4; resolution rows 15); F-02; P2-S13; BR-17 full C refund owed and atomic state/amount writes, including COMMIT rollback. |
+| Operation | `+ cancel_order(self, user_id: int, order_id: int) -> OrderDetail` | P4 scoped evidence (P4.4; resolution rows 15); C0 rationale: F-02; P2-S13; BR-17 full C refund owed and atomic state/amount writes, including COMMIT rollback. |
 | Operation | `- _own_order(self, customer: Customer, order_id: int) -> Order` | MATCH |
 | Operation | `- _require_customer(self, user_id: int) -> Customer` | MATCH |
 
@@ -358,7 +358,7 @@ Properties have signatures for traceability but are read as attributes; dataclas
 | Attribute | `+ provider_ref: Optional[str]` | MATCH |
 | Attribute | `+ refund_amount: int` | MATCH |
 | Attribute | `+ id: Optional[int]` | MATCH |
-| Operation | `+ release_for_unfulfilled_order(self) -> None` | P4 scoped evidence (P4.4; resolution rows 9, 10, 11, 12); F-02; P2-S01; Set refund_amount=C with REFUND_PENDING; preserve COD VOIDED; no payout operation. |
+| Operation | `+ release_for_unfulfilled_order(self) -> None` | P4 scoped evidence (P4.4; resolution rows 9, 10, 11, 12); C0 rationale: F-02; P2-S01; Set refund_amount=C with REFUND_PENDING; preserve COD VOIDED; no payout operation. |
 
 ## controllers.common
 
@@ -372,7 +372,7 @@ Properties have signatures for traceability but are read as attributes; dataclas
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
 | Operation | `+ move_order(orders: OrderDAO, order: Order, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> None` | MATCH |
-| Operation | `+ release_payment(payments: PaymentDAO, order_id: int, now: str) -> Payment` | P4 scoped evidence (P4.4; resolution rows 54); F-02; P2-S01; P3-S03; Persist full captured C as refund_amount together with state; changing only the domain object does not save the amount. Check conditional save results in the same transaction. |
+| Operation | `+ release_payment(payments: PaymentDAO, order_id: int, now: str) -> Payment` | P4 scoped evidence (P4.4; resolution rows 54); C0 rationale: F-02; P2-S01; P3-S03; Persist full captured C as refund_amount together with state; changing only the domain object does not save the amount. Check conditional save results in the same transaction. |
 
 ## ReplacementOffer
 
@@ -548,7 +548,7 @@ Properties have signatures for traceability but are read as attributes; dataclas
 | Attribute | `+ role: Role` | MATCH |
 | Attribute | `+ is_active: bool` | MATCH |
 | Attribute | `+ hub_id: Optional[int]` (FK retained here; omitted from DCD) | MATCH |
-| Attribute | `+ created_at: str` | P4 scoped evidence (P4.1; resolution rows 53);  |
+| Attribute | `+ created_at: str` | P4 scoped evidence (P4.1; resolution rows 53); C0 rationale:  |
 
 ## OrderState
 

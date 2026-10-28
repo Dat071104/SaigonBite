@@ -1,3 +1,4 @@
+# Historical generator: output was subsequently annotated with C0 rationale and whitespace normalized; do not rerun over current reviewed files.
 from pathlib import Path
 import csv,re,json,collections,hashlib
 root=Path(r'D:\RAD\FINAL\SaigonBite');notes=Path(r'D:\RAD\FINAL\Part2\notes\P7');src=root/'docs/part2'; out=src/'report_docx/p7_inputs/status_refresh';out.mkdir(parents=True,exist_ok=True)

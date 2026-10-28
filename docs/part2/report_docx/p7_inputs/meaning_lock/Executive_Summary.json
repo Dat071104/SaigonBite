@@ -1,0 +1,26 @@
+{
+  "source": "docs/part2/report/Executive_Summary.md",
+  "sha256_before": "cc47bb6d99468359a78a8c78a3d81b5f5fbb11294dbf7ba32b71b3de8b3e3adb",
+  "numeric_tokens": [
+    "0.25",
+    "004",
+    "1",
+    "22",
+    "252",
+    "60",
+    "722",
+    "928"
+  ],
+  "identifiers": [
+    "722I0004",
+    "L6"
+  ],
+  "states": [],
+  "links": [],
+  "headings": [
+    "# Executive Summary (0.25 point)"
+  ],
+  "meaning_lock_status": "NUMBERS AND IDS PRESERVED; source reviewed",
+  "sha256_after": "cc47bb6d99468359a78a8c78a3d81b5f5fbb11294dbf7ba32b71b3de8b3e3adb",
+  "review_notes": "Claims checked against claim_ledger.csv; historical test and deployment results remain scoped."
+}

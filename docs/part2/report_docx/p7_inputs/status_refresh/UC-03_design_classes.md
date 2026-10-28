@@ -17,7 +17,7 @@ Layer: **view**; stereotype: **«view»**; responsibility: Translate administrat
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
 | Operation | `- _hubs() -> HubController` | MATCH |
-| Operation | `+ hubs() -> Any [inferred] ` | P4 scoped evidence (P4.2; resolution rows 62); ; inferred annotation(s); P3-S02 |
+| Operation | `+ hubs() -> Any [inferred] ` | P4 scoped evidence (P4.2; resolution rows 62); C0 rationale: ; inferred annotation(s); P3-S02 |
 | Operation | `+ new_hub() -> Any [inferred]` | MATCH; inferred annotation(s) |
 | Operation | `+ edit_hub(hub_id: int) -> Any [inferred]` | MATCH; inferred annotation(s) |
 | Operation | `+ archive_hub(hub_id: int) -> Any [inferred]` | MATCH; inferred annotation(s) |
@@ -36,11 +36,11 @@ Layer: **controller**; stereotype: **«controller»**; responsibility: Coordinat
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
 | Attribute | `+ hubs: HubDAO` | MATCH; inferred |
-| Operation | `+ list_hubs(user_id: int, include_archived: bool = True) -> list[HubAdminView] ` | P4 scoped evidence (P4.2; resolution rows 28); ; P3-S02 |
+| Operation | `+ list_hubs(user_id: int, include_archived: bool = True) -> list[HubAdminView] ` | P4 scoped evidence (P4.2; resolution rows 28); C0 rationale: ; P3-S02 |
 | Operation | `+ get_hub(user_id: int, hub_id: int) -> HubAdminView` | MATCH |
-| Operation | `+ create_hub(user_id: int, form: Mapping[str, str]) -> Hub ` | P4 scoped evidence (P4.1 + P4.2; resolution rows 29); ; P2-S13; P3-S03 |
-| Operation | `+ update_hub(user_id: int, hub_id: int, form: Mapping[str, str]) -> Hub ` | P4 scoped evidence (P4.1 + P4.2; resolution rows 30); ; P2-S13; P3-S03 |
-| Operation | `+ archive_hub(user_id: int, hub_id: int) -> Hub ` | P4 scoped evidence (P4.1 + P4.2; resolution rows 31); ; P2-S13; P3-S03 |
+| Operation | `+ create_hub(user_id: int, form: Mapping[str, str]) -> Hub ` | P4 scoped evidence (P4.1 + P4.2; resolution rows 29); C0 rationale: ; P2-S13; P3-S03 |
+| Operation | `+ update_hub(user_id: int, hub_id: int, form: Mapping[str, str]) -> Hub ` | P4 scoped evidence (P4.1 + P4.2; resolution rows 30); C0 rationale: ; P2-S13; P3-S03 |
+| Operation | `+ archive_hub(user_id: int, hub_id: int) -> Hub ` | P4 scoped evidence (P4.1 + P4.2; resolution rows 31); C0 rationale: ; P2-S13; P3-S03 |
 | Operation | `- _require_admin(user_id: int) -> None` | MATCH |
 | Operation | `- _parse(form: Mapping[str, str], hub_id: Any) -> Hub [inferred]` | MATCH; inferred annotation(s) |
 
@@ -125,7 +125,7 @@ Layer: **domain**; stereotype: **«entity»**; responsibility: Hold account iden
 | Attribute | `+ role: Role` | MATCH |
 | Attribute | `+ is_active: bool` | MATCH |
 | Attribute | `+ hub_id: Optional[int]` | MATCH; association backing ID, omitted on DCD |
-| Attribute | `+ created_at: str` | P4 scoped evidence (P4.1; resolution rows 53);  |
+| Attribute | `+ created_at: str` | P4 scoped evidence (P4.1; resolution rows 53); C0 rationale:  |
 
 ## Role
 

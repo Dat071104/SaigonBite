@@ -1,0 +1,62 @@
+{
+  "source": "docs/part2/report/IV_4-2_package.md",
+  "sha256_before": "c796c3de32c75af386c022c2698cb8854d4468f7f812d8e7efae1da41b2cd5df",
+  "numeric_tokens": [
+    "004",
+    "03174",
+    "1",
+    "10",
+    "12",
+    "15",
+    "152",
+    "182",
+    "2",
+    "2026",
+    "20261026",
+    "21",
+    "23",
+    "24",
+    "256",
+    "26",
+    "28",
+    "3",
+    "392",
+    "4",
+    "4.2",
+    "43",
+    "44",
+    "45",
+    "46",
+    "48",
+    "6",
+    "6221",
+    "65",
+    "7",
+    "7101",
+    "722",
+    "73195079",
+    "7577",
+    "819",
+    "82",
+    "9",
+    "9162650"
+  ],
+  "identifiers": [
+    "722I0004",
+    "P3-S04"
+  ],
+  "states": [],
+  "links": [
+    "../../../models/shared/package_diagram.png",
+    "../implementation/architecture_amendment/package_4_2A.png"
+  ],
+  "headings": [
+    "## 4.2 Package Diagram for the Subsystem",
+    "### Effective P4 amendment — 26 October 2026"
+  ],
+  "meaning_lock_status": "PROSE REVIEWED; numeric/identifier tokens retained",
+  "sha256_after": "c796c3de32c75af386c022c2698cb8854d4468f7f812d8e7efae1da41b2cd5df",
+  "missing_numbers": [],
+  "missing_ids": [],
+  "review_notes": "Reviewed prose; clarified historic C0 versus P4 evidence and constrained browser-demonstration scope. Figma tokens resolve from links.json. Tables and figure images remain separate checks."
+}

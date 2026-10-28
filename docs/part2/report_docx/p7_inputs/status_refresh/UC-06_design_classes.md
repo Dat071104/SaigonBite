@@ -18,15 +18,15 @@ Layer: **view**; stereotype: **«view»**; responsibility: Translate administrat
 |---|---|---|
 | Operation | `- _hubs() -> HubController` | MATCH |
 | Operation | `- _menu() -> MenuController` | MATCH |
-| Operation | `+ catalogue() -> Any [inferred] ` | P4 scoped evidence (P4.6; resolution rows 63); ; inferred annotation(s); P2-S14 |
+| Operation | `+ catalogue() -> Any [inferred] ` | P4 scoped evidence (P4.6; resolution rows 63); C0 rationale: ; inferred annotation(s); P2-S14 |
 | Operation | `+ create_brand() -> Any [inferred]` | MATCH; inferred annotation(s) |
 | Operation | `+ rename_brand(brand_id: int) -> Any [inferred]` | MATCH; inferred annotation(s) |
 | Operation | `+ archive_brand(brand_id: int) -> Any [inferred]` | MATCH; inferred annotation(s) |
 | Operation | `+ new_item() -> Any [inferred]` | MATCH; inferred annotation(s) |
 | Operation | `+ edit_item(item_id: int) -> Any [inferred]` | MATCH; inferred annotation(s) |
 | Operation | `+ archive_item(item_id: int) -> Any [inferred]` | MATCH; inferred annotation(s) |
-| Operation | `+ hub_menu(hub_id: int) -> Any [inferred] ` | P4 scoped evidence (P4.6; resolution rows 64); ; inferred annotation(s); P2-S14 |
-| Operation | `+ list_item(hub_id: int) -> Any [inferred] ` | P4 scoped evidence (P4.6; resolution rows 65); ; inferred annotation(s); P2-S15 |
+| Operation | `+ hub_menu(hub_id: int) -> Any [inferred] ` | P4 scoped evidence (P4.6; resolution rows 64); C0 rationale: ; inferred annotation(s); P2-S14 |
+| Operation | `+ list_item(hub_id: int) -> Any [inferred] ` | P4 scoped evidence (P4.6; resolution rows 65); C0 rationale: ; inferred annotation(s); P2-S15 |
 | Operation | `+ unlist_item(hub_id: int, item_id: int) -> Any [inferred]` | MATCH; inferred annotation(s) |
 | Operation | `+ hub_item_availability(hub_id: int, item_id: int) -> Any [inferred]` | MATCH; inferred annotation(s) |
 
@@ -52,23 +52,23 @@ Layer: **controller**; stereotype: **«controller»**; responsibility: Coordinat
 | Attribute | `+ menu: MenuDAO` | MATCH; inferred |
 | Attribute | `+ hubs: HubDAO` | MATCH; inferred |
 | Operation | `+ catalogue(user_id: int) -> Catalogue` | MATCH |
-| Operation | `+ create_brand(user_id: int, name: str) -> Brand ` | P4 scoped evidence (P4.1 + P4.6; resolution rows 34); ; P2-S13; P3-S03 |
-| Operation | `+ rename_brand(user_id: int, brand_id: int, name: str) -> Brand ` | P4 scoped evidence (P4.1 + P4.6; resolution rows 35); ; P2-S13; P3-S03 |
-| Operation | `+ archive_brand(user_id: int, brand_id: int) -> Brand ` | P4 scoped evidence (P4.1 + P4.6; resolution rows 36); ; P2-S13; P3-S03 |
-| Operation | `+ create_item(user_id: int, form: Mapping[str, str]) -> MenuItem ` | P4 scoped evidence (P4.1 + P4.6; resolution rows 37); ; P2-S13; P3-S03 |
-| Operation | `+ update_item(user_id: int, item_id: int, form: Mapping[str, str]) -> MenuItem ` | P4 scoped evidence (P4.1 + P4.6; resolution rows 38); ; P2-S13; P3-S03 |
-| Operation | `+ archive_item(user_id: int, item_id: int) -> MenuItem ` | P4 scoped evidence (P4.1 + P4.6; resolution rows 39); ; P2-S13; P3-S03 |
+| Operation | `+ create_brand(user_id: int, name: str) -> Brand ` | P4 scoped evidence (P4.1 + P4.6; resolution rows 34); C0 rationale: ; P2-S13; P3-S03 |
+| Operation | `+ rename_brand(user_id: int, brand_id: int, name: str) -> Brand ` | P4 scoped evidence (P4.1 + P4.6; resolution rows 35); C0 rationale: ; P2-S13; P3-S03 |
+| Operation | `+ archive_brand(user_id: int, brand_id: int) -> Brand ` | P4 scoped evidence (P4.1 + P4.6; resolution rows 36); C0 rationale: ; P2-S13; P3-S03 |
+| Operation | `+ create_item(user_id: int, form: Mapping[str, str]) -> MenuItem ` | P4 scoped evidence (P4.1 + P4.6; resolution rows 37); C0 rationale: ; P2-S13; P3-S03 |
+| Operation | `+ update_item(user_id: int, item_id: int, form: Mapping[str, str]) -> MenuItem ` | P4 scoped evidence (P4.1 + P4.6; resolution rows 38); C0 rationale: ; P2-S13; P3-S03 |
+| Operation | `+ archive_item(user_id: int, item_id: int) -> MenuItem ` | P4 scoped evidence (P4.1 + P4.6; resolution rows 39); C0 rationale: ; P2-S13; P3-S03 |
 | Operation | `+ hub_menu(user_id: int, hub_id: int) -> HubMenu` | MATCH |
-| Operation | `+ list_item_at_hub(user_id: int, hub_id: int, item_id: int, available: bool = True) -> None ` | P4 scoped evidence (P4.6; resolution rows 33); ; P2-S15; P2-S13 |
-| Operation | `+ unlist_item_at_hub(user_id: int, hub_id: int, item_id: int) -> None ` | P4 scoped evidence (P4.1 + P4.6; resolution rows 40); ; P2-S13; P3-S03 |
-| Operation | `+ set_availability(user_id: int, hub_id: int, item_id: int, available: bool) -> None ` | P4 scoped evidence (P4.1 + P4.6; resolution rows 41); ; P2-S13; P3-S03 |
+| Operation | `+ list_item_at_hub(user_id: int, hub_id: int, item_id: int, available: bool = True) -> None ` | P4 scoped evidence (P4.6; resolution rows 33); C0 rationale: ; P2-S15; P2-S13 |
+| Operation | `+ unlist_item_at_hub(user_id: int, hub_id: int, item_id: int) -> None ` | P4 scoped evidence (P4.1 + P4.6; resolution rows 40); C0 rationale: ; P2-S13; P3-S03 |
+| Operation | `+ set_availability(user_id: int, hub_id: int, item_id: int, available: bool) -> None ` | P4 scoped evidence (P4.1 + P4.6; resolution rows 41); C0 rationale: ; P2-S13; P3-S03 |
 | Operation | `- _require_admin(user_id: int) -> None` | MATCH |
 | Operation | `- _hub(hub_id: int) -> Hub` | MATCH |
 | Operation | `- _active_brand(brand_id: Any) -> Brand [inferred]` | MATCH; inferred annotation(s) |
 | Operation | `- _active_item(item_id: int) -> MenuItem` | MATCH |
 | Operation | `- _name(raw: str, label: str, max_len: int = 60) -> str` | MATCH |
 | Operation | `- _parse_item(form: Mapping[str, str], item_id: Any) -> MenuItem [inferred]` | MATCH; inferred annotation(s) |
-| Operation | `+ list_catalogue(user_id: int, hub_id: Optional[int] = None) -> dict[str, object] ` | P4 scoped evidence (P4.6; resolution rows 32); ; P2-S14 |
+| Operation | `+ list_catalogue(user_id: int, hub_id: Optional[int] = None) -> dict[str, object] ` | P4 scoped evidence (P4.6; resolution rows 32); C0 rationale: ; P2-S14 |
 
 ## Catalogue
 
@@ -96,7 +96,7 @@ Layer: **controller**; stereotype: **«controller»**; responsibility: Coordinat
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
 | Attribute | `+ hubs: HubDAO` | MATCH; inferred |
-| Operation | `+ list_hubs(user_id: int, include_archived: bool = True) -> list[HubAdminView] ` | P4 scoped evidence (P4.2; resolution rows 28); ; P3-S02 |
+| Operation | `+ list_hubs(user_id: int, include_archived: bool = True) -> list[HubAdminView] ` | P4 scoped evidence (P4.2; resolution rows 28); C0 rationale: ; P3-S02 |
 
 ## Hub
 
@@ -169,7 +169,7 @@ Layer: **data_access**; stereotype: **«DAO»**; responsibility: Read or write p
 | Operation | `+ archive_item(item_id: int, now: str) -> bool` | MATCH |
 | Operation | `+ list_hub_items(hub_id: int) -> list[HubMenuItem]` | MATCH |
 | Operation | `+ is_listed(hub_id: int, item_id: int) -> bool` | MATCH |
-| Operation | `+ add_listing(hub_id: int, item_id: int, available: bool = True) -> None ` | P4 scoped evidence (P4.6; resolution rows 42); ; P2-S15 |
+| Operation | `+ add_listing(hub_id: int, item_id: int, available: bool = True) -> None ` | P4 scoped evidence (P4.6; resolution rows 42); C0 rationale: ; P2-S15 |
 | Operation | `+ remove_listing(hub_id: int, item_id: int) -> bool` | MATCH |
 | Operation | `+ set_available(hub_id: int, item_id: int, available: bool) -> bool` | MATCH |
 
@@ -208,7 +208,7 @@ Layer: **domain**; stereotype: **«entity»**; responsibility: Hold account iden
 | Attribute | `+ role: Role` | MATCH |
 | Attribute | `+ is_active: bool` | MATCH |
 | Attribute | `+ hub_id: Optional[int]` | MATCH; association backing ID, omitted on DCD |
-| Attribute | `+ created_at: str` | P4 scoped evidence (P4.1; resolution rows 53);  |
+| Attribute | `+ created_at: str` | P4 scoped evidence (P4.1; resolution rows 53); C0 rationale:  |
 
 ## Role
 

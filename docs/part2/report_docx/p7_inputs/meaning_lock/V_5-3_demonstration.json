@@ -1,0 +1,39 @@
+{
+  "source": "docs/part2/report/V_5-3_demonstration.md",
+  "sha256_before": "39fa7290a08afc88c29ec21a0b7e30837f425ded82826f91ef203b795ecdc1f4",
+  "numeric_tokens": [
+    "004",
+    "1",
+    "10",
+    "2",
+    "2026",
+    "27",
+    "3",
+    "4",
+    "4.3.6",
+    "5",
+    "5.3",
+    "6",
+    "7",
+    "722"
+  ],
+  "identifiers": [
+    "722I0004"
+  ],
+  "states": [],
+  "links": [
+    "../test_report/deploy_2026-10-27/public_persistence_quote.png",
+    "../test_report/deploy_2026-10-27/scenarios/S4_2_offer.png",
+    "../test_report/deploy_2026-10-27/scenarios/S4_4_accept.png",
+    "../test_report/deploy_2026-10-27/scenarios/S4_5c_ready.png",
+    "../test_report/deploy_2026-10-27/scenarios/S5_2a_pickup_winner.png",
+    "../test_report/deploy_2026-10-27/scenarios/S5_4_delivered.png",
+    "../test_report/deploy_2026-10-27/scenarios/S5_5_customer_receipt.png"
+  ],
+  "headings": [
+    "# 5.3 Demonstration"
+  ],
+  "meaning_lock_status": "NUMBERS AND IDS PRESERVED; source reviewed",
+  "sha256_after": "39fa7290a08afc88c29ec21a0b7e30837f425ded82826f91ef203b795ecdc1f4",
+  "review_notes": "Claims checked against claim_ledger.csv; historical test and deployment results remain scoped."
+}

@@ -1,0 +1,53 @@
+{
+  "source": "docs/part2/report/II_2-2-6_UC-06.md",
+  "sha256_before": "d15f79ded45b9cbf92927ab2d95b012b09ada367dab1a3b5ef85853135d208a3",
+  "numeric_tokens": [
+    "004",
+    "01",
+    "05",
+    "06",
+    "1",
+    "2",
+    "2.2.6",
+    "2.20",
+    "2.21",
+    "2.8",
+    "230 mm",
+    "3",
+    "6",
+    "722",
+    "9.48 pt"
+  ],
+  "identifiers": [
+    "722I0004",
+    "UC-01",
+    "UC-05",
+    "UC-06",
+    "UC06-MG01",
+    "UC06-MG02",
+    "UC06-PC01",
+    "UC06-PC02",
+    "UC06-PC03"
+  ],
+  "states": [],
+  "links": [
+    "../../../models/UC-06/activity_uc06_PartA.png",
+    "../../../models/UC-06/activity_uc06_PartB.png",
+    "../../../models/UC-06/activity_uc06_PartC.png",
+    "../../../models/UC-06/ssd_uc06_PartA.png",
+    "../../../models/UC-06/ssd_uc06_PartB.png",
+    "../../../models/UC-06/ssd_uc06_PartC.png"
+  ],
+  "headings": [
+    "# 2.2.6 Use Case 6: Maintain brands, menu items and hub listings (author: 722I0004)",
+    "### i. Fully developed use case description",
+    "### ii. Activity diagram for Use Case 6",
+    "### iii. System sequence diagram for Use Case 6",
+    "### iv. State machine diagram for Use Case 6"
+  ],
+  "meaning_lock_status": "PROSE REVIEWED; numeric/identifier tokens retained",
+  "sha256_after": "d15f79ded45b9cbf92927ab2d95b012b09ada367dab1a3b5ef85853135d208a3",
+  "missing_numbers": [],
+  "missing_ids": [],
+  "review_notes": "Analysis prose reviewed; protected descriptions and state-machine includes require separate source and table verification."
+}

@@ -1,0 +1,38 @@
+{
+  "source": "docs/part2/report/IV_4-3-6_integration.md",
+  "sha256_before": "3f4bfed1d005b616a668cbf75fac8d957b4b0c626f2e96cb10c361f47d86d638",
+  "numeric_tokens": [
+    "004",
+    "10",
+    "11",
+    "2",
+    "2026",
+    "20261027",
+    "22",
+    "252",
+    "27",
+    "28",
+    "3",
+    "3.2",
+    "4.3.6",
+    "5.5",
+    "60",
+    "7",
+    "722",
+    "9"
+  ],
+  "identifiers": [
+    "722I0004"
+  ],
+  "states": [],
+  "links": [
+    "../test_report/integration_2026-10-27/S3/S3_3.2_kitchen.png",
+    "../test_report/deploy_2026-10-27/scenarios/S3_2_kitchen_board.png"
+  ],
+  "headings": [
+    "# 4.3.6 Integration of Use Cases"
+  ],
+  "meaning_lock_status": "NUMBERS AND IDS PRESERVED; source reviewed",
+  "sha256_after": "3f4bfed1d005b616a668cbf75fac8d957b4b0c626f2e96cb10c361f47d86d638",
+  "review_notes": "Claims checked against claim_ledger.csv; historical test and deployment results remain scoped."
+}

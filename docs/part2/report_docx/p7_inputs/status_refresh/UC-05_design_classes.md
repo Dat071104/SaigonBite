@@ -25,9 +25,9 @@ Properties have signatures for traceability but are read as attributes; dataclas
 | Attribute | `+ offers: ReplacementOfferDAO` **inferred** | MATCH |
 | Operation | `+ board(self, user_id: int) -> KitchenBoard` | MATCH |
 | Operation | `+ get_order(self, user_id: int, order_id: int) -> KitchenOrderView` | MATCH |
-| Operation | `+ confirm_order(self, user_id: int, order_id: int) -> Order` | P4 scoped evidence (P4.1 + P4.4; resolution rows 18); P2-S13; P3-S03; Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete. |
-| Operation | `+ reject_order(self, user_id: int, order_id: int, reason: str) -> Order` | P4 scoped evidence (P4.4; resolution rows 16); F-02; P2-S13; BR-17 full C refund owed and atomic state/amount writes, including COMMIT rollback. |
-| Operation | `+ offer_replacement(self, user_id: int, order_id: int, order_line_id: int, new_menu_item_id: int) -> ReplacementOffer` | P4 scoped evidence (P4.4; resolution rows 17); F-05; P2-S09; P2-S13; Require currently unavailable source; target active/listed/available; one open offer; check every conditional save result. |
+| Operation | `+ confirm_order(self, user_id: int, order_id: int) -> Order` | P4 scoped evidence (P4.1 + P4.4; resolution rows 18); C0 rationale: P2-S13; P3-S03; Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete. |
+| Operation | `+ reject_order(self, user_id: int, order_id: int, reason: str) -> Order` | P4 scoped evidence (P4.4; resolution rows 16); C0 rationale: F-02; P2-S13; BR-17 full C refund owed and atomic state/amount writes, including COMMIT rollback. |
+| Operation | `+ offer_replacement(self, user_id: int, order_id: int, order_line_id: int, new_menu_item_id: int) -> ReplacementOffer` | P4 scoped evidence (P4.4; resolution rows 17); C0 rationale: F-05; P2-S09; P2-S13; Require currently unavailable source; target active/listed/available; one open offer; check every conditional save result. |
 
 ## kitchen
 
@@ -79,7 +79,7 @@ Properties have signatures for traceability but are read as attributes; dataclas
 | Operation | `+ get_by_id(self, order_id: int) -> Optional[Order]` | MATCH |
 | Operation | `+ change_state(self, order_id: int, from_state: OrderState, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> bool` | MATCH |
 | Operation | `+ list_for_customer(self, customer_id: int) -> list[Order]` | MATCH |
-| Operation | `+ save_lines_and_totals(self, order: Order) -> bool` | P4 scoped evidence (P4.4; resolution rows 43, 44); P2-S09; P2-S11; P3-S03; Apply replacement only to expected PLACED order and check each affected line/header rowcount. |
+| Operation | `+ save_lines_and_totals(self, order: Order) -> bool` | P4 scoped evidence (P4.4; resolution rows 43, 44); C0 rationale: P2-S09; P2-S11; P3-S03; Apply replacement only to expected PLACED order and check each affected line/header rowcount. |
 
 ## ReplacementOfferDAO
 
@@ -126,7 +126,7 @@ Properties have signatures for traceability but are read as attributes; dataclas
 | Attribute | `+ conn: sqlite3.Connection` | MATCH |
 | Operation | `+ get_by_order_id(self, order_id: int) -> Optional[Payment]` | MATCH |
 | Operation | `+ change_state(self, order_id: int, from_state: PaymentState, to_state: PaymentState, now: str) -> bool` | MATCH |
-| Operation | `+ set_amounts(self, order_id: int, amount: int, refund_amount: int, now: str) -> bool` | P4 scoped evidence (P4.4; resolution rows 46, 47, 48, 49, 50); F-02; P3-S03; Persist full/partial refund obligations atomically and expose the conditional save outcome. |
+| Operation | `+ set_amounts(self, order_id: int, amount: int, refund_amount: int, now: str) -> bool` | P4 scoped evidence (P4.4; resolution rows 46, 47, 48, 49, 50); C0 rationale: F-02; P3-S03; Persist full/partial refund obligations atomically and expose the conditional save outcome. |
 
 ## Order
 
@@ -184,7 +184,7 @@ Properties have signatures for traceability but are read as attributes; dataclas
 | Attribute | `+ provider_ref: Optional[str]` | MATCH |
 | Attribute | `+ refund_amount: int` | MATCH |
 | Attribute | `+ id: Optional[int]` | MATCH |
-| Operation | `+ release_for_unfulfilled_order(self) -> None` | P4 scoped evidence (P4.4; resolution rows 9, 10, 11, 12); F-02; P2-S01; Set refund_amount=C with REFUND_PENDING; preserve COD VOIDED; no payout operation. |
+| Operation | `+ release_for_unfulfilled_order(self) -> None` | P4 scoped evidence (P4.4; resolution rows 9, 10, 11, 12); C0 rationale: F-02; P2-S01; Set refund_amount=C with REFUND_PENDING; preserve COD VOIDED; no payout operation. |
 
 ## OrderTrackingController
 
@@ -205,7 +205,7 @@ Properties have signatures for traceability but are read as attributes; dataclas
 | Attribute | `+ offers: ReplacementOfferDAO` **inferred** | MATCH |
 | Operation | `+ list_my_orders(self, user_id: int) -> list[OrderSummary]` | MATCH |
 | Operation | `+ get_order(self, user_id: int, order_id: int) -> OrderDetail` | MATCH |
-| Operation | `+ answer_replacement(self, user_id: int, order_id: int, offer_id: int, accept: bool) -> OrderDetail` | P4 scoped evidence (P4.4; resolution rows 13, 14); F-05; F-02; P2-S09; P2-S11; P2-S13; Recheck PLACED and exact open offer; recheck target; invalid target withdraws only the offer; valid accept uses offered price; controlled rollback through COMMIT. |
+| Operation | `+ answer_replacement(self, user_id: int, order_id: int, offer_id: int, accept: bool) -> OrderDetail` | P4 scoped evidence (P4.4; resolution rows 13, 14); C0 rationale: F-05; F-02; P2-S09; P2-S11; P2-S13; Recheck PLACED and exact open offer; recheck target; invalid target withdraws only the offer; valid accept uses offered price; controlled rollback through COMMIT. |
 | Operation | `- _own_order(self, customer: Customer, order_id: int) -> Order` | MATCH |
 | Operation | `- _require_customer(self, user_id: int) -> Customer` | MATCH |
 
@@ -283,7 +283,7 @@ Properties have signatures for traceability but are read as attributes; dataclas
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
 | Operation | `+ move_order(orders: OrderDAO, order: Order, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> None` | MATCH |
-| Operation | `+ release_payment(payments: PaymentDAO, order_id: int, now: str) -> Payment` | P4 scoped evidence (P4.4; resolution rows 54); F-02; P2-S01; P3-S03; Persist full captured C as refund_amount together with state; changing only the domain object does not save the amount. Check conditional save results in the same transaction. |
+| Operation | `+ release_payment(payments: PaymentDAO, order_id: int, now: str) -> Payment` | P4 scoped evidence (P4.4; resolution rows 54); C0 rationale: F-02; P2-S01; P3-S03; Persist full captured C as refund_amount together with state; changing only the domain object does not save the amount. Check conditional save results in the same transaction. |
 
 ## ReplacementOffer
 
@@ -459,7 +459,7 @@ Properties have signatures for traceability but are read as attributes; dataclas
 | Attribute | `+ role: Role` | MATCH |
 | Attribute | `+ is_active: bool` | MATCH |
 | Attribute | `+ hub_id: Optional[int]` (FK retained here; omitted from DCD) | MATCH |
-| Attribute | `+ created_at: str` | P4 scoped evidence (P4.1; resolution rows 53);  |
+| Attribute | `+ created_at: str` | P4 scoped evidence (P4.1; resolution rows 53); C0 rationale:  |
 
 ## OrderState
 

@@ -1,0 +1,56 @@
+{
+  "source": "docs/part2/report/IV_4-3-1_mapping.md",
+  "sha256_before": "6c9db196ccc3074b4279add3b24d2ffa57845fc488db131d82a17fe3584cfb6a",
+  "numeric_tokens": [
+    "004",
+    "03174",
+    "1",
+    "110",
+    "13",
+    "170 mm",
+    "18",
+    "2",
+    "230",
+    "3",
+    "4.3",
+    "4.3.1",
+    "45",
+    "6221",
+    "65",
+    "7",
+    "722",
+    "7577",
+    "8",
+    "9",
+    "9.21 pt"
+  ],
+  "identifiers": [
+    "722I0004",
+    "P2-S01",
+    "P2-S02",
+    "P2-S03",
+    "P2-S07",
+    "P2-S08",
+    "P2-S09"
+  ],
+  "states": [
+    "COD",
+    "OFFERED"
+  ],
+  "links": [
+    "../design/class_table_mapping.csv",
+    "../../../models/shared/erd_schema_v2_PartA.png",
+    "../../../models/shared/erd_schema_v2_PartB.png",
+    "../../../models/shared/erd_schema_v2_PartC.png",
+    "../../../models/shared/erd_schema_v2_PartD.png",
+    "../../../models/shared/erd_schema_v2_PartE.png"
+  ],
+  "headings": [
+    "## 4.3.1 Map Persistent Objects to the Tables in a Database"
+  ],
+  "meaning_lock_status": "PROSE REVIEWED; numeric/identifier tokens retained",
+  "sha256_after": "9e488b02570ce6bf6b2b10dac2496e4449abf813e808e22cbd517903c0999e60",
+  "missing_numbers": [],
+  "missing_ids": [],
+  "review_notes": "Reviewed prose; clarified historic C0 versus P4 evidence and constrained browser-demonstration scope. Figma tokens resolve from links.json. Tables and figure images remain separate checks."
+}

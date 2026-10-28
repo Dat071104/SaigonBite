@@ -1,0 +1,73 @@
+{
+  "source": "docs/part2/report/II_2-2-2_UC-02.md",
+  "sha256_before": "99d2970df9d4c47a0b4a50a8a4181e5b504ab906873abf0c8ae0f2f3b5efbeba",
+  "numeric_tokens": [
+    "004",
+    "01",
+    "02",
+    "05",
+    "1",
+    "10",
+    "10.67 pt",
+    "11",
+    "12",
+    "2",
+    "2.12",
+    "2.13",
+    "2.2.2",
+    "2.3",
+    "2.4",
+    "2.5",
+    "21",
+    "22",
+    "230 mm",
+    "3",
+    "4",
+    "5",
+    "722"
+  ],
+  "identifiers": [
+    "722I0004",
+    "OP-10",
+    "OP-11",
+    "OP-21",
+    "SUC-05",
+    "UC-01",
+    "UC-02",
+    "UC02-MG01",
+    "UC02-PC01",
+    "UC02-PC02",
+    "UC02-PC03"
+  ],
+  "states": [
+    "COD",
+    "DELIVERED",
+    "DELIVERY_FAILED",
+    "ONLINE",
+    "PAID",
+    "PENDING",
+    "PICKED_UP",
+    "READY",
+    "REFUND_PENDING",
+    "VOIDED"
+  ],
+  "links": [
+    "../../../models/UC-02/activity_uc02_PartA.png",
+    "../../../models/UC-02/activity_uc02_PartB.png",
+    "../../../models/UC-02/activity_uc02_PartC.png",
+    "../../../models/UC-02/ssd_uc02_PartA.png",
+    "../../../models/UC-02/ssd_uc02_PartB.png"
+  ],
+  "headings": [
+    "# 2.2.2 Use Case 2: Deliver an order: pick up, deliver with cash collection, or report failure (author: 722I0004)",
+    "### i. Fully developed use case description",
+    "### ii. Activity diagram for Use Case 2",
+    "### iii. System sequence diagram for Use Case 2",
+    "### iv. State machine diagram for Use Case 2"
+  ],
+  "meaning_lock_status": "PROSE REVIEWED; numeric/identifier tokens retained",
+  "sha256_after": "99d2970df9d4c47a0b4a50a8a4181e5b504ab906873abf0c8ae0f2f3b5efbeba",
+  "missing_numbers": [],
+  "missing_ids": [],
+  "review_notes": "Analysis prose reviewed; protected descriptions and state-machine includes require separate source and table verification."
+}
