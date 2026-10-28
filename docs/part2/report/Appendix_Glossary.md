@@ -1,4 +1,4 @@
-# Glossary
+**Glossary**
 
 Author: 722I0004 · AI-assisted (Codex)
 

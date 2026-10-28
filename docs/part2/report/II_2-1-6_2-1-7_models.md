@@ -58,7 +58,7 @@ An Order belongs to one Customer, Hub and selected Address; an Address may subse
 
 The Delivery assignment refers to zero or one UserAccount of role SHIPPER; a shipper account can have many deliveries, including concurrent assignments under BR-25. No Shipper class is added. Quote, report filters/rows and receipts are computed views and are not persisted. Archive visibility of dependent transaction records follows the parent Order; separate archive attributes on every child are unnecessary. Busy/quiet/workload and waiting for customer are derived classifications. Payment `amount` is captured C for ONLINE; `refund_amount` records an obligation, including a partial obligation while PAID. REFUNDED/payout remains future scope.
 
-Editable source: `models/shared/domain_model.drawio` contains all three pages. The suffix/source conventions and first-page alias rule are the same as Figure 2.1. These are analysis artifacts. The following comparison is **Static**, based on reading the current draft; it is neither a test result nor a claim that the application meets these contracts.
+Editable source: `models/shared/domain_model.drawio` contains all three pages. The suffix/source conventions and first-page alias rule are the same as Figure 2.1. These are analysis artifacts. The following comparison is **Static**, based on the C0 draft; it is neither a test result nor a claim that the application meets these contracts. Later P4 disposition and scoped evidence are recorded in Table P4-1 and its detailed appendix.
 
 ### Static class and attribute mapping to schema v2
 
@@ -82,6 +82,8 @@ The table checks every drawn attribute against `db/schema.sql`. Same-name mappin
 
 ### P4 inputs from the Static comparison
 
+The seven items below record the recommendations made for the C0 draft; they are not a current implementation verdict. See the P4 status appendix for later disposition.
+
 1. Add/map UserAccount `created_at` under plan §5.3, or obtain an explicit contract disposition before removing the analysis requirement. It is absent from the draft SQL and dataclass.
 2. Enforce Tourist nationality and the CUSTOMER-profile/account-role relationship. Validate all BR-12 type-specific fields; the current SQL CHECK only requires Tourist passport/email and Local phone. Keep passport visibility restricted to customer/admin.
 3. Return the invalid-target withdrawal reason with the operation result. Root rejected an extra persistent withdrawal_reason attribute: §3.3(5) requires a reason to be shown, and does not require new reason-history storage. P3 confirms the result/API mapping; the diagram adds no column.
@@ -90,6 +92,6 @@ The table checks every drawn attribute against `db/schema.sql`. Same-name mappin
 6. Preserve archived history and snapshots without physical child deletion. SQL comments say most records are archived, but many transaction children are hidden through Order archive rather than their own archive column; spell this out in P3.2 mapping.
 7. Keep the locked plan's existing F-02/F-05/F-07 money, target-recheck and consent repairs as P4 work. The present domain dataclasses do not establish BR-17 amount effects, target availability validation or quote fingerprint correctness. No code or schema was changed here.
 
-The worker's original per-column comparison, AST field inventory and source hashes remain at `Part2/notes/P2-B/static_mapping.json` and `source_audit.json` as pre-integration evidence. The root's final inventory at `Part2/notes/P2-root/domain_model_final_audit.json` reflects removal of the proposed withdrawal_reason attribute; the only remaining drawn attribute absent from SQL is UserAccount.created_at. SQL was inspected using a transient in-memory schema, never an application database. P3.1 must add real responsibilities/method signatures and reconcile them to code; those design details do not belong in this analysis figure.
+The worker's original per-column comparison, AST field inventory and source hashes remain at `Part2/notes/P2-B/static_mapping.json` and `source_audit.json` as pre-integration evidence. The root's final inventory at `Part2/notes/P2-root/domain_model_final_audit.json` reflects removal of the proposed withdrawal_reason attribute; at C0 the only remaining drawn attribute absent from SQL was UserAccount.created_at. SQL was inspected using a transient in-memory schema, never an application database. P3.1 must add real responsibilities/method signatures and reconcile them to code; those design details do not belong in this analysis figure.
 
 Readability was checked at **230 mm landscape placement**: minimum diagram text is 26 units, equivalent to **10.59 pt** in Figure 2.1 and **9.42 pt** in Figure 2.2. The models are split into three parts each to meet this threshold. The PNG and SVG exports were opened for visual QA; XML parses and edge endpoint references were checked programmatically. Native draw.io editing and application correctness remain unverified by this workstream.

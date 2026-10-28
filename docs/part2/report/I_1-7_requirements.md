@@ -53,7 +53,7 @@ Source key: **Case** = `Lec_re/RAD_Sem01_2627_Case_Study_SaigonBite.pdf`; **Requ
 
 ## Non-functional requirements
 
-Each criterion names a measurement method. Results remain unmeasured until the later implementation, testing, and deployment phases produce evidence.
+Each criterion names a measurement method. Section 5.1 reports the recorded test results and their scope.
 
 | ID | Requirement | MoSCoW | UC/SUC scope | Source | Acceptance criterion and measurement method |
 |---|---|---|---|---|---|
@@ -82,4 +82,4 @@ Each criterion names a measurement method. Results remain unmeasured until the l
 | Group orders | Future scope. | Case p.2 future-feature paragraph. No assumption ID is assigned in the plan or carried Part 1 log. | None assigned |
 | Scheduled orders | Future scope. | Case p.2 future-feature paragraph. No assumption ID is assigned in the plan or carried Part 1 log. | None assigned |
 
-A-09 is carried from Part 1 and records the proposed L3 scope exclusion. It does not establish lecturer approval. No A-ID has been invented for the case’s future features.
+A-09 is carried from Part 1; the L3 deferral was accepted at the Part 1 review (no change requested). No written approval is claimed. No A-ID has been invented for the case’s future features.
