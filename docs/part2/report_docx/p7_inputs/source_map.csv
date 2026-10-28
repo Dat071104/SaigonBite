@@ -1,5 +1,5 @@
 ﻿heading,source file,lines,note
-Executive Summary (0.25 point),docs/part2/report/Executive_Summary.md,1–9,P7 draft; requires B6 and edition checks
+Executive Summary (0.25 point),docs/part2/report/Executive_Summary.md,1-9,P7 draft; requires B6 and edition checks
 I. Business Requirements (1 point),TEMPLATE,n/a,Template section container; not yet assembled
 1.1 System Vision and Approval Record,docs/part2/report/I_1-1_vision.md,1-58,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
 1.2 Organization Chart / Project Chart / Gantt Chart,docs/part2/report/I_1-2_org_gantt.md,1-35,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
@@ -56,16 +56,16 @@ II. System Requirements Analysis (15 marks),TEMPLATE,n/a,Template section contai
 2.3.3 Verifying use cases for [Actor 3],docs/part2/report/II_2-3_crud.md,107-137,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
 III. System Requirements Design (15 marks),TEMPLATE,n/a,Template section container; not yet assembled
 3.1 Design for Use Case 1: [Name] (author: [Student ID]),docs/part2/report/III_3-1_UC-01.md,1-457,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
-3.1.1 Design Classes in Detailed Design,docs/part2/report/III_3-1_UC-01.md,7-10,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
-3.1.2 Design Class Diagram,docs/part2/report/III_3-1_UC-01.md,11-222,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
-3.1.2 i.,docs/part2/report/III_3-1_UC-01.md,13-65,Template roman child
-3.1.2 ii.,docs/part2/report/III_3-1_UC-01.md,66-83,Template roman child
-3.1.2 iii.,docs/part2/report/III_3-1_UC-01.md,84-91,Template roman child
-3.1.2 iv.,docs/part2/report/III_3-1_UC-01.md,92-104,Template roman child
-3.1.2 v.,docs/part2/report/III_3-1_UC-01.md,105-222,Template roman child
-3.1.3 OOD with CRC Cards or Communication Diagram,docs/part2/report/III_3-1_UC-01.md,223-226,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
-3.1.4 OOD with Sequence Diagram,docs/part2/report/III_3-1_UC-01.md,227-358,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
-3.1.5 Final Design Class Diagram,docs/part2/report/III_3-1_UC-01.md,359-457,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
+3.1.1 Design Classes in Detailed Design,docs/part2/report/III_3-1_UC-01.md,20-23,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
+3.1.2 Design Class Diagram,docs/part2/report/III_3-1_UC-01.md,24-235,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
+3.1.2 i.,docs/part2/report/III_3-1_UC-01.md,26-78,Template roman child
+3.1.2 ii.,docs/part2/report/III_3-1_UC-01.md,79-96,Template roman child
+3.1.2 iii.,docs/part2/report/III_3-1_UC-01.md,97-104,Template roman child
+3.1.2 iv.,docs/part2/report/III_3-1_UC-01.md,105-117,Template roman child
+3.1.2 v.,docs/part2/report/III_3-1_UC-01.md,118-235,Template roman child
+3.1.3 OOD with CRC Cards or Communication Diagram,docs/part2/report/III_3-1_UC-01.md,236-239,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
+3.1.4 OOD with Sequence Diagram,docs/part2/report/III_3-1_UC-01.md,240-371,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
+3.1.5 Final Design Class Diagram,docs/part2/report/III_3-1_UC-01.md,372-470,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
 3.2 Design for Use Case 2: [Name] (author: [Student ID]),docs/part2/report/III_3-2_UC-02.md,1-265,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
 3.2.1 Design Classes in Detailed Design,docs/part2/report/III_3-2_UC-02.md,7-12,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
 3.2.2 Design Class Diagram,docs/part2/report/III_3-2_UC-02.md,13-130,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
@@ -78,16 +78,16 @@ III. System Requirements Design (15 marks),TEMPLATE,n/a,Template section contain
 3.2.4 OOD with Sequence Diagram,docs/part2/report/III_3-2_UC-02.md,137-190,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
 3.2.5 Final Design Class Diagram,docs/part2/report/III_3-2_UC-02.md,191-256,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
 3.3 Design for Use Case 3: [Name] (author: [Student ID]),docs/part2/report/III_3-3_UC-03.md,1-131,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
-3.3.1 Design Classes in Detailed Design,docs/part2/report/III_3-3_UC-03.md,5-8,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
-3.3.2 Design Class Diagram,docs/part2/report/III_3-3_UC-03.md,9-74,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
-3.3.2 i.,docs/part2/report/III_3-3_UC-03.md,13-22,Template roman child
-3.3.2 ii.,docs/part2/report/III_3-3_UC-03.md,23-36,Template roman child
-3.3.2 iii.,docs/part2/report/III_3-3_UC-03.md,37-42,Template roman child
-3.3.2 iv.,docs/part2/report/III_3-3_UC-03.md,43-52,Template roman child
-3.3.2 v.,docs/part2/report/III_3-3_UC-03.md,53-74,Template roman child
-3.3.3 OOD with CRC Cards or Communication Diagram,docs/part2/report/III_3-3_UC-03.md,75-78,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
-3.3.4 OOD with Sequence Diagram,docs/part2/report/III_3-3_UC-03.md,79-104,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
-3.3.5 Final Design Class Diagram,docs/part2/report/III_3-3_UC-03.md,105-131,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
+3.3.1 Design Classes in Detailed Design,docs/part2/report/III_3-3_UC-03.md,7-10,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
+3.3.2 Design Class Diagram,docs/part2/report/III_3-3_UC-03.md,11-76,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
+3.3.2 i.,docs/part2/report/III_3-3_UC-03.md,15-24,Template roman child
+3.3.2 ii.,docs/part2/report/III_3-3_UC-03.md,25-38,Template roman child
+3.3.2 iii.,docs/part2/report/III_3-3_UC-03.md,39-44,Template roman child
+3.3.2 iv.,docs/part2/report/III_3-3_UC-03.md,45-54,Template roman child
+3.3.2 v.,docs/part2/report/III_3-3_UC-03.md,55-76,Template roman child
+3.3.3 OOD with CRC Cards or Communication Diagram,docs/part2/report/III_3-3_UC-03.md,77-80,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
+3.3.4 OOD with Sequence Diagram,docs/part2/report/III_3-3_UC-03.md,81-106,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
+3.3.5 Final Design Class Diagram,docs/part2/report/III_3-3_UC-03.md,107-133,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
 3.4 Design for Use Case 4: [Name] (author: [Student ID]),docs/part2/report/III_3-4_UC-04.md,1-249,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
 3.4.1 Design Classes in Detailed Design,docs/part2/report/III_3-4_UC-04.md,7-12,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
 3.4.2 Design Class Diagram,docs/part2/report/III_3-4_UC-04.md,13-142,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
@@ -111,16 +111,16 @@ III. System Requirements Design (15 marks),TEMPLATE,n/a,Template section contain
 3.5.4 OOD with Sequence Diagram,docs/part2/report/III_3-5_UC-05.md,192-327,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
 3.5.5 Final Design Class Diagram,docs/part2/report/III_3-5_UC-05.md,328-410,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
 3.6 Design for Use Case 6: [Name] (author: [Student ID]),docs/part2/report/III_3-6_UC-06.md,1-237,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
-3.6.1 Design Classes in Detailed Design,docs/part2/report/III_3-6_UC-06.md,5-8,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
-3.6.2 Design Class Diagram,docs/part2/report/III_3-6_UC-06.md,9-130,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
-3.6.2 i.,docs/part2/report/III_3-6_UC-06.md,13-26,Template roman child
-3.6.2 ii.,docs/part2/report/III_3-6_UC-06.md,27-52,Template roman child
-3.6.2 iii.,docs/part2/report/III_3-6_UC-06.md,53-66,Template roman child
-3.6.2 iv.,docs/part2/report/III_3-6_UC-06.md,67-88,Template roman child
-3.6.2 v.,docs/part2/report/III_3-6_UC-06.md,89-130,Template roman child
-3.6.3 OOD with CRC Cards or Communication Diagram,docs/part2/report/III_3-6_UC-06.md,131-134,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
-3.6.4 OOD with Sequence Diagram,docs/part2/report/III_3-6_UC-06.md,135-190,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
-3.6.5 Final Design Class Diagram,docs/part2/report/III_3-6_UC-06.md,191-237,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
+3.6.1 Design Classes in Detailed Design,docs/part2/report/III_3-6_UC-06.md,7-10,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
+3.6.2 Design Class Diagram,docs/part2/report/III_3-6_UC-06.md,11-132,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
+3.6.2 i.,docs/part2/report/III_3-6_UC-06.md,15-28,Template roman child
+3.6.2 ii.,docs/part2/report/III_3-6_UC-06.md,29-54,Template roman child
+3.6.2 iii.,docs/part2/report/III_3-6_UC-06.md,55-68,Template roman child
+3.6.2 iv.,docs/part2/report/III_3-6_UC-06.md,69-90,Template roman child
+3.6.2 v.,docs/part2/report/III_3-6_UC-06.md,91-132,Template roman child
+3.6.3 OOD with CRC Cards or Communication Diagram,docs/part2/report/III_3-6_UC-06.md,133-136,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
+3.6.4 OOD with Sequence Diagram,docs/part2/report/III_3-6_UC-06.md,137-192,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
+3.6.5 Final Design Class Diagram,docs/part2/report/III_3-6_UC-06.md,193-239,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
 IV. System Requirements Implementation (10 marks),TEMPLATE,n/a,Template section container; not yet assembled
 4.1 Design Classes for the Subsystem,docs/part2/report/IV_4-1_subsystem_dcd.md,1-420,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
 4.2 Package Diagram for the Subsystem,docs/part2/report/IV_4-2_package.md,1-56,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
@@ -128,18 +128,18 @@ IV. System Requirements Implementation (10 marks),TEMPLATE,n/a,Template section 
 4.3.1 Map Persistent Objects to the Tables in a Database,docs/part2/report/IV_4-3-1_mapping.md,1-43,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
 4.3.2 Modifying Sequence Diagrams,docs/part2/report/IV_4-3-2_dao_sequences.md,1-303,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
 4.3.3 UI Design,docs/part2/report/IV_4-3-3_ui_design.md,1-954,Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json
-4.3.4 SQL Code,docs/part2/report/IV_4-3-4_sql.md,1–92,P7 draft; requires B6 and edition checks
-4.3.5 Software Classes Method Code,docs/part2/report/IV_4-3-5_key_methods.md,1–237,P7 draft; requires B6 and edition checks
-4.3.6 Integration of Use Cases,docs/part2/report/IV_4-3-6_integration.md,1–15,P7 draft; requires B6 and edition checks
+4.3.4 SQL Code,docs/part2/report/IV_4-3-4_sql.md,1-92,P7 draft; requires B6 and edition checks
+4.3.5 Software Classes Method Code,docs/part2/report/IV_4-3-5_key_methods.md,1-236,P7 draft; requires B6 and edition checks
+4.3.6 Integration of Use Cases,docs/part2/report/IV_4-3-6_integration.md,1-15,P7 draft; requires B6 and edition checks
 "V. System Testing, Deployment and Demonstration (7.5 marks)",TEMPLATE,n/a,Template section container; not yet assembled
-5.1 Testing: Test Plan and Test Cases,docs/part2/report/V_5-1_testing.md,1–42,P7 draft; requires B6 and edition checks
-5.2 Deployment,docs/part2/report/V_5-2_deployment.md,1–33,P7 draft; requires B6 and edition checks
-5.3 Demonstration,docs/part2/report/V_5-3_demonstration.md,1–49,P7 draft; requires B6 and edition checks
-Conclusions / Recommendations (0.25 point),docs/part2/report/Conclusions.md,1–9,P7 draft; requires B6 and edition checks
-References,docs/part2/report/References.md,1–8,P7 draft; requires B6 and edition checks
+5.1 Testing: Test Plan and Test Cases,docs/part2/report/V_5-1_testing.md,1-42,P7 draft; requires B6 and edition checks
+5.2 Deployment,docs/part2/report/V_5-2_deployment.md,1-35,P7 draft; requires B6 and edition checks
+5.3 Demonstration,docs/part2/report/V_5-3_demonstration.md,1-49,P7 draft; requires B6 and edition checks
+Conclusions / Recommendations (0.25 point),docs/part2/report/Conclusions.md,1-9,P7 draft; requires B6 and edition checks
+References,docs/part2/report/References.md,1-8,P7 draft; requires B6 and edition checks
 Appendix,TO BE WRITTEN,n/a,New content required; not yet assembled
-Appendix 1: Full-size use case diagram,docs/part2/report/Appendix_1.md,1–15,P7 draft; requires B6 and edition checks
-Appendix 2: Full-size communication and sequence diagrams,docs/part2/report/Appendix_2.md,1–89,P7 draft; requires B6 and edition checks
-Appendix 3: Full-size domain and design class diagrams,docs/part2/report/Appendix_3.md,1–565,P7 draft; requires B6 and edition checks
-"Appendix 4: Contribution Statement (one page, signed by all members: who owns which use cases and components)",docs/part2/report/Appendix_4.md,1–17,P7 draft; requires B6 and edition checks
-Appendix 5: Generative AI Usage Log,docs/part2/report/Appendix_5.md,1–63,P7 draft; requires B6 and edition checks
+Appendix 1: Full-size use case diagram,docs/part2/report/Appendix_1.md,1-15,P7 draft; requires B6 and edition checks
+Appendix 2: Full-size communication and sequence diagrams,docs/part2/report/Appendix_2.md,1-89,P7 draft; requires B6 and edition checks
+Appendix 3: Full-size domain and design class diagrams,docs/part2/report/Appendix_3.md,1-565,P7 draft; requires B6 and edition checks
+"Appendix 4: Contribution Statement (one page, signed by all members: who owns which use cases and components)",docs/part2/report/Appendix_4.md,1-17,P7 draft; requires B6 and edition checks
+Appendix 5: Generative AI Usage Log,docs/part2/report/Appendix_5.md,1-64,P7 draft; requires B6 and edition checks

@@ -85,8 +85,7 @@ Every seeded account uses the demo password `123456`, stored as a PBKDF2-SHA256 
 | Admin | `admin` | `123456` |
 | Manager | `manager` | `123456` |
 
-In Iteration 1 only the customer role has screens. The other roles can log in, see their role on the home page,
-and are refused (HTTP 403) on the order pages.
+In Part 2, the customer, kitchen staff, shipper, admin and manager roles have screens for their permitted workflows. The deployed demonstration is available at https://saigonbite.io.vn.
 
 Seed data: two hubs (`HUB-D1` District 1, flat fee 15,000 VND, capacity 12; `HUB-BT` Binh Thanh, flat fee 18,000 VND,
 capacity 8), four brands and ten menu items. One item is sold out at the District 1 hub (Com tam ga nuong) and some items are

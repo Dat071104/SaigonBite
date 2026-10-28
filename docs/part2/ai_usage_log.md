@@ -130,3 +130,7 @@ Codex applied Dat’s figure-placement decision, selected existing PNGs, produce
 ## 28 October 2026 — P7 new sections and claim ledger (Codex)
 
 Codex drafted the six-use-case method extracts, reviewer reproduction steps, contribution statement, AI log, references, executive summary and conclusions. Sixteen source excerpts were checked byte for byte against their source ranges; 30 test rows were checked against the recorded CSV; the claim ledger separates recorded results, limitations and owner facts. The release tag and demo video remain pending, and the figure-readability exceptions remain open. Full prompts and outputs are retained in the Codex session and the P7 notes.
+
+## 28 October 2026 — P7 prose and placement continuation (Codex)
+
+Codex captured meaning-lock baselines for 40 canonical sources, reviewed a subset of the core report sections, reconciled stale L1–L6 wording with Dat’s corrected facts, refreshed section III source ranges, and refined placement dimensions without changing figure PNGs. A new ten-page placement simulation was inspected; 122 figure placements remain below the 9 pt nominal estimate and final layout remains unverified. Full prompts and review notes are retained in the Codex session and `Part2/notes/P7/`.
