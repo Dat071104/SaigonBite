@@ -182,7 +182,7 @@ Figure 3.4.4.3. UC-04 design sequence: deliveryReport — Author: 722I0004 · AI
 
 ## 3.4.5 Final Design Class Diagram
 
-All sequence receiver methods are present. Changes from 3.4.2: no local class/method/association change; final all-layer views repeat the sequence-reconciled design. The accepted shared F-09 annotation marks the DAO grouping, identity-bearing result and reports.sales presentation as P4 status: see Table P4-1.
+All sequence receiver methods are present. Changes from 3.4.2: no local class/method/association change; final all-layer views repeat the sequence-reconciled design. The accepted shared F-09 annotation marks the DAO grouping, identity-bearing result and reports.sales presentation as a C0 target; see Table P4-1 for P4 status.
 
 ![UC-04 final design classes: Sales operation and data grain](../../../models/UC-04/dcd_uc04_final_PartA.png)
 
@@ -238,7 +238,7 @@ Figure 3.4.5-I. UC-04 final design classes: Delivery report result object — Au
 
 [Editable draw.io](../../../models/UC-04/dcd_uc04_final_PartI.drawio) · [SVG](../../../models/UC-04/dcd_uc04_final_PartI.svg) · [Generator](../../../models/UC-04/dcd_uc04_final_PartI.py) · [Data](../../../models/UC-04/dcd_uc04_final_PartI.json)
 
-No Report state is drawn. Filters, report rows and returned reports are non-persisted controller values. The final DCD keeps  on F-03/F-09/P2-S18 targets; UC04-PC01 remains a required oracle correspondence, not a measured result.
+No Report state is drawn. Filters, report rows and returned reports are non-persisted controller values. The final DCD keeps historical marks on F-03/F-09/P2-S18 targets; UC04-PC01 remains a required oracle correspondence, not a measured result.
 
 ## Integration repair evidence
 

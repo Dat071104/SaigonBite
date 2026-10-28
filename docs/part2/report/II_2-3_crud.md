@@ -2,7 +2,7 @@
 
 Author: 722I0004 · AI-assisted (Codex)
 
-These five actor tables implement the locked portfolio under the narrow root reconciliations below. The plan is unchanged. Cells name observable UC/SUC paths, not generic database privileges. An intentional blank grants no operation. All behavior remains an analysis contract; no running CRUD result is claimed before P4.
+These five actor tables implement the locked portfolio under the narrow root reconciliations below. The plan is unchanged. Cells name observable UC/SUC paths, not generic database privileges. An intentional blank grants no operation. These are analysis contracts; the later P4 evidence for implemented behavior is recorded in Table P4-1 and Section 5.1.
 
 Scope restrictions apply to every cell: Customer reads/changes own records only; Kitchen staff work only at their hub (BR-26); Shipper sees delivery contact and the saved address snapshot and payment method/state/cash due only (BR-12/25), never passport details; Admin reads authorized account/history data. UserAccount Read SUC-01 in each actor table means own authentication/role context only, with credential verification internal: it grants neither an account-list endpoint nor access to password hashes. Address UC-02 is the saved Order address snapshot, not permission to edit or browse live addresses.
 
@@ -290,4 +290,4 @@ Not persisted: Quote, ReportFilter, report rows and receipt (computed views). No
 | `delivery` | Delivery |
 | `replacement_offer` | ReplacementOffer |
 
-All 13 schema tables are covered. Local/Tourist share Customer persistence. State/attribute differences and behavioral guards remain explicitly listed as P4 inputs; this table-coverage result does not qualify the app.
+All 13 schema tables are covered. Local/Tourist share Customer persistence. State/attribute differences and behavioral guards were recorded as P4 inputs; this table-coverage result alone does not qualify the app. See Table P4-1 and Section 5.1 for later evidence.

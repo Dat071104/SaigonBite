@@ -136,7 +136,7 @@ The CRC include lists actual collaborators from the AST-derived call/type model 
 
 ## 3.2.4 OOD with Sequence Diagram
 
-Every sequence keeps the exact SSD operation/parameter string at the actor-to-view boundary, then maps it to real blueprint/controller/domain methods. Solid arrows are calls; dashed arrows are results. Dataclass creation and property reads are distinct from business methods. No DAO or SQL appears; persistence is noted for 4.3.2.  identifies target transaction/rowcount/commit/busy behavior, not C0 success.
+Every sequence keeps the exact SSD operation/parameter string at the actor-to-view boundary, then maps it to real blueprint/controller/domain methods. Solid arrows are calls; dashed arrows are results. Dataclass creation and property reads are distinct from business methods. No DAO or SQL appears; persistence is noted for 4.3.2. The historical annotation identifies target transaction/rowcount/commit/busy behavior, not C0 success.
 
 ### viewReadyDeliveries — no parameters
 
@@ -252,7 +252,7 @@ Figure 3.2.5-J. UC-02 final design classes: Completion contact projection — Au
 
 [Editable draw.io](../../../models/UC-02/dcd_uc02_final_PartJ.drawio) · [SVG](../../../models/UC-02/dcd_uc02_final_PartJ.svg) · [Generator](../../../models/UC-02/dcd_uc02_final_PartJ.py) · [Data](../../../models/UC-02/dcd_uc02_final_PartJ.json)
 
-Every received sequence method appears on its actual receiver in the final DCD: blueprint routes, DeliveryController/BaseController helpers, controllers.common functions, domain move_to/refund behavior and controller value roles. The operation-specific P4 targets remain ; the final DCD does not imply those behaviors already pass at C0.
+Every received sequence method appears on its actual receiver in the final DCD: blueprint routes, DeliveryController/BaseController helpers, controllers.common functions, domain move_to/refund behavior and controller value roles. The operation-specific P4 targets describe C0 history; the final DCD does not imply those behaviors already passed at C0. Subsequent evidence is in Table P4-1.
 
 ## Integration repair evidence
 

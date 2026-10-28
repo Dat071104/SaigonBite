@@ -234,6 +234,6 @@ Figure 3.6.5I. UC-06 final projection 9 — Author: 722I0004 · AI-assisted (Cod
 
 Figure 3.6.5J. UC-06 final projection 10 — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
 
- design target, not yet in code at C0 (see the operation-specific P4 input in the figure and `operation_realisation.csv`). Shared busy/commit/rowcount requirements are P2-S13/P3-S03 targets; no runtime correctness is asserted. Native draw.io editing and final DOCX/PDF placement remain UNTESTED.
+The historical design target was not yet in code at C0 (see the operation-specific P4 input in the figure and `operation_realisation.csv`). Shared busy/commit/rowcount requirements are P2-S13/P3-S03 targets; no runtime correctness is asserted. Native draw.io editing and final DOCX/PDF placement remain UNTESTED.
 
 Integration maintenance (Author: 722I0004 · AI-assisted (Codex)): native draw.io text now has explicit actual font sizes and bold styles matching the SVG/PNG labels: 18 px minimum at 230 mm for DCDs and 23 px minimum at 170 mm for sequences. Native editing remains UNTESTED. The diagrams retain historical C0 target marks; Table P4-1 records subsequent status and scoped evidence. The canonical association-class classification of HubMenuItem and the approved logical MenuController → HubMenuItem persistence responsibility are reflected in the regenerated projections; this is mediated by MenuDAO, not a direct dataclass method call.

@@ -407,4 +407,4 @@ Figure 3.5.5.R12. UC-05 final navigation / multiplicities — Author: 722I0004 �
 
 All figures require **230 mm landscape** placement: 24 px / 1600 px × 230 mm × 72 / 25.4 = **9.78 pt**. Split parts name their mutual continuation. Native draw.io editing and final DOCX/PDF placement remain **UNTESTED**.
 
- design target, not yet in code at C0 (see the method-specific P4 inputs in the class tables and operation table). MATCH means Static correspondence only. Sources: locked plan §§2–5/P3/P4/7.3/10–12; primary report template and marking extracts; Phase 2 descriptions, operation catalogue/membership/register and state/domain models; C0 AST inventory and shared design model.
+The historical design target was not yet in code at C0 (see the method-specific P4 inputs in the class tables and operation table). MATCH means Static correspondence only. Sources: locked plan §§2–5/P3/P4/7.3/10–12; primary report template and marking extracts; Phase 2 descriptions, operation catalogue/membership/register and state/domain models; C0 AST inventory and shared design model.
