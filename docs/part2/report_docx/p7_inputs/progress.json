@@ -1,13 +1,13 @@
 {
   "phase": "P7 Stage 1",
-  "status": "B7_STATIC_PASS_DOCX_NEXT",
+  "status": "CHUNK_5_DOCX_AND_PARITY_STATIC_PASS",
   "entry_head": "97574bd4a6834978978e0b6bdb16ca7c6a642d52",
   "branch": "part2",
   "entry_clean": true,
   "runtime_diff_252ada1": "empty",
   "entry_pytest": "928 passed in 61.52s; Part2/notes/P7/entry_pytest.txt",
   "owner_facts": "Part2/notes/P7/owner_facts.md",
-  "next": "Chunk 5: fill template copy, structural checks and parity; no PDF",
+  "next": "Chunk 6 B8 package and B9 local commit; do not compile PDF",
   "tag_links": "v0.9-part2 links resolve only after Stage 2 push",
   "stage2": "NOT STARTED",
   "pdf": "NOT PRODUCED",
@@ -63,9 +63,10 @@
     "B7 ran twice: 150 input paths and 607 figures exist; 613 unique labels and 325 references resolve; environment/brace and basic special-character checks pass; heading coverage only, exact order not proven",
     "B7 FAIL: legitimate PENDING state conflicts with literal sentinel rule; 122 figure placements under 9pt estimate. No compile/PDF.",
     "WIP commit 7258f49 preserves draft and failure evidence",
-    "28/10 owner approved application PENDING states and readability exceptions; corrected three generated CRUD headings, B7 static checks PASS; no rendering or PDF"
+    "28/10 owner approved application PENDING states and readability exceptions; corrected three generated CRUD headings, B7 static checks PASS; no rendering or PDF",
+    "Chunk 5: template-based DOCX, 607 original PNG hashes, 377 PAGEREF targets, 87 headings, 16 excerpts, 30 test rows, 424 tables and numeric parity pass; no rendering/PDF."
   ],
-  "caution": "B7 static PASS with owner-approved readability exceptions; actual layout remains unrendered. Tag links resolve after Stage 2 push.",
+  "caution": "DOCX and LaTeX pass structural/parity checks; rendered layout and Word field updates are unverified until Stage 2; 12 model readability exceptions retained.",
   "resume_authorized": "Dat, 28/10/2026, after the two-attempt stop at B2",
   "previous_stop": "B2 two failed attempts on heading regex; resolved",
   "wip_commits": [

@@ -1,0 +1,12 @@
+P7 DOCX structural check: no PDF or visual rendering
+
+PASS | images resolve | 607 placements, 604 unique media, missing=[]
+PASS | original PNG bytes | 607 image hashes checked; mismatches=[]
+PASS | PAGEREF bookmarks | 377 fields; missing=[]
+PASS | settings and TOC | updateFields, no image compression and TOC field
+PASS | unresolved markers | []
+PASS | Word document opens | 96302608 bytes; sha256 eb06cfac096901a9a639c823358636b40bdd25350b25b69669abea6e52b71e98
+PASS | code excerpts and tag links | 16 excerpts matched; missing=[]; 16 tag links (available after push)
+PASS | template headings | expected 87, actual 87, mismatch=[]
+
+OVERALL: PASS
