@@ -1,0 +1,178 @@
+[
+  {
+    "uc": "UC-01",
+    "operation": "OP-01",
+    "class": "PlaceOrderController",
+    "method": "confirm_order",
+    "path": "saigonbite/business/controllers/place_order_controller.py",
+    "start": 104,
+    "end": 115,
+    "source_sha256": "84260e4597fbd8a7198963813e3c1a626d9670b90261052375d54f2017b7c80c",
+    "excerpt_sha256": "6927039f78544b2646c76be4502a15c823430b284d9560d0aad13d00f0068411"
+  },
+  {
+    "uc": "UC-01",
+    "operation": "OP-01",
+    "class": "Order",
+    "method": "place",
+    "path": "saigonbite/business/domain/models.py",
+    "start": 323,
+    "end": 330,
+    "source_sha256": "4b4d301ef96a6e1e183bc8b7d736a263748363790a4f92ed261c626328f185ea",
+    "excerpt_sha256": "28b60033055f284edf8a78742fd7fa6baabe3fe0f71c3d8e5a4565186db5ae66"
+  },
+  {
+    "uc": "UC-01",
+    "operation": "OP-01",
+    "class": "OrderDAO",
+    "method": "insert",
+    "path": "saigonbite/data_access/order_dao.py",
+    "start": 22,
+    "end": 33,
+    "source_sha256": "4c4f3633c1c4e44bf12585908b0ea612a51d42f8de810eb6d43d6228e91e1372",
+    "excerpt_sha256": "a319148426bebd356ba0b2233ec413374c4bb7fc9d6b25b943cba7a318646e32"
+  },
+  {
+    "uc": "UC-02",
+    "operation": "OP-10",
+    "class": "DeliveryController",
+    "method": "pick_up",
+    "path": "saigonbite/business/controllers/delivery_controller.py",
+    "start": 79,
+    "end": 88,
+    "source_sha256": "8366688d9237fdc6a78e17f8966b1015f31be4f88dbdaf33089c98fec9f65849",
+    "excerpt_sha256": "2dc6eaacd16d1298f31526b4f3eebec8ed729741b9d58d1287aa28705f11dfe0"
+  },
+  {
+    "uc": "UC-02",
+    "operation": "OP-10",
+    "class": "Order",
+    "method": "move_to",
+    "path": "saigonbite/business/domain/models.py",
+    "start": 336,
+    "end": 338,
+    "source_sha256": "4b4d301ef96a6e1e183bc8b7d736a263748363790a4f92ed261c626328f185ea",
+    "excerpt_sha256": "34e0713e987e3b7e56d7657a41d1c8a061178cbbd3c716b332134bf1b646f357"
+  },
+  {
+    "uc": "UC-02",
+    "operation": "OP-10",
+    "class": "DeliveryDAO",
+    "method": "take",
+    "path": "saigonbite/data_access/delivery_dao.py",
+    "start": 49,
+    "end": 52,
+    "source_sha256": "84e004d834805f408f6fb7358a3550561914f4cc694b7ed1ff19258dfa98f612",
+    "excerpt_sha256": "a2d12b8421e0aaad78b8961d1c9b2960273f0812b187d704b6bb3ce076a5d34e"
+  },
+  {
+    "uc": "UC-03",
+    "operation": "OP-36",
+    "class": "HubController",
+    "method": "archive_hub",
+    "path": "saigonbite/business/controllers/hub_controller.py",
+    "start": 91,
+    "end": 102,
+    "source_sha256": "aa07883633f2ce140f58c1c1acfaad1b06d965b7a2982cf70d09f2f2806af80f",
+    "excerpt_sha256": "499844d581d0fc68d88ba0f81edcac0ac69d1e406133de68d1e80fcc16b77f84"
+  },
+  {
+    "uc": "UC-03",
+    "operation": "OP-36",
+    "class": "HubDAO",
+    "method": "archive",
+    "path": "saigonbite/data_access/hub_dao.py",
+    "start": 67,
+    "end": 69,
+    "source_sha256": "b0433418965bb98218b9279c01e476d75bb4f206f64cbc4b825c0236f64401ef",
+    "excerpt_sha256": "be569cf5dd3be567110fa4308d3f0e937b98f5498b58719132ef3439e316192d"
+  },
+  {
+    "uc": "UC-04",
+    "operation": "OP-26",
+    "class": "ReportController",
+    "method": "sales_report",
+    "path": "saigonbite/business/controllers/report_controller.py",
+    "start": 136,
+    "end": 147,
+    "source_sha256": "4f56c6a27a3895c335702c5b212053e7296695a8589cda86967d006261cb7846",
+    "excerpt_sha256": "7e5abfd27043ec6f28972a5708e9e478d67fef9664c745104164872916c565bc"
+  },
+  {
+    "uc": "UC-04",
+    "operation": "OP-26",
+    "class": "SalesRow",
+    "method": "add",
+    "path": "saigonbite/business/controllers/report_controller.py",
+    "start": 57,
+    "end": 58,
+    "source_sha256": "4f56c6a27a3895c335702c5b212053e7296695a8589cda86967d006261cb7846",
+    "excerpt_sha256": "486bcf762d65c7de0d328b7ff4182a0f5b4cc5a686eaf59e55474396c24950f6"
+  },
+  {
+    "uc": "UC-04",
+    "operation": "OP-26",
+    "class": "ReportDAO",
+    "method": "sales_by_hub",
+    "path": "saigonbite/data_access/report_dao.py",
+    "start": 33,
+    "end": 44,
+    "source_sha256": "1aa60f0b067d28739016759121ab44123b66f9c02e4694b50351269c093d4d39",
+    "excerpt_sha256": "7e6103106e1f59e86eac898a2b352cc95aee8d414c5f88f2a433e4558386ee92"
+  },
+  {
+    "uc": "UC-05",
+    "operation": "OP-03",
+    "class": "KitchenController",
+    "method": "reject_order",
+    "path": "saigonbite/business/controllers/kitchen_controller.py",
+    "start": 95,
+    "end": 106,
+    "source_sha256": "fb147e16daebcd75fb05c4476478f9bbd7f334012494b6723691f43af3954b2b",
+    "excerpt_sha256": "37605e7858e15d9a1372784a4e1abc6736d197ba0b8649e20e8130e73fe2ab56"
+  },
+  {
+    "uc": "UC-05",
+    "operation": "OP-03",
+    "class": "Payment",
+    "method": "release_for_unfulfilled_order",
+    "path": "saigonbite/business/domain/models.py",
+    "start": 282,
+    "end": 283,
+    "source_sha256": "4b4d301ef96a6e1e183bc8b7d736a263748363790a4f92ed261c626328f185ea",
+    "excerpt_sha256": "2d9985963ad0848b4c1cd73183bd80d695b28aecbe110e7d5f6b0805802752ca"
+  },
+  {
+    "uc": "UC-05",
+    "operation": "OP-03",
+    "class": "PaymentDAO",
+    "method": "set_amounts",
+    "path": "saigonbite/data_access/payment_dao.py",
+    "start": 41,
+    "end": 43,
+    "source_sha256": "1e29ee1c9153dd6e248a1e326f8a63136e079be5eacf5ef9a5b6338f493fd8f9",
+    "excerpt_sha256": "115c04614aeeb297813d782484359febc48747f0ae0732999d759a3785ebbc60"
+  },
+  {
+    "uc": "UC-06",
+    "operation": "OP-41",
+    "class": "MenuController",
+    "method": "update_item",
+    "path": "saigonbite/business/controllers/menu_controller.py",
+    "start": 111,
+    "end": 122,
+    "source_sha256": "44554928071b8c1d5492d5d82e641fc28c4d322bb8058539b5999855a271f056",
+    "excerpt_sha256": "a6f4ce1ba94bb187d4a8a69d0345b942c0f6504b31546fd9f1bcec50fd3d7586"
+  },
+  {
+    "uc": "UC-06",
+    "operation": "OP-41",
+    "class": "MenuDAO",
+    "method": "update_item",
+    "path": "saigonbite/data_access/menu_dao.py",
+    "start": 68,
+    "end": 71,
+    "source_sha256": "62681028846c46b3f55e30bed239ee6022ce2ab07c95ab70f9195890224a10ef",
+    "excerpt_sha256": "ec8f44ded3080a1bd2e0da8e1d0a1fb27a56b09635b9e4f6a7d2c0e49ab5cd5c"
+  }
+]

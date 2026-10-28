@@ -74,9 +74,9 @@ Each criterion names a measurement method. Results remain unmeasured until the l
 
 | Item | Release boundary | Reason and source | A-ID |
 |---|---|---|---|
-| Complaint handling and staff refund decision | Deferred from this release; retained in the business process as a future item. | L3 asks whether these may be deferred; the case lists them among current features. L3 has no answer recorded, so this is the plan default, not lecturer approval. | A-09 |
-| Refund payout | No path pays out an amount owed; the release records REFUND_PENDING and the owed amount only. | Deferred by L3 and Plan §3.3 item 10; no REFUNDED transition or “refunded” claim. L3 remains unanswered. | A-09 |
-| Food and delivery rating | Deferred from this release. | L3 asks whether rating may be deferred; Case p.1 identifies rating as a feature. L3 has no answer recorded, so no approval is implied. | A-09 |
+| Complaint handling and staff refund decision | Deferred from this release; retained in the business process as a future item. | Proposal A-09 / L3 deferred these features; L3 was accepted at the Part 1 review (no change requested). | A-09 |
+| Refund payout | No path pays out an amount owed; the release records REFUND_PENDING and the owed amount only. | Deferred by L3 and Plan §3.3 item 10; no REFUNDED transition or “refunded” claim. L3 was accepted at the Part 1 review (no change requested). | A-09 |
+| Food and delivery rating | Deferred from this release. | Proposal A-09 / L3 deferred rating; L3 was accepted at the Part 1 review (no change requested). | A-09 |
 | Loyalty points | Future scope. | Case p.2 future-feature paragraph. No assumption ID is assigned in the plan or carried Part 1 log. | None assigned |
 | Subscription meal plans | Future scope. | Case p.2 future-feature paragraph. No assumption ID is assigned in the plan or carried Part 1 log. | None assigned |
 | Group orders | Future scope. | Case p.2 future-feature paragraph. No assumption ID is assigned in the plan or carried Part 1 log. | None assigned |

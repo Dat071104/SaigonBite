@@ -1,3 +1,4 @@
+# Selection pass only; rerunning resets manual placement, contact-sheet records and readability estimates.
 from pathlib import Path
 import csv,json,re,hashlib
 from PIL import Image
@@ -46,5 +47,5 @@ fields=['record_type','fig_id','section','source_png','drawio_source','author','
 out=repo/'docs/part2/latex/figure_manifest.csv'
 with out.open('w',encoding='utf-8-sig',newline='') as f:
  w=csv.DictWriter(f,fieldnames=fields);w.writeheader();w.writerows(rows)
-print('placed',sum(r['record_type']=='figure' for r in rows),'unique PNGs',len(seen),'aliases',sum(r['record_type']=='alias' for r in rows));print('without matched visual record',sum(r['record_type']=='figure' and r['prior_visual_record']=='NOT YET RECONCILED' for r in rows));print('without estimated font or below 9pt',sum(r['recordability']!='PASS estimate' for r in []))
+print('placed',sum(r['record_type']=='figure' for r in rows),'unique PNGs',len(seen),'aliases',sum(r['record_type']=='alias' for r in rows));print('without matched visual record',sum(r['record_type']=='figure' and r['prior_visual_record']=='NOT YET RECONCILED' for r in rows));print('without estimated font or below 9pt',sum(r['record_type']=='figure' and r['readability']!='PASS estimate' for r in rows))
 print('appendices', {k:len(v) for k,v in appendix.items()})

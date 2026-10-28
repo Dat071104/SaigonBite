@@ -2,7 +2,7 @@
 
 Author: 722I0004 · AI-assisted (Codex; evidence from Claude Sonnet 5.5 for P5)
 
-The integration walkthrough connects the customer, kitchen and shipper paths through the same order. On 27 October 2026, the local P5 browser run at commit `252ada1` passed 60 of 60 recorded steps across eight scenarios. In its main path, customer order 11 was visible at its own kitchen; access from another hub was refused. The kitchen and customer then exercised a replacement, and the delivery path continued through pickup and delivery. Separate browser profiles represented the roles. Screenshots and the checks for each step are in `docs/part2/test_report/integration_2026-10-27/README.md` and the S3–S5 folders. This result is a browser demonstration, not proof that all possible business cases were exercised.
+The integration walkthrough connects the customer, kitchen and shipper paths through the same order. On 27 October 2026, the local P5 browser run at commit `252ada1` passed 60 of 60 recorded steps across seven scenarios and a CSRF check. In its main path, customer order 11 was visible at its own kitchen; access from another hub was refused. The kitchen and customer then exercised a replacement, and the delivery path continued through pickup and delivery. Separate browser profiles represented the roles. Screenshots and the checks for each step are in `docs/part2/test_report/integration_2026-10-27/README.md` and the S3–S5 folders. This result is a browser demonstration, not proof that all possible business cases were exercised.
 
 ![Local kitchen board showing the customer order](../test_report/integration_2026-10-27/S3/S3_3.2_kitchen.png)
 

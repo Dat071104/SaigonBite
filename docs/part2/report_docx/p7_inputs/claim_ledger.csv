@@ -1,0 +1,19 @@
+﻿claim,kind,evidence,verified
+The local automated suite contains 928 passing cases at 252ada1,tested,SaigonBite/docs/part2/test_report/2026-10-27_252ada1.xml,yes: XML testcase count and zero failure/error/skip
+The P7 entry rerun at 97574bd passed 928,tested,Part2/notes/P7/entry_pytest.txt,yes: recorded terminal output
+P5 local browser run passed 60 of 60 steps across seven scenarios and a CSRF check,demonstrated,SaigonBite/docs/part2/test_report/integration_2026-10-27/README.md,yes: P5 final t4 record
+The P6 adapted S3–S5 deployment check passed 22 of 22 steps,demonstrated,SaigonBite/docs/part2/test_report/deploy_2026-10-27/scenarios/results.json,yes: 22 records all pass
+P6 used existing order 9 and later separate checks for other orders,demonstrated with limitation,SaigonBite/docs/part2/test_report/deploy_2026-10-27/README.md,yes: deployment evidence and 4.3.6
+The report maps 30 PC and MG anchors to named test nodes,tested mapping,SaigonBite/docs/part2/test_report/p7_2026-10-28/test_cases.csv,yes: 30 register rows and JUnit node reconciliation
+The app was deployed at saigonbite.io.vn and HTTPS and persistence were checked,deployed historical,Part2/notes/P6D/final_receipt.json,yes: P6D receipt; no present availability claim
+Payment is a team-built online simulator; refund owed is not a payout,scope limitation,SaigonBite/docs/part2/report/V_5-3_demonstration.md; Part2/notes/P7/owner_facts.md,yes: project scope and owner facts
+District-centroid distance is an approximation,scope limitation,SaigonBite/docs/part2/report/I_1-4_narrative_assumptions.md,yes: documented assumption
+"Complaint/refund decision, actual refund payout and rating remain deferred",scope limitation,Part2/notes/P7/owner_facts.md; SaigonBite/docs/part2/report/I_1-4_narrative_assumptions.md,yes: L3 and proposal A-09
+The deployment uses one VM and SQLite,architecture,SaigonBite/deploy/RUNBOOK.md; SaigonBite/docs/part2/report/V_5-2_deployment.md,yes: deployment record
+"Requirement 9 allows brainstorming, language refinement and explaining concepts; AI was also used for application code",policy and project record,SaigonBite/docs/part2/ai_usage_log.md; Part2/codex/P7_PROMPT.md A5,yes: stated course rule and log
+L6 remains open because AI-generated application code was not declared in the Part 1 log,owner fact,Part2/notes/P7/owner_facts.md,yes: Dat 28 October correction
+Dat intends to record the demo; video is not yet available,owner fact,Part2/notes/P7/owner_facts.md; Part2/content/links.json,yes: owner statement; link pending
+"L2-L5 accepted at Part 1 review without change request, based on proposal; L1 did not require approval",owner fact,Part2/notes/P7/owner_facts.md,yes: Dat 28 October correction
+Release tag v0.9-part2 is planned and has not been pushed,release state,Part2/content/links.json; Part2/notes/P7/progress.json,yes: pending Stage 2 release; not claimed available
+Figures include documented estimated readability exceptions,limitation,Part2/notes/P7/diagram_issues.md; SaigonBite/docs/part2/latex/figure_manifest.csv,yes: estimate; final placement unverified
+The trial expiry date recorded in P6D is 21 January 2027,operational planning,Part2/notes/P6D/final_receipt.json,yes: recorded trial date; no live billing assertion

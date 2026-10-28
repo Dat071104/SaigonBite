@@ -1,3 +1,4 @@
+# Historical transformation record only: reads HEAD and does not include subsequent corrections; do not rerun over current sources.
 from pathlib import Path
 import csv,re,collections,json,subprocess
 base=Path(r'D:\RAD\FINAL');root=base/'SaigonBite';reports=root/'docs/part2/report';r=list(csv.DictReader((root/'docs/part2/implementation/p4_design_resolution.csv').open(encoding='utf-8-sig',newline='')));byop=collections.defaultdict(list);byel=collections.defaultdict(list)

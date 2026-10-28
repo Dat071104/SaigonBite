@@ -1,0 +1,9 @@
+# Executive Summary (0.25 point)
+
+Author: 722I0004 · AI-assisted (Codex)
+
+SaigonBite is a food-ordering demonstration that connects customers, kitchen staff, shippers and administrators through a shared order. The six main use cases cover ordering, delivery, hub maintenance, management reports, kitchen decisions and menu maintenance. The report traces those workflows from business requirements through design, implementation and tests.
+
+At the recorded runtime revision `252ada1`, the automated suite passed 928 tests. A local browser walkthrough passed 60 of 60 recorded steps across seven scenarios and a CSRF check. The later deployed walkthrough passed 22 of 22 steps in an adapted scenario using an existing order; it was not an exact replay of the local walkthrough. These results describe the recorded checks, not every possible production condition.
+
+The deployed demonstration uses one VM and SQLite. Online payment is a simulator; a refund amount displayed as owed is not an actual payout. Distance uses an approximation, and complaint handling, refund payout and rating remain deferred. The team’s outstanding course clarification concerns AI-assisted application code: the Part 1 AI log did not declare it, and L6 remains open.

@@ -126,3 +126,7 @@ Codex reviewed the owner-updated chunk and figure-readability rules, saved the p
 ## 28 October 2026 — P7 figure selection and status refresh (Codex)
 
 Codex applied Dat’s figure-placement decision, selected existing PNGs, produced appendix figure and page-reference drafts, reviewed selected figures through contact sheets and ten page simulations, and generated P4 status inputs from the resolution register. The draft manifest records image hashes and evidence, plus image-size exceptions; it does not prove final Word or PDF readability. The 12 dependency-policy entries refer to static policy tests, not runtime tests. Scripts and notes are under `docs/part2/report_docx/p7_inputs/` and `Part2/notes/P7/`. Full prompts and outputs remain in the Codex session.
+
+## 28 October 2026 — P7 new sections and claim ledger (Codex)
+
+Codex drafted the six-use-case method extracts, reviewer reproduction steps, contribution statement, AI log, references, executive summary and conclusions. Sixteen source excerpts were checked byte for byte against their source ranges; 30 test rows were checked against the recorded CSV; the claim ledger separates recorded results, limitations and owner facts. The release tag and demo video remain pending, and the figure-readability exceptions remain open. Full prompts and outputs are retained in the Codex session and the P7 notes.
