@@ -258,7 +258,7 @@ Every received sequence method appears on its actual receiver in the final DCD: 
 
 Author: 722I0004 · AI-assisted (Codex)
 
-The diagrams and typed metadata were refreshed against the corrected root-owned shared model. Allowed layered dependencies are drawn; actual upward DAO-to-domain imports are retained only as the static P4.9 architecture finding in report 4.2, not as permitted arrows. Shared transaction targets P2-S13/P3-S03 remain target behavior for guarded writes, commit failures and busy handling. Read paths remain read-only. Native draw.io XML and connected edge endpoints are structurally checked; native-app editing and final report placement remain UNTESTED.
+The diagrams and typed metadata were refreshed against the corrected root-owned shared model. Allowed layered dependencies are drawn; the twelve retained dependency-policy entries are documented as static policy checks in report 4.2 and Table P4-1, not as runtime tests. P2-S13/P3-S03 identified C0 targets for guarded writes, commit failures and busy handling; their final scoped evidence is recorded in Table P4-1. Read paths remain read-only. Native draw.io XML and connected edge endpoints are structurally checked; native-app editing and final report placement remain UNTESTED.
 
 DeliveryController calls the Delivery and Payment domain receivers. The local variable delivery is resolved to Delivery; it is not an upward call to the delivery blueprint.
 

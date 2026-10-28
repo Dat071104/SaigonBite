@@ -34,7 +34,7 @@ Figure 3.4.2.ii-A. UC-04 controller/value roles: Sales value roles continue in P
 
 ![UC-04 controller/value roles: Part A contains authorization/filter helpers; F-03/F-09 design targets at C0.](../../../models/UC-04/dcd_uc04_controller_PartB.png)
 
-Figure 3.4.2.ii-B. UC-04 controller/value roles: Part A contains authorization/filter helpers; F-03/F-09 remain † targets. — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.4.2.ii-B. UC-04 controller/value roles: Part A contains authorization/filter helpers; F-03/F-09 are historical C0 targets. — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
 
 [Editable draw.io](../../../models/UC-04/dcd_uc04_controller_PartB.drawio) · [SVG](../../../models/UC-04/dcd_uc04_controller_PartB.svg) · [Generator](../../../models/UC-04/dcd_uc04_controller_PartB.py) · [Data](../../../models/UC-04/dcd_uc04_controller_PartB.json)
 
@@ -244,6 +244,6 @@ No Report state is drawn. Filters, report rows and returned reports are non-pers
 
 Author: 722I0004 · AI-assisted (Codex)
 
-The diagrams and typed metadata were refreshed against the corrected root-owned shared model. Allowed layered dependencies are drawn; actual upward DAO-to-domain imports are retained only as the static P4.9 architecture finding in report 4.2, not as permitted arrows. Shared transaction targets P2-S13/P3-S03 remain target behavior for guarded writes, commit failures and busy handling. Read paths remain read-only. Native draw.io XML and connected edge endpoints are structurally checked; native-app editing and final report placement remain UNTESTED.
+The diagrams and typed metadata were refreshed against the corrected root-owned shared model. Allowed layered dependencies are drawn; the twelve retained dependency-policy entries are documented as static policy checks in report 4.2 and Table P4-1, not as runtime tests. P2-S13/P3-S03 identified C0 targets for guarded writes, commit failures and busy handling; their final scoped evidence is recorded in Table P4-1. Read paths remain read-only. Native draw.io XML and connected edge endpoints are structurally checked; native-app editing and final report placement remain UNTESTED.
 
 Independent review repair (R1–R4): the external SSD request now precedes two actual guarded operands. Each accepted path retains its named success response; refusal/controlled-failure responses are drawn inside the alternate operand, with an optional controller response only when the controller was invoked. Synchronous calls use visible closed filled heads; all replies use dashed open heads. Reports remain read-only, and empty/zero-denominator data remains an accepted result.

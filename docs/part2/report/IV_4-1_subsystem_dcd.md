@@ -2,7 +2,7 @@
 
 Author: 722I0004 · AI-assisted (Codex)
 
-The subsystem design joins the six main use cases and their supporting account, tracking, kitchen, voucher, user-administration and archive responsibilities. It is a set of filtered views of [the shared design model](../../../models/shared/design_model.json), at committed application baseline `C0 = 45ac76221b0a103174c7c01d17577e6e49cfd665`. Its declarations describe static correspondence and explicitly marked design targets. They do not establish application execution or completion of P4.
+The subsystem design joins the six main use cases and their supporting account, tracking, kitchen, voucher, user-administration and archive responsibilities. It is a set of filtered views of [the shared design model](../../../models/shared/design_model.json), at committed application baseline `C0 = 45ac76221b0a103174c7c01d17577e6e49cfd665`. Its declarations describe static correspondence and design targets at C0; later P4 status and scoped evidence are recorded in Table P4-1.
 
 The 68 continued parts cover all **104 canonical class/module roles**, all **365 declared methods** and **278 displayed attributes**. Every method and every displayed attribute has one full-detail occurrence. Reference boxes in relationship parts repeat only the canonical name and stereotype; they do not repeat full member lists. No framework, exception or module role in the shared model is silently excluded. Root-annotated domain foreign-key scalars are omitted in favor of the named associations; their physical mapping remains in section 4.3.1.
 
