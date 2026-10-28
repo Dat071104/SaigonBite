@@ -1,0 +1,69 @@
+\subsubsection*{3.2.4 OOD with Sequence Diagram}
+\addcontentsline{toc}{subsubsection}{3.2.4 OOD with Sequence Diagram}
+\pdfbookmark[2]{3.2.4 OOD with Sequence Diagram}{p7h77}
+Every sequence keeps the exact SSD operation/parameter string at the actor-to-view boundary, then maps it to real blueprint/controller/domain methods. Solid arrows are calls; dashed arrows are results. Dataclass creation and property reads are distinct from business methods. No DAO or SQL appears; persistence is noted for 4.3.2. The historical annotation identifies target transaction/rowcount/commit/busy behavior, not C0 success.
+
+\textbf{viewReadyDeliveries --- no parameters}
+
+OP-21 viewReadyDeliveries() --- models/UC-02/ssd\_uc02\_PartA.drawio\#M01
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-02/seq_uc02_viewReadyDeliveries.png}}
+\caption{Figure 3.2.4.1. UC-02 design sequence: viewReadyDeliveries --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0093}
+\end{figure}
+\end{landscape}
+Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+
+\textbf{viewDelivery --- orderId}
+
+OP-22 viewDelivery(orderId) --- models/UC-02/ssd\_uc02\_PartA.drawio\#M02
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-02/seq_uc02_viewDelivery.png}}
+\caption{Figure 3.2.4.2. UC-02 design sequence: viewDelivery --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0094}
+\end{figure}
+\end{landscape}
+Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+
+\textbf{takeDelivery --- orderId}
+
+OP-10 takeDelivery(orderId) --- models/UC-02/ssd\_uc02\_PartA.drawio\#M03
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-02/seq_uc02_takeDelivery.png}}
+\caption{Figure 3.2.4.3. UC-02 design sequence: takeDelivery --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0095}
+\end{figure}
+\end{landscape}
+Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+
+\textbf{confirmDelivered --- orderId, cashCollected?}
+
+OP-11 confirmDelivered(orderId, cashCollected?) --- models/UC-02/ssd\_uc02\_PartB.drawio\#M04
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-02/seq_uc02_confirmDelivered.png}}
+\caption{Figure 3.2.4.4. UC-02 design sequence: confirmDelivered --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0096}
+\end{figure}
+\end{landscape}
+Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+
+\textbf{reportFailure --- orderId, reason}
+
+OP-12 reportFailure(orderId, reason) --- models/UC-02/ssd\_uc02\_PartB.drawio\#M05
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-02/seq_uc02_reportFailure.png}}
+\caption{Figure 3.2.4.5. UC-02 design sequence: reportFailure --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0097}
+\end{figure}
+\end{landscape}
+Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data

@@ -1,0 +1,30 @@
+\subsubsection*{2.1.6 Use Case Diagram}
+\addcontentsline{toc}{subsubsection}{2.1.6 Use Case Diagram}
+\pdfbookmark[2]{2.1.6 Use Case Diagram}{p7h19}
+Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
+
+Figure 2.1 is one logical system model presented in three readable views. Every view uses the same \textbf{SaigonBite system} boundary; actors remain outside it. Local customer and Tourist customer specialise Customer and inherit its participation. The five human actor roles and the explicitly labelled Payment simulator are external participants. The simulator represents the team simulation contract (BR-14/L2); it does not claim a real payment provider integration.
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/shared/use_case_diagram_PartA.png}}
+\caption{Figure 2.1A. Use case diagram: (a) ordering and customer support --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) Full size: Appendix 1, Figures A1.1--A1.3.}\label{P7-0274}
+\end{figure}
+\end{landscape}
+The views contain all six main goals with the exact names in plan \S{}2.1 and all nine supporting goals from \S{}2.2. UC-01 belongs to group (a); UC-02/05 to (b); UC-03/06 to (c); UC-04 to (d). Supporting customer/profile, preparation, availability, voucher, account and archive functions complete the scoped portfolio. Proposal ownership is recorded separately in 2.1.5; the actual author of every model here is 722I0004.
+
+The model makes only these reuse/extension claims:
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Relation & Direction and condition & Meaning \\
+\hline\endfirsthead
+Relation & Direction and condition & Meaning \\
+\hline\endhead
+\guillemotleft{}include\guillemotright{} & UC-01 \ensuremath{\rightarrow} \textbf{Validate accepted checkout} & Each attempt to create a new checkout validates the accepted full quote and business guards, including a refused creation attempt. An authorized existing-token replay returns the existing order before this validation; it does not reprice or reauthorize. This factored subgoal represents BR-01--14 and the validation part of the existing checkout operations; it is not an additional user goal, SSD operation or persistent object. \\
+\guillemotleft{}extend\guillemotright{} & \textbf{Simulate online payment} \ensuremath{\rightarrow} UC-01; \texttt{[ONLINE]}; extension point \textbf{payment authorization} & The base goal also completes through COD. The conditional simulator behaviour uses the existing \texttt{simulatorOutcome}/checkout contract (BR-14), and introduces no external network call. \\
+\guillemotleft{}extend\guillemotright{} & SUC-04 \ensuremath{\rightarrow} SUC-03; \texttt{[request cancel; state PLACED or CONFIRMED]}; extension point \textbf{order action selected} & Cancellation is an optional customer action from the own-order view. BR-15/17 still guard the actual request; seeing the action is not permission to bypass the state check. \\
+\end{longtable}
+The two named subgoals in the first view decompose UC-01; the portfolio remains \textbf{six main UCs plus nine SUCs}. Associations indicate participation, not calls or execution order. Login is a session precondition rather than an include on every business request. Preparation, availability maintenance, catalogue administration, tracking and reporting are independently initiated goals, so sequence dependencies are not represented as include arrows. Customer acceptance/decline of an offer occurs through SUC-03 and the existing replacement operations, referenced by UC-05. Complaint/refund decision, refund payout and rating appear only in the deferred-items note (L3). The current scope does record refund obligations under BR-17 and plan \S{}3.3; it does not pay them out.
+
+Editable source: \texttt{models/shared/use\_case\_diagram.drawio} contains all three pages. Each \texttt{\_PartA}/\texttt{\_PartB}/\texttt{\_PartC} has a matching \texttt{.drawio}, \texttt{.svg}, \texttt{.png}, \texttt{.json} and regeneration \texttt{.py}. The unsuffixed PNG/SVG are explicitly first-page aliases, not a complete single-page overview; use the three figures above together.

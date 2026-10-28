@@ -1,0 +1,69 @@
+\subsection*{4.2 Package Diagram for the Subsystem}
+\addcontentsline{toc}{subsection}{4.2 Package Diagram for the Subsystem}
+\pdfbookmark[1]{4.2 Package Diagram for the Subsystem}{p7h125}
+Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/shared/package_diagram.png}}
+\caption{Figure 4.2. Package architecture and C0 dependency policy --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0323}
+\end{figure}
+\end{landscape}
+The diagram shows the permitted package dependencies: presentation routes depend on controllers; controllers depend on domain objects and data access; the domain package has no outward application-layer dependency. Dashed arrows show only those permitted dependencies. The import audit beside the packages reports actual C0 violations separately, without drawing them as allowed architecture.
+
+The comparison resolves both absolute and relative \texttt{saigonbite.*} imports in all 48 inventory modules. It accounts for 392 application-internal import records: 152 permitted cross-layer imports (24 presentation\ensuremath{\rightarrow}controllers, 82 controllers\ensuremath{\rightarrow}domain, 46 controllers\ensuremath{\rightarrow}data\_access), 182 imports within a layer, 43 strict-layer violations, and 15 root-boundary imports. Imports from Flask, Flask-Login, Werkzeug, SQLite and the Python standard library are outside the application-layer comparison.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Strict C0 violation & Evidence from \texttt{code\_inventory.json} \\
+\hline\endfirsthead
+Strict C0 violation & Evidence from \texttt{code\_inventory.json} \\
+\hline\endhead
+presentation\ensuremath{\rightarrow}business.domain: 12 imports in 7 modules & \texttt{presentation/account.py} imports \texttt{Role} and \texttt{rules}; \texttt{admin.py} imports \texttt{DiscountType} and \texttt{Role}; \texttt{auth.py} imports \texttt{Role} and \texttt{UserAccount}; \texttt{delivery.py}, \texttt{kitchen.py} and \texttt{reports.py} import \texttt{Role}; \texttt{order.py} imports \texttt{OnlineOption}, \texttt{PaymentMethod} and \texttt{Role}. \\
+presentation\ensuremath{\rightarrow}data\_access: 3 imports in 2 modules & \texttt{presentation/db.py} imports \texttt{connect}; \texttt{presentation/order.py} imports \texttt{APPROVE} and \texttt{DECLINE}. \\
+data\_access\ensuremath{\rightarrow}business.domain: 28 imports in 10 modules & \texttt{customer\_dao.py}, \texttt{delivery\_dao.py}, \texttt{hub\_dao.py}, \texttt{menu\_dao.py}, \texttt{offer\_dao.py}, \texttt{order\_dao.py}, \texttt{payment\_dao.py}, \texttt{payment\_gateway.py}, \texttt{user\_dao.py} and \texttt{voucher\_dao.py} import domain objects, factories, enums or rules for row materialisation and gateway typing. \\
+\end{longtable}
+The remaining 15 records sit at the composition boundary: \texttt{saigonbite/\_\_init\_\_.py} imports 3 controller error types and 10 presentation modules to assemble the application; \texttt{app.py} imports \texttt{create\_app}; and \texttt{presentation/auth.py} imports the root-level \texttt{saigonbite.NAV} constant. The first two are bootstrap wiring outside the four named packages. The last is a direct view-to-root import and is called out separately because it does not match the strict package graph.
+
+\textbf{Historical disposition --- accepted as P3-S04 / P4.9.} A strict-layer boundary decision is required before treating the package graph as satisfied at C0. Resolve the 12 presentation\ensuremath{\rightarrow}domain imports and 3 presentation\ensuremath{\rightarrow}data\_access imports at the presentation/controller boundary, decide whether DAO-to-domain materialisation receives an explicit persistence-mapper exception or moves behind a lower-level mapping boundary, and resolve the \texttt{NAV} root import. No exception or architectural change is adopted in P3. The shared annotations account for all 44 finding records across 23 module pairs (43 cross-layer records plus the \texttt{NAV} root import). These are static policy findings; they do not establish a runtime failure. The figure shows three permitted arrows across four packages and keeps observed violations visible.
+
+Evidence is Static at C0 \texttt{45ac76221b0a103174c7c01d17577e6e49cfd665}. The machine-readable import audit is in \texttt{models/shared/package\_diagram.json}. No application import, execution, test, or runtime qualification was performed.
+
+\textbf{Effective P4 amendment --- 26 October 2026}
+
+\textbf{SB-P4-B02-20261026 is adopted by Dat's actual continuation message as a bounded team implementation decision, not lecturer/client approval.} The locked plan and original C0/P3 model remain unchanged. The preceding graph/audit is historical C0 evidence, not a complete current dependency graph. Eleven presentation pairs were removed in P4; the remaining mapper/adapter dependencies are retained and explicitly dispositioned, not removed.
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{docs/part2/implementation/architecture_amendment/package_4_2A.png}}
+\caption{Figure 4.2A. Current P4 amendment --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). Solid open arrows show runtime responsibilities; the dashed open arrow admits only the exact policy entries below. Native draw.io editing remains UNTESTED.}\label{P7-0324}
+\end{figure}
+\end{landscape}
+The effective current model is the frozen P3 class/method model plus the reproducible dependency overlay. The model hash is recorded in the evidence index. Frozen DCDs are class/member/responsibility slices, not complete current import graphs; Figure 4.2A and \texttt{dependency\_overlay.json} supply the named current dependency projection without rewriting any P3 signatures/statuses/PC/MG identities.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.2300\linewidth}>{\raggedright\arraybackslash}p{0.2300\linewidth}>{\raggedright\arraybackslash}p{0.2300\linewidth}>{\raggedright\arraybackslash}p{0.2300\linewidth}}
+Source (\texttt{saigonbite.data\_access.*}) & Target & Exact symbols & Permitted use \\
+\hline\endfirsthead
+Source (\texttt{saigonbite.data\_access.*}) & Target & Exact symbols & Permitted use \\
+\hline\endhead
+customer\_dao & \texttt{saigonbite.business.domain} & \texttt{Address}, \texttt{Customer}, \texttt{make\_customer} & Typed entity parameters/results; row-to-correct-subtype materialisation by make\_customer; address mapping and stored field serialization. \\
+delivery\_dao & \texttt{saigonbite.business.domain} & \texttt{Delivery}, \texttt{DeliveryState} & Delivery row reconstruction and enum serialization in guarded persistence predicates; no transition decision. \\
+hub\_dao & \texttt{saigonbite.business.domain} & \texttt{ACTIVE\_ORDER\_STATES}, \texttt{Hub}, \texttt{HubMenuItem}, \texttt{MenuItem} & Hub/menu row mapping; declared active-state set translated to SQL predicate values. \\
+menu\_dao & \texttt{saigonbite.business.domain} & \texttt{Brand}, \texttt{HubMenuItem}, \texttt{MenuItem} & Catalogue row/object mapping and stored persistence parameter serialization. \\
+offer\_dao & \texttt{saigonbite.business.domain} & \texttt{OfferState}, \texttt{ReplacementOffer} & Offer row reconstruction, enum serialization and guarded persistence updates; caller chooses outcome. \\
+order\_dao & \texttt{saigonbite.business.domain} & \texttt{Order}, \texttt{OrderLine}, \texttt{OrderState} & Aggregate/line row reconstruction; existing pure stored-value properties item\_subtotal/total and fields serialized; caller decides transition. \\
+payment\_dao & \texttt{saigonbite.business.domain} & \texttt{OnlineOption}, \texttt{Payment}, \texttt{PaymentMethod}, \texttt{PaymentState} & Typed payment mapping and enum/value serialization; no authorisation/refund decision. \\
+payment\_gateway & \texttt{saigonbite.business.domain} & \texttt{OnlineOption} & Existing simulator option enum contract, option.value rendering/logging; simulator is not a real provider. \\
+user\_dao & \texttt{saigonbite.business.domain} & \texttt{Role}, \texttt{UserAccount} & Account row reconstruction and role/stored-field serialization. \\
+voucher\_dao & \texttt{saigonbite.business.domain} & \texttt{DiscountType}, \texttt{Voucher} & Voucher row reconstruction and type/value serialization; no checkout discount calculation. \\
+hub\_dao & \texttt{saigonbite.business.domain.rules} & \texttt{rules} (\texttt{TERMINAL\_ORDER\_STATES} member only) & Retained-order/archive SQL predicate constants. \\
+order\_dao & \texttt{saigonbite.business.domain.rules} & \texttt{rules} (\texttt{TERMINAL\_ORDER\_STATES} member only) & Terminal SQL predicates and timestamp-column selection; caller owns transition decision. \\
+\end{longtable}
+Constructors, \texttt{make\_customer}, enum conversions and existing stored-value/property reads are admitted runtime uses, not annotation-only dependencies. \texttt{rules} is restricted to \texttt{TERMINAL\_ORDER\_STATES}; \texttt{ACTIVE\_ORDER\_STATES} is translated into SQL predicates. The simulator's \texttt{OnlineOption} dependency is an adapter enum contract, separate from row mapping. No broad data-access-to-domain permission is granted.
+
+Domain isolation, view/controller boundary, authorisation, current-state validation, orchestration and transaction ownership are unchanged. \texttt{database.immediate\_transaction} remains the infrastructure implementation of the controller-invoked context; DAOs do not own workflow commit/rollback. SQL guards and rowcounts remain defense in depth. New source/target/symbol/member/use requires explicit review and disposition; aliases/re-exports must resolve; wildcard/dynamic imports or dependency hiding are rejected. No new application-role cycle is permitted.
+
+Validation: \texttt{p4\_dependency\_policy\_audit.py} scans all actual application modules and bootstrap, resolves imports/re-exports, checks exact source/target/symbol/member sets and forbidden directions/cycles. \texttt{symbol\_use\_review.json} records each imported symbol and name-use site; \texttt{runtime\_use\_review.json} covers mapper methods including instance property/enum serialization. Whole-body semantic seals bind manually reviewed responsibility conclusions and fail closed on any unreviewed body/use, even when imports are unchanged. This conservative mechanism can reject harmless unreviewed edits; it does not prove arbitrary dynamic Python behavior. \texttt{tests/test\_p4\_dependency\_policy.py} supplies parsed-only acceptance/rejection fixtures. The current results are bound by \texttt{Part2/notes/P4\_B02\_final\_receipt.json}; no runtime qualification is inferred from this paragraph alone.
+
+The unchanged legacy P3 checker continues to account for the old strict-policy findings as Static P4 targets; a legacy PASS is consistency/accounting evidence, not the active amendment's authority. Original P4 BLOCKED receipt/report/audit and known-12 test remain historical evidence. The active policy audit independently determines current compliance. No P5/browser/deployment result or independent approval is claimed.

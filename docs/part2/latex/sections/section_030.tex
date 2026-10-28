@@ -1,0 +1,13 @@
+\textbf{2.2.2 iii.}\par
+Only Shipper and \texttt{:System} participate. M01/M02 are catalogue OP-21/22 queries; M03 is OP-10 pickup; M04/M05 are OP-11/12 terminal commands. Every request appears in the description, with session identity implicit. Dashed arrows are responses; the alternative result on a response is guarded by accepted versus refused command. The loop permits browsing/inspection again; the opt bypasses pickup when resuming an owned delivery. Part B's alt chooses successful handover versus failure. Each command rechecks guards and commits all paired facts or none.
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=170mm]{\detokenize{models/UC-02/ssd_uc02_PartA.png}}
+\caption{Figure 2.13A. UC-02 SSD: read requests and atomic pickup --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)}\label{P7-0285}
+\end{figure}
+\begin{figure}[p]
+\centering
+\includegraphics[width=170mm]{\detokenize{models/UC-02/ssd_uc02_PartB.png}}
+\caption{Figure 2.13B. UC-02 SSD: exclusive delivery completion outcomes --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)}\label{P7-0286}
+\end{figure}

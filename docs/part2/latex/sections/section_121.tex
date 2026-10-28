@@ -1,0 +1,69 @@
+\subsubsection*{3.6.4 OOD with Sequence Diagram}
+\addcontentsline{toc}{subsubsection}{3.6.4 OOD with Sequence Diagram}
+\pdfbookmark[2]{3.6.4 OOD with Sequence Diagram}{p7h121}
+Place the following sequence figures at \textbf{170 mm portrait width} (23 px minimum source text = 9.236 pt at placement). DCD sheets use \textbf{230 mm landscape width} (18 px = 9.780 pt).
+
+Each exact SSD boundary request maps to a real blueprint route adapter and controller method. The active server session supplies uid(); camelCase names map to validated Python arguments/form keys in .1. The domain objects are dataclasses: a create arrow denotes implicit construction and a note denotes state inspection; no invented domain archive/update method is called. Return labels name outcomes, not callable methods. Persistence is a note referring to 4.3.2; Section III contains no DAO lifeline or SQL. Every guard is checked again at the mutation boundary. Technical-failure operands require rollback before acknowledging a no-change outcome. The actual alt frame separates refusal, successful completion and technical failure with operand dividers. Solid filled heads denote synchronous calls; dashed open heads denote returns.
+
+The listCatalogue PartA/PartB/PartC figures preserve three distinct SSD occurrences of OP-25; they deliberately retain the same system request. Hub-filter routing may use \texttt{admin.hub\_menu(hub\_id)} instead of \texttt{admin.catalogue()}; the displayed module role remains \texttt{admin}. The wrapper and initial-availability marks record C0 targets; their final status is in Table P4-1. OP-41 current-parent context is pinned; no reparent/restore is introduced.
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=170mm]{\detokenize{models/UC-06/seq_uc06_listCatalogue_PartA.png}}
+\caption{Figure 3.6.4A. UC-06 sequence projection 1 --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0252}
+\end{figure}
+\begin{figure}[p]
+\centering
+\includegraphics[width=170mm]{\detokenize{models/UC-06/seq_uc06_createBrand.png}}
+\caption{Figure 3.6.4B. UC-06 sequence projection 2 --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0253}
+\end{figure}
+\begin{figure}[p]
+\centering
+\includegraphics[width=170mm]{\detokenize{models/UC-06/seq_uc06_updateBrand.png}}
+\caption{Figure 3.6.4C. UC-06 sequence projection 3 --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0254}
+\end{figure}
+\begin{figure}[p]
+\centering
+\includegraphics[width=170mm]{\detokenize{models/UC-06/seq_uc06_archiveBrand.png}}
+\caption{Figure 3.6.4D. UC-06 sequence projection 4 --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0255}
+\end{figure}
+\begin{figure}[p]
+\centering
+\includegraphics[width=170mm]{\detokenize{models/UC-06/seq_uc06_listCatalogue_PartB.png}}
+\caption{Figure 3.6.4E. UC-06 sequence projection 5 --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0256}
+\end{figure}
+\begin{figure}[p]
+\centering
+\includegraphics[width=170mm]{\detokenize{models/UC-06/seq_uc06_createMenuItem.png}}
+\caption{Figure 3.6.4F. UC-06 sequence projection 6 --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0257}
+\end{figure}
+\begin{figure}[p]
+\centering
+\includegraphics[width=170mm]{\detokenize{models/UC-06/seq_uc06_updateMenuItem.png}}
+\caption{Figure 3.6.4G. UC-06 sequence projection 7 --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0258}
+\end{figure}
+\begin{figure}[p]
+\centering
+\includegraphics[width=170mm]{\detokenize{models/UC-06/seq_uc06_archiveMenuItem.png}}
+\caption{Figure 3.6.4H. UC-06 sequence projection 8 --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0259}
+\end{figure}
+\begin{figure}[p]
+\centering
+\includegraphics[width=170mm]{\detokenize{models/UC-06/seq_uc06_listCatalogue_PartC.png}}
+\caption{Figure 3.6.4I. UC-06 sequence projection 9 --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0260}
+\end{figure}
+\begin{figure}[p]
+\centering
+\includegraphics[width=170mm]{\detokenize{models/UC-06/seq_uc06_listItemAtHub.png}}
+\caption{Figure 3.6.4J. UC-06 sequence projection 10 --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0261}
+\end{figure}
+\begin{figure}[p]
+\centering
+\includegraphics[width=170mm]{\detokenize{models/UC-06/seq_uc06_setListingAvailability.png}}
+\caption{Figure 3.6.4K. UC-06 sequence projection 11 --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0262}
+\end{figure}
+\begin{figure}[p]
+\centering
+\includegraphics[width=170mm]{\detokenize{models/UC-06/seq_uc06_unlistItemAtHub.png}}
+\caption{Figure 3.6.4L. UC-06 sequence projection 12 --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0263}
+\end{figure}

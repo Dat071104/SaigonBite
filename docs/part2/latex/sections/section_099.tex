@@ -1,0 +1,43 @@
+\subsubsection*{3.4.4 OOD with Sequence Diagram}
+\addcontentsline{toc}{subsubsection}{3.4.4 OOD with Sequence Diagram}
+\pdfbookmark[2]{3.4.4 OOD with Sequence Diagram}{p7h99}
+Each request independently rechecks active Manager access. Calls use the real view/controller/value roles; DAO/SQL is omitted and noted for 4.3.2. Sales keeps refunds owed separate from T and marks the F-09 item-identity target. Every outcome preserves UC04-MG01; the denial operand carries UC04-MG02.
+
+\textbf{salesReport --- startDateVN, endDateVN, hubId?}
+
+OP-26 salesReport(startDateVN, endDateVN, hubId?) --- models/UC-04/ssd\_uc04.drawio\#M01
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-04/seq_uc04_salesReport.png}}
+\caption{Figure 3.4.4.1. UC-04 design sequence: salesReport --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0149}
+\end{figure}
+\end{landscape}
+Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+
+\textbf{workloadReport --- no parameters}
+
+OP-27 workloadReport() --- models/UC-04/ssd\_uc04.drawio\#M02
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-04/seq_uc04_workloadReport.png}}
+\caption{Figure 3.4.4.2. UC-04 design sequence: workloadReport --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0150}
+\end{figure}
+\end{landscape}
+Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+
+\textbf{deliveryReport --- startDateVN, endDateVN, hubId?}
+
+OP-28 deliveryReport(startDateVN, endDateVN, hubId?) --- models/UC-04/ssd\_uc04.drawio\#M03
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-04/seq_uc04_deliveryReport.png}}
+\caption{Figure 3.4.4.3. UC-04 design sequence: deliveryReport --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0151}
+\end{figure}
+\end{landscape}
+Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data

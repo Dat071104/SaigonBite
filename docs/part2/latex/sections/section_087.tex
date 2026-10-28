@@ -1,0 +1,27 @@
+\subsubsection*{3.3.3 OOD with CRC Cards or Communication Diagram}
+\addcontentsline{toc}{subsubsection}{3.3.3 OOD with CRC Cards or Communication Diagram}
+\pdfbookmark[2]{3.3.3 OOD with CRC Cards or Communication Diagram}{p7h87}
+\label{CRC-UC-03}
+\textbf{UC-03 CRC cards}
+
+Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
+
+Collaborators are actual AST call/typed-field targets or the marked OP-25 / OP-43 targets. Inherited authorization collaborators are explicit. Self-calls remain the same class, not another fictional object.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+\texttt{admin} & Knows: request context. Does: hubs, new\_hub, edit\_hub, archive\_hub, \_hubs. & HubController \\
+\texttt{HubController} & Knows: hubs. Does: list\_hubs, get\_hub, create\_hub, update\_hub, archive\_hub, \_require\_admin, \_parse. & BaseController, ConflictError, Hub, HubAdminView, HubDAO, HubStatus, NotFoundError, ValidationError, admin \\
+\texttt{HubAdminView} & Knows: status, open\_orders. Does: can\_archive. & HubController, HubStatus \\
+\texttt{HubStatus} & Knows: hub, load. Does: busy, quiet, load\_percent. & Hub, HubAdminView, HubController \\
+\texttt{Hub} & Knows: id, code, name, address\_text, latitude, longitude, max\_active\_orders, base\_delivery\_fee, archived\_at. Does: holds typed state; no invented update/archive behavior. & HubController, HubDAO, HubStatus \\
+\texttt{HubDAO} & Knows: conn. Does: list\_all, list\_active, get\_including\_archived, code\_exists, insert, update, archive, active\_load, active\_loads, open\_order\_count. & Hub, HubController \\
+\texttt{BaseController} & Knows: conn, clock, users. Does: \_require\_user, \_now. & AuthorizationError, UserDAO \\
+\texttt{UserAccount} & Knows: id, username, password\_hash, display\_name, role, is\_active, hub\_id, created\_at. Does: holds typed state; no invented update/archive behavior. & Role \\
+\texttt{Role} & Knows: CUSTOMER, KITCHEN\_STAFF, SHIPPER, ADMIN, MANAGER. Does: holds typed state; no invented update/archive behavior. & UserAccount \\
+\texttt{UserDAO} & Knows: conn. Does: get\_by\_id. & BaseController \\
+\end{longtable}
+The existing admin.hubs route is a behavioral target  for forwarding includeArchived (P3-S02). Its current Python symbol is not evidence that the target filter behavior is already MATCH.

@@ -1,0 +1,343 @@
+\subsubsection*{3.5.3 OOD with CRC Cards or Communication Diagram}
+\addcontentsline{toc}{subsubsection}{3.5.3 OOD with CRC Cards or Communication Diagram}
+\pdfbookmark[2]{3.5.3 OOD with CRC Cards or Communication Diagram}{p7h109}
+\label{CRC-UC-05}
+\textbf{UC-05 CRC cards}
+
+Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
+
+Collaborators reflect the design responsibilities. Final P4 status and its scoped evidence are recorded in the P4 status appendix. DAO collaborators also appear in the DCD; persistence sequences are in 4.3.2.
+
+\textbf{KitchenController}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+KitchenController & Knows hubs, menu, orders, payments, deliveries, offers. Does board, get\_order, confirm\_order, reject\_order, offer\_replacement. Coordinate authorization, domain decisions and data access. & BoardEntry, ConflictError, HubDAO, KitchenBoard, KitchenOrderView, Order, OrderDAO, PaymentDAO, ReplacementOffer, ReplacementOfferDAO, ValidationError, controllers.common, kitchen \\
+\end{longtable}
+\textbf{kitchen}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+kitchen & Knows selected inputs. Does board, order, confirm, reject, offer. Translate own-hub kitchen actions and render their results. & No outward application call; supplied/read by its typed owner. \\
+\end{longtable}
+\textbf{HubDAO}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+HubDAO & Knows conn. Does get\_including\_archived, list\_menu, get\_available\_item. Read or write parameterized records. & Hub, HubMenuItem, KitchenController, MenuItem, OrderTrackingController \\
+\end{longtable}
+\textbf{OrderDAO}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+OrderDAO & Knows conn. Does \_load, list\_for\_hub, get\_by\_id, change\_state, list\_for\_customer, save\_lines\_and\_totals. Read or write parameterized records. & KitchenController, Order, OrderLine, OrderState, OrderTrackingController, controllers.common \\
+\end{longtable}
+\textbf{ReplacementOfferDAO}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+ReplacementOfferDAO & Knows conn. Does get\_open, list\_for\_order, decide, insert. Read or write parameterized records. & KitchenController, OrderTrackingController \\
+\end{longtable}
+\textbf{UserDAO}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+UserDAO & Knows conn. Does get\_by\_id. Read or write parameterized records. & No outward application call; supplied/read by its typed owner. \\
+\end{longtable}
+\textbf{PaymentDAO}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+PaymentDAO & Knows conn. Does get\_by\_order\_id, change\_state, set\_amounts. Read or write parameterized records. & KitchenController, OnlineOption, OrderTrackingController, Payment, PaymentMethod, PaymentState, controllers.common \\
+\end{longtable}
+\textbf{Order}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+Order & Knows customer\_id, hub\_id, address\_id, state, delivery\_fee, idempotency\_token, placed\_at, lines, id, archived\_at, delivery\_address\_text, distance\_km, voucher\_id, voucher\_discount, quiet\_discount, reject\_reason, confirmed\_at, ready\_at, closed\_at. Does move\_to, line, replace\_line, total. Own the order lifecycle, snapshots and accepted replacement totals. & BoardEntry, InvalidTransition, KitchenController, KitchenOrderView, OrderDAO, OrderDetail, OrderSummary, OrderTrackingController, controllers.common \\
+\end{longtable}
+\textbf{Payment}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+Payment & Knows order\_id, method, state, amount, created\_at, updated\_at, online\_option, provider\_ref, refund\_amount, id. Does release\_for\_unfulfilled\_order. Hold captured amount C and refund obligations without claiming payout. & KitchenOrderView, OrderDetail, PaymentDAO, controllers.common \\
+\end{longtable}
+\textbf{OrderTrackingController}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+OrderTrackingController & Knows customers, orders, payments, hubs, deliveries, offers. Does list\_my\_orders, get\_order, answer\_replacement, \_own\_order, \_require\_customer. Coordinate authorization, domain decisions and data access. & AuthorizationError, ConflictError, CustomerDAO, HubDAO, NotFoundError, Order, OrderDAO, OrderSummary, PaymentDAO, ReplacementOfferDAO, controllers.common, order \\
+\end{longtable}
+\textbf{order}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+order & Knows selected inputs. Does my\_orders, detail, answer\_replacement. Translate authenticated customer routes and render quote, receipt and order results. & kitchen \\
+\end{longtable}
+\textbf{CustomerDAO}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+CustomerDAO & Knows conn. Does get\_by\_user\_id. Read or write parameterized records. & OrderTrackingController \\
+\end{longtable}
+\textbf{OrderDetail}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+OrderDetail & Knows order, payment, hub, delivery, open\_offer, offers. Does total\_if\_accepted. Coordinate authorization, domain decisions and data access. & Order, OrderTrackingController \\
+\end{longtable}
+\textbf{DeliveryDAO}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+DeliveryDAO & Knows conn. Does get\_by\_order\_id. Read or write parameterized records. & KitchenController, OrderTrackingController \\
+\end{longtable}
+\textbf{controllers.common}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+controllers.common & Knows selected inputs. Does move\_order, release\_payment. Module functions with their original Python signatures. & ConflictError, KitchenController, Order, OrderDAO, OrderTrackingController, Payment, PaymentDAO \\
+\end{longtable}
+\textbf{ReplacementOffer}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+ReplacementOffer & Knows order\_id, order\_line\_id, original\_item\_name, original\_unit\_price, new\_menu\_item\_id, new\_item\_name, new\_unit\_price, state, offered\_at, decided\_at, id. Does move\_to. Hold one proposed whole-line replacement and its decision history. & KitchenController, KitchenOrderView, OrderDetail, ReplacementOfferDAO \\
+\end{longtable}
+\textbf{OrderLine}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+OrderLine & Knows menu\_item\_id, item\_name, unit\_price, quantity, id. Does typed value / enumeration initialization and attribute access. Retain item/name/price/quantity snapshots and derive the line total. & Order, OrderDAO \\
+\end{longtable}
+\textbf{Customer}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+Customer & Knows id, user\_id, full\_name, phone, email, passport\_no, nationality, customer\_type. Does typed value / enumeration initialization and attribute access. Represent customer identity and permitted online payment choices. & CustomerDAO, OrderTrackingController \\
+\end{longtable}
+\textbf{LocalCustomer}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+LocalCustomer & Knows customer\_type. Does typed value / enumeration initialization and attribute access. Specialize the Customer type and permitted payment options for a local customer. & No outward application call; supplied/read by its typed owner. \\
+\end{longtable}
+\textbf{TouristCustomer}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+TouristCustomer & Knows customer\_type. Does typed value / enumeration initialization and attribute access. Specialize Customer identity and permitted payment options for a tourist. & No outward application call; supplied/read by its typed owner. \\
+\end{longtable}
+\textbf{Address}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+Address & Knows id, customer\_id, label, full\_address, district, latitude, longitude, archived\_at. Does typed value / enumeration initialization and attribute access. Hold an owned delivery location and archive flag. & CustomerDAO, Hub \\
+\end{longtable}
+\textbf{MenuItem}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+MenuItem & Knows id, brand\_id, brand\_name, name, description, price, archived\_at. Does typed value / enumeration initialization and attribute access. Hold current catalogue text, whole-VND price and archive flag. & HubDAO, HubMenuItem, KitchenOrderView \\
+\end{longtable}
+\textbf{Brand}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+Brand & Knows id, name, archived\_at. Does typed value / enumeration initialization and attribute access. Group menu items and retain the archived brand identity. & No outward application call; supplied/read by its typed owner. \\
+\end{longtable}
+\textbf{HubMenuItem}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+HubMenuItem & Knows hub\_id, item, is\_available. Does typed value / enumeration initialization and attribute access. Represent one hub listing and its independent availability. & HubDAO, KitchenController \\
+\end{longtable}
+\textbf{UserAccount}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+UserAccount & Knows id, username, password\_hash, display\_name, role, is\_active, hub\_id, created\_at. Does typed value / enumeration initialization and attribute access. Hold account identity, role, active flag and optional kitchen-hub assignment. & KitchenController, UserDAO \\
+\end{longtable}
+\textbf{OrderState}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+OrderState & Knows PLACED, CONFIRMED, REJECTED, PREPARING, READY, OUT\_FOR\_DELIVERY, DELIVERED, DELIVERY\_FAILED, CANCELLED. Does typed value / enumeration initialization and attribute access. Hold typed business state and its local rules. & KitchenBoard, Order, OrderDAO, controllers.common \\
+\end{longtable}
+\textbf{PaymentState}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+PaymentState & Knows PENDING, PAID, FAILED, VOIDED, REFUND\_PENDING, REFUNDED. Does typed value / enumeration initialization and attribute access. Hold typed business state and its local rules. & Payment, PaymentDAO \\
+\end{longtable}
+\textbf{PaymentMethod}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+PaymentMethod & Knows COD, ONLINE. Does typed value / enumeration initialization and attribute access. Hold typed business state and its local rules. & Payment, PaymentDAO, order \\
+\end{longtable}
+\textbf{OnlineOption}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+OnlineOption & Knows E\_WALLET, BANK\_QR, INTERNATIONAL\_CARD. Does typed value / enumeration initialization and attribute access. Hold typed business state and its local rules. & Customer, Payment, PaymentDAO, order \\
+\end{longtable}
+\textbf{OfferState}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+OfferState & Knows OFFERED, ACCEPTED, DECLINED, WITHDRAWN. Does typed value / enumeration initialization and attribute access. Hold typed business state and its local rules. & ReplacementOffer, ReplacementOfferDAO \\
+\end{longtable}
+\textbf{Role}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+Role & Knows CUSTOMER, KITCHEN\_STAFF, SHIPPER, ADMIN, MANAGER. Does typed value / enumeration initialization and attribute access. Hold typed business state and its local rules. & UserAccount \\
+\end{longtable}
+\textbf{KitchenBoard}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+KitchenBoard & Knows hub, columns. Does typed value / enumeration initialization and attribute access. Coordinate authorization, domain decisions and data access. & KitchenController \\
+\end{longtable}
+\textbf{BoardEntry}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+BoardEntry & Knows order, awaiting\_customer. Does typed value / enumeration initialization and attribute access. Coordinate authorization, domain decisions and data access. & KitchenBoard, KitchenController \\
+\end{longtable}
+\textbf{KitchenOrderView}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+KitchenOrderView & Knows order, payment, open\_offer, offers, candidates. Does typed value / enumeration initialization and attribute access. Coordinate authorization, domain decisions and data access. & KitchenController \\
+\end{longtable}
+\textbf{OrderSummary}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+OrderSummary & Knows order, hub\_name, awaiting\_answer. Does typed value / enumeration initialization and attribute access. Coordinate authorization, domain decisions and data access. & OrderTrackingController \\
+\end{longtable}
+\textbf{Hub}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+Hub & Knows id, code, name, address\_text, latitude, longitude, max\_active\_orders, base\_delivery\_fee, archived\_at. Does typed value / enumeration initialization and attribute access. Represent a kitchen location, capacity and fee. & HubDAO, KitchenBoard, KitchenController, OrderDetail \\
+\end{longtable}
+\textbf{CustomerType}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+CustomerType & Knows LOCAL, TOURIST. Does typed value / enumeration initialization and attribute access. Hold typed business state and its local rules. & Customer, LocalCustomer, TouristCustomer \\
+\end{longtable}

@@ -1,0 +1,167 @@
+\textbf{2.2.1 iv.}\par
+This subsection owns the \textbf{Order} machine (Figures \textbf{2.3A--E}) and \textbf{Payment} machine (Figures \textbf{2.4A--B}), rendered once from the shared state blocks. The report places those named blocks here. PLACED + OFFERED means waiting for a customer and still contributes to load; it is not another stored state. Checkout PCs refer to creation, while later cancellation/rejection changes state without deleting identity/snapshots.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Anchor & Verbatim PC/MG text & State transition / stored fact / invariant \\
+\hline\endfirsthead
+Anchor & Verbatim PC/MG text & State transition / stored fact / invariant \\
+\hline\endhead
+UC01-PC01 & one PLACED order owned by the customer & Figure 2.3A confirmCheckout \ensuremath{\rightarrow} one customer-owned PLACED Order. \\
+UC01-PC02 & lines with snapshot names/prices & Figure 2.3A creation stores immutable line name/price snapshots. \\
+UC01-PC03 & address snapshot + distance & Figure 2.3A creation stores address snapshot and checked distance. \\
+UC01-PC04 & S/D/F/Q/T stored and consistent & Figure 2.3A creation stores consented S/D/F/Q/T with BR-09 identity. \\
+UC01-PC05 & payment PENDING (COD) or PAID (ONLINE, amount C) & Figures 2.4A/B initial creation: COD PENDING or ONLINE PAID, C=T. \\
+UC01-PC06 & hub load +1 & Figure 2.3A PLACED enters the BR-01 cooking-load set (+1). \\
+UC01-MG01 & refused/declined/invalid \ensuremath{\rightarrow} no order, no payment, no line & Figures 2.3A/2.4: no creation transition on invalid/refused/declined/rollback, including commit failure. \\
+UC01-MG02 & replay \ensuremath{\rightarrow} same single order & Figure 2.3A: replay returns the retained token-owned Order, no second creation. \\
+UC01-MG03 & busy \ensuremath{\rightarrow} suggestions, nothing saved & Figure 2.3A busy guard has no creation transition; suggestions are a computed result. \\
+\end{longtable}
+Shared-state source: II\_state\_machines.md. Generator/data for the owned activity and SSD files are stored beside their images. These are analysis contracts. The C0 candidate controller gaps became P4 inputs in P2-root.md; later scoped status and evidence are in Table P4-1. The analysis diagrams alone do not establish application correctness.
+
+\textbf{Order --- owning placement: UC-01; UC-05/UC-02/SUC-03/04/05 cross-reference}
+
+Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
+
+All nine stored Order states and all twelve \S{}4.1 event names are represented in A--E. Terminal states are DELIVERED, DELIVERY\_FAILED, REJECTED and CANCELLED. Waiting for customer is derived from PLACED + an open OFFERED offer; cooking load still counts it. BR-17 always changes payment state and refund amount together. There is no rollback or redelivery loop.
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/shared/sm_order.png}}
+\caption{Figure 2.3A. Order --- creation and kitchen decision --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)}\label{P7-0305}
+\end{figure}
+\end{landscape}
+Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
+\hline\endfirsthead
+PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
+\hline\endhead
+UC01-PC01 & one PLACED order owned by the customer & confirmCheckout inserts one customer-owned PLACED Order. \\
+UC01-PC02 & lines with snapshot names/prices & confirmCheckout inserts OrderLine snapshot name/price/quantity. \\
+UC01-PC03 & address snapshot + distance & confirmCheckout stores address snapshot and checked distance. \\
+UC01-PC04 & S/D/F/Q/T stored and consistent & confirmCheckout stores the agreed S/D/F/Q/T; BR-09 total identity. \\
+UC01-PC05 & payment PENDING (COD) or PAID (ONLINE, amount C) & confirmCheckout creates exactly one COD PENDING or ONLINE PAID payment; see Figure 2.4. \\
+UC01-PC06 & hub load +1 & PLACED enters the BR-01 load set; capacity is rechecked in the write transaction. \\
+UC01-MG01 & refused/declined/invalid \ensuremath{\rightarrow} no order, no payment, no line & Failed checkout guard or declined simulator outcome has no creation transition and saves no Order/Payment/OrderLine. \\
+UC01-MG02 & replay \ensuremath{\rightarrow} same single order & Replay returns the existing token-owned Order; it never fires the creation transition twice. \\
+UC01-MG03 & busy \ensuremath{\rightarrow} suggestions, nothing saved & Busy guard refuses creation and returns suggestions; no transition or saved rows. \\
+UC05-PC01 & confirm: own-hub PLACED \ensuremath{\rightarrow} CONFIRMED & confirmOrder reaches CONFIRMED and sets confirmed\_at. \\
+UC05-PC02 & reject: REJECTED + reason + BR-17 + offer WITHDRAWN & rejectOrder reaches terminal REJECTED, saves reason/closed\_at, withdraws any open offer and applies BR-17. \\
+\end{longtable}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/shared/sm_order_PartB.png}}
+\caption{Figure 2.3B. Order --- replacement response --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)}\label{P7-0306}
+\end{figure}
+\end{landscape}
+Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
+\hline\endfirsthead
+PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
+\hline\endhead
+UC05-PC03 & offer: one OFFERED offer per \S{}3.3 & offerReplacement retains PLACED and creates one OFFERED offer. \\
+UC05-PC04 & accepted offer applied per \S{}3.3 5--7 & acceptReplacement retains PLACED, applies offered-price line, unchanged quantity, D=min(D\_old,S\_new), unchanged F/Q, T and payment amounts in one transaction. \\
+UC05-MG01 & wrong hub / open offer / stale / invalid target \ensuremath{\rightarrow} order unchanged & Wrong hub/open offer/stale request: no Order transition. Invalid target: only the exact offer is WITHDRAWN (Figure 2.7B); Order remains unchanged. \\
+\end{longtable}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/shared/sm_order_PartC.png}}
+\caption{Figure 2.3C. Order --- cancellation window --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)}\label{P7-0307}
+\end{figure}
+\end{landscape}
+Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+PC/MG anchor / supporting rule & Transition / retained fact / refusal invariant \\
+\hline\endfirsthead
+PC/MG anchor / supporting rule & Transition / retained fact / refusal invariant \\
+\hline\endhead
+BR-15; BR-17 (SUC-04; no dedicated cancellation anchor in the main-UC P2.3 register) & cancelOrder from own PLACED or CONFIRMED reaches CANCELLED; withdraws an open offer; sets closed\_at and COD VOIDED / ONLINE REFUND\_PENDING with owed=C. No cancellation transition exists from PREPARING or later. \\
+UC01-PC01 / UC01-PC05 (creation-boundary provenance) & Cancellation retains the original Order identity and Payment row; it changes their lifecycle facts. These checkout PCs describe the earlier checkout boundary, not a claim that a cancelled Order remains PLACED/PENDING. \\
+\end{longtable}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/shared/sm_order_PartD.png}}
+\caption{Figure 2.3D. Order --- preparation and pickup --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)}\label{P7-0308}
+\end{figure}
+\end{landscape}
+Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
+\hline\endfirsthead
+PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
+\hline\endhead
+UC02-PC01 & one shipper assigned, Delivery PICKED\_UP, order OUT\_FOR\_DELIVERY & takeDelivery pairs READY \ensuremath{\rightarrow} OUT\_FOR\_DELIVERY with Delivery PICKED\_UP, one shipper and picked\_up\_at. \\
+UC02-MG01 & second shipper / wrong shipper / wrong cash / repeat \ensuremath{\rightarrow} 0 rows changed & Unassigned guard and atomic claim prevent a second pickup; a refused request changes 0 rows. \\
+\end{longtable}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/shared/sm_order_PartE.png}}
+\caption{Figure 2.3E. Order --- delivered or delivery failed --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)}\label{P7-0309}
+\end{figure}
+\end{landscape}
+Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
+\hline\endfirsthead
+PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
+\hline\endhead
+UC02-PC02 & delivered: Delivery DELIVERED, order DELIVERED, COD PAID with cash = T & confirmDelivered pairs the two DELIVERED states with finished\_at/closed\_at and exact COD cash/PAID. \\
+UC02-PC03 & failed: Delivery FAILED + reason, order DELIVERY\_FAILED, BR-17 & reportFailure pairs DELIVERY\_FAILED/FAILED with reason, timestamps and BR-17. \\
+UC02-MG01 & second shipper / wrong shipper / wrong cash / repeat \ensuremath{\rightarrow} 0 rows changed & Assigned active shipper, exact cash, reason and current-state guards; stale/repeat/wrong actor changes 0 rows. \\
+\end{longtable}
+\textbf{Payment --- owning placement: UC-01; UC-02/UC-05/SUC-03/04 cross-reference}
+
+Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
+
+The two payment methods have separate views. C is the original captured ONLINE amount; T is the current payable Order total. A cheaper accepted replacement keeps ONLINE PAID with a partial amount owed as an attribute. Any later unfulfilled terminal outcome replaces that amount with full C. REFUNDED is grey and unreachable because payout is deferred under L3. A declined simulator attempt is shown/logged outside this object lifecycle and creates no Payment.
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/shared/sm_payment.png}}
+\caption{Figure 2.4A. Payment --- COD --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)}\label{P7-0310}
+\end{figure}
+\end{landscape}
+Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
+\hline\endfirsthead
+PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
+\hline\endhead
+UC01-PC05 & payment PENDING (COD) or PAID (ONLINE, amount C) & Accepted COD checkout inserts PENDING with amount=T; valid replacement updates amount to new T without another state. \\
+UC01-MG01 & refused/declined/invalid \ensuremath{\rightarrow} no order, no payment, no line & A refused checkout has no initial Payment creation transition. \\
+UC02-PC02 & delivered: Delivery DELIVERED, order DELIVERED, COD PAID with cash = T & confirmDelivered with exact cash=T changes PENDING \ensuremath{\rightarrow} PAID and records cash\_collected. \\
+UC02-PC03 & failed: Delivery FAILED + reason, order DELIVERY\_FAILED, BR-17 & Valid failed delivery changes PENDING \ensuremath{\rightarrow} VOIDED under BR-17. \\
+\end{longtable}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/shared/sm_payment_PartB.png}}
+\caption{Figure 2.4B. Payment --- ONLINE simulator --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)}\label{P7-0311}
+\end{figure}
+\end{landscape}
+Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
+\hline\endfirsthead
+PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
+\hline\endhead
+UC01-PC05 & payment PENDING (COD) or PAID (ONLINE, amount C) & Approved ONLINE checkout saves PAID and amount=C (captured), refund\_amount=0. \\
+UC01-MG01 & refused/declined/invalid \ensuremath{\rightarrow} no order, no payment, no line & A decline creates no Payment row; there is no persisted FAILED attempt state. \\
+UC05-PC04 & accepted offer applied per \S{}3.3 5--7 & Valid accepted replacement is a PAID self-transition: C unchanged; refund\_amount=C\ensuremath{-}T\_new owed. \\
+UC05-PC02 & reject: REJECTED + reason + BR-17 + offer WITHDRAWN & Rejection moves PAID \ensuremath{\rightarrow} REFUND\_PENDING and overwrites refund\_amount with full C. \\
+UC02-PC03 & failed: Delivery FAILED + reason, order DELIVERY\_FAILED, BR-17 & Failed delivery also moves PAID \ensuremath{\rightarrow} REFUND\_PENDING and sets owed=C, replacing any partial amount. \\
+\end{longtable}

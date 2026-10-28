@@ -1,0 +1,57 @@
+\textbf{2.2.5 iv.}\par
+This subsection owns the \textbf{ReplacementOffer} machine (Figures \textbf{2.7A--B}), rendered once from the shared state block. It cross-references \textbf{Order Figures 2.3A--C} and \textbf{Payment Figures 2.4A--B} under UC-01. Offer acceptance retains PLACED; only an explicit later kitchen confirm reaches CONFIRMED. Cancelled/rejected Orders never return to PLACED.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Anchor & Verbatim PC/MG text & State transition / stored fact / invariant \\
+\hline\endfirsthead
+Anchor & Verbatim PC/MG text & State transition / stored fact / invariant \\
+\hline\endhead
+UC05-PC01 & confirm: own-hub PLACED \ensuremath{\rightarrow} CONFIRMED & Figure 2.3A confirmOrder: PLACED \ensuremath{\rightarrow} CONFIRMED, confirmed\_at. \\
+UC05-PC02 & reject: REJECTED + reason + BR-17 + offer WITHDRAWN & Figure 2.3A rejectOrder: REJECTED, reason/closed\_at; Figure 2.7B offer WITHDRAWN; Figures 2.4A/B BR-17 payment+full C. \\
+UC05-PC03 & offer: one OFFERED offer per \S{}3.3 & Figure 2.7A creates exactly one OFFERED; Figure 2.3B retains PLACED. \\
+UC05-PC04 & accepted offer applied per \S{}3.3 5--7 & Figures 2.7A/2.3B acceptance: ACCEPTED plus offered-price line/unchanged qty, D=min(D\_old,S\_new), unchanged F/Q; Figures 2.4A/B COD new T / ONLINE PAID with unchanged C and owed=C\ensuremath{-}T\_new. \\
+UC05-MG01 & wrong hub / open offer / stale / invalid target \ensuremath{\rightarrow} order unchanged & Figure 2.3B: no Order transition for wrong hub/open offer/stale/invalid target. Figure 2.7B permits only exact-offer WITHDRAWN and returned reason on invalid-target acceptance. \\
+\end{longtable}
+Shared-state source: II\_state\_machines.md. Generator/data for the owned activity and SSD files are stored beside their images. These are analysis contracts. The C0 candidate controller gaps became P4 inputs in P2-root.md; later scoped status and evidence are in Table P4-1. The analysis diagrams alone do not establish application correctness.
+
+\textbf{Replacement Offer --- owning placement: UC-05; SUC-03 customer answer}
+
+Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
+
+Each offer has its own identity and history. At most one may be OFFERED for an Order. ACCEPTED, DECLINED and WITHDRAWN are terminal for that offer. Invalid-target acceptance withdraws the offer only; the minimum guarantee concerns the unchanged Order.
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-05/sm_replacement_offer.png}}
+\caption{Figure 2.7A. ReplacementOffer --- offer and customer decision --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)}\label{P7-0315}
+\end{figure}
+\end{landscape}
+Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
+\hline\endfirsthead
+PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
+\hline\endhead
+UC05-PC03 & offer: one OFFERED offer per \S{}3.3 & offerReplacement creates one OFFERED offer, original/new snapshot values and offered\_at. \\
+UC05-PC04 & accepted offer applied per \S{}3.3 5--7 & acceptReplacement enters ACCEPTED, sets decided\_at and applies Order/payment effects from \S{}3.3 5--7. \\
+UC05-MG01 & wrong hub / open offer / stale / invalid target \ensuremath{\rightarrow} order unchanged & Stale/repeated answer or wrong owner leaves Order unchanged; the valid-target recheck routes invalid target to Figure 2.7B. \\
+\end{longtable}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-05/sm_replacement_offer_PartB.png}}
+\caption{Figure 2.7B. ReplacementOffer --- withdrawal paths --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)}\label{P7-0316}
+\end{figure}
+\end{landscape}
+Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
+\hline\endfirsthead
+PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
+\hline\endhead
+UC05-PC02 & reject: REJECTED + reason + BR-17 + offer WITHDRAWN & rejectOrder withdraws an open offer with decided\_at while Order reaches REJECTED, reason and BR-17. \\
+UC05-MG01 & wrong hub / open offer / stale / invalid target \ensuremath{\rightarrow} order unchanged & Invalid target on exact-open accept withdraws only the offer with a reason, without changing Order lines/state/totals. \\
+\end{longtable}

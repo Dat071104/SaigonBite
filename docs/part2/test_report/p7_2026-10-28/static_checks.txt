@@ -1,0 +1,14 @@
+P7 B7 static checks -- no compilation or PDF
+
+PASS | inputs exist | 150 checked; missing=[]
+PASS | graphic files exist | 607 occurrences; missing=[]
+PASS | labels and references | 613 labels, 325 referenced; duplicate=[]; unresolved=[]
+PASS | environment and brace balance | issues=[] total=0
+PASS | raw special characters | issues=[] total=0
+FAIL | forbidden placeholder strings | matches=[('section_003.tex', 'PENDING', 1), ('section_007.tex', 'PENDING', 1), ('section_008.tex', 'PENDING', 4), ('section_010.tex', 'PENDING', 2), ('section_011.tex', 'PENDING', 6), ('section_014.tex', 'PENDING', 1), ('section_016.tex', 'PENDING', 1), ('section_023.tex', 'PENDING', 3), ('section_026.tex', 'PENDING', 13), ('section_028.tex', 'PENDING', 3), ('section_031.tex', 'PENDING', 2), ('section_043.tex', 'PENDING', 2)] files=25; note: PENDING also names legitimate payment states and appears byte-exact in required method excerpts
+PASS | manifest figures referenced | expected=607 emitted=607 missing=[] extra=[] unauthorized duplicates=[]
+PASS | template heading coverage | 87 template headings mapped; unmapped=[]; exact rendered order and filled UC titles require independent comparison
+PASS | figure author and AI labels | violations=[] total=0
+FAIL | figure readability estimates | 122 placements below 9pt estimate; see diagram issues; actual layout unverified
+
+OVERALL: FAIL

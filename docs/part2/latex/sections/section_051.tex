@@ -1,0 +1,98 @@
+\textbf{2.2.6 iv.}\par
+Catalogue machines Figures 2.8A--D are owned here (sources \texttt{models/UC-06/sm\_catalogue.*}; canonical block in \texttt{II\_state\_machines.md}). Brand and MenuItem archive ACTIVE \ensuremath{\rightarrow} ARCHIVED. HubMenuItem AVAILABLE \ensuremath{\leftrightarrow} SOLD\_OUT belongs to one hub--item pair; unlist ends that association lifecycle by removing only its row. Archived parent exclusion remains effective independently of the flag. See UC-01 for Order snapshots and UC-05 for availability rechecks on replacement; neither state block is duplicated here.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Anchor & Transition or stored fact \\
+\hline\endfirsthead
+Anchor & Transition or stored fact \\
+\hline\endhead
+UC06-PC01 & createBrand/createMenuItem \ensuremath{\rightarrow} ACTIVE; updateBrand/updateMenuItem self-transitions; archiveBrand/archiveMenuItem \ensuremath{\rightarrow} ARCHIVED. \\
+UC06-PC02 & listItemAtHub creates AVAILABLE/SOLD\_OUT; setListingAvailability switches per pair; unlistItemAtHub ends the pair lifecycle. \\
+UC06-PC03 & Archived parent exclusion and SOLD\_OUT prohibit new ordering; no MenuItem global SOLD\_OUT state exists. \\
+UC06-MG01 & Historical OrderLine snapshot name/price/quantity remains a stored fact through every catalogue transition and refusal, including unlist. \\
+UC06-MG02 & Duplicate-name/pair or invalid-price guards refuse with no state or attribute change. \\
+\end{longtable}
+The report includes the canonical state-machine block once beneath this subsection; this package cross-references it without copying shared images. These are analysis contracts, not measured application results.
+
+Editable models: each base .drawio contains all its pages; the adjacent JSON and Python regenerate the models. Catalogue base PNG/SVG are first-page aliases; use all A--C figures above together.
+
+\textbf{Catalogue --- owning placement: UC-06; SUC-06 availability support}
+
+Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
+
+Brand and MenuItem each have ACTIVE \ensuremath{\rightarrow} ARCHIVED lifecycles; HubMenuItem owns availability per hub and ends when unlisted. An archived parent is excluded operationally regardless of a retained listing flag. Existing OrderLine snapshot prices/names survive catalogue maintenance.
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-06/sm_catalogue.png}}
+\caption{Figure 2.8A. Brand --- maintenance and archive --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)}\label{P7-0317}
+\end{figure}
+\end{landscape}
+Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
+\hline\endfirsthead
+PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
+\hline\endhead
+UC06-PC01 & brand/item created, updated, archived & createBrand/updateBrand/archiveBrand: ACTIVE creation, ACTIVE self-update, terminal ARCHIVED. \\
+UC06-PC03 & archived/sold-out items not orderable & Archived Brand and descendant items/listings are hidden from operational ordering. \\
+UC06-MG01 & old order lines unchanged after price change/archive & Archive/update touches catalogue facts only; existing OrderLine snapshots are retained. \\
+UC06-MG02 & duplicates/invalid prices refused & Uniqueness and validity guards refuse duplicate/invalid creates/updates. \\
+\end{longtable}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-06/sm_catalogue_PartB.png}}
+\caption{Figure 2.8B. MenuItem --- maintenance and archive --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)}\label{P7-0318}
+\end{figure}
+\end{landscape}
+Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
+\hline\endfirsthead
+PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
+\hline\endhead
+UC06-PC01 & brand/item created, updated, archived & createMenuItem/updateMenuItem/archiveMenuItem: ACTIVE creation, update and ARCHIVED. \\
+UC06-PC03 & archived/sold-out items not orderable & Archived item cannot be listed or ordered even if a retained listing flag is true. \\
+UC06-MG01 & old order lines unchanged after price change/archive & Price/archive changes never rewrite OrderLine snapshots. \\
+UC06-MG02 & duplicates/invalid prices refused & Active-parent, unique name and price\textgreater{}0 guards refuse invalid writes. \\
+\end{longtable}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-06/sm_catalogue_PartC.png}}
+\caption{Figure 2.8C. HubMenuItem --- list and change availability --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)}\label{P7-0319}
+\end{figure}
+\end{landscape}
+Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
+\hline\endfirsthead
+PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
+\hline\endhead
+UC06-PC02 & listing added/removed, availability per hub & listItemAtHub creates a per-hub listing; setListingAvailability / setMenuAvailability switches AVAILABLE \ensuremath{\leftrightarrow} SOLD\_OUT. \\
+UC06-PC03 & archived/sold-out items not orderable & New ordering requires active parents and AVAILABLE listing; SOLD\_OUT or archived parents fail the ordering guard. \\
+UC06-MG01 & old order lines unchanged after price change/archive & Availability changes do not rewrite existing OrderLine snapshots. \\
+UC06-MG02 & duplicates/invalid prices refused & Duplicate pair / inactive parent / invalid listing inputs do not create a listing. \\
+\end{longtable}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-06/sm_catalogue_PartD.png}}
+\caption{Figure 2.8D. HubMenuItem --- unlist ends the listing --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)}\label{P7-0320}
+\end{figure}
+\end{landscape}
+Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
+\hline\endfirsthead
+PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
+\hline\endhead
+UC06-PC02 & listing added/removed, availability per hub & unlistItemAtHub ends the listing by row deletion; no stored UNLISTED state. \\
+UC06-MG01 & old order lines unchanged after price change/archive & Unlist preserves existing OrderLine snapshots and does not alter another hub's listing. \\
+\end{longtable}

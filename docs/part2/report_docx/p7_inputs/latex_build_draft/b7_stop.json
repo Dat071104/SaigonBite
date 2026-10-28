@@ -1,0 +1,10 @@
+{
+  "phase": "P7 Stage 1 B7",
+  "status": "STOP - external requirement conflict and readability gate",
+  "attempts": 2,
+  "conflict": "B7 forbids literal PENDING outside links.tex while required byte-exact application code includes PaymentState.REFUND_PENDING and report contracts require PENDING/REFUND_PENDING payment states.",
+  "protected_source": "SaigonBite/saigonbite/business/domain/models.py:282",
+  "readability": "122 manifest placements below the 9pt estimate: 12 models and 110 screenshots; final DOCX/PDF layout not measured.",
+  "passed_checks": "150 inputs, 607 image placements, 613 unique labels, 325 references, environment/brace balance, basic special characters, figure metadata. Template coverage only; exact heading order not independently qualified.",
+  "work_remaining": "Owner decision on allowing real domain state literals; resolve or disposition readability, finish B7, then DOCX/parity and pack. No compilation or PDF has been performed."
+}

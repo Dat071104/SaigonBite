@@ -1,0 +1,323 @@
+\subsubsection*{3.6.1 Design Classes in Detailed Design}
+\addcontentsline{toc}{subsubsection}{3.6.1 Design Classes in Detailed Design}
+\pdfbookmark[2]{3.6.1 Design Classes in Detailed Design}{p7h113}
+\textbf{UC-06 design classes}
+
+Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
+
+Source: \texttt{models/shared/design\_model.json}, C0 \texttt{45ac76221b0a103174c7c01d17577e6e49cfd665}. Evidence label: Static / target design. This table is a filtered projection; no application module was imported. \texttt{Any} and absent annotations are explicitly inferred. Python visibility follows leading underscores; dataclass fields are public. Constructors are implicit dataclass construction, not invented methods.
+
+design target, not yet in code at C0 (see P4 inputs P2-S13/P2-S14/P2-S15/P3-S02/P3-S03). MATCH means static correspondence, not executed success.
+
+Templates: \texttt{admin/catalogue.html}, \texttt{admin/item\_form.html}, \texttt{admin/hub\_menu.html}, shared \texttt{error.html}. The \texttt{admin} role is the real Flask blueprint module, not a fictional view class.
+
+Types retained as names from code include \texttt{Mapping}, \texttt{Optional}, \texttt{sqlite3.Connection} and business DTOs. A displayed attribute omitted from a narrow figure remains in this table. Association-backing foreign-key IDs remain below but are suppressed on domain DCDs.
+
+\textbf{admin}
+
+Layer: \textbf{view}; stereotype: \textbf{\guillemotleft{}view\guillemotright{}}; responsibility: Translate administrator maintenance routes; never provide business decisions. Source: \texttt{saigonbite/presentation/admin.py}.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Element & Typed declaration & Status / qualification \\
+\hline\endfirsthead
+Element & Typed declaration & Status / qualification \\
+\hline\endhead
+Operation & \texttt{- \_hubs() -\textgreater{} HubController} & MATCH \\
+Operation & \texttt{- \_menu() -\textgreater{} MenuController} & MATCH \\
+Operation & \texttt{+ catalogue() -\textgreater{} Any [inferred] } & P4 scoped evidence (P4.6; resolution rows 63); C0 rationale: ; inferred annotation(s); P2-S14 \\
+Operation & \texttt{+ create\_brand() -\textgreater{} Any [inferred]} & MATCH; inferred annotation(s) \\
+Operation & \texttt{+ rename\_brand(brand\_id: int) -\textgreater{} Any [inferred]} & MATCH; inferred annotation(s) \\
+Operation & \texttt{+ archive\_brand(brand\_id: int) -\textgreater{} Any [inferred]} & MATCH; inferred annotation(s) \\
+Operation & \texttt{+ new\_item() -\textgreater{} Any [inferred]} & MATCH; inferred annotation(s) \\
+Operation & \texttt{+ edit\_item(item\_id: int) -\textgreater{} Any [inferred]} & MATCH; inferred annotation(s) \\
+Operation & \texttt{+ archive\_item(item\_id: int) -\textgreater{} Any [inferred]} & MATCH; inferred annotation(s) \\
+Operation & \texttt{+ hub\_menu(hub\_id: int) -\textgreater{} Any [inferred] } & P4 scoped evidence (P4.6; resolution rows 64); C0 rationale: ; inferred annotation(s); P2-S14 \\
+Operation & \texttt{+ list\_item(hub\_id: int) -\textgreater{} Any [inferred] } & P4 scoped evidence (P4.6; resolution rows 65); C0 rationale: ; inferred annotation(s); P2-S15 \\
+Operation & \texttt{+ unlist\_item(hub\_id: int, item\_id: int) -\textgreater{} Any [inferred]} & MATCH; inferred annotation(s) \\
+Operation & \texttt{+ hub\_item\_availability(hub\_id: int, item\_id: int) -\textgreater{} Any [inferred]} & MATCH; inferred annotation(s) \\
+\end{longtable}
+Route adapters (AST):
+
+\begin{itemize}
+\item \texttt{\{'blueprint\_variable': 'bp', 'blueprint': 'admin', 'rule': '/admin/menu', 'declared\_rule': '/menu', 'methods': ['GET'], 'view\_function': 'catalogue', 'signature': 'catalogue()', 'decorators': ["bp.get('/menu')", 'role\_required(Role.ADMIN)']\}}
+
+\item \texttt{\{'blueprint\_variable': 'bp', 'blueprint': 'admin', 'rule': '/admin/brands', 'declared\_rule': '/brands', 'methods': ['POST'], 'view\_function': 'create\_brand', 'signature': 'create\_brand()', 'decorators': ["bp.post('/brands')", 'role\_required(Role.ADMIN)']\}}
+
+\item \texttt{\{'blueprint\_variable': 'bp', 'blueprint': 'admin', 'rule': '/admin/brands/\textless{}int:brand\_id\textgreater{}', 'declared\_rule': '/brands/\textless{}int:brand\_id\textgreater{}', 'methods': ['POST'], 'view\_function': 'rename\_brand', 'signature': 'rename\_brand(brand\_id: int)', 'decorators': ["bp.post('/brands/\textless{}int:brand\_id\textgreater{}')", 'role\_required(Role.ADMIN)']\}}
+
+\item \texttt{\{'blueprint\_variable': 'bp', 'blueprint': 'admin', 'rule': '/admin/brands/\textless{}int:brand\_id\textgreater{}/archive', 'declared\_rule': '/brands/\textless{}int:brand\_id\textgreater{}/archive', 'methods': ['POST'], 'view\_function': 'archive\_brand', 'signature': 'archive\_brand(brand\_id: int)', 'decorators': ["bp.post('/brands/\textless{}int:brand\_id\textgreater{}/archive')", 'role\_required(Role.ADMIN)']\}}
+
+\item \texttt{\{'blueprint\_variable': 'bp', 'blueprint': 'admin', 'rule': '/admin/items/new', 'declared\_rule': '/items/new', 'methods': ['GET', 'POST'], 'view\_function': 'new\_item', 'signature': 'new\_item()', 'decorators': ["bp.route('/items/new', methods=['GET', 'POST'])", 'role\_required(Role.ADMIN)']\}}
+
+\item \texttt{\{'blueprint\_variable': 'bp', 'blueprint': 'admin', 'rule': '/admin/items/\textless{}int:item\_id\textgreater{}', 'declared\_rule': '/items/\textless{}int:item\_id\textgreater{}', 'methods': ['GET', 'POST'], 'view\_function': 'edit\_item', 'signature': 'edit\_item(item\_id: int)', 'decorators': ["bp.route('/items/\textless{}int:item\_id\textgreater{}', methods=['GET', 'POST'])", 'role\_required(Role.ADMIN)']\}}
+
+\item \texttt{\{'blueprint\_variable': 'bp', 'blueprint': 'admin', 'rule': '/admin/items/\textless{}int:item\_id\textgreater{}/archive', 'declared\_rule': '/items/\textless{}int:item\_id\textgreater{}/archive', 'methods': ['POST'], 'view\_function': 'archive\_item', 'signature': 'archive\_item(item\_id: int)', 'decorators': ["bp.post('/items/\textless{}int:item\_id\textgreater{}/archive')", 'role\_required(Role.ADMIN)']\}}
+
+\item \texttt{\{'blueprint\_variable': 'bp', 'blueprint': 'admin', 'rule': '/admin/hubs/\textless{}int:hub\_id\textgreater{}/menu', 'declared\_rule': '/hubs/\textless{}int:hub\_id\textgreater{}/menu', 'methods': ['GET'], 'view\_function': 'hub\_menu', 'signature': 'hub\_menu(hub\_id: int)', 'decorators': ["bp.get('/hubs/\textless{}int:hub\_id\textgreater{}/menu')", 'role\_required(Role.ADMIN)']\}}
+
+\item \texttt{\{'blueprint\_variable': 'bp', 'blueprint': 'admin', 'rule': '/admin/hubs/\textless{}int:hub\_id\textgreater{}/menu', 'declared\_rule': '/hubs/\textless{}int:hub\_id\textgreater{}/menu', 'methods': ['POST'], 'view\_function': 'list\_item', 'signature': 'list\_item(hub\_id: int)', 'decorators': ["bp.post('/hubs/\textless{}int:hub\_id\textgreater{}/menu')", 'role\_required(Role.ADMIN)']\}}
+
+\item \texttt{\{'blueprint\_variable': 'bp', 'blueprint': 'admin', 'rule': '/admin/hubs/\textless{}int:hub\_id\textgreater{}/menu/\textless{}int:item\_id\textgreater{}/remove', 'declared\_rule': '/hubs/\textless{}int:hub\_id\textgreater{}/menu/\textless{}int:item\_id\textgreater{}/remove', 'methods': ['POST'], 'view\_function': 'unlist\_item', 'signature': 'unlist\_item(hub\_id: int, item\_id: int)', 'decorators': ["bp.post('/hubs/\textless{}int:hub\_id\textgreater{}/menu/\textless{}int:item\_id\textgreater{}/remove')", 'role\_required(Role.ADMIN)']\}}
+
+\item \texttt{\{'blueprint\_variable': 'bp', 'blueprint': 'admin', 'rule': '/admin/hubs/\textless{}int:hub\_id\textgreater{}/menu/\textless{}int:item\_id\textgreater{}/availability', 'declared\_rule': '/hubs/\textless{}int:hub\_id\textgreater{}/menu/\textless{}int:item\_id\textgreater{}/availability', 'methods': ['POST'], 'view\_function': 'hub\_item\_availability', 'signature': 'hub\_item\_availability(hub\_id: int, item\_id: int)', 'decorators': ["bp.post('/hubs/\textless{}int:hub\_id\textgreater{}/menu/\textless{}int:item\_id\textgreater{}/availability')", 'role\_required(Role.ADMIN)']\}}
+
+\end{itemize}
+\textbf{MenuController}
+
+Layer: \textbf{controller}; stereotype: \textbf{\guillemotleft{}controller\guillemotright{}}; responsibility: Coordinate authorization, domain decisions and data access. Source: \texttt{saigonbite/business/controllers/menu\_controller.py}.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Element & Typed declaration & Status / qualification \\
+\hline\endfirsthead
+Element & Typed declaration & Status / qualification \\
+\hline\endhead
+Attribute & \texttt{+ menu: MenuDAO} & MATCH; inferred \\
+Attribute & \texttt{+ hubs: HubDAO} & MATCH; inferred \\
+Operation & \texttt{+ catalogue(user\_id: int) -\textgreater{} Catalogue} & MATCH \\
+Operation & \texttt{+ create\_brand(user\_id: int, name: str) -\textgreater{} Brand } & P4 scoped evidence (P4.1 + P4.6; resolution rows 34); C0 rationale: ; P2-S13; P3-S03 \\
+Operation & \texttt{+ rename\_brand(user\_id: int, brand\_id: int, name: str) -\textgreater{} Brand } & P4 scoped evidence (P4.1 + P4.6; resolution rows 35); C0 rationale: ; P2-S13; P3-S03 \\
+Operation & \texttt{+ archive\_brand(user\_id: int, brand\_id: int) -\textgreater{} Brand } & P4 scoped evidence (P4.1 + P4.6; resolution rows 36); C0 rationale: ; P2-S13; P3-S03 \\
+Operation & \texttt{+ create\_item(user\_id: int, form: Mapping[str, str]) -\textgreater{} MenuItem } & P4 scoped evidence (P4.1 + P4.6; resolution rows 37); C0 rationale: ; P2-S13; P3-S03 \\
+Operation & \texttt{+ update\_item(user\_id: int, item\_id: int, form: Mapping[str, str]) -\textgreater{} MenuItem } & P4 scoped evidence (P4.1 + P4.6; resolution rows 38); C0 rationale: ; P2-S13; P3-S03 \\
+Operation & \texttt{+ archive\_item(user\_id: int, item\_id: int) -\textgreater{} MenuItem } & P4 scoped evidence (P4.1 + P4.6; resolution rows 39); C0 rationale: ; P2-S13; P3-S03 \\
+Operation & \texttt{+ hub\_menu(user\_id: int, hub\_id: int) -\textgreater{} HubMenu} & MATCH \\
+Operation & \texttt{+ list\_item\_at\_hub(user\_id: int, hub\_id: int, item\_id: int, available: bool = True) -\textgreater{} None } & P4 scoped evidence (P4.6; resolution rows 33); C0 rationale: ; P2-S15; P2-S13 \\
+Operation & \texttt{+ unlist\_item\_at\_hub(user\_id: int, hub\_id: int, item\_id: int) -\textgreater{} None } & P4 scoped evidence (P4.1 + P4.6; resolution rows 40); C0 rationale: ; P2-S13; P3-S03 \\
+Operation & \texttt{+ set\_availability(user\_id: int, hub\_id: int, item\_id: int, available: bool) -\textgreater{} None } & P4 scoped evidence (P4.1 + P4.6; resolution rows 41); C0 rationale: ; P2-S13; P3-S03 \\
+Operation & \texttt{- \_require\_admin(user\_id: int) -\textgreater{} None} & MATCH \\
+Operation & \texttt{- \_hub(hub\_id: int) -\textgreater{} Hub} & MATCH \\
+Operation & \texttt{- \_active\_brand(brand\_id: Any) -\textgreater{} Brand [inferred]} & MATCH; inferred annotation(s) \\
+Operation & \texttt{- \_active\_item(item\_id: int) -\textgreater{} MenuItem} & MATCH \\
+Operation & \texttt{- \_name(raw: str, label: str, max\_len: int = 60) -\textgreater{} str} & MATCH \\
+Operation & \texttt{- \_parse\_item(form: Mapping[str, str], item\_id: Any) -\textgreater{} MenuItem [inferred]} & MATCH; inferred annotation(s) \\
+Operation & \texttt{+ list\_catalogue(user\_id: int, hub\_id: Optional[int] = None) -\textgreater{} dict[str, object] } & P4 scoped evidence (P4.6; resolution rows 32); C0 rationale: ; P2-S14 \\
+\end{longtable}
+\textbf{Catalogue}
+
+Layer: \textbf{controller}; stereotype: \textbf{\guillemotleft{}value\guillemotright{}}; responsibility: Coordinate authorization, domain decisions and data access. Source: \texttt{saigonbite/business/controllers/menu\_controller.py}.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Element & Typed declaration & Status / qualification \\
+\hline\endfirsthead
+Element & Typed declaration & Status / qualification \\
+\hline\endhead
+Attribute & \texttt{+ brands: list[Brand]} & MATCH \\
+Attribute & \texttt{+ items: list[MenuItem]} & MATCH \\
+\end{longtable}
+\textbf{HubMenu}
+
+Layer: \textbf{controller}; stereotype: \textbf{\guillemotleft{}value\guillemotright{}}; responsibility: Coordinate authorization, domain decisions and data access. Source: \texttt{saigonbite/business/controllers/menu\_controller.py}.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Element & Typed declaration & Status / qualification \\
+\hline\endfirsthead
+Element & Typed declaration & Status / qualification \\
+\hline\endhead
+Attribute & \texttt{+ hub: Hub} & MATCH \\
+Attribute & \texttt{+ listed: list[HubMenuItem]} & MATCH \\
+Attribute & \texttt{+ not\_listed: list[MenuItem]} & MATCH \\
+\end{longtable}
+\textbf{HubController}
+
+Layer: \textbf{controller}; stereotype: \textbf{\guillemotleft{}controller\guillemotright{}}; responsibility: Coordinate authorization, domain decisions and data access. Source: \texttt{saigonbite/business/controllers/hub\_controller.py}.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Element & Typed declaration & Status / qualification \\
+\hline\endfirsthead
+Element & Typed declaration & Status / qualification \\
+\hline\endhead
+Attribute & \texttt{+ hubs: HubDAO} & MATCH; inferred \\
+Operation & \texttt{+ list\_hubs(user\_id: int, include\_archived: bool = True) -\textgreater{} list[HubAdminView] } & P4 scoped evidence (P4.2; resolution rows 28); C0 rationale: ; P3-S02 \\
+\end{longtable}
+\textbf{Hub}
+
+Layer: \textbf{domain}; stereotype: \textbf{\guillemotleft{}entity\guillemotright{}}; responsibility: Represent a kitchen location, capacity and fee. Source: \texttt{saigonbite/business/domain/models.py}.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Element & Typed declaration & Status / qualification \\
+\hline\endfirsthead
+Element & Typed declaration & Status / qualification \\
+\hline\endhead
+Attribute & \texttt{+ id: int} & MATCH \\
+Attribute & \texttt{+ code: str} & MATCH \\
+Attribute & \texttt{+ name: str} & MATCH \\
+Attribute & \texttt{+ address\_text: str} & MATCH \\
+Attribute & \texttt{+ latitude: float} & MATCH \\
+Attribute & \texttt{+ longitude: float} & MATCH \\
+Attribute & \texttt{+ max\_active\_orders: int} & MATCH \\
+Attribute & \texttt{+ base\_delivery\_fee: int} & MATCH \\
+Attribute & \texttt{+ archived\_at: Optional[str]} & MATCH \\
+\end{longtable}
+\textbf{Brand}
+
+Layer: \textbf{domain}; stereotype: \textbf{\guillemotleft{}entity\guillemotright{}}; responsibility: Group menu items and retain the archived brand identity. Source: \texttt{saigonbite/business/domain/models.py}.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Element & Typed declaration & Status / qualification \\
+\hline\endfirsthead
+Element & Typed declaration & Status / qualification \\
+\hline\endhead
+Attribute & \texttt{+ id: int} & MATCH \\
+Attribute & \texttt{+ name: str} & MATCH \\
+Attribute & \texttt{+ archived\_at: Optional[str]} & MATCH \\
+\end{longtable}
+\textbf{MenuItem}
+
+Layer: \textbf{domain}; stereotype: \textbf{\guillemotleft{}entity\guillemotright{}}; responsibility: Hold current catalogue text, whole-VND price and archive flag. Source: \texttt{saigonbite/business/domain/models.py}.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Element & Typed declaration & Status / qualification \\
+\hline\endfirsthead
+Element & Typed declaration & Status / qualification \\
+\hline\endhead
+Attribute & \texttt{+ id: int} & MATCH \\
+Attribute & \texttt{+ brand\_id: int} & MATCH; association backing ID, omitted on DCD \\
+Attribute & \texttt{+ brand\_name: str} & MATCH \\
+Attribute & \texttt{+ name: str} & MATCH \\
+Attribute & \texttt{+ description: str} & MATCH \\
+Attribute & \texttt{+ price: int} & MATCH \\
+Attribute & \texttt{+ archived\_at: Optional[str]} & MATCH \\
+\end{longtable}
+\textbf{HubMenuItem}
+
+Layer: \textbf{domain}; stereotype: \textbf{\guillemotleft{}entity\guillemotright{}}; responsibility: Represent one hub listing and its independent availability. Source: \texttt{saigonbite/business/domain/models.py}.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Element & Typed declaration & Status / qualification \\
+\hline\endfirsthead
+Element & Typed declaration & Status / qualification \\
+\hline\endhead
+Attribute & \texttt{+ hub\_id: int} & MATCH; association backing ID, omitted on DCD \\
+Attribute & \texttt{+ item: MenuItem} & MATCH \\
+Attribute & \texttt{+ is\_available: bool} & MATCH \\
+\end{longtable}
+\textbf{MenuDAO}
+
+Layer: \textbf{data\_access}; stereotype: \textbf{\guillemotleft{}DAO\guillemotright{}}; responsibility: Read or write parameterized records. Source: \texttt{saigonbite/data\_access/menu\_dao.py}.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Element & Typed declaration & Status / qualification \\
+\hline\endfirsthead
+Element & Typed declaration & Status / qualification \\
+\hline\endhead
+Attribute & \texttt{+ conn: sqlite3.Connection} & MATCH \\
+Operation & \texttt{+ list\_brands() -\textgreater{} list[Brand]} & MATCH \\
+Operation & \texttt{+ get\_brand(brand\_id: int) -\textgreater{} Optional[Brand]} & MATCH \\
+Operation & \texttt{+ brand\_name\_exists(name: str, except\_id: Optional[int] = None) -\textgreater{} bool} & MATCH \\
+Operation & \texttt{+ insert\_brand(name: str) -\textgreater{} int} & MATCH \\
+Operation & \texttt{+ rename\_brand(brand\_id: int, name: str) -\textgreater{} bool} & MATCH \\
+Operation & \texttt{+ archive\_brand(brand\_id: int, now: str) -\textgreater{} bool} & MATCH \\
+Operation & \texttt{+ list\_items() -\textgreater{} list[MenuItem]} & MATCH \\
+Operation & \texttt{+ get\_item(item\_id: int) -\textgreater{} Optional[MenuItem]} & MATCH \\
+Operation & \texttt{+ item\_name\_exists(brand\_id: int, name: str, except\_id: Optional[int] = None) -\textgreater{} bool} & MATCH \\
+Operation & \texttt{+ insert\_item(item: MenuItem) -\textgreater{} int} & MATCH \\
+Operation & \texttt{+ update\_item(item: MenuItem) -\textgreater{} bool} & MATCH \\
+Operation & \texttt{+ archive\_item(item\_id: int, now: str) -\textgreater{} bool} & MATCH \\
+Operation & \texttt{+ list\_hub\_items(hub\_id: int) -\textgreater{} list[HubMenuItem]} & MATCH \\
+Operation & \texttt{+ is\_listed(hub\_id: int, item\_id: int) -\textgreater{} bool} & MATCH \\
+Operation & \texttt{+ add\_listing(hub\_id: int, item\_id: int, available: bool = True) -\textgreater{} None } & P4 scoped evidence (P4.6; resolution rows 42); C0 rationale: ; P2-S15 \\
+Operation & \texttt{+ remove\_listing(hub\_id: int, item\_id: int) -\textgreater{} bool} & MATCH \\
+Operation & \texttt{+ set\_available(hub\_id: int, item\_id: int, available: bool) -\textgreater{} bool} & MATCH \\
+\end{longtable}
+\textbf{HubDAO}
+
+Layer: \textbf{data\_access}; stereotype: \textbf{\guillemotleft{}DAO\guillemotright{}}; responsibility: Read or write parameterized records. Source: \texttt{saigonbite/data\_access/hub\_dao.py}.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Element & Typed declaration & Status / qualification \\
+\hline\endfirsthead
+Element & Typed declaration & Status / qualification \\
+\hline\endhead
+Attribute & \texttt{+ conn: sqlite3.Connection} & MATCH \\
+Operation & \texttt{+ list\_all() -\textgreater{} list[Hub]} & MATCH \\
+Operation & \texttt{+ get\_including\_archived(hub\_id: int) -\textgreater{} Optional[Hub]} & MATCH \\
+\end{longtable}
+\textbf{BaseController}
+
+Layer: \textbf{controller}; stereotype: \textbf{\guillemotleft{}controller\guillemotright{}}; responsibility: Coordinate authorization, domain decisions and data access. Source: \texttt{saigonbite/business/controllers/common.py}.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Element & Typed declaration & Status / qualification \\
+\hline\endfirsthead
+Element & Typed declaration & Status / qualification \\
+\hline\endhead
+Attribute & \texttt{+ conn: sqlite3.Connection} & MATCH \\
+Attribute & \texttt{+ clock: Any} & MATCH; inferred \\
+Attribute & \texttt{+ users: UserDAO} & MATCH; inferred \\
+Operation & \texttt{- \_now() -\textgreater{} str} & MATCH \\
+Operation & \texttt{- \_require\_user(user\_id: int, *roles: Role, message: str = 'Your account cannot do this.') -\textgreater{} UserAccount} & MATCH \\
+\end{longtable}
+\textbf{UserAccount}
+
+Layer: \textbf{domain}; stereotype: \textbf{\guillemotleft{}entity\guillemotright{}}; responsibility: Hold account identity, role, active flag and optional kitchen-hub assignment. Source: \texttt{saigonbite/business/domain/models.py}.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Element & Typed declaration & Status / qualification \\
+\hline\endfirsthead
+Element & Typed declaration & Status / qualification \\
+\hline\endhead
+Attribute & \texttt{+ id: int} & MATCH \\
+Attribute & \texttt{+ username: str} & MATCH \\
+Attribute & \texttt{+ password\_hash: str} & MATCH \\
+Attribute & \texttt{+ display\_name: str} & MATCH \\
+Attribute & \texttt{+ role: Role} & MATCH \\
+Attribute & \texttt{+ is\_active: bool} & MATCH \\
+Attribute & \texttt{+ hub\_id: Optional[int]} & MATCH; association backing ID, omitted on DCD \\
+Attribute & \texttt{+ created\_at: str} & P4 scoped evidence (P4.1; resolution rows 53); C0 rationale: \\
+\end{longtable}
+\textbf{Role}
+
+Layer: \textbf{domain}; stereotype: \textbf{\guillemotleft{}enumeration\guillemotright{}}; responsibility: Hold typed business state and its local rules. Source: \texttt{saigonbite/business/domain/enums.py}.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Element & Typed declaration & Status / qualification \\
+\hline\endfirsthead
+Element & Typed declaration & Status / qualification \\
+\hline\endhead
+Attribute & \texttt{+ CUSTOMER: str} & MATCH; inferred \\
+Attribute & \texttt{+ KITCHEN\_STAFF: str} & MATCH; inferred \\
+Attribute & \texttt{+ SHIPPER: str} & MATCH; inferred \\
+Attribute & \texttt{+ ADMIN: str} & MATCH; inferred \\
+Attribute & \texttt{+ MANAGER: str} & MATCH; inferred \\
+\end{longtable}
+\textbf{UserDAO}
+
+Layer: \textbf{data\_access}; stereotype: \textbf{\guillemotleft{}DAO\guillemotright{}}; responsibility: Read or write parameterized records. Source: \texttt{saigonbite/data\_access/user\_dao.py}.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Element & Typed declaration & Status / qualification \\
+\hline\endfirsthead
+Element & Typed declaration & Status / qualification \\
+\hline\endhead
+Attribute & \texttt{+ conn: sqlite3.Connection} & MATCH \\
+Operation & \texttt{+ get\_by\_id(user\_id: int) -\textgreater{} Optional[UserAccount]} & MATCH \\
+\end{longtable}
+\textbf{Boundary adapters and guarantees}
+
+\texttt{uid()} always comes from the active server session; posted identity is never accepted. Form adapters retain SSD names while converting camelCase fields to Python keys: \texttt{address} \ensuremath{\rightarrow} \texttt{address\_text}, \texttt{baseDeliveryFee} \ensuremath{\rightarrow} \texttt{base\_delivery\_fee}, \texttt{capacity} \ensuremath{\rightarrow} \texttt{max\_active\_orders}; \texttt{brandId} \ensuremath{\rightarrow} \texttt{brand\_id}. Optional parameters map omitted values to the target defaults. Availability is validated as a boolean. Request.form values are strings; controllers parse and validate them.
+
+OP-25 is the C0 design gap (final status in Table P4-1) \texttt{list\_catalogue} wrapper, composing \texttt{catalogue}, the retained-hub read and optional \texttt{hub\_menu}; it returns Brand/MenuItem/Hub/HubMenuItem data without adding another SSD operation. The three SSD occurrences remain distinct. OP-43 passes initial \texttt{available} into \texttt{list\_item\_at\_hub} and \texttt{MenuDAO.add\_listing} in the same insert (P2-S15). OP-41 uses \texttt{brandId} only as current-parent context; \texttt{update\_item} pins \texttt{current.brand\_id}, with no reparent/restore. Snapshot OrderLine data is outside every catalogue mutation. A None controller result for listing commands is adapted to a successful acknowledgement called \texttt{savedRecord} at the SSD boundary.
+
+Mutation success is acknowledged only after commit. The P2-S13/P3-S03 targets require rowcount/guard checks and controlled busy or commit-error rollback; the Section III figures intentionally hide DAO/SQL behind the persistence note and Section 4.3.2. Draft validation maxima/coordinate windows remain draft constraints (P2-S17), not newly locked BRs.
+
+\textbf{Guarantee responsibility and transaction boundary}
+
+\texttt{Catalogue} and \texttt{HubMenu} are transient result projections, not additional persistent entities. \texttt{HubMenuItem} is the association class linking one Hub and one MenuItem; the shared model projects that relationship as Hub 1 \ensuremath{\rightarrow} 0..* HubMenuItem and HubMenuItem 0..* \ensuremath{\rightarrow} 1 MenuItem. Brand 1 \ensuremath{\rightarrow} 0..* MenuItem remains independent of listing availability.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Anchor / request & Named responsibility & Boundary \\
+\hline\endfirsthead
+Anchor / request & Named responsibility & Boundary \\
+\hline\endhead
+UC06-PC01 & MenuController.create\_brand / rename\_brand / archive\_brand / create\_item / update\_item / archive\_item; the corresponding MenuDAO insert/update/archive methods & BEGIN IMMEDIATE; guards and conditional-save outcomes checked; acknowledge after commit \\
+UC06-PC02 & MenuController.list\_item\_at\_hub / set\_availability / unlist\_item\_at\_hub; MenuDAO.add\_listing / set\_available / remove\_listing & BEGIN IMMEDIATE; add\_listing writes initial requested flag in the same insert \\
+UC06-PC03 & archive\_brand / archive\_item / set\_availability change archive/availability facts; HubDAO.get\_available\_item checks hub pair, availability and the orderable-parent predicate for checkout & Atomic fact change ; orderability is rechecked by the consuming order request, never inferred from a prior page \\
+UC06-MG01 & update\_item / archive\_item / archive\_brand / unlist\_item\_at\_hub touch only catalogue/listing records; OrderLine snapshot rows are outside these writes & Atomic write/rollback ; successful price changes also leave snapshots unchanged \\
+UC06-MG02 & MenuController.\_name / \_parse\_item, \_active\_brand / \_active\_item, and duplicate checks in public mutators & Guard + uniqueness within BEGIN IMMEDIATE; no partial change \\
+listCatalogue (three occurrences) & MenuController.list\_catalogue  composes the existing reads, with optional hub filter; \_require\_admin / BaseController.\_require\_user rechecks active Admin & Read; zero persistent writes \\
+\end{longtable}
+These are design targets where P2-S13/P3-S03 or the operation-specific gap is recorded; no transaction success was executed in P3. The full DAO realization is in Section 4.3.2.
+
+Shared-model classification: \texttt{HubMenuItem.association\_class = true}. Association class of Hub and MenuItem; one hub\_menu\_item row per pair, with independent is\_available. The controller has a logical persistence responsibility for this class mediated by MenuDAO; this does not assert a direct Python behavior call on the dataclass.
+
+Reviewed adapter status: \texttt{admin.catalogue} and \texttt{admin.hub\_menu} are C0 design target (final status in Table P4-1)  (P2-S14); \texttt{admin.list\_item} is C0 design target (final status in Table P4-1)  (P2-S15). Existing route symbols alone do not qualify those target behaviors as MATCH.

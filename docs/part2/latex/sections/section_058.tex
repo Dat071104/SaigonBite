@@ -1,0 +1,1072 @@
+\subsubsection*{3.1.1 Design Classes in Detailed Design}
+\addcontentsline{toc}{subsubsection}{3.1.1 Design Classes in Detailed Design}
+\pdfbookmark[2]{3.1.1 Design Classes in Detailed Design}{p7h58}
+\textbf{UC-01 design classes}
+
+Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
+
+The class tables record the C0 design and the later P4 resolution. P4 status and scoped evidence are listed in the P4 status appendix; unchanged static correspondences remain marked MATCH.
+
+Properties have signatures for traceability but are read as attributes; dataclass \guillemotleft{}create\guillemotright{} means implicit initialization, not an invented business method. Unannotated types are marked inferred. Templates are presentation resources, not design classes.
+
+\textbf{PlaceOrderController}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & controller / \guillemotleft{}controller\guillemotright{} \\
+Responsibility & Coordinate authorization, domain decisions and data access. \\
+Class status & P4 scoped evidence (P4.3; resolution rows 2, 3, 4) \\
+Source & \texttt{saigonbite/business/controllers/place\_order\_controller.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ customers: CustomerDAO} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ hubs: HubDAO} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ orders: OrderDAO} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ payments: PaymentDAO} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ vouchers: VoucherDAO} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ gateway: Any} \textbf{inferred} & MATCH \\
+Operation & \texttt{+ list\_hubs(self) -\textgreater{} list[HubStatus]} & MATCH \\
+Operation & \texttt{+ select\_hub(self, user\_id: int, hub\_id: int) -\textgreater{} HubMenuView} & MATCH \\
+Operation & \texttt{+ request\_quote(self, user\_id: int, hub\_id: int, address\_id: Optional[int], quantities: Mapping[int, str], voucher\_code: Optional[str] = None, payment: Optional[PaymentChoice] = None) -\textgreater{} Quote} & P4 scoped evidence (P4.3; resolution rows 2); C0 rationale: F-04; F-07; P3-S01; Use raw distance; include payment choice and a full quote fingerprint; rank suggestions by load ratio, distance and ID. \\
+Operation & \texttt{+ confirm\_order(self, user\_id: int, hub\_id: int, address\_id: Optional[int], quantities: Mapping[int, str], idempotency\_token: str, quoted\_total: Optional[int] = None, voucher\_code: Optional[str] = None, payment: Optional[PaymentChoice] = None, quote\_fingerprint: Optional[str] = None) -\textgreater{} OrderConfirmation} & P4 scoped evidence (P4.3; resolution rows 3); C0 rationale: F-04; F-07; P2-S05; P2-S13; Compare full fingerprint and T; release simulator authorization on every failure through COMMIT. \\
+Operation & \texttt{- \_build\_quote(self, customer: Customer, hub\_id: int, address\_id: Optional[int], quantities: Mapping[int, str], voucher\_code: Optional[str]) -\textgreater{} Quote} & MATCH \\
+Operation & \texttt{+ suggest\_hubs(self, exclude\_hub\_id: int, address: Optional[Address]) -\textgreater{} list[HubStatus]} & P4 scoped evidence (P4.3; resolution rows 4); C0 rationale: P3-S01; F-04; Draft sorts by load ratio then ID; BR-04 requires distance as the second key and raw distance for range. \\
+Operation & \texttt{- \_require\_customer(self, user\_id: int) -\textgreater{} Customer} & MATCH \\
+Operation & \texttt{- \_check\_payment\_choice(customer: Customer, payment: PaymentChoice) -\textgreater{} None} & MATCH \\
+\end{longtable}
+\textbf{order}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & view / \guillemotleft{}view\guillemotright{} \\
+Responsibility & Translate authenticated customer routes and render quote, receipt and order results. \\
+Class status & P4 scoped evidence (P4.3; resolution rows 60, 61) \\
+Source & \texttt{saigonbite/presentation/order.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Operation & \texttt{+ choose\_hub() -\textgreater{} Any [inferred return]} \textbf{inferred unannotated parameter/return} & MATCH \\
+Operation & \texttt{+ choose\_items(hub\_id: int) -\textgreater{} Any [inferred return]} \textbf{inferred unannotated parameter/return} & MATCH \\
+Operation & \texttt{+ quote() -\textgreater{} Any [inferred return]} \textbf{inferred unannotated parameter/return} & P4 scoped evidence (P4.3; resolution rows 61); C0 rationale: F-07; Pass payment choice into target quoting and render the full fingerprint. \\
+Operation & \texttt{+ confirm() -\textgreater{} Any [inferred return]} \textbf{inferred unannotated parameter/return} & P4 scoped evidence (P4.3; resolution rows 60); C0 rationale: F-07; P2-S05; Bind the posted fingerprint/payment choice to the target confirm method; retain controlled results through COMMIT. \\
+Operation & \texttt{+ detail(order\_id: int) -\textgreater{} Any [inferred return]} \textbf{inferred unannotated parameter/return} & MATCH \\
+Operation & \texttt{+ my\_orders() -\textgreater{} Any [inferred return]} \textbf{inferred unannotated parameter/return} & MATCH \\
+Operation & \texttt{+ cancel(order\_id: int) -\textgreater{} Any [inferred return]} \textbf{inferred unannotated parameter/return} & MATCH \\
+\end{longtable}
+\textbf{HubStatus}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & domain / \guillemotleft{}entity\guillemotright{} \\
+Responsibility & Derive busy, quiet and load percentage from current load and capacity. \\
+Class status & MATCH (Static) \\
+Source & \texttt{saigonbite/business/domain/models.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ hub: Hub} & MATCH \\
+Attribute & \texttt{+ load: int} & MATCH \\
+Read-only property & \texttt{+ busy(self) -\textgreater{} bool \{property; read as .busy\}} & MATCH \\
+Read-only property & \texttt{+ quiet(self) -\textgreater{} bool \{property; read as .quiet\}} & MATCH \\
+\end{longtable}
+\textbf{HubDAO}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & data\_access / \guillemotleft{}DAO\guillemotright{} \\
+Responsibility & Read or write parameterized records. \\
+Class status & MATCH (Static) \\
+Source & \texttt{saigonbite/data\_access/hub\_dao.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ conn: sqlite3.Connection} & MATCH \\
+Operation & \texttt{+ active\_loads(self) -\textgreater{} dict[int, int]} & MATCH \\
+Operation & \texttt{+ list\_active(self) -\textgreater{} list[Hub]} & MATCH \\
+Operation & \texttt{+ active\_load(self, hub\_id: int) -\textgreater{} int} & MATCH \\
+Operation & \texttt{+ get(self, hub\_id: int) -\textgreater{} Optional[Hub]} & MATCH \\
+Operation & \texttt{+ list\_menu(self, hub\_id: int) -\textgreater{} list[HubMenuItem]} & MATCH \\
+Operation & \texttt{+ get\_available\_item(self, hub\_id: int, menu\_item\_id: int) -\textgreater{} Optional[MenuItem]} & MATCH \\
+Operation & \texttt{+ get\_including\_archived(self, hub\_id: int) -\textgreater{} Optional[Hub]} & MATCH \\
+\end{longtable}
+\textbf{CustomerDAO}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & data\_access / \guillemotleft{}DAO\guillemotright{} \\
+Responsibility & Read or write parameterized records. \\
+Class status & MATCH (Static) \\
+Source & \texttt{saigonbite/data\_access/customer\_dao.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ conn: sqlite3.Connection} & MATCH \\
+Operation & \texttt{+ get\_by\_user\_id(self, user\_id: int) -\textgreater{} Optional[Customer]} & MATCH \\
+Operation & \texttt{+ list\_addresses(self, customer\_id: int) -\textgreater{} list[Address]} & MATCH \\
+Operation & \texttt{+ get\_address(self, address\_id: int, customer\_id: int) -\textgreater{} Optional[Address]} & MATCH \\
+\end{longtable}
+\textbf{UserDAO}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & data\_access / \guillemotleft{}DAO\guillemotright{} \\
+Responsibility & Read or write parameterized records. \\
+Class status & MATCH (Static) \\
+Source & \texttt{saigonbite/data\_access/user\_dao.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ conn: sqlite3.Connection} & MATCH \\
+Operation & \texttt{+ get\_by\_id(self, user\_id: int) -\textgreater{} Optional[UserAccount]} & MATCH \\
+\end{longtable}
+\textbf{Hub}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & domain / \guillemotleft{}entity\guillemotright{} \\
+Responsibility & Represent a kitchen location, capacity and fee. \\
+Class status & P4 scoped evidence (P4.3; resolution rows 7, 8) \\
+Source & \texttt{saigonbite/business/domain/models.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ id: int} & MATCH \\
+Attribute & \texttt{+ code: str} & MATCH \\
+Attribute & \texttt{+ name: str} & MATCH \\
+Attribute & \texttt{+ address\_text: str} & MATCH \\
+Attribute & \texttt{+ latitude: float} & MATCH \\
+Attribute & \texttt{+ longitude: float} & MATCH \\
+Attribute & \texttt{+ max\_active\_orders: int} & MATCH \\
+Attribute & \texttt{+ base\_delivery\_fee: int} & MATCH \\
+Attribute & \texttt{+ archived\_at: Optional[str]} & MATCH \\
+Operation & \texttt{+ distance\_to(self, address: Address) -\textgreater{} float} & P4 scoped evidence (P4.3; resolution rows 7, 8); C0 rationale: F-04; Keep raw Haversine precision through the radius and fee decisions; round only presentation/storage. \\
+\end{longtable}
+\textbf{Quote}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & domain / \guillemotleft{}entity\guillemotright{} \\
+Responsibility & Compute and bind the complete consented price; not persisted. \\
+Class status & P4 scoped evidence (P4.3; resolution rows 5, 6) \\
+Source & \texttt{saigonbite/business/domain/models.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ hub: Hub} & MATCH \\
+Attribute & \texttt{+ address: Address} & MATCH \\
+Attribute & \texttt{+ lines: list[OrderLine]} & MATCH \\
+Attribute & \texttt{+ distance\_km: float} & MATCH \\
+Attribute & \texttt{+ delivery\_fee: int} & MATCH \\
+Attribute & \texttt{+ quiet\_discount: int} & MATCH \\
+Attribute & \texttt{+ voucher: Optional[Voucher]} & MATCH \\
+Attribute & \texttt{+ voucher\_discount: int} & MATCH \\
+Operation & \texttt{+ fingerprint(self, payment\_method: PaymentMethod, online\_option: Optional[OnlineOption] = None) -\textgreater{} str} & P4 scoped evidence (P4.3; resolution rows 5, 6); C0 rationale: F-07; Bind all consent fields with pure-domain enum inputs; the controller adapts PaymentChoice. \\
+Read-only property & \texttt{+ total(self) -\textgreater{} int \{property; read as .total\}} & MATCH \\
+\end{longtable}
+\textbf{Voucher}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & domain / \guillemotleft{}entity\guillemotright{} \\
+Responsibility & Check date/subtotal eligibility and calculate the bounded discount. \\
+Class status & MATCH (Static) \\
+Source & \texttt{saigonbite/business/domain/models.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ id: int} & MATCH \\
+Attribute & \texttt{+ code: str} & MATCH \\
+Attribute & \texttt{+ description: str} & MATCH \\
+Attribute & \texttt{+ discount\_type: DiscountType} & MATCH \\
+Attribute & \texttt{+ discount\_value: int} & MATCH \\
+Attribute & \texttt{+ min\_subtotal: int} & MATCH \\
+Attribute & \texttt{+ max\_discount: Optional[int]} & MATCH \\
+Attribute & \texttt{+ valid\_from: str} & MATCH \\
+Attribute & \texttt{+ valid\_until: str} & MATCH \\
+Attribute & \texttt{+ archived\_at: Optional[str]} & MATCH \\
+Operation & \texttt{+ discount\_for(self, item\_subtotal: int) -\textgreater{} int} & MATCH \\
+Operation & \texttt{+ problem(self, item\_subtotal: int, today: str) -\textgreater{} Optional[str]} & MATCH \\
+\end{longtable}
+\textbf{VoucherDAO}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & data\_access / \guillemotleft{}DAO\guillemotright{} \\
+Responsibility & Read or write parameterized records. \\
+Class status & MATCH (Static) \\
+Source & \texttt{saigonbite/data\_access/voucher\_dao.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ conn: sqlite3.Connection} & MATCH \\
+Operation & \texttt{+ get\_by\_code(self, code: str) -\textgreater{} Optional[Voucher]} & MATCH \\
+\end{longtable}
+\textbf{Order}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & domain / \guillemotleft{}entity\guillemotright{} \\
+Responsibility & Own the order lifecycle, snapshots and accepted replacement totals. \\
+Class status & MATCH (Static) \\
+Source & \texttt{saigonbite/business/domain/models.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ customer\_id: int} (FK retained here; omitted from DCD) & MATCH \\
+Attribute & \texttt{+ hub\_id: int} (FK retained here; omitted from DCD) & MATCH \\
+Attribute & \texttt{+ address\_id: int} (FK retained here; omitted from DCD) & MATCH \\
+Attribute & \texttt{+ state: OrderState} & MATCH \\
+Attribute & \texttt{+ delivery\_fee: int} & MATCH \\
+Attribute & \texttt{+ idempotency\_token: str} & MATCH \\
+Attribute & \texttt{+ placed\_at: str} & MATCH \\
+Attribute & \texttt{+ lines: list[OrderLine]} & MATCH \\
+Attribute & \texttt{+ id: Optional[int]} & MATCH \\
+Attribute & \texttt{+ archived\_at: Optional[str]} & MATCH \\
+Attribute & \texttt{+ delivery\_address\_text: str} & MATCH \\
+Attribute & \texttt{+ distance\_km: float} & MATCH \\
+Attribute & \texttt{+ voucher\_id: Optional[int]} (FK retained here; omitted from DCD) & MATCH \\
+Attribute & \texttt{+ voucher\_discount: int} & MATCH \\
+Attribute & \texttt{+ quiet\_discount: int} & MATCH \\
+Attribute & \texttt{+ reject\_reason: Optional[str]} & MATCH \\
+Attribute & \texttt{+ confirmed\_at: Optional[str]} & MATCH \\
+Attribute & \texttt{+ ready\_at: Optional[str]} & MATCH \\
+Attribute & \texttt{+ closed\_at: Optional[str]} & MATCH \\
+Operation & \texttt{+ place(cls, customer\_id: int, quote: Quote, idempotency\_token: str, placed\_at: str) -\textgreater{} 'Order'} & MATCH \\
+Operation & \texttt{+ move\_to(self, new\_state: OrderState) -\textgreater{} None} & MATCH \\
+Operation & \texttt{+ replace\_line(self, line\_id: int, menu\_item\_id: int, item\_name: str, unit\_price: int) -\textgreater{} None} & MATCH \\
+Operation & \texttt{+ line(self, line\_id: int) -\textgreater{} Optional[OrderLine]} & MATCH \\
+\end{longtable}
+\textbf{PaymentGatewaySimulator}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & data\_access / \guillemotleft{}gateway\guillemotright{} \\
+Responsibility & Read or write parameterized records. \\
+Class status & MATCH (Static) \\
+Source & \texttt{saigonbite/data\_access/payment\_gateway.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Operation & \texttt{+ authorise(self, amount: int, option: OnlineOption, outcome: str) -\textgreater{} Authorisation} & MATCH \\
+Operation & \texttt{+ release(self, reference: str) -\textgreater{} None} & MATCH \\
+\end{longtable}
+\textbf{OrderDAO}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & data\_access / \guillemotleft{}DAO\guillemotright{} \\
+Responsibility & Read or write parameterized records. \\
+Class status & P4 scoped evidence (P4.4, P4.7; resolution rows 43, 44, 45) \\
+Source & \texttt{saigonbite/data\_access/order\_dao.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ conn: sqlite3.Connection} & MATCH \\
+Operation & \texttt{- \_load(self, row: Optional[sqlite3.Row]) -\textgreater{} Optional[Order]} & MATCH \\
+Operation & \texttt{+ get\_by\_id(self, order\_id: int) -\textgreater{} Optional[Order]} & MATCH \\
+Operation & \texttt{+ get\_by\_token(self, token: str) -\textgreater{} Optional[Order]} & MATCH \\
+Operation & \texttt{+ insert(self, order: Order) -\textgreater{} int} & MATCH \\
+Operation & \texttt{+ list\_for\_customer(self, customer\_id: int) -\textgreater{} list[Order]} & MATCH \\
+Operation & \texttt{+ change\_state(self, order\_id: int, from\_state: OrderState, to\_state: OrderState, now: str, reject\_reason: Optional[str]=None) -\textgreater{} bool} & MATCH \\
+\end{longtable}
+\textbf{PaymentDAO}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & data\_access / \guillemotleft{}DAO\guillemotright{} \\
+Responsibility & Read or write parameterized records. \\
+Class status & P4 scoped evidence (P4.4; resolution rows 46, 47, 48, 49, 50) \\
+Source & \texttt{saigonbite/data\_access/payment\_dao.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ conn: sqlite3.Connection} & MATCH \\
+Operation & \texttt{+ get\_by\_order\_id(self, order\_id: int) -\textgreater{} Optional[Payment]} & MATCH \\
+Operation & \texttt{+ insert(self, payment: Payment) -\textgreater{} int} & MATCH \\
+Operation & \texttt{+ change\_state(self, order\_id: int, from\_state: PaymentState, to\_state: PaymentState, now: str) -\textgreater{} bool} & MATCH \\
+Operation & \texttt{+ set\_amounts(self, order\_id: int, amount: int, refund\_amount: int, now: str) -\textgreater{} bool} & P4 scoped evidence (P4.4; resolution rows 46, 47, 48, 49, 50); C0 rationale: F-02; P3-S03; Persist full/partial refund obligations atomically and expose the conditional save outcome. \\
+\end{longtable}
+\textbf{OrderTrackingController}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & controller / \guillemotleft{}controller\guillemotright{} \\
+Responsibility & Coordinate authorization, domain decisions and data access. \\
+Class status & P4 scoped evidence (P4.4; resolution rows 13, 14, 15) \\
+Source & \texttt{saigonbite/business/controllers/order\_tracking\_controller.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ customers: CustomerDAO} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ orders: OrderDAO} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ payments: PaymentDAO} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ hubs: HubDAO} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ deliveries: DeliveryDAO} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ offers: ReplacementOfferDAO} \textbf{inferred} & MATCH \\
+Operation & \texttt{+ get\_order(self, user\_id: int, order\_id: int) -\textgreater{} OrderDetail} & MATCH \\
+Operation & \texttt{+ list\_my\_orders(self, user\_id: int) -\textgreater{} list[OrderSummary]} & MATCH \\
+Operation & \texttt{+ cancel\_order(self, user\_id: int, order\_id: int) -\textgreater{} OrderDetail} & P4 scoped evidence (P4.4; resolution rows 15); C0 rationale: F-02; P2-S13; BR-17 full C refund owed and atomic state/amount writes, including COMMIT rollback. \\
+Operation & \texttt{- \_own\_order(self, customer: Customer, order\_id: int) -\textgreater{} Order} & MATCH \\
+Operation & \texttt{- \_require\_customer(self, user\_id: int) -\textgreater{} Customer} & MATCH \\
+\end{longtable}
+\textbf{DeliveryDAO}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & data\_access / \guillemotleft{}DAO\guillemotright{} \\
+Responsibility & Read or write parameterized records. \\
+Class status & MATCH (Static) \\
+Source & \texttt{saigonbite/data\_access/delivery\_dao.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ conn: sqlite3.Connection} & MATCH \\
+Operation & \texttt{+ get\_by\_order\_id(self, order\_id: int) -\textgreater{} Optional[Delivery]} & MATCH \\
+\end{longtable}
+\textbf{ReplacementOfferDAO}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & data\_access / \guillemotleft{}DAO\guillemotright{} \\
+Responsibility & Read or write parameterized records. \\
+Class status & MATCH (Static) \\
+Source & \texttt{saigonbite/data\_access/offer\_dao.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ conn: sqlite3.Connection} & MATCH \\
+Operation & \texttt{+ get\_open(self, order\_id: int) -\textgreater{} Optional[ReplacementOffer]} & MATCH \\
+Operation & \texttt{+ list\_for\_order(self, order\_id: int) -\textgreater{} list[ReplacementOffer]} & MATCH \\
+Operation & \texttt{+ decide(self, offer\_id: int, to\_state: OfferState, now: str) -\textgreater{} bool} & MATCH \\
+\end{longtable}
+\textbf{Payment}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & domain / \guillemotleft{}entity\guillemotright{} \\
+Responsibility & Hold captured amount C and refund obligations without claiming payout. \\
+Class status & P4 scoped evidence (P4.4; resolution rows 9, 10, 11, 12) \\
+Source & \texttt{saigonbite/business/domain/models.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ order\_id: int} (FK retained here; omitted from DCD) & MATCH \\
+Attribute & \texttt{+ method: PaymentMethod} & MATCH \\
+Attribute & \texttt{+ state: PaymentState} & MATCH \\
+Attribute & \texttt{+ amount: int} & MATCH \\
+Attribute & \texttt{+ created\_at: str} & MATCH \\
+Attribute & \texttt{+ updated\_at: Optional[str]} & MATCH \\
+Attribute & \texttt{+ online\_option: Optional[OnlineOption]} & MATCH \\
+Attribute & \texttt{+ provider\_ref: Optional[str]} & MATCH \\
+Attribute & \texttt{+ refund\_amount: int} & MATCH \\
+Attribute & \texttt{+ id: Optional[int]} & MATCH \\
+Operation & \texttt{+ release\_for\_unfulfilled\_order(self) -\textgreater{} None} & P4 scoped evidence (P4.4; resolution rows 9, 10, 11, 12); C0 rationale: F-02; P2-S01; Set refund\_amount=C with REFUND\_PENDING; preserve COD VOIDED; no payout operation. \\
+\end{longtable}
+\textbf{controllers.common}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & controller / \guillemotleft{}module\guillemotright{} \\
+Responsibility & Module functions with their original Python signatures. \\
+Class status & P4 scoped evidence (P4.4; resolution rows 54) \\
+Source & \texttt{saigonbite/business/controllers/common.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Operation & \texttt{+ move\_order(orders: OrderDAO, order: Order, to\_state: OrderState, now: str, reject\_reason: Optional[str]=None) -\textgreater{} None} & MATCH \\
+Operation & \texttt{+ release\_payment(payments: PaymentDAO, order\_id: int, now: str) -\textgreater{} Payment} & P4 scoped evidence (P4.4; resolution rows 54); C0 rationale: F-02; P2-S01; P3-S03; Persist full captured C as refund\_amount together with state; changing only the domain object does not save the amount. Check conditional save results in the same transaction. \\
+\end{longtable}
+\textbf{ReplacementOffer}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & domain / \guillemotleft{}entity\guillemotright{} \\
+Responsibility & Hold one proposed whole-line replacement and its decision history. \\
+Class status & MATCH (Static) \\
+Source & \texttt{saigonbite/business/domain/models.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ order\_id: int} (FK retained here; omitted from DCD) & MATCH \\
+Attribute & \texttt{+ order\_line\_id: int} (FK retained here; omitted from DCD) & MATCH \\
+Attribute & \texttt{+ original\_item\_name: str} & MATCH \\
+Attribute & \texttt{+ original\_unit\_price: int} & MATCH \\
+Attribute & \texttt{+ new\_menu\_item\_id: int} (FK retained here; omitted from DCD) & MATCH \\
+Attribute & \texttt{+ new\_item\_name: str} & MATCH \\
+Attribute & \texttt{+ new\_unit\_price: int} & MATCH \\
+Attribute & \texttt{+ state: OfferState} & MATCH \\
+Attribute & \texttt{+ offered\_at: str} & MATCH \\
+Attribute & \texttt{+ decided\_at: Optional[str]} & MATCH \\
+Attribute & \texttt{+ id: Optional[int]} & MATCH \\
+Operation & \texttt{+ move\_to(self, new\_state: OfferState) -\textgreater{} None} & MATCH \\
+\end{longtable}
+\textbf{OrderLine}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & domain / \guillemotleft{}entity\guillemotright{} \\
+Responsibility & Retain item/name/price/quantity snapshots and derive the line total. \\
+Class status & MATCH (Static) \\
+Source & \texttt{saigonbite/business/domain/models.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ menu\_item\_id: int} (FK retained here; omitted from DCD) & MATCH \\
+Attribute & \texttt{+ item\_name: str} & MATCH \\
+Attribute & \texttt{+ unit\_price: int} & MATCH \\
+Attribute & \texttt{+ quantity: int} & MATCH \\
+Attribute & \texttt{+ id: Optional[int]} & MATCH \\
+\end{longtable}
+\textbf{Customer}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & domain / \guillemotleft{}entity\guillemotright{} \\
+Responsibility & Represent customer identity and permitted online payment choices. \\
+Class status & MATCH (Static) \\
+Source & \texttt{saigonbite/business/domain/models.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ id: int} & MATCH \\
+Attribute & \texttt{+ user\_id: int} (FK retained here; omitted from DCD) & MATCH \\
+Attribute & \texttt{+ full\_name: str} & MATCH \\
+Attribute & \texttt{+ phone: Optional[str]} & MATCH \\
+Attribute & \texttt{+ email: Optional[str]} & MATCH \\
+Attribute & \texttt{+ passport\_no: Optional[str]} & MATCH \\
+Attribute & \texttt{+ nationality: Optional[str]} & MATCH \\
+Attribute & \texttt{+ customer\_type: CustomerType} \textbf{inferred} & MATCH \\
+\end{longtable}
+\textbf{LocalCustomer}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & domain / \guillemotleft{}entity\guillemotright{} \\
+Responsibility & Specialize the Customer type and permitted payment options for a local customer. \\
+Class status & MATCH (Static) \\
+Source & \texttt{saigonbite/business/domain/models.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ customer\_type: CustomerType} \textbf{inferred} & MATCH \\
+\end{longtable}
+\textbf{TouristCustomer}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & domain / \guillemotleft{}entity\guillemotright{} \\
+Responsibility & Specialize Customer identity and permitted payment options for a tourist. \\
+Class status & MATCH (Static) \\
+Source & \texttt{saigonbite/business/domain/models.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ customer\_type: CustomerType} \textbf{inferred} & MATCH \\
+\end{longtable}
+\textbf{Address}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & domain / \guillemotleft{}entity\guillemotright{} \\
+Responsibility & Hold an owned delivery location and archive flag. \\
+Class status & MATCH (Static) \\
+Source & \texttt{saigonbite/business/domain/models.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ id: int} & MATCH \\
+Attribute & \texttt{+ customer\_id: int} (FK retained here; omitted from DCD) & MATCH \\
+Attribute & \texttt{+ label: str} & MATCH \\
+Attribute & \texttt{+ full\_address: str} & MATCH \\
+Attribute & \texttt{+ district: str} & MATCH \\
+Attribute & \texttt{+ latitude: float} & MATCH \\
+Attribute & \texttt{+ longitude: float} & MATCH \\
+Attribute & \texttt{+ archived\_at: Optional[str]} & MATCH \\
+\end{longtable}
+\textbf{MenuItem}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & domain / \guillemotleft{}entity\guillemotright{} \\
+Responsibility & Hold current catalogue text, whole-VND price and archive flag. \\
+Class status & MATCH (Static) \\
+Source & \texttt{saigonbite/business/domain/models.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ id: int} & MATCH \\
+Attribute & \texttt{+ brand\_id: int} (FK retained here; omitted from DCD) & MATCH \\
+Attribute & \texttt{+ brand\_name: str} & MATCH \\
+Attribute & \texttt{+ name: str} & MATCH \\
+Attribute & \texttt{+ description: str} & MATCH \\
+Attribute & \texttt{+ price: int} & MATCH \\
+Attribute & \texttt{+ archived\_at: Optional[str]} & MATCH \\
+\end{longtable}
+\textbf{Brand}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & domain / \guillemotleft{}entity\guillemotright{} \\
+Responsibility & Group menu items and retain the archived brand identity. \\
+Class status & MATCH (Static) \\
+Source & \texttt{saigonbite/business/domain/models.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ id: int} & MATCH \\
+Attribute & \texttt{+ name: str} & MATCH \\
+Attribute & \texttt{+ archived\_at: Optional[str]} & MATCH \\
+\end{longtable}
+\textbf{HubMenuItem}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & domain / \guillemotleft{}entity\guillemotright{} \\
+Responsibility & Represent one hub listing and its independent availability. \\
+Class status & MATCH (Static) \\
+Source & \texttt{saigonbite/business/domain/models.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ hub\_id: int} (FK retained here; omitted from DCD) & MATCH \\
+Attribute & \texttt{+ item: MenuItem} & MATCH \\
+Attribute & \texttt{+ is\_available: bool} & MATCH \\
+\end{longtable}
+\textbf{UserAccount}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & domain / \guillemotleft{}entity\guillemotright{} \\
+Responsibility & Hold account identity, role, active flag and optional kitchen-hub assignment. \\
+Class status & P4 scoped evidence (P4.1; resolution rows 53) \\
+Source & \texttt{saigonbite/business/domain/models.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ id: int} & MATCH \\
+Attribute & \texttt{+ username: str} & MATCH \\
+Attribute & \texttt{+ password\_hash: str} & MATCH \\
+Attribute & \texttt{+ display\_name: str} & MATCH \\
+Attribute & \texttt{+ role: Role} & MATCH \\
+Attribute & \texttt{+ is\_active: bool} & MATCH \\
+Attribute & \texttt{+ hub\_id: Optional[int]} (FK retained here; omitted from DCD) & MATCH \\
+Attribute & \texttt{+ created\_at: str} & P4 scoped evidence (P4.1; resolution rows 53); C0 rationale: \\
+\end{longtable}
+\textbf{OrderState}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & domain / \guillemotleft{}enumeration\guillemotright{} \\
+Responsibility & Hold typed business state and its local rules. \\
+Class status & MATCH (Static) \\
+Source & \texttt{saigonbite/business/domain/enums.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ PLACED: str} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ CONFIRMED: str} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ REJECTED: str} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ PREPARING: str} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ READY: str} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ OUT\_FOR\_DELIVERY: str} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ DELIVERED: str} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ DELIVERY\_FAILED: str} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ CANCELLED: str} \textbf{inferred} & MATCH \\
+Enumeration & PLACED, CONFIRMED, REJECTED, PREPARING, READY, OUT\_FOR\_DELIVERY, DELIVERED, DELIVERY\_FAILED, CANCELLED & MATCH \\
+\end{longtable}
+\textbf{PaymentState}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & domain / \guillemotleft{}enumeration\guillemotright{} \\
+Responsibility & Hold typed business state and its local rules. \\
+Class status & MATCH (Static) \\
+Source & \texttt{saigonbite/business/domain/enums.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ PENDING: str} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ PAID: str} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ FAILED: str} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ VOIDED: str} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ REFUND\_PENDING: str} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ REFUNDED: str} \textbf{inferred} & MATCH \\
+Enumeration & PENDING, PAID, FAILED, VOIDED, REFUND\_PENDING, REFUNDED & MATCH \\
+\end{longtable}
+\textbf{PaymentMethod}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & domain / \guillemotleft{}enumeration\guillemotright{} \\
+Responsibility & Hold typed business state and its local rules. \\
+Class status & MATCH (Static) \\
+Source & \texttt{saigonbite/business/domain/enums.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ COD: str} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ ONLINE: str} \textbf{inferred} & MATCH \\
+Enumeration & COD, ONLINE & MATCH \\
+\end{longtable}
+\textbf{OnlineOption}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & domain / \guillemotleft{}enumeration\guillemotright{} \\
+Responsibility & Hold typed business state and its local rules. \\
+Class status & MATCH (Static) \\
+Source & \texttt{saigonbite/business/domain/enums.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ E\_WALLET: str} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ BANK\_QR: str} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ INTERNATIONAL\_CARD: str} \textbf{inferred} & MATCH \\
+Enumeration & E\_WALLET, BANK\_QR, INTERNATIONAL\_CARD & MATCH \\
+\end{longtable}
+\textbf{OfferState}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & domain / \guillemotleft{}enumeration\guillemotright{} \\
+Responsibility & Hold typed business state and its local rules. \\
+Class status & MATCH (Static) \\
+Source & \texttt{saigonbite/business/domain/enums.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ OFFERED: str} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ ACCEPTED: str} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ DECLINED: str} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ WITHDRAWN: str} \textbf{inferred} & MATCH \\
+Enumeration & OFFERED, ACCEPTED, DECLINED, WITHDRAWN & MATCH \\
+\end{longtable}
+\textbf{Role}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & domain / \guillemotleft{}enumeration\guillemotright{} \\
+Responsibility & Hold typed business state and its local rules. \\
+Class status & MATCH (Static) \\
+Source & \texttt{saigonbite/business/domain/enums.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ CUSTOMER: str} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ KITCHEN\_STAFF: str} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ SHIPPER: str} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ ADMIN: str} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ MANAGER: str} \textbf{inferred} & MATCH \\
+Enumeration & CUSTOMER, KITCHEN\_STAFF, SHIPPER, ADMIN, MANAGER & MATCH \\
+\end{longtable}
+\textbf{PaymentChoice}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & controller / \guillemotleft{}value\guillemotright{} \\
+Responsibility & Coordinate authorization, domain decisions and data access. \\
+Class status & MATCH (Static) \\
+Source & \texttt{saigonbite/business/controllers/place\_order\_controller.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ method: PaymentMethod} & MATCH \\
+Attribute & \texttt{+ option: Optional[OnlineOption]} & MATCH \\
+Attribute & \texttt{+ outcome: Optional[str]} & MATCH \\
+\end{longtable}
+\textbf{OrderConfirmation}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & controller / \guillemotleft{}value\guillemotright{} \\
+Responsibility & Coordinate authorization, domain decisions and data access. \\
+Class status & MATCH (Static) \\
+Source & \texttt{saigonbite/business/controllers/place\_order\_controller.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ order: Order} & MATCH \\
+Attribute & \texttt{+ payment: Payment} & MATCH \\
+Attribute & \texttt{+ hub: Hub} & MATCH \\
+Attribute & \texttt{+ created: bool} & MATCH \\
+\end{longtable}
+\textbf{HubMenuView}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & controller / \guillemotleft{}value\guillemotright{} \\
+Responsibility & Coordinate authorization, domain decisions and data access. \\
+Class status & MATCH (Static) \\
+Source & \texttt{saigonbite/business/controllers/place\_order\_controller.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ hub: Hub} & MATCH \\
+Attribute & \texttt{+ status: HubStatus} & MATCH \\
+Attribute & \texttt{+ menu: list[HubMenuItem]} & MATCH \\
+Attribute & \texttt{+ addresses: list[Address]} & MATCH \\
+\end{longtable}
+\textbf{OrderDetail}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & controller / \guillemotleft{}value\guillemotright{} \\
+Responsibility & Coordinate authorization, domain decisions and data access. \\
+Class status & MATCH (Static) \\
+Source & \texttt{saigonbite/business/controllers/order\_tracking\_controller.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ order: Order} & MATCH \\
+Attribute & \texttt{+ payment: Payment} & MATCH \\
+Attribute & \texttt{+ hub: Hub} & MATCH \\
+Attribute & \texttt{+ delivery: Optional[Delivery]} & MATCH \\
+Attribute & \texttt{+ open\_offer: Optional[ReplacementOffer]} & MATCH \\
+Attribute & \texttt{+ offers: list[ReplacementOffer]} & MATCH \\
+\end{longtable}
+\textbf{OrderSummary}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & controller / \guillemotleft{}value\guillemotright{} \\
+Responsibility & Coordinate authorization, domain decisions and data access. \\
+Class status & MATCH (Static) \\
+Source & \texttt{saigonbite/business/controllers/order\_tracking\_controller.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ order: Order} & MATCH \\
+Attribute & \texttt{+ hub\_name: str} & MATCH \\
+Attribute & \texttt{+ awaiting\_answer: bool} & MATCH \\
+\end{longtable}
+\textbf{Authorisation}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & data\_access / \guillemotleft{}value\guillemotright{} \\
+Responsibility & Carry the local simulator decision, reference and message; not persisted. \\
+Class status & MATCH (Static) \\
+Source & \texttt{saigonbite/data\_access/payment\_gateway.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ approved: bool} & MATCH \\
+Attribute & \texttt{+ reference: Optional[str]} & MATCH \\
+Attribute & \texttt{+ message: str} & MATCH \\
+\end{longtable}
+\textbf{domain.rules}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & domain / \guillemotleft{}module\guillemotright{} \\
+Responsibility & Module functions with their original Python signatures. \\
+Class status & P4 scoped evidence (P4.3; resolution rows 55) \\
+Source & \texttt{saigonbite/business/domain/rules.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Operation & \texttt{+ delivery\_fee(base\_fee: int, km: float) -\textgreater{} int} & MATCH \\
+Operation & \texttt{+ quiet\_discount(load: int, capacity: int, fee: int) -\textgreater{} int} & MATCH \\
+\end{longtable}
+\textbf{DiscountType}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & domain / \guillemotleft{}enumeration\guillemotright{} \\
+Responsibility & Hold typed business state and its local rules. \\
+Class status & MATCH (Static) \\
+Source & \texttt{saigonbite/business/domain/enums.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ FIXED: str} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ PERCENT: str} \textbf{inferred} & MATCH \\
+Enumeration & FIXED, PERCENT & MATCH \\
+\end{longtable}
+\textbf{CustomerType}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Detail & Design \\
+\hline\endfirsthead
+Detail & Design \\
+\hline\endhead
+Layer / stereotype & domain / \guillemotleft{}enumeration\guillemotright{} \\
+Responsibility & Hold typed business state and its local rules. \\
+Class status & MATCH (Static) \\
+Source & \texttt{saigonbite/business/domain/enums.py} \\
+\end{longtable}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endfirsthead
+Kind & Visible typed member / exact signature & Status / evidence \\
+\hline\endhead
+Attribute & \texttt{+ LOCAL: str} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ TOURIST: str} \textbf{inferred} & MATCH \\
+Enumeration & LOCAL, TOURIST & MATCH \\
+\end{longtable}
+\textbf{Presentation adapter and resources}
+
+The \texttt{order} / \texttt{kitchen} identifiers are actual Flask blueprint modules (\texttt{saigonbite/presentation/blueprints/*.py}); each route remains its actual Python function and HTTP rule. The SSD operation is translated at this boundary; session identity and route/form fields supply the controller arguments.
+
+Templates used by the selected blueprint module(s): \texttt{order/confirmation.html}, \texttt{order/detail.html}, \texttt{order/hubs.html}, \texttt{order/menu.html}, \texttt{order/my\_orders.html}, \texttt{order/payment\_simulator.html}, \texttt{order/quote.html}.
+
+Non-persisted values include Quote, PaymentChoice, HubStatus, response dataclasses and Authorisation. Busy/quiet are derived properties; no Busy/Quiet enum is introduced. No refund payout is designed.

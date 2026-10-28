@@ -1,0 +1,189 @@
+\input{preamble}
+\begin{document}
+\begin{titlepage}
+\centering
+{\LARGE SaigonBite: Online Food Delivery Hub Platform\par}
+\vspace{8mm}
+{\large Requirements Analysis \& Design (RAD) -- Sem01\_2627\par}
+\vspace{10mm}
+By Students:\par
+722I0004 : Nguyen Thanh Dat\par
+523K0049 : Le Minh Quan\par
+523K0050 : Nguyen Minh Quan\par
+\vfill
+\begin{tabularx}{\linewidth}{|X|X|X|X|}\hline
+Reference & Audience & Document version & Outcome \\ \hline
+Team02\_BRS\_SRS\_for\_SaigonBite & Mr. Pham Thai Ky Trung & 28/10/2026 & SaigonBite \\ \hline
+\end{tabularx}
+\vspace{8mm}
+\begin{tabularx}{\linewidth}{|X|}\hline
+\textbf{Abstract} \\ \hline
+SaigonBite connects customer ordering, kitchen decisions, delivery and operational reporting. This report records the requirements, design, implementation and evidence for the Part 2 demonstration. The online payment option is simulated and refund obligations are recorded without a payout. Recorded test and deployment results are scoped to the documented runs. \\ \hline
+\end{tabularx}
+\end{titlepage}
+\section*{Intellectual Property}
+\addcontentsline{toc}{section}{Intellectual Property}
+\pdfbookmark[0]{Intellectual Property}{p7ip}
+Copyright 2026 Team 02.
+
+The following documentation, the content therein and/or the presentation of its information is proprietary to and embodies the confidential processes, designs, technologies and otherwise of Team 02. All copyright, trademarks, trade names, patents, industrial designs, and other intellectual property rights contained herein are, unless otherwise specified, the exclusive property of Team 02.
+
+The ideas, concepts and/or their application, embodied within this documentation remain and constitute items of intellectual property which nevertheless belong to Team 02.
+
+The information (including, but by no means limited to, data, drawings, specification, documentation, software listings, source and/or object code) shall not be disclosed, manipulated, disseminated or otherwise in any manner inconsistent with the nature and/or conditions under which this documentation has been issued.
+
+The information contained herein is believed to be accurate and reliable. Team 02 accepts no responsibility for its use in any way whatsoever. Team 02 shall not be liable for any expenses, damages and/or related costs which may result from the use of the information contained herein.
+
+The information contained herein is subject to change without notice.
+
+All Rights Reserved. Copyright herein is expressly protected at common law, statute and under various International and Multi-National Treatises (including, but by no means limited to, the Berne Convention for the Protection of Literary and Artistic Works).
+
+\section*{Table of Contents}
+\pdfbookmark[0]{Table of Contents}{p7toc}
+\makeatletter\@starttoc{toc}\makeatother
+\clearpage
+\input{sections/section_001}
+\input{sections/section_002}
+\input{sections/section_003}
+\input{sections/section_004}
+\input{sections/section_005}
+\input{sections/section_006}
+\input{sections/section_007}
+\input{sections/section_008}
+\input{sections/section_009}
+\input{sections/section_010}
+\input{sections/section_011}
+\input{sections/section_012}
+\input{sections/section_013}
+\input{sections/section_014}
+\input{sections/section_015}
+\input{sections/section_016}
+\input{sections/section_017}
+\input{sections/section_018}
+\input{sections/section_019}
+\input{sections/section_020}
+\input{sections/section_021}
+\input{sections/section_022}
+\input{sections/section_023}
+\input{sections/section_024}
+\input{sections/section_025}
+\input{sections/section_026}
+\input{sections/section_027}
+\input{sections/section_028}
+\input{sections/section_029}
+\input{sections/section_030}
+\input{sections/section_031}
+\input{sections/section_032}
+\input{sections/section_033}
+\input{sections/section_034}
+\input{sections/section_035}
+\input{sections/section_036}
+\input{sections/section_037}
+\input{sections/section_038}
+\input{sections/section_039}
+\input{sections/section_040}
+\input{sections/section_041}
+\input{sections/section_042}
+\input{sections/section_043}
+\input{sections/section_044}
+\input{sections/section_045}
+\input{sections/section_046}
+\input{sections/section_047}
+\input{sections/section_048}
+\input{sections/section_049}
+\input{sections/section_050}
+\input{sections/section_051}
+\input{sections/section_052}
+\input{sections/section_053}
+\input{sections/section_054}
+\input{sections/section_055}
+\input{sections/section_056}
+\input{sections/section_057}
+\input{sections/section_058}
+\input{sections/section_059}
+\input{sections/section_060}
+\input{sections/section_061}
+\input{sections/section_062}
+\input{sections/section_063}
+\input{sections/section_064}
+\input{sections/section_065}
+\input{sections/section_066}
+\input{sections/section_067}
+\input{sections/section_068}
+\input{sections/section_069}
+\input{sections/section_070}
+\input{sections/section_071}
+\input{sections/section_072}
+\input{sections/section_073}
+\input{sections/section_074}
+\input{sections/section_075}
+\input{sections/section_076}
+\input{sections/section_077}
+\input{sections/section_078}
+\input{sections/section_079}
+\input{sections/section_080}
+\input{sections/section_081}
+\input{sections/section_082}
+\input{sections/section_083}
+\input{sections/section_084}
+\input{sections/section_085}
+\input{sections/section_086}
+\input{sections/section_087}
+\input{sections/section_088}
+\input{sections/section_089}
+\input{sections/section_090}
+\input{sections/section_091}
+\input{sections/section_092}
+\input{sections/section_093}
+\input{sections/section_094}
+\input{sections/section_095}
+\input{sections/section_096}
+\input{sections/section_097}
+\input{sections/section_098}
+\input{sections/section_099}
+\input{sections/section_100}
+\input{sections/section_101}
+\input{sections/section_102}
+\input{sections/section_103}
+\input{sections/section_104}
+\input{sections/section_105}
+\input{sections/section_106}
+\input{sections/section_107}
+\input{sections/section_108}
+\input{sections/section_109}
+\input{sections/section_110}
+\input{sections/section_111}
+\input{sections/section_112}
+\input{sections/section_113}
+\input{sections/section_114}
+\input{sections/section_115}
+\input{sections/section_116}
+\input{sections/section_117}
+\input{sections/section_118}
+\input{sections/section_119}
+\input{sections/section_120}
+\input{sections/section_121}
+\input{sections/section_122}
+\input{sections/section_123}
+\input{sections/section_124}
+\input{sections/section_125}
+\input{sections/section_126}
+\input{sections/section_127}
+\input{sections/section_128}
+\input{sections/section_129}
+\input{sections/section_130}
+\input{sections/section_131}
+\input{sections/section_132}
+\input{sections/section_133}
+\input{sections/section_134}
+\input{sections/section_135}
+\input{sections/section_136}
+\input{sections/section_137}
+\input{sections/section_138}
+\input{sections/section_139}
+\input{sections/section_140}
+\input{sections/section_141}
+\input{sections/section_142}
+\input{sections/section_143}
+\input{sections/section_144}
+\end{document}

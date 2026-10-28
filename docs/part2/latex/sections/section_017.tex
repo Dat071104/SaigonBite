@@ -1,0 +1,20 @@
+\subsubsection*{2.1.4 List of Actors}
+\addcontentsline{toc}{subsubsection}{2.1.4 List of Actors}
+\pdfbookmark[2]{2.1.4 List of Actors}{p7h17}
+Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Actor & Description \\
+\hline\endfirsthead
+Actor & Description \\
+\hline\endhead
+Customer & General actor for a person using the customer-facing functions; it is specialized into Local customer and Tourist customer, which inherit the Customer goals. \\
+Local customer & A Customer who must register a Vietnamese mobile number and may pay COD, by e-wallet, or by bank QR. \\
+Tourist customer & A Customer who registers passport number, nationality and email, may provide a phone and label an address as a hotel, and may pay COD or by international card. Passport details are withheld from kitchen and shipper views. \\
+Kitchen staff & An authenticated worker assigned to a hub; may view and change orders only for that hub and may set its listing availability. \\
+Shipper & An active delivery worker who may take any unassigned READY order; only the assigned shipper may complete it or report its failure. \\
+Admin & An authenticated administrator responsible for hub, catalogue, voucher and user-account maintenance and closed-order archiving. \\
+Manager & An authenticated read-only report user for sales, workload and delivery performance. \\
+Payment simulator & An external system boundary representing the team's deterministic online-payment stub. It returns approve or decline for an eligible option; it is not a live provider and does not process real card data or real funds. \\
+\end{longtable}
+There is no time-based actor: voucher dates are checked on demand and no scheduler performs expiry work. Office staff are not actors in this release because complaint/refund decisions and cash reconciliation are outside the proposed system scope; the L3 deferral was accepted at the Part 1 review (no change requested), as stated in proposal A-09.

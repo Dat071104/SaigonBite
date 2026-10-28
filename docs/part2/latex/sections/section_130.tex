@@ -1,0 +1,108 @@
+\subsubsection*{4.3.4 SQL Code}
+\addcontentsline{toc}{subsubsection}{4.3.4 SQL Code}
+\pdfbookmark[2]{4.3.4 SQL Code}{p7h130}
+Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
+
+\textbf{i. Create database}
+
+\texttt{python init\_db.py --db PATH} creates a new SQLite version 2 database, loads the schema and seed data, and includes demo history by default. The default path is \texttt{instance/saigonbite.db}; \texttt{--no-demo} omits the demo history. Initialization enables WAL and sets \texttt{synchronous = NORMAL}. It refuses an existing path unless \texttt{--force} is used. The version check does not migrate older databases.
+
+The following tables are created: \texttt{hub}, \texttt{brand}, \texttt{menu\_item}, \texttt{hub\_menu\_item}, \texttt{user\_account}, \texttt{customer}, \texttt{address}, \texttt{voucher}, \texttt{orders}, \texttt{order\_line}, \texttt{payment}, \texttt{delivery}, \texttt{replacement\_offer}.
+
+\textbf{ii. Create tables}
+
+The following excerpt defines the hub table. The full definitions and constraints are in \texttt{db/schema.sql} in the repository.
+
+\begin{lstlisting}
+CREATE TABLE hub (
+    id                 INTEGER PRIMARY KEY,
+    code               TEXT    NOT NULL UNIQUE,
+    name               TEXT    NOT NULL,
+    address_text       TEXT    NOT NULL,
+    latitude           REAL    NOT NULL,
+    longitude          REAL    NOT NULL,
+    max_active_orders  INTEGER NOT NULL CHECK (max_active_orders > 0),   -- busy rule (Q1, A-02)
+    base_delivery_fee  INTEGER NOT NULL CHECK (base_delivery_fee >= 0),  -- plus a rate per started km (Q2)
+    archived_at        TEXT                                              -- NULL = active (UC-03)
+);
+\end{lstlisting}
+\textbf{iii. Sample data}
+
+The seed contains hubs, brands, menu items, accounts, addresses and vouchers. The following excerpt supplies the hub records; \texttt{db/seed\_demo.sql} adds demo order history.
+
+\begin{lstlisting}
+INSERT INTO hub (id, code, name, address_text, latitude, longitude, max_active_orders, base_delivery_fee) VALUES
+ (1, 'HUB-D1', 'SaigonBite District 1 Hub', '45 Le Loi, Ben Nghe Ward, District 1, Ho Chi Minh City', 10.7769, 106.7009, 12, 12000),
+ (2, 'HUB-BT', 'SaigonBite Binh Thanh Hub', '210 Xo Viet Nghe Tinh, Ward 21, Binh Thanh District, Ho Chi Minh City', 10.8106, 106.7091, 8, 10000);
+\end{lstlisting}
+\textbf{Example management queries}
+
+The following read-only queries were captured from \texttt{saigonbite/data\_access/report\_dao.py} and executed on 28 October 2026 against a newly initialized database with demo data at source revision \texttt{97574bd}. Dates in the SQL define the sample window; returned data is demonstration data. The sample is not evidence of production usage. Full inputs and output are in \texttt{Part2/notes/P7/sql\_sample\_results.json}.
+
+\textbf{Sales By Hub}
+
+\begin{lstlisting}
+SELECT COUNT(*) FROM orders o LEFT JOIN payment p ON p.order_id=o.id LEFT JOIN delivery d ON d.order_id=o.id WHERE (o.state='DELIVERED' AND (p.id IS NULL OR d.id IS NULL OR d.state!='DELIVERED' OR d.finished_at IS NULL)) OR (o.state='DELIVERY_FAILED' AND (p.id IS NULL OR d.id IS NULL OR d.state!='FAILED' OR d.finished_at IS NULL));
+SELECT h.id AS hub_id, h.name AS hub_name, COUNT(*) AS orders,        SUM(o.item_subtotal) AS item_sales, SUM(o.voucher_discount) AS voucher_discounts,        SUM(o.delivery_fee - o.quiet_discount) AS delivery_fees, SUM(o.total_amount) AS total,        SUM(p.refund_amount) AS refunds_owed FROM orders o JOIN delivery d ON d.order_id = o.id JOIN payment p ON p.order_id = o.id JOIN hub h ON h.id = o.hub_id WHERE o.state = 'DELIVERED' AND d.finished_at >= '2000-01-01' AND d.finished_at < '2100-01-01'   AND (NULL IS NULL OR o.hub_id = NULL) GROUP BY h.id, h.name ORDER BY h.id;
+\end{lstlisting}
+The first statement is an integrity precheck; its result was \texttt{0}. The second statement returned the following rows.
+
+\begin{landscape}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1150\linewidth}>{\raggedright\arraybackslash}p{0.1150\linewidth}>{\raggedright\arraybackslash}p{0.1150\linewidth}>{\raggedright\arraybackslash}p{0.1150\linewidth}>{\raggedright\arraybackslash}p{0.1150\linewidth}>{\raggedright\arraybackslash}p{0.1150\linewidth}>{\raggedright\arraybackslash}p{0.1150\linewidth}>{\raggedright\arraybackslash}p{0.1150\linewidth}}
+hub\_id & hub\_name & orders & item\_sales & voucher\_discounts & delivery\_fees & total & refunds\_owed \\
+\hline\endfirsthead
+hub\_id & hub\_name & orders & item\_sales & voucher\_discounts & delivery\_fees & total & refunds\_owed \\
+\hline\endhead
+1 & SaigonBite District 1 Hub & 2 & 250000 & 13000 & 25000 & 262000 & 0 \\
+2 & SaigonBite Binh Thanh Hub & 1 & 80000 & 20000 & 17000 & 77000 & 0 \\
+\end{longtable}
+\end{landscape}
+\textbf{Top Items}
+
+\begin{lstlisting}
+WITH eligible AS (SELECT ol.*, d.finished_at FROM order_line ol JOIN orders o ON o.id=ol.order_id JOIN delivery d ON d.order_id=o.id WHERE o.state='DELIVERED' AND d.finished_at >= '2000-01-01' AND d.finished_at < '2100-01-01' AND (NULL IS NULL OR o.hub_id=NULL)) SELECT ol.menu_item_id, (SELECT n.item_name FROM eligible n WHERE n.menu_item_id=ol.menu_item_id ORDER BY n.finished_at DESC,n.order_id DESC,n.id DESC LIMIT 1) AS item_name, SUM(ol.quantity) AS quantity, SUM(ol.unit_price * ol.quantity) AS revenue FROM eligible ol GROUP BY ol.menu_item_id ORDER BY revenue DESC, ol.menu_item_id LIMIT 10;
+\end{lstlisting}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.2300\linewidth}>{\raggedright\arraybackslash}p{0.2300\linewidth}>{\raggedright\arraybackslash}p{0.2300\linewidth}>{\raggedright\arraybackslash}p{0.2300\linewidth}}
+menu\_item\_id & item\_name & quantity & revenue \\
+\hline\endfirsthead
+menu\_item\_id & item\_name & quantity & revenue \\
+\hline\endhead
+1 & Pho bo tai & 2 & 110000 \\
+3 & Goi cuon & 2 & 70000 \\
+4 & Com tam suon bi cha & 1 & 60000 \\
+9 & Che thai & 2 & 60000 \\
+6 & Tra da & 3 & 30000 \\
+\end{longtable}
+\textbf{Open Orders By Hub And State}
+
+\begin{lstlisting}
+SELECT hub_id, state, COUNT(*) AS n FROM orders WHERE state IN ('PLACED', 'CONFIRMED', 'PREPARING', 'READY', 'OUT_FOR_DELIVERY') GROUP BY hub_id, state;
+\end{lstlisting}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+hub\_id & state & n \\
+\hline\endfirsthead
+hub\_id & state & n \\
+\hline\endhead
+1 & PLACED & 1 \\
+1 & READY & 1 \\
+\end{longtable}
+\textbf{Finished Deliveries}
+
+\begin{lstlisting}
+SELECT COUNT(*) FROM orders o LEFT JOIN payment p ON p.order_id=o.id LEFT JOIN delivery d ON d.order_id=o.id WHERE (o.state='DELIVERED' AND (p.id IS NULL OR d.id IS NULL OR d.state!='DELIVERED' OR d.finished_at IS NULL)) OR (o.state='DELIVERY_FAILED' AND (p.id IS NULL OR d.id IS NULL OR d.state!='FAILED' OR d.finished_at IS NULL));
+SELECT o.id AS order_id, o.hub_id, h.name AS hub_name, d.state, d.ready_at, d.picked_up_at,        d.finished_at, d.shipper_id, u.display_name AS shipper_name FROM delivery d JOIN orders o ON o.id = d.order_id JOIN hub h ON h.id = o.hub_id LEFT JOIN user_account u ON u.id = d.shipper_id WHERE d.state IN ('DELIVERED', 'FAILED') AND d.finished_at >= '2000-01-01' AND d.finished_at < '2100-01-01'   AND (NULL IS NULL OR o.hub_id = NULL) ORDER BY o.hub_id, d.finished_at;
+\end{lstlisting}
+The first statement is an integrity precheck; its result was \texttt{0}. The second statement returned the following rows.
+
+\begin{landscape}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1022\linewidth}>{\raggedright\arraybackslash}p{0.1022\linewidth}>{\raggedright\arraybackslash}p{0.1022\linewidth}>{\raggedright\arraybackslash}p{0.1022\linewidth}>{\raggedright\arraybackslash}p{0.1022\linewidth}>{\raggedright\arraybackslash}p{0.1022\linewidth}>{\raggedright\arraybackslash}p{0.1022\linewidth}>{\raggedright\arraybackslash}p{0.1022\linewidth}>{\raggedright\arraybackslash}p{0.1022\linewidth}}
+order\_id & hub\_id & hub\_name & state & ready\_at & picked\_up\_at & finished\_at & shipper\_id & shipper\_name \\
+\hline\endfirsthead
+order\_id & hub\_id & hub\_name & state & ready\_at & picked\_up\_at & finished\_at & shipper\_id & shipper\_name \\
+\hline\endhead
+1 & 1 & SaigonBite District 1 Hub & DELIVERED & 2026-10-20T04:20:00+00:00 & 2026-10-20T04:30:00+00:00 & 2026-10-20T04:55:00+00:00 & 3 & Shipper One \\
+2 & 1 & SaigonBite District 1 Hub & DELIVERED & 2026-10-20T17:00:00+00:00 & 2026-10-20T17:05:00+00:00 & 2026-10-20T17:20:00+00:00 & 8 & Shipper Two \\
+3 & 2 & SaigonBite Binh Thanh Hub & FAILED & 2026-10-21T05:15:00+00:00 & 2026-10-21T05:25:00+00:00 & 2026-10-21T05:50:00+00:00 & 3 & Shipper One \\
+6 & 2 & SaigonBite Binh Thanh Hub & DELIVERED & 2026-10-22T03:20:00+00:00 & 2026-10-22T03:35:00+00:00 & 2026-10-22T04:05:00+00:00 & 8 & Shipper Two \\
+\end{longtable}
+\end{landscape}

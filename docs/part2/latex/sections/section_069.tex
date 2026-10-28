@@ -1,0 +1,425 @@
+\subsubsection*{3.2.1 Design Classes in Detailed Design}
+\addcontentsline{toc}{subsubsection}{3.2.1 Design Classes in Detailed Design}
+\pdfbookmark[2]{3.2.1 Design Classes in Detailed Design}{p7h69}
+One typed table per participating class/module follows.
+
+\textbf{UC-02 Design Classes}
+
+Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
+
+C0: 45ac76221b0a103174c7c01d17577e6e49cfd665 \ensuremath{\cdot} Evidence: Static source correspondence only; this is not runtime or test evidence.
+
+The tables use the sole shared DCD model at C0. Visibility follows the leading-underscore convention; signatures preserve the AST inventory. * marks an inferred/unannotated type or route signature.  marks a C0 design target (final status in Table P4-1)/C0 design gap (final status in Table P4-1) and does not mean implemented at C0. Domain FK scalar attributes are retained here for mapping but omitted from DCDs in favour of associations.
+
+\textbf{Delivery}
+
+Layer: domain \ensuremath{\cdot} Stereotype: \guillemotleft{}entity\guillemotright{} \ensuremath{\cdot} Module: saigonbite/business/domain/models.py
+
+Responsibility: Hold assignment, paired lifecycle times, cash and failure outcome.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute order\_id & + & int & MATCH & FK scalar omitted from DCD; shown by association \\
+Attribute state & + & DeliveryState & MATCH & --- \\
+Attribute ready\_at & + & str & MATCH & --- \\
+Attribute shipper\_id & + & Optional[int] & MATCH & FK scalar omitted from DCD; shown by association; default=None \\
+Attribute picked\_up\_at & + & Optional[str] & MATCH & default=None \\
+Attribute finished\_at & + & Optional[str] & MATCH & default=None \\
+Attribute failure\_reason & + & Optional[str] & MATCH & default=None \\
+Attribute cash\_collected & + & Optional[int] & MATCH & default=None \\
+Attribute id & + & Optional[int] & MATCH & default=None \\
+Method move\_to & + & move\_to(self, new\_state: DeliveryState) -\textgreater{} None & MATCH & --- \\
+\end{longtable}
+\textbf{Order}
+
+Layer: domain \ensuremath{\cdot} Stereotype: \guillemotleft{}entity\guillemotright{} \ensuremath{\cdot} Module: saigonbite/business/domain/models.py
+
+Responsibility: Own the order lifecycle, snapshots and accepted replacement totals.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute customer\_id & + & int & MATCH & FK scalar omitted from DCD; shown by association \\
+Attribute hub\_id & + & int & MATCH & FK scalar omitted from DCD; shown by association \\
+Attribute address\_id & + & int & MATCH & FK scalar omitted from DCD; shown by association \\
+Attribute state & + & OrderState & MATCH & --- \\
+Attribute delivery\_fee & + & int & MATCH & --- \\
+Attribute idempotency\_token & + & str & MATCH & --- \\
+Attribute placed\_at & + & str & MATCH & --- \\
+Attribute lines & + & list[OrderLine] & MATCH & default=field(default\_factory=list) \\
+Attribute id & + & Optional[int] & MATCH & default=None \\
+Attribute archived\_at & + & Optional[str] & MATCH & default=None \\
+Attribute delivery\_address\_text & + & str & MATCH & default='' \\
+Attribute distance\_km & + & float & MATCH & default=0.0 \\
+Attribute voucher\_id & + & Optional[int] & MATCH & FK scalar omitted from DCD; shown by association; default=None \\
+Attribute voucher\_discount & + & int & MATCH & default=0 \\
+Attribute quiet\_discount & + & int & MATCH & default=0 \\
+Attribute reject\_reason & + & Optional[str] & MATCH & default=None \\
+Attribute confirmed\_at & + & Optional[str] & MATCH & default=None \\
+Attribute ready\_at & + & Optional[str] & MATCH & default=None \\
+Attribute closed\_at & + & Optional[str] & MATCH & default=None \\
+Method can\_move\_to & + & can\_move\_to(self, new\_state: OrderState) -\textgreater{} bool & MATCH & --- \\
+Method move\_to & + & move\_to(self, new\_state: OrderState) -\textgreater{} None & MATCH & --- \\
+\end{longtable}
+\textbf{Payment}
+
+Layer: domain \ensuremath{\cdot} Stereotype: \guillemotleft{}entity\guillemotright{} \ensuremath{\cdot} Module: saigonbite/business/domain/models.py
+
+Responsibility: Hold captured amount C and refund obligations without claiming payout.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute order\_id & + & int & MATCH & FK scalar omitted from DCD; shown by association \\
+Attribute method & + & PaymentMethod & MATCH & --- \\
+Attribute state & + & PaymentState & MATCH & --- \\
+Attribute amount & + & int & MATCH & --- \\
+Attribute created\_at & + & str & MATCH & --- \\
+Attribute updated\_at & + & Optional[str] & MATCH & default=None \\
+Attribute online\_option & + & Optional[OnlineOption] & MATCH & default=None \\
+Attribute provider\_ref & + & Optional[str] & MATCH & default=None \\
+Attribute refund\_amount & + & int & MATCH & default=0 \\
+Attribute id & + & Optional[int] & MATCH & default=None \\
+Method move\_to & + & move\_to(self, new\_state: PaymentState) -\textgreater{} None & MATCH & --- \\
+Method release\_for\_unfulfilled\_order & + & release\_for\_unfulfilled\_order(self) -\textgreater{} None & P4 scoped evidence (P4.4; resolution rows 9, 10, 11, 12) & P4 input: F-02; P2-S01; Set refund\_amount=C with REFUND\_PENDING; preserve COD VOIDED; no payout operation. \\
+\end{longtable}
+\textbf{UserAccount}
+
+Layer: domain \ensuremath{\cdot} Stereotype: \guillemotleft{}entity\guillemotright{} \ensuremath{\cdot} Module: saigonbite/business/domain/models.py
+
+Responsibility: Hold account identity, role, active flag and optional kitchen-hub assignment.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute id & + & int & MATCH & --- \\
+Attribute username & + & str & MATCH & --- \\
+Attribute password\_hash & + & str & MATCH & --- \\
+Attribute display\_name & + & str & MATCH & --- \\
+Attribute role & + & Role & MATCH & --- \\
+Attribute is\_active & + & bool & MATCH & default=True \\
+Attribute hub\_id & + & Optional[int] & MATCH & FK scalar omitted from DCD; shown by association; default=None \\
+Attribute created\_at & + & str & P4 scoped evidence (P4.1; resolution rows 53) & --- \\
+\end{longtable}
+\textbf{Hub}
+
+Layer: domain \ensuremath{\cdot} Stereotype: \guillemotleft{}entity\guillemotright{} \ensuremath{\cdot} Module: saigonbite/business/domain/models.py
+
+Responsibility: Represent a kitchen location, capacity and fee.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute id & + & int & MATCH & --- \\
+Attribute code & + & str & MATCH & --- \\
+Attribute name & + & str & MATCH & --- \\
+Attribute address\_text & + & str & MATCH & --- \\
+Attribute latitude & + & float & MATCH & --- \\
+Attribute longitude & + & float & MATCH & --- \\
+Attribute max\_active\_orders & + & int & MATCH & --- \\
+Attribute base\_delivery\_fee & + & int & MATCH & --- \\
+Attribute archived\_at & + & Optional[str] & MATCH & default=None \\
+\end{longtable}
+\textbf{Customer}
+
+Layer: domain \ensuremath{\cdot} Stereotype: \guillemotleft{}entity\guillemotright{} \ensuremath{\cdot} Module: saigonbite/business/domain/models.py
+
+Responsibility: Represent customer identity and permitted online payment choices.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute id & + & int & MATCH & --- \\
+Attribute user\_id & + & int & MATCH & FK scalar omitted from DCD; shown by association \\
+Attribute full\_name & + & str & MATCH & --- \\
+Attribute phone & + & Optional[str] & MATCH & default=None \\
+Attribute email & + & Optional[str] & MATCH & default=None \\
+Attribute passport\_no & + & Optional[str] & MATCH & default=None \\
+Attribute nationality & + & Optional[str] & MATCH & default=None \\
+Attribute customer\_type & + & CustomerType & MATCH & inferred; default=CustomerType.LOCAL \\
+\end{longtable}
+\textbf{DeliveryState}
+
+Layer: domain \ensuremath{\cdot} Stereotype: \guillemotleft{}enumeration\guillemotright{} \ensuremath{\cdot} Module: saigonbite/business/domain/enums.py
+
+Responsibility: Hold typed business state and its local rules.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute AWAITING\_PICKUP & + & str & MATCH & inferred; default='AWAITING\_PICKUP' \\
+Attribute PICKED\_UP & + & str & MATCH & inferred; default='PICKED\_UP' \\
+Attribute DELIVERED & + & str & MATCH & inferred; default='DELIVERED' \\
+Attribute FAILED & + & str & MATCH & inferred; default='FAILED' \\
+\end{longtable}
+\textbf{OrderState}
+
+Layer: domain \ensuremath{\cdot} Stereotype: \guillemotleft{}enumeration\guillemotright{} \ensuremath{\cdot} Module: saigonbite/business/domain/enums.py
+
+Responsibility: Hold typed business state and its local rules.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute PLACED & + & str & MATCH & inferred; default='PLACED' \\
+Attribute CONFIRMED & + & str & MATCH & inferred; default='CONFIRMED' \\
+Attribute REJECTED & + & str & MATCH & inferred; default='REJECTED' \\
+Attribute PREPARING & + & str & MATCH & inferred; default='PREPARING' \\
+Attribute READY & + & str & MATCH & inferred; default='READY' \\
+Attribute OUT\_FOR\_DELIVERY & + & str & MATCH & inferred; default='OUT\_FOR\_DELIVERY' \\
+Attribute DELIVERED & + & str & MATCH & inferred; default='DELIVERED' \\
+Attribute DELIVERY\_FAILED & + & str & MATCH & inferred; default='DELIVERY\_FAILED' \\
+Attribute CANCELLED & + & str & MATCH & inferred; default='CANCELLED' \\
+\end{longtable}
+\textbf{PaymentState}
+
+Layer: domain \ensuremath{\cdot} Stereotype: \guillemotleft{}enumeration\guillemotright{} \ensuremath{\cdot} Module: saigonbite/business/domain/enums.py
+
+Responsibility: Hold typed business state and its local rules.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute PENDING & + & str & MATCH & inferred; default='PENDING' \\
+Attribute PAID & + & str & MATCH & inferred; default='PAID' \\
+Attribute FAILED & + & str & MATCH & inferred; default='FAILED' \\
+Attribute VOIDED & + & str & MATCH & inferred; default='VOIDED' \\
+Attribute REFUND\_PENDING & + & str & MATCH & inferred; default='REFUND\_PENDING' \\
+Attribute REFUNDED & + & str & MATCH & inferred; default='REFUNDED' \\
+\end{longtable}
+\textbf{Role}
+
+Layer: domain \ensuremath{\cdot} Stereotype: \guillemotleft{}enumeration\guillemotright{} \ensuremath{\cdot} Module: saigonbite/business/domain/enums.py
+
+Responsibility: Hold typed business state and its local rules.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute CUSTOMER & + & str & MATCH & inferred; default='CUSTOMER' \\
+Attribute KITCHEN\_STAFF & + & str & MATCH & inferred; default='KITCHEN\_STAFF' \\
+Attribute SHIPPER & + & str & MATCH & inferred; default='SHIPPER' \\
+Attribute ADMIN & + & str & MATCH & inferred; default='ADMIN' \\
+Attribute MANAGER & + & str & MATCH & inferred; default='MANAGER' \\
+\end{longtable}
+\textbf{DeliveryController}
+
+Layer: controller \ensuremath{\cdot} Stereotype: \guillemotleft{}controller\guillemotright{} \ensuremath{\cdot} Module: saigonbite/business/controllers/delivery\_controller.py
+
+Responsibility: Coordinate authorization, domain decisions and data access.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute deliveries & + & DeliveryDAO & MATCH & inferred \\
+Attribute orders & + & OrderDAO & MATCH & inferred \\
+Attribute payments & + & PaymentDAO & MATCH & inferred \\
+Attribute hubs & + & HubDAO & MATCH & inferred \\
+Attribute customers & + & CustomerDAO & MATCH & inferred \\
+Method board & + & board(self, user\_id: int) -\textgreater{} ShipperBoard & MATCH & --- \\
+Method get\_delivery & + & get\_delivery(self, user\_id: int, order\_id: int) -\textgreater{} DeliveryView & MATCH & --- \\
+Method pick\_up & + & pick\_up(self, user\_id: int, order\_id: int) -\textgreater{} DeliveryView & P4 scoped evidence (P4.1 + P4.5, P4.4 / P4.5; resolution rows 22, 23, 24) & P4 input: P2-S13; P3-S03; Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete. \\
+Method confirm\_delivered & + & confirm\_delivered(self, user\_id: int, order\_id: int, cash\_collected: Optional[str]) -\textgreater{} DeliveryView & P4 scoped evidence (P4.1 + P4.5, P4.4 / P4.5; resolution rows 22, 23, 24) & P4 input: P2-S13; P3-S03; Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete. \\
+Method report\_failure & + & report\_failure(self, user\_id: int, order\_id: int, reason: str) -\textgreater{} DeliveryView & P4 scoped evidence (P4.1 + P4.5, P4.4 / P4.5; resolution rows 22, 23, 24) & P4 input: F-02; P2-S13; BR-17 full C refund owed and atomic state/amount writes, including COMMIT rollback. \\
+Method \_require\_shipper & - & \_require\_shipper(self, user\_id: int) -\textgreater{} UserAccount & MATCH & --- \\
+Method \_delivery & - & \_delivery(self, order\_id: int) -\textgreater{} Delivery & MATCH & --- \\
+Method \_own\_active\_delivery & - & \_own\_active\_delivery(self, shipper: UserAccount, order\_id: int) -\textgreater{} Delivery & MATCH & --- \\
+Method \_parse\_cash & - & \_parse\_cash(raw: Optional[str]) -\textgreater{} Optional[int] & MATCH & --- \\
+Method \_view & - & \_view(self, delivery: Delivery) -\textgreater{} DeliveryView & MATCH & --- \\
+\end{longtable}
+\textbf{BaseController}
+
+Layer: controller \ensuremath{\cdot} Stereotype: \guillemotleft{}controller\guillemotright{} \ensuremath{\cdot} Module: saigonbite/business/controllers/common.py
+
+Responsibility: Coordinate authorization, domain decisions and data access.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute conn & + & sqlite3.Connection & MATCH & --- \\
+Attribute clock & + & Any & MATCH & inferred \\
+Attribute users & + & UserDAO & MATCH & inferred \\
+Method \_now & - & \_now(self) -\textgreater{} str & MATCH & --- \\
+Method \_require\_user & - & \_require\_user(self, user\_id: int, *roles: Role, message: str='Your account cannot do this.') -\textgreater{} UserAccount & MATCH & --- \\
+\end{longtable}
+\textbf{controllers.common}
+
+Layer: controller \ensuremath{\cdot} Stereotype: \guillemotleft{}module\guillemotright{} \ensuremath{\cdot} Module: saigonbite/business/controllers/common.py
+
+Responsibility: Module functions with their original Python signatures.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Method move\_order & + & move\_order(orders: OrderDAO, order: Order, to\_state: OrderState, now: str, reject\_reason: Optional[str]=None) -\textgreater{} None & MATCH & --- \\
+Method release\_payment & + & release\_payment(payments: PaymentDAO, order\_id: int, now: str) -\textgreater{} Payment & P4 scoped evidence (P4.4; resolution rows 54) & P4 input: F-02; P2-S01; P3-S03; Persist full captured C as refund\_amount together with state; changing only the domain object does not save the amount. Check conditional save results in the same transaction. \\
+\end{longtable}
+\textbf{DeliveryView}
+
+Layer: controller \ensuremath{\cdot} Stereotype: \guillemotleft{}value\guillemotright{} \ensuremath{\cdot} Module: saigonbite/business/controllers/delivery\_controller.py
+
+Responsibility: Coordinate authorization, domain decisions and data access.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute delivery & + & Delivery & MATCH & --- \\
+Attribute order & + & Order & MATCH & --- \\
+Attribute payment & + & Payment & MATCH & --- \\
+Attribute hub & + & Hub & MATCH & --- \\
+Attribute customer & + & Customer & MATCH & --- \\
+Method cash\_to\_collect & + & cash\_to\_collect(self) -\textgreater{} int & MATCH & property \\
+\end{longtable}
+\textbf{ShipperBoard}
+
+Layer: controller \ensuremath{\cdot} Stereotype: \guillemotleft{}value\guillemotright{} \ensuremath{\cdot} Module: saigonbite/business/controllers/delivery\_controller.py
+
+Responsibility: Coordinate authorization, domain decisions and data access.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute waiting & + & list[DeliveryView] & MATCH & --- \\
+Attribute mine & + & list[DeliveryView] & MATCH & --- \\
+Attribute finished & + & list[DeliveryView] & MATCH & --- \\
+\end{longtable}
+\textbf{delivery}
+
+Layer: view \ensuremath{\cdot} Stereotype: \guillemotleft{}view\guillemotright{} \ensuremath{\cdot} Module: saigonbite/presentation/delivery.py
+
+Responsibility: Translate shipper requests and render contact and cash information.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Method board & + & board() & MATCH & inferred \\
+Method detail & + & detail(order\_id: int) & MATCH & inferred \\
+Method pick\_up & + & pick\_up(order\_id: int) & MATCH & inferred \\
+Method delivered & + & delivered(order\_id: int) & MATCH & inferred \\
+Method failed & + & failed(order\_id: int) & MATCH & inferred \\
+\end{longtable}
+\textbf{DeliveryDAO}
+
+Layer: data\_access \ensuremath{\cdot} Stereotype: \guillemotleft{}DAO\guillemotright{} \ensuremath{\cdot} Module: saigonbite/data\_access/delivery\_dao.py
+
+Responsibility: Read or write parameterized records.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute conn & + & sqlite3.Connection & MATCH & --- \\
+Method get\_by\_order\_id & + & get\_by\_order\_id(self, order\_id: int) -\textgreater{} Optional[Delivery] & MATCH & --- \\
+Method list\_awaiting\_pickup & + & list\_awaiting\_pickup(self) -\textgreater{} list[Delivery] & MATCH & --- \\
+Method list\_for\_shipper & + & list\_for\_shipper(self, shipper\_id: int, state: DeliveryState) -\textgreater{} list[Delivery] & MATCH & --- \\
+Method take & + & take(self, order\_id: int, shipper\_id: int, now: str) -\textgreater{} bool & MATCH & --- \\
+Method finish & + & finish(self, order\_id: int, shipper\_id: int, to\_state: DeliveryState, now: str, failure\_reason: Optional[str]=None, cash\_collected: Optional[int]=None) -\textgreater{} bool & MATCH & --- \\
+\end{longtable}
+\textbf{OrderDAO}
+
+Layer: data\_access \ensuremath{\cdot} Stereotype: \guillemotleft{}DAO\guillemotright{} \ensuremath{\cdot} Module: saigonbite/data\_access/order\_dao.py
+
+Responsibility: Read or write parameterized records.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute conn & + & sqlite3.Connection & MATCH & --- \\
+Method get\_by\_id & + & get\_by\_id(self, order\_id: int) -\textgreater{} Optional[Order] & MATCH & --- \\
+Method change\_state & + & change\_state(self, order\_id: int, from\_state: OrderState, to\_state: OrderState, now: str, reject\_reason: Optional[str]=None) -\textgreater{} bool & MATCH & --- \\
+Method \_load & - & \_load(self, row: Optional[sqlite3.Row]) -\textgreater{} Optional[Order] & MATCH & --- \\
+\end{longtable}
+\textbf{PaymentDAO}
+
+Layer: data\_access \ensuremath{\cdot} Stereotype: \guillemotleft{}DAO\guillemotright{} \ensuremath{\cdot} Module: saigonbite/data\_access/payment\_dao.py
+
+Responsibility: Read or write parameterized records.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute conn & + & sqlite3.Connection & MATCH & --- \\
+Method get\_by\_order\_id & + & get\_by\_order\_id(self, order\_id: int) -\textgreater{} Optional[Payment] & MATCH & --- \\
+Method change\_state & + & change\_state(self, order\_id: int, from\_state: PaymentState, to\_state: PaymentState, now: str) -\textgreater{} bool & MATCH & --- \\
+Method set\_amounts & + & set\_amounts(self, order\_id: int, amount: int, refund\_amount: int, now: str) -\textgreater{} bool & P4 scoped evidence (P4.4; resolution rows 46, 47, 48, 49, 50) & P4 input: F-02; P3-S03; Persist full/partial refund obligations atomically and expose the conditional save outcome. \\
+\end{longtable}
+\textbf{CustomerDAO}
+
+Layer: data\_access \ensuremath{\cdot} Stereotype: \guillemotleft{}DAO\guillemotright{} \ensuremath{\cdot} Module: saigonbite/data\_access/customer\_dao.py
+
+Responsibility: Read or write parameterized records.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute conn & + & sqlite3.Connection & MATCH & --- \\
+Method get & + & get(self, customer\_id: int) -\textgreater{} Optional[Customer] & MATCH & --- \\
+\end{longtable}
+\textbf{HubDAO}
+
+Layer: data\_access \ensuremath{\cdot} Stereotype: \guillemotleft{}DAO\guillemotright{} \ensuremath{\cdot} Module: saigonbite/data\_access/hub\_dao.py
+
+Responsibility: Read or write parameterized records.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute conn & + & sqlite3.Connection & MATCH & --- \\
+Method get\_including\_archived & + & get\_including\_archived(self, hub\_id: int) -\textgreater{} Optional[Hub] & MATCH & --- \\
+\end{longtable}
+\textbf{UserDAO}
+
+Layer: data\_access \ensuremath{\cdot} Stereotype: \guillemotleft{}DAO\guillemotright{} \ensuremath{\cdot} Module: saigonbite/data\_access/user\_dao.py
+
+Responsibility: Read or write parameterized records.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute conn & + & sqlite3.Connection & MATCH & --- \\
+Method get\_by\_id & + & get\_by\_id(self, user\_id: int) -\textgreater{} Optional[UserAccount] & MATCH & --- \\
+\end{longtable}

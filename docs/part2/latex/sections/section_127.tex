@@ -1,0 +1,59 @@
+\subsubsection*{4.3.1 Map Persistent Objects to the Tables in a Database}
+\addcontentsline{toc}{subsubsection}{4.3.1 Map Persistent Objects to the Tables in a Database}
+\pdfbookmark[2]{4.3.1 Map Persistent Objects to the Tables in a Database}{p7h127}
+Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
+
+The schema source is the parsed schema v2 in \texttt{docs/part2/design/code\_inventory.json} at C0 \texttt{45ac76221b0a103174c7c01d17577e6e49cfd665}. It contains 13 tables, 110 columns, 18 foreign keys, seven indexes, and \texttt{user\_version = 2}. These figures and relationships are Static schema evidence; they are not a claim that application paths or constraints passed tests.
+
+The diagrams use UML associations with SQL multiplicities. \texttt{PK} marks primary-key columns, \texttt{FK} marks foreign keys, \texttt{U} marks a single-column UNIQUE constraint, \texttt{U*} marks membership in a composite or partial unique constraint, \texttt{C} marks a column participating in a CHECK, and \texttt{?} marks a nullable column. Full SQL types, NULL rules, CHECK expressions, key declarations, and enforcement notes are in the class-to-table mapping.
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/shared/erd_schema_v2_PartA.png}}
+\caption{Figure 4.3.1A. Schema v2: identity, customer and hub records --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0325}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/shared/erd_schema_v2_PartB.png}}
+\caption{Figure 4.3.1B. Schema v2: brands, menu items, hub listings and vouchers --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0326}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/shared/erd_schema_v2_PartC.png}}
+\caption{Figure 4.3.1C. Schema v2: orders and order-line snapshots --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0327}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/shared/erd_schema_v2_PartD.png}}
+\caption{Figure 4.3.1D. Schema v2: payment and delivery records --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0328}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/shared/erd_schema_v2_PartE.png}}
+\caption{Figure 4.3.1E. Schema v2: replacement-offer history --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0329}
+\end{figure}
+\end{landscape}
+The mapping has one primary row for each of the 110 C0 columns. It also makes non-column correspondences explicit: \texttt{Order.lines} maps to the child \texttt{order\_line.order\_id} relationship; \texttt{HubMenuItem.item} maps to \texttt{hub\_menu\_item.menu\_item\_id}; \texttt{Order.item\_subtotal} and \texttt{Order.total} are derived properties with persisted columns; \texttt{MenuItem.brand\_name} is a joined projection of \texttt{brand.name}; \texttt{LocalCustomer} and \texttt{TouristCustomer} map to the same \texttt{customer.customer\_type} discriminator; and \texttt{OrderLine.line\_total} is computed, with no SQL column. At C0, \texttt{UserAccount.created\_at} was a design gap and the column was absent. Its later P4.1 disposition and scoped test evidence appear in Table P4-1 and the detailed resolution appendix.
+
+\texttt{Customer} is stored in one \texttt{customer} table. Its \texttt{customer\_type} CHECK distinguishes \texttt{LOCAL} from \texttt{TOURIST}; it does not create separate subtype tables. \texttt{hub\_menu\_item} is the association-class table between Hub and MenuItem, with a composite primary key on \texttt{(hub\_id, menu\_item\_id)}. There is no Shipper table: \texttt{delivery.shipper\_id} references \texttt{user\_account.id}, and the SHIPPER role is held by the linked account. \texttt{Quote}, report filters and rows, and receipts are computed views rather than persisted classes.
+
+The UNIQUE rules are \texttt{hub.code}, \texttt{brand.name}, \texttt{user\_account.username}, \texttt{customer.user\_id}, \texttt{voucher.code}, \texttt{orders.idempotency\_token}, \texttt{payment.order\_id}, and \texttt{delivery.order\_id}; the composite rules are \texttt{menu\_item(brand\_id, name)}, \texttt{hub\_menu\_item(hub\_id, menu\_item\_id)} as its primary key, and \texttt{order\_line(order\_id, menu\_item\_id)}. The partial unique index \texttt{idx\_offer\_one\_open} limits each order to one \texttt{replacement\_offer} whose state is \texttt{OFFERED}; resolved offers remain stored history. The unique child FKs on \texttt{payment.order\_id} and \texttt{delivery.order\_id} cap each Order at one child row but do not require presence. The SQL also permits an Order with zero OrderLine rows. The contract requires checkout to create one Payment and at least one OrderLine, and \texttt{markReady} to create a Delivery; these application-path requirements were assigned to P4 verification, not inferred from the FKs; recorded test evidence is in Section 5.1. P2-S09 records the related cross-row guards, including same-order offer/line ownership and shipper eligibility.
+
+Money is stored as whole VND where applicable. For an Order, \texttt{item\_subtotal} is S, \texttt{voucher\_discount} is D, \texttt{delivery\_fee} is F, \texttt{quiet\_discount} is Q, and \texttt{total\_amount} is T, constrained by \texttt{T = S \ensuremath{-} D + F \ensuremath{-} Q}. \texttt{payment.amount} holds the COD amount due or captured online amount C; \texttt{refund\_amount} is an amount owed, not paid out. An accepted replacement can leave a partial online obligation \texttt{C \ensuremath{-} T}; an unfulfilled online order is owed the full C. \texttt{delivery.cash\_collected} records cash at delivery, which must equal T for COD completion. Order-line and replacement-offer names/prices are snapshots; later catalogue edits do not rewrite the existing order history.
+
+Event columns ending in \texttt{\_at} are UTC timestamp text. \texttt{voucher.valid\_from} and \texttt{valid\_until} are inclusive Asia/Ho\_Chi\_Minh calendar dates stored as text, not UTC instants. The archive timestamps are on Hub, Brand, MenuItem, Address, Voucher and Order. \texttt{user\_account.is\_active} is an account lifecycle flag, not an archive timestamp; unlisting a HubMenuItem deletes the association row. Under the plan's archive rule, an archived parent is hidden from operational lists while authorized history, receipts, reports and refund obligations remain available. Child order lines, payments, deliveries and offers remain attached to the retained Order. These retention rules were design requirements for P4 verification, not behaviors inferred from a flag alone. Later test evidence is in Section 5.1.
+
+The marked items were design targets not yet in code at C0. Their later P4 disposition is recorded in Table P4-1. \texttt{P2-S02} requires \texttt{user\_account.created\_at}, which is absent from both the draft class and SQL table and is assigned to P4.1. \texttt{P2-S03} requires the Tourist CHECK to require \texttt{nationality}; the nullable column exists, and the static Phase 2 review found controller validation, but the SQL CHECK does not enforce it. \texttt{P2-S07} requires the linked Customer account to have role \texttt{CUSTOMER}; the FK and UNIQUE rule do not enforce that role. P4.7 was adopted as the account subphase for S03/S07. The figure's historical legend identifies the C0 design targets and P4 inputs P2-S02/S03/S07.
+
+\texttt{P2-S08} is not a missing-value defect: \texttt{Payment.updated\_at} is \texttt{Optional[str]} in the domain model but \texttt{NOT NULL} in SQL, and the \texttt{PaymentDAO.insert} AST body writes the supplied \texttt{updated\_at} or falls back to \texttt{created\_at}. The SQL CHECK also permits Payment values \texttt{FAILED} and \texttt{REFUNDED}; per P2-S01 and plan \S{}4.3 these remain deferred or unreachable. No declined-payment row or refund-payout path is added to this mapping.
+
+The diagrams and CSV were generated from the frozen inventory/model without importing or running the application. Structural XML and endpoint checks passed, all six PNGs and independent Edge-rasterized SVGs were opened for visual review, and the smallest placed font is 9.21 pt at 230 \ensuremath{\times} 170 mm. Native draw.io editing, Excel, and final DOCX/PDF placement remain UNTESTED; no app correctness or test result is claimed.

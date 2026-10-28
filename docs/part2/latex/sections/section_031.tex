@@ -1,0 +1,54 @@
+\textbf{2.2.2 iv.}\par
+UC-02 owns the Delivery state machine (Figures 2.5A--B). The report places the existing \texttt{STATE\_MACHINE DELIVERY} block here once. Shared Order transitions are already drawn under UC-01 in Figures 2.3D--E and Payment under UC-01 in Figures 2.4A--B; they are cross-references, not duplicate state figures. \texttt{markReady} belongs to SUC-05 and creates AWAITING\_PICKUP before this use case.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Anchor & Transition / stored fact / refusal invariant \\
+\hline\endfirsthead
+Anchor & Transition / stored fact / refusal invariant \\
+\hline\endhead
+UC02-PC01 & \texttt{takeDelivery}: AWAITING\_PICKUP\ensuremath{\rightarrow}PICKED\_UP; one assigned active shipper and picked\_up\_at; paired Order READY\ensuremath{\rightarrow}OUT\_FOR\_DELIVERY (2.5A/2.3D). \\
+UC02-PC02 & \texttt{confirmDelivered}: PICKED\_UP\ensuremath{\rightarrow}DELIVERED and Order OUT\_FOR\_DELIVERY\ensuremath{\rightarrow}DELIVERED; finished\_at/closed\_at; COD PENDING\ensuremath{\rightarrow}PAID with cash\_collected=T. ONLINE PAID/C/partial owed retained (2.5B/2.3E/2.4A--B). \\
+UC02-PC03 & \texttt{reportFailure}: PICKED\_UP\ensuremath{\rightarrow}FAILED with failure\_reason/finished\_at; paired DELIVERY\_FAILED/closed\_at; COD VOIDED or ONLINE REFUND\_PENDING and full owed=C replacing partial (same figures). \\
+UC02-MG01 & Invalid/lost claim, wrong assigned shipper, cash mismatch, repeat or failed atomic save has no transition and changes zero rows. Earlier committed facts remain. \\
+\end{longtable}
+\textbf{Delivery --- owning placement: UC-02}
+
+Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
+
+Creation by markReady, pickup and completion are paired with the exact Order transition. Order, Delivery, Payment effects and timestamps succeed together or the operation changes nothing. No redelivery is introduced.
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-02/sm_delivery.png}}
+\caption{Figure 2.5A. Delivery --- creation and atomic pickup --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)}\label{P7-0312}
+\end{figure}
+\end{landscape}
+Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
+\hline\endfirsthead
+PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
+\hline\endhead
+UC02-PC01 & one shipper assigned, Delivery PICKED\_UP, order OUT\_FOR\_DELIVERY & takeDelivery assigns exactly one active shipper, PICKED\_UP, picked\_up\_at and Order OUT\_FOR\_DELIVERY together. \\
+UC02-MG01 & second shipper / wrong shipper / wrong cash / repeat \ensuremath{\rightarrow} 0 rows changed & Second claim / invalid actor / stale state has no transition and changes 0 rows. \\
+\end{longtable}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-02/sm_delivery_PartB.png}}
+\caption{Figure 2.5B. Delivery --- completion outcomes --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)}\label{P7-0313}
+\end{figure}
+\end{landscape}
+Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
+\hline\endfirsthead
+PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
+\hline\endhead
+UC02-PC02 & delivered: Delivery DELIVERED, order DELIVERED, COD PAID with cash = T & confirmDelivered: Delivery DELIVERED + finished\_at; Order DELIVERED + closed\_at; exact COD PAID/cash. \\
+UC02-PC03 & failed: Delivery FAILED + reason, order DELIVERY\_FAILED, BR-17 & reportFailure: Delivery FAILED + failure\_reason/finished\_at; Order DELIVERY\_FAILED + closed\_at; BR-17 Payment effect. \\
+UC02-MG01 & second shipper / wrong shipper / wrong cash / repeat \ensuremath{\rightarrow} 0 rows changed & Wrong shipper, wrong cash, repeated completion: no transition and 0 rows changed. \\
+\end{longtable}

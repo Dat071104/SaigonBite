@@ -1,0 +1,393 @@
+\subsubsection*{4.3.2 Modifying Sequence Diagrams}
+\addcontentsline{toc}{subsubsection}{4.3.2 Modifying Sequence Diagrams}
+\pdfbookmark[2]{4.3.2 Modifying Sequence Diagrams}{p7h128}
+Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
+
+The following eight operations expand the corresponding report III design sequences with the actual DAO responsibilities and the database resource. Their SSD operation names, parameter strings and occurrence pointers are unchanged. Each set of Parts A--\ldots{} is one request; a continuation does not start another operation or a new transaction. Focused plates retain the actor, view and controller, show the relevant domain/helper/value lifelines, and add the relevant DAOs and \texttt{:Database}. This resource is not an application class. Mechanical object loading is scoped in the responsibility table below so the high-risk writes remain readable.
+
+The design baseline was C0 \texttt{45ac76221b0a103174c7c01d17577e6e49cfd665}. A dagger in a diagram marks a target at that baseline; Table P4-1 records its final status and scoped evidence.
+
+For writes, the transaction extends from \texttt{BEGIN IMMEDIATE} to successful \texttt{COMMIT}, including all intended DAO writes. Every conditional DAO boolean is checked by the controller or its named helper. A guard failure, zero rowcount or false save result stops subsequent writes and rolls back the active transaction. A write or COMMIT error rolls back if a transaction remains active. A failed BEGIN does not trigger an unconditional ROLLBACK. An exhausted \texttt{database is locked} outcome produces \textbf{``Busy, please retry; nothing was changed''}. P2-S13/P3-S03 identified incomplete controller/helper and commit-failure handling at C0; final status is in Table P4-1. The summary band is a transaction key, not control flow. Actual \texttt{opt}, \texttt{loop} and \texttt{break} rectangles enclose the messages their guards control. A \texttt{break} operand ends the enclosing request: successful returns cannot fall through into compensation, and early refusals skip later writes. Named continuation operands repeat the guard on the next plate; a failure handler is an exclusive continuation rather than the next step of a successful request.
+
+The connection configuration uses \texttt{foreign\_keys=ON}, \texttt{journal\_mode=WAL}, \texttt{synchronous=NORMAL}, and \texttt{busy\_timeout=10000}; the P4 foundation tests check the resulting settings on their test connection (Table P4-1 and its detailed appendix). No user interaction or external request occurs while a write lock is held; the checkout simulator decision is a short deterministic local call.
+
+\textbf{Responsibility table and mechanical-read scope}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+UC / SSD operation & Real controller and transaction & Focused persistence work & Mechanical reads retained by reference & PC/MG \\
+\hline\endfirsthead
+UC / SSD operation & Real controller and transaction & Focused persistence work & Mechanical reads retained by reference & PC/MG \\
+\hline\endhead
+UC-01 / \texttt{confirmCheckout} & \texttt{PlaceOrderController.confirm\_order}; BEGIN IMMEDIATE & Token read before authorization; current quote eligibility; order/line/payment INSERTs; release through COMMIT failure. & UserDAO.get\_by\_id and CustomerDAO.get\_by\_user\_id for authentication/customer mapping; VoucherDAO and HubDAO helpers inside \_build\_quote; OrderDAO.\_load line loading and PaymentDAO.get\_by\_order\_id / HubDAO.get\_including\_archived in \_confirmation. list\_active/active\_loads serve busy suggestions; no auto-resubmission. & UC01-PC01; UC01-PC02; UC01-PC03; UC01-PC04; UC01-PC05; UC01-PC06; UC01-MG01; UC01-MG02; UC01-MG03 \\
+UC-02 / \texttt{takeDelivery} & \texttt{DeliveryController.pick\_up}; BEGIN IMMEDIATE & DeliveryDAO.take and OrderDAO.change\_state; both rowcounts checked. & UserDAO.get\_by\_id via BaseController; \_delivery uses DeliveryDAO; get\_delivery uses OrderDAO.\_load, PaymentDAO.get\_by\_order\_id, HubDAO.get\_including\_archived, CustomerDAO.get for committed DeliveryView. & UC02-PC01; UC02-MG01 \\
+UC-02 / \texttt{confirmDelivered} & \texttt{DeliveryController.confirm\_delivered}; BEGIN IMMEDIATE & COD PaymentDAO.change\_state, DeliveryDAO.finish and OrderDAO.change\_state; all checked. & UserDAO.get\_by\_id and OrderDAO.get\_by\_id/\_load guard reads; committed get\_delivery loads hub, customer, payment and lines for DeliveryView. & UC02-PC02; UC02-MG01 \\
+UC-03 / \texttt{archiveHub} & \texttt{HubController.archive\_hub}; BEGIN IMMEDIATE & HubDAO.open\_order\_count and conditional HubDAO.archive; nullable archive flag. & UserDAO.get\_by\_id via \_require\_admin; get\_including\_archived retains authorised historical display. & UC03-PC02; UC03-MG01 \\
+UC-04 / \texttt{salesReport} & \texttt{ReportController.sales\_report}; read & ReportDAO.sales\_by\_hub / top\_items SELECTs; no business writes on any branch. & UserDAO.get\_by\_id via BaseController; HubDAO.get\_including\_archived via \_hub; filter-panel all\_hubs performs a read only. & UC04-PC01; UC04-MG01; UC04-MG02 \\
+UC-05 / \texttt{rejectOrder} & \texttt{KitchenController.reject\_order}; BEGIN IMMEDIATE & Order rejection, open-offer withdrawal, full captured-C obligation and payment state saved together. & UserDAO.get\_by\_id via \_require\_staff; OrderDAO.\_load line snapshots via \_hub\_order; no historical rows deleted. & UC05-PC02 \\
+UC-05 / \texttt{acceptReplacement} & \texttt{OrderTrackingController.answer\_replacement}; BEGIN IMMEDIATE & Exact offer and target recheck; committed invalid-target withdrawal OR atomic valid line/totals/payment/offer acceptance. & UserDAO and CustomerDAO authenticate owner; OrderDAO.\_load snapshots; committed get\_order uses DeliveryDAO.get\_by\_order\_id, HubDAO.get\_including\_archived, PaymentDAO.get\_by\_order\_id and ReplacementOfferDAO.list\_for\_order. & UC05-PC04; UC05-MG01 \\
+UC-06 / \texttt{updateMenuItem} & \texttt{MenuController.update\_item}; BEGIN IMMEDIATE & MenuDAO duplicate query and conditional update\_item; no order\_line write. & UserDAO.get\_by\_id via \_require\_admin; \_active\_item uses MenuDAO.get\_item; \_parse\_item validates current parent and fields; final get\_item is a read. & UC06-PC01; UC06-MG01; UC06-MG02 \\
+\end{longtable}
+DAO details are expanded from the AST inventory, not executed. The full per-operation DAO call list and read/write table scope remain in \texttt{docs/part2/design/operation\_realisation.csv}. Calls nested in a helper are labelled with that helper; omitted SELECTs do not imply omitted ownership, role, state or catalogue guards. Short SQL notes state statement kind, table and predicate only; full SQL/code excerpts belong to P7.
+
+\textbf{UC-01 --- confirmCheckout (\texttt{OP-01})}
+
+A new token revalidates the owner/address, active hub and catalogue, current load/capacity, quantities, voucher and raw distance inside the write transaction. \texttt{Quote.fingerprint(payment.method, payment.option)} takes the pure-domain enums carried by the real \texttt{PaymentChoice} fields. Both full fingerprint and T must match consent (F-07); the F-04 radius/fee decision uses raw distance. An own-token replay returns the existing order without authorization, repricing or insertion; a foreign token is refused without disclosure. ONLINE decline saves zero Order/Line/Payment rows. Successful checkout inserts one order header, its N snapshots and one payment; it does not simulate a conditional state UPDATE. COD is PENDING, ONLINE is PAID with C=T. P2-S05 releases authorization on every later failure through COMMIT. UC01-PC01\ldots{}PC06 and MG01\ldots{}MG03 are the contract anchors.
+
+SSD parameters: \texttt{hubId, addressId, lines(itemId, quantity), voucherCode?, paymentMethod, onlineOption?, simulatorOutcome?, quoteFingerprint, quotedTotal, checkoutToken}. Occurrence: \texttt{models/UC-01/ssd\_uc01\_PartB.drawio\#01S-M04}.
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-01/seqdao_uc01_confirmCheckout_PartA.png}}
+\caption{Figure 4.3.2.1.OP-01.A. UC-01 confirmCheckout --- Part A --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0330}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-01/seqdao_uc01_confirmCheckout_PartB.png}}
+\caption{Figure 4.3.2.1.OP-01.B. UC-01 confirmCheckout --- Part B --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0331}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-01/seqdao_uc01_confirmCheckout_PartC.png}}
+\caption{Figure 4.3.2.1.OP-01.C. UC-01 confirmCheckout --- Part C --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0332}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-01/seqdao_uc01_confirmCheckout_PartD.png}}
+\caption{Figure 4.3.2.1.OP-01.D. UC-01 confirmCheckout --- Part D --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0333}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-01/seqdao_uc01_confirmCheckout_PartE.png}}
+\caption{Figure 4.3.2.1.OP-01.E. UC-01 confirmCheckout --- Part E --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0334}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-01/seqdao_uc01_confirmCheckout_PartF.png}}
+\caption{Figure 4.3.2.1.OP-01.F. UC-01 confirmCheckout --- Part F --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0335}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-01/seqdao_uc01_confirmCheckout_PartG.png}}
+\caption{Figure 4.3.2.1.OP-01.G. UC-01 confirmCheckout --- Part G --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0336}
+\end{figure}
+\end{landscape}
+\textbf{UC-02 --- takeDelivery (\texttt{OP-10})}
+
+The active shipper checks the live delivery is unassigned/AWAITING\_PICKUP and the order is READY. DeliveryDAO.take uses the actual AWAITING\_PICKUP predicate; a true rowcount result is required before the paired READY\ensuremath{\rightarrow}OUT\_FOR\_DELIVERY save. Any later failure rolls back the pickup as well. Only one competing take may commit; this is the design guarantee. The later browser race checks are recorded in Sections 4.3.6 and 5.1. No additional one-active-delivery rule is introduced.
+
+SSD parameters: \texttt{orderId}. Occurrence: \texttt{models/UC-02/ssd\_uc02\_PartA.drawio\#M03}.
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-02/seqdao_uc02_takeDelivery_PartA.png}}
+\caption{Figure 4.3.2.2.OP-10.A. UC-02 takeDelivery --- Part A --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0337}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-02/seqdao_uc02_takeDelivery_PartB.png}}
+\caption{Figure 4.3.2.2.OP-10.B. UC-02 takeDelivery --- Part B --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0338}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-02/seqdao_uc02_takeDelivery_PartC.png}}
+\caption{Figure 4.3.2.2.OP-10.C. UC-02 takeDelivery --- Part C --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0339}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-02/seqdao_uc02_takeDelivery_PartD.png}}
+\caption{Figure 4.3.2.2.OP-10.D. UC-02 takeDelivery --- Part D --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0340}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-02/seqdao_uc02_takeDelivery_PartE.png}}
+\caption{Figure 4.3.2.2.OP-10.E. UC-02 takeDelivery --- Part E --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0341}
+\end{figure}
+\end{landscape}
+\textbf{UC-02 --- confirmDelivered (\texttt{OP-11})}
+
+Only the assigned shipper may finish a PICKED\_UP delivery paired with an OUT\_FOR\_DELIVERY order. COD cash must equal T; the PENDING\ensuremath{\rightarrow}PAID update is conditional and checked. ONLINE accepts no cash and preserves captured C and any partial refund owed. DeliveryDAO.finish checks order\_id, assigned shipper\_id and PICKED\_UP. The paired order update, finish and any COD write commit together; a zero result on any one reverses prior writes.
+
+SSD parameters: \texttt{orderId, cashCollected?}. Occurrence: \texttt{models/UC-02/ssd\_uc02\_PartB.drawio\#M04}.
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-02/seqdao_uc02_confirmDelivered_PartA.png}}
+\caption{Figure 4.3.2.2.OP-11.A. UC-02 confirmDelivered --- Part A --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0342}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-02/seqdao_uc02_confirmDelivered_PartB.png}}
+\caption{Figure 4.3.2.2.OP-11.B. UC-02 confirmDelivered --- Part B --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0343}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-02/seqdao_uc02_confirmDelivered_PartC.png}}
+\caption{Figure 4.3.2.2.OP-11.C. UC-02 confirmDelivered --- Part C --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0344}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-02/seqdao_uc02_confirmDelivered_PartD.png}}
+\caption{Figure 4.3.2.2.OP-11.D. UC-02 confirmDelivered --- Part D --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0345}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-02/seqdao_uc02_confirmDelivered_PartE.png}}
+\caption{Figure 4.3.2.2.OP-11.E. UC-02 confirmDelivered --- Part E --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0346}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-02/seqdao_uc02_confirmDelivered_PartF.png}}
+\caption{Figure 4.3.2.2.OP-11.F. UC-02 confirmDelivered --- Part F --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0347}
+\end{figure}
+\end{landscape}
+\textbf{UC-03 --- archiveHub (\texttt{OP-36})}
+
+Only an active admin may archive. The same write lock covers the open-order count and archive. Any order outside DELIVERED, DELIVERY\_FAILED, REJECTED or CANCELLED blocks it. HubDAO.archive uses \texttt{id} plus \texttt{archived\_at IS NULL}; the design does not invent an archive enum or a WHERE-state predicate. A successful archive hides operational access while preserving orders, receipts and authorised history (UC03-PC02/MG01).
+
+SSD parameters: \texttt{hubId}. Occurrence: \texttt{models/UC-03/ssd\_uc03.drawio\#M03-05}.
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-03/seqdao_uc03_archiveHub_PartA.png}}
+\caption{Figure 4.3.2.3.OP-36.A. UC-03 archiveHub --- Part A --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0348}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-03/seqdao_uc03_archiveHub_PartB.png}}
+\caption{Figure 4.3.2.3.OP-36.B. UC-03 archiveHub --- Part B --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0349}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-03/seqdao_uc03_archiveHub_PartC.png}}
+\caption{Figure 4.3.2.3.OP-36.C. UC-03 archiveHub --- Part C --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0350}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-03/seqdao_uc03_archiveHub_PartD.png}}
+\caption{Figure 4.3.2.3.OP-36.D. UC-03 archiveHub --- Part D --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0351}
+\end{figure}
+\end{landscape}
+\textbf{UC-04 --- salesReport (\texttt{OP-26})}
+
+UC04-MG01 applies to success, empty output, Manager denial (UC04-MG02), invalid filters and read failures: no business data is written. ReportDAO.sales\_by\_hub selects DELIVERED orders by delivery finish time in the half-open UTC range derived from Vietnam calendar days; archived records remain included. Order-level sums have no order\_line join. F-03 makes operational sales T, with refunds owed shown separately. F-09 makes item identity menu\_item\_id and retains it through SalesReport.top\_items; a snapshot name is only a display label. Period, SalesRow and SalesReport are non-persisted values. The diagram alone does not establish an oracle result; Section 5.1 records the corresponding test evidence.
+
+SSD parameters: \texttt{startDateVN, endDateVN, hubId?}. Occurrence: \texttt{models/UC-04/ssd\_uc04.drawio\#M01}.
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-04/seqdao_uc04_salesReport_PartA.png}}
+\caption{Figure 4.3.2.4.OP-26.A. UC-04 salesReport --- Part A --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0352}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-04/seqdao_uc04_salesReport_PartB.png}}
+\caption{Figure 4.3.2.4.OP-26.B. UC-04 salesReport --- Part B --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0353}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-04/seqdao_uc04_salesReport_PartC.png}}
+\caption{Figure 4.3.2.4.OP-26.C. UC-04 salesReport --- Part C --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0354}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-04/seqdao_uc04_salesReport_PartD.png}}
+\caption{Figure 4.3.2.4.OP-26.D. UC-04 salesReport --- Part D --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0355}
+\end{figure}
+\end{landscape}
+\textbf{UC-05 --- rejectOrder (\texttt{OP-03})}
+
+Own-hub PLACED order and valid reason precede rejection. A conditional order transition, optional exact open-offer withdrawal, checked PaymentDAO.set\_amounts target and conditional payment state save share one transaction. F-02/P2-S01 persist full captured C as the ONLINE refund obligation even after an earlier partial obligation; COD becomes VOIDED and ONLINE becomes REFUND\_PENDING. The operation records an obligation and performs no payout. A zero rowcount on a later payment or offer save rolls back the intended rejection too.
+
+SSD parameters: \texttt{orderId, reason}. Occurrence: \texttt{models/UC-05/ssd\_uc05\_PartA.drawio\#05S-M04}.
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-05/seqdao_uc05_rejectOrder_PartA.png}}
+\caption{Figure 4.3.2.5.OP-03.A. UC-05 rejectOrder --- Part A --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0356}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-05/seqdao_uc05_rejectOrder_PartB.png}}
+\caption{Figure 4.3.2.5.OP-03.B. UC-05 rejectOrder --- Part B --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0357}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-05/seqdao_uc05_rejectOrder_PartC.png}}
+\caption{Figure 4.3.2.5.OP-03.C. UC-05 rejectOrder --- Part C --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0358}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-05/seqdao_uc05_rejectOrder_PartD.png}}
+\caption{Figure 4.3.2.5.OP-03.D. UC-05 rejectOrder --- Part D --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0359}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-05/seqdao_uc05_rejectOrder_PartE.png}}
+\caption{Figure 4.3.2.5.OP-03.E. UC-05 rejectOrder --- Part E --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0360}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-05/seqdao_uc05_rejectOrder_PartF.png}}
+\caption{Figure 4.3.2.5.OP-03.F. UC-05 rejectOrder --- Part F --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0361}
+\end{figure}
+\end{landscape}
+\textbf{UC-05 --- acceptReplacement (\texttt{OP-05})}
+
+Ownership, PLACED state and exact open OFFERED offer are checked before target eligibility is rechecked (F-05). A stale/guard mismatch refuses unchanged. An invalid target intentionally saves only that exact offer as WITHDRAWN, checks the DAO boolean, then COMMITs; Order/Line/Payment stay unchanged. A failed withdrawal is rolled back. A valid branch uses the offered price/name for the whole line with unchanged quantity; Dnew=min(Dold,Snew), F/Q unchanged, and Tnew recomputed. COD payable becomes Tnew; ONLINE captured C stays unchanged with refund owed C\ensuremath{-}Tnew and state PAID. Checked line/header saves (P2-S09/S11), checked payment amounts and exact OFFERED\ensuremath{\rightarrow}ACCEPTED all precede COMMIT. Order remains PLACED with no automatic confirmation. The C0 targets F-02, F-05, P2-S09/S11/S13 and P3-S03 are resolved as recorded in Table P4-1.
+
+SSD parameters: \texttt{orderId, offerId}. Occurrence: \texttt{models/UC-05/ssd\_uc05\_PartB.drawio\#05S-M08}.
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-05/seqdao_uc05_acceptReplacement_PartA.png}}
+\caption{Figure 4.3.2.5.OP-05.A. UC-05 acceptReplacement --- Part A --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0362}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-05/seqdao_uc05_acceptReplacement_PartB.png}}
+\caption{Figure 4.3.2.5.OP-05.B. UC-05 acceptReplacement --- Part B --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0363}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-05/seqdao_uc05_acceptReplacement_PartC.png}}
+\caption{Figure 4.3.2.5.OP-05.C. UC-05 acceptReplacement --- Part C --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0364}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-05/seqdao_uc05_acceptReplacement_PartD.png}}
+\caption{Figure 4.3.2.5.OP-05.D. UC-05 acceptReplacement --- Part D --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0365}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-05/seqdao_uc05_acceptReplacement_PartE.png}}
+\caption{Figure 4.3.2.5.OP-05.E. UC-05 acceptReplacement --- Part E --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0366}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-05/seqdao_uc05_acceptReplacement_PartF.png}}
+\caption{Figure 4.3.2.5.OP-05.F. UC-05 acceptReplacement --- Part F --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0367}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-05/seqdao_uc05_acceptReplacement_PartG.png}}
+\caption{Figure 4.3.2.5.OP-05.G. UC-05 acceptReplacement --- Part G --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0368}
+\end{figure}
+\end{landscape}
+\textbf{UC-06 --- updateMenuItem (\texttt{OP-41})}
+
+The admin edits name, description and valid positive price after active-item and duplicate checks. The parent is current.brand\_id; the posted brandId is context and cannot reparent a dish. MenuDAO.update\_item has the actual \texttt{id AND archived\_at IS NULL} predicate and returns rowcount==1. The design requires the controller to check it; later P4 status is recorded in Table P4-1. The only write is to menu\_item; existing order\_line name/price/quantity snapshots remain unchanged (UC06-MG01). Invalid prices and duplicates refuse without a write (UC06-MG02).
+
+SSD parameters: \texttt{itemId, brandId, name, description, price}. Occurrence: \texttt{models/UC-06/ssd\_uc06\_PartB.drawio\#M06-B03}.
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-06/seqdao_uc06_updateMenuItem_PartA.png}}
+\caption{Figure 4.3.2.6.OP-41.A. UC-06 updateMenuItem --- Part A --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0369}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-06/seqdao_uc06_updateMenuItem_PartB.png}}
+\caption{Figure 4.3.2.6.OP-41.B. UC-06 updateMenuItem --- Part B --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0370}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-06/seqdao_uc06_updateMenuItem_PartC.png}}
+\caption{Figure 4.3.2.6.OP-41.C. UC-06 updateMenuItem --- Part C --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0371}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/UC-06/seqdao_uc06_updateMenuItem_PartD.png}}
+\caption{Figure 4.3.2.6.OP-41.D. UC-06 updateMenuItem --- Part D --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0372}
+\end{figure}
+\end{landscape}
+\textbf{Guarded interaction control after independent review}
+
+The checkout token-exists operand ends with replay/refusal and skips all authorization/repricing/INSERT work. The ONLINE-decline break contains rollback and its refusal return. Only COD or approved ONLINE enters the write continuation. Part G separates the successful COMMIT return in a terminal break from the failure break containing conditional authorization release, active-transaction rollback and mutually exclusive Busy/controlled-refusal replies. An approved success never reaches the release call.
+
+For accepted replacement, Part C is the invalid-target break: it contains the exact-offer WITHDRAWN call, SQL request and checked result. A false result encloses rollback/refusal in its own break; a true result encloses the intended withdrawal-only COMMIT and result return. This break ends the request. Valid-target Parts D--F explicitly skip that operand, enclose the line/totals/payment/ACCEPTED work in continued valid-target operands, and end at the successful COMMIT/result. Their checked-save failures enter Part G's exclusive failure break, never the successful withdrawal branch.
+
+Other write operations use the same explicit success-END versus failure-handler continuation. The final failure plate contains the actual rollback request and Busy/refusal returns inside guarded regions; rollback is optional only when a transaction is active, including the failed-BEGIN case with no active transaction. The sales-report denial and invalid-date operands terminate before report queries; all report branches remain read-only. Synchronous method and database request arrows have closed filled heads in editable XML, SVG and PNG; replies remain dashed with open heads. Attribute/property note arrows retain their separate annotation role.
+
+\textbf{Validation boundary and reproducibility}
+
+Figure-source and generator records are listed in the evidence index.
+
+All plates use a 1600 \ensuremath{\times} 1250 landscape canvas placed at 230 mm, with 24 px minimum text (9.78 pt). Native XML font sizes/styles agree with the SVG; author labels exist in the editable sources. Own-file QA parses XML, resolves receiver members against the shared model, checks exact SSD identity, validates actual edge attachments and label bounds, and checks visible transaction/rowcount/busy labels. Every PNG and independently rasterized SVG is opened for visual inspection; physical A4 proofs and hash receipts are retained outside the repository in \texttt{Part2/notes/P3-F/}. Native draw.io editing and final DOCX/PDF placement remain UNTESTED.

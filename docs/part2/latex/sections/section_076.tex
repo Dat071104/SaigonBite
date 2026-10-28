@@ -1,0 +1,107 @@
+\subsubsection*{3.2.3 OOD with CRC Cards or Communication Diagram}
+\addcontentsline{toc}{subsubsection}{3.2.3 OOD with CRC Cards or Communication Diagram}
+\pdfbookmark[2]{3.2.3 OOD with CRC Cards or Communication Diagram}{p7h76}
+\label{CRC-UC-02}
+The CRC include lists actual collaborators from the AST-derived call/type model and distinguishes controller values from domain entities.
+
+\textbf{UC-02 CRC Cards}
+
+Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
+
+Collaborators are real classes/modules linked by the AST-derived shared model (calls or typed attributes); target-only collaborators are identified as P4 targets. Blueprints and helpers remain real modules. No communication diagram is added.
+
+\textbf{Delivery --- domain / \guillemotleft{}entity\guillemotright{}}
+
+\textbf{Knows:} state: DeliveryState, ready\_at: str, picked\_up\_at: Optional[str], finished\_at: Optional[str], failure\_reason: Optional[str], cash\_collected: Optional[int], id: Optional[int]\newline{}\textbf{Does:} Hold assignment, paired lifecycle times, cash and failure outcome.; operations: move\_to\newline{}\textbf{Collaborators:} DeliveryState
+
+\textbf{Order --- domain / \guillemotleft{}entity\guillemotright{}}
+
+\textbf{Knows:} state: OrderState, delivery\_fee: int, idempotency\_token: str, placed\_at: str, lines: list[OrderLine], id: Optional[int], archived\_at: Optional[str], delivery\_address\_text: str, distance\_km: float, voucher\_discount: int, quiet\_discount: int, reject\_reason: Optional[str], confirmed\_at: Optional[str], ready\_at: Optional[str], closed\_at: Optional[str]\newline{}\textbf{Does:} Own the order lifecycle, snapshots and accepted replacement totals.; operations: can\_move\_to, move\_to\newline{}\textbf{Collaborators:} OrderState
+
+\textbf{Payment --- domain / \guillemotleft{}entity\guillemotright{}}
+
+\textbf{Knows:} method: PaymentMethod, state: PaymentState, amount: int, created\_at: str, updated\_at: Optional[str], online\_option: Optional[OnlineOption], provider\_ref: Optional[str], refund\_amount: int, id: Optional[int]\newline{}\textbf{Does:} Hold captured amount C and refund obligations without claiming payout.; operations: move\_to, release\_for\_unfulfilled\_order\newline{}\textbf{Collaborators:} PaymentState
+
+\textbf{UserAccount --- domain / \guillemotleft{}entity\guillemotright{}}
+
+\textbf{Knows:} id: int, username: str, password\_hash: str, display\_name: str, role: Role, is\_active: bool, created\_at: str\newline{}\textbf{Does:} Hold account identity, role, active flag and optional kitchen-hub assignment.; operations: value/module role only.\newline{}\textbf{Collaborators:} Role
+
+\textbf{Hub --- domain / \guillemotleft{}entity\guillemotright{}}
+
+\textbf{Knows:} id: int, code: str, name: str, address\_text: str, latitude: float, longitude: float, max\_active\_orders: int, base\_delivery\_fee: int, archived\_at: Optional[str]\newline{}\textbf{Does:} Represent a kitchen location, capacity and fee.; operations: value/module role only.\newline{}\textbf{Collaborators:} None recorded in this UC view.
+
+\textbf{Customer --- domain / \guillemotleft{}entity\guillemotright{}}
+
+\textbf{Knows:} id: int, full\_name: str, phone: Optional[str], email: Optional[str], passport\_no: Optional[str], nationality: Optional[str], customer\_type: CustomerType\newline{}\textbf{Does:} Represent customer identity and permitted online payment choices.; operations: value/module role only.\newline{}\textbf{Collaborators:} None recorded in this UC view.
+
+\textbf{DeliveryState --- domain / \guillemotleft{}enumeration\guillemotright{}}
+
+\textbf{Knows:} AWAITING\_PICKUP: str, PICKED\_UP: str, DELIVERED: str, FAILED: str\newline{}\textbf{Does:} Hold typed business state and its local rules.; operations: value/module role only.\newline{}\textbf{Collaborators:} None recorded in this UC view.
+
+\textbf{OrderState --- domain / \guillemotleft{}enumeration\guillemotright{}}
+
+\textbf{Knows:} PLACED: str, CONFIRMED: str, REJECTED: str, PREPARING: str, READY: str, OUT\_FOR\_DELIVERY: str, DELIVERED: str, DELIVERY\_FAILED: str, CANCELLED: str\newline{}\textbf{Does:} Hold typed business state and its local rules.; operations: value/module role only.\newline{}\textbf{Collaborators:} None recorded in this UC view.
+
+\textbf{PaymentState --- domain / \guillemotleft{}enumeration\guillemotright{}}
+
+\textbf{Knows:} PENDING: str, PAID: str, FAILED: str, VOIDED: str, REFUND\_PENDING: str, REFUNDED: str\newline{}\textbf{Does:} Hold typed business state and its local rules.; operations: value/module role only.\newline{}\textbf{Collaborators:} None recorded in this UC view.
+
+\textbf{Role --- domain / \guillemotleft{}enumeration\guillemotright{}}
+
+\textbf{Knows:} CUSTOMER: str, KITCHEN\_STAFF: str, SHIPPER: str, ADMIN: str, MANAGER: str\newline{}\textbf{Does:} Hold typed business state and its local rules.; operations: value/module role only.\newline{}\textbf{Collaborators:} None recorded in this UC view.
+
+\textbf{DeliveryController --- controller / \guillemotleft{}controller\guillemotright{}}
+
+\textbf{Knows:} deliveries: DeliveryDAO, orders: OrderDAO, payments: PaymentDAO, hubs: HubDAO, customers: CustomerDAO\newline{}\textbf{Does:} Coordinate authorization, domain decisions and data access.; operations: board, get\_delivery, pick\_up , confirm\_delivered , report\_failure , \_require\_shipper, \_delivery, \_own\_active\_delivery, \_parse\_cash, \_view\newline{}\textbf{Collaborators:} CustomerDAO, Delivery, DeliveryDAO, DeliveryView, HubDAO, OrderDAO, Payment, PaymentDAO, ShipperBoard, UserAccount, controllers.common
+
+\textbf{BaseController --- controller / \guillemotleft{}controller\guillemotright{}}
+
+\textbf{Knows:} conn: sqlite3.Connection, clock: Any, users: UserDAO\newline{}\textbf{Does:} Coordinate authorization, domain decisions and data access.; operations: \_now, \_require\_user\newline{}\textbf{Collaborators:} Role, UserAccount, UserDAO
+
+\textbf{controllers.common --- controller / \guillemotleft{}module\guillemotright{}}
+
+\textbf{Knows:} No instance attributes in the shared model.\newline{}\textbf{Does:} Module functions with their original Python signatures.; operations: move\_order, release\_payment\newline{}\textbf{Collaborators:} Order, OrderDAO, OrderState, Payment, PaymentDAO
+
+\textbf{DeliveryView --- controller / \guillemotleft{}value\guillemotright{}}
+
+\textbf{Knows:} delivery: Delivery, order: Order, payment: Payment, hub: Hub, customer: Customer\newline{}\textbf{Does:} Coordinate authorization, domain decisions and data access.; operations: cash\_to\_collect\newline{}\textbf{Collaborators:} Customer, Delivery, Hub, Order, Payment
+
+\textbf{ShipperBoard --- controller / \guillemotleft{}value\guillemotright{}}
+
+\textbf{Knows:} waiting: list[DeliveryView], mine: list[DeliveryView], finished: list[DeliveryView]\newline{}\textbf{Does:} Coordinate authorization, domain decisions and data access.; operations: value/module role only.\newline{}\textbf{Collaborators:} DeliveryView
+
+\textbf{delivery --- view / \guillemotleft{}view\guillemotright{}}
+
+\textbf{Knows:} No instance attributes in the shared model.\newline{}\textbf{Does:} Translate shipper requests and render contact and cash information.; operations: board, detail, pick\_up, delivered, failed\newline{}\textbf{Collaborators:} DeliveryController
+
+\textbf{DeliveryDAO --- data\_access / \guillemotleft{}DAO\guillemotright{}}
+
+\textbf{Knows:} conn: sqlite3.Connection\newline{}\textbf{Does:} Read or write parameterized records.; operations: get\_by\_order\_id, list\_awaiting\_pickup, list\_for\_shipper, take, finish\newline{}\textbf{Collaborators:} Delivery, DeliveryState, delivery
+
+\textbf{OrderDAO --- data\_access / \guillemotleft{}DAO\guillemotright{}}
+
+\textbf{Knows:} conn: sqlite3.Connection\newline{}\textbf{Does:} Read or write parameterized records.; operations: get\_by\_id, change\_state, \_load\newline{}\textbf{Collaborators:} Order, OrderState
+
+\textbf{PaymentDAO --- data\_access / \guillemotleft{}DAO\guillemotright{}}
+
+\textbf{Knows:} conn: sqlite3.Connection\newline{}\textbf{Does:} Read or write parameterized records.; operations: get\_by\_order\_id, change\_state, set\_amounts\newline{}\textbf{Collaborators:} Payment, PaymentState
+
+\textbf{CustomerDAO --- data\_access / \guillemotleft{}DAO\guillemotright{}}
+
+\textbf{Knows:} conn: sqlite3.Connection\newline{}\textbf{Does:} Read or write parameterized records.; operations: get\newline{}\textbf{Collaborators:} Customer
+
+\textbf{HubDAO --- data\_access / \guillemotleft{}DAO\guillemotright{}}
+
+\textbf{Knows:} conn: sqlite3.Connection\newline{}\textbf{Does:} Read or write parameterized records.; operations: get\_including\_archived\newline{}\textbf{Collaborators:} Hub
+
+\textbf{UserDAO --- data\_access / \guillemotleft{}DAO\guillemotright{}}
+
+\textbf{Knows:} conn: sqlite3.Connection\newline{}\textbf{Does:} Read or write parameterized records.; operations: get\_by\_id\newline{}\textbf{Collaborators:} UserAccount
+
+\textbf{Privacy and assignment boundary}
+
+Shipper-facing DeliveryView contains only the permitted contact and stored address snapshot. Customer.passport\_no is not part of the shipper projection. The Delivery-to-UserAccount association carries the optional assigned-shipper role; no shipper class is fabricated.
+
+\textbf{Architecture correspondence}
+
+Actual DAO imports of domain values remain static couplings in these CRC collaborators; they are an upward-dependency P4.9 finding documented in section 4.2, and are not drawn as permitted dependencies in the layered DCD.

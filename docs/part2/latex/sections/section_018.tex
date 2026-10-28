@@ -1,0 +1,36 @@
+\subsubsection*{2.1.5 List of Use Cases and Ownership}
+\addcontentsline{toc}{subsubsection}{2.1.5 List of Use Cases and Ownership}
+\pdfbookmark[2]{2.1.5 List of Use Cases and Ownership}{p7h18}
+Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
+
+The proposal-owner column preserves the six use-case selections made in the proposal. The actual-author column records the work completed for this Part 2 analysis. The six artifacts in this section are authored by 722I0004; this does not claim work by another team member. Use-case serving links are coverage references only; see Figure 2.1 for any UML relationship choices.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1314\linewidth}>{\raggedright\arraybackslash}p{0.1314\linewidth}>{\raggedright\arraybackslash}p{0.1314\linewidth}>{\raggedright\arraybackslash}p{0.1314\linewidth}>{\raggedright\arraybackslash}p{0.1314\linewidth}>{\raggedright\arraybackslash}p{0.1314\linewidth}>{\raggedright\arraybackslash}p{0.1314\linewidth}}
+ID & Use case & Main actor & Group & Short description & Proposal owner & Actual author \\
+\hline\endfirsthead
+ID & Use case & Main actor & Group & Short description & Proposal owner & Actual author \\
+\hline\endhead
+UC-01 & Place an order with an accepted full price, voucher and payment choice & Customer & (a) Ordering & Select a hub, available lines and address; review the full price and place only after accepting it and the permitted payment result. & 722I0004 & 722I0004 \\
+UC-02 & Deliver an order: pick up, deliver with cash collection, or report failure & Shipper & (b) Fulfilment & Take a READY delivery, record successful delivery and exact cash when due, or report a failure reason. & 523K0049 & 722I0004 \\
+UC-03 & Maintain hubs and kitchen capacity & Admin & (c) CRUD management & Create, read, update and archive hubs under the open-order guard; maintain capacity used by ordering decisions. & 722I0004 & 722I0004 \\
+UC-04 & Produce management reports: sales, workload, delivery performance & Manager & (d) Reports & Read operational sales, current workload and delivery-performance reports from shared records. & 523K0049 & 722I0004 \\
+UC-05 & Decide an incoming order: confirm, reject, or offer a replacement the customer agrees to & Kitchen staff & (b) Fulfilment & Decide an own-hub PLACED order; when a line is unavailable, offer an eligible replacement for the customer's decision. & 523K0050 & 722I0004 \\
+UC-06 & Maintain brands, menu items and hub listings & Admin & (c) CRUD management & Maintain brands, items and per-hub listings while preserving order snapshots. & 523K0050 & 722I0004 \\
+\end{longtable}
+\textbf{Group coverage:} (a) Ordering --- UC-01; (b) Fulfilment --- UC-02 and UC-05; (c) CRUD management --- UC-03 and UC-06; (d) Reports --- UC-04.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Supporting UC & Goal & Actor & Main UC served & Actual author \\
+\hline\endfirsthead
+Supporting UC & Goal & Actor & Main UC served & Actual author \\
+\hline\endhead
+SUC-01 Log in / log out & Establish or end the role-based session used by human actors. & All human actors & UC-01--UC-06 & 722I0004 \\
+SUC-02 Register (local or tourist), edit profile, manage addresses & Maintain the customer subtype's own registration details, profile and delivery addresses. & Customer & UC-01 & 722I0004 \\
+SUC-03 Track my orders, view receipt, answer a replacement offer & Read own orders and receipts and answer an exact open replacement offer. & Customer & UC-01; UC-05 & 722I0004 \\
+SUC-04 Cancel an order (PLACED or CONFIRMED) & Cancel the customer's own order before preparation starts. & Customer & UC-01 & 722I0004 \\
+SUC-05 Start preparing and mark ready & Move a confirmed own-hub order through preparation to READY and create its pickup delivery. & Kitchen staff & UC-05; UC-02 & 722I0004 \\
+SUC-06 Set menu availability at my hub & Change availability of a listing at the kitchen staff member's own hub. & Kitchen staff & UC-05; UC-06 & 722I0004 \\
+SUC-07 Maintain vouchers & Create, read, update and archive vouchers used by checkout. & Admin & UC-01 & 722I0004 \\
+SUC-08 Maintain user accounts; deactivate/reactivate & Maintain authorized staff accounts and active status. & Admin & UC-01--UC-06 & 722I0004 \\
+SUC-09 Archive closed orders; read archived history & Hide terminal orders from operational lists while retaining authorized historical access. & Admin & UC-04 & 722I0004 \\
+\end{longtable}

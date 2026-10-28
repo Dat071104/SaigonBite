@@ -1,0 +1,92 @@
+\subsection*{1.6 Activity Diagram}
+\addcontentsline{toc}{subsection}{1.6 Activity Diagram}
+\pdfbookmark[1]{1.6 Activity Diagram}{p7h10}
+Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
+
+The swim-lane model uses Customer, Kitchen staff, Shipper, Admin, Manager and System. The overview is a responsibility index; Parts A-G carry the executable control-flow interpretation. Only relevant lanes are repeated on a detail page. Authentication and role checks apply before each authorised activity. The payment simulator belongs to the System lane and represents no external provider integration.
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/shared/swimlane_v2.png}}
+\caption{Figure 1.6. Swim-lane responsibility overview. Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex).}\label{P7-0517}
+\end{figure}
+\end{landscape}
+A filled dot starts an activity. A ring containing a dot ends the whole activity shown; the circle containing an X ends one path or unsuccessful request without implying that an existing order has closed. Administration, reports and cancellation requests are separate activities, so their final nodes do not end another activity. Continuation circles P, K, R and D transfer one selected flow between pages, rather than starting concurrent branches: P = checkout confirmation, K = a PLACED order awaiting a kitchen decision, R = an OFFERED replacement awaiting a customer response, D = a READY order available for pickup. Re-entering K after a resolved offer is an alternative continuation, not a join waiting for several inputs.
+
+\textbf{Checkout and payment}
+
+Part A uses raw distance for the inclusive 8 km limit, then the derived hub-load classification. A refused attempt ends; a changed hub or address requires another quote, including the possibility that no alternative hub is available. The displayed distance uses a district centroid and is explicitly approximate. The customer sees subtotal S, voucher discount D, fee F, quiet concession Q and total T before confirmation (BR-01-BR-10).
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/shared/swimlane_v2_PartA.png}}
+\caption{Figure 1.6a. Select hub, check radius and obtain a quote. Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex).}\label{P7-0518}
+\end{figure}
+\end{landscape}
+Part B separates a declined simulator attempt from a persisted order. Local customers may select E\_WALLET or BANK\_QR; tourists may select INTERNATIONAL\_CARD; both may choose COD. The simulator page records a selected approve/decline result before the write transaction. Its deterministic in-process decision and all order/line/payment writes belong to the checkout transaction. Capacity, radius, voucher and the complete quote fingerprint are rechecked at confirmation. Any changed quote is shown again, without saving an order. A declined attempt creates neither an Order nor a Payment. A successful COD order starts with payment PENDING; approved ONLINE starts PAID. A commit failure releases the simulated approval and saves nothing. Replaying an accepted checkout token returns that customer's existing order rather than creating another (BR-11, BR-14).
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/shared/swimlane_v2_PartB.png}}
+\caption{Figure 1.6b. Confirm checkout and simulated payment. Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex).}\label{P7-0519}
+\end{figure}
+\end{landscape}
+\textbf{Kitchen decision and replacement consent}
+
+Part C restricts kitchen operations to the staff member's own hub. A rejection needs a reason. Confirmation requires no open offer; preparation starts from CONFIRMED. Marking READY creates one Delivery in AWAITING\_PICKUP. Kitchen availability is per hub: AVAILABLE and SOLD\_OUT belong to its listing, not to the MenuItem itself (BR-16, BR-26; plan section 4).
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/shared/swimlane_v2_PartC.png}}
+\caption{Figure 1.6c. Decide, prepare and release an order. Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex).}\label{P7-0520}
+\end{figure}
+\end{landscape}
+Part D requires the exact open OFFERED offer on the customer's own PLACED order. The source line must currently be unavailable; its replacement keeps the quantity, differs from the source, is not already in the order, and has an equal-or-lower offered unit price. Only one open offer is permitted. Acceptance rechecks the target's active brand/item and listed, AVAILABLE status at that hub. An invalid target withdraws the offer and leaves the order unchanged. A valid answer honours the stored offered price, changes the line and total, caps the old voucher concession at the new subtotal, and preserves F and Q. ONLINE keeps captured amount C and state PAID while C minus the new T becomes refund owed. Decline produces DECLINED and REJECTED, with the full unfulfilled liability. Stale/repeated answers change nothing; a cancelled order cannot be revived. ``Waiting for customer'' is derived from PLACED plus an open offer, not a stored state (plan section 3.3).
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/shared/swimlane_v2_PartD.png}}
+\caption{Figure 1.6d. Customer consent to a replacement. Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex).}\label{P7-0521}
+\end{figure}
+\end{landscape}
+\textbf{Delivery and cancellation}
+
+Part E atomically assigns an unclaimed READY order to an active shipper: Order becomes OUT\_FOR\_DELIVERY and Delivery becomes PICKED\_UP. Only that shipper can finish. A successful COD finish requires cash exactly equal to T; success sets Order and Delivery to DELIVERED and COD payment to PAID. A valid failure needs a reason and sets DELIVERY\_FAILED / FAILED. Invalid cash or a missing reason leaves the order OUT\_FOR\_DELIVERY so another valid finish request can be made. There is no redelivery transition. The own-order receipt uses stored snapshots, shows payment state and refund owed, and labels ONLINE as simulated (BR-13, BR-25).
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/shared/swimlane_v2_PartE.png}}
+\caption{Figure 1.6e. Delivery, cash and completion. Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex).}\label{P7-0522}
+\end{figure}
+\end{landscape}
+Part F is the customer's cancellation request. Its ownership/state check and effects are one transaction. Only PLACED or CONFIRMED can become CANCELLED; an open offer becomes WITHDRAWN. PREPARING, later and terminal orders remain unchanged when cancellation is refused. Cancellation and kitchen/offer actions must recheck current state rather than rely on the state previously displayed (BR-15).
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/shared/swimlane_v2_PartF.png}}
+\caption{Figure 1.6f. Customer cancellation request. Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex).}\label{P7-0523}
+\end{figure}
+\end{landscape}
+Every unfulfilled terminal outcome in Parts C-F uses the same payment effect: COD becomes VOIDED; ONLINE becomes REFUND\_PENDING with refund owed equal to the full captured C. A prior partial amount is replaced by C, never added to it. No path claims a refund was paid or sets REFUNDED. The terminal Order vocabulary is DELIVERED, DELIVERY\_FAILED, REJECTED and CANCELLED; other represented Order states are PLACED, CONFIRMED, PREPARING, READY and OUT\_FOR\_DELIVERY (BR-17; plan section 4).
+
+\textbf{Independent administration and management}
+
+Part G represents a selected administration task and a separate management-report request. The named dashed frames, \texttt{act Admin maintenance} and \texttt{act Manager report}, define disjoint activity scopes. Each owns its initial and activity-final node; one activity's final does not terminate the other request. Shared lane labels identify responsibility, without creating a shared activity invocation or a fork/join. Hub capacity must stay at least one; archiving a hub requires no open orders. Brand/item archive and catalogue price changes preserve existing line snapshots. UserAccount changes between ACTIVE and INACTIVE; a shipper holding a PICKED\_UP delivery cannot be deactivated. Order archive requires a terminal order and preserves authorised history, receipts, reporting and refund obligations. Manager reports read records without creating report states or changing data. Their filters and measures follow BR-20-BR-24; report output is not a payment settlement operation (BR-18, BR-19, BR-25).
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/shared/swimlane_v2_PartG.png}}
+\caption{Figure 1.6g. Independent administration and reports. Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex).}\label{P7-0524}
+\end{figure}
+\end{landscape}
+\textbf{Placement and verification.} Insert each complete figure on an A4 landscape page at \textbf{230 mm wide} (158.9 mm high), retaining its aspect ratio and its built-in caption/legend. The 1100 \ensuremath{\times} 760 viewBox uses no text smaller than 16 units, giving \textbf{9.48 pt} at that placement. Do not shrink below \textbf{218.3 mm wide} (9.00 pt). Portrait-width insertion would fail this legibility condition. The overview is not a replacement for the detail pages. Every supplied PNG is a 2200 \ensuremath{\times} 1520 rendering of its matching SVG and was visually inspected; all nine figures were also inspected in 96 dpi A4 landscape proofs at the specified 230 mm placement; geometry and semantic evidence is in \texttt{models/shared/business\_process\_v2.qa.json}. XML parsing and export checks do not claim a native draw.io application review. Final report PDF placement remains a P7 verification item.
+
+Sources: the locked Part 2 plan, sections 1-4 and P1; Case Study PDF pp.1-2; Final Project Requirements PDF pp.2-4 and 8; Report Template headings 1.5-1.6; frozen Part 1 business-process source and \texttt{build/proc\_*.py} / \texttt{notes/diagram\_changes.md}. The model and explanation use own wording. The L3 proposal deferral was accepted at the Part 1 review (no change requested); no written approval is claimed.

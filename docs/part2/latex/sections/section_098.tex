@@ -1,0 +1,95 @@
+\subsubsection*{3.4.3 OOD with CRC Cards or Communication Diagram}
+\addcontentsline{toc}{subsubsection}{3.4.3 OOD with CRC Cards or Communication Diagram}
+\pdfbookmark[2]{3.4.3 OOD with CRC Cards or Communication Diagram}{p7h98}
+\label{CRC-UC-04}
+The CRC include lists actual collaborators from the AST-derived call/type model and distinguishes controller values from domain entities.
+
+\textbf{UC-04 CRC Cards}
+
+Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
+
+Collaborators are real classes/modules linked by the AST-derived shared model (calls or typed attributes); target-only collaborators are identified as P4 targets. Blueprints and helpers remain real modules. No communication diagram is added.
+
+\textbf{Hub --- domain / \guillemotleft{}entity\guillemotright{}}
+
+\textbf{Knows:} id: int, code: str, name: str, address\_text: str, latitude: float, longitude: float, max\_active\_orders: int, base\_delivery\_fee: int, archived\_at: Optional[str]\newline{}\textbf{Does:} Represent a kitchen location, capacity and fee.; operations: value/module role only.\newline{}\textbf{Collaborators:} None recorded in this UC view.
+
+\textbf{HubStatus --- domain / \guillemotleft{}entity\guillemotright{}}
+
+\textbf{Knows:} hub: Hub, load: int\newline{}\textbf{Does:} Derive busy, quiet and load percentage from current load and capacity.; operations: busy, quiet, load\_percent\newline{}\textbf{Collaborators:} Hub
+
+\textbf{OrderState --- domain / \guillemotleft{}enumeration\guillemotright{}}
+
+\textbf{Knows:} PLACED: str, CONFIRMED: str, REJECTED: str, PREPARING: str, READY: str, OUT\_FOR\_DELIVERY: str, DELIVERED: str, DELIVERY\_FAILED: str, CANCELLED: str\newline{}\textbf{Does:} Hold typed business state and its local rules.; operations: value/module role only.\newline{}\textbf{Collaborators:} None recorded in this UC view.
+
+\textbf{DeliveryState --- domain / \guillemotleft{}enumeration\guillemotright{}}
+
+\textbf{Knows:} AWAITING\_PICKUP: str, PICKED\_UP: str, DELIVERED: str, FAILED: str\newline{}\textbf{Does:} Hold typed business state and its local rules.; operations: value/module role only.\newline{}\textbf{Collaborators:} None recorded in this UC view.
+
+\textbf{ReportController --- controller / \guillemotleft{}controller\guillemotright{}}
+
+\textbf{Knows:} reports: ReportDAO, hubs: HubDAO\newline{}\textbf{Does:} Authorize Manager requests and construct operational reports without writes.; operations: all\_hubs, sales\_report , workload\_report , delivery\_report, \_require\_manager, \_hub, \_period\newline{}\textbf{Collaborators:} DeliveryReport, DeliveryRow, Hub, HubDAO, HubStatus, OrderState, Period, ReportDAO, SalesReport, SalesRow, WorkloadReport, WorkloadRow, controllers.common, controllers.report\_controller
+
+\textbf{BaseController --- controller / \guillemotleft{}controller\guillemotright{}}
+
+\textbf{Knows:} conn: sqlite3.Connection, clock: Any, users: UserDAO\newline{}\textbf{Does:} Coordinate authorization, domain decisions and data access.; operations: \_today\_vn, \_require\_user\newline{}\textbf{Collaborators:} UserDAO
+
+\textbf{controllers.common --- controller / \guillemotleft{}module\guillemotright{}}
+
+\textbf{Knows:} No instance attributes in the shared model.\newline{}\textbf{Does:} Module functions with their original Python signatures.; operations: vn\_day\_start\_utc\newline{}\textbf{Collaborators:} OrderState
+
+\textbf{controllers.report\_controller --- controller / \guillemotleft{}module\guillemotright{}}
+
+\textbf{Knows:} No instance attributes in the shared model.\newline{}\textbf{Does:} Module functions with their original Python signatures.; operations: \_minutes\newline{}\textbf{Collaborators:} None recorded in this UC view.
+
+\textbf{Period --- controller / \guillemotleft{}value\guillemotright{}}
+
+\textbf{Knows:} date\_from: str, date\_to: str, start\_utc: str, end\_utc: str\newline{}\textbf{Does:} Coordinate authorization, domain decisions and data access.; operations: value/module role only.\newline{}\textbf{Collaborators:} None recorded in this UC view.
+
+\textbf{SalesRow --- controller / \guillemotleft{}value\guillemotright{}}
+
+\textbf{Knows:} label: str, orders: int, item\_sales: int, voucher\_discounts: int, delivery\_fees: int, total: int, refunds\_owed: int\newline{}\textbf{Does:} Coordinate authorization, domain decisions and data access.; operations: net , add\newline{}\textbf{Collaborators:} None recorded in this UC view.
+
+\textbf{SalesReport --- controller / \guillemotleft{}value\guillemotright{}}
+
+\textbf{Knows:} period: Period, hub: Optional[Hub], rows: list[SalesRow], totals: SalesRow, top\_items: list[tuple[int, str, int, int]]\newline{}\textbf{Does:} Coordinate authorization, domain decisions and data access.; operations: value/module role only.\newline{}\textbf{Collaborators:} Hub, Period, SalesRow
+
+\textbf{WorkloadRow --- controller / \guillemotleft{}value\guillemotright{}}
+
+\textbf{Knows:} status: HubStatus, counts: dict[OrderState, int]\newline{}\textbf{Does:} Coordinate authorization, domain decisions and data access.; operations: label\newline{}\textbf{Collaborators:} HubStatus, OrderState
+
+\textbf{WorkloadReport --- controller / \guillemotleft{}value\guillemotright{}}
+
+\textbf{Knows:} as\_of: str, rows: list[WorkloadRow]\newline{}\textbf{Does:} Coordinate authorization, domain decisions and data access.; operations: value/module role only.\newline{}\textbf{Collaborators:} WorkloadRow
+
+\textbf{DeliveryRow --- controller / \guillemotleft{}value\guillemotright{}}
+
+\textbf{Knows:} label: str, delivered: int, failed: int, waits: list[float], rides: list[float]\newline{}\textbf{Does:} Coordinate authorization, domain decisions and data access.; operations: failure\_rate, avg\_wait, avg\_ride\newline{}\textbf{Collaborators:} None recorded in this UC view.
+
+\textbf{DeliveryReport --- controller / \guillemotleft{}value\guillemotright{}}
+
+\textbf{Knows:} period: Period, hub: Optional[Hub], by\_hub: list[DeliveryRow], by\_shipper: list[DeliveryRow], overall: DeliveryRow\newline{}\textbf{Does:} Coordinate authorization, domain decisions and data access.; operations: value/module role only.\newline{}\textbf{Collaborators:} DeliveryRow, Hub, Period
+
+\textbf{reports --- view / \guillemotleft{}view\guillemotright{}}
+
+\textbf{Knows:} No instance attributes in the shared model.\newline{}\textbf{Does:} Translate Manager filters and render read-only report results.; operations: \_filtered, sales , workload, delivery\newline{}\textbf{Collaborators:} ReportController
+
+\textbf{ReportDAO --- data\_access / \guillemotleft{}DAO\guillemotright{}}
+
+\textbf{Knows:} conn: sqlite3.Connection\newline{}\textbf{Does:} Read or write parameterized records.; operations: sales\_by\_hub, top\_items , open\_orders\_by\_hub\_and\_state, finished\_deliveries\newline{}\textbf{Collaborators:} None recorded in this UC view.
+
+\textbf{HubDAO --- data\_access / \guillemotleft{}DAO\guillemotright{}}
+
+\textbf{Knows:} conn: sqlite3.Connection\newline{}\textbf{Does:} Read or write parameterized records.; operations: list\_active, list\_all, get\_including\_archived\newline{}\textbf{Collaborators:} Hub
+
+\textbf{UserDAO --- data\_access / \guillemotleft{}DAO\guillemotright{}}
+
+\textbf{Knows:} conn: sqlite3.Connection\newline{}\textbf{Does:} Read or write parameterized records.; operations: get\_by\_id\newline{}\textbf{Collaborators:} None recorded in this UC view.
+
+\textbf{Persistence boundary}
+
+Period, SalesRow, SalesReport, WorkloadRow, WorkloadReport, DeliveryRow and DeliveryReport are in-memory controller-module values. Filters, report rows, sample counts and returned reports are not persisted; UC-04 has no Report entity or lifecycle. HubStatus is the actual domain value role.
+
+\textbf{Architecture correspondence}
+
+Actual DAO imports of domain values remain static couplings in these CRC collaborators; they are an upward-dependency P4.9 finding documented in section 4.2, and are not drawn as permitted dependencies in the layered DCD.

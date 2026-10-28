@@ -1,0 +1,2103 @@
+{
+  "template_styled_headings": [
+    {
+      "style": "Heading 1",
+      "text": "Intellectual Property"
+    },
+    {
+      "style": "Heading 1",
+      "text": "Table of Contents"
+    },
+    {
+      "style": "Heading 1",
+      "text": "Executive Summary (0.25 point)"
+    },
+    {
+      "style": "Heading 1",
+      "text": "I. Business Requirements (1 point)"
+    },
+    {
+      "style": "Heading 2",
+      "text": "1.1 System Vision and Approval Record"
+    },
+    {
+      "style": "Heading 2",
+      "text": "1.2 Organization Chart / Project Chart / Gantt Chart"
+    },
+    {
+      "style": "Heading 2",
+      "text": "1.3 Iteration Plan, User Story Backlog and Risks"
+    },
+    {
+      "style": "Heading 2",
+      "text": "1.4 Business Modelling / Requirements"
+    },
+    {
+      "style": "Heading 3",
+      "text": "1.4.1 Business Narrative"
+    },
+    {
+      "style": "Heading 3",
+      "text": "1.4.2 Assumption Log"
+    },
+    {
+      "style": "Heading 2",
+      "text": "1.5 Business Processes / Flowchart of Requirements"
+    },
+    {
+      "style": "Heading 2",
+      "text": "1.6 Activity Diagram"
+    },
+    {
+      "style": "Heading 2",
+      "text": "1.7 List of Requirements"
+    },
+    {
+      "style": "Heading 1",
+      "text": "II. System Requirements Analysis (15 marks)"
+    },
+    {
+      "style": "Heading 2",
+      "text": "2.1 Translate from Business Use Case"
+    },
+    {
+      "style": "Heading 3",
+      "text": "2.1.1 System Narrative"
+    },
+    {
+      "style": "Heading 3",
+      "text": "2.1.2 Users and Their Goals"
+    },
+    {
+      "style": "Heading 3",
+      "text": "2.1.3 List of Events"
+    },
+    {
+      "style": "Heading 3",
+      "text": "2.1.4 List of Actors"
+    },
+    {
+      "style": "Heading 3",
+      "text": "2.1.5 List of Use Cases and Ownership"
+    },
+    {
+      "style": "Heading 3",
+      "text": "2.1.6 Use Case Diagram"
+    },
+    {
+      "style": "Heading 3",
+      "text": "2.1.7 Domain Class Model Diagram"
+    },
+    {
+      "style": "Heading 2",
+      "text": "2.2 Use Case Descriptions"
+    },
+    {
+      "style": "Heading 3",
+      "text": "2.2.1 Use Case 1: [Name] (author: [Student ID])"
+    },
+    {
+      "style": "Heading 3",
+      "text": "2.2.2 Use Case 2: [Name] (author: [Student ID])"
+    },
+    {
+      "style": "Heading 3",
+      "text": "2.2.3 Use Case 3: [Name] (author: [Student ID])"
+    },
+    {
+      "style": "Heading 3",
+      "text": "2.2.4 Use Case 4: [Name] (author: [Student ID])"
+    },
+    {
+      "style": "Heading 3",
+      "text": "2.2.5 Use Case 5: [Name] (author: [Student ID])"
+    },
+    {
+      "style": "Heading 3",
+      "text": "2.2.6 Use Case 6: [Name] (author: [Student ID])"
+    },
+    {
+      "style": "Heading 2",
+      "text": "2.3 Verifying Use Cases for Actor (CRUD)"
+    },
+    {
+      "style": "Heading 3",
+      "text": "2.3.1 Verifying use cases for [Actor 1]"
+    },
+    {
+      "style": "Heading 3",
+      "text": "2.3.2 Verifying use cases for [Actor 2]"
+    },
+    {
+      "style": "Heading 3",
+      "text": "2.3.3 Verifying use cases for [Actor 3]"
+    },
+    {
+      "style": "Heading 1",
+      "text": "III. System Requirements Design (15 marks)"
+    },
+    {
+      "style": "Heading 2",
+      "text": "3.1 Design for Use Case 1: [Name] (author: [Student ID])"
+    },
+    {
+      "style": "Heading 3",
+      "text": "3.1.1 Design Classes in Detailed Design"
+    },
+    {
+      "style": "Heading 3",
+      "text": "3.1.2 Design Class Diagram"
+    },
+    {
+      "style": "Heading 3",
+      "text": "3.1.3 OOD with CRC Cards or Communication Diagram"
+    },
+    {
+      "style": "Heading 3",
+      "text": "3.1.4 OOD with Sequence Diagram"
+    },
+    {
+      "style": "Heading 3",
+      "text": "3.1.5 Final Design Class Diagram"
+    },
+    {
+      "style": "Heading 2",
+      "text": "3.2 Design for Use Case 2: [Name] (author: [Student ID])"
+    },
+    {
+      "style": "Heading 3",
+      "text": "3.2.1 Design Classes in Detailed Design"
+    },
+    {
+      "style": "Heading 3",
+      "text": "3.2.2 Design Class Diagram"
+    },
+    {
+      "style": "Heading 3",
+      "text": "3.2.3 OOD with CRC Cards or Communication Diagram"
+    },
+    {
+      "style": "Heading 3",
+      "text": "3.2.4 OOD with Sequence Diagram"
+    },
+    {
+      "style": "Heading 3",
+      "text": "3.2.5 Final Design Class Diagram"
+    },
+    {
+      "style": "Heading 2",
+      "text": "3.3 Design for Use Case 3: [Name] (author: [Student ID])"
+    },
+    {
+      "style": "Heading 3",
+      "text": "3.3.1 Design Classes in Detailed Design"
+    },
+    {
+      "style": "Heading 3",
+      "text": "3.3.2 Design Class Diagram"
+    },
+    {
+      "style": "Heading 3",
+      "text": "3.3.3 OOD with CRC Cards or Communication Diagram"
+    },
+    {
+      "style": "Heading 3",
+      "text": "3.3.4 OOD with Sequence Diagram"
+    },
+    {
+      "style": "Heading 3",
+      "text": "3.3.5 Final Design Class Diagram"
+    },
+    {
+      "style": "Heading 2",
+      "text": "3.4 Design for Use Case 4: [Name] (author: [Student ID])"
+    },
+    {
+      "style": "Heading 3",
+      "text": "3.4.1 Design Classes in Detailed Design"
+    },
+    {
+      "style": "Heading 3",
+      "text": "3.4.2 Design Class Diagram"
+    },
+    {
+      "style": "Heading 3",
+      "text": "3.4.3 OOD with CRC Cards or Communication Diagram"
+    },
+    {
+      "style": "Heading 3",
+      "text": "3.4.4 OOD with Sequence Diagram"
+    },
+    {
+      "style": "Heading 3",
+      "text": "3.4.5 Final Design Class Diagram"
+    },
+    {
+      "style": "Heading 2",
+      "text": "3.5 Design for Use Case 5: [Name] (author: [Student ID])"
+    },
+    {
+      "style": "Heading 3",
+      "text": "3.5.1 Design Classes in Detailed Design"
+    },
+    {
+      "style": "Heading 3",
+      "text": "3.5.2 Design Class Diagram"
+    },
+    {
+      "style": "Heading 3",
+      "text": "3.5.3 OOD with CRC Cards or Communication Diagram"
+    },
+    {
+      "style": "Heading 3",
+      "text": "3.5.4 OOD with Sequence Diagram"
+    },
+    {
+      "style": "Heading 3",
+      "text": "3.5.5 Final Design Class Diagram"
+    },
+    {
+      "style": "Heading 2",
+      "text": "3.6 Design for Use Case 6: [Name] (author: [Student ID])"
+    },
+    {
+      "style": "Heading 3",
+      "text": "3.6.1 Design Classes in Detailed Design"
+    },
+    {
+      "style": "Heading 3",
+      "text": "3.6.2 Design Class Diagram"
+    },
+    {
+      "style": "Heading 3",
+      "text": "3.6.3 OOD with CRC Cards or Communication Diagram"
+    },
+    {
+      "style": "Heading 3",
+      "text": "3.6.4 OOD with Sequence Diagram"
+    },
+    {
+      "style": "Heading 3",
+      "text": "3.6.5 Final Design Class Diagram"
+    },
+    {
+      "style": "Heading 1",
+      "text": "IV. System Requirements Implementation (10 marks)"
+    },
+    {
+      "style": "Heading 2",
+      "text": "4.1 Design Classes for the Subsystem"
+    },
+    {
+      "style": "Heading 2",
+      "text": "4.2 Package Diagram for the Subsystem"
+    },
+    {
+      "style": "Heading 2",
+      "text": "4.3 Implementation"
+    },
+    {
+      "style": "Heading 3",
+      "text": "4.3.1 Map Persistent Objects to the Tables in a Database"
+    },
+    {
+      "style": "Heading 3",
+      "text": "4.3.2 Modifying Sequence Diagrams"
+    },
+    {
+      "style": "Heading 3",
+      "text": "4.3.3 UI Design"
+    },
+    {
+      "style": "Heading 3",
+      "text": "4.3.4 SQL Code"
+    },
+    {
+      "style": "Heading 3",
+      "text": "4.3.5 Software Classes Method Code"
+    },
+    {
+      "style": "Heading 3",
+      "text": "4.3.6 Integration of Use Cases"
+    },
+    {
+      "style": "Heading 1",
+      "text": "V. System Testing, Deployment and Demonstration (7.5 marks)"
+    },
+    {
+      "style": "Heading 2",
+      "text": "5.1 Testing: Test Plan and Test Cases"
+    },
+    {
+      "style": "Heading 2",
+      "text": "5.2 Deployment"
+    },
+    {
+      "style": "Heading 2",
+      "text": "5.3 Demonstration"
+    },
+    {
+      "style": "Heading 1",
+      "text": "Conclusions / Recommendations (0.25 point)"
+    },
+    {
+      "style": "Heading 1",
+      "text": "References"
+    },
+    {
+      "style": "Heading 1",
+      "text": "Appendix"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Executive Summary (0.25 point)",
+      "source file": "docs/part2/report/Executive_Summary.md",
+      "lines": "1-9",
+      "note": "P7 draft; requires B6 and edition checks",
+      "content_line_ranges": [
+        [
+          1,
+          9
+        ]
+      ]
+    },
+    {
+      "heading": "I. Business Requirements (1 point)",
+      "source file": "TEMPLATE",
+      "lines": "n/a",
+      "note": "Template section container; not yet assembled",
+      "content_line_ranges": []
+    },
+    {
+      "heading": "1.1 System Vision and Approval Record",
+      "source file": "docs/part2/report/I_1-1_vision.md",
+      "lines": "1-58",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          1,
+          58
+        ]
+      ]
+    },
+    {
+      "heading": "1.2 Organization Chart / Project Chart / Gantt Chart",
+      "source file": "docs/part2/report/I_1-2_org_gantt.md",
+      "lines": "1-35",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          1,
+          35
+        ]
+      ]
+    },
+    {
+      "heading": "1.3 Iteration Plan, User Story Backlog and Risks",
+      "source file": "docs/part2/report/I_1-3_iterations_backlog_risks.md",
+      "lines": "1-74",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          1,
+          74
+        ]
+      ]
+    },
+    {
+      "heading": "1.4 Business Modelling / Requirements",
+      "source file": "docs/part2/report/I_1-4_narrative_assumptions.md",
+      "lines": "1-75",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          1,
+          3
+        ]
+      ]
+    },
+    {
+      "heading": "1.4.1 Business Narrative",
+      "source file": "docs/part2/report/I_1-4_narrative_assumptions.md",
+      "lines": "4-22",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          4,
+          22
+        ]
+      ]
+    },
+    {
+      "heading": "1.4.2 Assumption Log",
+      "source file": "docs/part2/report/I_1-4_narrative_assumptions.md",
+      "lines": "23-75",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          23,
+          75
+        ]
+      ]
+    },
+    {
+      "heading": "1.5 Business Processes / Flowchart of Requirements",
+      "source file": "docs/part2/report/I_1-5_1-6_process.md",
+      "lines": "1-23",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          1,
+          23
+        ]
+      ]
+    },
+    {
+      "heading": "1.6 Activity Diagram",
+      "source file": "docs/part2/report/I_1-5_1-6_process.md",
+      "lines": "24-90",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          24,
+          90
+        ]
+      ]
+    },
+    {
+      "heading": "1.7 List of Requirements",
+      "source file": "docs/part2/report/I_1-7_requirements.md",
+      "lines": "1-85",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          1,
+          85
+        ]
+      ]
+    },
+    {
+      "heading": "II. System Requirements Analysis (15 marks)",
+      "source file": "TEMPLATE",
+      "lines": "n/a",
+      "note": "Template section container; not yet assembled",
+      "content_line_ranges": []
+    },
+    {
+      "heading": "2.1 Translate from Business Use Case",
+      "source file": "docs/part2/report/II_2-1_team_analysis.md",
+      "lines": "1-108",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          1,
+          6
+        ]
+      ]
+    },
+    {
+      "heading": "2.1.1 System Narrative",
+      "source file": "docs/part2/report/II_2-1_team_analysis.md",
+      "lines": "7-22",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          7,
+          22
+        ]
+      ]
+    },
+    {
+      "heading": "2.1.2 Users and Their Goals",
+      "source file": "docs/part2/report/II_2-1_team_analysis.md",
+      "lines": "23-34",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          23,
+          34
+        ]
+      ]
+    },
+    {
+      "heading": "2.1.3 List of Events",
+      "source file": "docs/part2/report/II_2-1_team_analysis.md",
+      "lines": "35-63",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          35,
+          63
+        ]
+      ]
+    },
+    {
+      "heading": "2.1.4 List of Actors",
+      "source file": "docs/part2/report/II_2-1_team_analysis.md",
+      "lines": "64-80",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          64,
+          80
+        ]
+      ]
+    },
+    {
+      "heading": "2.1.5 List of Use Cases and Ownership",
+      "source file": "docs/part2/report/II_2-1_team_analysis.md",
+      "lines": "81-108",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          81,
+          108
+        ]
+      ]
+    },
+    {
+      "heading": "2.1.6 Use Case Diagram",
+      "source file": "docs/part2/report/II_2-1-6_2-1-7_models.md",
+      "lines": "1-34",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          1,
+          34
+        ]
+      ]
+    },
+    {
+      "heading": "2.1.7 Domain Class Model Diagram",
+      "source file": "docs/part2/report/II_2-1-6_2-1-7_models.md",
+      "lines": "35-97",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          35,
+          97
+        ]
+      ]
+    },
+    {
+      "heading": "2.2 Use Case Descriptions",
+      "source file": "TEMPLATE",
+      "lines": "n/a",
+      "note": "Template section container; not yet assembled",
+      "content_line_ranges": []
+    },
+    {
+      "heading": "2.2.1 Use Case 1: [Name] (author: [Student ID])",
+      "source file": "docs/part2/report/II_2-2-1_UC-01.md",
+      "lines": "1-72",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          1,
+          4
+        ]
+      ]
+    },
+    {
+      "heading": "2.2.1 i.",
+      "source file": "docs/part2/report/II_2-2-1_UC-01.md",
+      "lines": "5-8",
+      "note": "Template roman child; figure/detail links may resolve to companion sources",
+      "content_line_ranges": [
+        [
+          5,
+          8
+        ]
+      ]
+    },
+    {
+      "heading": "2.2.1 ii.",
+      "source file": "docs/part2/report/II_2-2-1_UC-01.md",
+      "lines": "9-31",
+      "note": "Template roman child; figure/detail links may resolve to companion sources",
+      "content_line_ranges": [
+        [
+          9,
+          31
+        ]
+      ]
+    },
+    {
+      "heading": "2.2.1 iii.",
+      "source file": "docs/part2/report/II_2-2-1_UC-01.md",
+      "lines": "32-54",
+      "note": "Template roman child; figure/detail links may resolve to companion sources",
+      "content_line_ranges": [
+        [
+          32,
+          54
+        ]
+      ]
+    },
+    {
+      "heading": "2.2.1 iv.",
+      "source file": "docs/part2/report/II_2-2-1_UC-01.md",
+      "lines": "55-72",
+      "note": "Template roman child; figure/detail links may resolve to companion sources",
+      "content_line_ranges": [
+        [
+          55,
+          72
+        ]
+      ]
+    },
+    {
+      "heading": "2.2.2 Use Case 2: [Name] (author: [Student ID])",
+      "source file": "docs/part2/report/II_2-2-2_UC-02.md",
+      "lines": "1-53",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          1,
+          4
+        ]
+      ]
+    },
+    {
+      "heading": "2.2.2 i.",
+      "source file": "docs/part2/report/II_2-2-2_UC-02.md",
+      "lines": "5-8",
+      "note": "Template roman child; figure/detail links may resolve to companion sources",
+      "content_line_ranges": [
+        [
+          5,
+          8
+        ]
+      ]
+    },
+    {
+      "heading": "2.2.2 ii.",
+      "source file": "docs/part2/report/II_2-2-2_UC-02.md",
+      "lines": "9-29",
+      "note": "Template roman child; figure/detail links may resolve to companion sources",
+      "content_line_ranges": [
+        [
+          9,
+          29
+        ]
+      ]
+    },
+    {
+      "heading": "2.2.2 iii.",
+      "source file": "docs/part2/report/II_2-2-2_UC-02.md",
+      "lines": "30-42",
+      "note": "Template roman child; figure/detail links may resolve to companion sources",
+      "content_line_ranges": [
+        [
+          30,
+          42
+        ]
+      ]
+    },
+    {
+      "heading": "2.2.2 iv.",
+      "source file": "docs/part2/report/II_2-2-2_UC-02.md",
+      "lines": "43-53",
+      "note": "Template roman child; figure/detail links may resolve to companion sources",
+      "content_line_ranges": [
+        [
+          43,
+          53
+        ]
+      ]
+    },
+    {
+      "heading": "2.2.3 Use Case 3: [Name] (author: [Student ID])",
+      "source file": "docs/part2/report/II_2-2-3_UC-03.md",
+      "lines": "1-43",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          1,
+          4
+        ]
+      ]
+    },
+    {
+      "heading": "2.2.3 i.",
+      "source file": "docs/part2/report/II_2-2-3_UC-03.md",
+      "lines": "5-9",
+      "note": "Template roman child; figure/detail links may resolve to companion sources",
+      "content_line_ranges": [
+        [
+          5,
+          9
+        ]
+      ]
+    },
+    {
+      "heading": "2.2.3 ii.",
+      "source file": "docs/part2/report/II_2-2-3_UC-03.md",
+      "lines": "10-18",
+      "note": "Template roman child; figure/detail links may resolve to companion sources",
+      "content_line_ranges": [
+        [
+          10,
+          18
+        ]
+      ]
+    },
+    {
+      "heading": "2.2.3 iii.",
+      "source file": "docs/part2/report/II_2-2-3_UC-03.md",
+      "lines": "19-29",
+      "note": "Template roman child; figure/detail links may resolve to companion sources",
+      "content_line_ranges": [
+        [
+          19,
+          29
+        ]
+      ]
+    },
+    {
+      "heading": "2.2.3 iv.",
+      "source file": "docs/part2/report/II_2-2-3_UC-03.md",
+      "lines": "30-43",
+      "note": "Template roman child; figure/detail links may resolve to companion sources",
+      "content_line_ranges": [
+        [
+          30,
+          43
+        ]
+      ]
+    },
+    {
+      "heading": "2.2.4 Use Case 4: [Name] (author: [Student ID])",
+      "source file": "docs/part2/report/II_2-2-4_UC-04.md",
+      "lines": "1-51",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          1,
+          4
+        ]
+      ]
+    },
+    {
+      "heading": "2.2.4 i.",
+      "source file": "docs/part2/report/II_2-2-4_UC-04.md",
+      "lines": "5-8",
+      "note": "Template roman child; figure/detail links may resolve to companion sources",
+      "content_line_ranges": [
+        [
+          5,
+          8
+        ]
+      ]
+    },
+    {
+      "heading": "2.2.4 ii.",
+      "source file": "docs/part2/report/II_2-2-4_UC-04.md",
+      "lines": "9-29",
+      "note": "Template roman child; figure/detail links may resolve to companion sources",
+      "content_line_ranges": [
+        [
+          9,
+          29
+        ]
+      ]
+    },
+    {
+      "heading": "2.2.4 iii.",
+      "source file": "docs/part2/report/II_2-2-4_UC-04.md",
+      "lines": "30-38",
+      "note": "Template roman child; figure/detail links may resolve to companion sources",
+      "content_line_ranges": [
+        [
+          30,
+          38
+        ]
+      ]
+    },
+    {
+      "heading": "2.2.4 iv.",
+      "source file": "docs/part2/report/II_2-2-4_UC-04.md",
+      "lines": "39-51",
+      "note": "Template roman child; figure/detail links may resolve to companion sources",
+      "content_line_ranges": [
+        [
+          39,
+          51
+        ]
+      ]
+    },
+    {
+      "heading": "2.2.5 Use Case 5: [Name] (author: [Student ID])",
+      "source file": "docs/part2/report/II_2-2-5_UC-05.md",
+      "lines": "1-68",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          1,
+          4
+        ]
+      ]
+    },
+    {
+      "heading": "2.2.5 i.",
+      "source file": "docs/part2/report/II_2-2-5_UC-05.md",
+      "lines": "5-8",
+      "note": "Template roman child; figure/detail links may resolve to companion sources",
+      "content_line_ranges": [
+        [
+          5,
+          8
+        ]
+      ]
+    },
+    {
+      "heading": "2.2.5 ii.",
+      "source file": "docs/part2/report/II_2-2-5_UC-05.md",
+      "lines": "9-31",
+      "note": "Template roman child; figure/detail links may resolve to companion sources",
+      "content_line_ranges": [
+        [
+          9,
+          31
+        ]
+      ]
+    },
+    {
+      "heading": "2.2.5 iii.",
+      "source file": "docs/part2/report/II_2-2-5_UC-05.md",
+      "lines": "32-54",
+      "note": "Template roman child; figure/detail links may resolve to companion sources",
+      "content_line_ranges": [
+        [
+          32,
+          54
+        ]
+      ]
+    },
+    {
+      "heading": "2.2.5 iv.",
+      "source file": "docs/part2/report/II_2-2-5_UC-05.md",
+      "lines": "55-68",
+      "note": "Template roman child; figure/detail links may resolve to companion sources",
+      "content_line_ranges": [
+        [
+          55,
+          68
+        ]
+      ]
+    },
+    {
+      "heading": "2.2.6 Use Case 6: [Name] (author: [Student ID])",
+      "source file": "docs/part2/report/II_2-2-6_UC-06.md",
+      "lines": "1-61",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          1,
+          4
+        ]
+      ]
+    },
+    {
+      "heading": "2.2.6 i.",
+      "source file": "docs/part2/report/II_2-2-6_UC-06.md",
+      "lines": "5-9",
+      "note": "Template roman child; figure/detail links may resolve to companion sources",
+      "content_line_ranges": [
+        [
+          5,
+          9
+        ]
+      ]
+    },
+    {
+      "heading": "2.2.6 ii.",
+      "source file": "docs/part2/report/II_2-2-6_UC-06.md",
+      "lines": "10-26",
+      "note": "Template roman child; figure/detail links may resolve to companion sources",
+      "content_line_ranges": [
+        [
+          10,
+          26
+        ]
+      ]
+    },
+    {
+      "heading": "2.2.6 iii.",
+      "source file": "docs/part2/report/II_2-2-6_UC-06.md",
+      "lines": "27-45",
+      "note": "Template roman child; figure/detail links may resolve to companion sources",
+      "content_line_ranges": [
+        [
+          27,
+          45
+        ]
+      ]
+    },
+    {
+      "heading": "2.2.6 iv.",
+      "source file": "docs/part2/report/II_2-2-6_UC-06.md",
+      "lines": "46-61",
+      "note": "Template roman child; figure/detail links may resolve to companion sources",
+      "content_line_ranges": [
+        [
+          46,
+          61
+        ]
+      ]
+    },
+    {
+      "heading": "2.3 Verifying Use Cases for Actor (CRUD)",
+      "source file": "docs/part2/report/II_2-3_crud.md",
+      "lines": "1-293",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          1,
+          8
+        ]
+      ]
+    },
+    {
+      "heading": "2.3.1 Verifying use cases for [Actor 1]",
+      "source file": "docs/part2/report/II_2-3_crud.md",
+      "lines": "9-67",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          9,
+          67
+        ]
+      ]
+    },
+    {
+      "heading": "2.3.2 Verifying use cases for [Actor 2]",
+      "source file": "docs/part2/report/II_2-3_crud.md",
+      "lines": "68-106",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          68,
+          106
+        ]
+      ]
+    },
+    {
+      "heading": "2.3.3 Verifying use cases for [Actor 3]",
+      "source file": "docs/part2/report/II_2-3_crud.md",
+      "lines": "107-137",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          107,
+          137
+        ]
+      ],
+      "post_content_line_ranges": [
+        [
+          138,
+          293
+        ]
+      ],
+      "post_source_file": "docs/part2/report/II_2-3_crud.md"
+    },
+    {
+      "heading": "III. System Requirements Design (15 marks)",
+      "source file": "TEMPLATE",
+      "lines": "n/a",
+      "note": "Template section container; not yet assembled",
+      "content_line_ranges": []
+    },
+    {
+      "heading": "3.1 Design for Use Case 1: [Name] (author: [Student ID])",
+      "source file": "docs/part2/report/III_3-1_UC-01.md",
+      "lines": "1-459",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          1,
+          19
+        ]
+      ]
+    },
+    {
+      "heading": "3.1.1 Design Classes in Detailed Design",
+      "source file": "docs/part2/report/III_3-1_UC-01.md",
+      "lines": "20-23",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          20,
+          23
+        ]
+      ]
+    },
+    {
+      "heading": "3.1.2 Design Class Diagram",
+      "source file": "docs/part2/report/III_3-1_UC-01.md",
+      "lines": "24-231",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          24,
+          25
+        ]
+      ]
+    },
+    {
+      "heading": "3.1.2 i.",
+      "source file": "docs/part2/report/III_3-1_UC-01.md",
+      "lines": "26-78",
+      "note": "Template roman child",
+      "content_line_ranges": [
+        [
+          26,
+          78
+        ]
+      ]
+    },
+    {
+      "heading": "3.1.2 ii.",
+      "source file": "docs/part2/report/III_3-1_UC-01.md",
+      "lines": "79-95",
+      "note": "Template roman child",
+      "content_line_ranges": [
+        [
+          79,
+          95
+        ]
+      ]
+    },
+    {
+      "heading": "3.1.2 iii.",
+      "source file": "docs/part2/report/III_3-1_UC-01.md",
+      "lines": "96-102",
+      "note": "Template roman child",
+      "content_line_ranges": [
+        [
+          96,
+          102
+        ]
+      ]
+    },
+    {
+      "heading": "3.1.2 iv.",
+      "source file": "docs/part2/report/III_3-1_UC-01.md",
+      "lines": "103-114",
+      "note": "Template roman child",
+      "content_line_ranges": [
+        [
+          103,
+          114
+        ]
+      ]
+    },
+    {
+      "heading": "3.1.2 v.",
+      "source file": "docs/part2/report/III_3-1_UC-01.md",
+      "lines": "115-231",
+      "note": "Template roman child",
+      "content_line_ranges": [
+        [
+          115,
+          231
+        ]
+      ]
+    },
+    {
+      "heading": "3.1.3 OOD with CRC Cards or Communication Diagram",
+      "source file": "docs/part2/report/III_3-1_UC-01.md",
+      "lines": "232-235",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          232,
+          235
+        ]
+      ]
+    },
+    {
+      "heading": "3.1.4 OOD with Sequence Diagram",
+      "source file": "docs/part2/report/III_3-1_UC-01.md",
+      "lines": "236-360",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          236,
+          360
+        ]
+      ]
+    },
+    {
+      "heading": "3.1.5 Final Design Class Diagram",
+      "source file": "docs/part2/report/III_3-1_UC-01.md",
+      "lines": "361-459",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          361,
+          459
+        ]
+      ]
+    },
+    {
+      "heading": "3.2 Design for Use Case 2: [Name] (author: [Student ID])",
+      "source file": "docs/part2/report/III_3-2_UC-02.md",
+      "lines": "1-264",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          1,
+          6
+        ]
+      ]
+    },
+    {
+      "heading": "3.2.1 Design Classes in Detailed Design",
+      "source file": "docs/part2/report/III_3-2_UC-02.md",
+      "lines": "7-12",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          7,
+          12
+        ]
+      ]
+    },
+    {
+      "heading": "3.2.2 Design Class Diagram",
+      "source file": "docs/part2/report/III_3-2_UC-02.md",
+      "lines": "13-130",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          13,
+          14
+        ]
+      ]
+    },
+    {
+      "heading": "3.2.2 i.",
+      "source file": "docs/part2/report/III_3-2_UC-02.md",
+      "lines": "15-30",
+      "note": "Template roman child",
+      "content_line_ranges": [
+        [
+          15,
+          30
+        ]
+      ]
+    },
+    {
+      "heading": "3.2.2 ii.",
+      "source file": "docs/part2/report/III_3-2_UC-02.md",
+      "lines": "31-46",
+      "note": "Template roman child",
+      "content_line_ranges": [
+        [
+          31,
+          46
+        ]
+      ]
+    },
+    {
+      "heading": "3.2.2 iii.",
+      "source file": "docs/part2/report/III_3-2_UC-02.md",
+      "lines": "47-56",
+      "note": "Template roman child",
+      "content_line_ranges": [
+        [
+          47,
+          56
+        ]
+      ]
+    },
+    {
+      "heading": "3.2.2 iv.",
+      "source file": "docs/part2/report/III_3-2_UC-02.md",
+      "lines": "57-66",
+      "note": "Template roman child",
+      "content_line_ranges": [
+        [
+          57,
+          66
+        ]
+      ]
+    },
+    {
+      "heading": "3.2.2 v.",
+      "source file": "docs/part2/report/III_3-2_UC-02.md",
+      "lines": "67-130",
+      "note": "Template roman child",
+      "content_line_ranges": [
+        [
+          67,
+          130
+        ]
+      ]
+    },
+    {
+      "heading": "3.2.3 OOD with CRC Cards or Communication Diagram",
+      "source file": "docs/part2/report/III_3-2_UC-02.md",
+      "lines": "131-136",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          131,
+          136
+        ]
+      ]
+    },
+    {
+      "heading": "3.2.4 OOD with Sequence Diagram",
+      "source file": "docs/part2/report/III_3-2_UC-02.md",
+      "lines": "137-190",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          137,
+          190
+        ]
+      ]
+    },
+    {
+      "heading": "3.2.5 Final Design Class Diagram",
+      "source file": "docs/part2/report/III_3-2_UC-02.md",
+      "lines": "191-256",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          191,
+          256
+        ]
+      ],
+      "post_content_line_ranges": [
+        [
+          257,
+          264
+        ]
+      ],
+      "post_source_file": "docs/part2/report/III_3-2_UC-02.md"
+    },
+    {
+      "heading": "3.3 Design for Use Case 3: [Name] (author: [Student ID])",
+      "source file": "docs/part2/report/III_3-3_UC-03.md",
+      "lines": "1-133",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          1,
+          6
+        ]
+      ]
+    },
+    {
+      "heading": "3.3.1 Design Classes in Detailed Design",
+      "source file": "docs/part2/report/III_3-3_UC-03.md",
+      "lines": "7-10",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          7,
+          10
+        ]
+      ]
+    },
+    {
+      "heading": "3.3.2 Design Class Diagram",
+      "source file": "docs/part2/report/III_3-3_UC-03.md",
+      "lines": "11-76",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          11,
+          14
+        ]
+      ]
+    },
+    {
+      "heading": "3.3.2 i.",
+      "source file": "docs/part2/report/III_3-3_UC-03.md",
+      "lines": "15-24",
+      "note": "Template roman child",
+      "content_line_ranges": [
+        [
+          15,
+          24
+        ]
+      ]
+    },
+    {
+      "heading": "3.3.2 ii.",
+      "source file": "docs/part2/report/III_3-3_UC-03.md",
+      "lines": "25-38",
+      "note": "Template roman child",
+      "content_line_ranges": [
+        [
+          25,
+          38
+        ]
+      ]
+    },
+    {
+      "heading": "3.3.2 iii.",
+      "source file": "docs/part2/report/III_3-3_UC-03.md",
+      "lines": "39-44",
+      "note": "Template roman child",
+      "content_line_ranges": [
+        [
+          39,
+          44
+        ]
+      ]
+    },
+    {
+      "heading": "3.3.2 iv.",
+      "source file": "docs/part2/report/III_3-3_UC-03.md",
+      "lines": "45-54",
+      "note": "Template roman child",
+      "content_line_ranges": [
+        [
+          45,
+          54
+        ]
+      ]
+    },
+    {
+      "heading": "3.3.2 v.",
+      "source file": "docs/part2/report/III_3-3_UC-03.md",
+      "lines": "55-76",
+      "note": "Template roman child",
+      "content_line_ranges": [
+        [
+          55,
+          76
+        ]
+      ]
+    },
+    {
+      "heading": "3.3.3 OOD with CRC Cards or Communication Diagram",
+      "source file": "docs/part2/report/III_3-3_UC-03.md",
+      "lines": "77-80",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          77,
+          80
+        ]
+      ]
+    },
+    {
+      "heading": "3.3.4 OOD with Sequence Diagram",
+      "source file": "docs/part2/report/III_3-3_UC-03.md",
+      "lines": "81-106",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          81,
+          106
+        ]
+      ]
+    },
+    {
+      "heading": "3.3.5 Final Design Class Diagram",
+      "source file": "docs/part2/report/III_3-3_UC-03.md",
+      "lines": "107-133",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          107,
+          133
+        ]
+      ]
+    },
+    {
+      "heading": "3.4 Design for Use Case 4: [Name] (author: [Student ID])",
+      "source file": "docs/part2/report/III_3-4_UC-04.md",
+      "lines": "1-248",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          1,
+          6
+        ]
+      ]
+    },
+    {
+      "heading": "3.4.1 Design Classes in Detailed Design",
+      "source file": "docs/part2/report/III_3-4_UC-04.md",
+      "lines": "7-12",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          7,
+          12
+        ]
+      ]
+    },
+    {
+      "heading": "3.4.2 Design Class Diagram",
+      "source file": "docs/part2/report/III_3-4_UC-04.md",
+      "lines": "13-142",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          13,
+          14
+        ]
+      ]
+    },
+    {
+      "heading": "3.4.2 i.",
+      "source file": "docs/part2/report/III_3-4_UC-04.md",
+      "lines": "15-24",
+      "note": "Template roman child",
+      "content_line_ranges": [
+        [
+          15,
+          24
+        ]
+      ]
+    },
+    {
+      "heading": "3.4.2 ii.",
+      "source file": "docs/part2/report/III_3-4_UC-04.md",
+      "lines": "25-64",
+      "note": "Template roman child",
+      "content_line_ranges": [
+        [
+          25,
+          64
+        ]
+      ]
+    },
+    {
+      "heading": "3.4.2 iii.",
+      "source file": "docs/part2/report/III_3-4_UC-04.md",
+      "lines": "65-74",
+      "note": "Template roman child",
+      "content_line_ranges": [
+        [
+          65,
+          74
+        ]
+      ]
+    },
+    {
+      "heading": "3.4.2 iv.",
+      "source file": "docs/part2/report/III_3-4_UC-04.md",
+      "lines": "75-84",
+      "note": "Template roman child",
+      "content_line_ranges": [
+        [
+          75,
+          84
+        ]
+      ]
+    },
+    {
+      "heading": "3.4.2 v.",
+      "source file": "docs/part2/report/III_3-4_UC-04.md",
+      "lines": "85-142",
+      "note": "Template roman child",
+      "content_line_ranges": [
+        [
+          85,
+          142
+        ]
+      ]
+    },
+    {
+      "heading": "3.4.3 OOD with CRC Cards or Communication Diagram",
+      "source file": "docs/part2/report/III_3-4_UC-04.md",
+      "lines": "143-148",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          143,
+          148
+        ]
+      ]
+    },
+    {
+      "heading": "3.4.4 OOD with Sequence Diagram",
+      "source file": "docs/part2/report/III_3-4_UC-04.md",
+      "lines": "149-182",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          149,
+          182
+        ]
+      ]
+    },
+    {
+      "heading": "3.4.5 Final Design Class Diagram",
+      "source file": "docs/part2/report/III_3-4_UC-04.md",
+      "lines": "183-242",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          183,
+          242
+        ]
+      ],
+      "post_content_line_ranges": [
+        [
+          243,
+          248
+        ]
+      ],
+      "post_source_file": "docs/part2/report/III_3-4_UC-04.md"
+    },
+    {
+      "heading": "3.5 Design for Use Case 5: [Name] (author: [Student ID])",
+      "source file": "docs/part2/report/III_3-5_UC-05.md",
+      "lines": "1-400",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          1,
+          6
+        ]
+      ]
+    },
+    {
+      "heading": "3.5.1 Design Classes in Detailed Design",
+      "source file": "docs/part2/report/III_3-5_UC-05.md",
+      "lines": "7-10",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          7,
+          10
+        ]
+      ]
+    },
+    {
+      "heading": "3.5.2 Design Class Diagram",
+      "source file": "docs/part2/report/III_3-5_UC-05.md",
+      "lines": "11-183",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          11,
+          12
+        ]
+      ]
+    },
+    {
+      "heading": "3.5.2 i.",
+      "source file": "docs/part2/report/III_3-5_UC-05.md",
+      "lines": "13-55",
+      "note": "Template roman child",
+      "content_line_ranges": [
+        [
+          13,
+          55
+        ]
+      ]
+    },
+    {
+      "heading": "3.5.2 ii.",
+      "source file": "docs/part2/report/III_3-5_UC-05.md",
+      "lines": "56-72",
+      "note": "Template roman child",
+      "content_line_ranges": [
+        [
+          56,
+          72
+        ]
+      ]
+    },
+    {
+      "heading": "3.5.2 iii.",
+      "source file": "docs/part2/report/III_3-5_UC-05.md",
+      "lines": "73-79",
+      "note": "Template roman child",
+      "content_line_ranges": [
+        [
+          73,
+          79
+        ]
+      ]
+    },
+    {
+      "heading": "3.5.2 iv.",
+      "source file": "docs/part2/report/III_3-5_UC-05.md",
+      "lines": "80-86",
+      "note": "Template roman child",
+      "content_line_ranges": [
+        [
+          80,
+          86
+        ]
+      ]
+    },
+    {
+      "heading": "3.5.2 v.",
+      "source file": "docs/part2/report/III_3-5_UC-05.md",
+      "lines": "87-183",
+      "note": "Template roman child",
+      "content_line_ranges": [
+        [
+          87,
+          183
+        ]
+      ]
+    },
+    {
+      "heading": "3.5.3 OOD with CRC Cards or Communication Diagram",
+      "source file": "docs/part2/report/III_3-5_UC-05.md",
+      "lines": "184-187",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          184,
+          187
+        ]
+      ]
+    },
+    {
+      "heading": "3.5.4 OOD with Sequence Diagram",
+      "source file": "docs/part2/report/III_3-5_UC-05.md",
+      "lines": "188-317",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          188,
+          317
+        ]
+      ]
+    },
+    {
+      "heading": "3.5.5 Final Design Class Diagram",
+      "source file": "docs/part2/report/III_3-5_UC-05.md",
+      "lines": "318-400",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          318,
+          400
+        ]
+      ]
+    },
+    {
+      "heading": "3.6 Design for Use Case 6: [Name] (author: [Student ID])",
+      "source file": "docs/part2/report/III_3-6_UC-06.md",
+      "lines": "1-239",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          1,
+          6
+        ]
+      ]
+    },
+    {
+      "heading": "3.6.1 Design Classes in Detailed Design",
+      "source file": "docs/part2/report/III_3-6_UC-06.md",
+      "lines": "7-10",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          7,
+          10
+        ]
+      ]
+    },
+    {
+      "heading": "3.6.2 Design Class Diagram",
+      "source file": "docs/part2/report/III_3-6_UC-06.md",
+      "lines": "11-132",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          11,
+          14
+        ]
+      ]
+    },
+    {
+      "heading": "3.6.2 i.",
+      "source file": "docs/part2/report/III_3-6_UC-06.md",
+      "lines": "15-28",
+      "note": "Template roman child",
+      "content_line_ranges": [
+        [
+          15,
+          28
+        ]
+      ]
+    },
+    {
+      "heading": "3.6.2 ii.",
+      "source file": "docs/part2/report/III_3-6_UC-06.md",
+      "lines": "29-54",
+      "note": "Template roman child",
+      "content_line_ranges": [
+        [
+          29,
+          54
+        ]
+      ]
+    },
+    {
+      "heading": "3.6.2 iii.",
+      "source file": "docs/part2/report/III_3-6_UC-06.md",
+      "lines": "55-68",
+      "note": "Template roman child",
+      "content_line_ranges": [
+        [
+          55,
+          68
+        ]
+      ]
+    },
+    {
+      "heading": "3.6.2 iv.",
+      "source file": "docs/part2/report/III_3-6_UC-06.md",
+      "lines": "69-90",
+      "note": "Template roman child",
+      "content_line_ranges": [
+        [
+          69,
+          90
+        ]
+      ]
+    },
+    {
+      "heading": "3.6.2 v.",
+      "source file": "docs/part2/report/III_3-6_UC-06.md",
+      "lines": "91-132",
+      "note": "Template roman child",
+      "content_line_ranges": [
+        [
+          91,
+          132
+        ]
+      ]
+    },
+    {
+      "heading": "3.6.3 OOD with CRC Cards or Communication Diagram",
+      "source file": "docs/part2/report/III_3-6_UC-06.md",
+      "lines": "133-136",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          133,
+          136
+        ]
+      ]
+    },
+    {
+      "heading": "3.6.4 OOD with Sequence Diagram",
+      "source file": "docs/part2/report/III_3-6_UC-06.md",
+      "lines": "137-192",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          137,
+          192
+        ]
+      ]
+    },
+    {
+      "heading": "3.6.5 Final Design Class Diagram",
+      "source file": "docs/part2/report/III_3-6_UC-06.md",
+      "lines": "193-239",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          193,
+          239
+        ]
+      ]
+    },
+    {
+      "heading": "IV. System Requirements Implementation (10 marks)",
+      "source file": "TEMPLATE",
+      "lines": "n/a",
+      "note": "Template section container; not yet assembled",
+      "content_line_ranges": []
+    },
+    {
+      "heading": "4.1 Design Classes for the Subsystem",
+      "source file": "docs/part2/report/IV_4-1_subsystem_dcd.md",
+      "lines": "1-420",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          1,
+          420
+        ]
+      ]
+    },
+    {
+      "heading": "4.2 Package Diagram for the Subsystem",
+      "source file": "docs/part2/report/IV_4-2_package.md",
+      "lines": "1-56",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          1,
+          56
+        ]
+      ]
+    },
+    {
+      "heading": "4.3 Implementation",
+      "source file": "TEMPLATE",
+      "lines": "n/a",
+      "note": "Template section container; not yet assembled",
+      "content_line_ranges": []
+    },
+    {
+      "heading": "4.3.1 Map Persistent Objects to the Tables in a Database",
+      "source file": "docs/part2/report/IV_4-3-1_mapping.md",
+      "lines": "1-43",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          1,
+          43
+        ]
+      ]
+    },
+    {
+      "heading": "4.3.2 Modifying Sequence Diagrams",
+      "source file": "docs/part2/report/IV_4-3-2_dao_sequences.md",
+      "lines": "1-303",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          1,
+          303
+        ]
+      ]
+    },
+    {
+      "heading": "4.3.3 UI Design",
+      "source file": "docs/part2/report/IV_4-3-3_ui_design.md",
+      "lines": "1-954",
+      "note": "Per-section canonical; aggregate comparison: Part2/notes/P7/aggregate_comparison_DRAFT.json",
+      "content_line_ranges": [
+        [
+          1,
+          954
+        ]
+      ]
+    },
+    {
+      "heading": "4.3.4 SQL Code",
+      "source file": "docs/part2/report/IV_4-3-4_sql.md",
+      "lines": "1-96",
+      "note": "P7 draft; requires B6 and edition checks",
+      "content_line_ranges": [
+        [
+          1,
+          96
+        ]
+      ]
+    },
+    {
+      "heading": "4.3.5 Software Classes Method Code",
+      "source file": "docs/part2/report/IV_4-3-5_key_methods.md",
+      "lines": "1-236",
+      "note": "P7 draft; requires B6 and edition checks",
+      "content_line_ranges": [
+        [
+          1,
+          236
+        ]
+      ]
+    },
+    {
+      "heading": "4.3.6 Integration of Use Cases",
+      "source file": "docs/part2/report/IV_4-3-6_integration.md",
+      "lines": "1-15",
+      "note": "P7 draft; requires B6 and edition checks",
+      "content_line_ranges": [
+        [
+          1,
+          15
+        ]
+      ]
+    },
+    {
+      "heading": "V. System Testing, Deployment and Demonstration (7.5 marks)",
+      "source file": "TEMPLATE",
+      "lines": "n/a",
+      "note": "Template section container; not yet assembled",
+      "content_line_ranges": []
+    },
+    {
+      "heading": "5.1 Testing: Test Plan and Test Cases",
+      "source file": "docs/part2/report/V_5-1_testing.md",
+      "lines": "1-42",
+      "note": "P7 draft; requires B6 and edition checks",
+      "content_line_ranges": [
+        [
+          1,
+          42
+        ]
+      ]
+    },
+    {
+      "heading": "5.2 Deployment",
+      "source file": "docs/part2/report/V_5-2_deployment.md",
+      "lines": "1-35",
+      "note": "P7 draft; requires B6 and edition checks",
+      "content_line_ranges": [
+        [
+          1,
+          35
+        ]
+      ]
+    },
+    {
+      "heading": "5.3 Demonstration",
+      "source file": "docs/part2/report/V_5-3_demonstration.md",
+      "lines": "1-49",
+      "note": "P7 draft; requires B6 and edition checks",
+      "content_line_ranges": [
+        [
+          1,
+          49
+        ]
+      ]
+    },
+    {
+      "heading": "Conclusions / Recommendations (0.25 point)",
+      "source file": "docs/part2/report/Conclusions.md",
+      "lines": "1-9",
+      "note": "P7 draft; requires B6 and edition checks",
+      "content_line_ranges": [
+        [
+          1,
+          9
+        ]
+      ]
+    },
+    {
+      "heading": "References",
+      "source file": "docs/part2/report/References.md",
+      "lines": "1-8",
+      "note": "P7 draft; requires B6 and edition checks",
+      "content_line_ranges": [
+        [
+          1,
+          8
+        ]
+      ]
+    },
+    {
+      "heading": "Appendix",
+      "source file": "TO BE WRITTEN",
+      "lines": "n/a",
+      "note": "New content required; not yet assembled",
+      "content_line_ranges": []
+    },
+    {
+      "heading": "Appendix 1: Full-size use case diagram",
+      "source file": "docs/part2/report/Appendix_1.md",
+      "lines": "1-15",
+      "note": "P7 draft; requires B6 and edition checks",
+      "content_line_ranges": [
+        [
+          1,
+          15
+        ]
+      ]
+    },
+    {
+      "heading": "Appendix 2: Full-size communication and sequence diagrams",
+      "source file": "docs/part2/report/Appendix_2.md",
+      "lines": "1-111",
+      "note": "P7 draft; requires B6 and edition checks",
+      "content_line_ranges": [
+        [
+          1,
+          111
+        ]
+      ]
+    },
+    {
+      "heading": "Appendix 3: Full-size domain and design class diagrams",
+      "source file": "docs/part2/report/Appendix_3.md",
+      "lines": "1-576",
+      "note": "P7 draft; requires B6 and edition checks",
+      "content_line_ranges": [
+        [
+          1,
+          576
+        ]
+      ]
+    },
+    {
+      "heading": "Appendix 4: Contribution Statement (one page, signed by all members: who owns which use cases and components)",
+      "source file": "docs/part2/report/Appendix_4.md",
+      "lines": "1-17",
+      "note": "P7 draft; requires B6 and edition checks",
+      "content_line_ranges": [
+        [
+          1,
+          17
+        ]
+      ]
+    },
+    {
+      "heading": "Appendix 5: Generative AI Usage Log",
+      "source file": "docs/part2/report/Appendix_5.md",
+      "lines": "1-66",
+      "note": "P7 draft; requires B6 and edition checks",
+      "content_line_ranges": [
+        [
+          1,
+          66
+        ]
+      ]
+    }
+  ],
+  "state_machine_insertions": {
+    "2.2.1 iv.": [
+      "ORDER",
+      "PAYMENT"
+    ],
+    "2.2.2 iv.": [
+      "DELIVERY"
+    ],
+    "2.2.3 iv.": [
+      "HUB",
+      "USER_ACCOUNT"
+    ],
+    "2.2.4 iv.": [],
+    "2.2.5 iv.": [
+      "REPLACEMENT_OFFER"
+    ],
+    "2.2.6 iv.": [
+      "CATALOGUE"
+    ]
+  },
+  "state_block_names": [
+    "ORDER",
+    "PAYMENT",
+    "DELIVERY",
+    "HUB",
+    "REPLACEMENT_OFFER",
+    "CATALOGUE",
+    "USER_ACCOUNT"
+  ],
+  "front_matter_sources": [
+    "links.json",
+    "RAD_Sem01_2627_Report_Template.docx"
+  ],
+  "notes": [
+    "PAGEREF tokens must resolve to exact figure and CRC labels",
+    "Use actual UC names and author ID where the template contains placeholders",
+    "Only manifest-selected figures are emitted; aliases are metadata",
+    "Evidence index and glossary are included as non-heading material",
+    "Do not compile or generate PDF during Stage 1"
+  ]
+}

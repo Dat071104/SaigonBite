@@ -1,0 +1,68 @@
+\subsubsection*{2.1.7 Domain Class Model Diagram}
+\addcontentsline{toc}{subsubsection}{2.1.7 Domain Class Model Diagram}
+\pdfbookmark[2]{2.1.7 Domain Class Model Diagram}{p7h20}
+Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
+
+Figure 2.2 presents exactly \textbf{13 persistent base classes}: Hub, Brand, MenuItem, HubMenuItem, UserAccount, Customer, Address, Voucher, Order, OrderLine, Payment, Delivery and ReplacementOffer. LocalCustomer and TouristCustomer are the two complete, disjoint Customer subclasses. A box marked \guillemotleft{}reference\guillemotright{} repeats a class defined in another view; it adds no persistent class. The diagram uses simple attribute types, optional values marked \texttt{?}, and associations in place of foreign-key attributes. It contains no methods, controllers or DAOs.
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm]{\detokenize{models/shared/domain_model_PartA.png}}
+\caption{Figure 2.2A. Domain model: identity, addresses and hub responsibility --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) Full size: Appendix 3, Figures A3.1--A3.3.}\label{P7-0275}
+\end{figure}
+\end{landscape}
+Both ends of each ordinary association have multiplicities. Each Customer has one UserAccount; an account has zero or one Customer profile (one when its role is CUSTOMER). A Customer has zero or more Addresses; every Address has one owner. A kitchen account has one Hub, while other account roles have none. Brand owns the catalogue affiliation of zero or more MenuItems. Hub and MenuItem have a many-to-many \textbf{listed at} association, with \textbf{HubMenuItem as its association class} and availability belonging to that pair.
+
+An Order belongs to one Customer, Hub and selected Address; an Address may subsequently be archived without changing the stored delivery-address snapshot. An Order optionally uses one Voucher. Order \textbf{composes} one or more OrderLines; each line belongs to exactly one Order and refers to one MenuItem while retaining its own name/price/quantity snapshots. Each Order has exactly one Payment, zero or one Delivery, and zero or more historical ReplacementOffers. Each offer points to exactly one line of that same Order and one replacement-target MenuItem. A line or target item can appear in many historical offers; at most one offer is OFFERED for an Order at a time.
+
+The Delivery assignment refers to zero or one UserAccount of role SHIPPER; a shipper account can have many deliveries, including concurrent assignments under BR-25. No Shipper class is added. Quote, report filters/rows and receipts are computed views and are not persisted. Archive visibility of dependent transaction records follows the parent Order; separate archive attributes on every child are unnecessary. Busy/quiet/workload and waiting for customer are derived classifications. Payment \texttt{amount} is captured C for ONLINE; \texttt{refund\_amount} records an obligation, including a partial obligation while PAID. REFUNDED/payout remains future scope.
+
+Editable source: \texttt{models/shared/domain\_model.drawio} contains all three pages. The suffix/source conventions and first-page alias rule are the same as Figure 2.1. These are analysis artifacts. The following comparison is \textbf{Static}, based on the C0 draft; it is neither a test result nor a claim that the application meets these contracts. Later P4 disposition and scoped evidence are recorded in Table P4-1 and its detailed appendix.
+
+\textbf{Static class and attribute mapping to schema v2}
+
+The table checks every drawn attribute against \texttt{db/schema.sql}. Same-name mappings preserve the stated meaning; Integer money means whole VND, Boolean maps to constrained INTEGER, Real to REAL, Date/DateTime to ISO TEXT. \texttt{id} attributes map to primary keys; foreign-key columns are shown here as implementation mappings and are deliberately absent from the analysis attributes.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Analysis class & SQL table and all drawn attributes & Association/subtype implementation and Static differences \\
+\hline\endfirsthead
+Analysis class & SQL table and all drawn attributes & Association/subtype implementation and Static differences \\
+\hline\endhead
+Hub & \texttt{hub}: \texttt{id}, \texttt{code}, \texttt{name}, \texttt{address\_text}, \texttt{latitude}, \texttt{longitude}, \texttt{max\_active\_orders}, \texttt{base\_delivery\_fee}, \texttt{archived\_at} & All attributes exist. Workload is derived from orders, not a stored field. Kitchen assignment uses \texttt{user\_account.hub\_id}; Order uses \texttt{orders.hub\_id}. \\
+Brand & \texttt{brand}: \texttt{id}, \texttt{name}, \texttt{archived\_at} & All attributes exist. \texttt{menu\_item.brand\_id} implements affiliation. \\
+MenuItem & \texttt{menu\_item}: \texttt{id}, \texttt{name}, \texttt{description}, \texttt{price}, \texttt{archived\_at} & All attributes exist. \texttt{brand\_id} is the association. Python \texttt{brand\_name} is a joined display value, not an additional persisted attribute. \\
+HubMenuItem & \texttt{hub\_menu\_item}: \texttt{is\_available} & Attribute exists. Composite PK (\texttt{hub\_id}, \texttt{menu\_item\_id}) implements the unique association-class instance. Python contains an \texttt{item} object and \texttt{hub\_id}; these are implementation references. \\
+UserAccount & \texttt{user\_account}: \texttt{id}, \texttt{username}, \texttt{password\_hash}, \texttt{display\_name}, \texttt{role}, \texttt{is\_active}; model \texttt{created\_at} & \textbf{\texttt{created\_at} is required in plan \S{}5.3 but absent in both draft SQL and dataclass.} Hub association maps to nullable \texttt{hub\_id} with kitchen-role equivalence CHECK. \\
+Customer; LocalCustomer; TouristCustomer & \texttt{customer}: inherited \texttt{id}, \texttt{full\_name}; Local \texttt{phone}, optional \texttt{email}; Tourist optional \texttt{phone}, required \texttt{email}, \texttt{passport\_no}, \texttt{nationality} & Single-table inheritance: \texttt{customer\_type} discriminator (\texttt{LOCAL}/\texttt{TOURIST}); \texttt{user\_id} implements the one-account association. No subtype tables. \textbf{SQL permits a TOURIST with NULL nationality}, unlike BR-12. SQL also does not require the linked account's role to be CUSTOMER. Python stores profile fields on the base dataclass and uses subclass class attributes/factory for type. \\
+Address & \texttt{address}: \texttt{id}, \texttt{label}, \texttt{full\_address}, \texttt{district}, \texttt{latitude}, \texttt{longitude}, \texttt{archived\_at} & All attributes exist. \texttt{customer\_id} implements ownership. Coordinates represent the district centroid approximation, BR-05/A-14. The draft comment refers to older A-12; that is stale provenance, not a changed rule. \\
+Voucher & \texttt{voucher}: \texttt{id}, \texttt{code}, \texttt{description}, \texttt{discount\_type}, \texttt{discount\_value}, \texttt{min\_subtotal}, \texttt{max\_discount}, \texttt{valid\_from}, \texttt{valid\_until}, \texttt{archived\_at} & All attributes exist. An Order's optional link uses \texttt{voucher\_id}; inclusive dates are Vietnam calendar dates. \\
+Order & \texttt{orders}: \texttt{id}, \texttt{delivery\_address\_text}, \texttt{distance\_km}, \texttt{state}, \texttt{item\_subtotal}, \texttt{voucher\_discount}, \texttt{delivery\_fee}, \texttt{quiet\_discount}, \texttt{total\_amount}, \texttt{idempotency\_token}, \texttt{reject\_reason}, \texttt{placed\_at}, \texttt{confirmed\_at}, \texttt{ready\_at}, \texttt{closed\_at}, \texttt{archived\_at} & All stored attributes exist. FKs: \texttt{customer\_id}, \texttt{hub\_id}, \texttt{address\_id}, \texttt{voucher\_id}. Python derives \texttt{item\_subtotal} and \texttt{total} from lines/rules; \texttt{total} corresponds to SQL \texttt{total\_amount}. Stored-vs-derived agreement needs transaction tests in P4. \\
+OrderLine & \texttt{order\_line}: \texttt{id}, \texttt{item\_name}, \texttt{unit\_price}, \texttt{quantity} & All attributes exist. \texttt{order\_id} implements composition; \texttt{menu\_item\_id} identifies the current/snapshot-associated dish. UNIQUE (\texttt{order\_id}, \texttt{menu\_item\_id}) prevents duplicate dish lines. \\
+Payment & \texttt{payment}: \texttt{id}, \texttt{method}, \texttt{online\_option}, \texttt{provider\_ref}, \texttt{state}, \texttt{amount}, \texttt{refund\_amount}, \texttt{created\_at}, \texttt{updated\_at} & All attributes exist. UNIQUE \texttt{order\_id} gives at most one per Order; mandatory creation is a checkout transaction contract. Python \texttt{updated\_at} is optional although SQL is NOT NULL. SQL permits FAILED/REFUNDED, while the scoped lifecycle never persists a declined attempt or executes payout. \\
+Delivery & \texttt{delivery}: \texttt{id}, \texttt{state}, \texttt{ready\_at}, \texttt{picked\_up\_at}, \texttt{finished\_at}, \texttt{failure\_reason}, \texttt{cash\_collected} & All attributes exist. UNIQUE \texttt{order\_id} implements zero-or-one per Order; nullable \texttt{shipper\_id} points to \texttt{user\_account}. SQL requires an assignment after AWAITING\_PICKUP but does not enforce SHIPPER role/active status or paired Order transitions. \\
+ReplacementOffer & \texttt{replacement\_offer}: \texttt{id}, \texttt{original\_item\_name}, \texttt{original\_unit\_price}, \texttt{new\_item\_name}, \texttt{new\_unit\_price}, \texttt{state}, \texttt{offered\_at}, \texttt{decided\_at} & The invalid-target withdrawal reason is a displayed operation result under \S{}3.3(5); no new persistent reason field is required by this analysis. \texttt{order\_id}, \texttt{order\_line\_id}, \texttt{new\_menu\_item\_id} implement associations. The partial unique index enforces one OFFERED offer per Order. Independent FKs do not prove the line belongs to that Order. \\
+\end{longtable}
+\textbf{P4 inputs from the Static comparison}
+
+The seven items below record the recommendations made for the C0 draft; they are not a current implementation verdict. See the P4 status appendix for later disposition.
+
+\begin{itemize}
+\item Add/map UserAccount \texttt{created\_at} under plan \S{}5.3, or obtain an explicit contract disposition before removing the analysis requirement. It is absent from the draft SQL and dataclass.
+
+\item Enforce Tourist nationality and the CUSTOMER-profile/account-role relationship. Validate all BR-12 type-specific fields; the current SQL CHECK only requires Tourist passport/email and Local phone. Keep passport visibility restricted to customer/admin.
+
+\item Return the invalid-target withdrawal reason with the operation result. The design does not add a persistent withdrawal\_reason attribute: \S{}3.3(5) requires a reason to be shown, and does not require new reason-history storage. P3 confirms the result/API mapping; the diagram adds no column.
+
+\item Reconcile Payment \texttt{updated\_at} optionality between dataclass and SQL; ensure no persisted FAILED/REFUNDED path for this release. SQL's permissive state vocabulary alone is not proof that such a path runs.
+
+\item Verify cross-row invariants in transactions: exactly one Payment and at least one line on successful checkout; offer/line same Order; valid target at the same Hub; active SHIPPER assignment; paired Order/Delivery/Payment effects. Existing FK/UNIQUE constraints express only part of these contracts.
+
+\item Preserve archived history and snapshots without physical child deletion. SQL comments say most records are archived, but many transaction children are hidden through Order archive rather than their own archive column; spell this out in P3.2 mapping.
+
+\item Keep the locked plan's existing F-02/F-05/F-07 money, target-recheck and consent repairs as P4 work. The present domain dataclasses do not establish BR-17 amount effects, target availability validation or quote fingerprint correctness. No code or schema was changed here.
+
+\end{itemize}
+The original comparison and source records are listed in the evidence index. The final inventory at \texttt{Part2/notes/P2-root/domain\_model\_final\_audit.json} reflects removal of the proposed withdrawal\_reason attribute; at C0 the only remaining drawn attribute absent from SQL was UserAccount.created\_at. SQL was inspected using a transient in-memory schema, never an application database. P3.1 must add real responsibilities/method signatures and reconcile them to code; those design details do not belong in this analysis figure.
+
+Readability was checked at \textbf{230 mm landscape placement}: minimum diagram text is 26 units, equivalent to \textbf{10.59 pt} in Figure 2.1 and \textbf{9.42 pt} in Figure 2.2. The models are split into three parts each to meet this threshold. The PNG and SVG exports were opened for visual QA; XML parses and edge endpoint references were checked programmatically. Native draw.io editing and application correctness remain unverified by this workstream.
