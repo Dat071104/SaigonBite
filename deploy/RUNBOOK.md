@@ -69,3 +69,8 @@ Keep the previous image and database backup. Before using previous code, check i
 - Check URL, certificate, login for all demo roles, current order flow, health, disk space, latest backup and timer. Keep local Docker as a fallback.
 - Review Billing → Reports 24 hours after starting the VM and at regular intervals; budget emails can be delayed. Do not upgrade billing.
 - Before **21 January 2027**, download and verify a final backup, then decide with the account owner whether to delete all phase-created billable resources or let the trial lapse. A stopped VM can still incur disk/IP/snapshot/storage charges; check each retained item and the billing account. Deletion protection and disk auto-delete off are intentional, so shutdown requires deliberate handling.
+
+
+## Custom domain — 28 October 2026
+
+Primary URL: https://saigonbite.io.vn; https://www.saigonbite.io.vn redirects there with HTTP 301. Fallback: https://34-21-141-239.sslip.io. Tenten DNS records `@` and `www` both use A record `34.21.141.239`; the domain expires 28 October 2027 and automatic renewal was off in the registrar. VM trial expiry is earlier: 21 January 2027. Release `p6-deploy-20261028` at commit `55df8ae431aa2288c562cc4d82d702bc4cc97aad`; image `sha256:432106755fdf4bf9802a87f0484ea8f39705ae9a938c8a5bf740d1a598add619`. The `p6-deploy-` tag namespace is required by the existing deployment script. Certificates are managed by Caddy; keep ports 80/443 and DNS pointed to this VM for issuance/renewal.

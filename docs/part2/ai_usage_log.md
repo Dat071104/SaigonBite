@@ -101,3 +101,8 @@ Codex (AI-assisted) drew 35 low-fidelity sketches from the briefs in Figma and a
 ## 27–28 October 2026 — P6 deployment (Codex)
 
 Deployed by Codex (AI-assisted), operated in Dat's session, on the GCP account 523k0049@student.tdtu.edu.vn (billing owner: Le Minh Quan, school-managed account). Codex prepared the release, operated the approved resources, ran the checks and recorded results; owner approvals and limitations are documented in the P6 evidence. No push or P7 release was performed.
+
+
+## 28 October 2026 — Custom domain (Codex)
+
+Codex (AI-assisted), operating in Dat's session, configured the purchased domain in Tenten and deployed a local Git bundle to the existing school-account VM. DNS, TLS, redirect, app, CSRF and persistence checks are documented in the domain evidence. No push.

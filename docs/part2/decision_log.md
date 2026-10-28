@@ -87,3 +87,8 @@ Author: 722I0004 · AI-assisted (Codex). Dat supplied the Sol continuation promp
 ## 27–28 October 2026 — P6 deployment decisions
 
 Codex deployed the approved e2-medium Singapore VM using a local annotated release tag and verified Git bundle; sslip.io and Caddy provided HTTPS. The owner accepted a billing-account-scoped alert budget when the project-only filter was unavailable, and a limited VM service-account exception for guarded backup/restore. The initial gcloud SSH added a project metadata key; the owner authorized temporary use, and the exact matching key was removed and read back after SSH work. No prior image exists for rollback. See P6 evidence and gcloud log.
+
+
+## 28 October 2026 — Custom domain
+
+Dat requested connecting the purchased Tenten domain to the existing VM. DNS `@` and `www` A records point to its existing static IP. Caddy serves saigonbite.io.vn, redirects www with 301, and retains sslip.io as fallback. Domain expiry is 28 October 2027, later than the 21 January 2027 VM trial expiry. No additional GCP resource or billing upgrade.

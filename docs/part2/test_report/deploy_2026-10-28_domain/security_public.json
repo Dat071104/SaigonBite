@@ -1,0 +1,50 @@
+{
+  "certificate": {
+    "subject": [
+      [
+        [
+          "commonName",
+          "saigonbite.io.vn"
+        ]
+      ]
+    ],
+    "issuer": [
+      [
+        [
+          "countryName",
+          "US"
+        ]
+      ],
+      [
+        [
+          "organizationName",
+          "Let's Encrypt"
+        ]
+      ],
+      [
+        [
+          "commonName",
+          "YE2"
+        ]
+      ]
+    ],
+    "notBefore": "Oct 28 02:42:15 2026 GMT",
+    "notAfter": "Jan 26 02:42:14 2027 GMT",
+    "subjectAltName": [
+      [
+        "DNS",
+        "saigonbite.io.vn"
+      ]
+    ]
+  },
+  "cookie_metadata": [
+    {
+      "name": "session",
+      "secure": true,
+      "httpOnly": true,
+      "sameSite": "Lax"
+    }
+  ],
+  "invalid_csrf_http": 400,
+  "csrf_page": "invalid_csrf.png"
+}
