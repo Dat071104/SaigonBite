@@ -8,25 +8,25 @@ The diagrams use UML associations with SQL multiplicities. `PK` marks primary-ke
 
 ![Schema v2 identity, customer and hub tables](../../../models/shared/erd_schema_v2_PartA.png)
 
-Figure 4.3.1A. Schema v2: identity, customer and hub records — Author: 722I0004 · AI-assisted (Codex)
+Figure 4.3.1A. Schema v2: identity, customer and hub records — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
 
 ![Schema v2 catalogue and listing tables](../../../models/shared/erd_schema_v2_PartB.png)
 
-Figure 4.3.1B. Schema v2: brands, menu items, hub listings and vouchers — Author: 722I0004 · AI-assisted (Codex)
+Figure 4.3.1B. Schema v2: brands, menu items, hub listings and vouchers — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
 
 ![Schema v2 order and order-line tables](../../../models/shared/erd_schema_v2_PartC.png)
 
-Figure 4.3.1C. Schema v2: orders and order-line snapshots — Author: 722I0004 · AI-assisted (Codex)
+Figure 4.3.1C. Schema v2: orders and order-line snapshots — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
 
 ![Schema v2 payment and delivery tables](../../../models/shared/erd_schema_v2_PartD.png)
 
-Figure 4.3.1D. Schema v2: payment and delivery records — Author: 722I0004 · AI-assisted (Codex)
+Figure 4.3.1D. Schema v2: payment and delivery records — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
 
 ![Schema v2 replacement-offer table](../../../models/shared/erd_schema_v2_PartE.png)
 
-Figure 4.3.1E. Schema v2: replacement-offer history — Author: 722I0004 · AI-assisted (Codex)
+Figure 4.3.1E. Schema v2: replacement-offer history — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
 
-The mapping has one primary row for each of the 110 C0 columns. It also makes non-column correspondences explicit: `Order.lines` maps to the child `order_line.order_id` relationship; `HubMenuItem.item` maps to `hub_menu_item.menu_item_id`; `Order.item_subtotal` and `Order.total` are derived properties with persisted columns; `MenuItem.brand_name` is a joined projection of `brand.name`; `LocalCustomer` and `TouristCustomer` map to the same `customer.customer_type` discriminator; and `OrderLine.line_total` is computed, with no SQL column. `UserAccount.created_at` is recorded as a target gap because its model attribute is `GAP` and the column is absent at C0.
+The mapping has one primary row for each of the 110 C0 columns. It also makes non-column correspondences explicit: `Order.lines` maps to the child `order_line.order_id` relationship; `HubMenuItem.item` maps to `hub_menu_item.menu_item_id`; `Order.item_subtotal` and `Order.total` are derived properties with persisted columns; `MenuItem.brand_name` is a joined projection of `brand.name`; `LocalCustomer` and `TouristCustomer` map to the same `customer.customer_type` discriminator; and `OrderLine.line_total` is computed, with no SQL column. `UserAccount.created_at` is recorded as a target gap because its model attribute is `P4 status: see Table P4-1` and the column is absent at C0.
 
 `Customer` is stored in one `customer` table. Its `customer_type` CHECK distinguishes `LOCAL` from `TOURIST`; it does not create separate subtype tables. `hub_menu_item` is the association-class table between Hub and MenuItem, with a composite primary key on `(hub_id, menu_item_id)`. There is no Shipper table: `delivery.shipper_id` references `user_account.id`, and the SHIPPER role is held by the linked account. `Quote`, report filters and rows, and receipts are computed views rather than persisted classes.
 
@@ -36,7 +36,7 @@ Money is stored as whole VND where applicable. For an Order, `item_subtotal` is 
 
 Event columns ending in `_at` are UTC timestamp text. `voucher.valid_from` and `valid_until` are inclusive Asia/Ho_Chi_Minh calendar dates stored as text, not UTC instants. The archive timestamps are on Hub, Brand, MenuItem, Address, Voucher and Order. `user_account.is_active` is an account lifecycle flag, not an archive timestamp; unlisting a HubMenuItem deletes the association row. Under the plan’s archive rule, an archived parent is hidden from operational lists while authorized history, receipts, reports and refund obligations remain available. Child order lines, payments, deliveries and offers remain attached to the retained Order. These retention rules are design requirements for P4 verification, not behaviors inferred from a flag alone.
 
-The † items are design targets, not yet in code at C0. `P2-S02` requires `user_account.created_at`, which is absent from both the draft class and SQL table and is assigned to P4.1. `P2-S03` requires the Tourist CHECK to require `nationality`; the nullable column exists, and the static Phase 2 review found controller validation, but the SQL CHECK does not enforce it. `P2-S07` requires the linked Customer account to have role `CUSTOMER`; the FK and UNIQUE rule do not enforce that role. Root accepted P4.7 as the account subphase for S03/S07. The figure’s dagger legend reads: “† design target, not yet in code at C0 (see P4 inputs P2-S02/S03/S07).”
+The  items are design targets, not yet in code at C0. `P2-S02` requires `user_account.created_at`, which is absent from both the draft class and SQL table and is assigned to P4.1. `P2-S03` requires the Tourist CHECK to require `nationality`; the nullable column exists, and the static Phase 2 review found controller validation, but the SQL CHECK does not enforce it. `P2-S07` requires the linked Customer account to have role `CUSTOMER`; the FK and UNIQUE rule do not enforce that role. Root accepted P4.7 as the account subphase for S03/S07. The figure’s dagger legend reads: “ design target, not yet in code at C0 (see P4 inputs P2-S02/S03/S07).”
 
 `P2-S08` is not a missing-value defect: `Payment.updated_at` is `Optional[str]` in the domain model but `NOT NULL` in SQL, and the `PaymentDAO.insert` AST body writes the supplied `updated_at` or falls back to `created_at`. The SQL CHECK also permits Payment values `FAILED` and `REFUNDED`; per P2-S01 and plan §4.3 these remain deferred or unreachable. No declined-payment row or refund-payout path is added to this mapping.
 
