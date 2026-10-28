@@ -151,6 +151,13 @@ def emit(text,src,row):
     for ci,content in enumerate(record):
      p=cells[ci].paragraphs[0]
      for v in content:inlines(p,v)
+     if n>6:
+      for rr in p._p.xpath('.//w:r'):
+       prop=rr.get_or_add_rPr()
+       for tag in ('w:sz','w:szCs'):
+        e=prop.find(qn(tag))
+        if e is None:e=OxmlElement(tag);prop.append(e)
+        e.set(qn('w:val'),'16')
    i=j+1;continue
   i+=1
 state=R/'docs/part2/report/II_state_machines.md'; st=state.read_text(encoding='utf-8');blocks={m.group(1):m.group(2) for m in re.finditer(r'<!-- BEGIN STATE_MACHINE ([A-Z_]+) -->(.*?)<!-- END STATE_MACHINE \1 -->',st,re.S)}

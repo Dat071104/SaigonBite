@@ -98,5 +98,17 @@ screens=[x for x in placed if x['source_png'].startswith('docs/') and x['readabi
 issue_text=(base/'Part2/notes/P7/diagram_issues.md').read_text(encoding='utf-8')
 bad=[x['fig_id'] for x in models if '(editable source: '+x['drawio_source']+')' not in x['caption'] or x['fig_id'] not in issue_text or not (repo/x['drawio_source']).is_file()]
 check('figure readability exceptions',len(models)==12 and not bad,f'PASS (exceptions listed): {len(models)} model placements; {len(screens)} screenshot estimates exempt; invalid={bad}; final layout not rendered')
+from table_checks import latex_headers, template_check, verify_moves
+table_errors=template_check(latex_headers());check('template table headers',not table_errors,f'template prefix comparisons; errors={table_errors}')
+move_count,move_errors=verify_moves();check('table meaning lock',not move_errors,f'{move_count} rows checked against pre-edit cells; errors={move_errors}')
+wide_errors=[];wide_count=0
+for p,t in texts.items():
+ for m in re.finditer(r'\\begin\{longtable\}[^\n]*\n(.*?)\\\\\s*\n',t):
+  if len(re.split(r'(?<!\\)&',m.group(1)))>6:
+   wide_count+=1
+   if t.rfind('\\begin{landscape}',0,m.start()) < t.rfind('\\end{landscape}',0,m.start()) or t.rfind('\\begin{landscape}',0,m.start())<0:wide_errors.append(p.name)
+check('wide tables landscape',not wide_errors,f'{wide_count} tables; violations={wide_errors[:8]}')
 result=['P7 B7 static checks -- no compilation or PDF','']+[f'{status} | {name} | {detail}' for name,status,detail in checks];result+=['','OVERALL: '+('PASS' if all(x[1]=='PASS' for x in checks) else 'FAIL')];report.write_text('\n'.join(result)+'\n',encoding='utf-8');print('\n'.join(result))
 
+
+if not all(x[1]=='PASS' for x in checks): raise SystemExit(1)

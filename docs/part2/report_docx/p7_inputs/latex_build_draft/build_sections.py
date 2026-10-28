@@ -97,7 +97,7 @@ def to_tex(text,source,row):
     elif q.type in ['th_close','td_close']:current.append(cell);cell=None
     elif q.type=='tr_close':records.append(current)
     j+=1
-   count=max(map(len,records),default=1);w=max(.035,min(.9,.92/count));spec=''.join(r'>{\raggedright\arraybackslash}p{'+f'{w:.4f}'+r'\linewidth}' for _ in range(count));land=count>=8
+   count=max(map(len,records),default=1);w=max(.035,min(.9,.92/count));spec=''.join(r'>{\raggedright\arraybackslash}p{'+f'{w:.4f}'+r'\linewidth}' for _ in range(count));land=count>=7
    if land:out.append('\\begin{landscape}\n')
    out.append('\\begin{longtable}{'+spec+'}\n')
    for k,record in enumerate(records):

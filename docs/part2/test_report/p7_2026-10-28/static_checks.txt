@@ -10,5 +10,8 @@ PASS | manifest figures referenced | expected=607 emitted=607 missing=[] extra=[
 PASS | template heading order and text | 87 template headings including IP and TOC; section input order checked; errors=[]; order_match=True; inputs_order=True
 PASS | figure author and AI labels | violations=[] total=0
 PASS | figure readability exceptions | PASS (exceptions listed): 12 model placements; 110 screenshot estimates exempt; invalid=[]; final layout not rendered
+PASS | template table headers | template prefix comparisons; errors=[]
+PASS | table meaning lock | 130 rows checked against pre-edit cells; errors=[]
+PASS | wide tables landscape | 9 tables; violations=[]
 
 OVERALL: PASS

@@ -5,18 +5,20 @@ Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
 
 The proposal-owner column preserves the six use-case selections made in the proposal. The actual-author column records the work completed for this Part 2 analysis. The six artifacts in this section are authored by 722I0004; this does not claim work by another team member. Use-case serving links are coverage references only; see Figure 2.1 for any UML relationship choices.
 
+\begin{landscape}
 \begin{longtable}{>{\raggedright\arraybackslash}p{0.1314\linewidth}>{\raggedright\arraybackslash}p{0.1314\linewidth}>{\raggedright\arraybackslash}p{0.1314\linewidth}>{\raggedright\arraybackslash}p{0.1314\linewidth}>{\raggedright\arraybackslash}p{0.1314\linewidth}>{\raggedright\arraybackslash}p{0.1314\linewidth}>{\raggedright\arraybackslash}p{0.1314\linewidth}}
-ID & Use case & Main actor & Group & Short description & Proposal owner & Actual author \\
+No. & Use case & Main actor & Short description & Owner (ID) & Group & Actual author \\
 \hline\endfirsthead
-ID & Use case & Main actor & Group & Short description & Proposal owner & Actual author \\
+No. & Use case & Main actor & Short description & Owner (ID) & Group & Actual author \\
 \hline\endhead
-UC-01 & Place an order with an accepted full price, voucher and payment choice & Customer & (a) Ordering & Select a hub, available lines and address; review the full price and place only after accepting it and the permitted payment result. & 722I0004 & 722I0004 \\
-UC-02 & Deliver an order: pick up, deliver with cash collection, or report failure & Shipper & (b) Fulfilment & Take a READY delivery, record successful delivery and exact cash when due, or report a failure reason. & 523K0049 & 722I0004 \\
-UC-03 & Maintain hubs and kitchen capacity & Admin & (c) CRUD management & Create, read, update and archive hubs under the open-order guard; maintain capacity used by ordering decisions. & 722I0004 & 722I0004 \\
-UC-04 & Produce management reports: sales, workload, delivery performance & Manager & (d) Reports & Read operational sales, current workload and delivery-performance reports from shared records. & 523K0049 & 722I0004 \\
-UC-05 & Decide an incoming order: confirm, reject, or offer a replacement the customer agrees to & Kitchen staff & (b) Fulfilment & Decide an own-hub PLACED order; when a line is unavailable, offer an eligible replacement for the customer's decision. & 523K0050 & 722I0004 \\
-UC-06 & Maintain brands, menu items and hub listings & Admin & (c) CRUD management & Maintain brands, items and per-hub listings while preserving order snapshots. & 523K0050 & 722I0004 \\
+UC-01 & Place an order with an accepted full price, voucher and payment choice & Customer & Select a hub, available lines and address; review the full price and place only after accepting it and the permitted payment result. & 722I0004 & (a) Ordering & 722I0004 \\
+UC-02 & Deliver an order: pick up, deliver with cash collection, or report failure & Shipper & Take a READY delivery, record successful delivery and exact cash when due, or report a failure reason. & 523K0049 & (b) Fulfilment & 722I0004 \\
+UC-03 & Maintain hubs and kitchen capacity & Admin & Create, read, update and archive hubs under the open-order guard; maintain capacity used by ordering decisions. & 722I0004 & (c) CRUD management & 722I0004 \\
+UC-04 & Produce management reports: sales, workload, delivery performance & Manager & Read operational sales, current workload and delivery-performance reports from shared records. & 523K0049 & (d) Reports & 722I0004 \\
+UC-05 & Decide an incoming order: confirm, reject, or offer a replacement the customer agrees to & Kitchen staff & Decide an own-hub PLACED order; when a line is unavailable, offer an eligible replacement for the customer's decision. & 523K0050 & (b) Fulfilment & 722I0004 \\
+UC-06 & Maintain brands, menu items and hub listings & Admin & Maintain brands, items and per-hub listings while preserving order snapshots. & 523K0050 & (c) CRUD management & 722I0004 \\
 \end{longtable}
+\end{landscape}
 \textbf{Group coverage:} (a) Ordering --- UC-01; (b) Fulfilment --- UC-02 and UC-05; (c) CRUD management --- UC-03 and UC-06; (d) Reports --- UC-04.
 
 \begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}

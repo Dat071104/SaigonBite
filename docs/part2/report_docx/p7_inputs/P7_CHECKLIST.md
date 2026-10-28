@@ -46,7 +46,7 @@ Tick `[x]` only with an evidence pointer (file path, commit, or screenshot). "No
 ### LaTeX build tree
 - [x] P7-30 Headings verbatim from the template, same order, template numbers; bookmarks + TOC entries per heading — 87 headings, order checked — docs/part2/test_report/p7_2026-10-28/static_checks.txt
 - [x] P7-31 Front matter: title page, document table, abstract, IP page (Team 02, 2026), TOC; guidance and instruction page removed — template front matter and Word checks — docs/part2/test_report/p7_2026-10-28/docx_checks.txt
-- [ ] P7-32 Template tables keep their column headings — FAIL: direct template comparison found changed headers in User stories and Risks (and other categories); AI-log headers corrected. Structural parity check compares table counts, not headers.
+- [x] P7-32 Template tables keep their column headings — template prefix checks PASS for both editions; all 423 content-table headers compared in parity. `docs/part2/test_report/p7_2026-10-28/`
 - [x] P7-33 `links.tex` generated from links.json; PENDING renders red — generated macros — docs/part2/latex/links.tex; Part2/content/links.json
 - [x] P7-34 Stand-alone `contribution_statement.tex` and `ai_usage_log.tex` — standalone TeX files — docs/part2/latex/contribution_statement.tex; docs/part2/latex/ai_usage_log.tex
 - [x] P7-35 Static checks clean (inputs, images, refs/labels, environments, braces, escapes, markers, heading compare, author IDs) — `static_checks.txt` — static PASS, readability exceptions listed — docs/part2/test_report/p7_2026-10-28/static_checks.txt

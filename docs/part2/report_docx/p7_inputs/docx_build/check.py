@@ -62,5 +62,17 @@ with ZipFile(D) as z:
   pattern=r'\d+(?:[.,]\d+)*';texnums=Counter(re.findall(pattern,t));wordnums=Counter(re.findall(pattern,' '.join(parts)))
   if texnums!=wordnums:numeric_diffs.append((heading,dict(texnums-wordnums),dict(wordnums-texnums)))
  ck(parity,'ES, 5.1 and Conclusions numeric equivalence',not numeric_diffs,'digit-token multiset compared per section; differences='+str(numeric_diffs[:3]))
+from table_checks import latex_headers, word_headers, template_check
+theaders=latex_headers();wheaders=word_headers(d)[2:];table_errors=template_check(word_headers(d));ck(checks,'template table headers',not table_errors,f'template prefix comparisons; errors={table_errors}')
+wide_bad=[]
+for ti,table in enumerate(d.tables,1):
+ if len(table.columns)>6:
+  for run in table._tbl.xpath('.//w:r[w:t]'):
+   sz=run.xpath('./w:rPr/w:sz/@w:val')
+   if not sz or int(sz[0])<16:wide_bad.append(ti);break
+ck(checks,'wide table text size',not wide_bad,f'wide tables use at least 8 pt; violations={wide_bad[:10]}')
+header_diffs=[(i+1,a,b) for i,(a,b) in enumerate(zip(theaders,wheaders)) if a!=b];ck(parity,'all table headers',len(theaders)==len(wheaders) and not header_diffs,f'LaTeX {len(theaders)}; DOCX {len(wheaders)}; differences={header_diffs[:8]}')
 for path,out in [(o/'docx_checks.txt',checks),(o/'parity.txt',parity)]:
  result=['P7 DOCX structural check: no PDF or visual rendering','']+[('PASS' if v else 'FAIL')+' | '+n+' | '+detail for n,v,detail in out]+['','OVERALL: '+('PASS' if all(x[1] for x in out) else 'FAIL')];path.write_text('\n'.join(result)+'\n',encoding='utf-8');print(path);print('\n'.join(result))
+
+if not all(v for _,v,_ in checks+parity): raise SystemExit(1)

@@ -146,3 +146,7 @@ Codex reconciled the canonical prose with recorded owner facts and later P4 evid
 ## 28 October 2026 — P7 LaTeX, Word and packaging (Codex)
 
 Codex built the LaTeX and template-based Word editions and applied Dat’s approved treatment of application states and figure readability exceptions. Static and structural parity checks were run; the original images were retained. The source package was prepared without producing a PDF. Rendering, layout, field updates and release links remain to be verified in Stage 2. Prompts and outputs are retained in the Codex session and P7 notes.
+
+## 28 October 2026 — P7 template-table correction (Codex)
+
+Codex moved existing cell values into the owner-specified template column order, added template-prefix and cross-edition header checks, and rebuilt the editions. The before-and-after table rows are recorded in the P7 notes. No PDF, push or tag was produced. Full prompts and outputs remain in the Codex session.

@@ -5,5 +5,6 @@ PASS | figure IDs | 607/607 manifest IDs in DOCX and LaTeX
 PASS | table count | LaTeX 425; DOCX 425, including two front tables
 PASS | 5.1 test table rows | LaTeX 30; DOCX 30; diff=[] / []
 PASS | ES, 5.1 and Conclusions numeric equivalence | digit-token multiset compared per section; differences=[]
+PASS | all table headers | LaTeX 423; DOCX 423; differences=[]
 
 OVERALL: PASS

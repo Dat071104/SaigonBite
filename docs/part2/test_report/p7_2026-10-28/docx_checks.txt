@@ -5,8 +5,10 @@ PASS | original PNG bytes | 607 image hashes checked; mismatches=[]
 PASS | PAGEREF bookmarks | 377 fields; missing=[]
 PASS | settings and TOC | updateFields, no image compression and TOC field
 PASS | unresolved markers | []
-PASS | Word document opens | 96303443 bytes; sha256 bf4ad22c483080085aa9c498702404a07f771f92206c69e83a37f6493c90a3c0
+PASS | Word document opens | 96306667 bytes; sha256 79c8148f3cd8a708d5fc4468942241b79dfd9ff88645f9a06fa122f1061492f7
 PASS | code excerpts and tag links | 16 excerpts matched; missing=[]; 16 tag links (available after push)
 PASS | template headings | expected 87, actual 87, mismatch=[]
+PASS | template table headers | template prefix comparisons; errors=[]
+PASS | wide table text size | wide tables use at least 8 pt; violations=[]
 
 OVERALL: PASS

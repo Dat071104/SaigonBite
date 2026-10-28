@@ -1,13 +1,13 @@
 {
   "phase": "P7 Stage 1",
-  "status": "G7-STAGE1 NOT READY: TEMPLATE TABLE COLUMN HEADINGS",
+  "status": "G7-STAGE1 ZIP+DOCX-READY (static; rendered QA remains Stage 2)",
   "entry_head": "97574bd4a6834978978e0b6bdb16ca7c6a642d52",
   "branch": "part2",
   "entry_clean": true,
   "runtime_diff_252ada1": "empty",
   "entry_pytest": "928 passed in 61.52s; Part2/notes/P7/entry_pytest.txt",
   "owner_facts": "Part2/notes/P7/owner_facts.md",
-  "next": "Correct report tables to retain template column headings and re-run B7, DOCX parity and B8; no PDF",
+  "next": "B9 local commit and handoff; await owner PDF or LaTeX log",
   "tag_links": "v0.9-part2 links resolve only after Stage 2 push",
   "stage2": "NOT STARTED",
   "pdf": "NOT PRODUCED",
@@ -67,9 +67,10 @@
     "Chunk 5: template-based DOCX, 607 original PNG hashes, 377 PAGEREF targets, 87 headings, 16 excerpts, 30 test rows, 424 tables and numeric parity pass; no rendering/PDF.",
     "Corrected Appendix 5 Markdown table separator, added P7 AI log entries, refreshed source-map range and regenerated both editions.",
     "Re-ran B7, DOCX and parity checks: OVERALL PASS; 425 tables; no rendered layout verification.",
-    "Packed 149 TeX files and 604 manifest PNGs; ZIP integrity PASS; archive exceeds 50 MB and stays outside Git."
+    "Packed 149 TeX files and 604 manifest PNGs; ZIP integrity PASS; archive exceeds 50 MB and stays outside Git.",
+    "Eight requested template table groups corrected; 130 rows meaning-locked; 423 content table headers match across editions; B7 and DOCX checks PASS including landscape/8 pt structural checks."
   ],
-  "caution": "Direct template comparison found altered column headers in User stories and Risks; parity PASS checks table count, not header equivalence. Actual layout, one-page summary and section AI-label audit also remain unverified. 12 model readability exceptions approved; screenshot threshold exempt.",
+  "caution": "No PDF produced; rendered layout, Word field updates and one-page summary require Stage 2 verification. Twelve model readability exceptions approved; screenshot threshold exempt. L6 remains open.",
   "resume_authorized": "Dat, 28/10/2026, after the two-attempt stop at B2",
   "previous_stop": "B2 two failed attempts on heading regex; resolved",
   "wip_commits": [
@@ -156,5 +157,19 @@
       "commit": "ebd2a70",
       "subject": "P7 WIP: chunk 5 DOCX and parity checks"
     }
-  ]
+  ],
+  "docx_receipt": {
+    "size_bytes": 96306667,
+    "sha256": "79c8148f3cd8a708d5fc4468942241b79dfd9ff88645f9a06fa122f1061492f7"
+  },
+  "latex_zip_receipt": {
+    "zip": "D:\\RAD\\FINAL\\Part2\\deliverables\\Team02_BRS_SRS_for_SaigonBite_latex.zip",
+    "size_bytes": 97469625,
+    "sha256": "317a8aa9fbf6c22033cffaafef2fd9b4ecb2fec9bb1f5a1f1f70e1137a2d4bb0",
+    "tex_files": 149,
+    "unique_pngs": 604,
+    "entries": 755,
+    "zip_test": "PASS",
+    "pdf": "NOT PRODUCED"
+  }
 }
