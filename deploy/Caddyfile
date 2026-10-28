@@ -1,4 +1,8 @@
-{$SITE_HOST} {
+{$SITE_HOST}, saigonbite.io.vn {
     encode zstd gzip
     reverse_proxy app:8000
+}
+
+www.saigonbite.io.vn {
+    redir https://saigonbite.io.vn{uri} permanent
 }
