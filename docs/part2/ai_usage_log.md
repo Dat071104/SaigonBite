@@ -142,3 +142,7 @@ Codex reviewed the prose of 40 canonical sources against recorded numeric and id
 ## 28 October 2026 — P7 B6 prose closure (Codex)
 
 Codex reconciled the canonical prose with recorded owner facts and later P4 evidence, removed repeated text and redundant author lines while retaining per-UC and figure AI labels, and moved source-process details to an evidence index. Forty source meaning locks passed for numbers, IDs and states; selected P4 and UC tables were checked against their registers. Figure readability and final page references remain open for edition checks. Full prompts and outputs remain in the Codex session and P7 notes.
+
+## 28 October 2026 — P7 LaTeX, Word and packaging (Codex)
+
+Codex built the LaTeX and template-based Word editions and applied Dat’s approved treatment of application states and figure readability exceptions. Static and structural parity checks were run; the original images were retained. The source package was prepared without producing a PDF. Rendering, layout, field updates and release links remain to be verified in Stage 2. Prompts and outputs are retained in the Codex session and P7 notes.

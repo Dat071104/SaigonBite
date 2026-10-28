@@ -4,8 +4,8 @@ Author: 722I0004 · AI-assisted (Codex)
 
 This table reproduces the recorded uses in `docs/part2/ai_usage_log.md`. Full phase prompts and available outputs are archived in `Part2/codex/`, `Part2/notes/` and the Codex session; any prompts not recovered are identified in the source log. The course requires prompts and outputs to be supplied within 48 hours if requested.
 
-| Tool + date | Purpose | Prompt summary | Kept / changed | How verified |
-|---|---|---|---|---|---|
+| Tool and date | Purpose | Prompt (summary) | What you kept or changed | How you verified it |
+|---|---|---|---|---|
 | Claude Opus, 23/10/2026 (plan attribution) | Initial Part 2 plan | Scope, phases, build/test/deploy strategy | Historical input; final locked plan supersedes it | Locked plan input list and §0; no claim of independent prompt recovery |
 | Sol, 23/10/2026 (plan attribution) | Plan reviews and acceptance | Audit code findings, contracts, authorship, scope | Accepted decisions recorded in locked plan | Review files in Part2_Plan_Review; source authorities |
 | Codex root, 23/10/2026 | Phase 1 preflight and integration | Execute P0/P1 only; preserve Part 1 and app bytes | Contract copies, baseline, workbook and final integration | Binary SHA-256, primary source inspection, trace checks, independent reviewer; results recorded at closure |
@@ -64,3 +64,5 @@ This table reproduces the recorded uses in `docs/part2/ai_usage_log.md`. Full ph
 | Codex, 28/10/2026 | P7 prose and placement continuation | Meaning locks, owner-fact reconciliation and figure placement review | Partial prose pass and revised placement estimates | P7 meaning-lock files and ten page simulations; exceptions remain open |
 | Codex, 28/10/2026 | P7 report prose and evidence continuation | Review canonical prose, source-map ranges and claims | Prose pass retained with remaining tables and layout work | Meaning-lock baselines; fresh DB prechecks; P6 performance JSON |
 | Codex, 28/10/2026 | P7 B6 prose closure | Reconcile report prose and evidence | Revised prose, evidence index and 40 meaning locks | Source and register checks; layout remains unverified |
+| Codex, 28/10/2026 | P7 LaTeX and static checks | Build the source edition and apply the owner decisions on application states and readability | LaTeX sources and B7 checks retained | Static checks; rendering remains for Stage 2 |
+| Codex, 28/10/2026 | P7 DOCX and packaging | Build the template-based Word edition and compare it with LaTeX; package sources | DOCX and LaTeX source package retained | Structural and parity checks; no PDF or visual layout verification |

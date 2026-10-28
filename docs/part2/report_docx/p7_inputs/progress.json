@@ -1,13 +1,13 @@
 {
   "phase": "P7 Stage 1",
-  "status": "CHUNK_5_DOCX_AND_PARITY_STATIC_PASS",
+  "status": "G7-STAGE1 NOT READY: TEMPLATE TABLE COLUMN HEADINGS",
   "entry_head": "97574bd4a6834978978e0b6bdb16ca7c6a642d52",
   "branch": "part2",
   "entry_clean": true,
   "runtime_diff_252ada1": "empty",
   "entry_pytest": "928 passed in 61.52s; Part2/notes/P7/entry_pytest.txt",
   "owner_facts": "Part2/notes/P7/owner_facts.md",
-  "next": "Chunk 6 B8 package and B9 local commit; do not compile PDF",
+  "next": "Correct report tables to retain template column headings and re-run B7, DOCX parity and B8; no PDF",
   "tag_links": "v0.9-part2 links resolve only after Stage 2 push",
   "stage2": "NOT STARTED",
   "pdf": "NOT PRODUCED",
@@ -64,9 +64,12 @@
     "B7 FAIL: legitimate PENDING state conflicts with literal sentinel rule; 122 figure placements under 9pt estimate. No compile/PDF.",
     "WIP commit 7258f49 preserves draft and failure evidence",
     "28/10 owner approved application PENDING states and readability exceptions; corrected three generated CRUD headings, B7 static checks PASS; no rendering or PDF",
-    "Chunk 5: template-based DOCX, 607 original PNG hashes, 377 PAGEREF targets, 87 headings, 16 excerpts, 30 test rows, 424 tables and numeric parity pass; no rendering/PDF."
+    "Chunk 5: template-based DOCX, 607 original PNG hashes, 377 PAGEREF targets, 87 headings, 16 excerpts, 30 test rows, 424 tables and numeric parity pass; no rendering/PDF.",
+    "Corrected Appendix 5 Markdown table separator, added P7 AI log entries, refreshed source-map range and regenerated both editions.",
+    "Re-ran B7, DOCX and parity checks: OVERALL PASS; 425 tables; no rendered layout verification.",
+    "Packed 149 TeX files and 604 manifest PNGs; ZIP integrity PASS; archive exceeds 50 MB and stays outside Git."
   ],
-  "caution": "DOCX and LaTeX pass structural/parity checks; rendered layout and Word field updates are unverified until Stage 2; 12 model readability exceptions retained.",
+  "caution": "Direct template comparison found altered column headers in User stories and Risks; parity PASS checks table count, not header equivalence. Actual layout, one-page summary and section AI-label audit also remain unverified. 12 model readability exceptions approved; screenshot threshold exempt.",
   "resume_authorized": "Dat, 28/10/2026, after the two-attempt stop at B2",
   "previous_stop": "B2 two failed attempts on heading regex; resolved",
   "wip_commits": [
@@ -144,6 +147,14 @@
       "commit": "7258f49",
       "subject": "P7 WIP: LaTeX source draft and B7 findings",
       "scope": "144 draft sections, source documents, static failure and build scripts"
+    },
+    {
+      "commit": "4f45ba0",
+      "subject": "P7 WIP: chunk 4 LaTeX and B7 static checks"
+    },
+    {
+      "commit": "ebd2a70",
+      "subject": "P7 WIP: chunk 5 DOCX and parity checks"
     }
   ]
 }
