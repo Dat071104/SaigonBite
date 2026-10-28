@@ -78,7 +78,6 @@ Figure 3.1.2.i.R6. UC-01 domain navigation / multiplicities — Author: 722I0004
 
 ### ii. Controller
 
-Filtered from the single shared design model. Member projection and relationship plates form one logical DCD; repeated class names identify the same class. Retained relation identifiers are omitted from domain figures; the table above and 4.3.1 retain them.
 
 ![UC-01 controller — selected design members 1/2](../../../models/UC-01/dcd_uc01_controller_PartA.png)
 
@@ -96,7 +95,6 @@ Figure 3.1.2.ii.R1. UC-01 controller navigation / multiplicities — Author: 722
 
 ### iii. UI (view)
 
-Filtered from the single shared design model. Member projection and relationship plates form one logical DCD; repeated class names identify the same class. Retained relation identifiers are omitted from domain figures; the table above and 4.3.1 retain them.
 
 ![UC-01 view — selected design members 1/1](../../../models/UC-01/dcd_uc01_view.png)
 
@@ -104,7 +102,6 @@ Figure 3.1.2.iii. UC-01 view detailed design members — Author: 722I0004 · AI-
 
 ### iv. Data access
 
-Filtered from the single shared design model. Member projection and relationship plates form one logical DCD; repeated class names identify the same class. Retained relation identifiers are omitted from domain figures; the table above and 4.3.1 retain them.
 
 ![UC-01 dao — selected design members 1/2](../../../models/UC-01/dcd_uc01_dao_PartA.png)
 
@@ -117,7 +114,6 @@ Figure 3.1.2.ivB. UC-01 dao detailed design members — Author: 722I0004 · AI-a
 
 ### v. Design class (all layers together)
 
-Filtered from the single shared design model. Member projection and relationship plates form one logical DCD; repeated class names identify the same class. Retained relation identifiers are omitted from domain figures; the table above and 4.3.1 retain them.
 
 ![UC-01 all — selected design members 1/9](../../../models/UC-01/dcd_uc01_all_PartA.png)
 
@@ -280,7 +276,6 @@ Read .busy / .quiet on HubStatus; these are properties, never busy() / quiet() c
 
 Figure 3.1.4.OP-14. UC-01 selectHub — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
 
-Read .busy / .quiet on HubStatus; these are properties, never busy() / quiet() calls. No persistent writes. Active Customer gate belongs to view; select_hub also checks active Customer and hub. Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.
 
 
 ### OP-15 requestQuote
@@ -301,7 +296,6 @@ Read quote.item_subtotal / quote.total properties. Fingerprint binds hub/address
 
 Figure 3.1.4.OP-15C. UC-01 requestQuote — Part C — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
 
-Read quote.item_subtotal / quote.total properties. Fingerprint binds hub/address, line IDs, quantities and prices, voucher + D, F, Q and payment choice; full accepted price T=S−D+F−Q. PaymentChoice is a typed adapter value. Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.
 
 
 ### OP-01 confirmCheckout
@@ -316,7 +310,6 @@ Simulator approve/decline choice precedes this request. Short atomic checkout be
 
 Figure 3.1.4.OP-01B. UC-01 confirmCheckout — Part B — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
 
-Simulator approve/decline choice precedes this request. Short atomic checkout begins before token lookup. Own existing token → existingOrder, no reprice, authorization or insertion (UC01-MG02). Foreign token → refusal. Unused token rechecks eligibility, raw radius, capacity, voucher and full consent. Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.
 
 ![UC-01 confirmCheckout — Part C](../../../models/UC-01/seq_uc01_confirmCheckout_PartC.png)
 
@@ -328,13 +321,11 @@ Deterministic local simulator, no network/wait. COD skips authorise; ONLINE decl
 
 Figure 3.1.4.OP-01D. UC-01 confirmCheckout — Part D — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
 
-Deterministic local simulator, no network/wait. COD skips authorise; ONLINE declined → zero Order/Line/Payment. Success atomically saves PLACED + snapshots + COD PENDING / ONLINE PAID, C=T (UC01-PC01–06). Any lock/write/commit failure rolls back all intended writes and releases authorization (P2-S05/P2-S13). Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.
 
 ![UC-01 confirmCheckout — Part E](../../../models/UC-01/seq_uc01_confirmCheckout_PartE.png)
 
 Figure 3.1.4.OP-01E. UC-01 confirmCheckout — Part E — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
 
-Deterministic local simulator, no network/wait. COD skips authorise; ONLINE declined → zero Order/Line/Payment. Success atomically saves PLACED + snapshots + COD PENDING / ONLINE PAID, C=T (UC01-PC01–06). Any lock/write/commit failure rolls back all intended writes and releases authorization (P2-S05/P2-S13). Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.
 
 
 ### OP-16 viewReceipt
@@ -352,7 +343,6 @@ Read-only active role + own Customer / own kitchen hub checks; denied context di
 
 Figure 3.1.4.OP-17. UC-01 viewMyOrders — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
 
-Read-only active role + own Customer / own kitchen hub checks; denied context discloses no foreign details. Receipt/offer amounts say refund owed, never paid out (F-06 where applicable). Read snapshots, .total and offer attributes; no fabricated business getters. No persistent writes. Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.
 
 
 ### OP-07 cancelOrder
@@ -367,7 +357,6 @@ Guard: active own Customer; PLACED / CONFIRMED. Atomic CANCELLED + closed_at / r
 
 Figure 3.1.4.OP-07B. UC-01 cancelOrder — Part B — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
 
-Guard: active own Customer; PLACED / CONFIRMED. Atomic CANCELLED + closed_at / reason; COD VOIDED; ONLINE REFUND_PENDING, refund_amount=C replaces any partial owed amount. No payout. Open offer WITHDRAWN; helpers are real module functions. Rowcount, busy and failure-through-COMMIT rollback. P4 resolution (see Table P4-1): release_payment persists the full-C refund amount together with state and checks every conditional save in the same transaction (F-02; P2-S01; P3-S03). Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.
 
 ## 3.1.5 Final Design Class Diagram
 

@@ -238,7 +238,7 @@ Figure 3.4.5-I. UC-04 final design classes: Delivery report result object — Au
 
 [Editable draw.io](../../../models/UC-04/dcd_uc04_final_PartI.drawio) · [SVG](../../../models/UC-04/dcd_uc04_final_PartI.svg) · [Generator](../../../models/UC-04/dcd_uc04_final_PartI.py) · [Data](../../../models/UC-04/dcd_uc04_final_PartI.json)
 
-No Report state is drawn. Filters, report rows and returned reports are non-persisted controller values. The final DCD keeps historical marks on F-03/F-09/P2-S18 targets; UC04-PC01 remains a required oracle correspondence, not a measured result.
+No Report state is drawn. Filters, report rows and returned reports are non-persisted controller values. The final DCD keeps historical marks on F-03/F-09/P2-S18 targets; UC04-PC01 requires an oracle correspondence; the diagram alone is not a measured result. Section 5.1 reports the corresponding test evidence.
 
 ## Integration repair evidence
 

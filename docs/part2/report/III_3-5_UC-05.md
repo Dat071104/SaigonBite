@@ -55,7 +55,6 @@ Figure 3.5.2.i.R5. UC-05 domain navigation / multiplicities — Author: 722I0004
 
 ### ii. Controller
 
-Filtered from the single shared design model. Member projection and relationship plates form one logical DCD; repeated class names identify the same class. Retained relation identifiers are omitted from domain figures; the table above and 4.3.1 retain them.
 
 ![UC-05 controller — selected design members 1/2](../../../models/UC-05/dcd_uc05_controller_PartA.png)
 
@@ -73,7 +72,6 @@ Figure 3.5.2.ii.R1. UC-05 controller navigation / multiplicities — Author: 722
 
 ### iii. UI (view)
 
-Filtered from the single shared design model. Member projection and relationship plates form one logical DCD; repeated class names identify the same class. Retained relation identifiers are omitted from domain figures; the table above and 4.3.1 retain them.
 
 ![UC-05 view — selected design members 1/1](../../../models/UC-05/dcd_uc05_view.png)
 
@@ -81,7 +79,6 @@ Figure 3.5.2.iii. UC-05 view detailed design members — Author: 722I0004 · AI-
 
 ### iv. Data access
 
-Filtered from the single shared design model. Member projection and relationship plates form one logical DCD; repeated class names identify the same class. Retained relation identifiers are omitted from domain figures; the table above and 4.3.1 retain them.
 
 ![UC-05 dao — selected design members 1/1](../../../models/UC-05/dcd_uc05_dao.png)
 
@@ -89,7 +86,6 @@ Figure 3.5.2.iv. UC-05 dao detailed design members — Author: 722I0004 · AI-as
 
 ### v. Design class (all layers together)
 
-Filtered from the single shared design model. Member projection and relationship plates form one logical DCD; repeated class names identify the same class. Retained relation identifiers are omitted from domain figures; the table above and 4.3.1 retain them.
 
 ![UC-05 all — selected design members 1/7](../../../models/UC-05/dcd_uc05_all_PartA.png)
 
@@ -191,7 +187,7 @@ Figure 3.5.2.v.R12. UC-05 all navigation / multiplicities — Author: 722I0004 �
 
 ## 3.5.4 OOD with Sequence Diagram
 
-Each SSD occurrence has its own operation sequence. Actor → actual blueprint module → controller → domain / typed value; UC-01 also uses the local simulator. No DAO/SQL lifeline is present. Synchronous calls use closed filled arrowheads; dashed open arrows carry results. Actual `alt`, `opt` and `break` rectangles enclose the messages they govern, including self-call paths. Inside an outcome `alt`, separately guarded regions have mutually exclusive conditions. Denial breaks terminate the current interaction; a continuation retains the same request and lifelines. Successful mutation results follow all atomic saves and COMMIT, whose DAO details remain in 4.3.2. Attribute/property reads are notes. Implicit dataclass «create» is not a business operation. Persistence is loaded/saved through data access — see 4.3.2.
+Each SSD occurrence has its own operation sequence. Actor → actual blueprint module → controller → domain / typed value. The UC-01 local simulator is described separately. No DAO/SQL lifeline is present. Synchronous calls use closed filled arrowheads; dashed open arrows carry results. Actual `alt`, `opt` and `break` rectangles enclose the messages they govern, including self-call paths. Inside an outcome `alt`, separately guarded regions have mutually exclusive conditions. Denial breaks terminate the current interaction; a continuation retains the same request and lifelines. Successful mutation results follow all atomic saves and COMMIT, whose DAO details remain in 4.3.2. Attribute/property reads are notes. Implicit dataclass «create» is not a business operation. Persistence is loaded/saved through data access — see 4.3.2.
 
 acceptReplacement Parts A–C preserve stale refusal before mutation, then exclusive invalid-target withdrawal versus valid-target replacement. Invalid-target outcome returns only a committed withdrawal/reason or controlled failure; it never executes replace_line. Only the valid-target continuation can return acceptedOrderAndAmounts after successful atomic save and COMMIT. rejectOrder and declineReplacement Parts A/B now return `rejectedOrder` and `rejectedOrderAndAmounts`, respectively, inside the committed branch; failed saves return refusal/controlledFailure with rollback. No result implies implementation or a measured transaction guarantee.
 
@@ -236,7 +232,6 @@ Read-only active role + own Customer / own kitchen hub checks; denied context di
 
 Figure 3.5.4.OP-20. UC-05 viewKitchenOrder — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
 
-Read-only active role + own Customer / own kitchen hub checks; denied context discloses no foreign details. Receipt/offer amounts say refund owed, never paid out (F-06 where applicable). Read snapshots, .total and offer attributes; no fabricated business getters. No persistent writes. Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.
 
 
 ### OP-02 confirmOrder
@@ -260,7 +255,6 @@ Guard: active own-hub Kitchen staff; PLACED; nonempty reason. Atomic REJECTED + 
 
 Figure 3.5.4.OP-03B. UC-05 rejectOrder — Part B — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
 
-Guard: active own-hub Kitchen staff; PLACED; nonempty reason. Atomic REJECTED + closed_at / reason; COD VOIDED; ONLINE REFUND_PENDING, refund_amount=C replaces any partial owed amount. No payout. Open offer WITHDRAWN; helpers are real module functions. Rowcount, busy and failure-through-COMMIT rollback. P4 resolution (see Table P4-1): release_payment persists the full-C refund amount together with state and checks every conditional save in the same transaction (F-02; P2-S01; P3-S03). Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.
 
 
 ### OP-04 offerReplacement
@@ -278,7 +272,6 @@ Active own-hub PLACED; no open offer. Source currently sold out/unlisted/archive
 
 Figure 3.5.4.OP-17. UC-05 viewMyOrders — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
 
-Read-only active role + own Customer / own kitchen hub checks; denied context discloses no foreign details. Receipt/offer amounts say refund owed, never paid out (F-06 where applicable). Read snapshots, .total and offer attributes; no fabricated business getters. No persistent writes. Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.
 
 
 ### OP-18 viewReplacement
@@ -287,7 +280,6 @@ Read-only active role + own Customer / own kitchen hub checks; denied context di
 
 Figure 3.5.4.OP-18. UC-05 viewReplacement — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
 
-Read-only active role + own Customer / own kitchen hub checks; denied context discloses no foreign details. Receipt/offer amounts say refund owed, never paid out (F-06 where applicable). Read snapshots, .total and offer attributes; no fabricated business getters. No persistent writes. Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.
 
 
 ### OP-05 acceptReplacement
@@ -308,7 +300,6 @@ Valid acceptance continues atomically: use offered price, whole line, same quant
 
 Figure 3.5.4.OP-05C. UC-05 acceptReplacement — Part C — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
 
-Valid acceptance continues atomically: use offered price, whole line, same quantity; Snew; Dnew=min(Dold,Snew), F/Q unchanged; Tnew=Snew−Dnew+F−Q. Read Order.total property, set offer ACCEPTED through data access. COD amount=Tnew; ONLINE state PAID, C unchanged, refund_amount=C−Tnew. Order stays PLACED (PC04), never auto-confirms. Any conditional 0-row/lock/write/commit failure → complete rollback, MG01. Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.
 
 
 ### OP-06 declineReplacement
@@ -323,7 +314,6 @@ Guard: active own Customer; PLACED; exact open OFFERED with matching order/offer
 
 Figure 3.5.4.OP-06B. UC-05 declineReplacement — Part B — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
 
-Guard: active own Customer; PLACED; exact open OFFERED with matching order/offer IDs. SUC03-PC04: atomic REJECTED + closed_at / reason; COD VOIDED; ONLINE REFUND_PENDING, refund_amount=C replaces any partial owed amount. No payout. Open offer DECLINED; helpers are real module functions. Rowcount, busy and failure-through-COMMIT rollback. P4 resolution (see Table P4-1): release_payment persists the full-C refund amount together with state and checks every conditional save in the same transaction (F-02; P2-S01; P3-S03). Actual guarded regions now enclose the messages they govern; exact native IDs and bounds are in interaction_fragments.
 
 ## 3.5.5 Final Design Class Diagram
 

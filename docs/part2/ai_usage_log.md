@@ -134,3 +134,7 @@ Codex drafted the six-use-case method extracts, reviewer reproduction steps, con
 ## 28 October 2026 — P7 prose and placement continuation (Codex)
 
 Codex captured meaning-lock baselines for 40 canonical sources, reviewed a subset of the core report sections, reconciled stale L1–L6 wording with Dat’s corrected facts, refreshed section III source ranges, and refined placement dimensions without changing figure PNGs. A new ten-page placement simulation was inspected; 122 figure placements remain below the 9 pt nominal estimate and final layout remains unverified. Full prompts and review notes are retained in the Codex session and `Part2/notes/P7/`.
+
+## 28 October 2026 — P7 report prose and evidence continuation (Codex)
+
+Codex reviewed the prose of 40 canonical sources against recorded numeric and identifier baselines, removed exact repeated paragraphs, clarified historical C0 design claims and corrected the stated scope of browser demonstrations. SQL precheck outputs and the eight deployment timing rows were checked against recorded evidence. The prose pass is not complete: protected includes, tables and workflow-note placement still need verification, and figure/page layout exceptions remain. Full prompts and outputs are retained in the Codex session and `Part2/notes/P7/`.

@@ -68,7 +68,7 @@ Editable source: [draw.io](../../../models/UC-01/seqdao_uc01_confirmCheckout_Par
 
 **UC-02 — takeDelivery (`OP-10`)**
 
-The active shipper checks the live delivery is unassigned/AWAITING_PICKUP and the order is READY. DeliveryDAO.take uses the actual AWAITING_PICKUP predicate; a true rowcount result is required before the paired READY→OUT_FOR_DELIVERY save. Any later failure rolls back the pickup as well. Only one competing take may commit; this is a design guarantee to test in P4, not a measured race result. No additional one-active-delivery rule is introduced.
+The active shipper checks the live delivery is unassigned/AWAITING_PICKUP and the order is READY. DeliveryDAO.take uses the actual AWAITING_PICKUP predicate; a true rowcount result is required before the paired READY→OUT_FOR_DELIVERY save. Any later failure rolls back the pickup as well. Only one competing take may commit; this is the design guarantee. The later browser race checks are recorded in Sections 4.3.6 and 5.1. No additional one-active-delivery rule is introduced.
 
 SSD parameters: `orderId`. Occurrence: `models/UC-02/ssd_uc02_PartA.drawio#M03`.
 
@@ -161,7 +161,7 @@ Editable source: [draw.io](../../../models/UC-03/seqdao_uc03_archiveHub_PartD.dr
 
 **UC-04 — salesReport (`OP-26`)**
 
-UC04-MG01 applies to success, empty output, Manager denial (UC04-MG02), invalid filters and read failures: no business data is written. ReportDAO.sales_by_hub selects DELIVERED orders by delivery finish time in the half-open UTC range derived from Vietnam calendar days; archived records remain included. Order-level sums have no order_line join. F-03 makes operational sales T, with refunds owed shown separately. F-09 makes item identity menu_item_id and retains it through SalesReport.top_items; a snapshot name is only a display label. Period, SalesRow and SalesReport are non-persisted values. No computed metric is claimed to pass an oracle.
+UC04-MG01 applies to success, empty output, Manager denial (UC04-MG02), invalid filters and read failures: no business data is written. ReportDAO.sales_by_hub selects DELIVERED orders by delivery finish time in the half-open UTC range derived from Vietnam calendar days; archived records remain included. Order-level sums have no order_line join. F-03 makes operational sales T, with refunds owed shown separately. F-09 makes item identity menu_item_id and retains it through SalesReport.top_items; a snapshot name is only a display label. Period, SalesRow and SalesReport are non-persisted values. The diagram alone does not establish an oracle result; Section 5.1 records the corresponding test evidence.
 
 SSD parameters: `startDateVN, endDateVN, hubId?`. Occurrence: `models/UC-04/ssd_uc04.drawio#M01`.
 
@@ -264,7 +264,7 @@ Editable source: [draw.io](../../../models/UC-05/seqdao_uc05_acceptReplacement_P
 
 **UC-06 — updateMenuItem (`OP-41`)**
 
-The admin edits name, description and valid positive price after active-item and duplicate checks. The parent is current.brand_id; the posted brandId is context and cannot reparent a dish. MenuDAO.update_item has the actual `id AND archived_at IS NULL` predicate and returns rowcount==1. The target controller must check it. The only write is to menu_item; existing order_line name/price/quantity snapshots remain unchanged (UC06-MG01). Invalid prices and duplicates refuse without a write (UC06-MG02).
+The admin edits name, description and valid positive price after active-item and duplicate checks. The parent is current.brand_id; the posted brandId is context and cannot reparent a dish. MenuDAO.update_item has the actual `id AND archived_at IS NULL` predicate and returns rowcount==1. The design requires the controller to check it; later P4 status is recorded in Table P4-1. The only write is to menu_item; existing order_line name/price/quantity snapshots remain unchanged (UC06-MG01). Invalid prices and duplicates refuse without a write (UC06-MG02).
 
 SSD parameters: `itemId, brandId, name, description, price`. Occurrence: `models/UC-06/ssd_uc06_PartB.drawio#M06-B03`.
 

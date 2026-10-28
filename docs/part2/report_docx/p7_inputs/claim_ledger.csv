@@ -17,3 +17,7 @@ Dat intends to record the demo; video is not yet available,owner fact,Part2/note
 Release tag v0.9-part2 is planned and has not been pushed,release state,Part2/content/links.json; Part2/notes/P7/progress.json,yes: pending Stage 2 release; not claimed available
 Figures include documented estimated readability exceptions,limitation,Part2/notes/P7/diagram_issues.md; SaigonBite/docs/part2/latex/figure_manifest.csv,yes: estimate; final placement unverified
 The trial expiry date recorded in P6D is 21 January 2027,operational planning,Part2/notes/P6D/final_receipt.json,yes: recorded trial date; no live billing assertion
+Eight pages: 20 warm HTTPS response timings each; min/median/p95/max as in 5.2,measured bounded,SaigonBite/docs/part2/test_report/deploy_2026-10-27/performance.json,yes: 8 table rows compared to JSON; nearest-rank p95
+Backup integrity and separate restore checks passed; live replacement not exercised,tested bounded,SaigonBite/docs/part2/test_report/deploy_2026-10-27/README.md; SaigonBite/deploy/RUNBOOK.md,yes: historical P6 evidence
+"TLS, redirect, cookie attributes and invalid CSRF checks passed in deployment evidence",tested bounded,SaigonBite/docs/part2/test_report/deploy_2026-10-27/README.md; db_before_csrf.txt; db_after_csrf.txt,yes: historical P6 evidence
+Monthly cost estimate approximately 1.31 million VND is conditional and alerts do not cap spending,estimate and limitation,Part2/notes/P6/cost_estimate.md; SaigonBite/deploy/RUNBOOK.md,yes: recorded assumptions; actual bill may differ
