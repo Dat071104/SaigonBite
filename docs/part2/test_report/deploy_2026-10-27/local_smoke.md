@@ -1,0 +1,10 @@
+# Local Docker checks — 2026-10-27
+
+- Full checkout test suite: 928 passed; see `pytest_full.txt`.
+- Preliminary working-tree image: Python `3.13.9-slim` (pulled digest `sha256:326df678c20c78d465db501563f3492d17c42a4afe33a1f2bf5406a1d56b0e86`), gunicorn 23.0.0, two gthread workers, non-root uid 10001. HTTP `/` returned 200.
+- Scratch source cloned from entry HEAD, five deployment files copied from working tree, then committed **only in the scratch clone** at `93a4e4d`; `fresh-clone` cloned from that scratch snapshot and `docker compose -p saigonbite-p6-fresh up --build -d` succeeded. This is a preliminary local snapshot, not the final release tag; repeat fresh-clone verification against the final release.
+- Browser via Microsoft Edge: seeded customer logged in, requested a quote, and placed demo order 9; screenshots `local_quote.png`, `local_order_9.png`. `fresh_persistence.txt` records count 9 and order 9 present before and after app restart and compose down/up. This is local container evidence, not VM-reboot evidence.
+- The first browser-check script had a faulty assertion looking for the word "quote" on a page titled "Check your order"; the screenshot showed the correct quote. The assertion was corrected and the next run passed. No application code was changed.
+- Final local release clone: clean clone checked out annotated tag `p6-deploy-20261027`, commit `28d6b33d7552971c87175bb938c9107ccbf7cbaa`; Docker built and started; browser login, quote and demo order 9 passed. `release_persistence.txt` records count 9 and order 9 present after restart and down/up. The screenshot files were refreshed from this final clone. This does not establish GCP deployment or VM reboot persistence.
+- Docker test profile removed because `tests/test_deploy.py` depends on Git history excluded from the image. Full suite runs from a checkout instead.
+- Production guard evidence: `production_no_secret.txt`, `production_with_test_secret.txt`. The latter uses a throwaway test secret, checks only whether it appears in logs, and does not record it.

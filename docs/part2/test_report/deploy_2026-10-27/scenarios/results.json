@@ -1,0 +1,134 @@
+[
+  {
+    "step": "S3_1_customer_existing_order",
+    "pass": true,
+    "failed_checks": [],
+    "url": "https://34-21-141-239.sslip.io/order/9"
+  },
+  {
+    "step": "S3_2_kitchen_board",
+    "pass": true,
+    "failed_checks": [],
+    "url": "https://34-21-141-239.sslip.io/kitchen/"
+  },
+  {
+    "step": "S3_3_other_hub_board",
+    "pass": true,
+    "failed_checks": [],
+    "url": "https://34-21-141-239.sslip.io/kitchen/"
+  },
+  {
+    "step": "S3_4_other_hub_get",
+    "pass": true,
+    "failed_checks": [],
+    "url": "https://34-21-141-239.sslip.io/kitchen/orders/9"
+  },
+  {
+    "step": "S3_5_other_hub_post",
+    "pass": true,
+    "failed_checks": [],
+    "url": "https://34-21-141-239.sslip.io/kitchen/orders/9/confirm"
+  },
+  {
+    "step": "S3_6_order_detail",
+    "pass": true,
+    "failed_checks": [],
+    "url": "https://34-21-141-239.sslip.io/kitchen/orders/9"
+  },
+  {
+    "step": "S4_1_mark_sold_out",
+    "pass": true,
+    "failed_checks": [],
+    "url": "https://34-21-141-239.sslip.io/kitchen/availability"
+  },
+  {
+    "step": "S4_2_offer",
+    "pass": true,
+    "failed_checks": [],
+    "url": "https://34-21-141-239.sslip.io/kitchen/orders/9"
+  },
+  {
+    "step": "S4_3_customer_offer",
+    "pass": true,
+    "failed_checks": [],
+    "url": "https://34-21-141-239.sslip.io/order/9"
+  },
+  {
+    "step": "S4_4_accept",
+    "pass": true,
+    "failed_checks": [],
+    "url": "https://34-21-141-239.sslip.io/order/9"
+  },
+  {
+    "step": "S4_5a_confirm",
+    "pass": true,
+    "failed_checks": [],
+    "url": "https://34-21-141-239.sslip.io/kitchen/"
+  },
+  {
+    "step": "S4_5b_prepare",
+    "pass": true,
+    "failed_checks": [],
+    "url": "https://34-21-141-239.sslip.io/kitchen/"
+  },
+  {
+    "step": "S4_5c_ready",
+    "pass": true,
+    "failed_checks": [],
+    "url": "https://34-21-141-239.sslip.io/kitchen/"
+  },
+  {
+    "step": "S4_6_customer_ready",
+    "pass": true,
+    "failed_checks": [],
+    "url": "https://34-21-141-239.sslip.io/order/9"
+  },
+  {
+    "step": "S4_7_restore_availability",
+    "pass": true,
+    "failed_checks": [],
+    "url": "https://34-21-141-239.sslip.io/kitchen/availability"
+  },
+  {
+    "step": "S5_1a_shipper_board",
+    "pass": true,
+    "failed_checks": [],
+    "url": "https://34-21-141-239.sslip.io/delivery/"
+  },
+  {
+    "step": "S5_1b_second_shipper_board",
+    "pass": true,
+    "failed_checks": [],
+    "url": "https://34-21-141-239.sslip.io/delivery/"
+  },
+  {
+    "step": "S5_2a_pickup_winner",
+    "pass": true,
+    "failed_checks": [],
+    "url": "https://34-21-141-239.sslip.io/delivery/orders/9"
+  },
+  {
+    "step": "S5_2b_pickup_loser",
+    "pass": true,
+    "failed_checks": [],
+    "url": "https://34-21-141-239.sslip.io/delivery/orders/9"
+  },
+  {
+    "step": "S5_3_incorrect_cash",
+    "pass": true,
+    "failed_checks": [],
+    "url": "https://34-21-141-239.sslip.io/delivery/orders/9"
+  },
+  {
+    "step": "S5_4_delivered",
+    "pass": true,
+    "failed_checks": [],
+    "url": "https://34-21-141-239.sslip.io/delivery/orders/9"
+  },
+  {
+    "step": "S5_5_customer_receipt",
+    "pass": true,
+    "failed_checks": [],
+    "url": "https://34-21-141-239.sslip.io/order/9/receipt"
+  }
+]

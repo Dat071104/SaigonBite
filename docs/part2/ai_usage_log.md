@@ -96,3 +96,8 @@ Author: 722I0004 - AI-assisted (Claude Sonnet 5.5, Claude Code root). Dat ran P5
 ## 27 October 2026 — P5F Figma assembly and sketches (Codex)
 
 Codex (AI-assisted) drew 35 low-fidelity sketches from the briefs in Figma and assembled and linked the Edu file in Dat’s account using a local Figma Desktop plugin; Dat enabled public viewing. Wireframes and mockups were authored as HTML/CSS with AI assistance and exported as PNG. Final readback found 47 frames per image page, 148 hotspots, 129 valid navigation reactions, 19 approved same-frame no-reaction hotspots and six flow starts. Edge in fresh logged-out contexts verified one transition per flow on the third attempt, explicitly authorized by Dat after two checks affected by rendering/coordinate methodology. Sketch review limitations and browser evidence remain in Part2/notes/P5F and Part2/evidence/figma. No push or deployment.
+
+
+## 27–28 October 2026 — P6 deployment (Codex)
+
+Deployed by Codex (AI-assisted), operated in Dat's session, on the GCP account 523k0049@student.tdtu.edu.vn (billing owner: Le Minh Quan, school-managed account). Codex prepared the release, operated the approved resources, ran the checks and recorded results; owner approvals and limitations are documented in the P6 evidence. No push or P7 release was performed.

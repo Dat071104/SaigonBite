@@ -1,12 +1,14 @@
 # SaigonBite Part 2 deployment and recovery runbook
 
-Status: deployment scripts prepared; environment, tag, image and verification are pending until recorded in the Phase 6 evidence. Use synthetic demo data only. Deployed by Codex (AI-assisted), operated in Dat's session, on GCP account `523k0049@student.tdtu.edu.vn` (billing owner: Le Minh Quan, school-managed account).
+Status: deployed and verified at https://34-21-141-239.sslip.io. Release `p6-deploy-20261027`, commit `28d6b33d7552971c87175bb938c9107ccbf7cbaa`, image `sha256:3e6f00614af8e137a01700e113ac34a2a6493c9a461a90b9442ee64e0e20edae`. This is the first release; no previous image exists for rollback. Use synthetic demo data only. Deployed by Codex (AI-assisted), operated in Dat's session, on GCP account `523k0049@student.tdtu.edu.vn` (billing owner: Le Minh Quan, school-managed account).
 
 ## Scope and costs
 
 Project `kinetic-magnet-512406-m3`, zone `asia-southeast1-b`; one e2-medium VM, 30 GiB pd-balanced boot disk (auto-delete off), static Premium IPv4, web firewall and IAP-only SSH, one restricted service account, backup bucket, and daily disk snapshots. This uses a free-trial billing account, not an upgrade. Budget `saigonbite-trial` is alerts-only with credits excluded and actual thresholds 33%, 67%, 90%; owner accepted its billing-account scope because the project filter was unavailable. Budget alerts are not spending limits. Estimate: about ₫1.31 million/month, conditional on traffic, backup size, exchange rate and taxes; see `Part2/notes/P6/cost_estimate.md` in the working directory.
 
 On the operator's computer every `gcloud` command must include `--configuration=saigonbite`. Do not activate or alter the default configuration. Check project and school account before cloud writes. On the VM, the only gcloud use is backup/restore, authenticated as `saigonbite-vm@kinetic-magnet-512406-m3.iam.gserviceaccount.com`; the backup script checks metadata identity, project and its exact bucket before writing. No service-account key is used.
+
+SSH lại bằng `gcloud compute ssh --tunnel-through-iap` với `--configuration=saigonbite`; gcloud tự thêm khóa, xong việc thì kiểm tra và xóa đúng khóa vừa thêm, không thay đổi các metadata khác.
 
 ## Local reproducible path
 
@@ -37,7 +39,7 @@ sudo /tmp/saigonbite-bootstrap/deploy/vm_setup.sh A-B-C-D.sslip.io
 sudo /tmp/saigonbite-bootstrap/deploy/deploy.sh p6-deploy-YYYYMMDD /tmp/saigonbite-release.bundle
 ```
 
-Setup checks VM metadata identity/project, installs Docker Engine and Compose, creates 2 GiB swap and directories, makes a VM-only isolated gcloud configuration for backup, generates the application secret into `/srv/saigonbite/.env` as root mode 600, and enables a 20:00 UTC backup timer. It never prints the secret. Deploy clones the exact bundle tag into `/srv/saigonbite/releases`, backs up an existing DB, builds the tagged image, starts Compose and waits for HTTPS. `current` and `previous` symlinks identify the current and prior release. Record verified tag, commit, image ID and URL in the Phase 6 deployment evidence; do not invent them here.
+Setup checks VM metadata identity/project, installs Docker Engine and Compose, creates 2 GiB swap and directories, makes a VM-only isolated gcloud configuration for backup, generates the application secret into `/srv/saigonbite/.env` as root mode 600, and enables a 20:00 UTC backup timer. It never prints the secret. Deploy clones the exact bundle tag into `/srv/saigonbite/releases`, backs up an existing DB, builds the tagged image, starts Compose and waits for HTTPS. `current` and `previous` symlinks identify the current and prior release. The verified tag, commit, image ID and URL are recorded above and in the Phase 6 deployment evidence.
 
 ## Operations
 

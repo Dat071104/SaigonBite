@@ -1,0 +1,4 @@
+PASS: wrong account, project and isolated gcloud configuration fail before backup writes; simulated metadata only
+integrity_check=ok
+backup_created=saigonbite-20261027T141443Z.db.gz
+PASS: simulated SQLite online backup, integrity, gzip, exact bucket and service account

@@ -1,0 +1,10 @@
+secret_set_length: 64
+env_mode: 0o600 owner_uid: 0
+28d6b33d7552971c87175bb938c9107ccbf7cbaa
+/saigonbite-app-1 unless-stopped json-file map[max-file:3 max-size:10m] healthy
+/saigonbite-caddy-1 unless-stopped json-file map[max-file:3 max-size:10m]
+NEXT                        LEFT LAST                        PASSED UNIT                    ACTIVATES
+Wed 2026-10-28 20:00:00 UTC  17h Tue 2026-10-27 20:00:10 UTC 6h ago saigonbite-backup.timer saigonbite-backup.service
+
+1 timers listed.
+Pass --all to see loaded but inactive timers, too.
