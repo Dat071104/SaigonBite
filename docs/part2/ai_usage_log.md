@@ -106,3 +106,15 @@ Deployed by Codex (AI-assisted), operated in Dat's session, on the GCP account 5
 ## 28 October 2026 — Custom domain (Codex)
 
 Codex (AI-assisted), operating in Dat's session, configured the purchased domain in Tenten and deployed a local Git bundle to the existing school-account VM. DNS, TLS, redirect, app, CSRF and persistence checks are documented in the domain evidence. No push.
+
+## 28 October 2026 — G6 re-check and P7 preparation (Claude Opus 5.5)
+
+Claude Opus 5.5, 28/10/2026 — G6 re-check (read only) and P7 prompt/checklist. Purpose: reassess the deployment gate and prepare the Stage 1/2 handoff. Kept: re-check note and P7 instructions/checklist. Verification: `Part2/notes/G6_recheck_20261028.md` and `Part2/codex/P7_CHECKLIST.md`; no new lecturer approval is inferred.
+
+## 28 October 2026 — P7 Stage 1 entry (Codex)
+
+Codex, 28/10/2026 — P7 Stage 1 entry and evidence collection. Prompt: execute the attached P7 Stage 1 instructions, preserve protected artifacts and produce no PDF. Kept: entry test output, checkpoint, and owner-fact record. Verification: clean branch `part2` at `97574bd4a6834978978e0b6bdb16ca7c6a642d52`, empty runtime diff against `252ada1`, and 928 tests passed (`Part2/notes/P7/entry_pytest.txt`). Report editions and release are not yet verified. Conversation and prompt are retained in the Codex session and attachment.
+
+## 28 October 2026 — P7 Stage 1 continuation (Codex)
+
+Codex, 28/10/2026 — continued Stage 1 after Dat updated the A7 stop rule and authorized resume. Source map table rows removed; 595 unique referenced PNGs opened successfully, with placement and readability still unverified. Extracted 30 postcondition/minimal-guarantee rows and reconciled their named test nodes against the 928-case P5 JUnit file; captured four ReportDAO queries on a fresh demo database; drafted sections 4.3.4, 4.3.6, 5.1 and 5.3. Evidence and remaining work: `Part2/notes/P7/progress.json`, `image_inventory.json`, `sql_sample_results.json`, and `docs/part2/test_report/p7_2026-10-28/test_cases.csv`. No PDF, release, push or tag produced; report editions and visual/parity checks remain unfinished. Full prompt and output are retained in the Codex session.
