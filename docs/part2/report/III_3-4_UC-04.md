@@ -2,7 +2,7 @@
 
 Author: 722I0004 · AI-assisted (Codex)
 
-Baseline: 45ac76221b0a103174c7c01d17577e6e49cfd665. All application observations below are Static from the frozen AST inventory and shared model. Target behavior marked † is not a test or runtime result.
+The design was recorded as a target at C0 (`45ac762`); P4 resolution records 5 UC-04 entries, with their scoped evidence and limitations in the P4 status appendix. The † symbol in a diagram refers to the historical C0 target, not a current implementation verdict.
 
 ## 3.4.1 Design Classes in Detailed Design
 

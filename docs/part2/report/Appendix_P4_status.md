@@ -4,7 +4,24 @@ Author: 722I0004 · AI-assisted (Codex)
 
 The design models were fixed at C0 (`45ac762`) as targets. The table below retains each row of the P4 resolution register and distinguishes scoped behavior evidence from the explicit architecture policy. The associated tests cover the recorded implementation or subphase; they do not individually establish every aspect of a class or dependency. Detailed node names and limitations remain in `docs/part2/implementation/p4_design_resolution.csv`.
 
-The 109 scoped runtime/static rows have named test nodes matched to passing cases in the 27 October JUnit report at `252ada1`. The 12 dependency-policy rows cite the exact policy and the 38 policy tests; these establish the stated policy checks and are not presented as independent behavioral tests. The suite has 928 passing cases.
+The 109 scoped runtime/static rows have named test nodes matched to passing cases in the 27 October JUnit report at `252ada1`. The 12 dependency-policy rows cite the exact policy and the 38 static tests in `tests/test_p4_dependency_policy.py`; these establish the stated static policy checks and are not presented as runtime behavior tests. The suite has 928 passing cases.
+
+## Summary by use case
+
+The counts below partition the 121 register rows by their recorded UC field; shared/supporting entries are shown separately and must not be counted a second time.
+
+| Register group | Rows | Scoped runtime/static evidence | Static dependency-policy evidence |
+|---|---:|---:|---:|
+| UC-01 | 17 | 17 | 0 |
+| UC-02 | 5 | 5 | 0 |
+| UC-03 | 4 | 4 | 0 |
+| UC-04 | 5 | 5 | 0 |
+| UC-05 | 12 | 12 | 0 |
+| UC-06 | 21 | 21 | 0 |
+| shared / supporting | 57 | 45 | 12 |
+| Total | 121 | 109 | 12 |
+
+## Detailed resolution
 
 | Source row | Use case | Design element | Original state | P4 phase | Final recorded disposition | Evidence | Remaining limitations |
 |---|---|---|---|---|---|---|---|

@@ -2,6 +2,8 @@
 
 Author: 722I0004 · AI-assisted (Codex)
 
+The design was recorded as a target at C0 (`45ac762`); P4 resolution records 21 UC-06 entries, with their scoped evidence and limitations in the P4 status appendix. The † symbol in a diagram refers to the historical C0 target, not a current implementation verdict.
+
 ### 3.6.1 Design Classes in Detailed Design
 
 <!-- include: ../UC-06/design_classes.md -->

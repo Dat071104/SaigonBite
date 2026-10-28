@@ -2,7 +2,7 @@
 
 Author: 722I0004 · AI-assisted (Codex)
 
-This package is a target design at committed C0 `45ac76221b0a103174c7c01d17577e6e49cfd665`. Read it with the frozen UC description/SSD/state views. It makes no runtime or implementation claim for † behavior.
+The design was recorded as a target at C0 (`45ac762`); P4 resolution records 17 UC-01 entries, with their scoped evidence and limitations in the P4 status appendix. The † symbol in a diagram refers to the historical C0 target, not a current implementation verdict.
 
 ## 3.1.1 Design Classes in Detailed Design
 
