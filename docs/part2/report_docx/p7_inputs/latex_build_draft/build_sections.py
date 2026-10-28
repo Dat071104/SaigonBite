@@ -21,7 +21,10 @@ def formatted(s):
  for part in parts:
   m=re.fullmatch(r'\{\{(Link[A-Za-z]+|PAGEREF:([^}]+))\}\}',part)
   if m:out.append(r'\pageref{'+m.group(2)+'}' if m.group(2) else '\\'+m.group(1))
-  else:out.append(safe(part))
+  else:
+   part=part.replace('OWNER-PENDING', 'owner action outstanding')
+   segments=re.split(r'(?<![A-Za-z0-9_.])PENDING(?![A-Za-z0-9_])',part)
+   out.append((r'\texttt{PENDING}').join(safe(segment) for segment in segments))
  return ''.join(out)
 def inline(tok):
  out=[]; children=tok.children or []; link_stack=[]
@@ -118,7 +121,11 @@ for idx,row in enumerate(rows,1):
  heading=row['heading'];source=repo/row['source file'] if row['source file'].startswith('docs/') else None
  # Template UC placeholders are intentionally populated from the authorized source title.
  if source and ('[Name]' in heading or '[Actor ' in heading):
-  first=source.read_text(encoding='utf-8-sig').splitlines()[0];heading=re.sub(r'^#+\s*','',first).strip()
+  lines=source.read_text(encoding='utf-8-sig').splitlines()
+  number=re.match(r'^[0-9]+(?:\.[0-9]+)+', heading).group()
+  matches=[line for line in lines if re.match(r'^#+\s+'+re.escape(number)+r'(?:\s|$)',line)]
+  if len(matches)!=1:raise ValueError('Expected one source heading for '+heading+': '+str(matches))
+  heading=re.sub(r'^#+\s*','',matches[0]).strip()
  style=styled.get(row['heading']);renderheading=formatted(heading);block=''
  if style:
   level={'Heading 1':'section','Heading 2':'subsection','Heading 3':'subsubsection'}.get(style,'paragraph');block='\\'+level+'*{'+renderheading+'}\n'+r'\addcontentsline{toc}{'+level+'}{'+renderheading+'}\n'+r'\pdfbookmark['+str({'Heading 1':0,'Heading 2':1,'Heading 3':2}.get(style,2))+']{'+renderheading+'}{p7h'+str(idx)+'}\n'

@@ -10,7 +10,7 @@ UC01-PC01 & one PLACED order owned by the customer & Figure 2.3A confirmCheckout
 UC01-PC02 & lines with snapshot names/prices & Figure 2.3A creation stores immutable line name/price snapshots. \\
 UC01-PC03 & address snapshot + distance & Figure 2.3A creation stores address snapshot and checked distance. \\
 UC01-PC04 & S/D/F/Q/T stored and consistent & Figure 2.3A creation stores consented S/D/F/Q/T with BR-09 identity. \\
-UC01-PC05 & payment PENDING (COD) or PAID (ONLINE, amount C) & Figures 2.4A/B initial creation: COD PENDING or ONLINE PAID, C=T. \\
+UC01-PC05 & payment \texttt{PENDING} (COD) or PAID (ONLINE, amount C) & Figures 2.4A/B initial creation: COD \texttt{PENDING} or ONLINE PAID, C=T. \\
 UC01-PC06 & hub load +1 & Figure 2.3A PLACED enters the BR-01 cooking-load set (+1). \\
 UC01-MG01 & refused/declined/invalid \ensuremath{\rightarrow} no order, no payment, no line & Figures 2.3A/2.4: no creation transition on invalid/refused/declined/rollback, including commit failure. \\
 UC01-MG02 & replay \ensuremath{\rightarrow} same single order & Figure 2.3A: replay returns the retained token-owned Order, no second creation. \\
@@ -42,7 +42,7 @@ UC01-PC01 & one PLACED order owned by the customer & confirmCheckout inserts one
 UC01-PC02 & lines with snapshot names/prices & confirmCheckout inserts OrderLine snapshot name/price/quantity. \\
 UC01-PC03 & address snapshot + distance & confirmCheckout stores address snapshot and checked distance. \\
 UC01-PC04 & S/D/F/Q/T stored and consistent & confirmCheckout stores the agreed S/D/F/Q/T; BR-09 total identity. \\
-UC01-PC05 & payment PENDING (COD) or PAID (ONLINE, amount C) & confirmCheckout creates exactly one COD PENDING or ONLINE PAID payment; see Figure 2.4. \\
+UC01-PC05 & payment \texttt{PENDING} (COD) or PAID (ONLINE, amount C) & confirmCheckout creates exactly one COD \texttt{PENDING} or ONLINE PAID payment; see Figure 2.4. \\
 UC01-PC06 & hub load +1 & PLACED enters the BR-01 load set; capacity is rechecked in the write transaction. \\
 UC01-MG01 & refused/declined/invalid \ensuremath{\rightarrow} no order, no payment, no line & Failed checkout guard or declined simulator outcome has no creation transition and saves no Order/Payment/OrderLine. \\
 UC01-MG02 & replay \ensuremath{\rightarrow} same single order & Replay returns the existing token-owned Order; it never fires the creation transition twice. \\
@@ -83,7 +83,7 @@ PC/MG anchor / supporting rule & Transition / retained fact / refusal invariant 
 PC/MG anchor / supporting rule & Transition / retained fact / refusal invariant \\
 \hline\endhead
 BR-15; BR-17 (SUC-04; no dedicated cancellation anchor in the main-UC P2.3 register) & cancelOrder from own PLACED or CONFIRMED reaches CANCELLED; withdraws an open offer; sets closed\_at and COD VOIDED / ONLINE REFUND\_PENDING with owed=C. No cancellation transition exists from PREPARING or later. \\
-UC01-PC01 / UC01-PC05 (creation-boundary provenance) & Cancellation retains the original Order identity and Payment row; it changes their lifecycle facts. These checkout PCs describe the earlier checkout boundary, not a claim that a cancelled Order remains PLACED/PENDING. \\
+UC01-PC01 / UC01-PC05 (creation-boundary provenance) & Cancellation retains the original Order identity and Payment row; it changes their lifecycle facts. These checkout PCs describe the earlier checkout boundary, not a claim that a cancelled Order remains PLACED/\texttt{PENDING}. \\
 \end{longtable}
 \begin{landscape}
 \begin{figure}[p]
@@ -140,10 +140,10 @@ PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal i
 \hline\endfirsthead
 PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
 \hline\endhead
-UC01-PC05 & payment PENDING (COD) or PAID (ONLINE, amount C) & Accepted COD checkout inserts PENDING with amount=T; valid replacement updates amount to new T without another state. \\
+UC01-PC05 & payment \texttt{PENDING} (COD) or PAID (ONLINE, amount C) & Accepted COD checkout inserts \texttt{PENDING} with amount=T; valid replacement updates amount to new T without another state. \\
 UC01-MG01 & refused/declined/invalid \ensuremath{\rightarrow} no order, no payment, no line & A refused checkout has no initial Payment creation transition. \\
-UC02-PC02 & delivered: Delivery DELIVERED, order DELIVERED, COD PAID with cash = T & confirmDelivered with exact cash=T changes PENDING \ensuremath{\rightarrow} PAID and records cash\_collected. \\
-UC02-PC03 & failed: Delivery FAILED + reason, order DELIVERY\_FAILED, BR-17 & Valid failed delivery changes PENDING \ensuremath{\rightarrow} VOIDED under BR-17. \\
+UC02-PC02 & delivered: Delivery DELIVERED, order DELIVERED, COD PAID with cash = T & confirmDelivered with exact cash=T changes \texttt{PENDING} \ensuremath{\rightarrow} PAID and records cash\_collected. \\
+UC02-PC03 & failed: Delivery FAILED + reason, order DELIVERY\_FAILED, BR-17 & Valid failed delivery changes \texttt{PENDING} \ensuremath{\rightarrow} VOIDED under BR-17. \\
 \end{longtable}
 \begin{landscape}
 \begin{figure}[p]
@@ -159,7 +159,7 @@ PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal i
 \hline\endfirsthead
 PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
 \hline\endhead
-UC01-PC05 & payment PENDING (COD) or PAID (ONLINE, amount C) & Approved ONLINE checkout saves PAID and amount=C (captured), refund\_amount=0. \\
+UC01-PC05 & payment \texttt{PENDING} (COD) or PAID (ONLINE, amount C) & Approved ONLINE checkout saves PAID and amount=C (captured), refund\_amount=0. \\
 UC01-MG01 & refused/declined/invalid \ensuremath{\rightarrow} no order, no payment, no line & A decline creates no Payment row; there is no persisted FAILED attempt state. \\
 UC05-PC04 & accepted offer applied per \S{}3.3 5--7 & Valid accepted replacement is a PAID self-transition: C unchanged; refund\_amount=C\ensuremath{-}T\_new owed. \\
 UC05-PC02 & reject: REJECTED + reason + BR-17 + offer WITHDRAWN & Rejection moves PAID \ensuremath{\rightarrow} REFUND\_PENDING and overwrites refund\_amount with full C. \\

@@ -20,7 +20,7 @@ ID & Capability & Primary actor \\
 \hline\endfirsthead
 ID & Capability & Primary actor \\
 \hline\endhead
-UC-01 & PC01 one PLACED order owned by the customer; PC02 lines with snapshot names/prices; PC03 address snapshot + distance; PC04 S/D/F/Q/T stored and consistent; PC05 payment PENDING (COD) or PAID (ONLINE, amount C); PC06 hub load +1 & Customer \\
+UC-01 & PC01 one PLACED order owned by the customer; PC02 lines with snapshot names/prices; PC03 address snapshot + distance; PC04 S/D/F/Q/T stored and consistent; PC05 payment \texttt{PENDING} (COD) or PAID (ONLINE, amount C); PC06 hub load +1 & Customer \\
 UC-02 & PC01 one shipper assigned, Delivery PICKED\_UP, order OUT\_FOR\_DELIVERY; PC02 delivered: Delivery DELIVERED, order DELIVERED, COD PAID with cash = T; PC03 failed: Delivery FAILED + reason, order DELIVERY\_FAILED, BR-17 & Shipper \\
 UC-03 & PC01 hub created/updated with valid code, coordinates, fee, capacity; PC02 archived hub hidden from browse/checkout, visible in history/reports & Admin \\
 UC-04 & PC01 sales, workload, performance equal the hand oracle for the filter; PC02 n/a on empty denominators & Manager \\

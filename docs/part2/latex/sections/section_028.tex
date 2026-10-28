@@ -25,7 +25,7 @@ Shipper needs a fair atomic claim, minimum necessary contact details and exact c
 
 \textbf{Pre-conditions}
 
-Every request rechecks the authenticated active SHIPPER context (BR-25); identity comes from the session. Pickup requires Order READY and its single unassigned Delivery AWAITING\_PICKUP. Any active shipper can claim any READY order, including while holding other deliveries; there is no one-active-delivery cap. Finish requires the same Order OUT\_FOR\_DELIVERY, Delivery PICKED\_UP and the authenticated shipper assigned to it. Order retains S/D/F/Q/T, address snapshot and Payment; COD is PENDING and due T; ONLINE is already PAID with captured amount C. A prior accepted replacement may leave a partial refund owed while ONLINE remains PAID.
+Every request rechecks the authenticated active SHIPPER context (BR-25); identity comes from the session. Pickup requires Order READY and its single unassigned Delivery AWAITING\_PICKUP. Any active shipper can claim any READY order, including while holding other deliveries; there is no one-active-delivery cap. Finish requires the same Order OUT\_FOR\_DELIVERY, Delivery PICKED\_UP and the authenticated shipper assigned to it. Order retains S/D/F/Q/T, address snapshot and Payment; COD is \texttt{PENDING} and due T; ONLINE is already PAID with captured amount C. A prior accepted replacement may leave a partial refund owed while ONLINE remains PAID.
 
 \textbf{Post-conditions}
 
@@ -54,7 +54,7 @@ Actor & System \\
 2. Select an order: \texttt{viewDelivery(orderId)}. & Recheck visibility; return \texttt{deliveryContactSnapshotAndCashDue}, with permitted contact, address snapshot, status and cash due T for COD or zero for ONLINE; never passport. \\
 3. Pick up the ready order: \texttt{takeDelivery(orderId)}. & Atomically recheck active shipper, READY, unassigned AWAITING\_PICKUP and win the claim; assign exactly this shipper, record picked\_up\_at, set PICKED\_UP / OUT\_FOR\_DELIVERY; return \texttt{assignedDelivery} (UC02-PC01). \\
 4. Travel to the stored destination and hand over the food. When resuming, use \texttt{viewReadyDeliveries()} and \texttt{viewDelivery(orderId)} as steps 1--2 to find and inspect an own PICKED\_UP delivery; do not claim it again. & Preserve the committed assignment across requests; show the same snapshot and current payment summary. \\
-5. Choose successful delivery; collect exactly T VND for COD and send \texttt{confirmDelivered(orderId, cashCollected=T)}. & Recheck active assigned shipper, live states and exact cash. Atomically set Delivery/Order DELIVERED, COD PENDING\ensuremath{\rightarrow}PAID, cash\_collected=T and finished\_at/closed\_at; return \texttt{deliveredOrderAndPayment} (UC02-PC02). \\
+5. Choose successful delivery; collect exactly T VND for COD and send \texttt{confirmDelivered(orderId, cashCollected=T)}. & Recheck active assigned shipper, live states and exact cash. Atomically set Delivery/Order DELIVERED, COD \texttt{PENDING}\ensuremath{\rightarrow}PAID, cash\_collected=T and finished\_at/closed\_at; return \texttt{deliveredOrderAndPayment} (UC02-PC02). \\
 6. Read the delivery outcome. & Show recorded cash/payment/refund obligation; end successfully. No second charge or refund payout occurs. \\
 \end{longtable}
 Alternatives (branch and continuation are explicit):

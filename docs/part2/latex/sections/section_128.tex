@@ -31,7 +31,7 @@ DAO details are expanded from the AST inventory, not executed. The full per-oper
 
 \textbf{UC-01 --- confirmCheckout (\texttt{OP-01})}
 
-A new token revalidates the owner/address, active hub and catalogue, current load/capacity, quantities, voucher and raw distance inside the write transaction. \texttt{Quote.fingerprint(payment.method, payment.option)} takes the pure-domain enums carried by the real \texttt{PaymentChoice} fields. Both full fingerprint and T must match consent (F-07); the F-04 radius/fee decision uses raw distance. An own-token replay returns the existing order without authorization, repricing or insertion; a foreign token is refused without disclosure. ONLINE decline saves zero Order/Line/Payment rows. Successful checkout inserts one order header, its N snapshots and one payment; it does not simulate a conditional state UPDATE. COD is PENDING, ONLINE is PAID with C=T. P2-S05 releases authorization on every later failure through COMMIT. UC01-PC01\ldots{}PC06 and MG01\ldots{}MG03 are the contract anchors.
+A new token revalidates the owner/address, active hub and catalogue, current load/capacity, quantities, voucher and raw distance inside the write transaction. \texttt{Quote.fingerprint(payment.method, payment.option)} takes the pure-domain enums carried by the real \texttt{PaymentChoice} fields. Both full fingerprint and T must match consent (F-07); the F-04 radius/fee decision uses raw distance. An own-token replay returns the existing order without authorization, repricing or insertion; a foreign token is refused without disclosure. ONLINE decline saves zero Order/Line/Payment rows. Successful checkout inserts one order header, its N snapshots and one payment; it does not simulate a conditional state UPDATE. COD is \texttt{PENDING}, ONLINE is PAID with C=T. P2-S05 releases authorization on every later failure through COMMIT. UC01-PC01\ldots{}PC06 and MG01\ldots{}MG03 are the contract anchors.
 
 SSD parameters: \texttt{hubId, addressId, lines(itemId, quantity), voucherCode?, paymentMethod, onlineOption?, simulatorOutcome?, quoteFingerprint, quotedTotal, checkoutToken}. Occurrence: \texttt{models/UC-01/ssd\_uc01\_PartB.drawio\#01S-M04}.
 
@@ -127,7 +127,7 @@ SSD parameters: \texttt{orderId}. Occurrence: \texttt{models/UC-02/ssd\_uc02\_Pa
 \end{landscape}
 \textbf{UC-02 --- confirmDelivered (\texttt{OP-11})}
 
-Only the assigned shipper may finish a PICKED\_UP delivery paired with an OUT\_FOR\_DELIVERY order. COD cash must equal T; the PENDING\ensuremath{\rightarrow}PAID update is conditional and checked. ONLINE accepts no cash and preserves captured C and any partial refund owed. DeliveryDAO.finish checks order\_id, assigned shipper\_id and PICKED\_UP. The paired order update, finish and any COD write commit together; a zero result on any one reverses prior writes.
+Only the assigned shipper may finish a PICKED\_UP delivery paired with an OUT\_FOR\_DELIVERY order. COD cash must equal T; the \texttt{PENDING}\ensuremath{\rightarrow}PAID update is conditional and checked. ONLINE accepts no cash and preserves captured C and any partial refund owed. DeliveryDAO.finish checks order\_id, assigned shipper\_id and PICKED\_UP. The paired order update, finish and any COD write commit together; a zero result on any one reverses prior writes.
 
 SSD parameters: \texttt{orderId, cashCollected?}. Occurrence: \texttt{models/UC-02/ssd\_uc02\_PartB.drawio\#M04}.
 

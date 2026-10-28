@@ -7,7 +7,7 @@ Anchor & Transition / stored fact / refusal invariant \\
 Anchor & Transition / stored fact / refusal invariant \\
 \hline\endhead
 UC02-PC01 & \texttt{takeDelivery}: AWAITING\_PICKUP\ensuremath{\rightarrow}PICKED\_UP; one assigned active shipper and picked\_up\_at; paired Order READY\ensuremath{\rightarrow}OUT\_FOR\_DELIVERY (2.5A/2.3D). \\
-UC02-PC02 & \texttt{confirmDelivered}: PICKED\_UP\ensuremath{\rightarrow}DELIVERED and Order OUT\_FOR\_DELIVERY\ensuremath{\rightarrow}DELIVERED; finished\_at/closed\_at; COD PENDING\ensuremath{\rightarrow}PAID with cash\_collected=T. ONLINE PAID/C/partial owed retained (2.5B/2.3E/2.4A--B). \\
+UC02-PC02 & \texttt{confirmDelivered}: PICKED\_UP\ensuremath{\rightarrow}DELIVERED and Order OUT\_FOR\_DELIVERY\ensuremath{\rightarrow}DELIVERED; finished\_at/closed\_at; COD \texttt{PENDING}\ensuremath{\rightarrow}PAID with cash\_collected=T. ONLINE PAID/C/partial owed retained (2.5B/2.3E/2.4A--B). \\
 UC02-PC03 & \texttt{reportFailure}: PICKED\_UP\ensuremath{\rightarrow}FAILED with failure\_reason/finished\_at; paired DELIVERY\_FAILED/closed\_at; COD VOIDED or ONLINE REFUND\_PENDING and full owed=C replacing partial (same figures). \\
 UC02-MG01 & Invalid/lost claim, wrong assigned shipper, cash mismatch, repeat or failed atomic save has no transition and changes zero rows. Earlier committed facts remain. \\
 \end{longtable}

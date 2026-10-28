@@ -1,0 +1,148 @@
+{
+  "phase": "P7 Stage 1",
+  "status": "B7_STATIC_PASS_DOCX_NEXT",
+  "entry_head": "97574bd4a6834978978e0b6bdb16ca7c6a642d52",
+  "branch": "part2",
+  "entry_clean": true,
+  "runtime_diff_252ada1": "empty",
+  "entry_pytest": "928 passed in 61.52s; Part2/notes/P7/entry_pytest.txt",
+  "owner_facts": "Part2/notes/P7/owner_facts.md",
+  "next": "Chunk 5: fill template copy, structural checks and parity; no PDF",
+  "tag_links": "v0.9-part2 links resolve only after Stage 2 push",
+  "stage2": "NOT STARTED",
+  "pdf": "NOT PRODUCED",
+  "completed": [
+    "A1 entry checks from prior turn",
+    "F1-F5 owner facts recorded",
+    "F2 correction applied to owner_facts, decision_log, report 1.1 and 1.4.2",
+    "F2 meaning-lock files written",
+    "B2 parser fixed by Claude Opus 5.5 on 28/10 (III_3-3/III_3-6 use #### for roman sub-items; regex now #{3,4} with level-aware end); source_map.csv written, 150 rows, 0 inverted ranges",
+    "B2 source-map removal of table 1 row, file/range checks: 0 errors",
+    "Removed remaining five Table 1 grading rows from B2 map: 144 heading entries",
+    "B2 source map: removed six grading-table rows; file/range checks passed",
+    "B3 discovery: 595 unique existing report PNGs verified open; manifest draft only",
+    "B5 drafts: 4.3.4 SQL, 4.3.6 integration, 5.1 tests, 5.3 demo",
+    "Applied 28/10 9.0 pt decision to candidate issue record: 53/53 prior flags pass at 230 mm",
+    "Reconciled hash-matched P2/P3 visual records for 403 of 595 candidates; remaining candidates are not necessarily report selections",
+    "Added counts for all six UCs and shared/supporting in 121-row status appendix; 12 policy rows described as static test evidence",
+    "Updated six UC design introductions and three subsystem element statuses using P4 evidence",
+    "Dat resolved panorama conflict: team PartA exception, complete team parts in appendices, UC diagrams referenced by page, aliases excluded",
+    "Selected 604 distinct source PNGs, 607 placements, 8 alias metadata records; opened 201 without hash-matched receipt in contact sheets, plus 10 simulated placements",
+    "Generated status-refresh includes and linked six UC report sections; Table P4-1 and P4 appendix retain 121-row evidence, policy entries are static",
+    "WIP commit 9f7d945; B3 readability exceptions remain, not a pass",
+    "Chunk 2 drafts: 4.3.5 has 16 source-exact excerpts across six UCs; 5.2 reviewer path; appendices 4–5; references; ES and Conclusions from 18-entry claim ledger",
+    "5.1 includes 30 PC/MG rows with date, environment, commit and representative named nodes; source CSV retains full node lists",
+    "Corrected P5 evidence wording to seven scenarios plus CSRF; corrected stale L3 and owner markers across canonical sources; identifier meaning-lock has no missing identifiers",
+    "Verified 16/16 code excerpts, 30 test rows, 607 figure placements with only three allowed duplicate PartA PNGs and eight alias records",
+    "Readability exceptions: 12 model placements and 123 screenshots estimate under 9pt; samples viewed without compiling or producing a PDF",
+    "Chunk 2 commit eb3930f and status wording follow-up cfbd685",
+    "B6 meaning-lock baselines recorded for 40 canonical sources; ten core sources reviewed with no missing numeric tokens or IDs",
+    "Corrected additional stale L1-L6 prose, added glossary and replaced only stale role paragraph in README",
+    "Refreshed 60 III section ranges; all 144 source-map ranges validate",
+    "Optimized screenshot placement boxes; 122 estimated below 9pt remain (12 model and 110 screenshot); ten new simulated page samples opened",
+    "WIP commit 551c8ee preserves partial B6 and placement refinement",
+    "B6 prose review expanded to 14/40 sources; initial analysis and requirement sections now distinguish C0 gaps from later P4 evidence and corrected Part 1 review status",
+    "WIP dc8e098 records analysis clarification and corrected source-map ranges",
+    "Reviewed all six UC analysis prose and CRUD narrative: no missing numbers or identifiers; clarified historical P4 inputs",
+    "Repaired broken status-replacement grammar in six III sources; full III prose still pending",
+    "WIP commit 8b1860b: B6 prose progress 21/40",
+    "Reviewed five appendix texts, references, SQL and code excerpt prose; checked both integrity prequeries returned 0 on the recorded fresh DB",
+    "Added 17 state-machine and 6 CRC body page-reference rows to appendix tables; PAGEREF fields await builders",
+    "WIP commit 6896949: prose review 29/40, remaining 11 III/IV sources",
+    "Reviewed prose in all 40 canonical sources; checked identifier/numeric meaning locks, while tables/includes and workflow-note cleanup remain",
+    "Removed exact duplicate UC-01/UC-05 paragraphs; clarified C0 design findings versus P4 evidence; limited UI browser claim to selected screens",
+    "Verified all 8 deployment performance table rows against P6 JSON (20 samples per page); claim ledger extended to 22 records",
+    "WIP commit b6a5283 records partial B6; B6 and B3 still open",
+    "Verified 43 matched member statuses against exact elements in the 121-row P4 register; no mismatches; clarified each original source explanation as C0 rationale",
+    "Compared IDs in all 12 generated design/CRC include files with their protected source; no missing identifiers",
+    "Snapshotted all 40 reviewed meaning-lock JSON records into repository WIP commit cc26e4b",
+    "B6 prose pass: all 40 canonical sources reviewed and numeric/ID/state meaning-lock comparisons pass, including text relocated to evidence index",
+    "Core table audits: 30/30 PC/MG matches, 121/121 P4 elements, 43/43 member mappings, and no IDs lost from 12 generated includes",
+    "WIP chunk 3 commit 23096bb; figure exceptions remain separately open",
+    "Draft LaTeX: 144 source sections, main/preamble/link macros and standalone contribution/AI source; 607/607 manifest positions emitted",
+    "B7 ran twice: 150 input paths and 607 figures exist; 613 unique labels and 325 references resolve; environment/brace and basic special-character checks pass; heading coverage only, exact order not proven",
+    "B7 FAIL: legitimate PENDING state conflicts with literal sentinel rule; 122 figure placements under 9pt estimate. No compile/PDF.",
+    "WIP commit 7258f49 preserves draft and failure evidence",
+    "28/10 owner approved application PENDING states and readability exceptions; corrected three generated CRUD headings, B7 static checks PASS; no rendering or PDF"
+  ],
+  "caution": "B7 static PASS with owner-approved readability exceptions; actual layout remains unrendered. Tag links resolve after Stage 2 push.",
+  "resume_authorized": "Dat, 28/10/2026, after the two-attempt stop at B2",
+  "previous_stop": "B2 two failed attempts on heading regex; resolved",
+  "wip_commits": [
+    {
+      "commit": "f40374a",
+      "subject": "P7 WIP: owner facts and initial report sources",
+      "scope": "13 explicitly staged files; external owner facts and source map snapshotted under docs/part2/report_docx/p7_inputs"
+    },
+    {
+      "commit": "fc2b1da",
+      "subject": "P7 WIP: figure audit and status evidence index",
+      "scope": "partial chunk 1: candidate figure audit, source-image samples, P4 resolution evidence index; not final manifest or status refresh"
+    },
+    {
+      "commit": "539cf7a",
+      "subject": "P7 WIP: clarify P4 evidence and UC design history",
+      "scope": "partial chunk 1: status appendix, six UC introductions"
+    },
+    {
+      "commit": "855f847",
+      "subject": "P7 WIP: refresh subsystem status evidence",
+      "scope": "partial chunk 1: three subsystem elements"
+    },
+    {
+      "commit": "9f7d945",
+      "subject": "P7 WIP: chunk 1 manifest + status refresh",
+      "scope": "figure-selection draft, three appendices, P4 status sources; placement/readability exceptions remain"
+    },
+    {
+      "commit": "eb3930f",
+      "subject": "P7 WIP: chunk 2 report sections and claim ledger",
+      "scope": "new section drafts, evidence ledger, 30 test rows, corrected owner facts"
+    },
+    {
+      "commit": "cfbd685",
+      "subject": "P7 WIP: reconcile remaining design status wording",
+      "scope": "correct stale P4 future-tense wording"
+    },
+    {
+      "commit": "551c8ee",
+      "subject": "P7 WIP: prose review and figure placement refinement",
+      "scope": "partial B6 10/40 sources, owner facts, glossary, README, source map and screenshot fit"
+    },
+    {
+      "commit": "dc8e098",
+      "subject": "P7 WIP: clarify analysis history and review evidence",
+      "scope": "partial B6 prose on 14/40 sources; glossary and source map adjustment"
+    },
+    {
+      "commit": "8b1860b",
+      "subject": "P7 WIP: review use case analysis wording",
+      "scope": "partial B6: 21/40 prose sources; III wording repairs"
+    },
+    {
+      "commit": "6896949",
+      "subject": "P7 WIP: review appendices and SQL evidence",
+      "scope": "partial B6; appendix references and SQL precheck results"
+    },
+    {
+      "commit": "b6a5283",
+      "subject": "P7 WIP: review report prose against evidence",
+      "scope": "partial B6: 40/40 prose, open tables and workflow-note cleanup"
+    },
+    {
+      "commit": "cc26e4b",
+      "subject": "P7 WIP: preserve meaning locks and clarify C0 rationale",
+      "scope": "40 meaning-lock snapshots and 43 scoped table status rationale annotations"
+    },
+    {
+      "commit": "23096bb",
+      "subject": "P7 WIP: chunk 3 prose and meaning locks",
+      "scope": "B6 prose/meaning-lock closure with limitations; B3 not yet passed"
+    },
+    {
+      "commit": "7258f49",
+      "subject": "P7 WIP: LaTeX source draft and B7 findings",
+      "scope": "144 draft sections, source documents, static failure and build scripts"
+    }
+  ]
+}

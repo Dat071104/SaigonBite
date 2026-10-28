@@ -36,3 +36,20 @@ For screenshots, a simple estimate using the application’s 16-px default body 
 ## Placement refinement — 28 October 2026
 
 The previous screenshot widths were conservative. Allowing each screenshot to use the larger of a 170 x 250 mm portrait image box or a 230 x 180 mm landscape image box reduces the number with nominal 16-px body text estimated below 9 pt from 123 to 110. The 12 model placements estimated below 9 pt remain, so 122 figure placements are flagged in total. These are estimates; final Word/LaTeX margins, captions and rendered text are not verified.
+
+## Readability exceptions — owner decision 28 October 2026
+
+Screenshots are evidence images and are exempt from the 9 pt diagram threshold. Original PNGs use the largest selected box without downsampling; captions or surrounding text describe the evidence. Stage 2 checks final pages at 100% and 200%. The following 12 model placements remain at their maximum selected size without re-export; their captions identify the editable source. Estimates are not rendered-page measurements.
+
+- P7-0282: 7.886 pt; `models/UC-02/activity_uc02_PartA.drawio`
+- P7-0283: 7.886 pt; `models/UC-02/activity_uc02_PartB.drawio`
+- P7-0284: 7.886 pt; `models/UC-02/activity_uc02_PartC.drawio`
+- P7-0285: 7.886 pt; `models/UC-02/ssd_uc02_PartA.drawio`
+- P7-0286: 7.886 pt; `models/UC-02/ssd_uc02_PartB.drawio`
+- P7-0289: 7.886 pt; `models/UC-04/activity_uc04_PartA.drawio`
+- P7-0290: 7.886 pt; `models/UC-04/activity_uc04_PartB.drawio`
+- P7-0291: 7.886 pt; `models/UC-04/activity_uc04_PartC.drawio`
+- P7-0292: 7.886 pt; `models/UC-04/ssd_uc04.drawio`
+- P7-0514: 8.581 pt; `models/shared/stakeholder_chart.drawio`
+- A1.3: 7.83 pt; `models/shared/use_case_diagram_PartC.drawio`
+- A3.3: 6.96 pt; `models/shared/domain_model_PartC.drawio`
