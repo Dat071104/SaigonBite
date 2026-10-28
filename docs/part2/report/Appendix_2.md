@@ -87,3 +87,25 @@ Per-use-case figures are printed at full size in the body.
 | P7-0302 | Figure 2.21A. UC-06 — Brand system sequence diagram — Author: 722I0004 · AI-assisted (Codex) | UC-06 | 722I0004 | {{PAGEREF:P7-0302}} |
 | P7-0303 | Figure 2.21B. UC-06 — MenuItem system sequence diagram — Author: 722I0004 · AI-assisted (Codex) | UC-06 | 722I0004 | {{PAGEREF:P7-0303}} |
 | P7-0304 | Figure 2.21C. UC-06 — HubMenuItem system sequence diagram — Author: 722I0004 · AI-assisted (Codex) | UC-06 | 722I0004 | {{PAGEREF:P7-0304}} |
+
+State-machine figures are referenced at their owning use case; other use cases may refer to the same state machine.
+
+| Figure ID | Name | Use case | Author | Page |
+|---|---|---|---|---|
+| P7-0305 | Figure 2.3A. Order — creation and kitchen decision — Author: 722I0004 · AI-assisted (Codex) | UC-01 | 722I0004 | {{PAGEREF:P7-0305}} |
+| P7-0306 | Figure 2.3B. Order — replacement response — Author: 722I0004 · AI-assisted (Codex) | UC-01 | 722I0004 | {{PAGEREF:P7-0306}} |
+| P7-0307 | Figure 2.3C. Order — cancellation window — Author: 722I0004 · AI-assisted (Codex) | UC-01 | 722I0004 | {{PAGEREF:P7-0307}} |
+| P7-0308 | Figure 2.3D. Order — preparation and pickup — Author: 722I0004 · AI-assisted (Codex) | UC-01 | 722I0004 | {{PAGEREF:P7-0308}} |
+| P7-0309 | Figure 2.3E. Order — delivered or delivery failed — Author: 722I0004 · AI-assisted (Codex) | UC-01 | 722I0004 | {{PAGEREF:P7-0309}} |
+| P7-0310 | Figure 2.4A. Payment — COD — Author: 722I0004 · AI-assisted (Codex) | UC-01 | 722I0004 | {{PAGEREF:P7-0310}} |
+| P7-0311 | Figure 2.4B. Payment — ONLINE simulator — Author: 722I0004 · AI-assisted (Codex) | UC-01 | 722I0004 | {{PAGEREF:P7-0311}} |
+| P7-0312 | Figure 2.5A. Delivery — creation and atomic pickup — Author: 722I0004 · AI-assisted (Codex) | UC-02 | 722I0004 | {{PAGEREF:P7-0312}} |
+| P7-0313 | Figure 2.5B. Delivery — completion outcomes — Author: 722I0004 · AI-assisted (Codex) | UC-02 | 722I0004 | {{PAGEREF:P7-0313}} |
+| P7-0314 | Figure 2.6. Hub — maintenance and archive — Author: 722I0004 · AI-assisted (Codex) | UC-03 | 722I0004 | {{PAGEREF:P7-0314}} |
+| P7-0315 | Figure 2.7A. ReplacementOffer — offer and customer decision — Author: 722I0004 · AI-assisted (Codex) | UC-05 | 722I0004 | {{PAGEREF:P7-0315}} |
+| P7-0316 | Figure 2.7B. ReplacementOffer — withdrawal paths — Author: 722I0004 · AI-assisted (Codex) | UC-05 | 722I0004 | {{PAGEREF:P7-0316}} |
+| P7-0317 | Figure 2.8A. Brand — maintenance and archive — Author: 722I0004 · AI-assisted (Codex) | UC-06 | 722I0004 | {{PAGEREF:P7-0317}} |
+| P7-0318 | Figure 2.8B. MenuItem — maintenance and archive — Author: 722I0004 · AI-assisted (Codex) | UC-06 | 722I0004 | {{PAGEREF:P7-0318}} |
+| P7-0319 | Figure 2.8C. HubMenuItem — list and change availability — Author: 722I0004 · AI-assisted (Codex) | UC-06 | 722I0004 | {{PAGEREF:P7-0319}} |
+| P7-0320 | Figure 2.8D. HubMenuItem — unlist ends the listing — Author: 722I0004 · AI-assisted (Codex) | UC-06 | 722I0004 | {{PAGEREF:P7-0320}} |
+| P7-0321 | Figure 2.9. UserAccount — activation lifecycle — Author: 722I0004 · AI-assisted (Codex) | UC-03 | 722I0004 | {{PAGEREF:P7-0321}} |

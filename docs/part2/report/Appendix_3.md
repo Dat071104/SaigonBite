@@ -563,3 +563,14 @@ A3.71. 4.1BP Domain enumeration dependencies — Author: 722I0004 · AI-assisted
 | P7-0271 | Figure 3.6.5H. UC-06 final projection 8 — Author: 722I0004 · AI-assisted (Codex) | UC-06 | 722I0004 | {{PAGEREF:P7-0271}} |
 | P7-0272 | Figure 3.6.5I. UC-06 final projection 9 — Author: 722I0004 · AI-assisted (Codex) | UC-06 | 722I0004 | {{PAGEREF:P7-0272}} |
 | P7-0273 | Figure 3.6.5J. UC-06 final projection 10 — Author: 722I0004 · AI-assisted (Codex) | UC-06 | 722I0004 | {{PAGEREF:P7-0273}} |
+
+CRC cards are tables rather than PNG figures; each page reference points to the corresponding body subsection.
+
+| Reference ID | Name | Use case | Author | Page |
+|---|---|---|---|---|
+| CRC-UC-01 | CRC cards | UC-01 | 722I0004 | {{PAGEREF:CRC-UC-01}} |
+| CRC-UC-02 | CRC cards | UC-02 | 722I0004 | {{PAGEREF:CRC-UC-02}} |
+| CRC-UC-03 | CRC cards | UC-03 | 722I0004 | {{PAGEREF:CRC-UC-03}} |
+| CRC-UC-04 | CRC cards | UC-04 | 722I0004 | {{PAGEREF:CRC-UC-04}} |
+| CRC-UC-05 | CRC cards | UC-05 | 722I0004 | {{PAGEREF:CRC-UC-05}} |
+| CRC-UC-06 | CRC cards | UC-06 | 722I0004 | {{PAGEREF:CRC-UC-06}} |

@@ -47,6 +47,8 @@ SELECT COUNT(*) FROM orders o LEFT JOIN payment p ON p.order_id=o.id LEFT JOIN d
 SELECT h.id AS hub_id, h.name AS hub_name, COUNT(*) AS orders,        SUM(o.item_subtotal) AS item_sales, SUM(o.voucher_discount) AS voucher_discounts,        SUM(o.delivery_fee - o.quiet_discount) AS delivery_fees, SUM(o.total_amount) AS total,        SUM(p.refund_amount) AS refunds_owed FROM orders o JOIN delivery d ON d.order_id = o.id JOIN payment p ON p.order_id = o.id JOIN hub h ON h.id = o.hub_id WHERE o.state = 'DELIVERED' AND d.finished_at >= '2000-01-01' AND d.finished_at < '2100-01-01'   AND (NULL IS NULL OR o.hub_id = NULL) GROUP BY h.id, h.name ORDER BY h.id;
 ```
 
+The first statement is an integrity precheck; its result was `0`. The second statement returned the following rows.
+
 | hub_id | hub_name | orders | item_sales | voucher_discounts | delivery_fees | total | refunds_owed |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | SaigonBite District 1 Hub | 2 | 250000 | 13000 | 25000 | 262000 | 0 |
@@ -83,6 +85,8 @@ SELECT hub_id, state, COUNT(*) AS n FROM orders WHERE state IN ('PLACED', 'CONFI
 SELECT COUNT(*) FROM orders o LEFT JOIN payment p ON p.order_id=o.id LEFT JOIN delivery d ON d.order_id=o.id WHERE (o.state='DELIVERED' AND (p.id IS NULL OR d.id IS NULL OR d.state!='DELIVERED' OR d.finished_at IS NULL)) OR (o.state='DELIVERY_FAILED' AND (p.id IS NULL OR d.id IS NULL OR d.state!='FAILED' OR d.finished_at IS NULL));
 SELECT o.id AS order_id, o.hub_id, h.name AS hub_name, d.state, d.ready_at, d.picked_up_at,        d.finished_at, d.shipper_id, u.display_name AS shipper_name FROM delivery d JOIN orders o ON o.id = d.order_id JOIN hub h ON h.id = o.hub_id LEFT JOIN user_account u ON u.id = d.shipper_id WHERE d.state IN ('DELIVERED', 'FAILED') AND d.finished_at >= '2000-01-01' AND d.finished_at < '2100-01-01'   AND (NULL IS NULL OR o.hub_id = NULL) ORDER BY o.hub_id, d.finished_at;
 ```
+
+The first statement is an integrity precheck; its result was `0`. The second statement returned the following rows.
 
 | order_id | hub_id | hub_name | state | ready_at | picked_up_at | finished_at | shipper_id | shipper_name |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
