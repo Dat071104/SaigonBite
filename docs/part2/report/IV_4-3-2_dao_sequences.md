@@ -298,6 +298,6 @@ Other write operations use the same explicit success-END versus failure-handler 
 
 **Validation boundary and reproducibility**
 
-Each figure has an adjacent standalone Python generator and JSON metadata. The generator reads the sole reviewed shared model, refreshes call daggers from its explicit statuses, and refuses changed signatures until an explicit reviewed alias/lane refresh. It clears behavior-target daggers only after the operation and selected methods have explicit MATCH status; a matching name/signature alone never qualifies behavior. Re-run a figure with the bundled Python `-X utf8 -I <figure.py>`. No application module is imported.
+Figure-source and generator records are listed in the evidence index.
 
 All plates use a 1600 × 1250 landscape canvas placed at 230 mm, with 24 px minimum text (9.78 pt). Native XML font sizes/styles agree with the SVG; author labels exist in the editable sources. Own-file QA parses XML, resolves receiver members against the shared model, checks exact SSD identity, validates actual edge attachments and label bounds, and checks visible transaction/rowcount/busy labels. Every PNG and independently rasterized SVG is opened for visual inspection; physical A4 proofs and hash receipts are retained outside the repository in `Part2/notes/P3-F/`. Native draw.io editing and final DOCX/PDF placement remain UNTESTED.

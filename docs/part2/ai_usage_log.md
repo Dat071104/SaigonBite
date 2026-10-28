@@ -138,3 +138,7 @@ Codex captured meaning-lock baselines for 40 canonical sources, reviewed a subse
 ## 28 October 2026 — P7 report prose and evidence continuation (Codex)
 
 Codex reviewed the prose of 40 canonical sources against recorded numeric and identifier baselines, removed exact repeated paragraphs, clarified historical C0 design claims and corrected the stated scope of browser demonstrations. SQL precheck outputs and the eight deployment timing rows were checked against recorded evidence. The prose pass is not complete: protected includes, tables and workflow-note placement still need verification, and figure/page layout exceptions remain. Full prompts and outputs are retained in the Codex session and `Part2/notes/P7/`.
+
+## 28 October 2026 — P7 B6 prose closure (Codex)
+
+Codex reconciled the canonical prose with recorded owner facts and later P4 evidence, removed repeated text and redundant author lines while retaining per-UC and figure AI labels, and moved source-process details to an evidence index. Forty source meaning locks passed for numbers, IDs and states; selected P4 and UC tables were checked against their registers. Figure readability and final page references remain open for edition checks. Full prompts and outputs remain in the Codex session and P7 notes.

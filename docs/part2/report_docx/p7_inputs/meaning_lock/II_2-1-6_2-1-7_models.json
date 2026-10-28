@@ -81,8 +81,8 @@
     "### P4 inputs from the Static comparison"
   ],
   "meaning_lock_status": "PROSE REVIEWED; numeric/identifier tokens retained",
-  "sha256_after": "89f8a355c772c87763b89e0ef1169a86d2b29e3816cc3c0b6e87e00522c7e9ea",
+  "sha256_after": "112bf9b5456593e91267774a8c568074b8f5dd9ad5f0b8dff0dd0c33f9135df2",
   "missing_numbers": [],
   "missing_ids": [],
-  "review_notes": "Prose reviewed; where applicable historical C0 recommendations are identified as historical and refer to the later P4 resolution. Table content requires its own verification."
+  "review_notes": "Prose reviewed; where applicable historical C0 recommendations are identified as historical and refer to the later P4 resolution. Table content requires its own verification. Workflow-specific phrasing was simplified; the 4.2 model hash, where applicable, was moved to the evidence index. Original P2 comparison paths moved into the evidence index; meaning lock checked across both files. Simplified workflow wording and retained one identical author line per UC; figure AI labels retained."
 }

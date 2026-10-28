@@ -130,4 +130,4 @@ Figure 3.3.5E. UC-03 final projection 5 — Author: 722I0004 · AI-assisted (Cod
 
 The historical design target was not yet in code at C0 (see the operation-specific P4 input in the figure and `operation_realisation.csv`). Shared busy/commit/rowcount requirements are P2-S13/P3-S03 targets; no runtime correctness is asserted. Native draw.io editing and final DOCX/PDF placement remain UNTESTED.
 
-Integration maintenance (Author: 722I0004 · AI-assisted (Codex)): native draw.io text now has explicit actual font sizes and bold styles matching the SVG/PNG labels: 18 px minimum at 230 mm for DCDs and 23 px minimum at 170 mm for sequences. Native editing remains UNTESTED. The diagrams retain historical C0 target marks; Table P4-1 records subsequent status and scoped evidence.
+Diagram source format (Author: 722I0004 · AI-assisted (Codex)): native draw.io text now has explicit actual font sizes and bold styles matching the SVG/PNG labels: 18 px minimum at 230 mm for DCDs and 23 px minimum at 170 mm for sequences. Native editing remains UNTESTED. The diagrams retain historical C0 target marks; Table P4-1 records subsequent status and scoped evidence.

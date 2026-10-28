@@ -224,8 +224,8 @@
   "partial_review_notes": "Repaired broken status-annotation grammar. Full prose and included tables remain to be reviewed.",
   "partial_missing_numbers": [],
   "partial_missing_ids": [],
-  "sha256_after": "35d148c1a90d2452a4db68877f60a7e9d38e241fb81aff4b34e84e0919abb9c4",
+  "sha256_after": "22a8cce82dee2fb203d0dbbc384a2f7d9e2c43ef46589bbb258d933fa2063b42",
   "missing_numbers": [],
   "missing_ids": [],
-  "review_notes": "Reviewed section prose; design diagram evidence is distinguished from later test evidence. Tables and image content remain to be verified."
+  "review_notes": "Reviewed section prose; design diagram evidence is distinguished from later test evidence. Tables and image content remain to be verified. Workflow-specific phrasing was simplified; the 4.2 model hash, where applicable, was moved to the evidence index. Simplified workflow wording and retained one identical author line per UC; figure AI labels retained."
 }

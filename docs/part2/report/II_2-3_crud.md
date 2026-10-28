@@ -2,7 +2,7 @@
 
 Author: 722I0004 · AI-assisted (Codex)
 
-These five actor tables implement the locked portfolio under the narrow root reconciliations below. The plan is unchanged. Cells name observable UC/SUC paths, not generic database privileges. An intentional blank grants no operation. These are analysis contracts; the later P4 evidence for implemented behavior is recorded in Table P4-1 and Section 5.1.
+These five actor tables implement the locked portfolio under the narrow reconciliations below. The plan is unchanged. Cells name observable UC/SUC paths, not generic database privileges. An intentional blank grants no operation. These are analysis contracts; the later P4 evidence for implemented behavior is recorded in Table P4-1 and Section 5.1.
 
 Scope restrictions apply to every cell: Customer reads/changes own records only; Kitchen staff work only at their hub (BR-26); Shipper sees delivery contact and the saved address snapshot and payment method/state/cash due only (BR-12/25), never passport details; Admin reads authorized account/history data. UserAccount Read SUC-01 in each actor table means own authentication/role context only, with credential verification internal: it grants neither an account-list endpoint nor access to password hashes. Address UC-02 is the saved Order address snapshot, not permission to edit or browse live addresses.
 
@@ -250,7 +250,7 @@ Every original §2.4 qualified C/R/U/D cell is held by at least one actor above.
 | Additional cells against literal §2.4 | Read-only cells listed below; no new create/update/archive grants |
 | Persistent classes / schema tables | 13 / 13; mapping below |
 
-### Root dispositions for literal plan differences
+### Dispositions for literal plan differences
 
 | Discrepancy | Accepted conservative reconciliation |
 |---|---|

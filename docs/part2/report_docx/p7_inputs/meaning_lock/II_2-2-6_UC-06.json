@@ -46,8 +46,8 @@
     "### iv. State machine diagram for Use Case 6"
   ],
   "meaning_lock_status": "PROSE REVIEWED; numeric/identifier tokens retained",
-  "sha256_after": "d15f79ded45b9cbf92927ab2d95b012b09ada367dab1a3b5ef85853135d208a3",
+  "sha256_after": "45cb688d3d2031ea559e8c8dcb98760b682289574e760792948bcd186e552627",
   "missing_numbers": [],
   "missing_ids": [],
-  "review_notes": "Analysis prose reviewed; protected descriptions and state-machine includes require separate source and table verification."
+  "review_notes": "Analysis prose reviewed; protected descriptions and state-machine includes require separate source and table verification. Workflow-specific phrasing was simplified; the 4.2 model hash, where applicable, was moved to the evidence index. Simplified workflow wording and retained one identical author line per UC; figure AI labels retained."
 }

@@ -138,8 +138,8 @@
     "## 4.1 Design Classes for the Subsystem"
   ],
   "meaning_lock_status": "PROSE REVIEWED; numeric/identifier tokens retained",
-  "sha256_after": "b18ceec3365c563764a73c529e270dbd63c5dd49b0bdbfc8ce2c8f64aeeafbb5",
+  "sha256_after": "6aa11189e9875311d5b9c0feb985c7529479318509a19ef6793fd3ba97f82581",
   "missing_numbers": [],
   "missing_ids": [],
-  "review_notes": "Reviewed prose; clarified historic C0 versus P4 evidence and constrained browser-demonstration scope. Figma tokens resolve from links.json. Tables and figure images remain separate checks."
+  "review_notes": "Reviewed prose; clarified historic C0 versus P4 evidence and constrained browser-demonstration scope. Figma tokens resolve from links.json. Tables and figure images remain separate checks. Workflow-specific phrasing was simplified; the 4.2 model hash, where applicable, was moved to the evidence index. Simplified workflow wording and retained one identical author line per UC; figure AI labels retained."
 }

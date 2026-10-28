@@ -69,8 +69,8 @@
     "## Schema table coverage (Static)"
   ],
   "meaning_lock_status": "PROSE REVIEWED; numeric/identifier tokens retained",
-  "sha256_after": "ade495508e5131bb3a1852b140e2dab1078f8c36b1ca9f178662c82ea2ada3aa",
+  "sha256_after": "938f3b27d5944c928b4aa2b9b834f2b829227db00b68ecef283b06ec5e56ec78",
   "missing_numbers": [],
   "missing_ids": [],
-  "review_notes": "Analysis prose reviewed; protected descriptions and state-machine includes require separate source and table verification."
+  "review_notes": "Analysis prose reviewed; protected descriptions and state-machine includes require separate source and table verification. Workflow-specific phrasing was simplified; the 4.2 model hash, where applicable, was moved to the evidence index. Simplified workflow wording and retained one identical author line per UC; figure AI labels retained."
 }

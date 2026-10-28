@@ -1,0 +1,6 @@
+{
+  "uc_contracts": "30/30 PC/MG IDs and text matched in six protected UC descriptions against pc_mg_register.csv",
+  "p4_appendix": "121/121 source rows and element names matched the resolution CSV",
+  "status_members": "43/43 transformed class/member annotations map to matching resolution elements",
+  "limits": "ID and text/mapping checks do not verify all table assertions, pagination, or all test semantics."
+}
