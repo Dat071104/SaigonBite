@@ -1,215 +1,64 @@
-\subsubsection*{3.3.1 Design Classes in Detailed Design}
-\addcontentsline{toc}{subsubsection}{3.3.1 Design Classes in Detailed Design}
-\pdfbookmark[2]{3.3.1 Design Classes in Detailed Design}{p7h80}
-\textbf{UC-03 design classes}
+\subsubsection*{3.2.5 Final Design Class Diagram}
+\addcontentsline{toc}{subsubsection}{3.2.5 Final Design Class Diagram}
+\pdfbookmark[2]{3.2.5 Final Design Class Diagram}{p7h80}
+All message receivers in the five design sequences are present. Changes from 3.2.2: none in the class/method/association set; the final views repeat the operation-partitioned all-layer diagrams after sequence reconciliation.
 
-Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
+\begin{figure}[p]
+\centering
+\includegraphics[width=170mm,height=225mm,keepaspectratio]{\detokenize{models/UC-02/dcd_uc02_final_PartA.png}}
+\caption{Figure 3.2.5-A. UC-02 final design classes: Ready board authorization and retrieval --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0098}
+\end{figure}
+\begin{figure}[p]
+\centering
+\includegraphics[width=170mm,height=225mm,keepaspectratio]{\detokenize{models/UC-02/dcd_uc02_final_PartB.png}}
+\caption{Figure 3.2.5-B. UC-02 final design classes: Board row projection --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0099}
+\end{figure}
+\begin{figure}[p]
+\centering
+\includegraphics[width=170mm,height=225mm,keepaspectratio]{\detokenize{models/UC-02/dcd_uc02_final_PartC.png}}
+\caption{Figure 3.2.5-C. UC-02 final design classes: Inspect assignment and access --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0100}
+\end{figure}
+\begin{figure}[p]
+\centering
+\includegraphics[width=170mm,height=225mm,keepaspectratio]{\detokenize{models/UC-02/dcd_uc02_final_PartD.png}}
+\caption{Figure 3.2.5-D. UC-02 final design classes: Delivery contact projection --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0101}
+\end{figure}
+\begin{figure}[p]
+\centering
+\includegraphics[width=170mm,height=225mm,keepaspectratio]{\detokenize{models/UC-02/dcd_uc02_final_PartE.png}}
+\caption{Figure 3.2.5-E. UC-02 final design classes: Atomic pickup and paired Order transition --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0102}
+\end{figure}
+\begin{figure}[p]
+\centering
+\includegraphics[width=170mm,height=225mm,keepaspectratio]{\detokenize{models/UC-02/dcd_uc02_final_PartF.png}}
+\caption{Figure 3.2.5-F. UC-02 final design classes: Successful delivery and paired states --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0103}
+\end{figure}
+\begin{figure}[p]
+\centering
+\includegraphics[width=170mm,height=225mm,keepaspectratio]{\detokenize{models/UC-02/dcd_uc02_final_PartG.png}}
+\caption{Figure 3.2.5-G. UC-02 final design classes: Failure state and full refund obligation --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0104}
+\end{figure}
+\begin{figure}[p]
+\centering
+\includegraphics[width=170mm,height=225mm,keepaspectratio]{\detokenize{models/UC-02/dcd_uc02_final_PartH.png}}
+\caption{Figure 3.2.5-H. UC-02 final design classes: Completion contact and cash projection --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0105}
+\end{figure}
+\begin{figure}[p]
+\centering
+\includegraphics[width=170mm,height=225mm,keepaspectratio]{\detokenize{models/UC-02/dcd_uc02_final_PartI.png}}
+\caption{Figure 3.2.5-I. UC-02 final design classes: Contact and archived-hub projection --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0106}
+\end{figure}
+\begin{figure}[p]
+\centering
+\includegraphics[width=170mm,height=225mm,keepaspectratio]{\detokenize{models/UC-02/dcd_uc02_final_PartJ.png}}
+\caption{Figure 3.2.5-J. UC-02 final design classes: Completion contact projection --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0107}
+\end{figure}
+Every received sequence method appears on its actual receiver in the final DCD: blueprint routes, DeliveryController/BaseController helpers, controllers.common functions, domain move\_to/refund behavior and controller value roles. The operation-specific P4 targets describe C0 history; the final DCD does not imply those behaviors already passed at C0. Subsequent evidence is in Table P4-1.
 
-Source: \texttt{models/shared/design\_model.json}, C0 \texttt{45ac76221b0a103174c7c01d17577e6e49cfd665}. Evidence label: Static / target design. This table is a filtered projection; no application module was imported. \texttt{Any} and absent annotations are explicitly inferred. Python visibility follows leading underscores; dataclass fields are public. Constructors are implicit dataclass construction, not invented methods.
+\textbf{Integration repair evidence}
 
-design target, not yet in code at C0 (see P4 inputs P2-S13/P2-S14/P2-S15/P3-S02/P3-S03). MATCH means static correspondence, not executed success.
+The diagrams and typed metadata were refreshed against the corrected shared model. Allowed layered dependencies are drawn; the twelve retained dependency-policy entries are documented as static policy checks in report 4.2 and Table P4-1, not as runtime tests. P2-S13/P3-S03 identified C0 targets for guarded writes, commit failures and busy handling; their final scoped evidence is recorded in Table P4-1. Read paths remain read-only. Native draw.io XML and connected edge endpoints are structurally checked; native-app editing and final report placement remain UNTESTED.
 
-Templates: \texttt{admin/hubs.html}, \texttt{admin/hub\_form.html}, shared \texttt{error.html}. The \texttt{admin} role is the real Flask blueprint module, not a fictional view class.
+DeliveryController calls the Delivery and Payment domain receivers. The local variable delivery is resolved to Delivery; it is not an upward call to the delivery blueprint.
 
-Types retained as names from code include \texttt{Mapping}, \texttt{Optional}, \texttt{sqlite3.Connection} and business DTOs. A displayed attribute omitted from a narrow figure remains in this table. Association-backing foreign-key IDs remain below but are suppressed on domain DCDs.
-
-\textbf{admin}
-
-Layer: \textbf{view}; stereotype: \textbf{\guillemotleft{}view\guillemotright{}}; responsibility: Translate administrator maintenance routes; never provide business decisions. Source: \texttt{saigonbite/presentation/admin.py}.
-
-\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
-Element & Typed declaration & Status / qualification \\
-\hline\endfirsthead
-Element & Typed declaration & Status / qualification \\
-\hline\endhead
-Operation & \texttt{- \_hubs() -\textgreater{} HubController} & MATCH \\
-Operation & \texttt{+ hubs() -\textgreater{} Any [inferred] } & P4 scoped evidence (P4.2; resolution rows 62); C0 rationale: ; inferred annotation(s); P3-S02 \\
-Operation & \texttt{+ new\_hub() -\textgreater{} Any [inferred]} & MATCH; inferred annotation(s) \\
-Operation & \texttt{+ edit\_hub(hub\_id: int) -\textgreater{} Any [inferred]} & MATCH; inferred annotation(s) \\
-Operation & \texttt{+ archive\_hub(hub\_id: int) -\textgreater{} Any [inferred]} & MATCH; inferred annotation(s) \\
-\end{longtable}
-Route adapters (AST):
-
-\begin{itemize}
-\item \texttt{\{'blueprint\_variable': 'bp', 'blueprint': 'admin', 'rule': '/admin/', 'declared\_rule': '/', 'methods': ['GET'], 'view\_function': 'hubs', 'signature': 'hubs()', 'decorators': ["bp.get('/')", "bp.get('/hubs')", 'role\_required(Role.ADMIN)']\}}
-
-\item \texttt{\{'blueprint\_variable': 'bp', 'blueprint': 'admin', 'rule': '/admin/hubs', 'declared\_rule': '/hubs', 'methods': ['GET'], 'view\_function': 'hubs', 'signature': 'hubs()', 'decorators': ["bp.get('/')", "bp.get('/hubs')", 'role\_required(Role.ADMIN)']\}}
-
-\item \texttt{\{'blueprint\_variable': 'bp', 'blueprint': 'admin', 'rule': '/admin/hubs/new', 'declared\_rule': '/hubs/new', 'methods': ['GET', 'POST'], 'view\_function': 'new\_hub', 'signature': 'new\_hub()', 'decorators': ["bp.route('/hubs/new', methods=['GET', 'POST'])", 'role\_required(Role.ADMIN)']\}}
-
-\item \texttt{\{'blueprint\_variable': 'bp', 'blueprint': 'admin', 'rule': '/admin/hubs/\textless{}int:hub\_id\textgreater{}', 'declared\_rule': '/hubs/\textless{}int:hub\_id\textgreater{}', 'methods': ['GET', 'POST'], 'view\_function': 'edit\_hub', 'signature': 'edit\_hub(hub\_id: int)', 'decorators': ["bp.route('/hubs/\textless{}int:hub\_id\textgreater{}', methods=['GET', 'POST'])", 'role\_required(Role.ADMIN)']\}}
-
-\item \texttt{\{'blueprint\_variable': 'bp', 'blueprint': 'admin', 'rule': '/admin/hubs/\textless{}int:hub\_id\textgreater{}/archive', 'declared\_rule': '/hubs/\textless{}int:hub\_id\textgreater{}/archive', 'methods': ['POST'], 'view\_function': 'archive\_hub', 'signature': 'archive\_hub(hub\_id: int)', 'decorators': ["bp.post('/hubs/\textless{}int:hub\_id\textgreater{}/archive')", 'role\_required(Role.ADMIN)']\}}
-
-\end{itemize}
-\textbf{HubController}
-
-Layer: \textbf{controller}; stereotype: \textbf{\guillemotleft{}controller\guillemotright{}}; responsibility: Coordinate authorization, domain decisions and data access. Source: \texttt{saigonbite/business/controllers/hub\_controller.py}.
-
-\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
-Element & Typed declaration & Status / qualification \\
-\hline\endfirsthead
-Element & Typed declaration & Status / qualification \\
-\hline\endhead
-Attribute & \texttt{+ hubs: HubDAO} & MATCH; inferred \\
-Operation & \texttt{+ list\_hubs(user\_id: int, include\_archived: bool = True) -\textgreater{} list[HubAdminView] } & P4 scoped evidence (P4.2; resolution rows 28); C0 rationale: ; P3-S02 \\
-Operation & \texttt{+ get\_hub(user\_id: int, hub\_id: int) -\textgreater{} HubAdminView} & MATCH \\
-Operation & \texttt{+ create\_hub(user\_id: int, form: Mapping[str, str]) -\textgreater{} Hub } & P4 scoped evidence (P4.1 + P4.2; resolution rows 29); C0 rationale: ; P2-S13; P3-S03 \\
-Operation & \texttt{+ update\_hub(user\_id: int, hub\_id: int, form: Mapping[str, str]) -\textgreater{} Hub } & P4 scoped evidence (P4.1 + P4.2; resolution rows 30); C0 rationale: ; P2-S13; P3-S03 \\
-Operation & \texttt{+ archive\_hub(user\_id: int, hub\_id: int) -\textgreater{} Hub } & P4 scoped evidence (P4.1 + P4.2; resolution rows 31); C0 rationale: ; P2-S13; P3-S03 \\
-Operation & \texttt{- \_require\_admin(user\_id: int) -\textgreater{} None} & MATCH \\
-Operation & \texttt{- \_parse(form: Mapping[str, str], hub\_id: Any) -\textgreater{} Hub [inferred]} & MATCH; inferred annotation(s) \\
-\end{longtable}
-\textbf{HubAdminView}
-
-Layer: \textbf{controller}; stereotype: \textbf{\guillemotleft{}value\guillemotright{}}; responsibility: Coordinate authorization, domain decisions and data access. Source: \texttt{saigonbite/business/controllers/hub\_controller.py}.
-
-\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
-Element & Typed declaration & Status / qualification \\
-\hline\endfirsthead
-Element & Typed declaration & Status / qualification \\
-\hline\endhead
-Attribute & \texttt{+ status: HubStatus} & MATCH \\
-Attribute & \texttt{+ open\_orders: int} & MATCH \\
-Operation & \texttt{+ can\_archive() -\textgreater{} bool} & MATCH; property accessor \\
-\end{longtable}
-\textbf{HubStatus}
-
-Layer: \textbf{domain}; stereotype: \textbf{\guillemotleft{}entity\guillemotright{}}; responsibility: Derive busy, quiet and load percentage from current load and capacity. Source: \texttt{saigonbite/business/domain/models.py}.
-
-\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
-Element & Typed declaration & Status / qualification \\
-\hline\endfirsthead
-Element & Typed declaration & Status / qualification \\
-\hline\endhead
-Attribute & \texttt{+ hub: Hub} & MATCH \\
-Attribute & \texttt{+ load: int} & MATCH \\
-Operation & \texttt{+ busy() -\textgreater{} bool} & MATCH; property accessor \\
-Operation & \texttt{+ quiet() -\textgreater{} bool} & MATCH; property accessor \\
-Operation & \texttt{+ load\_percent() -\textgreater{} int} & MATCH; property accessor \\
-\end{longtable}
-\textbf{Hub}
-
-Layer: \textbf{domain}; stereotype: \textbf{\guillemotleft{}entity\guillemotright{}}; responsibility: Represent a kitchen location, capacity and fee. Source: \texttt{saigonbite/business/domain/models.py}.
-
-\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
-Element & Typed declaration & Status / qualification \\
-\hline\endfirsthead
-Element & Typed declaration & Status / qualification \\
-\hline\endhead
-Attribute & \texttt{+ id: int} & MATCH \\
-Attribute & \texttt{+ code: str} & MATCH \\
-Attribute & \texttt{+ name: str} & MATCH \\
-Attribute & \texttt{+ address\_text: str} & MATCH \\
-Attribute & \texttt{+ latitude: float} & MATCH \\
-Attribute & \texttt{+ longitude: float} & MATCH \\
-Attribute & \texttt{+ max\_active\_orders: int} & MATCH \\
-Attribute & \texttt{+ base\_delivery\_fee: int} & MATCH \\
-Attribute & \texttt{+ archived\_at: Optional[str]} & MATCH \\
-\end{longtable}
-\textbf{HubDAO}
-
-Layer: \textbf{data\_access}; stereotype: \textbf{\guillemotleft{}DAO\guillemotright{}}; responsibility: Read or write parameterized records. Source: \texttt{saigonbite/data\_access/hub\_dao.py}.
-
-\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
-Element & Typed declaration & Status / qualification \\
-\hline\endfirsthead
-Element & Typed declaration & Status / qualification \\
-\hline\endhead
-Attribute & \texttt{+ conn: sqlite3.Connection} & MATCH \\
-Operation & \texttt{+ list\_active() -\textgreater{} list[Hub]} & MATCH \\
-Operation & \texttt{+ list\_all() -\textgreater{} list[Hub]} & MATCH \\
-Operation & \texttt{+ get\_including\_archived(hub\_id: int) -\textgreater{} Optional[Hub]} & MATCH \\
-Operation & \texttt{+ code\_exists(code: str, except\_id: Optional[int] = None) -\textgreater{} bool} & MATCH \\
-Operation & \texttt{+ insert(hub: Hub) -\textgreater{} int} & MATCH \\
-Operation & \texttt{+ update(hub: Hub) -\textgreater{} bool} & MATCH \\
-Operation & \texttt{+ archive(hub\_id: int, now: str) -\textgreater{} bool} & MATCH \\
-Operation & \texttt{+ active\_load(hub\_id: int) -\textgreater{} int} & MATCH \\
-Operation & \texttt{+ active\_loads() -\textgreater{} dict[int, int]} & MATCH \\
-Operation & \texttt{+ open\_order\_count(hub\_id: int) -\textgreater{} int} & MATCH \\
-\end{longtable}
-\textbf{BaseController}
-
-Layer: \textbf{controller}; stereotype: \textbf{\guillemotleft{}controller\guillemotright{}}; responsibility: Coordinate authorization, domain decisions and data access. Source: \texttt{saigonbite/business/controllers/common.py}.
-
-\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
-Element & Typed declaration & Status / qualification \\
-\hline\endfirsthead
-Element & Typed declaration & Status / qualification \\
-\hline\endhead
-Attribute & \texttt{+ conn: sqlite3.Connection} & MATCH \\
-Attribute & \texttt{+ clock: Any} & MATCH; inferred \\
-Attribute & \texttt{+ users: UserDAO} & MATCH; inferred \\
-Operation & \texttt{- \_now() -\textgreater{} str} & MATCH \\
-Operation & \texttt{- \_require\_user(user\_id: int, *roles: Role, message: str = 'Your account cannot do this.') -\textgreater{} UserAccount} & MATCH \\
-\end{longtable}
-\textbf{UserAccount}
-
-Layer: \textbf{domain}; stereotype: \textbf{\guillemotleft{}entity\guillemotright{}}; responsibility: Hold account identity, role, active flag and optional kitchen-hub assignment. Source: \texttt{saigonbite/business/domain/models.py}.
-
-\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
-Element & Typed declaration & Status / qualification \\
-\hline\endfirsthead
-Element & Typed declaration & Status / qualification \\
-\hline\endhead
-Attribute & \texttt{+ id: int} & MATCH \\
-Attribute & \texttt{+ username: str} & MATCH \\
-Attribute & \texttt{+ password\_hash: str} & MATCH \\
-Attribute & \texttt{+ display\_name: str} & MATCH \\
-Attribute & \texttt{+ role: Role} & MATCH \\
-Attribute & \texttt{+ is\_active: bool} & MATCH \\
-Attribute & \texttt{+ hub\_id: Optional[int]} & MATCH; association backing ID, omitted on DCD \\
-Attribute & \texttt{+ created\_at: str} & P4 scoped evidence (P4.1; resolution rows 53); C0 rationale: \\
-\end{longtable}
-\textbf{Role}
-
-Layer: \textbf{domain}; stereotype: \textbf{\guillemotleft{}enumeration\guillemotright{}}; responsibility: Hold typed business state and its local rules. Source: \texttt{saigonbite/business/domain/enums.py}.
-
-\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
-Element & Typed declaration & Status / qualification \\
-\hline\endfirsthead
-Element & Typed declaration & Status / qualification \\
-\hline\endhead
-Attribute & \texttt{+ CUSTOMER: str} & MATCH; inferred \\
-Attribute & \texttt{+ KITCHEN\_STAFF: str} & MATCH; inferred \\
-Attribute & \texttt{+ SHIPPER: str} & MATCH; inferred \\
-Attribute & \texttt{+ ADMIN: str} & MATCH; inferred \\
-Attribute & \texttt{+ MANAGER: str} & MATCH; inferred \\
-\end{longtable}
-\textbf{UserDAO}
-
-Layer: \textbf{data\_access}; stereotype: \textbf{\guillemotleft{}DAO\guillemotright{}}; responsibility: Read or write parameterized records. Source: \texttt{saigonbite/data\_access/user\_dao.py}.
-
-\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
-Element & Typed declaration & Status / qualification \\
-\hline\endfirsthead
-Element & Typed declaration & Status / qualification \\
-\hline\endhead
-Attribute & \texttt{+ conn: sqlite3.Connection} & MATCH \\
-Operation & \texttt{+ get\_by\_id(user\_id: int) -\textgreater{} Optional[UserAccount]} & MATCH \\
-\end{longtable}
-\textbf{Boundary adapters and guarantees}
-
-\texttt{uid()} always comes from the active server session; posted identity is never accepted. Form adapters retain SSD names while converting camelCase fields to Python keys: \texttt{address} \ensuremath{\rightarrow} \texttt{address\_text}, \texttt{baseDeliveryFee} \ensuremath{\rightarrow} \texttt{base\_delivery\_fee}, \texttt{capacity} \ensuremath{\rightarrow} \texttt{max\_active\_orders}; \texttt{brandId} \ensuremath{\rightarrow} \texttt{brand\_id}. Optional parameters map omitted values to the target defaults. Availability is validated as a boolean. Request.form values are strings; controllers parse and validate them.
-
-OP-23 is a P3-S02 target with \texttt{include\_archived: bool = True}; existing C0 route/controller omit that argument. Reads inspect archived hubs. \texttt{\_parse} validates candidate attributes; \texttt{create\_hub} / \texttt{update\_hub} enforce uniqueness; \texttt{archive\_hub} requires zero open orders. \texttt{HubStatus.busy/quiet} are properties derived from load/capacity. \texttt{HubAdminView.can\_archive} derives from open\_orders and archive flag, not a persistent state. Capacity below load is allowed. No restore is proposed.
-
-Mutation success is acknowledged only after commit. The P2-S13/P3-S03 targets require rowcount/guard checks and controlled busy or commit-error rollback; the Section III figures intentionally hide DAO/SQL behind the persistence note and Section 4.3.2. Draft validation maxima/coordinate windows remain draft constraints (P2-S17), not newly locked BRs.
-
-\textbf{Guarantee responsibility and transaction boundary}
-
-\texttt{HubStatus} and \texttt{HubAdminView} are transient projections, not additional persistent entities.
-
-\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
-Anchor / request & Named responsibility & Boundary \\
-\hline\endfirsthead
-Anchor / request & Named responsibility & Boundary \\
-\hline\endhead
-UC03-PC01 & HubController.\_parse + create\_hub / update\_hub; HubDAO.code\_exists and insert / update & BEGIN IMMEDIATE; success only after commit \\
-UC03-PC02 & HubController.archive\_hub; HubDAO.open\_order\_count + archive; read consumers exclude archived hubs operationally but retain history & BEGIN IMMEDIATE; no open orders; conditional-save rowcount and commit-error handling \\
-UC03-MG01 & HubController.\_require\_admin / \_parse and mutation guard checks; failed write rolls back; BaseController.\_require\_user rejects inactive or wrong-role identity & All create/update/archive changes are atomic ; list/get are read-only \\
-listHubs / getHub & HubController.list\_hubs / get\_hub returns HubAdminView + derived HubStatus; authorized archived inspection is allowed & Read; zero persistent writes \\
-\end{longtable}
-These are design targets where P2-S13/P3-S03 or the operation-specific gap is recorded; no transaction success was executed in P3. The full DAO realization is in Section 4.3.2.
-
-Reviewed adapter status: \texttt{admin.hubs} is C0 design target (final status in Table P4-1)  (P3-S02). Existing route symbols alone do not qualify those target behaviors as MATCH.
+Diagram notation (R1--R4): every displayed association now has separate multiplicity text at its actual attached source and target ends, plus a separate role label. The initial SSD request precedes actual accepted/refused interaction operands; both success and refusal response paths are visible. The controller refusal reply is conditional on controller invocation. Read guards state no writes; command success requires commit. Call heads are closed/filled and reply heads are dashed/open.

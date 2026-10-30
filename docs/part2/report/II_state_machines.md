@@ -16,11 +16,17 @@ Author: 722I0004 · AI-assisted (Codex)
 
 All nine stored Order states and all twelve §4.1 event names are represented in A–E. Terminal states are DELIVERED, DELIVERY_FAILED, REJECTED and CANCELLED. Waiting for customer is derived from PLACED + an open OFFERED offer; cooking load still counts it. BR-17 always changes payment state and refund amount together. There is no rollback or redelivery loop.
 
+![Figure 2.3. Order — complete lifecycle](../../../models/shared/sm_order_overview.png)
+
+Figure 2.3. Order — complete lifecycle — Author: 722I0004 · AI-assisted (Claude)
+
+Figure 2.3 shows the whole Order lifecycle on one page; it is generated from the transition table in the code (models/shared/sm_order_overview.py), so the model and the program cannot disagree. Figures 2.3A–2.3E below show each part in detail with the postconditions (PC) and minimum guarantees (MG) that each transition establishes.
+
 ![Figure 2.3A. Order — creation and kitchen decision](../../../models/shared/sm_order.png)
 
 Figure 2.3A. Order — creation and kitchen decision — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/shared/sm_order.drawio) · [SVG](../../../models/shared/sm_order.svg) · [Generator](../../../models/shared/sm_order.py) · [Data](../../../models/shared/sm_order.json)
+
 
 | PC/MG anchor | Contract text (verbatim) | Transition / retained fact / refusal invariant |
 |---|---|---|
@@ -40,7 +46,7 @@ Figure 2.3A. Order — creation and kitchen decision — Author: 722I0004 · AI-
 
 Figure 2.3B. Order — replacement response — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/shared/sm_order_PartB.drawio) · [SVG](../../../models/shared/sm_order_PartB.svg) · [Generator](../../../models/shared/sm_order_PartB.py) · [Data](../../../models/shared/sm_order_PartB.json)
+
 
 | PC/MG anchor | Contract text (verbatim) | Transition / retained fact / refusal invariant |
 |---|---|---|
@@ -52,7 +58,7 @@ Figure 2.3B. Order — replacement response — Author: 722I0004 · AI-assisted 
 
 Figure 2.3C. Order — cancellation window — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/shared/sm_order_PartC.drawio) · [SVG](../../../models/shared/sm_order_PartC.svg) · [Generator](../../../models/shared/sm_order_PartC.py) · [Data](../../../models/shared/sm_order_PartC.json)
+
 
 | PC/MG anchor / supporting rule | Transition / retained fact / refusal invariant |
 |---|---|
@@ -63,7 +69,7 @@ Figure 2.3C. Order — cancellation window — Author: 722I0004 · AI-assisted (
 
 Figure 2.3D. Order — preparation and pickup — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/shared/sm_order_PartD.drawio) · [SVG](../../../models/shared/sm_order_PartD.svg) · [Generator](../../../models/shared/sm_order_PartD.py) · [Data](../../../models/shared/sm_order_PartD.json)
+
 
 | PC/MG anchor | Contract text (verbatim) | Transition / retained fact / refusal invariant |
 |---|---|---|
@@ -74,7 +80,7 @@ Figure 2.3D. Order — preparation and pickup — Author: 722I0004 · AI-assiste
 
 Figure 2.3E. Order — delivered or delivery failed — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/shared/sm_order_PartE.drawio) · [SVG](../../../models/shared/sm_order_PartE.svg) · [Generator](../../../models/shared/sm_order_PartE.py) · [Data](../../../models/shared/sm_order_PartE.json)
+
 
 | PC/MG anchor | Contract text (verbatim) | Transition / retained fact / refusal invariant |
 |---|---|---|
@@ -96,7 +102,7 @@ The two payment methods have separate views. C is the original captured ONLINE a
 
 Figure 2.4A. Payment — COD — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/shared/sm_payment.drawio) · [SVG](../../../models/shared/sm_payment.svg) · [Generator](../../../models/shared/sm_payment.py) · [Data](../../../models/shared/sm_payment.json)
+
 
 | PC/MG anchor | Contract text (verbatim) | Transition / retained fact / refusal invariant |
 |---|---|---|
@@ -109,7 +115,7 @@ Figure 2.4A. Payment — COD — Author: 722I0004 · AI-assisted (Codex)
 
 Figure 2.4B. Payment — ONLINE simulator — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/shared/sm_payment_PartB.drawio) · [SVG](../../../models/shared/sm_payment_PartB.svg) · [Generator](../../../models/shared/sm_payment_PartB.py) · [Data](../../../models/shared/sm_payment_PartB.json)
+
 
 | PC/MG anchor | Contract text (verbatim) | Transition / retained fact / refusal invariant |
 |---|---|---|
@@ -133,7 +139,7 @@ Creation by markReady, pickup and completion are paired with the exact Order tra
 
 Figure 2.5A. Delivery — creation and atomic pickup — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-02/sm_delivery.drawio) · [SVG](../../../models/UC-02/sm_delivery.svg) · [Generator](../../../models/UC-02/sm_delivery.py) · [Data](../../../models/UC-02/sm_delivery.json)
+
 
 | PC/MG anchor | Contract text (verbatim) | Transition / retained fact / refusal invariant |
 |---|---|---|
@@ -144,7 +150,7 @@ Figure 2.5A. Delivery — creation and atomic pickup — Author: 722I0004 · AI-
 
 Figure 2.5B. Delivery — completion outcomes — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-02/sm_delivery_PartB.drawio) · [SVG](../../../models/UC-02/sm_delivery_PartB.svg) · [Generator](../../../models/UC-02/sm_delivery_PartB.py) · [Data](../../../models/UC-02/sm_delivery_PartB.json)
+
 
 | PC/MG anchor | Contract text (verbatim) | Transition / retained fact / refusal invariant |
 |---|---|---|
@@ -166,7 +172,7 @@ BUSY and QUIET are derived classifications inside ACTIVE, not persisted lifecycl
 
 Figure 2.6. Hub — maintenance and archive — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-03/sm_hub.drawio) · [SVG](../../../models/UC-03/sm_hub.svg) · [Generator](../../../models/UC-03/sm_hub.py) · [Data](../../../models/UC-03/sm_hub.json)
+
 
 | PC/MG anchor | Contract text (verbatim) | Transition / retained fact / refusal invariant |
 |---|---|---|
@@ -188,7 +194,7 @@ Each offer has its own identity and history. At most one may be OFFERED for an O
 
 Figure 2.7A. ReplacementOffer — offer and customer decision — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-05/sm_replacement_offer.drawio) · [SVG](../../../models/UC-05/sm_replacement_offer.svg) · [Generator](../../../models/UC-05/sm_replacement_offer.py) · [Data](../../../models/UC-05/sm_replacement_offer.json)
+
 
 | PC/MG anchor | Contract text (verbatim) | Transition / retained fact / refusal invariant |
 |---|---|---|
@@ -200,7 +206,7 @@ Figure 2.7A. ReplacementOffer — offer and customer decision — Author: 722I00
 
 Figure 2.7B. ReplacementOffer — withdrawal paths — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-05/sm_replacement_offer_PartB.drawio) · [SVG](../../../models/UC-05/sm_replacement_offer_PartB.svg) · [Generator](../../../models/UC-05/sm_replacement_offer_PartB.py) · [Data](../../../models/UC-05/sm_replacement_offer_PartB.json)
+
 
 | PC/MG anchor | Contract text (verbatim) | Transition / retained fact / refusal invariant |
 |---|---|---|
@@ -221,7 +227,7 @@ Brand and MenuItem each have ACTIVE → ARCHIVED lifecycles; HubMenuItem owns av
 
 Figure 2.8A. Brand — maintenance and archive — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-06/sm_catalogue.drawio) · [SVG](../../../models/UC-06/sm_catalogue.svg) · [Generator](../../../models/UC-06/sm_catalogue.py) · [Data](../../../models/UC-06/sm_catalogue.json)
+
 
 | PC/MG anchor | Contract text (verbatim) | Transition / retained fact / refusal invariant |
 |---|---|---|
@@ -234,7 +240,7 @@ Figure 2.8A. Brand — maintenance and archive — Author: 722I0004 · AI-assist
 
 Figure 2.8B. MenuItem — maintenance and archive — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-06/sm_catalogue_PartB.drawio) · [SVG](../../../models/UC-06/sm_catalogue_PartB.svg) · [Generator](../../../models/UC-06/sm_catalogue_PartB.py) · [Data](../../../models/UC-06/sm_catalogue_PartB.json)
+
 
 | PC/MG anchor | Contract text (verbatim) | Transition / retained fact / refusal invariant |
 |---|---|---|
@@ -247,7 +253,7 @@ Figure 2.8B. MenuItem — maintenance and archive — Author: 722I0004 · AI-ass
 
 Figure 2.8C. HubMenuItem — list and change availability — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-06/sm_catalogue_PartC.drawio) · [SVG](../../../models/UC-06/sm_catalogue_PartC.svg) · [Generator](../../../models/UC-06/sm_catalogue_PartC.py) · [Data](../../../models/UC-06/sm_catalogue_PartC.json)
+
 
 | PC/MG anchor | Contract text (verbatim) | Transition / retained fact / refusal invariant |
 |---|---|---|
@@ -260,7 +266,7 @@ Figure 2.8C. HubMenuItem — list and change availability — Author: 722I0004 �
 
 Figure 2.8D. HubMenuItem — unlist ends the listing — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-06/sm_catalogue_PartD.drawio) · [SVG](../../../models/UC-06/sm_catalogue_PartD.svg) · [Generator](../../../models/UC-06/sm_catalogue_PartD.py) · [Data](../../../models/UC-06/sm_catalogue_PartD.json)
+
 
 | PC/MG anchor | Contract text (verbatim) | Transition / retained fact / refusal invariant |
 |---|---|---|
@@ -281,7 +287,7 @@ This is shared supporting account behaviour, placed under UC-03 as instructed by
 
 Figure 2.9. UserAccount — activation lifecycle — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/shared/sm_user_account.drawio) · [SVG](../../../models/shared/sm_user_account.svg) · [Generator](../../../models/shared/sm_user_account.py) · [Data](../../../models/shared/sm_user_account.json)
+
 
 | PC/MG anchor | Contract text (verbatim) | Transition / retained fact / refusal invariant |
 |---|---|---|

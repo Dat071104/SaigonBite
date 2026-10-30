@@ -3,7 +3,7 @@
 \pdfbookmark[1]{1.3 Iteration Plan, User Story Backlog and Risks}{p7h5}
 Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
 
-The iteration dates below retain the six windows in the Part 1 roadmap. The locked Part 2 plan adds phase work and release gates over those windows. Dates and bars are planned; estimates are not measured results. The official Part 2 eLearning deadline is pending confirmation when the slot opens.
+The iteration dates below retain the six windows in the Part 1 roadmap. The locked Part 2 plan adds phase work and release gates over those windows. Dates are the planned windows; the table after the plan records what actually happened. The official Part 2 eLearning deadline is set by the eLearning slot.
 
 \textbf{Six-Iteration Plan}
 
@@ -21,6 +21,25 @@ I6 & 17--29/11/2026 & Address Part 2 feedback, make the final release and prepar
 \end{longtable}
 Backlog linkage: I1 contains early COD and login slices of BL-03 and BL-04; I2 focuses on BL-04--07, BL-09 and BL-19--20; I3 on BL-01--03, BL-07--08, BL-10--14 and BL-18--20; I4 on BL-08 and BL-15--20; I5 closes the BL-19--20 verification and recovery gates with the full release. I6 is post-Part-2 feedback and Part 3 follow-up, not a separate Part 2 Must item.
 
+\textbf{Actual Progress Against the Plan (status 30/10/2026)}
+
+Work ran ahead of the planned windows because one member worked full days from 23/10. Each phase closed with a recorded gate commit in the repository (branch \texttt{part2}).
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Gate & Planned window & Closed & Evidence (commit) & Result \\
+\hline\endfirsthead
+Gate & Planned window & Closed & Evidence (commit) & Result \\
+\hline\endhead
+G1 Business requirements (Part I) & I2, by 29/10 & 24/10/2026 & 657089b & Section I, 40 FR and 12 NFR with IDs, traceability table \\
+G2 Analysis of six UCs (Part II) & I2--I3 & 24/10/2026 & 45ac762 & Descriptions, activity diagrams, SSDs, state machines, CRUD matrix \\
+G3 Design of six UCs (Part III) & I3--I4 & 26/10/2026 & 6e8cafe & Three-layer DCDs, CRC cards, sequence diagrams \\
+G4 Implementation and tests & I3--I4 & 26/10/2026 & 85dadbc, 51e5122 & 915 tests passing on a fresh clone \\
+G5 UI and integration & I4 & 27/10/2026 & a108cc2, f01864f & Seven cross-role browser scenarios (60/60 steps); Figma prototype; 928 tests \\
+G6 Deployment and recovery & I4--I5 & 28/10/2026 & 277d447 & GCP VM with HTTPS, backup and restore test, custom domain \\
+G7 Report and package & I5 & 28/10/2026 onwards & d14a564 & This report; release tag v0.9-part2 marks the submitted version \\
+\end{longtable}
+The I5 dates (freeze 12/11, buffer 13/11, package QA 14/11) are kept as the latest safe dates; the earlier finish leaves them as reserve.
+
 \textbf{Changes from the Part 1 Proposal}
 
 \begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
@@ -29,9 +48,9 @@ Topic & Part 1 proposal & Locked Part 2 plan \\
 Topic & Part 1 proposal & Locked Part 2 plan \\
 \hline\endhead
 Supporting use cases and CRUD & A-08 treated several supporting paths as analysis-only or seed-backed. & D-4 supersedes A-08: persistent classes need minimal running create/read/update/archive paths through supporting use cases. The current backlog includes all nine SUCs. \\
-Clarification timing & Proposal expected lecturer questions to shape later iterations. & D-3 says to proceed with conservative defaults, ask L1--L6 at the 26/10 presentation, and record answers or no answer at the 31/10 checkpoint. Q1--Q5 remain the five client questions. \\
+Clarification timing & Proposal expected lecturer questions to shape later iterations. & D-3: proceed with conservative defaults. L1--L6 were raised at the 26/10 presentation; the outcome of each is recorded in 1.4.2 (L6 still open). Q1--Q5 remain the five client questions. \\
 Part 2 delivery gates & The proposal placed final work and submission in I5 and already named the 12/11 freeze, 13/11 buffer and 15/11 target. & D-10 / plan \S{}8 retain those gates, add 14/11 PDF/package QA and state that the official eLearning deadline must still be checked. \\
-Deployment route & The Part 1 draft included a Vercel demo. & D-5 retires Vercel for Part 2 and plans one GCP VM, with local Docker Compose as the reproducible path and fallback. No cloud resource or deployment outcome is claimed here. \\
+Deployment route & The Part 1 draft included a Vercel demo. & D-5 retires Vercel for Part 2 and plans one GCP VM, with local Docker Compose as the reproducible path and fallback. The VM deployment was completed on 27/10/2026 (section 5.2). \\
 Authorship record & Proposal ownership separated six main UCs among three students. & D-1 retains those ownership labels but records 722I0004 as actual author of Part 2 artifacts. Ownership is not evidence of another member's Part 2 work. \\
 I6 & A post-submission iteration for feedback and Part 3 was already planned. & The role remains post-Part-2: feedback fixes, final release and Part 3 work. \\
 \end{longtable}
@@ -39,50 +58,61 @@ The report uses BL-01--BL-20 as stable row IDs for this current backlog. The pro
 
 \textbf{Prioritised User Story Backlog}
 
-MoSCoW reflects the locked release scope. The six main UCs, nine SUCs and release-wide verification/recovery work are Must items. The listed Won't items remain deferred or future scope. The A-09 / L3 deferral was accepted at the Part 1 review (no change requested); no written approval is claimed. Priorities use MoSCoW.
+Rank orders the stories by business value and dependency: the customer order path and login come first because every other story consumes the orders they create; admin housekeeping comes last. MoSCoW: the six main UCs, the order-outcome rules and release verification are Must; supporting housekeeping (voucher, availability, account and archive maintenance) is Should --- built for CRUD coverage but first to cut under time pressure. The listed Won't items remain deferred or future scope. The A-09 / L3 deferral was accepted at the Part 1 review (no change requested); no written approval is claimed. Priorities use MoSCoW.
 
-\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
-ID & User story & Priority & Iteration & Use case \\
+\begingroup\footnotesize
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1533\linewidth}>{\raggedright\arraybackslash}p{0.1533\linewidth}>{\raggedright\arraybackslash}p{0.1533\linewidth}>{\raggedright\arraybackslash}p{0.1533\linewidth}>{\raggedright\arraybackslash}p{0.1533\linewidth}>{\raggedright\arraybackslash}p{0.1533\linewidth}}
+Rank & ID & User story & Priority & Iteration & Use case \\
 \hline\endfirsthead
-ID & User story & Priority & Iteration & Use case \\
+Rank & ID & User story & Priority & Iteration & Use case \\
 \hline\endhead
-BL-01 & As a customer, I want to register for a local or tourist account and maintain my profile and addresses so that I can place an order using my customer details. & Must & I3 & SUC-02, UC-01 \\
-BL-02 & As a customer, I want to browse active hubs, brands and available items so that I can choose what and where to order. & Must & I3 & UC-01, UC-06 \\
-BL-03 & As a customer, I want to review the complete quote, voucher and payment choice before confirming so that I can make an informed order decision. & Must & I3 & UC-01, SUC-07 \\
-BL-04 & As a user, I want to log in and log out with role-appropriate access so that each task is performed by an authorised account. & Must & I1--I5 & SUC-01 \\
-BL-05 & As an administrator, I want to create, read, update and archive hubs and maintain capacity so that current hub operations are represented. & Must & I2 & UC-03 \\
-BL-06 & As a customer, I want a full hub to refuse the order and present eligible quieter hubs so that I can choose another option before confirming. & Must & I2 & UC-01, UC-03 \\
-BL-07 & As kitchen staff, I want to confirm or reject an incoming order, or offer a valid replacement, so that I can handle an order against current stock. & Must & I2--I3 & UC-05 \\
-BL-08 & As a customer, I want to track my order, view its receipt and answer an open replacement offer so that I can see and decide the order outcome. & Must & I3 & SUC-03, UC-01, UC-05 \\
-BL-09 & As kitchen staff, I want to start preparation and mark an order READY so that a shipper can take a prepared order. & Must & I2 & SUC-05, UC-05, UC-02 \\
-BL-10 & As kitchen staff, I want to change availability for items at my hub so that new orders use the current listing. & Must & I3 & SUC-06, UC-06 \\
-BL-11 & As a shipper, I want to take a ready order and record delivery, exact COD cash or a failed outcome so that fulfilment is traceable per order. & Must & I3 & UC-02 \\
-BL-12 & As an administrator, I want to maintain brands, menu items and hub listings so that customers see the catalogue used by the kitchens. & Must & I3 & UC-06 \\
-BL-13 & As an administrator, I want to create, update and archive vouchers so that eligible customers can use the configured discount rules. & Must & I3 & SUC-07, UC-01 \\
-BL-14 & As a customer, I want to cancel my own order while it is PLACED or CONFIRMED so that an early cancellation follows the defined payment rules. & Must & I3 & SUC-04, UC-01 \\
-BL-15 & As an administrator, I want to create accounts and deactivate or reactivate them so that access can be maintained. & Must & I4 & SUC-08, SUC-01 \\
-BL-16 & As an administrator, I want to archive closed orders and read their history so that operational lists stay current while authorised history remains available. & Must & I4 & SUC-09 \\
-BL-17 & As a manager, I want reports for sales, hub workload and delivery performance so that I can compare operations using shared definitions. & Must & I4 & UC-04 \\
-BL-18 & As a customer, I want rejection, cancellation, replacement and delivery-failure outcomes to show the correct payment state and amount owed so that I know what remains due. & Must & I3--I4 & UC-01, UC-02, UC-05, SUC-03--04 \\
-BL-19 & As a reviewer, I want postcondition, boundary, role and concurrency tests for each main use case so that release claims have recorded evidence. & Must & I2--I5 & UC-01--UC-06, SUC-01--SUC-09 \\
-BL-20 & As a reviewer, I want a fresh local run path and documented backup/restore steps so that the planned release can be run and recovered reproducibly. & Must & I2--I5 & Release-wide \\
-W-01 & Complaint handling and refund decisions, refund payout, and customer rating. These remain deferred under A-09 / L3; L3 was accepted at the Part 1 review (no change requested). & Won't this release & --- & A-09, L3 \\
-W-02 & Loyalty points, subscription meals, group orders and scheduled orders. The case study lists these as future features. & Won't this release & --- & Case study future scope; no A-ID was assigned \\
-W-03 & Menu translation for tourists. Part 1 \S{}1.3 explicitly leaves translation outside this release. & Won't this release & --- & Part 1 \S{}1.3; no A-ID was assigned \\
+1 & BL-03 & As a customer, I want to review the complete quote, voucher and payment choice before confirming so that I can make an informed order decision. & Must & I3 & UC-01, SUC-07 \\
+2 & BL-04 & As a user, I want to log in and log out with role-appropriate access so that each task is performed by an authorised account. & Must & I1--I5 & SUC-01 \\
+3 & BL-02 & As a customer, I want to browse active hubs, brands and available items so that I can choose what and where to order. & Must & I3 & UC-01, UC-06 \\
+4 & BL-06 & As a customer, I want a full hub to refuse the order and present eligible quieter hubs so that I can choose another option before confirming. & Must & I2 & UC-01, UC-03 \\
+5 & BL-05 & As an administrator, I want to create, read, update and archive hubs and maintain capacity so that current hub operations are represented. & Must & I2 & UC-03 \\
+6 & BL-07 & As kitchen staff, I want to confirm or reject an incoming order, or offer a valid replacement, so that I can handle an order against current stock. & Must & I2--I3 & UC-05 \\
+7 & BL-09 & As kitchen staff, I want to start preparation and mark an order READY so that a shipper can take a prepared order. & Must & I2 & SUC-05, UC-05, UC-02 \\
+8 & BL-11 & As a shipper, I want to take a ready order and record delivery, exact COD cash or a failed outcome so that fulfilment is traceable per order. & Must & I3 & UC-02 \\
+9 & BL-12 & As an administrator, I want to maintain brands, menu items and hub listings so that customers see the catalogue used by the kitchens. & Must & I3 & UC-06 \\
+10 & BL-01 & As a customer, I want to register for a local or tourist account and maintain my profile and addresses so that I can place an order using my customer details. & Must & I3 & SUC-02, UC-01 \\
+11 & BL-18 & As a customer, I want rejection, cancellation, replacement and delivery-failure outcomes to show the correct payment state and amount owed so that I know what remains due. & Must & I3--I4 & UC-01, UC-02, UC-05, SUC-03--04 \\
+12 & BL-14 & As a customer, I want to cancel my own order while it is PLACED or CONFIRMED so that an early cancellation follows the defined payment rules. & Must & I3 & SUC-04, UC-01 \\
+13 & BL-08 & As a customer, I want to track my order, view its receipt and answer an open replacement offer so that I can see and decide the order outcome. & Must & I3 & SUC-03, UC-01, UC-05 \\
+14 & BL-10 & As kitchen staff, I want to change availability for items at my hub so that new orders use the current listing. & Should & I3 & SUC-06, UC-06 \\
+15 & BL-13 & As an administrator, I want to create, update and archive vouchers so that eligible customers can use the configured discount rules. & Should & I3 & SUC-07, UC-01 \\
+16 & BL-17 & As a manager, I want reports for sales, hub workload and delivery performance so that I can compare operations using shared definitions. & Must & I4 & UC-04 \\
+17 & BL-19 & As a reviewer, I want postcondition, boundary, role and concurrency tests for each main use case so that release claims have recorded evidence. & Must & I2--I5 & UC-01--UC-06, SUC-01--SUC-09 \\
+18 & BL-20 & As a reviewer, I want a fresh local run path and documented backup/restore steps so that the planned release can be run and recovered reproducibly. & Must & I2--I5 & Release-wide \\
+19 & BL-15 & As an administrator, I want to create accounts and deactivate or reactivate them so that access can be maintained. & Should & I4 & SUC-08, SUC-01 \\
+20 & BL-16 & As an administrator, I want to archive closed orders and read their history so that operational lists stay current while authorised history remains available. & Should & I4 & SUC-09 \\
+--- & W-01 & Complaint handling and refund decisions, refund payout, and customer rating. These remain deferred under A-09 / L3; L3 was accepted at the Part 1 review (no change requested). & Won't this release & --- & A-09, L3 \\
+--- & W-02 & Loyalty points, subscription meals, group orders and scheduled orders. The case study lists these as future features. & Won't this release & --- & Case study future scope; no A-ID was assigned \\
+--- & W-03 & Menu translation for tourists. Part 1 \S{}1.3 explicitly leaves translation outside this release. & Won't this release & --- & Part 1 \S{}1.3; no A-ID was assigned \\
 \end{longtable}
+\endgroup
 \textbf{Risks}
 
-Likelihood and impact are qualitative planning judgments, not measured frequencies. IDs R-06--R-11 continue the proposal's R-01--R-05 numbering without changing the earlier risk meanings. Dat 722I0004 is the recorded owner because D-1 assigns actual Part 2 authorship to Dat; this does not claim work by another member.
+Likelihood and impact are qualitative planning judgments, not measured frequencies. R-01--R-05 are the proposal's top five risks, reprinted unchanged; R-06--R-11 were added for Part 2. The last column records the status on 30/10/2026. Dat 722I0004 is the recorded owner because D-1 assigns actual Part 2 authorship to Dat; this does not claim work by another member.
 
-\begin{longtable}{>{\raggedright\arraybackslash}p{0.1533\linewidth}>{\raggedright\arraybackslash}p{0.1533\linewidth}>{\raggedright\arraybackslash}p{0.1533\linewidth}>{\raggedright\arraybackslash}p{0.1533\linewidth}>{\raggedright\arraybackslash}p{0.1533\linewidth}>{\raggedright\arraybackslash}p{0.1533\linewidth}}
-Risk & Description & Likelihood / impact & Mitigation & Owner & Trigger \\
+\begin{landscape}
+\begingroup\footnotesize
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1314\linewidth}>{\raggedright\arraybackslash}p{0.1314\linewidth}>{\raggedright\arraybackslash}p{0.1314\linewidth}>{\raggedright\arraybackslash}p{0.1314\linewidth}>{\raggedright\arraybackslash}p{0.1314\linewidth}>{\raggedright\arraybackslash}p{0.1314\linewidth}>{\raggedright\arraybackslash}p{0.1314\linewidth}}
+Risk & Description & Likelihood / impact & Mitigation & Owner & Trigger & Status (30/10/2026) \\
 \hline\endfirsthead
-Risk & Description & Likelihood / impact & Mitigation & Owner & Trigger \\
+Risk & Description & Likelihood / impact & Mitigation & Owner & Trigger & Status (30/10/2026) \\
 \hline\endhead
-R-06 & Sole-author delivery and contribution-factor exposure: one person carries the Part 2 artifact workload, while the course marks contribution by actual evidence. & High / High & Track planned deliverables and actual evidence; preserve prompts, authored artifacts and commit history; record contribution facts accurately and mark unmet per-student items Partial. Review scope and hours at the 31/10 checkpoint. & Dat 722I0004 & Required section, test or release evidence slips beyond the plan, or contribution records cannot substantiate what each person actually authored. \\
-R-07 & AI-policy clarification L6 may conflict with planned AI-assisted code or artifact work. & Medium / High & Declare each AI use, retain prompts/outputs and verification notes, ask L6 at the 26/10 presentation, and stop or replan the affected work if the answer requires it. & Dat 722I0004 & L6 answer does not permit the declared AI-assisted approach. \\
-R-08 & SQLite lock contention or racing transitions may cause concurrent ordering/delivery requests to fail or miss response-time targets. & Medium / High & Keep writes within the planned transaction boundary, use the planned timeout/locking controls, and run the specified contention, race and rollback checks before calling the path ready. & Dat 722I0004 & P4 lock, last-capacity-slot or shipper race checks fail, or a controlled database-locked case is unclear. \\
-R-09 & School-account organisation policy, static IP or TLS constraints may prevent the planned cloud demonstration. & Medium / High & Check account/org restrictions before provisioning; follow the D-7 hostname fallback order if needed; keep local Docker Compose as the reproducible demo path and record any cloud limitation. & Dat 722I0004 & Compute Engine, an external IP or certificate issuance is unavailable during the first-deploy window. \\
-R-10 & A later course instruction may change CRUD or deferred-feature scope; L1 and L3 are settled as recorded in 1.4.2. & Medium / High & Proceed with conservative defaults, record actual answers or no answer by 31/10, assess effects on BRs, models, schema, screens, tests and dates, then replan explicitly. Do not record silence as approval. & Dat 722I0004 & The 26/10 review requested no changes; a later course instruction changes D-4 or the deferred complaint/refund/rating scope. \\
-R-11 & The remaining schedule may exceed the available focused time. & Medium / High & Compare actual hours with the plan estimate. The plan budgets about 154 hours against an estimated 92--130 hours, leaving about 24 hours of estimated reserve; apply plan \S{}9 cuts in order if forecasts exceed the remaining budget, while protecting the six UCs, truthful authorship, data safety and reproducible demo. & Dat 722I0004 & At the 31/10 checkpoint, recorded hours and remaining scope project beyond the 7 h/day budget. \\
+R-01 & CRUD or scope coverage is rejected, so unbuilt classes must be built. & Medium / High & Ask L1 at the presentation; extra classes reuse the UC-06 admin pattern. & Dat 722I0004 & Lecturer rejects the CRUD mapping. & Closed: D-4 built running CRUD paths for every persistent class (2.3). \\
+R-02 & Business rules are unconfirmed or change after coding. & High / Medium & Keep every proposed rule in the Assumption Log; keep thresholds and fees in configuration; trace each answer to the tests it changes. & Dat 722I0004 & Client answers differ from the proposed defaults. & Open: Q1--Q5 unanswered; defaults are configuration values with tests (1.4.2). \\
+R-03 & Peak-hour capacity race: two orders are accepted past capacity, or order states drift. & Medium / High & Count active orders and insert the order in one transaction; boundary tests at capacity \ensuremath{-} 1, capacity and two simultaneous orders. & Dat 722I0004 & Boundary or concurrent-order test fails. & Mitigated: count and insert run in one BEGIN IMMEDIATE transaction; last-slot and two-order race tests pass (5.1). \\
+R-04 & Integration drift between six use cases: different IDs, state names or separate data. & Medium / High & One shared schema and seed; one Order flows through every use case; state names frozen; cross-role demo scenario. & Dat 722I0004 & A use case needs its own copy of an order or a state not on the fixed list. & Closed: one schema and one Order flow through all six UCs; seven cross-role scenarios pass on shared order IDs (4.3.6). \\
+R-05 & A member is unavailable, or the new member needs longer to start. & Medium / High & Pairing, shared run instructions, buffer day 13/11 and freeze 12/11; drop Should and Could items first. & Dat 722I0004 & A day's planned evidence is missing at the daily check. & Occurred: Part 2 artifacts were authored by one member; recorded truthfully in Appendix 4 (see R-06). \\
+R-06 & Sole-author delivery and contribution-factor exposure: one person carries the Part 2 artifact workload, while the course marks contribution by actual evidence. & High / High & Track planned deliverables and actual evidence; preserve prompts, authored artifacts and commit history; record contribution facts accurately and mark unmet per-student items Partial. Review scope and hours at the 31/10 checkpoint. & Dat 722I0004 & Required section, test or release evidence slips beyond the plan, or contribution records cannot substantiate what each person actually authored. & Occurred: handled by truthful authorship and contribution records (Appendix 4). \\
+R-07 & AI-policy clarification L6 may conflict with planned AI-assisted code or artifact work. & Medium / High & Declare each AI use, retain prompts/outputs and verification notes, ask L6 at the 26/10 presentation, and stop or replan the affected work if the answer requires it. & Dat 722I0004 & L6 answer does not permit the declared AI-assisted approach. & Open: L6 unanswered; every AI use is declared (Appendix 5). \\
+R-08 & SQLite lock contention or racing transitions may cause concurrent ordering/delivery requests to fail or miss response-time targets. & Medium / High & Keep writes within the planned transaction boundary, use the planned timeout/locking controls, and run the specified contention, race and rollback checks before calling the path ready. & Dat 722I0004 & P4 lock, last-capacity-slot or shipper race checks fail, or a controlled database-locked case is unclear. & Mitigated: WAL mode, busy timeout and race/rollback tests pass (5.1). \\
+R-09 & School-account organisation policy, static IP or TLS constraints may prevent the planned cloud demonstration. & Medium / High & Check account/org restrictions before provisioning; follow the D-7 hostname fallback order if needed; keep local Docker Compose as the reproducible demo path and record any cloud limitation. & Dat 722I0004 & Compute Engine, an external IP or certificate issuance is unavailable during the first-deploy window. & Closed: deployed on a GCP VM 27/10/2026 with HTTPS and a custom domain (5.2). \\
+R-10 & A later course instruction may change CRUD or deferred-feature scope; L1 and L3 are settled as recorded in 1.4.2. & Medium / High & Proceed with conservative defaults, record actual answers or no answer by 31/10, assess effects on BRs, models, schema, screens, tests and dates, then replan explicitly. Do not record silence as approval. & Dat 722I0004 & A later course instruction changes D-4 or the deferred complaint/refund/rating scope. & Watching: no later course instruction received by 30/10/2026. \\
+R-11 & The remaining schedule may exceed the available focused time. & Medium / High & Compare actual hours with the plan estimate. The plan budgets about 154 hours against an estimated 92--130 hours, leaving about 24 hours of estimated reserve; apply plan \S{}9 cuts in order if forecasts exceed the remaining budget, while protecting the six UCs, truthful authorship, data safety and reproducible demo. & Dat 722I0004 & At the 31/10 checkpoint, recorded hours and remaining scope project beyond the 7 h/day budget. & Closed for Part 2: gates G1--G6 closed by 28/10/2026. \\
 \end{longtable}
+\endgroup
+\end{landscape}

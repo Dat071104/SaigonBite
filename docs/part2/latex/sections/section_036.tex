@@ -1,5 +1,5 @@
 \textbf{2.2.3 iv.}\par
-The Hub state machine is Figure 2.6, owned here (source \texttt{models/UC-03/sm\_hub.*}; canonical block in \texttt{II\_state\_machines.md}). The shared UserAccount model Figure 2.9 is placed here once for SUC-08; it does not add account-write operations to UC-03. Busy/quiet are derived inside ACTIVE. Archived hubs keep their historical references; there is no reactivation command.
+The Hub state machine is Figure 2.6, owned here (source \texttt{models/\allowbreak{}UC-03/\allowbreak{}sm\_\allowbreak{}hub.\allowbreak{}*}; canonical block in \texttt{II\_\allowbreak{}state\_\allowbreak{}machines.\allowbreak{}md}). The shared UserAccount model Figure 2.9 is placed here once for SUC-08; it does not add account-write operations to UC-03. Busy/quiet are derived inside ACTIVE. Archived hubs keep their historical references; there is no reactivation command.
 
 \begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
 Anchor & Transition or stored fact \\
@@ -23,12 +23,10 @@ BUSY and QUIET are derived classifications inside ACTIVE, not persisted lifecycl
 \begin{landscape}
 \begin{figure}[p]
 \centering
-\includegraphics[width=230mm]{\detokenize{models/UC-03/sm_hub.png}}
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-03/sm_hub.png}}
 \caption{Figure 2.6. Hub --- maintenance and archive --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)}\label{P7-0314}
 \end{figure}
 \end{landscape}
-Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
-
 \begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
 PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
 \hline\endfirsthead
@@ -47,12 +45,10 @@ This is shared supporting account behaviour, placed under UC-03 as instructed by
 \begin{landscape}
 \begin{figure}[p]
 \centering
-\includegraphics[width=230mm]{\detokenize{models/shared/sm_user_account.png}}
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/shared/sm_user_account.png}}
 \caption{Figure 2.9. UserAccount --- activation lifecycle --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)}\label{P7-0321}
 \end{figure}
 \end{landscape}
-Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
-
 \begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
 PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
 \hline\endfirsthead

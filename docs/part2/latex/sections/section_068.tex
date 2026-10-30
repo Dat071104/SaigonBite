@@ -1,6 +1,161 @@
-\subsection*{3.2 Design for Use Case 2: Deliver an order: pick up, deliver with cash collection, or report failure (author: 722I0004)}
-\addcontentsline{toc}{subsection}{3.2 Design for Use Case 2: Deliver an order: pick up, deliver with cash collection, or report failure (author: 722I0004)}
-\pdfbookmark[1]{3.2 Design for Use Case 2: Deliver an order: pick up, deliver with cash collection, or report failure (author: 722I0004)}{p7h68}
-Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
+\subsubsection*{3.1.4 OOD with Sequence Diagram}
+\addcontentsline{toc}{subsubsection}{3.1.4 OOD with Sequence Diagram}
+\pdfbookmark[2]{3.1.4 OOD with Sequence Diagram}{p7h68}
+Each SSD occurrence has its own operation sequence. Actor \ensuremath{\rightarrow} actual blueprint module \ensuremath{\rightarrow} controller \ensuremath{\rightarrow} domain / typed value; UC-01 also uses the local simulator. No DAO/SQL lifeline is present. Synchronous calls use closed filled arrowheads; dashed open arrows carry results. Actual \texttt{alt}, \texttt{opt} and \texttt{break} rectangles enclose the messages they govern, including self-call paths. Inside an outcome \texttt{alt}, separately guarded regions have mutually exclusive conditions. Denial breaks terminate the current interaction; a continuation retains the same request and lifelines. Successful mutation results follow all atomic saves and COMMIT, whose DAO details remain in 4.3.2. Attribute/property reads are notes. Implicit dataclass \guillemotleft{}create\guillemotright{} is not a business operation. Persistence is loaded/saved through data access --- see 4.3.2.
 
-The design was recorded as a target at C0 (\texttt{45ac762}); P4 resolution records 5 UC-02 entries, with their scoped evidence and limitations in the P4 status appendix. The \textdagger{} symbol in a diagram refers to the historical C0 target, not a current implementation verdict.
+Checkout uses Parts A--E: token replay/denial breaks; quote and fingerprint/T validation; optional ONLINE authorization with a decline break; creation only for COD or approved ONLINE; then exclusive commit success versus rollback. Only the failed branch can release an obtained ONLINE reference. The success branch retains authorization. requestQuote uses Parts A--C: eligibility/distance, Quote initialization, then optional voucher validation/discount and fingerprint. Invalid voucher terminates before discount or a quote result. cancelOrder Parts A/B return \texttt{cancelledOrderAndAmounts} only after successful atomic save and COMMIT; the rollback reply remains separate.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+SSD operation and exact parameters & View \ensuremath{\rightarrow} controller adapter; status & Guard / effects and failure guarantee \\
+\hline\endfirsthead
+SSD operation and exact parameters & View \ensuremath{\rightarrow} controller adapter; status & Guard / effects and failure guarantee \\
+\hline\endhead
+\texttt{browseHubs()}\newline{}\texttt{models/\allowbreak{}UC-01/\allowbreak{}ssd\_\allowbreak{}uc01\_\allowbreak{}PartA.\allowbreak{}drawio\#01S-M01} & \texttt{order.\allowbreak{}choose\_\allowbreak{}hub, GET /\allowbreak{}order/\allowbreak{}hubs} \ensuremath{\rightarrow} \texttt{PlaceOrderController.\allowbreak{}list\_\allowbreak{}hubs(self) -\textgreater{} list[HubStatus]}; MATCH & Read .busy / .quiet on HubStatus; these are properties, never busy() / quiet() calls. No persistent writes. Active Customer gate belongs to view; select\_hub also checks active Customer and hub. \\
+\texttt{selectHub(hubId)}\newline{}\texttt{models/\allowbreak{}UC-01/\allowbreak{}ssd\_\allowbreak{}uc01\_\allowbreak{}PartA.\allowbreak{}drawio\#01S-M02} & \texttt{order.\allowbreak{}choose\_\allowbreak{}items, GET /\allowbreak{}order/\allowbreak{}hubs/\allowbreak{}\textless{}int:hub\_\allowbreak{}id\textgreater{}} \ensuremath{\rightarrow} \texttt{PlaceOrderController.\allowbreak{}select\_\allowbreak{}hub(self, user\_\allowbreak{}id: int, hub\_\allowbreak{}id: int) -\textgreater{} HubMenuView}; MATCH & Read .busy / .quiet on HubStatus; these are properties, never busy() / quiet() calls. No persistent writes. Active Customer gate belongs to view; select\_hub also checks active Customer and hub. \\
+\texttt{requestQuote(hubId, addressId, lines(itemId, quantity), voucherCode?, paymentMethod, onlineOption?)}\newline{}\texttt{models/\allowbreak{}UC-01/\allowbreak{}ssd\_\allowbreak{}uc01\_\allowbreak{}PartA.\allowbreak{}drawio\#01S-M03} & \texttt{order.\allowbreak{}quote, POST /\allowbreak{}order/\allowbreak{}quote} \ensuremath{\rightarrow} \texttt{PlaceOrderController.\allowbreak{}request\_\allowbreak{}quote(self, user\_\allowbreak{}id: int, hub\_\allowbreak{}id: int, address\_\allowbreak{}id: Optional[int], quantities: Mapping[int, str], voucher\_\allowbreak{}code: Optional[str] = None, payment: Optional[PaymentChoice] = None) -\textgreater{} Quote}; P4 status: see Table P4-1 F-04; F-07; P3-S01 & Target: active hub/menu/brand, own active address, integer quantities, load \textless{} capacity. Invalid input/refused voucher \ensuremath{\rightarrow} no saved rows. Busy suggestions \ensuremath{\leq}3 ranked (load/capacity, raw distance, ID).\newline{}Read quote.item\_subtotal / quote.total properties. Fingerprint binds hub/address, line IDs, quantities and prices, voucher + D, F, Q and payment choice; full accepted price T=S\ensuremath{-}D+F\ensuremath{-}Q. PaymentChoice is a typed adapter value.\newline{}Read quote.item\_subtotal / quote.total properties. Fingerprint binds hub/address, line IDs, quantities and prices, voucher + D, F, Q and payment choice; full accepted price T=S\ensuremath{-}D+F\ensuremath{-}Q. PaymentChoice is a typed adapter value. \\
+\texttt{confirmCheckout(hubId, addressId, lines(itemId, quantity), voucherCode?, paymentMethod, onlineOption?, simulatorOutcome?, quoteFingerprint, quotedTotal, checkoutToken)}\newline{}\texttt{models/\allowbreak{}UC-01/\allowbreak{}ssd\_\allowbreak{}uc01\_\allowbreak{}PartB.\allowbreak{}drawio\#01S-M04} & \texttt{order.\allowbreak{}confirm, POST /\allowbreak{}order/\allowbreak{}confirm} \ensuremath{\rightarrow} \texttt{PlaceOrderController.\allowbreak{}confirm\_\allowbreak{}order(self, user\_\allowbreak{}id: int, hub\_\allowbreak{}id: int, address\_\allowbreak{}id: Optional[int], quantities: Mapping[int, str], idempotency\_\allowbreak{}token: str, quoted\_\allowbreak{}total: Optional[int] = None, voucher\_\allowbreak{}code: Optional[str] = None, payment: Optional[PaymentChoice] = None, quote\_\allowbreak{}fingerprint: Optional[str] = None) -\textgreater{} OrderConfirmation}; P4 status: see Table P4-1 F-04; F-07; P2-S05; P2-S13 & Simulator approve/decline choice precedes this request. Short atomic checkout begins before token lookup. Own existing token \ensuremath{\rightarrow} existingOrder, no reprice, authorization or insertion (UC01-MG02). Foreign token \ensuremath{\rightarrow} refusal. Unused token rechecks eligibility, raw radius, capacity, voucher and full consent.\newline{}Simulator approve/decline choice precedes this request. Short atomic checkout begins before token lookup. Own existing token \ensuremath{\rightarrow} existingOrder, no reprice, authorization or insertion (UC01-MG02). Foreign token \ensuremath{\rightarrow} refusal. Unused token rechecks eligibility, raw radius, capacity, voucher and full consent.\newline{}Deterministic local simulator, no network/wait. COD skips authorise; ONLINE declined \ensuremath{\rightarrow} zero Order/Line/Payment. Success atomically saves PLACED + snapshots + COD \texttt{PENDING} / ONLINE PAID, C=T (UC01-PC01--06). Any lock/write/commit failure rolls back all intended writes and releases authorization (P2-S05/P2-S13).\newline{}Deterministic local simulator, no network/wait. COD skips authorise; ONLINE declined \ensuremath{\rightarrow} zero Order/Line/Payment. Success atomically saves PLACED + snapshots + COD \texttt{PENDING} / ONLINE PAID, C=T (UC01-PC01--06). Any lock/write/commit failure rolls back all intended writes and releases authorization (P2-S05/P2-S13).\newline{}Deterministic local simulator, no network/wait. COD skips authorise; ONLINE declined \ensuremath{\rightarrow} zero Order/Line/Payment. Success atomically saves PLACED + snapshots + COD \texttt{PENDING} / ONLINE PAID, C=T (UC01-PC01--06). Any lock/write/commit failure rolls back all intended writes and releases authorization (P2-S05/P2-S13). \\
+\texttt{viewReceipt(orderId)}\newline{}\texttt{models/\allowbreak{}UC-01/\allowbreak{}ssd\_\allowbreak{}uc01\_\allowbreak{}PartC.\allowbreak{}drawio\#01S-M05} & \texttt{order.\allowbreak{}detail, GET /\allowbreak{}order/\allowbreak{}\textless{}int:order\_\allowbreak{}id\textgreater{}} \ensuremath{\rightarrow} \texttt{OrderTrackingController.\allowbreak{}get\_\allowbreak{}order(self, user\_\allowbreak{}id: int, order\_\allowbreak{}id: int) -\textgreater{} OrderDetail}; C0 design target; final status in Table P4-1 F-06 & Read-only active role + own Customer / own kitchen hub checks; denied context discloses no foreign details. Receipt/offer amounts say refund owed, never paid out (F-06 where applicable). Read snapshots, .total and offer attributes; no fabricated business getters. No persistent writes. \\
+\texttt{viewMyOrders()}\newline{}\texttt{models/\allowbreak{}UC-01/\allowbreak{}ssd\_\allowbreak{}uc01\_\allowbreak{}PartC.\allowbreak{}drawio\#01S-M06} & \texttt{order.\allowbreak{}my\_\allowbreak{}orders, GET /\allowbreak{}order/\allowbreak{}mine} \ensuremath{\rightarrow} \texttt{OrderTrackingController.\allowbreak{}list\_\allowbreak{}my\_\allowbreak{}orders(self, user\_\allowbreak{}id: int) -\textgreater{} list[OrderSummary]}; MATCH & Read-only active role + own Customer / own kitchen hub checks; denied context discloses no foreign details. Receipt/offer amounts say refund owed, never paid out (F-06 where applicable). Read snapshots, .total and offer attributes; no fabricated business getters. No persistent writes. \\
+\texttt{cancelOrder(orderId)}\newline{}\texttt{models/\allowbreak{}UC-01/\allowbreak{}ssd\_\allowbreak{}uc01\_\allowbreak{}PartC.\allowbreak{}drawio\#01S-M07} & \texttt{order.\allowbreak{}cancel, POST /\allowbreak{}order/\allowbreak{}\textless{}int:order\_\allowbreak{}id\textgreater{}/\allowbreak{}cancel} \ensuremath{\rightarrow} \texttt{OrderTrackingController.\allowbreak{}cancel\_\allowbreak{}order(self, user\_\allowbreak{}id: int, order\_\allowbreak{}id: int) -\textgreater{} OrderDetail}; P4 status: see Table P4-1 F-02; P2-S13 & Guard: active own Customer; PLACED / CONFIRMED. Atomic CANCELLED + closed\_at / reason; COD VOIDED; ONLINE REFUND\_PENDING, refund\_amount=C replaces any partial owed amount. No payout. Open offer WITHDRAWN; helpers are real module functions. Rowcount, busy and failure-through-COMMIT rollback. P4 resolution (see Table P4-1): release\_payment persists the full-C refund amount together with state and checks every conditional save in the same transaction (F-02; P2-S01; P3-S03).\newline{}Guard: active own Customer; PLACED / CONFIRMED. Atomic CANCELLED + closed\_at / reason; COD VOIDED; ONLINE REFUND\_PENDING, refund\_amount=C replaces any partial owed amount. No payout. Open offer WITHDRAWN; helpers are real module functions. Rowcount, busy and failure-through-COMMIT rollback. P4 resolution (see Table P4-1): release\_payment persists the full-C refund amount together with state and checks every conditional save in the same transaction (F-02; P2-S01; P3-S03). \\
+\end{longtable}
+The design associates these operation guarantees with named controller methods and atomic/read boundaries. The P4 resolution and scoped test evidence are recorded in Table P4-1.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.2300\linewidth}>{\raggedright\arraybackslash}p{0.2300\linewidth}>{\raggedright\arraybackslash}p{0.2300\linewidth}>{\raggedright\arraybackslash}p{0.2300\linewidth}}
+SSD operation & Responsible method / boundary & Guarantees & Status \\
+\hline\endfirsthead
+SSD operation & Responsible method / boundary & Guarantees & Status \\
+\hline\endhead
+OP-13 \texttt{browseHubs} & \texttt{PlaceOrderController.\allowbreak{}list\_\allowbreak{}hubs(self) -\textgreater{} list[HubStatus]}; read & Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation & MATCH \\
+OP-14 \texttt{selectHub} & \texttt{PlaceOrderController.\allowbreak{}select\_\allowbreak{}hub(self, user\_\allowbreak{}id: int, hub\_\allowbreak{}id: int) -\textgreater{} HubMenuView}; read & Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation & MATCH \\
+OP-15 \texttt{requestQuote} & \texttt{PlaceOrderController.\allowbreak{}request\_\allowbreak{}quote(self, user\_\allowbreak{}id: int, hub\_\allowbreak{}id: int, address\_\allowbreak{}id: Optional[int], quantities: Mapping[int, str], voucher\_\allowbreak{}code: Optional[str] = None, payment: Optional[PaymentChoice] = None) -\textgreater{} Quote}; read & Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation & P4 status: see Table P4-1 F-04; F-07; P3-S01 \\
+OP-01 \texttt{confirmCheckout} & \texttt{PlaceOrderController.\allowbreak{}confirm\_\allowbreak{}order(self, user\_\allowbreak{}id: int, hub\_\allowbreak{}id: int, address\_\allowbreak{}id: Optional[int], quantities: Mapping[int, str], idempotency\_\allowbreak{}token: str, quoted\_\allowbreak{}total: Optional[int] = None, voucher\_\allowbreak{}code: Optional[str] = None, payment: Optional[PaymentChoice] = None, quote\_\allowbreak{}fingerprint: Optional[str] = None) -\textgreater{} OrderConfirmation}; BEGIN IMMEDIATE & UC01-PC01; UC01-PC02; UC01-PC03; UC01-PC04; UC01-PC05; UC01-PC06; UC01-MG01; UC01-MG02; UC01-MG03 & P4 status: see Table P4-1 F-04; F-07; P2-S05; P2-S13 \\
+OP-16 \texttt{viewReceipt} & \texttt{OrderTrackingController.\allowbreak{}get\_\allowbreak{}order(self, user\_\allowbreak{}id: int, order\_\allowbreak{}id: int) -\textgreater{} OrderDetail}; read & Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation & C0 design target; final status in Table P4-1 F-06 \\
+OP-17 \texttt{viewMyOrders} & \texttt{OrderTrackingController.\allowbreak{}list\_\allowbreak{}my\_\allowbreak{}orders(self, user\_\allowbreak{}id: int) -\textgreater{} list[OrderSummary]}; read & Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation & MATCH \\
+OP-07 \texttt{cancelOrder} & \texttt{OrderTrackingController.\allowbreak{}cancel\_\allowbreak{}order(self, user\_\allowbreak{}id: int, order\_\allowbreak{}id: int) -\textgreater{} OrderDetail}; BEGIN IMMEDIATE & SUC04-PC01; SUC04-PC02 (atomic cancellation and full-C obligation); checkout PCs are not asserted by cancellation & P4 status: see Table P4-1 F-02; P2-S13 \\
+\end{longtable}
+\textbf{OP-13 browseHubs}
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-01/seq_uc01_browseHubs.png}}
+\caption{Figure 3.1.4.OP-13. UC-01 browseHubs --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0040}
+\end{figure}
+\end{landscape}
+Read .busy / .quiet on HubStatus; these are properties, never busy() / quiet() calls. No persistent writes. Active Customer gate belongs to view; select\_hub also checks active Customer and hub.
+
+\textbf{OP-14 selectHub}
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-01/seq_uc01_selectHub.png}}
+\caption{Figure 3.1.4.OP-14. UC-01 selectHub --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0041}
+\end{figure}
+\end{landscape}
+\textbf{OP-15 requestQuote}
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-01/seq_uc01_requestQuote_PartA.png}}
+\caption{Figure 3.1.4.OP-15A. UC-01 requestQuote --- Part A --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0042}
+\end{figure}
+\end{landscape}
+Target: active hub/menu/brand, own active address, integer quantities, load \textless{} capacity. Invalid input/refused voucher \ensuremath{\rightarrow} no saved rows. Busy suggestions \ensuremath{\leq}3 ranked (load/capacity, raw distance, ID).
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-01/seq_uc01_requestQuote_PartB.png}}
+\caption{Figure 3.1.4.OP-15B. UC-01 requestQuote --- Part B --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0043}
+\end{figure}
+\end{landscape}
+Read quote.item\_subtotal / quote.total properties. Fingerprint binds hub/address, line IDs, quantities and prices, voucher + D, F, Q and payment choice; full accepted price T=S\ensuremath{-}D+F\ensuremath{-}Q. PaymentChoice is a typed adapter value.
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-01/seq_uc01_requestQuote_PartC.png}}
+\caption{Figure 3.1.4.OP-15C. UC-01 requestQuote --- Part C --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0044}
+\end{figure}
+\end{landscape}
+\textbf{OP-01 confirmCheckout}
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-01/seq_uc01_confirmCheckout_PartA.png}}
+\caption{Figure 3.1.4.OP-01A. UC-01 confirmCheckout --- Part A --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0045}
+\end{figure}
+\end{landscape}
+Simulator approve/decline choice precedes this request. Short atomic checkout begins before token lookup. Own existing token \ensuremath{\rightarrow} existingOrder, no reprice, authorization or insertion (UC01-MG02). Foreign token \ensuremath{\rightarrow} refusal. Unused token rechecks eligibility, raw radius, capacity, voucher and full consent.
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-01/seq_uc01_confirmCheckout_PartB.png}}
+\caption{Figure 3.1.4.OP-01B. UC-01 confirmCheckout --- Part B --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0046}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-01/seq_uc01_confirmCheckout_PartC.png}}
+\caption{Figure 3.1.4.OP-01C. UC-01 confirmCheckout --- Part C --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0047}
+\end{figure}
+\end{landscape}
+Deterministic local simulator, no network/wait. COD skips authorise; ONLINE declined \ensuremath{\rightarrow} zero Order/Line/Payment. Success atomically saves PLACED + snapshots + COD \texttt{PENDING} / ONLINE PAID, C=T (UC01-PC01--06). Any lock/write/commit failure rolls back all intended writes and releases authorization (P2-S05/P2-S13).
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-01/seq_uc01_confirmCheckout_PartD.png}}
+\caption{Figure 3.1.4.OP-01D. UC-01 confirmCheckout --- Part D --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0048}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-01/seq_uc01_confirmCheckout_PartE.png}}
+\caption{Figure 3.1.4.OP-01E. UC-01 confirmCheckout --- Part E --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0049}
+\end{figure}
+\end{landscape}
+\textbf{OP-16 viewReceipt}
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-01/seq_uc01_viewReceipt.png}}
+\caption{Figure 3.1.4.OP-16. UC-01 viewReceipt --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0050}
+\end{figure}
+\end{landscape}
+Read-only active role + own Customer / own kitchen hub checks; denied context discloses no foreign details. Receipt/offer amounts say refund owed, never paid out (F-06 where applicable). Read snapshots, .total and offer attributes; no fabricated business getters. No persistent writes.
+
+\textbf{OP-17 viewMyOrders}
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-01/seq_uc01_viewMyOrders.png}}
+\caption{Figure 3.1.4.OP-17. UC-01 viewMyOrders --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0051}
+\end{figure}
+\end{landscape}
+\textbf{OP-07 cancelOrder}
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-01/seq_uc01_cancelOrder.png}}
+\caption{Figure 3.1.4.OP-07A. UC-01 cancelOrder --- Part A --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0052}
+\end{figure}
+\end{landscape}
+Guard: active own Customer; PLACED / CONFIRMED. Atomic CANCELLED + closed\_at / reason; COD VOIDED; ONLINE REFUND\_PENDING, refund\_amount=C replaces any partial owed amount. No payout. Open offer WITHDRAWN; helpers are real module functions. Rowcount, busy and failure-through-COMMIT rollback. P4 resolution (see Table P4-1): release\_payment persists the full-C refund amount together with state and checks every conditional save in the same transaction (F-02; P2-S01; P3-S03).
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-01/seq_uc01_cancelOrder_PartB.png}}
+\caption{Figure 3.1.4.OP-07B. UC-01 cancelOrder --- Part B --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0053}
+\end{figure}
+\end{landscape}

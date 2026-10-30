@@ -1,11 +1,338 @@
-\textbf{3.4.2 i.}\par
-HubStatus and Hub are the real domain participants. Period, report rows and report results belong to the actual controller module; no Report domain class or lifecycle is invented.
+\subsubsection*{3.4.1 Design Classes in Detailed Design}
+\addcontentsline{toc}{subsubsection}{3.4.1 Design Classes in Detailed Design}
+\pdfbookmark[2]{3.4.1 Design Classes in Detailed Design}{p7h93}
+One typed table per participating class/module follows.
 
-\begin{landscape}
-\begin{figure}[p]
-\centering
-\includegraphics[width=230mm]{\detokenize{models/UC-04/dcd_uc04_domain.png}}
-\caption{Figure 3.4.2.i-A. UC-04 domain design classes: No Report domain class or lifecycle exists; report values stay in the controller module. --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0131}
-\end{figure}
-\end{landscape}
-Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+\textbf{UC-04 Design Classes}
+
+Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
+
+C0: 45ac76221b0a103174c7c01d17577e6e49cfd665 \ensuremath{\cdot} Evidence: Static source correspondence only; this is not runtime or test evidence.
+
+The tables use the sole shared DCD model at C0. Visibility follows the leading-underscore convention; signatures preserve the AST inventory. * marks an inferred/unannotated type or route signature.  marks a C0 design target (final status in Table P4-1)/C0 design gap (final status in Table P4-1) and does not mean implemented at C0. Domain FK scalar attributes are retained here for mapping but omitted from DCDs in favour of associations.
+
+\textbf{Hub}
+
+Layer: domain \ensuremath{\cdot} Stereotype: \guillemotleft{}entity\guillemotright{} \ensuremath{\cdot} Module: saigonbite/business/domain/models.py
+
+Responsibility: Represent a kitchen location, capacity and fee.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute id & + & int & MATCH & --- \\
+Attribute code & + & str & MATCH & --- \\
+Attribute name & + & str & MATCH & --- \\
+Attribute address\_text & + & str & MATCH & --- \\
+Attribute latitude & + & float & MATCH & --- \\
+Attribute longitude & + & float & MATCH & --- \\
+Attribute max\_active\_orders & + & int & MATCH & --- \\
+Attribute base\_delivery\_fee & + & int & MATCH & --- \\
+Attribute archived\_at & + & Optional[str] & MATCH & default=None \\
+\end{longtable}
+\textbf{HubStatus}
+
+Layer: domain \ensuremath{\cdot} Stereotype: \guillemotleft{}entity\guillemotright{} \ensuremath{\cdot} Module: saigonbite/business/domain/models.py
+
+Responsibility: Derive busy, quiet and load percentage from current load and capacity.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute hub & + & Hub & MATCH & --- \\
+Attribute load & + & int & MATCH & --- \\
+Method busy & + & busy(self) -\textgreater{} bool & MATCH & property \\
+Method quiet & + & quiet(self) -\textgreater{} bool & MATCH & property \\
+Method load\_percent & + & load\_percent(self) -\textgreater{} int & MATCH & property \\
+\end{longtable}
+\textbf{OrderState}
+
+Layer: domain \ensuremath{\cdot} Stereotype: \guillemotleft{}enumeration\guillemotright{} \ensuremath{\cdot} Module: saigonbite/business/domain/enums.py
+
+Responsibility: Hold typed business state and its local rules.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute PLACED & + & str & MATCH & inferred; default='PLACED' \\
+Attribute CONFIRMED & + & str & MATCH & inferred; default='CONFIRMED' \\
+Attribute REJECTED & + & str & MATCH & inferred; default='REJECTED' \\
+Attribute PREPARING & + & str & MATCH & inferred; default='PREPARING' \\
+Attribute READY & + & str & MATCH & inferred; default='READY' \\
+Attribute OUT\_FOR\_DELIVERY & + & str & MATCH & inferred; default='OUT\_FOR\_DELIVERY' \\
+Attribute DELIVERED & + & str & MATCH & inferred; default='DELIVERED' \\
+Attribute DELIVERY\_FAILED & + & str & MATCH & inferred; default='DELIVERY\_FAILED' \\
+Attribute CANCELLED & + & str & MATCH & inferred; default='CANCELLED' \\
+\end{longtable}
+\textbf{DeliveryState}
+
+Layer: domain \ensuremath{\cdot} Stereotype: \guillemotleft{}enumeration\guillemotright{} \ensuremath{\cdot} Module: saigonbite/business/domain/enums.py
+
+Responsibility: Hold typed business state and its local rules.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute AWAITING\_PICKUP & + & str & MATCH & inferred; default='AWAITING\_PICKUP' \\
+Attribute PICKED\_UP & + & str & MATCH & inferred; default='PICKED\_UP' \\
+Attribute DELIVERED & + & str & MATCH & inferred; default='DELIVERED' \\
+Attribute FAILED & + & str & MATCH & inferred; default='FAILED' \\
+\end{longtable}
+\textbf{ReportController}
+
+Layer: controller \ensuremath{\cdot} Stereotype: \guillemotleft{}controller\guillemotright{} \ensuremath{\cdot} Module: saigonbite/business/controllers/report\_controller.py
+
+Responsibility: Authorize Manager requests and construct operational reports without writes.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute reports & + & ReportDAO & MATCH & inferred \\
+Attribute hubs & + & HubDAO & MATCH & inferred \\
+Method all\_hubs & + & all\_hubs(self) -\textgreater{} list[Hub] & MATCH & --- \\
+Method sales\_report & + & sales\_report(self, user\_id: int, date\_from: Optional[str]=None, date\_to: Optional[str]=None, hub\_id: Optional[int]=None) -\textgreater{} SalesReport & P4 scoped evidence (P4.8; resolution rows 25, 26) & P4 input: F-03; F-09; Expose T without subtracting refund owed twice; top items retain menu\_item\_id identity. Carry menu\_item\_id into SalesReport.top\_items and presentation. \\
+Method workload\_report & + & workload\_report(self, user\_id: int) -\textgreater{} WorkloadReport & P4 scoped evidence (P4.8; resolution rows 25, 26) & P4 input: P2-S18; Use all retained hub identities, including archived hubs with zero open work. \\
+Method delivery\_report & + & delivery\_report(self, user\_id: int, date\_from: Optional[str]=None, date\_to: Optional[str]=None, hub\_id: Optional[int]=None) -\textgreater{} DeliveryReport & MATCH & --- \\
+Method \_require\_manager & - & \_require\_manager(self, user\_id: int) -\textgreater{} None & MATCH & --- \\
+Method \_hub & - & \_hub(self, hub\_id: Optional[int]) -\textgreater{} Optional[Hub] & MATCH & --- \\
+Method \_period & - & \_period(self, date\_from: Optional[str], date\_to: Optional[str]) -\textgreater{} Period & MATCH & --- \\
+\end{longtable}
+\textbf{BaseController}
+
+Layer: controller \ensuremath{\cdot} Stereotype: \guillemotleft{}controller\guillemotright{} \ensuremath{\cdot} Module: saigonbite/business/controllers/common.py
+
+Responsibility: Coordinate authorization, domain decisions and data access.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute conn & + & sqlite3.Connection & MATCH & --- \\
+Attribute clock & + & Any & MATCH & inferred \\
+Attribute users & + & UserDAO & MATCH & inferred \\
+Method \_today\_vn & - & \_today\_vn(self) -\textgreater{} str & MATCH & --- \\
+Method \_require\_user & - & \_require\_user(self, user\_id: int, *roles: Role, message: str='Your account cannot do this.') -\textgreater{} UserAccount & MATCH & --- \\
+\end{longtable}
+\textbf{controllers.common}
+
+Layer: controller \ensuremath{\cdot} Stereotype: \guillemotleft{}module\guillemotright{} \ensuremath{\cdot} Module: saigonbite/business/controllers/common.py
+
+Responsibility: Module functions with their original Python signatures.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Method vn\_day\_start\_utc & + & vn\_day\_start\_utc(day: date) -\textgreater{} str & MATCH & --- \\
+\end{longtable}
+\textbf{controllers.report\_controller}
+
+Layer: controller \ensuremath{\cdot} Stereotype: \guillemotleft{}module\guillemotright{} \ensuremath{\cdot} Module: saigonbite/business/controllers/report\_controller.py
+
+Responsibility: Module functions with their original Python signatures.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Method \_minutes & - & \_minutes(start: Optional[str], end: Optional[str]) -\textgreater{} Optional[float] & MATCH & --- \\
+\end{longtable}
+\textbf{Period}
+
+Layer: controller \ensuremath{\cdot} Stereotype: \guillemotleft{}value\guillemotright{} \ensuremath{\cdot} Module: saigonbite/business/controllers/report\_controller.py
+
+Responsibility: Coordinate authorization, domain decisions and data access.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute date\_from & + & str & MATCH & --- \\
+Attribute date\_to & + & str & MATCH & --- \\
+Attribute start\_utc & + & str & MATCH & --- \\
+Attribute end\_utc & + & str & MATCH & --- \\
+\end{longtable}
+\textbf{SalesRow}
+
+Layer: controller \ensuremath{\cdot} Stereotype: \guillemotleft{}value\guillemotright{} \ensuremath{\cdot} Module: saigonbite/business/controllers/report\_controller.py
+
+Responsibility: Coordinate authorization, domain decisions and data access.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute label & + & str & MATCH & --- \\
+Attribute orders & + & int & MATCH & default=0 \\
+Attribute item\_sales & + & int & MATCH & default=0 \\
+Attribute voucher\_discounts & + & int & MATCH & default=0 \\
+Attribute delivery\_fees & + & int & MATCH & default=0 \\
+Attribute total & + & int & MATCH & default=0 \\
+Attribute refunds\_owed & + & int & MATCH & default=0 \\
+Method net & + & net(self) -\textgreater{} int & P4 scoped evidence (P4.8; resolution rows 27) & property; P4 input: F-03; Return total T; refunds\_owed is disclosed separately. \\
+Method add & + & add(self, other: 'SalesRow') -\textgreater{} None & MATCH & --- \\
+\end{longtable}
+\textbf{SalesReport}
+
+Layer: controller \ensuremath{\cdot} Stereotype: \guillemotleft{}value\guillemotright{} \ensuremath{\cdot} Module: saigonbite/business/controllers/report\_controller.py
+
+Responsibility: Coordinate authorization, domain decisions and data access.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute period & + & Period & MATCH & --- \\
+Attribute hub & + & Optional[Hub] & MATCH & --- \\
+Attribute rows & + & list[SalesRow] & MATCH & --- \\
+Attribute totals & + & SalesRow & MATCH & --- \\
+Attribute top\_items & + & list[tuple[int, str, int, int]] & P4 scoped evidence (P4.8; resolution rows 59) & --- \\
+\end{longtable}
+\textbf{WorkloadRow}
+
+Layer: controller \ensuremath{\cdot} Stereotype: \guillemotleft{}value\guillemotright{} \ensuremath{\cdot} Module: saigonbite/business/controllers/report\_controller.py
+
+Responsibility: Coordinate authorization, domain decisions and data access.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute status & + & HubStatus & MATCH & --- \\
+Attribute counts & + & dict[OrderState, int] & MATCH & --- \\
+Method label & + & label(self) -\textgreater{} str & MATCH & property \\
+\end{longtable}
+\textbf{WorkloadReport}
+
+Layer: controller \ensuremath{\cdot} Stereotype: \guillemotleft{}value\guillemotright{} \ensuremath{\cdot} Module: saigonbite/business/controllers/report\_controller.py
+
+Responsibility: Coordinate authorization, domain decisions and data access.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute as\_of & + & str & MATCH & --- \\
+Attribute rows & + & list[WorkloadRow] & MATCH & --- \\
+\end{longtable}
+\textbf{DeliveryRow}
+
+Layer: controller \ensuremath{\cdot} Stereotype: \guillemotleft{}value\guillemotright{} \ensuremath{\cdot} Module: saigonbite/business/controllers/report\_controller.py
+
+Responsibility: Coordinate authorization, domain decisions and data access.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute label & + & str & MATCH & --- \\
+Attribute delivered & + & int & MATCH & default=0 \\
+Attribute failed & + & int & MATCH & default=0 \\
+Attribute waits & + & list[float] & MATCH & default=field(default\_factory=list) \\
+Attribute rides & + & list[float] & MATCH & default=field(default\_factory=list) \\
+Method failure\_rate & + & failure\_rate(self) -\textgreater{} Optional[float] & MATCH & property \\
+Method avg\_wait & + & avg\_wait(self) -\textgreater{} Optional[float] & MATCH & property \\
+Method avg\_ride & + & avg\_ride(self) -\textgreater{} Optional[float] & MATCH & property \\
+\end{longtable}
+\textbf{DeliveryReport}
+
+Layer: controller \ensuremath{\cdot} Stereotype: \guillemotleft{}value\guillemotright{} \ensuremath{\cdot} Module: saigonbite/business/controllers/report\_controller.py
+
+Responsibility: Coordinate authorization, domain decisions and data access.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute period & + & Period & MATCH & --- \\
+Attribute hub & + & Optional[Hub] & MATCH & --- \\
+Attribute by\_hub & + & list[DeliveryRow] & MATCH & --- \\
+Attribute by\_shipper & + & list[DeliveryRow] & MATCH & --- \\
+Attribute overall & + & DeliveryRow & MATCH & --- \\
+\end{longtable}
+\textbf{reports}
+
+Layer: view \ensuremath{\cdot} Stereotype: \guillemotleft{}view\guillemotright{} \ensuremath{\cdot} Module: saigonbite/presentation/reports.py
+
+Responsibility: Translate Manager filters and render read-only report results.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Method \_filtered & - & \_filtered(template: str, run) & MATCH & inferred \\
+Method sales & + & sales() & P4 scoped evidence (P4.8; resolution rows 66) & inferred; P4 input: F-09; Render the new identity-preserving top-items shape; template unpacking must retain the item identity. \\
+Method workload & + & workload() & MATCH & inferred \\
+Method delivery & + & delivery() & MATCH & inferred \\
+\end{longtable}
+\textbf{ReportDAO}
+
+Layer: data\_access \ensuremath{\cdot} Stereotype: \guillemotleft{}DAO\guillemotright{} \ensuremath{\cdot} Module: saigonbite/data\_access/report\_dao.py
+
+Responsibility: Read or write parameterized records.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute conn & + & sqlite3.Connection & MATCH & --- \\
+Method sales\_by\_hub & + & sales\_by\_hub(self, start\_utc: str, end\_utc: str, hub\_id: Optional[int]) -\textgreater{} list[sqlite3.Row] & MATCH & --- \\
+Method top\_items & + & top\_items(self, start\_utc: str, end\_utc: str, hub\_id: Optional[int], limit: int=10) -\textgreater{} list[sqlite3.Row] & P4 scoped evidence (P4.8; resolution rows 58) & P4 input: F-09; Select and group by menu\_item\_id; snapshot name is a label, never the grouping identity. \\
+Method open\_orders\_by\_hub\_and\_state & + & open\_orders\_by\_hub\_and\_state(self) -\textgreater{} list[sqlite3.Row] & MATCH & --- \\
+Method finished\_deliveries & + & finished\_deliveries(self, start\_utc: str, end\_utc: str, hub\_id: Optional[int]) -\textgreater{} list[sqlite3.Row] & MATCH & --- \\
+\end{longtable}
+\textbf{HubDAO}
+
+Layer: data\_access \ensuremath{\cdot} Stereotype: \guillemotleft{}DAO\guillemotright{} \ensuremath{\cdot} Module: saigonbite/data\_access/hub\_dao.py
+
+Responsibility: Read or write parameterized records.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute conn & + & sqlite3.Connection & MATCH & --- \\
+Method list\_active & + & list\_active(self) -\textgreater{} list[Hub] & MATCH & --- \\
+Method list\_all & + & list\_all(self) -\textgreater{} list[Hub] & MATCH & --- \\
+Method get\_including\_archived & + & get\_including\_archived(self, hub\_id: int) -\textgreater{} Optional[Hub] & MATCH & --- \\
+\end{longtable}
+\textbf{UserDAO}
+
+Layer: data\_access \ensuremath{\cdot} Stereotype: \guillemotleft{}DAO\guillemotright{} \ensuremath{\cdot} Module: saigonbite/data\_access/user\_dao.py
+
+Responsibility: Read or write parameterized records.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endfirsthead
+Element & Visibility & Type / full signature & Status & Notes \\
+\hline\endhead
+Attribute conn & + & sqlite3.Connection & MATCH & --- \\
+Method get\_by\_id & + & get\_by\_id(self, user\_id: int) -\textgreater{} Optional[UserAccount] & MATCH & --- \\
+\end{longtable}
+\textbf{F-09 identity and presentation target}
+
+ReportDAO.top\_items retains menu\_item\_id in grouping and read rows. SalesReport.top\_items carries list[tuple[int, str, int, int]] (item ID, snapshot name, quantity, revenue). reports.sales and its template preserve that identity when rendering; these three elements are C0 design target (final status in Table P4-1) under F-09 / P4.8. No target behavior is claimed executed.

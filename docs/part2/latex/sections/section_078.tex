@@ -1,84 +1,107 @@
-\subsubsection*{3.2.5 Final Design Class Diagram}
-\addcontentsline{toc}{subsubsection}{3.2.5 Final Design Class Diagram}
-\pdfbookmark[2]{3.2.5 Final Design Class Diagram}{p7h78}
-All message receivers in the five design sequences are present. Changes from 3.2.2: none in the class/method/association set; the final views repeat the operation-partitioned all-layer diagrams after sequence reconciliation.
+\subsubsection*{3.2.3 OOD with CRC Cards or Communication Diagram}
+\addcontentsline{toc}{subsubsection}{3.2.3 OOD with CRC Cards or Communication Diagram}
+\pdfbookmark[2]{3.2.3 OOD with CRC Cards or Communication Diagram}{p7h78}
+\label{CRC-UC-02}
+The CRC include lists actual collaborators from the AST-derived call/type model and distinguishes controller values from domain entities.
 
-\begin{figure}[p]
-\centering
-\includegraphics[width=170mm]{\detokenize{models/UC-02/dcd_uc02_final_PartA.png}}
-\caption{Figure 3.2.5-A. UC-02 final design classes: Ready board authorization and retrieval --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0098}
-\end{figure}
-Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+\textbf{UC-02 CRC Cards}
 
-\begin{figure}[p]
-\centering
-\includegraphics[width=170mm]{\detokenize{models/UC-02/dcd_uc02_final_PartB.png}}
-\caption{Figure 3.2.5-B. UC-02 final design classes: Board row projection --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0099}
-\end{figure}
-Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
 
-\begin{figure}[p]
-\centering
-\includegraphics[width=170mm]{\detokenize{models/UC-02/dcd_uc02_final_PartC.png}}
-\caption{Figure 3.2.5-C. UC-02 final design classes: Inspect assignment and access --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0100}
-\end{figure}
-Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+Collaborators are real classes/modules linked by the AST-derived shared model (calls or typed attributes); target-only collaborators are identified as P4 targets. Blueprints and helpers remain real modules. No communication diagram is added.
 
-\begin{figure}[p]
-\centering
-\includegraphics[width=170mm]{\detokenize{models/UC-02/dcd_uc02_final_PartD.png}}
-\caption{Figure 3.2.5-D. UC-02 final design classes: Delivery contact projection --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0101}
-\end{figure}
-Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+\textbf{Delivery --- domain / \guillemotleft{}entity\guillemotright{}}
 
-\begin{figure}[p]
-\centering
-\includegraphics[width=170mm]{\detokenize{models/UC-02/dcd_uc02_final_PartE.png}}
-\caption{Figure 3.2.5-E. UC-02 final design classes: Atomic pickup and paired Order transition --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0102}
-\end{figure}
-Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+\textbf{Knows:} state: DeliveryState, ready\_at: str, picked\_up\_at: Optional[str], finished\_at: Optional[str], failure\_reason: Optional[str], cash\_collected: Optional[int], id: Optional[int]\newline{}\textbf{Does:} Hold assignment, paired lifecycle times, cash and failure outcome.; operations: move\_to\newline{}\textbf{Collaborators:} DeliveryState
 
-\begin{figure}[p]
-\centering
-\includegraphics[width=170mm]{\detokenize{models/UC-02/dcd_uc02_final_PartF.png}}
-\caption{Figure 3.2.5-F. UC-02 final design classes: Successful delivery and paired states --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0103}
-\end{figure}
-Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+\textbf{Order --- domain / \guillemotleft{}entity\guillemotright{}}
 
-\begin{figure}[p]
-\centering
-\includegraphics[width=170mm]{\detokenize{models/UC-02/dcd_uc02_final_PartG.png}}
-\caption{Figure 3.2.5-G. UC-02 final design classes: Failure state and full refund obligation --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0104}
-\end{figure}
-Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+\textbf{Knows:} state: OrderState, delivery\_fee: int, idempotency\_token: str, placed\_at: str, lines: list[OrderLine], id: Optional[int], archived\_at: Optional[str], delivery\_address\_text: str, distance\_km: float, voucher\_discount: int, quiet\_discount: int, reject\_reason: Optional[str], confirmed\_at: Optional[str], ready\_at: Optional[str], closed\_at: Optional[str]\newline{}\textbf{Does:} Own the order lifecycle, snapshots and accepted replacement totals.; operations: can\_move\_to, move\_to\newline{}\textbf{Collaborators:} OrderState
 
-\begin{figure}[p]
-\centering
-\includegraphics[width=170mm]{\detokenize{models/UC-02/dcd_uc02_final_PartH.png}}
-\caption{Figure 3.2.5-H. UC-02 final design classes: Completion contact and cash projection --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0105}
-\end{figure}
-Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+\textbf{Payment --- domain / \guillemotleft{}entity\guillemotright{}}
 
-\begin{figure}[p]
-\centering
-\includegraphics[width=170mm]{\detokenize{models/UC-02/dcd_uc02_final_PartI.png}}
-\caption{Figure 3.2.5-I. UC-02 final design classes: Contact and archived-hub projection --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0106}
-\end{figure}
-Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+\textbf{Knows:} method: PaymentMethod, state: PaymentState, amount: int, created\_at: str, updated\_at: Optional[str], online\_option: Optional[OnlineOption], provider\_ref: Optional[str], refund\_amount: int, id: Optional[int]\newline{}\textbf{Does:} Hold captured amount C and refund obligations without claiming payout.; operations: move\_to, release\_for\_unfulfilled\_order\newline{}\textbf{Collaborators:} PaymentState
 
-\begin{figure}[p]
-\centering
-\includegraphics[width=170mm]{\detokenize{models/UC-02/dcd_uc02_final_PartJ.png}}
-\caption{Figure 3.2.5-J. UC-02 final design classes: Completion contact projection --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0107}
-\end{figure}
-Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+\textbf{UserAccount --- domain / \guillemotleft{}entity\guillemotright{}}
 
-Every received sequence method appears on its actual receiver in the final DCD: blueprint routes, DeliveryController/BaseController helpers, controllers.common functions, domain move\_to/refund behavior and controller value roles. The operation-specific P4 targets describe C0 history; the final DCD does not imply those behaviors already passed at C0. Subsequent evidence is in Table P4-1.
+\textbf{Knows:} id: int, username: str, password\_hash: str, display\_name: str, role: Role, is\_active: bool, created\_at: str\newline{}\textbf{Does:} Hold account identity, role, active flag and optional kitchen-hub assignment.; operations: value/module role only.\newline{}\textbf{Collaborators:} Role
 
-\textbf{Integration repair evidence}
+\textbf{Hub --- domain / \guillemotleft{}entity\guillemotright{}}
 
-The diagrams and typed metadata were refreshed against the corrected shared model. Allowed layered dependencies are drawn; the twelve retained dependency-policy entries are documented as static policy checks in report 4.2 and Table P4-1, not as runtime tests. P2-S13/P3-S03 identified C0 targets for guarded writes, commit failures and busy handling; their final scoped evidence is recorded in Table P4-1. Read paths remain read-only. Native draw.io XML and connected edge endpoints are structurally checked; native-app editing and final report placement remain UNTESTED.
+\textbf{Knows:} id: int, code: str, name: str, address\_text: str, latitude: float, longitude: float, max\_active\_orders: int, base\_delivery\_fee: int, archived\_at: Optional[str]\newline{}\textbf{Does:} Represent a kitchen location, capacity and fee.; operations: value/module role only.\newline{}\textbf{Collaborators:} None recorded in this UC view.
 
-DeliveryController calls the Delivery and Payment domain receivers. The local variable delivery is resolved to Delivery; it is not an upward call to the delivery blueprint.
+\textbf{Customer --- domain / \guillemotleft{}entity\guillemotright{}}
 
-Diagram notation (R1--R4): every displayed association now has separate multiplicity text at its actual attached source and target ends, plus a separate role label. The initial SSD request precedes actual accepted/refused interaction operands; both success and refusal response paths are visible. The controller refusal reply is conditional on controller invocation. Read guards state no writes; command success requires commit. Call heads are closed/filled and reply heads are dashed/open.
+\textbf{Knows:} id: int, full\_name: str, phone: Optional[str], email: Optional[str], passport\_no: Optional[str], nationality: Optional[str], customer\_type: CustomerType\newline{}\textbf{Does:} Represent customer identity and permitted online payment choices.; operations: value/module role only.\newline{}\textbf{Collaborators:} None recorded in this UC view.
+
+\textbf{DeliveryState --- domain / \guillemotleft{}enumeration\guillemotright{}}
+
+\textbf{Knows:} AWAITING\_PICKUP: str, PICKED\_UP: str, DELIVERED: str, FAILED: str\newline{}\textbf{Does:} Hold typed business state and its local rules.; operations: value/module role only.\newline{}\textbf{Collaborators:} None recorded in this UC view.
+
+\textbf{OrderState --- domain / \guillemotleft{}enumeration\guillemotright{}}
+
+\textbf{Knows:} PLACED: str, CONFIRMED: str, REJECTED: str, PREPARING: str, READY: str, OUT\_FOR\_DELIVERY: str, DELIVERED: str, DELIVERY\_FAILED: str, CANCELLED: str\newline{}\textbf{Does:} Hold typed business state and its local rules.; operations: value/module role only.\newline{}\textbf{Collaborators:} None recorded in this UC view.
+
+\textbf{PaymentState --- domain / \guillemotleft{}enumeration\guillemotright{}}
+
+\textbf{Knows:} \texttt{PENDING}: str, PAID: str, FAILED: str, VOIDED: str, REFUND\_PENDING: str, REFUNDED: str\newline{}\textbf{Does:} Hold typed business state and its local rules.; operations: value/module role only.\newline{}\textbf{Collaborators:} None recorded in this UC view.
+
+\textbf{Role --- domain / \guillemotleft{}enumeration\guillemotright{}}
+
+\textbf{Knows:} CUSTOMER: str, KITCHEN\_STAFF: str, SHIPPER: str, ADMIN: str, MANAGER: str\newline{}\textbf{Does:} Hold typed business state and its local rules.; operations: value/module role only.\newline{}\textbf{Collaborators:} None recorded in this UC view.
+
+\textbf{DeliveryController --- controller / \guillemotleft{}controller\guillemotright{}}
+
+\textbf{Knows:} deliveries: DeliveryDAO, orders: OrderDAO, payments: PaymentDAO, hubs: HubDAO, customers: CustomerDAO\newline{}\textbf{Does:} Coordinate authorization, domain decisions and data access.; operations: board, get\_delivery, pick\_up , confirm\_delivered , report\_failure , \_require\_shipper, \_delivery, \_own\_active\_delivery, \_parse\_cash, \_view\newline{}\textbf{Collaborators:} CustomerDAO, Delivery, DeliveryDAO, DeliveryView, HubDAO, OrderDAO, Payment, PaymentDAO, ShipperBoard, UserAccount, controllers.common
+
+\textbf{BaseController --- controller / \guillemotleft{}controller\guillemotright{}}
+
+\textbf{Knows:} conn: sqlite3.Connection, clock: Any, users: UserDAO\newline{}\textbf{Does:} Coordinate authorization, domain decisions and data access.; operations: \_now, \_require\_user\newline{}\textbf{Collaborators:} Role, UserAccount, UserDAO
+
+\textbf{controllers.common --- controller / \guillemotleft{}module\guillemotright{}}
+
+\textbf{Knows:} No instance attributes in the shared model.\newline{}\textbf{Does:} Module functions with their original Python signatures.; operations: move\_order, release\_payment\newline{}\textbf{Collaborators:} Order, OrderDAO, OrderState, Payment, PaymentDAO
+
+\textbf{DeliveryView --- controller / \guillemotleft{}value\guillemotright{}}
+
+\textbf{Knows:} delivery: Delivery, order: Order, payment: Payment, hub: Hub, customer: Customer\newline{}\textbf{Does:} Coordinate authorization, domain decisions and data access.; operations: cash\_to\_collect\newline{}\textbf{Collaborators:} Customer, Delivery, Hub, Order, Payment
+
+\textbf{ShipperBoard --- controller / \guillemotleft{}value\guillemotright{}}
+
+\textbf{Knows:} waiting: list[DeliveryView], mine: list[DeliveryView], finished: list[DeliveryView]\newline{}\textbf{Does:} Coordinate authorization, domain decisions and data access.; operations: value/module role only.\newline{}\textbf{Collaborators:} DeliveryView
+
+\textbf{delivery --- view / \guillemotleft{}view\guillemotright{}}
+
+\textbf{Knows:} No instance attributes in the shared model.\newline{}\textbf{Does:} Translate shipper requests and render contact and cash information.; operations: board, detail, pick\_up, delivered, failed\newline{}\textbf{Collaborators:} DeliveryController
+
+\textbf{DeliveryDAO --- data\_access / \guillemotleft{}DAO\guillemotright{}}
+
+\textbf{Knows:} conn: sqlite3.Connection\newline{}\textbf{Does:} Read or write parameterized records.; operations: get\_by\_order\_id, list\_awaiting\_pickup, list\_for\_shipper, take, finish\newline{}\textbf{Collaborators:} Delivery, DeliveryState, delivery
+
+\textbf{OrderDAO --- data\_access / \guillemotleft{}DAO\guillemotright{}}
+
+\textbf{Knows:} conn: sqlite3.Connection\newline{}\textbf{Does:} Read or write parameterized records.; operations: get\_by\_id, change\_state, \_load\newline{}\textbf{Collaborators:} Order, OrderState
+
+\textbf{PaymentDAO --- data\_access / \guillemotleft{}DAO\guillemotright{}}
+
+\textbf{Knows:} conn: sqlite3.Connection\newline{}\textbf{Does:} Read or write parameterized records.; operations: get\_by\_order\_id, change\_state, set\_amounts\newline{}\textbf{Collaborators:} Payment, PaymentState
+
+\textbf{CustomerDAO --- data\_access / \guillemotleft{}DAO\guillemotright{}}
+
+\textbf{Knows:} conn: sqlite3.Connection\newline{}\textbf{Does:} Read or write parameterized records.; operations: get\newline{}\textbf{Collaborators:} Customer
+
+\textbf{HubDAO --- data\_access / \guillemotleft{}DAO\guillemotright{}}
+
+\textbf{Knows:} conn: sqlite3.Connection\newline{}\textbf{Does:} Read or write parameterized records.; operations: get\_including\_archived\newline{}\textbf{Collaborators:} Hub
+
+\textbf{UserDAO --- data\_access / \guillemotleft{}DAO\guillemotright{}}
+
+\textbf{Knows:} conn: sqlite3.Connection\newline{}\textbf{Does:} Read or write parameterized records.; operations: get\_by\_id\newline{}\textbf{Collaborators:} UserAccount
+
+\textbf{Privacy and assignment boundary}
+
+Shipper-facing DeliveryView contains only the permitted contact and stored address snapshot. Customer.passport\_no is not part of the shipper projection. The Delivery-to-UserAccount association carries the optional assigned-shipper role; no shipper class is fabricated.
+
+\textbf{Architecture correspondence}
+
+Actual DAO imports of domain values remain static couplings in these CRC collaborators; they are an upward-dependency P4.9 finding documented in section 4.2, and are not drawn as permitted dependencies in the layered DCD.

@@ -1,75 +1,95 @@
-\subsubsection*{3.4.5 Final Design Class Diagram}
-\addcontentsline{toc}{subsubsection}{3.4.5 Final Design Class Diagram}
-\pdfbookmark[2]{3.4.5 Final Design Class Diagram}{p7h100}
-All sequence receiver methods are present. Changes from 3.4.2: no local class/method/association change; final all-layer views repeat the sequence-reconciled design. The accepted shared F-09 annotation marks the DAO grouping, identity-bearing result and reports.sales presentation as a C0 target; see Table P4-1 for P4 status.
+\subsubsection*{3.4.3 OOD with CRC Cards or Communication Diagram}
+\addcontentsline{toc}{subsubsection}{3.4.3 OOD with CRC Cards or Communication Diagram}
+\pdfbookmark[2]{3.4.3 OOD with CRC Cards or Communication Diagram}{p7h100}
+\label{CRC-UC-04}
+The CRC include lists actual collaborators from the AST-derived call/type model and distinguishes controller values from domain entities.
 
-\begin{figure}[p]
-\centering
-\includegraphics[width=170mm]{\detokenize{models/UC-04/dcd_uc04_final_PartA.png}}
-\caption{Figure 3.4.5-A. UC-04 final design classes: Sales operation and data grain --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0152}
-\end{figure}
-Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+\textbf{UC-04 CRC Cards}
 
-\begin{figure}[p]
-\centering
-\includegraphics[width=170mm]{\detokenize{models/UC-04/dcd_uc04_final_PartB.png}}
-\caption{Figure 3.4.5-B. UC-04 final design classes: Manager guard and VN filter helpers --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0153}
-\end{figure}
-Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
 
-\begin{figure}[p]
-\centering
-\includegraphics[width=170mm]{\detokenize{models/UC-04/dcd_uc04_final_PartC.png}}
-\caption{Figure 3.4.5-C. UC-04 final design classes: Sales row and filter value objects --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0154}
-\end{figure}
-Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+Collaborators are real classes/modules linked by the AST-derived shared model (calls or typed attributes); target-only collaborators are identified as P4 targets. Blueprints and helpers remain real modules. No communication diagram is added.
 
-\begin{figure}[p]
-\centering
-\includegraphics[width=170mm]{\detokenize{models/UC-04/dcd_uc04_final_PartD.png}}
-\caption{Figure 3.4.5-D. UC-04 final design classes: Sales report result object --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0155}
-\end{figure}
-Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+\textbf{Hub --- domain / \guillemotleft{}entity\guillemotright{}}
 
-\begin{figure}[p]
-\centering
-\includegraphics[width=170mm]{\detokenize{models/UC-04/dcd_uc04_final_PartE.png}}
-\caption{Figure 3.4.5-E. UC-04 final design classes: Current workload and archived hubs --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0156}
-\end{figure}
-Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+\textbf{Knows:} id: int, code: str, name: str, address\_text: str, latitude: float, longitude: float, max\_active\_orders: int, base\_delivery\_fee: int, archived\_at: Optional[str]\newline{}\textbf{Does:} Represent a kitchen location, capacity and fee.; operations: value/module role only.\newline{}\textbf{Collaborators:} None recorded in this UC view.
 
-\begin{figure}[p]
-\centering
-\includegraphics[width=170mm]{\detokenize{models/UC-04/dcd_uc04_final_PartF.png}}
-\caption{Figure 3.4.5-F. UC-04 final design classes: Workload snapshot value objects --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0157}
-\end{figure}
-Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+\textbf{HubStatus --- domain / \guillemotleft{}entity\guillemotright{}}
 
-\begin{figure}[p]
-\centering
-\includegraphics[width=170mm]{\detokenize{models/UC-04/dcd_uc04_final_PartG.png}}
-\caption{Figure 3.4.5-G. UC-04 final design classes: Delivery interval and metric source --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0158}
-\end{figure}
-Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+\textbf{Knows:} hub: Hub, load: int\newline{}\textbf{Does:} Derive busy, quiet and load percentage from current load and capacity.; operations: busy, quiet, load\_percent\newline{}\textbf{Collaborators:} Hub
 
-\begin{figure}[p]
-\centering
-\includegraphics[width=170mm]{\detokenize{models/UC-04/dcd_uc04_final_PartH.png}}
-\caption{Figure 3.4.5-H. UC-04 final design classes: Delivery metric and report value objects --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0159}
-\end{figure}
-Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+\textbf{OrderState --- domain / \guillemotleft{}enumeration\guillemotright{}}
 
-\begin{figure}[p]
-\centering
-\includegraphics[width=170mm]{\detokenize{models/UC-04/dcd_uc04_final_PartI.png}}
-\caption{Figure 3.4.5-I. UC-04 final design classes: Delivery report result object --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0160}
-\end{figure}
-Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+\textbf{Knows:} PLACED: str, CONFIRMED: str, REJECTED: str, PREPARING: str, READY: str, OUT\_FOR\_DELIVERY: str, DELIVERED: str, DELIVERY\_FAILED: str, CANCELLED: str\newline{}\textbf{Does:} Hold typed business state and its local rules.; operations: value/module role only.\newline{}\textbf{Collaborators:} None recorded in this UC view.
 
-No Report state is drawn. Filters, report rows and returned reports are non-persisted controller values. The final DCD keeps historical marks on F-03/F-09/P2-S18 targets; UC04-PC01 requires an oracle correspondence; the diagram alone is not a measured result. Section 5.1 reports the corresponding test evidence.
+\textbf{DeliveryState --- domain / \guillemotleft{}enumeration\guillemotright{}}
 
-\textbf{Integration repair evidence}
+\textbf{Knows:} AWAITING\_PICKUP: str, PICKED\_UP: str, DELIVERED: str, FAILED: str\newline{}\textbf{Does:} Hold typed business state and its local rules.; operations: value/module role only.\newline{}\textbf{Collaborators:} None recorded in this UC view.
 
-The diagrams and typed metadata were refreshed against the corrected shared model. Allowed layered dependencies are drawn; the twelve retained dependency-policy entries are documented as static policy checks in report 4.2 and Table P4-1, not as runtime tests. P2-S13/P3-S03 identified C0 targets for guarded writes, commit failures and busy handling; their final scoped evidence is recorded in Table P4-1. Read paths remain read-only. Native draw.io XML and connected edge endpoints are structurally checked; native-app editing and final report placement remain UNTESTED.
+\textbf{ReportController --- controller / \guillemotleft{}controller\guillemotright{}}
 
-Diagram notation (R1--R4): the external SSD request now precedes two actual guarded operands. Each accepted path retains its named success response; refusal/controlled-failure responses are drawn inside the alternate operand, with an optional controller response only when the controller was invoked. Synchronous calls use visible closed filled heads; all replies use dashed open heads. Reports remain read-only, and empty/zero-denominator data remains an accepted result.
+\textbf{Knows:} reports: ReportDAO, hubs: HubDAO\newline{}\textbf{Does:} Authorize Manager requests and construct operational reports without writes.; operations: all\_hubs, sales\_report , workload\_report , delivery\_report, \_require\_manager, \_hub, \_period\newline{}\textbf{Collaborators:} DeliveryReport, DeliveryRow, Hub, HubDAO, HubStatus, OrderState, Period, ReportDAO, SalesReport, SalesRow, WorkloadReport, WorkloadRow, controllers.common, controllers.report\_controller
+
+\textbf{BaseController --- controller / \guillemotleft{}controller\guillemotright{}}
+
+\textbf{Knows:} conn: sqlite3.Connection, clock: Any, users: UserDAO\newline{}\textbf{Does:} Coordinate authorization, domain decisions and data access.; operations: \_today\_vn, \_require\_user\newline{}\textbf{Collaborators:} UserDAO
+
+\textbf{controllers.common --- controller / \guillemotleft{}module\guillemotright{}}
+
+\textbf{Knows:} No instance attributes in the shared model.\newline{}\textbf{Does:} Module functions with their original Python signatures.; operations: vn\_day\_start\_utc\newline{}\textbf{Collaborators:} OrderState
+
+\textbf{controllers.report\_controller --- controller / \guillemotleft{}module\guillemotright{}}
+
+\textbf{Knows:} No instance attributes in the shared model.\newline{}\textbf{Does:} Module functions with their original Python signatures.; operations: \_minutes\newline{}\textbf{Collaborators:} None recorded in this UC view.
+
+\textbf{Period --- controller / \guillemotleft{}value\guillemotright{}}
+
+\textbf{Knows:} date\_from: str, date\_to: str, start\_utc: str, end\_utc: str\newline{}\textbf{Does:} Coordinate authorization, domain decisions and data access.; operations: value/module role only.\newline{}\textbf{Collaborators:} None recorded in this UC view.
+
+\textbf{SalesRow --- controller / \guillemotleft{}value\guillemotright{}}
+
+\textbf{Knows:} label: str, orders: int, item\_sales: int, voucher\_discounts: int, delivery\_fees: int, total: int, refunds\_owed: int\newline{}\textbf{Does:} Coordinate authorization, domain decisions and data access.; operations: net , add\newline{}\textbf{Collaborators:} None recorded in this UC view.
+
+\textbf{SalesReport --- controller / \guillemotleft{}value\guillemotright{}}
+
+\textbf{Knows:} period: Period, hub: Optional[Hub], rows: list[SalesRow], totals: SalesRow, top\_items: list[tuple[int, str, int, int]]\newline{}\textbf{Does:} Coordinate authorization, domain decisions and data access.; operations: value/module role only.\newline{}\textbf{Collaborators:} Hub, Period, SalesRow
+
+\textbf{WorkloadRow --- controller / \guillemotleft{}value\guillemotright{}}
+
+\textbf{Knows:} status: HubStatus, counts: dict[OrderState, int]\newline{}\textbf{Does:} Coordinate authorization, domain decisions and data access.; operations: label\newline{}\textbf{Collaborators:} HubStatus, OrderState
+
+\textbf{WorkloadReport --- controller / \guillemotleft{}value\guillemotright{}}
+
+\textbf{Knows:} as\_of: str, rows: list[WorkloadRow]\newline{}\textbf{Does:} Coordinate authorization, domain decisions and data access.; operations: value/module role only.\newline{}\textbf{Collaborators:} WorkloadRow
+
+\textbf{DeliveryRow --- controller / \guillemotleft{}value\guillemotright{}}
+
+\textbf{Knows:} label: str, delivered: int, failed: int, waits: list[float], rides: list[float]\newline{}\textbf{Does:} Coordinate authorization, domain decisions and data access.; operations: failure\_rate, avg\_wait, avg\_ride\newline{}\textbf{Collaborators:} None recorded in this UC view.
+
+\textbf{DeliveryReport --- controller / \guillemotleft{}value\guillemotright{}}
+
+\textbf{Knows:} period: Period, hub: Optional[Hub], by\_hub: list[DeliveryRow], by\_shipper: list[DeliveryRow], overall: DeliveryRow\newline{}\textbf{Does:} Coordinate authorization, domain decisions and data access.; operations: value/module role only.\newline{}\textbf{Collaborators:} DeliveryRow, Hub, Period
+
+\textbf{reports --- view / \guillemotleft{}view\guillemotright{}}
+
+\textbf{Knows:} No instance attributes in the shared model.\newline{}\textbf{Does:} Translate Manager filters and render read-only report results.; operations: \_filtered, sales , workload, delivery\newline{}\textbf{Collaborators:} ReportController
+
+\textbf{ReportDAO --- data\_access / \guillemotleft{}DAO\guillemotright{}}
+
+\textbf{Knows:} conn: sqlite3.Connection\newline{}\textbf{Does:} Read or write parameterized records.; operations: sales\_by\_hub, top\_items , open\_orders\_by\_hub\_and\_state, finished\_deliveries\newline{}\textbf{Collaborators:} None recorded in this UC view.
+
+\textbf{HubDAO --- data\_access / \guillemotleft{}DAO\guillemotright{}}
+
+\textbf{Knows:} conn: sqlite3.Connection\newline{}\textbf{Does:} Read or write parameterized records.; operations: list\_active, list\_all, get\_including\_archived\newline{}\textbf{Collaborators:} Hub
+
+\textbf{UserDAO --- data\_access / \guillemotleft{}DAO\guillemotright{}}
+
+\textbf{Knows:} conn: sqlite3.Connection\newline{}\textbf{Does:} Read or write parameterized records.; operations: get\_by\_id\newline{}\textbf{Collaborators:} None recorded in this UC view.
+
+\textbf{Persistence boundary}
+
+Period, SalesRow, SalesReport, WorkloadRow, WorkloadReport, DeliveryRow and DeliveryReport are in-memory controller-module values. Filters, report rows, sample counts and returned reports are not persisted; UC-04 has no Report entity or lifecycle. HubStatus is the actual domain value role.
+
+\textbf{Architecture correspondence}
+
+Actual DAO imports of domain values remain static couplings in these CRC collaborators; they are an upward-dependency P4.9 finding documented in section 4.2, and are not drawn as permitted dependencies in the layered DCD.

@@ -1,3 +1,159 @@
-\subsection*{4.3 Implementation}
-\addcontentsline{toc}{subsection}{4.3 Implementation}
-\pdfbookmark[1]{4.3 Implementation}{p7h126}
+\subsection*{4.1 Design Classes for the Subsystem}
+\addcontentsline{toc}{subsection}{4.1 Design Classes for the Subsystem}
+\pdfbookmark[1]{4.1 Design Classes for the Subsystem}{p7h126}
+Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
+
+The subsystem design joins the six main use cases and their supporting account, tracking, kitchen, voucher, user-administration and archive responsibilities. It is a set of filtered views of the shared design model, at committed application baseline \texttt{C0 = 45ac76221b0a103174c7c01d17577e6e49cfd665}. Its declarations describe static correspondence and design targets at C0; later P4 status and scoped evidence are recorded in Table P4-1.
+
+The 68 continued parts cover all \textbf{104 canonical class/module roles}, all \textbf{365 declared methods} and \textbf{278 displayed attributes}. Every method and every displayed attribute has one full-detail occurrence. Reference boxes in relationship parts repeat only the canonical name and stereotype; they do not repeat full member lists. No framework, exception or module role in the shared model is silently excluded. Annotated domain foreign-key scalars are omitted in favor of the named associations; their physical mapping remains in section 4.3.1.
+
+\textbf{How to read the parts.} Figures 4.1A--4.1AL hold the member declarations by layer, in the order view \ensuremath{\rightarrow} controller \ensuremath{\rightarrow} domain \ensuremath{\rightarrow} data access. Figures 4.1AM--4.1AX show twelve labelled responsibility slices for all six main use cases and shared supporting controllers. Figures 4.1AY--4.1BK draw all 38 model associations/generalizations; Figures 4.1BL--4.1BP draw domain-to-enumeration dependencies. Each part names its preceding and following part, and the member index below resolves the full declaration of every reference box.
+
+A public \texttt{+} or convention-private \texttt{-} precedes each member. Method parameters, defaults, return types and property/static/class-method tags come from the current shared-model declaration. Implicit \texttt{self}/\texttt{cls} receivers are suppressed on the drawing; full original signatures are retained in each adjacent JSON. \texttt{Any [inferred]} marks an absent annotation rather than a new claim about the value. Attributes inferred from assignments are also labelled \texttt{[inferred]}. The renderer introduces no getters, setters, route functions or view classes.
+
+\textbf{Status.} The diagram retains its historical design notation at C0. Table P4-1 and its detailed appendix record each element's later P4 disposition, evidence and limitations.
+
+The actual Flask blueprints are the \guillemotleft{}view\guillemotright{} modules \texttt{account}, \texttt{admin}, \texttt{auth}, \texttt{delivery}, \texttt{kitchen}, \texttt{main}, \texttt{order} and \texttt{reports}. Their real route functions carry HTTP method/rule notes (63 route records, including route aliases). Presentation helpers and \texttt{SessionUser} retain their real module/value roles. Jinja templates are presentation resources, not design classes: the \texttt{account/\allowbreak{}}, \texttt{admin/\allowbreak{}}, \texttt{delivery/\allowbreak{}}, \texttt{kitchen/\allowbreak{}}, \texttt{order/\allowbreak{}} and \texttt{reports/\allowbreak{}} template areas, plus \texttt{base.\allowbreak{}html}, \texttt{home.\allowbreak{}html}, \texttt{login.\allowbreak{}html}, \texttt{error.\allowbreak{}html} and \texttt{\_\allowbreak{}form.\allowbreak{}html}, serve the real routes; the per-UC detailed class sections identify their selected template resources.
+
+The structural parts preserve \texttt{Order} composition of \texttt{OrderLine}, the \texttt{LocalCustomer}/\texttt{TouristCustomer} generalizations to \texttt{Customer} without multiplicities, and \texttt{HubMenuItem} as the association class of Hub \ensuremath{\times} MenuItem. Every ordinary association has its named role, navigation and both multiplicities. A multiplicity at the left belongs to the named source; the one at the right belongs to the named target. Enumeration boxes show the real literals. \texttt{HubStatus.\allowbreak{}busy} and \texttt{quiet} remain derived properties, \texttt{archived\_\allowbreak{}at} remains nullable text, and active/availability remain boolean attributes. No additional lifecycle enum is introduced.
+
+\textbf{Dependency projection.} The relationship set contains 84 unique selected dependencies and all 38 associations/generalizations from the sole model. Responsibility slices select direct blueprint\ensuremath{\rightarrow}controller and controller\ensuremath{\rightarrow}domain/data-access links that explain the named area; the enum parts select every allowed domain\ensuremath{\rightarrow}enumeration dependency. Other call/type/helper dependencies are retained in the shared model and the per-UC design packages. This is an explicit readability projection, not a claim that every import or call is reproduced on every sheet. Only dependencies with \texttt{allowed\_\allowbreak{}on\_\allowbreak{}layered\_\allowbreak{}diagram = true} are selected, with downward application-layer direction. Domain dependencies remain within the domain. Actual forbidden imports are assessed separately in section 4.2 as \textbf{P3-S04 / P4.9}; the historical figure does not depict the later mapper exception, and it does not imply a runtime failure.
+
+The supporting declaration coverage includes \texttt{AccountController} profile/address operations, \texttt{VoucherController} maintenance, \texttt{UserAdminController} active-account administration and both archive granularities. At C0, \texttt{MenuController.\allowbreak{}list\_\allowbreak{}catalogue(.\allowbreak{}.\allowbreak{}.\allowbreak{})}, \texttt{OrderArchiveController.\allowbreak{}archive\_\allowbreak{}order(user\_\allowbreak{}id, order\_\allowbreak{}id)} and \texttt{UserAccount.\allowbreak{}created\_\allowbreak{}at} were gaps. The P4 resolution records implementation in P4.6, P4.7 and P4.1 respectively, with 27, 39 and 17 passing scoped test nodes at \texttt{252ada1}; the resolution appendix records the evidence and limitations. The preserved diagram retains the historical \textdagger{} marks.
+
+All parts declare a 1200 \ensuremath{\times} 850 canvas and \textbf{230 mm landscape placement}, with minimum 18 px text, equivalent to \textbf{9.780 pt} at that width. Scaling them below the declared width requires another legibility check. The editable draw.io, PNG, SVG, JSON and standalone generator share each figure stem. Native draw.io editing and final DOCX/PDF placement remain UNTESTED.
+
+\textbf{Member index}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Canonical role & Layer & Full member figure(s) \\
+\hline\endfirsthead
+Canonical role & Layer & Full member figure(s) \\
+\hline\endhead
+\texttt{account} & view & 4.1A \\
+\texttt{admin} & view & 4.1A, 4.1B, 4.1C \\
+\texttt{SessionUser} & view & 4.1C \\
+\texttt{auth} & view & 4.1C \\
+\texttt{presentation.\allowbreak{}db} & view & 4.1C \\
+\texttt{delivery} & view & 4.1D \\
+\texttt{presentation.\allowbreak{}helpers} & view & 4.1D \\
+\texttt{kitchen} & view & 4.1D, 4.1E \\
+\texttt{main} & view & 4.1E \\
+\texttt{order} & view & 4.1E, 4.1F \\
+\texttt{reports} & view & 4.1F \\
+\texttt{presentation.\allowbreak{}security} & view & 4.1F \\
+\texttt{Profile} & controller & 4.1G \\
+\texttt{AccountController} & controller & 4.1G, 4.1H \\
+\texttt{AuthController} & controller & 4.1H \\
+\texttt{BaseController} & controller & 4.1H \\
+\texttt{controllers.\allowbreak{}common} & controller & 4.1I \\
+\texttt{DeliveryView} & controller & 4.1I \\
+\texttt{ShipperBoard} & controller & 4.1I \\
+\texttt{DeliveryController} & controller & 4.1J \\
+\texttt{BusinessError} & controller & 4.1J \\
+\texttt{ValidationError} & controller & 4.1J \\
+\texttt{AuthorizationError} & controller & 4.1J \\
+\texttt{NotFoundError} & controller & 4.1K \\
+\texttt{ConflictError} & controller & 4.1K \\
+\texttt{QuoteChangedError} & controller & 4.1K \\
+\texttt{HubUnavailableError} & controller & 4.1K \\
+\texttt{PaymentDeclinedError} & controller & 4.1K \\
+\texttt{HubAdminView} & controller & 4.1K \\
+\texttt{HubController} & controller & 4.1L \\
+\texttt{BoardEntry} & controller & 4.1L \\
+\texttt{KitchenBoard} & controller & 4.1L \\
+\texttt{KitchenOrderView} & controller & 4.1L \\
+\texttt{KitchenController} & controller & 4.1M \\
+\texttt{Catalogue} & controller & 4.1M \\
+\texttt{HubMenu} & controller & 4.1N \\
+\texttt{MenuController} & controller & 4.1N, 4.1O \\
+\texttt{ArchivePreview} & controller & 4.1O \\
+\texttt{OrderArchiveController} & controller & 4.1O \\
+\texttt{OrderDetail} & controller & 4.1P \\
+\texttt{OrderSummary} & controller & 4.1P \\
+\texttt{OrderTrackingController} & controller & 4.1P \\
+\texttt{HubMenuView} & controller & 4.1Q \\
+\texttt{OrderConfirmation} & controller & 4.1Q \\
+\texttt{PaymentChoice} & controller & 4.1Q \\
+\texttt{PlaceOrderController} & controller & 4.1Q, 4.1R \\
+\texttt{Period} & controller & 4.1R \\
+\texttt{SalesRow} & controller & 4.1S \\
+\texttt{SalesReport} & controller & 4.1S \\
+\texttt{WorkloadRow} & controller & 4.1S \\
+\texttt{WorkloadReport} & controller & 4.1S \\
+\texttt{DeliveryRow} & controller & 4.1T \\
+\texttt{DeliveryReport} & controller & 4.1T \\
+\texttt{ReportController} & controller & 4.1T \\
+\texttt{controllers.\allowbreak{}report\_\allowbreak{}controller} & controller & 4.1U \\
+\texttt{UserAdminController} & controller & 4.1U, 4.1V \\
+\texttt{VoucherController} & controller & 4.1V \\
+\texttt{OrderState} & domain & 4.1W \\
+\texttt{PaymentMethod} & domain & 4.1W \\
+\texttt{OnlineOption} & domain & 4.1W \\
+\texttt{PaymentState} & domain & 4.1W \\
+\texttt{DeliveryState} & domain & 4.1X \\
+\texttt{OfferState} & domain & 4.1X \\
+\texttt{Role} & domain & 4.1X \\
+\texttt{CustomerType} & domain & 4.1X \\
+\texttt{DiscountType} & domain & 4.1X \\
+\texttt{InvalidTransition} & domain & 4.1Y \\
+\texttt{UserAccount} & domain & 4.1Y \\
+\texttt{Customer} & domain & 4.1Y \\
+\texttt{LocalCustomer} & domain & 4.1Y \\
+\texttt{TouristCustomer} & domain & 4.1Y \\
+\texttt{Address} & domain & 4.1Z \\
+\texttt{Hub} & domain & 4.1Z \\
+\texttt{HubStatus} & domain & 4.1AA \\
+\texttt{Brand} & domain & 4.1AA \\
+\texttt{MenuItem} & domain & 4.1AA \\
+\texttt{HubMenuItem} & domain & 4.1AA \\
+\texttt{Voucher} & domain & 4.1AB \\
+\texttt{OrderLine} & domain & 4.1AB \\
+\texttt{Quote} & domain & 4.1AC \\
+\texttt{Payment} & domain & 4.1AC \\
+\texttt{Order} & domain & 4.1AD \\
+\texttt{Delivery} & domain & 4.1AE \\
+\texttt{ReplacementOffer} & domain & 4.1AE \\
+\texttt{domain.\allowbreak{}models} & domain & 4.1AE \\
+\texttt{domain.\allowbreak{}rules} & domain & 4.1AF \\
+\texttt{CustomerDAO} & data\_access & 4.1AG \\
+\texttt{data\_\allowbreak{}access.\allowbreak{}customer\_\allowbreak{}dao} & data\_access & 4.1AG \\
+\texttt{data\_\allowbreak{}access.\allowbreak{}database} & data\_access & 4.1AG \\
+\texttt{DeliveryDAO} & data\_access & 4.1AH \\
+\texttt{data\_\allowbreak{}access.\allowbreak{}delivery\_\allowbreak{}dao} & data\_access & 4.1AH \\
+\texttt{HubDAO} & data\_access & 4.1AH \\
+\texttt{MenuDAO} & data\_access & 4.1AI \\
+\texttt{ReplacementOfferDAO} & data\_access & 4.1AI \\
+\texttt{data\_\allowbreak{}access.\allowbreak{}offer\_\allowbreak{}dao} & data\_access & 4.1AJ \\
+\texttt{OrderDAO} & data\_access & 4.1AJ \\
+\texttt{PaymentDAO} & data\_access & 4.1AK \\
+\texttt{Authorisation} & data\_access & 4.1AK \\
+\texttt{PaymentGatewaySimulator} & data\_access & 4.1AK \\
+\texttt{ReportDAO} & data\_access & 4.1AK \\
+\texttt{UserDAO} & data\_access & 4.1AL \\
+\texttt{data\_\allowbreak{}access.\allowbreak{}user\_\allowbreak{}dao} & data\_access & 4.1AL \\
+\texttt{VoucherDAO} & data\_access & 4.1AL \\
+\texttt{data\_\allowbreak{}access.\allowbreak{}voucher\_\allowbreak{}dao} & data\_access & 4.1AL \\
+\end{longtable}
+\textbf{Continued subsystem figures}
+
+Presentation member declarations.
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/shared/dcd_subsystem_PartA.png}}
+\caption{Figure 4.1A. Shared subsystem: View members --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) Full size: Appendix 3, Figures A3.4--A3.71. \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0322}
+\end{figure}
+\end{landscape}
+Controller, value and error member declarations.
+
+Domain, rule and enum member declarations.
+
+DAO, mapping-helper and local gateway member declarations.
+
+Selected layered responsibility links for the six main UCs and shared supporting controllers.
+
+Canonical associations, generalizations and real-enum dependencies.
+
+The member and relation declarations above are generated from the same shared model used by the six report III design packages. Transactional message ordering and rollback behavior belong to the operation sequences in 3.x.4 and their DAO enrichments in 4.3.2; this class view does not infer those behaviors from a method signature.

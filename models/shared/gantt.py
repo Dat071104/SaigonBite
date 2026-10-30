@@ -20,11 +20,13 @@ ROWS = [
     {"label": "Part 1 packaging / eLearning", "type": "task", "start": date(2026, 10, 23), "end": date(2026, 10, 25), "milestones": [date(2026, 10, 25)], "actual": [date(2026, 10, 23)]},
     {"label": "Part 1 live presentation", "type": "milestone", "date": date(2026, 10, 26)},
     {"label": "I2 Hubs, capacity, kitchen board", "type": "iteration", "start": date(2026, 10, 27), "end": date(2026, 10, 31)},
-    {"label": "P1 Report I and G1 draft", "type": "task", "start": date(2026, 10, 27), "end": date(2026, 10, 29)},
+    {"label": "P1 Report I and G1 draft", "type": "task", "start": date(2026, 10, 27), "end": date(2026, 10, 29), "actual": [date(2026, 10, 23), date(2026, 10, 24)]},
     {"label": "31/10 replan checkpoint", "type": "milestone", "date": date(2026, 10, 31)},
     {"label": "I3 Full ordering, delivery, menus", "type": "iteration", "start": date(2026, 11, 1), "end": date(2026, 11, 5)},
     {"label": "I4 Reports, integration, Figma", "type": "iteration", "start": date(2026, 11, 6), "end": date(2026, 11, 10)},
-    {"label": "P3 design / P4 tests / P5 integration / P6 deploy", "type": "task", "start": date(2026, 11, 3), "end": date(2026, 11, 10)},
+    {"label": "P2 analysis / P3 design (G2, G3)", "type": "task", "start": date(2026, 10, 27), "end": date(2026, 11, 5), "actual": [date(2026, 10, 24), date(2026, 10, 25), date(2026, 10, 26)]},
+    {"label": "P4 tests / P5 integration / P6 deploy", "type": "task", "start": date(2026, 11, 3), "end": date(2026, 11, 10), "actual": [date(2026, 10, 25), date(2026, 10, 26), date(2026, 10, 27), date(2026, 10, 28)]},
+    {"label": "P7 report and package (G7)", "type": "task", "start": date(2026, 11, 11), "end": date(2026, 11, 14), "actual": [date(2026, 10, 28), date(2026, 10, 29), date(2026, 10, 30)]},
     {"label": "I5 Final models, regression, report", "type": "iteration", "start": date(2026, 11, 11), "end": date(2026, 11, 15)},
     {"label": "12/11 feature freeze", "type": "milestone", "date": date(2026, 11, 12)},
     {"label": "13/11 buffer: real fixes and retest", "type": "task", "start": date(2026, 11, 13), "end": date(2026, 11, 13)},
@@ -42,7 +44,7 @@ MID = "#7FA7CF"
 RED = "#C0392B"
 GRID = "#C8D6E4"
 WEEKEND = "#F3F6F8"
-ACTUAL = "#52616F"
+ACTUAL = "#1E8449"
 TEXT = "#202B36"
 MUTED = "#52616F"
 WHITE = "#FFFFFF"
@@ -148,7 +150,7 @@ def draw_png() -> None:
 
         for day in row.get("actual", []):
             center = day_x(day) + DAY_W / 2
-            draw.rectangle((center - DAY_W * 0.34, y + 57, center + DAY_W * 0.34, y + 65), fill=ACTUAL)
+            draw.rectangle((center - DAY_W * 0.5, y + 52, center + DAY_W * 0.5, y + 66), fill=ACTUAL)
 
         if row["type"] in ("iteration", "task"):
             xa = day_x(row["start"]) + 1
@@ -172,9 +174,9 @@ def draw_png() -> None:
     draw.line((X0, HEADER, X0, yb), fill=GRID, width=2)
     draw.line((0, yb, WIDTH, yb), fill=BLUE, width=3)
     footer_lines = (
-        "Blue bar = planned iteration; light blue = planned task; red diamond = planned milestone; grey tick = dated Git change.",
-        "Grey ticks mark commit dates only, not elapsed work. Grey columns = weekends; dashed lines = presentation dates.",
-        "Status cut-off: 23/10/2026. Author: 722I0004 · AI-assisted (Codex).",
+        "Blue bar = planned iteration; light blue = planned task; red diamond = milestone; green strip = actual days with gate commits.",
+        "Actual work ran ahead of plan: G1-G6 closed 24-28/10. Grey columns = weekends; dashed lines = presentation dates.",
+        "Status cut-off: 30/10/2026. Author: 722I0004 · AI-assisted (Codex).",
     )
     for i, line in enumerate(footer_lines):
         draw.text((14, yb + 8 + i * 35), line, font=font(32, i == 2), fill=TEXT if i < 2 else MUTED)
@@ -238,7 +240,7 @@ def draw_svg() -> None:
         svg_text(parts, LABEL_W + 10, y + (ROW_H - 40) / 2, date_label(row), 34, TEXT)
         for day in row.get("actual", []):
             center = day_x(day) + DAY_W / 2
-            svg_rect(parts, center - DAY_W * 0.34, y + 57, DAY_W * 0.68, 8, ACTUAL)
+            svg_rect(parts, center - DAY_W * 0.5, y + 52, DAY_W, 14, ACTUAL)
         if row["type"] in ("iteration", "task"):
             xa = day_x(row["start"]) + 1
             xb = day_x(row["end"] + timedelta(days=1)) - 1
@@ -257,9 +259,9 @@ def draw_svg() -> None:
     parts.append(f'<line x1="{X0}" y1="{HEADER}" x2="{X0}" y2="{yb}" stroke="{GRID}" stroke-width="2"/>')
     parts.append(f'<line x1="0" y1="{yb}" x2="{WIDTH}" y2="{yb}" stroke="{BLUE}" stroke-width="3"/>')
     footer_lines = (
-        "Blue bar = planned iteration; light blue = planned task; red diamond = planned milestone; grey tick = dated Git change.",
-        "Grey ticks mark commit dates only, not elapsed work. Grey columns = weekends; dashed lines = presentation dates.",
-        "Status cut-off: 23/10/2026. Author: 722I0004 · AI-assisted (Codex).",
+        "Blue bar = planned iteration; light blue = planned task; red diamond = milestone; green strip = actual days with gate commits.",
+        "Actual work ran ahead of plan: G1-G6 closed 24-28/10. Grey columns = weekends; dashed lines = presentation dates.",
+        "Status cut-off: 30/10/2026. Author: 722I0004 · AI-assisted (Codex).",
     )
     for i, line in enumerate(footer_lines):
         svg_text(parts, 14, yb + 8 + i * 35, line, 32, TEXT if i < 2 else MUTED, i == 2)
@@ -326,7 +328,7 @@ def draw_drawio() -> None:
         add_drawio_text(root, f"row_dates_{index}", LABEL_W + 10, y + 3, DATE_W - 12, ROW_H - 6, date_label(row), 34, TEXT)
         for j, day in enumerate(row.get("actual", [])):
             center = day_x(day) + DAY_W / 2
-            add_drawio_rect(root, f"actual_{index}_{j}", center - DAY_W * 0.34, y + 57, DAY_W * 0.68, 8, ACTUAL)
+            add_drawio_rect(root, f"actual_{index}_{j}", center - DAY_W * 0.5, y + 52, DAY_W, 14, ACTUAL)
         if row["type"] in ("iteration", "task"):
             xa = day_x(row["start"]) + 1
             xb = day_x(row["end"] + timedelta(days=1)) - 1
@@ -346,9 +348,9 @@ def draw_drawio() -> None:
     add_drawio_rect(root, "timeline_boundary", X0, HEADER, 2, ROW_H * len(ROWS), GRID)
     add_drawio_rect(root, "footer_top", 0, yb, WIDTH, 3, BLUE)
     footer_lines = (
-        "Blue bar = planned iteration; light blue = planned task; red diamond = planned milestone; grey tick = dated Git change.",
-        "Grey ticks mark commit dates only, not elapsed work. Grey columns = weekends; dashed lines = presentation dates.",
-        "Status cut-off: 23/10/2026. Author: 722I0004 · AI-assisted (Codex).",
+        "Blue bar = planned iteration; light blue = planned task; red diamond = milestone; green strip = actual days with gate commits.",
+        "Actual work ran ahead of plan: G1-G6 closed 24-28/10. Grey columns = weekends; dashed lines = presentation dates.",
+        "Status cut-off: 30/10/2026. Author: 722I0004 · AI-assisted (Codex).",
     )
     for i, line in enumerate(footer_lines):
         add_drawio_text(root, f"footer_{i}", 14, yb + 5 + i * 35, WIDTH - 28, 34, line, 32, TEXT if i < 2 else MUTED, i == 2)

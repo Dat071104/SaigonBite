@@ -1,23 +1,119 @@
-\subsection*{3.1 Design for Use Case 1: Place an order with an accepted full price, voucher and payment choice (author: 722I0004)}
-\addcontentsline{toc}{subsection}{3.1 Design for Use Case 1: Place an order with an accepted full price, voucher and payment choice (author: 722I0004)}
-\pdfbookmark[1]{3.1 Design for Use Case 1: Place an order with an accepted full price, voucher and payment choice (author: 722I0004)}{p7h57}
+\subsubsection*{2.3.5 Verifying use cases for Manager}
+\addcontentsline{toc}{subsubsection}{2.3.5 Verifying use cases for Manager}
+\pdfbookmark[2]{2.3.5 Verifying use cases for Manager}{p7h57}
 Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
 
-The design was recorded as a target at C0 (\texttt{45ac762}); P4 resolution records 17 UC-01 entries, with their scoped evidence and limitations in the P4 status appendix. The \textdagger{} symbol in a diagram refers to the historical C0 target, not a current implementation verdict.
-
-\textbf{Table P4-1. P4 resolution summary.} The detailed appendix lists all 121 entries, their scoped test evidence and remaining limitations. The policy column records static dependency-policy tests.
-
-\begin{longtable}{>{\raggedright\arraybackslash}p{0.2300\linewidth}>{\raggedright\arraybackslash}p{0.2300\linewidth}>{\raggedright\arraybackslash}p{0.2300\linewidth}>{\raggedright\arraybackslash}p{0.2300\linewidth}}
-Register group & Rows & Scoped runtime/static evidence & Static dependency-policy evidence \\
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Data entity / domain class & C R U D & Verified use case \\
 \hline\endfirsthead
-Register group & Rows & Scoped runtime/static evidence & Static dependency-policy evidence \\
+Data entity / domain class & C R U D & Verified use case \\
 \hline\endhead
-UC-01 & 17 & 17 & 0 \\
-UC-02 & 5 & 5 & 0 \\
-UC-03 & 4 & 4 & 0 \\
-UC-04 & 5 & 5 & 0 \\
-UC-05 & 12 & 12 & 0 \\
-UC-06 & 21 & 21 & 0 \\
-shared / supporting & 57 & 45 & 12 \\
-Total & 121 & 109 & 12 \\
+Hub & Create & --- (intentional blank) \\
+ & Read / report & UC-04 \\
+ & Update & --- (intentional blank) \\
+ & Delete (or archive) & --- (intentional blank) \\
+UserAccount & Create & --- (intentional blank) \\
+ & Read / report & SUC-01 \\
+ & Update & --- (intentional blank) \\
+ & Delete (or archive) & --- (intentional blank) \\
+Order & Create & --- (intentional blank) \\
+ & Read / report & UC-04 \\
+ & Update & --- (intentional blank) \\
+ & Delete (or archive) & --- (intentional blank) \\
+OrderLine & Create & --- (intentional blank) \\
+ & Read / report & UC-04 \\
+ & Update & --- (intentional blank) \\
+ & Delete (or archive) & --- (intentional blank) \\
+Payment & Create & --- (intentional blank) \\
+ & Read / report & UC-04 \\
+ & Update & --- (intentional blank) \\
+ & Delete (or archive) & --- (intentional blank) \\
+Delivery & Create & --- (intentional blank) \\
+ & Read / report & UC-04 \\
+ & Update & --- (intentional blank) \\
+ & Delete (or archive) & --- (intentional blank) \\
 \end{longtable}
+\textbf{Union and bidirectional verification}
+
+Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
+
+Every original \S{}2.4 qualified C/R/U/D cell is held by at least one actor above. Every actor cell is in the reconciled union below. Literal omissions in the locked tables are retained as explicit plan issues, rather than claimed to be exact original equality. The six missing qualified reads found by D and the reverse-direction omissions are resolved only within existing UC/SUC scope.
+
+\begingroup\footnotesize
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1533\linewidth}>{\raggedright\arraybackslash}p{0.1533\linewidth}>{\raggedright\arraybackslash}p{0.1533\linewidth}>{\raggedright\arraybackslash}p{0.1533\linewidth}>{\raggedright\arraybackslash}p{0.1533\linewidth}>{\raggedright\arraybackslash}p{0.1533\linewidth}}
+Persistent class & C & R & U & D / archive & Actors holding cells \\
+\hline\endfirsthead
+Persistent class & C & R & U & D / archive & Actors holding cells \\
+\hline\endhead
+Hub & UC-03 & UC-01; UC-03; UC-04 & UC-03 & UC-03 & Customer; Admin; Manager \\
+Brand & UC-06 & UC-01; UC-06 & UC-06 & UC-06 & Customer; Admin \\
+MenuItem & UC-06 & UC-01; UC-05; UC-06 & UC-06 & UC-06 & Customer; Kitchen staff; Admin \\
+HubMenuItem & UC-06 & SUC-06; UC-01; UC-05; UC-06 & SUC-06; UC-06 & UC-06 & Customer; Kitchen staff; Admin \\
+UserAccount & SUC-02; SUC-08 & SUC-01; SUC-02; SUC-08 & SUC-02; SUC-08 & SUC-08 & Customer; Kitchen staff; Shipper; Admin; Manager \\
+Customer & SUC-02 & SUC-02; SUC-03; SUC-08; UC-02 & SUC-02 & SUC-08 & Customer; Shipper; Admin \\
+Address & SUC-02 & SUC-02; UC-01; UC-02 & SUC-02 & SUC-02 & Customer; Shipper \\
+Voucher & SUC-07 & SUC-07; UC-01 & SUC-07 & SUC-07 & Customer; Admin \\
+Order & UC-01 & SUC-03; SUC-05; SUC-09; UC-02; UC-04; UC-05 & SUC-03; SUC-04; SUC-05; UC-02; UC-05 & SUC-09 & Customer; Kitchen staff; Shipper; Admin; Manager \\
+OrderLine & UC-01 & SUC-03; SUC-09; UC-04; UC-05 & SUC-03 & SUC-09 & Customer; Kitchen staff; Admin; Manager \\
+Payment & UC-01 & SUC-03; SUC-09; UC-02; UC-04 & SUC-03; SUC-04; UC-02; UC-05 & SUC-09 & Customer; Kitchen staff; Shipper; Admin; Manager \\
+Delivery & SUC-05 & SUC-03; SUC-09; UC-02; UC-04 & UC-02 & SUC-09 & Customer; Kitchen staff; Shipper; Admin; Manager \\
+ReplacementOffer & UC-05 & SUC-03; SUC-09; UC-05 & SUC-03; SUC-04; UC-05 & SUC-09 & Customer; Kitchen staff; Admin \\
+\end{longtable}
+\endgroup
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Comparison & Result \\
+\hline\endfirsthead
+Comparison & Result \\
+\hline\endhead
+Original \S{}2.4 \ensuremath{\rightarrow} reconciled actor tables & 0 missing qualified cells \\
+Reconciled actor tables \ensuremath{\rightarrow} reconciled union & 0 missing qualified cells (union derived from those tables) \\
+Additional cells against literal \S{}2.4 & Read-only cells listed below; no new create/update/archive grants \\
+Persistent classes / schema tables & 13 / 13; mapping below \\
+\end{longtable}
+\textbf{Dispositions for literal plan differences}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+Discrepancy & Accepted conservative reconciliation \\
+\hline\endfirsthead
+Discrepancy & Accepted conservative reconciliation \\
+\hline\endhead
+UserAccount R SUC-01 lacks an actor assignment in \S{}2.5 & Own authentication-context read for all five human actors, already the All actor scope of SUC-01; no general account read permission. \\
+Customer R SUC-03; Address R UC-01 lack matching own-read actor qualifiers & Add only the owning Customer read while tracking / selecting their checkout address. \\
+MenuItem R UC-05; HubMenuItem R UC-05 / SUC-06 lack kitchen qualifiers & Read only own-hub replacement candidates/listings; no master-data update. \\
+Payment R UC-02 lacks shipper read cell & Read method/state/cash due for delivery under BR-25, without other customer-private data. \\
+Admin Customer R is unqualified and absent from \S{}2.4 & Qualify already listed authorized linked-account read as SUC-08. \\
+Admin Order/children history R SUC-09 absent from \S{}2.4 & Retain the reads already stated in \S{}2.5 and \S{}2.2 SUC-09, through authorized closed-order history only. \\
+Kitchen Order R SUC-05 stated in \S{}2.5 but omitted from \S{}2.4 & Retain the own-hub read required to start/finish preparation; this reverse-direction omission was added by root. \\
+\end{longtable}
+Added Read qualifiers against literal \S{}2.4: Customer R SUC-08; Order R SUC-09; Order R SUC-05; OrderLine R SUC-09; Payment R SUC-09; Delivery R SUC-09; ReplacementOffer R SUC-09.
+
+No locked plan cell was removed. Proposed owner clarification: add these qualifiers to the next approved plan revision; this phase records the discrepancy without editing the locked contract.
+
+\textbf{Archive and persistence notes}
+
+An archived parent hides itself and its children from operational lists (boards, menus and checkout). Authorised history, receipts, reports and refund obligations still include them. Archive is an operational visibility rule, not physical child deletion or permission to erase snapshots. SUC-09 accepts only DELIVERED, DELIVERY\_FAILED, REJECTED or CANCELLED orders. Customer deactivation is through the linked UserAccount; it does not erase the profile. HubMenuItem unlisting removes only that association row, and historical OrderLine snapshots survive. Seed rows are test setup, never a ``Create''.
+
+Not persisted: Quote, ReportFilter, report rows and receipt (computed views). No Shipper class/table: SHIPPER is a UserAccount role linked from Delivery.
+
+\textbf{Schema table coverage (Static)}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+SQL table & Persistent class \\
+\hline\endfirsthead
+SQL table & Persistent class \\
+\hline\endhead
+\texttt{hub} & Hub \\
+\texttt{brand} & Brand \\
+\texttt{menu\_\allowbreak{}item} & MenuItem \\
+\texttt{hub\_\allowbreak{}menu\_\allowbreak{}item} & HubMenuItem \\
+\texttt{user\_\allowbreak{}account} & UserAccount \\
+\texttt{customer} & Customer \\
+\texttt{address} & Address \\
+\texttt{voucher} & Voucher \\
+\texttt{orders} & Order \\
+\texttt{order\_\allowbreak{}line} & OrderLine \\
+\texttt{payment} & Payment \\
+\texttt{delivery} & Delivery \\
+\texttt{replacement\_\allowbreak{}offer} & ReplacementOffer \\
+\end{longtable}
+All 13 schema tables are covered. Local/Tourist share Customer persistence. State/attribute differences and behavioral guards were recorded as P4 inputs; this table-coverage result alone does not qualify the app. See Table P4-1 and Section 5.1 for later evidence.

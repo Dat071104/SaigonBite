@@ -1,10 +1,38 @@
-\section*{Conclusions / Recommendations (0.25 point)}
-\addcontentsline{toc}{section}{Conclusions / Recommendations (0.25 point)}
-\pdfbookmark[0]{Conclusions / Recommendations (0.25 point)}{p7h137}
+\subsection*{5.2 Deployment}
+\addcontentsline{toc}{subsection}{5.2 Deployment}
+\pdfbookmark[1]{5.2 Deployment}{p7h137}
 Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
 
-The recorded tests and walkthroughs show that the implemented paths can connect ordering, kitchen decisions and delivery in the tested environments. The automated suite passed 928 cases at \texttt{252ada1}; the local browser walkthrough passed 60 of 60 recorded steps, while the adapted deployed walkthrough passed 22 of 22. These are scoped results, and the deployment walkthrough used an existing order rather than repeating the same local order.
+The Part 2 demonstration runs at \LinkDeployed (fallback \LinkDeployedFallback) on one Singapore e2-medium Ubuntu VM with Docker Compose, gunicorn and Caddy HTTPS. SQLite resides on a 30 GiB persistent disk; daily disk snapshots and an independent off-VM bucket copy support recovery. The VM's restricted service account has bucket-scoped object creation and reading access; no service-account key is used. The tagged release was transferred as a verified Git bundle. See \texttt{deploy/\allowbreak{}RUNBOOK.\allowbreak{}md} and \texttt{docs/\allowbreak{}part2/\allowbreak{}test\_\allowbreak{}report/\allowbreak{}deploy\_\allowbreak{}2026-10-27/\allowbreak{}README.\allowbreak{}md} for operations and evidence.
 
-The current system remains a demonstration. Payment uses a simulator, refund obligations are recorded without payout, and the distance calculation uses an approximate district location. Complaint handling, refund payout and ratings are deferred. One VM and SQLite also limit the scope of deployment evidence; the recorded backup and separate restore checks do not constitute a tested live rollback. Before any broader use, the team should resolve these product limitations, test recovery for the intended operating conditions and review actual costs before the recorded trial expiry.
+The full suite passed 928 tests. A new checkout built and ran locally, and public order 9 retained its money and payment fields through application restart, Compose down/up and VM reboot. An online backup passed integrity checking and was copied off VM; a separate restore matched order count and sample money fields and supported a customer login. Live replacement was not exercised. The deployed browser checks exercised kitchen isolation, substitution, acceptance, preparation, a pickup race and COD delivery using an adapted existing order; the BT order and READY seed order were subsequently checked separately, rather than at the same moment as the main scenario run.
 
-Requirement \S{}9 permits AI for brainstorming, refining language and explaining concepts. AI was also used to create application code, diagrams and text, as recorded in the AI usage log. L6 remains open: the Part 1 log did not declare AI-generated application code, so the no-change Part 1 review is not evidence that this use was accepted. The team should obtain a course decision on that specific use before submission.
+HTTPS certificate validation, redirect, secure cookie attributes and rejected invalid CSRF passed. A SQLite state digest matched before and after invalid CSRF. Twenty warm requests per page had the following timings in milliseconds; one concurrent opening test returned 200/200 successful responses with no errors.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}>{\raggedright\arraybackslash}p{0.1840\linewidth}}
+Page & Min ms & Median ms & p95 ms & Max ms \\
+\hline\endfirsthead
+Page & Min ms & Median ms & p95 ms & Max ms \\
+\hline\endhead
+customer\_browse & 67.45 & 70.51 & 89.37 & 92.83 \\
+quote & 69.27 & 73.47 & 109.16 & 120.6 \\
+order & 68.75 & 81.06 & 104.62 & 107.86 \\
+receipt & 66.47 & 70.52 & 79.17 & 107.67 \\
+kitchen\_queue & 65.04 & 68.71 & 73.42 & 79.93 \\
+shipper\_ready\_board & 70.34 & 75.88 & 79.41 & 82.7 \\
+admin\_catalogue & 60.1 & 64.03 & 70.45 & 80.35 \\
+manager\_report & 64.65 & 69.34 & 80.28 & 375.59 \\
+\end{longtable}
+The estimated cost is approximately VND1.31 million per month under the explicit assumptions in \texttt{Part2/\allowbreak{}notes/\allowbreak{}P6/\allowbreak{}cost\_\allowbreak{}estimate.\allowbreak{}md}. Actual usage and billing may differ; the approved trial budget sends alerts and does not cap spending. The first release has no prior image to roll back to. Verify the budget email and actual billing, and download a final backup before trial expiry on 21 January 2027.
+
+\textbf{Reviewer reproduction path}
+
+After the release tag has been published, clone the repository and select the release before starting the local demonstration:
+
+\noindent\texttt{git clone \TargetRepo}\par
+\begin{lstlisting}
+cd SaigonBite
+git checkout v0.9-part2
+docker compose up --build -d
+\end{lstlisting}
+Open \texttt{http:/\allowbreak{}/\allowbreak{}127.\allowbreak{}0.\allowbreak{}0.\allowbreak{}1:5000} and use the demo accounts listed in the README. The local database persists in a named volume; the tag and its links are pending the release step. For the deployed instance use \LinkDeployed. The operator runbook documents the separate VM and recovery procedures.

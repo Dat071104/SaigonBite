@@ -24,15 +24,20 @@ Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
 
 All nine stored Order states and all twelve \S{}4.1 event names are represented in A--E. Terminal states are DELIVERED, DELIVERY\_FAILED, REJECTED and CANCELLED. Waiting for customer is derived from PLACED + an open OFFERED offer; cooking load still counts it. BR-17 always changes payment state and refund amount together. There is no rollback or redelivery loop.
 
+\begin{figure}[p]
+\centering
+\includegraphics[width=170mm,height=225mm,keepaspectratio]{\detokenize{models/shared/sm_order_overview.png}}
+\caption{Figure 2.3. Order --- complete lifecycle (states and transitions from the code) --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Claude).}\label{P7-0612}
+\end{figure}
+Figure 2.3 shows the whole Order lifecycle on one page; it is generated from the transition table in the code (models/shared/sm\_order\_overview.py), so the model and the program cannot disagree. Figures 2.3A--2.3E below show each part in detail with the postconditions (PC) and minimum guarantees (MG) that each transition establishes.
+
 \begin{landscape}
 \begin{figure}[p]
 \centering
-\includegraphics[width=230mm]{\detokenize{models/shared/sm_order.png}}
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/shared/sm_order.png}}
 \caption{Figure 2.3A. Order --- creation and kitchen decision --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)}\label{P7-0305}
 \end{figure}
 \end{landscape}
-Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
-
 \begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
 PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
 \hline\endfirsthead
@@ -53,12 +58,10 @@ UC05-PC02 & reject: REJECTED + reason + BR-17 + offer WITHDRAWN & rejectOrder re
 \begin{landscape}
 \begin{figure}[p]
 \centering
-\includegraphics[width=230mm]{\detokenize{models/shared/sm_order_PartB.png}}
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/shared/sm_order_PartB.png}}
 \caption{Figure 2.3B. Order --- replacement response --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)}\label{P7-0306}
 \end{figure}
 \end{landscape}
-Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
-
 \begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
 PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
 \hline\endfirsthead
@@ -71,12 +74,10 @@ UC05-MG01 & wrong hub / open offer / stale / invalid target \ensuremath{\rightar
 \begin{landscape}
 \begin{figure}[p]
 \centering
-\includegraphics[width=230mm]{\detokenize{models/shared/sm_order_PartC.png}}
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/shared/sm_order_PartC.png}}
 \caption{Figure 2.3C. Order --- cancellation window --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)}\label{P7-0307}
 \end{figure}
 \end{landscape}
-Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
-
 \begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
 PC/MG anchor / supporting rule & Transition / retained fact / refusal invariant \\
 \hline\endfirsthead
@@ -88,12 +89,10 @@ UC01-PC01 / UC01-PC05 (creation-boundary provenance) & Cancellation retains the 
 \begin{landscape}
 \begin{figure}[p]
 \centering
-\includegraphics[width=230mm]{\detokenize{models/shared/sm_order_PartD.png}}
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/shared/sm_order_PartD.png}}
 \caption{Figure 2.3D. Order --- preparation and pickup --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)}\label{P7-0308}
 \end{figure}
 \end{landscape}
-Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
-
 \begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
 PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
 \hline\endfirsthead
@@ -105,12 +104,10 @@ UC02-MG01 & second shipper / wrong shipper / wrong cash / repeat \ensuremath{\ri
 \begin{landscape}
 \begin{figure}[p]
 \centering
-\includegraphics[width=230mm]{\detokenize{models/shared/sm_order_PartE.png}}
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/shared/sm_order_PartE.png}}
 \caption{Figure 2.3E. Order --- delivered or delivery failed --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)}\label{P7-0309}
 \end{figure}
 \end{landscape}
-Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
-
 \begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
 PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
 \hline\endfirsthead
@@ -129,12 +126,10 @@ The two payment methods have separate views. C is the original captured ONLINE a
 \begin{landscape}
 \begin{figure}[p]
 \centering
-\includegraphics[width=230mm]{\detokenize{models/shared/sm_payment.png}}
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/shared/sm_payment.png}}
 \caption{Figure 2.4A. Payment --- COD --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)}\label{P7-0310}
 \end{figure}
 \end{landscape}
-Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
-
 \begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
 PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
 \hline\endfirsthead
@@ -148,12 +143,10 @@ UC02-PC03 & failed: Delivery FAILED + reason, order DELIVERY\_FAILED, BR-17 & Va
 \begin{landscape}
 \begin{figure}[p]
 \centering
-\includegraphics[width=230mm]{\detokenize{models/shared/sm_payment_PartB.png}}
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/shared/sm_payment_PartB.png}}
 \caption{Figure 2.4B. Payment --- ONLINE simulator --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)}\label{P7-0311}
 \end{figure}
 \end{landscape}
-Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
-
 \begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
 PC/MG anchor & Contract text (verbatim) & Transition / retained fact / refusal invariant \\
 \hline\endfirsthead

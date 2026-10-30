@@ -1934,13 +1934,13 @@ Order, Delivery and Payment retain their real lifecycle roles; their association
 
 Figure 3.2.2.i-A. UC-02 domain design classes: Lifecycle classes continue in Part B for party/hub associations. — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-02/dcd_uc02_domain_PartA.drawio) · [SVG](../../../models/UC-02/dcd_uc02_domain_PartA.svg) · [Generator](../../../models/UC-02/dcd_uc02_domain_PartA.py) · [Data](../../../models/UC-02/dcd_uc02_domain_PartA.json)
+
 
 ![UC-02 domain design classes: Part A continues here. Domain FK scalars are omitted in favour of these navigable associations.](../../../models/UC-02/dcd_uc02_domain_PartB.png)
 
 Figure 3.2.2.i-B. UC-02 domain design classes: Part A continues here. Domain FK scalars are omitted in favour of these navigable associations. — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-02/dcd_uc02_domain_PartB.drawio) · [SVG](../../../models/UC-02/dcd_uc02_domain_PartB.svg) · [Generator](../../../models/UC-02/dcd_uc02_domain_PartB.py) · [Data](../../../models/UC-02/dcd_uc02_domain_PartB.json)
+
 
 #### ii. Controller
 
@@ -1950,13 +1950,13 @@ DeliveryController coordinates active-shipper checks, pickup/finish/failure work
 
 Figure 3.2.2.ii-A. UC-02 controller/value roles: Read and pickup operations continue in Part B. — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-02/dcd_uc02_controller_PartA.drawio) · [SVG](../../../models/UC-02/dcd_uc02_controller_PartA.svg) · [Generator](../../../models/UC-02/dcd_uc02_controller_PartA.py) · [Data](../../../models/UC-02/dcd_uc02_controller_PartA.json)
+
 
 ![UC-02 controller/value roles: Part A continues through the two mutually exclusive completion outcomes.](../../../models/UC-02/dcd_uc02_controller_PartB.png)
 
 Figure 3.2.2.ii-B. UC-02 controller/value roles: Part A continues through the two mutually exclusive completion outcomes. — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-02/dcd_uc02_controller_PartB.drawio) · [SVG](../../../models/UC-02/dcd_uc02_controller_PartB.svg) · [Generator](../../../models/UC-02/dcd_uc02_controller_PartB.py) · [Data](../../../models/UC-02/dcd_uc02_controller_PartB.json)
+
 
 #### iii. UI (view)
 
@@ -1966,7 +1966,7 @@ saigonbite.presentation.delivery is the «view» blueprint module; its route fun
 
 Figure 3.2.2.iii. UC-02 view module — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-02/dcd_uc02_view.drawio) · [SVG](../../../models/UC-02/dcd_uc02_view.svg) · [Generator](../../../models/UC-02/dcd_uc02_view.py) · [Data](../../../models/UC-02/dcd_uc02_view.json)
+
 
 #### iv. Data access
 
@@ -1976,7 +1976,7 @@ The DAO projection includes only methods relevant to these five SSD occurrences.
 
 Figure 3.2.2.iv. UC-02 data-access classes — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-02/dcd_uc02_dao.drawio) · [SVG](../../../models/UC-02/dcd_uc02_dao.svg) · [Generator](../../../models/UC-02/dcd_uc02_dao.py) · [Data](../../../models/UC-02/dcd_uc02_dao.json)
+
 
 #### v. Design class (all layers together)
 
@@ -1986,61 +1986,61 @@ Parts A-J are operation-aligned views across the same four layers, with mutual c
 
 Figure 3.2.2.v-A. UC-02 all layers: Ready board authorization and retrieval — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-02/dcd_uc02_all_PartA.drawio) · [SVG](../../../models/UC-02/dcd_uc02_all_PartA.svg) · [Generator](../../../models/UC-02/dcd_uc02_all_PartA.py) · [Data](../../../models/UC-02/dcd_uc02_all_PartA.json)
+
 
 ![UC-02 all layers: Board row projection](../../../models/UC-02/dcd_uc02_all_PartB.png)
 
 Figure 3.2.2.v-B. UC-02 all layers: Board row projection — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-02/dcd_uc02_all_PartB.drawio) · [SVG](../../../models/UC-02/dcd_uc02_all_PartB.svg) · [Generator](../../../models/UC-02/dcd_uc02_all_PartB.py) · [Data](../../../models/UC-02/dcd_uc02_all_PartB.json)
+
 
 ![UC-02 all layers: Inspect assignment and access](../../../models/UC-02/dcd_uc02_all_PartC.png)
 
 Figure 3.2.2.v-C. UC-02 all layers: Inspect assignment and access — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-02/dcd_uc02_all_PartC.drawio) · [SVG](../../../models/UC-02/dcd_uc02_all_PartC.svg) · [Generator](../../../models/UC-02/dcd_uc02_all_PartC.py) · [Data](../../../models/UC-02/dcd_uc02_all_PartC.json)
+
 
 ![UC-02 all layers: Delivery contact projection](../../../models/UC-02/dcd_uc02_all_PartD.png)
 
 Figure 3.2.2.v-D. UC-02 all layers: Delivery contact projection — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-02/dcd_uc02_all_PartD.drawio) · [SVG](../../../models/UC-02/dcd_uc02_all_PartD.svg) · [Generator](../../../models/UC-02/dcd_uc02_all_PartD.py) · [Data](../../../models/UC-02/dcd_uc02_all_PartD.json)
+
 
 ![UC-02 all layers: Atomic pickup and paired Order transition](../../../models/UC-02/dcd_uc02_all_PartE.png)
 
 Figure 3.2.2.v-E. UC-02 all layers: Atomic pickup and paired Order transition — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-02/dcd_uc02_all_PartE.drawio) · [SVG](../../../models/UC-02/dcd_uc02_all_PartE.svg) · [Generator](../../../models/UC-02/dcd_uc02_all_PartE.py) · [Data](../../../models/UC-02/dcd_uc02_all_PartE.json)
+
 
 ![UC-02 all layers: Successful delivery and paired states](../../../models/UC-02/dcd_uc02_all_PartF.png)
 
 Figure 3.2.2.v-F. UC-02 all layers: Successful delivery and paired states — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-02/dcd_uc02_all_PartF.drawio) · [SVG](../../../models/UC-02/dcd_uc02_all_PartF.svg) · [Generator](../../../models/UC-02/dcd_uc02_all_PartF.py) · [Data](../../../models/UC-02/dcd_uc02_all_PartF.json)
+
 
 ![UC-02 all layers: Failure state and full refund obligation](../../../models/UC-02/dcd_uc02_all_PartG.png)
 
 Figure 3.2.2.v-G. UC-02 all layers: Failure state and full refund obligation — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-02/dcd_uc02_all_PartG.drawio) · [SVG](../../../models/UC-02/dcd_uc02_all_PartG.svg) · [Generator](../../../models/UC-02/dcd_uc02_all_PartG.py) · [Data](../../../models/UC-02/dcd_uc02_all_PartG.json)
+
 
 ![UC-02 all layers: Completion contact and cash projection](../../../models/UC-02/dcd_uc02_all_PartH.png)
 
 Figure 3.2.2.v-H. UC-02 all layers: Completion contact and cash projection — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-02/dcd_uc02_all_PartH.drawio) · [SVG](../../../models/UC-02/dcd_uc02_all_PartH.svg) · [Generator](../../../models/UC-02/dcd_uc02_all_PartH.py) · [Data](../../../models/UC-02/dcd_uc02_all_PartH.json)
+
 
 ![UC-02 all layers: Contact and archived-hub projection](../../../models/UC-02/dcd_uc02_all_PartI.png)
 
 Figure 3.2.2.v-I. UC-02 all layers: Contact and archived-hub projection — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-02/dcd_uc02_all_PartI.drawio) · [SVG](../../../models/UC-02/dcd_uc02_all_PartI.svg) · [Generator](../../../models/UC-02/dcd_uc02_all_PartI.py) · [Data](../../../models/UC-02/dcd_uc02_all_PartI.json)
+
 
 ![UC-02 all layers: Completion contact projection](../../../models/UC-02/dcd_uc02_all_PartJ.png)
 
 Figure 3.2.2.v-J. UC-02 all layers: Completion contact projection — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-02/dcd_uc02_all_PartJ.drawio) · [SVG](../../../models/UC-02/dcd_uc02_all_PartJ.svg) · [Generator](../../../models/UC-02/dcd_uc02_all_PartJ.py) · [Data](../../../models/UC-02/dcd_uc02_all_PartJ.json)
+
 
 ### 3.2.3 OOD with CRC Cards or Communication Diagram
 
@@ -2205,7 +2205,7 @@ OP-21 viewReadyDeliveries() — models/UC-02/ssd_uc02_PartA.drawio#M01
 
 Figure 3.2.4.1. UC-02 design sequence: viewReadyDeliveries — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-02/seq_uc02_viewReadyDeliveries.drawio) · [SVG](../../../models/UC-02/seq_uc02_viewReadyDeliveries.svg) · [Generator](../../../models/UC-02/seq_uc02_viewReadyDeliveries.py) · [Data](../../../models/UC-02/seq_uc02_viewReadyDeliveries.json)
+
 
 ##### viewDelivery — orderId
 
@@ -2215,7 +2215,7 @@ OP-22 viewDelivery(orderId) — models/UC-02/ssd_uc02_PartA.drawio#M02
 
 Figure 3.2.4.2. UC-02 design sequence: viewDelivery — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-02/seq_uc02_viewDelivery.drawio) · [SVG](../../../models/UC-02/seq_uc02_viewDelivery.svg) · [Generator](../../../models/UC-02/seq_uc02_viewDelivery.py) · [Data](../../../models/UC-02/seq_uc02_viewDelivery.json)
+
 
 ##### takeDelivery — orderId
 
@@ -2225,7 +2225,7 @@ OP-10 takeDelivery(orderId) — models/UC-02/ssd_uc02_PartA.drawio#M03
 
 Figure 3.2.4.3. UC-02 design sequence: takeDelivery — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-02/seq_uc02_takeDelivery.drawio) · [SVG](../../../models/UC-02/seq_uc02_takeDelivery.svg) · [Generator](../../../models/UC-02/seq_uc02_takeDelivery.py) · [Data](../../../models/UC-02/seq_uc02_takeDelivery.json)
+
 
 ##### confirmDelivered — orderId, cashCollected?
 
@@ -2235,7 +2235,7 @@ OP-11 confirmDelivered(orderId, cashCollected?) — models/UC-02/ssd_uc02_PartB.
 
 Figure 3.2.4.4. UC-02 design sequence: confirmDelivered — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-02/seq_uc02_confirmDelivered.drawio) · [SVG](../../../models/UC-02/seq_uc02_confirmDelivered.svg) · [Generator](../../../models/UC-02/seq_uc02_confirmDelivered.py) · [Data](../../../models/UC-02/seq_uc02_confirmDelivered.json)
+
 
 ##### reportFailure — orderId, reason
 
@@ -2245,7 +2245,7 @@ OP-12 reportFailure(orderId, reason) — models/UC-02/ssd_uc02_PartB.drawio#M05
 
 Figure 3.2.4.5. UC-02 design sequence: reportFailure — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-02/seq_uc02_reportFailure.drawio) · [SVG](../../../models/UC-02/seq_uc02_reportFailure.svg) · [Generator](../../../models/UC-02/seq_uc02_reportFailure.py) · [Data](../../../models/UC-02/seq_uc02_reportFailure.json)
+
 
 ### 3.2.5 Final Design Class Diagram
 
@@ -2255,61 +2255,61 @@ All message receivers in the five design sequences are present. Changes from 3.2
 
 Figure 3.2.5-A. UC-02 final design classes: Ready board authorization and retrieval — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-02/dcd_uc02_final_PartA.drawio) · [SVG](../../../models/UC-02/dcd_uc02_final_PartA.svg) · [Generator](../../../models/UC-02/dcd_uc02_final_PartA.py) · [Data](../../../models/UC-02/dcd_uc02_final_PartA.json)
+
 
 ![UC-02 final design classes: Board row projection](../../../models/UC-02/dcd_uc02_final_PartB.png)
 
 Figure 3.2.5-B. UC-02 final design classes: Board row projection — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-02/dcd_uc02_final_PartB.drawio) · [SVG](../../../models/UC-02/dcd_uc02_final_PartB.svg) · [Generator](../../../models/UC-02/dcd_uc02_final_PartB.py) · [Data](../../../models/UC-02/dcd_uc02_final_PartB.json)
+
 
 ![UC-02 final design classes: Inspect assignment and access](../../../models/UC-02/dcd_uc02_final_PartC.png)
 
 Figure 3.2.5-C. UC-02 final design classes: Inspect assignment and access — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-02/dcd_uc02_final_PartC.drawio) · [SVG](../../../models/UC-02/dcd_uc02_final_PartC.svg) · [Generator](../../../models/UC-02/dcd_uc02_final_PartC.py) · [Data](../../../models/UC-02/dcd_uc02_final_PartC.json)
+
 
 ![UC-02 final design classes: Delivery contact projection](../../../models/UC-02/dcd_uc02_final_PartD.png)
 
 Figure 3.2.5-D. UC-02 final design classes: Delivery contact projection — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-02/dcd_uc02_final_PartD.drawio) · [SVG](../../../models/UC-02/dcd_uc02_final_PartD.svg) · [Generator](../../../models/UC-02/dcd_uc02_final_PartD.py) · [Data](../../../models/UC-02/dcd_uc02_final_PartD.json)
+
 
 ![UC-02 final design classes: Atomic pickup and paired Order transition](../../../models/UC-02/dcd_uc02_final_PartE.png)
 
 Figure 3.2.5-E. UC-02 final design classes: Atomic pickup and paired Order transition — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-02/dcd_uc02_final_PartE.drawio) · [SVG](../../../models/UC-02/dcd_uc02_final_PartE.svg) · [Generator](../../../models/UC-02/dcd_uc02_final_PartE.py) · [Data](../../../models/UC-02/dcd_uc02_final_PartE.json)
+
 
 ![UC-02 final design classes: Successful delivery and paired states](../../../models/UC-02/dcd_uc02_final_PartF.png)
 
 Figure 3.2.5-F. UC-02 final design classes: Successful delivery and paired states — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-02/dcd_uc02_final_PartF.drawio) · [SVG](../../../models/UC-02/dcd_uc02_final_PartF.svg) · [Generator](../../../models/UC-02/dcd_uc02_final_PartF.py) · [Data](../../../models/UC-02/dcd_uc02_final_PartF.json)
+
 
 ![UC-02 final design classes: Failure state and full refund obligation](../../../models/UC-02/dcd_uc02_final_PartG.png)
 
 Figure 3.2.5-G. UC-02 final design classes: Failure state and full refund obligation — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-02/dcd_uc02_final_PartG.drawio) · [SVG](../../../models/UC-02/dcd_uc02_final_PartG.svg) · [Generator](../../../models/UC-02/dcd_uc02_final_PartG.py) · [Data](../../../models/UC-02/dcd_uc02_final_PartG.json)
+
 
 ![UC-02 final design classes: Completion contact and cash projection](../../../models/UC-02/dcd_uc02_final_PartH.png)
 
 Figure 3.2.5-H. UC-02 final design classes: Completion contact and cash projection — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-02/dcd_uc02_final_PartH.drawio) · [SVG](../../../models/UC-02/dcd_uc02_final_PartH.svg) · [Generator](../../../models/UC-02/dcd_uc02_final_PartH.py) · [Data](../../../models/UC-02/dcd_uc02_final_PartH.json)
+
 
 ![UC-02 final design classes: Contact and archived-hub projection](../../../models/UC-02/dcd_uc02_final_PartI.png)
 
 Figure 3.2.5-I. UC-02 final design classes: Contact and archived-hub projection — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-02/dcd_uc02_final_PartI.drawio) · [SVG](../../../models/UC-02/dcd_uc02_final_PartI.svg) · [Generator](../../../models/UC-02/dcd_uc02_final_PartI.py) · [Data](../../../models/UC-02/dcd_uc02_final_PartI.json)
+
 
 ![UC-02 final design classes: Completion contact projection](../../../models/UC-02/dcd_uc02_final_PartJ.png)
 
 Figure 3.2.5-J. UC-02 final design classes: Completion contact projection — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-02/dcd_uc02_final_PartJ.drawio) · [SVG](../../../models/UC-02/dcd_uc02_final_PartJ.svg) · [Generator](../../../models/UC-02/dcd_uc02_final_PartJ.py) · [Data](../../../models/UC-02/dcd_uc02_final_PartJ.json)
+
 
 Every received sequence method appears on its actual receiver in the final DCD: blueprint routes, DeliveryController/BaseController helpers, controllers.common functions, domain move_to/refund behavior and controller value roles. The operation-specific P4 targets remain †; the final DCD does not imply those behaviors already pass at C0.
 
@@ -2963,7 +2963,7 @@ HubStatus and Hub are the real domain participants. Period, report rows and repo
 
 Figure 3.4.2.i-A. UC-04 domain design classes: No Report domain class or lifecycle exists; report values stay in the controller module. — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-04/dcd_uc04_domain.drawio) · [SVG](../../../models/UC-04/dcd_uc04_domain.svg) · [Generator](../../../models/UC-04/dcd_uc04_domain.py) · [Data](../../../models/UC-04/dcd_uc04_domain.json)
+
 
 #### ii. Controller
 
@@ -2973,37 +2973,37 @@ ReportController validates manager access and filters, then builds ephemeral rep
 
 Figure 3.4.2.ii-A. UC-04 controller/value roles: Sales value roles continue in Part B; other report operations continue in Parts C–F. — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-04/dcd_uc04_controller_PartA.drawio) · [SVG](../../../models/UC-04/dcd_uc04_controller_PartA.svg) · [Generator](../../../models/UC-04/dcd_uc04_controller_PartA.py) · [Data](../../../models/UC-04/dcd_uc04_controller_PartA.json)
+
 
 ![UC-04 controller/value roles: Part A contains authorization/filter helpers; F-03/F-09 remain † targets.](../../../models/UC-04/dcd_uc04_controller_PartB.png)
 
 Figure 3.4.2.ii-B. UC-04 controller/value roles: Part A contains authorization/filter helpers; F-03/F-09 remain † targets. — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-04/dcd_uc04_controller_PartB.drawio) · [SVG](../../../models/UC-04/dcd_uc04_controller_PartB.svg) · [Generator](../../../models/UC-04/dcd_uc04_controller_PartB.py) · [Data](../../../models/UC-04/dcd_uc04_controller_PartB.json)
+
 
 ![UC-04 controller/value roles: Workload value roles continue in Part D.](../../../models/UC-04/dcd_uc04_controller_PartC.png)
 
 Figure 3.4.2.ii-C. UC-04 controller/value roles: Workload value roles continue in Part D. — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-04/dcd_uc04_controller_PartC.drawio) · [SVG](../../../models/UC-04/dcd_uc04_controller_PartC.svg) · [Generator](../../../models/UC-04/dcd_uc04_controller_PartC.py) · [Data](../../../models/UC-04/dcd_uc04_controller_PartC.json)
+
 
 ![UC-04 controller/value roles: Part C contains authorization; workload targets retain archived hubs (P2-S18).](../../../models/UC-04/dcd_uc04_controller_PartD.png)
 
 Figure 3.4.2.ii-D. UC-04 controller/value roles: Part C contains authorization; workload targets retain archived hubs (P2-S18). — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-04/dcd_uc04_controller_PartD.drawio) · [SVG](../../../models/UC-04/dcd_uc04_controller_PartD.svg) · [Generator](../../../models/UC-04/dcd_uc04_controller_PartD.py) · [Data](../../../models/UC-04/dcd_uc04_controller_PartD.json)
+
 
 ![UC-04 controller/value roles: Delivery metric value roles continue in Part F.](../../../models/UC-04/dcd_uc04_controller_PartE.png)
 
 Figure 3.4.2.ii-E. UC-04 controller/value roles: Delivery metric value roles continue in Part F. — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-04/dcd_uc04_controller_PartE.drawio) · [SVG](../../../models/UC-04/dcd_uc04_controller_PartE.svg) · [Generator](../../../models/UC-04/dcd_uc04_controller_PartE.py) · [Data](../../../models/UC-04/dcd_uc04_controller_PartE.json)
+
 
 ![UC-04 controller/value roles: Part E contains authorization and interval helpers; rows and sample counts are non-persisted.](../../../models/UC-04/dcd_uc04_controller_PartF.png)
 
 Figure 3.4.2.ii-F. UC-04 controller/value roles: Part E contains authorization and interval helpers; rows and sample counts are non-persisted. — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-04/dcd_uc04_controller_PartF.drawio) · [SVG](../../../models/UC-04/dcd_uc04_controller_PartF.svg) · [Generator](../../../models/UC-04/dcd_uc04_controller_PartF.py) · [Data](../../../models/UC-04/dcd_uc04_controller_PartF.json)
+
 
 #### iii. UI (view)
 
@@ -3013,7 +3013,7 @@ saigonbite.presentation.reports is the «view» blueprint module. It maps the SS
 
 Figure 3.4.2.iii. UC-04 view module — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-04/dcd_uc04_view.drawio) · [SVG](../../../models/UC-04/dcd_uc04_view.svg) · [Generator](../../../models/UC-04/dcd_uc04_view.py) · [Data](../../../models/UC-04/dcd_uc04_view.json)
+
 
 #### iv. Data access
 
@@ -3023,7 +3023,7 @@ Reports issue read-only selections. Workload’s target retains archived hub ide
 
 Figure 3.4.2.iv. UC-04 data-access classes — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-04/dcd_uc04_dao.drawio) · [SVG](../../../models/UC-04/dcd_uc04_dao.svg) · [Generator](../../../models/UC-04/dcd_uc04_dao.py) · [Data](../../../models/UC-04/dcd_uc04_dao.json)
+
 
 #### v. Design class (all layers together)
 
@@ -3033,55 +3033,55 @@ Parts A-I show operation paths and controller value roles across all four layers
 
 Figure 3.4.2.v-A. UC-04 all layers: Sales operation and data grain — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-04/dcd_uc04_all_PartA.drawio) · [SVG](../../../models/UC-04/dcd_uc04_all_PartA.svg) · [Generator](../../../models/UC-04/dcd_uc04_all_PartA.py) · [Data](../../../models/UC-04/dcd_uc04_all_PartA.json)
+
 
 ![UC-04 all layers: Manager guard and VN filter helpers](../../../models/UC-04/dcd_uc04_all_PartB.png)
 
 Figure 3.4.2.v-B. UC-04 all layers: Manager guard and VN filter helpers — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-04/dcd_uc04_all_PartB.drawio) · [SVG](../../../models/UC-04/dcd_uc04_all_PartB.svg) · [Generator](../../../models/UC-04/dcd_uc04_all_PartB.py) · [Data](../../../models/UC-04/dcd_uc04_all_PartB.json)
+
 
 ![UC-04 all layers: Sales row and filter value objects](../../../models/UC-04/dcd_uc04_all_PartC.png)
 
 Figure 3.4.2.v-C. UC-04 all layers: Sales row and filter value objects — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-04/dcd_uc04_all_PartC.drawio) · [SVG](../../../models/UC-04/dcd_uc04_all_PartC.svg) · [Generator](../../../models/UC-04/dcd_uc04_all_PartC.py) · [Data](../../../models/UC-04/dcd_uc04_all_PartC.json)
+
 
 ![UC-04 all layers: Sales report result object](../../../models/UC-04/dcd_uc04_all_PartD.png)
 
 Figure 3.4.2.v-D. UC-04 all layers: Sales report result object — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-04/dcd_uc04_all_PartD.drawio) · [SVG](../../../models/UC-04/dcd_uc04_all_PartD.svg) · [Generator](../../../models/UC-04/dcd_uc04_all_PartD.py) · [Data](../../../models/UC-04/dcd_uc04_all_PartD.json)
+
 
 ![UC-04 all layers: Current workload and archived hubs](../../../models/UC-04/dcd_uc04_all_PartE.png)
 
 Figure 3.4.2.v-E. UC-04 all layers: Current workload and archived hubs — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-04/dcd_uc04_all_PartE.drawio) · [SVG](../../../models/UC-04/dcd_uc04_all_PartE.svg) · [Generator](../../../models/UC-04/dcd_uc04_all_PartE.py) · [Data](../../../models/UC-04/dcd_uc04_all_PartE.json)
+
 
 ![UC-04 all layers: Workload snapshot value objects](../../../models/UC-04/dcd_uc04_all_PartF.png)
 
 Figure 3.4.2.v-F. UC-04 all layers: Workload snapshot value objects — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-04/dcd_uc04_all_PartF.drawio) · [SVG](../../../models/UC-04/dcd_uc04_all_PartF.svg) · [Generator](../../../models/UC-04/dcd_uc04_all_PartF.py) · [Data](../../../models/UC-04/dcd_uc04_all_PartF.json)
+
 
 ![UC-04 all layers: Delivery interval and metric source](../../../models/UC-04/dcd_uc04_all_PartG.png)
 
 Figure 3.4.2.v-G. UC-04 all layers: Delivery interval and metric source — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-04/dcd_uc04_all_PartG.drawio) · [SVG](../../../models/UC-04/dcd_uc04_all_PartG.svg) · [Generator](../../../models/UC-04/dcd_uc04_all_PartG.py) · [Data](../../../models/UC-04/dcd_uc04_all_PartG.json)
+
 
 ![UC-04 all layers: Delivery metric and report value objects](../../../models/UC-04/dcd_uc04_all_PartH.png)
 
 Figure 3.4.2.v-H. UC-04 all layers: Delivery metric and report value objects — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-04/dcd_uc04_all_PartH.drawio) · [SVG](../../../models/UC-04/dcd_uc04_all_PartH.svg) · [Generator](../../../models/UC-04/dcd_uc04_all_PartH.py) · [Data](../../../models/UC-04/dcd_uc04_all_PartH.json)
+
 
 ![UC-04 all layers: Delivery report result object](../../../models/UC-04/dcd_uc04_all_PartI.png)
 
 Figure 3.4.2.v-I. UC-04 all layers: Delivery report result object — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-04/dcd_uc04_all_PartI.drawio) · [SVG](../../../models/UC-04/dcd_uc04_all_PartI.svg) · [Generator](../../../models/UC-04/dcd_uc04_all_PartI.py) · [Data](../../../models/UC-04/dcd_uc04_all_PartI.json)
+
 
 ### 3.4.3 OOD with CRC Cards or Communication Diagram
 
@@ -3228,7 +3228,7 @@ OP-26 salesReport(startDateVN, endDateVN, hubId?) — models/UC-04/ssd_uc04.draw
 
 Figure 3.4.4.1. UC-04 design sequence: salesReport — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-04/seq_uc04_salesReport.drawio) · [SVG](../../../models/UC-04/seq_uc04_salesReport.svg) · [Generator](../../../models/UC-04/seq_uc04_salesReport.py) · [Data](../../../models/UC-04/seq_uc04_salesReport.json)
+
 
 ##### workloadReport — no parameters
 
@@ -3238,7 +3238,7 @@ OP-27 workloadReport() — models/UC-04/ssd_uc04.drawio#M02
 
 Figure 3.4.4.2. UC-04 design sequence: workloadReport — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-04/seq_uc04_workloadReport.drawio) · [SVG](../../../models/UC-04/seq_uc04_workloadReport.svg) · [Generator](../../../models/UC-04/seq_uc04_workloadReport.py) · [Data](../../../models/UC-04/seq_uc04_workloadReport.json)
+
 
 ##### deliveryReport — startDateVN, endDateVN, hubId?
 
@@ -3248,7 +3248,7 @@ OP-28 deliveryReport(startDateVN, endDateVN, hubId?) — models/UC-04/ssd_uc04.d
 
 Figure 3.4.4.3. UC-04 design sequence: deliveryReport — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-04/seq_uc04_deliveryReport.drawio) · [SVG](../../../models/UC-04/seq_uc04_deliveryReport.svg) · [Generator](../../../models/UC-04/seq_uc04_deliveryReport.py) · [Data](../../../models/UC-04/seq_uc04_deliveryReport.json)
+
 
 ### 3.4.5 Final Design Class Diagram
 
@@ -3258,55 +3258,55 @@ All sequence receiver methods are present. Changes from 3.4.2: no local class/me
 
 Figure 3.4.5-A. UC-04 final design classes: Sales operation and data grain — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-04/dcd_uc04_final_PartA.drawio) · [SVG](../../../models/UC-04/dcd_uc04_final_PartA.svg) · [Generator](../../../models/UC-04/dcd_uc04_final_PartA.py) · [Data](../../../models/UC-04/dcd_uc04_final_PartA.json)
+
 
 ![UC-04 final design classes: Manager guard and VN filter helpers](../../../models/UC-04/dcd_uc04_final_PartB.png)
 
 Figure 3.4.5-B. UC-04 final design classes: Manager guard and VN filter helpers — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-04/dcd_uc04_final_PartB.drawio) · [SVG](../../../models/UC-04/dcd_uc04_final_PartB.svg) · [Generator](../../../models/UC-04/dcd_uc04_final_PartB.py) · [Data](../../../models/UC-04/dcd_uc04_final_PartB.json)
+
 
 ![UC-04 final design classes: Sales row and filter value objects](../../../models/UC-04/dcd_uc04_final_PartC.png)
 
 Figure 3.4.5-C. UC-04 final design classes: Sales row and filter value objects — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-04/dcd_uc04_final_PartC.drawio) · [SVG](../../../models/UC-04/dcd_uc04_final_PartC.svg) · [Generator](../../../models/UC-04/dcd_uc04_final_PartC.py) · [Data](../../../models/UC-04/dcd_uc04_final_PartC.json)
+
 
 ![UC-04 final design classes: Sales report result object](../../../models/UC-04/dcd_uc04_final_PartD.png)
 
 Figure 3.4.5-D. UC-04 final design classes: Sales report result object — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-04/dcd_uc04_final_PartD.drawio) · [SVG](../../../models/UC-04/dcd_uc04_final_PartD.svg) · [Generator](../../../models/UC-04/dcd_uc04_final_PartD.py) · [Data](../../../models/UC-04/dcd_uc04_final_PartD.json)
+
 
 ![UC-04 final design classes: Current workload and archived hubs](../../../models/UC-04/dcd_uc04_final_PartE.png)
 
 Figure 3.4.5-E. UC-04 final design classes: Current workload and archived hubs — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-04/dcd_uc04_final_PartE.drawio) · [SVG](../../../models/UC-04/dcd_uc04_final_PartE.svg) · [Generator](../../../models/UC-04/dcd_uc04_final_PartE.py) · [Data](../../../models/UC-04/dcd_uc04_final_PartE.json)
+
 
 ![UC-04 final design classes: Workload snapshot value objects](../../../models/UC-04/dcd_uc04_final_PartF.png)
 
 Figure 3.4.5-F. UC-04 final design classes: Workload snapshot value objects — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-04/dcd_uc04_final_PartF.drawio) · [SVG](../../../models/UC-04/dcd_uc04_final_PartF.svg) · [Generator](../../../models/UC-04/dcd_uc04_final_PartF.py) · [Data](../../../models/UC-04/dcd_uc04_final_PartF.json)
+
 
 ![UC-04 final design classes: Delivery interval and metric source](../../../models/UC-04/dcd_uc04_final_PartG.png)
 
 Figure 3.4.5-G. UC-04 final design classes: Delivery interval and metric source — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-04/dcd_uc04_final_PartG.drawio) · [SVG](../../../models/UC-04/dcd_uc04_final_PartG.svg) · [Generator](../../../models/UC-04/dcd_uc04_final_PartG.py) · [Data](../../../models/UC-04/dcd_uc04_final_PartG.json)
+
 
 ![UC-04 final design classes: Delivery metric and report value objects](../../../models/UC-04/dcd_uc04_final_PartH.png)
 
 Figure 3.4.5-H. UC-04 final design classes: Delivery metric and report value objects — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-04/dcd_uc04_final_PartH.drawio) · [SVG](../../../models/UC-04/dcd_uc04_final_PartH.svg) · [Generator](../../../models/UC-04/dcd_uc04_final_PartH.py) · [Data](../../../models/UC-04/dcd_uc04_final_PartH.json)
+
 
 ![UC-04 final design classes: Delivery report result object](../../../models/UC-04/dcd_uc04_final_PartI.png)
 
 Figure 3.4.5-I. UC-04 final design classes: Delivery report result object — Author: 722I0004 · AI-assisted (Codex)
 
-[Editable draw.io](../../../models/UC-04/dcd_uc04_final_PartI.drawio) · [SVG](../../../models/UC-04/dcd_uc04_final_PartI.svg) · [Generator](../../../models/UC-04/dcd_uc04_final_PartI.py) · [Data](../../../models/UC-04/dcd_uc04_final_PartI.json)
+
 
 No Report state is drawn. Filters, report rows and returned reports are non-persisted controller values. The final DCD keeps † on F-03/F-09/P2-S18 targets; UC04-PC01 remains a required oracle correspondence, not a measured result.
 

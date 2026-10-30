@@ -2,7 +2,7 @@
 
 Author: 722I0004 · AI-assisted (Codex)
 
-The locked Part 2 plan governs this list. Plan thresholds and figures remain team defaults unless the decision log records an answer; Q1–Q5 have no answers recorded at this phase. Acceptance criteria define planned checks, not completed tests or measured results. All in-scope requirements are Must because they form the locked minimum portfolio; deferred and future work appears separately below.
+Each requirement has an ID, a source in the case study or course requirements, the use case that delivers it and an acceptance criterion. Figures such as the 25% quiet threshold and the 8 km radius are team defaults until the client answers Q1–Q5 (1.4.2). All in-scope requirements are Must because the six main use cases cannot run without them; deferred items are listed at the end. The verification table after the requirements shows, for every ID, the postconditions it maps to, how many automated tests check it and the recorded result; section 5.1 gives the test cases.
 
 Source key: **Case** = `Lec_re/RAD_Sem01_2627_Case_Study_SaigonBite.pdf`; **Requirements** = `Lec_re/RAD_Sem01_2627_FinalProject_Requirements_SaigonBite.pdf`; **Plan** = `PLAN_SaigonBite_Part2_Final.md`. Case pointers identify the printed page and feature or fixed-fact topic, rather than fabricated line numbers. Case evidence establishes the business need; linked BR/A/Q entries specify the team interpretation and unresolved details. Requirements p.2 §2.1 and D-4 require the minimum supporting CRUD paths; A-08 is superseded, not a basis for leaving them unbuilt. Source links to Q items indicate an unresolved question, never an answer.
 
@@ -68,7 +68,66 @@ Each criterion names a measurement method. Section 5.1 reports the recorded test
 | NFR-09 | The system shall keep key customer, kitchen, shipper, admin, and report pages usable at a 360 CSS-pixel viewport. | NFR | Must | UC-01–UC-06; SUC-01–SUC-09 | Phase 1 checklist P1-17 phone-width requirement | At 360 CSS pixels, each key page has document scroll width no greater than viewport width; primary controls are visible and operable without horizontal page scrolling. Measurement: browser viewport inspection at 360 pixels; not run in P1. |
 | NFR-10 | The system shall keep presentation, controller, domain, and data-access responsibilities in the layers defined by the plan. | NFR | Must | UC-01–UC-06; SUC-01–SUC-09 | Plan §5.1 layering contract | A static import review finds zero SQL or sqlite access in presentation/controllers and zero Flask or SQL imports in the domain layer; database calls occur in data-access modules. Measurement: import scan and architecture review; not run in P1. |
 | NFR-11 | The system shall archive closed records without physically deleting them and retain authorized historical access. | NFR | Must | SUC-09; SUC-03; UC-04 | Plan §2.4 archive semantics; §3.4 BR-24/Q5; §5.3 archived_at fields; checklist P1-17 | After archiving a closed order, its order, line, payment, delivery, and offer row counts are unchanged; operational lists omit it while authorized history, receipt, and report views still include it. Measurement: compare row counts and view results before and after archive; no result recorded in P1. |
-| NFR-12 | The system shall serialize competing state changes and preserve order, delivery, and payment consistency when an operation fails. | NFR | Must | UC-01; UC-02; UC-05; SUC-03; SUC-04; SUC-05 | Case p.2 handoff/responsibility problem; Plan BR-02/BR-11/BR-17/BR-25; §3.3; §5.2; §7.2 | Planned P4 method: synchronize contenders with a barrier and use independent database connections for last kitchen slot, one READY pickup, accept versus cancel, and cancel versus start preparing. Exclusive claims have one durable winner and a controlled loser message. Other races allow a legal serialized outcome, including accept then cancel; a stale answer never revives a closed order. Force insert and COMMIT failures and require all related writes to roll back. A held write lock yields a controlled retry response without a partial change or HTTP 500. No race or rollback test has run in P1. |
+| NFR-12 | The system shall serialize competing state changes and preserve order, delivery, and payment consistency when an operation fails. | NFR | Must | UC-01; UC-02; UC-05; SUC-03; SUC-04; SUC-05 | Case p.2 handoff/responsibility problem; Plan BR-02/BR-11/BR-17/BR-25; §3.3; §5.2; §7.2 | Method: synchronize contenders with a barrier and use independent database connections for last kitchen slot, one READY pickup, accept versus cancel, and cancel versus start preparing. Exclusive claims have one durable winner and a controlled loser message. Other races allow a legal serialized outcome, including accept then cancel; a stale answer never revives a closed order. Force insert and COMMIT failures and require all related writes to roll back. A held write lock yields a controlled retry response without a partial change or HTTP 500. No race or rollback test has run in P1. |
+
+## Requirement verification summary
+
+Every requirement is traced to the postconditions (PC) or minimum guarantees (MG) of its use case in section 2.2, to test functions in `tests/`, and to the recorded result. Test counts come from the traceability register `docs/part2/traceability.csv`; results come from the JUnit report of the full regression at commit 252ada1 (928 passed, 27/10/2026). Cross-cutting requirements such as FR-03 and NFR-01 are checked by every route-permission test, which explains their large counts. Deployment NFRs are verified on the VM (5.2).
+
+| Req ID | Use case | Postconditions / guarantees | Verification result |
+|---|---|---|---|
+| FR-01 | SUC-02; UC-01 | SUC02-PC01 | 8/8 pass (JUnit, commit 252ada1) |
+| FR-02 | SUC-02; UC-01 | SUC02-PC02, SUC02-PC03 | 5/5 pass (JUnit, commit 252ada1) |
+| FR-03 | SUC-01; SUC-08 | SUC01-PC01, SUC01-PC02, SUC08-PC02 | 552/552 pass (JUnit, commit 252ada1) |
+| FR-04 | UC-01; UC-06; SUC-02; SUC-06 | UC06-PC03, UC01-MG01 | 20/20 pass (JUnit, commit 252ada1) |
+| FR-05 | UC-01; SUC-02; SUC-07 | UC01-PC04 | 12/12 pass (JUnit, commit 252ada1) |
+| FR-06 | UC-01; UC-03; UC-04 | UC01-MG03, UC01-PC06 | 3/3 pass (JUnit, commit 252ada1) |
+| FR-07 | UC-01 | UC01-PC03, UC01-MG01 | 24/24 pass (JUnit, commit 252ada1) |
+| FR-08 | UC-01; UC-03; UC-04 | UC01-PC04 | 12/12 pass (JUnit, commit 252ada1) |
+| FR-09 | UC-01; SUC-07 | UC01-PC04, UC01-MG01 | 30/30 pass (JUnit, commit 252ada1) |
+| FR-10 | UC-01; SUC-03 | UC01-PC04 | 12/12 pass (JUnit, commit 252ada1) |
+| FR-11 | UC-01 | UC01-MG01 | 18/18 pass (JUnit, commit 252ada1) |
+| FR-12 | UC-01; UC-02 | UC01-PC05, UC01-MG01 | 25/25 pass (JUnit, commit 252ada1) |
+| FR-13 | UC-01 | UC01-MG02, UC01-MG01 | 20/20 pass (JUnit, commit 252ada1) |
+| FR-14 | UC-01 | UC01-PC01, UC01-PC02, UC01-PC03, UC01-PC04, UC01-PC05, UC01-PC06 | 28/28 pass (JUnit, commit 252ada1) |
+| FR-15 | SUC-03; UC-01; UC-02; UC-05 | SUC03-PC01 | 550/550 pass (JUnit, commit 252ada1) |
+| FR-16 | SUC-03; UC-01 | SUC03-PC02 | 1/1 pass (JUnit, commit 252ada1) |
+| FR-17 | SUC-04; UC-01; SUC-03 | SUC04-PC01, SUC04-PC02 | 7/7 pass (JUnit, commit 252ada1) |
+| FR-18 | UC-02; SUC-03; SUC-05 | UC02-PC01, UC02-MG01 | 28/28 pass (JUnit, commit 252ada1) |
+| FR-19 | UC-02 | UC02-PC01, UC02-MG01 | 28/28 pass (JUnit, commit 252ada1) |
+| FR-20 | UC-02 | UC02-PC02, UC02-MG01 | 27/27 pass (JUnit, commit 252ada1) |
+| FR-21 | UC-02 | UC02-PC03 | 6/6 pass (JUnit, commit 252ada1) |
+| FR-22 | UC-03 | UC03-PC01, UC03-PC02, UC03-MG01 | 21/21 pass (JUnit, commit 252ada1) |
+| FR-23 | UC-04 | UC04-PC01, UC04-MG01 | 6/6 pass (JUnit, commit 252ada1) |
+| FR-24 | UC-04 | UC04-PC01, UC04-MG01 | 6/6 pass (JUnit, commit 252ada1) |
+| FR-25 | UC-04 | UC04-PC01, UC04-PC02, UC04-MG01 | 6/6 pass (JUnit, commit 252ada1) |
+| FR-26 | UC-05; SUC-05; SUC-06 | UC05-MG01, UC05-PC01, UC05-PC02 | 35/35 pass (JUnit, commit 252ada1) |
+| FR-27 | UC-05 | UC05-PC01, UC05-PC02 | 7/7 pass (JUnit, commit 252ada1) |
+| FR-28 | UC-05; UC-06; SUC-06 | UC05-PC03, UC05-MG01 | 28/28 pass (JUnit, commit 252ada1) |
+| FR-29 | SUC-03; UC-05 | UC05-PC03, SUC03-PC01, SUC03-PC03, SUC03-PC05 | 570/570 pass (JUnit, commit 252ada1) |
+| FR-30 | UC-05; SUC-05 | UC05-MG01, UC05-PC01, SUC05-PC01 | 32/32 pass (JUnit, commit 252ada1) |
+| FR-31 | SUC-03; UC-05 | UC05-PC04, UC05-MG01, SUC03-PC05 | 34/34 pass (JUnit, commit 252ada1) |
+| FR-32 | SUC-03; UC-05 | UC05-PC04, SUC03-PC03 | 10/10 pass (JUnit, commit 252ada1) |
+| FR-33 | SUC-03; UC-05 | SUC03-PC04, UC05-MG01 | 34/34 pass (JUnit, commit 252ada1) |
+| FR-34 | SUC-05; UC-05; UC-02 | SUC05-PC01, SUC05-PC02 | 3/3 pass (JUnit, commit 252ada1) |
+| FR-35 | SUC-06; UC-05; UC-06 | SUC06-PC01, UC06-PC02 | 549/549 pass (JUnit, commit 252ada1) |
+| FR-36 | UC-06; UC-01; UC-05 | UC06-PC01, UC06-MG01, UC06-MG02 | 16/16 pass (JUnit, commit 252ada1) |
+| FR-37 | UC-06; SUC-06; UC-01 | UC06-PC02, UC06-MG01 | 3/3 pass (JUnit, commit 252ada1) |
+| FR-38 | SUC-07; UC-01 | SUC07-PC01, SUC07-PC02 | 7/7 pass (JUnit, commit 252ada1) |
+| FR-39 | SUC-08; SUC-01; UC-02 | SUC08-PC01, SUC08-PC02 | 4/4 pass (JUnit, commit 252ada1) |
+| FR-40 | SUC-09; SUC-03; UC-04 | SUC09-PC01, SUC09-PC02 | 7/7 pass (JUnit, commit 252ada1) |
+| NFR-01 | UC-01–UC-06; SUC-01–SUC-09 | UC01-MG01, UC02-MG01, UC03-MG01, UC04-MG02, UC05-MG01, UC06-MG02, … | 642/642 pass (JUnit, commit 252ada1) |
+| NFR-02 | UC-01 | UC01-MG02 | 2/2 pass (JUnit, commit 252ada1) |
+| NFR-03 | UC-01–UC-06; SUC-03–SUC-09 | — | 4/4 pass (JUnit, commit 252ada1); Deployed order kept across container restart, down/up and VM reboot; backup and separate restore tested (5.2, 27/10/2026) |
+| NFR-04 | UC-01–UC-06; SUC-01–SUC-09 | — | 1/1 pass (JUnit, commit 252ada1); All designated pages under 1,000 ms over 20 warm requests each on the VM; 200/200 concurrent GETs succeeded (5.2) |
+| NFR-05 | UC-02; UC-05; SUC-03; SUC-08 | — | 1/1 pass (JUnit, commit 252ada1) |
+| NFR-06 | UC-01–UC-06; SUC-02–SUC-09 | — | 3/3 pass (JUnit, commit 252ada1) |
+| NFR-07 | UC-01–UC-06; SUC-01–SUC-09 | — | 1/1 pass (JUnit, commit 252ada1) |
+| NFR-08 | UC-01–UC-06; SUC-01–SUC-09 | — | 1/1 pass (JUnit, commit 252ada1); Certificate valid, HTTP → HTTPS 308, Secure/HttpOnly cookies, CSRF rejection leaves the database unchanged (5.2) |
+| NFR-09 | UC-01–UC-06; SUC-01–SUC-09 | — | Partly verified: no horizontal overflow at 390 px on every phone screen and at 360 px on My orders; touch targets ≥ 44 px (4.3.3) |
+| NFR-10 | UC-01–UC-06; SUC-01–SUC-09 | — | 1/1 pass (JUnit, commit 252ada1) |
+| NFR-11 | SUC-09; SUC-03; UC-04 | SUC09-PC01, SUC09-PC02 | 7/7 pass (JUnit, commit 252ada1) |
+| NFR-12 | UC-01; UC-02; UC-05; SUC-03; SUC-04; SUC-05 | UC01-MG01, UC01-MG02, UC02-MG01, UC05-MG01, UC05-PC04 | 67/67 pass (JUnit, commit 252ada1) |
 
 ## Deferred and future scope
 

@@ -1,15 +1,215 @@
-\textbf{3.3.2 i.}\par
-\begin{landscape}
-\begin{figure}[p]
-\centering
-\includegraphics[width=230mm]{\detokenize{models/UC-03/dcd_uc03_domain_PartA.png}}
-\caption{Figure 3.3.2iA. UC-03 domain projection 1 --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0108}
-\end{figure}
-\end{landscape}
-\begin{landscape}
-\begin{figure}[p]
-\centering
-\includegraphics[width=230mm]{\detokenize{models/UC-03/dcd_uc03_domain_PartB.png}}
-\caption{Figure 3.3.2iB. UC-03 domain projection 2 --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0109}
-\end{figure}
-\end{landscape}
+\subsubsection*{3.3.1 Design Classes in Detailed Design}
+\addcontentsline{toc}{subsubsection}{3.3.1 Design Classes in Detailed Design}
+\pdfbookmark[2]{3.3.1 Design Classes in Detailed Design}{p7h82}
+\textbf{UC-03 design classes}
+
+Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
+
+Source: \texttt{models/\allowbreak{}shared/\allowbreak{}design\_\allowbreak{}model.\allowbreak{}json}, C0 \texttt{45ac76221b0a103174c7c01d17577e6e49cfd665}. Evidence label: Static / target design. This table is a filtered projection; no application module was imported. \texttt{Any} and absent annotations are explicitly inferred. Python visibility follows leading underscores; dataclass fields are public. Constructors are implicit dataclass construction, not invented methods.
+
+design target, not yet in code at C0 (see P4 inputs P2-S13/P2-S14/P2-S15/P3-S02/P3-S03). MATCH means static correspondence, not executed success.
+
+Templates: \texttt{admin/\allowbreak{}hubs.\allowbreak{}html}, \texttt{admin/\allowbreak{}hub\_\allowbreak{}form.\allowbreak{}html}, shared \texttt{error.\allowbreak{}html}. The \texttt{admin} role is the real Flask blueprint module, not a fictional view class.
+
+Types retained as names from code include \texttt{Mapping}, \texttt{Optional}, \texttt{sqlite3.\allowbreak{}Connection} and business DTOs. A displayed attribute omitted from a narrow figure remains in this table. Association-backing foreign-key IDs remain below but are suppressed on domain DCDs.
+
+\textbf{admin}
+
+Layer: \textbf{view}; stereotype: \textbf{\guillemotleft{}view\guillemotright{}}; responsibility: Translate administrator maintenance routes; never provide business decisions. Source: \texttt{saigonbite/\allowbreak{}presentation/\allowbreak{}admin.\allowbreak{}py}.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Element & Typed declaration & Status / qualification \\
+\hline\endfirsthead
+Element & Typed declaration & Status / qualification \\
+\hline\endhead
+Operation & \texttt{- \_\allowbreak{}hubs() -\textgreater{} HubController} & MATCH \\
+Operation & \texttt{+ hubs() -\textgreater{} Any [inferred] } & P4 scoped evidence (P4.2; resolution rows 62); C0 rationale: ; inferred annotation(s); P3-S02 \\
+Operation & \texttt{+ new\_\allowbreak{}hub() -\textgreater{} Any [inferred]} & MATCH; inferred annotation(s) \\
+Operation & \texttt{+ edit\_\allowbreak{}hub(hub\_\allowbreak{}id: int) -\textgreater{} Any [inferred]} & MATCH; inferred annotation(s) \\
+Operation & \texttt{+ archive\_\allowbreak{}hub(hub\_\allowbreak{}id: int) -\textgreater{} Any [inferred]} & MATCH; inferred annotation(s) \\
+\end{longtable}
+Route adapters (AST):
+
+\begin{itemize}
+\item \texttt{\{'blueprint\_\allowbreak{}variable': 'bp', 'blueprint': 'admin', 'rule': '/\allowbreak{}admin/\allowbreak{}', 'declared\_\allowbreak{}rule': '/\allowbreak{}', 'methods': ['GET'], 'view\_\allowbreak{}function': 'hubs', 'signature': 'hubs()', 'decorators': ["bp.\allowbreak{}get('/\allowbreak{}')", "bp.\allowbreak{}get('/\allowbreak{}hubs')", 'role\_\allowbreak{}required(Role.\allowbreak{}ADMIN)']\}}
+
+\item \texttt{\{'blueprint\_\allowbreak{}variable': 'bp', 'blueprint': 'admin', 'rule': '/\allowbreak{}admin/\allowbreak{}hubs', 'declared\_\allowbreak{}rule': '/\allowbreak{}hubs', 'methods': ['GET'], 'view\_\allowbreak{}function': 'hubs', 'signature': 'hubs()', 'decorators': ["bp.\allowbreak{}get('/\allowbreak{}')", "bp.\allowbreak{}get('/\allowbreak{}hubs')", 'role\_\allowbreak{}required(Role.\allowbreak{}ADMIN)']\}}
+
+\item \texttt{\{'blueprint\_\allowbreak{}variable': 'bp', 'blueprint': 'admin', 'rule': '/\allowbreak{}admin/\allowbreak{}hubs/\allowbreak{}new', 'declared\_\allowbreak{}rule': '/\allowbreak{}hubs/\allowbreak{}new', 'methods': ['GET', 'POST'], 'view\_\allowbreak{}function': 'new\_\allowbreak{}hub', 'signature': 'new\_\allowbreak{}hub()', 'decorators': ["bp.\allowbreak{}route('/\allowbreak{}hubs/\allowbreak{}new', methods=['GET', 'POST'])", 'role\_\allowbreak{}required(Role.\allowbreak{}ADMIN)']\}}
+
+\item \texttt{\{'blueprint\_\allowbreak{}variable': 'bp', 'blueprint': 'admin', 'rule': '/\allowbreak{}admin/\allowbreak{}hubs/\allowbreak{}\textless{}int:hub\_\allowbreak{}id\textgreater{}', 'declared\_\allowbreak{}rule': '/\allowbreak{}hubs/\allowbreak{}\textless{}int:hub\_\allowbreak{}id\textgreater{}', 'methods': ['GET', 'POST'], 'view\_\allowbreak{}function': 'edit\_\allowbreak{}hub', 'signature': 'edit\_\allowbreak{}hub(hub\_\allowbreak{}id: int)', 'decorators': ["bp.\allowbreak{}route('/\allowbreak{}hubs/\allowbreak{}\textless{}int:hub\_\allowbreak{}id\textgreater{}', methods=['GET', 'POST'])", 'role\_\allowbreak{}required(Role.\allowbreak{}ADMIN)']\}}
+
+\item \texttt{\{'blueprint\_\allowbreak{}variable': 'bp', 'blueprint': 'admin', 'rule': '/\allowbreak{}admin/\allowbreak{}hubs/\allowbreak{}\textless{}int:hub\_\allowbreak{}id\textgreater{}/\allowbreak{}archive', 'declared\_\allowbreak{}rule': '/\allowbreak{}hubs/\allowbreak{}\textless{}int:hub\_\allowbreak{}id\textgreater{}/\allowbreak{}archive', 'methods': ['POST'], 'view\_\allowbreak{}function': 'archive\_\allowbreak{}hub', 'signature': 'archive\_\allowbreak{}hub(hub\_\allowbreak{}id: int)', 'decorators': ["bp.\allowbreak{}post('/\allowbreak{}hubs/\allowbreak{}\textless{}int:hub\_\allowbreak{}id\textgreater{}/\allowbreak{}archive')", 'role\_\allowbreak{}required(Role.\allowbreak{}ADMIN)']\}}
+
+\end{itemize}
+\textbf{HubController}
+
+Layer: \textbf{controller}; stereotype: \textbf{\guillemotleft{}controller\guillemotright{}}; responsibility: Coordinate authorization, domain decisions and data access. Source: \texttt{saigonbite/\allowbreak{}business/\allowbreak{}controllers/\allowbreak{}hub\_\allowbreak{}controller.\allowbreak{}py}.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Element & Typed declaration & Status / qualification \\
+\hline\endfirsthead
+Element & Typed declaration & Status / qualification \\
+\hline\endhead
+Attribute & \texttt{+ hubs: HubDAO} & MATCH; inferred \\
+Operation & \texttt{+ list\_\allowbreak{}hubs(user\_\allowbreak{}id: int, include\_\allowbreak{}archived: bool = True) -\textgreater{} list[HubAdminView] } & P4 scoped evidence (P4.2; resolution rows 28); C0 rationale: ; P3-S02 \\
+Operation & \texttt{+ get\_\allowbreak{}hub(user\_\allowbreak{}id: int, hub\_\allowbreak{}id: int) -\textgreater{} HubAdminView} & MATCH \\
+Operation & \texttt{+ create\_\allowbreak{}hub(user\_\allowbreak{}id: int, form: Mapping[str, str]) -\textgreater{} Hub } & P4 scoped evidence (P4.1 + P4.2; resolution rows 29); C0 rationale: ; P2-S13; P3-S03 \\
+Operation & \texttt{+ update\_\allowbreak{}hub(user\_\allowbreak{}id: int, hub\_\allowbreak{}id: int, form: Mapping[str, str]) -\textgreater{} Hub } & P4 scoped evidence (P4.1 + P4.2; resolution rows 30); C0 rationale: ; P2-S13; P3-S03 \\
+Operation & \texttt{+ archive\_\allowbreak{}hub(user\_\allowbreak{}id: int, hub\_\allowbreak{}id: int) -\textgreater{} Hub } & P4 scoped evidence (P4.1 + P4.2; resolution rows 31); C0 rationale: ; P2-S13; P3-S03 \\
+Operation & \texttt{- \_\allowbreak{}require\_\allowbreak{}admin(user\_\allowbreak{}id: int) -\textgreater{} None} & MATCH \\
+Operation & \texttt{- \_\allowbreak{}parse(form: Mapping[str, str], hub\_\allowbreak{}id: Any) -\textgreater{} Hub [inferred]} & MATCH; inferred annotation(s) \\
+\end{longtable}
+\textbf{HubAdminView}
+
+Layer: \textbf{controller}; stereotype: \textbf{\guillemotleft{}value\guillemotright{}}; responsibility: Coordinate authorization, domain decisions and data access. Source: \texttt{saigonbite/\allowbreak{}business/\allowbreak{}controllers/\allowbreak{}hub\_\allowbreak{}controller.\allowbreak{}py}.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Element & Typed declaration & Status / qualification \\
+\hline\endfirsthead
+Element & Typed declaration & Status / qualification \\
+\hline\endhead
+Attribute & \texttt{+ status: HubStatus} & MATCH \\
+Attribute & \texttt{+ open\_\allowbreak{}orders: int} & MATCH \\
+Operation & \texttt{+ can\_\allowbreak{}archive() -\textgreater{} bool} & MATCH; property accessor \\
+\end{longtable}
+\textbf{HubStatus}
+
+Layer: \textbf{domain}; stereotype: \textbf{\guillemotleft{}entity\guillemotright{}}; responsibility: Derive busy, quiet and load percentage from current load and capacity. Source: \texttt{saigonbite/\allowbreak{}business/\allowbreak{}domain/\allowbreak{}models.\allowbreak{}py}.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Element & Typed declaration & Status / qualification \\
+\hline\endfirsthead
+Element & Typed declaration & Status / qualification \\
+\hline\endhead
+Attribute & \texttt{+ hub: Hub} & MATCH \\
+Attribute & \texttt{+ load: int} & MATCH \\
+Operation & \texttt{+ busy() -\textgreater{} bool} & MATCH; property accessor \\
+Operation & \texttt{+ quiet() -\textgreater{} bool} & MATCH; property accessor \\
+Operation & \texttt{+ load\_\allowbreak{}percent() -\textgreater{} int} & MATCH; property accessor \\
+\end{longtable}
+\textbf{Hub}
+
+Layer: \textbf{domain}; stereotype: \textbf{\guillemotleft{}entity\guillemotright{}}; responsibility: Represent a kitchen location, capacity and fee. Source: \texttt{saigonbite/\allowbreak{}business/\allowbreak{}domain/\allowbreak{}models.\allowbreak{}py}.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Element & Typed declaration & Status / qualification \\
+\hline\endfirsthead
+Element & Typed declaration & Status / qualification \\
+\hline\endhead
+Attribute & \texttt{+ id: int} & MATCH \\
+Attribute & \texttt{+ code: str} & MATCH \\
+Attribute & \texttt{+ name: str} & MATCH \\
+Attribute & \texttt{+ address\_\allowbreak{}text: str} & MATCH \\
+Attribute & \texttt{+ latitude: float} & MATCH \\
+Attribute & \texttt{+ longitude: float} & MATCH \\
+Attribute & \texttt{+ max\_\allowbreak{}active\_\allowbreak{}orders: int} & MATCH \\
+Attribute & \texttt{+ base\_\allowbreak{}delivery\_\allowbreak{}fee: int} & MATCH \\
+Attribute & \texttt{+ archived\_\allowbreak{}at: Optional[str]} & MATCH \\
+\end{longtable}
+\textbf{HubDAO}
+
+Layer: \textbf{data\_access}; stereotype: \textbf{\guillemotleft{}DAO\guillemotright{}}; responsibility: Read or write parameterized records. Source: \texttt{saigonbite/\allowbreak{}data\_\allowbreak{}access/\allowbreak{}hub\_\allowbreak{}dao.\allowbreak{}py}.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Element & Typed declaration & Status / qualification \\
+\hline\endfirsthead
+Element & Typed declaration & Status / qualification \\
+\hline\endhead
+Attribute & \texttt{+ conn: sqlite3.\allowbreak{}Connection} & MATCH \\
+Operation & \texttt{+ list\_\allowbreak{}active() -\textgreater{} list[Hub]} & MATCH \\
+Operation & \texttt{+ list\_\allowbreak{}all() -\textgreater{} list[Hub]} & MATCH \\
+Operation & \texttt{+ get\_\allowbreak{}including\_\allowbreak{}archived(hub\_\allowbreak{}id: int) -\textgreater{} Optional[Hub]} & MATCH \\
+Operation & \texttt{+ code\_\allowbreak{}exists(code: str, except\_\allowbreak{}id: Optional[int] = None) -\textgreater{} bool} & MATCH \\
+Operation & \texttt{+ insert(hub: Hub) -\textgreater{} int} & MATCH \\
+Operation & \texttt{+ update(hub: Hub) -\textgreater{} bool} & MATCH \\
+Operation & \texttt{+ archive(hub\_\allowbreak{}id: int, now: str) -\textgreater{} bool} & MATCH \\
+Operation & \texttt{+ active\_\allowbreak{}load(hub\_\allowbreak{}id: int) -\textgreater{} int} & MATCH \\
+Operation & \texttt{+ active\_\allowbreak{}loads() -\textgreater{} dict[int, int]} & MATCH \\
+Operation & \texttt{+ open\_\allowbreak{}order\_\allowbreak{}count(hub\_\allowbreak{}id: int) -\textgreater{} int} & MATCH \\
+\end{longtable}
+\textbf{BaseController}
+
+Layer: \textbf{controller}; stereotype: \textbf{\guillemotleft{}controller\guillemotright{}}; responsibility: Coordinate authorization, domain decisions and data access. Source: \texttt{saigonbite/\allowbreak{}business/\allowbreak{}controllers/\allowbreak{}common.\allowbreak{}py}.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Element & Typed declaration & Status / qualification \\
+\hline\endfirsthead
+Element & Typed declaration & Status / qualification \\
+\hline\endhead
+Attribute & \texttt{+ conn: sqlite3.\allowbreak{}Connection} & MATCH \\
+Attribute & \texttt{+ clock: Any} & MATCH; inferred \\
+Attribute & \texttt{+ users: UserDAO} & MATCH; inferred \\
+Operation & \texttt{- \_\allowbreak{}now() -\textgreater{} str} & MATCH \\
+Operation & \texttt{- \_\allowbreak{}require\_\allowbreak{}user(user\_\allowbreak{}id: int, *roles: Role, message: str = 'Your account cannot do this.\allowbreak{}') -\textgreater{} UserAccount} & MATCH \\
+\end{longtable}
+\textbf{UserAccount}
+
+Layer: \textbf{domain}; stereotype: \textbf{\guillemotleft{}entity\guillemotright{}}; responsibility: Hold account identity, role, active flag and optional kitchen-hub assignment. Source: \texttt{saigonbite/\allowbreak{}business/\allowbreak{}domain/\allowbreak{}models.\allowbreak{}py}.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Element & Typed declaration & Status / qualification \\
+\hline\endfirsthead
+Element & Typed declaration & Status / qualification \\
+\hline\endhead
+Attribute & \texttt{+ id: int} & MATCH \\
+Attribute & \texttt{+ username: str} & MATCH \\
+Attribute & \texttt{+ password\_\allowbreak{}hash: str} & MATCH \\
+Attribute & \texttt{+ display\_\allowbreak{}name: str} & MATCH \\
+Attribute & \texttt{+ role: Role} & MATCH \\
+Attribute & \texttt{+ is\_\allowbreak{}active: bool} & MATCH \\
+Attribute & \texttt{+ hub\_\allowbreak{}id: Optional[int]} & MATCH; association backing ID, omitted on DCD \\
+Attribute & \texttt{+ created\_\allowbreak{}at: str} & P4 scoped evidence (P4.1; resolution rows 53); C0 rationale: \\
+\end{longtable}
+\textbf{Role}
+
+Layer: \textbf{domain}; stereotype: \textbf{\guillemotleft{}enumeration\guillemotright{}}; responsibility: Hold typed business state and its local rules. Source: \texttt{saigonbite/\allowbreak{}business/\allowbreak{}domain/\allowbreak{}enums.\allowbreak{}py}.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Element & Typed declaration & Status / qualification \\
+\hline\endfirsthead
+Element & Typed declaration & Status / qualification \\
+\hline\endhead
+Attribute & \texttt{+ CUSTOMER: str} & MATCH; inferred \\
+Attribute & \texttt{+ KITCHEN\_\allowbreak{}STAFF: str} & MATCH; inferred \\
+Attribute & \texttt{+ SHIPPER: str} & MATCH; inferred \\
+Attribute & \texttt{+ ADMIN: str} & MATCH; inferred \\
+Attribute & \texttt{+ MANAGER: str} & MATCH; inferred \\
+\end{longtable}
+\textbf{UserDAO}
+
+Layer: \textbf{data\_access}; stereotype: \textbf{\guillemotleft{}DAO\guillemotright{}}; responsibility: Read or write parameterized records. Source: \texttt{saigonbite/\allowbreak{}data\_\allowbreak{}access/\allowbreak{}user\_\allowbreak{}dao.\allowbreak{}py}.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Element & Typed declaration & Status / qualification \\
+\hline\endfirsthead
+Element & Typed declaration & Status / qualification \\
+\hline\endhead
+Attribute & \texttt{+ conn: sqlite3.\allowbreak{}Connection} & MATCH \\
+Operation & \texttt{+ get\_\allowbreak{}by\_\allowbreak{}id(user\_\allowbreak{}id: int) -\textgreater{} Optional[UserAccount]} & MATCH \\
+\end{longtable}
+\textbf{Boundary adapters and guarantees}
+
+\texttt{uid()} always comes from the active server session; posted identity is never accepted. Form adapters retain SSD names while converting camelCase fields to Python keys: \texttt{address} \ensuremath{\rightarrow} \texttt{address\_\allowbreak{}text}, \texttt{baseDeliveryFee} \ensuremath{\rightarrow} \texttt{base\_\allowbreak{}delivery\_\allowbreak{}fee}, \texttt{capacity} \ensuremath{\rightarrow} \texttt{max\_\allowbreak{}active\_\allowbreak{}orders}; \texttt{brandId} \ensuremath{\rightarrow} \texttt{brand\_\allowbreak{}id}. Optional parameters map omitted values to the target defaults. Availability is validated as a boolean. Request.form values are strings; controllers parse and validate them.
+
+OP-23 is a P3-S02 target with \texttt{include\_\allowbreak{}archived: bool = True}; existing C0 route/controller omit that argument. Reads inspect archived hubs. \texttt{\_\allowbreak{}parse} validates candidate attributes; \texttt{create\_\allowbreak{}hub} / \texttt{update\_\allowbreak{}hub} enforce uniqueness; \texttt{archive\_\allowbreak{}hub} requires zero open orders. \texttt{HubStatus.\allowbreak{}busy/\allowbreak{}quiet} are properties derived from load/capacity. \texttt{HubAdminView.\allowbreak{}can\_\allowbreak{}archive} derives from open\_orders and archive flag, not a persistent state. Capacity below load is allowed. No restore is proposed.
+
+Mutation success is acknowledged only after commit. The P2-S13/P3-S03 targets require rowcount/guard checks and controlled busy or commit-error rollback; the Section III figures intentionally hide DAO/SQL behind the persistence note and Section 4.3.2. Draft validation maxima/coordinate windows remain draft constraints (P2-S17), not newly locked BRs.
+
+\textbf{Guarantee responsibility and transaction boundary}
+
+\texttt{HubStatus} and \texttt{HubAdminView} are transient projections, not additional persistent entities.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Anchor / request & Named responsibility & Boundary \\
+\hline\endfirsthead
+Anchor / request & Named responsibility & Boundary \\
+\hline\endhead
+UC03-PC01 & HubController.\_parse + create\_hub / update\_hub; HubDAO.code\_exists and insert / update & BEGIN IMMEDIATE; success only after commit \\
+UC03-PC02 & HubController.archive\_hub; HubDAO.open\_order\_count + archive; read consumers exclude archived hubs operationally but retain history & BEGIN IMMEDIATE; no open orders; conditional-save rowcount and commit-error handling \\
+UC03-MG01 & HubController.\_require\_admin / \_parse and mutation guard checks; failed write rolls back; BaseController.\_require\_user rejects inactive or wrong-role identity & All create/update/archive changes are atomic ; list/get are read-only \\
+listHubs / getHub & HubController.list\_hubs / get\_hub returns HubAdminView + derived HubStatus; authorized archived inspection is allowed & Read; zero persistent writes \\
+\end{longtable}
+These are design targets where P2-S13/P3-S03 or the operation-specific gap is recorded; no transaction success was executed in P3. The full DAO realization is in Section 4.3.2.
+
+Reviewed adapter status: \texttt{admin.\allowbreak{}hubs} is C0 design target (final status in Table P4-1)  (P3-S02). Existing route symbols alone do not qualify those target behaviors as MATCH.

@@ -8,20 +8,20 @@ Orders reach SaigonBite's delivery kitchens through calls, Zalo and third-party 
 
 ## System Vision
 
-The planned Part 2 release is one Online Food Delivery Hub Platform (OFDH) with shared order and operating records. It will give customers a reviewed quote and defined order path, give kitchen staff and shippers explicit decisions and delivery outcomes, let administrators maintain hubs and catalogue data, and let managers inspect operational reports. Local and tourist registration and payment choices are in scope; translating the Vietnamese-only menu is not.
+The Part 2 release is one Online Food Delivery Hub Platform (OFDH) with shared order and operating records. It will give customers a reviewed quote and defined order path, give kitchen staff and shippers explicit decisions and delivery outcomes, let administrators maintain hubs and catalogue data, and let managers inspect operational reports. Local and tourist registration and payment choices are in scope; translating the Vietnamese-only menu is not.
 
 ## System Capabilities
 
-The locked plan defines six main use cases and nine supporting use cases for this release.
+The release has six main use cases (two per student, owners as in the Part 1 proposal) and nine supporting use cases that complete the CRUD paths.
 
 | ID | Capability | Primary actor |
 |---|---|---|
-| UC-01 | PC01 one PLACED order owned by the customer; PC02 lines with snapshot names/prices; PC03 address snapshot + distance; PC04 S/D/F/Q/T stored and consistent; PC05 payment PENDING (COD) or PAID (ONLINE, amount C); PC06 hub load +1 | Customer |
-| UC-02 | PC01 one shipper assigned, Delivery PICKED_UP, order OUT_FOR_DELIVERY; PC02 delivered: Delivery DELIVERED, order DELIVERED, COD PAID with cash = T; PC03 failed: Delivery FAILED + reason, order DELIVERY_FAILED, BR-17 | Shipper |
-| UC-03 | PC01 hub created/updated with valid code, coordinates, fee, capacity; PC02 archived hub hidden from browse/checkout, visible in history/reports | Admin |
-| UC-04 | PC01 sales, workload, performance equal the hand oracle for the filter; PC02 n/a on empty denominators | Manager |
-| UC-05 | PC01 confirm: own-hub PLACED → CONFIRMED; PC02 reject: REJECTED + reason + BR-17 + offer WITHDRAWN; PC03 offer: one OFFERED offer per §3.3; PC04 accepted offer applied per §3.3 5–7 | Kitchen staff |
-| UC-06 | PC01 brand/item created, updated, archived; PC02 listing added/removed, availability per hub; PC03 archived/sold-out items not orderable | Admin |
+| UC-01 | **Place an order.** Price the basket from one hub (items, voucher, distance-based fee, quiet-hub discount), show the full quote, choose COD or simulated online payment, and save one PLACED order with price and address snapshots. Owner 722I0004. | Customer |
+| UC-02 | **Deliver an order.** Take a READY order, record pickup, then record delivery (with COD cash equal to the total) or a failure with a reason. Owner 523K0049. | Shipper |
+| UC-03 | **Maintain hubs and kitchen capacity.** Create, update and archive hubs with code, coordinates, base fee and maximum active orders; archived hubs leave checkout but stay in history. Owner 722I0004. | Admin |
+| UC-04 | **Produce management reports.** Sales by delivery date, current hub workload against capacity, and delivery performance (waiting time, delivery time, failure rate) for a date range and hub. Owner 523K0049. | Manager |
+| UC-05 | **Decide an incoming order.** Confirm or reject a PLACED order for the staff member's own hub, or offer a replacement item at the same or lower price for the customer to accept. Owner 523K0050. | Kitchen staff |
+| UC-06 | **Maintain brands, menu items and hub listings.** Create, update and archive brands and items, list items at hubs and set per-hub availability; archived or sold-out items cannot be ordered. Owner 523K0050. | Admin |
 | SUC-01 | Log in / log out | All roles |
 | SUC-02 | Register (local or tourist), edit profile, manage addresses | Customer |
 | SUC-03 | Track my orders, view receipt, answer a replacement offer | Customer |

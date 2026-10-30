@@ -1,43 +1,27 @@
-\subsubsection*{3.3.5 Final Design Class Diagram}
-\addcontentsline{toc}{subsubsection}{3.3.5 Final Design Class Diagram}
-\pdfbookmark[2]{3.3.5 Final Design Class Diagram}{p7h89}
-Changes from 3.3.2: none in selected signatures. The final figures repeat the reconciled operation projections explicitly; the union includes every view/controller call shown in .4, including \texttt{\_require\_admin}. Domain create/note messages are construction/attribute facts, not additional callable operations. Full attributes and support authorization/DTO collaborators remain in the layer views and .1. Every final part continues the same UC projection set.
+\subsubsection*{3.3.3 OOD with CRC Cards or Communication Diagram}
+\addcontentsline{toc}{subsubsection}{3.3.3 OOD with CRC Cards or Communication Diagram}
+\pdfbookmark[2]{3.3.3 OOD with CRC Cards or Communication Diagram}{p7h89}
+\label{CRC-UC-03}
+\textbf{UC-03 CRC cards}
 
-\begin{landscape}
-\begin{figure}[p]
-\centering
-\includegraphics[width=230mm]{\detokenize{models/UC-03/dcd_uc03_final_PartA.png}}
-\caption{Figure 3.3.5A. UC-03 final projection 1 --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0126}
-\end{figure}
-\end{landscape}
-\begin{landscape}
-\begin{figure}[p]
-\centering
-\includegraphics[width=230mm]{\detokenize{models/UC-03/dcd_uc03_final_PartB.png}}
-\caption{Figure 3.3.5B. UC-03 final projection 2 --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0127}
-\end{figure}
-\end{landscape}
-\begin{landscape}
-\begin{figure}[p]
-\centering
-\includegraphics[width=230mm]{\detokenize{models/UC-03/dcd_uc03_final_PartC.png}}
-\caption{Figure 3.3.5C. UC-03 final projection 3 --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0128}
-\end{figure}
-\end{landscape}
-\begin{landscape}
-\begin{figure}[p]
-\centering
-\includegraphics[width=230mm]{\detokenize{models/UC-03/dcd_uc03_final_PartD.png}}
-\caption{Figure 3.3.5D. UC-03 final projection 4 --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0129}
-\end{figure}
-\end{landscape}
-\begin{landscape}
-\begin{figure}[p]
-\centering
-\includegraphics[width=230mm]{\detokenize{models/UC-03/dcd_uc03_final_PartE.png}}
-\caption{Figure 3.3.5E. UC-03 final projection 5 --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0130}
-\end{figure}
-\end{landscape}
-The historical design target was not yet in code at C0 (see the operation-specific P4 input in the figure and \texttt{operation\_realisation.csv}). Shared busy/commit/rowcount requirements are P2-S13/P3-S03 targets; no runtime correctness is asserted. Native draw.io editing and final DOCX/PDF placement remain UNTESTED.
+Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
 
-Diagram source format (Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)): native draw.io text now has explicit actual font sizes and bold styles matching the SVG/PNG labels: 18 px minimum at 230 mm for DCDs and 23 px minimum at 170 mm for sequences. Native editing remains UNTESTED. The diagrams retain historical C0 target marks; Table P4-1 records subsequent status and scoped evidence.
+Collaborators are actual AST call/typed-field targets or the marked OP-25 / OP-43 targets. Inherited authorization collaborators are explicit. Self-calls remain the same class, not another fictional object.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endfirsthead
+Class & Responsibilities (knows / does) & Collaborators \\
+\hline\endhead
+\texttt{admin} & Knows: request context. Does: hubs, new\_hub, edit\_hub, archive\_hub, \_hubs. & HubController \\
+\texttt{HubController} & Knows: hubs. Does: list\_hubs, get\_hub, create\_hub, update\_hub, archive\_hub, \_require\_admin, \_parse. & BaseController, ConflictError, Hub, HubAdminView, HubDAO, HubStatus, NotFoundError, ValidationError, admin \\
+\texttt{HubAdminView} & Knows: status, open\_orders. Does: can\_archive. & HubController, HubStatus \\
+\texttt{HubStatus} & Knows: hub, load. Does: busy, quiet, load\_percent. & Hub, HubAdminView, HubController \\
+\texttt{Hub} & Knows: id, code, name, address\_text, latitude, longitude, max\_active\_orders, base\_delivery\_fee, archived\_at. Does: holds typed state; no invented update/archive behavior. & HubController, HubDAO, HubStatus \\
+\texttt{HubDAO} & Knows: conn. Does: list\_all, list\_active, get\_including\_archived, code\_exists, insert, update, archive, active\_load, active\_loads, open\_order\_count. & Hub, HubController \\
+\texttt{BaseController} & Knows: conn, clock, users. Does: \_require\_user, \_now. & AuthorizationError, UserDAO \\
+\texttt{UserAccount} & Knows: id, username, password\_hash, display\_name, role, is\_active, hub\_id, created\_at. Does: holds typed state; no invented update/archive behavior. & Role \\
+\texttt{Role} & Knows: CUSTOMER, KITCHEN\_STAFF, SHIPPER, ADMIN, MANAGER. Does: holds typed state; no invented update/archive behavior. & UserAccount \\
+\texttt{UserDAO} & Knows: conn. Does: get\_by\_id. & BaseController \\
+\end{longtable}
+The existing admin.hubs route is a behavioral target  for forwarding includeArchived (P3-S02). Its current Python symbol is not evidence that the target filter behavior is already MATCH.

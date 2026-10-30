@@ -1,11 +1,13 @@
-\textbf{3.2.2 iii.}\par
-saigonbite.presentation.delivery is the \guillemotleft{}view\guillemotright{} blueprint module; its route functions are operations with METHOD/rule metadata, not an invented view class.
+\textbf{3.2.2 i.}\par
+Order, Delivery and Payment retain their real lifecycle roles; their associations carry persisted relationships. Hub, Customer and UserAccount are read participants. Passport is excluded from the shipper projection.
 
-\begin{landscape}
 \begin{figure}[p]
 \centering
-\includegraphics[width=230mm]{\detokenize{models/UC-02/dcd_uc02_view.png}}
-\caption{Figure 3.2.2.iii. UC-02 view module --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0081}
+\includegraphics[width=170mm,height=225mm,keepaspectratio]{\detokenize{models/UC-02/dcd_uc02_domain_PartA.png}}
+\caption{Figure 3.2.2.i-A. UC-02 domain design classes: Lifecycle classes continue in Part B for party/hub associations. --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0077}
 \end{figure}
-\end{landscape}
-Editable draw.io \ensuremath{\cdot} SVG \ensuremath{\cdot} Generator \ensuremath{\cdot} Data
+\begin{figure}[p]
+\centering
+\includegraphics[width=170mm,height=225mm,keepaspectratio]{\detokenize{models/UC-02/dcd_uc02_domain_PartB.png}}
+\caption{Figure 3.2.2.i-B. UC-02 domain design classes: Part A continues here. Domain FK scalars are omitted in favour of these navigable associations. --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0078}
+\end{figure}

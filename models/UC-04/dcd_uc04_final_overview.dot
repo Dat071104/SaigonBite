@@ -1,0 +1,50 @@
+digraph G {
+graph [rankdir=TB, nodesep=0.15, ranksep=0.5, fontname="Arial", fontsize=16, pad=0.2, dpi=200];
+node [shape=plain, fontname="Arial", fontsize=13];
+edge [fontname="Arial", fontsize=12];
+labelloc="t"; label=<<B>UC-04 Produce management reports — final design class diagram</B><BR/><FONT POINT-SIZE="13">Owner 523K0049 · Author 722I0004 · AI-assisted (Claude) · signatures from the code at the release commit</FONT>>;
+subgraph cluster_view { label=<<B>View layer (Flask blueprints, templates)</B>>; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=15;
+  { rank=same; "bp_reports"; }
+  "bp_reports" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3" BGCOLOR="white"><TR><TD BGCOLOR="#E8F1FA" BALIGN="CENTER"><FONT POINT-SIZE="12">«boundary»</FONT><BR/><B>reports views</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT"> </TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ delivery() GET /reports/delivery<BR ALIGN="LEFT"/>+ sales() GET /reports/sales<BR ALIGN="LEFT"/>+ workload() GET /reports/workload<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+}
+subgraph cluster_controller { label=<<B>Controller layer (one use-case controller)</B>>; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=15;
+  { rank=same; "ReportController"; }
+  "ReportController" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3" BGCOLOR="white"><TR><TD BGCOLOR="#EAF5EA" BALIGN="CENTER"><FONT POINT-SIZE="12">«control»</FONT><BR/><B>ReportController</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT"> </TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ delivery_report(user_id: int,<BR ALIGN="LEFT"/>        date_from: str | None,<BR ALIGN="LEFT"/>        date_to: str | None,<BR ALIGN="LEFT"/>        hub_id: int | None): DeliveryReport<BR ALIGN="LEFT"/>+ sales_report(user_id: int,<BR ALIGN="LEFT"/>        date_from: str | None,<BR ALIGN="LEFT"/>        date_to: str | None,<BR ALIGN="LEFT"/>        hub_id: int | None): SalesReport<BR ALIGN="LEFT"/>+ workload_report(user_id: int): WorkloadReport<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+}
+subgraph cluster_domain { label=<<B>Domain layer (entities and value objects)</B>>; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=15;
+  { rank=same; "Delivery"; "DeliveryRow"; "Hub"; "HubStatus"; "Order"; "OrderLine"; "Payment"; "SalesRow"; "UserAccount"; }
+  "Delivery" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3" BGCOLOR="white"><TR><TD BGCOLOR="#FFF6E0" BALIGN="CENTER"><FONT POINT-SIZE="12">«entity»</FONT><BR/><B>Delivery</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">state: DeliveryState<BR ALIGN="LEFT"/>id: int | None<BR ALIGN="LEFT"/>(read only in this use case)<BR ALIGN="LEFT"/></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT"> </TD></TR></TABLE>>];
+  "DeliveryRow" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3" BGCOLOR="white"><TR><TD BGCOLOR="#FFF6E0" BALIGN="CENTER"><FONT POINT-SIZE="12">«value»</FONT><BR/><B>DeliveryRow</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT"> </TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ avg_ride(): float | None<BR ALIGN="LEFT"/>+ avg_wait(): float | None<BR ALIGN="LEFT"/>+ failure_rate(): float | None<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+  "Hub" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3" BGCOLOR="white"><TR><TD BGCOLOR="#FFF6E0" BALIGN="CENTER"><FONT POINT-SIZE="12">«entity»</FONT><BR/><B>Hub</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">id: int<BR ALIGN="LEFT"/>code: str<BR ALIGN="LEFT"/>name: str<BR ALIGN="LEFT"/>(read only in this use case)<BR ALIGN="LEFT"/></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT"> </TD></TR></TABLE>>];
+  "HubStatus" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3" BGCOLOR="white"><TR><TD BGCOLOR="#FFF6E0" BALIGN="CENTER"><FONT POINT-SIZE="12">«entity»</FONT><BR/><B>HubStatus</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT"> </TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ busy(): bool<BR ALIGN="LEFT"/>+ quiet(): bool<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+  "Order" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3" BGCOLOR="white"><TR><TD BGCOLOR="#FFF6E0" BALIGN="CENTER"><FONT POINT-SIZE="12">«entity»</FONT><BR/><B>Order</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">state: OrderState<BR ALIGN="LEFT"/>id: int | None<BR ALIGN="LEFT"/>(read only in this use case)<BR ALIGN="LEFT"/></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT"> </TD></TR></TABLE>>];
+  "OrderLine" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3" BGCOLOR="white"><TR><TD BGCOLOR="#FFF6E0" BALIGN="CENTER"><FONT POINT-SIZE="12">«entity»</FONT><BR/><B>OrderLine</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">id: int | None<BR ALIGN="LEFT"/>(read only in this use case)<BR ALIGN="LEFT"/></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT"> </TD></TR></TABLE>>];
+  "Payment" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3" BGCOLOR="white"><TR><TD BGCOLOR="#FFF6E0" BALIGN="CENTER"><FONT POINT-SIZE="12">«entity»</FONT><BR/><B>Payment</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">state: PaymentState<BR ALIGN="LEFT"/>id: int | None<BR ALIGN="LEFT"/>(read only in this use case)<BR ALIGN="LEFT"/></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT"> </TD></TR></TABLE>>];
+  "SalesRow" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3" BGCOLOR="white"><TR><TD BGCOLOR="#FFF6E0" BALIGN="CENTER"><FONT POINT-SIZE="12">«value»</FONT><BR/><B>SalesRow</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT"> </TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ add(other: SalesRow): None<BR ALIGN="LEFT"/>+ net(): int<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+  "UserAccount" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3" BGCOLOR="white"><TR><TD BGCOLOR="#FFF6E0" BALIGN="CENTER"><FONT POINT-SIZE="12">«entity»</FONT><BR/><B>UserAccount</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">id: int<BR ALIGN="LEFT"/>(read only in this use case)<BR ALIGN="LEFT"/></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT"> </TD></TR></TABLE>>];
+}
+subgraph cluster_dao { label=<<B>Data access layer (DAO per table)</B>>; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=15;
+  { rank=same; "HubDAO"; "ReportDAO"; "UserDAO"; }
+  "HubDAO" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3" BGCOLOR="white"><TR><TD BGCOLOR="#F2ECF8" BALIGN="CENTER"><FONT POINT-SIZE="12">«DAO»</FONT><BR/><B>HubDAO</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT"> </TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ get_including_archived(hub_id: int): Hub | None<BR ALIGN="LEFT"/>+ list_all(): list[Hub]<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+  "ReportDAO" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3" BGCOLOR="white"><TR><TD BGCOLOR="#F2ECF8" BALIGN="CENTER"><FONT POINT-SIZE="12">«DAO»</FONT><BR/><B>ReportDAO</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT"> </TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ finished_deliveries(start_utc: str,<BR ALIGN="LEFT"/>        end_utc: str, hub_id: int | None): list[sqlite3.Row]<BR ALIGN="LEFT"/>+ open_orders_by_hub_and_state(): list[sqlite3.Row]<BR ALIGN="LEFT"/>+ sales_by_hub(start_utc: str, end_utc: str,<BR ALIGN="LEFT"/>        hub_id: int | None): list[sqlite3.Row]<BR ALIGN="LEFT"/>+ top_items(start_utc: str, end_utc: str,<BR ALIGN="LEFT"/>        hub_id: int | None, limit: int): list[sqlite3.Row]<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+  "UserDAO" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3" BGCOLOR="white"><TR><TD BGCOLOR="#F2ECF8" BALIGN="CENTER"><FONT POINT-SIZE="12">«DAO»</FONT><BR/><B>UserDAO</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT"> </TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ get_by_id(user_id: int): UserAccount | None<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+}
+"bp_reports" -> "ReportController" [style=invis, weight=5];
+"ReportController" -> "Delivery" [style=invis, weight=5];
+"Delivery" -> "HubDAO" [style=invis, weight=5];
+"ReportController" -> "DeliveryRow" [style=dashed, arrowhead=vee, color="#5B6B7A"];
+"ReportController" -> "HubDAO" [style=dashed, arrowhead=vee, color="#5B6B7A"];
+"ReportController" -> "HubStatus" [style=dashed, arrowhead=vee, color="#5B6B7A"];
+"ReportController" -> "ReportDAO" [style=dashed, arrowhead=vee, color="#5B6B7A"];
+"ReportController" -> "SalesRow" [style=dashed, arrowhead=vee, color="#5B6B7A"];
+"ReportController" -> "UserDAO" [style=dashed, arrowhead=vee, color="#5B6B7A"];
+"bp_reports" -> "ReportController" [style=dashed, arrowhead=vee, color="#5B6B7A"];
+"HubDAO" -> "Hub" [style=dashed, arrowhead=vee, dir=back, color="#7A4FA0", xlabel="«persists»", fontcolor="#7A4FA0", constraint=false];
+"UserDAO" -> "UserAccount" [style=dashed, arrowhead=vee, dir=back, color="#7A4FA0", xlabel="«persists»", fontcolor="#7A4FA0", constraint=false];
+"Order" -> "Hub" [arrowhead=vee, dir=both, arrowtail=none, taillabel="0..*", headlabel="1", label="hub", color="#B07A00", constraint=false];
+"Order" -> "OrderLine" [arrowhead=vee, dir=both, arrowtail=diamond, taillabel="1", headlabel="1..*", label="lines", color="#B07A00", constraint=false];
+"Order" -> "Payment" [arrowhead=vee, dir=both, arrowtail=none, taillabel="1", headlabel="1", label="payment", color="#B07A00", constraint=false];
+"Order" -> "Delivery" [arrowhead=vee, dir=both, arrowtail=none, taillabel="1", headlabel="0..1", label="delivery", color="#B07A00", constraint=false];
+"Delivery" -> "UserAccount" [arrowhead=vee, dir=both, arrowtail=none, taillabel="0..*", headlabel="0..1", label="assigned shipper", color="#B07A00", constraint=false];
+"UserAccount" -> "Hub" [arrowhead=vee, dir=both, arrowtail=none, taillabel="0..*", headlabel="0..1", label="kitchen hub", color="#B07A00", constraint=false];
+}

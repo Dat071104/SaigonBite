@@ -1,34 +1,36 @@
-\subsubsection*{3.6.3 OOD with CRC Cards or Communication Diagram}
-\addcontentsline{toc}{subsubsection}{3.6.3 OOD with CRC Cards or Communication Diagram}
-\pdfbookmark[2]{3.6.3 OOD with CRC Cards or Communication Diagram}{p7h120}
-\label{CRC-UC-06}
-\textbf{UC-06 CRC cards}
-
-Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
-
-Collaborators are actual AST call/typed-field targets or the marked OP-25 / OP-43 targets. Inherited authorization collaborators are explicit. Self-calls remain the same class, not another fictional object.
-
-\begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
-Class & Responsibilities (knows / does) & Collaborators \\
-\hline\endfirsthead
-Class & Responsibilities (knows / does) & Collaborators \\
-\hline\endhead
-\texttt{admin} & Knows: request context. Does: catalogue, create\_brand, rename\_brand, archive\_brand, new\_item, edit\_item, archive\_item, hub\_menu, list\_item, unlist\_item, hub\_item\_availability, \_menu, \_hubs. & HubController, MenuController \\
-\texttt{MenuController} & Knows: menu, hubs. Does: catalogue, hub\_menu, list\_catalogue, create\_brand, rename\_brand, archive\_brand, create\_item, update\_item, archive\_item, list\_item\_at\_hub, unlist\_item\_at\_hub, set\_availability, \_require\_admin, \_hub, \_active\_brand, \_active\_item, \_name, \_parse\_item. & BaseController, Brand, Catalogue, ConflictError, HubDAO, HubMenu, MenuDAO, MenuItem, NotFoundError, ValidationError, admin; HubMenuItem (logical responsibility via MenuDAO, no direct dataclass method call; OP-25/OP-43 targets  included) \\
-\texttt{Catalogue} & Knows: brands, items. Does: holds typed state; no invented update/archive behavior. & Brand, MenuController, MenuItem \\
-\texttt{HubMenu} & Knows: hub, listed, not\_listed. Does: holds typed state; no invented update/archive behavior. & Hub, HubMenuItem, MenuController, MenuItem \\
-\texttt{HubController} & Knows: hubs. Does: list\_hubs. & BaseController, Hub, HubAdminView, HubDAO, HubStatus, admin \\
-\texttt{Hub} & Knows: id, code, name, address\_text, latitude, longitude, max\_active\_orders, base\_delivery\_fee, archived\_at. Does: holds typed state; no invented update/archive behavior. & HubController, HubDAO, HubMenu \\
-\texttt{Brand} & Knows: id, name, archived\_at. Does: holds typed state; no invented update/archive behavior. & Catalogue, MenuController, MenuDAO \\
-\texttt{MenuItem} & Knows: id, brand\_id, brand\_name, name, description, price, archived\_at. Does: holds typed state; no invented update/archive behavior. & Catalogue, HubDAO, HubMenu, HubMenuItem, MenuController, MenuDAO \\
-\texttt{HubMenuItem} & Knows: hub\_id, item, is\_available. Does: holds typed state; no invented update/archive behavior. & HubDAO, HubMenu, MenuDAO, MenuItem; MenuController (logical responsibility mediated by MenuDAO) \\
-\texttt{MenuDAO} & Knows: conn. Does: list\_brands, get\_brand, brand\_name\_exists, insert\_brand, rename\_brand, archive\_brand, list\_items, get\_item, item\_name\_exists, insert\_item, update\_item, archive\_item, list\_hub\_items, is\_listed, add\_listing, remove\_listing, set\_available. & Brand, HubMenuItem, MenuController, MenuItem \\
-\texttt{HubDAO} & Knows: conn. Does: list\_all, get\_including\_archived. & Hub, HubController, MenuController \\
-\texttt{BaseController} & Knows: conn, clock, users. Does: \_require\_user, \_now. & AuthorizationError, UserDAO \\
-\texttt{UserAccount} & Knows: id, username, password\_hash, display\_name, role, is\_active, hub\_id, created\_at. Does: holds typed state; no invented update/archive behavior. & Role \\
-\texttt{Role} & Knows: CUSTOMER, KITCHEN\_STAFF, SHIPPER, ADMIN, MANAGER. Does: holds typed state; no invented update/archive behavior. & UserAccount \\
-\texttt{UserDAO} & Knows: conn. Does: get\_by\_id. & BaseController \\
-\end{longtable}
-HubMenuItem is the shared-model association class of Hub and MenuItem. Its independent is\_available belongs to one pair. The approved logical MenuController collaborator is deliberately distinguished from a direct Python call target.
-
-The existing admin route functions catalogue/hub\_menu/list\_item remain marked behavioral targets for the wrapper/initial-availability adapters (P2-S14/P2-S15); symbol existence does not clear those obligations.
+\textbf{3.6.2 iv.}\par
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-06/dcd_uc06_dao_PartA.png}}
+\caption{Figure 3.6.2ivA. UC-06 dao projection 1 --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0237}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-06/dcd_uc06_dao_PartB.png}}
+\caption{Figure 3.6.2ivB. UC-06 dao projection 2 --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0238}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-06/dcd_uc06_dao_PartC.png}}
+\caption{Figure 3.6.2ivC. UC-06 dao projection 3 --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0239}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-06/dcd_uc06_dao_PartD.png}}
+\caption{Figure 3.6.2ivD. UC-06 dao projection 4 --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0240}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-06/dcd_uc06_dao_PartE.png}}
+\caption{Figure 3.6.2ivE. UC-06 dao projection 5 --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0241}
+\end{figure}
+\end{landscape}

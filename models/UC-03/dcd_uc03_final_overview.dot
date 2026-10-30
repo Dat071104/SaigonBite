@@ -1,0 +1,35 @@
+digraph G {
+graph [rankdir=TB, nodesep=0.15, ranksep=0.5, fontname="Arial", fontsize=16, pad=0.2, dpi=200];
+node [shape=plain, fontname="Arial", fontsize=13];
+edge [fontname="Arial", fontsize=12];
+labelloc="t"; label=<<B>UC-03 Maintain hubs and kitchen capacity — final design class diagram</B><BR/><FONT POINT-SIZE="13">Owner 722I0004 · Author 722I0004 · AI-assisted (Claude) · signatures from the code at the release commit</FONT>>;
+subgraph cluster_view { label=<<B>View layer (Flask blueprints, templates)</B>>; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=15;
+  { rank=same; "bp_admin"; }
+  "bp_admin" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3" BGCOLOR="white"><TR><TD BGCOLOR="#E8F1FA" BALIGN="CENTER"><FONT POINT-SIZE="12">«boundary»</FONT><BR/><B>admin views</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT"> </TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ archive_hub() POST /admin/hubs/&lt;int:hub_id&gt;/archive<BR ALIGN="LEFT"/>+ edit_hub() GET/POST /admin/hubs/&lt;int:hub_id&gt;<BR ALIGN="LEFT"/>+ hubs() GET /admin/hubs<BR ALIGN="LEFT"/>+ new_hub() GET/POST /admin/hubs/new<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+}
+subgraph cluster_controller { label=<<B>Controller layer (one use-case controller)</B>>; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=15;
+  { rank=same; "HubController"; }
+  "HubController" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3" BGCOLOR="white"><TR><TD BGCOLOR="#EAF5EA" BALIGN="CENTER"><FONT POINT-SIZE="12">«control»</FONT><BR/><B>HubController</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT"> </TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ archive_hub(user_id: int, hub_id: int): Hub<BR ALIGN="LEFT"/>+ create_hub(user_id: int, form: Mapping[str,<BR ALIGN="LEFT"/>        str]): Hub<BR ALIGN="LEFT"/>+ get_hub(user_id: int, hub_id: int): HubAdminView<BR ALIGN="LEFT"/>+ list_hubs(user_id: int,<BR ALIGN="LEFT"/>        include_archived: bool): list[HubAdminView]<BR ALIGN="LEFT"/>+ update_hub(user_id: int, hub_id: int,<BR ALIGN="LEFT"/>        form: Mapping[str, str]): Hub<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+}
+subgraph cluster_domain { label=<<B>Domain layer (entities and value objects)</B>>; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=15;
+  { rank=same; "Hub"; "Order"; "UserAccount"; }
+  "Hub" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3" BGCOLOR="white"><TR><TD BGCOLOR="#FFF6E0" BALIGN="CENTER"><FONT POINT-SIZE="12">«entity»</FONT><BR/><B>Hub</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">id: int<BR ALIGN="LEFT"/>code: str<BR ALIGN="LEFT"/>name: str<BR ALIGN="LEFT"/>address_text: str<BR ALIGN="LEFT"/>latitude: float<BR ALIGN="LEFT"/>longitude: float<BR ALIGN="LEFT"/>max_active_orders: int<BR ALIGN="LEFT"/>base_delivery_fee: int<BR ALIGN="LEFT"/>archived_at: str | None<BR ALIGN="LEFT"/></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT"> </TD></TR></TABLE>>];
+  "Order" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3" BGCOLOR="white"><TR><TD BGCOLOR="#FFF6E0" BALIGN="CENTER"><FONT POINT-SIZE="12">«entity»</FONT><BR/><B>Order</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">state: OrderState<BR ALIGN="LEFT"/>id: int | None<BR ALIGN="LEFT"/>(read only in this use case)<BR ALIGN="LEFT"/></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT"> </TD></TR></TABLE>>];
+  "UserAccount" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3" BGCOLOR="white"><TR><TD BGCOLOR="#FFF6E0" BALIGN="CENTER"><FONT POINT-SIZE="12">«entity»</FONT><BR/><B>UserAccount</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">id: int<BR ALIGN="LEFT"/>(read only in this use case)<BR ALIGN="LEFT"/></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT"> </TD></TR></TABLE>>];
+}
+subgraph cluster_dao { label=<<B>Data access layer (DAO per table)</B>>; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=15;
+  { rank=same; "HubDAO"; "UserDAO"; }
+  "HubDAO" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3" BGCOLOR="white"><TR><TD BGCOLOR="#F2ECF8" BALIGN="CENTER"><FONT POINT-SIZE="12">«DAO»</FONT><BR/><B>HubDAO</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT"> </TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ active_load(hub_id: int): int<BR ALIGN="LEFT"/>+ active_loads(): dict[int, int]<BR ALIGN="LEFT"/>+ archive(hub_id: int, now: str): bool<BR ALIGN="LEFT"/>+ code_exists(code: str,<BR ALIGN="LEFT"/>        except_id: int | None): bool<BR ALIGN="LEFT"/>+ get_including_archived(hub_id: int): Hub | None<BR ALIGN="LEFT"/>+ insert(hub: Hub): int<BR ALIGN="LEFT"/>+ list_all(): list[Hub]<BR ALIGN="LEFT"/>+ open_order_count(hub_id: int): int<BR ALIGN="LEFT"/>+ update(hub: Hub): bool<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+  "UserDAO" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3" BGCOLOR="white"><TR><TD BGCOLOR="#F2ECF8" BALIGN="CENTER"><FONT POINT-SIZE="12">«DAO»</FONT><BR/><B>UserDAO</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT"> </TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ get_by_id(user_id: int): UserAccount | None<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+}
+"bp_admin" -> "HubController" [style=invis, weight=5];
+"HubController" -> "Hub" [style=invis, weight=5];
+"Hub" -> "HubDAO" [style=invis, weight=5];
+"HubController" -> "HubDAO" [style=dashed, arrowhead=vee, color="#5B6B7A"];
+"HubController" -> "UserDAO" [style=dashed, arrowhead=vee, color="#5B6B7A"];
+"bp_admin" -> "HubController" [style=dashed, arrowhead=vee, color="#5B6B7A"];
+"HubDAO" -> "Hub" [style=dashed, arrowhead=vee, dir=back, color="#7A4FA0", xlabel="«persists»", fontcolor="#7A4FA0", constraint=false];
+"UserDAO" -> "UserAccount" [style=dashed, arrowhead=vee, dir=back, color="#7A4FA0", xlabel="«persists»", fontcolor="#7A4FA0", constraint=false];
+"Order" -> "Hub" [arrowhead=vee, dir=both, arrowtail=none, taillabel="0..*", headlabel="1", label="hub", color="#B07A00", constraint=false];
+"UserAccount" -> "Hub" [arrowhead=vee, dir=both, arrowtail=none, taillabel="0..*", headlabel="0..1", label="kitchen hub", color="#B07A00", constraint=false];
+}

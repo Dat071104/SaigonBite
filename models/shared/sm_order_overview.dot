@@ -1,0 +1,46 @@
+digraph G {
+graph [rankdir=TB, fontname="Arial", fontsize=16, nodesep=0.6, ranksep=0.45, pad=0.3, dpi=200,
+ labelloc="t", label=<<B>Order — complete lifecycle (states and transitions from the code)</B><BR/><FONT POINT-SIZE="13">Author 722I0004 · AI-assisted (Claude) · detailed views with postcondition links: Figures 2.3A–2.3E</FONT>>];
+node [shape=box, style="rounded,filled", fillcolor="#FFF6E0", fontname="Arial", fontsize=15, penwidth=1.4];
+edge [fontname="Arial", fontsize=12, color="#36454F"];
+start [shape=circle, label="", width=0.25, style=filled, fillcolor=black];
+"CANCELLED" [label="CANCELLED", peripheries=2, fillcolor="#EEF2F5"];
+"CONFIRMED" [label="CONFIRMED"];
+"DELIVERED" [label="DELIVERED", peripheries=2, fillcolor="#EEF2F5"];
+"DELIVERY_FAILED" [label="DELIVERY_FAILED", peripheries=2, fillcolor="#EEF2F5"];
+"OUT_FOR_DELIVERY" [label="OUT_FOR_DELIVERY"];
+"PLACED" [label="PLACED"];
+"PREPARING" [label="PREPARING"];
+"READY" [label="READY"];
+"REJECTED" [label="REJECTED", peripheries=2, fillcolor="#EEF2F5"];
+"end_CANCELLED" [shape=doublecircle, label="", width=0.18, style=filled, fillcolor=black];
+"CANCELLED" -> "end_CANCELLED" [label="archiveOrder\n(SUC-09)", fontsize=11, style=dotted];
+"end_DELIVERED" [shape=doublecircle, label="", width=0.18, style=filled, fillcolor=black];
+"DELIVERED" -> "end_DELIVERED" [label="archiveOrder\n(SUC-09)", fontsize=11, style=dotted];
+"end_DELIVERY_FAILED" [shape=doublecircle, label="", width=0.18, style=filled, fillcolor=black];
+"DELIVERY_FAILED" -> "end_DELIVERY_FAILED" [label="archiveOrder\n(SUC-09)", fontsize=11, style=dotted];
+"end_REJECTED" [shape=doublecircle, label="", width=0.18, style=filled, fillcolor=black];
+"REJECTED" -> "end_REJECTED" [label="archiveOrder\n(SUC-09)", fontsize=11, style=dotted];
+start -> PLACED [label="confirmCheckout [quote unchanged,\nhub not busy, payment approved]\n/ save lines, snapshots, payment (UC-01)"];
+PLACED -> PLACED [label="offerReplacement [line unavailable] /\nacceptReplacement [offer valid]\n(UC-05, SUC-03)"];
+"CONFIRMED" -> "CANCELLED" [label="cancelOrder (SUC-04)
+/ release payment"];
+"CONFIRMED" -> "PREPARING" [label="startPreparing
+[own hub] (SUC-05)"];
+"OUT_FOR_DELIVERY" -> "DELIVERED" [label="confirmDelivered [assigned shipper;
+COD cash = total] / COD PAID (UC-02)"];
+"OUT_FOR_DELIVERY" -> "DELIVERY_FAILED" [label="reportFailure(reason) [assigned shipper]
+/ release payment (UC-02)"];
+"PLACED" -> "CANCELLED" [label="cancelOrder (SUC-04)
+/ withdraw offer, release payment"];
+"PLACED" -> "CONFIRMED" [label="confirmOrder [own hub, no open offer]
+(UC-05)"];
+"PLACED" -> "REJECTED" [label="rejectOrder(reason) (UC-05) or
+declineReplacement (SUC-03)
+/ release payment"];
+"PREPARING" -> "READY" [label="markReady (SUC-05)
+/ create Delivery AWAITING_PICKUP"];
+"READY" -> "OUT_FOR_DELIVERY" [label="takeDelivery [active shipper,
+not yet assigned] (UC-02)"];
+{ rank=same; REJECTED; CANCELLED; }
+}
