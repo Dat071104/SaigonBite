@@ -22,44 +22,44 @@ Element & Typed declaration & Status / qualification \\
 \hline\endfirsthead
 Element & Typed declaration & Status / qualification \\
 \hline\endhead
-Operation & \texttt{- \_\allowbreak{}hubs() -\textgreater{} HubController} & MATCH \\
-Operation & \texttt{- \_\allowbreak{}menu() -\textgreater{} MenuController} & MATCH \\
-Operation & \texttt{+ catalogue() -\textgreater{} Any [inferred] } & P4 scoped evidence (P4.6; resolution rows 63); C0 rationale: ; inferred annotation(s); P2-S14 \\
+Operation & \texttt{- \_\allowbreak{}hubs() -\textgreater{} HubController} & Matches code \\
+Operation & \texttt{- \_\allowbreak{}menu() -\textgreater{} MenuController} & Matches code \\
+Operation & \texttt{+ catalogue() -\textgreater{} Any [inferred] } & Changed during implementation and tested (P4.6; Table P4-1 rows 63); Reason: ; inferred annotation(s); P2-S14 \\
 Operation & \texttt{+ create\_\allowbreak{}brand() -\textgreater{} Any [inferred]} & MATCH; inferred annotation(s) \\
 Operation & \texttt{+ rename\_\allowbreak{}brand(brand\_\allowbreak{}id: int) -\textgreater{} Any [inferred]} & MATCH; inferred annotation(s) \\
 Operation & \texttt{+ archive\_\allowbreak{}brand(brand\_\allowbreak{}id: int) -\textgreater{} Any [inferred]} & MATCH; inferred annotation(s) \\
 Operation & \texttt{+ new\_\allowbreak{}item() -\textgreater{} Any [inferred]} & MATCH; inferred annotation(s) \\
 Operation & \texttt{+ edit\_\allowbreak{}item(item\_\allowbreak{}id: int) -\textgreater{} Any [inferred]} & MATCH; inferred annotation(s) \\
 Operation & \texttt{+ archive\_\allowbreak{}item(item\_\allowbreak{}id: int) -\textgreater{} Any [inferred]} & MATCH; inferred annotation(s) \\
-Operation & \texttt{+ hub\_\allowbreak{}menu(hub\_\allowbreak{}id: int) -\textgreater{} Any [inferred] } & P4 scoped evidence (P4.6; resolution rows 64); C0 rationale: ; inferred annotation(s); P2-S14 \\
-Operation & \texttt{+ list\_\allowbreak{}item(hub\_\allowbreak{}id: int) -\textgreater{} Any [inferred] } & P4 scoped evidence (P4.6; resolution rows 65); C0 rationale: ; inferred annotation(s); P2-S15 \\
+Operation & \texttt{+ hub\_\allowbreak{}menu(hub\_\allowbreak{}id: int) -\textgreater{} Any [inferred] } & Changed during implementation and tested (P4.6; Table P4-1 rows 64); Reason: ; inferred annotation(s); P2-S14 \\
+Operation & \texttt{+ list\_\allowbreak{}item(hub\_\allowbreak{}id: int) -\textgreater{} Any [inferred] } & Changed during implementation and tested (P4.6; Table P4-1 rows 65); Reason: ; inferred annotation(s); P2-S15 \\
 Operation & \texttt{+ unlist\_\allowbreak{}item(hub\_\allowbreak{}id: int, item\_\allowbreak{}id: int) -\textgreater{} Any [inferred]} & MATCH; inferred annotation(s) \\
 Operation & \texttt{+ hub\_\allowbreak{}item\_\allowbreak{}availability(hub\_\allowbreak{}id: int, item\_\allowbreak{}id: int) -\textgreater{} Any [inferred]} & MATCH; inferred annotation(s) \\
 \end{longtable}
 Route adapters (AST):
 
 \begin{itemize}
-\item \texttt{\{'blueprint\_\allowbreak{}variable': 'bp', 'blueprint': 'admin', 'rule': '/\allowbreak{}admin/\allowbreak{}menu', 'declared\_\allowbreak{}rule': '/\allowbreak{}menu', 'methods': ['GET'], 'view\_\allowbreak{}function': 'catalogue', 'signature': 'catalogue()', 'decorators': ["bp.\allowbreak{}get('/\allowbreak{}menu')", 'role\_\allowbreak{}required(Role.\allowbreak{}ADMIN)']\}}
+\item \texttt{GET /\allowbreak{}admin/\allowbreak{}menu} \ensuremath{\rightarrow} view function \texttt{admin.\allowbreak{}catalogue}
 
-\item \texttt{\{'blueprint\_\allowbreak{}variable': 'bp', 'blueprint': 'admin', 'rule': '/\allowbreak{}admin/\allowbreak{}brands', 'declared\_\allowbreak{}rule': '/\allowbreak{}brands', 'methods': ['POST'], 'view\_\allowbreak{}function': 'create\_\allowbreak{}brand', 'signature': 'create\_\allowbreak{}brand()', 'decorators': ["bp.\allowbreak{}post('/\allowbreak{}brands')", 'role\_\allowbreak{}required(Role.\allowbreak{}ADMIN)']\}}
+\item \texttt{POST /\allowbreak{}admin/\allowbreak{}brands} \ensuremath{\rightarrow} view function \texttt{admin.\allowbreak{}create\_\allowbreak{}brand}
 
-\item \texttt{\{'blueprint\_\allowbreak{}variable': 'bp', 'blueprint': 'admin', 'rule': '/\allowbreak{}admin/\allowbreak{}brands/\allowbreak{}\textless{}int:brand\_\allowbreak{}id\textgreater{}', 'declared\_\allowbreak{}rule': '/\allowbreak{}brands/\allowbreak{}\textless{}int:brand\_\allowbreak{}id\textgreater{}', 'methods': ['POST'], 'view\_\allowbreak{}function': 'rename\_\allowbreak{}brand', 'signature': 'rename\_\allowbreak{}brand(brand\_\allowbreak{}id: int)', 'decorators': ["bp.\allowbreak{}post('/\allowbreak{}brands/\allowbreak{}\textless{}int:brand\_\allowbreak{}id\textgreater{}')", 'role\_\allowbreak{}required(Role.\allowbreak{}ADMIN)']\}}
+\item \texttt{POST /\allowbreak{}admin/\allowbreak{}brands/\allowbreak{}\textless{}int:brand\_\allowbreak{}id\textgreater{}} \ensuremath{\rightarrow} view function \texttt{admin.\allowbreak{}rename\_\allowbreak{}brand}
 
-\item \texttt{\{'blueprint\_\allowbreak{}variable': 'bp', 'blueprint': 'admin', 'rule': '/\allowbreak{}admin/\allowbreak{}brands/\allowbreak{}\textless{}int:brand\_\allowbreak{}id\textgreater{}/\allowbreak{}archive', 'declared\_\allowbreak{}rule': '/\allowbreak{}brands/\allowbreak{}\textless{}int:brand\_\allowbreak{}id\textgreater{}/\allowbreak{}archive', 'methods': ['POST'], 'view\_\allowbreak{}function': 'archive\_\allowbreak{}brand', 'signature': 'archive\_\allowbreak{}brand(brand\_\allowbreak{}id: int)', 'decorators': ["bp.\allowbreak{}post('/\allowbreak{}brands/\allowbreak{}\textless{}int:brand\_\allowbreak{}id\textgreater{}/\allowbreak{}archive')", 'role\_\allowbreak{}required(Role.\allowbreak{}ADMIN)']\}}
+\item \texttt{POST /\allowbreak{}admin/\allowbreak{}brands/\allowbreak{}\textless{}int:brand\_\allowbreak{}id\textgreater{}/\allowbreak{}archive} \ensuremath{\rightarrow} view function \texttt{admin.\allowbreak{}archive\_\allowbreak{}brand}
 
-\item \texttt{\{'blueprint\_\allowbreak{}variable': 'bp', 'blueprint': 'admin', 'rule': '/\allowbreak{}admin/\allowbreak{}items/\allowbreak{}new', 'declared\_\allowbreak{}rule': '/\allowbreak{}items/\allowbreak{}new', 'methods': ['GET', 'POST'], 'view\_\allowbreak{}function': 'new\_\allowbreak{}item', 'signature': 'new\_\allowbreak{}item()', 'decorators': ["bp.\allowbreak{}route('/\allowbreak{}items/\allowbreak{}new', methods=['GET', 'POST'])", 'role\_\allowbreak{}required(Role.\allowbreak{}ADMIN)']\}}
+\item \texttt{GET/\allowbreak{}POST /\allowbreak{}admin/\allowbreak{}items/\allowbreak{}new} \ensuremath{\rightarrow} view function \texttt{admin.\allowbreak{}new\_\allowbreak{}item}
 
-\item \texttt{\{'blueprint\_\allowbreak{}variable': 'bp', 'blueprint': 'admin', 'rule': '/\allowbreak{}admin/\allowbreak{}items/\allowbreak{}\textless{}int:item\_\allowbreak{}id\textgreater{}', 'declared\_\allowbreak{}rule': '/\allowbreak{}items/\allowbreak{}\textless{}int:item\_\allowbreak{}id\textgreater{}', 'methods': ['GET', 'POST'], 'view\_\allowbreak{}function': 'edit\_\allowbreak{}item', 'signature': 'edit\_\allowbreak{}item(item\_\allowbreak{}id: int)', 'decorators': ["bp.\allowbreak{}route('/\allowbreak{}items/\allowbreak{}\textless{}int:item\_\allowbreak{}id\textgreater{}', methods=['GET', 'POST'])", 'role\_\allowbreak{}required(Role.\allowbreak{}ADMIN)']\}}
+\item \texttt{GET/\allowbreak{}POST /\allowbreak{}admin/\allowbreak{}items/\allowbreak{}\textless{}int:item\_\allowbreak{}id\textgreater{}} \ensuremath{\rightarrow} view function \texttt{admin.\allowbreak{}edit\_\allowbreak{}item}
 
-\item \texttt{\{'blueprint\_\allowbreak{}variable': 'bp', 'blueprint': 'admin', 'rule': '/\allowbreak{}admin/\allowbreak{}items/\allowbreak{}\textless{}int:item\_\allowbreak{}id\textgreater{}/\allowbreak{}archive', 'declared\_\allowbreak{}rule': '/\allowbreak{}items/\allowbreak{}\textless{}int:item\_\allowbreak{}id\textgreater{}/\allowbreak{}archive', 'methods': ['POST'], 'view\_\allowbreak{}function': 'archive\_\allowbreak{}item', 'signature': 'archive\_\allowbreak{}item(item\_\allowbreak{}id: int)', 'decorators': ["bp.\allowbreak{}post('/\allowbreak{}items/\allowbreak{}\textless{}int:item\_\allowbreak{}id\textgreater{}/\allowbreak{}archive')", 'role\_\allowbreak{}required(Role.\allowbreak{}ADMIN)']\}}
+\item \texttt{POST /\allowbreak{}admin/\allowbreak{}items/\allowbreak{}\textless{}int:item\_\allowbreak{}id\textgreater{}/\allowbreak{}archive} \ensuremath{\rightarrow} view function \texttt{admin.\allowbreak{}archive\_\allowbreak{}item}
 
-\item \texttt{\{'blueprint\_\allowbreak{}variable': 'bp', 'blueprint': 'admin', 'rule': '/\allowbreak{}admin/\allowbreak{}hubs/\allowbreak{}\textless{}int:hub\_\allowbreak{}id\textgreater{}/\allowbreak{}menu', 'declared\_\allowbreak{}rule': '/\allowbreak{}hubs/\allowbreak{}\textless{}int:hub\_\allowbreak{}id\textgreater{}/\allowbreak{}menu', 'methods': ['GET'], 'view\_\allowbreak{}function': 'hub\_\allowbreak{}menu', 'signature': 'hub\_\allowbreak{}menu(hub\_\allowbreak{}id: int)', 'decorators': ["bp.\allowbreak{}get('/\allowbreak{}hubs/\allowbreak{}\textless{}int:hub\_\allowbreak{}id\textgreater{}/\allowbreak{}menu')", 'role\_\allowbreak{}required(Role.\allowbreak{}ADMIN)']\}}
+\item \texttt{GET /\allowbreak{}admin/\allowbreak{}hubs/\allowbreak{}\textless{}int:hub\_\allowbreak{}id\textgreater{}/\allowbreak{}menu} \ensuremath{\rightarrow} view function \texttt{admin.\allowbreak{}hub\_\allowbreak{}menu}
 
-\item \texttt{\{'blueprint\_\allowbreak{}variable': 'bp', 'blueprint': 'admin', 'rule': '/\allowbreak{}admin/\allowbreak{}hubs/\allowbreak{}\textless{}int:hub\_\allowbreak{}id\textgreater{}/\allowbreak{}menu', 'declared\_\allowbreak{}rule': '/\allowbreak{}hubs/\allowbreak{}\textless{}int:hub\_\allowbreak{}id\textgreater{}/\allowbreak{}menu', 'methods': ['POST'], 'view\_\allowbreak{}function': 'list\_\allowbreak{}item', 'signature': 'list\_\allowbreak{}item(hub\_\allowbreak{}id: int)', 'decorators': ["bp.\allowbreak{}post('/\allowbreak{}hubs/\allowbreak{}\textless{}int:hub\_\allowbreak{}id\textgreater{}/\allowbreak{}menu')", 'role\_\allowbreak{}required(Role.\allowbreak{}ADMIN)']\}}
+\item \texttt{POST /\allowbreak{}admin/\allowbreak{}hubs/\allowbreak{}\textless{}int:hub\_\allowbreak{}id\textgreater{}/\allowbreak{}menu} \ensuremath{\rightarrow} view function \texttt{admin.\allowbreak{}list\_\allowbreak{}item}
 
-\item \texttt{\{'blueprint\_\allowbreak{}variable': 'bp', 'blueprint': 'admin', 'rule': '/\allowbreak{}admin/\allowbreak{}hubs/\allowbreak{}\textless{}int:hub\_\allowbreak{}id\textgreater{}/\allowbreak{}menu/\allowbreak{}\textless{}int:item\_\allowbreak{}id\textgreater{}/\allowbreak{}remove', 'declared\_\allowbreak{}rule': '/\allowbreak{}hubs/\allowbreak{}\textless{}int:hub\_\allowbreak{}id\textgreater{}/\allowbreak{}menu/\allowbreak{}\textless{}int:item\_\allowbreak{}id\textgreater{}/\allowbreak{}remove', 'methods': ['POST'], 'view\_\allowbreak{}function': 'unlist\_\allowbreak{}item', 'signature': 'unlist\_\allowbreak{}item(hub\_\allowbreak{}id: int, item\_\allowbreak{}id: int)', 'decorators': ["bp.\allowbreak{}post('/\allowbreak{}hubs/\allowbreak{}\textless{}int:hub\_\allowbreak{}id\textgreater{}/\allowbreak{}menu/\allowbreak{}\textless{}int:item\_\allowbreak{}id\textgreater{}/\allowbreak{}remove')", 'role\_\allowbreak{}required(Role.\allowbreak{}ADMIN)']\}}
+\item \texttt{POST /\allowbreak{}admin/\allowbreak{}hubs/\allowbreak{}\textless{}int:hub\_\allowbreak{}id\textgreater{}/\allowbreak{}menu/\allowbreak{}\textless{}int:item\_\allowbreak{}id\textgreater{}/\allowbreak{}remove} \ensuremath{\rightarrow} view function \texttt{admin.\allowbreak{}unlist\_\allowbreak{}item}
 
-\item \texttt{\{'blueprint\_\allowbreak{}variable': 'bp', 'blueprint': 'admin', 'rule': '/\allowbreak{}admin/\allowbreak{}hubs/\allowbreak{}\textless{}int:hub\_\allowbreak{}id\textgreater{}/\allowbreak{}menu/\allowbreak{}\textless{}int:item\_\allowbreak{}id\textgreater{}/\allowbreak{}availability', 'declared\_\allowbreak{}rule': '/\allowbreak{}hubs/\allowbreak{}\textless{}int:hub\_\allowbreak{}id\textgreater{}/\allowbreak{}menu/\allowbreak{}\textless{}int:item\_\allowbreak{}id\textgreater{}/\allowbreak{}availability', 'methods': ['POST'], 'view\_\allowbreak{}function': 'hub\_\allowbreak{}item\_\allowbreak{}availability', 'signature': 'hub\_\allowbreak{}item\_\allowbreak{}availability(hub\_\allowbreak{}id: int, item\_\allowbreak{}id: int)', 'decorators': ["bp.\allowbreak{}post('/\allowbreak{}hubs/\allowbreak{}\textless{}int:hub\_\allowbreak{}id\textgreater{}/\allowbreak{}menu/\allowbreak{}\textless{}int:item\_\allowbreak{}id\textgreater{}/\allowbreak{}availability')", 'role\_\allowbreak{}required(Role.\allowbreak{}ADMIN)']\}}
+\item \texttt{POST /\allowbreak{}admin/\allowbreak{}hubs/\allowbreak{}\textless{}int:hub\_\allowbreak{}id\textgreater{}/\allowbreak{}menu/\allowbreak{}\textless{}int:item\_\allowbreak{}id\textgreater{}/\allowbreak{}availability} \ensuremath{\rightarrow} view function \texttt{admin.\allowbreak{}hub\_\allowbreak{}item\_\allowbreak{}availability}
 
 \end{itemize}
 \textbf{MenuController}
@@ -73,24 +73,24 @@ Element & Typed declaration & Status / qualification \\
 \hline\endhead
 Attribute & \texttt{+ menu: MenuDAO} & MATCH; inferred \\
 Attribute & \texttt{+ hubs: HubDAO} & MATCH; inferred \\
-Operation & \texttt{+ catalogue(user\_\allowbreak{}id: int) -\textgreater{} Catalogue} & MATCH \\
-Operation & \texttt{+ create\_\allowbreak{}brand(user\_\allowbreak{}id: int, name: str) -\textgreater{} Brand } & P4 scoped evidence (P4.1 + P4.6; resolution rows 34); C0 rationale: ; P2-S13; P3-S03 \\
-Operation & \texttt{+ rename\_\allowbreak{}brand(user\_\allowbreak{}id: int, brand\_\allowbreak{}id: int, name: str) -\textgreater{} Brand } & P4 scoped evidence (P4.1 + P4.6; resolution rows 35); C0 rationale: ; P2-S13; P3-S03 \\
-Operation & \texttt{+ archive\_\allowbreak{}brand(user\_\allowbreak{}id: int, brand\_\allowbreak{}id: int) -\textgreater{} Brand } & P4 scoped evidence (P4.1 + P4.6; resolution rows 36); C0 rationale: ; P2-S13; P3-S03 \\
-Operation & \texttt{+ create\_\allowbreak{}item(user\_\allowbreak{}id: int, form: Mapping[str, str]) -\textgreater{} MenuItem } & P4 scoped evidence (P4.1 + P4.6; resolution rows 37); C0 rationale: ; P2-S13; P3-S03 \\
-Operation & \texttt{+ update\_\allowbreak{}item(user\_\allowbreak{}id: int, item\_\allowbreak{}id: int, form: Mapping[str, str]) -\textgreater{} MenuItem } & P4 scoped evidence (P4.1 + P4.6; resolution rows 38); C0 rationale: ; P2-S13; P3-S03 \\
-Operation & \texttt{+ archive\_\allowbreak{}item(user\_\allowbreak{}id: int, item\_\allowbreak{}id: int) -\textgreater{} MenuItem } & P4 scoped evidence (P4.1 + P4.6; resolution rows 39); C0 rationale: ; P2-S13; P3-S03 \\
-Operation & \texttt{+ hub\_\allowbreak{}menu(user\_\allowbreak{}id: int, hub\_\allowbreak{}id: int) -\textgreater{} HubMenu} & MATCH \\
-Operation & \texttt{+ list\_\allowbreak{}item\_\allowbreak{}at\_\allowbreak{}hub(user\_\allowbreak{}id: int, hub\_\allowbreak{}id: int, item\_\allowbreak{}id: int, available: bool = True) -\textgreater{} None } & P4 scoped evidence (P4.6; resolution rows 33); C0 rationale: ; P2-S15; P2-S13 \\
-Operation & \texttt{+ unlist\_\allowbreak{}item\_\allowbreak{}at\_\allowbreak{}hub(user\_\allowbreak{}id: int, hub\_\allowbreak{}id: int, item\_\allowbreak{}id: int) -\textgreater{} None } & P4 scoped evidence (P4.1 + P4.6; resolution rows 40); C0 rationale: ; P2-S13; P3-S03 \\
-Operation & \texttt{+ set\_\allowbreak{}availability(user\_\allowbreak{}id: int, hub\_\allowbreak{}id: int, item\_\allowbreak{}id: int, available: bool) -\textgreater{} None } & P4 scoped evidence (P4.1 + P4.6; resolution rows 41); C0 rationale: ; P2-S13; P3-S03 \\
-Operation & \texttt{- \_\allowbreak{}require\_\allowbreak{}admin(user\_\allowbreak{}id: int) -\textgreater{} None} & MATCH \\
-Operation & \texttt{- \_\allowbreak{}hub(hub\_\allowbreak{}id: int) -\textgreater{} Hub} & MATCH \\
+Operation & \texttt{+ catalogue(user\_\allowbreak{}id: int) -\textgreater{} Catalogue} & Matches code \\
+Operation & \texttt{+ create\_\allowbreak{}brand(user\_\allowbreak{}id: int, name: str) -\textgreater{} Brand } & P4 scoped evidence (P4.1 + P4.6; resolution rows 34); Reason: ; P2-S13; P3-S03 \\
+Operation & \texttt{+ rename\_\allowbreak{}brand(user\_\allowbreak{}id: int, brand\_\allowbreak{}id: int, name: str) -\textgreater{} Brand } & P4 scoped evidence (P4.1 + P4.6; resolution rows 35); Reason: ; P2-S13; P3-S03 \\
+Operation & \texttt{+ archive\_\allowbreak{}brand(user\_\allowbreak{}id: int, brand\_\allowbreak{}id: int) -\textgreater{} Brand } & P4 scoped evidence (P4.1 + P4.6; resolution rows 36); Reason: ; P2-S13; P3-S03 \\
+Operation & \texttt{+ create\_\allowbreak{}item(user\_\allowbreak{}id: int, form: Mapping[str, str]) -\textgreater{} MenuItem } & P4 scoped evidence (P4.1 + P4.6; resolution rows 37); Reason: ; P2-S13; P3-S03 \\
+Operation & \texttt{+ update\_\allowbreak{}item(user\_\allowbreak{}id: int, item\_\allowbreak{}id: int, form: Mapping[str, str]) -\textgreater{} MenuItem } & P4 scoped evidence (P4.1 + P4.6; resolution rows 38); Reason: ; P2-S13; P3-S03 \\
+Operation & \texttt{+ archive\_\allowbreak{}item(user\_\allowbreak{}id: int, item\_\allowbreak{}id: int) -\textgreater{} MenuItem } & P4 scoped evidence (P4.1 + P4.6; resolution rows 39); Reason: ; P2-S13; P3-S03 \\
+Operation & \texttt{+ hub\_\allowbreak{}menu(user\_\allowbreak{}id: int, hub\_\allowbreak{}id: int) -\textgreater{} HubMenu} & Matches code \\
+Operation & \texttt{+ list\_\allowbreak{}item\_\allowbreak{}at\_\allowbreak{}hub(user\_\allowbreak{}id: int, hub\_\allowbreak{}id: int, item\_\allowbreak{}id: int, available: bool = True) -\textgreater{} None } & Changed during implementation and tested (P4.6; Table P4-1 rows 33); Reason: ; P2-S15; P2-S13 \\
+Operation & \texttt{+ unlist\_\allowbreak{}item\_\allowbreak{}at\_\allowbreak{}hub(user\_\allowbreak{}id: int, hub\_\allowbreak{}id: int, item\_\allowbreak{}id: int) -\textgreater{} None } & P4 scoped evidence (P4.1 + P4.6; resolution rows 40); Reason: ; P2-S13; P3-S03 \\
+Operation & \texttt{+ set\_\allowbreak{}availability(user\_\allowbreak{}id: int, hub\_\allowbreak{}id: int, item\_\allowbreak{}id: int, available: bool) -\textgreater{} None } & P4 scoped evidence (P4.1 + P4.6; resolution rows 41); Reason: ; P2-S13; P3-S03 \\
+Operation & \texttt{- \_\allowbreak{}require\_\allowbreak{}admin(user\_\allowbreak{}id: int) -\textgreater{} None} & Matches code \\
+Operation & \texttt{- \_\allowbreak{}hub(hub\_\allowbreak{}id: int) -\textgreater{} Hub} & Matches code \\
 Operation & \texttt{- \_\allowbreak{}active\_\allowbreak{}brand(brand\_\allowbreak{}id: Any) -\textgreater{} Brand [inferred]} & MATCH; inferred annotation(s) \\
-Operation & \texttt{- \_\allowbreak{}active\_\allowbreak{}item(item\_\allowbreak{}id: int) -\textgreater{} MenuItem} & MATCH \\
-Operation & \texttt{- \_\allowbreak{}name(raw: str, label: str, max\_\allowbreak{}len: int = 60) -\textgreater{} str} & MATCH \\
+Operation & \texttt{- \_\allowbreak{}active\_\allowbreak{}item(item\_\allowbreak{}id: int) -\textgreater{} MenuItem} & Matches code \\
+Operation & \texttt{- \_\allowbreak{}name(raw: str, label: str, max\_\allowbreak{}len: int = 60) -\textgreater{} str} & Matches code \\
 Operation & \texttt{- \_\allowbreak{}parse\_\allowbreak{}item(form: Mapping[str, str], item\_\allowbreak{}id: Any) -\textgreater{} MenuItem [inferred]} & MATCH; inferred annotation(s) \\
-Operation & \texttt{+ list\_\allowbreak{}catalogue(user\_\allowbreak{}id: int, hub\_\allowbreak{}id: Optional[int] = None) -\textgreater{} dict[str, object] } & P4 scoped evidence (P4.6; resolution rows 32); C0 rationale: ; P2-S14 \\
+Operation & \texttt{+ list\_\allowbreak{}catalogue(user\_\allowbreak{}id: int, hub\_\allowbreak{}id: Optional[int] = None) -\textgreater{} dict[str, object] } & Changed during implementation and tested (P4.6; Table P4-1 rows 32); Reason: ; P2-S14 \\
 \end{longtable}
 \textbf{Catalogue}
 
@@ -101,8 +101,8 @@ Element & Typed declaration & Status / qualification \\
 \hline\endfirsthead
 Element & Typed declaration & Status / qualification \\
 \hline\endhead
-Attribute & \texttt{+ brands: list[Brand]} & MATCH \\
-Attribute & \texttt{+ items: list[MenuItem]} & MATCH \\
+Attribute & \texttt{+ brands: list[Brand]} & Matches code \\
+Attribute & \texttt{+ items: list[MenuItem]} & Matches code \\
 \end{longtable}
 \textbf{HubMenu}
 
@@ -113,9 +113,9 @@ Element & Typed declaration & Status / qualification \\
 \hline\endfirsthead
 Element & Typed declaration & Status / qualification \\
 \hline\endhead
-Attribute & \texttt{+ hub: Hub} & MATCH \\
-Attribute & \texttt{+ listed: list[HubMenuItem]} & MATCH \\
-Attribute & \texttt{+ not\_\allowbreak{}listed: list[MenuItem]} & MATCH \\
+Attribute & \texttt{+ hub: Hub} & Matches code \\
+Attribute & \texttt{+ listed: list[HubMenuItem]} & Matches code \\
+Attribute & \texttt{+ not\_\allowbreak{}listed: list[MenuItem]} & Matches code \\
 \end{longtable}
 \textbf{HubController}
 
@@ -127,7 +127,7 @@ Element & Typed declaration & Status / qualification \\
 Element & Typed declaration & Status / qualification \\
 \hline\endhead
 Attribute & \texttt{+ hubs: HubDAO} & MATCH; inferred \\
-Operation & \texttt{+ list\_\allowbreak{}hubs(user\_\allowbreak{}id: int, include\_\allowbreak{}archived: bool = True) -\textgreater{} list[HubAdminView] } & P4 scoped evidence (P4.2; resolution rows 28); C0 rationale: ; P3-S02 \\
+Operation & \texttt{+ list\_\allowbreak{}hubs(user\_\allowbreak{}id: int, include\_\allowbreak{}archived: bool = True) -\textgreater{} list[HubAdminView] } & Changed during implementation and tested (P4.2; Table P4-1 rows 28); Reason: ; P3-S02 \\
 \end{longtable}
 \textbf{Hub}
 
@@ -138,15 +138,15 @@ Element & Typed declaration & Status / qualification \\
 \hline\endfirsthead
 Element & Typed declaration & Status / qualification \\
 \hline\endhead
-Attribute & \texttt{+ id: int} & MATCH \\
-Attribute & \texttt{+ code: str} & MATCH \\
-Attribute & \texttt{+ name: str} & MATCH \\
-Attribute & \texttt{+ address\_\allowbreak{}text: str} & MATCH \\
-Attribute & \texttt{+ latitude: float} & MATCH \\
-Attribute & \texttt{+ longitude: float} & MATCH \\
-Attribute & \texttt{+ max\_\allowbreak{}active\_\allowbreak{}orders: int} & MATCH \\
-Attribute & \texttt{+ base\_\allowbreak{}delivery\_\allowbreak{}fee: int} & MATCH \\
-Attribute & \texttt{+ archived\_\allowbreak{}at: Optional[str]} & MATCH \\
+Attribute & \texttt{+ id: int} & Matches code \\
+Attribute & \texttt{+ code: str} & Matches code \\
+Attribute & \texttt{+ name: str} & Matches code \\
+Attribute & \texttt{+ address\_\allowbreak{}text: str} & Matches code \\
+Attribute & \texttt{+ latitude: float} & Matches code \\
+Attribute & \texttt{+ longitude: float} & Matches code \\
+Attribute & \texttt{+ max\_\allowbreak{}active\_\allowbreak{}orders: int} & Matches code \\
+Attribute & \texttt{+ base\_\allowbreak{}delivery\_\allowbreak{}fee: int} & Matches code \\
+Attribute & \texttt{+ archived\_\allowbreak{}at: Optional[str]} & Matches code \\
 \end{longtable}
 \textbf{Brand}
 
@@ -157,9 +157,9 @@ Element & Typed declaration & Status / qualification \\
 \hline\endfirsthead
 Element & Typed declaration & Status / qualification \\
 \hline\endhead
-Attribute & \texttt{+ id: int} & MATCH \\
-Attribute & \texttt{+ name: str} & MATCH \\
-Attribute & \texttt{+ archived\_\allowbreak{}at: Optional[str]} & MATCH \\
+Attribute & \texttt{+ id: int} & Matches code \\
+Attribute & \texttt{+ name: str} & Matches code \\
+Attribute & \texttt{+ archived\_\allowbreak{}at: Optional[str]} & Matches code \\
 \end{longtable}
 \textbf{MenuItem}
 
@@ -170,13 +170,13 @@ Element & Typed declaration & Status / qualification \\
 \hline\endfirsthead
 Element & Typed declaration & Status / qualification \\
 \hline\endhead
-Attribute & \texttt{+ id: int} & MATCH \\
+Attribute & \texttt{+ id: int} & Matches code \\
 Attribute & \texttt{+ brand\_\allowbreak{}id: int} & MATCH; association backing ID, omitted on DCD \\
-Attribute & \texttt{+ brand\_\allowbreak{}name: str} & MATCH \\
-Attribute & \texttt{+ name: str} & MATCH \\
-Attribute & \texttt{+ description: str} & MATCH \\
-Attribute & \texttt{+ price: int} & MATCH \\
-Attribute & \texttt{+ archived\_\allowbreak{}at: Optional[str]} & MATCH \\
+Attribute & \texttt{+ brand\_\allowbreak{}name: str} & Matches code \\
+Attribute & \texttt{+ name: str} & Matches code \\
+Attribute & \texttt{+ description: str} & Matches code \\
+Attribute & \texttt{+ price: int} & Matches code \\
+Attribute & \texttt{+ archived\_\allowbreak{}at: Optional[str]} & Matches code \\
 \end{longtable}
 \textbf{HubMenuItem}
 
@@ -188,8 +188,8 @@ Element & Typed declaration & Status / qualification \\
 Element & Typed declaration & Status / qualification \\
 \hline\endhead
 Attribute & \texttt{+ hub\_\allowbreak{}id: int} & MATCH; association backing ID, omitted on DCD \\
-Attribute & \texttt{+ item: MenuItem} & MATCH \\
-Attribute & \texttt{+ is\_\allowbreak{}available: bool} & MATCH \\
+Attribute & \texttt{+ item: MenuItem} & Matches code \\
+Attribute & \texttt{+ is\_\allowbreak{}available: bool} & Matches code \\
 \end{longtable}
 \textbf{MenuDAO}
 
@@ -200,24 +200,24 @@ Element & Typed declaration & Status / qualification \\
 \hline\endfirsthead
 Element & Typed declaration & Status / qualification \\
 \hline\endhead
-Attribute & \texttt{+ conn: sqlite3.\allowbreak{}Connection} & MATCH \\
-Operation & \texttt{+ list\_\allowbreak{}brands() -\textgreater{} list[Brand]} & MATCH \\
-Operation & \texttt{+ get\_\allowbreak{}brand(brand\_\allowbreak{}id: int) -\textgreater{} Optional[Brand]} & MATCH \\
-Operation & \texttt{+ brand\_\allowbreak{}name\_\allowbreak{}exists(name: str, except\_\allowbreak{}id: Optional[int] = None) -\textgreater{} bool} & MATCH \\
-Operation & \texttt{+ insert\_\allowbreak{}brand(name: str) -\textgreater{} int} & MATCH \\
-Operation & \texttt{+ rename\_\allowbreak{}brand(brand\_\allowbreak{}id: int, name: str) -\textgreater{} bool} & MATCH \\
-Operation & \texttt{+ archive\_\allowbreak{}brand(brand\_\allowbreak{}id: int, now: str) -\textgreater{} bool} & MATCH \\
-Operation & \texttt{+ list\_\allowbreak{}items() -\textgreater{} list[MenuItem]} & MATCH \\
-Operation & \texttt{+ get\_\allowbreak{}item(item\_\allowbreak{}id: int) -\textgreater{} Optional[MenuItem]} & MATCH \\
-Operation & \texttt{+ item\_\allowbreak{}name\_\allowbreak{}exists(brand\_\allowbreak{}id: int, name: str, except\_\allowbreak{}id: Optional[int] = None) -\textgreater{} bool} & MATCH \\
-Operation & \texttt{+ insert\_\allowbreak{}item(item: MenuItem) -\textgreater{} int} & MATCH \\
-Operation & \texttt{+ update\_\allowbreak{}item(item: MenuItem) -\textgreater{} bool} & MATCH \\
-Operation & \texttt{+ archive\_\allowbreak{}item(item\_\allowbreak{}id: int, now: str) -\textgreater{} bool} & MATCH \\
-Operation & \texttt{+ list\_\allowbreak{}hub\_\allowbreak{}items(hub\_\allowbreak{}id: int) -\textgreater{} list[HubMenuItem]} & MATCH \\
-Operation & \texttt{+ is\_\allowbreak{}listed(hub\_\allowbreak{}id: int, item\_\allowbreak{}id: int) -\textgreater{} bool} & MATCH \\
-Operation & \texttt{+ add\_\allowbreak{}listing(hub\_\allowbreak{}id: int, item\_\allowbreak{}id: int, available: bool = True) -\textgreater{} None } & P4 scoped evidence (P4.6; resolution rows 42); C0 rationale: ; P2-S15 \\
-Operation & \texttt{+ remove\_\allowbreak{}listing(hub\_\allowbreak{}id: int, item\_\allowbreak{}id: int) -\textgreater{} bool} & MATCH \\
-Operation & \texttt{+ set\_\allowbreak{}available(hub\_\allowbreak{}id: int, item\_\allowbreak{}id: int, available: bool) -\textgreater{} bool} & MATCH \\
+Attribute & \texttt{+ conn: sqlite3.\allowbreak{}Connection} & Matches code \\
+Operation & \texttt{+ list\_\allowbreak{}brands() -\textgreater{} list[Brand]} & Matches code \\
+Operation & \texttt{+ get\_\allowbreak{}brand(brand\_\allowbreak{}id: int) -\textgreater{} Optional[Brand]} & Matches code \\
+Operation & \texttt{+ brand\_\allowbreak{}name\_\allowbreak{}exists(name: str, except\_\allowbreak{}id: Optional[int] = None) -\textgreater{} bool} & Matches code \\
+Operation & \texttt{+ insert\_\allowbreak{}brand(name: str) -\textgreater{} int} & Matches code \\
+Operation & \texttt{+ rename\_\allowbreak{}brand(brand\_\allowbreak{}id: int, name: str) -\textgreater{} bool} & Matches code \\
+Operation & \texttt{+ archive\_\allowbreak{}brand(brand\_\allowbreak{}id: int, now: str) -\textgreater{} bool} & Matches code \\
+Operation & \texttt{+ list\_\allowbreak{}items() -\textgreater{} list[MenuItem]} & Matches code \\
+Operation & \texttt{+ get\_\allowbreak{}item(item\_\allowbreak{}id: int) -\textgreater{} Optional[MenuItem]} & Matches code \\
+Operation & \texttt{+ item\_\allowbreak{}name\_\allowbreak{}exists(brand\_\allowbreak{}id: int, name: str, except\_\allowbreak{}id: Optional[int] = None) -\textgreater{} bool} & Matches code \\
+Operation & \texttt{+ insert\_\allowbreak{}item(item: MenuItem) -\textgreater{} int} & Matches code \\
+Operation & \texttt{+ update\_\allowbreak{}item(item: MenuItem) -\textgreater{} bool} & Matches code \\
+Operation & \texttt{+ archive\_\allowbreak{}item(item\_\allowbreak{}id: int, now: str) -\textgreater{} bool} & Matches code \\
+Operation & \texttt{+ list\_\allowbreak{}hub\_\allowbreak{}items(hub\_\allowbreak{}id: int) -\textgreater{} list[HubMenuItem]} & Matches code \\
+Operation & \texttt{+ is\_\allowbreak{}listed(hub\_\allowbreak{}id: int, item\_\allowbreak{}id: int) -\textgreater{} bool} & Matches code \\
+Operation & \texttt{+ add\_\allowbreak{}listing(hub\_\allowbreak{}id: int, item\_\allowbreak{}id: int, available: bool = True) -\textgreater{} None } & Changed during implementation and tested (P4.6; Table P4-1 rows 42); Reason: ; P2-S15 \\
+Operation & \texttt{+ remove\_\allowbreak{}listing(hub\_\allowbreak{}id: int, item\_\allowbreak{}id: int) -\textgreater{} bool} & Matches code \\
+Operation & \texttt{+ set\_\allowbreak{}available(hub\_\allowbreak{}id: int, item\_\allowbreak{}id: int, available: bool) -\textgreater{} bool} & Matches code \\
 \end{longtable}
 \textbf{HubDAO}
 
@@ -228,9 +228,9 @@ Element & Typed declaration & Status / qualification \\
 \hline\endfirsthead
 Element & Typed declaration & Status / qualification \\
 \hline\endhead
-Attribute & \texttt{+ conn: sqlite3.\allowbreak{}Connection} & MATCH \\
-Operation & \texttt{+ list\_\allowbreak{}all() -\textgreater{} list[Hub]} & MATCH \\
-Operation & \texttt{+ get\_\allowbreak{}including\_\allowbreak{}archived(hub\_\allowbreak{}id: int) -\textgreater{} Optional[Hub]} & MATCH \\
+Attribute & \texttt{+ conn: sqlite3.\allowbreak{}Connection} & Matches code \\
+Operation & \texttt{+ list\_\allowbreak{}all() -\textgreater{} list[Hub]} & Matches code \\
+Operation & \texttt{+ get\_\allowbreak{}including\_\allowbreak{}archived(hub\_\allowbreak{}id: int) -\textgreater{} Optional[Hub]} & Matches code \\
 \end{longtable}
 \textbf{BaseController}
 
@@ -241,11 +241,11 @@ Element & Typed declaration & Status / qualification \\
 \hline\endfirsthead
 Element & Typed declaration & Status / qualification \\
 \hline\endhead
-Attribute & \texttt{+ conn: sqlite3.\allowbreak{}Connection} & MATCH \\
+Attribute & \texttt{+ conn: sqlite3.\allowbreak{}Connection} & Matches code \\
 Attribute & \texttt{+ clock: Any} & MATCH; inferred \\
 Attribute & \texttt{+ users: UserDAO} & MATCH; inferred \\
-Operation & \texttt{- \_\allowbreak{}now() -\textgreater{} str} & MATCH \\
-Operation & \texttt{- \_\allowbreak{}require\_\allowbreak{}user(user\_\allowbreak{}id: int, *roles: Role, message: str = 'Your account cannot do this.\allowbreak{}') -\textgreater{} UserAccount} & MATCH \\
+Operation & \texttt{- \_\allowbreak{}now() -\textgreater{} str} & Matches code \\
+Operation & \texttt{- \_\allowbreak{}require\_\allowbreak{}user(user\_\allowbreak{}id: int, *roles: Role, message: str = 'Your account cannot do this.\allowbreak{}') -\textgreater{} UserAccount} & Matches code \\
 \end{longtable}
 \textbf{UserAccount}
 
@@ -256,14 +256,14 @@ Element & Typed declaration & Status / qualification \\
 \hline\endfirsthead
 Element & Typed declaration & Status / qualification \\
 \hline\endhead
-Attribute & \texttt{+ id: int} & MATCH \\
-Attribute & \texttt{+ username: str} & MATCH \\
-Attribute & \texttt{+ password\_\allowbreak{}hash: str} & MATCH \\
-Attribute & \texttt{+ display\_\allowbreak{}name: str} & MATCH \\
-Attribute & \texttt{+ role: Role} & MATCH \\
-Attribute & \texttt{+ is\_\allowbreak{}active: bool} & MATCH \\
+Attribute & \texttt{+ id: int} & Matches code \\
+Attribute & \texttt{+ username: str} & Matches code \\
+Attribute & \texttt{+ password\_\allowbreak{}hash: str} & Matches code \\
+Attribute & \texttt{+ display\_\allowbreak{}name: str} & Matches code \\
+Attribute & \texttt{+ role: Role} & Matches code \\
+Attribute & \texttt{+ is\_\allowbreak{}active: bool} & Matches code \\
 Attribute & \texttt{+ hub\_\allowbreak{}id: Optional[int]} & MATCH; association backing ID, omitted on DCD \\
-Attribute & \texttt{+ created\_\allowbreak{}at: str} & P4 scoped evidence (P4.1; resolution rows 53); C0 rationale: \\
+Attribute & \texttt{+ created\_\allowbreak{}at: str} & Changed during implementation and tested (P4.1; Table P4-1 rows 53); Reason: \\
 \end{longtable}
 \textbf{Role}
 
@@ -289,8 +289,8 @@ Element & Typed declaration & Status / qualification \\
 \hline\endfirsthead
 Element & Typed declaration & Status / qualification \\
 \hline\endhead
-Attribute & \texttt{+ conn: sqlite3.\allowbreak{}Connection} & MATCH \\
-Operation & \texttt{+ get\_\allowbreak{}by\_\allowbreak{}id(user\_\allowbreak{}id: int) -\textgreater{} Optional[UserAccount]} & MATCH \\
+Attribute & \texttt{+ conn: sqlite3.\allowbreak{}Connection} & Matches code \\
+Operation & \texttt{+ get\_\allowbreak{}by\_\allowbreak{}id(user\_\allowbreak{}id: int) -\textgreater{} Optional[UserAccount]} & Matches code \\
 \end{longtable}
 \textbf{Boundary adapters and guarantees}
 

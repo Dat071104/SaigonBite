@@ -16,170 +16,170 @@ Filtered from the single shared design model. Member projection and relationship
 
 ![UC-05 domain — selected design members 1/3](../../../models/UC-05/dcd_uc05_domain_PartA.png)
 
-Figure 3.5.2.iA. UC-05 domain detailed design members — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.2.iA. UC-05 domain detailed design members — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 ![UC-05 domain — selected design members 2/3](../../../models/UC-05/dcd_uc05_domain_PartB.png)
 
-Figure 3.5.2.iB. UC-05 domain detailed design members — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.2.iB. UC-05 domain detailed design members — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 ![UC-05 domain — selected design members 3/3](../../../models/UC-05/dcd_uc05_domain_PartC.png)
 
-Figure 3.5.2.iC. UC-05 domain detailed design members — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.2.iC. UC-05 domain detailed design members — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 ![UC-05 domain — relationships 1](../../../models/UC-05/dcd_uc05_domain_links_PartA.png)
 
-Figure 3.5.2.i.R1. UC-05 domain navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.2.i.R1. UC-05 domain navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 ![UC-05 domain — relationships 2](../../../models/UC-05/dcd_uc05_domain_links_PartB.png)
 
-Figure 3.5.2.i.R2. UC-05 domain navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.2.i.R2. UC-05 domain navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 ![UC-05 domain — relationships 3](../../../models/UC-05/dcd_uc05_domain_links_PartC.png)
 
-Figure 3.5.2.i.R3. UC-05 domain navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.2.i.R3. UC-05 domain navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 ![UC-05 domain — relationships 4](../../../models/UC-05/dcd_uc05_domain_links_PartD.png)
 
-Figure 3.5.2.i.R4. UC-05 domain navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.2.i.R4. UC-05 domain navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 ![UC-05 domain — relationships 5](../../../models/UC-05/dcd_uc05_domain_links_PartE.png)
 
-Figure 3.5.2.i.R5. UC-05 domain navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.2.i.R5. UC-05 domain navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 ### ii. Controller
 
 
 ![UC-05 controller — selected design members 1/2](../../../models/UC-05/dcd_uc05_controller_PartA.png)
 
-Figure 3.5.2.iiA. UC-05 controller detailed design members — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.2.iiA. UC-05 controller detailed design members — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 ![UC-05 controller — selected design members 2/2](../../../models/UC-05/dcd_uc05_controller_PartB.png)
 
-Figure 3.5.2.iiB. UC-05 controller detailed design members — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.2.iiB. UC-05 controller detailed design members — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 ![UC-05 controller — relationships 1](../../../models/UC-05/dcd_uc05_controller_links_PartA.png)
 
-Figure 3.5.2.ii.R1. UC-05 controller navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.2.ii.R1. UC-05 controller navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 ### iii. UI (view)
 
 
 ![UC-05 view — selected design members 1/1](../../../models/UC-05/dcd_uc05_view.png)
 
-Figure 3.5.2.iii. UC-05 view detailed design members — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.2.iii. UC-05 view detailed design members — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 ### iv. Data access
 
 
 ![UC-05 dao — selected design members 1/1](../../../models/UC-05/dcd_uc05_dao.png)
 
-Figure 3.5.2.iv. UC-05 dao detailed design members — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.2.iv. UC-05 dao detailed design members — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 ### v. Design class (all layers together)
 
 
 ![UC-05 all — selected design members 1/7](../../../models/UC-05/dcd_uc05_all_PartA.png)
 
-Figure 3.5.2.vA. UC-05 all detailed design members — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.2.vA. UC-05 all detailed design members — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 ![UC-05 all — selected design members 2/7](../../../models/UC-05/dcd_uc05_all_PartB.png)
 
-Figure 3.5.2.vB. UC-05 all detailed design members — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.2.vB. UC-05 all detailed design members — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 ![UC-05 all — selected design members 3/7](../../../models/UC-05/dcd_uc05_all_PartC.png)
 
-Figure 3.5.2.vC. UC-05 all detailed design members — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.2.vC. UC-05 all detailed design members — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 ![UC-05 all — selected design members 4/7](../../../models/UC-05/dcd_uc05_all_PartD.png)
 
-Figure 3.5.2.vD. UC-05 all detailed design members — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.2.vD. UC-05 all detailed design members — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 ![UC-05 all — selected design members 5/7](../../../models/UC-05/dcd_uc05_all_PartE.png)
 
-Figure 3.5.2.vE. UC-05 all detailed design members — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.2.vE. UC-05 all detailed design members — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 ![UC-05 all — selected design members 6/7](../../../models/UC-05/dcd_uc05_all_PartF.png)
 
-Figure 3.5.2.vF. UC-05 all detailed design members — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.2.vF. UC-05 all detailed design members — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 ![UC-05 all — selected design members 7/7](../../../models/UC-05/dcd_uc05_all_PartG.png)
 
-Figure 3.5.2.vG. UC-05 all detailed design members — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.2.vG. UC-05 all detailed design members — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 ![UC-05 all — relationships 1](../../../models/UC-05/dcd_uc05_all_links_PartA.png)
 
-Figure 3.5.2.v.R1. UC-05 all navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.2.v.R1. UC-05 all navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 ![UC-05 all — relationships 2](../../../models/UC-05/dcd_uc05_all_links_PartB.png)
 
-Figure 3.5.2.v.R2. UC-05 all navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.2.v.R2. UC-05 all navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 ![UC-05 all — relationships 3](../../../models/UC-05/dcd_uc05_all_links_PartC.png)
 
-Figure 3.5.2.v.R3. UC-05 all navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.2.v.R3. UC-05 all navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 ![UC-05 all — relationships 4](../../../models/UC-05/dcd_uc05_all_links_PartD.png)
 
-Figure 3.5.2.v.R4. UC-05 all navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.2.v.R4. UC-05 all navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 ![UC-05 all — relationships 5](../../../models/UC-05/dcd_uc05_all_links_PartE.png)
 
-Figure 3.5.2.v.R5. UC-05 all navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.2.v.R5. UC-05 all navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 ![UC-05 all — relationships 6](../../../models/UC-05/dcd_uc05_all_links_PartF.png)
 
-Figure 3.5.2.v.R6. UC-05 all navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.2.v.R6. UC-05 all navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 ![UC-05 all — relationships 7](../../../models/UC-05/dcd_uc05_all_links_PartG.png)
 
-Figure 3.5.2.v.R7. UC-05 all navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.2.v.R7. UC-05 all navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 ![UC-05 all — relationships 8](../../../models/UC-05/dcd_uc05_all_links_PartH.png)
 
-Figure 3.5.2.v.R8. UC-05 all navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.2.v.R8. UC-05 all navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 ![UC-05 all — relationships 9](../../../models/UC-05/dcd_uc05_all_links_PartI.png)
 
-Figure 3.5.2.v.R9. UC-05 all navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.2.v.R9. UC-05 all navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 ![UC-05 all — relationships 10](../../../models/UC-05/dcd_uc05_all_links_PartJ.png)
 
-Figure 3.5.2.v.R10. UC-05 all navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.2.v.R10. UC-05 all navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 ![UC-05 all — relationships 11](../../../models/UC-05/dcd_uc05_all_links_PartK.png)
 
-Figure 3.5.2.v.R11. UC-05 all navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.2.v.R11. UC-05 all navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 ![UC-05 all — relationships 12](../../../models/UC-05/dcd_uc05_all_links_PartL.png)
 
-Figure 3.5.2.v.R12. UC-05 all navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.2.v.R12. UC-05 all navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 ## 3.5.3 OOD with CRC Cards or Communication Diagram
 
@@ -207,12 +207,12 @@ The design associates these operation guarantees with named controller methods a
 
 | SSD operation | Responsible method / boundary | Guarantees | Status |
 |---|---|---|---|
-| OP-19 `viewKitchenOrders` | `KitchenController.board(self, user_id: int) -> KitchenBoard`; read | Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation | MATCH |
-| OP-20 `viewKitchenOrder` | `KitchenController.get_order(self, user_id: int, order_id: int) -> KitchenOrderView`; read | Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation | MATCH |
+| OP-19 `viewKitchenOrders` | `KitchenController.board(self, user_id: int) -> KitchenBoard`; read | Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation | Matches code |
+| OP-20 `viewKitchenOrder` | `KitchenController.get_order(self, user_id: int, order_id: int) -> KitchenOrderView`; read | Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation | Matches code |
 | OP-02 `confirmOrder` | `KitchenController.confirm_order(self, user_id: int, order_id: int) -> Order`; BEGIN IMMEDIATE | UC05-PC01; UC05-MG01 | P4 status: see Table P4-1 P2-S13; P3-S03 |
 | OP-03 `rejectOrder` | `KitchenController.reject_order(self, user_id: int, order_id: int, reason: str) -> Order`; BEGIN IMMEDIATE | UC05-PC02 | P4 status: see Table P4-1 F-02; P2-S13 |
 | OP-04 `offerReplacement` | `KitchenController.offer_replacement(self, user_id: int, order_id: int, order_line_id: int, new_menu_item_id: int) -> ReplacementOffer`; BEGIN IMMEDIATE | UC05-PC03; UC05-MG01 | P4 status: see Table P4-1 F-05; P2-S09; P2-S13 |
-| OP-17 `viewMyOrders` | `OrderTrackingController.list_my_orders(self, user_id: int) -> list[OrderSummary]`; read | Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation | MATCH |
+| OP-17 `viewMyOrders` | `OrderTrackingController.list_my_orders(self, user_id: int) -> list[OrderSummary]`; read | Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation | Matches code |
 | OP-18 `viewReplacement` | `OrderTrackingController.get_order(self, user_id: int, order_id: int) -> OrderDetail`; read | Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation | C0 design target; final status in Table P4-1 F-06 |
 | OP-05 `acceptReplacement` | `OrderTrackingController.answer_replacement(self, user_id: int, order_id: int, offer_id: int, accept: bool) -> OrderDetail`; BEGIN IMMEDIATE | UC05-PC04; UC05-MG01 | P4 status: see Table P4-1 F-05; F-02; P2-S09; P2-S11; P2-S13 |
 | OP-06 `declineReplacement` | `OrderTrackingController.answer_replacement(self, user_id: int, order_id: int, offer_id: int, accept: bool) -> OrderDetail`; BEGIN IMMEDIATE | SUC03-PC04; UC05-MG01 (decline/reject and BR-17; stale or failed save leaves Order unchanged) | P4 status: see Table P4-1 F-02; P2-S13 |
@@ -221,7 +221,7 @@ The design associates these operation guarantees with named controller methods a
 
 ![UC-05 viewKitchenOrders](../../../models/UC-05/seq_uc05_viewKitchenOrders.png)
 
-Figure 3.5.4.OP-19. UC-05 viewKitchenOrders — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.4.OP-19. UC-05 viewKitchenOrders — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 Read-only active role + own Customer / own kitchen hub checks; denied context discloses no foreign details. Receipt/offer amounts say refund owed, never paid out (F-06 where applicable). Read snapshots, .total and offer attributes; no fabricated business getters. No persistent writes.
 
@@ -230,7 +230,7 @@ Read-only active role + own Customer / own kitchen hub checks; denied context di
 
 ![UC-05 viewKitchenOrder](../../../models/UC-05/seq_uc05_viewKitchenOrder.png)
 
-Figure 3.5.4.OP-20. UC-05 viewKitchenOrder — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.4.OP-20. UC-05 viewKitchenOrder — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 
@@ -238,7 +238,7 @@ Figure 3.5.4.OP-20. UC-05 viewKitchenOrder — Author: 722I0004 · AI-assisted (
 
 ![UC-05 confirmOrder](../../../models/UC-05/seq_uc05_confirmOrder.png)
 
-Figure 3.5.4.OP-02. UC-05 confirmOrder — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.4.OP-02. UC-05 confirmOrder — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 Active own-hub staff; own PLACED; no open OFFERED. Atomic guarded state change + confirmed_at. No repricing/payment change. Conditional rowcount and busy/write/commit rollback (P2-S13, P3-S03).
 
@@ -247,13 +247,13 @@ Active own-hub staff; own PLACED; no open OFFERED. Atomic guarded state change +
 
 ![UC-05 rejectOrder — Part A](../../../models/UC-05/seq_uc05_rejectOrder.png)
 
-Figure 3.5.4.OP-03A. UC-05 rejectOrder — Part A — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.4.OP-03A. UC-05 rejectOrder — Part A — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 Guard: active own-hub Kitchen staff; PLACED; nonempty reason. Atomic REJECTED + closed_at / reason; COD VOIDED; ONLINE REFUND_PENDING, refund_amount=C replaces any partial owed amount. No payout. Open offer WITHDRAWN; helpers are real module functions. Rowcount, busy and failure-through-COMMIT rollback. P4 resolution (see Table P4-1): release_payment persists the full-C refund amount together with state and checks every conditional save in the same transaction (F-02; P2-S01; P3-S03).
 
 ![UC-05 rejectOrder — Part B](../../../models/UC-05/seq_uc05_rejectOrder_PartB.png)
 
-Figure 3.5.4.OP-03B. UC-05 rejectOrder — Part B — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.4.OP-03B. UC-05 rejectOrder — Part B — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 
@@ -261,7 +261,7 @@ Figure 3.5.4.OP-03B. UC-05 rejectOrder — Part B — Author: 722I0004 · AI-ass
 
 ![UC-05 offerReplacement](../../../models/UC-05/seq_uc05_offerReplacement.png)
 
-Figure 3.5.4.OP-04. UC-05 offerReplacement — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.4.OP-04. UC-05 offerReplacement — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 Active own-hub PLACED; no open offer. Source currently sold out/unlisted/archived. Target active + active Brand, same-hub listed/available, different and absent from other lines; offered unit price ≤ source snapshot. Atomic OFFERED with unchanged quantity/Order PLACED (PC03). Fail/lock/commit rollback; no request waits for Customer.
 
@@ -270,7 +270,7 @@ Active own-hub PLACED; no open offer. Source currently sold out/unlisted/archive
 
 ![UC-05 viewMyOrders](../../../models/UC-05/seq_uc05_viewMyOrders.png)
 
-Figure 3.5.4.OP-17. UC-05 viewMyOrders — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.4.OP-17. UC-05 viewMyOrders — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 
@@ -278,7 +278,7 @@ Figure 3.5.4.OP-17. UC-05 viewMyOrders — Author: 722I0004 · AI-assisted (Code
 
 ![UC-05 viewReplacement](../../../models/UC-05/seq_uc05_viewReplacement.png)
 
-Figure 3.5.4.OP-18. UC-05 viewReplacement — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.4.OP-18. UC-05 viewReplacement — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 
@@ -286,19 +286,19 @@ Figure 3.5.4.OP-18. UC-05 viewReplacement — Author: 722I0004 · AI-assisted (C
 
 ![UC-05 acceptReplacement — Part A](../../../models/UC-05/seq_uc05_acceptReplacement_PartA.png)
 
-Figure 3.5.4.OP-05A. UC-05 acceptReplacement — Part A — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.4.OP-05A. UC-05 acceptReplacement — Part A — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 Before mutation: active owner + own PLACED + exact open OFFERED belongs to order. Recheck target active, active Brand, listed + AVAILABLE at same hub. Ineligible owner/state/offer → staleRefusal, 0 changed rows. Invalid target → only exact offer WITHDRAWN with returned reason; Order/lines/payment unchanged (MG01).
 
 ![UC-05 acceptReplacement — Part B](../../../models/UC-05/seq_uc05_acceptReplacement_PartB.png)
 
-Figure 3.5.4.OP-05B. UC-05 acceptReplacement — Part B — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.4.OP-05B. UC-05 acceptReplacement — Part B — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 Valid acceptance continues atomically: use offered price, whole line, same quantity; Snew; Dnew=min(Dold,Snew), F/Q unchanged; Tnew=Snew−Dnew+F−Q. Read Order.total property, set offer ACCEPTED through data access. COD amount=Tnew; ONLINE state PAID, C unchanged, refund_amount=C−Tnew. Order stays PLACED (PC04), never auto-confirms. Any conditional 0-row/lock/write/commit failure → complete rollback, MG01.
 
 ![UC-05 acceptReplacement — Part C](../../../models/UC-05/seq_uc05_acceptReplacement_PartC.png)
 
-Figure 3.5.4.OP-05C. UC-05 acceptReplacement — Part C — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.4.OP-05C. UC-05 acceptReplacement — Part C — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 
@@ -306,95 +306,40 @@ Figure 3.5.4.OP-05C. UC-05 acceptReplacement — Part C — Author: 722I0004 · 
 
 ![UC-05 declineReplacement — Part A](../../../models/UC-05/seq_uc05_declineReplacement.png)
 
-Figure 3.5.4.OP-06A. UC-05 declineReplacement — Part A — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.4.OP-06A. UC-05 declineReplacement — Part A — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 Guard: active own Customer; PLACED; exact open OFFERED with matching order/offer IDs. SUC03-PC04: atomic REJECTED + closed_at / reason; COD VOIDED; ONLINE REFUND_PENDING, refund_amount=C replaces any partial owed amount. No payout. Open offer DECLINED; helpers are real module functions. Rowcount, busy and failure-through-COMMIT rollback. P4 resolution (see Table P4-1): release_payment persists the full-C refund amount together with state and checks every conditional save in the same transaction (F-02; P2-S01; P3-S03).
 
 ![UC-05 declineReplacement — Part B](../../../models/UC-05/seq_uc05_declineReplacement_PartB.png)
 
-Figure 3.5.4.OP-06B. UC-05 declineReplacement — Part B — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.5.4.OP-06B. UC-05 declineReplacement — Part B — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 ## 3.5.5 Final Design Class Diagram
+Author: 722I0004 · AI-assisted (Claude)
 
-Changes from 3.5.2: **none in the selected member set**. Sequence reconciliation used the same selection from the outset: real route functions, controller methods, domain behavior, module helpers and implicit dataclass initializations are already present. Properties stay attribute reads. The final plates repeat the full selected exact signatures so every call receiver resolves; relation plates provide corrected navigation and layer dependencies, with two separately attached multiplicity labels and a distinct role label on each association. Composition/generalization and domain navigation keep their own UML arrow styles. The pure-domain fingerprint inputs and full-refund helper target are synchronized with the reviewed shared model. The P4 resolution and scoped evidence are in Table P4-1.
+The final design class diagram refines the layer views of 3.5.2 with what the sequence diagrams in 3.5.4 and the implementation settled: UC-05 is served by two controllers, so the final diagram is drawn in two parts, one per controller; classes shared by both parts appear in each.
 
-![UC-05 final — selected design members 1/7](../../../models/UC-05/dcd_uc05_final_PartA.png)
+- **One diagram, four layers.** View (Flask blueprint functions with their routes), controller, domain and data access are drawn together, so every message in the sequence diagrams can be followed from the screen to the table.
+- **Only the members this use case calls.** The sequence diagrams fixed which operations each class must offer; the complete member lists stay in the 3.5.1 tables and 3.5.2 views.
+- **Signatures from the code.** Parameter names and types are read from the source at the release commit by `models/shared/final_dcd.py`, so the diagram and the program cannot differ.
+- **Navigability and persistence.** Dashed arrows show which layer calls which; each DAO has a «persists» link to the entity it stores; domain associations keep their multiplicities from the domain model (2.1.7).
 
-Figure 3.5.5A. UC-05 final detailed design members — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+![UC-05 final design class diagram — part A: KitchenController](../../../models/UC-05/dcd_uc05_final_overview_PartA.png)
 
-![UC-05 final — selected design members 2/7](../../../models/UC-05/dcd_uc05_final_PartB.png)
+Figure 3.5.5A. UC-05 final design class diagram — part A: KitchenController — Author: 722I0004 · AI-assisted (Claude).
 
-Figure 3.5.5B. UC-05 final detailed design members — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+![UC-05 final design class diagram — part B: OrderTrackingController](../../../models/UC-05/dcd_uc05_final_overview_PartB.png)
 
-![UC-05 final — selected design members 3/7](../../../models/UC-05/dcd_uc05_final_PartC.png)
+Figure 3.5.5B. UC-05 final design class diagram — part B: OrderTrackingController — Author: 722I0004 · AI-assisted (Claude).
 
-Figure 3.5.5C. UC-05 final detailed design members — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Behaviour refined between the first design and the final design (each refinement is covered by the tests in 5.1). Every state-changing operation runs in one `BEGIN IMMEDIATE` transaction and checks the row count of each guarded UPDATE, so a stale page, a guessed ID or a competing user changes nothing.
 
-![UC-05 final — selected design members 4/7](../../../models/UC-05/dcd_uc05_final_PartD.png)
+| System operation | Refinement in the final design |
+|---|---|
+| `offerReplacement` | An offer requires the original dish to be unavailable and the target to be listed and available at the same hub. |
+| `acceptReplacement` | Acceptance re-checks that the order is still PLACED, that this exact offer is still open and that the target is still available; otherwise the offer is withdrawn and the order is unchanged. |
+| `rejectOrder, declineReplacement` | Rejection records the full online amount as refund owed and withdraws an open offer. |
+| `viewReplacement` | The customer sees the old and new line and the new total before answering. |
 
-Figure 3.5.5D. UC-05 final detailed design members — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
-
-![UC-05 final — selected design members 5/7](../../../models/UC-05/dcd_uc05_final_PartE.png)
-
-Figure 3.5.5E. UC-05 final detailed design members — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
-
-![UC-05 final — selected design members 6/7](../../../models/UC-05/dcd_uc05_final_PartF.png)
-
-Figure 3.5.5F. UC-05 final detailed design members — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
-
-![UC-05 final — selected design members 7/7](../../../models/UC-05/dcd_uc05_final_PartG.png)
-
-Figure 3.5.5G. UC-05 final detailed design members — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
-
-![UC-05 final — relationships 1](../../../models/UC-05/dcd_uc05_final_links_PartA.png)
-
-Figure 3.5.5.R1. UC-05 final navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
-
-![UC-05 final — relationships 2](../../../models/UC-05/dcd_uc05_final_links_PartB.png)
-
-Figure 3.5.5.R2. UC-05 final navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
-
-![UC-05 final — relationships 3](../../../models/UC-05/dcd_uc05_final_links_PartC.png)
-
-Figure 3.5.5.R3. UC-05 final navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
-
-![UC-05 final — relationships 4](../../../models/UC-05/dcd_uc05_final_links_PartD.png)
-
-Figure 3.5.5.R4. UC-05 final navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
-
-![UC-05 final — relationships 5](../../../models/UC-05/dcd_uc05_final_links_PartE.png)
-
-Figure 3.5.5.R5. UC-05 final navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
-
-![UC-05 final — relationships 6](../../../models/UC-05/dcd_uc05_final_links_PartF.png)
-
-Figure 3.5.5.R6. UC-05 final navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
-
-![UC-05 final — relationships 7](../../../models/UC-05/dcd_uc05_final_links_PartG.png)
-
-Figure 3.5.5.R7. UC-05 final navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
-
-![UC-05 final — relationships 8](../../../models/UC-05/dcd_uc05_final_links_PartH.png)
-
-Figure 3.5.5.R8. UC-05 final navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
-
-![UC-05 final — relationships 9](../../../models/UC-05/dcd_uc05_final_links_PartI.png)
-
-Figure 3.5.5.R9. UC-05 final navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
-
-![UC-05 final — relationships 10](../../../models/UC-05/dcd_uc05_final_links_PartJ.png)
-
-Figure 3.5.5.R10. UC-05 final navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
-
-![UC-05 final — relationships 11](../../../models/UC-05/dcd_uc05_final_links_PartK.png)
-
-Figure 3.5.5.R11. UC-05 final navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
-
-![UC-05 final — relationships 12](../../../models/UC-05/dcd_uc05_final_links_PartL.png)
-
-Figure 3.5.5.R12. UC-05 final navigation / multiplicities — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
-
-All figures require **230 mm landscape** placement: 24 px / 1600 px × 230 mm × 72 / 25.4 = **9.78 pt**. Split parts name their mutual continuation. Native draw.io editing and final DOCX/PDF placement remain **UNTESTED**.
-
-The historical design target was not yet in code at C0 (see the method-specific P4 inputs in the class tables and operation table). MATCH means Static correspondence only. Sources: locked plan §§2–5/P3/P4/7.3/10–12; primary report template and marking extracts; Phase 2 descriptions, operation catalogue/membership/register and state/domain models; C0 AST inventory and shared design model.
+Editable sources: `models/UC-05/dcd_uc05_final_overview_PartA.dot` and `dcd_uc05_final_overview_PartB.dot` (Graphviz), with SVG exports beside them.

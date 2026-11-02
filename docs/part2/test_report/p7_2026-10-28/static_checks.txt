@@ -1,17 +1,17 @@
 P7 B7 static checks -- no compilation or PDF
 
-PASS | inputs exist | 150 checked; missing=[]
-PASS | graphic files exist | 607 occurrences; missing=[]
-PASS | labels and references | 613 labels, 325 referenced; duplicate=[]; unresolved=[]
+PASS | inputs exist | 152 checked; missing=[]
+PASS | graphic files exist | 552 occurrences; missing=[]
+PASS | labels and references | 558 labels, 257 referenced; duplicate=[]; unresolved=[]
 PASS | environment and brace balance | issues=[] total=0
 PASS | raw special characters | issues=[] total=0
 PASS | forbidden placeholder strings | matches=[] total=0; application state code excluded by owner decision
-PASS | manifest figures referenced | expected=607 emitted=607 missing=[] extra=[] unauthorized duplicates=[]
-PASS | template heading order and text | 87 template headings including IP and TOC; section input order checked; errors=[]; order_match=True; inputs_order=True
+PASS | manifest figures referenced | expected=552 emitted=552 missing=[] extra=[] unauthorized duplicates=[]
+PASS | template heading order and text | 94 template headings including IP and TOC; section input order checked; errors=[]; order_match=True; inputs_order=True
 PASS | figure author and AI labels | violations=[] total=0
-PASS | figure readability exceptions | PASS (exceptions listed): 12 model placements; 110 screenshot estimates exempt; invalid=[]; final layout not rendered
+PASS | figure readability exceptions | PASS (exceptions listed): 20 model placements; 110 screenshot estimates exempt; invalid=[]; final layout not rendered
 PASS | template table headers | template prefix comparisons; errors=[]
 PASS | table meaning lock | 130 rows checked against pre-edit cells; errors=[]
-PASS | wide tables landscape | 9 tables; violations=[]
+PASS | wide tables landscape | 16 tables; violations=[]
 
 OVERALL: PASS

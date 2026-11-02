@@ -27,12 +27,12 @@ SSD operation & Responsible method / boundary & Guarantees & Status \\
 \hline\endfirsthead
 SSD operation & Responsible method / boundary & Guarantees & Status \\
 \hline\endhead
-OP-19 \texttt{viewKitchenOrders} & \texttt{KitchenController.\allowbreak{}board(self, user\_\allowbreak{}id: int) -\textgreater{} KitchenBoard}; read & Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation & MATCH \\
-OP-20 \texttt{viewKitchenOrder} & \texttt{KitchenController.\allowbreak{}get\_\allowbreak{}order(self, user\_\allowbreak{}id: int, order\_\allowbreak{}id: int) -\textgreater{} KitchenOrderView}; read & Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation & MATCH \\
+OP-19 \texttt{viewKitchenOrders} & \texttt{KitchenController.\allowbreak{}board(self, user\_\allowbreak{}id: int) -\textgreater{} KitchenBoard}; read & Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation & Matches code \\
+OP-20 \texttt{viewKitchenOrder} & \texttt{KitchenController.\allowbreak{}get\_\allowbreak{}order(self, user\_\allowbreak{}id: int, order\_\allowbreak{}id: int) -\textgreater{} KitchenOrderView}; read & Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation & Matches code \\
 OP-02 \texttt{confirmOrder} & \texttt{KitchenController.\allowbreak{}confirm\_\allowbreak{}order(self, user\_\allowbreak{}id: int, order\_\allowbreak{}id: int) -\textgreater{} Order}; BEGIN IMMEDIATE & UC05-PC01; UC05-MG01 & P4 status: see Table P4-1 P2-S13; P3-S03 \\
 OP-03 \texttt{rejectOrder} & \texttt{KitchenController.\allowbreak{}reject\_\allowbreak{}order(self, user\_\allowbreak{}id: int, order\_\allowbreak{}id: int, reason: str) -\textgreater{} Order}; BEGIN IMMEDIATE & UC05-PC02 & P4 status: see Table P4-1 F-02; P2-S13 \\
 OP-04 \texttt{offerReplacement} & \texttt{KitchenController.\allowbreak{}offer\_\allowbreak{}replacement(self, user\_\allowbreak{}id: int, order\_\allowbreak{}id: int, order\_\allowbreak{}line\_\allowbreak{}id: int, new\_\allowbreak{}menu\_\allowbreak{}item\_\allowbreak{}id: int) -\textgreater{} ReplacementOffer}; BEGIN IMMEDIATE & UC05-PC03; UC05-MG01 & P4 status: see Table P4-1 F-05; P2-S09; P2-S13 \\
-OP-17 \texttt{viewMyOrders} & \texttt{OrderTrackingController.\allowbreak{}list\_\allowbreak{}my\_\allowbreak{}orders(self, user\_\allowbreak{}id: int) -\textgreater{} list[OrderSummary]}; read & Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation & MATCH \\
+OP-17 \texttt{viewMyOrders} & \texttt{OrderTrackingController.\allowbreak{}list\_\allowbreak{}my\_\allowbreak{}orders(self, user\_\allowbreak{}id: int) -\textgreater{} list[OrderSummary]}; read & Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation & Matches code \\
 OP-18 \texttt{viewReplacement} & \texttt{OrderTrackingController.\allowbreak{}get\_\allowbreak{}order(self, user\_\allowbreak{}id: int, order\_\allowbreak{}id: int) -\textgreater{} OrderDetail}; read & Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation & C0 design target; final status in Table P4-1 F-06 \\
 OP-05 \texttt{acceptReplacement} & \texttt{OrderTrackingController.\allowbreak{}answer\_\allowbreak{}replacement(self, user\_\allowbreak{}id: int, order\_\allowbreak{}id: int, offer\_\allowbreak{}id: int, accept: bool) -\textgreater{} OrderDetail}; BEGIN IMMEDIATE & UC05-PC04; UC05-MG01 & P4 status: see Table P4-1 F-05; F-02; P2-S09; P2-S11; P2-S13 \\
 OP-06 \texttt{declineReplacement} & \texttt{OrderTrackingController.\allowbreak{}answer\_\allowbreak{}replacement(self, user\_\allowbreak{}id: int, order\_\allowbreak{}id: int, offer\_\allowbreak{}id: int, accept: bool) -\textgreater{} OrderDetail}; BEGIN IMMEDIATE & SUC03-PC04; UC05-MG01 (decline/reject and BR-17; stale or failed save leaves Order unchanged) & P4 status: see Table P4-1 F-02; P2-S13 \\
@@ -43,7 +43,7 @@ OP-06 \texttt{declineReplacement} & \texttt{OrderTrackingController.\allowbreak{
 \begin{figure}[p]
 \centering
 \includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-05/seq_uc05_viewKitchenOrders.png}}
-\caption{Figure 3.5.4.OP-19. UC-05 viewKitchenOrders --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0193}
+\caption{Figure 3.5.4.OP-19. UC-05 viewKitchenOrders --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = element completed during implementation (Table P4-1).}\label{P7-0193}
 \end{figure}
 \end{landscape}
 Read-only active role + own Customer / own kitchen hub checks; denied context discloses no foreign details. Receipt/offer amounts say refund owed, never paid out (F-06 where applicable). Read snapshots, .total and offer attributes; no fabricated business getters. No persistent writes.
@@ -54,7 +54,7 @@ Read-only active role + own Customer / own kitchen hub checks; denied context di
 \begin{figure}[p]
 \centering
 \includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-05/seq_uc05_viewKitchenOrder.png}}
-\caption{Figure 3.5.4.OP-20. UC-05 viewKitchenOrder --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0194}
+\caption{Figure 3.5.4.OP-20. UC-05 viewKitchenOrder --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = element completed during implementation (Table P4-1).}\label{P7-0194}
 \end{figure}
 \end{landscape}
 \textbf{OP-02 confirmOrder}
@@ -63,7 +63,7 @@ Read-only active role + own Customer / own kitchen hub checks; denied context di
 \begin{figure}[p]
 \centering
 \includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-05/seq_uc05_confirmOrder.png}}
-\caption{Figure 3.5.4.OP-02. UC-05 confirmOrder --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0195}
+\caption{Figure 3.5.4.OP-02. UC-05 confirmOrder --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = element completed during implementation (Table P4-1).}\label{P7-0195}
 \end{figure}
 \end{landscape}
 Active own-hub staff; own PLACED; no open OFFERED. Atomic guarded state change + confirmed\_at. No repricing/payment change. Conditional rowcount and busy/write/commit rollback (P2-S13, P3-S03).
@@ -74,7 +74,7 @@ Active own-hub staff; own PLACED; no open OFFERED. Atomic guarded state change +
 \begin{figure}[p]
 \centering
 \includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-05/seq_uc05_rejectOrder.png}}
-\caption{Figure 3.5.4.OP-03A. UC-05 rejectOrder --- Part A --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0196}
+\caption{Figure 3.5.4.OP-03A. UC-05 rejectOrder --- Part A --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = element completed during implementation (Table P4-1).}\label{P7-0196}
 \end{figure}
 \end{landscape}
 Guard: active own-hub Kitchen staff; PLACED; nonempty reason. Atomic REJECTED + closed\_at / reason; COD VOIDED; ONLINE REFUND\_PENDING, refund\_amount=C replaces any partial owed amount. No payout. Open offer WITHDRAWN; helpers are real module functions. Rowcount, busy and failure-through-COMMIT rollback. P4 resolution (see Table P4-1): release\_payment persists the full-C refund amount together with state and checks every conditional save in the same transaction (F-02; P2-S01; P3-S03).
@@ -83,7 +83,7 @@ Guard: active own-hub Kitchen staff; PLACED; nonempty reason. Atomic REJECTED + 
 \begin{figure}[p]
 \centering
 \includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-05/seq_uc05_rejectOrder_PartB.png}}
-\caption{Figure 3.5.4.OP-03B. UC-05 rejectOrder --- Part B --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0197}
+\caption{Figure 3.5.4.OP-03B. UC-05 rejectOrder --- Part B --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = element completed during implementation (Table P4-1).}\label{P7-0197}
 \end{figure}
 \end{landscape}
 \textbf{OP-04 offerReplacement}
@@ -92,7 +92,7 @@ Guard: active own-hub Kitchen staff; PLACED; nonempty reason. Atomic REJECTED + 
 \begin{figure}[p]
 \centering
 \includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-05/seq_uc05_offerReplacement.png}}
-\caption{Figure 3.5.4.OP-04. UC-05 offerReplacement --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0198}
+\caption{Figure 3.5.4.OP-04. UC-05 offerReplacement --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = element completed during implementation (Table P4-1).}\label{P7-0198}
 \end{figure}
 \end{landscape}
 Active own-hub PLACED; no open offer. Source currently sold out/unlisted/archived. Target active + active Brand, same-hub listed/available, different and absent from other lines; offered unit price \ensuremath{\leq} source snapshot. Atomic OFFERED with unchanged quantity/Order PLACED (PC03). Fail/lock/commit rollback; no request waits for Customer.
@@ -103,7 +103,7 @@ Active own-hub PLACED; no open offer. Source currently sold out/unlisted/archive
 \begin{figure}[p]
 \centering
 \includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-05/seq_uc05_viewMyOrders.png}}
-\caption{Figure 3.5.4.OP-17. UC-05 viewMyOrders --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0199}
+\caption{Figure 3.5.4.OP-17. UC-05 viewMyOrders --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = element completed during implementation (Table P4-1).}\label{P7-0199}
 \end{figure}
 \end{landscape}
 \textbf{OP-18 viewReplacement}
@@ -112,7 +112,7 @@ Active own-hub PLACED; no open offer. Source currently sold out/unlisted/archive
 \begin{figure}[p]
 \centering
 \includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-05/seq_uc05_viewReplacement.png}}
-\caption{Figure 3.5.4.OP-18. UC-05 viewReplacement --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0200}
+\caption{Figure 3.5.4.OP-18. UC-05 viewReplacement --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = element completed during implementation (Table P4-1).}\label{P7-0200}
 \end{figure}
 \end{landscape}
 \textbf{OP-05 acceptReplacement}
@@ -121,7 +121,7 @@ Active own-hub PLACED; no open offer. Source currently sold out/unlisted/archive
 \begin{figure}[p]
 \centering
 \includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-05/seq_uc05_acceptReplacement_PartA.png}}
-\caption{Figure 3.5.4.OP-05A. UC-05 acceptReplacement --- Part A --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0201}
+\caption{Figure 3.5.4.OP-05A. UC-05 acceptReplacement --- Part A --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = element completed during implementation (Table P4-1).}\label{P7-0201}
 \end{figure}
 \end{landscape}
 Before mutation: active owner + own PLACED + exact open OFFERED belongs to order. Recheck target active, active Brand, listed + AVAILABLE at same hub. Ineligible owner/state/offer \ensuremath{\rightarrow} staleRefusal, 0 changed rows. Invalid target \ensuremath{\rightarrow} only exact offer WITHDRAWN with returned reason; Order/lines/payment unchanged (MG01).
@@ -130,7 +130,7 @@ Before mutation: active owner + own PLACED + exact open OFFERED belongs to order
 \begin{figure}[p]
 \centering
 \includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-05/seq_uc05_acceptReplacement_PartB.png}}
-\caption{Figure 3.5.4.OP-05B. UC-05 acceptReplacement --- Part B --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0202}
+\caption{Figure 3.5.4.OP-05B. UC-05 acceptReplacement --- Part B --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = element completed during implementation (Table P4-1).}\label{P7-0202}
 \end{figure}
 \end{landscape}
 Valid acceptance continues atomically: use offered price, whole line, same quantity; Snew; Dnew=min(Dold,Snew), F/Q unchanged; Tnew=Snew\ensuremath{-}Dnew+F\ensuremath{-}Q. Read Order.total property, set offer ACCEPTED through data access. COD amount=Tnew; ONLINE state PAID, C unchanged, refund\_amount=C\ensuremath{-}Tnew. Order stays PLACED (PC04), never auto-confirms. Any conditional 0-row/lock/write/commit failure \ensuremath{\rightarrow} complete rollback, MG01.
@@ -139,7 +139,7 @@ Valid acceptance continues atomically: use offered price, whole line, same quant
 \begin{figure}[p]
 \centering
 \includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-05/seq_uc05_acceptReplacement_PartC.png}}
-\caption{Figure 3.5.4.OP-05C. UC-05 acceptReplacement --- Part C --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0203}
+\caption{Figure 3.5.4.OP-05C. UC-05 acceptReplacement --- Part C --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = element completed during implementation (Table P4-1).}\label{P7-0203}
 \end{figure}
 \end{landscape}
 \textbf{OP-06 declineReplacement}
@@ -148,7 +148,7 @@ Valid acceptance continues atomically: use offered price, whole line, same quant
 \begin{figure}[p]
 \centering
 \includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-05/seq_uc05_declineReplacement.png}}
-\caption{Figure 3.5.4.OP-06A. UC-05 declineReplacement --- Part A --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0204}
+\caption{Figure 3.5.4.OP-06A. UC-05 declineReplacement --- Part A --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = element completed during implementation (Table P4-1).}\label{P7-0204}
 \end{figure}
 \end{landscape}
 Guard: active own Customer; PLACED; exact open OFFERED with matching order/offer IDs. SUC03-PC04: atomic REJECTED + closed\_at / reason; COD VOIDED; ONLINE REFUND\_PENDING, refund\_amount=C replaces any partial owed amount. No payout. Open offer DECLINED; helpers are real module functions. Rowcount, busy and failure-through-COMMIT rollback. P4 resolution (see Table P4-1): release\_payment persists the full-C refund amount together with state and checks every conditional save in the same transaction (F-02; P2-S01; P3-S03).
@@ -157,6 +157,6 @@ Guard: active own Customer; PLACED; exact open OFFERED with matching order/offer
 \begin{figure}[p]
 \centering
 \includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-05/seq_uc05_declineReplacement_PartB.png}}
-\caption{Figure 3.5.4.OP-06B. UC-05 declineReplacement --- Part B --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0205}
+\caption{Figure 3.5.4.OP-06B. UC-05 declineReplacement --- Part B --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = element completed during implementation (Table P4-1).}\label{P7-0205}
 \end{figure}
 \end{landscape}

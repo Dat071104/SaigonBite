@@ -22,8 +22,8 @@ Element & Typed declaration & Status / qualification \\
 \hline\endfirsthead
 Element & Typed declaration & Status / qualification \\
 \hline\endhead
-Operation & \texttt{- \_\allowbreak{}hubs() -\textgreater{} HubController} & MATCH \\
-Operation & \texttt{+ hubs() -\textgreater{} Any [inferred] } & P4 scoped evidence (P4.2; resolution rows 62); C0 rationale: ; inferred annotation(s); P3-S02 \\
+Operation & \texttt{- \_\allowbreak{}hubs() -\textgreater{} HubController} & Matches code \\
+Operation & \texttt{+ hubs() -\textgreater{} Any [inferred] } & Changed during implementation and tested (P4.2; Table P4-1 rows 62); Reason: ; inferred annotation(s); P3-S02 \\
 Operation & \texttt{+ new\_\allowbreak{}hub() -\textgreater{} Any [inferred]} & MATCH; inferred annotation(s) \\
 Operation & \texttt{+ edit\_\allowbreak{}hub(hub\_\allowbreak{}id: int) -\textgreater{} Any [inferred]} & MATCH; inferred annotation(s) \\
 Operation & \texttt{+ archive\_\allowbreak{}hub(hub\_\allowbreak{}id: int) -\textgreater{} Any [inferred]} & MATCH; inferred annotation(s) \\
@@ -31,15 +31,15 @@ Operation & \texttt{+ archive\_\allowbreak{}hub(hub\_\allowbreak{}id: int) -\tex
 Route adapters (AST):
 
 \begin{itemize}
-\item \texttt{\{'blueprint\_\allowbreak{}variable': 'bp', 'blueprint': 'admin', 'rule': '/\allowbreak{}admin/\allowbreak{}', 'declared\_\allowbreak{}rule': '/\allowbreak{}', 'methods': ['GET'], 'view\_\allowbreak{}function': 'hubs', 'signature': 'hubs()', 'decorators': ["bp.\allowbreak{}get('/\allowbreak{}')", "bp.\allowbreak{}get('/\allowbreak{}hubs')", 'role\_\allowbreak{}required(Role.\allowbreak{}ADMIN)']\}}
+\item \texttt{GET /\allowbreak{}admin/\allowbreak{}} \ensuremath{\rightarrow} view function \texttt{admin.\allowbreak{}hubs}
 
-\item \texttt{\{'blueprint\_\allowbreak{}variable': 'bp', 'blueprint': 'admin', 'rule': '/\allowbreak{}admin/\allowbreak{}hubs', 'declared\_\allowbreak{}rule': '/\allowbreak{}hubs', 'methods': ['GET'], 'view\_\allowbreak{}function': 'hubs', 'signature': 'hubs()', 'decorators': ["bp.\allowbreak{}get('/\allowbreak{}')", "bp.\allowbreak{}get('/\allowbreak{}hubs')", 'role\_\allowbreak{}required(Role.\allowbreak{}ADMIN)']\}}
+\item \texttt{GET /\allowbreak{}admin/\allowbreak{}hubs} \ensuremath{\rightarrow} view function \texttt{admin.\allowbreak{}hubs}
 
-\item \texttt{\{'blueprint\_\allowbreak{}variable': 'bp', 'blueprint': 'admin', 'rule': '/\allowbreak{}admin/\allowbreak{}hubs/\allowbreak{}new', 'declared\_\allowbreak{}rule': '/\allowbreak{}hubs/\allowbreak{}new', 'methods': ['GET', 'POST'], 'view\_\allowbreak{}function': 'new\_\allowbreak{}hub', 'signature': 'new\_\allowbreak{}hub()', 'decorators': ["bp.\allowbreak{}route('/\allowbreak{}hubs/\allowbreak{}new', methods=['GET', 'POST'])", 'role\_\allowbreak{}required(Role.\allowbreak{}ADMIN)']\}}
+\item \texttt{GET/\allowbreak{}POST /\allowbreak{}admin/\allowbreak{}hubs/\allowbreak{}new} \ensuremath{\rightarrow} view function \texttt{admin.\allowbreak{}new\_\allowbreak{}hub}
 
-\item \texttt{\{'blueprint\_\allowbreak{}variable': 'bp', 'blueprint': 'admin', 'rule': '/\allowbreak{}admin/\allowbreak{}hubs/\allowbreak{}\textless{}int:hub\_\allowbreak{}id\textgreater{}', 'declared\_\allowbreak{}rule': '/\allowbreak{}hubs/\allowbreak{}\textless{}int:hub\_\allowbreak{}id\textgreater{}', 'methods': ['GET', 'POST'], 'view\_\allowbreak{}function': 'edit\_\allowbreak{}hub', 'signature': 'edit\_\allowbreak{}hub(hub\_\allowbreak{}id: int)', 'decorators': ["bp.\allowbreak{}route('/\allowbreak{}hubs/\allowbreak{}\textless{}int:hub\_\allowbreak{}id\textgreater{}', methods=['GET', 'POST'])", 'role\_\allowbreak{}required(Role.\allowbreak{}ADMIN)']\}}
+\item \texttt{GET/\allowbreak{}POST /\allowbreak{}admin/\allowbreak{}hubs/\allowbreak{}\textless{}int:hub\_\allowbreak{}id\textgreater{}} \ensuremath{\rightarrow} view function \texttt{admin.\allowbreak{}edit\_\allowbreak{}hub}
 
-\item \texttt{\{'blueprint\_\allowbreak{}variable': 'bp', 'blueprint': 'admin', 'rule': '/\allowbreak{}admin/\allowbreak{}hubs/\allowbreak{}\textless{}int:hub\_\allowbreak{}id\textgreater{}/\allowbreak{}archive', 'declared\_\allowbreak{}rule': '/\allowbreak{}hubs/\allowbreak{}\textless{}int:hub\_\allowbreak{}id\textgreater{}/\allowbreak{}archive', 'methods': ['POST'], 'view\_\allowbreak{}function': 'archive\_\allowbreak{}hub', 'signature': 'archive\_\allowbreak{}hub(hub\_\allowbreak{}id: int)', 'decorators': ["bp.\allowbreak{}post('/\allowbreak{}hubs/\allowbreak{}\textless{}int:hub\_\allowbreak{}id\textgreater{}/\allowbreak{}archive')", 'role\_\allowbreak{}required(Role.\allowbreak{}ADMIN)']\}}
+\item \texttt{POST /\allowbreak{}admin/\allowbreak{}hubs/\allowbreak{}\textless{}int:hub\_\allowbreak{}id\textgreater{}/\allowbreak{}archive} \ensuremath{\rightarrow} view function \texttt{admin.\allowbreak{}archive\_\allowbreak{}hub}
 
 \end{itemize}
 \textbf{HubController}
@@ -52,12 +52,12 @@ Element & Typed declaration & Status / qualification \\
 Element & Typed declaration & Status / qualification \\
 \hline\endhead
 Attribute & \texttt{+ hubs: HubDAO} & MATCH; inferred \\
-Operation & \texttt{+ list\_\allowbreak{}hubs(user\_\allowbreak{}id: int, include\_\allowbreak{}archived: bool = True) -\textgreater{} list[HubAdminView] } & P4 scoped evidence (P4.2; resolution rows 28); C0 rationale: ; P3-S02 \\
-Operation & \texttt{+ get\_\allowbreak{}hub(user\_\allowbreak{}id: int, hub\_\allowbreak{}id: int) -\textgreater{} HubAdminView} & MATCH \\
-Operation & \texttt{+ create\_\allowbreak{}hub(user\_\allowbreak{}id: int, form: Mapping[str, str]) -\textgreater{} Hub } & P4 scoped evidence (P4.1 + P4.2; resolution rows 29); C0 rationale: ; P2-S13; P3-S03 \\
-Operation & \texttt{+ update\_\allowbreak{}hub(user\_\allowbreak{}id: int, hub\_\allowbreak{}id: int, form: Mapping[str, str]) -\textgreater{} Hub } & P4 scoped evidence (P4.1 + P4.2; resolution rows 30); C0 rationale: ; P2-S13; P3-S03 \\
-Operation & \texttt{+ archive\_\allowbreak{}hub(user\_\allowbreak{}id: int, hub\_\allowbreak{}id: int) -\textgreater{} Hub } & P4 scoped evidence (P4.1 + P4.2; resolution rows 31); C0 rationale: ; P2-S13; P3-S03 \\
-Operation & \texttt{- \_\allowbreak{}require\_\allowbreak{}admin(user\_\allowbreak{}id: int) -\textgreater{} None} & MATCH \\
+Operation & \texttt{+ list\_\allowbreak{}hubs(user\_\allowbreak{}id: int, include\_\allowbreak{}archived: bool = True) -\textgreater{} list[HubAdminView] } & Changed during implementation and tested (P4.2; Table P4-1 rows 28); Reason: ; P3-S02 \\
+Operation & \texttt{+ get\_\allowbreak{}hub(user\_\allowbreak{}id: int, hub\_\allowbreak{}id: int) -\textgreater{} HubAdminView} & Matches code \\
+Operation & \texttt{+ create\_\allowbreak{}hub(user\_\allowbreak{}id: int, form: Mapping[str, str]) -\textgreater{} Hub } & P4 scoped evidence (P4.1 + P4.2; resolution rows 29); Reason: ; P2-S13; P3-S03 \\
+Operation & \texttt{+ update\_\allowbreak{}hub(user\_\allowbreak{}id: int, hub\_\allowbreak{}id: int, form: Mapping[str, str]) -\textgreater{} Hub } & P4 scoped evidence (P4.1 + P4.2; resolution rows 30); Reason: ; P2-S13; P3-S03 \\
+Operation & \texttt{+ archive\_\allowbreak{}hub(user\_\allowbreak{}id: int, hub\_\allowbreak{}id: int) -\textgreater{} Hub } & P4 scoped evidence (P4.1 + P4.2; resolution rows 31); Reason: ; P2-S13; P3-S03 \\
+Operation & \texttt{- \_\allowbreak{}require\_\allowbreak{}admin(user\_\allowbreak{}id: int) -\textgreater{} None} & Matches code \\
 Operation & \texttt{- \_\allowbreak{}parse(form: Mapping[str, str], hub\_\allowbreak{}id: Any) -\textgreater{} Hub [inferred]} & MATCH; inferred annotation(s) \\
 \end{longtable}
 \textbf{HubAdminView}
@@ -69,8 +69,8 @@ Element & Typed declaration & Status / qualification \\
 \hline\endfirsthead
 Element & Typed declaration & Status / qualification \\
 \hline\endhead
-Attribute & \texttt{+ status: HubStatus} & MATCH \\
-Attribute & \texttt{+ open\_\allowbreak{}orders: int} & MATCH \\
+Attribute & \texttt{+ status: HubStatus} & Matches code \\
+Attribute & \texttt{+ open\_\allowbreak{}orders: int} & Matches code \\
 Operation & \texttt{+ can\_\allowbreak{}archive() -\textgreater{} bool} & MATCH; property accessor \\
 \end{longtable}
 \textbf{HubStatus}
@@ -82,8 +82,8 @@ Element & Typed declaration & Status / qualification \\
 \hline\endfirsthead
 Element & Typed declaration & Status / qualification \\
 \hline\endhead
-Attribute & \texttt{+ hub: Hub} & MATCH \\
-Attribute & \texttt{+ load: int} & MATCH \\
+Attribute & \texttt{+ hub: Hub} & Matches code \\
+Attribute & \texttt{+ load: int} & Matches code \\
 Operation & \texttt{+ busy() -\textgreater{} bool} & MATCH; property accessor \\
 Operation & \texttt{+ quiet() -\textgreater{} bool} & MATCH; property accessor \\
 Operation & \texttt{+ load\_\allowbreak{}percent() -\textgreater{} int} & MATCH; property accessor \\
@@ -97,15 +97,15 @@ Element & Typed declaration & Status / qualification \\
 \hline\endfirsthead
 Element & Typed declaration & Status / qualification \\
 \hline\endhead
-Attribute & \texttt{+ id: int} & MATCH \\
-Attribute & \texttt{+ code: str} & MATCH \\
-Attribute & \texttt{+ name: str} & MATCH \\
-Attribute & \texttt{+ address\_\allowbreak{}text: str} & MATCH \\
-Attribute & \texttt{+ latitude: float} & MATCH \\
-Attribute & \texttt{+ longitude: float} & MATCH \\
-Attribute & \texttt{+ max\_\allowbreak{}active\_\allowbreak{}orders: int} & MATCH \\
-Attribute & \texttt{+ base\_\allowbreak{}delivery\_\allowbreak{}fee: int} & MATCH \\
-Attribute & \texttt{+ archived\_\allowbreak{}at: Optional[str]} & MATCH \\
+Attribute & \texttt{+ id: int} & Matches code \\
+Attribute & \texttt{+ code: str} & Matches code \\
+Attribute & \texttt{+ name: str} & Matches code \\
+Attribute & \texttt{+ address\_\allowbreak{}text: str} & Matches code \\
+Attribute & \texttt{+ latitude: float} & Matches code \\
+Attribute & \texttt{+ longitude: float} & Matches code \\
+Attribute & \texttt{+ max\_\allowbreak{}active\_\allowbreak{}orders: int} & Matches code \\
+Attribute & \texttt{+ base\_\allowbreak{}delivery\_\allowbreak{}fee: int} & Matches code \\
+Attribute & \texttt{+ archived\_\allowbreak{}at: Optional[str]} & Matches code \\
 \end{longtable}
 \textbf{HubDAO}
 
@@ -116,17 +116,17 @@ Element & Typed declaration & Status / qualification \\
 \hline\endfirsthead
 Element & Typed declaration & Status / qualification \\
 \hline\endhead
-Attribute & \texttt{+ conn: sqlite3.\allowbreak{}Connection} & MATCH \\
-Operation & \texttt{+ list\_\allowbreak{}active() -\textgreater{} list[Hub]} & MATCH \\
-Operation & \texttt{+ list\_\allowbreak{}all() -\textgreater{} list[Hub]} & MATCH \\
-Operation & \texttt{+ get\_\allowbreak{}including\_\allowbreak{}archived(hub\_\allowbreak{}id: int) -\textgreater{} Optional[Hub]} & MATCH \\
-Operation & \texttt{+ code\_\allowbreak{}exists(code: str, except\_\allowbreak{}id: Optional[int] = None) -\textgreater{} bool} & MATCH \\
-Operation & \texttt{+ insert(hub: Hub) -\textgreater{} int} & MATCH \\
-Operation & \texttt{+ update(hub: Hub) -\textgreater{} bool} & MATCH \\
-Operation & \texttt{+ archive(hub\_\allowbreak{}id: int, now: str) -\textgreater{} bool} & MATCH \\
-Operation & \texttt{+ active\_\allowbreak{}load(hub\_\allowbreak{}id: int) -\textgreater{} int} & MATCH \\
-Operation & \texttt{+ active\_\allowbreak{}loads() -\textgreater{} dict[int, int]} & MATCH \\
-Operation & \texttt{+ open\_\allowbreak{}order\_\allowbreak{}count(hub\_\allowbreak{}id: int) -\textgreater{} int} & MATCH \\
+Attribute & \texttt{+ conn: sqlite3.\allowbreak{}Connection} & Matches code \\
+Operation & \texttt{+ list\_\allowbreak{}active() -\textgreater{} list[Hub]} & Matches code \\
+Operation & \texttt{+ list\_\allowbreak{}all() -\textgreater{} list[Hub]} & Matches code \\
+Operation & \texttt{+ get\_\allowbreak{}including\_\allowbreak{}archived(hub\_\allowbreak{}id: int) -\textgreater{} Optional[Hub]} & Matches code \\
+Operation & \texttt{+ code\_\allowbreak{}exists(code: str, except\_\allowbreak{}id: Optional[int] = None) -\textgreater{} bool} & Matches code \\
+Operation & \texttt{+ insert(hub: Hub) -\textgreater{} int} & Matches code \\
+Operation & \texttt{+ update(hub: Hub) -\textgreater{} bool} & Matches code \\
+Operation & \texttt{+ archive(hub\_\allowbreak{}id: int, now: str) -\textgreater{} bool} & Matches code \\
+Operation & \texttt{+ active\_\allowbreak{}load(hub\_\allowbreak{}id: int) -\textgreater{} int} & Matches code \\
+Operation & \texttt{+ active\_\allowbreak{}loads() -\textgreater{} dict[int, int]} & Matches code \\
+Operation & \texttt{+ open\_\allowbreak{}order\_\allowbreak{}count(hub\_\allowbreak{}id: int) -\textgreater{} int} & Matches code \\
 \end{longtable}
 \textbf{BaseController}
 
@@ -137,11 +137,11 @@ Element & Typed declaration & Status / qualification \\
 \hline\endfirsthead
 Element & Typed declaration & Status / qualification \\
 \hline\endhead
-Attribute & \texttt{+ conn: sqlite3.\allowbreak{}Connection} & MATCH \\
+Attribute & \texttt{+ conn: sqlite3.\allowbreak{}Connection} & Matches code \\
 Attribute & \texttt{+ clock: Any} & MATCH; inferred \\
 Attribute & \texttt{+ users: UserDAO} & MATCH; inferred \\
-Operation & \texttt{- \_\allowbreak{}now() -\textgreater{} str} & MATCH \\
-Operation & \texttt{- \_\allowbreak{}require\_\allowbreak{}user(user\_\allowbreak{}id: int, *roles: Role, message: str = 'Your account cannot do this.\allowbreak{}') -\textgreater{} UserAccount} & MATCH \\
+Operation & \texttt{- \_\allowbreak{}now() -\textgreater{} str} & Matches code \\
+Operation & \texttt{- \_\allowbreak{}require\_\allowbreak{}user(user\_\allowbreak{}id: int, *roles: Role, message: str = 'Your account cannot do this.\allowbreak{}') -\textgreater{} UserAccount} & Matches code \\
 \end{longtable}
 \textbf{UserAccount}
 
@@ -152,14 +152,14 @@ Element & Typed declaration & Status / qualification \\
 \hline\endfirsthead
 Element & Typed declaration & Status / qualification \\
 \hline\endhead
-Attribute & \texttt{+ id: int} & MATCH \\
-Attribute & \texttt{+ username: str} & MATCH \\
-Attribute & \texttt{+ password\_\allowbreak{}hash: str} & MATCH \\
-Attribute & \texttt{+ display\_\allowbreak{}name: str} & MATCH \\
-Attribute & \texttt{+ role: Role} & MATCH \\
-Attribute & \texttt{+ is\_\allowbreak{}active: bool} & MATCH \\
+Attribute & \texttt{+ id: int} & Matches code \\
+Attribute & \texttt{+ username: str} & Matches code \\
+Attribute & \texttt{+ password\_\allowbreak{}hash: str} & Matches code \\
+Attribute & \texttt{+ display\_\allowbreak{}name: str} & Matches code \\
+Attribute & \texttt{+ role: Role} & Matches code \\
+Attribute & \texttt{+ is\_\allowbreak{}active: bool} & Matches code \\
 Attribute & \texttt{+ hub\_\allowbreak{}id: Optional[int]} & MATCH; association backing ID, omitted on DCD \\
-Attribute & \texttt{+ created\_\allowbreak{}at: str} & P4 scoped evidence (P4.1; resolution rows 53); C0 rationale: \\
+Attribute & \texttt{+ created\_\allowbreak{}at: str} & Changed during implementation and tested (P4.1; Table P4-1 rows 53); Reason: \\
 \end{longtable}
 \textbf{Role}
 
@@ -185,8 +185,8 @@ Element & Typed declaration & Status / qualification \\
 \hline\endfirsthead
 Element & Typed declaration & Status / qualification \\
 \hline\endhead
-Attribute & \texttt{+ conn: sqlite3.\allowbreak{}Connection} & MATCH \\
-Operation & \texttt{+ get\_\allowbreak{}by\_\allowbreak{}id(user\_\allowbreak{}id: int) -\textgreater{} Optional[UserAccount]} & MATCH \\
+Attribute & \texttt{+ conn: sqlite3.\allowbreak{}Connection} & Matches code \\
+Operation & \texttt{+ get\_\allowbreak{}by\_\allowbreak{}id(user\_\allowbreak{}id: int) -\textgreater{} Optional[UserAccount]} & Matches code \\
 \end{longtable}
 \textbf{Boundary adapters and guarantees}
 

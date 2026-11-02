@@ -7,7 +7,7 @@ Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
 \begin{figure}[p]
 \centering
 \includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/shared/package_diagram.png}}
-\caption{Figure 4.2. Package architecture and C0 dependency policy --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0323}
+\caption{Figure 4.2. Package architecture and C0 dependency policy --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = element completed during implementation (Table P4-1).}\label{P7-0323}
 \end{figure}
 \end{landscape}
 The diagram shows the permitted package dependencies: presentation routes depend on controllers; controllers depend on domain objects and data access; the domain package has no outward application-layer dependency. Dashed arrows show only those permitted dependencies. The import audit beside the packages reports actual C0 violations separately, without drawing them as allowed architecture.
@@ -37,7 +37,7 @@ Evidence is Static at C0 \texttt{45ac76221b0a103174c7c01d17577e6e49cfd665}. The 
 \begin{figure}[p]
 \centering
 \includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{docs/part2/implementation/architecture_amendment/package_4_2A.png}}
-\caption{Figure 4.2A. Current P4 amendment --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). Solid open arrows show runtime responsibilities; the dashed open arrow admits only the exact policy entries below. Native draw.io editing remains UNTESTED.}\label{P7-0324}
+\caption{Figure 4.2A. Current P4 amendment --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). Solid open arrows show runtime responsibilities; the dashed open arrow admits only the exact policy entries below.}\label{P7-0324}
 \end{figure}
 \end{landscape}
 The effective current model is the frozen P3 class/method model plus the reproducible dependency overlay. The model hash is recorded in the evidence index. Frozen DCDs are class/member/responsibility slices, not complete current import graphs; Figure 4.2A and \texttt{dependency\_\allowbreak{}overlay.\allowbreak{}json} supply the named current dependency projection without rewriting any P3 signatures/statuses/PC/MG identities.

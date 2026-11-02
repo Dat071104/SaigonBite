@@ -5,7 +5,7 @@
 
 Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
 
-The class tables record the C0 design and the later P4 resolution. P4 status and scoped evidence are listed in the P4 status appendix; unchanged static correspondences remain marked MATCH.
+Each table lists the members of one design class. "Matches code" means the member exists in the code with exactly this signature. "Changed during implementation and tested" means the first design (commit C0 = 45ac762, 24/10/2026) was corrected while coding; the reason is given and the tests are listed in Table P4-1 (Appendix).
 
 Properties have signatures for traceability but are read as attributes; dataclass \guillemotleft{}create\guillemotright{} means implicit initialization, not an invented business method. Unannotated types are marked inferred. Templates are presentation resources, not design classes.
 
@@ -26,17 +26,17 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Attribute & \texttt{+ hubs: HubDAO} \textbf{inferred} & MATCH \\
-Attribute & \texttt{+ menu: MenuDAO} \textbf{inferred} & MATCH \\
-Attribute & \texttt{+ orders: OrderDAO} \textbf{inferred} & MATCH \\
-Attribute & \texttt{+ payments: PaymentDAO} \textbf{inferred} & MATCH \\
-Attribute & \texttt{+ deliveries: DeliveryDAO} \textbf{inferred} & MATCH \\
-Attribute & \texttt{+ offers: ReplacementOfferDAO} \textbf{inferred} & MATCH \\
-Operation & \texttt{+ board(self, user\_\allowbreak{}id: int) -\textgreater{} KitchenBoard} & MATCH \\
-Operation & \texttt{+ get\_\allowbreak{}order(self, user\_\allowbreak{}id: int, order\_\allowbreak{}id: int) -\textgreater{} KitchenOrderView} & MATCH \\
-Operation & \texttt{+ confirm\_\allowbreak{}order(self, user\_\allowbreak{}id: int, order\_\allowbreak{}id: int) -\textgreater{} Order} & P4 scoped evidence (P4.1 + P4.4; resolution rows 18); C0 rationale: P2-S13; P3-S03; Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete. \\
-Operation & \texttt{+ reject\_\allowbreak{}order(self, user\_\allowbreak{}id: int, order\_\allowbreak{}id: int, reason: str) -\textgreater{} Order} & P4 scoped evidence (P4.4; resolution rows 16); C0 rationale: F-02; P2-S13; BR-17 full C refund owed and atomic state/amount writes, including COMMIT rollback. \\
-Operation & \texttt{+ offer\_\allowbreak{}replacement(self, user\_\allowbreak{}id: int, order\_\allowbreak{}id: int, order\_\allowbreak{}line\_\allowbreak{}id: int, new\_\allowbreak{}menu\_\allowbreak{}item\_\allowbreak{}id: int) -\textgreater{} ReplacementOffer} & P4 scoped evidence (P4.4; resolution rows 17); C0 rationale: F-05; P2-S09; P2-S13; Require currently unavailable source; target active/listed/available; one open offer; check every conditional save result. \\
+Attribute & \texttt{+ hubs: HubDAO} \textbf{inferred} & Matches code \\
+Attribute & \texttt{+ menu: MenuDAO} \textbf{inferred} & Matches code \\
+Attribute & \texttt{+ orders: OrderDAO} \textbf{inferred} & Matches code \\
+Attribute & \texttt{+ payments: PaymentDAO} \textbf{inferred} & Matches code \\
+Attribute & \texttt{+ deliveries: DeliveryDAO} \textbf{inferred} & Matches code \\
+Attribute & \texttt{+ offers: ReplacementOfferDAO} \textbf{inferred} & Matches code \\
+Operation & \texttt{+ board(self, user\_\allowbreak{}id: int) -\textgreater{} KitchenBoard} & Matches code \\
+Operation & \texttt{+ get\_\allowbreak{}order(self, user\_\allowbreak{}id: int, order\_\allowbreak{}id: int) -\textgreater{} KitchenOrderView} & Matches code \\
+Operation & \texttt{+ confirm\_\allowbreak{}order(self, user\_\allowbreak{}id: int, order\_\allowbreak{}id: int) -\textgreater{} Order} & P4 scoped evidence (P4.1 + P4.4; resolution rows 18); Reason: P2-S13; P3-S03; Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete. \\
+Operation & \texttt{+ reject\_\allowbreak{}order(self, user\_\allowbreak{}id: int, order\_\allowbreak{}id: int, reason: str) -\textgreater{} Order} & Changed during implementation and tested (P4.4; Table P4-1 rows 16); Reason: F-02; P2-S13; BR-17 full C refund owed and atomic state/amount writes, including COMMIT rollback. \\
+Operation & \texttt{+ offer\_\allowbreak{}replacement(self, user\_\allowbreak{}id: int, order\_\allowbreak{}id: int, order\_\allowbreak{}line\_\allowbreak{}id: int, new\_\allowbreak{}menu\_\allowbreak{}item\_\allowbreak{}id: int) -\textgreater{} ReplacementOffer} & Changed during implementation and tested (P4.4; Table P4-1 rows 17); Reason: F-05; P2-S09; P2-S13; Require currently unavailable source; target active/listed/available; one open offer; check every conditional save result. \\
 \end{longtable}
 \textbf{kitchen}
 
@@ -55,11 +55,11 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Operation & \texttt{+ board() -\textgreater{} Any [inferred return]} \textbf{inferred unannotated parameter/return} & MATCH \\
-Operation & \texttt{+ order(order\_\allowbreak{}id: int) -\textgreater{} Any [inferred return]} \textbf{inferred unannotated parameter/return} & MATCH \\
-Operation & \texttt{+ confirm(order\_\allowbreak{}id: int) -\textgreater{} Any [inferred return]} \textbf{inferred unannotated parameter/return} & MATCH \\
-Operation & \texttt{+ reject(order\_\allowbreak{}id: int) -\textgreater{} Any [inferred return]} \textbf{inferred unannotated parameter/return} & MATCH \\
-Operation & \texttt{+ offer(order\_\allowbreak{}id: int) -\textgreater{} Any [inferred return]} \textbf{inferred unannotated parameter/return} & MATCH \\
+Operation & \texttt{+ board() -\textgreater{} Any [inferred return]} \textbf{inferred unannotated parameter/return} & Matches code \\
+Operation & \texttt{+ order(order\_\allowbreak{}id: int) -\textgreater{} Any [inferred return]} \textbf{inferred unannotated parameter/return} & Matches code \\
+Operation & \texttt{+ confirm(order\_\allowbreak{}id: int) -\textgreater{} Any [inferred return]} \textbf{inferred unannotated parameter/return} & Matches code \\
+Operation & \texttt{+ reject(order\_\allowbreak{}id: int) -\textgreater{} Any [inferred return]} \textbf{inferred unannotated parameter/return} & Matches code \\
+Operation & \texttt{+ offer(order\_\allowbreak{}id: int) -\textgreater{} Any [inferred return]} \textbf{inferred unannotated parameter/return} & Matches code \\
 \end{longtable}
 \textbf{HubDAO}
 
@@ -78,10 +78,10 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Attribute & \texttt{+ conn: sqlite3.\allowbreak{}Connection} & MATCH \\
-Operation & \texttt{+ get\_\allowbreak{}including\_\allowbreak{}archived(self, hub\_\allowbreak{}id: int) -\textgreater{} Optional[Hub]} & MATCH \\
-Operation & \texttt{+ list\_\allowbreak{}menu(self, hub\_\allowbreak{}id: int) -\textgreater{} list[HubMenuItem]} & MATCH \\
-Operation & \texttt{+ get\_\allowbreak{}available\_\allowbreak{}item(self, hub\_\allowbreak{}id: int, menu\_\allowbreak{}item\_\allowbreak{}id: int) -\textgreater{} Optional[MenuItem]} & MATCH \\
+Attribute & \texttt{+ conn: sqlite3.\allowbreak{}Connection} & Matches code \\
+Operation & \texttt{+ get\_\allowbreak{}including\_\allowbreak{}archived(self, hub\_\allowbreak{}id: int) -\textgreater{} Optional[Hub]} & Matches code \\
+Operation & \texttt{+ list\_\allowbreak{}menu(self, hub\_\allowbreak{}id: int) -\textgreater{} list[HubMenuItem]} & Matches code \\
+Operation & \texttt{+ get\_\allowbreak{}available\_\allowbreak{}item(self, hub\_\allowbreak{}id: int, menu\_\allowbreak{}item\_\allowbreak{}id: int) -\textgreater{} Optional[MenuItem]} & Matches code \\
 \end{longtable}
 \textbf{OrderDAO}
 
@@ -92,7 +92,7 @@ Detail & Design \\
 \hline\endhead
 Layer / stereotype & data\_access / \guillemotleft{}DAO\guillemotright{} \\
 Responsibility & Read or write parameterized records. \\
-Class status & P4 scoped evidence (P4.4, P4.7; resolution rows 43, 44, 45) \\
+Class status & Changed during implementation and tested (P4.4, P4.7; Table P4-1 rows 43, 44, 45) \\
 Source & \texttt{saigonbite/\allowbreak{}data\_\allowbreak{}access/\allowbreak{}order\_\allowbreak{}dao.\allowbreak{}py} \\
 \end{longtable}
 \begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
@@ -100,13 +100,13 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Attribute & \texttt{+ conn: sqlite3.\allowbreak{}Connection} & MATCH \\
-Operation & \texttt{- \_\allowbreak{}load(self, row: Optional[sqlite3.\allowbreak{}Row]) -\textgreater{} Optional[Order]} & MATCH \\
-Operation & \texttt{+ list\_\allowbreak{}for\_\allowbreak{}hub(self, hub\_\allowbreak{}id: int, states: Iterable[OrderState]) -\textgreater{} list[Order]} & MATCH \\
-Operation & \texttt{+ get\_\allowbreak{}by\_\allowbreak{}id(self, order\_\allowbreak{}id: int) -\textgreater{} Optional[Order]} & MATCH \\
-Operation & \texttt{+ change\_\allowbreak{}state(self, order\_\allowbreak{}id: int, from\_\allowbreak{}state: OrderState, to\_\allowbreak{}state: OrderState, now: str, reject\_\allowbreak{}reason: Optional[str]=None) -\textgreater{} bool} & MATCH \\
-Operation & \texttt{+ list\_\allowbreak{}for\_\allowbreak{}customer(self, customer\_\allowbreak{}id: int) -\textgreater{} list[Order]} & MATCH \\
-Operation & \texttt{+ save\_\allowbreak{}lines\_\allowbreak{}and\_\allowbreak{}totals(self, order: Order) -\textgreater{} bool} & P4 scoped evidence (P4.4; resolution rows 43, 44); C0 rationale: P2-S09; P2-S11; P3-S03; Apply replacement only to expected PLACED order and check each affected line/header rowcount. \\
+Attribute & \texttt{+ conn: sqlite3.\allowbreak{}Connection} & Matches code \\
+Operation & \texttt{- \_\allowbreak{}load(self, row: Optional[sqlite3.\allowbreak{}Row]) -\textgreater{} Optional[Order]} & Matches code \\
+Operation & \texttt{+ list\_\allowbreak{}for\_\allowbreak{}hub(self, hub\_\allowbreak{}id: int, states: Iterable[OrderState]) -\textgreater{} list[Order]} & Matches code \\
+Operation & \texttt{+ get\_\allowbreak{}by\_\allowbreak{}id(self, order\_\allowbreak{}id: int) -\textgreater{} Optional[Order]} & Matches code \\
+Operation & \texttt{+ change\_\allowbreak{}state(self, order\_\allowbreak{}id: int, from\_\allowbreak{}state: OrderState, to\_\allowbreak{}state: OrderState, now: str, reject\_\allowbreak{}reason: Optional[str]=None) -\textgreater{} bool} & Matches code \\
+Operation & \texttt{+ list\_\allowbreak{}for\_\allowbreak{}customer(self, customer\_\allowbreak{}id: int) -\textgreater{} list[Order]} & Matches code \\
+Operation & \texttt{+ save\_\allowbreak{}lines\_\allowbreak{}and\_\allowbreak{}totals(self, order: Order) -\textgreater{} bool} & Changed during implementation and tested (P4.4; Table P4-1 rows 43, 44); Reason: P2-S09; P2-S11; P3-S03; Apply replacement only to expected PLACED order and check each affected line/header rowcount. \\
 \end{longtable}
 \textbf{ReplacementOfferDAO}
 
@@ -125,11 +125,11 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Attribute & \texttt{+ conn: sqlite3.\allowbreak{}Connection} & MATCH \\
-Operation & \texttt{+ get\_\allowbreak{}open(self, order\_\allowbreak{}id: int) -\textgreater{} Optional[ReplacementOffer]} & MATCH \\
-Operation & \texttt{+ list\_\allowbreak{}for\_\allowbreak{}order(self, order\_\allowbreak{}id: int) -\textgreater{} list[ReplacementOffer]} & MATCH \\
-Operation & \texttt{+ decide(self, offer\_\allowbreak{}id: int, to\_\allowbreak{}state: OfferState, now: str) -\textgreater{} bool} & MATCH \\
-Operation & \texttt{+ insert(self, offer: ReplacementOffer) -\textgreater{} int} & MATCH \\
+Attribute & \texttt{+ conn: sqlite3.\allowbreak{}Connection} & Matches code \\
+Operation & \texttt{+ get\_\allowbreak{}open(self, order\_\allowbreak{}id: int) -\textgreater{} Optional[ReplacementOffer]} & Matches code \\
+Operation & \texttt{+ list\_\allowbreak{}for\_\allowbreak{}order(self, order\_\allowbreak{}id: int) -\textgreater{} list[ReplacementOffer]} & Matches code \\
+Operation & \texttt{+ decide(self, offer\_\allowbreak{}id: int, to\_\allowbreak{}state: OfferState, now: str) -\textgreater{} bool} & Matches code \\
+Operation & \texttt{+ insert(self, offer: ReplacementOffer) -\textgreater{} int} & Matches code \\
 \end{longtable}
 \textbf{UserDAO}
 
@@ -148,8 +148,8 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Attribute & \texttt{+ conn: sqlite3.\allowbreak{}Connection} & MATCH \\
-Operation & \texttt{+ get\_\allowbreak{}by\_\allowbreak{}id(self, user\_\allowbreak{}id: int) -\textgreater{} Optional[UserAccount]} & MATCH \\
+Attribute & \texttt{+ conn: sqlite3.\allowbreak{}Connection} & Matches code \\
+Operation & \texttt{+ get\_\allowbreak{}by\_\allowbreak{}id(self, user\_\allowbreak{}id: int) -\textgreater{} Optional[UserAccount]} & Matches code \\
 \end{longtable}
 \textbf{PaymentDAO}
 
@@ -160,7 +160,7 @@ Detail & Design \\
 \hline\endhead
 Layer / stereotype & data\_access / \guillemotleft{}DAO\guillemotright{} \\
 Responsibility & Read or write parameterized records. \\
-Class status & P4 scoped evidence (P4.4; resolution rows 46, 47, 48, 49, 50) \\
+Class status & Changed during implementation and tested (P4.4; Table P4-1 rows 46, 47, 48, 49, 50) \\
 Source & \texttt{saigonbite/\allowbreak{}data\_\allowbreak{}access/\allowbreak{}payment\_\allowbreak{}dao.\allowbreak{}py} \\
 \end{longtable}
 \begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
@@ -168,10 +168,10 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Attribute & \texttt{+ conn: sqlite3.\allowbreak{}Connection} & MATCH \\
-Operation & \texttt{+ get\_\allowbreak{}by\_\allowbreak{}order\_\allowbreak{}id(self, order\_\allowbreak{}id: int) -\textgreater{} Optional[Payment]} & MATCH \\
-Operation & \texttt{+ change\_\allowbreak{}state(self, order\_\allowbreak{}id: int, from\_\allowbreak{}state: PaymentState, to\_\allowbreak{}state: PaymentState, now: str) -\textgreater{} bool} & MATCH \\
-Operation & \texttt{+ set\_\allowbreak{}amounts(self, order\_\allowbreak{}id: int, amount: int, refund\_\allowbreak{}amount: int, now: str) -\textgreater{} bool} & P4 scoped evidence (P4.4; resolution rows 46, 47, 48, 49, 50); C0 rationale: F-02; P3-S03; Persist full/partial refund obligations atomically and expose the conditional save outcome. \\
+Attribute & \texttt{+ conn: sqlite3.\allowbreak{}Connection} & Matches code \\
+Operation & \texttt{+ get\_\allowbreak{}by\_\allowbreak{}order\_\allowbreak{}id(self, order\_\allowbreak{}id: int) -\textgreater{} Optional[Payment]} & Matches code \\
+Operation & \texttt{+ change\_\allowbreak{}state(self, order\_\allowbreak{}id: int, from\_\allowbreak{}state: PaymentState, to\_\allowbreak{}state: PaymentState, now: str) -\textgreater{} bool} & Matches code \\
+Operation & \texttt{+ set\_\allowbreak{}amounts(self, order\_\allowbreak{}id: int, amount: int, refund\_\allowbreak{}amount: int, now: str) -\textgreater{} bool} & Changed during implementation and tested (P4.4; Table P4-1 rows 46, 47, 48, 49, 50); Reason: F-02; P3-S03; Persist full/partial refund obligations atomically and expose the conditional save outcome. \\
 \end{longtable}
 \textbf{Order}
 
@@ -190,29 +190,29 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Attribute & \texttt{+ customer\_\allowbreak{}id: int} (FK retained here; omitted from DCD) & MATCH \\
-Attribute & \texttt{+ hub\_\allowbreak{}id: int} (FK retained here; omitted from DCD) & MATCH \\
-Attribute & \texttt{+ address\_\allowbreak{}id: int} (FK retained here; omitted from DCD) & MATCH \\
-Attribute & \texttt{+ state: OrderState} & MATCH \\
-Attribute & \texttt{+ delivery\_\allowbreak{}fee: int} & MATCH \\
-Attribute & \texttt{+ idempotency\_\allowbreak{}token: str} & MATCH \\
-Attribute & \texttt{+ placed\_\allowbreak{}at: str} & MATCH \\
-Attribute & \texttt{+ lines: list[OrderLine]} & MATCH \\
-Attribute & \texttt{+ id: Optional[int]} & MATCH \\
-Attribute & \texttt{+ archived\_\allowbreak{}at: Optional[str]} & MATCH \\
-Attribute & \texttt{+ delivery\_\allowbreak{}address\_\allowbreak{}text: str} & MATCH \\
-Attribute & \texttt{+ distance\_\allowbreak{}km: float} & MATCH \\
-Attribute & \texttt{+ voucher\_\allowbreak{}id: Optional[int]} (FK retained here; omitted from DCD) & MATCH \\
-Attribute & \texttt{+ voucher\_\allowbreak{}discount: int} & MATCH \\
-Attribute & \texttt{+ quiet\_\allowbreak{}discount: int} & MATCH \\
-Attribute & \texttt{+ reject\_\allowbreak{}reason: Optional[str]} & MATCH \\
-Attribute & \texttt{+ confirmed\_\allowbreak{}at: Optional[str]} & MATCH \\
-Attribute & \texttt{+ ready\_\allowbreak{}at: Optional[str]} & MATCH \\
-Attribute & \texttt{+ closed\_\allowbreak{}at: Optional[str]} & MATCH \\
-Operation & \texttt{+ move\_\allowbreak{}to(self, new\_\allowbreak{}state: OrderState) -\textgreater{} None} & MATCH \\
-Operation & \texttt{+ line(self, line\_\allowbreak{}id: int) -\textgreater{} Optional[OrderLine]} & MATCH \\
-Operation & \texttt{+ replace\_\allowbreak{}line(self, line\_\allowbreak{}id: int, menu\_\allowbreak{}item\_\allowbreak{}id: int, item\_\allowbreak{}name: str, unit\_\allowbreak{}price: int) -\textgreater{} None} & MATCH \\
-Read-only property & \texttt{+ total(self) -\textgreater{} int \{property; read as .\allowbreak{}total\}} & MATCH \\
+Attribute & \texttt{+ customer\_\allowbreak{}id: int} (FK retained here; omitted from DCD) & Matches code \\
+Attribute & \texttt{+ hub\_\allowbreak{}id: int} (FK retained here; omitted from DCD) & Matches code \\
+Attribute & \texttt{+ address\_\allowbreak{}id: int} (FK retained here; omitted from DCD) & Matches code \\
+Attribute & \texttt{+ state: OrderState} & Matches code \\
+Attribute & \texttt{+ delivery\_\allowbreak{}fee: int} & Matches code \\
+Attribute & \texttt{+ idempotency\_\allowbreak{}token: str} & Matches code \\
+Attribute & \texttt{+ placed\_\allowbreak{}at: str} & Matches code \\
+Attribute & \texttt{+ lines: list[OrderLine]} & Matches code \\
+Attribute & \texttt{+ id: Optional[int]} & Matches code \\
+Attribute & \texttt{+ archived\_\allowbreak{}at: Optional[str]} & Matches code \\
+Attribute & \texttt{+ delivery\_\allowbreak{}address\_\allowbreak{}text: str} & Matches code \\
+Attribute & \texttt{+ distance\_\allowbreak{}km: float} & Matches code \\
+Attribute & \texttt{+ voucher\_\allowbreak{}id: Optional[int]} (FK retained here; omitted from DCD) & Matches code \\
+Attribute & \texttt{+ voucher\_\allowbreak{}discount: int} & Matches code \\
+Attribute & \texttt{+ quiet\_\allowbreak{}discount: int} & Matches code \\
+Attribute & \texttt{+ reject\_\allowbreak{}reason: Optional[str]} & Matches code \\
+Attribute & \texttt{+ confirmed\_\allowbreak{}at: Optional[str]} & Matches code \\
+Attribute & \texttt{+ ready\_\allowbreak{}at: Optional[str]} & Matches code \\
+Attribute & \texttt{+ closed\_\allowbreak{}at: Optional[str]} & Matches code \\
+Operation & \texttt{+ move\_\allowbreak{}to(self, new\_\allowbreak{}state: OrderState) -\textgreater{} None} & Matches code \\
+Operation & \texttt{+ line(self, line\_\allowbreak{}id: int) -\textgreater{} Optional[OrderLine]} & Matches code \\
+Operation & \texttt{+ replace\_\allowbreak{}line(self, line\_\allowbreak{}id: int, menu\_\allowbreak{}item\_\allowbreak{}id: int, item\_\allowbreak{}name: str, unit\_\allowbreak{}price: int) -\textgreater{} None} & Matches code \\
+Read-only property & \texttt{+ total(self) -\textgreater{} int \{property; read as .\allowbreak{}total\}} & Matches code \\
 \end{longtable}
 \textbf{Payment}
 
@@ -223,7 +223,7 @@ Detail & Design \\
 \hline\endhead
 Layer / stereotype & domain / \guillemotleft{}entity\guillemotright{} \\
 Responsibility & Hold captured amount C and refund obligations without claiming payout. \\
-Class status & P4 scoped evidence (P4.4; resolution rows 9, 10, 11, 12) \\
+Class status & Changed during implementation and tested (P4.4; Table P4-1 rows 9, 10, 11, 12) \\
 Source & \texttt{saigonbite/\allowbreak{}business/\allowbreak{}domain/\allowbreak{}models.\allowbreak{}py} \\
 \end{longtable}
 \begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
@@ -231,17 +231,17 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Attribute & \texttt{+ order\_\allowbreak{}id: int} (FK retained here; omitted from DCD) & MATCH \\
-Attribute & \texttt{+ method: PaymentMethod} & MATCH \\
-Attribute & \texttt{+ state: PaymentState} & MATCH \\
-Attribute & \texttt{+ amount: int} & MATCH \\
-Attribute & \texttt{+ created\_\allowbreak{}at: str} & MATCH \\
-Attribute & \texttt{+ updated\_\allowbreak{}at: Optional[str]} & MATCH \\
-Attribute & \texttt{+ online\_\allowbreak{}option: Optional[OnlineOption]} & MATCH \\
-Attribute & \texttt{+ provider\_\allowbreak{}ref: Optional[str]} & MATCH \\
-Attribute & \texttt{+ refund\_\allowbreak{}amount: int} & MATCH \\
-Attribute & \texttt{+ id: Optional[int]} & MATCH \\
-Operation & \texttt{+ release\_\allowbreak{}for\_\allowbreak{}unfulfilled\_\allowbreak{}order(self) -\textgreater{} None} & P4 scoped evidence (P4.4; resolution rows 9, 10, 11, 12); C0 rationale: F-02; P2-S01; Set refund\_amount=C with REFUND\_PENDING; preserve COD VOIDED; no payout operation. \\
+Attribute & \texttt{+ order\_\allowbreak{}id: int} (FK retained here; omitted from DCD) & Matches code \\
+Attribute & \texttt{+ method: PaymentMethod} & Matches code \\
+Attribute & \texttt{+ state: PaymentState} & Matches code \\
+Attribute & \texttt{+ amount: int} & Matches code \\
+Attribute & \texttt{+ created\_\allowbreak{}at: str} & Matches code \\
+Attribute & \texttt{+ updated\_\allowbreak{}at: Optional[str]} & Matches code \\
+Attribute & \texttt{+ online\_\allowbreak{}option: Optional[OnlineOption]} & Matches code \\
+Attribute & \texttt{+ provider\_\allowbreak{}ref: Optional[str]} & Matches code \\
+Attribute & \texttt{+ refund\_\allowbreak{}amount: int} & Matches code \\
+Attribute & \texttt{+ id: Optional[int]} & Matches code \\
+Operation & \texttt{+ release\_\allowbreak{}for\_\allowbreak{}unfulfilled\_\allowbreak{}order(self) -\textgreater{} None} & Changed during implementation and tested (P4.4; Table P4-1 rows 9, 10, 11, 12); Reason: F-02; P2-S01; Set refund\_amount=C with REFUND\_PENDING; preserve COD VOIDED; no payout operation. \\
 \end{longtable}
 \textbf{OrderTrackingController}
 
@@ -252,7 +252,7 @@ Detail & Design \\
 \hline\endhead
 Layer / stereotype & controller / \guillemotleft{}controller\guillemotright{} \\
 Responsibility & Coordinate authorization, domain decisions and data access. \\
-Class status & P4 scoped evidence (P4.4; resolution rows 13, 14, 15) \\
+Class status & Changed during implementation and tested (P4.4; Table P4-1 rows 13, 14, 15) \\
 Source & \texttt{saigonbite/\allowbreak{}business/\allowbreak{}controllers/\allowbreak{}order\_\allowbreak{}tracking\_\allowbreak{}controller.\allowbreak{}py} \\
 \end{longtable}
 \begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
@@ -260,17 +260,17 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Attribute & \texttt{+ customers: CustomerDAO} \textbf{inferred} & MATCH \\
-Attribute & \texttt{+ orders: OrderDAO} \textbf{inferred} & MATCH \\
-Attribute & \texttt{+ payments: PaymentDAO} \textbf{inferred} & MATCH \\
-Attribute & \texttt{+ hubs: HubDAO} \textbf{inferred} & MATCH \\
-Attribute & \texttt{+ deliveries: DeliveryDAO} \textbf{inferred} & MATCH \\
-Attribute & \texttt{+ offers: ReplacementOfferDAO} \textbf{inferred} & MATCH \\
-Operation & \texttt{+ list\_\allowbreak{}my\_\allowbreak{}orders(self, user\_\allowbreak{}id: int) -\textgreater{} list[OrderSummary]} & MATCH \\
-Operation & \texttt{+ get\_\allowbreak{}order(self, user\_\allowbreak{}id: int, order\_\allowbreak{}id: int) -\textgreater{} OrderDetail} & MATCH \\
-Operation & \texttt{+ answer\_\allowbreak{}replacement(self, user\_\allowbreak{}id: int, order\_\allowbreak{}id: int, offer\_\allowbreak{}id: int, accept: bool) -\textgreater{} OrderDetail} & P4 scoped evidence (P4.4; resolution rows 13, 14); C0 rationale: F-05; F-02; P2-S09; P2-S11; P2-S13; Recheck PLACED and exact open offer; recheck target; invalid target withdraws only the offer; valid accept uses offered price; controlled rollback through COMMIT. \\
-Operation & \texttt{- \_\allowbreak{}own\_\allowbreak{}order(self, customer: Customer, order\_\allowbreak{}id: int) -\textgreater{} Order} & MATCH \\
-Operation & \texttt{- \_\allowbreak{}require\_\allowbreak{}customer(self, user\_\allowbreak{}id: int) -\textgreater{} Customer} & MATCH \\
+Attribute & \texttt{+ customers: CustomerDAO} \textbf{inferred} & Matches code \\
+Attribute & \texttt{+ orders: OrderDAO} \textbf{inferred} & Matches code \\
+Attribute & \texttt{+ payments: PaymentDAO} \textbf{inferred} & Matches code \\
+Attribute & \texttt{+ hubs: HubDAO} \textbf{inferred} & Matches code \\
+Attribute & \texttt{+ deliveries: DeliveryDAO} \textbf{inferred} & Matches code \\
+Attribute & \texttt{+ offers: ReplacementOfferDAO} \textbf{inferred} & Matches code \\
+Operation & \texttt{+ list\_\allowbreak{}my\_\allowbreak{}orders(self, user\_\allowbreak{}id: int) -\textgreater{} list[OrderSummary]} & Matches code \\
+Operation & \texttt{+ get\_\allowbreak{}order(self, user\_\allowbreak{}id: int, order\_\allowbreak{}id: int) -\textgreater{} OrderDetail} & Matches code \\
+Operation & \texttt{+ answer\_\allowbreak{}replacement(self, user\_\allowbreak{}id: int, order\_\allowbreak{}id: int, offer\_\allowbreak{}id: int, accept: bool) -\textgreater{} OrderDetail} & Changed during implementation and tested (P4.4; Table P4-1 rows 13, 14); Reason: F-05; F-02; P2-S09; P2-S11; P2-S13; Recheck PLACED and exact open offer; recheck target; invalid target withdraws only the offer; valid accept uses offered price; controlled rollback through COMMIT. \\
+Operation & \texttt{- \_\allowbreak{}own\_\allowbreak{}order(self, customer: Customer, order\_\allowbreak{}id: int) -\textgreater{} Order} & Matches code \\
+Operation & \texttt{- \_\allowbreak{}require\_\allowbreak{}customer(self, user\_\allowbreak{}id: int) -\textgreater{} Customer} & Matches code \\
 \end{longtable}
 \textbf{order}
 
@@ -281,7 +281,7 @@ Detail & Design \\
 \hline\endhead
 Layer / stereotype & view / \guillemotleft{}view\guillemotright{} \\
 Responsibility & Translate authenticated customer routes and render quote, receipt and order results. \\
-Class status & P4 scoped evidence (P4.3; resolution rows 60, 61) \\
+Class status & Changed during implementation and tested (P4.3; Table P4-1 rows 60, 61) \\
 Source & \texttt{saigonbite/\allowbreak{}presentation/\allowbreak{}order.\allowbreak{}py} \\
 \end{longtable}
 \begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
@@ -289,9 +289,9 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Operation & \texttt{+ my\_\allowbreak{}orders() -\textgreater{} Any [inferred return]} \textbf{inferred unannotated parameter/return} & MATCH \\
-Operation & \texttt{+ detail(order\_\allowbreak{}id: int) -\textgreater{} Any [inferred return]} \textbf{inferred unannotated parameter/return} & MATCH \\
-Operation & \texttt{+ answer\_\allowbreak{}replacement(order\_\allowbreak{}id: int) -\textgreater{} Any [inferred return]} \textbf{inferred unannotated parameter/return} & MATCH \\
+Operation & \texttt{+ my\_\allowbreak{}orders() -\textgreater{} Any [inferred return]} \textbf{inferred unannotated parameter/return} & Matches code \\
+Operation & \texttt{+ detail(order\_\allowbreak{}id: int) -\textgreater{} Any [inferred return]} \textbf{inferred unannotated parameter/return} & Matches code \\
+Operation & \texttt{+ answer\_\allowbreak{}replacement(order\_\allowbreak{}id: int) -\textgreater{} Any [inferred return]} \textbf{inferred unannotated parameter/return} & Matches code \\
 \end{longtable}
 \textbf{CustomerDAO}
 
@@ -310,8 +310,8 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Attribute & \texttt{+ conn: sqlite3.\allowbreak{}Connection} & MATCH \\
-Operation & \texttt{+ get\_\allowbreak{}by\_\allowbreak{}user\_\allowbreak{}id(self, user\_\allowbreak{}id: int) -\textgreater{} Optional[Customer]} & MATCH \\
+Attribute & \texttt{+ conn: sqlite3.\allowbreak{}Connection} & Matches code \\
+Operation & \texttt{+ get\_\allowbreak{}by\_\allowbreak{}user\_\allowbreak{}id(self, user\_\allowbreak{}id: int) -\textgreater{} Optional[Customer]} & Matches code \\
 \end{longtable}
 \textbf{OrderDetail}
 
@@ -330,13 +330,13 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Attribute & \texttt{+ order: Order} & MATCH \\
-Attribute & \texttt{+ payment: Payment} & MATCH \\
-Attribute & \texttt{+ hub: Hub} & MATCH \\
-Attribute & \texttt{+ delivery: Optional[Delivery]} & MATCH \\
-Attribute & \texttt{+ open\_\allowbreak{}offer: Optional[ReplacementOffer]} & MATCH \\
-Attribute & \texttt{+ offers: list[ReplacementOffer]} & MATCH \\
-Read-only property & \texttt{+ total\_\allowbreak{}if\_\allowbreak{}accepted(self) -\textgreater{} Optional[int] \{property; read as .\allowbreak{}total\_\allowbreak{}if\_\allowbreak{}accepted\}} & MATCH \\
+Attribute & \texttt{+ order: Order} & Matches code \\
+Attribute & \texttt{+ payment: Payment} & Matches code \\
+Attribute & \texttt{+ hub: Hub} & Matches code \\
+Attribute & \texttt{+ delivery: Optional[Delivery]} & Matches code \\
+Attribute & \texttt{+ open\_\allowbreak{}offer: Optional[ReplacementOffer]} & Matches code \\
+Attribute & \texttt{+ offers: list[ReplacementOffer]} & Matches code \\
+Read-only property & \texttt{+ total\_\allowbreak{}if\_\allowbreak{}accepted(self) -\textgreater{} Optional[int] \{property; read as .\allowbreak{}total\_\allowbreak{}if\_\allowbreak{}accepted\}} & Matches code \\
 \end{longtable}
 \textbf{DeliveryDAO}
 
@@ -355,8 +355,8 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Attribute & \texttt{+ conn: sqlite3.\allowbreak{}Connection} & MATCH \\
-Operation & \texttt{+ get\_\allowbreak{}by\_\allowbreak{}order\_\allowbreak{}id(self, order\_\allowbreak{}id: int) -\textgreater{} Optional[Delivery]} & MATCH \\
+Attribute & \texttt{+ conn: sqlite3.\allowbreak{}Connection} & Matches code \\
+Operation & \texttt{+ get\_\allowbreak{}by\_\allowbreak{}order\_\allowbreak{}id(self, order\_\allowbreak{}id: int) -\textgreater{} Optional[Delivery]} & Matches code \\
 \end{longtable}
 \textbf{controllers.common}
 
@@ -367,7 +367,7 @@ Detail & Design \\
 \hline\endhead
 Layer / stereotype & controller / \guillemotleft{}module\guillemotright{} \\
 Responsibility & Module functions with their original Python signatures. \\
-Class status & P4 scoped evidence (P4.4; resolution rows 54) \\
+Class status & Changed during implementation and tested (P4.4; Table P4-1 rows 54) \\
 Source & \texttt{saigonbite/\allowbreak{}business/\allowbreak{}controllers/\allowbreak{}common.\allowbreak{}py} \\
 \end{longtable}
 \begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
@@ -375,8 +375,8 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Operation & \texttt{+ move\_\allowbreak{}order(orders: OrderDAO, order: Order, to\_\allowbreak{}state: OrderState, now: str, reject\_\allowbreak{}reason: Optional[str]=None) -\textgreater{} None} & MATCH \\
-Operation & \texttt{+ release\_\allowbreak{}payment(payments: PaymentDAO, order\_\allowbreak{}id: int, now: str) -\textgreater{} Payment} & P4 scoped evidence (P4.4; resolution rows 54); C0 rationale: F-02; P2-S01; P3-S03; Persist full captured C as refund\_amount together with state; changing only the domain object does not save the amount. Check conditional save results in the same transaction. \\
+Operation & \texttt{+ move\_\allowbreak{}order(orders: OrderDAO, order: Order, to\_\allowbreak{}state: OrderState, now: str, reject\_\allowbreak{}reason: Optional[str]=None) -\textgreater{} None} & Matches code \\
+Operation & \texttt{+ release\_\allowbreak{}payment(payments: PaymentDAO, order\_\allowbreak{}id: int, now: str) -\textgreater{} Payment} & Changed during implementation and tested (P4.4; Table P4-1 rows 54); Reason: F-02; P2-S01; P3-S03; Persist full captured C as refund\_amount together with state; changing only the domain object does not save the amount. Check conditional save results in the same transaction. \\
 \end{longtable}
 \textbf{ReplacementOffer}
 
@@ -395,18 +395,18 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Attribute & \texttt{+ order\_\allowbreak{}id: int} (FK retained here; omitted from DCD) & MATCH \\
-Attribute & \texttt{+ order\_\allowbreak{}line\_\allowbreak{}id: int} (FK retained here; omitted from DCD) & MATCH \\
-Attribute & \texttt{+ original\_\allowbreak{}item\_\allowbreak{}name: str} & MATCH \\
-Attribute & \texttt{+ original\_\allowbreak{}unit\_\allowbreak{}price: int} & MATCH \\
-Attribute & \texttt{+ new\_\allowbreak{}menu\_\allowbreak{}item\_\allowbreak{}id: int} (FK retained here; omitted from DCD) & MATCH \\
-Attribute & \texttt{+ new\_\allowbreak{}item\_\allowbreak{}name: str} & MATCH \\
-Attribute & \texttt{+ new\_\allowbreak{}unit\_\allowbreak{}price: int} & MATCH \\
-Attribute & \texttt{+ state: OfferState} & MATCH \\
-Attribute & \texttt{+ offered\_\allowbreak{}at: str} & MATCH \\
-Attribute & \texttt{+ decided\_\allowbreak{}at: Optional[str]} & MATCH \\
-Attribute & \texttt{+ id: Optional[int]} & MATCH \\
-Operation & \texttt{+ move\_\allowbreak{}to(self, new\_\allowbreak{}state: OfferState) -\textgreater{} None} & MATCH \\
+Attribute & \texttt{+ order\_\allowbreak{}id: int} (FK retained here; omitted from DCD) & Matches code \\
+Attribute & \texttt{+ order\_\allowbreak{}line\_\allowbreak{}id: int} (FK retained here; omitted from DCD) & Matches code \\
+Attribute & \texttt{+ original\_\allowbreak{}item\_\allowbreak{}name: str} & Matches code \\
+Attribute & \texttt{+ original\_\allowbreak{}unit\_\allowbreak{}price: int} & Matches code \\
+Attribute & \texttt{+ new\_\allowbreak{}menu\_\allowbreak{}item\_\allowbreak{}id: int} (FK retained here; omitted from DCD) & Matches code \\
+Attribute & \texttt{+ new\_\allowbreak{}item\_\allowbreak{}name: str} & Matches code \\
+Attribute & \texttt{+ new\_\allowbreak{}unit\_\allowbreak{}price: int} & Matches code \\
+Attribute & \texttt{+ state: OfferState} & Matches code \\
+Attribute & \texttt{+ offered\_\allowbreak{}at: str} & Matches code \\
+Attribute & \texttt{+ decided\_\allowbreak{}at: Optional[str]} & Matches code \\
+Attribute & \texttt{+ id: Optional[int]} & Matches code \\
+Operation & \texttt{+ move\_\allowbreak{}to(self, new\_\allowbreak{}state: OfferState) -\textgreater{} None} & Matches code \\
 \end{longtable}
 \textbf{OrderLine}
 
@@ -425,11 +425,11 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Attribute & \texttt{+ menu\_\allowbreak{}item\_\allowbreak{}id: int} (FK retained here; omitted from DCD) & MATCH \\
-Attribute & \texttt{+ item\_\allowbreak{}name: str} & MATCH \\
-Attribute & \texttt{+ unit\_\allowbreak{}price: int} & MATCH \\
-Attribute & \texttt{+ quantity: int} & MATCH \\
-Attribute & \texttt{+ id: Optional[int]} & MATCH \\
+Attribute & \texttt{+ menu\_\allowbreak{}item\_\allowbreak{}id: int} (FK retained here; omitted from DCD) & Matches code \\
+Attribute & \texttt{+ item\_\allowbreak{}name: str} & Matches code \\
+Attribute & \texttt{+ unit\_\allowbreak{}price: int} & Matches code \\
+Attribute & \texttt{+ quantity: int} & Matches code \\
+Attribute & \texttt{+ id: Optional[int]} & Matches code \\
 \end{longtable}
 \textbf{Customer}
 
@@ -448,14 +448,14 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Attribute & \texttt{+ id: int} & MATCH \\
-Attribute & \texttt{+ user\_\allowbreak{}id: int} (FK retained here; omitted from DCD) & MATCH \\
-Attribute & \texttt{+ full\_\allowbreak{}name: str} & MATCH \\
-Attribute & \texttt{+ phone: Optional[str]} & MATCH \\
-Attribute & \texttt{+ email: Optional[str]} & MATCH \\
-Attribute & \texttt{+ passport\_\allowbreak{}no: Optional[str]} & MATCH \\
-Attribute & \texttt{+ nationality: Optional[str]} & MATCH \\
-Attribute & \texttt{+ customer\_\allowbreak{}type: CustomerType} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ id: int} & Matches code \\
+Attribute & \texttt{+ user\_\allowbreak{}id: int} (FK retained here; omitted from DCD) & Matches code \\
+Attribute & \texttt{+ full\_\allowbreak{}name: str} & Matches code \\
+Attribute & \texttt{+ phone: Optional[str]} & Matches code \\
+Attribute & \texttt{+ email: Optional[str]} & Matches code \\
+Attribute & \texttt{+ passport\_\allowbreak{}no: Optional[str]} & Matches code \\
+Attribute & \texttt{+ nationality: Optional[str]} & Matches code \\
+Attribute & \texttt{+ customer\_\allowbreak{}type: CustomerType} \textbf{inferred} & Matches code \\
 \end{longtable}
 \textbf{LocalCustomer}
 
@@ -474,7 +474,7 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Attribute & \texttt{+ customer\_\allowbreak{}type: CustomerType} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ customer\_\allowbreak{}type: CustomerType} \textbf{inferred} & Matches code \\
 \end{longtable}
 \textbf{TouristCustomer}
 
@@ -493,7 +493,7 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Attribute & \texttt{+ customer\_\allowbreak{}type: CustomerType} \textbf{inferred} & MATCH \\
+Attribute & \texttt{+ customer\_\allowbreak{}type: CustomerType} \textbf{inferred} & Matches code \\
 \end{longtable}
 \textbf{Address}
 
@@ -512,14 +512,14 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Attribute & \texttt{+ id: int} & MATCH \\
-Attribute & \texttt{+ customer\_\allowbreak{}id: int} (FK retained here; omitted from DCD) & MATCH \\
-Attribute & \texttt{+ label: str} & MATCH \\
-Attribute & \texttt{+ full\_\allowbreak{}address: str} & MATCH \\
-Attribute & \texttt{+ district: str} & MATCH \\
-Attribute & \texttt{+ latitude: float} & MATCH \\
-Attribute & \texttt{+ longitude: float} & MATCH \\
-Attribute & \texttt{+ archived\_\allowbreak{}at: Optional[str]} & MATCH \\
+Attribute & \texttt{+ id: int} & Matches code \\
+Attribute & \texttt{+ customer\_\allowbreak{}id: int} (FK retained here; omitted from DCD) & Matches code \\
+Attribute & \texttt{+ label: str} & Matches code \\
+Attribute & \texttt{+ full\_\allowbreak{}address: str} & Matches code \\
+Attribute & \texttt{+ district: str} & Matches code \\
+Attribute & \texttt{+ latitude: float} & Matches code \\
+Attribute & \texttt{+ longitude: float} & Matches code \\
+Attribute & \texttt{+ archived\_\allowbreak{}at: Optional[str]} & Matches code \\
 \end{longtable}
 \textbf{MenuItem}
 
@@ -538,13 +538,13 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Attribute & \texttt{+ id: int} & MATCH \\
-Attribute & \texttt{+ brand\_\allowbreak{}id: int} (FK retained here; omitted from DCD) & MATCH \\
-Attribute & \texttt{+ brand\_\allowbreak{}name: str} & MATCH \\
-Attribute & \texttt{+ name: str} & MATCH \\
-Attribute & \texttt{+ description: str} & MATCH \\
-Attribute & \texttt{+ price: int} & MATCH \\
-Attribute & \texttt{+ archived\_\allowbreak{}at: Optional[str]} & MATCH \\
+Attribute & \texttt{+ id: int} & Matches code \\
+Attribute & \texttt{+ brand\_\allowbreak{}id: int} (FK retained here; omitted from DCD) & Matches code \\
+Attribute & \texttt{+ brand\_\allowbreak{}name: str} & Matches code \\
+Attribute & \texttt{+ name: str} & Matches code \\
+Attribute & \texttt{+ description: str} & Matches code \\
+Attribute & \texttt{+ price: int} & Matches code \\
+Attribute & \texttt{+ archived\_\allowbreak{}at: Optional[str]} & Matches code \\
 \end{longtable}
 \textbf{Brand}
 
@@ -563,9 +563,9 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Attribute & \texttt{+ id: int} & MATCH \\
-Attribute & \texttt{+ name: str} & MATCH \\
-Attribute & \texttt{+ archived\_\allowbreak{}at: Optional[str]} & MATCH \\
+Attribute & \texttt{+ id: int} & Matches code \\
+Attribute & \texttt{+ name: str} & Matches code \\
+Attribute & \texttt{+ archived\_\allowbreak{}at: Optional[str]} & Matches code \\
 \end{longtable}
 \textbf{HubMenuItem}
 
@@ -584,9 +584,9 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Attribute & \texttt{+ hub\_\allowbreak{}id: int} (FK retained here; omitted from DCD) & MATCH \\
-Attribute & \texttt{+ item: MenuItem} & MATCH \\
-Attribute & \texttt{+ is\_\allowbreak{}available: bool} & MATCH \\
+Attribute & \texttt{+ hub\_\allowbreak{}id: int} (FK retained here; omitted from DCD) & Matches code \\
+Attribute & \texttt{+ item: MenuItem} & Matches code \\
+Attribute & \texttt{+ is\_\allowbreak{}available: bool} & Matches code \\
 \end{longtable}
 \textbf{UserAccount}
 
@@ -597,7 +597,7 @@ Detail & Design \\
 \hline\endhead
 Layer / stereotype & domain / \guillemotleft{}entity\guillemotright{} \\
 Responsibility & Hold account identity, role, active flag and optional kitchen-hub assignment. \\
-Class status & P4 scoped evidence (P4.1; resolution rows 53) \\
+Class status & Changed during implementation and tested (P4.1; Table P4-1 rows 53) \\
 Source & \texttt{saigonbite/\allowbreak{}business/\allowbreak{}domain/\allowbreak{}models.\allowbreak{}py} \\
 \end{longtable}
 \begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
@@ -605,14 +605,14 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Attribute & \texttt{+ id: int} & MATCH \\
-Attribute & \texttt{+ username: str} & MATCH \\
-Attribute & \texttt{+ password\_\allowbreak{}hash: str} & MATCH \\
-Attribute & \texttt{+ display\_\allowbreak{}name: str} & MATCH \\
-Attribute & \texttt{+ role: Role} & MATCH \\
-Attribute & \texttt{+ is\_\allowbreak{}active: bool} & MATCH \\
-Attribute & \texttt{+ hub\_\allowbreak{}id: Optional[int]} (FK retained here; omitted from DCD) & MATCH \\
-Attribute & \texttt{+ created\_\allowbreak{}at: str} & P4 scoped evidence (P4.1; resolution rows 53); C0 rationale: \\
+Attribute & \texttt{+ id: int} & Matches code \\
+Attribute & \texttt{+ username: str} & Matches code \\
+Attribute & \texttt{+ password\_\allowbreak{}hash: str} & Matches code \\
+Attribute & \texttt{+ display\_\allowbreak{}name: str} & Matches code \\
+Attribute & \texttt{+ role: Role} & Matches code \\
+Attribute & \texttt{+ is\_\allowbreak{}active: bool} & Matches code \\
+Attribute & \texttt{+ hub\_\allowbreak{}id: Optional[int]} (FK retained here; omitted from DCD) & Matches code \\
+Attribute & \texttt{+ created\_\allowbreak{}at: str} & Changed during implementation and tested (P4.1; Table P4-1 rows 53); Reason: \\
 \end{longtable}
 \textbf{OrderState}
 
@@ -631,16 +631,16 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Attribute & \texttt{+ PLACED: str} \textbf{inferred} & MATCH \\
-Attribute & \texttt{+ CONFIRMED: str} \textbf{inferred} & MATCH \\
-Attribute & \texttt{+ REJECTED: str} \textbf{inferred} & MATCH \\
-Attribute & \texttt{+ PREPARING: str} \textbf{inferred} & MATCH \\
-Attribute & \texttt{+ READY: str} \textbf{inferred} & MATCH \\
-Attribute & \texttt{+ OUT\_\allowbreak{}FOR\_\allowbreak{}DELIVERY: str} \textbf{inferred} & MATCH \\
-Attribute & \texttt{+ DELIVERED: str} \textbf{inferred} & MATCH \\
-Attribute & \texttt{+ DELIVERY\_\allowbreak{}FAILED: str} \textbf{inferred} & MATCH \\
-Attribute & \texttt{+ CANCELLED: str} \textbf{inferred} & MATCH \\
-Enumeration & PLACED, CONFIRMED, REJECTED, PREPARING, READY, OUT\_FOR\_DELIVERY, DELIVERED, DELIVERY\_FAILED, CANCELLED & MATCH \\
+Attribute & \texttt{+ PLACED: str} \textbf{inferred} & Matches code \\
+Attribute & \texttt{+ CONFIRMED: str} \textbf{inferred} & Matches code \\
+Attribute & \texttt{+ REJECTED: str} \textbf{inferred} & Matches code \\
+Attribute & \texttt{+ PREPARING: str} \textbf{inferred} & Matches code \\
+Attribute & \texttt{+ READY: str} \textbf{inferred} & Matches code \\
+Attribute & \texttt{+ OUT\_\allowbreak{}FOR\_\allowbreak{}DELIVERY: str} \textbf{inferred} & Matches code \\
+Attribute & \texttt{+ DELIVERED: str} \textbf{inferred} & Matches code \\
+Attribute & \texttt{+ DELIVERY\_\allowbreak{}FAILED: str} \textbf{inferred} & Matches code \\
+Attribute & \texttt{+ CANCELLED: str} \textbf{inferred} & Matches code \\
+Enumeration & PLACED, CONFIRMED, REJECTED, PREPARING, READY, OUT\_FOR\_DELIVERY, DELIVERED, DELIVERY\_FAILED, CANCELLED & Matches code \\
 \end{longtable}
 \textbf{PaymentState}
 
@@ -659,13 +659,13 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Attribute & \texttt{+ \texttt{PENDING}: str} \textbf{inferred} & MATCH \\
-Attribute & \texttt{+ PAID: str} \textbf{inferred} & MATCH \\
-Attribute & \texttt{+ FAILED: str} \textbf{inferred} & MATCH \\
-Attribute & \texttt{+ VOIDED: str} \textbf{inferred} & MATCH \\
-Attribute & \texttt{+ REFUND\_\allowbreak{}PENDING: str} \textbf{inferred} & MATCH \\
-Attribute & \texttt{+ REFUNDED: str} \textbf{inferred} & MATCH \\
-Enumeration & \texttt{PENDING}, PAID, FAILED, VOIDED, REFUND\_PENDING, REFUNDED & MATCH \\
+Attribute & \texttt{+ \texttt{PENDING}: str} \textbf{inferred} & Matches code \\
+Attribute & \texttt{+ PAID: str} \textbf{inferred} & Matches code \\
+Attribute & \texttt{+ FAILED: str} \textbf{inferred} & Matches code \\
+Attribute & \texttt{+ VOIDED: str} \textbf{inferred} & Matches code \\
+Attribute & \texttt{+ REFUND\_\allowbreak{}PENDING: str} \textbf{inferred} & Matches code \\
+Attribute & \texttt{+ REFUNDED: str} \textbf{inferred} & Matches code \\
+Enumeration & \texttt{PENDING}, PAID, FAILED, VOIDED, REFUND\_PENDING, REFUNDED & Matches code \\
 \end{longtable}
 \textbf{PaymentMethod}
 
@@ -684,9 +684,9 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Attribute & \texttt{+ COD: str} \textbf{inferred} & MATCH \\
-Attribute & \texttt{+ ONLINE: str} \textbf{inferred} & MATCH \\
-Enumeration & COD, ONLINE & MATCH \\
+Attribute & \texttt{+ COD: str} \textbf{inferred} & Matches code \\
+Attribute & \texttt{+ ONLINE: str} \textbf{inferred} & Matches code \\
+Enumeration & COD, ONLINE & Matches code \\
 \end{longtable}
 \textbf{OnlineOption}
 
@@ -705,10 +705,10 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Attribute & \texttt{+ E\_\allowbreak{}WALLET: str} \textbf{inferred} & MATCH \\
-Attribute & \texttt{+ BANK\_\allowbreak{}QR: str} \textbf{inferred} & MATCH \\
-Attribute & \texttt{+ INTERNATIONAL\_\allowbreak{}CARD: str} \textbf{inferred} & MATCH \\
-Enumeration & E\_WALLET, BANK\_QR, INTERNATIONAL\_CARD & MATCH \\
+Attribute & \texttt{+ E\_\allowbreak{}WALLET: str} \textbf{inferred} & Matches code \\
+Attribute & \texttt{+ BANK\_\allowbreak{}QR: str} \textbf{inferred} & Matches code \\
+Attribute & \texttt{+ INTERNATIONAL\_\allowbreak{}CARD: str} \textbf{inferred} & Matches code \\
+Enumeration & E\_WALLET, BANK\_QR, INTERNATIONAL\_CARD & Matches code \\
 \end{longtable}
 \textbf{OfferState}
 
@@ -727,11 +727,11 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Attribute & \texttt{+ OFFERED: str} \textbf{inferred} & MATCH \\
-Attribute & \texttt{+ ACCEPTED: str} \textbf{inferred} & MATCH \\
-Attribute & \texttt{+ DECLINED: str} \textbf{inferred} & MATCH \\
-Attribute & \texttt{+ WITHDRAWN: str} \textbf{inferred} & MATCH \\
-Enumeration & OFFERED, ACCEPTED, DECLINED, WITHDRAWN & MATCH \\
+Attribute & \texttt{+ OFFERED: str} \textbf{inferred} & Matches code \\
+Attribute & \texttt{+ ACCEPTED: str} \textbf{inferred} & Matches code \\
+Attribute & \texttt{+ DECLINED: str} \textbf{inferred} & Matches code \\
+Attribute & \texttt{+ WITHDRAWN: str} \textbf{inferred} & Matches code \\
+Enumeration & OFFERED, ACCEPTED, DECLINED, WITHDRAWN & Matches code \\
 \end{longtable}
 \textbf{Role}
 
@@ -750,12 +750,12 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Attribute & \texttt{+ CUSTOMER: str} \textbf{inferred} & MATCH \\
-Attribute & \texttt{+ KITCHEN\_\allowbreak{}STAFF: str} \textbf{inferred} & MATCH \\
-Attribute & \texttt{+ SHIPPER: str} \textbf{inferred} & MATCH \\
-Attribute & \texttt{+ ADMIN: str} \textbf{inferred} & MATCH \\
-Attribute & \texttt{+ MANAGER: str} \textbf{inferred} & MATCH \\
-Enumeration & CUSTOMER, KITCHEN\_STAFF, SHIPPER, ADMIN, MANAGER & MATCH \\
+Attribute & \texttt{+ CUSTOMER: str} \textbf{inferred} & Matches code \\
+Attribute & \texttt{+ KITCHEN\_\allowbreak{}STAFF: str} \textbf{inferred} & Matches code \\
+Attribute & \texttt{+ SHIPPER: str} \textbf{inferred} & Matches code \\
+Attribute & \texttt{+ ADMIN: str} \textbf{inferred} & Matches code \\
+Attribute & \texttt{+ MANAGER: str} \textbf{inferred} & Matches code \\
+Enumeration & CUSTOMER, KITCHEN\_STAFF, SHIPPER, ADMIN, MANAGER & Matches code \\
 \end{longtable}
 \textbf{KitchenBoard}
 
@@ -774,8 +774,8 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Attribute & \texttt{+ hub: Hub} & MATCH \\
-Attribute & \texttt{+ columns: dict[OrderState, list[BoardEntry]]} & MATCH \\
+Attribute & \texttt{+ hub: Hub} & Matches code \\
+Attribute & \texttt{+ columns: dict[OrderState, list[BoardEntry]]} & Matches code \\
 \end{longtable}
 \textbf{BoardEntry}
 
@@ -794,8 +794,8 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Attribute & \texttt{+ order: Order} & MATCH \\
-Attribute & \texttt{+ awaiting\_\allowbreak{}customer: bool} & MATCH \\
+Attribute & \texttt{+ order: Order} & Matches code \\
+Attribute & \texttt{+ awaiting\_\allowbreak{}customer: bool} & Matches code \\
 \end{longtable}
 \textbf{KitchenOrderView}
 
@@ -814,11 +814,11 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Attribute & \texttt{+ order: Order} & MATCH \\
-Attribute & \texttt{+ payment: Payment} & MATCH \\
-Attribute & \texttt{+ open\_\allowbreak{}offer: Optional[ReplacementOffer]} & MATCH \\
-Attribute & \texttt{+ offers: list[ReplacementOffer]} & MATCH \\
-Attribute & \texttt{+ candidates: dict[int, list[MenuItem]]} & MATCH \\
+Attribute & \texttt{+ order: Order} & Matches code \\
+Attribute & \texttt{+ payment: Payment} & Matches code \\
+Attribute & \texttt{+ open\_\allowbreak{}offer: Optional[ReplacementOffer]} & Matches code \\
+Attribute & \texttt{+ offers: list[ReplacementOffer]} & Matches code \\
+Attribute & \texttt{+ candidates: dict[int, list[MenuItem]]} & Matches code \\
 \end{longtable}
 \textbf{OrderSummary}
 
@@ -837,9 +837,9 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Attribute & \texttt{+ order: Order} & MATCH \\
-Attribute & \texttt{+ hub\_\allowbreak{}name: str} & MATCH \\
-Attribute & \texttt{+ awaiting\_\allowbreak{}answer: bool} & MATCH \\
+Attribute & \texttt{+ order: Order} & Matches code \\
+Attribute & \texttt{+ hub\_\allowbreak{}name: str} & Matches code \\
+Attribute & \texttt{+ awaiting\_\allowbreak{}answer: bool} & Matches code \\
 \end{longtable}
 \textbf{Hub}
 
@@ -850,7 +850,7 @@ Detail & Design \\
 \hline\endhead
 Layer / stereotype & domain / \guillemotleft{}entity\guillemotright{} \\
 Responsibility & Represent a kitchen location, capacity and fee. \\
-Class status & P4 scoped evidence (P4.3; resolution rows 7, 8) \\
+Class status & Changed during implementation and tested (P4.3; Table P4-1 rows 7, 8) \\
 Source & \texttt{saigonbite/\allowbreak{}business/\allowbreak{}domain/\allowbreak{}models.\allowbreak{}py} \\
 \end{longtable}
 \begin{longtable}{>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}>{\raggedright\arraybackslash}p{0.3067\linewidth}}
@@ -858,15 +858,15 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Attribute & \texttt{+ id: int} & MATCH \\
-Attribute & \texttt{+ code: str} & MATCH \\
-Attribute & \texttt{+ name: str} & MATCH \\
-Attribute & \texttt{+ address\_\allowbreak{}text: str} & MATCH \\
-Attribute & \texttt{+ latitude: float} & MATCH \\
-Attribute & \texttt{+ longitude: float} & MATCH \\
-Attribute & \texttt{+ max\_\allowbreak{}active\_\allowbreak{}orders: int} & MATCH \\
-Attribute & \texttt{+ base\_\allowbreak{}delivery\_\allowbreak{}fee: int} & MATCH \\
-Attribute & \texttt{+ archived\_\allowbreak{}at: Optional[str]} & MATCH \\
+Attribute & \texttt{+ id: int} & Matches code \\
+Attribute & \texttt{+ code: str} & Matches code \\
+Attribute & \texttt{+ name: str} & Matches code \\
+Attribute & \texttt{+ address\_\allowbreak{}text: str} & Matches code \\
+Attribute & \texttt{+ latitude: float} & Matches code \\
+Attribute & \texttt{+ longitude: float} & Matches code \\
+Attribute & \texttt{+ max\_\allowbreak{}active\_\allowbreak{}orders: int} & Matches code \\
+Attribute & \texttt{+ base\_\allowbreak{}delivery\_\allowbreak{}fee: int} & Matches code \\
+Attribute & \texttt{+ archived\_\allowbreak{}at: Optional[str]} & Matches code \\
 \end{longtable}
 \textbf{CustomerType}
 
@@ -885,9 +885,9 @@ Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endfirsthead
 Kind & Visible typed member / exact signature & Status / evidence \\
 \hline\endhead
-Attribute & \texttt{+ LOCAL: str} \textbf{inferred} & MATCH \\
-Attribute & \texttt{+ TOURIST: str} \textbf{inferred} & MATCH \\
-Enumeration & LOCAL, TOURIST & MATCH \\
+Attribute & \texttt{+ LOCAL: str} \textbf{inferred} & Matches code \\
+Attribute & \texttt{+ TOURIST: str} \textbf{inferred} & Matches code \\
+Enumeration & LOCAL, TOURIST & Matches code \\
 \end{longtable}
 \textbf{Presentation adapter and resources}
 

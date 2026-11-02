@@ -1,0 +1,14 @@
+class,table,attributes stored in columns of the same name,associations stored as foreign keys,columns without a same-name attribute,attributes not stored as a column
+UserAccount,user_account,"created_at, id, username, password_hash, display_name, role, is_active",hub_id → hub,—,—
+"Customer (LocalCustomer, TouristCustomer)",customer,"id, full_name, phone, email, passport_no, nationality",user_id → user_account,customer_type,—
+Address,address,"id, label, full_address, district, latitude, longitude, archived_at",customer_id → customer,—,—
+Hub,hub,"id, code, name, address_text, latitude, longitude, max_active_orders, base_delivery_fee, archived_at",—,—,—
+Brand,brand,"id, name, archived_at",—,—,—
+MenuItem,menu_item,"id, name, description, price, archived_at",brand_id → brand,—,brand_name
+HubMenuItem (association class),hub_menu_item,is_available,"hub_id → hub, menu_item_id → menu_item",—,item
+Voucher,voucher,"id, code, description, discount_type, discount_value, min_subtotal, max_discount, valid_from, valid_until, archived_at",—,—,—
+Order,orders,"id, delivery_address_text, distance_km, state, voucher_discount, delivery_fee, quiet_discount, idempotency_token, reject_reason, placed_at, confirmed_at, ready_at, closed_at, archived_at","customer_id → customer, hub_id → hub, address_id → address, voucher_id → voucher","item_subtotal, total_amount",lines
+OrderLine,order_line,"id, item_name, unit_price, quantity","order_id → orders, menu_item_id → menu_item",—,—
+Payment,payment,"id, method, online_option, provider_ref, state, amount, refund_amount, created_at, updated_at",order_id → orders,—,—
+Delivery,delivery,"id, state, ready_at, picked_up_at, finished_at, failure_reason, cash_collected","order_id → orders, shipper_id → user_account",—,—
+ReplacementOffer,replacement_offer,"id, original_item_name, original_unit_price, new_item_name, new_unit_price, state, offered_at, decided_at","order_id → orders, order_line_id → order_line, new_menu_item_id → menu_item",—,—

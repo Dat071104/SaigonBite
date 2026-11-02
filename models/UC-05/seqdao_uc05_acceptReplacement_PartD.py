@@ -113,7 +113,7 @@ def old_render(d,p):
  c.text(35,1070,d['transaction_summary'],1530)
  c.text(35,1130,d['target_note'],1530)
  c.text(35,1190,'Figure '+d['figure']+'. '+d['phase3']['operation']+' / '+d['part']+' — Author: 722I0004 · AI-assisted (Codex)',1530)
- c.text(35,1220,'Static only · 230 mm landscape · minimum 9.78 pt · native draw.io and final DOCX/PDF placement UNTESTED',1530)
+ c.text(35,1220,'SaigonBite design model · Author: 722I0004 · AI-assisted (Codex)',1530)
  c.finish(p)
 def is_arrow(m):return m['kind']!='note' or bool(m.get('draw_arrow'))
 def layout(d):
@@ -164,7 +164,7 @@ def render(d,p):
  c.text(35,1070,d['transaction_summary'],1530)
  c.text(35,1130,d['target_note'],1530)
  c.text(35,1190,'Figure '+d['figure']+'. '+d['phase3']['operation']+' / '+d['part']+' — Author: 722I0004 · AI-assisted (Codex)',1530)
- c.text(35,1220,'Static only · 230 mm landscape · minimum 9.78 pt · native draw.io and final DOCX/PDF placement UNTESTED',1530)
+ c.text(35,1220,'SaigonBite design model · Author: 722I0004 · AI-assisted (Codex)',1530)
  c.finish(p)
 if __name__=='__main__':
  p=Path(sys.argv[1]) if len(sys.argv)>1 else Path(__file__).with_suffix('.json');d=refresh(json.loads(p.read_text(encoding='utf-8-sig')),p);render(d,p.with_suffix(''))

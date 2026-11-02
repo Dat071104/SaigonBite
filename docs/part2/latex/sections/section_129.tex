@@ -1,59 +1,67 @@
 \subsubsection*{4.3.1 Map Persistent Objects to the Tables in a Database}
 \addcontentsline{toc}{subsubsection}{4.3.1 Map Persistent Objects to the Tables in a Database}
 \pdfbookmark[2]{4.3.1 Map Persistent Objects to the Tables in a Database}{p7h129}
-Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
+Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex, Claude)
 
-The schema source is the parsed schema v2 in \texttt{docs/\allowbreak{}part2/\allowbreak{}design/\allowbreak{}code\_\allowbreak{}inventory.\allowbreak{}json} at C0 \texttt{45ac76221b0a103174c7c01d17577e6e49cfd665}. It contains 13 tables, 110 columns, 18 foreign keys, seven indexes, and \texttt{user\_\allowbreak{}version = 2}. These figures and relationships are Static schema evidence; they are not a claim that application paths or constraints passed tests.
-
-The diagrams use UML associations with SQL multiplicities. \texttt{PK} marks primary-key columns, \texttt{FK} marks foreign keys, \texttt{U} marks a single-column UNIQUE constraint, \texttt{U*} marks membership in a composite or partial unique constraint, \texttt{C} marks a column participating in a CHECK, and \texttt{?} marks a nullable column. Full SQL types, NULL rules, CHECK expressions, key declarations, and enforcement notes are in the class-to-table mapping.
+Each of the 13 persistent domain classes of 2.1.7 is stored in one table of \texttt{db/\allowbreak{}schema.\allowbreak{}sql}. The delivered schema has \textbf{13 tables, 111 columns, 18 foreign keys, 7 indexes and 3 triggers} (\texttt{PRAGMA user\_\allowbreak{}version = 2}). The diagrams below are generated from that file by \texttt{models/\allowbreak{}shared/\allowbreak{}erd\_\allowbreak{}final.\allowbreak{}py}, so they show the schema exactly as it runs.
 
 \begin{landscape}
 \begin{figure}[p]
 \centering
-\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/shared/erd_schema_v2_PartA.png}}
-\caption{Figure 4.3.1A. Schema v2: identity, customer and hub records --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0325}
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/shared/erd_final_PartA.png}}
+\caption{Figure 4.3.1A. Database schema --- people, hubs, catalogue and vouchers --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Claude).}\label{P7-0621}
 \end{figure}
 \end{landscape}
 \begin{landscape}
 \begin{figure}[p]
 \centering
-\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/shared/erd_schema_v2_PartB.png}}
-\caption{Figure 4.3.1B. Schema v2: brands, menu items, hub listings and vouchers --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0326}
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/shared/erd_final_PartB.png}}
+\caption{Figure 4.3.1B. Database schema --- orders and their records --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Claude).}\label{P7-0622}
 \end{figure}
 \end{landscape}
-\begin{landscape}
-\begin{figure}[p]
-\centering
-\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/shared/erd_schema_v2_PartC.png}}
-\caption{Figure 4.3.1C. Schema v2: orders and order-line snapshots --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0327}
-\end{figure}
-\end{landscape}
-\begin{landscape}
-\begin{figure}[p]
-\centering
-\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/shared/erd_schema_v2_PartD.png}}
-\caption{Figure 4.3.1D. Schema v2: payment and delivery records --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0328}
-\end{figure}
-\end{landscape}
-\begin{landscape}
-\begin{figure}[p]
-\centering
-\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/shared/erd_schema_v2_PartE.png}}
-\caption{Figure 4.3.1E. Schema v2: replacement-offer history --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0329}
-\end{figure}
-\end{landscape}
-The mapping has one primary row for each of the 110 C0 columns. It also makes non-column correspondences explicit: \texttt{Order.\allowbreak{}lines} maps to the child \texttt{order\_\allowbreak{}line.\allowbreak{}order\_\allowbreak{}id} relationship; \texttt{HubMenuItem.\allowbreak{}item} maps to \texttt{hub\_\allowbreak{}menu\_\allowbreak{}item.\allowbreak{}menu\_\allowbreak{}item\_\allowbreak{}id}; \texttt{Order.\allowbreak{}item\_\allowbreak{}subtotal} and \texttt{Order.\allowbreak{}total} are derived properties with persisted columns; \texttt{MenuItem.\allowbreak{}brand\_\allowbreak{}name} is a joined projection of \texttt{brand.\allowbreak{}name}; \texttt{LocalCustomer} and \texttt{TouristCustomer} map to the same \texttt{customer.\allowbreak{}customer\_\allowbreak{}type} discriminator; and \texttt{OrderLine.\allowbreak{}line\_\allowbreak{}total} is computed, with no SQL column. At C0, \texttt{UserAccount.\allowbreak{}created\_\allowbreak{}at} was a design gap and the column was absent. Its later P4.1 disposition and scoped test evidence appear in Table P4-1 and the detailed resolution appendix.
+\textbf{Mapping rules.}
 
-\texttt{Customer} is stored in one \texttt{customer} table. Its \texttt{customer\_\allowbreak{}type} CHECK distinguishes \texttt{LOCAL} from \texttt{TOURIST}; it does not create separate subtype tables. \texttt{hub\_\allowbreak{}menu\_\allowbreak{}item} is the association-class table between Hub and MenuItem, with a composite primary key on \texttt{(hub\_\allowbreak{}id, menu\_\allowbreak{}item\_\allowbreak{}id)}. There is no Shipper table: \texttt{delivery.\allowbreak{}shipper\_\allowbreak{}id} references \texttt{user\_\allowbreak{}account.\allowbreak{}id}, and the SHIPPER role is held by the linked account. \texttt{Quote}, report filters and rows, and receipts are computed views rather than persisted classes.
+\begin{itemize}
+\item \textbf{One class, one table; \texttt{id} becomes the primary key.} Attributes keep their names and become columns. Money is whole VND (INTEGER), Boolean is INTEGER 0/1 with a CHECK, timestamps are UTC ISO text, and voucher dates are Vietnam calendar dates.
 
-The UNIQUE rules are \texttt{hub.\allowbreak{}code}, \texttt{brand.\allowbreak{}name}, \texttt{user\_\allowbreak{}account.\allowbreak{}username}, \texttt{customer.\allowbreak{}user\_\allowbreak{}id}, \texttt{voucher.\allowbreak{}code}, \texttt{orders.\allowbreak{}idempotency\_\allowbreak{}token}, \texttt{payment.\allowbreak{}order\_\allowbreak{}id}, and \texttt{delivery.\allowbreak{}order\_\allowbreak{}id}; the composite rules are \texttt{menu\_\allowbreak{}item(brand\_\allowbreak{}id, name)}, \texttt{hub\_\allowbreak{}menu\_\allowbreak{}item(hub\_\allowbreak{}id, menu\_\allowbreak{}item\_\allowbreak{}id)} as its primary key, and \texttt{order\_\allowbreak{}line(order\_\allowbreak{}id, menu\_\allowbreak{}item\_\allowbreak{}id)}. The partial unique index \texttt{idx\_\allowbreak{}offer\_\allowbreak{}one\_\allowbreak{}open} limits each order to one \texttt{replacement\_\allowbreak{}offer} whose state is \texttt{OFFERED}; resolved offers remain stored history. The unique child FKs on \texttt{payment.\allowbreak{}order\_\allowbreak{}id} and \texttt{delivery.\allowbreak{}order\_\allowbreak{}id} cap each Order at one child row but do not require presence. The SQL also permits an Order with zero OrderLine rows. The contract requires checkout to create one Payment and at least one OrderLine, and \texttt{markReady} to create a Delivery; these application-path requirements were assigned to P4 verification, not inferred from the FKs; recorded test evidence is in Section 5.1. P2-S09 records the related cross-row guards, including same-order offer/line ownership and shipper eligibility.
+\item \textbf{Associations become foreign keys} on the "many" side (for example \texttt{orders.\allowbreak{}customer\_\allowbreak{}id}). A one-to-zero-or-one association gets a UNIQUE foreign key (\texttt{payment.\allowbreak{}order\_\allowbreak{}id}, \texttt{delivery.\allowbreak{}order\_\allowbreak{}id}, \texttt{customer.\allowbreak{}user\_\allowbreak{}id}).
 
-Money is stored as whole VND where applicable. For an Order, \texttt{item\_\allowbreak{}subtotal} is S, \texttt{voucher\_\allowbreak{}discount} is D, \texttt{delivery\_\allowbreak{}fee} is F, \texttt{quiet\_\allowbreak{}discount} is Q, and \texttt{total\_\allowbreak{}amount} is T, constrained by \texttt{T = S \ensuremath{-} D + F \ensuremath{-} Q}. \texttt{payment.\allowbreak{}amount} holds the COD amount due or captured online amount C; \texttt{refund\_\allowbreak{}amount} is an amount owed, not paid out. An accepted replacement can leave a partial online obligation \texttt{C \ensuremath{-} T}; an unfulfilled online order is owed the full C. \texttt{delivery.\allowbreak{}cash\_\allowbreak{}collected} records cash at delivery, which must equal T for COD completion. Order-line and replacement-offer names/prices are snapshots; later catalogue edits do not rewrite the existing order history.
+\item \textbf{Composition} of OrderLine in Order (the whole owns its parts) is the NOT NULL foreign key \texttt{order\_\allowbreak{}line.\allowbreak{}order\_\allowbreak{}id}; lines are never deleted on their own.
 
-Event columns ending in \texttt{\_\allowbreak{}at} are UTC timestamp text. \texttt{voucher.\allowbreak{}valid\_\allowbreak{}from} and \texttt{valid\_\allowbreak{}until} are inclusive Asia/Ho\_Chi\_Minh calendar dates stored as text, not UTC instants. The archive timestamps are on Hub, Brand, MenuItem, Address, Voucher and Order. \texttt{user\_\allowbreak{}account.\allowbreak{}is\_\allowbreak{}active} is an account lifecycle flag, not an archive timestamp; unlisting a HubMenuItem deletes the association row. Under the plan's archive rule, an archived parent is hidden from operational lists while authorized history, receipts, reports and refund obligations remain available. Child order lines, payments, deliveries and offers remain attached to the retained Order. These retention rules were design requirements for P4 verification, not behaviors inferred from a flag alone. Later test evidence is in Section 5.1.
+\item \textbf{Association class} HubMenuItem becomes the table \texttt{hub\_\allowbreak{}menu\_\allowbreak{}item} with the composite primary key (\texttt{hub\_\allowbreak{}id}, \texttt{menu\_\allowbreak{}item\_\allowbreak{}id}) and the attribute \texttt{is\_\allowbreak{}available} of the pair.
 
-The marked items were design targets not yet in code at C0. Their later P4 disposition is recorded in Table P4-1. \texttt{P2-S02} requires \texttt{user\_\allowbreak{}account.\allowbreak{}created\_\allowbreak{}at}, which is absent from both the draft class and SQL table and is assigned to P4.1. \texttt{P2-S03} requires the Tourist CHECK to require \texttt{nationality}; the nullable column exists, and the static Phase 2 review found controller validation, but the SQL CHECK does not enforce it. \texttt{P2-S07} requires the linked Customer account to have role \texttt{CUSTOMER}; the FK and UNIQUE rule do not enforce that role. P4.7 was adopted as the account subphase for S03/S07. The figure's historical legend identifies the C0 design targets and P4 inputs P2-S02/S03/S07.
+\item \textbf{Generalization} LocalCustomer / TouristCustomer uses single-table inheritance: one \texttt{customer} table with the discriminator \texttt{customer\_\allowbreak{}type} and a CHECK that requires a phone for LOCAL and passport, email and nationality for TOURIST.
 
-\texttt{P2-S08} is not a missing-value defect: \texttt{Payment.\allowbreak{}updated\_\allowbreak{}at} is \texttt{Optional[str]} in the domain model but \texttt{NOT NULL} in SQL, and the \texttt{PaymentDAO.\allowbreak{}insert} AST body writes the supplied \texttt{updated\_\allowbreak{}at} or falls back to \texttt{created\_\allowbreak{}at}. The SQL CHECK also permits Payment values \texttt{FAILED} and \texttt{REFUNDED}; per P2-S01 and plan \S{}4.3 these remain deferred or unreachable. No declined-payment row or refund-payout path is added to this mapping.
+\item \textbf{State attributes} become TEXT columns whose CHECK lists exactly the states of the state machines in 2.2 (for example \texttt{orders.\allowbreak{}state}).
 
-The diagrams and CSV were generated from the frozen inventory/model without importing or running the application. Structural XML and endpoint checks passed, all six PNGs and independent Edge-rasterized SVGs were opened for visual review, and the smallest placed font is 9.21 pt at 230 \ensuremath{\times} 170 mm. Native draw.io editing, Excel, and final DOCX/PDF placement remain UNTESTED; no app correctness or test result is claimed.
+\item \textbf{Derived attributes} are not stored when they can be computed (hub load, busy/quiet); the order totals S, D, F, Q and T are stored as the agreed snapshot and tied together by \texttt{CHECK (total\_\allowbreak{}amount = item\_\allowbreak{}subtotal \ensuremath{-} voucher\_\allowbreak{}discount + delivery\_\allowbreak{}fee \ensuremath{-} quiet\_\allowbreak{}discount)}.
+
+\item \textbf{Archive instead of delete:} \texttt{archived\_\allowbreak{}at} on Hub, Brand, MenuItem, Address, Voucher and Order; \texttt{is\_\allowbreak{}active} on UserAccount. The only physical delete is unlisting an item at a hub (\texttt{MenuDAO} removes the \texttt{hub\_\allowbreak{}menu\_\allowbreak{}item} row); earlier orders are unaffected because order lines keep their own name and price snapshot.
+
+\item \textbf{Rules the CHECKs cannot express} are enforced by triggers: \texttt{customer\_\allowbreak{}role\_\allowbreak{}insert} and \texttt{customer\_\allowbreak{}role\_\allowbreak{}update} allow a customer profile only on a CUSTOMER account, and \texttt{linked\_\allowbreak{}customer\_\allowbreak{}role} stops such an account from changing role. A partial unique index \texttt{idx\_\allowbreak{}offer\_\allowbreak{}one\_\allowbreak{}open} allows at most one OFFERED replacement per order.
+
+\end{itemize}
+\textbf{Class-to-table mapping} (generated into \texttt{models/\allowbreak{}shared/\allowbreak{}class\_\allowbreak{}table\_\allowbreak{}mapping.\allowbreak{}csv} from the domain dataclasses and the schema):
+
+\begingroup\footnotesize
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1533\linewidth}>{\raggedright\arraybackslash}p{0.1533\linewidth}>{\raggedright\arraybackslash}p{0.1533\linewidth}>{\raggedright\arraybackslash}p{0.1533\linewidth}>{\raggedright\arraybackslash}p{0.1533\linewidth}>{\raggedright\arraybackslash}p{0.1533\linewidth}}
+Persistent class & Table & Attributes stored in columns of the same name & Associations stored as foreign keys & Columns with no same-name attribute & Attributes not stored \\
+\hline\endfirsthead
+Persistent class & Table & Attributes stored in columns of the same name & Associations stored as foreign keys & Columns with no same-name attribute & Attributes not stored \\
+\hline\endhead
+UserAccount & \texttt{user\_\allowbreak{}account} & created\_at, id, username, password\_hash, display\_name, role, is\_active & hub\_id \ensuremath{\rightarrow} hub & --- & --- \\
+Customer (LocalCustomer, TouristCustomer) & \texttt{customer} & id, full\_name, phone, email, passport\_no, nationality & user\_id \ensuremath{\rightarrow} user\_account & customer\_type & --- \\
+Address & \texttt{address} & id, label, full\_address, district, latitude, longitude, archived\_at & customer\_id \ensuremath{\rightarrow} customer & --- & --- \\
+Hub & \texttt{hub} & id, code, name, address\_text, latitude, longitude, max\_active\_orders, base\_delivery\_fee, archived\_at & --- & --- & --- \\
+Brand & \texttt{brand} & id, name, archived\_at & --- & --- & --- \\
+MenuItem & \texttt{menu\_\allowbreak{}item} & id, name, description, price, archived\_at & brand\_id \ensuremath{\rightarrow} brand & --- & brand\_name \\
+HubMenuItem (association class) & \texttt{hub\_\allowbreak{}menu\_\allowbreak{}item} & is\_available & hub\_id \ensuremath{\rightarrow} hub, menu\_item\_id \ensuremath{\rightarrow} menu\_item & --- & item \\
+Voucher & \texttt{voucher} & id, code, description, discount\_type, discount\_value, min\_subtotal, max\_discount, valid\_from, valid\_until, archived\_at & --- & --- & --- \\
+Order & \texttt{orders} & id, delivery\_address\_text, distance\_km, state, voucher\_discount, delivery\_fee, quiet\_discount, idempotency\_token, reject\_reason, placed\_at, confirmed\_at, ready\_at, closed\_at, archived\_at & customer\_id \ensuremath{\rightarrow} customer, hub\_id \ensuremath{\rightarrow} hub, address\_id \ensuremath{\rightarrow} address, voucher\_id \ensuremath{\rightarrow} voucher & item\_subtotal, total\_amount & lines \\
+OrderLine & \texttt{order\_\allowbreak{}line} & id, item\_name, unit\_price, quantity & order\_id \ensuremath{\rightarrow} orders, menu\_item\_id \ensuremath{\rightarrow} menu\_item & --- & --- \\
+Payment & \texttt{payment} & id, method, online\_option, provider\_ref, state, amount, refund\_amount, created\_at, updated\_at & order\_id \ensuremath{\rightarrow} orders & --- & --- \\
+Delivery & \texttt{delivery} & id, state, ready\_at, picked\_up\_at, finished\_at, failure\_reason, cash\_collected & order\_id \ensuremath{\rightarrow} orders, shipper\_id \ensuremath{\rightarrow} user\_account & --- & --- \\
+ReplacementOffer & \texttt{replacement\_\allowbreak{}offer} & id, original\_item\_name, original\_unit\_price, new\_item\_name, new\_unit\_price, state, offered\_at, decided\_at & order\_id \ensuremath{\rightarrow} orders, order\_line\_id \ensuremath{\rightarrow} order\_line, new\_menu\_item\_id \ensuremath{\rightarrow} menu\_item & --- & --- \\
+\end{longtable}
+\endgroup
+Notes on the last two columns: \texttt{customer\_\allowbreak{}type} is the inheritance discriminator; \texttt{item\_\allowbreak{}subtotal} and \texttt{total\_\allowbreak{}amount} are stored snapshots of Order properties computed in Python; \texttt{MenuItem.\allowbreak{}brand\_\allowbreak{}name} and \texttt{HubMenuItem.\allowbreak{}item} are values joined in when an object is loaded; \texttt{Order.\allowbreak{}lines} is filled from \texttt{order\_\allowbreak{}line}.

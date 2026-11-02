@@ -16,33 +16,32 @@ Layer: **view**; stereotype: **«view»**; responsibility: Translate administrat
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Operation | `- _hubs() -> HubController` | MATCH |
-| Operation | `- _menu() -> MenuController` | MATCH |
-| Operation | `+ catalogue() -> Any [inferred] ` | P4 scoped evidence (P4.6; resolution rows 63); C0 rationale: ; inferred annotation(s); P2-S14 |
+| Operation | `- _hubs() -> HubController` | Matches code |
+| Operation | `- _menu() -> MenuController` | Matches code |
+| Operation | `+ catalogue() -> Any [inferred] ` | Changed during implementation and tested (P4.6; Table P4-1 rows 63); Reason: ; inferred annotation(s); P2-S14 |
 | Operation | `+ create_brand() -> Any [inferred]` | MATCH; inferred annotation(s) |
 | Operation | `+ rename_brand(brand_id: int) -> Any [inferred]` | MATCH; inferred annotation(s) |
 | Operation | `+ archive_brand(brand_id: int) -> Any [inferred]` | MATCH; inferred annotation(s) |
 | Operation | `+ new_item() -> Any [inferred]` | MATCH; inferred annotation(s) |
 | Operation | `+ edit_item(item_id: int) -> Any [inferred]` | MATCH; inferred annotation(s) |
 | Operation | `+ archive_item(item_id: int) -> Any [inferred]` | MATCH; inferred annotation(s) |
-| Operation | `+ hub_menu(hub_id: int) -> Any [inferred] ` | P4 scoped evidence (P4.6; resolution rows 64); C0 rationale: ; inferred annotation(s); P2-S14 |
-| Operation | `+ list_item(hub_id: int) -> Any [inferred] ` | P4 scoped evidence (P4.6; resolution rows 65); C0 rationale: ; inferred annotation(s); P2-S15 |
+| Operation | `+ hub_menu(hub_id: int) -> Any [inferred] ` | Changed during implementation and tested (P4.6; Table P4-1 rows 64); Reason: ; inferred annotation(s); P2-S14 |
+| Operation | `+ list_item(hub_id: int) -> Any [inferred] ` | Changed during implementation and tested (P4.6; Table P4-1 rows 65); Reason: ; inferred annotation(s); P2-S15 |
 | Operation | `+ unlist_item(hub_id: int, item_id: int) -> Any [inferred]` | MATCH; inferred annotation(s) |
 | Operation | `+ hub_item_availability(hub_id: int, item_id: int) -> Any [inferred]` | MATCH; inferred annotation(s) |
 
 Route adapters (AST):
-- `{'blueprint_variable': 'bp', 'blueprint': 'admin', 'rule': '/admin/menu', 'declared_rule': '/menu', 'methods': ['GET'], 'view_function': 'catalogue', 'signature': 'catalogue()', 'decorators': ["bp.get('/menu')", 'role_required(Role.ADMIN)']}`
-- `{'blueprint_variable': 'bp', 'blueprint': 'admin', 'rule': '/admin/brands', 'declared_rule': '/brands', 'methods': ['POST'], 'view_function': 'create_brand', 'signature': 'create_brand()', 'decorators': ["bp.post('/brands')", 'role_required(Role.ADMIN)']}`
-- `{'blueprint_variable': 'bp', 'blueprint': 'admin', 'rule': '/admin/brands/<int:brand_id>', 'declared_rule': '/brands/<int:brand_id>', 'methods': ['POST'], 'view_function': 'rename_brand', 'signature': 'rename_brand(brand_id: int)', 'decorators': ["bp.post('/brands/<int:brand_id>')", 'role_required(Role.ADMIN)']}`
-- `{'blueprint_variable': 'bp', 'blueprint': 'admin', 'rule': '/admin/brands/<int:brand_id>/archive', 'declared_rule': '/brands/<int:brand_id>/archive', 'methods': ['POST'], 'view_function': 'archive_brand', 'signature': 'archive_brand(brand_id: int)', 'decorators': ["bp.post('/brands/<int:brand_id>/archive')", 'role_required(Role.ADMIN)']}`
-- `{'blueprint_variable': 'bp', 'blueprint': 'admin', 'rule': '/admin/items/new', 'declared_rule': '/items/new', 'methods': ['GET', 'POST'], 'view_function': 'new_item', 'signature': 'new_item()', 'decorators': ["bp.route('/items/new', methods=['GET', 'POST'])", 'role_required(Role.ADMIN)']}`
-- `{'blueprint_variable': 'bp', 'blueprint': 'admin', 'rule': '/admin/items/<int:item_id>', 'declared_rule': '/items/<int:item_id>', 'methods': ['GET', 'POST'], 'view_function': 'edit_item', 'signature': 'edit_item(item_id: int)', 'decorators': ["bp.route('/items/<int:item_id>', methods=['GET', 'POST'])", 'role_required(Role.ADMIN)']}`
-- `{'blueprint_variable': 'bp', 'blueprint': 'admin', 'rule': '/admin/items/<int:item_id>/archive', 'declared_rule': '/items/<int:item_id>/archive', 'methods': ['POST'], 'view_function': 'archive_item', 'signature': 'archive_item(item_id: int)', 'decorators': ["bp.post('/items/<int:item_id>/archive')", 'role_required(Role.ADMIN)']}`
-- `{'blueprint_variable': 'bp', 'blueprint': 'admin', 'rule': '/admin/hubs/<int:hub_id>/menu', 'declared_rule': '/hubs/<int:hub_id>/menu', 'methods': ['GET'], 'view_function': 'hub_menu', 'signature': 'hub_menu(hub_id: int)', 'decorators': ["bp.get('/hubs/<int:hub_id>/menu')", 'role_required(Role.ADMIN)']}`
-- `{'blueprint_variable': 'bp', 'blueprint': 'admin', 'rule': '/admin/hubs/<int:hub_id>/menu', 'declared_rule': '/hubs/<int:hub_id>/menu', 'methods': ['POST'], 'view_function': 'list_item', 'signature': 'list_item(hub_id: int)', 'decorators': ["bp.post('/hubs/<int:hub_id>/menu')", 'role_required(Role.ADMIN)']}`
-- `{'blueprint_variable': 'bp', 'blueprint': 'admin', 'rule': '/admin/hubs/<int:hub_id>/menu/<int:item_id>/remove', 'declared_rule': '/hubs/<int:hub_id>/menu/<int:item_id>/remove', 'methods': ['POST'], 'view_function': 'unlist_item', 'signature': 'unlist_item(hub_id: int, item_id: int)', 'decorators': ["bp.post('/hubs/<int:hub_id>/menu/<int:item_id>/remove')", 'role_required(Role.ADMIN)']}`
-- `{'blueprint_variable': 'bp', 'blueprint': 'admin', 'rule': '/admin/hubs/<int:hub_id>/menu/<int:item_id>/availability', 'declared_rule': '/hubs/<int:hub_id>/menu/<int:item_id>/availability', 'methods': ['POST'], 'view_function': 'hub_item_availability', 'signature': 'hub_item_availability(hub_id: int, item_id: int)', 'decorators': ["bp.post('/hubs/<int:hub_id>/menu/<int:item_id>/availability')", 'role_required(Role.ADMIN)']}`
-
+- `GET /admin/menu` → view function `admin.catalogue`
+- `POST /admin/brands` → view function `admin.create_brand`
+- `POST /admin/brands/<int:brand_id>` → view function `admin.rename_brand`
+- `POST /admin/brands/<int:brand_id>/archive` → view function `admin.archive_brand`
+- `GET/POST /admin/items/new` → view function `admin.new_item`
+- `GET/POST /admin/items/<int:item_id>` → view function `admin.edit_item`
+- `POST /admin/items/<int:item_id>/archive` → view function `admin.archive_item`
+- `GET /admin/hubs/<int:hub_id>/menu` → view function `admin.hub_menu`
+- `POST /admin/hubs/<int:hub_id>/menu` → view function `admin.list_item`
+- `POST /admin/hubs/<int:hub_id>/menu/<int:item_id>/remove` → view function `admin.unlist_item`
+- `POST /admin/hubs/<int:hub_id>/menu/<int:item_id>/availability` → view function `admin.hub_item_availability`
 ## MenuController
 
 Layer: **controller**; stereotype: **«controller»**; responsibility: Coordinate authorization, domain decisions and data access. Source: `saigonbite/business/controllers/menu_controller.py`.
@@ -51,24 +50,24 @@ Layer: **controller**; stereotype: **«controller»**; responsibility: Coordinat
 |---|---|---|
 | Attribute | `+ menu: MenuDAO` | MATCH; inferred |
 | Attribute | `+ hubs: HubDAO` | MATCH; inferred |
-| Operation | `+ catalogue(user_id: int) -> Catalogue` | MATCH |
-| Operation | `+ create_brand(user_id: int, name: str) -> Brand ` | P4 scoped evidence (P4.1 + P4.6; resolution rows 34); C0 rationale: ; P2-S13; P3-S03 |
-| Operation | `+ rename_brand(user_id: int, brand_id: int, name: str) -> Brand ` | P4 scoped evidence (P4.1 + P4.6; resolution rows 35); C0 rationale: ; P2-S13; P3-S03 |
-| Operation | `+ archive_brand(user_id: int, brand_id: int) -> Brand ` | P4 scoped evidence (P4.1 + P4.6; resolution rows 36); C0 rationale: ; P2-S13; P3-S03 |
-| Operation | `+ create_item(user_id: int, form: Mapping[str, str]) -> MenuItem ` | P4 scoped evidence (P4.1 + P4.6; resolution rows 37); C0 rationale: ; P2-S13; P3-S03 |
-| Operation | `+ update_item(user_id: int, item_id: int, form: Mapping[str, str]) -> MenuItem ` | P4 scoped evidence (P4.1 + P4.6; resolution rows 38); C0 rationale: ; P2-S13; P3-S03 |
-| Operation | `+ archive_item(user_id: int, item_id: int) -> MenuItem ` | P4 scoped evidence (P4.1 + P4.6; resolution rows 39); C0 rationale: ; P2-S13; P3-S03 |
-| Operation | `+ hub_menu(user_id: int, hub_id: int) -> HubMenu` | MATCH |
-| Operation | `+ list_item_at_hub(user_id: int, hub_id: int, item_id: int, available: bool = True) -> None ` | P4 scoped evidence (P4.6; resolution rows 33); C0 rationale: ; P2-S15; P2-S13 |
-| Operation | `+ unlist_item_at_hub(user_id: int, hub_id: int, item_id: int) -> None ` | P4 scoped evidence (P4.1 + P4.6; resolution rows 40); C0 rationale: ; P2-S13; P3-S03 |
-| Operation | `+ set_availability(user_id: int, hub_id: int, item_id: int, available: bool) -> None ` | P4 scoped evidence (P4.1 + P4.6; resolution rows 41); C0 rationale: ; P2-S13; P3-S03 |
-| Operation | `- _require_admin(user_id: int) -> None` | MATCH |
-| Operation | `- _hub(hub_id: int) -> Hub` | MATCH |
+| Operation | `+ catalogue(user_id: int) -> Catalogue` | Matches code |
+| Operation | `+ create_brand(user_id: int, name: str) -> Brand ` | P4 scoped evidence (P4.1 + P4.6; resolution rows 34); Reason: ; P2-S13; P3-S03 |
+| Operation | `+ rename_brand(user_id: int, brand_id: int, name: str) -> Brand ` | P4 scoped evidence (P4.1 + P4.6; resolution rows 35); Reason: ; P2-S13; P3-S03 |
+| Operation | `+ archive_brand(user_id: int, brand_id: int) -> Brand ` | P4 scoped evidence (P4.1 + P4.6; resolution rows 36); Reason: ; P2-S13; P3-S03 |
+| Operation | `+ create_item(user_id: int, form: Mapping[str, str]) -> MenuItem ` | P4 scoped evidence (P4.1 + P4.6; resolution rows 37); Reason: ; P2-S13; P3-S03 |
+| Operation | `+ update_item(user_id: int, item_id: int, form: Mapping[str, str]) -> MenuItem ` | P4 scoped evidence (P4.1 + P4.6; resolution rows 38); Reason: ; P2-S13; P3-S03 |
+| Operation | `+ archive_item(user_id: int, item_id: int) -> MenuItem ` | P4 scoped evidence (P4.1 + P4.6; resolution rows 39); Reason: ; P2-S13; P3-S03 |
+| Operation | `+ hub_menu(user_id: int, hub_id: int) -> HubMenu` | Matches code |
+| Operation | `+ list_item_at_hub(user_id: int, hub_id: int, item_id: int, available: bool = True) -> None ` | Changed during implementation and tested (P4.6; Table P4-1 rows 33); Reason: ; P2-S15; P2-S13 |
+| Operation | `+ unlist_item_at_hub(user_id: int, hub_id: int, item_id: int) -> None ` | P4 scoped evidence (P4.1 + P4.6; resolution rows 40); Reason: ; P2-S13; P3-S03 |
+| Operation | `+ set_availability(user_id: int, hub_id: int, item_id: int, available: bool) -> None ` | P4 scoped evidence (P4.1 + P4.6; resolution rows 41); Reason: ; P2-S13; P3-S03 |
+| Operation | `- _require_admin(user_id: int) -> None` | Matches code |
+| Operation | `- _hub(hub_id: int) -> Hub` | Matches code |
 | Operation | `- _active_brand(brand_id: Any) -> Brand [inferred]` | MATCH; inferred annotation(s) |
-| Operation | `- _active_item(item_id: int) -> MenuItem` | MATCH |
-| Operation | `- _name(raw: str, label: str, max_len: int = 60) -> str` | MATCH |
+| Operation | `- _active_item(item_id: int) -> MenuItem` | Matches code |
+| Operation | `- _name(raw: str, label: str, max_len: int = 60) -> str` | Matches code |
 | Operation | `- _parse_item(form: Mapping[str, str], item_id: Any) -> MenuItem [inferred]` | MATCH; inferred annotation(s) |
-| Operation | `+ list_catalogue(user_id: int, hub_id: Optional[int] = None) -> dict[str, object] ` | P4 scoped evidence (P4.6; resolution rows 32); C0 rationale: ; P2-S14 |
+| Operation | `+ list_catalogue(user_id: int, hub_id: Optional[int] = None) -> dict[str, object] ` | Changed during implementation and tested (P4.6; Table P4-1 rows 32); Reason: ; P2-S14 |
 
 ## Catalogue
 
@@ -76,8 +75,8 @@ Layer: **controller**; stereotype: **«value»**; responsibility: Coordinate aut
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Attribute | `+ brands: list[Brand]` | MATCH |
-| Attribute | `+ items: list[MenuItem]` | MATCH |
+| Attribute | `+ brands: list[Brand]` | Matches code |
+| Attribute | `+ items: list[MenuItem]` | Matches code |
 
 ## HubMenu
 
@@ -85,9 +84,9 @@ Layer: **controller**; stereotype: **«value»**; responsibility: Coordinate aut
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Attribute | `+ hub: Hub` | MATCH |
-| Attribute | `+ listed: list[HubMenuItem]` | MATCH |
-| Attribute | `+ not_listed: list[MenuItem]` | MATCH |
+| Attribute | `+ hub: Hub` | Matches code |
+| Attribute | `+ listed: list[HubMenuItem]` | Matches code |
+| Attribute | `+ not_listed: list[MenuItem]` | Matches code |
 
 ## HubController
 
@@ -96,7 +95,7 @@ Layer: **controller**; stereotype: **«controller»**; responsibility: Coordinat
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
 | Attribute | `+ hubs: HubDAO` | MATCH; inferred |
-| Operation | `+ list_hubs(user_id: int, include_archived: bool = True) -> list[HubAdminView] ` | P4 scoped evidence (P4.2; resolution rows 28); C0 rationale: ; P3-S02 |
+| Operation | `+ list_hubs(user_id: int, include_archived: bool = True) -> list[HubAdminView] ` | Changed during implementation and tested (P4.2; Table P4-1 rows 28); Reason: ; P3-S02 |
 
 ## Hub
 
@@ -104,15 +103,15 @@ Layer: **domain**; stereotype: **«entity»**; responsibility: Represent a kitch
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Attribute | `+ id: int` | MATCH |
-| Attribute | `+ code: str` | MATCH |
-| Attribute | `+ name: str` | MATCH |
-| Attribute | `+ address_text: str` | MATCH |
-| Attribute | `+ latitude: float` | MATCH |
-| Attribute | `+ longitude: float` | MATCH |
-| Attribute | `+ max_active_orders: int` | MATCH |
-| Attribute | `+ base_delivery_fee: int` | MATCH |
-| Attribute | `+ archived_at: Optional[str]` | MATCH |
+| Attribute | `+ id: int` | Matches code |
+| Attribute | `+ code: str` | Matches code |
+| Attribute | `+ name: str` | Matches code |
+| Attribute | `+ address_text: str` | Matches code |
+| Attribute | `+ latitude: float` | Matches code |
+| Attribute | `+ longitude: float` | Matches code |
+| Attribute | `+ max_active_orders: int` | Matches code |
+| Attribute | `+ base_delivery_fee: int` | Matches code |
+| Attribute | `+ archived_at: Optional[str]` | Matches code |
 
 ## Brand
 
@@ -120,9 +119,9 @@ Layer: **domain**; stereotype: **«entity»**; responsibility: Group menu items 
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Attribute | `+ id: int` | MATCH |
-| Attribute | `+ name: str` | MATCH |
-| Attribute | `+ archived_at: Optional[str]` | MATCH |
+| Attribute | `+ id: int` | Matches code |
+| Attribute | `+ name: str` | Matches code |
+| Attribute | `+ archived_at: Optional[str]` | Matches code |
 
 ## MenuItem
 
@@ -130,13 +129,13 @@ Layer: **domain**; stereotype: **«entity»**; responsibility: Hold current cata
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Attribute | `+ id: int` | MATCH |
+| Attribute | `+ id: int` | Matches code |
 | Attribute | `+ brand_id: int` | MATCH; association backing ID, omitted on DCD |
-| Attribute | `+ brand_name: str` | MATCH |
-| Attribute | `+ name: str` | MATCH |
-| Attribute | `+ description: str` | MATCH |
-| Attribute | `+ price: int` | MATCH |
-| Attribute | `+ archived_at: Optional[str]` | MATCH |
+| Attribute | `+ brand_name: str` | Matches code |
+| Attribute | `+ name: str` | Matches code |
+| Attribute | `+ description: str` | Matches code |
+| Attribute | `+ price: int` | Matches code |
+| Attribute | `+ archived_at: Optional[str]` | Matches code |
 
 ## HubMenuItem
 
@@ -145,8 +144,8 @@ Layer: **domain**; stereotype: **«entity»**; responsibility: Represent one hub
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
 | Attribute | `+ hub_id: int` | MATCH; association backing ID, omitted on DCD |
-| Attribute | `+ item: MenuItem` | MATCH |
-| Attribute | `+ is_available: bool` | MATCH |
+| Attribute | `+ item: MenuItem` | Matches code |
+| Attribute | `+ is_available: bool` | Matches code |
 
 ## MenuDAO
 
@@ -154,24 +153,24 @@ Layer: **data_access**; stereotype: **«DAO»**; responsibility: Read or write p
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Attribute | `+ conn: sqlite3.Connection` | MATCH |
-| Operation | `+ list_brands() -> list[Brand]` | MATCH |
-| Operation | `+ get_brand(brand_id: int) -> Optional[Brand]` | MATCH |
-| Operation | `+ brand_name_exists(name: str, except_id: Optional[int] = None) -> bool` | MATCH |
-| Operation | `+ insert_brand(name: str) -> int` | MATCH |
-| Operation | `+ rename_brand(brand_id: int, name: str) -> bool` | MATCH |
-| Operation | `+ archive_brand(brand_id: int, now: str) -> bool` | MATCH |
-| Operation | `+ list_items() -> list[MenuItem]` | MATCH |
-| Operation | `+ get_item(item_id: int) -> Optional[MenuItem]` | MATCH |
-| Operation | `+ item_name_exists(brand_id: int, name: str, except_id: Optional[int] = None) -> bool` | MATCH |
-| Operation | `+ insert_item(item: MenuItem) -> int` | MATCH |
-| Operation | `+ update_item(item: MenuItem) -> bool` | MATCH |
-| Operation | `+ archive_item(item_id: int, now: str) -> bool` | MATCH |
-| Operation | `+ list_hub_items(hub_id: int) -> list[HubMenuItem]` | MATCH |
-| Operation | `+ is_listed(hub_id: int, item_id: int) -> bool` | MATCH |
-| Operation | `+ add_listing(hub_id: int, item_id: int, available: bool = True) -> None ` | P4 scoped evidence (P4.6; resolution rows 42); C0 rationale: ; P2-S15 |
-| Operation | `+ remove_listing(hub_id: int, item_id: int) -> bool` | MATCH |
-| Operation | `+ set_available(hub_id: int, item_id: int, available: bool) -> bool` | MATCH |
+| Attribute | `+ conn: sqlite3.Connection` | Matches code |
+| Operation | `+ list_brands() -> list[Brand]` | Matches code |
+| Operation | `+ get_brand(brand_id: int) -> Optional[Brand]` | Matches code |
+| Operation | `+ brand_name_exists(name: str, except_id: Optional[int] = None) -> bool` | Matches code |
+| Operation | `+ insert_brand(name: str) -> int` | Matches code |
+| Operation | `+ rename_brand(brand_id: int, name: str) -> bool` | Matches code |
+| Operation | `+ archive_brand(brand_id: int, now: str) -> bool` | Matches code |
+| Operation | `+ list_items() -> list[MenuItem]` | Matches code |
+| Operation | `+ get_item(item_id: int) -> Optional[MenuItem]` | Matches code |
+| Operation | `+ item_name_exists(brand_id: int, name: str, except_id: Optional[int] = None) -> bool` | Matches code |
+| Operation | `+ insert_item(item: MenuItem) -> int` | Matches code |
+| Operation | `+ update_item(item: MenuItem) -> bool` | Matches code |
+| Operation | `+ archive_item(item_id: int, now: str) -> bool` | Matches code |
+| Operation | `+ list_hub_items(hub_id: int) -> list[HubMenuItem]` | Matches code |
+| Operation | `+ is_listed(hub_id: int, item_id: int) -> bool` | Matches code |
+| Operation | `+ add_listing(hub_id: int, item_id: int, available: bool = True) -> None ` | Changed during implementation and tested (P4.6; Table P4-1 rows 42); Reason: ; P2-S15 |
+| Operation | `+ remove_listing(hub_id: int, item_id: int) -> bool` | Matches code |
+| Operation | `+ set_available(hub_id: int, item_id: int, available: bool) -> bool` | Matches code |
 
 ## HubDAO
 
@@ -179,9 +178,9 @@ Layer: **data_access**; stereotype: **«DAO»**; responsibility: Read or write p
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Attribute | `+ conn: sqlite3.Connection` | MATCH |
-| Operation | `+ list_all() -> list[Hub]` | MATCH |
-| Operation | `+ get_including_archived(hub_id: int) -> Optional[Hub]` | MATCH |
+| Attribute | `+ conn: sqlite3.Connection` | Matches code |
+| Operation | `+ list_all() -> list[Hub]` | Matches code |
+| Operation | `+ get_including_archived(hub_id: int) -> Optional[Hub]` | Matches code |
 
 ## BaseController
 
@@ -189,11 +188,11 @@ Layer: **controller**; stereotype: **«controller»**; responsibility: Coordinat
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Attribute | `+ conn: sqlite3.Connection` | MATCH |
+| Attribute | `+ conn: sqlite3.Connection` | Matches code |
 | Attribute | `+ clock: Any` | MATCH; inferred |
 | Attribute | `+ users: UserDAO` | MATCH; inferred |
-| Operation | `- _now() -> str` | MATCH |
-| Operation | `- _require_user(user_id: int, *roles: Role, message: str = 'Your account cannot do this.') -> UserAccount` | MATCH |
+| Operation | `- _now() -> str` | Matches code |
+| Operation | `- _require_user(user_id: int, *roles: Role, message: str = 'Your account cannot do this.') -> UserAccount` | Matches code |
 
 ## UserAccount
 
@@ -201,14 +200,14 @@ Layer: **domain**; stereotype: **«entity»**; responsibility: Hold account iden
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Attribute | `+ id: int` | MATCH |
-| Attribute | `+ username: str` | MATCH |
-| Attribute | `+ password_hash: str` | MATCH |
-| Attribute | `+ display_name: str` | MATCH |
-| Attribute | `+ role: Role` | MATCH |
-| Attribute | `+ is_active: bool` | MATCH |
+| Attribute | `+ id: int` | Matches code |
+| Attribute | `+ username: str` | Matches code |
+| Attribute | `+ password_hash: str` | Matches code |
+| Attribute | `+ display_name: str` | Matches code |
+| Attribute | `+ role: Role` | Matches code |
+| Attribute | `+ is_active: bool` | Matches code |
 | Attribute | `+ hub_id: Optional[int]` | MATCH; association backing ID, omitted on DCD |
-| Attribute | `+ created_at: str` | P4 scoped evidence (P4.1; resolution rows 53); C0 rationale:  |
+| Attribute | `+ created_at: str` | Changed during implementation and tested (P4.1; Table P4-1 rows 53); Reason:  |
 
 ## Role
 
@@ -228,8 +227,8 @@ Layer: **data_access**; stereotype: **«DAO»**; responsibility: Read or write p
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Attribute | `+ conn: sqlite3.Connection` | MATCH |
-| Operation | `+ get_by_id(user_id: int) -> Optional[UserAccount]` | MATCH |
+| Attribute | `+ conn: sqlite3.Connection` | Matches code |
+| Operation | `+ get_by_id(user_id: int) -> Optional[UserAccount]` | Matches code |
 
 ## Boundary adapters and guarantees
 

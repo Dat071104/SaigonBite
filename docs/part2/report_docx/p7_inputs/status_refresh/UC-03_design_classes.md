@@ -16,19 +16,18 @@ Layer: **view**; stereotype: **«view»**; responsibility: Translate administrat
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Operation | `- _hubs() -> HubController` | MATCH |
-| Operation | `+ hubs() -> Any [inferred] ` | P4 scoped evidence (P4.2; resolution rows 62); C0 rationale: ; inferred annotation(s); P3-S02 |
+| Operation | `- _hubs() -> HubController` | Matches code |
+| Operation | `+ hubs() -> Any [inferred] ` | Changed during implementation and tested (P4.2; Table P4-1 rows 62); Reason: ; inferred annotation(s); P3-S02 |
 | Operation | `+ new_hub() -> Any [inferred]` | MATCH; inferred annotation(s) |
 | Operation | `+ edit_hub(hub_id: int) -> Any [inferred]` | MATCH; inferred annotation(s) |
 | Operation | `+ archive_hub(hub_id: int) -> Any [inferred]` | MATCH; inferred annotation(s) |
 
 Route adapters (AST):
-- `{'blueprint_variable': 'bp', 'blueprint': 'admin', 'rule': '/admin/', 'declared_rule': '/', 'methods': ['GET'], 'view_function': 'hubs', 'signature': 'hubs()', 'decorators': ["bp.get('/')", "bp.get('/hubs')", 'role_required(Role.ADMIN)']}`
-- `{'blueprint_variable': 'bp', 'blueprint': 'admin', 'rule': '/admin/hubs', 'declared_rule': '/hubs', 'methods': ['GET'], 'view_function': 'hubs', 'signature': 'hubs()', 'decorators': ["bp.get('/')", "bp.get('/hubs')", 'role_required(Role.ADMIN)']}`
-- `{'blueprint_variable': 'bp', 'blueprint': 'admin', 'rule': '/admin/hubs/new', 'declared_rule': '/hubs/new', 'methods': ['GET', 'POST'], 'view_function': 'new_hub', 'signature': 'new_hub()', 'decorators': ["bp.route('/hubs/new', methods=['GET', 'POST'])", 'role_required(Role.ADMIN)']}`
-- `{'blueprint_variable': 'bp', 'blueprint': 'admin', 'rule': '/admin/hubs/<int:hub_id>', 'declared_rule': '/hubs/<int:hub_id>', 'methods': ['GET', 'POST'], 'view_function': 'edit_hub', 'signature': 'edit_hub(hub_id: int)', 'decorators': ["bp.route('/hubs/<int:hub_id>', methods=['GET', 'POST'])", 'role_required(Role.ADMIN)']}`
-- `{'blueprint_variable': 'bp', 'blueprint': 'admin', 'rule': '/admin/hubs/<int:hub_id>/archive', 'declared_rule': '/hubs/<int:hub_id>/archive', 'methods': ['POST'], 'view_function': 'archive_hub', 'signature': 'archive_hub(hub_id: int)', 'decorators': ["bp.post('/hubs/<int:hub_id>/archive')", 'role_required(Role.ADMIN)']}`
-
+- `GET /admin/` → view function `admin.hubs`
+- `GET /admin/hubs` → view function `admin.hubs`
+- `GET/POST /admin/hubs/new` → view function `admin.new_hub`
+- `GET/POST /admin/hubs/<int:hub_id>` → view function `admin.edit_hub`
+- `POST /admin/hubs/<int:hub_id>/archive` → view function `admin.archive_hub`
 ## HubController
 
 Layer: **controller**; stereotype: **«controller»**; responsibility: Coordinate authorization, domain decisions and data access. Source: `saigonbite/business/controllers/hub_controller.py`.
@@ -36,12 +35,12 @@ Layer: **controller**; stereotype: **«controller»**; responsibility: Coordinat
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
 | Attribute | `+ hubs: HubDAO` | MATCH; inferred |
-| Operation | `+ list_hubs(user_id: int, include_archived: bool = True) -> list[HubAdminView] ` | P4 scoped evidence (P4.2; resolution rows 28); C0 rationale: ; P3-S02 |
-| Operation | `+ get_hub(user_id: int, hub_id: int) -> HubAdminView` | MATCH |
-| Operation | `+ create_hub(user_id: int, form: Mapping[str, str]) -> Hub ` | P4 scoped evidence (P4.1 + P4.2; resolution rows 29); C0 rationale: ; P2-S13; P3-S03 |
-| Operation | `+ update_hub(user_id: int, hub_id: int, form: Mapping[str, str]) -> Hub ` | P4 scoped evidence (P4.1 + P4.2; resolution rows 30); C0 rationale: ; P2-S13; P3-S03 |
-| Operation | `+ archive_hub(user_id: int, hub_id: int) -> Hub ` | P4 scoped evidence (P4.1 + P4.2; resolution rows 31); C0 rationale: ; P2-S13; P3-S03 |
-| Operation | `- _require_admin(user_id: int) -> None` | MATCH |
+| Operation | `+ list_hubs(user_id: int, include_archived: bool = True) -> list[HubAdminView] ` | Changed during implementation and tested (P4.2; Table P4-1 rows 28); Reason: ; P3-S02 |
+| Operation | `+ get_hub(user_id: int, hub_id: int) -> HubAdminView` | Matches code |
+| Operation | `+ create_hub(user_id: int, form: Mapping[str, str]) -> Hub ` | P4 scoped evidence (P4.1 + P4.2; resolution rows 29); Reason: ; P2-S13; P3-S03 |
+| Operation | `+ update_hub(user_id: int, hub_id: int, form: Mapping[str, str]) -> Hub ` | P4 scoped evidence (P4.1 + P4.2; resolution rows 30); Reason: ; P2-S13; P3-S03 |
+| Operation | `+ archive_hub(user_id: int, hub_id: int) -> Hub ` | P4 scoped evidence (P4.1 + P4.2; resolution rows 31); Reason: ; P2-S13; P3-S03 |
+| Operation | `- _require_admin(user_id: int) -> None` | Matches code |
 | Operation | `- _parse(form: Mapping[str, str], hub_id: Any) -> Hub [inferred]` | MATCH; inferred annotation(s) |
 
 ## HubAdminView
@@ -50,8 +49,8 @@ Layer: **controller**; stereotype: **«value»**; responsibility: Coordinate aut
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Attribute | `+ status: HubStatus` | MATCH |
-| Attribute | `+ open_orders: int` | MATCH |
+| Attribute | `+ status: HubStatus` | Matches code |
+| Attribute | `+ open_orders: int` | Matches code |
 | Operation | `+ can_archive() -> bool` | MATCH; property accessor |
 
 ## HubStatus
@@ -60,8 +59,8 @@ Layer: **domain**; stereotype: **«entity»**; responsibility: Derive busy, quie
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Attribute | `+ hub: Hub` | MATCH |
-| Attribute | `+ load: int` | MATCH |
+| Attribute | `+ hub: Hub` | Matches code |
+| Attribute | `+ load: int` | Matches code |
 | Operation | `+ busy() -> bool` | MATCH; property accessor |
 | Operation | `+ quiet() -> bool` | MATCH; property accessor |
 | Operation | `+ load_percent() -> int` | MATCH; property accessor |
@@ -72,15 +71,15 @@ Layer: **domain**; stereotype: **«entity»**; responsibility: Represent a kitch
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Attribute | `+ id: int` | MATCH |
-| Attribute | `+ code: str` | MATCH |
-| Attribute | `+ name: str` | MATCH |
-| Attribute | `+ address_text: str` | MATCH |
-| Attribute | `+ latitude: float` | MATCH |
-| Attribute | `+ longitude: float` | MATCH |
-| Attribute | `+ max_active_orders: int` | MATCH |
-| Attribute | `+ base_delivery_fee: int` | MATCH |
-| Attribute | `+ archived_at: Optional[str]` | MATCH |
+| Attribute | `+ id: int` | Matches code |
+| Attribute | `+ code: str` | Matches code |
+| Attribute | `+ name: str` | Matches code |
+| Attribute | `+ address_text: str` | Matches code |
+| Attribute | `+ latitude: float` | Matches code |
+| Attribute | `+ longitude: float` | Matches code |
+| Attribute | `+ max_active_orders: int` | Matches code |
+| Attribute | `+ base_delivery_fee: int` | Matches code |
+| Attribute | `+ archived_at: Optional[str]` | Matches code |
 
 ## HubDAO
 
@@ -88,17 +87,17 @@ Layer: **data_access**; stereotype: **«DAO»**; responsibility: Read or write p
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Attribute | `+ conn: sqlite3.Connection` | MATCH |
-| Operation | `+ list_active() -> list[Hub]` | MATCH |
-| Operation | `+ list_all() -> list[Hub]` | MATCH |
-| Operation | `+ get_including_archived(hub_id: int) -> Optional[Hub]` | MATCH |
-| Operation | `+ code_exists(code: str, except_id: Optional[int] = None) -> bool` | MATCH |
-| Operation | `+ insert(hub: Hub) -> int` | MATCH |
-| Operation | `+ update(hub: Hub) -> bool` | MATCH |
-| Operation | `+ archive(hub_id: int, now: str) -> bool` | MATCH |
-| Operation | `+ active_load(hub_id: int) -> int` | MATCH |
-| Operation | `+ active_loads() -> dict[int, int]` | MATCH |
-| Operation | `+ open_order_count(hub_id: int) -> int` | MATCH |
+| Attribute | `+ conn: sqlite3.Connection` | Matches code |
+| Operation | `+ list_active() -> list[Hub]` | Matches code |
+| Operation | `+ list_all() -> list[Hub]` | Matches code |
+| Operation | `+ get_including_archived(hub_id: int) -> Optional[Hub]` | Matches code |
+| Operation | `+ code_exists(code: str, except_id: Optional[int] = None) -> bool` | Matches code |
+| Operation | `+ insert(hub: Hub) -> int` | Matches code |
+| Operation | `+ update(hub: Hub) -> bool` | Matches code |
+| Operation | `+ archive(hub_id: int, now: str) -> bool` | Matches code |
+| Operation | `+ active_load(hub_id: int) -> int` | Matches code |
+| Operation | `+ active_loads() -> dict[int, int]` | Matches code |
+| Operation | `+ open_order_count(hub_id: int) -> int` | Matches code |
 
 ## BaseController
 
@@ -106,11 +105,11 @@ Layer: **controller**; stereotype: **«controller»**; responsibility: Coordinat
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Attribute | `+ conn: sqlite3.Connection` | MATCH |
+| Attribute | `+ conn: sqlite3.Connection` | Matches code |
 | Attribute | `+ clock: Any` | MATCH; inferred |
 | Attribute | `+ users: UserDAO` | MATCH; inferred |
-| Operation | `- _now() -> str` | MATCH |
-| Operation | `- _require_user(user_id: int, *roles: Role, message: str = 'Your account cannot do this.') -> UserAccount` | MATCH |
+| Operation | `- _now() -> str` | Matches code |
+| Operation | `- _require_user(user_id: int, *roles: Role, message: str = 'Your account cannot do this.') -> UserAccount` | Matches code |
 
 ## UserAccount
 
@@ -118,14 +117,14 @@ Layer: **domain**; stereotype: **«entity»**; responsibility: Hold account iden
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Attribute | `+ id: int` | MATCH |
-| Attribute | `+ username: str` | MATCH |
-| Attribute | `+ password_hash: str` | MATCH |
-| Attribute | `+ display_name: str` | MATCH |
-| Attribute | `+ role: Role` | MATCH |
-| Attribute | `+ is_active: bool` | MATCH |
+| Attribute | `+ id: int` | Matches code |
+| Attribute | `+ username: str` | Matches code |
+| Attribute | `+ password_hash: str` | Matches code |
+| Attribute | `+ display_name: str` | Matches code |
+| Attribute | `+ role: Role` | Matches code |
+| Attribute | `+ is_active: bool` | Matches code |
 | Attribute | `+ hub_id: Optional[int]` | MATCH; association backing ID, omitted on DCD |
-| Attribute | `+ created_at: str` | P4 scoped evidence (P4.1; resolution rows 53); C0 rationale:  |
+| Attribute | `+ created_at: str` | Changed during implementation and tested (P4.1; Table P4-1 rows 53); Reason:  |
 
 ## Role
 
@@ -145,8 +144,8 @@ Layer: **data_access**; stereotype: **«DAO»**; responsibility: Read or write p
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Attribute | `+ conn: sqlite3.Connection` | MATCH |
-| Operation | `+ get_by_id(user_id: int) -> Optional[UserAccount]` | MATCH |
+| Attribute | `+ conn: sqlite3.Connection` | Matches code |
+| Operation | `+ get_by_id(user_id: int) -> Optional[UserAccount]` | Matches code |
 
 ## Boundary adapters and guarantees
 

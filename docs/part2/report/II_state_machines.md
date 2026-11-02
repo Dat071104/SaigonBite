@@ -4,7 +4,7 @@ Author: 722I0004 · AI-assisted (Codex)
 
 The blocks below belong under the corresponding main UC’s **iv. State machine diagram** subsection. Each machine is drawn once; cross-references reuse it. Base filenames hold part A when split, with `_PartB` onward for subsequent views. Every view has an adjacent generator `.py` and data `.json`, plus editable `.drawio`, SVG and PNG. The diamond in Figure 2.8C is a transient choice pseudostate: its complementary guards complete the same listItemAtHub operation; it is not a persisted lifecycle state.
 
-Place every image at **230 mm wide on an A4 landscape page**. The 1100 × 760 logical canvas uses a minimum 16 px font: `16 × 230 / 25.4 × 72 / 1100 = 9.48 pt`. Do not fit these exports into a 170 mm portrait column (that would yield 7.01 pt). These are analysis models and Static comparisons; they do not claim app execution or test results.
+These are analysis models and Static comparisons; they do not claim app execution or test results.
 
 Notation: a filled dot enters the modeled object lifecycle; a bullseye completes its modeled scope and never deletes history. A named terminal Order state retains its stored value after completion. Split views are projections of one machine, not extra independent lifecycles. Labels read `event [guard] / effect`; `|` separates alternative event names, not effects. All modifying operations also require an active, authorised actor and ownership/hub checks where applicable. A refused guard takes no transition; explicit invariants below cover no-write outcomes.
 

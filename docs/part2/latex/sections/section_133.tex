@@ -1,222 +1,385 @@
 \subsubsection*{4.3.5 Software Classes Method Code}
 \addcontentsline{toc}{subsubsection}{4.3.5 Software Classes Method Code}
 \pdfbookmark[2]{4.3.5 Software Classes Method Code}{p7h133}
-Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
+Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex, Claude)
 
-These excerpts are copied from the source files at the P7 working revision. Each path links to the planned release tag; the tag link will resolve only after the release is published. An excerpt can omit other guards or calls in the same method. The operation and sequence references identify the corresponding design, while the named code is the implementation.
+For every main use case, the methods that realise one important system operation are printed in full, in the order of its sequence diagram (controller, then domain, then data access). They are copied unchanged from the source files of release v0.9-part2; the line numbers refer to that release. All other classes and methods are in the repository (\texttt{saigonbite/\allowbreak{}}); the design class tables in 3.x.1 list every method signature.
 
 \textbf{UC-01 --- confirmCheckout (OP-01)}
 
-SSD: \texttt{models/\allowbreak{}UC-01/\allowbreak{}ssd\_\allowbreak{}uc01\_\allowbreak{}PartB.\allowbreak{}drawio\#01S-M04}. Design sequence: \texttt{models/\allowbreak{}UC-01/\allowbreak{}seq\_\allowbreak{}uc01\_\allowbreak{}confirmCheckout\_\allowbreak{}PartA.\allowbreak{}png}. The controller and data-access excerpts follow the operation realisation; domain or value behavior is included where that operation calls a named method.
+The customer confirms the quote: the controller re-prices, checks consent and capacity inside one transaction, the domain creates the order, and the DAO stores it.
 
-\textbf{PlaceOrderController.confirm\_order} --- \texttt{saigonbite/\allowbreak{}business/\allowbreak{}controllers/\allowbreak{}place\_\allowbreak{}order\_\allowbreak{}controller.\allowbreak{}py}, lines 104--115; author 722I0004; \href{\TargetRepo\detokenize{/blob/v0.9-part2/saigonbite/business/controllers/place_order_controller.py#L104-L115}}{planned tag}.
+\textbf{PlaceOrderController.confirm\_order} --- \texttt{saigonbite/\allowbreak{}business/\allowbreak{}controllers/\allowbreak{}place\_\allowbreak{}order\_\allowbreak{}controller.\allowbreak{}py}, lines 88--140; \href{\TargetRepo\detokenize{/blob/v0.9-part2/saigonbite/business/controllers/place_order_controller.py#L88-L140}}{source at release v0.9-part2}.
 
 \begin{lstlisting}
-        customer = self._require_customer(user_id)
-        token = (idempotency_token or "").strip()
-        if not token:
-            raise ValidationError("This order form has expired. Please start the order again.")
-        payment = payment or PaymentChoice()
-        reference = None
-        try:
-            with immediate_transaction(self.conn):
-                customer = self._require_customer(user_id)
-                existing = self.orders.get_by_token(token)
-                if existing is not None:
-                    if existing.customer_id != customer.id:
+def confirm_order(self, user_id: int, hub_id: int, address_id: Optional[int],
+                  quantities: Mapping[int, str], idempotency_token: str,
+                  quoted_total: Optional[int] = None, voucher_code: Optional[str] = None,
+                  payment: Optional[PaymentChoice] = None,
+                  quote_fingerprint: Optional[str] = None) -> OrderConfirmation:
+    """Create Order(PLACED) + OrderLines + Payment in ONE transaction.
+
+    Payment is COD PENDING, or ONLINE PAID when the simulator approved it (A-06: the money is taken
+    when the order is saved; a failed save releases the authorisation).
+    A repeated call with the same token returns the first order and writes nothing.
+    The capacity rule is checked again inside the write lock, so two customers cannot both take
+    the last slot of a hub (R-03).
+    quoted_total is the total the customer saw on the quote page. It is only compared, never
+    used as a price: if it is missing or the re-priced total differs, no order is written and
+    QuoteChangedError carries the current quote for the customer to confirm.
+    """
+    customer = self._require_customer(user_id)
+    token = (idempotency_token or "").strip()
+    if not token:
+        raise ValidationError("This order form has expired. Please start the order again.")
+    payment = payment or PaymentChoice()
+    reference = None
+    try:
+        with immediate_transaction(self.conn):
+            customer = self._require_customer(user_id)
+            existing = self.orders.get_by_token(token)
+            if existing is not None:
+                if existing.customer_id != customer.id:
+                    raise AuthorizationError("This order belongs to another customer.")
+                return self._confirmation(existing, created=False)
+            self._check_payment_choice(customer, payment)
+            quote = self._build_quote(customer, hub_id, address_id, quantities, voucher_code)
+            if quoted_total is None or not quote_fingerprint:
+                raise QuoteChangedError(quote, QuoteChangedError.MISSING)
+            if quoted_total != quote.total or quote_fingerprint != quote.fingerprint(payment.method,payment.option):
+                raise QuoteChangedError(quote)
+            if payment.method is PaymentMethod.ONLINE:
+                auth = self.gateway.authorise(quote.total, payment.option, payment.outcome)
+                if not auth.approved:
+                    raise PaymentDeclinedError(quote, f"{auth.message} No order was placed. Try again or choose cash on delivery.")
+                reference = auth.reference
+            now = self._now()
+            order = Order.place(customer.id, quote, token, now)
+            order.id = self.orders.insert(order)
+            self.payments.insert(Payment(
+                order_id=order.id, method=payment.method, online_option=payment.option,
+                provider_ref=reference, amount=order.total, created_at=now,
+                state=PaymentState.PAID if payment.method is PaymentMethod.ONLINE else PaymentState.PENDING))
+    except BaseException:
+        if reference:
+            self.gateway.release(reference)
+        raise
+    return self._confirmation(self.orders.get_by_id(order.id), created=True)
 \end{lstlisting}
-\textbf{Order.place} --- \texttt{saigonbite/\allowbreak{}business/\allowbreak{}domain/\allowbreak{}models.\allowbreak{}py}, lines 323--330; author 722I0004; \href{\TargetRepo\detokenize{/blob/v0.9-part2/saigonbite/business/domain/models.py#L323-L330}}{planned tag}.
+\textbf{Order.place} --- \texttt{saigonbite/\allowbreak{}business/\allowbreak{}domain/\allowbreak{}models.\allowbreak{}py}, lines 320--330; \href{\TargetRepo\detokenize{/blob/v0.9-part2/saigonbite/business/domain/models.py#L320-L330}}{source at release v0.9-part2}.
 
 \begin{lstlisting}
-        return cls(customer_id=customer_id, hub_id=quote.hub.id, address_id=quote.address.id,
-                   state=OrderState.PLACED, delivery_fee=quote.delivery_fee,
-                   idempotency_token=idempotency_token, placed_at=placed_at,
-                   delivery_address_text=quote.address.full_address, distance_km=round(quote.distance_km,2),
-                   voucher_id=quote.voucher.id if quote.voucher else None,
-                   voucher_discount=quote.voucher_discount, quiet_discount=quote.quiet_discount,
-                   lines=[OrderLine(l.menu_item_id, l.item_name, l.unit_price, l.quantity)
-                          for l in quote.lines])
+@classmethod
+def place(cls, customer_id: int, quote: Quote, idempotency_token: str, placed_at: str) -> "Order":
+    """Create a new order in state PLACED from an accepted quote."""
+    return cls(customer_id=customer_id, hub_id=quote.hub.id, address_id=quote.address.id,
+               state=OrderState.PLACED, delivery_fee=quote.delivery_fee,
+               idempotency_token=idempotency_token, placed_at=placed_at,
+               delivery_address_text=quote.address.full_address, distance_km=round(quote.distance_km,2),
+               voucher_id=quote.voucher.id if quote.voucher else None,
+               voucher_discount=quote.voucher_discount, quiet_discount=quote.quiet_discount,
+               lines=[OrderLine(l.menu_item_id, l.item_name, l.unit_price, l.quantity)
+                      for l in quote.lines])
 \end{lstlisting}
-\textbf{OrderDAO.insert} --- \texttt{saigonbite/\allowbreak{}data\_\allowbreak{}access/\allowbreak{}order\_\allowbreak{}dao.\allowbreak{}py}, lines 22--33; author 722I0004; \href{\TargetRepo\detokenize{/blob/v0.9-part2/saigonbite/data_access/order_dao.py#L22-L33}}{planned tag}.
+\textbf{OrderDAO.insert} --- \texttt{saigonbite/\allowbreak{}data\_\allowbreak{}access/\allowbreak{}order\_\allowbreak{}dao.\allowbreak{}py}, lines 20--36; \href{\TargetRepo\detokenize{/blob/v0.9-part2/saigonbite/data_access/order_dao.py#L20-L36}}{source at release v0.9-part2}.
 
 \begin{lstlisting}
-        cur = self.conn.execute(
-            "INSERT INTO orders (customer_id, hub_id, address_id, delivery_address_text, distance_km, state, "
-            "                    item_subtotal, voucher_id, voucher_discount, delivery_fee, quiet_discount, "
-            "                    total_amount, idempotency_token, placed_at) "
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-            (order.customer_id, order.hub_id, order.address_id, order.delivery_address_text, order.distance_km,
-             order.state.value, order.item_subtotal, order.voucher_id, order.voucher_discount, order.delivery_fee,
-             order.quiet_discount, order.total, order.idempotency_token, order.placed_at))
-        order_id = cur.lastrowid
-        for line in order.lines:
-            self.conn.execute(
-                "INSERT INTO order_line (order_id, menu_item_id, item_name, unit_price, quantity) "
+def insert(self, order: Order) -> int:
+    """Insert the order header and all lines; return the new order id."""
+    cur = self.conn.execute(
+        "INSERT INTO orders (customer_id, hub_id, address_id, delivery_address_text, distance_km, state, "
+        "                    item_subtotal, voucher_id, voucher_discount, delivery_fee, quiet_discount, "
+        "                    total_amount, idempotency_token, placed_at) "
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        (order.customer_id, order.hub_id, order.address_id, order.delivery_address_text, order.distance_km,
+         order.state.value, order.item_subtotal, order.voucher_id, order.voucher_discount, order.delivery_fee,
+         order.quiet_discount, order.total, order.idempotency_token, order.placed_at))
+    order_id = cur.lastrowid
+    for line in order.lines:
+        self.conn.execute(
+            "INSERT INTO order_line (order_id, menu_item_id, item_name, unit_price, quantity) "
+            "VALUES (?, ?, ?, ?, ?)",
+            (order_id, line.menu_item_id, line.item_name, line.unit_price, line.quantity))
+    return order_id
 \end{lstlisting}
 \textbf{UC-02 --- takeDelivery (OP-10)}
 
-SSD: \texttt{models/\allowbreak{}UC-02/\allowbreak{}ssd\_\allowbreak{}uc02\_\allowbreak{}PartA.\allowbreak{}drawio\#M03}. Design sequence: \texttt{models/\allowbreak{}UC-02/\allowbreak{}seq\_\allowbreak{}uc02\_\allowbreak{}takeDelivery.\allowbreak{}png}. The controller and data-access excerpts follow the operation realisation; domain or value behavior is included where that operation calls a named method.
+A shipper takes a READY order; the guarded UPDATE lets only one of two competing shippers succeed.
 
-\textbf{DeliveryController.pick\_up} --- \texttt{saigonbite/\allowbreak{}business/\allowbreak{}controllers/\allowbreak{}delivery\_\allowbreak{}controller.\allowbreak{}py}, lines 79--88; author 722I0004; \href{\TargetRepo\detokenize{/blob/v0.9-part2/saigonbite/business/controllers/delivery_controller.py#L79-L88}}{planned tag}.
+\textbf{DeliveryController.pick\_up} --- \texttt{saigonbite/\allowbreak{}business/\allowbreak{}controllers/\allowbreak{}delivery\_\allowbreak{}controller.\allowbreak{}py}, lines 77--88; \href{\TargetRepo\detokenize{/blob/v0.9-part2/saigonbite/business/controllers/delivery_controller.py#L77-L88}}{source at release v0.9-part2}.
 
 \begin{lstlisting}
-        shipper = self._require_shipper(user_id)
-        with immediate_transaction(self.conn):
-            delivery = self._delivery(order_id)
-            if delivery.state is not DeliveryState.AWAITING_PICKUP or delivery.shipper_id is not None:
-                raise ConflictError(f"Order {order_id} has already been picked up. Nothing was changed.")
-            now = self._now()
-            if not self.deliveries.take(order_id, shipper.id, now):
-                raise ConflictError(f"Order {order_id} has already been picked up. Nothing was changed.")
-            move_order(self.orders, self.orders.get_by_id(order_id), OrderState.OUT_FOR_DELIVERY, now)
-        return self.get_delivery(user_id, order_id)
+def pick_up(self, user_id: int, order_id: int) -> DeliveryView:
+    """Atomic: when two shippers press Pick up together, only the first one gets the order."""
+    shipper = self._require_shipper(user_id)
+    with immediate_transaction(self.conn):
+        delivery = self._delivery(order_id)
+        if delivery.state is not DeliveryState.AWAITING_PICKUP or delivery.shipper_id is not None:
+            raise ConflictError(f"Order {order_id} has already been picked up. Nothing was changed.")
+        now = self._now()
+        if not self.deliveries.take(order_id, shipper.id, now):
+            raise ConflictError(f"Order {order_id} has already been picked up. Nothing was changed.")
+        move_order(self.orders, self.orders.get_by_id(order_id), OrderState.OUT_FOR_DELIVERY, now)
+    return self.get_delivery(user_id, order_id)
 \end{lstlisting}
-\textbf{Order.move\_to} --- \texttt{saigonbite/\allowbreak{}business/\allowbreak{}domain/\allowbreak{}models.\allowbreak{}py}, lines 336--338; author 722I0004; \href{\TargetRepo\detokenize{/blob/v0.9-part2/saigonbite/business/domain/models.py#L336-L338}}{planned tag}.
+\textbf{DeliveryDAO.take} --- \texttt{saigonbite/\allowbreak{}data\_\allowbreak{}access/\allowbreak{}delivery\_\allowbreak{}dao.\allowbreak{}py}, lines 47--52; \href{\TargetRepo\detokenize{/blob/v0.9-part2/saigonbite/data_access/delivery_dao.py#L47-L52}}{source at release v0.9-part2}.
 
 \begin{lstlisting}
-        if not self.can_move_to(new_state):
-            raise InvalidTransition(f"Order {self.id}: {self.state.value} -> {new_state.value} is not allowed")
-        self.state = new_state
+def take(self, order_id: int, shipper_id: int, now: str) -> bool:
+    """AWAITING_PICKUP -> PICKED_UP for this shipper. Only the first of two competing shippers wins."""
+    cur = self.conn.execute(
+        "UPDATE delivery SET shipper_id = ?, state = 'PICKED_UP', picked_up_at = ? "
+        "WHERE order_id = ? AND state = 'AWAITING_PICKUP' AND shipper_id IS NULL", (shipper_id, now, order_id))
+    return cur.rowcount == 1
 \end{lstlisting}
-\textbf{DeliveryDAO.take} --- \texttt{saigonbite/\allowbreak{}data\_\allowbreak{}access/\allowbreak{}delivery\_\allowbreak{}dao.\allowbreak{}py}, lines 49--52; author 722I0004; \href{\TargetRepo\detokenize{/blob/v0.9-part2/saigonbite/data_access/delivery_dao.py#L49-L52}}{planned tag}.
+\textbf{UC-02 --- confirmDelivered (OP-11)}
+
+The assigned shipper finishes the delivery; for COD the cash collected must equal the order total.
+
+\textbf{DeliveryController.confirm\_delivered} --- \texttt{saigonbite/\allowbreak{}business/\allowbreak{}controllers/\allowbreak{}delivery\_\allowbreak{}controller.\allowbreak{}py}, lines 90--116; \href{\TargetRepo\detokenize{/blob/v0.9-part2/saigonbite/business/controllers/delivery_controller.py#L90-L116}}{source at release v0.9-part2}.
 
 \begin{lstlisting}
-        cur = self.conn.execute(
-            "UPDATE delivery SET shipper_id = ?, state = 'PICKED_UP', picked_up_at = ? "
-            "WHERE order_id = ? AND state = 'AWAITING_PICKUP' AND shipper_id IS NULL", (shipper_id, now, order_id))
-        return cur.rowcount == 1
+def confirm_delivered(self, user_id: int, order_id: int, cash_collected: Optional[str]) -> DeliveryView:
+    """COD: the cash entered must equal the order total, and the payment becomes PAID once.
+    Online: no cash is taken (the field must be empty or 0)."""
+    shipper = self._require_shipper(user_id)
+    with immediate_transaction(self.conn):
+        delivery = self._own_active_delivery(shipper, order_id)
+        payment = self.payments.get_by_order_id(order_id)
+        order = self.orders.get_by_id(order_id)
+        cash = self._parse_cash(cash_collected)
+        now = self._now()
+        if payment.method is PaymentMethod.COD:
+            if cash != order.total or payment.amount != order.total:
+                raise ValidationError(f"Collect exactly {payment.amount:,} VND in cash and enter that amount.")
+            payment.move_to(PaymentState.PAID)
+            if not self.payments.change_state(order_id, PaymentState.PENDING, PaymentState.PAID, now):
+                raise ConflictError("The payment was already recorded. Nothing was changed.")
+        else:
+            if payment.state is not PaymentState.PAID:
+                raise ConflictError('The online payment is not in a fulfilled-payment state.')
+            if cash not in (None, 0):
+                raise ValidationError("This order was paid online. Do not take cash from the customer.")
+            cash = None
+        delivery.move_to(DeliveryState.DELIVERED)
+        if not self.deliveries.finish(order_id, shipper.id, DeliveryState.DELIVERED, now, cash_collected=cash):
+            raise ConflictError("This delivery was already finished. Nothing was changed.")
+        move_order(self.orders, self.orders.get_by_id(order_id), OrderState.DELIVERED, now)
+    return self.get_delivery(user_id, order_id)
+\end{lstlisting}
+\textbf{DeliveryDAO.finish} --- \texttt{saigonbite/\allowbreak{}data\_\allowbreak{}access/\allowbreak{}delivery\_\allowbreak{}dao.\allowbreak{}py}, lines 54--61; \href{\TargetRepo\detokenize{/blob/v0.9-part2/saigonbite/data_access/delivery_dao.py#L54-L61}}{source at release v0.9-part2}.
+
+\begin{lstlisting}
+def finish(self, order_id: int, shipper_id: int, to_state: DeliveryState, now: str,
+           failure_reason: Optional[str] = None, cash_collected: Optional[int] = None) -> bool:
+    """PICKED_UP -> DELIVERED or FAILED, only by the shipper who picked it up."""
+    cur = self.conn.execute(
+        "UPDATE delivery SET state = ?, finished_at = ?, failure_reason = ?, cash_collected = ? "
+        "WHERE order_id = ? AND shipper_id = ? AND state = 'PICKED_UP'",
+        (to_state.value, now, failure_reason, cash_collected, order_id, shipper_id))
+    return cur.rowcount == 1
 \end{lstlisting}
 \textbf{UC-03 --- archiveHub (OP-36)}
 
-SSD: \texttt{models/\allowbreak{}UC-03/\allowbreak{}ssd\_\allowbreak{}uc03.\allowbreak{}drawio\#M03-05}. Design sequence: \texttt{models/\allowbreak{}UC-03/\allowbreak{}seq\_\allowbreak{}uc03\_\allowbreak{}archiveHub.\allowbreak{}png}. The controller and data-access excerpts follow the operation realisation; domain or value behavior is included where that operation calls a named method.
+The admin archives a hub; the controller refuses while the hub still has open orders.
 
-The design records construction or reading of typed values, rather than a separate domain behavior call for this operation.
-
-\textbf{HubController.archive\_hub} --- \texttt{saigonbite/\allowbreak{}business/\allowbreak{}controllers/\allowbreak{}hub\_\allowbreak{}controller.\allowbreak{}py}, lines 91--102; author 722I0004; \href{\TargetRepo\detokenize{/blob/v0.9-part2/saigonbite/business/controllers/hub_controller.py#L91-L102}}{planned tag}.
+\textbf{HubController.archive\_hub} --- \texttt{saigonbite/\allowbreak{}business/\allowbreak{}controllers/\allowbreak{}hub\_\allowbreak{}controller.\allowbreak{}py}, lines 88--104; \href{\TargetRepo\detokenize{/blob/v0.9-part2/saigonbite/business/controllers/hub_controller.py#L88-L104}}{source at release v0.9-part2}.
 
 \begin{lstlisting}
-        self._require_admin(user_id)
-        with immediate_transaction(self.conn):
-            hub = self.hubs.get_including_archived(hub_id)
-            if hub is None:
-                raise NotFoundError("Hub not found.")
-            if hub.archived_at is not None:
-                raise ConflictError(f"{hub.name} is already archived.")
-            open_orders = self.hubs.open_order_count(hub_id)
-            if open_orders:
-                raise ConflictError(f"{hub.name} still has {open_orders} open order(s). "
-                                    "Archive it when they are finished.")
-            if not self.hubs.archive(hub_id, self._now()):
+def archive_hub(self, user_id: int, hub_id: int) -> Hub:
+    """Guard: no open orders (anything not yet delivered, failed, rejected or cancelled).
+    Archived hubs leave browsing and checkout; order history still shows them."""
+    self._require_admin(user_id)
+    with immediate_transaction(self.conn):
+        hub = self.hubs.get_including_archived(hub_id)
+        if hub is None:
+            raise NotFoundError("Hub not found.")
+        if hub.archived_at is not None:
+            raise ConflictError(f"{hub.name} is already archived.")
+        open_orders = self.hubs.open_order_count(hub_id)
+        if open_orders:
+            raise ConflictError(f"{hub.name} still has {open_orders} open order(s). "
+                                "Archive it when they are finished.")
+        if not self.hubs.archive(hub_id, self._now()):
+            raise ConflictError('The hub changed before archive. Please reload.')
+    return self.hubs.get_including_archived(hub_id)
 \end{lstlisting}
-\textbf{HubDAO.archive} --- \texttt{saigonbite/\allowbreak{}data\_\allowbreak{}access/\allowbreak{}hub\_\allowbreak{}dao.\allowbreak{}py}, lines 67--69; author 722I0004; \href{\TargetRepo\detokenize{/blob/v0.9-part2/saigonbite/data_access/hub_dao.py#L67-L69}}{planned tag}.
+\textbf{HubDAO.archive} --- \texttt{saigonbite/\allowbreak{}data\_\allowbreak{}access/\allowbreak{}hub\_\allowbreak{}dao.\allowbreak{}py}, lines 66--69; \href{\TargetRepo\detokenize{/blob/v0.9-part2/saigonbite/data_access/hub_dao.py#L66-L69}}{source at release v0.9-part2}.
 
 \begin{lstlisting}
-        cur = self.conn.execute("UPDATE hub SET archived_at = ? WHERE id = ? AND archived_at IS NULL",
-                                (now, hub_id))
-        return cur.rowcount == 1
+def archive(self, hub_id: int, now: str) -> bool:
+    cur = self.conn.execute("UPDATE hub SET archived_at = ? WHERE id = ? AND archived_at IS NULL",
+                            (now, hub_id))
+    return cur.rowcount == 1
 \end{lstlisting}
 \textbf{UC-04 --- salesReport (OP-26)}
 
-SSD: \texttt{models/\allowbreak{}UC-04/\allowbreak{}ssd\_\allowbreak{}uc04.\allowbreak{}drawio\#M01}. Design sequence: \texttt{models/\allowbreak{}UC-04/\allowbreak{}seq\_\allowbreak{}uc04\_\allowbreak{}salesReport.\allowbreak{}png}. The controller and data-access excerpts follow the operation realisation; domain or value behavior is included where that operation calls a named method.
+The manager asks for sales in a Vietnam-date range; the DAO aggregates delivered orders by hub.
 
-\textbf{ReportController.sales\_report} --- \texttt{saigonbite/\allowbreak{}business/\allowbreak{}controllers/\allowbreak{}report\_\allowbreak{}controller.\allowbreak{}py}, lines 136--147; author 722I0004; \href{\TargetRepo\detokenize{/blob/v0.9-part2/saigonbite/business/controllers/report_controller.py#L136-L147}}{planned tag}.
+\textbf{ReportController.sales\_report} --- \texttt{saigonbite/\allowbreak{}business/\allowbreak{}controllers/\allowbreak{}report\_\allowbreak{}controller.\allowbreak{}py}, lines 134--147; \href{\TargetRepo\detokenize{/blob/v0.9-part2/saigonbite/business/controllers/report_controller.py#L134-L147}}{source at release v0.9-part2}.
 
 \begin{lstlisting}
-        self._require_manager(user_id)
-        period, hub = self._period(date_from, date_to), self._hub(hub_id)
-        rows = [SalesRow(label=r["hub_name"], orders=r["orders"], item_sales=r["item_sales"],
-                         voucher_discounts=r["voucher_discounts"], delivery_fees=r["delivery_fees"],
-                         total=r["total"], refunds_owed=r["refunds_owed"])
-                for r in self.reports.sales_by_hub(period.start_utc, period.end_utc, hub_id)]
-        totals = SalesRow(label="All hubs" if hub is None else hub.name)
-        for row in rows:
-            totals.add(row)
-        top = [(r["menu_item_id"], r["item_name"], r["quantity"], r["revenue"])
-               for r in self.reports.top_items(period.start_utc, period.end_utc, hub_id)]
-        return SalesReport(period=period, hub=hub, rows=rows, totals=totals, top_items=top)
+def sales_report(self, user_id: int, date_from: Optional[str] = None, date_to: Optional[str] = None,
+                 hub_id: Optional[int] = None) -> SalesReport:
+    self._require_manager(user_id)
+    period, hub = self._period(date_from, date_to), self._hub(hub_id)
+    rows = [SalesRow(label=r["hub_name"], orders=r["orders"], item_sales=r["item_sales"],
+                     voucher_discounts=r["voucher_discounts"], delivery_fees=r["delivery_fees"],
+                     total=r["total"], refunds_owed=r["refunds_owed"])
+            for r in self.reports.sales_by_hub(period.start_utc, period.end_utc, hub_id)]
+    totals = SalesRow(label="All hubs" if hub is None else hub.name)
+    for row in rows:
+        totals.add(row)
+    top = [(r["menu_item_id"], r["item_name"], r["quantity"], r["revenue"])
+           for r in self.reports.top_items(period.start_utc, period.end_utc, hub_id)]
+    return SalesReport(period=period, hub=hub, rows=rows, totals=totals, top_items=top)
 \end{lstlisting}
-\textbf{SalesRow.add} --- \texttt{saigonbite/\allowbreak{}business/\allowbreak{}controllers/\allowbreak{}report\_\allowbreak{}controller.\allowbreak{}py}, lines 57--58; author 722I0004; \href{\TargetRepo\detokenize{/blob/v0.9-part2/saigonbite/business/controllers/report_controller.py#L57-L58}}{planned tag}.
+\textbf{ReportDAO.sales\_by\_hub} --- \texttt{saigonbite/\allowbreak{}data\_\allowbreak{}access/\allowbreak{}report\_\allowbreak{}dao.\allowbreak{}py}, lines 31--46; \href{\TargetRepo\detokenize{/blob/v0.9-part2/saigonbite/data_access/report_dao.py#L31-L46}}{source at release v0.9-part2}.
 
 \begin{lstlisting}
-        for name in ("orders", "item_sales", "voucher_discounts", "delivery_fees", "total", "refunds_owed"):
-            setattr(self, name, getattr(self, name) + getattr(other, name))
-\end{lstlisting}
-\textbf{ReportDAO.sales\_by\_hub} --- \texttt{saigonbite/\allowbreak{}data\_\allowbreak{}access/\allowbreak{}report\_\allowbreak{}dao.\allowbreak{}py}, lines 33--44; author 722I0004; \href{\TargetRepo\detokenize{/blob/v0.9-part2/saigonbite/data_access/report_dao.py#L33-L44}}{planned tag}.
-
-\begin{lstlisting}
-        self.assert_complete()
-        return self.conn.execute(
-            "SELECT h.id AS hub_id, h.name AS hub_name, COUNT(*) AS orders, "
-            "       SUM(o.item_subtotal) AS item_sales, SUM(o.voucher_discount) AS voucher_discounts, "
-            "       SUM(o.delivery_fee - o.quiet_discount) AS delivery_fees, SUM(o.total_amount) AS total, "
-            "       SUM(p.refund_amount) AS refunds_owed "
-            "FROM orders o "
-            "JOIN delivery d ON d.order_id = o.id "
-            "JOIN payment p ON p.order_id = o.id "
-            "JOIN hub h ON h.id = o.hub_id "
-            "WHERE o.state = 'DELIVERED' AND d.finished_at >= ? AND d.finished_at < ? "
-            "  AND (? IS NULL OR o.hub_id = ?) "
+def sales_by_hub(self, start_utc: str, end_utc: str, hub_id: Optional[int]) -> list[sqlite3.Row]:
+    """DELIVERED orders whose delivery finished in [start_utc, end_utc), one row per hub."""
+    self.assert_complete()
+    return self.conn.execute(
+        "SELECT h.id AS hub_id, h.name AS hub_name, COUNT(*) AS orders, "
+        "       SUM(o.item_subtotal) AS item_sales, SUM(o.voucher_discount) AS voucher_discounts, "
+        "       SUM(o.delivery_fee - o.quiet_discount) AS delivery_fees, SUM(o.total_amount) AS total, "
+        "       SUM(p.refund_amount) AS refunds_owed "
+        "FROM orders o "
+        "JOIN delivery d ON d.order_id = o.id "
+        "JOIN payment p ON p.order_id = o.id "
+        "JOIN hub h ON h.id = o.hub_id "
+        "WHERE o.state = 'DELIVERED' AND d.finished_at >= ? AND d.finished_at < ? "
+        "  AND (? IS NULL OR o.hub_id = ?) "
+        "GROUP BY h.id, h.name ORDER BY h.id",
+        (start_utc, end_utc, hub_id, hub_id)).fetchall()
 \end{lstlisting}
 \textbf{UC-05 --- rejectOrder (OP-03)}
 
-SSD: \texttt{models/\allowbreak{}UC-05/\allowbreak{}ssd\_\allowbreak{}uc05\_\allowbreak{}PartA.\allowbreak{}drawio\#05S-M04}. Design sequence: \texttt{models/\allowbreak{}UC-05/\allowbreak{}seq\_\allowbreak{}uc05\_\allowbreak{}rejectOrder.\allowbreak{}png}. The controller and data-access excerpts follow the operation realisation; domain or value behavior is included where that operation calls a named method.
+Kitchen staff reject an own-hub PLACED order; the payment is released (COD voided, online amount owed back).
 
-\textbf{KitchenController.reject\_order} --- \texttt{saigonbite/\allowbreak{}business/\allowbreak{}controllers/\allowbreak{}kitchen\_\allowbreak{}controller.\allowbreak{}py}, lines 95--106; author 722I0004; \href{\TargetRepo\detokenize{/blob/v0.9-part2/saigonbite/business/controllers/kitchen_controller.py#L95-L106}}{planned tag}.
+\textbf{KitchenController.reject\_order} --- \texttt{saigonbite/\allowbreak{}business/\allowbreak{}controllers/\allowbreak{}kitchen\_\allowbreak{}controller.\allowbreak{}py}, lines 93--110; \href{\TargetRepo\detokenize{/blob/v0.9-part2/saigonbite/business/controllers/kitchen_controller.py#L93-L110}}{source at release v0.9-part2}.
 
 \begin{lstlisting}
-        staff = self._require_staff(user_id)
-        reason = (reason or "").strip()
-        if not reason:
-            raise ValidationError("Please give the reason for rejecting the order.")
-        if len(reason) > 200:
-            raise ValidationError("The reason must be at most 200 characters.")
-        with immediate_transaction(self.conn):
-            order = self._hub_order(staff, order_id)
-            now = self._now()
-            move_order(self.orders, order, OrderState.REJECTED, now, reason)
-            offer = self.offers.get_open(order.id)
-            if offer is not None:
+def reject_order(self, user_id: int, order_id: int, reason: str) -> Order:
+    """A-06: COD is voided, an online payment becomes REFUND_PENDING. A reason is required."""
+    staff = self._require_staff(user_id)
+    reason = (reason or "").strip()
+    if not reason:
+        raise ValidationError("Please give the reason for rejecting the order.")
+    if len(reason) > 200:
+        raise ValidationError("The reason must be at most 200 characters.")
+    with immediate_transaction(self.conn):
+        order = self._hub_order(staff, order_id)
+        now = self._now()
+        move_order(self.orders, order, OrderState.REJECTED, now, reason)
+        offer = self.offers.get_open(order.id)
+        if offer is not None:
+            if not self.offers.decide(offer.id, OfferState.WITHDRAWN, now):
+                raise ConflictError('The open offer changed. Please reload.')
+        release_payment(self.payments, order.id, now)
+    return order
 \end{lstlisting}
-\textbf{Payment.release\_for\_unfulfilled\_order} --- \texttt{saigonbite/\allowbreak{}business/\allowbreak{}domain/\allowbreak{}models.\allowbreak{}py}, lines 282--283; author 722I0004; \href{\TargetRepo\detokenize{/blob/v0.9-part2/saigonbite/business/domain/models.py#L282-L283}}{planned tag}.
+\textbf{Payment.release\_for\_unfulfilled\_order} --- \texttt{saigonbite/\allowbreak{}business/\allowbreak{}domain/\allowbreak{}models.\allowbreak{}py}, lines 280--283; \href{\TargetRepo\detokenize{/blob/v0.9-part2/saigonbite/business/domain/models.py#L280-L283}}{source at release v0.9-part2}.
 
 \begin{lstlisting}
-        self.move_to(PaymentState.VOIDED if self.method is PaymentMethod.COD else PaymentState.REFUND_PENDING)
-        self.refund_amount = self.amount if self.method is PaymentMethod.ONLINE else 0
+def release_for_unfulfilled_order(self) -> None:
+    """Rejection, cancellation or failed delivery (A-06): COD is voided, an online payment is owed back."""
+    self.move_to(PaymentState.VOIDED if self.method is PaymentMethod.COD else PaymentState.REFUND_PENDING)
+    self.refund_amount = self.amount if self.method is PaymentMethod.ONLINE else 0
 \end{lstlisting}
-\textbf{PaymentDAO.set\_amounts} --- \texttt{saigonbite/\allowbreak{}data\_\allowbreak{}access/\allowbreak{}payment\_\allowbreak{}dao.\allowbreak{}py}, lines 41--43; author 722I0004; \href{\TargetRepo\detokenize{/blob/v0.9-part2/saigonbite/data_access/payment_dao.py#L41-L43}}{planned tag}.
+\textbf{UC-05 --- acceptReplacement (OP-05)}
+
+The customer answers an open replacement offer; the controller re-checks the exact offer and the target before the line is replaced.
+
+\textbf{OrderTrackingController.answer\_replacement} --- \texttt{saigonbite/\allowbreak{}business/\allowbreak{}controllers/\allowbreak{}order\_\allowbreak{}tracking\_\allowbreak{}controller.\allowbreak{}py}, lines 77--113; \href{\TargetRepo\detokenize{/blob/v0.9-part2/saigonbite/business/controllers/order_tracking_controller.py#L77-L113}}{source at release v0.9-part2}.
 
 \begin{lstlisting}
-        cur = self.conn.execute("UPDATE payment SET amount = ?, refund_amount = ?, updated_at = ? WHERE order_id = ?",
-                          (amount, refund_amount, now, order_id))
-        return cur.rowcount == 1
+def answer_replacement(self, user_id: int, order_id: int, offer_id: int, accept: bool) -> OrderDetail:
+    """Accept: the line takes the new dish and price, totals are recomputed; COD owes the new total,
+    ONLINE records the difference as refund owed (payment stays PAID).
+    Decline: the order is REJECTED and the payment released (A-06)."""
+    customer = self._require_customer(user_id)
+    notice = None
+    with immediate_transaction(self.conn):
+        order = self._own_order(customer, order_id)
+        offer = self.offers.get_open(order.id)
+        if order.state is not OrderState.PLACED or offer is None or offer.id != offer_id:
+            raise ConflictError("This replacement offer is no longer open. Nothing was changed.")
+        now = self._now()
+        target_valid = self.hubs.get_available_item(order.hub_id,offer.new_menu_item_id) is not None
+        if accept and not target_valid:
+            if not self.offers.decide(offer.id,OfferState.WITHDRAWN,now):
+                raise ConflictError('The offer changed. Please reload.')
+            notice = 'The replacement is no longer available. The offer was withdrawn; your order and payment are unchanged.'
+        elif accept:
+            order.replace_line(offer.order_line_id, offer.new_menu_item_id, offer.new_item_name,
+                               offer.new_unit_price)
+            if not self.orders.save_lines_and_totals(order):
+                raise ConflictError('The order lines changed. Please reload.')
+            payment = self.payments.get_by_order_id(order.id)
+            if payment.method is PaymentMethod.COD:
+                saved = self.payments.set_amounts(order.id, order.total, 0, now)
+            else:
+                saved = self.payments.set_amounts(order.id, payment.amount, payment.amount - order.total, now)
+            if not saved or not self.offers.decide(offer.id, OfferState.ACCEPTED, now):
+                raise ConflictError('The payment or offer changed. Please reload.')
+        else:
+            if not self.offers.decide(offer.id, OfferState.DECLINED, now):
+                raise ConflictError('The offer changed. Please reload.')
+            move_order(self.orders, order, OrderState.REJECTED, now, DECLINED_REASON)
+            release_payment(self.payments, order.id, now)
+    result = self.get_order(user_id, order_id)
+    result.notice = notice
+    return result
+\end{lstlisting}
+\textbf{Order.replace\_line} --- \texttt{saigonbite/\allowbreak{}business/\allowbreak{}domain/\allowbreak{}models.\allowbreak{}py}, lines 343--352; \href{\TargetRepo\detokenize{/blob/v0.9-part2/saigonbite/business/domain/models.py#L343-L352}}{source at release v0.9-part2}.
+
+\begin{lstlisting}
+def replace_line(self, line_id: int, menu_item_id: int, item_name: str, unit_price: int) -> None:
+    """Apply an accepted replacement. The voucher discount agreed at checkout is kept,
+    but never more than the new item subtotal, so the total can only stay the same or fall."""
+    if self.state is not OrderState.PLACED:
+        raise InvalidTransition('Only a PLACED order can accept a replacement.')
+    line = self.line(line_id)
+    if line is None:
+        raise ValueError(f"Order {self.id} has no line {line_id}")
+    line.menu_item_id, line.item_name, line.unit_price = menu_item_id, item_name, unit_price
+    self.voucher_discount = min(self.voucher_discount, self.item_subtotal)
 \end{lstlisting}
 \textbf{UC-06 --- updateMenuItem (OP-41)}
 
-SSD: \texttt{models/\allowbreak{}UC-06/\allowbreak{}ssd\_\allowbreak{}uc06\_\allowbreak{}PartB.\allowbreak{}drawio\#M06-B03}. Design sequence: \texttt{models/\allowbreak{}UC-06/\allowbreak{}seq\_\allowbreak{}uc06\_\allowbreak{}updateMenuItem.\allowbreak{}png}. The controller and data-access excerpts follow the operation realisation; domain or value behavior is included where that operation calls a named method.
+The admin edits a menu item; earlier orders keep their own name and price snapshot.
 
-The design records construction or reading of typed values, rather than a separate domain behavior call for this operation.
-
-\textbf{MenuController.update\_item} --- \texttt{saigonbite/\allowbreak{}business/\allowbreak{}controllers/\allowbreak{}menu\_\allowbreak{}controller.\allowbreak{}py}, lines 111--122; author 722I0004; \href{\TargetRepo\detokenize{/blob/v0.9-part2/saigonbite/business/controllers/menu_controller.py#L111-L122}}{planned tag}.
+\textbf{MenuController.update\_item} --- \texttt{saigonbite/\allowbreak{}business/\allowbreak{}controllers/\allowbreak{}menu\_\allowbreak{}controller.\allowbreak{}py}, lines 109--126; \href{\TargetRepo\detokenize{/blob/v0.9-part2/saigonbite/business/controllers/menu_controller.py#L109-L126}}{source at release v0.9-part2}.
 
 \begin{lstlisting}
-        self._require_admin(user_id)
-        with immediate_transaction(self.conn):
-            current = self._active_item(item_id)
-            self._active_brand(current.brand_id)
-            try:
-                context = int(form.get('brand_id') or 0)
-            except ValueError:
-                context = 0
-            if context != current.brand_id:
-                raise ValidationError('The brand context must match the current parent; reparenting is not supported.')
-            item = self._parse_item({**form, "brand_id": str(current.brand_id)}, item_id=item_id)
-            if self.menu.item_name_exists(current.brand_id, item.name, except_id=item_id):
+def update_item(self, user_id: int, item_id: int, form: Mapping[str, str]) -> MenuItem:
+    """Name, description and price. The brand of a dish does not change."""
+    self._require_admin(user_id)
+    with immediate_transaction(self.conn):
+        current = self._active_item(item_id)
+        self._active_brand(current.brand_id)
+        try:
+            context = int(form.get('brand_id') or 0)
+        except ValueError:
+            context = 0
+        if context != current.brand_id:
+            raise ValidationError('The brand context must match the current parent; reparenting is not supported.')
+        item = self._parse_item({**form, "brand_id": str(current.brand_id)}, item_id=item_id)
+        if self.menu.item_name_exists(current.brand_id, item.name, except_id=item_id):
+            raise ValidationError(f"{current.brand_name} already has a dish called {item.name}.")
+        if not self.menu.update_item(item):
+            raise ConflictError('The item changed before saving.')
+    return self.menu.get_item(item_id)
 \end{lstlisting}
-\textbf{MenuDAO.update\_item} --- \texttt{saigonbite/\allowbreak{}data\_\allowbreak{}access/\allowbreak{}menu\_\allowbreak{}dao.\allowbreak{}py}, lines 68--71; author 722I0004; \href{\TargetRepo\detokenize{/blob/v0.9-part2/saigonbite/data_access/menu_dao.py#L68-L71}}{planned tag}.
+\textbf{MenuDAO.update\_item} --- \texttt{saigonbite/\allowbreak{}data\_\allowbreak{}access/\allowbreak{}menu\_\allowbreak{}dao.\allowbreak{}py}, lines 66--71; \href{\TargetRepo\detokenize{/blob/v0.9-part2/saigonbite/data_access/menu_dao.py#L66-L71}}{source at release v0.9-part2}.
 
 \begin{lstlisting}
-        cur = self.conn.execute(
-            "UPDATE menu_item SET name = ?, description = ?, price = ? WHERE id = ? AND archived_at IS NULL",
-            (item.name, item.description, item.price, item.id))
-        return cur.rowcount == 1
+def update_item(self, item: MenuItem) -> bool:
+    """Change name, description or price. Order lines keep their own copy, so history is unchanged."""
+    cur = self.conn.execute(
+        "UPDATE menu_item SET name = ?, description = ?, price = ? WHERE id = ? AND archived_at IS NULL",
+        (item.name, item.description, item.price, item.id))
+    return cur.rowcount == 1
 \end{lstlisting}

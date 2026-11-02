@@ -31,20 +31,20 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ customers: CustomerDAO` **inferred** | MATCH |
-| Attribute | `+ hubs: HubDAO` **inferred** | MATCH |
-| Attribute | `+ orders: OrderDAO` **inferred** | MATCH |
-| Attribute | `+ payments: PaymentDAO` **inferred** | MATCH |
-| Attribute | `+ vouchers: VoucherDAO` **inferred** | MATCH |
-| Attribute | `+ gateway: Any` **inferred** | MATCH |
-| Operation | `+ list_hubs(self) -> list[HubStatus]` | MATCH |
-| Operation | `+ select_hub(self, user_id: int, hub_id: int) -> HubMenuView` | MATCH |
+| Attribute | `+ customers: CustomerDAO` **inferred** | Matches code |
+| Attribute | `+ hubs: HubDAO` **inferred** | Matches code |
+| Attribute | `+ orders: OrderDAO` **inferred** | Matches code |
+| Attribute | `+ payments: PaymentDAO` **inferred** | Matches code |
+| Attribute | `+ vouchers: VoucherDAO` **inferred** | Matches code |
+| Attribute | `+ gateway: Any` **inferred** | Matches code |
+| Operation | `+ list_hubs(self) -> list[HubStatus]` | Matches code |
+| Operation | `+ select_hub(self, user_id: int, hub_id: int) -> HubMenuView` | Matches code |
 | Operation | `+ request_quote(self, user_id: int, hub_id: int, address_id: Optional[int], quantities: Mapping[int, str], voucher_code: Optional[str] = None, payment: Optional[PaymentChoice] = None) -> Quote†` | P4-TARGET† — F-04; F-07; P3-S01; Use raw distance; include payment choice and a full quote fingerprint; rank suggestions by load ratio, distance and ID. |
 | Operation | `+ confirm_order(self, user_id: int, hub_id: int, address_id: Optional[int], quantities: Mapping[int, str], idempotency_token: str, quoted_total: Optional[int] = None, voucher_code: Optional[str] = None, payment: Optional[PaymentChoice] = None, quote_fingerprint: Optional[str] = None) -> OrderConfirmation†` | P4-TARGET† — F-04; F-07; P2-S05; P2-S13; Compare full fingerprint and T; release simulator authorization on every failure through COMMIT. |
-| Operation | `- _build_quote(self, customer: Customer, hub_id: int, address_id: Optional[int], quantities: Mapping[int, str], voucher_code: Optional[str]) -> Quote` | MATCH |
+| Operation | `- _build_quote(self, customer: Customer, hub_id: int, address_id: Optional[int], quantities: Mapping[int, str], voucher_code: Optional[str]) -> Quote` | Matches code |
 | Operation | `+ suggest_hubs(self, exclude_hub_id: int, address: Optional[Address]) -> list[HubStatus]†` | P4-TARGET† — P3-S01; F-04; Draft sorts by load ratio then ID; BR-04 requires distance as the second key and raw distance for range. |
-| Operation | `- _require_customer(self, user_id: int) -> Customer` | MATCH |
-| Operation | `- _check_payment_choice(customer: Customer, payment: PaymentChoice) -> None` | MATCH |
+| Operation | `- _require_customer(self, user_id: int) -> Customer` | Matches code |
+| Operation | `- _check_payment_choice(customer: Customer, payment: PaymentChoice) -> None` | Matches code |
 
 ##### order
 
@@ -57,13 +57,13 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Operation | `+ choose_hub() -> Any [inferred return]` **inferred unannotated parameter/return** | MATCH |
-| Operation | `+ choose_items(hub_id: int) -> Any [inferred return]` **inferred unannotated parameter/return** | MATCH |
+| Operation | `+ choose_hub() -> Any [inferred return]` **inferred unannotated parameter/return** | Matches code |
+| Operation | `+ choose_items(hub_id: int) -> Any [inferred return]` **inferred unannotated parameter/return** | Matches code |
 | Operation | `+ quote() -> Any [inferred return]†` **inferred unannotated parameter/return** | P4-TARGET† — F-07; Pass payment choice into target quoting and render the full fingerprint. |
 | Operation | `+ confirm() -> Any [inferred return]†` **inferred unannotated parameter/return** | P4-TARGET† — F-07; P2-S05; Bind the posted fingerprint/payment choice to the target confirm method; retain controlled results through COMMIT. |
-| Operation | `+ detail(order_id: int) -> Any [inferred return]` **inferred unannotated parameter/return** | MATCH |
-| Operation | `+ my_orders() -> Any [inferred return]` **inferred unannotated parameter/return** | MATCH |
-| Operation | `+ cancel(order_id: int) -> Any [inferred return]` **inferred unannotated parameter/return** | MATCH |
+| Operation | `+ detail(order_id: int) -> Any [inferred return]` **inferred unannotated parameter/return** | Matches code |
+| Operation | `+ my_orders() -> Any [inferred return]` **inferred unannotated parameter/return** | Matches code |
+| Operation | `+ cancel(order_id: int) -> Any [inferred return]` **inferred unannotated parameter/return** | Matches code |
 
 ##### HubStatus
 
@@ -76,10 +76,10 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ hub: Hub` | MATCH |
-| Attribute | `+ load: int` | MATCH |
-| Read-only property | `+ busy(self) -> bool {property; read as .busy}` | MATCH |
-| Read-only property | `+ quiet(self) -> bool {property; read as .quiet}` | MATCH |
+| Attribute | `+ hub: Hub` | Matches code |
+| Attribute | `+ load: int` | Matches code |
+| Read-only property | `+ busy(self) -> bool {property; read as .busy}` | Matches code |
+| Read-only property | `+ quiet(self) -> bool {property; read as .quiet}` | Matches code |
 
 ##### HubDAO
 
@@ -92,14 +92,14 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ conn: sqlite3.Connection` | MATCH |
-| Operation | `+ active_loads(self) -> dict[int, int]` | MATCH |
-| Operation | `+ list_active(self) -> list[Hub]` | MATCH |
-| Operation | `+ active_load(self, hub_id: int) -> int` | MATCH |
-| Operation | `+ get(self, hub_id: int) -> Optional[Hub]` | MATCH |
-| Operation | `+ list_menu(self, hub_id: int) -> list[HubMenuItem]` | MATCH |
-| Operation | `+ get_available_item(self, hub_id: int, menu_item_id: int) -> Optional[MenuItem]` | MATCH |
-| Operation | `+ get_including_archived(self, hub_id: int) -> Optional[Hub]` | MATCH |
+| Attribute | `+ conn: sqlite3.Connection` | Matches code |
+| Operation | `+ active_loads(self) -> dict[int, int]` | Matches code |
+| Operation | `+ list_active(self) -> list[Hub]` | Matches code |
+| Operation | `+ active_load(self, hub_id: int) -> int` | Matches code |
+| Operation | `+ get(self, hub_id: int) -> Optional[Hub]` | Matches code |
+| Operation | `+ list_menu(self, hub_id: int) -> list[HubMenuItem]` | Matches code |
+| Operation | `+ get_available_item(self, hub_id: int, menu_item_id: int) -> Optional[MenuItem]` | Matches code |
+| Operation | `+ get_including_archived(self, hub_id: int) -> Optional[Hub]` | Matches code |
 
 ##### CustomerDAO
 
@@ -112,10 +112,10 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ conn: sqlite3.Connection` | MATCH |
-| Operation | `+ get_by_user_id(self, user_id: int) -> Optional[Customer]` | MATCH |
-| Operation | `+ list_addresses(self, customer_id: int) -> list[Address]` | MATCH |
-| Operation | `+ get_address(self, address_id: int, customer_id: int) -> Optional[Address]` | MATCH |
+| Attribute | `+ conn: sqlite3.Connection` | Matches code |
+| Operation | `+ get_by_user_id(self, user_id: int) -> Optional[Customer]` | Matches code |
+| Operation | `+ list_addresses(self, customer_id: int) -> list[Address]` | Matches code |
+| Operation | `+ get_address(self, address_id: int, customer_id: int) -> Optional[Address]` | Matches code |
 
 ##### UserDAO
 
@@ -128,8 +128,8 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ conn: sqlite3.Connection` | MATCH |
-| Operation | `+ get_by_id(self, user_id: int) -> Optional[UserAccount]` | MATCH |
+| Attribute | `+ conn: sqlite3.Connection` | Matches code |
+| Operation | `+ get_by_id(self, user_id: int) -> Optional[UserAccount]` | Matches code |
 
 ##### Hub
 
@@ -142,15 +142,15 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ id: int` | MATCH |
-| Attribute | `+ code: str` | MATCH |
-| Attribute | `+ name: str` | MATCH |
-| Attribute | `+ address_text: str` | MATCH |
-| Attribute | `+ latitude: float` | MATCH |
-| Attribute | `+ longitude: float` | MATCH |
-| Attribute | `+ max_active_orders: int` | MATCH |
-| Attribute | `+ base_delivery_fee: int` | MATCH |
-| Attribute | `+ archived_at: Optional[str]` | MATCH |
+| Attribute | `+ id: int` | Matches code |
+| Attribute | `+ code: str` | Matches code |
+| Attribute | `+ name: str` | Matches code |
+| Attribute | `+ address_text: str` | Matches code |
+| Attribute | `+ latitude: float` | Matches code |
+| Attribute | `+ longitude: float` | Matches code |
+| Attribute | `+ max_active_orders: int` | Matches code |
+| Attribute | `+ base_delivery_fee: int` | Matches code |
+| Attribute | `+ archived_at: Optional[str]` | Matches code |
 | Operation | `+ distance_to(self, address: Address) -> float†` | P4-TARGET† — F-04; Keep raw Haversine precision through the radius and fee decisions; round only presentation/storage. |
 
 ##### Quote
@@ -164,16 +164,16 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ hub: Hub` | MATCH |
-| Attribute | `+ address: Address` | MATCH |
-| Attribute | `+ lines: list[OrderLine]` | MATCH |
-| Attribute | `+ distance_km: float` | MATCH |
-| Attribute | `+ delivery_fee: int` | MATCH |
-| Attribute | `+ quiet_discount: int` | MATCH |
-| Attribute | `+ voucher: Optional[Voucher]` | MATCH |
-| Attribute | `+ voucher_discount: int` | MATCH |
+| Attribute | `+ hub: Hub` | Matches code |
+| Attribute | `+ address: Address` | Matches code |
+| Attribute | `+ lines: list[OrderLine]` | Matches code |
+| Attribute | `+ distance_km: float` | Matches code |
+| Attribute | `+ delivery_fee: int` | Matches code |
+| Attribute | `+ quiet_discount: int` | Matches code |
+| Attribute | `+ voucher: Optional[Voucher]` | Matches code |
+| Attribute | `+ voucher_discount: int` | Matches code |
 | Operation | `+ fingerprint(self, payment_method: PaymentMethod, online_option: Optional[OnlineOption] = None) -> str†` | GAP† — F-07; Bind all consent fields with pure-domain enum inputs; the controller adapts PaymentChoice. |
-| Read-only property | `+ total(self) -> int {property; read as .total}` | MATCH |
+| Read-only property | `+ total(self) -> int {property; read as .total}` | Matches code |
 
 ##### Voucher
 
@@ -186,18 +186,18 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ id: int` | MATCH |
-| Attribute | `+ code: str` | MATCH |
-| Attribute | `+ description: str` | MATCH |
-| Attribute | `+ discount_type: DiscountType` | MATCH |
-| Attribute | `+ discount_value: int` | MATCH |
-| Attribute | `+ min_subtotal: int` | MATCH |
-| Attribute | `+ max_discount: Optional[int]` | MATCH |
-| Attribute | `+ valid_from: str` | MATCH |
-| Attribute | `+ valid_until: str` | MATCH |
-| Attribute | `+ archived_at: Optional[str]` | MATCH |
-| Operation | `+ discount_for(self, item_subtotal: int) -> int` | MATCH |
-| Operation | `+ problem(self, item_subtotal: int, today: str) -> Optional[str]` | MATCH |
+| Attribute | `+ id: int` | Matches code |
+| Attribute | `+ code: str` | Matches code |
+| Attribute | `+ description: str` | Matches code |
+| Attribute | `+ discount_type: DiscountType` | Matches code |
+| Attribute | `+ discount_value: int` | Matches code |
+| Attribute | `+ min_subtotal: int` | Matches code |
+| Attribute | `+ max_discount: Optional[int]` | Matches code |
+| Attribute | `+ valid_from: str` | Matches code |
+| Attribute | `+ valid_until: str` | Matches code |
+| Attribute | `+ archived_at: Optional[str]` | Matches code |
+| Operation | `+ discount_for(self, item_subtotal: int) -> int` | Matches code |
+| Operation | `+ problem(self, item_subtotal: int, today: str) -> Optional[str]` | Matches code |
 
 ##### VoucherDAO
 
@@ -210,8 +210,8 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ conn: sqlite3.Connection` | MATCH |
-| Operation | `+ get_by_code(self, code: str) -> Optional[Voucher]` | MATCH |
+| Attribute | `+ conn: sqlite3.Connection` | Matches code |
+| Operation | `+ get_by_code(self, code: str) -> Optional[Voucher]` | Matches code |
 
 ##### Order
 
@@ -224,29 +224,29 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ customer_id: int` (FK retained here; omitted from DCD) | MATCH |
-| Attribute | `+ hub_id: int` (FK retained here; omitted from DCD) | MATCH |
-| Attribute | `+ address_id: int` (FK retained here; omitted from DCD) | MATCH |
-| Attribute | `+ state: OrderState` | MATCH |
-| Attribute | `+ delivery_fee: int` | MATCH |
-| Attribute | `+ idempotency_token: str` | MATCH |
-| Attribute | `+ placed_at: str` | MATCH |
-| Attribute | `+ lines: list[OrderLine]` | MATCH |
-| Attribute | `+ id: Optional[int]` | MATCH |
-| Attribute | `+ archived_at: Optional[str]` | MATCH |
-| Attribute | `+ delivery_address_text: str` | MATCH |
-| Attribute | `+ distance_km: float` | MATCH |
-| Attribute | `+ voucher_id: Optional[int]` (FK retained here; omitted from DCD) | MATCH |
-| Attribute | `+ voucher_discount: int` | MATCH |
-| Attribute | `+ quiet_discount: int` | MATCH |
-| Attribute | `+ reject_reason: Optional[str]` | MATCH |
-| Attribute | `+ confirmed_at: Optional[str]` | MATCH |
-| Attribute | `+ ready_at: Optional[str]` | MATCH |
-| Attribute | `+ closed_at: Optional[str]` | MATCH |
-| Operation | `+ place(cls, customer_id: int, quote: Quote, idempotency_token: str, placed_at: str) -> 'Order'` | MATCH |
-| Operation | `+ move_to(self, new_state: OrderState) -> None` | MATCH |
-| Operation | `+ replace_line(self, line_id: int, menu_item_id: int, item_name: str, unit_price: int) -> None` | MATCH |
-| Operation | `+ line(self, line_id: int) -> Optional[OrderLine]` | MATCH |
+| Attribute | `+ customer_id: int` (FK retained here; omitted from DCD) | Matches code |
+| Attribute | `+ hub_id: int` (FK retained here; omitted from DCD) | Matches code |
+| Attribute | `+ address_id: int` (FK retained here; omitted from DCD) | Matches code |
+| Attribute | `+ state: OrderState` | Matches code |
+| Attribute | `+ delivery_fee: int` | Matches code |
+| Attribute | `+ idempotency_token: str` | Matches code |
+| Attribute | `+ placed_at: str` | Matches code |
+| Attribute | `+ lines: list[OrderLine]` | Matches code |
+| Attribute | `+ id: Optional[int]` | Matches code |
+| Attribute | `+ archived_at: Optional[str]` | Matches code |
+| Attribute | `+ delivery_address_text: str` | Matches code |
+| Attribute | `+ distance_km: float` | Matches code |
+| Attribute | `+ voucher_id: Optional[int]` (FK retained here; omitted from DCD) | Matches code |
+| Attribute | `+ voucher_discount: int` | Matches code |
+| Attribute | `+ quiet_discount: int` | Matches code |
+| Attribute | `+ reject_reason: Optional[str]` | Matches code |
+| Attribute | `+ confirmed_at: Optional[str]` | Matches code |
+| Attribute | `+ ready_at: Optional[str]` | Matches code |
+| Attribute | `+ closed_at: Optional[str]` | Matches code |
+| Operation | `+ place(cls, customer_id: int, quote: Quote, idempotency_token: str, placed_at: str) -> 'Order'` | Matches code |
+| Operation | `+ move_to(self, new_state: OrderState) -> None` | Matches code |
+| Operation | `+ replace_line(self, line_id: int, menu_item_id: int, item_name: str, unit_price: int) -> None` | Matches code |
+| Operation | `+ line(self, line_id: int) -> Optional[OrderLine]` | Matches code |
 
 ##### PaymentGatewaySimulator
 
@@ -259,8 +259,8 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Operation | `+ authorise(self, amount: int, option: OnlineOption, outcome: str) -> Authorisation` | MATCH |
-| Operation | `+ release(self, reference: str) -> None` | MATCH |
+| Operation | `+ authorise(self, amount: int, option: OnlineOption, outcome: str) -> Authorisation` | Matches code |
+| Operation | `+ release(self, reference: str) -> None` | Matches code |
 
 ##### OrderDAO
 
@@ -273,13 +273,13 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ conn: sqlite3.Connection` | MATCH |
-| Operation | `- _load(self, row: Optional[sqlite3.Row]) -> Optional[Order]` | MATCH |
-| Operation | `+ get_by_id(self, order_id: int) -> Optional[Order]` | MATCH |
-| Operation | `+ get_by_token(self, token: str) -> Optional[Order]` | MATCH |
-| Operation | `+ insert(self, order: Order) -> int` | MATCH |
-| Operation | `+ list_for_customer(self, customer_id: int) -> list[Order]` | MATCH |
-| Operation | `+ change_state(self, order_id: int, from_state: OrderState, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> bool` | MATCH |
+| Attribute | `+ conn: sqlite3.Connection` | Matches code |
+| Operation | `- _load(self, row: Optional[sqlite3.Row]) -> Optional[Order]` | Matches code |
+| Operation | `+ get_by_id(self, order_id: int) -> Optional[Order]` | Matches code |
+| Operation | `+ get_by_token(self, token: str) -> Optional[Order]` | Matches code |
+| Operation | `+ insert(self, order: Order) -> int` | Matches code |
+| Operation | `+ list_for_customer(self, customer_id: int) -> list[Order]` | Matches code |
+| Operation | `+ change_state(self, order_id: int, from_state: OrderState, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> bool` | Matches code |
 
 ##### PaymentDAO
 
@@ -292,10 +292,10 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ conn: sqlite3.Connection` | MATCH |
-| Operation | `+ get_by_order_id(self, order_id: int) -> Optional[Payment]` | MATCH |
-| Operation | `+ insert(self, payment: Payment) -> int` | MATCH |
-| Operation | `+ change_state(self, order_id: int, from_state: PaymentState, to_state: PaymentState, now: str) -> bool` | MATCH |
+| Attribute | `+ conn: sqlite3.Connection` | Matches code |
+| Operation | `+ get_by_order_id(self, order_id: int) -> Optional[Payment]` | Matches code |
+| Operation | `+ insert(self, payment: Payment) -> int` | Matches code |
+| Operation | `+ change_state(self, order_id: int, from_state: PaymentState, to_state: PaymentState, now: str) -> bool` | Matches code |
 | Operation | `+ set_amounts(self, order_id: int, amount: int, refund_amount: int, now: str) -> bool†` | P4-TARGET† — F-02; P3-S03; Persist full/partial refund obligations atomically and expose the conditional save outcome. |
 
 ##### OrderTrackingController
@@ -309,17 +309,17 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ customers: CustomerDAO` **inferred** | MATCH |
-| Attribute | `+ orders: OrderDAO` **inferred** | MATCH |
-| Attribute | `+ payments: PaymentDAO` **inferred** | MATCH |
-| Attribute | `+ hubs: HubDAO` **inferred** | MATCH |
-| Attribute | `+ deliveries: DeliveryDAO` **inferred** | MATCH |
-| Attribute | `+ offers: ReplacementOfferDAO` **inferred** | MATCH |
-| Operation | `+ get_order(self, user_id: int, order_id: int) -> OrderDetail` | MATCH |
-| Operation | `+ list_my_orders(self, user_id: int) -> list[OrderSummary]` | MATCH |
+| Attribute | `+ customers: CustomerDAO` **inferred** | Matches code |
+| Attribute | `+ orders: OrderDAO` **inferred** | Matches code |
+| Attribute | `+ payments: PaymentDAO` **inferred** | Matches code |
+| Attribute | `+ hubs: HubDAO` **inferred** | Matches code |
+| Attribute | `+ deliveries: DeliveryDAO` **inferred** | Matches code |
+| Attribute | `+ offers: ReplacementOfferDAO` **inferred** | Matches code |
+| Operation | `+ get_order(self, user_id: int, order_id: int) -> OrderDetail` | Matches code |
+| Operation | `+ list_my_orders(self, user_id: int) -> list[OrderSummary]` | Matches code |
 | Operation | `+ cancel_order(self, user_id: int, order_id: int) -> OrderDetail†` | P4-TARGET† — F-02; P2-S13; BR-17 full C refund owed and atomic state/amount writes, including COMMIT rollback. |
-| Operation | `- _own_order(self, customer: Customer, order_id: int) -> Order` | MATCH |
-| Operation | `- _require_customer(self, user_id: int) -> Customer` | MATCH |
+| Operation | `- _own_order(self, customer: Customer, order_id: int) -> Order` | Matches code |
+| Operation | `- _require_customer(self, user_id: int) -> Customer` | Matches code |
 
 ##### DeliveryDAO
 
@@ -332,8 +332,8 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ conn: sqlite3.Connection` | MATCH |
-| Operation | `+ get_by_order_id(self, order_id: int) -> Optional[Delivery]` | MATCH |
+| Attribute | `+ conn: sqlite3.Connection` | Matches code |
+| Operation | `+ get_by_order_id(self, order_id: int) -> Optional[Delivery]` | Matches code |
 
 ##### ReplacementOfferDAO
 
@@ -346,10 +346,10 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ conn: sqlite3.Connection` | MATCH |
-| Operation | `+ get_open(self, order_id: int) -> Optional[ReplacementOffer]` | MATCH |
-| Operation | `+ list_for_order(self, order_id: int) -> list[ReplacementOffer]` | MATCH |
-| Operation | `+ decide(self, offer_id: int, to_state: OfferState, now: str) -> bool` | MATCH |
+| Attribute | `+ conn: sqlite3.Connection` | Matches code |
+| Operation | `+ get_open(self, order_id: int) -> Optional[ReplacementOffer]` | Matches code |
+| Operation | `+ list_for_order(self, order_id: int) -> list[ReplacementOffer]` | Matches code |
+| Operation | `+ decide(self, offer_id: int, to_state: OfferState, now: str) -> bool` | Matches code |
 
 ##### Payment
 
@@ -362,16 +362,16 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ order_id: int` (FK retained here; omitted from DCD) | MATCH |
-| Attribute | `+ method: PaymentMethod` | MATCH |
-| Attribute | `+ state: PaymentState` | MATCH |
-| Attribute | `+ amount: int` | MATCH |
-| Attribute | `+ created_at: str` | MATCH |
-| Attribute | `+ updated_at: Optional[str]` | MATCH |
-| Attribute | `+ online_option: Optional[OnlineOption]` | MATCH |
-| Attribute | `+ provider_ref: Optional[str]` | MATCH |
-| Attribute | `+ refund_amount: int` | MATCH |
-| Attribute | `+ id: Optional[int]` | MATCH |
+| Attribute | `+ order_id: int` (FK retained here; omitted from DCD) | Matches code |
+| Attribute | `+ method: PaymentMethod` | Matches code |
+| Attribute | `+ state: PaymentState` | Matches code |
+| Attribute | `+ amount: int` | Matches code |
+| Attribute | `+ created_at: str` | Matches code |
+| Attribute | `+ updated_at: Optional[str]` | Matches code |
+| Attribute | `+ online_option: Optional[OnlineOption]` | Matches code |
+| Attribute | `+ provider_ref: Optional[str]` | Matches code |
+| Attribute | `+ refund_amount: int` | Matches code |
+| Attribute | `+ id: Optional[int]` | Matches code |
 | Operation | `+ release_for_unfulfilled_order(self) -> None†` | P4-TARGET† — F-02; P2-S01; Set refund_amount=C with REFUND_PENDING; preserve COD VOIDED; no payout operation. |
 
 ##### controllers.common
@@ -385,7 +385,7 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Operation | `+ move_order(orders: OrderDAO, order: Order, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> None` | MATCH |
+| Operation | `+ move_order(orders: OrderDAO, order: Order, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> None` | Matches code |
 | Operation | `+ release_payment(payments: PaymentDAO, order_id: int, now: str) -> Payment†` | P4-TARGET† — F-02; P2-S01; P3-S03; Persist full captured C as refund_amount together with state; changing only the domain object does not save the amount. Check conditional save results in the same transaction. |
 
 ##### ReplacementOffer
@@ -399,18 +399,18 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ order_id: int` (FK retained here; omitted from DCD) | MATCH |
-| Attribute | `+ order_line_id: int` (FK retained here; omitted from DCD) | MATCH |
-| Attribute | `+ original_item_name: str` | MATCH |
-| Attribute | `+ original_unit_price: int` | MATCH |
-| Attribute | `+ new_menu_item_id: int` (FK retained here; omitted from DCD) | MATCH |
-| Attribute | `+ new_item_name: str` | MATCH |
-| Attribute | `+ new_unit_price: int` | MATCH |
-| Attribute | `+ state: OfferState` | MATCH |
-| Attribute | `+ offered_at: str` | MATCH |
-| Attribute | `+ decided_at: Optional[str]` | MATCH |
-| Attribute | `+ id: Optional[int]` | MATCH |
-| Operation | `+ move_to(self, new_state: OfferState) -> None` | MATCH |
+| Attribute | `+ order_id: int` (FK retained here; omitted from DCD) | Matches code |
+| Attribute | `+ order_line_id: int` (FK retained here; omitted from DCD) | Matches code |
+| Attribute | `+ original_item_name: str` | Matches code |
+| Attribute | `+ original_unit_price: int` | Matches code |
+| Attribute | `+ new_menu_item_id: int` (FK retained here; omitted from DCD) | Matches code |
+| Attribute | `+ new_item_name: str` | Matches code |
+| Attribute | `+ new_unit_price: int` | Matches code |
+| Attribute | `+ state: OfferState` | Matches code |
+| Attribute | `+ offered_at: str` | Matches code |
+| Attribute | `+ decided_at: Optional[str]` | Matches code |
+| Attribute | `+ id: Optional[int]` | Matches code |
+| Operation | `+ move_to(self, new_state: OfferState) -> None` | Matches code |
 
 ##### OrderLine
 
@@ -423,11 +423,11 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ menu_item_id: int` (FK retained here; omitted from DCD) | MATCH |
-| Attribute | `+ item_name: str` | MATCH |
-| Attribute | `+ unit_price: int` | MATCH |
-| Attribute | `+ quantity: int` | MATCH |
-| Attribute | `+ id: Optional[int]` | MATCH |
+| Attribute | `+ menu_item_id: int` (FK retained here; omitted from DCD) | Matches code |
+| Attribute | `+ item_name: str` | Matches code |
+| Attribute | `+ unit_price: int` | Matches code |
+| Attribute | `+ quantity: int` | Matches code |
+| Attribute | `+ id: Optional[int]` | Matches code |
 
 ##### Customer
 
@@ -440,14 +440,14 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ id: int` | MATCH |
-| Attribute | `+ user_id: int` (FK retained here; omitted from DCD) | MATCH |
-| Attribute | `+ full_name: str` | MATCH |
-| Attribute | `+ phone: Optional[str]` | MATCH |
-| Attribute | `+ email: Optional[str]` | MATCH |
-| Attribute | `+ passport_no: Optional[str]` | MATCH |
-| Attribute | `+ nationality: Optional[str]` | MATCH |
-| Attribute | `+ customer_type: CustomerType` **inferred** | MATCH |
+| Attribute | `+ id: int` | Matches code |
+| Attribute | `+ user_id: int` (FK retained here; omitted from DCD) | Matches code |
+| Attribute | `+ full_name: str` | Matches code |
+| Attribute | `+ phone: Optional[str]` | Matches code |
+| Attribute | `+ email: Optional[str]` | Matches code |
+| Attribute | `+ passport_no: Optional[str]` | Matches code |
+| Attribute | `+ nationality: Optional[str]` | Matches code |
+| Attribute | `+ customer_type: CustomerType` **inferred** | Matches code |
 
 ##### LocalCustomer
 
@@ -460,7 +460,7 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ customer_type: CustomerType` **inferred** | MATCH |
+| Attribute | `+ customer_type: CustomerType` **inferred** | Matches code |
 
 ##### TouristCustomer
 
@@ -473,7 +473,7 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ customer_type: CustomerType` **inferred** | MATCH |
+| Attribute | `+ customer_type: CustomerType` **inferred** | Matches code |
 
 ##### Address
 
@@ -486,14 +486,14 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ id: int` | MATCH |
-| Attribute | `+ customer_id: int` (FK retained here; omitted from DCD) | MATCH |
-| Attribute | `+ label: str` | MATCH |
-| Attribute | `+ full_address: str` | MATCH |
-| Attribute | `+ district: str` | MATCH |
-| Attribute | `+ latitude: float` | MATCH |
-| Attribute | `+ longitude: float` | MATCH |
-| Attribute | `+ archived_at: Optional[str]` | MATCH |
+| Attribute | `+ id: int` | Matches code |
+| Attribute | `+ customer_id: int` (FK retained here; omitted from DCD) | Matches code |
+| Attribute | `+ label: str` | Matches code |
+| Attribute | `+ full_address: str` | Matches code |
+| Attribute | `+ district: str` | Matches code |
+| Attribute | `+ latitude: float` | Matches code |
+| Attribute | `+ longitude: float` | Matches code |
+| Attribute | `+ archived_at: Optional[str]` | Matches code |
 
 ##### MenuItem
 
@@ -506,13 +506,13 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ id: int` | MATCH |
-| Attribute | `+ brand_id: int` (FK retained here; omitted from DCD) | MATCH |
-| Attribute | `+ brand_name: str` | MATCH |
-| Attribute | `+ name: str` | MATCH |
-| Attribute | `+ description: str` | MATCH |
-| Attribute | `+ price: int` | MATCH |
-| Attribute | `+ archived_at: Optional[str]` | MATCH |
+| Attribute | `+ id: int` | Matches code |
+| Attribute | `+ brand_id: int` (FK retained here; omitted from DCD) | Matches code |
+| Attribute | `+ brand_name: str` | Matches code |
+| Attribute | `+ name: str` | Matches code |
+| Attribute | `+ description: str` | Matches code |
+| Attribute | `+ price: int` | Matches code |
+| Attribute | `+ archived_at: Optional[str]` | Matches code |
 
 ##### Brand
 
@@ -525,9 +525,9 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ id: int` | MATCH |
-| Attribute | `+ name: str` | MATCH |
-| Attribute | `+ archived_at: Optional[str]` | MATCH |
+| Attribute | `+ id: int` | Matches code |
+| Attribute | `+ name: str` | Matches code |
+| Attribute | `+ archived_at: Optional[str]` | Matches code |
 
 ##### HubMenuItem
 
@@ -540,9 +540,9 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ hub_id: int` (FK retained here; omitted from DCD) | MATCH |
-| Attribute | `+ item: MenuItem` | MATCH |
-| Attribute | `+ is_available: bool` | MATCH |
+| Attribute | `+ hub_id: int` (FK retained here; omitted from DCD) | Matches code |
+| Attribute | `+ item: MenuItem` | Matches code |
+| Attribute | `+ is_available: bool` | Matches code |
 
 ##### UserAccount
 
@@ -555,13 +555,13 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ id: int` | MATCH |
-| Attribute | `+ username: str` | MATCH |
-| Attribute | `+ password_hash: str` | MATCH |
-| Attribute | `+ display_name: str` | MATCH |
-| Attribute | `+ role: Role` | MATCH |
-| Attribute | `+ is_active: bool` | MATCH |
-| Attribute | `+ hub_id: Optional[int]` (FK retained here; omitted from DCD) | MATCH |
+| Attribute | `+ id: int` | Matches code |
+| Attribute | `+ username: str` | Matches code |
+| Attribute | `+ password_hash: str` | Matches code |
+| Attribute | `+ display_name: str` | Matches code |
+| Attribute | `+ role: Role` | Matches code |
+| Attribute | `+ is_active: bool` | Matches code |
+| Attribute | `+ hub_id: Optional[int]` (FK retained here; omitted from DCD) | Matches code |
 | Attribute | `+ created_at: str` | GAP |
 
 ##### OrderState
@@ -575,16 +575,16 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ PLACED: str` **inferred** | MATCH |
-| Attribute | `+ CONFIRMED: str` **inferred** | MATCH |
-| Attribute | `+ REJECTED: str` **inferred** | MATCH |
-| Attribute | `+ PREPARING: str` **inferred** | MATCH |
-| Attribute | `+ READY: str` **inferred** | MATCH |
-| Attribute | `+ OUT_FOR_DELIVERY: str` **inferred** | MATCH |
-| Attribute | `+ DELIVERED: str` **inferred** | MATCH |
-| Attribute | `+ DELIVERY_FAILED: str` **inferred** | MATCH |
-| Attribute | `+ CANCELLED: str` **inferred** | MATCH |
-| Enumeration | PLACED, CONFIRMED, REJECTED, PREPARING, READY, OUT_FOR_DELIVERY, DELIVERED, DELIVERY_FAILED, CANCELLED | MATCH |
+| Attribute | `+ PLACED: str` **inferred** | Matches code |
+| Attribute | `+ CONFIRMED: str` **inferred** | Matches code |
+| Attribute | `+ REJECTED: str` **inferred** | Matches code |
+| Attribute | `+ PREPARING: str` **inferred** | Matches code |
+| Attribute | `+ READY: str` **inferred** | Matches code |
+| Attribute | `+ OUT_FOR_DELIVERY: str` **inferred** | Matches code |
+| Attribute | `+ DELIVERED: str` **inferred** | Matches code |
+| Attribute | `+ DELIVERY_FAILED: str` **inferred** | Matches code |
+| Attribute | `+ CANCELLED: str` **inferred** | Matches code |
+| Enumeration | PLACED, CONFIRMED, REJECTED, PREPARING, READY, OUT_FOR_DELIVERY, DELIVERED, DELIVERY_FAILED, CANCELLED | Matches code |
 
 ##### PaymentState
 
@@ -597,13 +597,13 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ PENDING: str` **inferred** | MATCH |
-| Attribute | `+ PAID: str` **inferred** | MATCH |
-| Attribute | `+ FAILED: str` **inferred** | MATCH |
-| Attribute | `+ VOIDED: str` **inferred** | MATCH |
-| Attribute | `+ REFUND_PENDING: str` **inferred** | MATCH |
-| Attribute | `+ REFUNDED: str` **inferred** | MATCH |
-| Enumeration | PENDING, PAID, FAILED, VOIDED, REFUND_PENDING, REFUNDED | MATCH |
+| Attribute | `+ PENDING: str` **inferred** | Matches code |
+| Attribute | `+ PAID: str` **inferred** | Matches code |
+| Attribute | `+ FAILED: str` **inferred** | Matches code |
+| Attribute | `+ VOIDED: str` **inferred** | Matches code |
+| Attribute | `+ REFUND_PENDING: str` **inferred** | Matches code |
+| Attribute | `+ REFUNDED: str` **inferred** | Matches code |
+| Enumeration | PENDING, PAID, FAILED, VOIDED, REFUND_PENDING, REFUNDED | Matches code |
 
 ##### PaymentMethod
 
@@ -616,9 +616,9 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ COD: str` **inferred** | MATCH |
-| Attribute | `+ ONLINE: str` **inferred** | MATCH |
-| Enumeration | COD, ONLINE | MATCH |
+| Attribute | `+ COD: str` **inferred** | Matches code |
+| Attribute | `+ ONLINE: str` **inferred** | Matches code |
+| Enumeration | COD, ONLINE | Matches code |
 
 ##### OnlineOption
 
@@ -631,10 +631,10 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ E_WALLET: str` **inferred** | MATCH |
-| Attribute | `+ BANK_QR: str` **inferred** | MATCH |
-| Attribute | `+ INTERNATIONAL_CARD: str` **inferred** | MATCH |
-| Enumeration | E_WALLET, BANK_QR, INTERNATIONAL_CARD | MATCH |
+| Attribute | `+ E_WALLET: str` **inferred** | Matches code |
+| Attribute | `+ BANK_QR: str` **inferred** | Matches code |
+| Attribute | `+ INTERNATIONAL_CARD: str` **inferred** | Matches code |
+| Enumeration | E_WALLET, BANK_QR, INTERNATIONAL_CARD | Matches code |
 
 ##### OfferState
 
@@ -647,11 +647,11 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ OFFERED: str` **inferred** | MATCH |
-| Attribute | `+ ACCEPTED: str` **inferred** | MATCH |
-| Attribute | `+ DECLINED: str` **inferred** | MATCH |
-| Attribute | `+ WITHDRAWN: str` **inferred** | MATCH |
-| Enumeration | OFFERED, ACCEPTED, DECLINED, WITHDRAWN | MATCH |
+| Attribute | `+ OFFERED: str` **inferred** | Matches code |
+| Attribute | `+ ACCEPTED: str` **inferred** | Matches code |
+| Attribute | `+ DECLINED: str` **inferred** | Matches code |
+| Attribute | `+ WITHDRAWN: str` **inferred** | Matches code |
+| Enumeration | OFFERED, ACCEPTED, DECLINED, WITHDRAWN | Matches code |
 
 ##### Role
 
@@ -664,12 +664,12 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ CUSTOMER: str` **inferred** | MATCH |
-| Attribute | `+ KITCHEN_STAFF: str` **inferred** | MATCH |
-| Attribute | `+ SHIPPER: str` **inferred** | MATCH |
-| Attribute | `+ ADMIN: str` **inferred** | MATCH |
-| Attribute | `+ MANAGER: str` **inferred** | MATCH |
-| Enumeration | CUSTOMER, KITCHEN_STAFF, SHIPPER, ADMIN, MANAGER | MATCH |
+| Attribute | `+ CUSTOMER: str` **inferred** | Matches code |
+| Attribute | `+ KITCHEN_STAFF: str` **inferred** | Matches code |
+| Attribute | `+ SHIPPER: str` **inferred** | Matches code |
+| Attribute | `+ ADMIN: str` **inferred** | Matches code |
+| Attribute | `+ MANAGER: str` **inferred** | Matches code |
+| Enumeration | CUSTOMER, KITCHEN_STAFF, SHIPPER, ADMIN, MANAGER | Matches code |
 
 ##### PaymentChoice
 
@@ -682,9 +682,9 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ method: PaymentMethod` | MATCH |
-| Attribute | `+ option: Optional[OnlineOption]` | MATCH |
-| Attribute | `+ outcome: Optional[str]` | MATCH |
+| Attribute | `+ method: PaymentMethod` | Matches code |
+| Attribute | `+ option: Optional[OnlineOption]` | Matches code |
+| Attribute | `+ outcome: Optional[str]` | Matches code |
 
 ##### OrderConfirmation
 
@@ -697,10 +697,10 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ order: Order` | MATCH |
-| Attribute | `+ payment: Payment` | MATCH |
-| Attribute | `+ hub: Hub` | MATCH |
-| Attribute | `+ created: bool` | MATCH |
+| Attribute | `+ order: Order` | Matches code |
+| Attribute | `+ payment: Payment` | Matches code |
+| Attribute | `+ hub: Hub` | Matches code |
+| Attribute | `+ created: bool` | Matches code |
 
 ##### HubMenuView
 
@@ -713,10 +713,10 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ hub: Hub` | MATCH |
-| Attribute | `+ status: HubStatus` | MATCH |
-| Attribute | `+ menu: list[HubMenuItem]` | MATCH |
-| Attribute | `+ addresses: list[Address]` | MATCH |
+| Attribute | `+ hub: Hub` | Matches code |
+| Attribute | `+ status: HubStatus` | Matches code |
+| Attribute | `+ menu: list[HubMenuItem]` | Matches code |
+| Attribute | `+ addresses: list[Address]` | Matches code |
 
 ##### OrderDetail
 
@@ -729,12 +729,12 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ order: Order` | MATCH |
-| Attribute | `+ payment: Payment` | MATCH |
-| Attribute | `+ hub: Hub` | MATCH |
-| Attribute | `+ delivery: Optional[Delivery]` | MATCH |
-| Attribute | `+ open_offer: Optional[ReplacementOffer]` | MATCH |
-| Attribute | `+ offers: list[ReplacementOffer]` | MATCH |
+| Attribute | `+ order: Order` | Matches code |
+| Attribute | `+ payment: Payment` | Matches code |
+| Attribute | `+ hub: Hub` | Matches code |
+| Attribute | `+ delivery: Optional[Delivery]` | Matches code |
+| Attribute | `+ open_offer: Optional[ReplacementOffer]` | Matches code |
+| Attribute | `+ offers: list[ReplacementOffer]` | Matches code |
 
 ##### OrderSummary
 
@@ -747,9 +747,9 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ order: Order` | MATCH |
-| Attribute | `+ hub_name: str` | MATCH |
-| Attribute | `+ awaiting_answer: bool` | MATCH |
+| Attribute | `+ order: Order` | Matches code |
+| Attribute | `+ hub_name: str` | Matches code |
+| Attribute | `+ awaiting_answer: bool` | Matches code |
 
 ##### Authorisation
 
@@ -762,9 +762,9 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ approved: bool` | MATCH |
-| Attribute | `+ reference: Optional[str]` | MATCH |
-| Attribute | `+ message: str` | MATCH |
+| Attribute | `+ approved: bool` | Matches code |
+| Attribute | `+ reference: Optional[str]` | Matches code |
+| Attribute | `+ message: str` | Matches code |
 
 ##### domain.rules
 
@@ -777,8 +777,8 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Operation | `+ delivery_fee(base_fee: int, km: float) -> int` | MATCH |
-| Operation | `+ quiet_discount(load: int, capacity: int, fee: int) -> int` | MATCH |
+| Operation | `+ delivery_fee(base_fee: int, km: float) -> int` | Matches code |
+| Operation | `+ quiet_discount(load: int, capacity: int, fee: int) -> int` | Matches code |
 
 ##### DiscountType
 
@@ -791,9 +791,9 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ FIXED: str` **inferred** | MATCH |
-| Attribute | `+ PERCENT: str` **inferred** | MATCH |
-| Enumeration | FIXED, PERCENT | MATCH |
+| Attribute | `+ FIXED: str` **inferred** | Matches code |
+| Attribute | `+ PERCENT: str` **inferred** | Matches code |
+| Enumeration | FIXED, PERCENT | Matches code |
 
 ##### CustomerType
 
@@ -806,9 +806,9 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ LOCAL: str` **inferred** | MATCH |
-| Attribute | `+ TOURIST: str` **inferred** | MATCH |
-| Enumeration | LOCAL, TOURIST | MATCH |
+| Attribute | `+ LOCAL: str` **inferred** | Matches code |
+| Attribute | `+ TOURIST: str` **inferred** | Matches code |
+| Enumeration | LOCAL, TOURIST | Matches code |
 
 ##### Presentation adapter and resources
 
@@ -1326,12 +1326,12 @@ Operation guarantees are realized by these named controller methods and atomic/r
 
 | SSD operation | Responsible method / boundary | Guarantees | Status |
 |---|---|---|---|
-| OP-13 `browseHubs` | `PlaceOrderController.list_hubs(self) -> list[HubStatus]`; read | Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation | MATCH |
-| OP-14 `selectHub` | `PlaceOrderController.select_hub(self, user_id: int, hub_id: int) -> HubMenuView`; read | Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation | MATCH |
+| OP-13 `browseHubs` | `PlaceOrderController.list_hubs(self) -> list[HubStatus]`; read | Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation | Matches code |
+| OP-14 `selectHub` | `PlaceOrderController.select_hub(self, user_id: int, hub_id: int) -> HubMenuView`; read | Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation | Matches code |
 | OP-15 `requestQuote` | `PlaceOrderController.request_quote(self, user_id: int, hub_id: int, address_id: Optional[int], quantities: Mapping[int, str], voucher_code: Optional[str] = None, payment: Optional[PaymentChoice] = None) -> Quote`; read | Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation | P4-TARGET† F-04; F-07; P3-S01 |
 | OP-01 `confirmCheckout` | `PlaceOrderController.confirm_order(self, user_id: int, hub_id: int, address_id: Optional[int], quantities: Mapping[int, str], idempotency_token: str, quoted_total: Optional[int] = None, voucher_code: Optional[str] = None, payment: Optional[PaymentChoice] = None, quote_fingerprint: Optional[str] = None) -> OrderConfirmation`; BEGIN IMMEDIATE | UC01-PC01; UC01-PC02; UC01-PC03; UC01-PC04; UC01-PC05; UC01-PC06; UC01-MG01; UC01-MG02; UC01-MG03 | P4-TARGET† F-04; F-07; P2-S05; P2-S13 |
 | OP-16 `viewReceipt` | `OrderTrackingController.get_order(self, user_id: int, order_id: int) -> OrderDetail`; read | Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation | P4-TARGET† F-06 |
-| OP-17 `viewMyOrders` | `OrderTrackingController.list_my_orders(self, user_id: int) -> list[OrderSummary]`; read | Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation | MATCH |
+| OP-17 `viewMyOrders` | `OrderTrackingController.list_my_orders(self, user_id: int) -> list[OrderSummary]`; read | Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation | Matches code |
 | OP-07 `cancelOrder` | `OrderTrackingController.cancel_order(self, user_id: int, order_id: int) -> OrderDetail`; BEGIN IMMEDIATE | SUC04-PC01; SUC04-PC02 (atomic cancellation and full-C obligation); checkout PCs are not asserted by cancellation | P4-TARGET† F-02; P2-S13 |
 
 ##### OP-13 browseHubs
@@ -1552,7 +1552,7 @@ One typed table per participating class/module follows.
 
 Author: 722I0004 · AI-assisted (Codex)
 
-C0: 45ac76221b0a103174c7c01d17577e6e49cfd665 · Evidence: Static source correspondence only; this is not runtime or test evidence.
+First design commit C0: 45ac762 (24/10/2026). Signatures are compared with the source code; test evidence is in section 5.1.
 
 The tables use the sole shared DCD model at C0. Visibility follows the leading-underscore convention; signatures preserve the AST inventory. * marks an inferred/unannotated type or route signature. † marks a P4-TARGET/GAP and does not mean implemented at C0. Domain FK scalar attributes are retained here for mapping but omitted from DCDs in favour of associations.
 
@@ -1564,16 +1564,16 @@ Responsibility: Hold assignment, paired lifecycle times, cash and failure outcom
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute order_id | + | int | MATCH | FK scalar omitted from DCD; shown by association |
-| Attribute state | + | DeliveryState | MATCH | — |
-| Attribute ready_at | + | str | MATCH | — |
-| Attribute shipper_id | + | Optional[int] | MATCH | FK scalar omitted from DCD; shown by association; default=None |
-| Attribute picked_up_at | + | Optional[str] | MATCH | default=None |
-| Attribute finished_at | + | Optional[str] | MATCH | default=None |
-| Attribute failure_reason | + | Optional[str] | MATCH | default=None |
-| Attribute cash_collected | + | Optional[int] | MATCH | default=None |
-| Attribute id | + | Optional[int] | MATCH | default=None |
-| Method move_to | + | move_to(self, new_state: DeliveryState) -> None | MATCH | — |
+| Attribute order_id | + | int | Matches code | FK scalar omitted from DCD; shown by association |
+| Attribute state | + | DeliveryState | Matches code | — |
+| Attribute ready_at | + | str | Matches code | — |
+| Attribute shipper_id | + | Optional[int] | Matches code | FK scalar omitted from DCD; shown by association; default=None |
+| Attribute picked_up_at | + | Optional[str] | Matches code | default=None |
+| Attribute finished_at | + | Optional[str] | Matches code | default=None |
+| Attribute failure_reason | + | Optional[str] | Matches code | default=None |
+| Attribute cash_collected | + | Optional[int] | Matches code | default=None |
+| Attribute id | + | Optional[int] | Matches code | default=None |
+| Method move_to | + | move_to(self, new_state: DeliveryState) -> None | Matches code | — |
 
 
 ##### Order
@@ -1584,27 +1584,27 @@ Responsibility: Own the order lifecycle, snapshots and accepted replacement tota
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute customer_id | + | int | MATCH | FK scalar omitted from DCD; shown by association |
-| Attribute hub_id | + | int | MATCH | FK scalar omitted from DCD; shown by association |
-| Attribute address_id | + | int | MATCH | FK scalar omitted from DCD; shown by association |
-| Attribute state | + | OrderState | MATCH | — |
-| Attribute delivery_fee | + | int | MATCH | — |
-| Attribute idempotency_token | + | str | MATCH | — |
-| Attribute placed_at | + | str | MATCH | — |
-| Attribute lines | + | list[OrderLine] | MATCH | default=field(default_factory=list) |
-| Attribute id | + | Optional[int] | MATCH | default=None |
-| Attribute archived_at | + | Optional[str] | MATCH | default=None |
-| Attribute delivery_address_text | + | str | MATCH | default='' |
-| Attribute distance_km | + | float | MATCH | default=0.0 |
-| Attribute voucher_id | + | Optional[int] | MATCH | FK scalar omitted from DCD; shown by association; default=None |
-| Attribute voucher_discount | + | int | MATCH | default=0 |
-| Attribute quiet_discount | + | int | MATCH | default=0 |
-| Attribute reject_reason | + | Optional[str] | MATCH | default=None |
-| Attribute confirmed_at | + | Optional[str] | MATCH | default=None |
-| Attribute ready_at | + | Optional[str] | MATCH | default=None |
-| Attribute closed_at | + | Optional[str] | MATCH | default=None |
-| Method can_move_to | + | can_move_to(self, new_state: OrderState) -> bool | MATCH | — |
-| Method move_to | + | move_to(self, new_state: OrderState) -> None | MATCH | — |
+| Attribute customer_id | + | int | Matches code | FK scalar omitted from DCD; shown by association |
+| Attribute hub_id | + | int | Matches code | FK scalar omitted from DCD; shown by association |
+| Attribute address_id | + | int | Matches code | FK scalar omitted from DCD; shown by association |
+| Attribute state | + | OrderState | Matches code | — |
+| Attribute delivery_fee | + | int | Matches code | — |
+| Attribute idempotency_token | + | str | Matches code | — |
+| Attribute placed_at | + | str | Matches code | — |
+| Attribute lines | + | list[OrderLine] | Matches code | default=field(default_factory=list) |
+| Attribute id | + | Optional[int] | Matches code | default=None |
+| Attribute archived_at | + | Optional[str] | Matches code | default=None |
+| Attribute delivery_address_text | + | str | Matches code | default='' |
+| Attribute distance_km | + | float | Matches code | default=0.0 |
+| Attribute voucher_id | + | Optional[int] | Matches code | FK scalar omitted from DCD; shown by association; default=None |
+| Attribute voucher_discount | + | int | Matches code | default=0 |
+| Attribute quiet_discount | + | int | Matches code | default=0 |
+| Attribute reject_reason | + | Optional[str] | Matches code | default=None |
+| Attribute confirmed_at | + | Optional[str] | Matches code | default=None |
+| Attribute ready_at | + | Optional[str] | Matches code | default=None |
+| Attribute closed_at | + | Optional[str] | Matches code | default=None |
+| Method can_move_to | + | can_move_to(self, new_state: OrderState) -> bool | Matches code | — |
+| Method move_to | + | move_to(self, new_state: OrderState) -> None | Matches code | — |
 
 
 ##### Payment
@@ -1615,17 +1615,17 @@ Responsibility: Hold captured amount C and refund obligations without claiming p
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute order_id | + | int | MATCH | FK scalar omitted from DCD; shown by association |
-| Attribute method | + | PaymentMethod | MATCH | — |
-| Attribute state | + | PaymentState | MATCH | — |
-| Attribute amount | + | int | MATCH | — |
-| Attribute created_at | + | str | MATCH | — |
-| Attribute updated_at | + | Optional[str] | MATCH | default=None |
-| Attribute online_option | + | Optional[OnlineOption] | MATCH | default=None |
-| Attribute provider_ref | + | Optional[str] | MATCH | default=None |
-| Attribute refund_amount | + | int | MATCH | default=0 |
-| Attribute id | + | Optional[int] | MATCH | default=None |
-| Method move_to | + | move_to(self, new_state: PaymentState) -> None | MATCH | — |
+| Attribute order_id | + | int | Matches code | FK scalar omitted from DCD; shown by association |
+| Attribute method | + | PaymentMethod | Matches code | — |
+| Attribute state | + | PaymentState | Matches code | — |
+| Attribute amount | + | int | Matches code | — |
+| Attribute created_at | + | str | Matches code | — |
+| Attribute updated_at | + | Optional[str] | Matches code | default=None |
+| Attribute online_option | + | Optional[OnlineOption] | Matches code | default=None |
+| Attribute provider_ref | + | Optional[str] | Matches code | default=None |
+| Attribute refund_amount | + | int | Matches code | default=0 |
+| Attribute id | + | Optional[int] | Matches code | default=None |
+| Method move_to | + | move_to(self, new_state: PaymentState) -> None | Matches code | — |
 | Method release_for_unfulfilled_order | + | release_for_unfulfilled_order(self) -> None | P4-TARGET | P4 input: F-02; P2-S01; Set refund_amount=C with REFUND_PENDING; preserve COD VOIDED; no payout operation. |
 
 
@@ -1637,13 +1637,13 @@ Responsibility: Hold account identity, role, active flag and optional kitchen-hu
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute id | + | int | MATCH | — |
-| Attribute username | + | str | MATCH | — |
-| Attribute password_hash | + | str | MATCH | — |
-| Attribute display_name | + | str | MATCH | — |
-| Attribute role | + | Role | MATCH | — |
-| Attribute is_active | + | bool | MATCH | default=True |
-| Attribute hub_id | + | Optional[int] | MATCH | FK scalar omitted from DCD; shown by association; default=None |
+| Attribute id | + | int | Matches code | — |
+| Attribute username | + | str | Matches code | — |
+| Attribute password_hash | + | str | Matches code | — |
+| Attribute display_name | + | str | Matches code | — |
+| Attribute role | + | Role | Matches code | — |
+| Attribute is_active | + | bool | Matches code | default=True |
+| Attribute hub_id | + | Optional[int] | Matches code | FK scalar omitted from DCD; shown by association; default=None |
 | Attribute created_at | + | str | GAP | — |
 
 
@@ -1655,15 +1655,15 @@ Responsibility: Represent a kitchen location, capacity and fee.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute id | + | int | MATCH | — |
-| Attribute code | + | str | MATCH | — |
-| Attribute name | + | str | MATCH | — |
-| Attribute address_text | + | str | MATCH | — |
-| Attribute latitude | + | float | MATCH | — |
-| Attribute longitude | + | float | MATCH | — |
-| Attribute max_active_orders | + | int | MATCH | — |
-| Attribute base_delivery_fee | + | int | MATCH | — |
-| Attribute archived_at | + | Optional[str] | MATCH | default=None |
+| Attribute id | + | int | Matches code | — |
+| Attribute code | + | str | Matches code | — |
+| Attribute name | + | str | Matches code | — |
+| Attribute address_text | + | str | Matches code | — |
+| Attribute latitude | + | float | Matches code | — |
+| Attribute longitude | + | float | Matches code | — |
+| Attribute max_active_orders | + | int | Matches code | — |
+| Attribute base_delivery_fee | + | int | Matches code | — |
+| Attribute archived_at | + | Optional[str] | Matches code | default=None |
 
 
 ##### Customer
@@ -1674,14 +1674,14 @@ Responsibility: Represent customer identity and permitted online payment choices
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute id | + | int | MATCH | — |
-| Attribute user_id | + | int | MATCH | FK scalar omitted from DCD; shown by association |
-| Attribute full_name | + | str | MATCH | — |
-| Attribute phone | + | Optional[str] | MATCH | default=None |
-| Attribute email | + | Optional[str] | MATCH | default=None |
-| Attribute passport_no | + | Optional[str] | MATCH | default=None |
-| Attribute nationality | + | Optional[str] | MATCH | default=None |
-| Attribute customer_type | + | CustomerType | MATCH | inferred; default=CustomerType.LOCAL |
+| Attribute id | + | int | Matches code | — |
+| Attribute user_id | + | int | Matches code | FK scalar omitted from DCD; shown by association |
+| Attribute full_name | + | str | Matches code | — |
+| Attribute phone | + | Optional[str] | Matches code | default=None |
+| Attribute email | + | Optional[str] | Matches code | default=None |
+| Attribute passport_no | + | Optional[str] | Matches code | default=None |
+| Attribute nationality | + | Optional[str] | Matches code | default=None |
+| Attribute customer_type | + | CustomerType | Matches code | inferred; default=CustomerType.LOCAL |
 
 
 ##### DeliveryState
@@ -1692,10 +1692,10 @@ Responsibility: Hold typed business state and its local rules.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute AWAITING_PICKUP | + | str | MATCH | inferred; default='AWAITING_PICKUP' |
-| Attribute PICKED_UP | + | str | MATCH | inferred; default='PICKED_UP' |
-| Attribute DELIVERED | + | str | MATCH | inferred; default='DELIVERED' |
-| Attribute FAILED | + | str | MATCH | inferred; default='FAILED' |
+| Attribute AWAITING_PICKUP | + | str | Matches code | inferred; default='AWAITING_PICKUP' |
+| Attribute PICKED_UP | + | str | Matches code | inferred; default='PICKED_UP' |
+| Attribute DELIVERED | + | str | Matches code | inferred; default='DELIVERED' |
+| Attribute FAILED | + | str | Matches code | inferred; default='FAILED' |
 
 
 ##### OrderState
@@ -1706,15 +1706,15 @@ Responsibility: Hold typed business state and its local rules.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute PLACED | + | str | MATCH | inferred; default='PLACED' |
-| Attribute CONFIRMED | + | str | MATCH | inferred; default='CONFIRMED' |
-| Attribute REJECTED | + | str | MATCH | inferred; default='REJECTED' |
-| Attribute PREPARING | + | str | MATCH | inferred; default='PREPARING' |
-| Attribute READY | + | str | MATCH | inferred; default='READY' |
-| Attribute OUT_FOR_DELIVERY | + | str | MATCH | inferred; default='OUT_FOR_DELIVERY' |
-| Attribute DELIVERED | + | str | MATCH | inferred; default='DELIVERED' |
-| Attribute DELIVERY_FAILED | + | str | MATCH | inferred; default='DELIVERY_FAILED' |
-| Attribute CANCELLED | + | str | MATCH | inferred; default='CANCELLED' |
+| Attribute PLACED | + | str | Matches code | inferred; default='PLACED' |
+| Attribute CONFIRMED | + | str | Matches code | inferred; default='CONFIRMED' |
+| Attribute REJECTED | + | str | Matches code | inferred; default='REJECTED' |
+| Attribute PREPARING | + | str | Matches code | inferred; default='PREPARING' |
+| Attribute READY | + | str | Matches code | inferred; default='READY' |
+| Attribute OUT_FOR_DELIVERY | + | str | Matches code | inferred; default='OUT_FOR_DELIVERY' |
+| Attribute DELIVERED | + | str | Matches code | inferred; default='DELIVERED' |
+| Attribute DELIVERY_FAILED | + | str | Matches code | inferred; default='DELIVERY_FAILED' |
+| Attribute CANCELLED | + | str | Matches code | inferred; default='CANCELLED' |
 
 
 ##### PaymentState
@@ -1725,12 +1725,12 @@ Responsibility: Hold typed business state and its local rules.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute PENDING | + | str | MATCH | inferred; default='PENDING' |
-| Attribute PAID | + | str | MATCH | inferred; default='PAID' |
-| Attribute FAILED | + | str | MATCH | inferred; default='FAILED' |
-| Attribute VOIDED | + | str | MATCH | inferred; default='VOIDED' |
-| Attribute REFUND_PENDING | + | str | MATCH | inferred; default='REFUND_PENDING' |
-| Attribute REFUNDED | + | str | MATCH | inferred; default='REFUNDED' |
+| Attribute PENDING | + | str | Matches code | inferred; default='PENDING' |
+| Attribute PAID | + | str | Matches code | inferred; default='PAID' |
+| Attribute FAILED | + | str | Matches code | inferred; default='FAILED' |
+| Attribute VOIDED | + | str | Matches code | inferred; default='VOIDED' |
+| Attribute REFUND_PENDING | + | str | Matches code | inferred; default='REFUND_PENDING' |
+| Attribute REFUNDED | + | str | Matches code | inferred; default='REFUNDED' |
 
 
 ##### Role
@@ -1741,11 +1741,11 @@ Responsibility: Hold typed business state and its local rules.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute CUSTOMER | + | str | MATCH | inferred; default='CUSTOMER' |
-| Attribute KITCHEN_STAFF | + | str | MATCH | inferred; default='KITCHEN_STAFF' |
-| Attribute SHIPPER | + | str | MATCH | inferred; default='SHIPPER' |
-| Attribute ADMIN | + | str | MATCH | inferred; default='ADMIN' |
-| Attribute MANAGER | + | str | MATCH | inferred; default='MANAGER' |
+| Attribute CUSTOMER | + | str | Matches code | inferred; default='CUSTOMER' |
+| Attribute KITCHEN_STAFF | + | str | Matches code | inferred; default='KITCHEN_STAFF' |
+| Attribute SHIPPER | + | str | Matches code | inferred; default='SHIPPER' |
+| Attribute ADMIN | + | str | Matches code | inferred; default='ADMIN' |
+| Attribute MANAGER | + | str | Matches code | inferred; default='MANAGER' |
 
 
 ##### DeliveryController
@@ -1756,21 +1756,21 @@ Responsibility: Coordinate authorization, domain decisions and data access.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute deliveries | + | DeliveryDAO | MATCH | inferred |
-| Attribute orders | + | OrderDAO | MATCH | inferred |
-| Attribute payments | + | PaymentDAO | MATCH | inferred |
-| Attribute hubs | + | HubDAO | MATCH | inferred |
-| Attribute customers | + | CustomerDAO | MATCH | inferred |
-| Method board | + | board(self, user_id: int) -> ShipperBoard | MATCH | — |
-| Method get_delivery | + | get_delivery(self, user_id: int, order_id: int) -> DeliveryView | MATCH | — |
+| Attribute deliveries | + | DeliveryDAO | Matches code | inferred |
+| Attribute orders | + | OrderDAO | Matches code | inferred |
+| Attribute payments | + | PaymentDAO | Matches code | inferred |
+| Attribute hubs | + | HubDAO | Matches code | inferred |
+| Attribute customers | + | CustomerDAO | Matches code | inferred |
+| Method board | + | board(self, user_id: int) -> ShipperBoard | Matches code | — |
+| Method get_delivery | + | get_delivery(self, user_id: int, order_id: int) -> DeliveryView | Matches code | — |
 | Method pick_up | + | pick_up(self, user_id: int, order_id: int) -> DeliveryView | P4-TARGET | P4 input: P2-S13; P3-S03; Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete. |
 | Method confirm_delivered | + | confirm_delivered(self, user_id: int, order_id: int, cash_collected: Optional[str]) -> DeliveryView | P4-TARGET | P4 input: P2-S13; P3-S03; Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete. |
 | Method report_failure | + | report_failure(self, user_id: int, order_id: int, reason: str) -> DeliveryView | P4-TARGET | P4 input: F-02; P2-S13; BR-17 full C refund owed and atomic state/amount writes, including COMMIT rollback. |
-| Method _require_shipper | - | _require_shipper(self, user_id: int) -> UserAccount | MATCH | — |
-| Method _delivery | - | _delivery(self, order_id: int) -> Delivery | MATCH | — |
-| Method _own_active_delivery | - | _own_active_delivery(self, shipper: UserAccount, order_id: int) -> Delivery | MATCH | — |
-| Method _parse_cash | - | _parse_cash(raw: Optional[str]) -> Optional[int] | MATCH | — |
-| Method _view | - | _view(self, delivery: Delivery) -> DeliveryView | MATCH | — |
+| Method _require_shipper | - | _require_shipper(self, user_id: int) -> UserAccount | Matches code | — |
+| Method _delivery | - | _delivery(self, order_id: int) -> Delivery | Matches code | — |
+| Method _own_active_delivery | - | _own_active_delivery(self, shipper: UserAccount, order_id: int) -> Delivery | Matches code | — |
+| Method _parse_cash | - | _parse_cash(raw: Optional[str]) -> Optional[int] | Matches code | — |
+| Method _view | - | _view(self, delivery: Delivery) -> DeliveryView | Matches code | — |
 
 
 ##### BaseController
@@ -1781,11 +1781,11 @@ Responsibility: Coordinate authorization, domain decisions and data access.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute conn | + | sqlite3.Connection | MATCH | — |
-| Attribute clock | + | Any | MATCH | inferred |
-| Attribute users | + | UserDAO | MATCH | inferred |
-| Method _now | - | _now(self) -> str | MATCH | — |
-| Method _require_user | - | _require_user(self, user_id: int, *roles: Role, message: str='Your account cannot do this.') -> UserAccount | MATCH | — |
+| Attribute conn | + | sqlite3.Connection | Matches code | — |
+| Attribute clock | + | Any | Matches code | inferred |
+| Attribute users | + | UserDAO | Matches code | inferred |
+| Method _now | - | _now(self) -> str | Matches code | — |
+| Method _require_user | - | _require_user(self, user_id: int, *roles: Role, message: str='Your account cannot do this.') -> UserAccount | Matches code | — |
 
 
 ##### controllers.common
@@ -1796,7 +1796,7 @@ Responsibility: Module functions with their original Python signatures.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Method move_order | + | move_order(orders: OrderDAO, order: Order, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> None | MATCH | — |
+| Method move_order | + | move_order(orders: OrderDAO, order: Order, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> None | Matches code | — |
 | Method release_payment | + | release_payment(payments: PaymentDAO, order_id: int, now: str) -> Payment | P4-TARGET | P4 input: F-02; P2-S01; P3-S03; Persist full captured C as refund_amount together with state; changing only the domain object does not save the amount. Check conditional save results in the same transaction. |
 
 
@@ -1808,12 +1808,12 @@ Responsibility: Coordinate authorization, domain decisions and data access.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute delivery | + | Delivery | MATCH | — |
-| Attribute order | + | Order | MATCH | — |
-| Attribute payment | + | Payment | MATCH | — |
-| Attribute hub | + | Hub | MATCH | — |
-| Attribute customer | + | Customer | MATCH | — |
-| Method cash_to_collect | + | cash_to_collect(self) -> int | MATCH | property |
+| Attribute delivery | + | Delivery | Matches code | — |
+| Attribute order | + | Order | Matches code | — |
+| Attribute payment | + | Payment | Matches code | — |
+| Attribute hub | + | Hub | Matches code | — |
+| Attribute customer | + | Customer | Matches code | — |
+| Method cash_to_collect | + | cash_to_collect(self) -> int | Matches code | property |
 
 
 ##### ShipperBoard
@@ -1824,9 +1824,9 @@ Responsibility: Coordinate authorization, domain decisions and data access.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute waiting | + | list[DeliveryView] | MATCH | — |
-| Attribute mine | + | list[DeliveryView] | MATCH | — |
-| Attribute finished | + | list[DeliveryView] | MATCH | — |
+| Attribute waiting | + | list[DeliveryView] | Matches code | — |
+| Attribute mine | + | list[DeliveryView] | Matches code | — |
+| Attribute finished | + | list[DeliveryView] | Matches code | — |
 
 
 ##### delivery
@@ -1837,11 +1837,11 @@ Responsibility: Translate shipper requests and render contact and cash informati
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Method board | + | board() | MATCH | inferred |
-| Method detail | + | detail(order_id: int) | MATCH | inferred |
-| Method pick_up | + | pick_up(order_id: int) | MATCH | inferred |
-| Method delivered | + | delivered(order_id: int) | MATCH | inferred |
-| Method failed | + | failed(order_id: int) | MATCH | inferred |
+| Method board | + | board() | Matches code | inferred |
+| Method detail | + | detail(order_id: int) | Matches code | inferred |
+| Method pick_up | + | pick_up(order_id: int) | Matches code | inferred |
+| Method delivered | + | delivered(order_id: int) | Matches code | inferred |
+| Method failed | + | failed(order_id: int) | Matches code | inferred |
 
 
 ##### DeliveryDAO
@@ -1852,12 +1852,12 @@ Responsibility: Read or write parameterized records.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute conn | + | sqlite3.Connection | MATCH | — |
-| Method get_by_order_id | + | get_by_order_id(self, order_id: int) -> Optional[Delivery] | MATCH | — |
-| Method list_awaiting_pickup | + | list_awaiting_pickup(self) -> list[Delivery] | MATCH | — |
-| Method list_for_shipper | + | list_for_shipper(self, shipper_id: int, state: DeliveryState) -> list[Delivery] | MATCH | — |
-| Method take | + | take(self, order_id: int, shipper_id: int, now: str) -> bool | MATCH | — |
-| Method finish | + | finish(self, order_id: int, shipper_id: int, to_state: DeliveryState, now: str, failure_reason: Optional[str]=None, cash_collected: Optional[int]=None) -> bool | MATCH | — |
+| Attribute conn | + | sqlite3.Connection | Matches code | — |
+| Method get_by_order_id | + | get_by_order_id(self, order_id: int) -> Optional[Delivery] | Matches code | — |
+| Method list_awaiting_pickup | + | list_awaiting_pickup(self) -> list[Delivery] | Matches code | — |
+| Method list_for_shipper | + | list_for_shipper(self, shipper_id: int, state: DeliveryState) -> list[Delivery] | Matches code | — |
+| Method take | + | take(self, order_id: int, shipper_id: int, now: str) -> bool | Matches code | — |
+| Method finish | + | finish(self, order_id: int, shipper_id: int, to_state: DeliveryState, now: str, failure_reason: Optional[str]=None, cash_collected: Optional[int]=None) -> bool | Matches code | — |
 
 
 ##### OrderDAO
@@ -1868,10 +1868,10 @@ Responsibility: Read or write parameterized records.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute conn | + | sqlite3.Connection | MATCH | — |
-| Method get_by_id | + | get_by_id(self, order_id: int) -> Optional[Order] | MATCH | — |
-| Method change_state | + | change_state(self, order_id: int, from_state: OrderState, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> bool | MATCH | — |
-| Method _load | - | _load(self, row: Optional[sqlite3.Row]) -> Optional[Order] | MATCH | — |
+| Attribute conn | + | sqlite3.Connection | Matches code | — |
+| Method get_by_id | + | get_by_id(self, order_id: int) -> Optional[Order] | Matches code | — |
+| Method change_state | + | change_state(self, order_id: int, from_state: OrderState, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> bool | Matches code | — |
+| Method _load | - | _load(self, row: Optional[sqlite3.Row]) -> Optional[Order] | Matches code | — |
 
 
 ##### PaymentDAO
@@ -1882,9 +1882,9 @@ Responsibility: Read or write parameterized records.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute conn | + | sqlite3.Connection | MATCH | — |
-| Method get_by_order_id | + | get_by_order_id(self, order_id: int) -> Optional[Payment] | MATCH | — |
-| Method change_state | + | change_state(self, order_id: int, from_state: PaymentState, to_state: PaymentState, now: str) -> bool | MATCH | — |
+| Attribute conn | + | sqlite3.Connection | Matches code | — |
+| Method get_by_order_id | + | get_by_order_id(self, order_id: int) -> Optional[Payment] | Matches code | — |
+| Method change_state | + | change_state(self, order_id: int, from_state: PaymentState, to_state: PaymentState, now: str) -> bool | Matches code | — |
 | Method set_amounts | + | set_amounts(self, order_id: int, amount: int, refund_amount: int, now: str) -> bool | P4-TARGET | P4 input: F-02; P3-S03; Persist full/partial refund obligations atomically and expose the conditional save outcome. |
 
 
@@ -1896,8 +1896,8 @@ Responsibility: Read or write parameterized records.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute conn | + | sqlite3.Connection | MATCH | — |
-| Method get | + | get(self, customer_id: int) -> Optional[Customer] | MATCH | — |
+| Attribute conn | + | sqlite3.Connection | Matches code | — |
+| Method get | + | get(self, customer_id: int) -> Optional[Customer] | Matches code | — |
 
 
 ##### HubDAO
@@ -1908,8 +1908,8 @@ Responsibility: Read or write parameterized records.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute conn | + | sqlite3.Connection | MATCH | — |
-| Method get_including_archived | + | get_including_archived(self, hub_id: int) -> Optional[Hub] | MATCH | — |
+| Attribute conn | + | sqlite3.Connection | Matches code | — |
+| Method get_including_archived | + | get_including_archived(self, hub_id: int) -> Optional[Hub] | Matches code | — |
 
 
 ##### UserDAO
@@ -1920,8 +1920,8 @@ Responsibility: Read or write parameterized records.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute conn | + | sqlite3.Connection | MATCH | — |
-| Method get_by_id | + | get_by_id(self, user_id: int) -> Optional[UserAccount] | MATCH | — |
+| Attribute conn | + | sqlite3.Connection | Matches code | — |
+| Method get_by_id | + | get_by_id(self, user_id: int) -> Optional[UserAccount] | Matches code | — |
 
 
 ### 3.2.2 Design Class Diagram
@@ -2347,7 +2347,7 @@ Layer: **view**; stereotype: **«view»**; responsibility: Translate administrat
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Operation | `- _hubs() -> HubController` | MATCH |
+| Operation | `- _hubs() -> HubController` | Matches code |
 | Operation | `+ hubs() -> Any [inferred] †` | P4-TARGET †; inferred annotation(s); P3-S02 |
 | Operation | `+ new_hub() -> Any [inferred]` | MATCH; inferred annotation(s) |
 | Operation | `+ edit_hub(hub_id: int) -> Any [inferred]` | MATCH; inferred annotation(s) |
@@ -2368,11 +2368,11 @@ Layer: **controller**; stereotype: **«controller»**; responsibility: Coordinat
 |---|---|---|
 | Attribute | `+ hubs: HubDAO` | MATCH; inferred |
 | Operation | `+ list_hubs(user_id: int, include_archived: bool = True) -> list[HubAdminView] †` | P4-TARGET †; P3-S02 |
-| Operation | `+ get_hub(user_id: int, hub_id: int) -> HubAdminView` | MATCH |
+| Operation | `+ get_hub(user_id: int, hub_id: int) -> HubAdminView` | Matches code |
 | Operation | `+ create_hub(user_id: int, form: Mapping[str, str]) -> Hub †` | P4-TARGET †; P2-S13; P3-S03 |
 | Operation | `+ update_hub(user_id: int, hub_id: int, form: Mapping[str, str]) -> Hub †` | P4-TARGET †; P2-S13; P3-S03 |
 | Operation | `+ archive_hub(user_id: int, hub_id: int) -> Hub †` | P4-TARGET †; P2-S13; P3-S03 |
-| Operation | `- _require_admin(user_id: int) -> None` | MATCH |
+| Operation | `- _require_admin(user_id: int) -> None` | Matches code |
 | Operation | `- _parse(form: Mapping[str, str], hub_id: Any) -> Hub [inferred]` | MATCH; inferred annotation(s) |
 
 ##### HubAdminView
@@ -2381,8 +2381,8 @@ Layer: **controller**; stereotype: **«value»**; responsibility: Coordinate aut
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Attribute | `+ status: HubStatus` | MATCH |
-| Attribute | `+ open_orders: int` | MATCH |
+| Attribute | `+ status: HubStatus` | Matches code |
+| Attribute | `+ open_orders: int` | Matches code |
 | Operation | `+ can_archive() -> bool` | MATCH; property accessor |
 
 ##### HubStatus
@@ -2391,8 +2391,8 @@ Layer: **domain**; stereotype: **«entity»**; responsibility: Derive busy, quie
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Attribute | `+ hub: Hub` | MATCH |
-| Attribute | `+ load: int` | MATCH |
+| Attribute | `+ hub: Hub` | Matches code |
+| Attribute | `+ load: int` | Matches code |
 | Operation | `+ busy() -> bool` | MATCH; property accessor |
 | Operation | `+ quiet() -> bool` | MATCH; property accessor |
 | Operation | `+ load_percent() -> int` | MATCH; property accessor |
@@ -2403,15 +2403,15 @@ Layer: **domain**; stereotype: **«entity»**; responsibility: Represent a kitch
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Attribute | `+ id: int` | MATCH |
-| Attribute | `+ code: str` | MATCH |
-| Attribute | `+ name: str` | MATCH |
-| Attribute | `+ address_text: str` | MATCH |
-| Attribute | `+ latitude: float` | MATCH |
-| Attribute | `+ longitude: float` | MATCH |
-| Attribute | `+ max_active_orders: int` | MATCH |
-| Attribute | `+ base_delivery_fee: int` | MATCH |
-| Attribute | `+ archived_at: Optional[str]` | MATCH |
+| Attribute | `+ id: int` | Matches code |
+| Attribute | `+ code: str` | Matches code |
+| Attribute | `+ name: str` | Matches code |
+| Attribute | `+ address_text: str` | Matches code |
+| Attribute | `+ latitude: float` | Matches code |
+| Attribute | `+ longitude: float` | Matches code |
+| Attribute | `+ max_active_orders: int` | Matches code |
+| Attribute | `+ base_delivery_fee: int` | Matches code |
+| Attribute | `+ archived_at: Optional[str]` | Matches code |
 
 ##### HubDAO
 
@@ -2419,17 +2419,17 @@ Layer: **data_access**; stereotype: **«DAO»**; responsibility: Read or write p
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Attribute | `+ conn: sqlite3.Connection` | MATCH |
-| Operation | `+ list_active() -> list[Hub]` | MATCH |
-| Operation | `+ list_all() -> list[Hub]` | MATCH |
-| Operation | `+ get_including_archived(hub_id: int) -> Optional[Hub]` | MATCH |
-| Operation | `+ code_exists(code: str, except_id: Optional[int] = None) -> bool` | MATCH |
-| Operation | `+ insert(hub: Hub) -> int` | MATCH |
-| Operation | `+ update(hub: Hub) -> bool` | MATCH |
-| Operation | `+ archive(hub_id: int, now: str) -> bool` | MATCH |
-| Operation | `+ active_load(hub_id: int) -> int` | MATCH |
-| Operation | `+ active_loads() -> dict[int, int]` | MATCH |
-| Operation | `+ open_order_count(hub_id: int) -> int` | MATCH |
+| Attribute | `+ conn: sqlite3.Connection` | Matches code |
+| Operation | `+ list_active() -> list[Hub]` | Matches code |
+| Operation | `+ list_all() -> list[Hub]` | Matches code |
+| Operation | `+ get_including_archived(hub_id: int) -> Optional[Hub]` | Matches code |
+| Operation | `+ code_exists(code: str, except_id: Optional[int] = None) -> bool` | Matches code |
+| Operation | `+ insert(hub: Hub) -> int` | Matches code |
+| Operation | `+ update(hub: Hub) -> bool` | Matches code |
+| Operation | `+ archive(hub_id: int, now: str) -> bool` | Matches code |
+| Operation | `+ active_load(hub_id: int) -> int` | Matches code |
+| Operation | `+ active_loads() -> dict[int, int]` | Matches code |
+| Operation | `+ open_order_count(hub_id: int) -> int` | Matches code |
 
 ##### BaseController
 
@@ -2437,11 +2437,11 @@ Layer: **controller**; stereotype: **«controller»**; responsibility: Coordinat
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Attribute | `+ conn: sqlite3.Connection` | MATCH |
+| Attribute | `+ conn: sqlite3.Connection` | Matches code |
 | Attribute | `+ clock: Any` | MATCH; inferred |
 | Attribute | `+ users: UserDAO` | MATCH; inferred |
-| Operation | `- _now() -> str` | MATCH |
-| Operation | `- _require_user(user_id: int, *roles: Role, message: str = 'Your account cannot do this.') -> UserAccount` | MATCH |
+| Operation | `- _now() -> str` | Matches code |
+| Operation | `- _require_user(user_id: int, *roles: Role, message: str = 'Your account cannot do this.') -> UserAccount` | Matches code |
 
 ##### UserAccount
 
@@ -2449,12 +2449,12 @@ Layer: **domain**; stereotype: **«entity»**; responsibility: Hold account iden
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Attribute | `+ id: int` | MATCH |
-| Attribute | `+ username: str` | MATCH |
-| Attribute | `+ password_hash: str` | MATCH |
-| Attribute | `+ display_name: str` | MATCH |
-| Attribute | `+ role: Role` | MATCH |
-| Attribute | `+ is_active: bool` | MATCH |
+| Attribute | `+ id: int` | Matches code |
+| Attribute | `+ username: str` | Matches code |
+| Attribute | `+ password_hash: str` | Matches code |
+| Attribute | `+ display_name: str` | Matches code |
+| Attribute | `+ role: Role` | Matches code |
+| Attribute | `+ is_active: bool` | Matches code |
 | Attribute | `+ hub_id: Optional[int]` | MATCH; association backing ID, omitted on DCD |
 | Attribute | `+ created_at: str` | GAP |
 
@@ -2476,8 +2476,8 @@ Layer: **data_access**; stereotype: **«DAO»**; responsibility: Read or write p
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Attribute | `+ conn: sqlite3.Connection` | MATCH |
-| Operation | `+ get_by_id(user_id: int) -> Optional[UserAccount]` | MATCH |
+| Attribute | `+ conn: sqlite3.Connection` | Matches code |
+| Operation | `+ get_by_id(user_id: int) -> Optional[UserAccount]` | Matches code |
 
 ##### Boundary adapters and guarantees
 
@@ -2661,7 +2661,7 @@ One typed table per participating class/module follows.
 
 Author: 722I0004 · AI-assisted (Codex)
 
-C0: 45ac76221b0a103174c7c01d17577e6e49cfd665 · Evidence: Static source correspondence only; this is not runtime or test evidence.
+First design commit C0: 45ac762 (24/10/2026). Signatures are compared with the source code; test evidence is in section 5.1.
 
 The tables use the sole shared DCD model at C0. Visibility follows the leading-underscore convention; signatures preserve the AST inventory. * marks an inferred/unannotated type or route signature. † marks a P4-TARGET/GAP and does not mean implemented at C0. Domain FK scalar attributes are retained here for mapping but omitted from DCDs in favour of associations.
 
@@ -2673,15 +2673,15 @@ Responsibility: Represent a kitchen location, capacity and fee.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute id | + | int | MATCH | — |
-| Attribute code | + | str | MATCH | — |
-| Attribute name | + | str | MATCH | — |
-| Attribute address_text | + | str | MATCH | — |
-| Attribute latitude | + | float | MATCH | — |
-| Attribute longitude | + | float | MATCH | — |
-| Attribute max_active_orders | + | int | MATCH | — |
-| Attribute base_delivery_fee | + | int | MATCH | — |
-| Attribute archived_at | + | Optional[str] | MATCH | default=None |
+| Attribute id | + | int | Matches code | — |
+| Attribute code | + | str | Matches code | — |
+| Attribute name | + | str | Matches code | — |
+| Attribute address_text | + | str | Matches code | — |
+| Attribute latitude | + | float | Matches code | — |
+| Attribute longitude | + | float | Matches code | — |
+| Attribute max_active_orders | + | int | Matches code | — |
+| Attribute base_delivery_fee | + | int | Matches code | — |
+| Attribute archived_at | + | Optional[str] | Matches code | default=None |
 
 
 ##### HubStatus
@@ -2692,11 +2692,11 @@ Responsibility: Derive busy, quiet and load percentage from current load and cap
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute hub | + | Hub | MATCH | — |
-| Attribute load | + | int | MATCH | — |
-| Method busy | + | busy(self) -> bool | MATCH | property |
-| Method quiet | + | quiet(self) -> bool | MATCH | property |
-| Method load_percent | + | load_percent(self) -> int | MATCH | property |
+| Attribute hub | + | Hub | Matches code | — |
+| Attribute load | + | int | Matches code | — |
+| Method busy | + | busy(self) -> bool | Matches code | property |
+| Method quiet | + | quiet(self) -> bool | Matches code | property |
+| Method load_percent | + | load_percent(self) -> int | Matches code | property |
 
 
 ##### OrderState
@@ -2707,15 +2707,15 @@ Responsibility: Hold typed business state and its local rules.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute PLACED | + | str | MATCH | inferred; default='PLACED' |
-| Attribute CONFIRMED | + | str | MATCH | inferred; default='CONFIRMED' |
-| Attribute REJECTED | + | str | MATCH | inferred; default='REJECTED' |
-| Attribute PREPARING | + | str | MATCH | inferred; default='PREPARING' |
-| Attribute READY | + | str | MATCH | inferred; default='READY' |
-| Attribute OUT_FOR_DELIVERY | + | str | MATCH | inferred; default='OUT_FOR_DELIVERY' |
-| Attribute DELIVERED | + | str | MATCH | inferred; default='DELIVERED' |
-| Attribute DELIVERY_FAILED | + | str | MATCH | inferred; default='DELIVERY_FAILED' |
-| Attribute CANCELLED | + | str | MATCH | inferred; default='CANCELLED' |
+| Attribute PLACED | + | str | Matches code | inferred; default='PLACED' |
+| Attribute CONFIRMED | + | str | Matches code | inferred; default='CONFIRMED' |
+| Attribute REJECTED | + | str | Matches code | inferred; default='REJECTED' |
+| Attribute PREPARING | + | str | Matches code | inferred; default='PREPARING' |
+| Attribute READY | + | str | Matches code | inferred; default='READY' |
+| Attribute OUT_FOR_DELIVERY | + | str | Matches code | inferred; default='OUT_FOR_DELIVERY' |
+| Attribute DELIVERED | + | str | Matches code | inferred; default='DELIVERED' |
+| Attribute DELIVERY_FAILED | + | str | Matches code | inferred; default='DELIVERY_FAILED' |
+| Attribute CANCELLED | + | str | Matches code | inferred; default='CANCELLED' |
 
 
 ##### DeliveryState
@@ -2726,10 +2726,10 @@ Responsibility: Hold typed business state and its local rules.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute AWAITING_PICKUP | + | str | MATCH | inferred; default='AWAITING_PICKUP' |
-| Attribute PICKED_UP | + | str | MATCH | inferred; default='PICKED_UP' |
-| Attribute DELIVERED | + | str | MATCH | inferred; default='DELIVERED' |
-| Attribute FAILED | + | str | MATCH | inferred; default='FAILED' |
+| Attribute AWAITING_PICKUP | + | str | Matches code | inferred; default='AWAITING_PICKUP' |
+| Attribute PICKED_UP | + | str | Matches code | inferred; default='PICKED_UP' |
+| Attribute DELIVERED | + | str | Matches code | inferred; default='DELIVERED' |
+| Attribute FAILED | + | str | Matches code | inferred; default='FAILED' |
 
 
 ##### ReportController
@@ -2740,15 +2740,15 @@ Responsibility: Authorize Manager requests and construct operational reports wit
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute reports | + | ReportDAO | MATCH | inferred |
-| Attribute hubs | + | HubDAO | MATCH | inferred |
-| Method all_hubs | + | all_hubs(self) -> list[Hub] | MATCH | — |
+| Attribute reports | + | ReportDAO | Matches code | inferred |
+| Attribute hubs | + | HubDAO | Matches code | inferred |
+| Method all_hubs | + | all_hubs(self) -> list[Hub] | Matches code | — |
 | Method sales_report | + | sales_report(self, user_id: int, date_from: Optional[str]=None, date_to: Optional[str]=None, hub_id: Optional[int]=None) -> SalesReport | P4-TARGET | P4 input: F-03; F-09; Expose T without subtracting refund owed twice; top items retain menu_item_id identity. Carry menu_item_id into SalesReport.top_items and presentation. |
 | Method workload_report | + | workload_report(self, user_id: int) -> WorkloadReport | P4-TARGET | P4 input: P2-S18; Use all retained hub identities, including archived hubs with zero open work. |
-| Method delivery_report | + | delivery_report(self, user_id: int, date_from: Optional[str]=None, date_to: Optional[str]=None, hub_id: Optional[int]=None) -> DeliveryReport | MATCH | — |
-| Method _require_manager | - | _require_manager(self, user_id: int) -> None | MATCH | — |
-| Method _hub | - | _hub(self, hub_id: Optional[int]) -> Optional[Hub] | MATCH | — |
-| Method _period | - | _period(self, date_from: Optional[str], date_to: Optional[str]) -> Period | MATCH | — |
+| Method delivery_report | + | delivery_report(self, user_id: int, date_from: Optional[str]=None, date_to: Optional[str]=None, hub_id: Optional[int]=None) -> DeliveryReport | Matches code | — |
+| Method _require_manager | - | _require_manager(self, user_id: int) -> None | Matches code | — |
+| Method _hub | - | _hub(self, hub_id: Optional[int]) -> Optional[Hub] | Matches code | — |
+| Method _period | - | _period(self, date_from: Optional[str], date_to: Optional[str]) -> Period | Matches code | — |
 
 
 ##### BaseController
@@ -2759,11 +2759,11 @@ Responsibility: Coordinate authorization, domain decisions and data access.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute conn | + | sqlite3.Connection | MATCH | — |
-| Attribute clock | + | Any | MATCH | inferred |
-| Attribute users | + | UserDAO | MATCH | inferred |
-| Method _today_vn | - | _today_vn(self) -> str | MATCH | — |
-| Method _require_user | - | _require_user(self, user_id: int, *roles: Role, message: str='Your account cannot do this.') -> UserAccount | MATCH | — |
+| Attribute conn | + | sqlite3.Connection | Matches code | — |
+| Attribute clock | + | Any | Matches code | inferred |
+| Attribute users | + | UserDAO | Matches code | inferred |
+| Method _today_vn | - | _today_vn(self) -> str | Matches code | — |
+| Method _require_user | - | _require_user(self, user_id: int, *roles: Role, message: str='Your account cannot do this.') -> UserAccount | Matches code | — |
 
 
 ##### controllers.common
@@ -2774,7 +2774,7 @@ Responsibility: Module functions with their original Python signatures.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Method vn_day_start_utc | + | vn_day_start_utc(day: date) -> str | MATCH | — |
+| Method vn_day_start_utc | + | vn_day_start_utc(day: date) -> str | Matches code | — |
 
 
 ##### controllers.report_controller
@@ -2785,7 +2785,7 @@ Responsibility: Module functions with their original Python signatures.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Method _minutes | - | _minutes(start: Optional[str], end: Optional[str]) -> Optional[float] | MATCH | — |
+| Method _minutes | - | _minutes(start: Optional[str], end: Optional[str]) -> Optional[float] | Matches code | — |
 
 
 ##### Period
@@ -2796,10 +2796,10 @@ Responsibility: Coordinate authorization, domain decisions and data access.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute date_from | + | str | MATCH | — |
-| Attribute date_to | + | str | MATCH | — |
-| Attribute start_utc | + | str | MATCH | — |
-| Attribute end_utc | + | str | MATCH | — |
+| Attribute date_from | + | str | Matches code | — |
+| Attribute date_to | + | str | Matches code | — |
+| Attribute start_utc | + | str | Matches code | — |
+| Attribute end_utc | + | str | Matches code | — |
 
 
 ##### SalesRow
@@ -2810,15 +2810,15 @@ Responsibility: Coordinate authorization, domain decisions and data access.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute label | + | str | MATCH | — |
-| Attribute orders | + | int | MATCH | default=0 |
-| Attribute item_sales | + | int | MATCH | default=0 |
-| Attribute voucher_discounts | + | int | MATCH | default=0 |
-| Attribute delivery_fees | + | int | MATCH | default=0 |
-| Attribute total | + | int | MATCH | default=0 |
-| Attribute refunds_owed | + | int | MATCH | default=0 |
+| Attribute label | + | str | Matches code | — |
+| Attribute orders | + | int | Matches code | default=0 |
+| Attribute item_sales | + | int | Matches code | default=0 |
+| Attribute voucher_discounts | + | int | Matches code | default=0 |
+| Attribute delivery_fees | + | int | Matches code | default=0 |
+| Attribute total | + | int | Matches code | default=0 |
+| Attribute refunds_owed | + | int | Matches code | default=0 |
 | Method net | + | net(self) -> int | P4-TARGET | property; P4 input: F-03; Return total T; refunds_owed is disclosed separately. |
-| Method add | + | add(self, other: 'SalesRow') -> None | MATCH | — |
+| Method add | + | add(self, other: 'SalesRow') -> None | Matches code | — |
 
 
 ##### SalesReport
@@ -2829,10 +2829,10 @@ Responsibility: Coordinate authorization, domain decisions and data access.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute period | + | Period | MATCH | — |
-| Attribute hub | + | Optional[Hub] | MATCH | — |
-| Attribute rows | + | list[SalesRow] | MATCH | — |
-| Attribute totals | + | SalesRow | MATCH | — |
+| Attribute period | + | Period | Matches code | — |
+| Attribute hub | + | Optional[Hub] | Matches code | — |
+| Attribute rows | + | list[SalesRow] | Matches code | — |
+| Attribute totals | + | SalesRow | Matches code | — |
 | Attribute top_items | + | list[tuple[int, str, int, int]] | P4-TARGET | — |
 
 
@@ -2844,9 +2844,9 @@ Responsibility: Coordinate authorization, domain decisions and data access.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute status | + | HubStatus | MATCH | — |
-| Attribute counts | + | dict[OrderState, int] | MATCH | — |
-| Method label | + | label(self) -> str | MATCH | property |
+| Attribute status | + | HubStatus | Matches code | — |
+| Attribute counts | + | dict[OrderState, int] | Matches code | — |
+| Method label | + | label(self) -> str | Matches code | property |
 
 
 ##### WorkloadReport
@@ -2857,8 +2857,8 @@ Responsibility: Coordinate authorization, domain decisions and data access.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute as_of | + | str | MATCH | — |
-| Attribute rows | + | list[WorkloadRow] | MATCH | — |
+| Attribute as_of | + | str | Matches code | — |
+| Attribute rows | + | list[WorkloadRow] | Matches code | — |
 
 
 ##### DeliveryRow
@@ -2869,14 +2869,14 @@ Responsibility: Coordinate authorization, domain decisions and data access.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute label | + | str | MATCH | — |
-| Attribute delivered | + | int | MATCH | default=0 |
-| Attribute failed | + | int | MATCH | default=0 |
-| Attribute waits | + | list[float] | MATCH | default=field(default_factory=list) |
-| Attribute rides | + | list[float] | MATCH | default=field(default_factory=list) |
-| Method failure_rate | + | failure_rate(self) -> Optional[float] | MATCH | property |
-| Method avg_wait | + | avg_wait(self) -> Optional[float] | MATCH | property |
-| Method avg_ride | + | avg_ride(self) -> Optional[float] | MATCH | property |
+| Attribute label | + | str | Matches code | — |
+| Attribute delivered | + | int | Matches code | default=0 |
+| Attribute failed | + | int | Matches code | default=0 |
+| Attribute waits | + | list[float] | Matches code | default=field(default_factory=list) |
+| Attribute rides | + | list[float] | Matches code | default=field(default_factory=list) |
+| Method failure_rate | + | failure_rate(self) -> Optional[float] | Matches code | property |
+| Method avg_wait | + | avg_wait(self) -> Optional[float] | Matches code | property |
+| Method avg_ride | + | avg_ride(self) -> Optional[float] | Matches code | property |
 
 
 ##### DeliveryReport
@@ -2887,11 +2887,11 @@ Responsibility: Coordinate authorization, domain decisions and data access.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute period | + | Period | MATCH | — |
-| Attribute hub | + | Optional[Hub] | MATCH | — |
-| Attribute by_hub | + | list[DeliveryRow] | MATCH | — |
-| Attribute by_shipper | + | list[DeliveryRow] | MATCH | — |
-| Attribute overall | + | DeliveryRow | MATCH | — |
+| Attribute period | + | Period | Matches code | — |
+| Attribute hub | + | Optional[Hub] | Matches code | — |
+| Attribute by_hub | + | list[DeliveryRow] | Matches code | — |
+| Attribute by_shipper | + | list[DeliveryRow] | Matches code | — |
+| Attribute overall | + | DeliveryRow | Matches code | — |
 
 
 ##### reports
@@ -2902,10 +2902,10 @@ Responsibility: Translate Manager filters and render read-only report results.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Method _filtered | - | _filtered(template: str, run) | MATCH | inferred |
+| Method _filtered | - | _filtered(template: str, run) | Matches code | inferred |
 | Method sales | + | sales() | P4-TARGET | inferred; P4 input: F-09; Render the new identity-preserving top-items shape; template unpacking must retain the item identity. |
-| Method workload | + | workload() | MATCH | inferred |
-| Method delivery | + | delivery() | MATCH | inferred |
+| Method workload | + | workload() | Matches code | inferred |
+| Method delivery | + | delivery() | Matches code | inferred |
 
 
 ##### ReportDAO
@@ -2916,11 +2916,11 @@ Responsibility: Read or write parameterized records.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute conn | + | sqlite3.Connection | MATCH | — |
-| Method sales_by_hub | + | sales_by_hub(self, start_utc: str, end_utc: str, hub_id: Optional[int]) -> list[sqlite3.Row] | MATCH | — |
+| Attribute conn | + | sqlite3.Connection | Matches code | — |
+| Method sales_by_hub | + | sales_by_hub(self, start_utc: str, end_utc: str, hub_id: Optional[int]) -> list[sqlite3.Row] | Matches code | — |
 | Method top_items | + | top_items(self, start_utc: str, end_utc: str, hub_id: Optional[int], limit: int=10) -> list[sqlite3.Row] | P4-TARGET | P4 input: F-09; Select and group by menu_item_id; snapshot name is a label, never the grouping identity. |
-| Method open_orders_by_hub_and_state | + | open_orders_by_hub_and_state(self) -> list[sqlite3.Row] | MATCH | — |
-| Method finished_deliveries | + | finished_deliveries(self, start_utc: str, end_utc: str, hub_id: Optional[int]) -> list[sqlite3.Row] | MATCH | — |
+| Method open_orders_by_hub_and_state | + | open_orders_by_hub_and_state(self) -> list[sqlite3.Row] | Matches code | — |
+| Method finished_deliveries | + | finished_deliveries(self, start_utc: str, end_utc: str, hub_id: Optional[int]) -> list[sqlite3.Row] | Matches code | — |
 
 
 ##### HubDAO
@@ -2931,10 +2931,10 @@ Responsibility: Read or write parameterized records.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute conn | + | sqlite3.Connection | MATCH | — |
-| Method list_active | + | list_active(self) -> list[Hub] | MATCH | — |
-| Method list_all | + | list_all(self) -> list[Hub] | MATCH | — |
-| Method get_including_archived | + | get_including_archived(self, hub_id: int) -> Optional[Hub] | MATCH | — |
+| Attribute conn | + | sqlite3.Connection | Matches code | — |
+| Method list_active | + | list_active(self) -> list[Hub] | Matches code | — |
+| Method list_all | + | list_all(self) -> list[Hub] | Matches code | — |
+| Method get_including_archived | + | get_including_archived(self, hub_id: int) -> Optional[Hub] | Matches code | — |
 
 
 ##### UserDAO
@@ -2945,8 +2945,8 @@ Responsibility: Read or write parameterized records.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute conn | + | sqlite3.Connection | MATCH | — |
-| Method get_by_id | + | get_by_id(self, user_id: int) -> Optional[UserAccount] | MATCH | — |
+| Attribute conn | + | sqlite3.Connection | Matches code | — |
+| Method get_by_id | + | get_by_id(self, user_id: int) -> Optional[UserAccount] | Matches code | — |
 
 ##### F-09 identity and presentation target
 
@@ -3345,14 +3345,14 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ hubs: HubDAO` **inferred** | MATCH |
-| Attribute | `+ menu: MenuDAO` **inferred** | MATCH |
-| Attribute | `+ orders: OrderDAO` **inferred** | MATCH |
-| Attribute | `+ payments: PaymentDAO` **inferred** | MATCH |
-| Attribute | `+ deliveries: DeliveryDAO` **inferred** | MATCH |
-| Attribute | `+ offers: ReplacementOfferDAO` **inferred** | MATCH |
-| Operation | `+ board(self, user_id: int) -> KitchenBoard` | MATCH |
-| Operation | `+ get_order(self, user_id: int, order_id: int) -> KitchenOrderView` | MATCH |
+| Attribute | `+ hubs: HubDAO` **inferred** | Matches code |
+| Attribute | `+ menu: MenuDAO` **inferred** | Matches code |
+| Attribute | `+ orders: OrderDAO` **inferred** | Matches code |
+| Attribute | `+ payments: PaymentDAO` **inferred** | Matches code |
+| Attribute | `+ deliveries: DeliveryDAO` **inferred** | Matches code |
+| Attribute | `+ offers: ReplacementOfferDAO` **inferred** | Matches code |
+| Operation | `+ board(self, user_id: int) -> KitchenBoard` | Matches code |
+| Operation | `+ get_order(self, user_id: int, order_id: int) -> KitchenOrderView` | Matches code |
 | Operation | `+ confirm_order(self, user_id: int, order_id: int) -> Order†` | P4-TARGET† — P2-S13; P3-S03; Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete. |
 | Operation | `+ reject_order(self, user_id: int, order_id: int, reason: str) -> Order†` | P4-TARGET† — F-02; P2-S13; BR-17 full C refund owed and atomic state/amount writes, including COMMIT rollback. |
 | Operation | `+ offer_replacement(self, user_id: int, order_id: int, order_line_id: int, new_menu_item_id: int) -> ReplacementOffer†` | P4-TARGET† — F-05; P2-S09; P2-S13; Require currently unavailable source; target active/listed/available; one open offer; check every conditional save result. |
@@ -3368,11 +3368,11 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Operation | `+ board() -> Any [inferred return]` **inferred unannotated parameter/return** | MATCH |
-| Operation | `+ order(order_id: int) -> Any [inferred return]` **inferred unannotated parameter/return** | MATCH |
-| Operation | `+ confirm(order_id: int) -> Any [inferred return]` **inferred unannotated parameter/return** | MATCH |
-| Operation | `+ reject(order_id: int) -> Any [inferred return]` **inferred unannotated parameter/return** | MATCH |
-| Operation | `+ offer(order_id: int) -> Any [inferred return]` **inferred unannotated parameter/return** | MATCH |
+| Operation | `+ board() -> Any [inferred return]` **inferred unannotated parameter/return** | Matches code |
+| Operation | `+ order(order_id: int) -> Any [inferred return]` **inferred unannotated parameter/return** | Matches code |
+| Operation | `+ confirm(order_id: int) -> Any [inferred return]` **inferred unannotated parameter/return** | Matches code |
+| Operation | `+ reject(order_id: int) -> Any [inferred return]` **inferred unannotated parameter/return** | Matches code |
+| Operation | `+ offer(order_id: int) -> Any [inferred return]` **inferred unannotated parameter/return** | Matches code |
 
 ##### HubDAO
 
@@ -3385,10 +3385,10 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ conn: sqlite3.Connection` | MATCH |
-| Operation | `+ get_including_archived(self, hub_id: int) -> Optional[Hub]` | MATCH |
-| Operation | `+ list_menu(self, hub_id: int) -> list[HubMenuItem]` | MATCH |
-| Operation | `+ get_available_item(self, hub_id: int, menu_item_id: int) -> Optional[MenuItem]` | MATCH |
+| Attribute | `+ conn: sqlite3.Connection` | Matches code |
+| Operation | `+ get_including_archived(self, hub_id: int) -> Optional[Hub]` | Matches code |
+| Operation | `+ list_menu(self, hub_id: int) -> list[HubMenuItem]` | Matches code |
+| Operation | `+ get_available_item(self, hub_id: int, menu_item_id: int) -> Optional[MenuItem]` | Matches code |
 
 ##### OrderDAO
 
@@ -3401,12 +3401,12 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ conn: sqlite3.Connection` | MATCH |
-| Operation | `- _load(self, row: Optional[sqlite3.Row]) -> Optional[Order]` | MATCH |
-| Operation | `+ list_for_hub(self, hub_id: int, states: Iterable[OrderState]) -> list[Order]` | MATCH |
-| Operation | `+ get_by_id(self, order_id: int) -> Optional[Order]` | MATCH |
-| Operation | `+ change_state(self, order_id: int, from_state: OrderState, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> bool` | MATCH |
-| Operation | `+ list_for_customer(self, customer_id: int) -> list[Order]` | MATCH |
+| Attribute | `+ conn: sqlite3.Connection` | Matches code |
+| Operation | `- _load(self, row: Optional[sqlite3.Row]) -> Optional[Order]` | Matches code |
+| Operation | `+ list_for_hub(self, hub_id: int, states: Iterable[OrderState]) -> list[Order]` | Matches code |
+| Operation | `+ get_by_id(self, order_id: int) -> Optional[Order]` | Matches code |
+| Operation | `+ change_state(self, order_id: int, from_state: OrderState, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> bool` | Matches code |
+| Operation | `+ list_for_customer(self, customer_id: int) -> list[Order]` | Matches code |
 | Operation | `+ save_lines_and_totals(self, order: Order) -> bool†` | P4-TARGET† — P2-S09; P2-S11; P3-S03; Apply replacement only to expected PLACED order and check each affected line/header rowcount. |
 
 ##### ReplacementOfferDAO
@@ -3420,11 +3420,11 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ conn: sqlite3.Connection` | MATCH |
-| Operation | `+ get_open(self, order_id: int) -> Optional[ReplacementOffer]` | MATCH |
-| Operation | `+ list_for_order(self, order_id: int) -> list[ReplacementOffer]` | MATCH |
-| Operation | `+ decide(self, offer_id: int, to_state: OfferState, now: str) -> bool` | MATCH |
-| Operation | `+ insert(self, offer: ReplacementOffer) -> int` | MATCH |
+| Attribute | `+ conn: sqlite3.Connection` | Matches code |
+| Operation | `+ get_open(self, order_id: int) -> Optional[ReplacementOffer]` | Matches code |
+| Operation | `+ list_for_order(self, order_id: int) -> list[ReplacementOffer]` | Matches code |
+| Operation | `+ decide(self, offer_id: int, to_state: OfferState, now: str) -> bool` | Matches code |
+| Operation | `+ insert(self, offer: ReplacementOffer) -> int` | Matches code |
 
 ##### UserDAO
 
@@ -3437,8 +3437,8 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ conn: sqlite3.Connection` | MATCH |
-| Operation | `+ get_by_id(self, user_id: int) -> Optional[UserAccount]` | MATCH |
+| Attribute | `+ conn: sqlite3.Connection` | Matches code |
+| Operation | `+ get_by_id(self, user_id: int) -> Optional[UserAccount]` | Matches code |
 
 ##### PaymentDAO
 
@@ -3451,9 +3451,9 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ conn: sqlite3.Connection` | MATCH |
-| Operation | `+ get_by_order_id(self, order_id: int) -> Optional[Payment]` | MATCH |
-| Operation | `+ change_state(self, order_id: int, from_state: PaymentState, to_state: PaymentState, now: str) -> bool` | MATCH |
+| Attribute | `+ conn: sqlite3.Connection` | Matches code |
+| Operation | `+ get_by_order_id(self, order_id: int) -> Optional[Payment]` | Matches code |
+| Operation | `+ change_state(self, order_id: int, from_state: PaymentState, to_state: PaymentState, now: str) -> bool` | Matches code |
 | Operation | `+ set_amounts(self, order_id: int, amount: int, refund_amount: int, now: str) -> bool†` | P4-TARGET† — F-02; P3-S03; Persist full/partial refund obligations atomically and expose the conditional save outcome. |
 
 ##### Order
@@ -3467,29 +3467,29 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ customer_id: int` (FK retained here; omitted from DCD) | MATCH |
-| Attribute | `+ hub_id: int` (FK retained here; omitted from DCD) | MATCH |
-| Attribute | `+ address_id: int` (FK retained here; omitted from DCD) | MATCH |
-| Attribute | `+ state: OrderState` | MATCH |
-| Attribute | `+ delivery_fee: int` | MATCH |
-| Attribute | `+ idempotency_token: str` | MATCH |
-| Attribute | `+ placed_at: str` | MATCH |
-| Attribute | `+ lines: list[OrderLine]` | MATCH |
-| Attribute | `+ id: Optional[int]` | MATCH |
-| Attribute | `+ archived_at: Optional[str]` | MATCH |
-| Attribute | `+ delivery_address_text: str` | MATCH |
-| Attribute | `+ distance_km: float` | MATCH |
-| Attribute | `+ voucher_id: Optional[int]` (FK retained here; omitted from DCD) | MATCH |
-| Attribute | `+ voucher_discount: int` | MATCH |
-| Attribute | `+ quiet_discount: int` | MATCH |
-| Attribute | `+ reject_reason: Optional[str]` | MATCH |
-| Attribute | `+ confirmed_at: Optional[str]` | MATCH |
-| Attribute | `+ ready_at: Optional[str]` | MATCH |
-| Attribute | `+ closed_at: Optional[str]` | MATCH |
-| Operation | `+ move_to(self, new_state: OrderState) -> None` | MATCH |
-| Operation | `+ line(self, line_id: int) -> Optional[OrderLine]` | MATCH |
-| Operation | `+ replace_line(self, line_id: int, menu_item_id: int, item_name: str, unit_price: int) -> None` | MATCH |
-| Read-only property | `+ total(self) -> int {property; read as .total}` | MATCH |
+| Attribute | `+ customer_id: int` (FK retained here; omitted from DCD) | Matches code |
+| Attribute | `+ hub_id: int` (FK retained here; omitted from DCD) | Matches code |
+| Attribute | `+ address_id: int` (FK retained here; omitted from DCD) | Matches code |
+| Attribute | `+ state: OrderState` | Matches code |
+| Attribute | `+ delivery_fee: int` | Matches code |
+| Attribute | `+ idempotency_token: str` | Matches code |
+| Attribute | `+ placed_at: str` | Matches code |
+| Attribute | `+ lines: list[OrderLine]` | Matches code |
+| Attribute | `+ id: Optional[int]` | Matches code |
+| Attribute | `+ archived_at: Optional[str]` | Matches code |
+| Attribute | `+ delivery_address_text: str` | Matches code |
+| Attribute | `+ distance_km: float` | Matches code |
+| Attribute | `+ voucher_id: Optional[int]` (FK retained here; omitted from DCD) | Matches code |
+| Attribute | `+ voucher_discount: int` | Matches code |
+| Attribute | `+ quiet_discount: int` | Matches code |
+| Attribute | `+ reject_reason: Optional[str]` | Matches code |
+| Attribute | `+ confirmed_at: Optional[str]` | Matches code |
+| Attribute | `+ ready_at: Optional[str]` | Matches code |
+| Attribute | `+ closed_at: Optional[str]` | Matches code |
+| Operation | `+ move_to(self, new_state: OrderState) -> None` | Matches code |
+| Operation | `+ line(self, line_id: int) -> Optional[OrderLine]` | Matches code |
+| Operation | `+ replace_line(self, line_id: int, menu_item_id: int, item_name: str, unit_price: int) -> None` | Matches code |
+| Read-only property | `+ total(self) -> int {property; read as .total}` | Matches code |
 
 ##### Payment
 
@@ -3502,16 +3502,16 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ order_id: int` (FK retained here; omitted from DCD) | MATCH |
-| Attribute | `+ method: PaymentMethod` | MATCH |
-| Attribute | `+ state: PaymentState` | MATCH |
-| Attribute | `+ amount: int` | MATCH |
-| Attribute | `+ created_at: str` | MATCH |
-| Attribute | `+ updated_at: Optional[str]` | MATCH |
-| Attribute | `+ online_option: Optional[OnlineOption]` | MATCH |
-| Attribute | `+ provider_ref: Optional[str]` | MATCH |
-| Attribute | `+ refund_amount: int` | MATCH |
-| Attribute | `+ id: Optional[int]` | MATCH |
+| Attribute | `+ order_id: int` (FK retained here; omitted from DCD) | Matches code |
+| Attribute | `+ method: PaymentMethod` | Matches code |
+| Attribute | `+ state: PaymentState` | Matches code |
+| Attribute | `+ amount: int` | Matches code |
+| Attribute | `+ created_at: str` | Matches code |
+| Attribute | `+ updated_at: Optional[str]` | Matches code |
+| Attribute | `+ online_option: Optional[OnlineOption]` | Matches code |
+| Attribute | `+ provider_ref: Optional[str]` | Matches code |
+| Attribute | `+ refund_amount: int` | Matches code |
+| Attribute | `+ id: Optional[int]` | Matches code |
 | Operation | `+ release_for_unfulfilled_order(self) -> None†` | P4-TARGET† — F-02; P2-S01; Set refund_amount=C with REFUND_PENDING; preserve COD VOIDED; no payout operation. |
 
 ##### OrderTrackingController
@@ -3525,17 +3525,17 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ customers: CustomerDAO` **inferred** | MATCH |
-| Attribute | `+ orders: OrderDAO` **inferred** | MATCH |
-| Attribute | `+ payments: PaymentDAO` **inferred** | MATCH |
-| Attribute | `+ hubs: HubDAO` **inferred** | MATCH |
-| Attribute | `+ deliveries: DeliveryDAO` **inferred** | MATCH |
-| Attribute | `+ offers: ReplacementOfferDAO` **inferred** | MATCH |
-| Operation | `+ list_my_orders(self, user_id: int) -> list[OrderSummary]` | MATCH |
-| Operation | `+ get_order(self, user_id: int, order_id: int) -> OrderDetail` | MATCH |
+| Attribute | `+ customers: CustomerDAO` **inferred** | Matches code |
+| Attribute | `+ orders: OrderDAO` **inferred** | Matches code |
+| Attribute | `+ payments: PaymentDAO` **inferred** | Matches code |
+| Attribute | `+ hubs: HubDAO` **inferred** | Matches code |
+| Attribute | `+ deliveries: DeliveryDAO` **inferred** | Matches code |
+| Attribute | `+ offers: ReplacementOfferDAO` **inferred** | Matches code |
+| Operation | `+ list_my_orders(self, user_id: int) -> list[OrderSummary]` | Matches code |
+| Operation | `+ get_order(self, user_id: int, order_id: int) -> OrderDetail` | Matches code |
 | Operation | `+ answer_replacement(self, user_id: int, order_id: int, offer_id: int, accept: bool) -> OrderDetail†` | P4-TARGET† — F-05; F-02; P2-S09; P2-S11; P2-S13; Recheck PLACED and exact open offer; recheck target; invalid target withdraws only the offer; valid accept uses offered price; controlled rollback through COMMIT. |
-| Operation | `- _own_order(self, customer: Customer, order_id: int) -> Order` | MATCH |
-| Operation | `- _require_customer(self, user_id: int) -> Customer` | MATCH |
+| Operation | `- _own_order(self, customer: Customer, order_id: int) -> Order` | Matches code |
+| Operation | `- _require_customer(self, user_id: int) -> Customer` | Matches code |
 
 ##### order
 
@@ -3548,9 +3548,9 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Operation | `+ my_orders() -> Any [inferred return]` **inferred unannotated parameter/return** | MATCH |
-| Operation | `+ detail(order_id: int) -> Any [inferred return]` **inferred unannotated parameter/return** | MATCH |
-| Operation | `+ answer_replacement(order_id: int) -> Any [inferred return]` **inferred unannotated parameter/return** | MATCH |
+| Operation | `+ my_orders() -> Any [inferred return]` **inferred unannotated parameter/return** | Matches code |
+| Operation | `+ detail(order_id: int) -> Any [inferred return]` **inferred unannotated parameter/return** | Matches code |
+| Operation | `+ answer_replacement(order_id: int) -> Any [inferred return]` **inferred unannotated parameter/return** | Matches code |
 
 ##### CustomerDAO
 
@@ -3563,8 +3563,8 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ conn: sqlite3.Connection` | MATCH |
-| Operation | `+ get_by_user_id(self, user_id: int) -> Optional[Customer]` | MATCH |
+| Attribute | `+ conn: sqlite3.Connection` | Matches code |
+| Operation | `+ get_by_user_id(self, user_id: int) -> Optional[Customer]` | Matches code |
 
 ##### OrderDetail
 
@@ -3577,13 +3577,13 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ order: Order` | MATCH |
-| Attribute | `+ payment: Payment` | MATCH |
-| Attribute | `+ hub: Hub` | MATCH |
-| Attribute | `+ delivery: Optional[Delivery]` | MATCH |
-| Attribute | `+ open_offer: Optional[ReplacementOffer]` | MATCH |
-| Attribute | `+ offers: list[ReplacementOffer]` | MATCH |
-| Read-only property | `+ total_if_accepted(self) -> Optional[int] {property; read as .total_if_accepted}` | MATCH |
+| Attribute | `+ order: Order` | Matches code |
+| Attribute | `+ payment: Payment` | Matches code |
+| Attribute | `+ hub: Hub` | Matches code |
+| Attribute | `+ delivery: Optional[Delivery]` | Matches code |
+| Attribute | `+ open_offer: Optional[ReplacementOffer]` | Matches code |
+| Attribute | `+ offers: list[ReplacementOffer]` | Matches code |
+| Read-only property | `+ total_if_accepted(self) -> Optional[int] {property; read as .total_if_accepted}` | Matches code |
 
 ##### DeliveryDAO
 
@@ -3596,8 +3596,8 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ conn: sqlite3.Connection` | MATCH |
-| Operation | `+ get_by_order_id(self, order_id: int) -> Optional[Delivery]` | MATCH |
+| Attribute | `+ conn: sqlite3.Connection` | Matches code |
+| Operation | `+ get_by_order_id(self, order_id: int) -> Optional[Delivery]` | Matches code |
 
 ##### controllers.common
 
@@ -3610,7 +3610,7 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Operation | `+ move_order(orders: OrderDAO, order: Order, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> None` | MATCH |
+| Operation | `+ move_order(orders: OrderDAO, order: Order, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> None` | Matches code |
 | Operation | `+ release_payment(payments: PaymentDAO, order_id: int, now: str) -> Payment†` | P4-TARGET† — F-02; P2-S01; P3-S03; Persist full captured C as refund_amount together with state; changing only the domain object does not save the amount. Check conditional save results in the same transaction. |
 
 ##### ReplacementOffer
@@ -3624,18 +3624,18 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ order_id: int` (FK retained here; omitted from DCD) | MATCH |
-| Attribute | `+ order_line_id: int` (FK retained here; omitted from DCD) | MATCH |
-| Attribute | `+ original_item_name: str` | MATCH |
-| Attribute | `+ original_unit_price: int` | MATCH |
-| Attribute | `+ new_menu_item_id: int` (FK retained here; omitted from DCD) | MATCH |
-| Attribute | `+ new_item_name: str` | MATCH |
-| Attribute | `+ new_unit_price: int` | MATCH |
-| Attribute | `+ state: OfferState` | MATCH |
-| Attribute | `+ offered_at: str` | MATCH |
-| Attribute | `+ decided_at: Optional[str]` | MATCH |
-| Attribute | `+ id: Optional[int]` | MATCH |
-| Operation | `+ move_to(self, new_state: OfferState) -> None` | MATCH |
+| Attribute | `+ order_id: int` (FK retained here; omitted from DCD) | Matches code |
+| Attribute | `+ order_line_id: int` (FK retained here; omitted from DCD) | Matches code |
+| Attribute | `+ original_item_name: str` | Matches code |
+| Attribute | `+ original_unit_price: int` | Matches code |
+| Attribute | `+ new_menu_item_id: int` (FK retained here; omitted from DCD) | Matches code |
+| Attribute | `+ new_item_name: str` | Matches code |
+| Attribute | `+ new_unit_price: int` | Matches code |
+| Attribute | `+ state: OfferState` | Matches code |
+| Attribute | `+ offered_at: str` | Matches code |
+| Attribute | `+ decided_at: Optional[str]` | Matches code |
+| Attribute | `+ id: Optional[int]` | Matches code |
+| Operation | `+ move_to(self, new_state: OfferState) -> None` | Matches code |
 
 ##### OrderLine
 
@@ -3648,11 +3648,11 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ menu_item_id: int` (FK retained here; omitted from DCD) | MATCH |
-| Attribute | `+ item_name: str` | MATCH |
-| Attribute | `+ unit_price: int` | MATCH |
-| Attribute | `+ quantity: int` | MATCH |
-| Attribute | `+ id: Optional[int]` | MATCH |
+| Attribute | `+ menu_item_id: int` (FK retained here; omitted from DCD) | Matches code |
+| Attribute | `+ item_name: str` | Matches code |
+| Attribute | `+ unit_price: int` | Matches code |
+| Attribute | `+ quantity: int` | Matches code |
+| Attribute | `+ id: Optional[int]` | Matches code |
 
 ##### Customer
 
@@ -3665,14 +3665,14 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ id: int` | MATCH |
-| Attribute | `+ user_id: int` (FK retained here; omitted from DCD) | MATCH |
-| Attribute | `+ full_name: str` | MATCH |
-| Attribute | `+ phone: Optional[str]` | MATCH |
-| Attribute | `+ email: Optional[str]` | MATCH |
-| Attribute | `+ passport_no: Optional[str]` | MATCH |
-| Attribute | `+ nationality: Optional[str]` | MATCH |
-| Attribute | `+ customer_type: CustomerType` **inferred** | MATCH |
+| Attribute | `+ id: int` | Matches code |
+| Attribute | `+ user_id: int` (FK retained here; omitted from DCD) | Matches code |
+| Attribute | `+ full_name: str` | Matches code |
+| Attribute | `+ phone: Optional[str]` | Matches code |
+| Attribute | `+ email: Optional[str]` | Matches code |
+| Attribute | `+ passport_no: Optional[str]` | Matches code |
+| Attribute | `+ nationality: Optional[str]` | Matches code |
+| Attribute | `+ customer_type: CustomerType` **inferred** | Matches code |
 
 ##### LocalCustomer
 
@@ -3685,7 +3685,7 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ customer_type: CustomerType` **inferred** | MATCH |
+| Attribute | `+ customer_type: CustomerType` **inferred** | Matches code |
 
 ##### TouristCustomer
 
@@ -3698,7 +3698,7 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ customer_type: CustomerType` **inferred** | MATCH |
+| Attribute | `+ customer_type: CustomerType` **inferred** | Matches code |
 
 ##### Address
 
@@ -3711,14 +3711,14 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ id: int` | MATCH |
-| Attribute | `+ customer_id: int` (FK retained here; omitted from DCD) | MATCH |
-| Attribute | `+ label: str` | MATCH |
-| Attribute | `+ full_address: str` | MATCH |
-| Attribute | `+ district: str` | MATCH |
-| Attribute | `+ latitude: float` | MATCH |
-| Attribute | `+ longitude: float` | MATCH |
-| Attribute | `+ archived_at: Optional[str]` | MATCH |
+| Attribute | `+ id: int` | Matches code |
+| Attribute | `+ customer_id: int` (FK retained here; omitted from DCD) | Matches code |
+| Attribute | `+ label: str` | Matches code |
+| Attribute | `+ full_address: str` | Matches code |
+| Attribute | `+ district: str` | Matches code |
+| Attribute | `+ latitude: float` | Matches code |
+| Attribute | `+ longitude: float` | Matches code |
+| Attribute | `+ archived_at: Optional[str]` | Matches code |
 
 ##### MenuItem
 
@@ -3731,13 +3731,13 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ id: int` | MATCH |
-| Attribute | `+ brand_id: int` (FK retained here; omitted from DCD) | MATCH |
-| Attribute | `+ brand_name: str` | MATCH |
-| Attribute | `+ name: str` | MATCH |
-| Attribute | `+ description: str` | MATCH |
-| Attribute | `+ price: int` | MATCH |
-| Attribute | `+ archived_at: Optional[str]` | MATCH |
+| Attribute | `+ id: int` | Matches code |
+| Attribute | `+ brand_id: int` (FK retained here; omitted from DCD) | Matches code |
+| Attribute | `+ brand_name: str` | Matches code |
+| Attribute | `+ name: str` | Matches code |
+| Attribute | `+ description: str` | Matches code |
+| Attribute | `+ price: int` | Matches code |
+| Attribute | `+ archived_at: Optional[str]` | Matches code |
 
 ##### Brand
 
@@ -3750,9 +3750,9 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ id: int` | MATCH |
-| Attribute | `+ name: str` | MATCH |
-| Attribute | `+ archived_at: Optional[str]` | MATCH |
+| Attribute | `+ id: int` | Matches code |
+| Attribute | `+ name: str` | Matches code |
+| Attribute | `+ archived_at: Optional[str]` | Matches code |
 
 ##### HubMenuItem
 
@@ -3765,9 +3765,9 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ hub_id: int` (FK retained here; omitted from DCD) | MATCH |
-| Attribute | `+ item: MenuItem` | MATCH |
-| Attribute | `+ is_available: bool` | MATCH |
+| Attribute | `+ hub_id: int` (FK retained here; omitted from DCD) | Matches code |
+| Attribute | `+ item: MenuItem` | Matches code |
+| Attribute | `+ is_available: bool` | Matches code |
 
 ##### UserAccount
 
@@ -3780,13 +3780,13 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ id: int` | MATCH |
-| Attribute | `+ username: str` | MATCH |
-| Attribute | `+ password_hash: str` | MATCH |
-| Attribute | `+ display_name: str` | MATCH |
-| Attribute | `+ role: Role` | MATCH |
-| Attribute | `+ is_active: bool` | MATCH |
-| Attribute | `+ hub_id: Optional[int]` (FK retained here; omitted from DCD) | MATCH |
+| Attribute | `+ id: int` | Matches code |
+| Attribute | `+ username: str` | Matches code |
+| Attribute | `+ password_hash: str` | Matches code |
+| Attribute | `+ display_name: str` | Matches code |
+| Attribute | `+ role: Role` | Matches code |
+| Attribute | `+ is_active: bool` | Matches code |
+| Attribute | `+ hub_id: Optional[int]` (FK retained here; omitted from DCD) | Matches code |
 | Attribute | `+ created_at: str` | GAP |
 
 ##### OrderState
@@ -3800,16 +3800,16 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ PLACED: str` **inferred** | MATCH |
-| Attribute | `+ CONFIRMED: str` **inferred** | MATCH |
-| Attribute | `+ REJECTED: str` **inferred** | MATCH |
-| Attribute | `+ PREPARING: str` **inferred** | MATCH |
-| Attribute | `+ READY: str` **inferred** | MATCH |
-| Attribute | `+ OUT_FOR_DELIVERY: str` **inferred** | MATCH |
-| Attribute | `+ DELIVERED: str` **inferred** | MATCH |
-| Attribute | `+ DELIVERY_FAILED: str` **inferred** | MATCH |
-| Attribute | `+ CANCELLED: str` **inferred** | MATCH |
-| Enumeration | PLACED, CONFIRMED, REJECTED, PREPARING, READY, OUT_FOR_DELIVERY, DELIVERED, DELIVERY_FAILED, CANCELLED | MATCH |
+| Attribute | `+ PLACED: str` **inferred** | Matches code |
+| Attribute | `+ CONFIRMED: str` **inferred** | Matches code |
+| Attribute | `+ REJECTED: str` **inferred** | Matches code |
+| Attribute | `+ PREPARING: str` **inferred** | Matches code |
+| Attribute | `+ READY: str` **inferred** | Matches code |
+| Attribute | `+ OUT_FOR_DELIVERY: str` **inferred** | Matches code |
+| Attribute | `+ DELIVERED: str` **inferred** | Matches code |
+| Attribute | `+ DELIVERY_FAILED: str` **inferred** | Matches code |
+| Attribute | `+ CANCELLED: str` **inferred** | Matches code |
+| Enumeration | PLACED, CONFIRMED, REJECTED, PREPARING, READY, OUT_FOR_DELIVERY, DELIVERED, DELIVERY_FAILED, CANCELLED | Matches code |
 
 ##### PaymentState
 
@@ -3822,13 +3822,13 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ PENDING: str` **inferred** | MATCH |
-| Attribute | `+ PAID: str` **inferred** | MATCH |
-| Attribute | `+ FAILED: str` **inferred** | MATCH |
-| Attribute | `+ VOIDED: str` **inferred** | MATCH |
-| Attribute | `+ REFUND_PENDING: str` **inferred** | MATCH |
-| Attribute | `+ REFUNDED: str` **inferred** | MATCH |
-| Enumeration | PENDING, PAID, FAILED, VOIDED, REFUND_PENDING, REFUNDED | MATCH |
+| Attribute | `+ PENDING: str` **inferred** | Matches code |
+| Attribute | `+ PAID: str` **inferred** | Matches code |
+| Attribute | `+ FAILED: str` **inferred** | Matches code |
+| Attribute | `+ VOIDED: str` **inferred** | Matches code |
+| Attribute | `+ REFUND_PENDING: str` **inferred** | Matches code |
+| Attribute | `+ REFUNDED: str` **inferred** | Matches code |
+| Enumeration | PENDING, PAID, FAILED, VOIDED, REFUND_PENDING, REFUNDED | Matches code |
 
 ##### PaymentMethod
 
@@ -3841,9 +3841,9 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ COD: str` **inferred** | MATCH |
-| Attribute | `+ ONLINE: str` **inferred** | MATCH |
-| Enumeration | COD, ONLINE | MATCH |
+| Attribute | `+ COD: str` **inferred** | Matches code |
+| Attribute | `+ ONLINE: str` **inferred** | Matches code |
+| Enumeration | COD, ONLINE | Matches code |
 
 ##### OnlineOption
 
@@ -3856,10 +3856,10 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ E_WALLET: str` **inferred** | MATCH |
-| Attribute | `+ BANK_QR: str` **inferred** | MATCH |
-| Attribute | `+ INTERNATIONAL_CARD: str` **inferred** | MATCH |
-| Enumeration | E_WALLET, BANK_QR, INTERNATIONAL_CARD | MATCH |
+| Attribute | `+ E_WALLET: str` **inferred** | Matches code |
+| Attribute | `+ BANK_QR: str` **inferred** | Matches code |
+| Attribute | `+ INTERNATIONAL_CARD: str` **inferred** | Matches code |
+| Enumeration | E_WALLET, BANK_QR, INTERNATIONAL_CARD | Matches code |
 
 ##### OfferState
 
@@ -3872,11 +3872,11 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ OFFERED: str` **inferred** | MATCH |
-| Attribute | `+ ACCEPTED: str` **inferred** | MATCH |
-| Attribute | `+ DECLINED: str` **inferred** | MATCH |
-| Attribute | `+ WITHDRAWN: str` **inferred** | MATCH |
-| Enumeration | OFFERED, ACCEPTED, DECLINED, WITHDRAWN | MATCH |
+| Attribute | `+ OFFERED: str` **inferred** | Matches code |
+| Attribute | `+ ACCEPTED: str` **inferred** | Matches code |
+| Attribute | `+ DECLINED: str` **inferred** | Matches code |
+| Attribute | `+ WITHDRAWN: str` **inferred** | Matches code |
+| Enumeration | OFFERED, ACCEPTED, DECLINED, WITHDRAWN | Matches code |
 
 ##### Role
 
@@ -3889,12 +3889,12 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ CUSTOMER: str` **inferred** | MATCH |
-| Attribute | `+ KITCHEN_STAFF: str` **inferred** | MATCH |
-| Attribute | `+ SHIPPER: str` **inferred** | MATCH |
-| Attribute | `+ ADMIN: str` **inferred** | MATCH |
-| Attribute | `+ MANAGER: str` **inferred** | MATCH |
-| Enumeration | CUSTOMER, KITCHEN_STAFF, SHIPPER, ADMIN, MANAGER | MATCH |
+| Attribute | `+ CUSTOMER: str` **inferred** | Matches code |
+| Attribute | `+ KITCHEN_STAFF: str` **inferred** | Matches code |
+| Attribute | `+ SHIPPER: str` **inferred** | Matches code |
+| Attribute | `+ ADMIN: str` **inferred** | Matches code |
+| Attribute | `+ MANAGER: str` **inferred** | Matches code |
+| Enumeration | CUSTOMER, KITCHEN_STAFF, SHIPPER, ADMIN, MANAGER | Matches code |
 
 ##### KitchenBoard
 
@@ -3907,8 +3907,8 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ hub: Hub` | MATCH |
-| Attribute | `+ columns: dict[OrderState, list[BoardEntry]]` | MATCH |
+| Attribute | `+ hub: Hub` | Matches code |
+| Attribute | `+ columns: dict[OrderState, list[BoardEntry]]` | Matches code |
 
 ##### BoardEntry
 
@@ -3921,8 +3921,8 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ order: Order` | MATCH |
-| Attribute | `+ awaiting_customer: bool` | MATCH |
+| Attribute | `+ order: Order` | Matches code |
+| Attribute | `+ awaiting_customer: bool` | Matches code |
 
 ##### KitchenOrderView
 
@@ -3935,11 +3935,11 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ order: Order` | MATCH |
-| Attribute | `+ payment: Payment` | MATCH |
-| Attribute | `+ open_offer: Optional[ReplacementOffer]` | MATCH |
-| Attribute | `+ offers: list[ReplacementOffer]` | MATCH |
-| Attribute | `+ candidates: dict[int, list[MenuItem]]` | MATCH |
+| Attribute | `+ order: Order` | Matches code |
+| Attribute | `+ payment: Payment` | Matches code |
+| Attribute | `+ open_offer: Optional[ReplacementOffer]` | Matches code |
+| Attribute | `+ offers: list[ReplacementOffer]` | Matches code |
+| Attribute | `+ candidates: dict[int, list[MenuItem]]` | Matches code |
 
 ##### OrderSummary
 
@@ -3952,9 +3952,9 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ order: Order` | MATCH |
-| Attribute | `+ hub_name: str` | MATCH |
-| Attribute | `+ awaiting_answer: bool` | MATCH |
+| Attribute | `+ order: Order` | Matches code |
+| Attribute | `+ hub_name: str` | Matches code |
+| Attribute | `+ awaiting_answer: bool` | Matches code |
 
 ##### Hub
 
@@ -3967,15 +3967,15 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ id: int` | MATCH |
-| Attribute | `+ code: str` | MATCH |
-| Attribute | `+ name: str` | MATCH |
-| Attribute | `+ address_text: str` | MATCH |
-| Attribute | `+ latitude: float` | MATCH |
-| Attribute | `+ longitude: float` | MATCH |
-| Attribute | `+ max_active_orders: int` | MATCH |
-| Attribute | `+ base_delivery_fee: int` | MATCH |
-| Attribute | `+ archived_at: Optional[str]` | MATCH |
+| Attribute | `+ id: int` | Matches code |
+| Attribute | `+ code: str` | Matches code |
+| Attribute | `+ name: str` | Matches code |
+| Attribute | `+ address_text: str` | Matches code |
+| Attribute | `+ latitude: float` | Matches code |
+| Attribute | `+ longitude: float` | Matches code |
+| Attribute | `+ max_active_orders: int` | Matches code |
+| Attribute | `+ base_delivery_fee: int` | Matches code |
+| Attribute | `+ archived_at: Optional[str]` | Matches code |
 
 ##### CustomerType
 
@@ -3988,9 +3988,9 @@ Properties have signatures for traceability but are read as attributes; dataclas
 
 | Kind | Visible typed member / exact signature | Status / evidence |
 |---|---|---|
-| Attribute | `+ LOCAL: str` **inferred** | MATCH |
-| Attribute | `+ TOURIST: str` **inferred** | MATCH |
-| Enumeration | LOCAL, TOURIST | MATCH |
+| Attribute | `+ LOCAL: str` **inferred** | Matches code |
+| Attribute | `+ TOURIST: str` **inferred** | Matches code |
+| Enumeration | LOCAL, TOURIST | Matches code |
 
 ##### Presentation adapter and resources
 
@@ -4431,12 +4431,12 @@ Operation guarantees are realized by these named controller methods and atomic/r
 
 | SSD operation | Responsible method / boundary | Guarantees | Status |
 |---|---|---|---|
-| OP-19 `viewKitchenOrders` | `KitchenController.board(self, user_id: int) -> KitchenBoard`; read | Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation | MATCH |
-| OP-20 `viewKitchenOrder` | `KitchenController.get_order(self, user_id: int, order_id: int) -> KitchenOrderView`; read | Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation | MATCH |
+| OP-19 `viewKitchenOrders` | `KitchenController.board(self, user_id: int) -> KitchenBoard`; read | Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation | Matches code |
+| OP-20 `viewKitchenOrder` | `KitchenController.get_order(self, user_id: int, order_id: int) -> KitchenOrderView`; read | Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation | Matches code |
 | OP-02 `confirmOrder` | `KitchenController.confirm_order(self, user_id: int, order_id: int) -> Order`; BEGIN IMMEDIATE | UC05-PC01; UC05-MG01 | P4-TARGET† P2-S13; P3-S03 |
 | OP-03 `rejectOrder` | `KitchenController.reject_order(self, user_id: int, order_id: int, reason: str) -> Order`; BEGIN IMMEDIATE | UC05-PC02 | P4-TARGET† F-02; P2-S13 |
 | OP-04 `offerReplacement` | `KitchenController.offer_replacement(self, user_id: int, order_id: int, order_line_id: int, new_menu_item_id: int) -> ReplacementOffer`; BEGIN IMMEDIATE | UC05-PC03; UC05-MG01 | P4-TARGET† F-05; P2-S09; P2-S13 |
-| OP-17 `viewMyOrders` | `OrderTrackingController.list_my_orders(self, user_id: int) -> list[OrderSummary]`; read | Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation | MATCH |
+| OP-17 `viewMyOrders` | `OrderTrackingController.list_my_orders(self, user_id: int) -> list[OrderSummary]`; read | Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation | Matches code |
 | OP-18 `viewReplacement` | `OrderTrackingController.get_order(self, user_id: int, order_id: int) -> OrderDetail`; read | Read authorization / no persistent effect; named main anchors remain on their realizing write/report operation | P4-TARGET† F-06 |
 | OP-05 `acceptReplacement` | `OrderTrackingController.answer_replacement(self, user_id: int, order_id: int, offer_id: int, accept: bool) -> OrderDetail`; BEGIN IMMEDIATE | UC05-PC04; UC05-MG01 | P4-TARGET† F-05; F-02; P2-S09; P2-S11; P2-S13 |
 | OP-06 `declineReplacement` | `OrderTrackingController.answer_replacement(self, user_id: int, order_id: int, offer_id: int, accept: bool) -> OrderDetail`; BEGIN IMMEDIATE | SUC03-PC04; UC05-MG01 (decline/reject and BR-17; stale or failed save leaves Order unchanged) | P4-TARGET† F-02; P2-S13 |
@@ -4653,8 +4653,8 @@ Layer: **view**; stereotype: **«view»**; responsibility: Translate administrat
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Operation | `- _hubs() -> HubController` | MATCH |
-| Operation | `- _menu() -> MenuController` | MATCH |
+| Operation | `- _hubs() -> HubController` | Matches code |
+| Operation | `- _menu() -> MenuController` | Matches code |
 | Operation | `+ catalogue() -> Any [inferred] †` | P4-TARGET †; inferred annotation(s); P2-S14 |
 | Operation | `+ create_brand() -> Any [inferred]` | MATCH; inferred annotation(s) |
 | Operation | `+ rename_brand(brand_id: int) -> Any [inferred]` | MATCH; inferred annotation(s) |
@@ -4688,22 +4688,22 @@ Layer: **controller**; stereotype: **«controller»**; responsibility: Coordinat
 |---|---|---|
 | Attribute | `+ menu: MenuDAO` | MATCH; inferred |
 | Attribute | `+ hubs: HubDAO` | MATCH; inferred |
-| Operation | `+ catalogue(user_id: int) -> Catalogue` | MATCH |
+| Operation | `+ catalogue(user_id: int) -> Catalogue` | Matches code |
 | Operation | `+ create_brand(user_id: int, name: str) -> Brand †` | P4-TARGET †; P2-S13; P3-S03 |
 | Operation | `+ rename_brand(user_id: int, brand_id: int, name: str) -> Brand †` | P4-TARGET †; P2-S13; P3-S03 |
 | Operation | `+ archive_brand(user_id: int, brand_id: int) -> Brand †` | P4-TARGET †; P2-S13; P3-S03 |
 | Operation | `+ create_item(user_id: int, form: Mapping[str, str]) -> MenuItem †` | P4-TARGET †; P2-S13; P3-S03 |
 | Operation | `+ update_item(user_id: int, item_id: int, form: Mapping[str, str]) -> MenuItem †` | P4-TARGET †; P2-S13; P3-S03 |
 | Operation | `+ archive_item(user_id: int, item_id: int) -> MenuItem †` | P4-TARGET †; P2-S13; P3-S03 |
-| Operation | `+ hub_menu(user_id: int, hub_id: int) -> HubMenu` | MATCH |
+| Operation | `+ hub_menu(user_id: int, hub_id: int) -> HubMenu` | Matches code |
 | Operation | `+ list_item_at_hub(user_id: int, hub_id: int, item_id: int, available: bool = True) -> None †` | P4-TARGET †; P2-S15; P2-S13 |
 | Operation | `+ unlist_item_at_hub(user_id: int, hub_id: int, item_id: int) -> None †` | P4-TARGET †; P2-S13; P3-S03 |
 | Operation | `+ set_availability(user_id: int, hub_id: int, item_id: int, available: bool) -> None †` | P4-TARGET †; P2-S13; P3-S03 |
-| Operation | `- _require_admin(user_id: int) -> None` | MATCH |
-| Operation | `- _hub(hub_id: int) -> Hub` | MATCH |
+| Operation | `- _require_admin(user_id: int) -> None` | Matches code |
+| Operation | `- _hub(hub_id: int) -> Hub` | Matches code |
 | Operation | `- _active_brand(brand_id: Any) -> Brand [inferred]` | MATCH; inferred annotation(s) |
-| Operation | `- _active_item(item_id: int) -> MenuItem` | MATCH |
-| Operation | `- _name(raw: str, label: str, max_len: int = 60) -> str` | MATCH |
+| Operation | `- _active_item(item_id: int) -> MenuItem` | Matches code |
+| Operation | `- _name(raw: str, label: str, max_len: int = 60) -> str` | Matches code |
 | Operation | `- _parse_item(form: Mapping[str, str], item_id: Any) -> MenuItem [inferred]` | MATCH; inferred annotation(s) |
 | Operation | `+ list_catalogue(user_id: int, hub_id: Optional[int] = None) -> dict[str, object] †` | GAP †; P2-S14 |
 
@@ -4713,8 +4713,8 @@ Layer: **controller**; stereotype: **«value»**; responsibility: Coordinate aut
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Attribute | `+ brands: list[Brand]` | MATCH |
-| Attribute | `+ items: list[MenuItem]` | MATCH |
+| Attribute | `+ brands: list[Brand]` | Matches code |
+| Attribute | `+ items: list[MenuItem]` | Matches code |
 
 ##### HubMenu
 
@@ -4722,9 +4722,9 @@ Layer: **controller**; stereotype: **«value»**; responsibility: Coordinate aut
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Attribute | `+ hub: Hub` | MATCH |
-| Attribute | `+ listed: list[HubMenuItem]` | MATCH |
-| Attribute | `+ not_listed: list[MenuItem]` | MATCH |
+| Attribute | `+ hub: Hub` | Matches code |
+| Attribute | `+ listed: list[HubMenuItem]` | Matches code |
+| Attribute | `+ not_listed: list[MenuItem]` | Matches code |
 
 ##### HubController
 
@@ -4741,15 +4741,15 @@ Layer: **domain**; stereotype: **«entity»**; responsibility: Represent a kitch
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Attribute | `+ id: int` | MATCH |
-| Attribute | `+ code: str` | MATCH |
-| Attribute | `+ name: str` | MATCH |
-| Attribute | `+ address_text: str` | MATCH |
-| Attribute | `+ latitude: float` | MATCH |
-| Attribute | `+ longitude: float` | MATCH |
-| Attribute | `+ max_active_orders: int` | MATCH |
-| Attribute | `+ base_delivery_fee: int` | MATCH |
-| Attribute | `+ archived_at: Optional[str]` | MATCH |
+| Attribute | `+ id: int` | Matches code |
+| Attribute | `+ code: str` | Matches code |
+| Attribute | `+ name: str` | Matches code |
+| Attribute | `+ address_text: str` | Matches code |
+| Attribute | `+ latitude: float` | Matches code |
+| Attribute | `+ longitude: float` | Matches code |
+| Attribute | `+ max_active_orders: int` | Matches code |
+| Attribute | `+ base_delivery_fee: int` | Matches code |
+| Attribute | `+ archived_at: Optional[str]` | Matches code |
 
 ##### Brand
 
@@ -4757,9 +4757,9 @@ Layer: **domain**; stereotype: **«entity»**; responsibility: Group menu items 
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Attribute | `+ id: int` | MATCH |
-| Attribute | `+ name: str` | MATCH |
-| Attribute | `+ archived_at: Optional[str]` | MATCH |
+| Attribute | `+ id: int` | Matches code |
+| Attribute | `+ name: str` | Matches code |
+| Attribute | `+ archived_at: Optional[str]` | Matches code |
 
 ##### MenuItem
 
@@ -4767,13 +4767,13 @@ Layer: **domain**; stereotype: **«entity»**; responsibility: Hold current cata
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Attribute | `+ id: int` | MATCH |
+| Attribute | `+ id: int` | Matches code |
 | Attribute | `+ brand_id: int` | MATCH; association backing ID, omitted on DCD |
-| Attribute | `+ brand_name: str` | MATCH |
-| Attribute | `+ name: str` | MATCH |
-| Attribute | `+ description: str` | MATCH |
-| Attribute | `+ price: int` | MATCH |
-| Attribute | `+ archived_at: Optional[str]` | MATCH |
+| Attribute | `+ brand_name: str` | Matches code |
+| Attribute | `+ name: str` | Matches code |
+| Attribute | `+ description: str` | Matches code |
+| Attribute | `+ price: int` | Matches code |
+| Attribute | `+ archived_at: Optional[str]` | Matches code |
 
 ##### HubMenuItem
 
@@ -4782,8 +4782,8 @@ Layer: **domain**; stereotype: **«entity»**; responsibility: Represent one hub
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
 | Attribute | `+ hub_id: int` | MATCH; association backing ID, omitted on DCD |
-| Attribute | `+ item: MenuItem` | MATCH |
-| Attribute | `+ is_available: bool` | MATCH |
+| Attribute | `+ item: MenuItem` | Matches code |
+| Attribute | `+ is_available: bool` | Matches code |
 
 ##### MenuDAO
 
@@ -4791,24 +4791,24 @@ Layer: **data_access**; stereotype: **«DAO»**; responsibility: Read or write p
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Attribute | `+ conn: sqlite3.Connection` | MATCH |
-| Operation | `+ list_brands() -> list[Brand]` | MATCH |
-| Operation | `+ get_brand(brand_id: int) -> Optional[Brand]` | MATCH |
-| Operation | `+ brand_name_exists(name: str, except_id: Optional[int] = None) -> bool` | MATCH |
-| Operation | `+ insert_brand(name: str) -> int` | MATCH |
-| Operation | `+ rename_brand(brand_id: int, name: str) -> bool` | MATCH |
-| Operation | `+ archive_brand(brand_id: int, now: str) -> bool` | MATCH |
-| Operation | `+ list_items() -> list[MenuItem]` | MATCH |
-| Operation | `+ get_item(item_id: int) -> Optional[MenuItem]` | MATCH |
-| Operation | `+ item_name_exists(brand_id: int, name: str, except_id: Optional[int] = None) -> bool` | MATCH |
-| Operation | `+ insert_item(item: MenuItem) -> int` | MATCH |
-| Operation | `+ update_item(item: MenuItem) -> bool` | MATCH |
-| Operation | `+ archive_item(item_id: int, now: str) -> bool` | MATCH |
-| Operation | `+ list_hub_items(hub_id: int) -> list[HubMenuItem]` | MATCH |
-| Operation | `+ is_listed(hub_id: int, item_id: int) -> bool` | MATCH |
+| Attribute | `+ conn: sqlite3.Connection` | Matches code |
+| Operation | `+ list_brands() -> list[Brand]` | Matches code |
+| Operation | `+ get_brand(brand_id: int) -> Optional[Brand]` | Matches code |
+| Operation | `+ brand_name_exists(name: str, except_id: Optional[int] = None) -> bool` | Matches code |
+| Operation | `+ insert_brand(name: str) -> int` | Matches code |
+| Operation | `+ rename_brand(brand_id: int, name: str) -> bool` | Matches code |
+| Operation | `+ archive_brand(brand_id: int, now: str) -> bool` | Matches code |
+| Operation | `+ list_items() -> list[MenuItem]` | Matches code |
+| Operation | `+ get_item(item_id: int) -> Optional[MenuItem]` | Matches code |
+| Operation | `+ item_name_exists(brand_id: int, name: str, except_id: Optional[int] = None) -> bool` | Matches code |
+| Operation | `+ insert_item(item: MenuItem) -> int` | Matches code |
+| Operation | `+ update_item(item: MenuItem) -> bool` | Matches code |
+| Operation | `+ archive_item(item_id: int, now: str) -> bool` | Matches code |
+| Operation | `+ list_hub_items(hub_id: int) -> list[HubMenuItem]` | Matches code |
+| Operation | `+ is_listed(hub_id: int, item_id: int) -> bool` | Matches code |
 | Operation | `+ add_listing(hub_id: int, item_id: int, available: bool = True) -> None †` | P4-TARGET †; P2-S15 |
-| Operation | `+ remove_listing(hub_id: int, item_id: int) -> bool` | MATCH |
-| Operation | `+ set_available(hub_id: int, item_id: int, available: bool) -> bool` | MATCH |
+| Operation | `+ remove_listing(hub_id: int, item_id: int) -> bool` | Matches code |
+| Operation | `+ set_available(hub_id: int, item_id: int, available: bool) -> bool` | Matches code |
 
 ##### HubDAO
 
@@ -4816,9 +4816,9 @@ Layer: **data_access**; stereotype: **«DAO»**; responsibility: Read or write p
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Attribute | `+ conn: sqlite3.Connection` | MATCH |
-| Operation | `+ list_all() -> list[Hub]` | MATCH |
-| Operation | `+ get_including_archived(hub_id: int) -> Optional[Hub]` | MATCH |
+| Attribute | `+ conn: sqlite3.Connection` | Matches code |
+| Operation | `+ list_all() -> list[Hub]` | Matches code |
+| Operation | `+ get_including_archived(hub_id: int) -> Optional[Hub]` | Matches code |
 
 ##### BaseController
 
@@ -4826,11 +4826,11 @@ Layer: **controller**; stereotype: **«controller»**; responsibility: Coordinat
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Attribute | `+ conn: sqlite3.Connection` | MATCH |
+| Attribute | `+ conn: sqlite3.Connection` | Matches code |
 | Attribute | `+ clock: Any` | MATCH; inferred |
 | Attribute | `+ users: UserDAO` | MATCH; inferred |
-| Operation | `- _now() -> str` | MATCH |
-| Operation | `- _require_user(user_id: int, *roles: Role, message: str = 'Your account cannot do this.') -> UserAccount` | MATCH |
+| Operation | `- _now() -> str` | Matches code |
+| Operation | `- _require_user(user_id: int, *roles: Role, message: str = 'Your account cannot do this.') -> UserAccount` | Matches code |
 
 ##### UserAccount
 
@@ -4838,12 +4838,12 @@ Layer: **domain**; stereotype: **«entity»**; responsibility: Hold account iden
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Attribute | `+ id: int` | MATCH |
-| Attribute | `+ username: str` | MATCH |
-| Attribute | `+ password_hash: str` | MATCH |
-| Attribute | `+ display_name: str` | MATCH |
-| Attribute | `+ role: Role` | MATCH |
-| Attribute | `+ is_active: bool` | MATCH |
+| Attribute | `+ id: int` | Matches code |
+| Attribute | `+ username: str` | Matches code |
+| Attribute | `+ password_hash: str` | Matches code |
+| Attribute | `+ display_name: str` | Matches code |
+| Attribute | `+ role: Role` | Matches code |
+| Attribute | `+ is_active: bool` | Matches code |
 | Attribute | `+ hub_id: Optional[int]` | MATCH; association backing ID, omitted on DCD |
 | Attribute | `+ created_at: str` | GAP |
 
@@ -4865,8 +4865,8 @@ Layer: **data_access**; stereotype: **«DAO»**; responsibility: Read or write p
 
 | Element | Typed declaration | Status / qualification |
 |---|---|---|
-| Attribute | `+ conn: sqlite3.Connection` | MATCH |
-| Operation | `+ get_by_id(user_id: int) -> Optional[UserAccount]` | MATCH |
+| Attribute | `+ conn: sqlite3.Connection` | Matches code |
+| Operation | `+ get_by_id(user_id: int) -> Optional[UserAccount]` | Matches code |
 
 ##### Boundary adapters and guarantees
 

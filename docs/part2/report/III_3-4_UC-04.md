@@ -18,7 +18,7 @@ HubStatus and Hub are the real domain participants. Period, report rows and repo
 
 ![UC-04 domain design classes: No Report domain class or lifecycle exists; report values stay in the controller module.](../../../models/UC-04/dcd_uc04_domain.png)
 
-Figure 3.4.2.i-A. UC-04 domain design classes: No Report domain class or lifecycle exists; report values stay in the controller module. — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.4.2.i-A. UC-04 domain design classes: No Report domain class or lifecycle exists; report values stay in the controller module. — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 
@@ -28,37 +28,37 @@ ReportController validates manager access and filters, then builds ephemeral rep
 
 ![UC-04 controller/value roles: Sales value roles continue in Part B; other report operations continue in Parts C–F.](../../../models/UC-04/dcd_uc04_controller_PartA.png)
 
-Figure 3.4.2.ii-A. UC-04 controller/value roles: Sales value roles continue in Part B; other report operations continue in Parts C–F. — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.4.2.ii-A. UC-04 controller/value roles: Sales value roles continue in Part B; other report operations continue in Parts C–F. — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 
 ![UC-04 controller/value roles: Part A contains authorization/filter helpers; F-03/F-09 design targets at C0.](../../../models/UC-04/dcd_uc04_controller_PartB.png)
 
-Figure 3.4.2.ii-B. UC-04 controller/value roles: Part A contains authorization/filter helpers; F-03/F-09 are historical C0 targets. — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.4.2.ii-B. UC-04 controller/value roles: Part A contains authorization/filter helpers; F-03/F-09 are historical C0 targets. — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 
 ![UC-04 controller/value roles: Workload value roles continue in Part D.](../../../models/UC-04/dcd_uc04_controller_PartC.png)
 
-Figure 3.4.2.ii-C. UC-04 controller/value roles: Workload value roles continue in Part D. — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.4.2.ii-C. UC-04 controller/value roles: Workload value roles continue in Part D. — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 
 ![UC-04 controller/value roles: Part C contains authorization; workload targets retain archived hubs (P2-S18).](../../../models/UC-04/dcd_uc04_controller_PartD.png)
 
-Figure 3.4.2.ii-D. UC-04 controller/value roles: Part C contains authorization; workload targets retain archived hubs (P2-S18). — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.4.2.ii-D. UC-04 controller/value roles: Part C contains authorization; workload targets retain archived hubs (P2-S18). — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 
 ![UC-04 controller/value roles: Delivery metric value roles continue in Part F.](../../../models/UC-04/dcd_uc04_controller_PartE.png)
 
-Figure 3.4.2.ii-E. UC-04 controller/value roles: Delivery metric value roles continue in Part F. — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.4.2.ii-E. UC-04 controller/value roles: Delivery metric value roles continue in Part F. — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 
 ![UC-04 controller/value roles: Part E contains authorization and interval helpers; rows and sample counts are non-persisted.](../../../models/UC-04/dcd_uc04_controller_PartF.png)
 
-Figure 3.4.2.ii-F. UC-04 controller/value roles: Part E contains authorization and interval helpers; rows and sample counts are non-persisted. — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.4.2.ii-F. UC-04 controller/value roles: Part E contains authorization and interval helpers; rows and sample counts are non-persisted. — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 
@@ -68,7 +68,7 @@ saigonbite.presentation.reports is the «view» blueprint module. It maps the SS
 
 ![UC-04 view module](../../../models/UC-04/dcd_uc04_view.png)
 
-Figure 3.4.2.iii. UC-04 view module — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.4.2.iii. UC-04 view module — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 
@@ -78,7 +78,7 @@ Reports issue read-only selections. Workload’s target retains archived hub ide
 
 ![UC-04 data-access classes](../../../models/UC-04/dcd_uc04_dao.png)
 
-Figure 3.4.2.iv. UC-04 data-access classes — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.4.2.iv. UC-04 data-access classes — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 
@@ -88,55 +88,55 @@ Parts A-I show operation paths and controller value roles across all four layers
 
 ![UC-04 all layers: Sales operation and data grain](../../../models/UC-04/dcd_uc04_all_PartA.png)
 
-Figure 3.4.2.v-A. UC-04 all layers: Sales operation and data grain — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.4.2.v-A. UC-04 all layers: Sales operation and data grain — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 
 ![UC-04 all layers: Manager guard and VN filter helpers](../../../models/UC-04/dcd_uc04_all_PartB.png)
 
-Figure 3.4.2.v-B. UC-04 all layers: Manager guard and VN filter helpers — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.4.2.v-B. UC-04 all layers: Manager guard and VN filter helpers — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 
 ![UC-04 all layers: Sales row and filter value objects](../../../models/UC-04/dcd_uc04_all_PartC.png)
 
-Figure 3.4.2.v-C. UC-04 all layers: Sales row and filter value objects — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.4.2.v-C. UC-04 all layers: Sales row and filter value objects — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 
 ![UC-04 all layers: Sales report result object](../../../models/UC-04/dcd_uc04_all_PartD.png)
 
-Figure 3.4.2.v-D. UC-04 all layers: Sales report result object — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.4.2.v-D. UC-04 all layers: Sales report result object — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 
 ![UC-04 all layers: Current workload and archived hubs](../../../models/UC-04/dcd_uc04_all_PartE.png)
 
-Figure 3.4.2.v-E. UC-04 all layers: Current workload and archived hubs — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.4.2.v-E. UC-04 all layers: Current workload and archived hubs — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 
 ![UC-04 all layers: Workload snapshot value objects](../../../models/UC-04/dcd_uc04_all_PartF.png)
 
-Figure 3.4.2.v-F. UC-04 all layers: Workload snapshot value objects — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.4.2.v-F. UC-04 all layers: Workload snapshot value objects — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 
 ![UC-04 all layers: Delivery interval and metric source](../../../models/UC-04/dcd_uc04_all_PartG.png)
 
-Figure 3.4.2.v-G. UC-04 all layers: Delivery interval and metric source — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.4.2.v-G. UC-04 all layers: Delivery interval and metric source — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 
 ![UC-04 all layers: Delivery metric and report value objects](../../../models/UC-04/dcd_uc04_all_PartH.png)
 
-Figure 3.4.2.v-H. UC-04 all layers: Delivery metric and report value objects — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.4.2.v-H. UC-04 all layers: Delivery metric and report value objects — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 
 ![UC-04 all layers: Delivery report result object](../../../models/UC-04/dcd_uc04_all_PartI.png)
 
-Figure 3.4.2.v-I. UC-04 all layers: Delivery report result object — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.4.2.v-I. UC-04 all layers: Delivery report result object — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 
@@ -156,7 +156,7 @@ OP-26 salesReport(startDateVN, endDateVN, hubId?) — models/UC-04/ssd_uc04.draw
 
 ![UC-04 design sequence: salesReport](../../../models/UC-04/seq_uc04_salesReport.png)
 
-Figure 3.4.4.1. UC-04 design sequence: salesReport — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.4.4.1. UC-04 design sequence: salesReport — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 
@@ -166,7 +166,7 @@ OP-27 workloadReport() — models/UC-04/ssd_uc04.drawio#M02
 
 ![UC-04 design sequence: workloadReport](../../../models/UC-04/seq_uc04_workloadReport.png)
 
-Figure 3.4.4.2. UC-04 design sequence: workloadReport — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.4.4.2. UC-04 design sequence: workloadReport — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 
@@ -176,73 +176,36 @@ OP-28 deliveryReport(startDateVN, endDateVN, hubId?) — models/UC-04/ssd_uc04.d
 
 ![UC-04 design sequence: deliveryReport](../../../models/UC-04/seq_uc04_deliveryReport.png)
 
-Figure 3.4.4.3. UC-04 design sequence: deliveryReport — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 3.4.4.3. UC-04 design sequence: deliveryReport — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 
 
 ## 3.4.5 Final Design Class Diagram
+Author: 722I0004 · AI-assisted (Claude)
 
-All sequence receiver methods are present. Changes from 3.4.2: no local class/method/association change; final all-layer views repeat the sequence-reconciled design. The accepted shared F-09 annotation marks the DAO grouping, identity-bearing result and reports.sales presentation as a C0 target; see Table P4-1 for P4 status.
+The final design class diagram refines the layer views of 3.4.2 with what the sequence diagrams in 3.4.4 and the implementation settled:
 
-![UC-04 final design classes: Sales operation and data grain](../../../models/UC-04/dcd_uc04_final_PartA.png)
+- **One diagram, four layers.** View (Flask blueprint functions with their routes), controller, domain and data access are drawn together, so every message in the sequence diagrams can be followed from the screen to the table.
+- **Only the members this use case calls.** The sequence diagrams fixed which operations each class must offer; the complete member lists stay in the 3.4.1 tables and 3.4.2 views.
+- **Signatures from the code.** Parameter names and types are read from the source at the release commit by `models/shared/final_dcd.py`, so the diagram and the program cannot differ.
+- **Navigability and persistence.** Dashed arrows show which layer calls which; each DAO has a «persists» link to the entity it stores; domain associations keep their multiplicities from the domain model (2.1.7).
 
-Figure 3.4.5-A. UC-04 final design classes: Sales operation and data grain — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+![UC-04 final design class diagram](../../../models/UC-04/dcd_uc04_final_overview.png)
 
+Figure 3.4.5. UC-04 final design class diagram — Author: 722I0004 · AI-assisted (Claude).
 
+Behaviour refined between the first design and the final design (each refinement is covered by the tests in 5.1). Every state-changing operation runs in one `BEGIN IMMEDIATE` transaction and checks the row count of each guarded UPDATE, so a stale page, a guessed ID or a competing user changes nothing.
 
-![UC-04 final design classes: Manager guard and VN filter helpers](../../../models/UC-04/dcd_uc04_final_PartB.png)
+| System operation | Refinement in the final design |
+|---|---|
+| `salesReport` | Sales no longer subtract a refund twice, and top items are grouped by item ID instead of name. |
+| `workloadReport` | Workload is a current snapshot: it ignores the date filter and keeps archived hubs that still have orders. |
 
-Figure 3.4.5-B. UC-04 final design classes: Manager guard and VN filter helpers — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
-
-
-
-![UC-04 final design classes: Sales row and filter value objects](../../../models/UC-04/dcd_uc04_final_PartC.png)
-
-Figure 3.4.5-C. UC-04 final design classes: Sales row and filter value objects — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
-
-
-
-![UC-04 final design classes: Sales report result object](../../../models/UC-04/dcd_uc04_final_PartD.png)
-
-Figure 3.4.5-D. UC-04 final design classes: Sales report result object — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
-
-
-
-![UC-04 final design classes: Current workload and archived hubs](../../../models/UC-04/dcd_uc04_final_PartE.png)
-
-Figure 3.4.5-E. UC-04 final design classes: Current workload and archived hubs — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
-
-
-
-![UC-04 final design classes: Workload snapshot value objects](../../../models/UC-04/dcd_uc04_final_PartF.png)
-
-Figure 3.4.5-F. UC-04 final design classes: Workload snapshot value objects — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
-
-
-
-![UC-04 final design classes: Delivery interval and metric source](../../../models/UC-04/dcd_uc04_final_PartG.png)
-
-Figure 3.4.5-G. UC-04 final design classes: Delivery interval and metric source — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
-
-
-
-![UC-04 final design classes: Delivery metric and report value objects](../../../models/UC-04/dcd_uc04_final_PartH.png)
-
-Figure 3.4.5-H. UC-04 final design classes: Delivery metric and report value objects — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
-
-
-
-![UC-04 final design classes: Delivery report result object](../../../models/UC-04/dcd_uc04_final_PartI.png)
-
-Figure 3.4.5-I. UC-04 final design classes: Delivery report result object — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
-
-
-
-No Report state is drawn. Filters, report rows and returned reports are non-persisted controller values. The final DCD keeps historical marks on F-03/F-09/P2-S18 targets; UC04-PC01 requires an oracle correspondence; the diagram alone is not a measured result. Section 5.1 reports the corresponding test evidence.
+Editable sources: `models/UC-04/dcd_uc04_final_overview.dot` (Graphviz), with SVG exports beside them.
 
 ## Integration repair evidence
 
 
-The diagrams and typed metadata were refreshed against the corrected shared model. Allowed layered dependencies are drawn; the twelve retained dependency-policy entries are documented as static policy checks in report 4.2 and Table P4-1, not as runtime tests. P2-S13/P3-S03 identified C0 targets for guarded writes, commit failures and busy handling; their final scoped evidence is recorded in Table P4-1. Read paths remain read-only. Native draw.io XML and connected edge endpoints are structurally checked; native-app editing and final report placement remain UNTESTED.
+The diagrams and typed metadata were refreshed against the corrected shared model. Allowed layered dependencies are drawn; the twelve retained dependency-policy entries are documented as static policy checks in report 4.2 and Table P4-1, not as runtime tests. P2-S13/P3-S03 identified C0 targets for guarded writes, commit failures and busy handling; their final scoped evidence is recorded in Table P4-1. Read paths remain read-only.
 
 Diagram notation (R1–R4): the external SSD request now precedes two actual guarded operands. Each accepted path retains its named success response; refusal/controlled-failure responses are drawn inside the alternate operand, with an optional controller response only when the controller was invoked. Synchronous calls use visible closed filled heads; all replies use dashed open heads. Reports remain read-only, and empty/zero-denominator data remains an accepted result.

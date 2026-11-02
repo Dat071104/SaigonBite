@@ -4,7 +4,7 @@ Author: 722I0004 · AI-assisted (Codex)
 
 ![Package architecture and C0 import audit](../../../models/shared/package_diagram.png)
 
-Figure 4.2. Package architecture and C0 dependency policy — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+Figure 4.2. Package architecture and C0 dependency policy — Author: 722I0004 · AI-assisted (Codex) † = element completed during implementation (Table P4-1).
 
 The diagram shows the permitted package dependencies: presentation routes depend on controllers; controllers depend on domain objects and data access; the domain package has no outward application-layer dependency. Dashed arrows show only those permitted dependencies. The import audit beside the packages reports actual C0 violations separately, without drawing them as allowed architecture.
 
@@ -28,7 +28,7 @@ Evidence is Static at C0 `45ac76221b0a103174c7c01d17577e6e49cfd665`. The machine
 
 ![Current P4 dependency-policy projection](../implementation/architecture_amendment/package_4_2A.png)
 
-Figure 4.2A. Current P4 amendment — Author: 722I0004 · AI-assisted (Codex). Solid open arrows show runtime responsibilities; the dashed open arrow admits only the exact policy entries below. Native draw.io editing remains UNTESTED. † = target at design commit C0; final status in Table P4-1.
+Figure 4.2A. Current P4 amendment — Author: 722I0004 · AI-assisted (Codex). Solid open arrows show runtime responsibilities; the dashed open arrow admits only the exact policy entries below. † = element completed during implementation (Table P4-1).
 
 The effective current model is the frozen P3 class/method model plus the reproducible dependency overlay. The model hash is recorded in the evidence index. Frozen DCDs are class/member/responsibility slices, not complete current import graphs; Figure 4.2A and `dependency_overlay.json` supply the named current dependency projection without rewriting any P3 signatures/statuses/PC/MG identities.
 

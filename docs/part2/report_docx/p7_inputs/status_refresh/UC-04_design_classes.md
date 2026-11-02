@@ -2,7 +2,7 @@
 
 Author: 722I0004 · AI-assisted (Codex)
 
-C0: 45ac76221b0a103174c7c01d17577e6e49cfd665 · Evidence: Static source correspondence only; this is not runtime or test evidence.
+First design commit C0: 45ac762 (24/10/2026). Signatures are compared with the source code; test evidence is in section 5.1.
 
 The tables use the sole shared DCD model at C0. Visibility follows the leading-underscore convention; signatures preserve the AST inventory. * marks an inferred/unannotated type or route signature.  marks a C0 design target (final status in Table P4-1)/C0 design gap (final status in Table P4-1) and does not mean implemented at C0. Domain FK scalar attributes are retained here for mapping but omitted from DCDs in favour of associations.
 
@@ -14,15 +14,15 @@ Responsibility: Represent a kitchen location, capacity and fee.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute id | + | int | MATCH | — |
-| Attribute code | + | str | MATCH | — |
-| Attribute name | + | str | MATCH | — |
-| Attribute address_text | + | str | MATCH | — |
-| Attribute latitude | + | float | MATCH | — |
-| Attribute longitude | + | float | MATCH | — |
-| Attribute max_active_orders | + | int | MATCH | — |
-| Attribute base_delivery_fee | + | int | MATCH | — |
-| Attribute archived_at | + | Optional[str] | MATCH | default=None |
+| Attribute id | + | int | Matches code | — |
+| Attribute code | + | str | Matches code | — |
+| Attribute name | + | str | Matches code | — |
+| Attribute address_text | + | str | Matches code | — |
+| Attribute latitude | + | float | Matches code | — |
+| Attribute longitude | + | float | Matches code | — |
+| Attribute max_active_orders | + | int | Matches code | — |
+| Attribute base_delivery_fee | + | int | Matches code | — |
+| Attribute archived_at | + | Optional[str] | Matches code | default=None |
 
 
 ## HubStatus
@@ -33,11 +33,11 @@ Responsibility: Derive busy, quiet and load percentage from current load and cap
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute hub | + | Hub | MATCH | — |
-| Attribute load | + | int | MATCH | — |
-| Method busy | + | busy(self) -> bool | MATCH | property |
-| Method quiet | + | quiet(self) -> bool | MATCH | property |
-| Method load_percent | + | load_percent(self) -> int | MATCH | property |
+| Attribute hub | + | Hub | Matches code | — |
+| Attribute load | + | int | Matches code | — |
+| Method busy | + | busy(self) -> bool | Matches code | property |
+| Method quiet | + | quiet(self) -> bool | Matches code | property |
+| Method load_percent | + | load_percent(self) -> int | Matches code | property |
 
 
 ## OrderState
@@ -48,15 +48,15 @@ Responsibility: Hold typed business state and its local rules.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute PLACED | + | str | MATCH | inferred; default='PLACED' |
-| Attribute CONFIRMED | + | str | MATCH | inferred; default='CONFIRMED' |
-| Attribute REJECTED | + | str | MATCH | inferred; default='REJECTED' |
-| Attribute PREPARING | + | str | MATCH | inferred; default='PREPARING' |
-| Attribute READY | + | str | MATCH | inferred; default='READY' |
-| Attribute OUT_FOR_DELIVERY | + | str | MATCH | inferred; default='OUT_FOR_DELIVERY' |
-| Attribute DELIVERED | + | str | MATCH | inferred; default='DELIVERED' |
-| Attribute DELIVERY_FAILED | + | str | MATCH | inferred; default='DELIVERY_FAILED' |
-| Attribute CANCELLED | + | str | MATCH | inferred; default='CANCELLED' |
+| Attribute PLACED | + | str | Matches code | inferred; default='PLACED' |
+| Attribute CONFIRMED | + | str | Matches code | inferred; default='CONFIRMED' |
+| Attribute REJECTED | + | str | Matches code | inferred; default='REJECTED' |
+| Attribute PREPARING | + | str | Matches code | inferred; default='PREPARING' |
+| Attribute READY | + | str | Matches code | inferred; default='READY' |
+| Attribute OUT_FOR_DELIVERY | + | str | Matches code | inferred; default='OUT_FOR_DELIVERY' |
+| Attribute DELIVERED | + | str | Matches code | inferred; default='DELIVERED' |
+| Attribute DELIVERY_FAILED | + | str | Matches code | inferred; default='DELIVERY_FAILED' |
+| Attribute CANCELLED | + | str | Matches code | inferred; default='CANCELLED' |
 
 
 ## DeliveryState
@@ -67,10 +67,10 @@ Responsibility: Hold typed business state and its local rules.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute AWAITING_PICKUP | + | str | MATCH | inferred; default='AWAITING_PICKUP' |
-| Attribute PICKED_UP | + | str | MATCH | inferred; default='PICKED_UP' |
-| Attribute DELIVERED | + | str | MATCH | inferred; default='DELIVERED' |
-| Attribute FAILED | + | str | MATCH | inferred; default='FAILED' |
+| Attribute AWAITING_PICKUP | + | str | Matches code | inferred; default='AWAITING_PICKUP' |
+| Attribute PICKED_UP | + | str | Matches code | inferred; default='PICKED_UP' |
+| Attribute DELIVERED | + | str | Matches code | inferred; default='DELIVERED' |
+| Attribute FAILED | + | str | Matches code | inferred; default='FAILED' |
 
 
 ## ReportController
@@ -81,15 +81,15 @@ Responsibility: Authorize Manager requests and construct operational reports wit
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute reports | + | ReportDAO | MATCH | inferred |
-| Attribute hubs | + | HubDAO | MATCH | inferred |
-| Method all_hubs | + | all_hubs(self) -> list[Hub] | MATCH | — |
-| Method sales_report | + | sales_report(self, user_id: int, date_from: Optional[str]=None, date_to: Optional[str]=None, hub_id: Optional[int]=None) -> SalesReport | P4 scoped evidence (P4.8; resolution rows 25, 26) | P4 input: F-03; F-09; Expose T without subtracting refund owed twice; top items retain menu_item_id identity. Carry menu_item_id into SalesReport.top_items and presentation. |
-| Method workload_report | + | workload_report(self, user_id: int) -> WorkloadReport | P4 scoped evidence (P4.8; resolution rows 25, 26) | P4 input: P2-S18; Use all retained hub identities, including archived hubs with zero open work. |
-| Method delivery_report | + | delivery_report(self, user_id: int, date_from: Optional[str]=None, date_to: Optional[str]=None, hub_id: Optional[int]=None) -> DeliveryReport | MATCH | — |
-| Method _require_manager | - | _require_manager(self, user_id: int) -> None | MATCH | — |
-| Method _hub | - | _hub(self, hub_id: Optional[int]) -> Optional[Hub] | MATCH | — |
-| Method _period | - | _period(self, date_from: Optional[str], date_to: Optional[str]) -> Period | MATCH | — |
+| Attribute reports | + | ReportDAO | Matches code | inferred |
+| Attribute hubs | + | HubDAO | Matches code | inferred |
+| Method all_hubs | + | all_hubs(self) -> list[Hub] | Matches code | — |
+| Method sales_report | + | sales_report(self, user_id: int, date_from: Optional[str]=None, date_to: Optional[str]=None, hub_id: Optional[int]=None) -> SalesReport | Changed during implementation and tested (P4.8; Table P4-1 rows 25, 26) | P4 input: F-03; F-09; Expose T without subtracting refund owed twice; top items retain menu_item_id identity. Carry menu_item_id into SalesReport.top_items and presentation. |
+| Method workload_report | + | workload_report(self, user_id: int) -> WorkloadReport | Changed during implementation and tested (P4.8; Table P4-1 rows 25, 26) | P4 input: P2-S18; Use all retained hub identities, including archived hubs with zero open work. |
+| Method delivery_report | + | delivery_report(self, user_id: int, date_from: Optional[str]=None, date_to: Optional[str]=None, hub_id: Optional[int]=None) -> DeliveryReport | Matches code | — |
+| Method _require_manager | - | _require_manager(self, user_id: int) -> None | Matches code | — |
+| Method _hub | - | _hub(self, hub_id: Optional[int]) -> Optional[Hub] | Matches code | — |
+| Method _period | - | _period(self, date_from: Optional[str], date_to: Optional[str]) -> Period | Matches code | — |
 
 
 ## BaseController
@@ -100,11 +100,11 @@ Responsibility: Coordinate authorization, domain decisions and data access.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute conn | + | sqlite3.Connection | MATCH | — |
-| Attribute clock | + | Any | MATCH | inferred |
-| Attribute users | + | UserDAO | MATCH | inferred |
-| Method _today_vn | - | _today_vn(self) -> str | MATCH | — |
-| Method _require_user | - | _require_user(self, user_id: int, *roles: Role, message: str='Your account cannot do this.') -> UserAccount | MATCH | — |
+| Attribute conn | + | sqlite3.Connection | Matches code | — |
+| Attribute clock | + | Any | Matches code | inferred |
+| Attribute users | + | UserDAO | Matches code | inferred |
+| Method _today_vn | - | _today_vn(self) -> str | Matches code | — |
+| Method _require_user | - | _require_user(self, user_id: int, *roles: Role, message: str='Your account cannot do this.') -> UserAccount | Matches code | — |
 
 
 ## controllers.common
@@ -115,7 +115,7 @@ Responsibility: Module functions with their original Python signatures.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Method vn_day_start_utc | + | vn_day_start_utc(day: date) -> str | MATCH | — |
+| Method vn_day_start_utc | + | vn_day_start_utc(day: date) -> str | Matches code | — |
 
 
 ## controllers.report_controller
@@ -126,7 +126,7 @@ Responsibility: Module functions with their original Python signatures.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Method _minutes | - | _minutes(start: Optional[str], end: Optional[str]) -> Optional[float] | MATCH | — |
+| Method _minutes | - | _minutes(start: Optional[str], end: Optional[str]) -> Optional[float] | Matches code | — |
 
 
 ## Period
@@ -137,10 +137,10 @@ Responsibility: Coordinate authorization, domain decisions and data access.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute date_from | + | str | MATCH | — |
-| Attribute date_to | + | str | MATCH | — |
-| Attribute start_utc | + | str | MATCH | — |
-| Attribute end_utc | + | str | MATCH | — |
+| Attribute date_from | + | str | Matches code | — |
+| Attribute date_to | + | str | Matches code | — |
+| Attribute start_utc | + | str | Matches code | — |
+| Attribute end_utc | + | str | Matches code | — |
 
 
 ## SalesRow
@@ -151,15 +151,15 @@ Responsibility: Coordinate authorization, domain decisions and data access.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute label | + | str | MATCH | — |
-| Attribute orders | + | int | MATCH | default=0 |
-| Attribute item_sales | + | int | MATCH | default=0 |
-| Attribute voucher_discounts | + | int | MATCH | default=0 |
-| Attribute delivery_fees | + | int | MATCH | default=0 |
-| Attribute total | + | int | MATCH | default=0 |
-| Attribute refunds_owed | + | int | MATCH | default=0 |
-| Method net | + | net(self) -> int | P4 scoped evidence (P4.8; resolution rows 27) | property; P4 input: F-03; Return total T; refunds_owed is disclosed separately. |
-| Method add | + | add(self, other: 'SalesRow') -> None | MATCH | — |
+| Attribute label | + | str | Matches code | — |
+| Attribute orders | + | int | Matches code | default=0 |
+| Attribute item_sales | + | int | Matches code | default=0 |
+| Attribute voucher_discounts | + | int | Matches code | default=0 |
+| Attribute delivery_fees | + | int | Matches code | default=0 |
+| Attribute total | + | int | Matches code | default=0 |
+| Attribute refunds_owed | + | int | Matches code | default=0 |
+| Method net | + | net(self) -> int | Changed during implementation and tested (P4.8; Table P4-1 rows 27) | property; P4 input: F-03; Return total T; refunds_owed is disclosed separately. |
+| Method add | + | add(self, other: 'SalesRow') -> None | Matches code | — |
 
 
 ## SalesReport
@@ -170,11 +170,11 @@ Responsibility: Coordinate authorization, domain decisions and data access.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute period | + | Period | MATCH | — |
-| Attribute hub | + | Optional[Hub] | MATCH | — |
-| Attribute rows | + | list[SalesRow] | MATCH | — |
-| Attribute totals | + | SalesRow | MATCH | — |
-| Attribute top_items | + | list[tuple[int, str, int, int]] | P4 scoped evidence (P4.8; resolution rows 59) | — |
+| Attribute period | + | Period | Matches code | — |
+| Attribute hub | + | Optional[Hub] | Matches code | — |
+| Attribute rows | + | list[SalesRow] | Matches code | — |
+| Attribute totals | + | SalesRow | Matches code | — |
+| Attribute top_items | + | list[tuple[int, str, int, int]] | Changed during implementation and tested (P4.8; Table P4-1 rows 59) | — |
 
 
 ## WorkloadRow
@@ -185,9 +185,9 @@ Responsibility: Coordinate authorization, domain decisions and data access.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute status | + | HubStatus | MATCH | — |
-| Attribute counts | + | dict[OrderState, int] | MATCH | — |
-| Method label | + | label(self) -> str | MATCH | property |
+| Attribute status | + | HubStatus | Matches code | — |
+| Attribute counts | + | dict[OrderState, int] | Matches code | — |
+| Method label | + | label(self) -> str | Matches code | property |
 
 
 ## WorkloadReport
@@ -198,8 +198,8 @@ Responsibility: Coordinate authorization, domain decisions and data access.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute as_of | + | str | MATCH | — |
-| Attribute rows | + | list[WorkloadRow] | MATCH | — |
+| Attribute as_of | + | str | Matches code | — |
+| Attribute rows | + | list[WorkloadRow] | Matches code | — |
 
 
 ## DeliveryRow
@@ -210,14 +210,14 @@ Responsibility: Coordinate authorization, domain decisions and data access.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute label | + | str | MATCH | — |
-| Attribute delivered | + | int | MATCH | default=0 |
-| Attribute failed | + | int | MATCH | default=0 |
-| Attribute waits | + | list[float] | MATCH | default=field(default_factory=list) |
-| Attribute rides | + | list[float] | MATCH | default=field(default_factory=list) |
-| Method failure_rate | + | failure_rate(self) -> Optional[float] | MATCH | property |
-| Method avg_wait | + | avg_wait(self) -> Optional[float] | MATCH | property |
-| Method avg_ride | + | avg_ride(self) -> Optional[float] | MATCH | property |
+| Attribute label | + | str | Matches code | — |
+| Attribute delivered | + | int | Matches code | default=0 |
+| Attribute failed | + | int | Matches code | default=0 |
+| Attribute waits | + | list[float] | Matches code | default=field(default_factory=list) |
+| Attribute rides | + | list[float] | Matches code | default=field(default_factory=list) |
+| Method failure_rate | + | failure_rate(self) -> Optional[float] | Matches code | property |
+| Method avg_wait | + | avg_wait(self) -> Optional[float] | Matches code | property |
+| Method avg_ride | + | avg_ride(self) -> Optional[float] | Matches code | property |
 
 
 ## DeliveryReport
@@ -228,11 +228,11 @@ Responsibility: Coordinate authorization, domain decisions and data access.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute period | + | Period | MATCH | — |
-| Attribute hub | + | Optional[Hub] | MATCH | — |
-| Attribute by_hub | + | list[DeliveryRow] | MATCH | — |
-| Attribute by_shipper | + | list[DeliveryRow] | MATCH | — |
-| Attribute overall | + | DeliveryRow | MATCH | — |
+| Attribute period | + | Period | Matches code | — |
+| Attribute hub | + | Optional[Hub] | Matches code | — |
+| Attribute by_hub | + | list[DeliveryRow] | Matches code | — |
+| Attribute by_shipper | + | list[DeliveryRow] | Matches code | — |
+| Attribute overall | + | DeliveryRow | Matches code | — |
 
 
 ## reports
@@ -243,10 +243,10 @@ Responsibility: Translate Manager filters and render read-only report results.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Method _filtered | - | _filtered(template: str, run) | MATCH | inferred |
-| Method sales | + | sales() | P4 scoped evidence (P4.8; resolution rows 66) | inferred; P4 input: F-09; Render the new identity-preserving top-items shape; template unpacking must retain the item identity. |
-| Method workload | + | workload() | MATCH | inferred |
-| Method delivery | + | delivery() | MATCH | inferred |
+| Method _filtered | - | _filtered(template: str, run) | Matches code | inferred |
+| Method sales | + | sales() | Changed during implementation and tested (P4.8; Table P4-1 rows 66) | inferred; P4 input: F-09; Render the new identity-preserving top-items shape; template unpacking must retain the item identity. |
+| Method workload | + | workload() | Matches code | inferred |
+| Method delivery | + | delivery() | Matches code | inferred |
 
 
 ## ReportDAO
@@ -257,11 +257,11 @@ Responsibility: Read or write parameterized records.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute conn | + | sqlite3.Connection | MATCH | — |
-| Method sales_by_hub | + | sales_by_hub(self, start_utc: str, end_utc: str, hub_id: Optional[int]) -> list[sqlite3.Row] | MATCH | — |
-| Method top_items | + | top_items(self, start_utc: str, end_utc: str, hub_id: Optional[int], limit: int=10) -> list[sqlite3.Row] | P4 scoped evidence (P4.8; resolution rows 58) | P4 input: F-09; Select and group by menu_item_id; snapshot name is a label, never the grouping identity. |
-| Method open_orders_by_hub_and_state | + | open_orders_by_hub_and_state(self) -> list[sqlite3.Row] | MATCH | — |
-| Method finished_deliveries | + | finished_deliveries(self, start_utc: str, end_utc: str, hub_id: Optional[int]) -> list[sqlite3.Row] | MATCH | — |
+| Attribute conn | + | sqlite3.Connection | Matches code | — |
+| Method sales_by_hub | + | sales_by_hub(self, start_utc: str, end_utc: str, hub_id: Optional[int]) -> list[sqlite3.Row] | Matches code | — |
+| Method top_items | + | top_items(self, start_utc: str, end_utc: str, hub_id: Optional[int], limit: int=10) -> list[sqlite3.Row] | Changed during implementation and tested (P4.8; Table P4-1 rows 58) | P4 input: F-09; Select and group by menu_item_id; snapshot name is a label, never the grouping identity. |
+| Method open_orders_by_hub_and_state | + | open_orders_by_hub_and_state(self) -> list[sqlite3.Row] | Matches code | — |
+| Method finished_deliveries | + | finished_deliveries(self, start_utc: str, end_utc: str, hub_id: Optional[int]) -> list[sqlite3.Row] | Matches code | — |
 
 
 ## HubDAO
@@ -272,10 +272,10 @@ Responsibility: Read or write parameterized records.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute conn | + | sqlite3.Connection | MATCH | — |
-| Method list_active | + | list_active(self) -> list[Hub] | MATCH | — |
-| Method list_all | + | list_all(self) -> list[Hub] | MATCH | — |
-| Method get_including_archived | + | get_including_archived(self, hub_id: int) -> Optional[Hub] | MATCH | — |
+| Attribute conn | + | sqlite3.Connection | Matches code | — |
+| Method list_active | + | list_active(self) -> list[Hub] | Matches code | — |
+| Method list_all | + | list_all(self) -> list[Hub] | Matches code | — |
+| Method get_including_archived | + | get_including_archived(self, hub_id: int) -> Optional[Hub] | Matches code | — |
 
 
 ## UserDAO
@@ -286,8 +286,8 @@ Responsibility: Read or write parameterized records.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute conn | + | sqlite3.Connection | MATCH | — |
-| Method get_by_id | + | get_by_id(self, user_id: int) -> Optional[UserAccount] | MATCH | — |
+| Attribute conn | + | sqlite3.Connection | Matches code | — |
+| Method get_by_id | + | get_by_id(self, user_id: int) -> Optional[UserAccount] | Matches code | — |
 
 ## F-09 identity and presentation target
 

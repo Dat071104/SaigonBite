@@ -1,128 +1,98 @@
 # SaigonBite – Online Food Delivery Hub Platform
 
-Course project for Requirements Analysis and Design (RAD), Sem01 2026-27, Team02.
-SaigonBite runs cloud kitchens across several hubs; this platform spreads lunch-hour orders across hubs,
-tracks delivery and cash, and reports from one shared order record.
+Course project for Requirements Analysis and Design (RAD), Sem01 2026-27, Team 02.
+SaigonBite runs delivery-only kitchens (hubs) in Ho Chi Minh City. The platform takes customer orders with a full price
+quote, lets each hub's kitchen confirm, reject or offer a replacement, lets shippers deliver and collect cash, lets the
+admin maintain hubs and the catalogue, and gives the manager sales, workload and delivery reports — all from one shared
+order record.
 
-| Member | Student ID | Use cases |
+| Member | Student ID | Main use cases (owner) |
 |---|---|---|
-| Nguyen Thanh Dat | 722I0004 | UC-01 Place an order, UC-03 Manage hubs and kitchen capacity |
+| Nguyen Thanh Dat | 722I0004 | UC-01 Place an order, UC-03 Maintain hubs and kitchen capacity |
 | Le Minh Quan | 523K0049 | UC-02 Deliver an order, UC-04 Produce management reports |
-| Quan | (ID to be added) | UC-05 Confirm or reject an incoming order, UC-06 Manage brands and menu items (joins from Iteration 2) |
+| Nguyen Minh Quan | 523K0050 | UC-05 Decide an incoming order, UC-06 Maintain brands, menu items and hub listings |
 
-**Status:** Iteration 1 increment (tag [`i1-evidence`](https://github.com/Dat071104/SaigonBite/tree/i1-evidence)): a persisted cash-on-delivery (COD) order
-for one hub (UC-01 subset) on a runnable skeleton. 93 pytest tests after the team reviews of 20/10.
+All Part 2 artifacts and code were authored by 722I0004 with AI assistance; see the Contribution Statement and the
+Generative AI Usage Log in the report (Appendices 4 and 5).
 
-> The Iteration 1 code was generated with AI assistance (Claude, 19/10/2026) and reviewed by the team on 20/10/2026.
-> The review found two defects that the tests did not catch (a price change between quote and confirm was charged
-> without asking; an archived hub disappeared from order history). Both are fixed and tested. See Appendix A of the proposal.
+**Status:** Part 2 release `v0.9-part2` — six main use cases and nine supporting use cases, **928 automated tests
+passing**, seven cross-role browser scenarios (60/60 steps), deployed at **https://saigonbite.io.vn**
+(fallback https://34-21-141-239.sslip.io).
 
-**Documents:** [Part 1 proposal, slides and business process](docs/part1/) · [Iteration 1 analysis](docs/i1/)
+**Documents:** Part 2 report sources `docs/part2/report/` · models `models/` (draw.io, Graphviz, PNG, SVG) ·
+UI design `docs/part2/ui/` · test evidence `docs/part2/test_report/` · deployment `deploy/RUNBOOK.md` ·
+Part 1 `docs/part1/`.
 
-Stack: Python 3.12 or later (tested on 3.13), Flask + Jinja2, sqlite3 data-access objects with hand-written SQL (no ORM),
-SQLite, Flask-Login, pytest. One application, one database file.
+Stack: Python 3.13, Flask + Jinja2, Flask-Login, hand-written SQL in data-access objects (no ORM), SQLite (WAL),
+pytest; gunicorn and Caddy in production.
 
-## Set up and run (four commands)
+## Run with Docker (recommended)
 
-Windows (Command Prompt or PowerShell):
+```
+git clone https://github.com/Dat071104/SaigonBite.git
+cd SaigonBite
+git checkout v0.9-part2
+docker compose up --build -d                  # open http://127.0.0.1:5000/
+docker compose down                           # stop (add -v to delete the demo database and reseed next start)
+```
+
+## Run without Docker
+
+Windows:
 
 ```
 python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
 python init_db.py
-flask run
+flask --app app run
 ```
 
-macOS / Linux:
-
-```
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-python init_db.py
-flask run
-```
-
-The four steps are: (1) create and activate the virtual environment, (2) install the pinned requirements,
-(3) create and seed the database `instance/saigonbite.db`, (4) start the server. Open <http://127.0.0.1:5000/>.
-
-- On Windows with several Pythons installed, use `py -3.13 -m venv .venv` for step 1.
-- `python init_db.py` refuses to overwrite an existing database; use `python init_db.py --force` to recreate it.
-- Optional: set `SAIGONBITE_SECRET_KEY` to your own value; the default is a development key.
-
-### Or with Docker Desktop (no local Python needed)
-
-```
-docker compose up --build -d                  # build and start, then open http://127.0.0.1:5000/
-docker compose down                           # stop (add -v to delete the database volume and reseed next start)
-```
-
-The database is created and seeded on the first start and kept in the `saigonbite-db` volume.
-Run `python -m pytest -q` from a full checkout: the suite checks historical Git objects and therefore is not run inside the Docker image, which excludes `.git`. The Docker image uses gunicorn and a non-root user.
-
-### Part 2 deployment
-
-Part 1 (I1) Vercel demo, retired for Part 2 (D-5). The Part 2 target is one GCP VM with Docker Compose, gunicorn, Caddy and a persistent SQLite database. See [deployment and recovery instructions](deploy/RUNBOOK.md); the Phase 6 evidence records whether the target is deployed and verified.
+macOS / Linux: use `python3 -m venv .venv` and `source .venv/bin/activate`; the other commands are the same.
+`python init_db.py` creates `instance/saigonbite.db` with the schema, seed data and demo history
+(`--no-demo` omits the history, `--force` recreates the file). Production needs `SAIGONBITE_SECRET_KEY` and
+`SAIGONBITE_ENV=production`; the development server uses a development key.
 
 ## Run the tests
 
 ```
-python -m pytest
+python -m pytest -q
 ```
 
-Each test builds its own temporary database from `db/schema.sql` and `db/seed.sql`. Add `-v` to see the test IDs.
+Run from a full Git checkout (some tests read the Git history, so they are not run inside the Docker image).
+Each test builds its own temporary database from `db/schema.sql` and `db/seed.sql`.
 
-## Seeded development accounts
+## Demo accounts
 
-Every seeded account uses the demo password `123456`, stored as a PBKDF2-SHA256 hash in `db/seed.sql`. These accounts are for local use and the public demo only; the demo holds no real data.
+Every seeded account uses the demo password `123456` (stored as a PBKDF2-SHA256 hash). The data is demo data only.
 
 | Role | Username | Password |
 |---|---|---|
 | Customer (local, with one address) | `customer` | `123456` |
-| Kitchen staff | `kitchen` | `123456` |
+| Kitchen staff, District 1 hub | `kitchen` | `123456` |
+| Kitchen staff, Binh Thanh hub | `kitchen_bt` | `123456` |
 | Shipper | `shipper` | `123456` |
 | Admin | `admin` | `123456` |
 | Manager | `manager` | `123456` |
 
-In Part 2, the customer, kitchen staff, shipper, admin and manager roles have screens for their permitted workflows. The deployed demonstration is available at https://saigonbite.io.vn.
+Seed data: two hubs (`HUB-D1` District 1, base delivery fee 12,000 VND, capacity 12; `HUB-BT` Binh Thanh, base fee
+10,000 VND, capacity 8), brands, menu items, vouchers and a short demo order history. Section 5.3 of the report gives a
+ten-step demonstration through all six use cases.
 
-Seed data: two hubs (`HUB-D1` District 1, flat fee 15,000 VND, capacity 12; `HUB-BT` Binh Thanh, flat fee 18,000 VND,
-capacity 8), four brands and ten menu items. One item is sold out at the District 1 hub (Com tam ga nuong) and some items are
-not carried by one hub, so the "item not available" rule can be tried by hand.
+## Project layout (three layers)
 
-## Try the UC-01 subset by hand
+| Layer | Location |
+|---|---|
+| Presentation (views) | `saigonbite/presentation/` — Flask blueprints `main`, `auth`, `account`, `order`, `kitchen`, `delivery`, `admin`, `reports`; Jinja2 templates and one stylesheet |
+| Business — controllers | `saigonbite/business/controllers/` — one controller per use case (`PlaceOrderController`, `DeliveryController`, `HubController`, `ReportController`, `KitchenController`, `MenuController`, …) |
+| Business — domain | `saigonbite/business/domain/` — entities and state machines (`Order`, `Payment`, `Delivery`, `ReplacementOffer`, `Hub`, …) and pricing rules |
+| Data access | `saigonbite/data_access/` — one DAO per table group; all SQL lives here |
 
-1. Log in as `customer` / `123456`.
-2. Choose a hub, enter quantities (leave a blank for items you do not want), choose the address, press "See the quote".
-3. The quote shows item subtotal, flat delivery fee and total. Press "Confirm order".
-4. If a price changed after the quote, the new quote is shown and nothing is saved until you confirm it again.
-5. The confirmation shows the order ID and total. The order is saved with state `PLACED` and a COD payment in state `PENDING`.
+Other files: `db/schema.sql` (13 tables, schema version 2), `db/seed.sql`, `init_db.py`, `app.py`, `tests/`,
+`deploy/` (production Compose, Caddy, backup/restore, runbook), `models/`, `docs/`.
 
-Try an empty cart, a quantity of 0 or -1, or a missing address: a message appears and no order is created.
-Double-clicking "Confirm order" creates one order.
+## Scope notes
 
-## Project layout (three layers, four roles)
-
-| Layer | Role | Location |
-|---|---|---|
-| Presentation | View | `saigonbite/presentation/` (blueprints `main`, `auth`, `order`; Jinja2 templates in `templates/`) |
-| Business | Controller | `saigonbite/business/controllers/` (`PlaceOrderController`, `AuthController`) |
-| Business | Domain | `saigonbite/business/domain/` (`OrderState`, `Order`, `OrderLine`, `Payment`, `Hub`, ...) |
-| Data access | DAO | `saigonbite/data_access/` (`HubDAO`, `CustomerDAO`, `UserDAO`, `OrderDAO`, `PaymentDAO`) |
-
-Other files: `db/schema.sql`, `db/seed.sql`, `init_db.py`, `app.py` (entry point for `flask run`), `tests/`,
-`docs/i1/` (UC-01 subset description and activity diagram, domain model v1, Order state machine v1, SSD, CRUD inventory v1),
-`docs/part1/` (Part 1 proposal, slides and business process diagram).
-
-## What Iteration 1 covers
-
-Acceptance criteria AC-1 to AC-9 of the plan (section 7.2): clean-checkout setup, seed (AC-2), quote (AC-3),
-one-transaction order creation with `BEGIN IMMEDIATE` (AC-4), read-back through a new connection (AC-5),
-input validation (AC-6), double-submit protection by an idempotency token (AC-7), login and customer-role checks on the
-server (AC-8), pytest and matching names in code, schema and docs (AC-9).
-
-Not in Iteration 1: busy-hub capacity check, vouchers, distance fee, online payment stub, Kitchen board, delivery,
-reports, hub CRUD. The Order states are all defined (`PLACED`, `CONFIRMED`, `REJECTED`, `PREPARING`, `READY`,
-`OUT_FOR_DELIVERY`, `DELIVERED`, `DELIVERY_FAILED`, `CANCELLED`) but only `PLACED` is created.
-No CSRF protection yet (the idempotency token is not a CSRF token).
+Online payment is a simulator (no real provider or card data). Complaint handling, refund payout and rating are
+deferred; a refund owed is recorded but not paid out. Business figures such as the 25 % quiet threshold and the 8 km
+radius are team defaults until the client answers the open questions (report 1.4.2).

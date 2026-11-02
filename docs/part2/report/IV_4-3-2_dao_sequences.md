@@ -33,37 +33,37 @@ SSD parameters: `hubId, addressId, lines(itemId, quantity), voucherCode?, paymen
 
 ![Figure 4.3.2.1.OP-01.A — confirmCheckout Part A](../../../models/UC-01/seqdao_uc01_confirmCheckout_PartA.png)
 
-Figure 4.3.2.1.OP-01.A. UC-01 confirmCheckout — Part A — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.1.OP-01.A. UC-01 confirmCheckout — Part A — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-01/seqdao_uc01_confirmCheckout_PartA.drawio); vector: [SVG](../../../models/UC-01/seqdao_uc01_confirmCheckout_PartA.svg).
 
 ![Figure 4.3.2.1.OP-01.B — confirmCheckout Part B](../../../models/UC-01/seqdao_uc01_confirmCheckout_PartB.png)
 
-Figure 4.3.2.1.OP-01.B. UC-01 confirmCheckout — Part B — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.1.OP-01.B. UC-01 confirmCheckout — Part B — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-01/seqdao_uc01_confirmCheckout_PartB.drawio); vector: [SVG](../../../models/UC-01/seqdao_uc01_confirmCheckout_PartB.svg).
 
 ![Figure 4.3.2.1.OP-01.C — confirmCheckout Part C](../../../models/UC-01/seqdao_uc01_confirmCheckout_PartC.png)
 
-Figure 4.3.2.1.OP-01.C. UC-01 confirmCheckout — Part C — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.1.OP-01.C. UC-01 confirmCheckout — Part C — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-01/seqdao_uc01_confirmCheckout_PartC.drawio); vector: [SVG](../../../models/UC-01/seqdao_uc01_confirmCheckout_PartC.svg).
 
 ![Figure 4.3.2.1.OP-01.D — confirmCheckout Part D](../../../models/UC-01/seqdao_uc01_confirmCheckout_PartD.png)
 
-Figure 4.3.2.1.OP-01.D. UC-01 confirmCheckout — Part D — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.1.OP-01.D. UC-01 confirmCheckout — Part D — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-01/seqdao_uc01_confirmCheckout_PartD.drawio); vector: [SVG](../../../models/UC-01/seqdao_uc01_confirmCheckout_PartD.svg).
 
 ![Figure 4.3.2.1.OP-01.E — confirmCheckout Part E](../../../models/UC-01/seqdao_uc01_confirmCheckout_PartE.png)
 
-Figure 4.3.2.1.OP-01.E. UC-01 confirmCheckout — Part E — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.1.OP-01.E. UC-01 confirmCheckout — Part E — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-01/seqdao_uc01_confirmCheckout_PartE.drawio); vector: [SVG](../../../models/UC-01/seqdao_uc01_confirmCheckout_PartE.svg).
 
 ![Figure 4.3.2.1.OP-01.F — confirmCheckout Part F](../../../models/UC-01/seqdao_uc01_confirmCheckout_PartF.png)
 
-Figure 4.3.2.1.OP-01.F. UC-01 confirmCheckout — Part F — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.1.OP-01.F. UC-01 confirmCheckout — Part F — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-01/seqdao_uc01_confirmCheckout_PartF.drawio); vector: [SVG](../../../models/UC-01/seqdao_uc01_confirmCheckout_PartF.svg).
 
 ![Figure 4.3.2.1.OP-01.G — confirmCheckout Part G](../../../models/UC-01/seqdao_uc01_confirmCheckout_PartG.png)
 
-Figure 4.3.2.1.OP-01.G. UC-01 confirmCheckout — Part G — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.1.OP-01.G. UC-01 confirmCheckout — Part G — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-01/seqdao_uc01_confirmCheckout_PartG.drawio); vector: [SVG](../../../models/UC-01/seqdao_uc01_confirmCheckout_PartG.svg).
 
 **UC-02 — takeDelivery (`OP-10`)**
@@ -74,27 +74,27 @@ SSD parameters: `orderId`. Occurrence: `models/UC-02/ssd_uc02_PartA.drawio#M03`.
 
 ![Figure 4.3.2.2.OP-10.A — takeDelivery Part A](../../../models/UC-02/seqdao_uc02_takeDelivery_PartA.png)
 
-Figure 4.3.2.2.OP-10.A. UC-02 takeDelivery — Part A — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.2.OP-10.A. UC-02 takeDelivery — Part A — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-02/seqdao_uc02_takeDelivery_PartA.drawio); vector: [SVG](../../../models/UC-02/seqdao_uc02_takeDelivery_PartA.svg).
 
 ![Figure 4.3.2.2.OP-10.B — takeDelivery Part B](../../../models/UC-02/seqdao_uc02_takeDelivery_PartB.png)
 
-Figure 4.3.2.2.OP-10.B. UC-02 takeDelivery — Part B — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.2.OP-10.B. UC-02 takeDelivery — Part B — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-02/seqdao_uc02_takeDelivery_PartB.drawio); vector: [SVG](../../../models/UC-02/seqdao_uc02_takeDelivery_PartB.svg).
 
 ![Figure 4.3.2.2.OP-10.C — takeDelivery Part C](../../../models/UC-02/seqdao_uc02_takeDelivery_PartC.png)
 
-Figure 4.3.2.2.OP-10.C. UC-02 takeDelivery — Part C — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.2.OP-10.C. UC-02 takeDelivery — Part C — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-02/seqdao_uc02_takeDelivery_PartC.drawio); vector: [SVG](../../../models/UC-02/seqdao_uc02_takeDelivery_PartC.svg).
 
 ![Figure 4.3.2.2.OP-10.D — takeDelivery Part D](../../../models/UC-02/seqdao_uc02_takeDelivery_PartD.png)
 
-Figure 4.3.2.2.OP-10.D. UC-02 takeDelivery — Part D — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.2.OP-10.D. UC-02 takeDelivery — Part D — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-02/seqdao_uc02_takeDelivery_PartD.drawio); vector: [SVG](../../../models/UC-02/seqdao_uc02_takeDelivery_PartD.svg).
 
 ![Figure 4.3.2.2.OP-10.E — takeDelivery Part E](../../../models/UC-02/seqdao_uc02_takeDelivery_PartE.png)
 
-Figure 4.3.2.2.OP-10.E. UC-02 takeDelivery — Part E — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.2.OP-10.E. UC-02 takeDelivery — Part E — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-02/seqdao_uc02_takeDelivery_PartE.drawio); vector: [SVG](../../../models/UC-02/seqdao_uc02_takeDelivery_PartE.svg).
 
 **UC-02 — confirmDelivered (`OP-11`)**
@@ -105,32 +105,32 @@ SSD parameters: `orderId, cashCollected?`. Occurrence: `models/UC-02/ssd_uc02_Pa
 
 ![Figure 4.3.2.2.OP-11.A — confirmDelivered Part A](../../../models/UC-02/seqdao_uc02_confirmDelivered_PartA.png)
 
-Figure 4.3.2.2.OP-11.A. UC-02 confirmDelivered — Part A — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.2.OP-11.A. UC-02 confirmDelivered — Part A — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-02/seqdao_uc02_confirmDelivered_PartA.drawio); vector: [SVG](../../../models/UC-02/seqdao_uc02_confirmDelivered_PartA.svg).
 
 ![Figure 4.3.2.2.OP-11.B — confirmDelivered Part B](../../../models/UC-02/seqdao_uc02_confirmDelivered_PartB.png)
 
-Figure 4.3.2.2.OP-11.B. UC-02 confirmDelivered — Part B — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.2.OP-11.B. UC-02 confirmDelivered — Part B — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-02/seqdao_uc02_confirmDelivered_PartB.drawio); vector: [SVG](../../../models/UC-02/seqdao_uc02_confirmDelivered_PartB.svg).
 
 ![Figure 4.3.2.2.OP-11.C — confirmDelivered Part C](../../../models/UC-02/seqdao_uc02_confirmDelivered_PartC.png)
 
-Figure 4.3.2.2.OP-11.C. UC-02 confirmDelivered — Part C — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.2.OP-11.C. UC-02 confirmDelivered — Part C — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-02/seqdao_uc02_confirmDelivered_PartC.drawio); vector: [SVG](../../../models/UC-02/seqdao_uc02_confirmDelivered_PartC.svg).
 
 ![Figure 4.3.2.2.OP-11.D — confirmDelivered Part D](../../../models/UC-02/seqdao_uc02_confirmDelivered_PartD.png)
 
-Figure 4.3.2.2.OP-11.D. UC-02 confirmDelivered — Part D — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.2.OP-11.D. UC-02 confirmDelivered — Part D — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-02/seqdao_uc02_confirmDelivered_PartD.drawio); vector: [SVG](../../../models/UC-02/seqdao_uc02_confirmDelivered_PartD.svg).
 
 ![Figure 4.3.2.2.OP-11.E — confirmDelivered Part E](../../../models/UC-02/seqdao_uc02_confirmDelivered_PartE.png)
 
-Figure 4.3.2.2.OP-11.E. UC-02 confirmDelivered — Part E — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.2.OP-11.E. UC-02 confirmDelivered — Part E — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-02/seqdao_uc02_confirmDelivered_PartE.drawio); vector: [SVG](../../../models/UC-02/seqdao_uc02_confirmDelivered_PartE.svg).
 
 ![Figure 4.3.2.2.OP-11.F — confirmDelivered Part F](../../../models/UC-02/seqdao_uc02_confirmDelivered_PartF.png)
 
-Figure 4.3.2.2.OP-11.F. UC-02 confirmDelivered — Part F — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.2.OP-11.F. UC-02 confirmDelivered — Part F — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-02/seqdao_uc02_confirmDelivered_PartF.drawio); vector: [SVG](../../../models/UC-02/seqdao_uc02_confirmDelivered_PartF.svg).
 
 **UC-03 — archiveHub (`OP-36`)**
@@ -141,22 +141,22 @@ SSD parameters: `hubId`. Occurrence: `models/UC-03/ssd_uc03.drawio#M03-05`.
 
 ![Figure 4.3.2.3.OP-36.A — archiveHub Part A](../../../models/UC-03/seqdao_uc03_archiveHub_PartA.png)
 
-Figure 4.3.2.3.OP-36.A. UC-03 archiveHub — Part A — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.3.OP-36.A. UC-03 archiveHub — Part A — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-03/seqdao_uc03_archiveHub_PartA.drawio); vector: [SVG](../../../models/UC-03/seqdao_uc03_archiveHub_PartA.svg).
 
 ![Figure 4.3.2.3.OP-36.B — archiveHub Part B](../../../models/UC-03/seqdao_uc03_archiveHub_PartB.png)
 
-Figure 4.3.2.3.OP-36.B. UC-03 archiveHub — Part B — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.3.OP-36.B. UC-03 archiveHub — Part B — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-03/seqdao_uc03_archiveHub_PartB.drawio); vector: [SVG](../../../models/UC-03/seqdao_uc03_archiveHub_PartB.svg).
 
 ![Figure 4.3.2.3.OP-36.C — archiveHub Part C](../../../models/UC-03/seqdao_uc03_archiveHub_PartC.png)
 
-Figure 4.3.2.3.OP-36.C. UC-03 archiveHub — Part C — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.3.OP-36.C. UC-03 archiveHub — Part C — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-03/seqdao_uc03_archiveHub_PartC.drawio); vector: [SVG](../../../models/UC-03/seqdao_uc03_archiveHub_PartC.svg).
 
 ![Figure 4.3.2.3.OP-36.D — archiveHub Part D](../../../models/UC-03/seqdao_uc03_archiveHub_PartD.png)
 
-Figure 4.3.2.3.OP-36.D. UC-03 archiveHub — Part D — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.3.OP-36.D. UC-03 archiveHub — Part D — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-03/seqdao_uc03_archiveHub_PartD.drawio); vector: [SVG](../../../models/UC-03/seqdao_uc03_archiveHub_PartD.svg).
 
 **UC-04 — salesReport (`OP-26`)**
@@ -167,22 +167,22 @@ SSD parameters: `startDateVN, endDateVN, hubId?`. Occurrence: `models/UC-04/ssd_
 
 ![Figure 4.3.2.4.OP-26.A — salesReport Part A](../../../models/UC-04/seqdao_uc04_salesReport_PartA.png)
 
-Figure 4.3.2.4.OP-26.A. UC-04 salesReport — Part A — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.4.OP-26.A. UC-04 salesReport — Part A — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-04/seqdao_uc04_salesReport_PartA.drawio); vector: [SVG](../../../models/UC-04/seqdao_uc04_salesReport_PartA.svg).
 
 ![Figure 4.3.2.4.OP-26.B — salesReport Part B](../../../models/UC-04/seqdao_uc04_salesReport_PartB.png)
 
-Figure 4.3.2.4.OP-26.B. UC-04 salesReport — Part B — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.4.OP-26.B. UC-04 salesReport — Part B — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-04/seqdao_uc04_salesReport_PartB.drawio); vector: [SVG](../../../models/UC-04/seqdao_uc04_salesReport_PartB.svg).
 
 ![Figure 4.3.2.4.OP-26.C — salesReport Part C](../../../models/UC-04/seqdao_uc04_salesReport_PartC.png)
 
-Figure 4.3.2.4.OP-26.C. UC-04 salesReport — Part C — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.4.OP-26.C. UC-04 salesReport — Part C — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-04/seqdao_uc04_salesReport_PartC.drawio); vector: [SVG](../../../models/UC-04/seqdao_uc04_salesReport_PartC.svg).
 
 ![Figure 4.3.2.4.OP-26.D — salesReport Part D](../../../models/UC-04/seqdao_uc04_salesReport_PartD.png)
 
-Figure 4.3.2.4.OP-26.D. UC-04 salesReport — Part D — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.4.OP-26.D. UC-04 salesReport — Part D — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-04/seqdao_uc04_salesReport_PartD.drawio); vector: [SVG](../../../models/UC-04/seqdao_uc04_salesReport_PartD.svg).
 
 **UC-05 — rejectOrder (`OP-03`)**
@@ -193,32 +193,32 @@ SSD parameters: `orderId, reason`. Occurrence: `models/UC-05/ssd_uc05_PartA.draw
 
 ![Figure 4.3.2.5.OP-03.A — rejectOrder Part A](../../../models/UC-05/seqdao_uc05_rejectOrder_PartA.png)
 
-Figure 4.3.2.5.OP-03.A. UC-05 rejectOrder — Part A — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.5.OP-03.A. UC-05 rejectOrder — Part A — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-05/seqdao_uc05_rejectOrder_PartA.drawio); vector: [SVG](../../../models/UC-05/seqdao_uc05_rejectOrder_PartA.svg).
 
 ![Figure 4.3.2.5.OP-03.B — rejectOrder Part B](../../../models/UC-05/seqdao_uc05_rejectOrder_PartB.png)
 
-Figure 4.3.2.5.OP-03.B. UC-05 rejectOrder — Part B — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.5.OP-03.B. UC-05 rejectOrder — Part B — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-05/seqdao_uc05_rejectOrder_PartB.drawio); vector: [SVG](../../../models/UC-05/seqdao_uc05_rejectOrder_PartB.svg).
 
 ![Figure 4.3.2.5.OP-03.C — rejectOrder Part C](../../../models/UC-05/seqdao_uc05_rejectOrder_PartC.png)
 
-Figure 4.3.2.5.OP-03.C. UC-05 rejectOrder — Part C — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.5.OP-03.C. UC-05 rejectOrder — Part C — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-05/seqdao_uc05_rejectOrder_PartC.drawio); vector: [SVG](../../../models/UC-05/seqdao_uc05_rejectOrder_PartC.svg).
 
 ![Figure 4.3.2.5.OP-03.D — rejectOrder Part D](../../../models/UC-05/seqdao_uc05_rejectOrder_PartD.png)
 
-Figure 4.3.2.5.OP-03.D. UC-05 rejectOrder — Part D — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.5.OP-03.D. UC-05 rejectOrder — Part D — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-05/seqdao_uc05_rejectOrder_PartD.drawio); vector: [SVG](../../../models/UC-05/seqdao_uc05_rejectOrder_PartD.svg).
 
 ![Figure 4.3.2.5.OP-03.E — rejectOrder Part E](../../../models/UC-05/seqdao_uc05_rejectOrder_PartE.png)
 
-Figure 4.3.2.5.OP-03.E. UC-05 rejectOrder — Part E — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.5.OP-03.E. UC-05 rejectOrder — Part E — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-05/seqdao_uc05_rejectOrder_PartE.drawio); vector: [SVG](../../../models/UC-05/seqdao_uc05_rejectOrder_PartE.svg).
 
 ![Figure 4.3.2.5.OP-03.F — rejectOrder Part F](../../../models/UC-05/seqdao_uc05_rejectOrder_PartF.png)
 
-Figure 4.3.2.5.OP-03.F. UC-05 rejectOrder — Part F — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.5.OP-03.F. UC-05 rejectOrder — Part F — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-05/seqdao_uc05_rejectOrder_PartF.drawio); vector: [SVG](../../../models/UC-05/seqdao_uc05_rejectOrder_PartF.svg).
 
 **UC-05 — acceptReplacement (`OP-05`)**
@@ -229,37 +229,37 @@ SSD parameters: `orderId, offerId`. Occurrence: `models/UC-05/ssd_uc05_PartB.dra
 
 ![Figure 4.3.2.5.OP-05.A — acceptReplacement Part A](../../../models/UC-05/seqdao_uc05_acceptReplacement_PartA.png)
 
-Figure 4.3.2.5.OP-05.A. UC-05 acceptReplacement — Part A — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.5.OP-05.A. UC-05 acceptReplacement — Part A — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-05/seqdao_uc05_acceptReplacement_PartA.drawio); vector: [SVG](../../../models/UC-05/seqdao_uc05_acceptReplacement_PartA.svg).
 
 ![Figure 4.3.2.5.OP-05.B — acceptReplacement Part B](../../../models/UC-05/seqdao_uc05_acceptReplacement_PartB.png)
 
-Figure 4.3.2.5.OP-05.B. UC-05 acceptReplacement — Part B — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.5.OP-05.B. UC-05 acceptReplacement — Part B — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-05/seqdao_uc05_acceptReplacement_PartB.drawio); vector: [SVG](../../../models/UC-05/seqdao_uc05_acceptReplacement_PartB.svg).
 
 ![Figure 4.3.2.5.OP-05.C — acceptReplacement Part C](../../../models/UC-05/seqdao_uc05_acceptReplacement_PartC.png)
 
-Figure 4.3.2.5.OP-05.C. UC-05 acceptReplacement — Part C — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.5.OP-05.C. UC-05 acceptReplacement — Part C — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-05/seqdao_uc05_acceptReplacement_PartC.drawio); vector: [SVG](../../../models/UC-05/seqdao_uc05_acceptReplacement_PartC.svg).
 
 ![Figure 4.3.2.5.OP-05.D — acceptReplacement Part D](../../../models/UC-05/seqdao_uc05_acceptReplacement_PartD.png)
 
-Figure 4.3.2.5.OP-05.D. UC-05 acceptReplacement — Part D — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.5.OP-05.D. UC-05 acceptReplacement — Part D — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-05/seqdao_uc05_acceptReplacement_PartD.drawio); vector: [SVG](../../../models/UC-05/seqdao_uc05_acceptReplacement_PartD.svg).
 
 ![Figure 4.3.2.5.OP-05.E — acceptReplacement Part E](../../../models/UC-05/seqdao_uc05_acceptReplacement_PartE.png)
 
-Figure 4.3.2.5.OP-05.E. UC-05 acceptReplacement — Part E — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.5.OP-05.E. UC-05 acceptReplacement — Part E — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-05/seqdao_uc05_acceptReplacement_PartE.drawio); vector: [SVG](../../../models/UC-05/seqdao_uc05_acceptReplacement_PartE.svg).
 
 ![Figure 4.3.2.5.OP-05.F — acceptReplacement Part F](../../../models/UC-05/seqdao_uc05_acceptReplacement_PartF.png)
 
-Figure 4.3.2.5.OP-05.F. UC-05 acceptReplacement — Part F — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.5.OP-05.F. UC-05 acceptReplacement — Part F — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-05/seqdao_uc05_acceptReplacement_PartF.drawio); vector: [SVG](../../../models/UC-05/seqdao_uc05_acceptReplacement_PartF.svg).
 
 ![Figure 4.3.2.5.OP-05.G — acceptReplacement Part G](../../../models/UC-05/seqdao_uc05_acceptReplacement_PartG.png)
 
-Figure 4.3.2.5.OP-05.G. UC-05 acceptReplacement — Part G — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.5.OP-05.G. UC-05 acceptReplacement — Part G — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-05/seqdao_uc05_acceptReplacement_PartG.drawio); vector: [SVG](../../../models/UC-05/seqdao_uc05_acceptReplacement_PartG.svg).
 
 **UC-06 — updateMenuItem (`OP-41`)**
@@ -270,22 +270,22 @@ SSD parameters: `itemId, brandId, name, description, price`. Occurrence: `models
 
 ![Figure 4.3.2.6.OP-41.A — updateMenuItem Part A](../../../models/UC-06/seqdao_uc06_updateMenuItem_PartA.png)
 
-Figure 4.3.2.6.OP-41.A. UC-06 updateMenuItem — Part A — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.6.OP-41.A. UC-06 updateMenuItem — Part A — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-06/seqdao_uc06_updateMenuItem_PartA.drawio); vector: [SVG](../../../models/UC-06/seqdao_uc06_updateMenuItem_PartA.svg).
 
 ![Figure 4.3.2.6.OP-41.B — updateMenuItem Part B](../../../models/UC-06/seqdao_uc06_updateMenuItem_PartB.png)
 
-Figure 4.3.2.6.OP-41.B. UC-06 updateMenuItem — Part B — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.6.OP-41.B. UC-06 updateMenuItem — Part B — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-06/seqdao_uc06_updateMenuItem_PartB.drawio); vector: [SVG](../../../models/UC-06/seqdao_uc06_updateMenuItem_PartB.svg).
 
 ![Figure 4.3.2.6.OP-41.C — updateMenuItem Part C](../../../models/UC-06/seqdao_uc06_updateMenuItem_PartC.png)
 
-Figure 4.3.2.6.OP-41.C. UC-06 updateMenuItem — Part C — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.6.OP-41.C. UC-06 updateMenuItem — Part C — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-06/seqdao_uc06_updateMenuItem_PartC.drawio); vector: [SVG](../../../models/UC-06/seqdao_uc06_updateMenuItem_PartC.svg).
 
 ![Figure 4.3.2.6.OP-41.D — updateMenuItem Part D](../../../models/UC-06/seqdao_uc06_updateMenuItem_PartD.png)
 
-Figure 4.3.2.6.OP-41.D. UC-06 updateMenuItem — Part D — Author: 722I0004 · AI-assisted (Codex). † = target at design commit C0; final status in Table P4-1.
+Figure 4.3.2.6.OP-41.D. UC-06 updateMenuItem — Part D — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-06/seqdao_uc06_updateMenuItem_PartD.drawio); vector: [SVG](../../../models/UC-06/seqdao_uc06_updateMenuItem_PartD.svg).
 
 **Guarded interaction control after independent review**
@@ -300,4 +300,4 @@ Other write operations use the same explicit success-END versus failure-handler 
 
 Figure-source and generator records are listed in the evidence index.
 
-All plates use a 1600 × 1250 landscape canvas placed at 230 mm, with 24 px minimum text (9.78 pt). Native XML font sizes/styles agree with the SVG; author labels exist in the editable sources. Own-file QA parses XML, resolves receiver members against the shared model, checks exact SSD identity, validates actual edge attachments and label bounds, and checks visible transaction/rowcount/busy labels. Every PNG and independently rasterized SVG is opened for visual inspection; physical A4 proofs and hash receipts are retained outside the repository in `Part2/notes/P3-F/`. Native draw.io editing and final DOCX/PDF placement remain UNTESTED.
+Own-file QA parses XML, resolves receiver members against the shared model, checks exact SSD identity, validates actual edge attachments and label bounds, and checks visible transaction/rowcount/busy labels. Every PNG and independently rasterized SVG is opened for visual inspection; physical A4 proofs and hash receipts are retained outside the repository in `Part2/notes/P3-F/`.

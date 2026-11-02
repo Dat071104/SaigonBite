@@ -8,7 +8,9 @@ Author: 722I0004 · AI-assisted (Codex)
 | Le Minh Quan | 523K0049 | UC-02, UC-04 | No Part 2 Git commits recorded |
 | Nguyen Minh Quan | 523K0050 | UC-05, UC-06 | No Part 2 Git commits recorded |
 
-Dat produced and integrated the recorded application, models, report, test and deployment work with the AI assistance described in Appendix 5 and the repository log. The project record attributes the 114 commits at the plan checkpoint to Dat; later P7 WIP commits are also recorded under the same Git author. Proposal ownership does not by itself establish authorship of an implementation or report. The record does not establish additional member contributions beyond the documented evidence.
+Components: Dat (722I0004) wrote the requirements, analysis, design, code, tests, UI, deployment and this report for all six use cases, with the AI assistance declared in Appendix 5. Le Minh Quan (523K0049) provided the school Google Cloud account that hosts the deployed system (5.2). All commits in the repository were made by Dat; Le Minh Quan and Nguyen Minh Quan have no commits in Part 2. Use-case ownership from the proposal is unchanged, and in Part 3 each member presents one of their own two use cases.
+
+By signing, each member confirms that this statement is accurate.
 
 | Member | Signature | Date |
 |---|---|---|

@@ -1,10 +1,37 @@
 \section*{Conclusions / Recommendations (0.25 point)}
 \addcontentsline{toc}{section}{Conclusions / Recommendations (0.25 point)}
 \pdfbookmark[0]{Conclusions / Recommendations (0.25 point)}{p7h139}
-Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
+Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex, Claude)
 
-The recorded tests and walkthroughs show that the implemented paths can connect ordering, kitchen decisions and delivery in the tested environments. The automated suite passed 928 cases at \texttt{252ada1}; the local browser walkthrough passed 60 of 60 recorded steps, while the adapted deployed walkthrough passed 22 of 22. These are scoped results, and the deployment walkthrough used an existing order rather than repeating the same local order.
+\textbf{Conclusions.} The project met its Part 2 goal. The six main use cases are analysed, designed, built and tested as one system: an order created in UC-01 is decided in UC-05, delivered in UC-02, counted in UC-04, and the hubs and dishes it uses come from UC-03 and UC-06. The models agree with each other and with the code. The SSD operations appear unchanged in the sequence diagrams. The final design class diagrams are generated from the source. The state machines are drawn from the transition tables the program enforces. Every postcondition has a test that passes. Working this way exposed real defects: a rounded distance accepted 8.004 km, consent compared only the total, refunds were subtracted twice in sales, and five browser-only problems were found. All were fixed with regression tests before release.
 
-The current system remains a demonstration. Payment uses a simulator, refund obligations are recorded without payout, and the distance calculation uses an approximate district location. Complaint handling, refund payout and ratings are deferred. One VM and SQLite also limit the scope of deployment evidence; the recorded backup and separate restore checks do not constitute a tested live rollback. Before any broader use, the team should resolve these product limitations, test recovery for the intended operating conditions and review actual costs before the recorded trial expiry.
+\textbf{Limitations.}
 
-Requirement \S{}9 permits AI for brainstorming, refining language and explaining concepts. AI was also used to create application code, diagrams and text, as recorded in the AI usage log. L6 remains open: the Part 1 log did not declare AI-generated application code, so the no-change Part 1 review is not evidence that this use was accepted. The team should obtain a course decision on that specific use before submission.
+\begin{itemize}
+\item \emph{Simulated money flows.} Online payment is a simulator. A refund owed is recorded but never paid out, and complaint handling and rating are deferred (A-09).
+
+\item \emph{Unconfirmed business figures.} The busy and quiet thresholds, the 8 km radius, the fee per kilometre and the report date basis are team defaults; Q1--Q5 have not been answered.
+
+\item \emph{Approximate distance.} Distance is measured to the centre of the delivery district, not along roads.
+
+\item \emph{Small-scale operation.} One VM and one SQLite file serve the demonstration. This is enough for the measured load (200 requests from 20 clients, all under 1.2 s), but it is not a high-availability setup, and rollback to a previous release has not been rehearsed.
+
+\item \emph{Phone layout.} It is verified at 390 px on every screen but at 360 px on one screen only (NFR-09).
+
+\item \emph{Team contribution.} All Part 2 work was authored by one member (Appendix 4). Ownership of UC-02, UC-04, UC-05 and UC-06 remains with the proposal owners, who will present their use cases in Part 3.
+
+\end{itemize}
+\textbf{Recommendations.}
+
+\begin{itemize}
+\item Ask the client to answer Q1--Q5. The answers only change configuration values and the tests that pin them (1.4.2 lists which).
+
+\item Before real use, connect a payment provider through the existing simulator interface and build the deferred complaint, refund payout and rating use cases (W-01). The Payment state machine already reserves REFUNDED.
+
+\item For more than a few hubs, move from SQLite to a client-server database and run two application instances behind the proxy. The DAO layer isolates this change.
+
+\item Rehearse a rollback and a full restore on a fresh VM before the cloud trial ends (21/01/2027), and keep the nightly off-VM backup.
+
+\item Obtain the lecturer's written answer on AI-assisted code (L6) and keep the full prompts available, as section 9 of the requirements asks.
+
+\end{itemize}

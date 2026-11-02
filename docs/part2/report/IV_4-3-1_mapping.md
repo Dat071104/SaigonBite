@@ -1,43 +1,45 @@
 ## 4.3.1 Map Persistent Objects to the Tables in a Database
 
-Author: 722I0004 · AI-assisted (Codex)
+Author: 722I0004 · AI-assisted (Codex, Claude)
 
-The schema source is the parsed schema v2 in `docs/part2/design/code_inventory.json` at C0 `45ac76221b0a103174c7c01d17577e6e49cfd665`. It contains 13 tables, 110 columns, 18 foreign keys, seven indexes, and `user_version = 2`. These figures and relationships are Static schema evidence; they are not a claim that application paths or constraints passed tests.
+Each of the 13 persistent domain classes of 2.1.7 is stored in one table of `db/schema.sql`. The delivered schema has **13 tables, 111 columns, 18 foreign keys, 7 indexes and 3 triggers** (`PRAGMA user_version = 2`). The diagrams below are generated from that file by `models/shared/erd_final.py`, so they show the schema exactly as it runs.
 
-The diagrams use UML associations with SQL multiplicities. `PK` marks primary-key columns, `FK` marks foreign keys, `U` marks a single-column UNIQUE constraint, `U*` marks membership in a composite or partial unique constraint, `C` marks a column participating in a CHECK, and `?` marks a nullable column. Full SQL types, NULL rules, CHECK expressions, key declarations, and enforcement notes are in the [class-to-table mapping](../design/class_table_mapping.csv).
+![Schema part A](../../../models/shared/erd_final_PartA.png)
 
-![Schema v2 identity, customer and hub tables](../../../models/shared/erd_schema_v2_PartA.png)
+Figure 4.3.1A. Database schema — people, hubs, catalogue and vouchers — Author: 722I0004 · AI-assisted (Claude).
 
-Figure 4.3.1A. Schema v2: identity, customer and hub records — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+![Schema part B](../../../models/shared/erd_final_PartB.png)
 
-![Schema v2 catalogue and listing tables](../../../models/shared/erd_schema_v2_PartB.png)
+Figure 4.3.1B. Database schema — orders and their records — Author: 722I0004 · AI-assisted (Claude).
 
-Figure 4.3.1B. Schema v2: brands, menu items, hub listings and vouchers — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+**Mapping rules.**
 
-![Schema v2 order and order-line tables](../../../models/shared/erd_schema_v2_PartC.png)
+- **One class, one table; `id` becomes the primary key.** Attributes keep their names and become columns. Money is whole VND (INTEGER), Boolean is INTEGER 0/1 with a CHECK, timestamps are UTC ISO text, and voucher dates are Vietnam calendar dates.
+- **Associations become foreign keys** on the "many" side (for example `orders.customer_id`). A one-to-zero-or-one association gets a UNIQUE foreign key (`payment.order_id`, `delivery.order_id`, `customer.user_id`).
+- **Composition** of OrderLine in Order (the whole owns its parts) is the NOT NULL foreign key `order_line.order_id`; lines are never deleted on their own.
+- **Association class** HubMenuItem becomes the table `hub_menu_item` with the composite primary key (`hub_id`, `menu_item_id`) and the attribute `is_available` of the pair.
+- **Generalization** LocalCustomer / TouristCustomer uses single-table inheritance: one `customer` table with the discriminator `customer_type` and a CHECK that requires a phone for LOCAL and passport, email and nationality for TOURIST.
+- **State attributes** become TEXT columns whose CHECK lists exactly the states of the state machines in 2.2 (for example `orders.state`).
+- **Derived attributes** are not stored when they can be computed (hub load, busy/quiet); the order totals S, D, F, Q and T are stored as the agreed snapshot and tied together by `CHECK (total_amount = item_subtotal − voucher_discount + delivery_fee − quiet_discount)`.
+- **Archive instead of delete:** `archived_at` on Hub, Brand, MenuItem, Address, Voucher and Order; `is_active` on UserAccount. The only physical delete is unlisting an item at a hub (`MenuDAO` removes the `hub_menu_item` row); earlier orders are unaffected because order lines keep their own name and price snapshot.
+- **Rules the CHECKs cannot express** are enforced by triggers: `customer_role_insert` and `customer_role_update` allow a customer profile only on a CUSTOMER account, and `linked_customer_role` stops such an account from changing role. A partial unique index `idx_offer_one_open` allows at most one OFFERED replacement per order.
 
-Figure 4.3.1C. Schema v2: orders and order-line snapshots — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
+**Class-to-table mapping** (generated into `models/shared/class_table_mapping.csv` from the domain dataclasses and the schema):
 
-![Schema v2 payment and delivery tables](../../../models/shared/erd_schema_v2_PartD.png)
+| Persistent class | Table | Attributes stored in columns of the same name | Associations stored as foreign keys | Columns with no same-name attribute | Attributes not stored |
+|---|---|---|---|---|---|
+| UserAccount | `user_account` | created_at, id, username, password_hash, display_name, role, is_active | hub_id → hub | — | — |
+| Customer (LocalCustomer, TouristCustomer) | `customer` | id, full_name, phone, email, passport_no, nationality | user_id → user_account | customer_type | — |
+| Address | `address` | id, label, full_address, district, latitude, longitude, archived_at | customer_id → customer | — | — |
+| Hub | `hub` | id, code, name, address_text, latitude, longitude, max_active_orders, base_delivery_fee, archived_at | — | — | — |
+| Brand | `brand` | id, name, archived_at | — | — | — |
+| MenuItem | `menu_item` | id, name, description, price, archived_at | brand_id → brand | — | brand_name |
+| HubMenuItem (association class) | `hub_menu_item` | is_available | hub_id → hub, menu_item_id → menu_item | — | item |
+| Voucher | `voucher` | id, code, description, discount_type, discount_value, min_subtotal, max_discount, valid_from, valid_until, archived_at | — | — | — |
+| Order | `orders` | id, delivery_address_text, distance_km, state, voucher_discount, delivery_fee, quiet_discount, idempotency_token, reject_reason, placed_at, confirmed_at, ready_at, closed_at, archived_at | customer_id → customer, hub_id → hub, address_id → address, voucher_id → voucher | item_subtotal, total_amount | lines |
+| OrderLine | `order_line` | id, item_name, unit_price, quantity | order_id → orders, menu_item_id → menu_item | — | — |
+| Payment | `payment` | id, method, online_option, provider_ref, state, amount, refund_amount, created_at, updated_at | order_id → orders | — | — |
+| Delivery | `delivery` | id, state, ready_at, picked_up_at, finished_at, failure_reason, cash_collected | order_id → orders, shipper_id → user_account | — | — |
+| ReplacementOffer | `replacement_offer` | id, original_item_name, original_unit_price, new_item_name, new_unit_price, state, offered_at, decided_at | order_id → orders, order_line_id → order_line, new_menu_item_id → menu_item | — | — |
 
-Figure 4.3.1D. Schema v2: payment and delivery records — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
-
-![Schema v2 replacement-offer table](../../../models/shared/erd_schema_v2_PartE.png)
-
-Figure 4.3.1E. Schema v2: replacement-offer history — Author: 722I0004 · AI-assisted (Codex) † = target at design commit C0; final status in Table P4-1.
-
-The mapping has one primary row for each of the 110 C0 columns. It also makes non-column correspondences explicit: `Order.lines` maps to the child `order_line.order_id` relationship; `HubMenuItem.item` maps to `hub_menu_item.menu_item_id`; `Order.item_subtotal` and `Order.total` are derived properties with persisted columns; `MenuItem.brand_name` is a joined projection of `brand.name`; `LocalCustomer` and `TouristCustomer` map to the same `customer.customer_type` discriminator; and `OrderLine.line_total` is computed, with no SQL column. At C0, `UserAccount.created_at` was a design gap and the column was absent. Its later P4.1 disposition and scoped test evidence appear in Table P4-1 and the detailed resolution appendix.
-
-`Customer` is stored in one `customer` table. Its `customer_type` CHECK distinguishes `LOCAL` from `TOURIST`; it does not create separate subtype tables. `hub_menu_item` is the association-class table between Hub and MenuItem, with a composite primary key on `(hub_id, menu_item_id)`. There is no Shipper table: `delivery.shipper_id` references `user_account.id`, and the SHIPPER role is held by the linked account. `Quote`, report filters and rows, and receipts are computed views rather than persisted classes.
-
-The UNIQUE rules are `hub.code`, `brand.name`, `user_account.username`, `customer.user_id`, `voucher.code`, `orders.idempotency_token`, `payment.order_id`, and `delivery.order_id`; the composite rules are `menu_item(brand_id, name)`, `hub_menu_item(hub_id, menu_item_id)` as its primary key, and `order_line(order_id, menu_item_id)`. The partial unique index `idx_offer_one_open` limits each order to one `replacement_offer` whose state is `OFFERED`; resolved offers remain stored history. The unique child FKs on `payment.order_id` and `delivery.order_id` cap each Order at one child row but do not require presence. The SQL also permits an Order with zero OrderLine rows. The contract requires checkout to create one Payment and at least one OrderLine, and `markReady` to create a Delivery; these application-path requirements were assigned to P4 verification, not inferred from the FKs; recorded test evidence is in Section 5.1. P2-S09 records the related cross-row guards, including same-order offer/line ownership and shipper eligibility.
-
-Money is stored as whole VND where applicable. For an Order, `item_subtotal` is S, `voucher_discount` is D, `delivery_fee` is F, `quiet_discount` is Q, and `total_amount` is T, constrained by `T = S − D + F − Q`. `payment.amount` holds the COD amount due or captured online amount C; `refund_amount` is an amount owed, not paid out. An accepted replacement can leave a partial online obligation `C − T`; an unfulfilled online order is owed the full C. `delivery.cash_collected` records cash at delivery, which must equal T for COD completion. Order-line and replacement-offer names/prices are snapshots; later catalogue edits do not rewrite the existing order history.
-
-Event columns ending in `_at` are UTC timestamp text. `voucher.valid_from` and `valid_until` are inclusive Asia/Ho_Chi_Minh calendar dates stored as text, not UTC instants. The archive timestamps are on Hub, Brand, MenuItem, Address, Voucher and Order. `user_account.is_active` is an account lifecycle flag, not an archive timestamp; unlisting a HubMenuItem deletes the association row. Under the plan’s archive rule, an archived parent is hidden from operational lists while authorized history, receipts, reports and refund obligations remain available. Child order lines, payments, deliveries and offers remain attached to the retained Order. These retention rules were design requirements for P4 verification, not behaviors inferred from a flag alone. Later test evidence is in Section 5.1.
-
-The marked items were design targets not yet in code at C0. Their later P4 disposition is recorded in Table P4-1. `P2-S02` requires `user_account.created_at`, which is absent from both the draft class and SQL table and is assigned to P4.1. `P2-S03` requires the Tourist CHECK to require `nationality`; the nullable column exists, and the static Phase 2 review found controller validation, but the SQL CHECK does not enforce it. `P2-S07` requires the linked Customer account to have role `CUSTOMER`; the FK and UNIQUE rule do not enforce that role. P4.7 was adopted as the account subphase for S03/S07. The figure’s historical legend identifies the C0 design targets and P4 inputs P2-S02/S03/S07.
-
-`P2-S08` is not a missing-value defect: `Payment.updated_at` is `Optional[str]` in the domain model but `NOT NULL` in SQL, and the `PaymentDAO.insert` AST body writes the supplied `updated_at` or falls back to `created_at`. The SQL CHECK also permits Payment values `FAILED` and `REFUNDED`; per P2-S01 and plan §4.3 these remain deferred or unreachable. No declined-payment row or refund-payout path is added to this mapping.
-
-The diagrams and CSV were generated from the frozen inventory/model without importing or running the application. Structural XML and endpoint checks passed, all six PNGs and independent Edge-rasterized SVGs were opened for visual review, and the smallest placed font is 9.21 pt at 230 × 170 mm. Native draw.io editing, Excel, and final DOCX/PDF placement remain UNTESTED; no app correctness or test result is claimed.
+Notes on the last two columns: `customer_type` is the inheritance discriminator; `item_subtotal` and `total_amount` are stored snapshots of Order properties computed in Python; `MenuItem.brand_name` and `HubMenuItem.item` are values joined in when an object is loaded; `Order.lines` is filled from `order_line`.

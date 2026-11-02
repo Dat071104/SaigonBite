@@ -1,43 +1,33 @@
 \subsubsection*{3.3.5 Final Design Class Diagram}
 \addcontentsline{toc}{subsubsection}{3.3.5 Final Design Class Diagram}
 \pdfbookmark[2]{3.3.5 Final Design Class Diagram}{p7h91}
-Changes from 3.3.2: none in selected signatures. The final figures repeat the reconciled operation projections explicitly; the union includes every view/controller call shown in .4, including \texttt{\_\allowbreak{}require\_\allowbreak{}admin}. Domain create/note messages are construction/attribute facts, not additional callable operations. Full attributes and support authorization/DTO collaborators remain in the layer views and .1. Every final part continues the same UC projection set.
+Author: 722I0004 \ensuremath{\cdot} AI-assisted (Claude)
 
-\begin{landscape}
-\begin{figure}[p]
-\centering
-\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-03/dcd_uc03_final_PartA.png}}
-\caption{Figure 3.3.5A. UC-03 final projection 1 --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0126}
-\end{figure}
-\end{landscape}
-\begin{landscape}
-\begin{figure}[p]
-\centering
-\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-03/dcd_uc03_final_PartB.png}}
-\caption{Figure 3.3.5B. UC-03 final projection 2 --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0127}
-\end{figure}
-\end{landscape}
-\begin{landscape}
-\begin{figure}[p]
-\centering
-\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-03/dcd_uc03_final_PartC.png}}
-\caption{Figure 3.3.5C. UC-03 final projection 3 --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0128}
-\end{figure}
-\end{landscape}
-\begin{landscape}
-\begin{figure}[p]
-\centering
-\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-03/dcd_uc03_final_PartD.png}}
-\caption{Figure 3.3.5D. UC-03 final projection 4 --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0129}
-\end{figure}
-\end{landscape}
-\begin{landscape}
-\begin{figure}[p]
-\centering
-\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-03/dcd_uc03_final_PartE.png}}
-\caption{Figure 3.3.5E. UC-03 final projection 5 --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0130}
-\end{figure}
-\end{landscape}
-The historical design target was not yet in code at C0 (see the operation-specific P4 input in the figure and \texttt{operation\_\allowbreak{}realisation.\allowbreak{}csv}). Shared busy/commit/rowcount requirements are P2-S13/P3-S03 targets; no runtime correctness is asserted. Native draw.io editing and final DOCX/PDF placement remain UNTESTED.
+The final design class diagram refines the layer views of 3.3.2 with what the sequence diagrams in 3.3.4 and the implementation settled:
 
-Diagram source format (Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)): native draw.io text now has explicit actual font sizes and bold styles matching the SVG/PNG labels: 18 px minimum at 230 mm for DCDs and 23 px minimum at 170 mm for sequences. Native editing remains UNTESTED. The diagrams retain historical C0 target marks; Table P4-1 records subsequent status and scoped evidence.
+\begin{itemize}
+\item \textbf{One diagram, four layers.} View (Flask blueprint functions with their routes), controller, domain and data access are drawn together, so every message in the sequence diagrams can be followed from the screen to the table.
+
+\item \textbf{Only the members this use case calls.} The sequence diagrams fixed which operations each class must offer; the complete member lists stay in the 3.3.1 tables and 3.3.2 views.
+
+\item \textbf{Signatures from the code.} Parameter names and types are read from the source at the release commit by \texttt{models/\allowbreak{}shared/\allowbreak{}final\_\allowbreak{}dcd.\allowbreak{}py}, so the diagram and the program cannot differ.
+
+\item \textbf{Navigability and persistence.} Dashed arrows show which layer calls which; each DAO has a \guillemotleft{}persists\guillemotright{} link to the entity it stores; domain associations keep their multiplicities from the domain model (2.1.7).
+
+\end{itemize}
+\begin{figure}[p]
+\centering
+\includegraphics[width=170mm,height=225mm,keepaspectratio]{\detokenize{models/UC-03/dcd_uc03_final_overview.png}}
+\caption{Figure 3.3.5. UC-03 final design class diagram --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Claude). Vector SVG beside the source (editable source: models/UC-03/dcd\_uc03\_final\_overview.dot)}\label{P7-0616}
+\end{figure}
+Behaviour refined between the first design and the final design (each refinement is covered by the tests in 5.1). Every state-changing operation runs in one \texttt{BEGIN IMMEDIATE} transaction and checks the row count of each guarded UPDATE, so a stale page, a guessed ID or a competing user changes nothing.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+System operation & Refinement in the final design \\
+\hline\endfirsthead
+System operation & Refinement in the final design \\
+\hline\endhead
+\texttt{listHubs} & The admin list can include archived hubs, so history stays reachable. \\
+\texttt{createHub, updateHub, archiveHub} & Hub writes use guarded, row-count-checked transactions; archive is refused while the hub has open orders. \\
+\end{longtable}
+Editable sources: \texttt{models/\allowbreak{}UC-03/\allowbreak{}dcd\_\allowbreak{}uc03\_\allowbreak{}final\_\allowbreak{}overview.\allowbreak{}dot} (Graphviz), with SVG exports beside them.

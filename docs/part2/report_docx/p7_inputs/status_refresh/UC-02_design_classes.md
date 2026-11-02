@@ -2,7 +2,7 @@
 
 Author: 722I0004 · AI-assisted (Codex)
 
-C0: 45ac76221b0a103174c7c01d17577e6e49cfd665 · Evidence: Static source correspondence only; this is not runtime or test evidence.
+First design commit C0: 45ac762 (24/10/2026). Signatures are compared with the source code; test evidence is in section 5.1.
 
 The tables use the sole shared DCD model at C0. Visibility follows the leading-underscore convention; signatures preserve the AST inventory. * marks an inferred/unannotated type or route signature.  marks a C0 design target (final status in Table P4-1)/C0 design gap (final status in Table P4-1) and does not mean implemented at C0. Domain FK scalar attributes are retained here for mapping but omitted from DCDs in favour of associations.
 
@@ -14,16 +14,16 @@ Responsibility: Hold assignment, paired lifecycle times, cash and failure outcom
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute order_id | + | int | MATCH | FK scalar omitted from DCD; shown by association |
-| Attribute state | + | DeliveryState | MATCH | — |
-| Attribute ready_at | + | str | MATCH | — |
-| Attribute shipper_id | + | Optional[int] | MATCH | FK scalar omitted from DCD; shown by association; default=None |
-| Attribute picked_up_at | + | Optional[str] | MATCH | default=None |
-| Attribute finished_at | + | Optional[str] | MATCH | default=None |
-| Attribute failure_reason | + | Optional[str] | MATCH | default=None |
-| Attribute cash_collected | + | Optional[int] | MATCH | default=None |
-| Attribute id | + | Optional[int] | MATCH | default=None |
-| Method move_to | + | move_to(self, new_state: DeliveryState) -> None | MATCH | — |
+| Attribute order_id | + | int | Matches code | FK scalar omitted from DCD; shown by association |
+| Attribute state | + | DeliveryState | Matches code | — |
+| Attribute ready_at | + | str | Matches code | — |
+| Attribute shipper_id | + | Optional[int] | Matches code | FK scalar omitted from DCD; shown by association; default=None |
+| Attribute picked_up_at | + | Optional[str] | Matches code | default=None |
+| Attribute finished_at | + | Optional[str] | Matches code | default=None |
+| Attribute failure_reason | + | Optional[str] | Matches code | default=None |
+| Attribute cash_collected | + | Optional[int] | Matches code | default=None |
+| Attribute id | + | Optional[int] | Matches code | default=None |
+| Method move_to | + | move_to(self, new_state: DeliveryState) -> None | Matches code | — |
 
 
 ## Order
@@ -34,27 +34,27 @@ Responsibility: Own the order lifecycle, snapshots and accepted replacement tota
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute customer_id | + | int | MATCH | FK scalar omitted from DCD; shown by association |
-| Attribute hub_id | + | int | MATCH | FK scalar omitted from DCD; shown by association |
-| Attribute address_id | + | int | MATCH | FK scalar omitted from DCD; shown by association |
-| Attribute state | + | OrderState | MATCH | — |
-| Attribute delivery_fee | + | int | MATCH | — |
-| Attribute idempotency_token | + | str | MATCH | — |
-| Attribute placed_at | + | str | MATCH | — |
-| Attribute lines | + | list[OrderLine] | MATCH | default=field(default_factory=list) |
-| Attribute id | + | Optional[int] | MATCH | default=None |
-| Attribute archived_at | + | Optional[str] | MATCH | default=None |
-| Attribute delivery_address_text | + | str | MATCH | default='' |
-| Attribute distance_km | + | float | MATCH | default=0.0 |
-| Attribute voucher_id | + | Optional[int] | MATCH | FK scalar omitted from DCD; shown by association; default=None |
-| Attribute voucher_discount | + | int | MATCH | default=0 |
-| Attribute quiet_discount | + | int | MATCH | default=0 |
-| Attribute reject_reason | + | Optional[str] | MATCH | default=None |
-| Attribute confirmed_at | + | Optional[str] | MATCH | default=None |
-| Attribute ready_at | + | Optional[str] | MATCH | default=None |
-| Attribute closed_at | + | Optional[str] | MATCH | default=None |
-| Method can_move_to | + | can_move_to(self, new_state: OrderState) -> bool | MATCH | — |
-| Method move_to | + | move_to(self, new_state: OrderState) -> None | MATCH | — |
+| Attribute customer_id | + | int | Matches code | FK scalar omitted from DCD; shown by association |
+| Attribute hub_id | + | int | Matches code | FK scalar omitted from DCD; shown by association |
+| Attribute address_id | + | int | Matches code | FK scalar omitted from DCD; shown by association |
+| Attribute state | + | OrderState | Matches code | — |
+| Attribute delivery_fee | + | int | Matches code | — |
+| Attribute idempotency_token | + | str | Matches code | — |
+| Attribute placed_at | + | str | Matches code | — |
+| Attribute lines | + | list[OrderLine] | Matches code | default=field(default_factory=list) |
+| Attribute id | + | Optional[int] | Matches code | default=None |
+| Attribute archived_at | + | Optional[str] | Matches code | default=None |
+| Attribute delivery_address_text | + | str | Matches code | default='' |
+| Attribute distance_km | + | float | Matches code | default=0.0 |
+| Attribute voucher_id | + | Optional[int] | Matches code | FK scalar omitted from DCD; shown by association; default=None |
+| Attribute voucher_discount | + | int | Matches code | default=0 |
+| Attribute quiet_discount | + | int | Matches code | default=0 |
+| Attribute reject_reason | + | Optional[str] | Matches code | default=None |
+| Attribute confirmed_at | + | Optional[str] | Matches code | default=None |
+| Attribute ready_at | + | Optional[str] | Matches code | default=None |
+| Attribute closed_at | + | Optional[str] | Matches code | default=None |
+| Method can_move_to | + | can_move_to(self, new_state: OrderState) -> bool | Matches code | — |
+| Method move_to | + | move_to(self, new_state: OrderState) -> None | Matches code | — |
 
 
 ## Payment
@@ -65,18 +65,18 @@ Responsibility: Hold captured amount C and refund obligations without claiming p
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute order_id | + | int | MATCH | FK scalar omitted from DCD; shown by association |
-| Attribute method | + | PaymentMethod | MATCH | — |
-| Attribute state | + | PaymentState | MATCH | — |
-| Attribute amount | + | int | MATCH | — |
-| Attribute created_at | + | str | MATCH | — |
-| Attribute updated_at | + | Optional[str] | MATCH | default=None |
-| Attribute online_option | + | Optional[OnlineOption] | MATCH | default=None |
-| Attribute provider_ref | + | Optional[str] | MATCH | default=None |
-| Attribute refund_amount | + | int | MATCH | default=0 |
-| Attribute id | + | Optional[int] | MATCH | default=None |
-| Method move_to | + | move_to(self, new_state: PaymentState) -> None | MATCH | — |
-| Method release_for_unfulfilled_order | + | release_for_unfulfilled_order(self) -> None | P4 scoped evidence (P4.4; resolution rows 9, 10, 11, 12) | P4 input: F-02; P2-S01; Set refund_amount=C with REFUND_PENDING; preserve COD VOIDED; no payout operation. |
+| Attribute order_id | + | int | Matches code | FK scalar omitted from DCD; shown by association |
+| Attribute method | + | PaymentMethod | Matches code | — |
+| Attribute state | + | PaymentState | Matches code | — |
+| Attribute amount | + | int | Matches code | — |
+| Attribute created_at | + | str | Matches code | — |
+| Attribute updated_at | + | Optional[str] | Matches code | default=None |
+| Attribute online_option | + | Optional[OnlineOption] | Matches code | default=None |
+| Attribute provider_ref | + | Optional[str] | Matches code | default=None |
+| Attribute refund_amount | + | int | Matches code | default=0 |
+| Attribute id | + | Optional[int] | Matches code | default=None |
+| Method move_to | + | move_to(self, new_state: PaymentState) -> None | Matches code | — |
+| Method release_for_unfulfilled_order | + | release_for_unfulfilled_order(self) -> None | Changed during implementation and tested (P4.4; Table P4-1 rows 9, 10, 11, 12) | P4 input: F-02; P2-S01; Set refund_amount=C with REFUND_PENDING; preserve COD VOIDED; no payout operation. |
 
 
 ## UserAccount
@@ -87,14 +87,14 @@ Responsibility: Hold account identity, role, active flag and optional kitchen-hu
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute id | + | int | MATCH | — |
-| Attribute username | + | str | MATCH | — |
-| Attribute password_hash | + | str | MATCH | — |
-| Attribute display_name | + | str | MATCH | — |
-| Attribute role | + | Role | MATCH | — |
-| Attribute is_active | + | bool | MATCH | default=True |
-| Attribute hub_id | + | Optional[int] | MATCH | FK scalar omitted from DCD; shown by association; default=None |
-| Attribute created_at | + | str | P4 scoped evidence (P4.1; resolution rows 53) | — |
+| Attribute id | + | int | Matches code | — |
+| Attribute username | + | str | Matches code | — |
+| Attribute password_hash | + | str | Matches code | — |
+| Attribute display_name | + | str | Matches code | — |
+| Attribute role | + | Role | Matches code | — |
+| Attribute is_active | + | bool | Matches code | default=True |
+| Attribute hub_id | + | Optional[int] | Matches code | FK scalar omitted from DCD; shown by association; default=None |
+| Attribute created_at | + | str | Changed during implementation and tested (P4.1; Table P4-1 rows 53) | — |
 
 
 ## Hub
@@ -105,15 +105,15 @@ Responsibility: Represent a kitchen location, capacity and fee.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute id | + | int | MATCH | — |
-| Attribute code | + | str | MATCH | — |
-| Attribute name | + | str | MATCH | — |
-| Attribute address_text | + | str | MATCH | — |
-| Attribute latitude | + | float | MATCH | — |
-| Attribute longitude | + | float | MATCH | — |
-| Attribute max_active_orders | + | int | MATCH | — |
-| Attribute base_delivery_fee | + | int | MATCH | — |
-| Attribute archived_at | + | Optional[str] | MATCH | default=None |
+| Attribute id | + | int | Matches code | — |
+| Attribute code | + | str | Matches code | — |
+| Attribute name | + | str | Matches code | — |
+| Attribute address_text | + | str | Matches code | — |
+| Attribute latitude | + | float | Matches code | — |
+| Attribute longitude | + | float | Matches code | — |
+| Attribute max_active_orders | + | int | Matches code | — |
+| Attribute base_delivery_fee | + | int | Matches code | — |
+| Attribute archived_at | + | Optional[str] | Matches code | default=None |
 
 
 ## Customer
@@ -124,14 +124,14 @@ Responsibility: Represent customer identity and permitted online payment choices
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute id | + | int | MATCH | — |
-| Attribute user_id | + | int | MATCH | FK scalar omitted from DCD; shown by association |
-| Attribute full_name | + | str | MATCH | — |
-| Attribute phone | + | Optional[str] | MATCH | default=None |
-| Attribute email | + | Optional[str] | MATCH | default=None |
-| Attribute passport_no | + | Optional[str] | MATCH | default=None |
-| Attribute nationality | + | Optional[str] | MATCH | default=None |
-| Attribute customer_type | + | CustomerType | MATCH | inferred; default=CustomerType.LOCAL |
+| Attribute id | + | int | Matches code | — |
+| Attribute user_id | + | int | Matches code | FK scalar omitted from DCD; shown by association |
+| Attribute full_name | + | str | Matches code | — |
+| Attribute phone | + | Optional[str] | Matches code | default=None |
+| Attribute email | + | Optional[str] | Matches code | default=None |
+| Attribute passport_no | + | Optional[str] | Matches code | default=None |
+| Attribute nationality | + | Optional[str] | Matches code | default=None |
+| Attribute customer_type | + | CustomerType | Matches code | inferred; default=CustomerType.LOCAL |
 
 
 ## DeliveryState
@@ -142,10 +142,10 @@ Responsibility: Hold typed business state and its local rules.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute AWAITING_PICKUP | + | str | MATCH | inferred; default='AWAITING_PICKUP' |
-| Attribute PICKED_UP | + | str | MATCH | inferred; default='PICKED_UP' |
-| Attribute DELIVERED | + | str | MATCH | inferred; default='DELIVERED' |
-| Attribute FAILED | + | str | MATCH | inferred; default='FAILED' |
+| Attribute AWAITING_PICKUP | + | str | Matches code | inferred; default='AWAITING_PICKUP' |
+| Attribute PICKED_UP | + | str | Matches code | inferred; default='PICKED_UP' |
+| Attribute DELIVERED | + | str | Matches code | inferred; default='DELIVERED' |
+| Attribute FAILED | + | str | Matches code | inferred; default='FAILED' |
 
 
 ## OrderState
@@ -156,15 +156,15 @@ Responsibility: Hold typed business state and its local rules.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute PLACED | + | str | MATCH | inferred; default='PLACED' |
-| Attribute CONFIRMED | + | str | MATCH | inferred; default='CONFIRMED' |
-| Attribute REJECTED | + | str | MATCH | inferred; default='REJECTED' |
-| Attribute PREPARING | + | str | MATCH | inferred; default='PREPARING' |
-| Attribute READY | + | str | MATCH | inferred; default='READY' |
-| Attribute OUT_FOR_DELIVERY | + | str | MATCH | inferred; default='OUT_FOR_DELIVERY' |
-| Attribute DELIVERED | + | str | MATCH | inferred; default='DELIVERED' |
-| Attribute DELIVERY_FAILED | + | str | MATCH | inferred; default='DELIVERY_FAILED' |
-| Attribute CANCELLED | + | str | MATCH | inferred; default='CANCELLED' |
+| Attribute PLACED | + | str | Matches code | inferred; default='PLACED' |
+| Attribute CONFIRMED | + | str | Matches code | inferred; default='CONFIRMED' |
+| Attribute REJECTED | + | str | Matches code | inferred; default='REJECTED' |
+| Attribute PREPARING | + | str | Matches code | inferred; default='PREPARING' |
+| Attribute READY | + | str | Matches code | inferred; default='READY' |
+| Attribute OUT_FOR_DELIVERY | + | str | Matches code | inferred; default='OUT_FOR_DELIVERY' |
+| Attribute DELIVERED | + | str | Matches code | inferred; default='DELIVERED' |
+| Attribute DELIVERY_FAILED | + | str | Matches code | inferred; default='DELIVERY_FAILED' |
+| Attribute CANCELLED | + | str | Matches code | inferred; default='CANCELLED' |
 
 
 ## PaymentState
@@ -175,12 +175,12 @@ Responsibility: Hold typed business state and its local rules.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute PENDING | + | str | MATCH | inferred; default='PENDING' |
-| Attribute PAID | + | str | MATCH | inferred; default='PAID' |
-| Attribute FAILED | + | str | MATCH | inferred; default='FAILED' |
-| Attribute VOIDED | + | str | MATCH | inferred; default='VOIDED' |
-| Attribute REFUND_PENDING | + | str | MATCH | inferred; default='REFUND_PENDING' |
-| Attribute REFUNDED | + | str | MATCH | inferred; default='REFUNDED' |
+| Attribute PENDING | + | str | Matches code | inferred; default='PENDING' |
+| Attribute PAID | + | str | Matches code | inferred; default='PAID' |
+| Attribute FAILED | + | str | Matches code | inferred; default='FAILED' |
+| Attribute VOIDED | + | str | Matches code | inferred; default='VOIDED' |
+| Attribute REFUND_PENDING | + | str | Matches code | inferred; default='REFUND_PENDING' |
+| Attribute REFUNDED | + | str | Matches code | inferred; default='REFUNDED' |
 
 
 ## Role
@@ -191,11 +191,11 @@ Responsibility: Hold typed business state and its local rules.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute CUSTOMER | + | str | MATCH | inferred; default='CUSTOMER' |
-| Attribute KITCHEN_STAFF | + | str | MATCH | inferred; default='KITCHEN_STAFF' |
-| Attribute SHIPPER | + | str | MATCH | inferred; default='SHIPPER' |
-| Attribute ADMIN | + | str | MATCH | inferred; default='ADMIN' |
-| Attribute MANAGER | + | str | MATCH | inferred; default='MANAGER' |
+| Attribute CUSTOMER | + | str | Matches code | inferred; default='CUSTOMER' |
+| Attribute KITCHEN_STAFF | + | str | Matches code | inferred; default='KITCHEN_STAFF' |
+| Attribute SHIPPER | + | str | Matches code | inferred; default='SHIPPER' |
+| Attribute ADMIN | + | str | Matches code | inferred; default='ADMIN' |
+| Attribute MANAGER | + | str | Matches code | inferred; default='MANAGER' |
 
 
 ## DeliveryController
@@ -206,21 +206,21 @@ Responsibility: Coordinate authorization, domain decisions and data access.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute deliveries | + | DeliveryDAO | MATCH | inferred |
-| Attribute orders | + | OrderDAO | MATCH | inferred |
-| Attribute payments | + | PaymentDAO | MATCH | inferred |
-| Attribute hubs | + | HubDAO | MATCH | inferred |
-| Attribute customers | + | CustomerDAO | MATCH | inferred |
-| Method board | + | board(self, user_id: int) -> ShipperBoard | MATCH | — |
-| Method get_delivery | + | get_delivery(self, user_id: int, order_id: int) -> DeliveryView | MATCH | — |
+| Attribute deliveries | + | DeliveryDAO | Matches code | inferred |
+| Attribute orders | + | OrderDAO | Matches code | inferred |
+| Attribute payments | + | PaymentDAO | Matches code | inferred |
+| Attribute hubs | + | HubDAO | Matches code | inferred |
+| Attribute customers | + | CustomerDAO | Matches code | inferred |
+| Method board | + | board(self, user_id: int) -> ShipperBoard | Matches code | — |
+| Method get_delivery | + | get_delivery(self, user_id: int, order_id: int) -> DeliveryView | Matches code | — |
 | Method pick_up | + | pick_up(self, user_id: int, order_id: int) -> DeliveryView | P4 scoped evidence (P4.1 + P4.5, P4.4 / P4.5; resolution rows 22, 23, 24) | P4 input: P2-S13; P3-S03; Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete. |
 | Method confirm_delivered | + | confirm_delivered(self, user_id: int, order_id: int, cash_collected: Optional[str]) -> DeliveryView | P4 scoped evidence (P4.1 + P4.5, P4.4 / P4.5; resolution rows 22, 23, 24) | P4 input: P2-S13; P3-S03; Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete. |
 | Method report_failure | + | report_failure(self, user_id: int, order_id: int, reason: str) -> DeliveryView | P4 scoped evidence (P4.1 + P4.5, P4.4 / P4.5; resolution rows 22, 23, 24) | P4 input: F-02; P2-S13; BR-17 full C refund owed and atomic state/amount writes, including COMMIT rollback. |
-| Method _require_shipper | - | _require_shipper(self, user_id: int) -> UserAccount | MATCH | — |
-| Method _delivery | - | _delivery(self, order_id: int) -> Delivery | MATCH | — |
-| Method _own_active_delivery | - | _own_active_delivery(self, shipper: UserAccount, order_id: int) -> Delivery | MATCH | — |
-| Method _parse_cash | - | _parse_cash(raw: Optional[str]) -> Optional[int] | MATCH | — |
-| Method _view | - | _view(self, delivery: Delivery) -> DeliveryView | MATCH | — |
+| Method _require_shipper | - | _require_shipper(self, user_id: int) -> UserAccount | Matches code | — |
+| Method _delivery | - | _delivery(self, order_id: int) -> Delivery | Matches code | — |
+| Method _own_active_delivery | - | _own_active_delivery(self, shipper: UserAccount, order_id: int) -> Delivery | Matches code | — |
+| Method _parse_cash | - | _parse_cash(raw: Optional[str]) -> Optional[int] | Matches code | — |
+| Method _view | - | _view(self, delivery: Delivery) -> DeliveryView | Matches code | — |
 
 
 ## BaseController
@@ -231,11 +231,11 @@ Responsibility: Coordinate authorization, domain decisions and data access.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute conn | + | sqlite3.Connection | MATCH | — |
-| Attribute clock | + | Any | MATCH | inferred |
-| Attribute users | + | UserDAO | MATCH | inferred |
-| Method _now | - | _now(self) -> str | MATCH | — |
-| Method _require_user | - | _require_user(self, user_id: int, *roles: Role, message: str='Your account cannot do this.') -> UserAccount | MATCH | — |
+| Attribute conn | + | sqlite3.Connection | Matches code | — |
+| Attribute clock | + | Any | Matches code | inferred |
+| Attribute users | + | UserDAO | Matches code | inferred |
+| Method _now | - | _now(self) -> str | Matches code | — |
+| Method _require_user | - | _require_user(self, user_id: int, *roles: Role, message: str='Your account cannot do this.') -> UserAccount | Matches code | — |
 
 
 ## controllers.common
@@ -246,8 +246,8 @@ Responsibility: Module functions with their original Python signatures.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Method move_order | + | move_order(orders: OrderDAO, order: Order, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> None | MATCH | — |
-| Method release_payment | + | release_payment(payments: PaymentDAO, order_id: int, now: str) -> Payment | P4 scoped evidence (P4.4; resolution rows 54) | P4 input: F-02; P2-S01; P3-S03; Persist full captured C as refund_amount together with state; changing only the domain object does not save the amount. Check conditional save results in the same transaction. |
+| Method move_order | + | move_order(orders: OrderDAO, order: Order, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> None | Matches code | — |
+| Method release_payment | + | release_payment(payments: PaymentDAO, order_id: int, now: str) -> Payment | Changed during implementation and tested (P4.4; Table P4-1 rows 54) | P4 input: F-02; P2-S01; P3-S03; Persist full captured C as refund_amount together with state; changing only the domain object does not save the amount. Check conditional save results in the same transaction. |
 
 
 ## DeliveryView
@@ -258,12 +258,12 @@ Responsibility: Coordinate authorization, domain decisions and data access.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute delivery | + | Delivery | MATCH | — |
-| Attribute order | + | Order | MATCH | — |
-| Attribute payment | + | Payment | MATCH | — |
-| Attribute hub | + | Hub | MATCH | — |
-| Attribute customer | + | Customer | MATCH | — |
-| Method cash_to_collect | + | cash_to_collect(self) -> int | MATCH | property |
+| Attribute delivery | + | Delivery | Matches code | — |
+| Attribute order | + | Order | Matches code | — |
+| Attribute payment | + | Payment | Matches code | — |
+| Attribute hub | + | Hub | Matches code | — |
+| Attribute customer | + | Customer | Matches code | — |
+| Method cash_to_collect | + | cash_to_collect(self) -> int | Matches code | property |
 
 
 ## ShipperBoard
@@ -274,9 +274,9 @@ Responsibility: Coordinate authorization, domain decisions and data access.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute waiting | + | list[DeliveryView] | MATCH | — |
-| Attribute mine | + | list[DeliveryView] | MATCH | — |
-| Attribute finished | + | list[DeliveryView] | MATCH | — |
+| Attribute waiting | + | list[DeliveryView] | Matches code | — |
+| Attribute mine | + | list[DeliveryView] | Matches code | — |
+| Attribute finished | + | list[DeliveryView] | Matches code | — |
 
 
 ## delivery
@@ -287,11 +287,11 @@ Responsibility: Translate shipper requests and render contact and cash informati
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Method board | + | board() | MATCH | inferred |
-| Method detail | + | detail(order_id: int) | MATCH | inferred |
-| Method pick_up | + | pick_up(order_id: int) | MATCH | inferred |
-| Method delivered | + | delivered(order_id: int) | MATCH | inferred |
-| Method failed | + | failed(order_id: int) | MATCH | inferred |
+| Method board | + | board() | Matches code | inferred |
+| Method detail | + | detail(order_id: int) | Matches code | inferred |
+| Method pick_up | + | pick_up(order_id: int) | Matches code | inferred |
+| Method delivered | + | delivered(order_id: int) | Matches code | inferred |
+| Method failed | + | failed(order_id: int) | Matches code | inferred |
 
 
 ## DeliveryDAO
@@ -302,12 +302,12 @@ Responsibility: Read or write parameterized records.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute conn | + | sqlite3.Connection | MATCH | — |
-| Method get_by_order_id | + | get_by_order_id(self, order_id: int) -> Optional[Delivery] | MATCH | — |
-| Method list_awaiting_pickup | + | list_awaiting_pickup(self) -> list[Delivery] | MATCH | — |
-| Method list_for_shipper | + | list_for_shipper(self, shipper_id: int, state: DeliveryState) -> list[Delivery] | MATCH | — |
-| Method take | + | take(self, order_id: int, shipper_id: int, now: str) -> bool | MATCH | — |
-| Method finish | + | finish(self, order_id: int, shipper_id: int, to_state: DeliveryState, now: str, failure_reason: Optional[str]=None, cash_collected: Optional[int]=None) -> bool | MATCH | — |
+| Attribute conn | + | sqlite3.Connection | Matches code | — |
+| Method get_by_order_id | + | get_by_order_id(self, order_id: int) -> Optional[Delivery] | Matches code | — |
+| Method list_awaiting_pickup | + | list_awaiting_pickup(self) -> list[Delivery] | Matches code | — |
+| Method list_for_shipper | + | list_for_shipper(self, shipper_id: int, state: DeliveryState) -> list[Delivery] | Matches code | — |
+| Method take | + | take(self, order_id: int, shipper_id: int, now: str) -> bool | Matches code | — |
+| Method finish | + | finish(self, order_id: int, shipper_id: int, to_state: DeliveryState, now: str, failure_reason: Optional[str]=None, cash_collected: Optional[int]=None) -> bool | Matches code | — |
 
 
 ## OrderDAO
@@ -318,10 +318,10 @@ Responsibility: Read or write parameterized records.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute conn | + | sqlite3.Connection | MATCH | — |
-| Method get_by_id | + | get_by_id(self, order_id: int) -> Optional[Order] | MATCH | — |
-| Method change_state | + | change_state(self, order_id: int, from_state: OrderState, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> bool | MATCH | — |
-| Method _load | - | _load(self, row: Optional[sqlite3.Row]) -> Optional[Order] | MATCH | — |
+| Attribute conn | + | sqlite3.Connection | Matches code | — |
+| Method get_by_id | + | get_by_id(self, order_id: int) -> Optional[Order] | Matches code | — |
+| Method change_state | + | change_state(self, order_id: int, from_state: OrderState, to_state: OrderState, now: str, reject_reason: Optional[str]=None) -> bool | Matches code | — |
+| Method _load | - | _load(self, row: Optional[sqlite3.Row]) -> Optional[Order] | Matches code | — |
 
 
 ## PaymentDAO
@@ -332,10 +332,10 @@ Responsibility: Read or write parameterized records.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute conn | + | sqlite3.Connection | MATCH | — |
-| Method get_by_order_id | + | get_by_order_id(self, order_id: int) -> Optional[Payment] | MATCH | — |
-| Method change_state | + | change_state(self, order_id: int, from_state: PaymentState, to_state: PaymentState, now: str) -> bool | MATCH | — |
-| Method set_amounts | + | set_amounts(self, order_id: int, amount: int, refund_amount: int, now: str) -> bool | P4 scoped evidence (P4.4; resolution rows 46, 47, 48, 49, 50) | P4 input: F-02; P3-S03; Persist full/partial refund obligations atomically and expose the conditional save outcome. |
+| Attribute conn | + | sqlite3.Connection | Matches code | — |
+| Method get_by_order_id | + | get_by_order_id(self, order_id: int) -> Optional[Payment] | Matches code | — |
+| Method change_state | + | change_state(self, order_id: int, from_state: PaymentState, to_state: PaymentState, now: str) -> bool | Matches code | — |
+| Method set_amounts | + | set_amounts(self, order_id: int, amount: int, refund_amount: int, now: str) -> bool | Changed during implementation and tested (P4.4; Table P4-1 rows 46, 47, 48, 49, 50) | P4 input: F-02; P3-S03; Persist full/partial refund obligations atomically and expose the conditional save outcome. |
 
 
 ## CustomerDAO
@@ -346,8 +346,8 @@ Responsibility: Read or write parameterized records.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute conn | + | sqlite3.Connection | MATCH | — |
-| Method get | + | get(self, customer_id: int) -> Optional[Customer] | MATCH | — |
+| Attribute conn | + | sqlite3.Connection | Matches code | — |
+| Method get | + | get(self, customer_id: int) -> Optional[Customer] | Matches code | — |
 
 
 ## HubDAO
@@ -358,8 +358,8 @@ Responsibility: Read or write parameterized records.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute conn | + | sqlite3.Connection | MATCH | — |
-| Method get_including_archived | + | get_including_archived(self, hub_id: int) -> Optional[Hub] | MATCH | — |
+| Attribute conn | + | sqlite3.Connection | Matches code | — |
+| Method get_including_archived | + | get_including_archived(self, hub_id: int) -> Optional[Hub] | Matches code | — |
 
 
 ## UserDAO
@@ -370,5 +370,5 @@ Responsibility: Read or write parameterized records.
 
 | Element | Visibility | Type / full signature | Status | Notes |
 |---|---|---|---|---|
-| Attribute conn | + | sqlite3.Connection | MATCH | — |
-| Method get_by_id | + | get_by_id(self, user_id: int) -> Optional[UserAccount] | MATCH | — |
+| Attribute conn | + | sqlite3.Connection | Matches code | — |
+| Method get_by_id | + | get_by_id(self, user_id: int) -> Optional[UserAccount] | Matches code | — |

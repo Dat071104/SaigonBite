@@ -165,7 +165,7 @@ class Canvas:
         self.text(35,1080,self.s.get('continuation','Single complete operation view.'),1530)
         self.text(35,1112,'† design target, not yet in code at C0 (see P4 input '+self.s.get('P4_input','none on this view')+').',1530)
         self.text(35,1145,'Figure '+self.s['figure']+'. '+self.s.get('caption',self.s['title'])+' — Author: 722I0004 · AI-assisted (Codex)',1530)
-        self.text(35,1171,'Static / target design · 230 mm landscape · smallest text 9.78 pt · native draw.io / final placement UNTESTED',1530)
+        self.text(35,1171,'SaigonBite design model · Author: 722I0004 · AI-assisted (Codex)',1530)
         self.svg.append('</svg>');out.with_suffix('.svg').write_text('\n'.join(self.svg),encoding='utf-8');self.im.save(out.with_suffix('.png'));ET.indent(self.mx);ET.ElementTree(self.mx).write(out.with_suffix('.drawio'),encoding='utf-8',xml_declaration=True)
         for q in [out.with_suffix('.svg'),out.with_suffix('.drawio')]:ET.parse(q)
         ids={c.get('id') for c in self.root.findall('mxCell')}

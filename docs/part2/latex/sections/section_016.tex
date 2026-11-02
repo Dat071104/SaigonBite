@@ -7,43 +7,43 @@ The table lists one event per row, using the textbook classification: \textbf{ex
 
 \begin{landscape}
 \begingroup\footnotesize
-\begin{longtable}{>{\raggedright\arraybackslash}p{0.1150\linewidth}>{\raggedright\arraybackslash}p{0.1150\linewidth}>{\raggedright\arraybackslash}p{0.1150\linewidth}>{\raggedright\arraybackslash}p{0.1150\linewidth}>{\raggedright\arraybackslash}p{0.1150\linewidth}>{\raggedright\arraybackslash}p{0.1150\linewidth}>{\raggedright\arraybackslash}p{0.1150\linewidth}>{\raggedright\arraybackslash}p{0.1150\linewidth}}
-\# & Event & Trigger & Source & Use case & Response & Destination & Type \\
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1314\linewidth}>{\raggedright\arraybackslash}p{0.1314\linewidth}>{\raggedright\arraybackslash}p{0.1314\linewidth}>{\raggedright\arraybackslash}p{0.1314\linewidth}>{\raggedright\arraybackslash}p{0.1314\linewidth}>{\raggedright\arraybackslash}p{0.1314\linewidth}>{\raggedright\arraybackslash}p{0.1314\linewidth}}
+Event & Trigger & Source & Use case & Response & Destination & Type \\
 \hline\endfirsthead
-\# & Event & Trigger & Source & Use case & Response & Destination & Type \\
+Event & Trigger & Source & Use case & Response & Destination & Type \\
 \hline\endhead
-1 & Customer registers an account & Registration form submitted & Customer & SUC-02 & Validate Local (Vietnamese mobile) or Tourist (passport, nationality, email) fields; create account and customer profile & Customer & External \\
-2 & Customer updates profile or addresses & Profile or address form submitted & Customer & SUC-02 & Save own profile; add, edit or archive an address (Hotel allowed) & Customer & External \\
-3 & User logs in or out & Credentials entered / logout selected & Any human actor & SUC-01 & Start a role session or end it; refuse an inactive account & User & External \\
-4 & Customer browses hubs and menus & Customer opens the order page and selects a hub & Customer & UC-01 & Show active hubs with busy/quiet status and the hub's available listings (\texttt{browseHubs}, \texttt{selectHub}) & Customer & External \\
-5 & Customer requests a quote & Address, items, voucher and payment chosen & Customer & UC-01 & Price items, voucher, distance fee and quiet discount; refuse out-of-range or busy hub and suggest up to three alternatives (\texttt{requestQuote}) & Customer & External \\
-6 & Customer confirms checkout & Customer accepts the full quote & Customer; Payment simulator for ONLINE & UC-01 & Re-check the quote; save one PLACED order with snapshots and payment; replay returns the same order (\texttt{confirmCheckout}) & Customer; Kitchen staff of the hub & External \\
-7 & Online payment is declined & Simulator returns DECLINED during checkout & Payment simulator & UC-01 & Show the decline; create no order, line or payment; allow retry or COD & Customer & External \\
-8 & Customer views orders or receipt & Customer opens My orders or an order & Customer & SUC-03 & Show own order status, receipt and any amount owed; deny other customers' orders (\texttt{viewMyOrders}, \texttt{viewReceipt}) & Customer & External \\
-9 & Customer cancels an order & Cancel selected while PLACED or CONFIRMED & Customer & SUC-04 & Set CANCELLED; withdraw an open offer; void COD or record online refund owed (\texttt{cancelOrder}) & Customer; Kitchen staff & External \\
-10 & Kitchen confirms an order & Staff confirms an own-hub PLACED order & Kitchen staff & UC-05 & Set CONFIRMED (\texttt{confirmOrder}) & Customer & External \\
-11 & Kitchen rejects an order & Staff rejects with a reason & Kitchen staff & UC-05 & Set REJECTED with reason; withdraw an open offer; settle payment (\texttt{rejectOrder}) & Customer & External \\
-12 & Kitchen offers a replacement & A line is unavailable on a PLACED order & Kitchen staff & UC-05 & Save one OFFERED offer with old and new item snapshots; block confirmation (\texttt{offerReplacement}) & Customer & External \\
-13 & Customer accepts a replacement & Customer accepts the open offer & Customer & SUC-03; UC-05 & Replace the line, recalculate totals, record any refund owed; withdraw if the target became invalid (\texttt{acceptReplacement}) & Customer; Kitchen staff & External \\
-14 & Customer declines a replacement & Customer declines the open offer & Customer & SUC-03; UC-05 & Set offer DECLINED and order REJECTED; settle payment (\texttt{declineReplacement}) & Customer; Kitchen staff & External \\
-15 & Kitchen starts preparing & Staff starts a CONFIRMED order & Kitchen staff & SUC-05 & Set PREPARING; cancellation is no longer allowed (\texttt{startPreparing}) & Customer & External \\
-16 & Kitchen marks an order ready & Food is packed & Kitchen staff & SUC-05 & Set READY (\texttt{markReady}) & Shipper; Customer & External \\
-17 & Kitchen changes item availability & An ingredient runs out or returns & Kitchen staff & SUC-06 & Set the own-hub listing AVAILABLE or SOLD\_OUT & Customers browsing that hub & External \\
-18 & Shipper takes a delivery & Shipper picks a READY order from the board & Shipper & UC-02 & Assign the shipper; order OUT\_FOR\_DELIVERY, delivery PICKED\_UP; a competing pickup is refused (\texttt{takeDelivery}) & Shipper; Customer & External \\
-19 & Shipper confirms delivery & Food handed over (cash collected for COD) & Shipper & UC-02 & Order and delivery DELIVERED; COD PAID only when cash equals the total (\texttt{confirmDelivered}) & Customer; Manager (reports) & External \\
-20 & Shipper reports a failed delivery & Customer unreachable or address wrong & Shipper & UC-02 & Order DELIVERY\_FAILED, delivery FAILED with reason; settle payment (\texttt{reportFailure}) & Customer; Manager (reports) & External \\
-21 & Admin maintains hubs and capacity & Hub opened, changed or closed & Admin & UC-03 & Create, update or archive a hub; archive is refused while the hub has open orders (\texttt{createHub}, \texttt{updateHub}, \texttt{archiveHub}) & Admin; Customers (hub list) & External \\
-22 & Admin maintains brands and menu items & Catalogue change & Admin & UC-06 & Create, rename, update or archive brands and items; old orders keep their snapshots & Admin; Customers & External \\
-23 & Admin lists or unlists an item at a hub & Hub menu change & Admin & UC-06 & Create or remove the hub listing and set its availability (\texttt{listItemAtHub}, \texttt{unlistItemAtHub}, \texttt{setListingAvailability}) & Admin; Customers & External \\
-24 & Admin maintains vouchers & Promotion created, changed or ended & Admin & SUC-07 & Create, update or archive a voucher & Customers at checkout & External \\
-25 & Admin maintains user accounts & Staff joins or leaves & Admin & SUC-08 & Create, update, deactivate or reactivate an account; refuse deactivating a shipper with an open delivery & Affected user & External \\
-26 & Admin archives a closed order & Order history clean-up & Admin & SUC-09 & Archive a terminal order; history stays readable & Admin; Manager & External \\
-27 & Manager requests a report & Manager chooses a report and date range & Manager & UC-04 & Return sales, workload or delivery performance; write nothing (\texttt{salesReport}, \texttt{workloadReport}, \texttt{deliveryReport}) & Manager & External \\
-28 & Voucher validity date is reached & Vietnam calendar date passes \texttt{valid\_\allowbreak{}from} or \texttt{valid\_\allowbreak{}until} & Calendar (time) & UC-01; SUC-07 & From that date the voucher is accepted or refused at quote and checkout & Customer & Temporal \\
-29 & Time for the nightly backup & 03:00 Vietnam time (20:00 UTC) every day & Calendar (time) & Deployment (5.2) & Make an online SQLite backup, check integrity, upload it to cloud storage, keep seven local copies & Operator (backup storage) & Temporal \\
-30 & Hub load reaches capacity & A checkout or capacity change makes active orders \ensuremath{\geq} maximum & System state (hub load) & UC-01; UC-03; UC-04 & Hub shows as busy; new checkouts are refused with alternatives; workload report flags it & Customer; Manager & State \\
-31 & Order becomes READY & \texttt{markReady} changes the order state & System state (order) & UC-02 & Create the delivery record AWAITING\_PICKUP so the order appears on every active shipper's board & Shipper & State \\
-32 & Order ends unfulfilled & Order becomes REJECTED, CANCELLED or DELIVERY\_FAILED & System state (order) & UC-02; UC-05; SUC-04 & Void a COD payment or set an online payment to REFUND\_PENDING with the full amount owed & Customer & State \\
+E01 Customer registers an account & Registration form submitted & Customer & SUC-02 & Validate Local (Vietnamese mobile) or Tourist (passport, nationality, email) fields; create account and customer profile & Customer & External \\
+E02 Customer updates profile or addresses & Profile or address form submitted & Customer & SUC-02 & Save own profile; add, edit or archive an address (Hotel allowed) & Customer & External \\
+E03 User logs in or out & Credentials entered / logout selected & Any human actor & SUC-01 & Start a role session or end it; refuse an inactive account & User & External \\
+E04 Customer browses hubs and menus & Customer opens the order page and selects a hub & Customer & UC-01 & Show active hubs with busy/quiet status and the hub's available listings (\texttt{browseHubs}, \texttt{selectHub}) & Customer & External \\
+E05 Customer requests a quote & Address, items, voucher and payment chosen & Customer & UC-01 & Price items, voucher, distance fee and quiet discount; refuse out-of-range or busy hub and suggest up to three alternatives (\texttt{requestQuote}) & Customer & External \\
+E06 Customer confirms checkout & Customer accepts the full quote & Customer; Payment simulator for ONLINE & UC-01 & Re-check the quote; save one PLACED order with snapshots and payment; replay returns the same order (\texttt{confirmCheckout}) & Customer; Kitchen staff of the hub & External \\
+E07 Online payment is declined & Simulator returns DECLINED during checkout & Payment simulator & UC-01 & Show the decline; create no order, line or payment; allow retry or COD & Customer & External \\
+E08 Customer views orders or receipt & Customer opens My orders or an order & Customer & SUC-03 & Show own order status, receipt and any amount owed; deny other customers' orders (\texttt{viewMyOrders}, \texttt{viewReceipt}) & Customer & External \\
+E09 Customer cancels an order & Cancel selected while PLACED or CONFIRMED & Customer & SUC-04 & Set CANCELLED; withdraw an open offer; void COD or record online refund owed (\texttt{cancelOrder}) & Customer; Kitchen staff & External \\
+E10 Kitchen confirms an order & Staff confirms an own-hub PLACED order & Kitchen staff & UC-05 & Set CONFIRMED (\texttt{confirmOrder}) & Customer & External \\
+E11 Kitchen rejects an order & Staff rejects with a reason & Kitchen staff & UC-05 & Set REJECTED with reason; withdraw an open offer; settle payment (\texttt{rejectOrder}) & Customer & External \\
+E12 Kitchen offers a replacement & A line is unavailable on a PLACED order & Kitchen staff & UC-05 & Save one OFFERED offer with old and new item snapshots; block confirmation (\texttt{offerReplacement}) & Customer & External \\
+E13 Customer accepts a replacement & Customer accepts the open offer & Customer & SUC-03; UC-05 & Replace the line, recalculate totals, record any refund owed; withdraw if the target became invalid (\texttt{acceptReplacement}) & Customer; Kitchen staff & External \\
+E14 Customer declines a replacement & Customer declines the open offer & Customer & SUC-03; UC-05 & Set offer DECLINED and order REJECTED; settle payment (\texttt{declineReplacement}) & Customer; Kitchen staff & External \\
+E15 Kitchen starts preparing & Staff starts a CONFIRMED order & Kitchen staff & SUC-05 & Set PREPARING; cancellation is no longer allowed (\texttt{startPreparing}) & Customer & External \\
+E16 Kitchen marks an order ready & Food is packed & Kitchen staff & SUC-05 & Set READY (\texttt{markReady}) & Shipper; Customer & External \\
+E17 Kitchen changes item availability & An ingredient runs out or returns & Kitchen staff & SUC-06 & Set the own-hub listing AVAILABLE or SOLD\_OUT & Customers browsing that hub & External \\
+E18 Shipper takes a delivery & Shipper picks a READY order from the board & Shipper & UC-02 & Assign the shipper; order OUT\_FOR\_DELIVERY, delivery PICKED\_UP; a competing pickup is refused (\texttt{takeDelivery}) & Shipper; Customer & External \\
+E19 Shipper confirms delivery & Food handed over (cash collected for COD) & Shipper & UC-02 & Order and delivery DELIVERED; COD PAID only when cash equals the total (\texttt{confirmDelivered}) & Customer; Manager (reports) & External \\
+E20 Shipper reports a failed delivery & Customer unreachable or address wrong & Shipper & UC-02 & Order DELIVERY\_FAILED, delivery FAILED with reason; settle payment (\texttt{reportFailure}) & Customer; Manager (reports) & External \\
+E21 Admin maintains hubs and capacity & Hub opened, changed or closed & Admin & UC-03 & Create, update or archive a hub; archive is refused while the hub has open orders (\texttt{createHub}, \texttt{updateHub}, \texttt{archiveHub}) & Admin; Customers (hub list) & External \\
+E22 Admin maintains brands and menu items & Catalogue change & Admin & UC-06 & Create, rename, update or archive brands and items; old orders keep their snapshots & Admin; Customers & External \\
+E23 Admin lists or unlists an item at a hub & Hub menu change & Admin & UC-06 & Create or remove the hub listing and set its availability (\texttt{listItemAtHub}, \texttt{unlistItemAtHub}, \texttt{setListingAvailability}) & Admin; Customers & External \\
+E24 Admin maintains vouchers & Promotion created, changed or ended & Admin & SUC-07 & Create, update or archive a voucher & Customers at checkout & External \\
+E25 Admin maintains user accounts & Staff joins or leaves & Admin & SUC-08 & Create, update, deactivate or reactivate an account; refuse deactivating a shipper with an open delivery & Affected user & External \\
+E26 Admin archives a closed order & Order history clean-up & Admin & SUC-09 & Archive a terminal order; history stays readable & Admin; Manager & External \\
+E27 Manager requests a report & Manager chooses a report and date range & Manager & UC-04 & Return sales, workload or delivery performance; write nothing (\texttt{salesReport}, \texttt{workloadReport}, \texttt{deliveryReport}) & Manager & External \\
+E28 Voucher validity date is reached & Vietnam calendar date passes \texttt{valid\_\allowbreak{}from} or \texttt{valid\_\allowbreak{}until} & Calendar (time) & UC-01; SUC-07 & From that date the voucher is accepted or refused at quote and checkout & Customer & Temporal \\
+E29 Time for the nightly backup & 03:00 Vietnam time (20:00 UTC) every day & Calendar (time) & Deployment (5.2) & Make an online SQLite backup, check integrity, upload it to cloud storage, keep seven local copies & Operator (backup storage) & Temporal \\
+E30 Hub load reaches capacity & A checkout or capacity change makes active orders \ensuremath{\geq} maximum & System state (hub load) & UC-01; UC-03; UC-04 & Hub shows as busy; new checkouts are refused with alternatives; workload report flags it & Customer; Manager & State \\
+E31 Order becomes READY & \texttt{markReady} changes the order state & System state (order) & UC-02 & Create the delivery record AWAITING\_PICKUP so the order appears on every active shipper's board & Shipper & State \\
+E32 Order ends unfulfilled & Order becomes REJECTED, CANCELLED or DELIVERY\_FAILED & System state (order) & UC-02; UC-05; SUC-04 & Void a COD payment or set an online payment to REFUND\_PENDING with the full amount owed & Customer & State \\
 \end{longtable}
 \endgroup
 \end{landscape}

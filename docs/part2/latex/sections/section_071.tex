@@ -7,7 +7,7 @@ One typed table per participating class/module follows.
 
 Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex)
 
-C0: 45ac76221b0a103174c7c01d17577e6e49cfd665 \ensuremath{\cdot} Evidence: Static source correspondence only; this is not runtime or test evidence.
+First design commit C0: 45ac762 (24/10/2026). Signatures are compared with the source code; test evidence is in section 5.1.
 
 The tables use the sole shared DCD model at C0. Visibility follows the leading-underscore convention; signatures preserve the AST inventory. * marks an inferred/unannotated type or route signature.  marks a C0 design target (final status in Table P4-1)/C0 design gap (final status in Table P4-1) and does not mean implemented at C0. Domain FK scalar attributes are retained here for mapping but omitted from DCDs in favour of associations.
 
@@ -22,16 +22,16 @@ Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endfirsthead
 Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endhead
-Attribute order\_id & + & int & MATCH & FK scalar omitted from DCD; shown by association \\
-Attribute state & + & DeliveryState & MATCH & --- \\
-Attribute ready\_at & + & str & MATCH & --- \\
-Attribute shipper\_id & + & Optional[int] & MATCH & FK scalar omitted from DCD; shown by association; default=None \\
-Attribute picked\_up\_at & + & Optional[str] & MATCH & default=None \\
-Attribute finished\_at & + & Optional[str] & MATCH & default=None \\
-Attribute failure\_reason & + & Optional[str] & MATCH & default=None \\
-Attribute cash\_collected & + & Optional[int] & MATCH & default=None \\
-Attribute id & + & Optional[int] & MATCH & default=None \\
-Method move\_to & + & move\_to(self, new\_state: DeliveryState) -\textgreater{} None & MATCH & --- \\
+Attribute order\_id & + & int & Matches code & FK scalar omitted from DCD; shown by association \\
+Attribute state & + & DeliveryState & Matches code & --- \\
+Attribute ready\_at & + & str & Matches code & --- \\
+Attribute shipper\_id & + & Optional[int] & Matches code & FK scalar omitted from DCD; shown by association; default=None \\
+Attribute picked\_up\_at & + & Optional[str] & Matches code & default=None \\
+Attribute finished\_at & + & Optional[str] & Matches code & default=None \\
+Attribute failure\_reason & + & Optional[str] & Matches code & default=None \\
+Attribute cash\_collected & + & Optional[int] & Matches code & default=None \\
+Attribute id & + & Optional[int] & Matches code & default=None \\
+Method move\_to & + & move\_to(self, new\_state: DeliveryState) -\textgreater{} None & Matches code & --- \\
 \end{longtable}
 \textbf{Order}
 
@@ -44,27 +44,27 @@ Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endfirsthead
 Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endhead
-Attribute customer\_id & + & int & MATCH & FK scalar omitted from DCD; shown by association \\
-Attribute hub\_id & + & int & MATCH & FK scalar omitted from DCD; shown by association \\
-Attribute address\_id & + & int & MATCH & FK scalar omitted from DCD; shown by association \\
-Attribute state & + & OrderState & MATCH & --- \\
-Attribute delivery\_fee & + & int & MATCH & --- \\
-Attribute idempotency\_token & + & str & MATCH & --- \\
-Attribute placed\_at & + & str & MATCH & --- \\
-Attribute lines & + & list[OrderLine] & MATCH & default=field(default\_factory=list) \\
-Attribute id & + & Optional[int] & MATCH & default=None \\
-Attribute archived\_at & + & Optional[str] & MATCH & default=None \\
-Attribute delivery\_address\_text & + & str & MATCH & default='' \\
-Attribute distance\_km & + & float & MATCH & default=0.0 \\
-Attribute voucher\_id & + & Optional[int] & MATCH & FK scalar omitted from DCD; shown by association; default=None \\
-Attribute voucher\_discount & + & int & MATCH & default=0 \\
-Attribute quiet\_discount & + & int & MATCH & default=0 \\
-Attribute reject\_reason & + & Optional[str] & MATCH & default=None \\
-Attribute confirmed\_at & + & Optional[str] & MATCH & default=None \\
-Attribute ready\_at & + & Optional[str] & MATCH & default=None \\
-Attribute closed\_at & + & Optional[str] & MATCH & default=None \\
-Method can\_move\_to & + & can\_move\_to(self, new\_state: OrderState) -\textgreater{} bool & MATCH & --- \\
-Method move\_to & + & move\_to(self, new\_state: OrderState) -\textgreater{} None & MATCH & --- \\
+Attribute customer\_id & + & int & Matches code & FK scalar omitted from DCD; shown by association \\
+Attribute hub\_id & + & int & Matches code & FK scalar omitted from DCD; shown by association \\
+Attribute address\_id & + & int & Matches code & FK scalar omitted from DCD; shown by association \\
+Attribute state & + & OrderState & Matches code & --- \\
+Attribute delivery\_fee & + & int & Matches code & --- \\
+Attribute idempotency\_token & + & str & Matches code & --- \\
+Attribute placed\_at & + & str & Matches code & --- \\
+Attribute lines & + & list[OrderLine] & Matches code & default=field(default\_factory=list) \\
+Attribute id & + & Optional[int] & Matches code & default=None \\
+Attribute archived\_at & + & Optional[str] & Matches code & default=None \\
+Attribute delivery\_address\_text & + & str & Matches code & default='' \\
+Attribute distance\_km & + & float & Matches code & default=0.0 \\
+Attribute voucher\_id & + & Optional[int] & Matches code & FK scalar omitted from DCD; shown by association; default=None \\
+Attribute voucher\_discount & + & int & Matches code & default=0 \\
+Attribute quiet\_discount & + & int & Matches code & default=0 \\
+Attribute reject\_reason & + & Optional[str] & Matches code & default=None \\
+Attribute confirmed\_at & + & Optional[str] & Matches code & default=None \\
+Attribute ready\_at & + & Optional[str] & Matches code & default=None \\
+Attribute closed\_at & + & Optional[str] & Matches code & default=None \\
+Method can\_move\_to & + & can\_move\_to(self, new\_state: OrderState) -\textgreater{} bool & Matches code & --- \\
+Method move\_to & + & move\_to(self, new\_state: OrderState) -\textgreater{} None & Matches code & --- \\
 \end{longtable}
 \textbf{Payment}
 
@@ -77,18 +77,18 @@ Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endfirsthead
 Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endhead
-Attribute order\_id & + & int & MATCH & FK scalar omitted from DCD; shown by association \\
-Attribute method & + & PaymentMethod & MATCH & --- \\
-Attribute state & + & PaymentState & MATCH & --- \\
-Attribute amount & + & int & MATCH & --- \\
-Attribute created\_at & + & str & MATCH & --- \\
-Attribute updated\_at & + & Optional[str] & MATCH & default=None \\
-Attribute online\_option & + & Optional[OnlineOption] & MATCH & default=None \\
-Attribute provider\_ref & + & Optional[str] & MATCH & default=None \\
-Attribute refund\_amount & + & int & MATCH & default=0 \\
-Attribute id & + & Optional[int] & MATCH & default=None \\
-Method move\_to & + & move\_to(self, new\_state: PaymentState) -\textgreater{} None & MATCH & --- \\
-Method release\_for\_unfulfilled\_order & + & release\_for\_unfulfilled\_order(self) -\textgreater{} None & P4 scoped evidence (P4.4; resolution rows 9, 10, 11, 12) & P4 input: F-02; P2-S01; Set refund\_amount=C with REFUND\_PENDING; preserve COD VOIDED; no payout operation. \\
+Attribute order\_id & + & int & Matches code & FK scalar omitted from DCD; shown by association \\
+Attribute method & + & PaymentMethod & Matches code & --- \\
+Attribute state & + & PaymentState & Matches code & --- \\
+Attribute amount & + & int & Matches code & --- \\
+Attribute created\_at & + & str & Matches code & --- \\
+Attribute updated\_at & + & Optional[str] & Matches code & default=None \\
+Attribute online\_option & + & Optional[OnlineOption] & Matches code & default=None \\
+Attribute provider\_ref & + & Optional[str] & Matches code & default=None \\
+Attribute refund\_amount & + & int & Matches code & default=0 \\
+Attribute id & + & Optional[int] & Matches code & default=None \\
+Method move\_to & + & move\_to(self, new\_state: PaymentState) -\textgreater{} None & Matches code & --- \\
+Method release\_for\_unfulfilled\_order & + & release\_for\_unfulfilled\_order(self) -\textgreater{} None & Changed during implementation and tested (P4.4; Table P4-1 rows 9, 10, 11, 12) & P4 input: F-02; P2-S01; Set refund\_amount=C with REFUND\_PENDING; preserve COD VOIDED; no payout operation. \\
 \end{longtable}
 \textbf{UserAccount}
 
@@ -101,14 +101,14 @@ Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endfirsthead
 Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endhead
-Attribute id & + & int & MATCH & --- \\
-Attribute username & + & str & MATCH & --- \\
-Attribute password\_hash & + & str & MATCH & --- \\
-Attribute display\_name & + & str & MATCH & --- \\
-Attribute role & + & Role & MATCH & --- \\
-Attribute is\_active & + & bool & MATCH & default=True \\
-Attribute hub\_id & + & Optional[int] & MATCH & FK scalar omitted from DCD; shown by association; default=None \\
-Attribute created\_at & + & str & P4 scoped evidence (P4.1; resolution rows 53) & --- \\
+Attribute id & + & int & Matches code & --- \\
+Attribute username & + & str & Matches code & --- \\
+Attribute password\_hash & + & str & Matches code & --- \\
+Attribute display\_name & + & str & Matches code & --- \\
+Attribute role & + & Role & Matches code & --- \\
+Attribute is\_active & + & bool & Matches code & default=True \\
+Attribute hub\_id & + & Optional[int] & Matches code & FK scalar omitted from DCD; shown by association; default=None \\
+Attribute created\_at & + & str & Changed during implementation and tested (P4.1; Table P4-1 rows 53) & --- \\
 \end{longtable}
 \textbf{Hub}
 
@@ -121,15 +121,15 @@ Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endfirsthead
 Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endhead
-Attribute id & + & int & MATCH & --- \\
-Attribute code & + & str & MATCH & --- \\
-Attribute name & + & str & MATCH & --- \\
-Attribute address\_text & + & str & MATCH & --- \\
-Attribute latitude & + & float & MATCH & --- \\
-Attribute longitude & + & float & MATCH & --- \\
-Attribute max\_active\_orders & + & int & MATCH & --- \\
-Attribute base\_delivery\_fee & + & int & MATCH & --- \\
-Attribute archived\_at & + & Optional[str] & MATCH & default=None \\
+Attribute id & + & int & Matches code & --- \\
+Attribute code & + & str & Matches code & --- \\
+Attribute name & + & str & Matches code & --- \\
+Attribute address\_text & + & str & Matches code & --- \\
+Attribute latitude & + & float & Matches code & --- \\
+Attribute longitude & + & float & Matches code & --- \\
+Attribute max\_active\_orders & + & int & Matches code & --- \\
+Attribute base\_delivery\_fee & + & int & Matches code & --- \\
+Attribute archived\_at & + & Optional[str] & Matches code & default=None \\
 \end{longtable}
 \textbf{Customer}
 
@@ -142,14 +142,14 @@ Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endfirsthead
 Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endhead
-Attribute id & + & int & MATCH & --- \\
-Attribute user\_id & + & int & MATCH & FK scalar omitted from DCD; shown by association \\
-Attribute full\_name & + & str & MATCH & --- \\
-Attribute phone & + & Optional[str] & MATCH & default=None \\
-Attribute email & + & Optional[str] & MATCH & default=None \\
-Attribute passport\_no & + & Optional[str] & MATCH & default=None \\
-Attribute nationality & + & Optional[str] & MATCH & default=None \\
-Attribute customer\_type & + & CustomerType & MATCH & inferred; default=CustomerType.LOCAL \\
+Attribute id & + & int & Matches code & --- \\
+Attribute user\_id & + & int & Matches code & FK scalar omitted from DCD; shown by association \\
+Attribute full\_name & + & str & Matches code & --- \\
+Attribute phone & + & Optional[str] & Matches code & default=None \\
+Attribute email & + & Optional[str] & Matches code & default=None \\
+Attribute passport\_no & + & Optional[str] & Matches code & default=None \\
+Attribute nationality & + & Optional[str] & Matches code & default=None \\
+Attribute customer\_type & + & CustomerType & Matches code & inferred; default=CustomerType.LOCAL \\
 \end{longtable}
 \textbf{DeliveryState}
 
@@ -162,10 +162,10 @@ Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endfirsthead
 Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endhead
-Attribute AWAITING\_PICKUP & + & str & MATCH & inferred; default='AWAITING\_PICKUP' \\
-Attribute PICKED\_UP & + & str & MATCH & inferred; default='PICKED\_UP' \\
-Attribute DELIVERED & + & str & MATCH & inferred; default='DELIVERED' \\
-Attribute FAILED & + & str & MATCH & inferred; default='FAILED' \\
+Attribute AWAITING\_PICKUP & + & str & Matches code & inferred; default='AWAITING\_PICKUP' \\
+Attribute PICKED\_UP & + & str & Matches code & inferred; default='PICKED\_UP' \\
+Attribute DELIVERED & + & str & Matches code & inferred; default='DELIVERED' \\
+Attribute FAILED & + & str & Matches code & inferred; default='FAILED' \\
 \end{longtable}
 \textbf{OrderState}
 
@@ -178,15 +178,15 @@ Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endfirsthead
 Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endhead
-Attribute PLACED & + & str & MATCH & inferred; default='PLACED' \\
-Attribute CONFIRMED & + & str & MATCH & inferred; default='CONFIRMED' \\
-Attribute REJECTED & + & str & MATCH & inferred; default='REJECTED' \\
-Attribute PREPARING & + & str & MATCH & inferred; default='PREPARING' \\
-Attribute READY & + & str & MATCH & inferred; default='READY' \\
-Attribute OUT\_FOR\_DELIVERY & + & str & MATCH & inferred; default='OUT\_FOR\_DELIVERY' \\
-Attribute DELIVERED & + & str & MATCH & inferred; default='DELIVERED' \\
-Attribute DELIVERY\_FAILED & + & str & MATCH & inferred; default='DELIVERY\_FAILED' \\
-Attribute CANCELLED & + & str & MATCH & inferred; default='CANCELLED' \\
+Attribute PLACED & + & str & Matches code & inferred; default='PLACED' \\
+Attribute CONFIRMED & + & str & Matches code & inferred; default='CONFIRMED' \\
+Attribute REJECTED & + & str & Matches code & inferred; default='REJECTED' \\
+Attribute PREPARING & + & str & Matches code & inferred; default='PREPARING' \\
+Attribute READY & + & str & Matches code & inferred; default='READY' \\
+Attribute OUT\_FOR\_DELIVERY & + & str & Matches code & inferred; default='OUT\_FOR\_DELIVERY' \\
+Attribute DELIVERED & + & str & Matches code & inferred; default='DELIVERED' \\
+Attribute DELIVERY\_FAILED & + & str & Matches code & inferred; default='DELIVERY\_FAILED' \\
+Attribute CANCELLED & + & str & Matches code & inferred; default='CANCELLED' \\
 \end{longtable}
 \textbf{PaymentState}
 
@@ -199,12 +199,12 @@ Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endfirsthead
 Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endhead
-Attribute \texttt{PENDING} & + & str & MATCH & inferred; default='\texttt{PENDING}' \\
-Attribute PAID & + & str & MATCH & inferred; default='PAID' \\
-Attribute FAILED & + & str & MATCH & inferred; default='FAILED' \\
-Attribute VOIDED & + & str & MATCH & inferred; default='VOIDED' \\
-Attribute REFUND\_PENDING & + & str & MATCH & inferred; default='REFUND\_PENDING' \\
-Attribute REFUNDED & + & str & MATCH & inferred; default='REFUNDED' \\
+Attribute \texttt{PENDING} & + & str & Matches code & inferred; default='\texttt{PENDING}' \\
+Attribute PAID & + & str & Matches code & inferred; default='PAID' \\
+Attribute FAILED & + & str & Matches code & inferred; default='FAILED' \\
+Attribute VOIDED & + & str & Matches code & inferred; default='VOIDED' \\
+Attribute REFUND\_PENDING & + & str & Matches code & inferred; default='REFUND\_PENDING' \\
+Attribute REFUNDED & + & str & Matches code & inferred; default='REFUNDED' \\
 \end{longtable}
 \textbf{Role}
 
@@ -217,11 +217,11 @@ Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endfirsthead
 Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endhead
-Attribute CUSTOMER & + & str & MATCH & inferred; default='CUSTOMER' \\
-Attribute KITCHEN\_STAFF & + & str & MATCH & inferred; default='KITCHEN\_STAFF' \\
-Attribute SHIPPER & + & str & MATCH & inferred; default='SHIPPER' \\
-Attribute ADMIN & + & str & MATCH & inferred; default='ADMIN' \\
-Attribute MANAGER & + & str & MATCH & inferred; default='MANAGER' \\
+Attribute CUSTOMER & + & str & Matches code & inferred; default='CUSTOMER' \\
+Attribute KITCHEN\_STAFF & + & str & Matches code & inferred; default='KITCHEN\_STAFF' \\
+Attribute SHIPPER & + & str & Matches code & inferred; default='SHIPPER' \\
+Attribute ADMIN & + & str & Matches code & inferred; default='ADMIN' \\
+Attribute MANAGER & + & str & Matches code & inferred; default='MANAGER' \\
 \end{longtable}
 \textbf{DeliveryController}
 
@@ -234,21 +234,21 @@ Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endfirsthead
 Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endhead
-Attribute deliveries & + & DeliveryDAO & MATCH & inferred \\
-Attribute orders & + & OrderDAO & MATCH & inferred \\
-Attribute payments & + & PaymentDAO & MATCH & inferred \\
-Attribute hubs & + & HubDAO & MATCH & inferred \\
-Attribute customers & + & CustomerDAO & MATCH & inferred \\
-Method board & + & board(self, user\_id: int) -\textgreater{} ShipperBoard & MATCH & --- \\
-Method get\_delivery & + & get\_delivery(self, user\_id: int, order\_id: int) -\textgreater{} DeliveryView & MATCH & --- \\
+Attribute deliveries & + & DeliveryDAO & Matches code & inferred \\
+Attribute orders & + & OrderDAO & Matches code & inferred \\
+Attribute payments & + & PaymentDAO & Matches code & inferred \\
+Attribute hubs & + & HubDAO & Matches code & inferred \\
+Attribute customers & + & CustomerDAO & Matches code & inferred \\
+Method board & + & board(self, user\_id: int) -\textgreater{} ShipperBoard & Matches code & --- \\
+Method get\_delivery & + & get\_delivery(self, user\_id: int, order\_id: int) -\textgreater{} DeliveryView & Matches code & --- \\
 Method pick\_up & + & pick\_up(self, user\_id: int, order\_id: int) -\textgreater{} DeliveryView & P4 scoped evidence (P4.1 + P4.5, P4.4 / P4.5; resolution rows 22, 23, 24) & P4 input: P2-S13; P3-S03; Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete. \\
 Method confirm\_delivered & + & confirm\_delivered(self, user\_id: int, order\_id: int, cash\_collected: Optional[str]) -\textgreater{} DeliveryView & P4 scoped evidence (P4.1 + P4.5, P4.4 / P4.5; resolution rows 22, 23, 24) & P4 input: P2-S13; P3-S03; Guarded writes must check rowcount and handle busy / commit failure without partial effects; shared helper is currently incomplete. \\
 Method report\_failure & + & report\_failure(self, user\_id: int, order\_id: int, reason: str) -\textgreater{} DeliveryView & P4 scoped evidence (P4.1 + P4.5, P4.4 / P4.5; resolution rows 22, 23, 24) & P4 input: F-02; P2-S13; BR-17 full C refund owed and atomic state/amount writes, including COMMIT rollback. \\
-Method \_require\_shipper & - & \_require\_shipper(self, user\_id: int) -\textgreater{} UserAccount & MATCH & --- \\
-Method \_delivery & - & \_delivery(self, order\_id: int) -\textgreater{} Delivery & MATCH & --- \\
-Method \_own\_active\_delivery & - & \_own\_active\_delivery(self, shipper: UserAccount, order\_id: int) -\textgreater{} Delivery & MATCH & --- \\
-Method \_parse\_cash & - & \_parse\_cash(raw: Optional[str]) -\textgreater{} Optional[int] & MATCH & --- \\
-Method \_view & - & \_view(self, delivery: Delivery) -\textgreater{} DeliveryView & MATCH & --- \\
+Method \_require\_shipper & - & \_require\_shipper(self, user\_id: int) -\textgreater{} UserAccount & Matches code & --- \\
+Method \_delivery & - & \_delivery(self, order\_id: int) -\textgreater{} Delivery & Matches code & --- \\
+Method \_own\_active\_delivery & - & \_own\_active\_delivery(self, shipper: UserAccount, order\_id: int) -\textgreater{} Delivery & Matches code & --- \\
+Method \_parse\_cash & - & \_parse\_cash(raw: Optional[str]) -\textgreater{} Optional[int] & Matches code & --- \\
+Method \_view & - & \_view(self, delivery: Delivery) -\textgreater{} DeliveryView & Matches code & --- \\
 \end{longtable}
 \textbf{BaseController}
 
@@ -261,11 +261,11 @@ Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endfirsthead
 Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endhead
-Attribute conn & + & sqlite3.Connection & MATCH & --- \\
-Attribute clock & + & Any & MATCH & inferred \\
-Attribute users & + & UserDAO & MATCH & inferred \\
-Method \_now & - & \_now(self) -\textgreater{} str & MATCH & --- \\
-Method \_require\_user & - & \_require\_user(self, user\_id: int, *roles: Role, message: str='Your account cannot do this.') -\textgreater{} UserAccount & MATCH & --- \\
+Attribute conn & + & sqlite3.Connection & Matches code & --- \\
+Attribute clock & + & Any & Matches code & inferred \\
+Attribute users & + & UserDAO & Matches code & inferred \\
+Method \_now & - & \_now(self) -\textgreater{} str & Matches code & --- \\
+Method \_require\_user & - & \_require\_user(self, user\_id: int, *roles: Role, message: str='Your account cannot do this.') -\textgreater{} UserAccount & Matches code & --- \\
 \end{longtable}
 \textbf{controllers.common}
 
@@ -278,8 +278,8 @@ Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endfirsthead
 Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endhead
-Method move\_order & + & move\_order(orders: OrderDAO, order: Order, to\_state: OrderState, now: str, reject\_reason: Optional[str]=None) -\textgreater{} None & MATCH & --- \\
-Method release\_payment & + & release\_payment(payments: PaymentDAO, order\_id: int, now: str) -\textgreater{} Payment & P4 scoped evidence (P4.4; resolution rows 54) & P4 input: F-02; P2-S01; P3-S03; Persist full captured C as refund\_amount together with state; changing only the domain object does not save the amount. Check conditional save results in the same transaction. \\
+Method move\_order & + & move\_order(orders: OrderDAO, order: Order, to\_state: OrderState, now: str, reject\_reason: Optional[str]=None) -\textgreater{} None & Matches code & --- \\
+Method release\_payment & + & release\_payment(payments: PaymentDAO, order\_id: int, now: str) -\textgreater{} Payment & Changed during implementation and tested (P4.4; Table P4-1 rows 54) & P4 input: F-02; P2-S01; P3-S03; Persist full captured C as refund\_amount together with state; changing only the domain object does not save the amount. Check conditional save results in the same transaction. \\
 \end{longtable}
 \textbf{DeliveryView}
 
@@ -292,12 +292,12 @@ Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endfirsthead
 Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endhead
-Attribute delivery & + & Delivery & MATCH & --- \\
-Attribute order & + & Order & MATCH & --- \\
-Attribute payment & + & Payment & MATCH & --- \\
-Attribute hub & + & Hub & MATCH & --- \\
-Attribute customer & + & Customer & MATCH & --- \\
-Method cash\_to\_collect & + & cash\_to\_collect(self) -\textgreater{} int & MATCH & property \\
+Attribute delivery & + & Delivery & Matches code & --- \\
+Attribute order & + & Order & Matches code & --- \\
+Attribute payment & + & Payment & Matches code & --- \\
+Attribute hub & + & Hub & Matches code & --- \\
+Attribute customer & + & Customer & Matches code & --- \\
+Method cash\_to\_collect & + & cash\_to\_collect(self) -\textgreater{} int & Matches code & property \\
 \end{longtable}
 \textbf{ShipperBoard}
 
@@ -310,9 +310,9 @@ Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endfirsthead
 Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endhead
-Attribute waiting & + & list[DeliveryView] & MATCH & --- \\
-Attribute mine & + & list[DeliveryView] & MATCH & --- \\
-Attribute finished & + & list[DeliveryView] & MATCH & --- \\
+Attribute waiting & + & list[DeliveryView] & Matches code & --- \\
+Attribute mine & + & list[DeliveryView] & Matches code & --- \\
+Attribute finished & + & list[DeliveryView] & Matches code & --- \\
 \end{longtable}
 \textbf{delivery}
 
@@ -325,11 +325,11 @@ Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endfirsthead
 Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endhead
-Method board & + & board() & MATCH & inferred \\
-Method detail & + & detail(order\_id: int) & MATCH & inferred \\
-Method pick\_up & + & pick\_up(order\_id: int) & MATCH & inferred \\
-Method delivered & + & delivered(order\_id: int) & MATCH & inferred \\
-Method failed & + & failed(order\_id: int) & MATCH & inferred \\
+Method board & + & board() & Matches code & inferred \\
+Method detail & + & detail(order\_id: int) & Matches code & inferred \\
+Method pick\_up & + & pick\_up(order\_id: int) & Matches code & inferred \\
+Method delivered & + & delivered(order\_id: int) & Matches code & inferred \\
+Method failed & + & failed(order\_id: int) & Matches code & inferred \\
 \end{longtable}
 \textbf{DeliveryDAO}
 
@@ -342,12 +342,12 @@ Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endfirsthead
 Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endhead
-Attribute conn & + & sqlite3.Connection & MATCH & --- \\
-Method get\_by\_order\_id & + & get\_by\_order\_id(self, order\_id: int) -\textgreater{} Optional[Delivery] & MATCH & --- \\
-Method list\_awaiting\_pickup & + & list\_awaiting\_pickup(self) -\textgreater{} list[Delivery] & MATCH & --- \\
-Method list\_for\_shipper & + & list\_for\_shipper(self, shipper\_id: int, state: DeliveryState) -\textgreater{} list[Delivery] & MATCH & --- \\
-Method take & + & take(self, order\_id: int, shipper\_id: int, now: str) -\textgreater{} bool & MATCH & --- \\
-Method finish & + & finish(self, order\_id: int, shipper\_id: int, to\_state: DeliveryState, now: str, failure\_reason: Optional[str]=None, cash\_collected: Optional[int]=None) -\textgreater{} bool & MATCH & --- \\
+Attribute conn & + & sqlite3.Connection & Matches code & --- \\
+Method get\_by\_order\_id & + & get\_by\_order\_id(self, order\_id: int) -\textgreater{} Optional[Delivery] & Matches code & --- \\
+Method list\_awaiting\_pickup & + & list\_awaiting\_pickup(self) -\textgreater{} list[Delivery] & Matches code & --- \\
+Method list\_for\_shipper & + & list\_for\_shipper(self, shipper\_id: int, state: DeliveryState) -\textgreater{} list[Delivery] & Matches code & --- \\
+Method take & + & take(self, order\_id: int, shipper\_id: int, now: str) -\textgreater{} bool & Matches code & --- \\
+Method finish & + & finish(self, order\_id: int, shipper\_id: int, to\_state: DeliveryState, now: str, failure\_reason: Optional[str]=None, cash\_collected: Optional[int]=None) -\textgreater{} bool & Matches code & --- \\
 \end{longtable}
 \textbf{OrderDAO}
 
@@ -360,10 +360,10 @@ Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endfirsthead
 Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endhead
-Attribute conn & + & sqlite3.Connection & MATCH & --- \\
-Method get\_by\_id & + & get\_by\_id(self, order\_id: int) -\textgreater{} Optional[Order] & MATCH & --- \\
-Method change\_state & + & change\_state(self, order\_id: int, from\_state: OrderState, to\_state: OrderState, now: str, reject\_reason: Optional[str]=None) -\textgreater{} bool & MATCH & --- \\
-Method \_load & - & \_load(self, row: Optional[sqlite3.Row]) -\textgreater{} Optional[Order] & MATCH & --- \\
+Attribute conn & + & sqlite3.Connection & Matches code & --- \\
+Method get\_by\_id & + & get\_by\_id(self, order\_id: int) -\textgreater{} Optional[Order] & Matches code & --- \\
+Method change\_state & + & change\_state(self, order\_id: int, from\_state: OrderState, to\_state: OrderState, now: str, reject\_reason: Optional[str]=None) -\textgreater{} bool & Matches code & --- \\
+Method \_load & - & \_load(self, row: Optional[sqlite3.Row]) -\textgreater{} Optional[Order] & Matches code & --- \\
 \end{longtable}
 \textbf{PaymentDAO}
 
@@ -376,10 +376,10 @@ Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endfirsthead
 Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endhead
-Attribute conn & + & sqlite3.Connection & MATCH & --- \\
-Method get\_by\_order\_id & + & get\_by\_order\_id(self, order\_id: int) -\textgreater{} Optional[Payment] & MATCH & --- \\
-Method change\_state & + & change\_state(self, order\_id: int, from\_state: PaymentState, to\_state: PaymentState, now: str) -\textgreater{} bool & MATCH & --- \\
-Method set\_amounts & + & set\_amounts(self, order\_id: int, amount: int, refund\_amount: int, now: str) -\textgreater{} bool & P4 scoped evidence (P4.4; resolution rows 46, 47, 48, 49, 50) & P4 input: F-02; P3-S03; Persist full/partial refund obligations atomically and expose the conditional save outcome. \\
+Attribute conn & + & sqlite3.Connection & Matches code & --- \\
+Method get\_by\_order\_id & + & get\_by\_order\_id(self, order\_id: int) -\textgreater{} Optional[Payment] & Matches code & --- \\
+Method change\_state & + & change\_state(self, order\_id: int, from\_state: PaymentState, to\_state: PaymentState, now: str) -\textgreater{} bool & Matches code & --- \\
+Method set\_amounts & + & set\_amounts(self, order\_id: int, amount: int, refund\_amount: int, now: str) -\textgreater{} bool & Changed during implementation and tested (P4.4; Table P4-1 rows 46, 47, 48, 49, 50) & P4 input: F-02; P3-S03; Persist full/partial refund obligations atomically and expose the conditional save outcome. \\
 \end{longtable}
 \textbf{CustomerDAO}
 
@@ -392,8 +392,8 @@ Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endfirsthead
 Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endhead
-Attribute conn & + & sqlite3.Connection & MATCH & --- \\
-Method get & + & get(self, customer\_id: int) -\textgreater{} Optional[Customer] & MATCH & --- \\
+Attribute conn & + & sqlite3.Connection & Matches code & --- \\
+Method get & + & get(self, customer\_id: int) -\textgreater{} Optional[Customer] & Matches code & --- \\
 \end{longtable}
 \textbf{HubDAO}
 
@@ -406,8 +406,8 @@ Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endfirsthead
 Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endhead
-Attribute conn & + & sqlite3.Connection & MATCH & --- \\
-Method get\_including\_archived & + & get\_including\_archived(self, hub\_id: int) -\textgreater{} Optional[Hub] & MATCH & --- \\
+Attribute conn & + & sqlite3.Connection & Matches code & --- \\
+Method get\_including\_archived & + & get\_including\_archived(self, hub\_id: int) -\textgreater{} Optional[Hub] & Matches code & --- \\
 \end{longtable}
 \textbf{UserDAO}
 
@@ -420,6 +420,6 @@ Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endfirsthead
 Element & Visibility & Type / full signature & Status & Notes \\
 \hline\endhead
-Attribute conn & + & sqlite3.Connection & MATCH & --- \\
-Method get\_by\_id & + & get\_by\_id(self, user\_id: int) -\textgreater{} Optional[UserAccount] & MATCH & --- \\
+Attribute conn & + & sqlite3.Connection & Matches code & --- \\
+Method get\_by\_id & + & get\_by\_id(self, user\_id: int) -\textgreater{} Optional[UserAccount] & Matches code & --- \\
 \end{longtable}

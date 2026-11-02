@@ -1,63 +1,43 @@
 \subsubsection*{3.2.5 Final Design Class Diagram}
 \addcontentsline{toc}{subsubsection}{3.2.5 Final Design Class Diagram}
 \pdfbookmark[2]{3.2.5 Final Design Class Diagram}{p7h80}
-All message receivers in the five design sequences are present. Changes from 3.2.2: none in the class/method/association set; the final views repeat the operation-partitioned all-layer diagrams after sequence reconciliation.
+Author: 722I0004 \ensuremath{\cdot} AI-assisted (Claude)
 
+The final design class diagram refines the layer views of 3.2.2 with what the sequence diagrams in 3.2.4 and the implementation settled:
+
+\begin{itemize}
+\item \textbf{One diagram, four layers.} View (Flask blueprint functions with their routes), controller, domain and data access are drawn together, so every message in the sequence diagrams can be followed from the screen to the table.
+
+\item \textbf{Only the members this use case calls.} The sequence diagrams fixed which operations each class must offer; the complete member lists stay in the 3.2.1 tables and 3.2.2 views.
+
+\item \textbf{Signatures from the code.} Parameter names and types are read from the source at the release commit by \texttt{models/\allowbreak{}shared/\allowbreak{}final\_\allowbreak{}dcd.\allowbreak{}py}, so the diagram and the program cannot differ.
+
+\item \textbf{Navigability and persistence.} Dashed arrows show which layer calls which; each DAO has a \guillemotleft{}persists\guillemotright{} link to the entity it stores; domain associations keep their multiplicities from the domain model (2.1.7).
+
+\end{itemize}
+\begin{landscape}
 \begin{figure}[p]
 \centering
-\includegraphics[width=170mm,height=225mm,keepaspectratio]{\detokenize{models/UC-02/dcd_uc02_final_PartA.png}}
-\caption{Figure 3.2.5-A. UC-02 final design classes: Ready board authorization and retrieval --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0098}
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-02/dcd_uc02_final_overview.png}}
+\caption{Figure 3.2.5. UC-02 final design class diagram --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Claude). Vector SVG beside the source (editable source: models/UC-02/dcd\_uc02\_final\_overview.dot)}\label{P7-0615}
 \end{figure}
-\begin{figure}[p]
-\centering
-\includegraphics[width=170mm,height=225mm,keepaspectratio]{\detokenize{models/UC-02/dcd_uc02_final_PartB.png}}
-\caption{Figure 3.2.5-B. UC-02 final design classes: Board row projection --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0099}
-\end{figure}
-\begin{figure}[p]
-\centering
-\includegraphics[width=170mm,height=225mm,keepaspectratio]{\detokenize{models/UC-02/dcd_uc02_final_PartC.png}}
-\caption{Figure 3.2.5-C. UC-02 final design classes: Inspect assignment and access --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0100}
-\end{figure}
-\begin{figure}[p]
-\centering
-\includegraphics[width=170mm,height=225mm,keepaspectratio]{\detokenize{models/UC-02/dcd_uc02_final_PartD.png}}
-\caption{Figure 3.2.5-D. UC-02 final design classes: Delivery contact projection --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0101}
-\end{figure}
-\begin{figure}[p]
-\centering
-\includegraphics[width=170mm,height=225mm,keepaspectratio]{\detokenize{models/UC-02/dcd_uc02_final_PartE.png}}
-\caption{Figure 3.2.5-E. UC-02 final design classes: Atomic pickup and paired Order transition --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0102}
-\end{figure}
-\begin{figure}[p]
-\centering
-\includegraphics[width=170mm,height=225mm,keepaspectratio]{\detokenize{models/UC-02/dcd_uc02_final_PartF.png}}
-\caption{Figure 3.2.5-F. UC-02 final design classes: Successful delivery and paired states --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0103}
-\end{figure}
-\begin{figure}[p]
-\centering
-\includegraphics[width=170mm,height=225mm,keepaspectratio]{\detokenize{models/UC-02/dcd_uc02_final_PartG.png}}
-\caption{Figure 3.2.5-G. UC-02 final design classes: Failure state and full refund obligation --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0104}
-\end{figure}
-\begin{figure}[p]
-\centering
-\includegraphics[width=170mm,height=225mm,keepaspectratio]{\detokenize{models/UC-02/dcd_uc02_final_PartH.png}}
-\caption{Figure 3.2.5-H. UC-02 final design classes: Completion contact and cash projection --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0105}
-\end{figure}
-\begin{figure}[p]
-\centering
-\includegraphics[width=170mm,height=225mm,keepaspectratio]{\detokenize{models/UC-02/dcd_uc02_final_PartI.png}}
-\caption{Figure 3.2.5-I. UC-02 final design classes: Contact and archived-hub projection --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0106}
-\end{figure}
-\begin{figure}[p]
-\centering
-\includegraphics[width=170mm,height=225mm,keepaspectratio]{\detokenize{models/UC-02/dcd_uc02_final_PartJ.png}}
-\caption{Figure 3.2.5-J. UC-02 final design classes: Completion contact projection --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex) \textdagger{} = target at design commit C0; final status in Table P4-1.}\label{P7-0107}
-\end{figure}
-Every received sequence method appears on its actual receiver in the final DCD: blueprint routes, DeliveryController/BaseController helpers, controllers.common functions, domain move\_to/refund behavior and controller value roles. The operation-specific P4 targets describe C0 history; the final DCD does not imply those behaviors already passed at C0. Subsequent evidence is in Table P4-1.
+\end{landscape}
+Behaviour refined between the first design and the final design (each refinement is covered by the tests in 5.1). Every state-changing operation runs in one \texttt{BEGIN IMMEDIATE} transaction and checks the row count of each guarded UPDATE, so a stale page, a guessed ID or a competing user changes nothing.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
+System operation & Refinement in the final design \\
+\hline\endfirsthead
+System operation & Refinement in the final design \\
+\hline\endhead
+\texttt{takeDelivery} & Taking a delivery is a guarded UPDATE: only one of two competing shippers succeeds. \\
+\texttt{confirmDelivered} & Only the assigned shipper can finish; COD cash must equal the order total. \\
+\texttt{reportFailure} & A failed delivery voids COD or records the full online amount as refund owed. \\
+\end{longtable}
+Editable sources: \texttt{models/\allowbreak{}UC-02/\allowbreak{}dcd\_\allowbreak{}uc02\_\allowbreak{}final\_\allowbreak{}overview.\allowbreak{}dot} (Graphviz), with SVG exports beside them.
 
 \textbf{Integration repair evidence}
 
-The diagrams and typed metadata were refreshed against the corrected shared model. Allowed layered dependencies are drawn; the twelve retained dependency-policy entries are documented as static policy checks in report 4.2 and Table P4-1, not as runtime tests. P2-S13/P3-S03 identified C0 targets for guarded writes, commit failures and busy handling; their final scoped evidence is recorded in Table P4-1. Read paths remain read-only. Native draw.io XML and connected edge endpoints are structurally checked; native-app editing and final report placement remain UNTESTED.
+The diagrams and typed metadata were refreshed against the corrected shared model. Allowed layered dependencies are drawn; the twelve retained dependency-policy entries are documented as static policy checks in report 4.2 and Table P4-1, not as runtime tests. P2-S13/P3-S03 identified C0 targets for guarded writes, commit failures and busy handling; their final scoped evidence is recorded in Table P4-1. Read paths remain read-only.
 
 DeliveryController calls the Delivery and Payment domain receivers. The local variable delivery is resolved to Delivery; it is not an upward call to the delivery blueprint.
 

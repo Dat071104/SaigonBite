@@ -14,6 +14,10 @@ Author: 722I0004 · AI-assisted (Claude Sonnet 5.5). Use case description: `docs
 
 Progression: sketch (drawn in Figma by Codex; [images](../ui/UC-01/sketch/README.md); brief `docs/part2/ui/UC-01/sketch_brief.md`) → wireframe → mockup → [prototype]({{LinkFigma}}) → implemented screen. 12 screens: UC-01-S01 (goal), UC-01-S02 (alternative), UC-01-S03 (goal), UC-01-S04 (goal), UC-01-S05 (alternative), UC-01-S06 (goal (online)), UC-01-S07 (alternative), UC-01-S08 (goal), UC-01-S09 (goal), UC-01-S10 (goal), UC-01-S11 (goal), UC-01-S12 (alternative).
 
+![UC-01 sketches](../ui/UC-01/sketch/UC-01_sketch_sheet.png)
+
+Figure 4.3.3-K01. Low-fidelity sketches of UC-01, drawn in Figma (the first step of the UI progression) — Author: 722I0004 · AI-assisted (Codex).
+
 ### UC-01-S01 Choose a kitchen hub
 
 Role customer, 390x844, routes GET /order/hubs, SSD operations OP-13, template `order/hubs.html`.
@@ -239,6 +243,10 @@ Author: 722I0004 · AI-assisted (Claude Sonnet 5.5). Use case description: `docs
 
 Progression: sketch (drawn in Figma by Codex; [images](../ui/UC-05/sketch/README.md); brief `docs/part2/ui/UC-05/sketch_brief.md`) → wireframe → mockup → [prototype]({{LinkFigma}}) → implemented screen. 9 screens: UC-05-S01 (goal), UC-05-S02 (goal), UC-05-S03 (goal), UC-05-S04 (alternative), UC-05-S05 (goal), UC-05-S06 (goal), UC-05-S07 (goal), UC-05-S08 (alternative), UC-05-S09 (alternative).
 
+![UC-05 sketches](../ui/UC-05/sketch/UC-05_sketch_sheet.png)
+
+Figure 4.3.3-K05. Low-fidelity sketches of UC-05, drawn in Figma (the first step of the UI progression) — Author: 722I0004 · AI-assisted (Codex).
+
 ### UC-05-S01 Kitchen board
 
 Role kitchen staff, 1440x900, routes GET /kitchen/, SSD operations OP-19, template `kitchen/board.html`.
@@ -417,6 +425,10 @@ Author: 722I0004 · AI-assisted (Claude Sonnet 5.5). Use case description: `docs
 
 Progression: sketch (drawn in Figma by Codex; [images](../ui/UC-02/sketch/README.md); brief `docs/part2/ui/UC-02/sketch_brief.md`) → wireframe → mockup → [prototype]({{LinkFigma}}) → implemented screen. 7 screens: UC-02-S01 (goal), UC-02-S02 (goal), UC-02-S03 (goal), UC-02-S04 (alternative), UC-02-S05 (alternative), UC-02-S06 (goal), UC-02-S07 (alternative).
 
+![UC-02 sketches](../ui/UC-02/sketch/UC-02_sketch_sheet.png)
+
+Figure 4.3.3-K02. Low-fidelity sketches of UC-02, drawn in Figma (the first step of the UI progression) — Author: 722I0004 · AI-assisted (Codex).
+
 ### UC-02-S01 Deliveries: ready for pickup
 
 Role shipper, 390x844, routes GET /delivery/, SSD operations OP-21, template `delivery/board.html`.
@@ -559,6 +571,10 @@ Author: 722I0004 · AI-assisted (Claude Sonnet 5.5). Use case description: `docs
 
 Progression: sketch (drawn in Figma by Codex; [images](../ui/UC-03/sketch/README.md); brief `docs/part2/ui/UC-03/sketch_brief.md`) → wireframe → mockup → [prototype]({{LinkFigma}}) → implemented screen. 6 screens: UC-03-S01 (goal), UC-03-S02 (goal), UC-03-S03 (goal), UC-03-S04 (goal), UC-03-S05 (alternative), UC-03-S06 (goal).
 
+![UC-03 sketches](../ui/UC-03/sketch/UC-03_sketch_sheet.png)
+
+Figure 4.3.3-K03. Low-fidelity sketches of UC-03, drawn in Figma (the first step of the UI progression) — Author: 722I0004 · AI-assisted (Codex).
+
 ### UC-03-S01 Hubs and kitchen capacity
 
 Role admin, 1440x900, routes GET /admin/hubs, SSD operations OP-23, template `admin/hubs.html`.
@@ -681,6 +697,10 @@ Full comparison, design notes and artifact dates: `docs/part2/ui/UC-03/mockup_vs
 Author: 722I0004 · AI-assisted (Claude Sonnet 5.5). Use case description: `docs/part2/UC-06/description.md`. Package: `docs/part2/ui/UC-06/`.
 
 Progression: sketch (drawn in Figma by Codex; [images](../ui/UC-06/sketch/README.md); brief `docs/part2/ui/UC-06/sketch_brief.md`) → wireframe → mockup → [prototype]({{LinkFigma}}) → implemented screen. 8 screens: UC-06-S01 (goal), UC-06-S02 (goal), UC-06-S03 (goal), UC-06-S04 (goal), UC-06-S05 (alternative), UC-06-S06 (goal), UC-06-S07 (goal), UC-06-S08 (alternative).
+
+![UC-06 sketches](../ui/UC-06/sketch/UC-06_sketch_sheet.png)
+
+Figure 4.3.3-K06. Low-fidelity sketches of UC-06, drawn in Figma (the first step of the UI progression) — Author: 722I0004 · AI-assisted (Codex).
 
 ### UC-06-S01 Brands and dishes
 
@@ -843,6 +863,10 @@ Full comparison, design notes and artifact dates: `docs/part2/ui/UC-06/mockup_vs
 Author: 722I0004 · AI-assisted (Claude Sonnet 5.5). Use case description: `docs/part2/UC-04/description.md`. Package: `docs/part2/ui/UC-04/`.
 
 Progression: sketch (drawn in Figma by Codex; [images](../ui/UC-04/sketch/README.md); brief `docs/part2/ui/UC-04/sketch_brief.md`) → wireframe → mockup → [prototype]({{LinkFigma}}) → implemented screen. 5 screens: UC-04-S01 (goal), UC-04-S02 (goal), UC-04-S03 (goal), UC-04-S04 (alternative), UC-04-S05 (alternative).
+
+![UC-04 sketches](../ui/UC-04/sketch/UC-04_sketch_sheet.png)
+
+Figure 4.3.3-K04. Low-fidelity sketches of UC-04, drawn in Figma (the first step of the UI progression) — Author: 722I0004 · AI-assisted (Codex).
 
 ### UC-04-S01 Sales report
 
