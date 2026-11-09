@@ -124,7 +124,7 @@ Every requirement is traced to the postconditions (PC) or minimum guarantees (MG
 | NFR-06 | UC-01–UC-06; SUC-02–SUC-09 | — | 3/3 pass (JUnit, commit 252ada1) |
 | NFR-07 | UC-01–UC-06; SUC-01–SUC-09 | — | 1/1 pass (JUnit, commit 252ada1) |
 | NFR-08 | UC-01–UC-06; SUC-01–SUC-09 | — | 1/1 pass (JUnit, commit 252ada1); Certificate valid, HTTP → HTTPS 308, Secure/HttpOnly cookies, CSRF rejection leaves the database unchanged (5.2) |
-| NFR-09 | UC-01–UC-06; SUC-01–SUC-09 | — | Partly verified: no horizontal overflow at 390 px on every phone screen and at 360 px on My orders; touch targets ≥ 44 px (4.3.3) |
+| NFR-09 | UC-01–UC-06; SUC-01–SUC-09 | NFR-09 phone-width sweep (`docs/part2/test_report/nfr09_360_2026-11-09/`) | Verified 09/11/2026 at 360 px: 45 of 45 pages without horizontal page scroll and no visible control under 44 px, after refinement R7; the first run found 8 table pages too wide (4.3.3) |
 | NFR-10 | UC-01–UC-06; SUC-01–SUC-09 | — | 1/1 pass (JUnit, commit 252ada1) |
 | NFR-11 | SUC-09; SUC-03; UC-04 | SUC09-PC01, SUC09-PC02 | 7/7 pass (JUnit, commit 252ada1) |
 | NFR-12 | UC-01; UC-02; UC-05; SUC-03; SUC-04; SUC-05 | UC01-MG01, UC01-MG02, UC02-MG01, UC05-MG01, UC05-PC04 | 67/67 pass (JUnit, commit 252ada1) |

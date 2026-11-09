@@ -1,0 +1,38 @@
+digraph G {
+graph [rankdir=TB, nodesep=0.2, ranksep=0.34, fontname="Arial", fontsize=14, pad=0.08, dpi=200, newrank=true];
+node [shape=plain, fontname="Arial", fontsize=14];
+edge [fontname="Arial", fontsize=14, arrowsize=0.9, penwidth=1.1];
+labelloc="t"; labeljust="l"; label=<<B><FONT POINT-SIZE="16">UC-02 Deliver an order</FONT></B><BR ALIGN="LEFT"/><B><FONT POINT-SIZE="14">Final design class diagram, detail sheet A4: DeliveryController, data access (2 of 2)</FONT></B><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">Owner 523K0049 · Author 722I0004 · AI-assisted (Claude)</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14" COLOR="#4A5663">grey dashed: calls or uses</FONT>    <FONT POINT-SIZE="14" COLOR="#7A4FA0">purple dashed: «persists» (DAO writes the entity)</FONT>    <FONT POINT-SIZE="14" COLOR="#00796B">teal dotted: «loads» (DAO only reads it)</FONT>    <BR ALIGN="LEFT"/>>;
+subgraph cluster_controller { label=<<B>Controller layer («control»)</B>>; labeljust="l"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=14; margin=5;
+  { rank=same; "DeliveryController"; }
+  "DeliveryController" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#EAF5EA"><TR><TD><FONT POINT-SIZE="14"><B>DeliveryController</B></FONT></TD></TR></TABLE>>];
+}
+subgraph cluster_dao { label=<<B>Data access layer</B>>; labeljust="l"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=14; margin=5;
+  { rank=same; "OrderDAO"; "PaymentDAO"; }
+  { rank=same; "UserDAO"; }
+  "OrderDAO" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="0" BGCOLOR="white"><TR><TD BGCOLOR="#F2ECF8" CELLPADDING="3"><FONT POINT-SIZE="14">«DAO»</FONT><BR/><FONT POINT-SIZE="14"><B>OrderDAO</B></FONT></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT" CELLPADDING="3"><FONT POINT-SIZE="14">+ _load(row: sqlite3.Row | None): Order | None</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">+ change_state(order_id: int,</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">&#160;&#160;&#160;&#160;&#160;&#160;&#160;from_state:&#160;OrderState,</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">&#160;&#160;&#160;&#160;&#160;&#160;&#160;to_state:&#160;OrderState,&#160;now:&#160;str,</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">&#160;&#160;&#160;&#160;&#160;&#160;&#160;reject_reason:&#160;str&#160;|&#160;None):&#160;bool</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">+ get_by_id(order_id: int): Order | None</FONT><BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+  "PaymentDAO" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="0" BGCOLOR="white"><TR><TD BGCOLOR="#F2ECF8" CELLPADDING="3"><FONT POINT-SIZE="14">«DAO»</FONT><BR/><FONT POINT-SIZE="14"><B>PaymentDAO</B></FONT></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT" CELLPADDING="3"><FONT POINT-SIZE="14">+ change_state(order_id: int,</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">&#160;&#160;&#160;&#160;&#160;&#160;&#160;from_state:&#160;PaymentState,</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">&#160;&#160;&#160;&#160;&#160;&#160;&#160;to_state:&#160;PaymentState,&#160;now:&#160;str):&#160;bool</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">+ get_by_order_id(order_id: int): Payment | None</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">+ set_amounts(order_id: int, amount: int,</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">&#160;&#160;&#160;&#160;&#160;&#160;&#160;refund_amount:&#160;int,&#160;now:&#160;str):&#160;bool</FONT><BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+  "UserDAO" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="0" BGCOLOR="white"><TR><TD BGCOLOR="#F2ECF8" CELLPADDING="3"><FONT POINT-SIZE="14">«DAO»</FONT><BR/><FONT POINT-SIZE="14"><B>UserDAO</B></FONT></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT" CELLPADDING="3"><FONT POINT-SIZE="14">+ get_by_id(user_id: int): UserAccount | None</FONT><BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+}
+"DeliveryController" -> "OrderDAO" [style=invis];
+"OrderDAO" -> "UserDAO" [style=invis];
+subgraph cluster_domain { label=<<B>Domain layer («entity»)</B>>; labeljust="l"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=14; margin=5;
+  { rank=same; "Delivery"; "Order"; "OrderLine"; "Payment"; "UserAccount"; }
+  "Delivery" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF6E0"><TR><TD><FONT POINT-SIZE="14"><B>Delivery</B></FONT></TD></TR></TABLE>>];
+  "Order" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF6E0"><TR><TD><FONT POINT-SIZE="14"><B>Order</B></FONT></TD></TR></TABLE>>];
+  "OrderLine" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF6E0"><TR><TD><FONT POINT-SIZE="14"><B>OrderLine</B></FONT></TD></TR></TABLE>>];
+  "Payment" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF6E0"><TR><TD><FONT POINT-SIZE="14"><B>Payment</B></FONT></TD></TR></TABLE>>];
+  "UserAccount" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF6E0"><TR><TD><FONT POINT-SIZE="14"><B>UserAccount</B></FONT></TD></TR></TABLE>>];
+}
+"UserDAO" -> "Delivery" [style=invis];
+"DeliveryController" -> "Delivery" [style=dashed, arrowhead=vee, color="#4A5663"];
+"DeliveryController" -> "Order" [style=dashed, arrowhead=vee, color="#4A5663"];
+"DeliveryController" -> "OrderDAO" [style=dashed, arrowhead=vee, color="#4A5663"];
+"DeliveryController" -> "Payment" [style=dashed, arrowhead=vee, color="#4A5663"];
+"DeliveryController" -> "PaymentDAO" [style=dashed, arrowhead=vee, color="#4A5663"];
+"DeliveryController" -> "UserDAO" [style=dashed, arrowhead=vee, color="#4A5663"];
+"OrderDAO" -> "Order" [style=dashed, arrowhead=vee, color="#7A4FA0", fontcolor="#7A4FA0", xlabel="«persists»"];
+"OrderDAO" -> "OrderLine" [style=dotted, arrowhead=vee, color="#00796B", fontcolor="#00796B", xlabel="«loads»"];
+"PaymentDAO" -> "Payment" [style=dashed, arrowhead=vee, color="#7A4FA0", fontcolor="#7A4FA0", xlabel="«persists»"];
+"UserDAO" -> "UserAccount" [style=dotted, arrowhead=vee, color="#00796B", fontcolor="#00796B", xlabel="«loads»"];
+}

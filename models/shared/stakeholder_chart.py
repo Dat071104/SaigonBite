@@ -182,35 +182,9 @@ def main():
     if direction != "LR":
         raise RuntimeError(f"Expected balanced LR layout, got {direction} ({achieved:.2f})")
     ox = 50
-    oy = 100
-    bands = {
-        "operations": (ox + positions["operations"][0], oy + positions["operations"][1], 600, 280),
-        "admin_insight": (ox + positions["admin_insight"][0], oy + positions["admin_insight"][1], 600, 280),
-        "external": (ox + positions["external"][0], oy + positions["external"][1], 600, 280),
-    }
-    system = (ox + positions["ofd_platform"][0], oy, 580, 960)
-    page_w, page_h = 1460, 1160
-    img = Image.new("RGB", (page_w, page_h), WHITE)
-    draw = ImageDraw.Draw(img)
-    svg = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{page_w}" height="{page_h}" viewBox="0 0 {page_w} {page_h}">',
-           '<defs><marker id="arrow" markerWidth="12" markerHeight="10" refX="10" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#185695"/></marker></defs>']
-    mxfile = ET.Element("mxfile", {"host": "app.diagrams.net", "version": "24.7.17", "type": "device"})
-    diagram = ET.SubElement(mxfile, "diagram", {"id": "stakeholder-map", "name": "Stakeholders"})
-    model = ET.SubElement(diagram, "mxGraphModel", {"dx": str(page_w), "dy": str(page_h), "grid": "1",
-        "gridSize": "10", "guides": "1", "tooltips": "1", "connect": "1", "arrows": "1",
-        "fold": "1", "page": "1", "pageScale": "1", "pageWidth": str(page_w),
-        "pageHeight": str(page_h), "math": "0", "shadow": "0"})
-    root = ET.SubElement(model, "root")
-    ET.SubElement(root, "mxCell", {"id": "0"})
-    ET.SubElement(root, "mxCell", {"id": "1", "parent": "0"})
-
-    # Page title and framing note.
-    draw.text((50, 22), "SaigonBite client stakeholders", font=font(42, True), fill=BLUE)
-    draw.text((50, 75), "Grouped by OFDH interaction; formal reporting lines are not assumed.", font=font(28), fill=MUTED)
-    add_text_svg(svg, 50, 22, ["SaigonBite client stakeholders"], 42, color=BLUE, bold=True)
-    add_text_svg(svg, 50, 75, ["Grouped by OFDH interaction; formal reporting lines are not assumed."], 28, color=MUTED)
-
-    # Three stakeholder group cards, positioned by the skill layout helper.
+    oy = 125
+    BODY, LH, SLH = 30, 38, 36
+    meas = ImageDraw.Draw(Image.new("RGB", (10, 10), WHITE))
     group_data = {
         "operations": ("Operations", [
             "Owner / management — oversight",
@@ -228,6 +202,53 @@ def main():
             "External payment provider — context only; this release uses a simulator",
         ]),
     }
+    services = [
+        ("Customer journey", "UC-01 · SUC-02–04 — quote, pay, track / receipt, cancel"),
+        ("Kitchen and delivery", "UC-05 · SUC-05–06 — confirm / reject / replace, prepare / ready, availability"),
+        ("Shipper delivery", "UC-02 — pick up ready orders; record delivery, COD cash or failure"),
+        ("Administration", "UC-03 / UC-06 · SUC-01 / SUC-07–09 — hubs, catalogue, access, vouchers, accounts, archive"),
+        ("Management reports", "UC-04 — sales, workload and delivery performance"),
+    ]
+    band_w = 600
+    group_lines = {gid: [ln for item in items for ln in wrap_lines(meas, "• " + item, font(BODY), band_w - 56)]
+                   for gid, (_t, items) in group_data.items()}
+    band_h = {gid: 70 + len(lns) * LH + 26 for gid, lns in group_lines.items()}
+    sys_w = 580
+    card_w0 = sys_w - 48
+    svc_lines = [wrap_lines(meas, body, font(BODY), card_w0 - 38) for _t, body in services]
+    card_hs = [55 + len(l) * SLH + 18 for l in svc_lines]
+    svc_total = 120 + sum(card_hs) + 4 * 18 + 26
+    band_total = sum(band_h.values()) + 2 * 40
+    SH = max(svc_total, band_total)
+    bgap = (SH - sum(band_h.values())) / 2
+    bands = {}
+    yy0 = oy
+    for gid in ["operations", "admin_insight", "external"]:
+        bands[gid] = (ox, round(yy0), band_w, band_h[gid])
+        yy0 += band_h[gid] + bgap
+    system = (ox + positions["ofd_platform"][0], oy, sys_w, round(SH))
+    page_w, page_h = 1460, round(oy + SH + 90)
+    img = Image.new("RGB", (page_w, page_h), WHITE)
+    draw = ImageDraw.Draw(img)
+    svg = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{page_w}" height="{page_h}" viewBox="0 0 {page_w} {page_h}">',
+           '<defs><marker id="arrow" markerWidth="12" markerHeight="10" refX="10" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#185695"/></marker></defs>']
+    mxfile = ET.Element("mxfile", {"host": "app.diagrams.net", "version": "24.7.17", "type": "device"})
+    diagram = ET.SubElement(mxfile, "diagram", {"id": "stakeholder-map", "name": "Stakeholders"})
+    model = ET.SubElement(diagram, "mxGraphModel", {"dx": str(page_w), "dy": str(page_h), "grid": "1",
+        "gridSize": "10", "guides": "1", "tooltips": "1", "connect": "1", "arrows": "1",
+        "fold": "1", "page": "1", "pageScale": "1", "pageWidth": str(page_w),
+        "pageHeight": str(page_h), "math": "0", "shadow": "0"})
+    root = ET.SubElement(model, "root")
+    ET.SubElement(root, "mxCell", {"id": "0"})
+    ET.SubElement(root, "mxCell", {"id": "1", "parent": "0"})
+
+    # Page title and framing note.
+    draw.text((50, 22), "SaigonBite client stakeholders", font=font(42, True), fill=BLUE)
+    draw.text((50, 75), "Grouped by OFDH interaction; formal reporting lines are not assumed.", font=font(30), fill=MUTED)
+    add_text_svg(svg, 50, 22, ["SaigonBite client stakeholders"], 42, color=BLUE, bold=True)
+    add_text_svg(svg, 50, 75, ["Grouped by OFDH interaction; formal reporting lines are not assumed."], 30, color=MUTED)
+
+    # Three stakeholder group cards, positioned by the skill layout helper.
     for group_id, (title, items) in group_data.items():
         x, y, w, h = bands[group_id]
         draw.rounded_rectangle((x, y, x + w, y + h), radius=18, fill=PALE, outline=STROKE, width=3)
@@ -236,18 +257,15 @@ def main():
         draw.text((x + 24, y + 18), title, font=font(34, True), fill=HEADING)
         add_text_svg(svg, x + 24, y + 18, [title], 34, color=HEADING, bold=True)
         add_drawio_text(root, group_id + "_title", x + 24, y + 18, w - 48, 44, [title], 34, True, HEADING)
-        body_font = font(28)
-        lines = []
-        for item in items:
-            wrapped = wrap_lines(draw, "• " + item, body_font, w - 56)
-            lines.extend(wrapped)
+        body_font = font(BODY)
+        lines = group_lines[group_id]
         line_y = y + 70
-        line_height = 34
+        line_height = LH
         for line in lines:
             draw.text((x + 26, line_y), line, font=body_font, fill=TEXT)
-            add_text_svg(svg, x + 26, line_y, [line], 28, color=TEXT)
+            add_text_svg(svg, x + 26, line_y, [line], BODY, color=TEXT)
             line_y += line_height
-        add_drawio_text(root, group_id + "_body", x + 26, y + 68, w - 52, h - 80, lines, 28, False, TEXT)
+        add_drawio_text(root, group_id + "_body", x + 26, y + 68, w - 52, h - 80, lines, BODY, False, TEXT)
 
     # One system boundary with five matching interaction areas.
     sx, sy, sw, sh = system
@@ -255,26 +273,19 @@ def main():
     add_rect_svg(svg, sx, sy, sw, sh, WHITE, BLUE, 20, 5)
     add_rect_drawio(root, "ofd_platform", sx, sy, sw, sh, WHITE, BLUE, True, 4)
     draw.text((sx + 28, sy + 22), "SaigonBite OFDH", font=font(42, True), fill=BLUE)
-    draw.text((sx + 28, sy + 74), "Shared order and operating records", font=font(28), fill=MUTED)
+    draw.text((sx + 28, sy + 74), "Shared order and operating records", font=font(30), fill=MUTED)
     add_text_svg(svg, sx + 28, sy + 22, ["SaigonBite OFDH"], 42, color=BLUE, bold=True)
-    add_text_svg(svg, sx + 28, sy + 74, ["Shared order and operating records"], 28, color=MUTED)
+    add_text_svg(svg, sx + 28, sy + 74, ["Shared order and operating records"], 30, color=MUTED)
     add_drawio_text(root, "ofd_title", sx + 28, sy + 22, sw - 56, 50, ["SaigonBite OFDH"], 42, True, BLUE)
-    add_drawio_text(root, "ofd_subtitle", sx + 28, sy + 73, sw - 56, 38, ["Shared order and operating records"], 28, False, MUTED)
+    add_drawio_text(root, "ofd_subtitle", sx + 28, sy + 73, sw - 56, 38, ["Shared order and operating records"], 30, False, MUTED)
 
-    services = [
-        ("Customer journey", "UC-01 · SUC-02–04 — quote, pay, track / receipt, cancel"),
-        ("Kitchen and delivery", "UC-05 · SUC-05–06 — confirm / reject / replace, prepare / ready, availability"),
-        ("Shipper delivery", "UC-02 — pick up ready orders; record delivery, COD cash or failure"),
-        ("Administration", "UC-03 / UC-06 · SUC-01 / SUC-07–09 — hubs, catalogue, access, vouchers, accounts, archive"),
-        ("Management reports", "UC-04 — sales, workload and delivery performance"),
-    ]
-    service_y = [sy + 120 + i * 150 for i in range(5)]
+    svc_gap = (sh - 120 - 26 - sum(card_hs)) / 4
     card_x, card_w = sx + 24, sw - 48
+    cy = sy + 120
     for i, (title, body) in enumerate(services):
-        x, y = card_x, service_y[i]
-        card_h = 166 if i == 3 else 132
-        if i == 4:
-            y += 34
+        x, y = card_x, round(cy)
+        card_h = card_hs[i]
+        cy += card_h + svc_gap
         draw.rounded_rectangle((x, y, x + card_w, y + card_h), radius=12, fill=PALE2, outline=GRID, width=2)
         add_rect_svg(svg, x, y, card_w, card_h, PALE2, GRID, 12, 2)
         add_rect_drawio(root, f"service_{i+1}", x, y, card_w, card_h, PALE2, GRID, True, 1)
@@ -282,23 +293,23 @@ def main():
         title_lines = [title]
         add_text_svg(svg, x + 18, y + 12, title_lines, 31, color=HEADING, bold=True)
         add_drawio_text(root, f"service_{i+1}_title", x + 18, y + 12, card_w - 36, 38, title_lines, 31, True, HEADING)
-        body_lines = wrap_lines(draw, body, font(27), card_w - 38)
+        body_lines = svc_lines[i]
         for line_index, line in enumerate(body_lines):
-            yy = y + 55 + line_index * 32
-            draw.text((x + 19, yy), line, font=font(27), fill=TEXT)
-            add_text_svg(svg, x + 19, yy, [line], 27, color=TEXT)
+            yy = y + 55 + line_index * SLH
+            draw.text((x + 19, yy), line, font=font(BODY), fill=TEXT)
+            add_text_svg(svg, x + 19, yy, [line], BODY, color=TEXT, line_height=SLH)
         add_drawio_text(root, f"service_{i+1}_body", x + 19, y + 54, card_w - 38,
-                        card_h - 58, body_lines, 27, False, TEXT)
+                        card_h - 58, body_lines, BODY, False, TEXT)
 
     # Interaction links route in the gap between role groups and the system.
     op = bands["operations"]
     ad = bands["admin_insight"]
     ex = bands["external"]
-    edges = [
-        ("operations", "operations_link", [(op[0]+op[2], op[1]+op[3]//2), (710, op[1]+op[3]//2), (710, sy+405), (sx, sy+405)], "operate", 585, op[1]+op[3]//2-35, (sy+405-sy)/sh),
-        ("admin_insight", "admin_link", [(ad[0]+ad[2], ad[1]+ad[3]//2), (750, ad[1]+ad[3]//2), (750, sy+705), (sx, sy+705)], "administer / review", 584, ad[1]+ad[3]//2-35, (sy+705-sy)/sh),
-        ("external", "external_link", [(ex[0]+ex[2], ex[1]+ex[3]//2), (790, ex[1]+ex[3]//2), (790, sy+205), (sx, sy+205)], "order / payment", 584, ex[1]+ex[3]//2-35, (sy+205-sy)/sh),
-    ]
+    edges = []
+    for gid, eid, lab in [("operations", "operations_link", "operate"), ("admin_insight", "admin_link", "administer / review"), ("external", "external_link", "order / payment")]:
+        bx, by, bw, bh = bands[gid]
+        yc = by + bh // 2
+        edges.append((gid, eid, [(bx + bw, yc), (sx, yc)], lab, 585, yc - 35, (yc - sy) / sh))
     for source_id, edge_id, points, label, lx, ly, entry_y in edges:
         for start, end in zip(points, points[1:]):
             draw.line((start, end), fill=HEADING, width=4)
@@ -312,9 +323,10 @@ def main():
 
 
     credit = "Author: 722I0004 · AI-assisted (Codex)"
-    draw.text((50, 1092), credit, font=font(26, True), fill=MUTED)
-    add_text_svg(svg, 50, 1092, [credit], 26, color=MUTED, bold=True)
-    add_drawio_text(root, "diagram_author", 50, 1092, 850, 34, [credit], 26, True, MUTED)
+    ay = round(oy + SH + 30)
+    draw.text((50, ay), credit, font=font(30, True), fill=MUTED)
+    add_text_svg(svg, 50, ay, [credit], 30, color=MUTED, bold=True)
+    add_drawio_text(root, "diagram_author", 50, ay, 850, 38, [credit], 30, True, MUTED)
 
     svg.append("</svg>")
     ET.indent(mxfile, space="  ")

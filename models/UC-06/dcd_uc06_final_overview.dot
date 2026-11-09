@@ -1,44 +1,46 @@
 digraph G {
-graph [rankdir=TB, nodesep=0.15, ranksep=0.5, fontname="Arial", fontsize=16, pad=0.2, dpi=200];
-node [shape=plain, fontname="Arial", fontsize=13];
-edge [fontname="Arial", fontsize=12];
-labelloc="t"; label=<<B>UC-06 Maintain brands, menu items and hub listings — final design class diagram</B><BR/><FONT POINT-SIZE="13">Owner 523K0050 · Author 722I0004 · AI-assisted (Claude) · signatures from the code at the release commit</FONT>>;
-subgraph cluster_view { label=<<B>View layer (Flask blueprints, templates)</B>>; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=15;
+graph [rankdir=TB, nodesep=0.2, ranksep=0.34, fontname="Arial", fontsize=14, pad=0.08, dpi=200, newrank=true];
+node [shape=plain, fontname="Arial", fontsize=14];
+edge [fontname="Arial", fontsize=14, arrowsize=0.9, penwidth=1.1];
+labelloc="t"; labeljust="l"; label=<<B><FONT POINT-SIZE="16">UC-06 Maintain brands, menu items and hub listings</FONT></B><BR ALIGN="LEFT"/><B><FONT POINT-SIZE="14">Final design class diagram, overview (class names only)</FONT></B><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">Owner 523K0050 · Author 722I0004 · AI-assisted (Claude)</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14" COLOR="#4A5663">grey dashed: calls or uses</FONT>    <BR ALIGN="LEFT"/><FONT POINT-SIZE="14" COLOR="#B07A00">amber: association (multiplicities in the domain model, 2.1.7)</FONT>    <BR ALIGN="LEFT"/><FONT POINT-SIZE="14" COLOR="#7A4FA0">purple dashed: «persists» (DAO writes the entity)</FONT>    <BR ALIGN="LEFT"/><FONT POINT-SIZE="14" COLOR="#00796B">teal dotted: «loads» (DAO only reads it)</FONT>    <BR ALIGN="LEFT"/>>;
+subgraph cluster_view { label=<<B>View layer («boundary»)</B>>; labeljust="l"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=14; margin=5;
   { rank=same; "bp_admin"; }
-  "bp_admin" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3" BGCOLOR="white"><TR><TD BGCOLOR="#E8F1FA" BALIGN="CENTER"><FONT POINT-SIZE="12">«boundary»</FONT><BR/><B>admin views</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT"> </TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ archive_brand() POST /admin/brands/&lt;int:brand_id&gt;/archive<BR ALIGN="LEFT"/>+ archive_item() POST /admin/items/&lt;int:item_id&gt;/archive<BR ALIGN="LEFT"/>+ catalogue() GET /admin/menu<BR ALIGN="LEFT"/>+ create_brand() POST /admin/brands<BR ALIGN="LEFT"/>+ edit_item() GET/POST /admin/items/&lt;int:item_id&gt;<BR ALIGN="LEFT"/>+ hub_item_availability() POST /admin/hubs/&lt;int:hub_id&gt;/menu/&lt;int:item_id&gt;/availability<BR ALIGN="LEFT"/>+ hub_menu() GET /admin/hubs/&lt;int:hub_id&gt;/menu<BR ALIGN="LEFT"/>+ list_item() POST /admin/hubs/&lt;int:hub_id&gt;/menu<BR ALIGN="LEFT"/>+ new_item() GET/POST /admin/items/new<BR ALIGN="LEFT"/>+ rename_brand() POST /admin/brands/&lt;int:brand_id&gt;<BR ALIGN="LEFT"/>+ unlist_item() POST /admin/hubs/&lt;int:hub_id&gt;/menu/&lt;int:item_id&gt;/remove<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+  "bp_admin" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#E8F1FA"><TR><TD><FONT POINT-SIZE="14"><B>admin views</B></FONT></TD></TR></TABLE>>];
 }
-subgraph cluster_controller { label=<<B>Controller layer (one use-case controller)</B>>; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=15;
+subgraph cluster_controller { label=<<B>Controller layer («control»)</B>>; labeljust="l"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=14; margin=5;
   { rank=same; "MenuController"; }
-  "MenuController" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3" BGCOLOR="white"><TR><TD BGCOLOR="#EAF5EA" BALIGN="CENTER"><FONT POINT-SIZE="12">«control»</FONT><BR/><B>MenuController</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT"> </TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ archive_brand(user_id: int, brand_id: int): Brand<BR ALIGN="LEFT"/>+ archive_item(user_id: int, item_id: int): MenuItem<BR ALIGN="LEFT"/>+ create_brand(user_id: int, name: str): Brand<BR ALIGN="LEFT"/>+ create_item(user_id: int,<BR ALIGN="LEFT"/>        form: Mapping[str, str]): MenuItem<BR ALIGN="LEFT"/>+ list_catalogue(user_id: int,<BR ALIGN="LEFT"/>        hub_id: int | None): dict[str, object]<BR ALIGN="LEFT"/>+ list_item_at_hub(user_id: int, hub_id: int,<BR ALIGN="LEFT"/>        item_id: int, available: bool): None<BR ALIGN="LEFT"/>+ rename_brand(user_id: int, brand_id: int,<BR ALIGN="LEFT"/>        name: str): Brand<BR ALIGN="LEFT"/>+ set_availability(user_id: int, hub_id: int,<BR ALIGN="LEFT"/>        item_id: int, available: bool): None<BR ALIGN="LEFT"/>+ unlist_item_at_hub(user_id: int,<BR ALIGN="LEFT"/>        hub_id: int, item_id: int): None<BR ALIGN="LEFT"/>+ update_item(user_id: int, item_id: int,<BR ALIGN="LEFT"/>        form: Mapping[str, str]): MenuItem<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+  "MenuController" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#EAF5EA"><TR><TD><FONT POINT-SIZE="14"><B>MenuController</B></FONT></TD></TR></TABLE>>];
 }
-subgraph cluster_domain { label=<<B>Domain layer (entities and value objects)</B>>; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=15;
-  { rank=same; "Brand"; "Hub"; "HubMenuItem"; "MenuItem"; "UserAccount"; }
-  "Brand" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3" BGCOLOR="white"><TR><TD BGCOLOR="#FFF6E0" BALIGN="CENTER"><FONT POINT-SIZE="12">«entity»</FONT><BR/><B>Brand</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">id: int<BR ALIGN="LEFT"/>name: str<BR ALIGN="LEFT"/>archived_at: str | None<BR ALIGN="LEFT"/></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT"> </TD></TR></TABLE>>];
-  "Hub" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3" BGCOLOR="white"><TR><TD BGCOLOR="#FFF6E0" BALIGN="CENTER"><FONT POINT-SIZE="12">«entity»</FONT><BR/><B>Hub</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">id: int<BR ALIGN="LEFT"/>code: str<BR ALIGN="LEFT"/>name: str<BR ALIGN="LEFT"/>(read only in this use case)<BR ALIGN="LEFT"/></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT"> </TD></TR></TABLE>>];
-  "HubMenuItem" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3" BGCOLOR="white"><TR><TD BGCOLOR="#FFF6E0" BALIGN="CENTER"><FONT POINT-SIZE="12">«entity»</FONT><BR/><B>HubMenuItem</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">item: MenuItem<BR ALIGN="LEFT"/>is_available: bool<BR ALIGN="LEFT"/></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT"> </TD></TR></TABLE>>];
-  "MenuItem" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3" BGCOLOR="white"><TR><TD BGCOLOR="#FFF6E0" BALIGN="CENTER"><FONT POINT-SIZE="12">«entity»</FONT><BR/><B>MenuItem</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">id: int<BR ALIGN="LEFT"/>brand_name: str<BR ALIGN="LEFT"/>name: str<BR ALIGN="LEFT"/>description: str<BR ALIGN="LEFT"/>price: int<BR ALIGN="LEFT"/>archived_at: str | None<BR ALIGN="LEFT"/></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT"> </TD></TR></TABLE>>];
-  "UserAccount" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3" BGCOLOR="white"><TR><TD BGCOLOR="#FFF6E0" BALIGN="CENTER"><FONT POINT-SIZE="12">«entity»</FONT><BR/><B>UserAccount</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">id: int<BR ALIGN="LEFT"/>(read only in this use case)<BR ALIGN="LEFT"/></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT"> </TD></TR></TABLE>>];
-}
-subgraph cluster_dao { label=<<B>Data access layer (DAO per table)</B>>; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=15;
+"bp_admin" -> "MenuController" [style=invis];
+subgraph cluster_dao { label=<<B>Data access layer («DAO»)</B>>; labeljust="l"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=14; margin=5;
   { rank=same; "HubDAO"; "MenuDAO"; "UserDAO"; }
-  "HubDAO" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3" BGCOLOR="white"><TR><TD BGCOLOR="#F2ECF8" BALIGN="CENTER"><FONT POINT-SIZE="12">«DAO»</FONT><BR/><B>HubDAO</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT"> </TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ get_including_archived(hub_id: int): Hub | None<BR ALIGN="LEFT"/>+ list_all(): list[Hub]<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
-  "MenuDAO" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3" BGCOLOR="white"><TR><TD BGCOLOR="#F2ECF8" BALIGN="CENTER"><FONT POINT-SIZE="12">«DAO»</FONT><BR/><B>MenuDAO</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT"> </TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ add_listing(hub_id: int, item_id: int,<BR ALIGN="LEFT"/>        available: bool): None<BR ALIGN="LEFT"/>+ archive_brand(brand_id: int, now: str): bool<BR ALIGN="LEFT"/>+ archive_item(item_id: int, now: str): bool<BR ALIGN="LEFT"/>+ brand_name_exists(name: str,<BR ALIGN="LEFT"/>        except_id: int | None): bool<BR ALIGN="LEFT"/>+ get_brand(brand_id: int): Brand | None<BR ALIGN="LEFT"/>+ get_item(item_id: int): MenuItem | None<BR ALIGN="LEFT"/>+ insert_brand(name: str): int<BR ALIGN="LEFT"/>+ insert_item(item: MenuItem): int<BR ALIGN="LEFT"/>+ is_listed(hub_id: int, item_id: int): bool<BR ALIGN="LEFT"/>+ item_name_exists(brand_id: int, name: str,<BR ALIGN="LEFT"/>        except_id: int | None): bool<BR ALIGN="LEFT"/>+ list_brands(): list[Brand]<BR ALIGN="LEFT"/>+ list_hub_items(hub_id: int): list[HubMenuItem]<BR ALIGN="LEFT"/>+ list_items(): list[MenuItem]<BR ALIGN="LEFT"/>+ remove_listing(hub_id: int, item_id: int): bool<BR ALIGN="LEFT"/>+ rename_brand(brand_id: int, name: str): bool<BR ALIGN="LEFT"/>+ set_available(hub_id: int, item_id: int,<BR ALIGN="LEFT"/>        available: bool): bool<BR ALIGN="LEFT"/>+ update_item(item: MenuItem): bool<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
-  "UserDAO" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3" BGCOLOR="white"><TR><TD BGCOLOR="#F2ECF8" BALIGN="CENTER"><FONT POINT-SIZE="12">«DAO»</FONT><BR/><B>UserDAO</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT"> </TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ get_by_id(user_id: int): UserAccount | None<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+  "HubDAO" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#F2ECF8"><TR><TD><FONT POINT-SIZE="14"><B>HubDAO</B></FONT></TD></TR></TABLE>>];
+  "MenuDAO" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#F2ECF8"><TR><TD><FONT POINT-SIZE="14"><B>MenuDAO</B></FONT></TD></TR></TABLE>>];
+  "UserDAO" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#F2ECF8"><TR><TD><FONT POINT-SIZE="14"><B>UserDAO</B></FONT></TD></TR></TABLE>>];
 }
-"bp_admin" -> "MenuController" [style=invis, weight=5];
-"MenuController" -> "Brand" [style=invis, weight=5];
-"Brand" -> "HubDAO" [style=invis, weight=5];
-"MenuController" -> "HubDAO" [style=dashed, arrowhead=vee, color="#5B6B7A"];
-"MenuController" -> "MenuDAO" [style=dashed, arrowhead=vee, color="#5B6B7A"];
-"MenuController" -> "UserDAO" [style=dashed, arrowhead=vee, color="#5B6B7A"];
-"bp_admin" -> "MenuController" [style=dashed, arrowhead=vee, color="#5B6B7A"];
-"MenuDAO" -> "Brand" [style=dashed, arrowhead=vee, dir=back, color="#7A4FA0", xlabel="«persists»", fontcolor="#7A4FA0", constraint=false];
-"HubDAO" -> "Hub" [style=dashed, arrowhead=vee, dir=back, color="#7A4FA0", xlabel="«persists»", fontcolor="#7A4FA0", constraint=false];
-"MenuDAO" -> "HubMenuItem" [style=dashed, arrowhead=vee, dir=back, color="#7A4FA0", xlabel="«persists»", fontcolor="#7A4FA0", constraint=false];
-"MenuDAO" -> "MenuItem" [style=dashed, arrowhead=vee, dir=back, color="#7A4FA0", xlabel="«persists»", fontcolor="#7A4FA0", constraint=false];
-"UserDAO" -> "UserAccount" [style=dashed, arrowhead=vee, dir=back, color="#7A4FA0", xlabel="«persists»", fontcolor="#7A4FA0", constraint=false];
-"Hub" -> "HubMenuItem" [arrowhead=vee, dir=both, arrowtail=none, taillabel="1", headlabel="0..*", label="listings", color="#B07A00", constraint=false];
-"HubMenuItem" -> "MenuItem" [arrowhead=vee, dir=both, arrowtail=none, taillabel="0..*", headlabel="1", label="item", color="#B07A00", constraint=false];
-"Brand" -> "MenuItem" [arrowhead=vee, dir=both, arrowtail=none, taillabel="1", headlabel="0..*", label="offers", color="#B07A00", constraint=false];
-"UserAccount" -> "Hub" [arrowhead=vee, dir=both, arrowtail=none, taillabel="0..*", headlabel="0..1", label="kitchen hub", color="#B07A00", constraint=false];
+"MenuController" -> "HubDAO" [style=invis];
+subgraph cluster_domain { label=<<B>Domain layer («entity»)</B>>; labeljust="l"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=14; margin=5;
+  { rank=same; "Brand"; "Hub"; "HubMenuItem"; }
+  { rank=same; "MenuItem"; "UserAccount"; }
+  "Brand" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF6E0"><TR><TD><FONT POINT-SIZE="14"><B>Brand</B></FONT></TD></TR></TABLE>>];
+  "Hub" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF6E0"><TR><TD><FONT POINT-SIZE="14"><B>Hub</B></FONT></TD></TR></TABLE>>];
+  "HubMenuItem" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF6E0"><TR><TD><FONT POINT-SIZE="14"><B>HubMenuItem</B></FONT></TD></TR></TABLE>>];
+  "MenuItem" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF6E0"><TR><TD><FONT POINT-SIZE="14"><B>MenuItem</B></FONT></TD></TR></TABLE>>];
+  "UserAccount" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF6E0"><TR><TD><FONT POINT-SIZE="14"><B>UserAccount</B></FONT></TD></TR></TABLE>>];
+}
+"HubDAO" -> "Brand" [style=invis];
+"Brand" -> "MenuItem" [style=invis];
+"HubDAO" -> "Hub" [style=dotted, arrowhead=vee, color="#00796B", fontcolor="#00796B", xlabel="«loads»"];
+"MenuController" -> "HubDAO" [style=dashed, arrowhead=vee, color="#4A5663"];
+"MenuController" -> "MenuDAO" [style=dashed, arrowhead=vee, color="#4A5663"];
+"MenuController" -> "UserDAO" [style=dashed, arrowhead=vee, color="#4A5663"];
+"MenuDAO" -> "Brand" [style=dashed, arrowhead=vee, color="#7A4FA0", fontcolor="#7A4FA0", xlabel="«persists»"];
+"MenuDAO" -> "HubMenuItem" [style=dashed, arrowhead=vee, color="#7A4FA0", fontcolor="#7A4FA0", xlabel="«persists»"];
+"MenuDAO" -> "MenuItem" [style=dashed, arrowhead=vee, color="#7A4FA0", fontcolor="#7A4FA0", xlabel="«persists»"];
+"UserDAO" -> "UserAccount" [style=dotted, arrowhead=vee, color="#00796B", fontcolor="#00796B", xlabel="«loads»"];
+"bp_admin" -> "MenuController" [style=dashed, arrowhead=vee, color="#4A5663"];
+"Hub" -> "HubMenuItem" [arrowhead=vee, dir=both, arrowtail=none, color="#B07A00", fontcolor="#B07A00", constraint=false];
+"HubMenuItem" -> "MenuItem" [arrowhead=vee, dir=both, arrowtail=none, color="#B07A00", fontcolor="#B07A00", constraint=false];
+"Brand" -> "MenuItem" [arrowhead=vee, dir=both, arrowtail=none, color="#B07A00", fontcolor="#B07A00", constraint=false];
+"UserAccount" -> "Hub" [arrowhead=vee, dir=both, arrowtail=none, color="#B07A00", fontcolor="#B07A00", constraint=false];
 }

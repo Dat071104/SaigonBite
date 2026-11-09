@@ -187,7 +187,7 @@ Figure 3.5.2.v.R12. UC-05 all navigation / multiplicities — Author: 722I0004 �
 
 ## 3.5.4 OOD with Sequence Diagram
 
-Each SSD occurrence has its own operation sequence. Actor → actual blueprint module → controller → domain / typed value. The UC-01 local simulator is described separately. No DAO/SQL lifeline is present. Synchronous calls use closed filled arrowheads; dashed open arrows carry results. Actual `alt`, `opt` and `break` rectangles enclose the messages they govern, including self-call paths. Inside an outcome `alt`, separately guarded regions have mutually exclusive conditions. Denial breaks terminate the current interaction; a continuation retains the same request and lifelines. Successful mutation results follow all atomic saves and COMMIT, whose DAO details remain in 4.3.2. Attribute/property reads are notes. Implicit dataclass «create» is not a business operation. Persistence is loaded/saved through data access — see 4.3.2.
+Each SSD occurrence has its own operation sequence. Actor → actual blueprint module → controller → domain / typed value. The UC-01 local simulator is described separately. No DAO/SQL lifeline is present. Synchronous calls use closed filled arrowheads; dashed open arrows carry results. Actual `alt`, `opt` and `break` rectangles enclose the messages they govern, including self-call paths. Inside an outcome `alt`, separately guarded regions have mutually exclusive conditions. Denial breaks terminate the current interaction; a continuation retains the same request and lifelines. Successful mutation results follow all atomic saves and COMMIT, whose DAO details remain in 4.3.2. Attribute/property reads are notes. Implicit dataclass «create» is not a business operation. Persistence is loaded/saved through data access; see 4.3.2.
 
 acceptReplacement Parts A–C preserve stale refusal before mutation, then exclusive invalid-target withdrawal versus valid-target replacement. Invalid-target outcome returns only a committed withdrawal/reason or controlled failure; it never executes replace_line. Only the valid-target continuation can return acceptedOrderAndAmounts after successful atomic save and COMMIT. rejectOrder and declineReplacement Parts A/B now return `rejectedOrder` and `rejectedOrderAndAmounts`, respectively, inside the committed branch; failed saves return refusal/controlledFailure with rollback. No result implies implementation or a measured transaction guarantee.
 
@@ -318,20 +318,44 @@ Figure 3.5.4.OP-06B. UC-05 declineReplacement — Part B — Author: 722I0004 ·
 ## 3.5.5 Final Design Class Diagram
 Author: 722I0004 · AI-assisted (Claude)
 
-The final design class diagram refines the layer views of 3.5.2 with what the sequence diagrams in 3.5.4 and the implementation settled: UC-05 is served by two controllers, so the final diagram is drawn in two parts, one per controller; classes shared by both parts appear in each.
+The final design class diagram refines the layer views of 3.5.2 with what the sequence diagrams in 3.5.4 and the implementation settled. UC-05 is served by two controllers (KitchenController and OrderTrackingController), so the detail sheets are drawn per controller (A for KitchenController, B for OrderTrackingController); classes shared by both appear on both. Figure 3.5.5A is an overview of all classes; the detail sheets after it give the members of one controller at a time.
 
-- **One diagram, four layers.** View (Flask blueprint functions with their routes), controller, domain and data access are drawn together, so every message in the sequence diagrams can be followed from the screen to the table.
+- **Overview first, then detail sheets.** Figure 3.5.5A shows every class of the four layers by name, with the calls, the «persists» and «loads» links and the domain associations, drawn as plain lines; their multiplicities and navigability are in the domain views of 3.5.2 and the domain model (2.1.7), because the labels pile up at the small name boxes. The detail sheets leave the associations out. The members are too many to print readably on the same page, so the detail sheets take one controller at a time and show the view functions that call it and the DAOs and domain classes it uses, with member signatures. A controller that needs more than one sheet has them numbered (A1, A2 and so on); each caption says what the sheet shows. Each figure is laid out for its page so that the estimated smallest text is 9 pt or more.
 - **Only the members this use case calls.** The sequence diagrams fixed which operations each class must offer; the complete member lists stay in the 3.5.1 tables and 3.5.2 views.
-- **Signatures from the code.** Parameter names and types are read from the source at the release commit by `models/shared/final_dcd.py`, so the diagram and the program cannot differ.
-- **Navigability and persistence.** Dashed arrows show which layer calls which; each DAO has a «persists» link to the entity it stores; domain associations keep their multiplicities from the domain model (2.1.7).
+- **Signatures read from the code.** Parameter names and types are read from the source by `models/shared/final_dcd.py` when the figures are generated, and each member is matched with the operation rows of the design model. This is a cross-check at generation time, not a guarantee: the figures must be regenerated after a code change.
+- **Navigability and persistence.** Layers run top to bottom (view, controller, data access, domain) and the dashed arrows run the same way: view to controller, controller to the DAOs and domain classes it uses, and DAO to the entity it maps. «persists» marks a DAO that writes the entity's table in this use case (an INSERT, UPDATE or DELETE in a method the use case calls); «loads» marks one that only reads it. The arrow points from the DAO to the entity, so the domain layer does not depend on data access. Domain associations keep their multiplicities from the domain model (2.1.7).
 
-![UC-05 final design class diagram — part A: KitchenController](../../../models/UC-05/dcd_uc05_final_overview_PartA.png)
+![UC-05 final design class diagram, overview (class names only)](../../../models/UC-05/dcd_uc05_final_overview.png)
 
-Figure 3.5.5A. UC-05 final design class diagram — part A: KitchenController — Author: 722I0004 · AI-assisted (Claude).
+Figure 3.5.5A. UC-05 final design class diagram, overview (class names only) — Author: 722I0004 · AI-assisted (Claude).
 
-![UC-05 final design class diagram — part B: OrderTrackingController](../../../models/UC-05/dcd_uc05_final_overview_PartB.png)
+![UC-05 final design class diagram, detail sheet A1 (KitchenController, view and controller)](../../../models/UC-05/dcd_uc05_final_detail_A1.png)
 
-Figure 3.5.5B. UC-05 final design class diagram — part B: OrderTrackingController — Author: 722I0004 · AI-assisted (Claude).
+Figure 3.5.5B. UC-05 final design class diagram, detail sheet A1 (KitchenController, view and controller) — Author: 722I0004 · AI-assisted (Claude).
+
+![UC-05 final design class diagram, detail sheet A2 (KitchenController, controller and domain)](../../../models/UC-05/dcd_uc05_final_detail_A2.png)
+
+Figure 3.5.5C. UC-05 final design class diagram, detail sheet A2 (KitchenController, controller and domain) — Author: 722I0004 · AI-assisted (Claude).
+
+![UC-05 final design class diagram, detail sheet A3 (KitchenController, data access)](../../../models/UC-05/dcd_uc05_final_detail_A3.png)
+
+Figure 3.5.5D. UC-05 final design class diagram, detail sheet A3 (KitchenController, data access) — Author: 722I0004 · AI-assisted (Claude).
+
+![UC-05 final design class diagram, detail sheet B1 (OrderTrackingController, view and controller)](../../../models/UC-05/dcd_uc05_final_detail_B1.png)
+
+Figure 3.5.5E. UC-05 final design class diagram, detail sheet B1 (OrderTrackingController, view and controller) — Author: 722I0004 · AI-assisted (Claude).
+
+![UC-05 final design class diagram, detail sheet B2 (OrderTrackingController, controller and domain)](../../../models/UC-05/dcd_uc05_final_detail_B2.png)
+
+Figure 3.5.5F. UC-05 final design class diagram, detail sheet B2 (OrderTrackingController, controller and domain) — Author: 722I0004 · AI-assisted (Claude).
+
+![UC-05 final design class diagram, detail sheet B3 (OrderTrackingController, data access, part 1 of 2)](../../../models/UC-05/dcd_uc05_final_detail_B3.png)
+
+Figure 3.5.5G. UC-05 final design class diagram, detail sheet B3 (OrderTrackingController, data access, part 1 of 2) — Author: 722I0004 · AI-assisted (Claude).
+
+![UC-05 final design class diagram, detail sheet B4 (OrderTrackingController, data access, part 2 of 2)](../../../models/UC-05/dcd_uc05_final_detail_B4.png)
+
+Figure 3.5.5H. UC-05 final design class diagram, detail sheet B4 (OrderTrackingController, data access, part 2 of 2) — Author: 722I0004 · AI-assisted (Claude).
 
 Behaviour refined between the first design and the final design (each refinement is covered by the tests in 5.1). Every state-changing operation runs in one `BEGIN IMMEDIATE` transaction and checks the row count of each guarded UPDATE, so a stale page, a guessed ID or a competing user changes nothing.
 
@@ -342,4 +366,4 @@ Behaviour refined between the first design and the final design (each refinement
 | `rejectOrder, declineReplacement` | Rejection records the full online amount as refund owed and withdraws an open offer. |
 | `viewReplacement` | The customer sees the old and new line and the new total before answering. |
 
-Editable sources: `models/UC-05/dcd_uc05_final_overview_PartA.dot` and `dcd_uc05_final_overview_PartB.dot` (Graphviz), with SVG exports beside them.
+Editable sources: `models/UC-05/dcd_uc05_final_overview.dot`, `models/UC-05/dcd_uc05_final_detail_A1.dot`, `models/UC-05/dcd_uc05_final_detail_A2.dot`, `models/UC-05/dcd_uc05_final_detail_A3.dot`, `models/UC-05/dcd_uc05_final_detail_B1.dot`, `models/UC-05/dcd_uc05_final_detail_B2.dot`, `models/UC-05/dcd_uc05_final_detail_B3.dot` and `models/UC-05/dcd_uc05_final_detail_B4.dot` (Graphviz, generated by `models/shared/final_dcd.py`), with SVG exports beside them.

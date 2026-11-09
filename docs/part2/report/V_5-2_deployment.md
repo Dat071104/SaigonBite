@@ -18,7 +18,7 @@ Figure 5.2. Deployment diagram of the demonstration system — Author: 722I0004 
 | Database | SQLite in WAL mode on a 30 GiB persistent disk mounted at `/srv/saigonbite/data` | One file database matches the course stack; the disk survives container and VM restarts |
 | Backup | Nightly online backup at 03:00 Vietnam time with an integrity check, copied to a Cloud Storage bucket; seven local copies; daily disk snapshots | Recovery does not depend on the VM itself |
 | Access | Firewall opens only ports 80 and 443; SSH only through Google IAP; the application secret is generated on the VM (file mode 600) and never stored in Git | Small attack surface; no secret in the repository (NFR-07) |
-| Release | The Git tag `v0.9-part2` identifies the submitted code; the VM runs the tagged release (runtime code unchanged since commit 252ada1) | The report, tests and the running site refer to the same version |
+| Release | The Git tag `v0.9-part2` (GitHub release of the same name) identifies the submitted code. The VM was deployed on 28/10/2026 from tag `p6-deploy-20261028` (commit 55df8ae). Since then the Python code, `db/`, the Dockerfile, `docker-compose.yml` and `requirements.txt` are unchanged; the only runtime change is the stylesheet refinement R5 of 09/11/2026 (phone-width tables, NFR-09, 4.3.3), which reaches the VM by redeploying the tag as in C below | The report, tests and the running site refer to the same version |
 
 ## Instructions
 

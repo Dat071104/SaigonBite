@@ -283,3 +283,22 @@ table.data td:first-child a { white-space: nowrap; }
    danger colour (A6: destructive actions use danger and ask for confirmation) -------------------------- */
 button.danger-outline { background: transparent; color: var(--danger); border-color: var(--danger); }
 button.danger-outline:hover { background: var(--danger-bg); color: var(--danger); border-color: var(--danger); }
+
+/* ---- 09/11 refinement R7 (NFR-09 at 360 px): admin, kitchen-availability and report tables scrolled the
+   whole page sideways (measured 388-743 px wide on a 360 px screen). On a phone each data table now
+   scrolls inside its own box, like R3, and links inside table rows get the 44 px tap height. ---------- */
+@media (max-width: 599px) {
+  /* The edge shadows (scroll-shadow technique) show that more columns, such as the row actions, lie to the
+     right; they disappear once the table is scrolled to that edge. */
+  table.data:not(.my-orders) {
+    display: block; max-width: 100%; overflow-x: auto;
+    background:
+      linear-gradient(to right, var(--ground) 30%, rgba(255, 255, 255, 0)) left center / 32px 100% no-repeat local,
+      linear-gradient(to left, var(--ground) 30%, rgba(255, 255, 255, 0)) right center / 32px 100% no-repeat local,
+      radial-gradient(farthest-side at 0 50%, rgba(0, 0, 0, .18), rgba(0, 0, 0, 0)) left center / 12px 100% no-repeat scroll,
+      radial-gradient(farthest-side at 100% 50%, rgba(0, 0, 0, .18), rgba(0, 0, 0, 0)) right center / 12px 100% no-repeat scroll;
+  }
+}
+table.data td a, .hint a, ul.plain > li > a { display: inline-flex; align-items: center; min-height: 44px; }
+/* A select whose longest option is wider than the screen (admin hub menu, 346 px) stays inside the column. */
+select { max-width: 100%; }

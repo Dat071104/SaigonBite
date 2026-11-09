@@ -1,0 +1,28 @@
+digraph G {
+graph [rankdir=TB, nodesep=0.2, ranksep=0.34, fontname="Arial", fontsize=14, pad=0.08, dpi=200, newrank=true];
+node [shape=plain, fontname="Arial", fontsize=14];
+edge [fontname="Arial", fontsize=14, arrowsize=0.9, penwidth=1.1];
+labelloc="t"; labeljust="l"; label=<<B><FONT POINT-SIZE="16">UC-04 Produce management reports</FONT></B><BR ALIGN="LEFT"/><B><FONT POINT-SIZE="14">Final design class diagram, detail sheet A1: ReportController, view, controller and domain</FONT></B><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">Owner 523K0049 · Author 722I0004 · AI-assisted (Claude)</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14" COLOR="#4A5663">grey dashed: calls or uses</FONT>    <FONT POINT-SIZE="14" COLOR="#7A4FA0">purple dashed: «persists» (DAO writes the entity)</FONT>    <BR ALIGN="LEFT"/><FONT POINT-SIZE="14" COLOR="#00796B">teal dotted: «loads» (DAO only reads it)</FONT>    <BR ALIGN="LEFT"/>>;
+subgraph cluster_view { label=<<B>View layer (Flask blueprint functions)</B>>; labeljust="l"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=14; margin=5;
+  { rank=same; "bp_reports"; }
+  "bp_reports" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="0" BGCOLOR="white"><TR><TD BGCOLOR="#E8F1FA" CELLPADDING="3"><FONT POINT-SIZE="14">«boundary»</FONT><BR/><FONT POINT-SIZE="14"><B>reports views</B></FONT></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT" CELLPADDING="3"><FONT POINT-SIZE="14">+ delivery() GET /reports/delivery</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">+ sales() GET /reports/sales</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">+ workload() GET /reports/workload</FONT><BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+}
+subgraph cluster_controller { label=<<B>Controller layer</B>>; labeljust="l"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=14; margin=5;
+  { rank=same; "DeliveryRow"; "ReportController"; }
+  { rank=same; "SalesRow"; }
+  "DeliveryRow" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="0" BGCOLOR="white"><TR><TD BGCOLOR="#EAF5EA" CELLPADDING="3"><FONT POINT-SIZE="14">«value»</FONT><BR/><FONT POINT-SIZE="14"><B>DeliveryRow</B></FONT></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT" CELLPADDING="3"><FONT POINT-SIZE="14">+ avg_ride(): float | None</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">+ avg_wait(): float | None</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">+ failure_rate(): float | None</FONT><BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+  "ReportController" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="0" BGCOLOR="white"><TR><TD BGCOLOR="#EAF5EA" CELLPADDING="3"><FONT POINT-SIZE="14">«control»</FONT><BR/><FONT POINT-SIZE="14"><B>ReportController</B></FONT></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT" CELLPADDING="3"><FONT POINT-SIZE="14">+ delivery_report(user_id: int,</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">&#160;&#160;&#160;&#160;&#160;&#160;&#160;date_from:&#160;str&#160;|&#160;None,</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">&#160;&#160;&#160;&#160;&#160;&#160;&#160;date_to:&#160;str&#160;|&#160;None,</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">&#160;&#160;&#160;&#160;&#160;&#160;&#160;hub_id:&#160;int&#160;|&#160;None):&#160;DeliveryReport</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">+ sales_report(user_id: int,</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">&#160;&#160;&#160;&#160;&#160;&#160;&#160;date_from:&#160;str&#160;|&#160;None,</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">&#160;&#160;&#160;&#160;&#160;&#160;&#160;date_to:&#160;str&#160;|&#160;None,</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">&#160;&#160;&#160;&#160;&#160;&#160;&#160;hub_id:&#160;int&#160;|&#160;None):&#160;SalesReport</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">+ workload_report(user_id: int): WorkloadReport</FONT><BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+  "SalesRow" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="0" BGCOLOR="white"><TR><TD BGCOLOR="#EAF5EA" CELLPADDING="3"><FONT POINT-SIZE="14">«value»</FONT><BR/><FONT POINT-SIZE="14"><B>SalesRow</B></FONT></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT" CELLPADDING="3"><FONT POINT-SIZE="14">+ add(other: SalesRow): None</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">+ net(): int</FONT><BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+}
+"bp_reports" -> "DeliveryRow" [style=invis];
+"DeliveryRow" -> "SalesRow" [style=invis];
+subgraph cluster_domain { label=<<B>Domain layer (entities and value objects)</B>>; labeljust="l"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=14; margin=5;
+  { rank=same; "HubStatus"; }
+  "HubStatus" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="0" BGCOLOR="white"><TR><TD BGCOLOR="#FFF6E0" CELLPADDING="3"><FONT POINT-SIZE="14">«entity»</FONT><BR/><FONT POINT-SIZE="14"><B>HubStatus</B></FONT></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT" CELLPADDING="3"><FONT POINT-SIZE="14">+ busy(): bool</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">+ quiet(): bool</FONT><BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+}
+"SalesRow" -> "HubStatus" [style=invis];
+"ReportController" -> "DeliveryRow" [style=dashed, arrowhead=vee, color="#4A5663"];
+"ReportController" -> "HubStatus" [style=dashed, arrowhead=vee, color="#4A5663"];
+"ReportController" -> "SalesRow" [style=dashed, arrowhead=vee, color="#4A5663"];
+"bp_reports" -> "ReportController" [style=dashed, arrowhead=vee, color="#4A5663"];
+}

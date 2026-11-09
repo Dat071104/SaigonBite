@@ -12,7 +12,7 @@ Author: 722I0004 · AI-assisted (Codex, Claude)
 - **Implementation (IV):** Python/Flask with hand-written SQL on SQLite (13 tables), a UI designed from sketch to Figma prototype and traced from the SSDs, and one integrated system.
 - **Testing and deployment (V):** test cases derived from all 30 postconditions and minimum guarantees, and a public HTTPS deployment on Google Cloud.
 
-**Results.** 928 automated tests pass (27/10/2026, commit 252ada1). Seven browser scenarios follow one order through all roles and pass 60 of 60 steps, and 22 of 22 steps pass on the deployed site https://saigonbite.io.vn. All 52 requirements are verified except NFR-09 (phone width), which is partly verified. Two weeks of schedule reserve remain before the 15/11 target.
+**Results.** 928 automated tests pass (27/10/2026, commit 252ada1). Seven browser scenarios follow one order through all roles and pass 60 of 60 steps, and 22 of 22 steps pass on the deployed site https://saigonbite.io.vn. All 52 requirements are verified; the last one, NFR-09 (phone width at 360 px), passed on 45 of 45 pages on 09/11/2026 after a stylesheet fix for eight wide tables. Two weeks of schedule reserve remain before the 15/11 target.
 
 Codes used throughout the report (BR-xx, FR-xx, PC/MG, OP-xx, A-xx, Q1–Q5, L1–L6, D-xx) are explained in the Glossary in the Appendix.
 

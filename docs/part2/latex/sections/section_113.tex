@@ -3,32 +3,68 @@
 \pdfbookmark[2]{3.5.5 Final Design Class Diagram}{p7h113}
 Author: 722I0004 \ensuremath{\cdot} AI-assisted (Claude)
 
-The final design class diagram refines the layer views of 3.5.2 with what the sequence diagrams in 3.5.4 and the implementation settled: UC-05 is served by two controllers, so the final diagram is drawn in two parts, one per controller; classes shared by both parts appear in each.
+The final design class diagram refines the layer views of 3.5.2 with what the sequence diagrams in 3.5.4 and the implementation settled. UC-05 is served by two controllers (KitchenController and OrderTrackingController), so the detail sheets are drawn per controller (A for KitchenController, B for OrderTrackingController); classes shared by both appear on both. Figure 3.5.5A is an overview of all classes; the detail sheets after it give the members of one controller at a time.
 
 \begin{itemize}
-\item \textbf{One diagram, four layers.} View (Flask blueprint functions with their routes), controller, domain and data access are drawn together, so every message in the sequence diagrams can be followed from the screen to the table.
+\item \textbf{Overview first, then detail sheets.} Figure 3.5.5A shows every class of the four layers by name, with the calls, the \guillemotleft{}persists\guillemotright{} and \guillemotleft{}loads\guillemotright{} links and the domain associations, drawn as plain lines; their multiplicities and navigability are in the domain views of 3.5.2 and the domain model (2.1.7), because the labels pile up at the small name boxes. The detail sheets leave the associations out. The members are too many to print readably on the same page, so the detail sheets take one controller at a time and show the view functions that call it and the DAOs and domain classes it uses, with member signatures. A controller that needs more than one sheet has them numbered (A1, A2 and so on); each caption says what the sheet shows. Each figure is laid out for its page so that the estimated smallest text is 9 pt or more.
 
 \item \textbf{Only the members this use case calls.} The sequence diagrams fixed which operations each class must offer; the complete member lists stay in the 3.5.1 tables and 3.5.2 views.
 
-\item \textbf{Signatures from the code.} Parameter names and types are read from the source at the release commit by \texttt{models/\allowbreak{}shared/\allowbreak{}final\_\allowbreak{}dcd.\allowbreak{}py}, so the diagram and the program cannot differ.
+\item \textbf{Signatures read from the code.} Parameter names and types are read from the source by \texttt{models/\allowbreak{}shared/\allowbreak{}final\_\allowbreak{}dcd.\allowbreak{}py} when the figures are generated, and each member is matched with the operation rows of the design model. This is a cross-check at generation time, not a guarantee: the figures must be regenerated after a code change.
 
-\item \textbf{Navigability and persistence.} Dashed arrows show which layer calls which; each DAO has a \guillemotleft{}persists\guillemotright{} link to the entity it stores; domain associations keep their multiplicities from the domain model (2.1.7).
+\item \textbf{Navigability and persistence.} Layers run top to bottom (view, controller, data access, domain) and the dashed arrows run the same way: view to controller, controller to the DAOs and domain classes it uses, and DAO to the entity it maps. \guillemotleft{}persists\guillemotright{} marks a DAO that writes the entity's table in this use case (an INSERT, UPDATE or DELETE in a method the use case calls); \guillemotleft{}loads\guillemotright{} marks one that only reads it. The arrow points from the DAO to the entity, so the domain layer does not depend on data access. Domain associations keep their multiplicities from the domain model (2.1.7).
 
 \end{itemize}
 \begin{landscape}
 \begin{figure}[p]
 \centering
-\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-05/dcd_uc05_final_overview_PartA.png}}
-\caption{Figure 3.5.5A. UC-05 final design class diagram --- part A: KitchenController --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Claude). Vector SVG beside the source (editable source: models/UC-05/dcd\_uc05\_final\_overview\_PartA.dot)}\label{P7-0618}
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-05/dcd_uc05_final_overview.png}}
+\caption{Figure 3.5.5A. UC-05 final design class diagram, overview (class names only) --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Claude).}\label{P7-0618}
 \end{figure}
 \end{landscape}
 \begin{landscape}
 \begin{figure}[p]
 \centering
-\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-05/dcd_uc05_final_overview_PartB.png}}
-\caption{Figure 3.5.5B. UC-05 final design class diagram --- part B: OrderTrackingController --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Claude). Vector SVG beside the source (editable source: models/UC-05/dcd\_uc05\_final\_overview\_PartB.dot)}\label{P7-0619}
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-05/dcd_uc05_final_detail_A1.png}}
+\caption{Figure 3.5.5B. UC-05 final design class diagram, detail sheet A1 (KitchenController, view and controller) --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Claude).}\label{P7-0619}
 \end{figure}
 \end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-05/dcd_uc05_final_detail_A2.png}}
+\caption{Figure 3.5.5C. UC-05 final design class diagram, detail sheet A2 (KitchenController, controller and domain) --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Claude).}\label{P7-0648}
+\end{figure}
+\end{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=170mm,height=225mm,keepaspectratio]{\detokenize{models/UC-05/dcd_uc05_final_detail_A3.png}}
+\caption{Figure 3.5.5D. UC-05 final design class diagram, detail sheet A3 (KitchenController, data access) --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Claude).}\label{P7-0649}
+\end{figure}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-05/dcd_uc05_final_detail_B1.png}}
+\caption{Figure 3.5.5E. UC-05 final design class diagram, detail sheet B1 (OrderTrackingController, view and controller) --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Claude).}\label{P7-0650}
+\end{figure}
+\end{landscape}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{models/UC-05/dcd_uc05_final_detail_B2.png}}
+\caption{Figure 3.5.5F. UC-05 final design class diagram, detail sheet B2 (OrderTrackingController, controller and domain) --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Claude).}\label{P7-0651}
+\end{figure}
+\end{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=170mm,height=225mm,keepaspectratio]{\detokenize{models/UC-05/dcd_uc05_final_detail_B3.png}}
+\caption{Figure 3.5.5G. UC-05 final design class diagram, detail sheet B3 (OrderTrackingController, data access, part 1 of 2) --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Claude).}\label{P7-0652}
+\end{figure}
+\begin{figure}[p]
+\centering
+\includegraphics[width=170mm,height=225mm,keepaspectratio]{\detokenize{models/UC-05/dcd_uc05_final_detail_B4.png}}
+\caption{Figure 3.5.5H. UC-05 final design class diagram, detail sheet B4 (OrderTrackingController, data access, part 2 of 2) --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Claude).}\label{P7-0653}
+\end{figure}
 Behaviour refined between the first design and the final design (each refinement is covered by the tests in 5.1). Every state-changing operation runs in one \texttt{BEGIN IMMEDIATE} transaction and checks the row count of each guarded UPDATE, so a stale page, a guessed ID or a competing user changes nothing.
 
 \begin{longtable}{>{\raggedright\arraybackslash}p{0.4600\linewidth}>{\raggedright\arraybackslash}p{0.4600\linewidth}}
@@ -41,4 +77,4 @@ System operation & Refinement in the final design \\
 \texttt{rejectOrder, declineReplacement} & Rejection records the full online amount as refund owed and withdraws an open offer. \\
 \texttt{viewReplacement} & The customer sees the old and new line and the new total before answering. \\
 \end{longtable}
-Editable sources: \texttt{models/\allowbreak{}UC-05/\allowbreak{}dcd\_\allowbreak{}uc05\_\allowbreak{}final\_\allowbreak{}overview\_\allowbreak{}PartA.\allowbreak{}dot} and \texttt{dcd\_\allowbreak{}uc05\_\allowbreak{}final\_\allowbreak{}overview\_\allowbreak{}PartB.\allowbreak{}dot} (Graphviz), with SVG exports beside them.
+Editable sources: \texttt{models/\allowbreak{}UC-05/\allowbreak{}dcd\_\allowbreak{}uc05\_\allowbreak{}final\_\allowbreak{}overview.\allowbreak{}dot}, \texttt{models/\allowbreak{}UC-05/\allowbreak{}dcd\_\allowbreak{}uc05\_\allowbreak{}final\_\allowbreak{}detail\_\allowbreak{}A1.\allowbreak{}dot}, \texttt{models/\allowbreak{}UC-05/\allowbreak{}dcd\_\allowbreak{}uc05\_\allowbreak{}final\_\allowbreak{}detail\_\allowbreak{}A2.\allowbreak{}dot}, \texttt{models/\allowbreak{}UC-05/\allowbreak{}dcd\_\allowbreak{}uc05\_\allowbreak{}final\_\allowbreak{}detail\_\allowbreak{}A3.\allowbreak{}dot}, \texttt{models/\allowbreak{}UC-05/\allowbreak{}dcd\_\allowbreak{}uc05\_\allowbreak{}final\_\allowbreak{}detail\_\allowbreak{}B1.\allowbreak{}dot}, \texttt{models/\allowbreak{}UC-05/\allowbreak{}dcd\_\allowbreak{}uc05\_\allowbreak{}final\_\allowbreak{}detail\_\allowbreak{}B2.\allowbreak{}dot}, \texttt{models/\allowbreak{}UC-05/\allowbreak{}dcd\_\allowbreak{}uc05\_\allowbreak{}final\_\allowbreak{}detail\_\allowbreak{}B3.\allowbreak{}dot} and \texttt{models/\allowbreak{}UC-05/\allowbreak{}dcd\_\allowbreak{}uc05\_\allowbreak{}final\_\allowbreak{}detail\_\allowbreak{}B4.\allowbreak{}dot} (Graphviz, generated by \texttt{models/\allowbreak{}shared/\allowbreak{}final\_\allowbreak{}dcd.\allowbreak{}py}), with SVG exports beside them.

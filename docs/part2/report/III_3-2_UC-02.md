@@ -140,7 +140,7 @@ Every sequence keeps the exact SSD operation/parameter string at the actor-to-vi
 
 ### viewReadyDeliveries — no parameters
 
-OP-21 viewReadyDeliveries() — models/UC-02/ssd_uc02_PartA.drawio#M01
+OP-21 viewReadyDeliveries(): models/UC-02/ssd_uc02_PartA.drawio#M01
 
 ![UC-02 design sequence: viewReadyDeliveries](../../../models/UC-02/seq_uc02_viewReadyDeliveries.png)
 
@@ -150,7 +150,7 @@ Figure 3.2.4.1. UC-02 design sequence: viewReadyDeliveries — Author: 722I0004 
 
 ### viewDelivery — orderId
 
-OP-22 viewDelivery(orderId) — models/UC-02/ssd_uc02_PartA.drawio#M02
+OP-22 viewDelivery(orderId): models/UC-02/ssd_uc02_PartA.drawio#M02
 
 ![UC-02 design sequence: viewDelivery](../../../models/UC-02/seq_uc02_viewDelivery.png)
 
@@ -160,7 +160,7 @@ Figure 3.2.4.2. UC-02 design sequence: viewDelivery — Author: 722I0004 · AI-a
 
 ### takeDelivery — orderId
 
-OP-10 takeDelivery(orderId) — models/UC-02/ssd_uc02_PartA.drawio#M03
+OP-10 takeDelivery(orderId): models/UC-02/ssd_uc02_PartA.drawio#M03
 
 ![UC-02 design sequence: takeDelivery](../../../models/UC-02/seq_uc02_takeDelivery.png)
 
@@ -170,7 +170,7 @@ Figure 3.2.4.3. UC-02 design sequence: takeDelivery — Author: 722I0004 · AI-a
 
 ### confirmDelivered — orderId, cashCollected?
 
-OP-11 confirmDelivered(orderId, cashCollected?) — models/UC-02/ssd_uc02_PartB.drawio#M04
+OP-11 confirmDelivered(orderId, cashCollected?): models/UC-02/ssd_uc02_PartB.drawio#M04
 
 ![UC-02 design sequence: confirmDelivered](../../../models/UC-02/seq_uc02_confirmDelivered.png)
 
@@ -180,7 +180,7 @@ Figure 3.2.4.4. UC-02 design sequence: confirmDelivered — Author: 722I0004 · 
 
 ### reportFailure — orderId, reason
 
-OP-12 reportFailure(orderId, reason) — models/UC-02/ssd_uc02_PartB.drawio#M05
+OP-12 reportFailure(orderId, reason): models/UC-02/ssd_uc02_PartB.drawio#M05
 
 ![UC-02 design sequence: reportFailure](../../../models/UC-02/seq_uc02_reportFailure.png)
 
@@ -191,16 +191,32 @@ Figure 3.2.4.5. UC-02 design sequence: reportFailure — Author: 722I0004 · AI-
 ## 3.2.5 Final Design Class Diagram
 Author: 722I0004 · AI-assisted (Claude)
 
-The final design class diagram refines the layer views of 3.2.2 with what the sequence diagrams in 3.2.4 and the implementation settled:
+The final design class diagram refines the layer views of 3.2.2 with what the sequence diagrams in 3.2.4 and the implementation settled. Figure 3.2.5A is an overview of all classes; the detail sheets after it give the members of one controller at a time.
 
-- **One diagram, four layers.** View (Flask blueprint functions with their routes), controller, domain and data access are drawn together, so every message in the sequence diagrams can be followed from the screen to the table.
+- **Overview first, then detail sheets.** Figure 3.2.5A shows every class of the four layers by name, with the calls, the «persists» and «loads» links and the domain associations, drawn as plain lines; their multiplicities and navigability are in the domain views of 3.2.2 and the domain model (2.1.7), because the labels pile up at the small name boxes. The detail sheets leave the associations out. The members are too many to print readably on the same page, so the detail sheets take one controller at a time and show the view functions that call it and the DAOs and domain classes it uses, with member signatures. A controller that needs more than one sheet has them numbered (A1, A2 and so on); each caption says what the sheet shows. Each figure is laid out for its page so that the estimated smallest text is 9 pt or more.
 - **Only the members this use case calls.** The sequence diagrams fixed which operations each class must offer; the complete member lists stay in the 3.2.1 tables and 3.2.2 views.
-- **Signatures from the code.** Parameter names and types are read from the source at the release commit by `models/shared/final_dcd.py`, so the diagram and the program cannot differ.
-- **Navigability and persistence.** Dashed arrows show which layer calls which; each DAO has a «persists» link to the entity it stores; domain associations keep their multiplicities from the domain model (2.1.7).
+- **Signatures read from the code.** Parameter names and types are read from the source by `models/shared/final_dcd.py` when the figures are generated, and each member is matched with the operation rows of the design model. This is a cross-check at generation time, not a guarantee: the figures must be regenerated after a code change.
+- **Navigability and persistence.** Layers run top to bottom (view, controller, data access, domain) and the dashed arrows run the same way: view to controller, controller to the DAOs and domain classes it uses, and DAO to the entity it maps. «persists» marks a DAO that writes the entity's table in this use case (an INSERT, UPDATE or DELETE in a method the use case calls); «loads» marks one that only reads it. The arrow points from the DAO to the entity, so the domain layer does not depend on data access. Domain associations keep their multiplicities from the domain model (2.1.7).
 
-![UC-02 final design class diagram](../../../models/UC-02/dcd_uc02_final_overview.png)
+![UC-02 final design class diagram, overview (class names only)](../../../models/UC-02/dcd_uc02_final_overview.png)
 
-Figure 3.2.5. UC-02 final design class diagram — Author: 722I0004 · AI-assisted (Claude).
+Figure 3.2.5A. UC-02 final design class diagram, overview (class names only) — Author: 722I0004 · AI-assisted (Claude).
+
+![UC-02 final design class diagram, detail sheet A1 (DeliveryController, view and controller)](../../../models/UC-02/dcd_uc02_final_detail_A1.png)
+
+Figure 3.2.5B. UC-02 final design class diagram, detail sheet A1 (DeliveryController, view and controller) — Author: 722I0004 · AI-assisted (Claude).
+
+![UC-02 final design class diagram, detail sheet A2 (DeliveryController, controller and domain)](../../../models/UC-02/dcd_uc02_final_detail_A2.png)
+
+Figure 3.2.5C. UC-02 final design class diagram, detail sheet A2 (DeliveryController, controller and domain) — Author: 722I0004 · AI-assisted (Claude).
+
+![UC-02 final design class diagram, detail sheet A3 (DeliveryController, data access, part 1 of 2)](../../../models/UC-02/dcd_uc02_final_detail_A3.png)
+
+Figure 3.2.5D. UC-02 final design class diagram, detail sheet A3 (DeliveryController, data access, part 1 of 2) — Author: 722I0004 · AI-assisted (Claude).
+
+![UC-02 final design class diagram, detail sheet A4 (DeliveryController, data access, part 2 of 2)](../../../models/UC-02/dcd_uc02_final_detail_A4.png)
+
+Figure 3.2.5E. UC-02 final design class diagram, detail sheet A4 (DeliveryController, data access, part 2 of 2) — Author: 722I0004 · AI-assisted (Claude).
 
 Behaviour refined between the first design and the final design (each refinement is covered by the tests in 5.1). Every state-changing operation runs in one `BEGIN IMMEDIATE` transaction and checks the row count of each guarded UPDATE, so a stale page, a guessed ID or a competing user changes nothing.
 
@@ -210,7 +226,7 @@ Behaviour refined between the first design and the final design (each refinement
 | `confirmDelivered` | Only the assigned shipper can finish; COD cash must equal the order total. |
 | `reportFailure` | A failed delivery voids COD or records the full online amount as refund owed. |
 
-Editable sources: `models/UC-02/dcd_uc02_final_overview.dot` (Graphviz), with SVG exports beside them.
+Editable sources: `models/UC-02/dcd_uc02_final_overview.dot`, `models/UC-02/dcd_uc02_final_detail_A1.dot`, `models/UC-02/dcd_uc02_final_detail_A2.dot`, `models/UC-02/dcd_uc02_final_detail_A3.dot` and `models/UC-02/dcd_uc02_final_detail_A4.dot` (Graphviz, generated by `models/shared/final_dcd.py`), with SVG exports beside them.
 
 ## Integration repair evidence
 

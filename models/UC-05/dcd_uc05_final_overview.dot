@@ -1,0 +1,89 @@
+digraph G {
+graph [rankdir=LR, nodesep=0.2, ranksep=0.34, fontname="Arial", fontsize=14, pad=0.08, dpi=200, newrank=true];
+node [shape=plain, fontname="Arial", fontsize=14];
+edge [fontname="Arial", fontsize=14, arrowsize=0.9, penwidth=1.1];
+labelloc="t"; labeljust="l"; label=<<B><FONT POINT-SIZE="16">UC-05 Decide an incoming order</FONT></B><BR ALIGN="LEFT"/><B><FONT POINT-SIZE="14">Final design class diagram, overview (class names only)</FONT></B><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">Owner 523K0050 · Author 722I0004 · AI-assisted (Claude)</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14" COLOR="#4A5663">grey dashed: calls or uses</FONT>    <FONT POINT-SIZE="14" COLOR="#B07A00">amber: association (multiplicities in the domain model, 2.1.7)</FONT>    <BR ALIGN="LEFT"/><FONT POINT-SIZE="14" COLOR="#7A4FA0">purple dashed: «persists» (DAO writes the entity)</FONT>    <FONT POINT-SIZE="14" COLOR="#00796B">teal dotted: «loads» (DAO only reads it)</FONT>    <BR ALIGN="LEFT"/>>;
+subgraph cluster_view { label=<<B>View layer («boundary»)</B>>; labeljust="l"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=14; margin=5;
+  { rank=same; "bp_kitchen"; "bp_order"; }
+  "bp_kitchen" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#E8F1FA"><TR><TD><FONT POINT-SIZE="14"><B>kitchen views</B></FONT></TD></TR></TABLE>>];
+  "bp_order" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#E8F1FA"><TR><TD><FONT POINT-SIZE="14"><B>order views</B></FONT></TD></TR></TABLE>>];
+}
+subgraph cluster_controller { label=<<B>Controller layer («control», «value»)</B>>; labeljust="l"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=14; margin=5;
+  { rank=same; "KitchenController"; "OrderDetail"; "OrderTrackingController"; }
+  "KitchenController" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#EAF5EA"><TR><TD><FONT POINT-SIZE="14"><B>KitchenController</B></FONT></TD></TR></TABLE>>];
+  "OrderDetail" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#EAF5EA"><TR><TD><FONT POINT-SIZE="14"><B>OrderDetail</B></FONT></TD></TR></TABLE>>];
+  "OrderTrackingController" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#EAF5EA"><TR><TD><FONT POINT-SIZE="14"><B>OrderTrackingController</B></FONT></TD></TR></TABLE>>];
+}
+"bp_kitchen" -> "KitchenController" [style=invis];
+subgraph cluster_dao { label=<<B>Data access layer («DAO»)</B>>; labeljust="l"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=14; margin=5;
+  { rank=same; "CustomerDAO"; "DeliveryDAO"; "HubDAO"; "OrderDAO"; "PaymentDAO"; "ReplacementOfferDAO"; "UserDAO"; }
+  "CustomerDAO" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#F2ECF8"><TR><TD><FONT POINT-SIZE="14"><B>CustomerDAO</B></FONT></TD></TR></TABLE>>];
+  "DeliveryDAO" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#F2ECF8"><TR><TD><FONT POINT-SIZE="14"><B>DeliveryDAO</B></FONT></TD></TR></TABLE>>];
+  "HubDAO" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#F2ECF8"><TR><TD><FONT POINT-SIZE="14"><B>HubDAO</B></FONT></TD></TR></TABLE>>];
+  "OrderDAO" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#F2ECF8"><TR><TD><FONT POINT-SIZE="14"><B>OrderDAO</B></FONT></TD></TR></TABLE>>];
+  "PaymentDAO" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#F2ECF8"><TR><TD><FONT POINT-SIZE="14"><B>PaymentDAO</B></FONT></TD></TR></TABLE>>];
+  "ReplacementOfferDAO" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#F2ECF8"><TR><TD><FONT POINT-SIZE="14"><B>ReplacementOfferDAO</B></FONT></TD></TR></TABLE>>];
+  "UserDAO" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#F2ECF8"><TR><TD><FONT POINT-SIZE="14"><B>UserDAO</B></FONT></TD></TR></TABLE>>];
+}
+"KitchenController" -> "CustomerDAO" [style=invis];
+subgraph cluster_domain { label=<<B>Domain layer («entity»)</B>>; labeljust="l"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=14; margin=5;
+  { rank=same; "Brand"; "Customer"; "Delivery"; "Hub"; "HubMenuItem"; "MenuItem"; "Order"; "OrderLine"; "Payment"; "ReplacementOffer"; "UserAccount"; }
+  "Brand" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF6E0"><TR><TD><FONT POINT-SIZE="14"><B>Brand</B></FONT></TD></TR></TABLE>>];
+  "Customer" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF6E0"><TR><TD><FONT POINT-SIZE="14"><B>Customer</B></FONT></TD></TR></TABLE>>];
+  "Delivery" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF6E0"><TR><TD><FONT POINT-SIZE="14"><B>Delivery</B></FONT></TD></TR></TABLE>>];
+  "Hub" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF6E0"><TR><TD><FONT POINT-SIZE="14"><B>Hub</B></FONT></TD></TR></TABLE>>];
+  "HubMenuItem" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF6E0"><TR><TD><FONT POINT-SIZE="14"><B>HubMenuItem</B></FONT></TD></TR></TABLE>>];
+  "MenuItem" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF6E0"><TR><TD><FONT POINT-SIZE="14"><B>MenuItem</B></FONT></TD></TR></TABLE>>];
+  "Order" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF6E0"><TR><TD><FONT POINT-SIZE="14"><B>Order</B></FONT></TD></TR></TABLE>>];
+  "OrderLine" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF6E0"><TR><TD><FONT POINT-SIZE="14"><B>OrderLine</B></FONT></TD></TR></TABLE>>];
+  "Payment" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF6E0"><TR><TD><FONT POINT-SIZE="14"><B>Payment</B></FONT></TD></TR></TABLE>>];
+  "ReplacementOffer" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF6E0"><TR><TD><FONT POINT-SIZE="14"><B>ReplacementOffer</B></FONT></TD></TR></TABLE>>];
+  "UserAccount" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF6E0"><TR><TD><FONT POINT-SIZE="14"><B>UserAccount</B></FONT></TD></TR></TABLE>>];
+}
+"CustomerDAO" -> "Brand" [style=invis];
+"CustomerDAO" -> "Customer" [style=dotted, arrowhead=vee, color="#00796B", fontcolor="#00796B", xlabel="«loads»"];
+"DeliveryDAO" -> "Delivery" [style=dotted, arrowhead=vee, color="#00796B", fontcolor="#00796B", xlabel="«loads»"];
+"HubDAO" -> "Brand" [style=dotted, arrowhead=vee, color="#00796B", fontcolor="#00796B", xlabel="«loads»"];
+"HubDAO" -> "Hub" [style=dotted, arrowhead=vee, color="#00796B", fontcolor="#00796B", xlabel="«loads»"];
+"HubDAO" -> "HubMenuItem" [style=dotted, arrowhead=vee, color="#00796B", fontcolor="#00796B", xlabel="«loads»"];
+"HubDAO" -> "MenuItem" [style=dotted, arrowhead=vee, color="#00796B", fontcolor="#00796B", xlabel="«loads»"];
+"KitchenController" -> "HubDAO" [style=dashed, arrowhead=vee, color="#4A5663"];
+"KitchenController" -> "Order" [style=dashed, arrowhead=vee, color="#4A5663"];
+"KitchenController" -> "OrderDAO" [style=dashed, arrowhead=vee, color="#4A5663"];
+"KitchenController" -> "Payment" [style=dashed, arrowhead=vee, color="#4A5663"];
+"KitchenController" -> "PaymentDAO" [style=dashed, arrowhead=vee, color="#4A5663"];
+"KitchenController" -> "ReplacementOfferDAO" [style=dashed, arrowhead=vee, color="#4A5663"];
+"KitchenController" -> "UserDAO" [style=dashed, arrowhead=vee, color="#4A5663"];
+"OrderDAO" -> "Order" [style=dashed, arrowhead=vee, color="#7A4FA0", fontcolor="#7A4FA0", xlabel="«persists»"];
+"OrderDAO" -> "OrderLine" [style=dashed, arrowhead=vee, color="#7A4FA0", fontcolor="#7A4FA0", xlabel="«persists»"];
+"OrderTrackingController" -> "CustomerDAO" [style=dashed, arrowhead=vee, color="#4A5663"];
+"OrderTrackingController" -> "DeliveryDAO" [style=dashed, arrowhead=vee, color="#4A5663"];
+"OrderTrackingController" -> "HubDAO" [style=dashed, arrowhead=vee, color="#4A5663"];
+"OrderTrackingController" -> "Order" [style=dashed, arrowhead=vee, color="#4A5663"];
+"OrderTrackingController" -> "OrderDAO" [style=dashed, arrowhead=vee, color="#4A5663"];
+"OrderTrackingController" -> "OrderDetail" [style=dashed, arrowhead=vee, color="#4A5663"];
+"OrderTrackingController" -> "Payment" [style=dashed, arrowhead=vee, color="#4A5663"];
+"OrderTrackingController" -> "PaymentDAO" [style=dashed, arrowhead=vee, color="#4A5663"];
+"OrderTrackingController" -> "ReplacementOfferDAO" [style=dashed, arrowhead=vee, color="#4A5663"];
+"OrderTrackingController" -> "UserDAO" [style=dashed, arrowhead=vee, color="#4A5663"];
+"PaymentDAO" -> "Payment" [style=dashed, arrowhead=vee, color="#7A4FA0", fontcolor="#7A4FA0", xlabel="«persists»"];
+"ReplacementOfferDAO" -> "ReplacementOffer" [style=dashed, arrowhead=vee, color="#7A4FA0", fontcolor="#7A4FA0", xlabel="«persists»"];
+"UserDAO" -> "UserAccount" [style=dotted, arrowhead=vee, color="#00796B", fontcolor="#00796B", xlabel="«loads»"];
+"bp_kitchen" -> "KitchenController" [style=dashed, arrowhead=vee, color="#4A5663"];
+"bp_order" -> "OrderTrackingController" [style=dashed, arrowhead=vee, color="#4A5663"];
+"Customer" -> "UserAccount" [arrowhead=vee, dir=both, arrowtail=none, color="#B07A00", fontcolor="#B07A00", constraint=false];
+"Hub" -> "HubMenuItem" [arrowhead=vee, dir=both, arrowtail=none, color="#B07A00", fontcolor="#B07A00", constraint=false];
+"HubMenuItem" -> "MenuItem" [arrowhead=vee, dir=both, arrowtail=none, color="#B07A00", fontcolor="#B07A00", constraint=false];
+"Brand" -> "MenuItem" [arrowhead=vee, dir=both, arrowtail=none, color="#B07A00", fontcolor="#B07A00", constraint=false];
+"Order" -> "Customer" [arrowhead=vee, dir=both, arrowtail=none, color="#B07A00", fontcolor="#B07A00", constraint=false];
+"Order" -> "Hub" [arrowhead=vee, dir=both, arrowtail=none, color="#B07A00", fontcolor="#B07A00", constraint=false];
+"Order" -> "OrderLine" [arrowhead=vee, dir=both, arrowtail=diamond, color="#B07A00", fontcolor="#B07A00", constraint=false];
+"Order" -> "Payment" [arrowhead=vee, dir=both, arrowtail=none, color="#B07A00", fontcolor="#B07A00", constraint=false];
+"Order" -> "Delivery" [arrowhead=vee, dir=both, arrowtail=none, color="#B07A00", fontcolor="#B07A00", constraint=false];
+"Order" -> "ReplacementOffer" [arrowhead=vee, dir=both, arrowtail=none, color="#B07A00", fontcolor="#B07A00", constraint=false];
+"ReplacementOffer" -> "OrderLine" [arrowhead=vee, dir=both, arrowtail=none, color="#B07A00", fontcolor="#B07A00", constraint=false];
+"ReplacementOffer" -> "MenuItem" [arrowhead=vee, dir=both, arrowtail=none, color="#B07A00", fontcolor="#B07A00", constraint=false];
+"OrderLine" -> "MenuItem" [arrowhead=vee, dir=both, arrowtail=none, color="#B07A00", fontcolor="#B07A00", constraint=false];
+"Delivery" -> "UserAccount" [arrowhead=vee, dir=both, arrowtail=none, color="#B07A00", fontcolor="#B07A00", constraint=false];
+"UserAccount" -> "Hub" [arrowhead=vee, dir=both, arrowtail=none, color="#B07A00", fontcolor="#B07A00", constraint=false];
+}

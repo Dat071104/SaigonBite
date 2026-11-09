@@ -1,0 +1,54 @@
+digraph G {
+graph [rankdir=TB, nodesep=0.2, ranksep=0.34, fontname="Arial", fontsize=14, pad=0.08, dpi=200, newrank=true];
+node [shape=plain, fontname="Arial", fontsize=14];
+edge [fontname="Arial", fontsize=14, arrowsize=0.9, penwidth=1.1];
+labelloc="t"; labeljust="l"; label=<<B><FONT POINT-SIZE="16">UC-01 Place an order</FONT></B><BR ALIGN="LEFT"/><B><FONT POINT-SIZE="14">Final design class diagram, detail sheet A4: PlaceOrderController, data access (2 of 2)</FONT></B><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">Owner 722I0004 · Author 722I0004 · AI-assisted (Claude)</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14" COLOR="#4A5663">grey dashed: calls or uses</FONT>    <FONT POINT-SIZE="14" COLOR="#7A4FA0">purple dashed: «persists» (DAO writes the entity)</FONT>    <FONT POINT-SIZE="14" COLOR="#00796B">teal dotted: «loads» (DAO only reads it)</FONT>    <BR ALIGN="LEFT"/>>;
+subgraph cluster_controller { label=<<B>Controller layer («control»)</B>>; labeljust="l"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=14; margin=5;
+  { rank=same; "PlaceOrderController"; }
+  "PlaceOrderController" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#EAF5EA"><TR><TD><FONT POINT-SIZE="14"><B>PlaceOrderController</B></FONT></TD></TR></TABLE>>];
+}
+subgraph cluster_dao { label=<<B>Data access layer</B>>; labeljust="l"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=14; margin=5;
+  { rank=same; "CustomerDAO"; }
+  { rank=same; "OrderDAO"; "PaymentGatewaySimulator"; }
+  { rank=same; "VoucherDAO"; }
+  "CustomerDAO" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="0" BGCOLOR="white"><TR><TD BGCOLOR="#F2ECF8" CELLPADDING="3"><FONT POINT-SIZE="14">«DAO»</FONT><BR/><FONT POINT-SIZE="14"><B>CustomerDAO</B></FONT></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT" CELLPADDING="3"><FONT POINT-SIZE="14">+ get_address(address_id: int, customer_id: int): Address | None</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">+ get_by_user_id(user_id: int): Customer | None</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">+ list_addresses(customer_id: int): list[Address]</FONT><BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+  "OrderDAO" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="0" BGCOLOR="white"><TR><TD BGCOLOR="#F2ECF8" CELLPADDING="3"><FONT POINT-SIZE="14">«DAO»</FONT><BR/><FONT POINT-SIZE="14"><B>OrderDAO</B></FONT></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT" CELLPADDING="3"><FONT POINT-SIZE="14">+ _load(row: sqlite3.Row | None): Order | None</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">+ get_by_id(order_id: int): Order | None</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">+ get_by_token(token: str): Order | None</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">+ insert(order: Order): int</FONT><BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+  "PaymentGatewaySimulator" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="0" BGCOLOR="white"><TR><TD BGCOLOR="#F2ECF8" CELLPADDING="3"><FONT POINT-SIZE="14">«gateway»</FONT><BR/><FONT POINT-SIZE="14"><B>PaymentGatewaySimulator</B></FONT></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT" CELLPADDING="3"><FONT POINT-SIZE="14">+ authorise(amount: int, option: OnlineOption,</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">&#160;&#160;&#160;&#160;&#160;&#160;&#160;outcome:&#160;str):&#160;Authorisation</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">+ release(reference: str): None</FONT><BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+  "VoucherDAO" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="0" BGCOLOR="white"><TR><TD BGCOLOR="#F2ECF8" CELLPADDING="3"><FONT POINT-SIZE="14">«DAO»</FONT><BR/><FONT POINT-SIZE="14"><B>VoucherDAO</B></FONT></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT" CELLPADDING="3"><FONT POINT-SIZE="14">+ get_by_code(code: str): Voucher | None</FONT><BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+}
+"PlaceOrderController" -> "CustomerDAO" [style=invis];
+"CustomerDAO" -> "OrderDAO" [style=invis];
+"OrderDAO" -> "VoucherDAO" [style=invis];
+subgraph cluster_domain { label=<<B>Domain layer («entity»)</B>>; labeljust="l"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=14; margin=5;
+  "Address" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF6E0"><TR><TD><FONT POINT-SIZE="14"><B>Address</B></FONT></TD></TR></TABLE>>];
+  "Customer" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF6E0"><TR><TD><FONT POINT-SIZE="14"><B>Customer</B></FONT></TD></TR></TABLE>>];
+  "Hub" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF6E0"><TR><TD><FONT POINT-SIZE="14"><B>Hub</B></FONT></TD></TR></TABLE>>];
+  "HubStatus" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF6E0"><TR><TD><FONT POINT-SIZE="14"><B>HubStatus</B></FONT></TD></TR></TABLE>>];
+  "Order" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF6E0"><TR><TD><FONT POINT-SIZE="14"><B>Order</B></FONT></TD></TR></TABLE>>];
+  "OrderLine" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF6E0"><TR><TD><FONT POINT-SIZE="14"><B>OrderLine</B></FONT></TD></TR></TABLE>>];
+  "Quote" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF6E0"><TR><TD><FONT POINT-SIZE="14"><B>Quote</B></FONT></TD></TR></TABLE>>];
+  "Voucher" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF6E0"><TR><TD><FONT POINT-SIZE="14"><B>Voucher</B></FONT></TD></TR></TABLE>>];
+}
+"VoucherDAO" -> "Address" [style=invis];
+"VoucherDAO" -> "Customer" [style=invis];
+"VoucherDAO" -> "Hub" [style=invis];
+"VoucherDAO" -> "HubStatus" [style=invis];
+"VoucherDAO" -> "Order" [style=invis];
+"VoucherDAO" -> "OrderLine" [style=invis];
+"VoucherDAO" -> "Quote" [style=invis];
+"VoucherDAO" -> "Voucher" [style=invis];
+"CustomerDAO" -> "Address" [style=dotted, arrowhead=vee, color="#00796B", fontcolor="#00796B", xlabel="«loads»"];
+"CustomerDAO" -> "Customer" [style=dotted, arrowhead=vee, color="#00796B", fontcolor="#00796B", xlabel="«loads»"];
+"OrderDAO" -> "Order" [style=dashed, arrowhead=vee, color="#7A4FA0", fontcolor="#7A4FA0", xlabel="«persists»"];
+"OrderDAO" -> "OrderLine" [style=dashed, arrowhead=vee, color="#7A4FA0", fontcolor="#7A4FA0", xlabel="«persists»"];
+"PlaceOrderController" -> "CustomerDAO" [style=dashed, arrowhead=vee, color="#4A5663"];
+"PlaceOrderController" -> "Hub" [style=dashed, arrowhead=vee, color="#4A5663"];
+"PlaceOrderController" -> "HubStatus" [style=dashed, arrowhead=vee, color="#4A5663"];
+"PlaceOrderController" -> "Order" [style=dashed, arrowhead=vee, color="#4A5663"];
+"PlaceOrderController" -> "OrderDAO" [style=dashed, arrowhead=vee, color="#4A5663"];
+"PlaceOrderController" -> "PaymentGatewaySimulator" [style=dashed, arrowhead=vee, color="#4A5663"];
+"PlaceOrderController" -> "Quote" [style=dashed, arrowhead=vee, color="#4A5663"];
+"PlaceOrderController" -> "Voucher" [style=dashed, arrowhead=vee, color="#4A5663"];
+"PlaceOrderController" -> "VoucherDAO" [style=dashed, arrowhead=vee, color="#4A5663"];
+"VoucherDAO" -> "Voucher" [style=dotted, arrowhead=vee, color="#00796B", fontcolor="#00796B", xlabel="«loads»"];
+}

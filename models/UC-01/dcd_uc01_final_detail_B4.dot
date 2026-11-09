@@ -1,0 +1,39 @@
+digraph G {
+graph [rankdir=TB, nodesep=0.2, ranksep=0.34, fontname="Arial", fontsize=14, pad=0.08, dpi=200, newrank=true];
+node [shape=plain, fontname="Arial", fontsize=14];
+edge [fontname="Arial", fontsize=14, arrowsize=0.9, penwidth=1.1];
+labelloc="t"; labeljust="l"; label=<<B><FONT POINT-SIZE="16">UC-01 Place an order</FONT></B><BR ALIGN="LEFT"/><B><FONT POINT-SIZE="14">Final design class diagram, detail sheet B4: OrderTrackingController, data access (2 of 2)</FONT></B><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">Owner 722I0004 · Author 722I0004 · AI-assisted (Claude)</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14" COLOR="#4A5663">grey dashed: calls or uses</FONT>    <BR ALIGN="LEFT"/><FONT POINT-SIZE="14" COLOR="#7A4FA0">purple dashed: «persists» (DAO writes the entity)</FONT>    <BR ALIGN="LEFT"/><FONT POINT-SIZE="14" COLOR="#00796B">teal dotted: «loads» (DAO only reads it)</FONT>    <BR ALIGN="LEFT"/>>;
+subgraph cluster_controller { label=<<B>Controller layer («control»)</B>>; labeljust="l"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=14; margin=5;
+  { rank=same; "OrderTrackingController"; }
+  "OrderTrackingController" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#EAF5EA"><TR><TD><FONT POINT-SIZE="14"><B>OrderTrackingController</B></FONT></TD></TR></TABLE>>];
+}
+subgraph cluster_dao { label=<<B>Data access layer</B>>; labeljust="l"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=14; margin=5;
+  { rank=same; "HubDAO"; }
+  { rank=same; "PaymentDAO"; }
+  { rank=same; "ReplacementOfferDAO"; }
+  "HubDAO" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="0" BGCOLOR="white"><TR><TD BGCOLOR="#F2ECF8" CELLPADDING="3"><FONT POINT-SIZE="14">«DAO»</FONT><BR/><FONT POINT-SIZE="14"><B>HubDAO</B></FONT></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT" CELLPADDING="3"><FONT POINT-SIZE="14">+ get_including_archived(hub_id: int): Hub | None</FONT><BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+  "PaymentDAO" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="0" BGCOLOR="white"><TR><TD BGCOLOR="#F2ECF8" CELLPADDING="3"><FONT POINT-SIZE="14">«DAO»</FONT><BR/><FONT POINT-SIZE="14"><B>PaymentDAO</B></FONT></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT" CELLPADDING="3"><FONT POINT-SIZE="14">+ change_state(order_id: int,</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">&#160;&#160;&#160;&#160;&#160;&#160;&#160;from_state:&#160;PaymentState,</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">&#160;&#160;&#160;&#160;&#160;&#160;&#160;to_state:&#160;PaymentState,</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">&#160;&#160;&#160;&#160;&#160;&#160;&#160;now:&#160;str):&#160;bool</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">+ get_by_order_id(order_id: int): Payment | None</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">+ set_amounts(order_id: int,</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">&#160;&#160;&#160;&#160;&#160;&#160;&#160;amount:&#160;int,</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">&#160;&#160;&#160;&#160;&#160;&#160;&#160;refund_amount:&#160;int,</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">&#160;&#160;&#160;&#160;&#160;&#160;&#160;now:&#160;str):&#160;bool</FONT><BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+  "ReplacementOfferDAO" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="0" BGCOLOR="white"><TR><TD BGCOLOR="#F2ECF8" CELLPADDING="3"><FONT POINT-SIZE="14">«DAO»</FONT><BR/><FONT POINT-SIZE="14"><B>ReplacementOfferDAO</B></FONT></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT" CELLPADDING="3"><FONT POINT-SIZE="14">+ decide(offer_id: int,</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">&#160;&#160;&#160;&#160;&#160;&#160;&#160;to_state:&#160;OfferState,</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">&#160;&#160;&#160;&#160;&#160;&#160;&#160;now:&#160;str):&#160;bool</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">+ get_open(order_id: int): ReplacementOffer | None</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">+ list_for_order(order_id: int): list[ReplacementOffer]</FONT><BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+}
+"OrderTrackingController" -> "HubDAO" [style=invis];
+"HubDAO" -> "PaymentDAO" [style=invis];
+"PaymentDAO" -> "ReplacementOfferDAO" [style=invis];
+subgraph cluster_domain { label=<<B>Domain layer («entity»)</B>>; labeljust="l"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=14; margin=5;
+  { rank=same; "Hub"; "Order"; "Payment"; }
+  { rank=same; "ReplacementOffer"; }
+  "Hub" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF6E0"><TR><TD><FONT POINT-SIZE="14"><B>Hub</B></FONT></TD></TR></TABLE>>];
+  "Order" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF6E0"><TR><TD><FONT POINT-SIZE="14"><B>Order</B></FONT></TD></TR></TABLE>>];
+  "Payment" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF6E0"><TR><TD><FONT POINT-SIZE="14"><B>Payment</B></FONT></TD></TR></TABLE>>];
+  "ReplacementOffer" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF6E0"><TR><TD><FONT POINT-SIZE="14"><B>ReplacementOffer</B></FONT></TD></TR></TABLE>>];
+}
+"ReplacementOfferDAO" -> "Hub" [style=invis];
+"Hub" -> "ReplacementOffer" [style=invis];
+"HubDAO" -> "Hub" [style=dotted, arrowhead=vee, color="#00796B", fontcolor="#00796B", xlabel="«loads»"];
+"OrderTrackingController" -> "HubDAO" [style=dashed, arrowhead=vee, color="#4A5663"];
+"OrderTrackingController" -> "Order" [style=dashed, arrowhead=vee, color="#4A5663"];
+"OrderTrackingController" -> "Payment" [style=dashed, arrowhead=vee, color="#4A5663"];
+"OrderTrackingController" -> "PaymentDAO" [style=dashed, arrowhead=vee, color="#4A5663"];
+"OrderTrackingController" -> "ReplacementOfferDAO" [style=dashed, arrowhead=vee, color="#4A5663"];
+"PaymentDAO" -> "Payment" [style=dashed, arrowhead=vee, color="#7A4FA0", fontcolor="#7A4FA0", xlabel="«persists»"];
+"ReplacementOfferDAO" -> "ReplacementOffer" [style=dashed, arrowhead=vee, color="#7A4FA0", fontcolor="#7A4FA0", xlabel="«persists»"];
+}

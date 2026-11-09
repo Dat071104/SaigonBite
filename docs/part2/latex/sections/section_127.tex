@@ -25,7 +25,7 @@ data\_access\ensuremath{\rightarrow}business.domain: 28 imports in 10 modules & 
 \end{longtable}
 The remaining 15 records sit at the composition boundary: \texttt{saigonbite/\allowbreak{}\_\allowbreak{}\_\allowbreak{}init\_\allowbreak{}\_\allowbreak{}.\allowbreak{}py} imports 3 controller error types and 10 presentation modules to assemble the application; \texttt{app.\allowbreak{}py} imports \texttt{create\_\allowbreak{}app}; and \texttt{presentation/\allowbreak{}auth.\allowbreak{}py} imports the root-level \texttt{saigonbite.\allowbreak{}NAV} constant. The first two are bootstrap wiring outside the four named packages. The last is a direct view-to-root import and is called out separately because it does not match the strict package graph.
 
-\textbf{Historical disposition --- accepted as P3-S04 / P4.9.} A strict-layer boundary decision is required before treating the package graph as satisfied at C0. Resolve the 12 presentation\ensuremath{\rightarrow}domain imports and 3 presentation\ensuremath{\rightarrow}data\_access imports at the presentation/controller boundary, decide whether DAO-to-domain materialisation receives an explicit persistence-mapper exception or moves behind a lower-level mapping boundary, and resolve the \texttt{NAV} root import. No exception or architectural change is adopted in P3. The shared annotations account for all 44 finding records across 23 module pairs (43 cross-layer records plus the \texttt{NAV} root import). These are static policy findings; they do not establish a runtime failure. The figure shows three permitted arrows across four packages and keeps observed violations visible.
+\textbf{Historical disposition: accepted as P3-S04 / P4.9.} A strict-layer boundary decision is required before treating the package graph as satisfied at C0. Resolve the 12 presentation\ensuremath{\rightarrow}domain imports and 3 presentation\ensuremath{\rightarrow}data\_access imports at the presentation/controller boundary, decide whether DAO-to-domain materialisation receives an explicit persistence-mapper exception or moves behind a lower-level mapping boundary, and resolve the \texttt{NAV} root import. No exception or architectural change is adopted in P3. The shared annotations account for all 44 finding records across 23 module pairs (43 cross-layer records plus the \texttt{NAV} root import). These are static policy findings; they do not establish a runtime failure. The figure shows three permitted arrows across four packages and keeps observed violations visible.
 
 Evidence is Static at C0 \texttt{45ac76221b0a103174c7c01d17577e6e49cfd665}. The machine-readable import audit is in \texttt{models/\allowbreak{}shared/\allowbreak{}package\_\allowbreak{}diagram.\allowbreak{}json}. No application import, execution, test, or runtime qualification was performed.
 
@@ -33,13 +33,11 @@ Evidence is Static at C0 \texttt{45ac76221b0a103174c7c01d17577e6e49cfd665}. The 
 
 \textbf{SB-P4-B02-20261026 is adopted by Dat's actual continuation message as a bounded team implementation decision, not lecturer/client approval.} The locked plan and original C0/P3 model remain unchanged. The preceding graph/audit is historical C0 evidence, not a complete current dependency graph. Eleven presentation pairs were removed in P4; the remaining mapper/adapter dependencies are retained and explicitly dispositioned, not removed.
 
-\begin{landscape}
 \begin{figure}[p]
 \centering
-\includegraphics[width=230mm,height=150mm,keepaspectratio]{\detokenize{docs/part2/implementation/architecture_amendment/package_4_2A.png}}
+\includegraphics[width=170mm,height=225mm,keepaspectratio]{\detokenize{docs/part2/implementation/architecture_amendment/package_4_2A.png}}
 \caption{Figure 4.2A. Current P4 amendment --- Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex). Solid open arrows show runtime responsibilities; the dashed open arrow admits only the exact policy entries below.}\label{P7-0324}
 \end{figure}
-\end{landscape}
 The effective current model is the frozen P3 class/method model plus the reproducible dependency overlay. The model hash is recorded in the evidence index. Frozen DCDs are class/member/responsibility slices, not complete current import graphs; Figure 4.2A and \texttt{dependency\_\allowbreak{}overlay.\allowbreak{}json} supply the named current dependency projection without rewriting any P3 signatures/statuses/PC/MG identities.
 
 \begin{longtable}{>{\raggedright\arraybackslash}p{0.2300\linewidth}>{\raggedright\arraybackslash}p{0.2300\linewidth}>{\raggedright\arraybackslash}p{0.2300\linewidth}>{\raggedright\arraybackslash}p{0.2300\linewidth}}

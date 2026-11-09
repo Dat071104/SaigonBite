@@ -25,7 +25,7 @@ The connection configuration uses `foreign_keys=ON`, `journal_mode=WAL`, `synchr
 
 DAO details are expanded from the AST inventory, not executed. The full per-operation DAO call list and read/write table scope remain in `docs/part2/design/operation_realisation.csv`. Calls nested in a helper are labelled with that helper; omitted SELECTs do not imply omitted ownership, role, state or catalogue guards. Short SQL notes state statement kind, table and predicate only; full SQL/code excerpts belong to P7.
 
-**UC-01 — confirmCheckout (`OP-01`)**
+**UC-01: confirmCheckout (`OP-01`)**
 
 A new token revalidates the owner/address, active hub and catalogue, current load/capacity, quantities, voucher and raw distance inside the write transaction. `Quote.fingerprint(payment.method, payment.option)` takes the pure-domain enums carried by the real `PaymentChoice` fields. Both full fingerprint and T must match consent (F-07); the F-04 radius/fee decision uses raw distance. An own-token replay returns the existing order without authorization, repricing or insertion; a foreign token is refused without disclosure. ONLINE decline saves zero Order/Line/Payment rows. Successful checkout inserts one order header, its N snapshots and one payment; it does not simulate a conditional state UPDATE. COD is PENDING, ONLINE is PAID with C=T. P2-S05 releases authorization on every later failure through COMMIT. UC01-PC01…PC06 and MG01…MG03 are the contract anchors.
 
@@ -66,7 +66,7 @@ Editable source: [draw.io](../../../models/UC-01/seqdao_uc01_confirmCheckout_Par
 Figure 4.3.2.1.OP-01.G. UC-01 confirmCheckout — Part G — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-01/seqdao_uc01_confirmCheckout_PartG.drawio); vector: [SVG](../../../models/UC-01/seqdao_uc01_confirmCheckout_PartG.svg).
 
-**UC-02 — takeDelivery (`OP-10`)**
+**UC-02: takeDelivery (`OP-10`)**
 
 The active shipper checks the live delivery is unassigned/AWAITING_PICKUP and the order is READY. DeliveryDAO.take uses the actual AWAITING_PICKUP predicate; a true rowcount result is required before the paired READY→OUT_FOR_DELIVERY save. Any later failure rolls back the pickup as well. Only one competing take may commit; this is the design guarantee. The later browser race checks are recorded in Sections 4.3.6 and 5.1. No additional one-active-delivery rule is introduced.
 
@@ -97,7 +97,7 @@ Editable source: [draw.io](../../../models/UC-02/seqdao_uc02_takeDelivery_PartD.
 Figure 4.3.2.2.OP-10.E. UC-02 takeDelivery — Part E — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-02/seqdao_uc02_takeDelivery_PartE.drawio); vector: [SVG](../../../models/UC-02/seqdao_uc02_takeDelivery_PartE.svg).
 
-**UC-02 — confirmDelivered (`OP-11`)**
+**UC-02: confirmDelivered (`OP-11`)**
 
 Only the assigned shipper may finish a PICKED_UP delivery paired with an OUT_FOR_DELIVERY order. COD cash must equal T; the PENDING→PAID update is conditional and checked. ONLINE accepts no cash and preserves captured C and any partial refund owed. DeliveryDAO.finish checks order_id, assigned shipper_id and PICKED_UP. The paired order update, finish and any COD write commit together; a zero result on any one reverses prior writes.
 
@@ -133,7 +133,7 @@ Editable source: [draw.io](../../../models/UC-02/seqdao_uc02_confirmDelivered_Pa
 Figure 4.3.2.2.OP-11.F. UC-02 confirmDelivered — Part F — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-02/seqdao_uc02_confirmDelivered_PartF.drawio); vector: [SVG](../../../models/UC-02/seqdao_uc02_confirmDelivered_PartF.svg).
 
-**UC-03 — archiveHub (`OP-36`)**
+**UC-03: archiveHub (`OP-36`)**
 
 Only an active admin may archive. The same write lock covers the open-order count and archive. Any order outside DELIVERED, DELIVERY_FAILED, REJECTED or CANCELLED blocks it. HubDAO.archive uses `id` plus `archived_at IS NULL`; the design does not invent an archive enum or a WHERE-state predicate. A successful archive hides operational access while preserving orders, receipts and authorised history (UC03-PC02/MG01).
 
@@ -159,7 +159,7 @@ Editable source: [draw.io](../../../models/UC-03/seqdao_uc03_archiveHub_PartC.dr
 Figure 4.3.2.3.OP-36.D. UC-03 archiveHub — Part D — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-03/seqdao_uc03_archiveHub_PartD.drawio); vector: [SVG](../../../models/UC-03/seqdao_uc03_archiveHub_PartD.svg).
 
-**UC-04 — salesReport (`OP-26`)**
+**UC-04: salesReport (`OP-26`)**
 
 UC04-MG01 applies to success, empty output, Manager denial (UC04-MG02), invalid filters and read failures: no business data is written. ReportDAO.sales_by_hub selects DELIVERED orders by delivery finish time in the half-open UTC range derived from Vietnam calendar days; archived records remain included. Order-level sums have no order_line join. F-03 makes operational sales T, with refunds owed shown separately. F-09 makes item identity menu_item_id and retains it through SalesReport.top_items; a snapshot name is only a display label. Period, SalesRow and SalesReport are non-persisted values. The diagram alone does not establish an oracle result; Section 5.1 records the corresponding test evidence.
 
@@ -185,7 +185,7 @@ Editable source: [draw.io](../../../models/UC-04/seqdao_uc04_salesReport_PartC.d
 Figure 4.3.2.4.OP-26.D. UC-04 salesReport — Part D — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-04/seqdao_uc04_salesReport_PartD.drawio); vector: [SVG](../../../models/UC-04/seqdao_uc04_salesReport_PartD.svg).
 
-**UC-05 — rejectOrder (`OP-03`)**
+**UC-05: rejectOrder (`OP-03`)**
 
 Own-hub PLACED order and valid reason precede rejection. A conditional order transition, optional exact open-offer withdrawal, checked PaymentDAO.set_amounts target and conditional payment state save share one transaction. F-02/P2-S01 persist full captured C as the ONLINE refund obligation even after an earlier partial obligation; COD becomes VOIDED and ONLINE becomes REFUND_PENDING. The operation records an obligation and performs no payout. A zero rowcount on a later payment or offer save rolls back the intended rejection too.
 
@@ -221,7 +221,7 @@ Editable source: [draw.io](../../../models/UC-05/seqdao_uc05_rejectOrder_PartE.d
 Figure 4.3.2.5.OP-03.F. UC-05 rejectOrder — Part F — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-05/seqdao_uc05_rejectOrder_PartF.drawio); vector: [SVG](../../../models/UC-05/seqdao_uc05_rejectOrder_PartF.svg).
 
-**UC-05 — acceptReplacement (`OP-05`)**
+**UC-05: acceptReplacement (`OP-05`)**
 
 Ownership, PLACED state and exact open OFFERED offer are checked before target eligibility is rechecked (F-05). A stale/guard mismatch refuses unchanged. An invalid target intentionally saves only that exact offer as WITHDRAWN, checks the DAO boolean, then COMMITs; Order/Line/Payment stay unchanged. A failed withdrawal is rolled back. A valid branch uses the offered price/name for the whole line with unchanged quantity; Dnew=min(Dold,Snew), F/Q unchanged, and Tnew recomputed. COD payable becomes Tnew; ONLINE captured C stays unchanged with refund owed C−Tnew and state PAID. Checked line/header saves (P2-S09/S11), checked payment amounts and exact OFFERED→ACCEPTED all precede COMMIT. Order remains PLACED with no automatic confirmation. The C0 targets F-02, F-05, P2-S09/S11/S13 and P3-S03 are resolved as recorded in Table P4-1.
 
@@ -262,7 +262,7 @@ Editable source: [draw.io](../../../models/UC-05/seqdao_uc05_acceptReplacement_P
 Figure 4.3.2.5.OP-05.G. UC-05 acceptReplacement — Part G — Author: 722I0004 · AI-assisted (Codex). † = element completed during implementation (Table P4-1).
 Editable source: [draw.io](../../../models/UC-05/seqdao_uc05_acceptReplacement_PartG.drawio); vector: [SVG](../../../models/UC-05/seqdao_uc05_acceptReplacement_PartG.svg).
 
-**UC-06 — updateMenuItem (`OP-41`)**
+**UC-06: updateMenuItem (`OP-41`)**
 
 The admin edits name, description and valid positive price after active-item and duplicate checks. The parent is current.brand_id; the posted brandId is context and cannot reparent a dish. MenuDAO.update_item has the actual `id AND archived_at IS NULL` predicate and returns rowcount==1. The design requires the controller to check it; later P4 status is recorded in Table P4-1. The only write is to menu_item; existing order_line name/price/quantity snapshots remain unchanged (UC06-MG01). Invalid prices and duplicates refuse without a write (UC06-MG02).
 

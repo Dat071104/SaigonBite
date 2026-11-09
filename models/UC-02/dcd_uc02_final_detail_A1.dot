@@ -1,0 +1,16 @@
+digraph G {
+graph [rankdir=TB, nodesep=0.2, ranksep=0.34, fontname="Arial", fontsize=14, pad=0.08, dpi=200, newrank=true];
+node [shape=plain, fontname="Arial", fontsize=14];
+edge [fontname="Arial", fontsize=14, arrowsize=0.9, penwidth=1.1];
+labelloc="t"; labeljust="l"; label=<<B><FONT POINT-SIZE="16">UC-02 Deliver an order</FONT></B><BR ALIGN="LEFT"/><B><FONT POINT-SIZE="14">Final design class diagram, detail sheet A1: DeliveryController, view and controller</FONT></B><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">Owner 523K0049 · Author 722I0004 · AI-assisted (Claude)</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14" COLOR="#4A5663">grey dashed: calls or uses</FONT>    <FONT POINT-SIZE="14" COLOR="#7A4FA0">purple dashed: «persists» (DAO writes the entity)</FONT>    <BR ALIGN="LEFT"/><FONT POINT-SIZE="14" COLOR="#00796B">teal dotted: «loads» (DAO only reads it)</FONT>    <BR ALIGN="LEFT"/>>;
+subgraph cluster_view { label=<<B>View layer (Flask blueprint functions)</B>>; labeljust="l"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=14; margin=5;
+  { rank=same; "bp_delivery"; }
+  "bp_delivery" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="0" BGCOLOR="white"><TR><TD BGCOLOR="#E8F1FA" CELLPADDING="3"><FONT POINT-SIZE="14">«boundary»</FONT><BR/><FONT POINT-SIZE="14"><B>delivery views</B></FONT></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT" CELLPADDING="3"><FONT POINT-SIZE="14">+ board() GET /delivery/</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">+ delivered() POST /delivery/orders/&lt;int:order_id&gt;/delivered</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">+ detail() GET /delivery/orders/&lt;int:order_id&gt;</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">+ failed() POST /delivery/orders/&lt;int:order_id&gt;/failed</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">+ pick_up() POST /delivery/orders/&lt;int:order_id&gt;/pickup</FONT><BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+}
+subgraph cluster_controller { label=<<B>Controller layer</B>>; labeljust="l"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=14; margin=5;
+  { rank=same; "DeliveryController"; }
+  "DeliveryController" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="0" BGCOLOR="white"><TR><TD BGCOLOR="#EAF5EA" CELLPADDING="3"><FONT POINT-SIZE="14">«control»</FONT><BR/><FONT POINT-SIZE="14"><B>DeliveryController</B></FONT></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT" CELLPADDING="3"><FONT POINT-SIZE="14">+ board(user_id: int): ShipperBoard</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">+ confirm_delivered(user_id: int, order_id: int,</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">&#160;&#160;&#160;&#160;&#160;&#160;&#160;cash_collected:&#160;str&#160;|&#160;None):&#160;DeliveryView</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">+ get_delivery(user_id: int, order_id: int): DeliveryView</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">+ pick_up(user_id: int, order_id: int): DeliveryView</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">+ report_failure(user_id: int, order_id: int,</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">&#160;&#160;&#160;&#160;&#160;&#160;&#160;reason:&#160;str):&#160;DeliveryView</FONT><BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+}
+"bp_delivery" -> "DeliveryController" [style=invis];
+"bp_delivery" -> "DeliveryController" [style=dashed, arrowhead=vee, color="#4A5663"];
+}

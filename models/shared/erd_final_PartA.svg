@@ -10,7 +10,7 @@
 <title>ERD</title>
 <polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-486.4 1182.15,-486.4 1182.15,14.4 -14.4,14.4"/>
 <text text-anchor="start" x="292.5" y="-453.8" font-family="Arial" font-weight="bold" font-size="16.00">Schema v2 (db/schema.sql) — part A: People, hubs, catalogue and vouchers</text>
-<text text-anchor="start" x="249" y="-441.6" font-family="Arial" font-size="12.00">Author 722I0004 · AI&#45;assisted (Claude) · PK primary key · FK foreign key · U unique · ? nullable · bar = one, crow&#39;s foot = many</text>
+<text text-anchor="start" x="81" y="-441.6" font-family="Arial" font-size="12.00">Author 722I0004 · AI&#45;assisted (Claude) · PK primary key · FK foreign key · U unique · ? nullable · relationship ends: || exactly one · |o zero or one · o&lt; zero or many (also written as 1, 0..1, 0..*)</text>
 <!-- user_account -->
 <g id="node1" class="node">
 <title>user_account</title>
@@ -62,11 +62,16 @@
 <!-- user_account&#45;&gt;customer -->
 <g id="edge2" class="edge">
 <title>user_account&#45;&gt;customer:user_id</title>
-<path fill="none" stroke="#40505f" stroke-width="1.2" d="M695.9,-340.5C710.99,-340.5 726.47,-340.5 741.26,-340.5"/>
+<path fill="none" stroke="#40505f" stroke-width="1.2" d="M701.08,-340.5C711.5,-340.5 722.04,-340.5 732.35,-340.5"/>
 <polygon fill="#40505f" stroke="#40505f" stroke-width="1.2" points="692.18,-345.5 692.18,-335.5 694.18,-335.5 694.18,-345.5 692.18,-345.5"/>
 <polyline fill="none" stroke="#40505f" stroke-width="1.2" points="691.18,-340.5 696.18,-340.5"/>
+<polygon fill="#40505f" stroke="#40505f" stroke-width="1.2" points="697.18,-345.5 697.18,-335.5 699.18,-335.5 699.18,-345.5 697.18,-345.5"/>
+<polyline fill="none" stroke="#40505f" stroke-width="1.2" points="696.18,-340.5 701.18,-340.5"/>
 <polygon fill="#40505f" stroke="#40505f" stroke-width="1.2" points="745.25,-335.5 745.25,-345.5 743.25,-345.5 743.25,-335.5 745.25,-335.5"/>
 <polyline fill="none" stroke="#40505f" stroke-width="1.2" points="746.25,-340.5 741.25,-340.5"/>
+<ellipse fill="none" stroke="#40505f" stroke-width="1.2" cx="736.65" cy="-340.5" rx="4" ry="4"/>
+<text text-anchor="middle" x="726.31" y="-346.1" font-family="Arial" font-size="11.00">0..1</text>
+<text text-anchor="middle" x="711.12" y="-327.5" font-family="Arial" font-size="11.00">1</text>
 </g>
 <!-- address -->
 <g id="node3" class="node">
@@ -95,10 +100,15 @@
 <!-- customer&#45;&gt;address -->
 <g id="edge3" class="edge">
 <title>customer&#45;&gt;address:customer_id</title>
-<path fill="none" stroke="#40505f" stroke-width="1.2" d="M946.41,-298.5C958.04,-298.5 969.85,-298.5 981.32,-298.5"/>
+<path fill="none" stroke="#40505f" stroke-width="1.2" d="M951.52,-298.5C958.4,-298.5 965.31,-298.5 972.15,-298.5"/>
 <polygon fill="#40505f" stroke="#40505f" stroke-width="1.2" points="942.7,-303.5 942.7,-293.5 944.7,-293.5 944.7,-303.5 942.7,-303.5"/>
 <polyline fill="none" stroke="#40505f" stroke-width="1.2" points="941.7,-298.5 946.7,-298.5"/>
+<polygon fill="#40505f" stroke="#40505f" stroke-width="1.2" points="947.7,-303.5 947.7,-293.5 949.7,-293.5 949.7,-303.5 947.7,-303.5"/>
+<polyline fill="none" stroke="#40505f" stroke-width="1.2" points="946.7,-298.5 951.7,-298.5"/>
 <polygon fill="#40505f" stroke="#40505f" stroke-width="1.2" points="981.35,-298.5 991.35,-303 986.75,-298.5 990.95,-298.5 990.95,-298.5 990.95,-298.5 986.75,-298.5 991.35,-294 981.35,-298.5"/>
+<ellipse fill="none" stroke="#40505f" stroke-width="1.2" cx="975.29" cy="-298.5" rx="4" ry="4"/>
+<text text-anchor="middle" x="971.81" y="-304.1" font-family="Arial" font-size="11.00">0..*</text>
+<text text-anchor="middle" x="961.64" y="-285.5" font-family="Arial" font-size="11.00">1</text>
 </g>
 <!-- hub -->
 <g id="node4" class="node">
@@ -129,10 +139,14 @@
 <!-- hub&#45;&gt;user_account -->
 <g id="edge1" class="edge">
 <title>hub&#45;&gt;user_account:hub_id</title>
-<path fill="none" stroke="#40505f" stroke-width="1.2" d="M451.46,-277.5C464.78,-277.5 478.32,-277.5 491.45,-277.5"/>
+<path fill="none" stroke="#40505f" stroke-width="1.2" d="M460.58,-277.5C467.86,-277.5 475.17,-277.5 482.4,-277.5"/>
 <polygon fill="#40505f" stroke="#40505f" stroke-width="1.2" points="447.71,-282.5 447.71,-272.5 449.71,-272.5 449.71,-282.5 447.71,-282.5"/>
 <polyline fill="none" stroke="#40505f" stroke-width="1.2" points="446.71,-277.5 451.71,-277.5"/>
+<ellipse fill="none" stroke="#40505f" stroke-width="1.2" cx="456.31" cy="-277.5" rx="4" ry="4"/>
 <polygon fill="#40505f" stroke="#40505f" stroke-width="1.2" points="491.47,-277.5 501.47,-282 496.88,-277.5 501.07,-277.5 501.07,-277.5 501.07,-277.5 496.88,-277.5 501.47,-273 491.47,-277.5"/>
+<ellipse fill="none" stroke="#40505f" stroke-width="1.2" cx="485.41" cy="-277.5" rx="4" ry="4"/>
+<text text-anchor="middle" x="481.94" y="-283.1" font-family="Arial" font-size="11.00">0..*</text>
+<text text-anchor="middle" x="466.65" y="-264.5" font-family="Arial" font-size="11.00">0..1</text>
 </g>
 <!-- hub_menu_item -->
 <g id="node7" class="node">
@@ -151,10 +165,15 @@
 <!-- hub&#45;&gt;hub_menu_item -->
 <g id="edge6" class="edge">
 <title>hub&#45;&gt;hub_menu_item:hub_id</title>
-<path fill="none" stroke="#40505f" stroke-width="1.2" d="M448.32,-168.46C462.29,-157.18 475.6,-148.5 486.7,-144.86"/>
-<polygon fill="#40505f" stroke="#40505f" stroke-width="1.2" points="448.53,-174.76 442.19,-167.02 443.73,-165.76 450.07,-173.49 448.53,-174.76"/>
-<polyline fill="none" stroke="#40505f" stroke-width="1.2" points="444.58,-171.52 448.45,-168.35"/>
-<polygon fill="#40505f" stroke="#40505f" stroke-width="1.2" points="486.76,-144.85 497.41,-147.5 492.08,-143.89 496.21,-143.14 496.21,-143.14 496.21,-143.14 492.08,-143.89 495.8,-138.64 486.76,-144.85"/>
+<path fill="none" stroke="#40505f" stroke-width="1.2" d="M452.03,-165.51C461.31,-158.27 470.24,-152.29 478.33,-148.32"/>
+<polygon fill="#40505f" stroke="#40505f" stroke-width="1.2" points="448.5,-174.79 442.22,-167.01 443.78,-165.75 450.06,-173.53 448.5,-174.79"/>
+<polyline fill="none" stroke="#40505f" stroke-width="1.2" points="444.58,-171.52 448.47,-168.38"/>
+<polygon fill="#40505f" stroke="#40505f" stroke-width="1.2" points="452.39,-171.65 446.11,-163.86 447.67,-162.61 453.95,-170.39 452.39,-171.65"/>
+<polyline fill="none" stroke="#40505f" stroke-width="1.2" points="448.47,-168.38 452.37,-165.24"/>
+<polygon fill="#40505f" stroke="#40505f" stroke-width="1.2" points="487,-145.85 497.85,-147.44 492.19,-144.37 496.23,-143.22 496.23,-143.22 496.23,-143.22 492.19,-144.37 495.38,-138.78 487,-145.85"/>
+<ellipse fill="none" stroke="#40505f" stroke-width="1.2" cx="481.17" cy="-147.51" rx="4" ry="4"/>
+<text text-anchor="middle" x="480.38" y="-153.71" font-family="Arial" font-size="11.00">0..*</text>
+<text text-anchor="middle" x="454.26" y="-148.06" font-family="Arial" font-size="11.00">1</text>
 </g>
 <!-- brand -->
 <g id="node5" class="node">
@@ -193,18 +212,28 @@
 <!-- brand&#45;&gt;menu_item -->
 <g id="edge4" class="edge">
 <title>brand&#45;&gt;menu_item:brand_id</title>
-<path fill="none" stroke="#40505f" stroke-width="1.2" d="M187.29,-95.5C205.96,-95.5 225.66,-95.5 244.51,-95.5"/>
+<path fill="none" stroke="#40505f" stroke-width="1.2" d="M192.05,-95.5C206.3,-95.5 221.05,-95.5 235.48,-95.5"/>
 <polygon fill="#40505f" stroke="#40505f" stroke-width="1.2" points="183.29,-100.5 183.29,-90.5 185.29,-90.5 185.29,-100.5 183.29,-100.5"/>
 <polyline fill="none" stroke="#40505f" stroke-width="1.2" points="182.29,-95.5 187.29,-95.5"/>
+<polygon fill="#40505f" stroke="#40505f" stroke-width="1.2" points="188.29,-100.5 188.29,-90.5 190.29,-90.5 190.29,-100.5 188.29,-100.5"/>
+<polyline fill="none" stroke="#40505f" stroke-width="1.2" points="187.29,-95.5 192.29,-95.5"/>
 <polygon fill="#40505f" stroke="#40505f" stroke-width="1.2" points="244.47,-95.5 254.47,-100 249.88,-95.5 254.07,-95.5 254.07,-95.5 254.07,-95.5 249.88,-95.5 254.47,-91 244.47,-95.5"/>
+<ellipse fill="none" stroke="#40505f" stroke-width="1.2" cx="238.41" cy="-95.5" rx="4" ry="4"/>
+<text text-anchor="middle" x="234.94" y="-101.1" font-family="Arial" font-size="11.00">0..*</text>
+<text text-anchor="middle" x="202.23" y="-82.5" font-family="Arial" font-size="11.00">1</text>
 </g>
 <!-- menu_item&#45;&gt;hub_menu_item -->
 <g id="edge5" class="edge">
 <title>menu_item&#45;&gt;hub_menu_item:menu_item_id</title>
-<path fill="none" stroke="#40505f" stroke-width="1.2" d="M435.49,-112.58C452.15,-117.21 469.71,-120.68 486.92,-121.7"/>
-<polygon fill="#40505f" stroke="#40505f" stroke-width="1.2" points="430.31,-116.3 433.05,-106.69 434.98,-107.24 432.23,-116.85 430.31,-116.3"/>
-<polyline fill="none" stroke="#40505f" stroke-width="1.2" points="430.72,-111.22 435.53,-112.6"/>
-<polygon fill="#40505f" stroke="#40505f" stroke-width="1.2" points="486.6,-121.69 496.46,-126.49 492,-121.85 496.2,-121.98 496.2,-121.98 496.2,-121.98 492,-121.85 496.73,-117.49 486.6,-121.69"/>
+<path fill="none" stroke="#40505f" stroke-width="1.2" d="M440.3,-113.88C452.45,-117.06 465.01,-119.56 477.5,-120.91"/>
+<polygon fill="#40505f" stroke="#40505f" stroke-width="1.2" points="430.34,-116.31 433.02,-106.67 434.95,-107.21 432.27,-116.84 430.34,-116.31"/>
+<polyline fill="none" stroke="#40505f" stroke-width="1.2" points="430.72,-111.22 435.54,-112.56"/>
+<polygon fill="#40505f" stroke="#40505f" stroke-width="1.2" points="435.16,-117.64 437.84,-108.01 439.77,-108.54 437.09,-118.18 435.16,-117.64"/>
+<polyline fill="none" stroke="#40505f" stroke-width="1.2" points="435.54,-112.56 440.35,-113.9"/>
+<polygon fill="#40505f" stroke="#40505f" stroke-width="1.2" points="486.61,-121.42 496.35,-126.47 492.01,-121.72 496.2,-121.96 496.2,-121.96 496.2,-121.96 492.01,-121.72 496.85,-117.48 486.61,-121.42"/>
+<ellipse fill="none" stroke="#40505f" stroke-width="1.2" cx="480.56" cy="-121.08" rx="4" ry="4"/>
+<text text-anchor="middle" x="476.57" y="-126.47" font-family="Arial" font-size="11.00">0..*</text>
+<text text-anchor="middle" x="452.42" y="-103.9" font-family="Arial" font-size="11.00">1</text>
 </g>
 <!-- voucher -->
 <g id="node8" class="node">

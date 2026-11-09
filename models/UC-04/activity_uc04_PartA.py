@@ -9,29 +9,38 @@ from PIL import Image, ImageDraw, ImageFont
 sys.dont_write_bytecode=True
 ROOT=Path('D:/RAD/FINAL/SaigonBite'); SCRATCH=Path('D:/RAD/FINAL/Part2/notes/P2-F')
 AUTHOR='Author: 722I0004 · AI-assisted (Codex)'
-BLUE='#004387'; INK='#1B1B1B'; RED='#B03A2E'; W=1100; H=900; FS=18
+BLUE='#004387'; INK='#1B1B1B'; RED='#B03A2E'; KY=1.25; W=1100; H=round(920*KY); FS=21
 EDGE=Path('C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe')
 
 class Canvas:
  def __init__(self,title):
-  self.svg=[f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}"><rect width="1100" height="900" fill="white"/>']
-  self.im=Image.new('RGB',(W*2,H*2),'white'); self.d=ImageDraw.Draw(self.im)
+  self.svg=[f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}"><rect width="{W}" height="{H}" fill="white"/>']
+  self.ky=KY; self.orig={}; self.im=Image.new('RGB',(W*2,H*2),'white'); self.d=ImageDraw.Draw(self.im)
   self.mx=ET.Element('mxfile',host='SaigonBite P2'); dia=ET.SubElement(self.mx,'diagram',name=title,id='page1'); model=ET.SubElement(dia,'mxGraphModel',page='1',pageWidth=str(W),pageHeight=str(H));self.r=ET.SubElement(model,'root');ET.SubElement(self.r,'mxCell',id='0');ET.SubElement(self.r,'mxCell',id='1',parent='0')
   self.boxes={};self.edges=[];self.errors=[];self.serial=0
-  self.text('title',title,20,12,1060,42,22,True,BLUE)
-  self.text('author',AUTHOR,20,850,1060,28,18,True,BLUE)
+  self.text('title',title,20,12,1060,42,FS+3,True,BLUE)
+  self.text('author',AUTHOR,20,870,1060,28,FS,True,BLUE)
  def cell(self,id,label,box,style):
   c=ET.SubElement(self.r,'mxCell',id=id,value=label,style=style,vertex='1',parent='1');x,y,w,h=box;ET.SubElement(c,'mxGeometry',x=str(x),y=str(y),width=str(w),height=str(h),attrib={'as':'geometry'})
  def text(self,id,label,x,y,w,h,size=FS,bold=False,color=INK,mx=True):
+  self._text(id,label,x,y*self.ky,w,h*self.ky,size,bold,color,mx)
+ def _text(self,id,label,x,y,w,h,size=FS,bold=False,color=INK,mx=True,dia=None):
   f=ImageFont.truetype('C:/Windows/Fonts/arialbd.ttf' if bold else 'C:/Windows/Fonts/arial.ttf',size*2)
   lines=label.split('\n');lh=size+4
   if any(f.getlength(s)/2>w-4 for s in lines) or len(lines)*lh>h+2:self.errors.append('text overflow '+id)
+  if dia:
+   dx,dy,dw,dh=dia;n=len(lines);ccy=dy+dh/2
+   for i,s in enumerate(lines):
+    off=abs(y+h/2-(n-1)*lh/2+i*lh-ccy)+lh/2
+    if f.getlength(s)/2>dw*(1-off/(dh/2))-6:self.errors.append('diamond overflow '+id+':'+s)
   yy=y+h/2-(len(lines)-1)*lh/2
   for i,s in enumerate(lines):
    cy=yy+i*lh;self.d.text(((x+w/2)*2,cy*2),s,font=f,fill=color,anchor='mm')
    self.svg.append(f'<text x="{x+w/2}" y="{cy+size*.34}" text-anchor="middle" font-family="Arial" font-size="{size}" font-weight="{"bold" if bold else "normal"}" fill="{color}">{escape(s)}</text>')
   if mx:self.cell(id,label,(x,y,w,h),f'text;html=0;whiteSpace=wrap;fontSize={size};fontColor={color};fontStyle={1 if bold else 0};align=center;verticalAlign=middle;strokeColor=none;fillColor=none;')
  def line(self,pts,color=BLUE,dash=False,width=2):
+  self._line([(x,y*self.ky) for x,y in pts],color,dash,width)
+ def _line(self,pts,color=BLUE,dash=False,width=2):
   self.svg.append('<polyline points="'+ ' '.join(f'{x},{y}' for x,y in pts)+f'" fill="none" stroke="{color}" stroke-width="{width}"'+(' stroke-dasharray="7 5"' if dash else '')+'/>')
   for a,b in zip(pts,pts[1:]):
    if dash:
@@ -40,7 +49,12 @@ class Canvas:
      t=k/n;u=min(1,t+0.55/n);self.d.line([(2*(a[0]+(b[0]-a[0])*q),2*(a[1]+(b[1]-a[1])*q)) for q in [t,u]],fill=color,width=width*2)
    else:self.d.line([(x*2,y*2) for x,y in [a,b]],fill=color,width=width*2)
  def rect(self,id,label,x,y,w,h,kind='action',color=BLUE):
+  self.orig[id]=(x,y,w,h);k=self.ky
+  if kind in ['initial','final','connector','merge']:
+   cx=x+w/2;w=w*k;h=h*k;x=cx-w/2;y=y*k
+  else:y=y*k;h=h*k
   self.boxes[id]=(x,y,w,h)
+  self.sbox=(id,x,y,w,h)
   if kind in ['initial','final','connector']:
    self.svg.append(f'<ellipse cx="{x+w/2}" cy="{y+h/2}" rx="{w/2}" ry="{h/2}" fill="{color if kind=="initial" else "white"}" stroke="{color}" stroke-width="2"/>')
    self.d.ellipse((x*2,y*2,(x+w)*2,(y+h)*2),fill=color if kind=='initial' else 'white',outline=color,width=4)
@@ -54,91 +68,103 @@ class Canvas:
    fill='#FFFBE6' if kind=='note' else 'white';rx=0 if kind in ['note','frame','head'] else 12
    self.svg.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{rx}" fill="{fill}" stroke="{color}" stroke-width="2"/>');self.d.rounded_rectangle((x*2,y*2,(x+w)*2,(y+h)*2),radius=rx*2,fill=fill,outline=color,width=4);style='rounded=1;' if rx else 'rounded=0;'
   self.cell(id,label,(x,y,w,h),style+f'html=0;whiteSpace=wrap;strokeColor={color};fillColor={color if kind=="initial" else "white"};fontSize={FS};align=center;verticalAlign=middle;')
-  if label:self.text(id+'_txt',label,x+5,y+3,w-10,h-6,mx=False)
+  if label:self._text(id+'_txt',label,x+5,y+3,w-10,h-6,mx=False,dia=(x,y,w,h) if kind in ['decision','merge'] else None)
+ def fit(self,pts,src,dst):
+  out=[(x,y*self.ky) for x,y in pts]
+  for idx,bid in [(0,src),(-1,dst)]:
+   if bid not in self.orig: continue
+   ox,oy,ow,oh=self.orig[bid];nx,ny,nw,nh=self.boxes[bid];px,py=pts[idx];X,Y=out[idx]
+   if abs(px-ox)<.5:X=nx
+   elif abs(px-(ox+ow))<.5:X=nx+nw
+   if abs(py-oy)<.5:Y=ny
+   elif abs(py-(oy+oh))<.5:Y=ny+nh
+   out[idx]=(X,Y)
+  return out
  def edge(self,id,src,dst,pts,dash=False,label='',labelbox=None,color=BLUE,openarrow=False):
   assert src in self.boxes and dst in self.boxes,(src,dst)
+  pts=self.fit(pts,src,dst)
   self.edges.append({'id':id,'source':src,'target':dst,'points':pts,'dashed':dash,'label':label})
-  self.line(pts,color,dash)
+  self._line(pts,color,dash)
   a,b=pts[-2:];ang=math.atan2(b[1]-a[1],b[0]-a[0]);arrow=[b,(b[0]-11*math.cos(ang-.4),b[1]-11*math.sin(ang-.4)),(b[0]-11*math.cos(ang+.4),b[1]-11*math.sin(ang+.4))]
   self.svg.append('<polygon points="'+' '.join(f'{x},{y}' for x,y in arrow)+f'" fill="{color}"/>');self.d.polygon([(x*2,y*2) for x,y in arrow],fill=color)
   c=ET.SubElement(self.r,'mxCell',id=id,value='',edge='1',parent='1',source=src,target=dst,style=f'edgeStyle=none;html=0;endArrow=block;strokeColor={color};'+('dashed=1;' if dash else ''))
   g=ET.SubElement(c,'mxGeometry',relative='1',attrib={'as':'geometry'});ar=ET.SubElement(g,'Array',attrib={'as':'points'})
   for x,y in pts[1:-1]:ET.SubElement(ar,'mxPoint',x=str(x),y=str(y))
   if label:
-   x,y,w,h=labelbox;self.text(id+'_guard',label,x,y,w,h,18,True,color)
+   x,y,w,h=labelbox;self.text(id+'_guard',label,x,y,w,h,FS,True,color)
  def save(self,path,spec):
   if path.stem != Path(__file__).stem: return {'skipped': path.stem}
   if self.errors:raise ValueError(self.errors)
   path.with_suffix('.png').parent.mkdir(parents=True,exist_ok=True);self.im.save(path.with_suffix('.png'));path.with_suffix('.svg').write_text(''.join(self.svg)+'</svg>',encoding='utf-8');ET.ElementTree(self.mx).write(path.with_suffix('.drawio'),encoding='utf-8',xml_declaration=True)
-  spec.update({'nodes':self.boxes,'edges':self.edges,'canvas':[W,H],'minimum_font_px':FS,'placed_width_mm':230,'minimum_pt':round(FS*230/25.4*72/W,2),'author':AUTHOR});path.with_suffix('.json').write_text(json.dumps(spec,indent=2),encoding='utf-8')
+  spec.update({'nodes':self.boxes,'edges':self.edges,'canvas':[W,H],'minimum_font_px':FS,'placed_width_mm':170,'minimum_pt':round(FS*170/25.4*72/W,2),'author':AUTHOR});path.with_suffix('.json').write_text(json.dumps(spec,indent=2),encoding='utf-8')
   ET.parse(path.with_suffix('.drawio'))
   return {'stem':path.stem,'nodes':len(self.boxes),'edges':len(self.edges),'minimum_pt':spec['minimum_pt'],'text_overflow':self.errors,'xml':'parsed','connected_edges':True}
 
 def activity(uc,part,title,actor,request,guard,effect,result,note):
  c=Canvas(f'UC-{uc} activity — Part {part}: {title}')
- c.rect('ActorLane','',20,85,340,755,'frame');c.rect('SystemLane','',360,85,720,755,'frame');c.text('actorname',actor,25,90,330,30,20,True,BLUE);c.text('systemname','System',365,90,710,30,20,True,BLUE)
+ c.rect('ActorLane','',20,85,340,775,'frame');c.rect('SystemLane','',360,85,720,775,'frame');c.text('actorname',actor,25,90,330,30,FS+2,True,BLUE);c.text('systemname','System',365,90,710,30,FS+2,True,BLUE)
  entry={'02':{'A':'','B':'TF','C':'FL'},'04':{'A':'','B':'WB','C':'DP'}}[uc][part]
  c.rect('I',entry,158 if entry else 165,135,44 if entry else 30,44 if entry else 30,'connector' if entry else 'initial')
  choice=part=='A' or (uc=='02' and part=='B')
  if choice:
-  action=('1–2: Browse and inspect\nREADY / own assigned delivery' if uc=='02' and part=='A' else '4: Hand over or identify\na delivery failure' if uc=='02' else '1: Select report type')
-  c.rect('A_request',action,40,200 if uc=='04' else 190,280,50 if uc=='04' else 60)
+  action=('1–2: Browse and inspect\nREADY / own assigned\ndelivery' if uc=='02' and part=='A' else '4: Hand over or identify\na delivery failure' if uc=='02' else '1: Select report type')
+  c.rect('A_request',action,30,200 if uc=='04' else 185,300,50 if uc=='04' else 70)
   c.rect('D_path','3 / A01: Next action?' if uc=='02' and part=='A' else '5 / A02: Outcome?' if uc=='02' else 'Selected report?',40,270,280,70,'decision')
- else: c.rect('A_request',request,40,190,280,110)
- c.rect('D_valid',guard,465,155,370,180,'decision');c.rect('S_effect',effect,465,365,370,150)
+ else: c.rect('A_request',request,30,200,300,110)
+ c.rect('D_valid',guard,435,155,430,200,'decision');c.rect('S_effect',effect,465,385,370,150)
  if choice:
   command='3: takeDelivery(orderId)' if uc=='02' and part=='A' else '5: confirmDelivered(orderId, cashCollected?)' if uc=='02' else '2: salesReport(startDateVN, endDateVN, hubId?)'
-  c.text('selected_command',command,400,124,650,26,18,False,BLUE)
- c.rect('D_commit','Operation\nsucceeds?',565,545,170,90,'decision');c.rect('S_refuse','Refuse; no changes\n'+('MG01 / E01–E05' if uc=='02' else 'MG01/02 / E01–02'),865,355,200,110,color=RED)
+  c.text('selected_command',command,400,124,650,26,FS,False,BLUE)
+ c.rect('D_commit','Operation\nsucceeds?',540,555,220,100,'decision');c.rect('S_refuse','Refuse; no changes\n'+('MG01 / E01–E05' if uc=='02' else 'MG01/02 / E01–02'),855,380,210,110,color=RED)
  c.rect('S_rollback',('Rollback command\nNo partial changes\nMG01 / E06' if uc=='02' else 'Read unavailable\nNo fabricated result\nMG01 / E03'),850,590,215,100,color=RED)
  c.rect('A_result',result,40,650,280,90);c.rect('M_end','',632,755,36,36,'merge')
  if uc=='04' and part=='A':
-  c.rect('D_repeat','Again?',120,795,120,40,'decision');c.rect('F','',50,805,30,30,'final')
+  c.rect('D_repeat','Again?',100,795,160,50,'decision');c.rect('F','',30,805,30,30,'final')
   c.rect('R_entry','R',950,795,44,44,'connector');c.rect('M_entry','',170,173,20,20,'merge')
  elif uc=='04':c.rect('F','R',628,795,44,44,'connector')
  else:c.rect('F','',634,805,32,32,'final')
  note=note.replace('Empty/no claim → end MG01.','Choose claim / resume / end.\nEnd → MG01; no writes.').replace('Resume own assignment via\nsteps 1–2; bypass pickup.','TF: own PICKED_UP delivery.\nFL: failure branch to Part C.')
- c.rect('N',note,35,415 if choice else 365,290,185 if choice else 215,'note')
+ c.rect('N',note,25,415 if choice else 365,312,185 if choice else 215,'note')
  if uc=='04' and part=='A':
   c.edge('e1','I','M_entry',[(180,165),(180,173)])
   c.edge('entry','M_entry','A_request',[(180,193),(180,200)])
- else:c.edge('e1','I','A_request',[(180,179 if entry else 165),(180,190)])
+ else:c.edge('e1','I','A_request',[(180,179 if entry else 165),(180,185 if choice else 200)])
  if choice:
-  c.edge('path_select','A_request','D_path',[(180,250),(180,270)])
+  c.edge('path_select','A_request','D_path',[(180,250 if uc=='04' else 255),(180,270)])
   label='[claim]' if uc=='02' and part=='A' else '[delivered]' if uc=='02' else '[sales]'
-  c.edge('e2','D_path','D_valid',[(320,305),(435,305),(435,245),(465,245)],label=label,labelbox=(370,309,125,26))
- else: c.edge('e2','A_request','D_valid',[(320,245),(465,245)])
+  c.edge('e2','D_path','D_valid',[(320,305),(400,305),(400,255),(435,255)],label=label,labelbox=(370,309,125,26))
+ else: c.edge('e2','A_request','D_valid',[(330,255),(435,255)])
  if uc=='02' and part=='A':
   c.rect('TF','TF',158,792,44,44,'connector')
   c.rect('M_continue','',166,752,28,28,'merge')
   c.edge('resume','D_path','M_continue',[(180,340),(350,340),(350,766),(194,766)],label='[resume]',labelbox=(235,343,105,26))
   c.rect('F_end','',280,375,28,28,'final')
-  c.edge('end','D_path','F_end',[(40,305),(25,305),(25,389),(280,389)],label='[end]',labelbox=(45,369,90,26))
+  c.edge('end','D_path','F_end',[(40,305),(25,305),(25,389),(280,389)],label='[end]',labelbox=(45,356,90,26))
  elif uc=='02' and part=='B':
   c.rect('FL','FL',158,365,44,44,'connector')
   c.edge('failed','D_path','FL',[(180,340),(180,365)],label='[failed]',labelbox=(205,342,110,26))
  elif uc=='04' and part=='A':
   c.rect('WB','WB',45,365,44,44,'connector');c.rect('DP','DP',280,365,44,44,'connector')
   c.edge('workload','D_path','WB',[(40,305),(25,305),(25,387),(45,387)],label='[workload]',labelbox=(95,375,150,26))
-  c.edge('performance','D_path','DP',[(180,340),(302,340),(302,365)],label='[delivery]',labelbox=(205,342,120,26))
- c.edge('e3','D_valid','S_effect',[(650,335),(650,365)],label='[valid]',labelbox=(655,337,100,26))
- c.edge('e4','D_valid','S_refuse',[(835,245),(965,245),(965,355)],label='[invalid]',labelbox=(835,258,120,26),color=RED)
- c.edge('e5','S_effect','D_commit',[(650,515),(650,545)])
- c.edge('e6','D_commit','A_result',[(565,590),(380,590),(380,695),(320,695)],label='[yes]',labelbox=(408,595,90,26))
- c.edge('e7','D_commit','S_rollback',[(735,590),(795,590),(795,640),(850,640)],label='[no]',labelbox=(747,599,65,26),color=RED)
- c.edge('e8','S_refuse','M_end',[(965,465),(1080,465),(1080,773),(668,773)],color=RED)
+  c.edge('performance','D_path','DP',[(180,340),(302,340),(302,365)],label='[delivery]',labelbox=(180,343,112,26))
+ c.edge('e3','D_valid','S_effect',[(650,355),(650,385)],label='[valid]',labelbox=(655,358,100,26))
+ c.edge('e4','D_valid','S_refuse',[(865,255),(960,255),(960,380)],label='[invalid]',labelbox=(968,300,100,26),color=RED)
+ c.edge('e5','S_effect','D_commit',[(650,535),(650,555)])
+ c.edge('e6','D_commit','A_result',[(540,605),(380,605),(380,695),(320,695)],label='[yes]',labelbox=(408,610,90,26))
+ c.edge('e7','D_commit','S_rollback',[(760,605),(805,605),(805,640),(850,640)],label='[no]',labelbox=(764,576,60,26),color=RED)
+ c.edge('e8','S_refuse','M_end',[(960,490),(960,515),(1072,515),(1072,773),(668,773)],color=RED)
  c.edge('e9','S_rollback','M_end',[(957,690),(957,730),(650,730),(650,755)],color=RED)
  if uc=='02' and part=='A':
   c.edge('e10','A_result','M_continue',[(180,740),(180,752)])
   c.edge('continue','M_continue','TF',[(180,780),(180,792)])
  else: c.edge('e10','A_result','M_end',[(180,740),(180,773),(632,773)])
  if uc=='04' and part=='A':
-  c.edge('e11','M_end','D_repeat',[(650,791),(650,820),(240,820)])
-  c.edge('repeat','D_repeat','M_entry',[(180,795),(340,795),(340,183),(190,183)],label='[repeat]',labelbox=(230,765,110,26))
-  c.edge('end','D_repeat','F',[(120,820),(80,820)],label='[end]',labelbox=(30,760,80,26))
+  c.edge('e11','M_end','D_repeat',[(650,791),(650,820),(260,820)])
+  c.edge('repeat','D_repeat','M_entry',[(180,795),(348,795),(348,183),(190,183)],label='[repeat]',labelbox=(236,744,108,26))
+  c.edge('end','D_repeat','F',[(100,820),(60,820)],label='[end]',labelbox=(30,760,80,26))
   c.edge('results','R_entry','M_end',[(972,795),(972,745),(780,745),(780,773),(668,773)])
  else:c.edge('e11','M_end','F',[(650,791),(650,795 if uc=='04' else 805)])
- c.text('scope','One logical activity across A–C. Matching circles continue flow; only Part A has an initial node.',15,58,1070,26,18,False,BLUE)
+ c.text('scope','One logical activity across A–C. Matching circles continue flow; only Part A has an initial node.',15,58,1070,26,FS,False,BLUE)
  p=ROOT/f'models/UC-{uc}/activity_uc{uc}_Part{part}';return c.save(p,{'type':'activity','part':part,'logical_activity':f'UC-{uc}','entry_connector':entry,'guard_definition':'valid = every condition in D_valid; invalid = its complement. Choice guards are exclusive selected actions.','flow_notes':note})
 
 def ssd(uc,part,title,actor,rows,frames,notes):
@@ -146,20 +172,20 @@ def ssd(uc,part,title,actor,rows,frames,notes):
  c.rect('Actor',actor,100,95,250,55,'head');c.rect('System',':System',750,95,250,55,'head')
  c.line([(225,150),(225,790)],dash=True);c.line([(875,150),(875,790)],dash=True)
  for i,(x,y,w,h,label) in enumerate(frames):
-  c.rect(f'frame{i}','',50,y,1000,h,'frame');c.text(f'frametext{i}',label,55,y+2,990,26,18,True,BLUE)
+  c.rect(f'frame{i}','',50,y,1000,h,'frame');c.text(f'frametext{i}',label,55,y+2,990,26,FS,True,BLUE)
  if uc=='02' and part=='B':
-  c.line([(50,415),(1050,415)],dash=True);c.text('operand2','[unable to deliver; reason required]',65,425,970,28,18,True,BLUE)
+  c.line([(50,415),(1050,415)],dash=True);c.text('operand2','[unable to deliver; reason required]',65,425,970,28,FS,True,BLUE)
  elif uc=='04':
-  c.rect('altframe','',70,220,960,530,'frame');c.text('altlabel','alt [sales]',80,224,940,26,18,True,BLUE)
+  c.rect('altframe','',70,220,960,530,'frame');c.text('altlabel','alt [sales]',80,224,940,26,FS,True,BLUE)
   for yy,label in [(365,'[workload now]'),(555,'[delivery performance]')]:
-   c.line([(70,yy),(1030,yy)],dash=True);c.text('operand'+str(yy),label,80,yy+4,940,26,18,True,BLUE)
+   c.line([(70,yy),(1030,yy)],dash=True);c.text('operand'+str(yy),label,80,yy+4,940,26,FS,True,BLUE)
  for id,y,call,ret in rows:
   # Invisible native anchor cells give every message a concrete lifeline endpoint.
   for who,x in [('a',225),('s',875)]:
-   for suf,yy in [('',y),('r',y+34)]:c.boxes[id+who+suf]=(x-1,yy-1,2,2);c.cell(id+who+suf,'',(x-1,yy-1,2,2),'opacity=0;strokeOpacity=0;fillOpacity=0;')
+   for suf,yy in [('',y),('r',y+34)]:c.boxes[id+who+suf]=(x-1,yy*c.ky-1,2,2);c.cell(id+who+suf,'',(x-1,yy*c.ky-1,2,2),'opacity=0;strokeOpacity=0;fillOpacity=0;')
   c.edge(id,id+'a',id+'s',[(225,y),(875,y)]);c.text(id+'_label',id+' '+call,240,y-27,620,25)
-  c.edge(id+'r',id+'sr',id+'ar',[(875,y+34),(225,y+34)],dash=True);c.text(id+'_return',ret,245,y+36,610,26,18,False,BLUE)
- c.text('notes',notes,20,795,1060,48,18)
+  c.edge(id+'r',id+'sr',id+'ar',[(875,y+34),(225,y+34)],dash=True);c.text(id+'_return',ret,245,y+36,610,26,FS,False,BLUE)
+ c.text('notes',notes,20,795,1060,48,FS)
  p=ROOT/f'models/UC-{uc}/ssd_uc{uc}'+Path('') if False else ROOT/f'models/UC-{uc}/ssd_uc{uc}{"_Part"+part if part else ""}'
  return c.save(p,{'type':'ssd','rows':[{'message_id':id,'call':call,'return':ret} for id,y,call,ret in rows],'fragments':frames,'notes':notes})
 

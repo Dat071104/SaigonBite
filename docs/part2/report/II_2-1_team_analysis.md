@@ -105,7 +105,7 @@ The proposal-owner column preserves the six use-case selections made in the prop
 | UC-05 | Decide an incoming order: confirm, reject, or offer a replacement the customer agrees to | Kitchen staff | Decide an own-hub PLACED order; when a line is unavailable, offer an eligible replacement for the customer's decision. | 523K0050 | (b) Fulfilment | 722I0004 |
 | UC-06 | Maintain brands, menu items and hub listings | Admin | Maintain brands, items and per-hub listings while preserving order snapshots. | 523K0050 | (c) CRUD management | 722I0004 |
 
-**Group coverage:** (a) Ordering — UC-01; (b) Fulfilment — UC-02 and UC-05; (c) CRUD management — UC-03 and UC-06; (d) Reports — UC-04.
+**Group coverage:** (a) Ordering: UC-01; (b) Fulfilment: UC-02 and UC-05; (c) CRUD management: UC-03 and UC-06; (d) Reports: UC-04.
 
 | Supporting UC | Goal | Actor | Main UC served | Actual author |
 |---|---|---|---|---|

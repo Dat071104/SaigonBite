@@ -63,7 +63,7 @@ def box(name, t, fill):
 def draw(tables):
     for key, (title, names) in PARTS.items():
         out = ["digraph ERD {", 'graph [rankdir=LR, nodesep=0.3, ranksep=0.7, fontname="Arial", fontsize=16, pad=0.2, dpi=200, labelloc="t",',
-               f' label=<<B>Schema v2 (db/schema.sql) — part {key}: {escape(title)}</B><BR/><FONT POINT-SIZE="12">Author 722I0004 · AI-assisted (Claude) · PK primary key · FK foreign key · U unique · ? nullable · bar = one, crow\'s foot = many</FONT>>];',
+               f' label=<<B>Schema v2 (db/schema.sql) — part {key}: {escape(title)}</B><BR/><FONT POINT-SIZE="12">Author 722I0004 · AI-assisted (Claude) · PK primary key · FK foreign key · U unique · ? nullable · relationship ends: || exactly one · |o zero or one · o&lt; zero or many (also written as 1, 0..1, 0..*)</FONT>>];',
                'node [shape=plain, fontname="Arial", fontsize=13];', 'edge [color="#40505F", penwidth=1.2];']
         shown = set(names)
         for n in names:
@@ -74,8 +74,14 @@ def draw(tables):
                 if target not in shown:
                     out.append(f'"{target}" [label=<<TABLE BORDER="1" CELLBORDER="0" BGCOLOR="#EEEEEE"><TR><TD><I>{escape(target)}</I><BR/><FONT POINT-SIZE="11">(part {"A" if key == "B" else "B"})</FONT></TD></TR></TABLE>>];')
                     shown.add(target)
-                head = "tee" if f[3] in tables[n]["unique"] else "crow"  # 1 : 0..1 or 1 : many
-                out.append(f'"{target}" -> "{n}":"{f[3]}" [arrowhead={head}, arrowtail=tee, dir=both];')
+                # Crow's foot ends (shape nearest the table first): child end 0..1 when the FK column is UNIQUE,
+                # else 0..*; parent end exactly 1 when the FK column is NOT NULL, else 0..1.
+                notnull = next(c[3] for c in tables[n]["cols"] if c[1] == f[3])
+                unique = f[3] in tables[n]["unique"]
+                head, hl = ("teeodot", "0..1") if unique else ("crowodot", "0..*")
+                tail, tl = ("teetee", "1") if notnull else ("teeodot", "0..1")
+                out.append(f'"{target}" -> "{n}":"{f[3]}" [arrowhead={head}, arrowtail={tail}, dir=both, '
+                           f'headlabel="{hl}", taillabel="{tl}", labelfontsize=11, labelfontname=Arial, labeldistance=2.2];')
         out.append("}")
         dot = OUT / f"erd_final_Part{key}.dot"
         dot.write_text("\n".join(out), encoding="utf-8")

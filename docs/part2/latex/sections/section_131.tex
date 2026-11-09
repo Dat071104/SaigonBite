@@ -282,8 +282,11 @@ R5 online options named E-wallet, Bank QR code, International card instead of 'e
 R6 'Cancel this order' is an outline in the danger colour, still behind a confirmation & c749dce & UC-01-S09 \\
 P5-D04 the quote table prints 0.39 km, not 0.38971718085988794 km & 5466f6a & UC-01-S04, S05, S07 \\
 P5-D02 choosing online payment goes straight to the simulator, without a false 'price changed' notice & ce18bf6 & UC-01-S04 to S06 \\
+R7 (09/11/2026, all roles) on a phone every data table scrolls inside its own box with an edge shadow, a select never exceeds the column, and links in tables, hints and lists are 44 px high (NFR-09) & release \texttt{v0.\allowbreak{}9-part2} & admin, kitchen availability and report tables \\
 \end{longtable}
 Full comparison, design notes and artifact dates: \texttt{docs/\allowbreak{}part2/\allowbreak{}ui/\allowbreak{}UC-01/\allowbreak{}mockup\_\allowbreak{}vs\_\allowbreak{}implemented.\allowbreak{}md} and \texttt{trace.\allowbreak{}md}.
+
+\textbf{Phone width (NFR-09).} The check at 360 \ensuremath{\times} 800 CSS pixels (Chromium 149, 09/11/2026) measured 45 pages of all roles in two runs. At commit 7670e8b, 37 pages passed and 8 table pages (kitchen availability, admin hubs, hub menu, catalogue, vouchers and accounts, and the workload and delivery reports) scrolled sideways, 388 to 743 px wide, because their data tables had no scroll box. After refinement R7 all 45 pages have a document scroll width of 360 px and no visible link, button or field is under 44 px. The row actions of the admin tables sit in the right-hand columns and are reached by scrolling the table, not the page. Evidence and re-run script: \texttt{docs/\allowbreak{}part2/\allowbreak{}test\_\allowbreak{}report/\allowbreak{}nfr09\_\allowbreak{}360\_\allowbreak{}2026-11-09/\allowbreak{}}.
 
 \textbf{4.3.3.2 UC-05 Confirm or reject an order (kitchen) and answer a replacement (customer)}
 

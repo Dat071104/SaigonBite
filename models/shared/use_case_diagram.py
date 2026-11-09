@@ -21,19 +21,25 @@ BLUE, INK, LINE = '#004387', '#202B36', '#52616F'
 FONT = 26
 
 class Page:
-    def __init__(self, stem, title, number, width=1600, height=1220):
-        self.stem,self.w,self.h=stem,width,height
+    def __init__(self, stem, title, number, width=1600, height=1220, fs=26, ky=1.0, placed_mm=230, attr0=65):
+        # fs = minimum font px; ky = vertical stretch of all logical y values (fonts grow, widths do not).
+        self.stem,self.w=stem,width
+        self.attr0=attr0; self.fs=fs; self.ky=ky; self.sc=fs/26; self.placed_mm=placed_mm; self.fl=round(fs*1.19)
+        self.h=round(height*ky)
         self.nodes=[]; self.edges=[]; self.texts=[]; self.shapes=[]
-        self.text(30,18,title,34,True)
-        self.text(30,height-66,f'Figure {number} · Author: 722I0004 · AI-assisted (Codex)',26)
-        self.text(30,height-35,'Analysis model · team defaults; no lecturer approval or runtime result inferred',26)
-    def text(self,x,y,s,size=FONT,bold=False,color=INK):
+        self._text(30,18,title,round(34*self.sc),True)
+        self._text(30,self.h-4-2*self.fl,f'Figure {number} · Author: 722I0004 · AI-assisted (Codex)',fs)
+        self._text(30,self.h-4-self.fl,'Analysis model · team defaults; no lecturer approval or runtime result inferred',fs)
+    def _text(self,x,y,s,size=FONT,bold=False,color=INK):
         self.texts.append(dict(x=x,y=y,text=s,size=size,bold=bold,color=color))
+    def text(self,x,y,s,size=FONT,bold=False,color=INK):
+        self._text(x,y*self.ky,s,round(size*self.sc),bold,color)
     def node(self,id,label,x,y,w,h,kind='rect',fill='#E7F0F6',attrs=None):
-        n=dict(id=id,label=label,x=x,y=y,w=w,h=h,kind=kind,fill=fill,attrs=attrs)
+        n=dict(id=id,label=label,x=x,y=y*self.ky,w=w,h=h if kind=='actor' else h*self.ky,kind=kind,fill=fill,attrs=attrs)
         self.nodes.append(n); return n
     def edge(self,id,source,target,points,label='',lx=None,ly=None,kind='assoc',ends=None):
-        self.edges.append(dict(id=id,source=source,target=target,points=points,label=label,lx=lx,ly=ly,kind=kind,ends=ends))
+        k=self.ky
+        self.edges.append(dict(id=id,source=source,target=target,points=[(px,py*k) for px,py in points],label=label,lx=lx,ly=None if ly is None else ly*k,kind=kind,ends=None if ends is None else [(es,ex,ey*k) for es,ex,ey in ends]))
     def export(self):
         img=Image.new('RGB',(self.w,self.h),'white'); d=ImageDraw.Draw(img)
         svg=[f'<svg xmlns="http://www.w3.org/2000/svg" width="{self.w}" height="{self.h}" viewBox="0 0 {self.w} {self.h}">',
@@ -86,9 +92,9 @@ class Page:
             for key,p in [('source',pts[0]),('target',pts[-1])]:
                 n=ns[e[key]];rx=(p[0]-n['x'])/n['w'];ry=(p[1]-n['y'])/n['h']
                 edge.set('style',edge.get('style')+f'{"exit" if key=="source" else "entry"}X={rx};{"exit" if key=="source" else "entry"}Y={ry};')
-            if e['label']:self.text(e['lx'],e['ly'],e['label'],26,color=BLUE)
+            if e['label']:self._text(e['lx'],e['ly'],e['label'],round(26*self.sc),color=BLUE)
             if e['ends']:
-                for s,x,y in e['ends']:self.text(x,y,s,26,color=BLUE)
+                for s,x,y in e['ends']:self._text(x,y,s,round(26*self.sc),color=BLUE)
         for n in self.nodes:
             x,y,w,h=n['x'],n['y'],n['w'],n['h'];kind=n['kind'];fill=n['fill']
             if kind=='actor':
@@ -99,7 +105,7 @@ class Page:
                 svg.extend([f'<circle cx="{cx}" cy="{cy}" r="16" fill="white" stroke="{INK}" stroke-width="3"/>',f'<path d="M{cx},{cy+16} V{cy+65} M{cx-30},{cy+35} H{cx+30} M{cx-28},{cy+100} L{cx},{cy+65} L{cx+28},{cy+100}" fill="none" stroke="{INK}" stroke-width="3"/>'])
                 lines=n['label'].split('\n');tx=x;ty=y+128
                 for i,s in enumerate(lines):
-                    tw=d.textlength(s,font=P1.font(26));d.text((cx-tw/2,ty+i*31),s,font=P1.font(26),fill=INK);P1.add_text_svg(svg,cx-tw/2,ty+i*31,[s],26)
+                    tw=d.textlength(s,font=P1.font(round(26*self.sc)));d.text((cx-tw/2,ty+i*self.fl),s,font=P1.font(round(26*self.sc)),fill=INK);P1.add_text_svg(svg,cx-tw/2,ty+i*self.fl,[s],round(26*self.sc))
                 style='shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;fillColor=white;'
                 value=n['label']
             else:
@@ -108,24 +114,25 @@ class Page:
                 else:d.rectangle((x,y,x+w,y+h),fill=fill,outline=BLUE,width=3);svg.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="{fill}" stroke="{BLUE}" stroke-width="3"/>')
                 label_lines=n['label'].split('\n')
                 if kind=='class':
-                    self.text(x+14,y+12,n['label'],28,True)
-                    d.line((x,y+52,x+w,y+52),fill=BLUE,width=2);svg.append(f'<path d="M{x},{y+52} H{x+w}" stroke="{BLUE}" stroke-width="2"/>')
-                    for i,a in enumerate(n['attrs'] or []):self.text(x+14,y+65+i*31,a,26)
+                    k=self.ky
+                    self._text(x+14,y+12*k,n['label'],round(28*self.sc),True)
+                    d.line((x,y+52*k,x+w,y+52*k),fill=BLUE,width=2);svg.append(f'<path d="M{x},{y+52*k} H{x+w}" stroke="{BLUE}" stroke-width="2"/>')
+                    for i,a in enumerate(n['attrs'] or []):self._text(x+14,y+self.attr0*k+i*31*k,a,round(26*self.sc))
                 elif kind in ('frame','note','ref'):
-                    self.text(x+12,y+12,n['label'],26,kind=='frame')
+                    self._text(x+12,y+12*self.ky,n['label'],round(26*self.sc),kind=='frame')
                 else:
                     lines=[]
-                    for s in label_lines:lines.extend(P1.wrap_lines(d,s,P1.font(26),w-70))
-                    top=y+(h-len(lines)*31)/2
+                    for s in label_lines:lines.extend(P1.wrap_lines(d,s,P1.font(round(26*self.sc)),w-70))
+                    top=y+(h-len(lines)*self.fl)/2
                     for i,s in enumerate(lines):
-                        tw=d.textlength(s,font=P1.font(26));self.text(x+(w-tw)/2,top+i*31,s,26)
+                        tw=d.textlength(s,font=P1.font(round(26*self.sc)));self._text(x+(w-tw)/2,top+i*self.fl,s,round(26*self.sc))
                 style=('ellipse;' if kind=='ellipse' else '')+f'fillColor={"none" if kind=="frame" else fill};strokeColor={BLUE};whiteSpace=wrap;'
                 value='' # Editable text cells reproduce every line independently.
-            cell=ET.SubElement(root,'mxCell',{'id':n['id'],'vertex':'1','parent':'1','value':value,'style':style+'fontFamily=Arial;fontSize=26;html=0;'})
+            cell=ET.SubElement(root,'mxCell',{'id':n['id'],'vertex':'1','parent':'1','value':value,'style':style+'fontFamily=Arial;fontSize='+str(round(26*self.sc))+';html=0;'})
             ET.SubElement(cell,'mxGeometry',{'x':str(x),'y':str(y),'width':str(w),'height':str(h),'as':'geometry'})
             if kind=='class':
                 separator=ET.SubElement(root,'mxCell',{'id':n['id']+'_compartment_line','vertex':'1','parent':'1','value':'','style':f'shape=line;strokeColor={BLUE};strokeWidth=2;'})
-                ET.SubElement(separator,'mxGeometry',{'x':str(x),'y':str(y+52),'width':str(w),'height':'1','as':'geometry'})
+                ET.SubElement(separator,'mxGeometry',{'x':str(x),'y':str(y+52*self.ky),'width':str(w),'height':'1','as':'geometry'})
         for i,t in enumerate(self.texts):
             lines=t['text'].split('\n');f=P1.font(t['size'],t['bold'])
             for j,s in enumerate(lines):d.text((t['x'],t['y']+j*t['size']*1.19),s,font=f,fill=t['color'])
@@ -135,7 +142,7 @@ class Page:
         (OUT/(self.stem+'.svg')).write_text('\n'.join(svg),encoding='utf-8')
         img.save(OUT/(self.stem+'.png'))
         ET.indent(mx);ET.ElementTree(mx).write(OUT/(self.stem+'.drawio'),encoding='utf-8',xml_declaration=True)
-        data=dict(stem=self.stem,width=self.w,height=self.h,font_min=26,placed_width_mm=230,min_placed_pt=26*230/self.w*72/25.4,nodes=self.nodes,edges=self.edges)
+        data=dict(stem=self.stem,width=self.w,height=self.h,font_min=min(t['size'] for t in self.texts),placed_width_mm=self.placed_mm,min_placed_pt=min(t['size'] for t in self.texts)*self.placed_mm/self.w*72/25.4,nodes=self.nodes,edges=self.edges)
         (OUT/(self.stem+'.json')).write_text(json.dumps(data,indent=2),encoding='utf-8')
         ids={n['id'] for n in self.nodes}
         assert len(ids)==len(self.nodes)
@@ -186,15 +193,15 @@ def build():
     p.text(490,465,'it does not create a second synchronous kitchen actor session.',26)
     p.text(350,975,'Sequence dependencies are described in flows, not drawn as «include».',26)
     pages.append(p)
-    p=Page('use_case_diagram_PartC','Use cases · (c) administration, (d) reports and shared access','2.1C',height=1370)
+    p=Page('use_case_diagram_PartC','Use cases · (c) administration, (d) reports and shared access','2.1C',height=1370,fs=31,ky=1.2,placed_mm=170)
     system(p,h=1060)
-    actor(p,'admin','Admin',70,370);actor(p,'manager','Manager',1430,520)
-    actor(p,'customer','Customer',1430,805);actor(p,'kitchen','Kitchen staff',1430,970);actor(p,'shipper','Shipper',70,1010)
+    actor(p,'admin','Admin',70,370);actor(p,'manager','Manager',1426,520)
+    actor(p,'customer','Customer',1426,805);actor(p,'kitchen','Kitchen staff',1426,970);actor(p,'shipper','Shipper',70,1010)
     uc(p,'UC03','UC-03\nMaintain hubs and kitchen capacity',380,175,440,195,True)
     uc(p,'UC06','UC-06\nMaintain brands, menu items and hub listings',875,175,470,195,True)
-    uc(p,'SUC07','SUC-07\nMaintain vouchers',380,440,380,135)
-    uc(p,'SUC08','SUC-08\nMaintain user accounts;\ndeactivate/reactivate',380,635,380,155)
-    uc(p,'SUC09','SUC-09\nArchive closed orders;\nread archived history',380,850,380,155)
+    uc(p,'SUC07','SUC-07\nMaintain vouchers',380,440,440,135)
+    uc(p,'SUC08','SUC-08\nMaintain user accounts;\ndeactivate/reactivate',380,635,440,155)
+    uc(p,'SUC09','SUC-09\nArchive closed orders;\nread archived history',380,850,440,155)
     uc(p,'UC04','UC-04\nProduce management reports: sales, workload, delivery performance',875,495,470,230,True)
     uc(p,'SUC01','SUC-01\nLog in / log out',910,970,400,140)
     for id,t,y,pts in [('ad3','UC03',270,[(240,410),(330,410),(330,270),(380,270)]),('ad6','UC06',270,[(240,430),(280,430),(280,155),(1110,155),(1110,175)]),('ad7','SUC07',507,[(240,450),(380,507)]),('ad8','SUC08',710,[(240,470),(320,470),(320,710),(380,710)]),('ad9','SUC09',928,[(240,490),(290,490),(290,928),(380,928)])]:p.edge(id,'admin',t,pts)
@@ -206,8 +213,8 @@ def build():
     p.edge('loginsh','shipper','SUC01',[(240,1060),(910,1060)])
     p.text(900,405,'(c) CRUD management',26,True)
     p.text(900,755,'(d) read-only reports',26,True)
-    p.text(900,825,'Authentication is a session precondition,\nnot an include on every business request.',26)
-    p.text(325,1190,'Deferred (L3): complaint/refund decision, refund payout, rating. No deferred UCs drawn.',26)
+    p.text(900,825,'Authentication is a session\nprecondition, not an include on\nevery business request.',26)
+    p.text(325,1190,'Deferred (L3): complaint/refund decision,\nrefund payout, rating. No deferred UCs drawn.',26)
     pages.append(p)
     result=[p.export() for p in pages]
     for suffix in ['drawio','png','svg','json']:shutil.copyfile(OUT/f'use_case_diagram_PartA.{suffix}',OUT/f'use_case_diagram.{suffix}')

@@ -14,7 +14,7 @@ Members
 
 Links
   GitHub repository : {L['github_repo']}
-  Tagged release    : {release}   (tag {tag})
+  Tagged release    : {release}   (tag {tag}; GitHub release of the same name)
   Figma prototype   : {L['figma_prototype']}
   Figma design file : {L['figma_file']}
   Deployed system   : {L['deployed_url']}   (fallback {L['deployed_url_fallback']})
@@ -37,7 +37,8 @@ Run the tests (Python 3.13, full Git checkout)
 
 Files submitted
   Team{L['team_no']}_BRS_SRS_for_SaigonBite.pdf   report (sections I-V, appendices incl. Contribution Statement and AI Usage Log)
-  Team{L['team_no']}_RAD_Sem01_2627_Team_Workbook.xlsx   self-assessment and team workbook
+  Team{L['team_no']}_Self_Assessment_SaigonBite.xlsx   self-assessment (course marking sheet: Part 1 and Part 2 self-marks, checklist)
+  Team{L['team_no']}_RAD_Sem01_2627_Team_Workbook.xlsx   team workbook (Q&A, assumptions, backlog, requirements, events, CRUD, test cases, feedback)
   Readme.txt                                   this file
   Model sources (draw.io, Graphviz .dot, PNG, SVG) are in the repository folder models/ and in the Drive folder.
 """

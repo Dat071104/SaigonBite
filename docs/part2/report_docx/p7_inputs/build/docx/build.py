@@ -99,6 +99,8 @@ def image(item):
  with _Img.open(R/item['source_png']) as im:pw,ph=im.size
  w=float(item['width_mm']);cap=160.0 if land else 225.0
  if w*ph/pw>cap:w=cap*pw/ph
+ # Never wider than the text area of the section the picture lands in (the template's first section is 165.1 mm).
+ _s=d.sections[-1];w=min(w,(_s.page_width-_s.left_margin-_s.right_margin)/36000)
  p=d.add_paragraph();p.paragraph_format.keep_with_next=True;mark(p,item['fig_id']);p.add_run().add_picture(str(R/item['source_png']),width=Mm(w))
  c=d.add_paragraph(item['caption'])
  if land:

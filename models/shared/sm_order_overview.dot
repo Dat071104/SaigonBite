@@ -21,8 +21,9 @@ start [shape=circle, label="", width=0.25, style=filled, fillcolor=black];
 "DELIVERY_FAILED" -> "end_DELIVERY_FAILED" [label="archiveOrder\n(SUC-09)", fontsize=11, style=dotted];
 "end_REJECTED" [shape=doublecircle, label="", width=0.18, style=filled, fillcolor=black];
 "REJECTED" -> "end_REJECTED" [label="archiveOrder\n(SUC-09)", fontsize=11, style=dotted];
-start -> PLACED [label="confirmCheckout [quote unchanged,\nhub not busy, payment approved]\n/ save lines, snapshots, payment (UC-01)"];
-PLACED -> PLACED [label="offerReplacement [line unavailable] /\nacceptReplacement [offer valid]\n(UC-05, SUC-03)"];
+start -> PLACED [label="confirmCheckout [quote unchanged, hub not busy,\nCOD, or ONLINE approved by the simulator]\n/ save lines, snapshots, payment (UC-01)"];
+PLACED:e -> PLACED:ne [label="offerReplacement [line unavailable,\nno open offer] / open offer (UC-05)"];
+PLACED:w -> PLACED:nw [label="acceptReplacement [offer still valid]\n/ swap line, recompute totals,\nrecord refund owed (SUC-03)"];
 "CONFIRMED" -> "CANCELLED" [label="cancelOrder (SUC-04)
 / release payment"];
 "CONFIRMED" -> "PREPARING" [label="startPreparing
@@ -31,11 +32,11 @@ PLACED -> PLACED [label="offerReplacement [line unavailable] /\nacceptReplacemen
 COD cash = total] / COD PAID (UC-02)"];
 "OUT_FOR_DELIVERY" -> "DELIVERY_FAILED" [label="reportFailure(reason) [assigned shipper]
 / release payment (UC-02)"];
-"PLACED" -> "CANCELLED" [label="cancelOrder (SUC-04)
+"PLACED":sw -> "CANCELLED" [label="cancelOrder (SUC-04)
 / withdraw offer, release payment"];
 "PLACED" -> "CONFIRMED" [label="confirmOrder [own hub, no open offer]
 (UC-05)"];
-"PLACED" -> "REJECTED" [label="rejectOrder(reason) (UC-05) or
+"PLACED":se -> "REJECTED" [label="rejectOrder(reason) (UC-05) or
 declineReplacement (SUC-03)
 / release payment"];
 "PREPARING" -> "READY" [label="markReady (SUC-05)

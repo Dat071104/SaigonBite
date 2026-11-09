@@ -20,7 +20,7 @@ All nine stored Order states and all twelve §4.1 event names are represented in
 
 Figure 2.3. Order — complete lifecycle — Author: 722I0004 · AI-assisted (Claude)
 
-Figure 2.3 shows the whole Order lifecycle on one page; it is generated from the transition table in the code (models/shared/sm_order_overview.py), so the model and the program cannot disagree. Figures 2.3A–2.3E below show each part in detail with the postconditions (PC) and minimum guarantees (MG) that each transition establishes.
+Figure 2.3 shows the whole Order lifecycle on one page; the generator (models/shared/sm_order_overview.py) reads the state pairs from the transition table in the code and stops if a pair has no label, while the event [guard] / effect labels are written by hand and cross-checked against the detailed views. Offering a replacement (kitchen staff) and accepting it (customer) are two separate requests, so they are drawn as two self-transitions on PLACED. Figures 2.3A–2.3E below show each part in detail with the postconditions (PC) and minimum guarantees (MG) that each transition establishes.
 
 ![Figure 2.3A. Order — creation and kitchen decision](../../../models/shared/sm_order.png)
 

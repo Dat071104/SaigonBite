@@ -94,7 +94,14 @@ def image(item):
  used.append(item['fig_id']);land=item['page_orientation']=='landscape'
  if land:
   sec=d.add_section(WD_SECTION.NEW_PAGE);sec.orientation=WD_ORIENT.LANDSCAPE;sec.page_width=Mm(297);sec.page_height=Mm(210);sec.left_margin=Mm(30);sec.right_margin=Mm(30);sec.top_margin=Mm(15);sec.bottom_margin=Mm(15)
- p=d.add_paragraph();p.paragraph_format.keep_with_next=True;mark(p,item['fig_id']);p.add_run().add_picture(str(R/item['source_png']),width=Mm(float(item['width_mm'])))
+ # Fit inside the printable area: width from the manifest, height capped (landscape 160 mm, portrait 225 mm).
+ from PIL import Image as _Img
+ with _Img.open(R/item['source_png']) as im:pw,ph=im.size
+ w=float(item['width_mm']);cap=160.0 if land else 225.0
+ if w*ph/pw>cap:w=cap*pw/ph
+ # Never wider than the text area of the section the picture lands in (the template's first section is 165.1 mm).
+ _s=d.sections[-1];w=min(w,(_s.page_width-_s.left_margin-_s.right_margin)/36000)
+ p=d.add_paragraph();p.paragraph_format.keep_with_next=True;mark(p,item['fig_id']);p.add_run().add_picture(str(R/item['source_png']),width=Mm(w))
  c=d.add_paragraph(item['caption'])
  if land:
   sec=d.add_section(WD_SECTION.NEW_PAGE);sec.orientation=WD_ORIENT.PORTRAIT;sec.page_width=Mm(210);sec.page_height=Mm(297);sec.left_margin=Mm(20);sec.right_margin=Mm(20);sec.top_margin=Mm(20);sec.bottom_margin=Mm(20)

@@ -9,29 +9,38 @@ from PIL import Image, ImageDraw, ImageFont
 sys.dont_write_bytecode=True
 ROOT=Path('D:/RAD/FINAL/SaigonBite'); SCRATCH=Path('D:/RAD/FINAL/Part2/notes/P2-F')
 AUTHOR='Author: 722I0004 · AI-assisted (Codex)'
-BLUE='#004387'; INK='#1B1B1B'; RED='#B03A2E'; W=1100; H=900; FS=18
+BLUE='#004387'; INK='#1B1B1B'; RED='#B03A2E'; KY=1.25; W=1100; H=round(900*KY); FS=21
 EDGE=Path('C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe')
 
 class Canvas:
  def __init__(self,title):
-  self.svg=[f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}"><rect width="1100" height="900" fill="white"/>']
-  self.im=Image.new('RGB',(W*2,H*2),'white'); self.d=ImageDraw.Draw(self.im)
+  self.svg=[f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}"><rect width="{W}" height="{H}" fill="white"/>']
+  self.ky=KY; self.orig={}; self.im=Image.new('RGB',(W*2,H*2),'white'); self.d=ImageDraw.Draw(self.im)
   self.mx=ET.Element('mxfile',host='SaigonBite P2'); dia=ET.SubElement(self.mx,'diagram',name=title,id='page1'); model=ET.SubElement(dia,'mxGraphModel',page='1',pageWidth=str(W),pageHeight=str(H));self.r=ET.SubElement(model,'root');ET.SubElement(self.r,'mxCell',id='0');ET.SubElement(self.r,'mxCell',id='1',parent='0')
   self.boxes={};self.edges=[];self.errors=[];self.serial=0
-  self.text('title',title,20,12,1060,42,22,True,BLUE)
-  self.text('author',AUTHOR,20,850,1060,28,18,True,BLUE)
+  self.text('title',title,20,12,1060,42,FS+3,True,BLUE)
+  self.text('author',AUTHOR,20,850,1060,28,FS,True,BLUE)
  def cell(self,id,label,box,style):
   c=ET.SubElement(self.r,'mxCell',id=id,value=label,style=style,vertex='1',parent='1');x,y,w,h=box;ET.SubElement(c,'mxGeometry',x=str(x),y=str(y),width=str(w),height=str(h),attrib={'as':'geometry'})
  def text(self,id,label,x,y,w,h,size=FS,bold=False,color=INK,mx=True):
+  self._text(id,label,x,y*self.ky,w,h*self.ky,size,bold,color,mx)
+ def _text(self,id,label,x,y,w,h,size=FS,bold=False,color=INK,mx=True,dia=None):
   f=ImageFont.truetype('C:/Windows/Fonts/arialbd.ttf' if bold else 'C:/Windows/Fonts/arial.ttf',size*2)
   lines=label.split('\n');lh=size+4
   if any(f.getlength(s)/2>w-4 for s in lines) or len(lines)*lh>h+2:self.errors.append('text overflow '+id)
+  if dia:
+   dx,dy,dw,dh=dia;n=len(lines);ccy=dy+dh/2
+   for i,s in enumerate(lines):
+    off=abs(y+h/2-(n-1)*lh/2+i*lh-ccy)+lh/2
+    if f.getlength(s)/2>dw*(1-off/(dh/2))-6:self.errors.append('diamond overflow '+id+':'+s)
   yy=y+h/2-(len(lines)-1)*lh/2
   for i,s in enumerate(lines):
    cy=yy+i*lh;self.d.text(((x+w/2)*2,cy*2),s,font=f,fill=color,anchor='mm')
    self.svg.append(f'<text x="{x+w/2}" y="{cy+size*.34}" text-anchor="middle" font-family="Arial" font-size="{size}" font-weight="{"bold" if bold else "normal"}" fill="{color}">{escape(s)}</text>')
   if mx:self.cell(id,label,(x,y,w,h),f'text;html=0;whiteSpace=wrap;fontSize={size};fontColor={color};fontStyle={1 if bold else 0};align=center;verticalAlign=middle;strokeColor=none;fillColor=none;')
  def line(self,pts,color=BLUE,dash=False,width=2):
+  self._line([(x,y*self.ky) for x,y in pts],color,dash,width)
+ def _line(self,pts,color=BLUE,dash=False,width=2):
   self.svg.append('<polyline points="'+ ' '.join(f'{x},{y}' for x,y in pts)+f'" fill="none" stroke="{color}" stroke-width="{width}"'+(' stroke-dasharray="7 5"' if dash else '')+'/>')
   for a,b in zip(pts,pts[1:]):
    if dash:
@@ -40,7 +49,12 @@ class Canvas:
      t=k/n;u=min(1,t+0.55/n);self.d.line([(2*(a[0]+(b[0]-a[0])*q),2*(a[1]+(b[1]-a[1])*q)) for q in [t,u]],fill=color,width=width*2)
    else:self.d.line([(x*2,y*2) for x,y in [a,b]],fill=color,width=width*2)
  def rect(self,id,label,x,y,w,h,kind='action',color=BLUE):
+  self.orig[id]=(x,y,w,h);k=self.ky
+  if kind in ['initial','final','connector','merge']:
+   cx=x+w/2;w=w*k;h=h*k;x=cx-w/2;y=y*k
+  else:y=y*k;h=h*k
   self.boxes[id]=(x,y,w,h)
+  self.sbox=(id,x,y,w,h)
   if kind in ['initial','final']:
    self.svg.append(f'<ellipse cx="{x+w/2}" cy="{y+h/2}" rx="{w/2}" ry="{h/2}" fill="{color if kind=="initial" else "white"}" stroke="{color}" stroke-width="2"/>')
    self.d.ellipse((x*2,y*2,(x+w)*2,(y+h)*2),fill=color if kind=='initial' else 'white',outline=color,width=4)
@@ -54,29 +68,41 @@ class Canvas:
    fill='#FFFBE6' if kind=='note' else 'white';rx=0 if kind in ['note','frame','head'] else 12
    self.svg.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{rx}" fill="{fill}" stroke="{color}" stroke-width="2"/>');self.d.rounded_rectangle((x*2,y*2,(x+w)*2,(y+h)*2),radius=rx*2,fill=fill,outline=color,width=4);style='rounded=1;' if rx else 'rounded=0;'
   self.cell(id,label,(x,y,w,h),style+f'html=0;whiteSpace=wrap;strokeColor={color};fillColor=white;fontSize={FS};align=center;verticalAlign=middle;')
-  if label:self.text(id+'_txt',label,x+5,y+3,w-10,h-6,mx=False)
+  if label:self._text(id+'_txt',label,x+5,y+3,w-10,h-6,mx=False,dia=(x,y,w,h) if kind in ['decision','merge'] else None)
+ def fit(self,pts,src,dst):
+  out=[(x,y*self.ky) for x,y in pts]
+  for idx,bid in [(0,src),(-1,dst)]:
+   if bid not in self.orig: continue
+   ox,oy,ow,oh=self.orig[bid];nx,ny,nw,nh=self.boxes[bid];px,py=pts[idx];X,Y=out[idx]
+   if abs(px-ox)<.5:X=nx
+   elif abs(px-(ox+ow))<.5:X=nx+nw
+   if abs(py-oy)<.5:Y=ny
+   elif abs(py-(oy+oh))<.5:Y=ny+nh
+   out[idx]=(X,Y)
+  return out
  def edge(self,id,src,dst,pts,dash=False,label='',labelbox=None,color=BLUE,openarrow=False):
   assert src in self.boxes and dst in self.boxes,(src,dst)
+  pts=self.fit(pts,src,dst)
   self.edges.append({'id':id,'source':src,'target':dst,'points':pts,'dashed':dash,'label':label})
-  self.line(pts,color,dash)
+  self._line(pts,color,dash)
   a,b=pts[-2:];ang=math.atan2(b[1]-a[1],b[0]-a[0]);arrow=[b,(b[0]-11*math.cos(ang-.4),b[1]-11*math.sin(ang-.4)),(b[0]-11*math.cos(ang+.4),b[1]-11*math.sin(ang+.4))]
   self.svg.append('<polygon points="'+' '.join(f'{x},{y}' for x,y in arrow)+f'" fill="{color}"/>');self.d.polygon([(x*2,y*2) for x,y in arrow],fill=color)
   c=ET.SubElement(self.r,'mxCell',id=id,value='',edge='1',parent='1',source=src,target=dst,style=f'edgeStyle=none;html=0;endArrow=block;strokeColor={color};'+('dashed=1;' if dash else ''))
   g=ET.SubElement(c,'mxGeometry',relative='1',attrib={'as':'geometry'});ar=ET.SubElement(g,'Array',attrib={'as':'points'})
   for x,y in pts[1:-1]:ET.SubElement(ar,'mxPoint',x=str(x),y=str(y))
   if label:
-   x,y,w,h=labelbox;self.text(id+'_guard',label,x,y,w,h,18,True,color)
+   x,y,w,h=labelbox;self.text(id+'_guard',label,x,y,w,h,FS,True,color)
  def save(self,path,spec):
   if path.stem != Path(__file__).stem: return {'skipped': path.stem}
   if self.errors:raise ValueError(self.errors)
   path.with_suffix('.png').parent.mkdir(parents=True,exist_ok=True);self.im.save(path.with_suffix('.png'));path.with_suffix('.svg').write_text(''.join(self.svg)+'</svg>',encoding='utf-8');ET.ElementTree(self.mx).write(path.with_suffix('.drawio'),encoding='utf-8',xml_declaration=True)
-  spec.update({'nodes':self.boxes,'edges':self.edges,'canvas':[W,H],'minimum_font_px':FS,'placed_width_mm':230,'minimum_pt':round(FS*230/25.4*72/W,2),'author':AUTHOR});path.with_suffix('.json').write_text(json.dumps(spec,indent=2),encoding='utf-8')
+  spec.update({'nodes':self.boxes,'edges':self.edges,'canvas':[W,H],'minimum_font_px':FS,'placed_width_mm':170,'minimum_pt':round(FS*170/25.4*72/W,2),'author':AUTHOR});path.with_suffix('.json').write_text(json.dumps(spec,indent=2),encoding='utf-8')
   ET.parse(path.with_suffix('.drawio'))
   return {'stem':path.stem,'nodes':len(self.boxes),'edges':len(self.edges),'minimum_pt':spec['minimum_pt'],'text_overflow':self.errors,'xml':'parsed','connected_edges':True}
 
 def activity(uc,part,title,actor,request,guard,effect,result,note):
  c=Canvas(f'UC-{uc} activity — Part {part}: {title}')
- c.rect('ActorLane','',20,85,340,755,'frame');c.rect('SystemLane','',360,85,720,755,'frame');c.text('actorname',actor,25,90,330,30,20,True,BLUE);c.text('systemname','System',365,90,710,30,20,True,BLUE)
+ c.rect('ActorLane','',20,85,340,755,'frame');c.rect('SystemLane','',360,85,720,755,'frame');c.text('actorname',actor,25,90,330,30,FS+2,True,BLUE);c.text('systemname','System',365,90,710,30,FS+2,True,BLUE)
  c.rect('I','',165,135,30,30,'initial');c.rect('A_request',request,40,190,280,110);c.rect('D_valid',guard,465,155,370,180,'decision');c.rect('S_effect',effect,465,365,370,150)
  c.rect('D_commit','Operation\nsucceeds?',565,545,170,90,'decision');c.rect('S_refuse','Refuse; no changes\n'+('MG01 / E01–E05' if uc=='02' else 'MG01/02 / E01–02'),865,355,200,110,color=RED)
  c.rect('S_rollback',('Rollback command\nNo partial changes\nMG01 / E06' if uc=='02' else 'Read unavailable\nNo fabricated result\nMG01 / E03'),850,590,215,100,color=RED)
@@ -91,7 +117,7 @@ def activity(uc,part,title,actor,request,guard,effect,result,note):
  c.edge('e9','S_rollback','M_end',[(957,690),(957,730),(650,730),(650,755)],color=RED)
  c.edge('e10','A_result','M_end',[(180,740),(180,773),(632,773)])
  c.edge('e11','M_end','F',[(650,791),(650,805)])
- c.text('scope','Scoped activity episodes: pickup / finish or one report; final ends this episode, not other requests.',15,58,1070,26,18,False,BLUE)
+ c.text('scope','Scoped activity episodes: pickup / finish or one report; final ends this episode, not other requests.',15,58,1070,26,FS,False,BLUE)
  p=ROOT/f'models/UC-{uc}/activity_uc{uc}_Part{part}';return c.save(p,{'type':'activity','part':part,'guard_definition':'valid = every condition written in D_valid holds; invalid = its logical complement','flow_notes':note})
 
 def ssd(uc,part,title,actor,rows,frames,notes):
@@ -99,20 +125,20 @@ def ssd(uc,part,title,actor,rows,frames,notes):
  c.rect('Actor',actor,100,95,250,55,'head');c.rect('System',':System',750,95,250,55,'head')
  c.line([(225,150),(225,790)],dash=True);c.line([(875,150),(875,790)],dash=True)
  for i,(x,y,w,h,label) in enumerate(frames):
-  c.rect(f'frame{i}','',50,y,1000,h,'frame');c.text(f'frametext{i}',label,55,y+2,990,26,18,True,BLUE)
+  c.rect(f'frame{i}','',50,y,1000,h,'frame');c.text(f'frametext{i}',label,55,y+2,990,26,FS,True,BLUE)
  if uc=='02' and part=='B':
-  c.line([(50,415),(1050,415)],dash=True);c.text('operand2','[unable to deliver; reason required]',65,425,970,28,18,True,BLUE)
+  c.line([(50,415),(1050,415)],dash=True);c.text('operand2','[unable to deliver; reason required]',65,425,970,28,FS,True,BLUE)
  elif uc=='04':
-  c.rect('altframe','',70,220,960,530,'frame');c.text('altlabel','alt [sales]',80,224,940,26,18,True,BLUE)
+  c.rect('altframe','',70,220,960,530,'frame');c.text('altlabel','alt [sales]',80,224,940,26,FS,True,BLUE)
   for yy,label in [(365,'[workload now]'),(555,'[delivery performance]')]:
-   c.line([(70,yy),(1030,yy)],dash=True);c.text('operand'+str(yy),label,80,yy+4,940,26,18,True,BLUE)
+   c.line([(70,yy),(1030,yy)],dash=True);c.text('operand'+str(yy),label,80,yy+4,940,26,FS,True,BLUE)
  for id,y,call,ret in rows:
   # Invisible native anchor cells give every message a concrete lifeline endpoint.
   for who,x in [('a',225),('s',875)]:
-   for suf,yy in [('',y),('r',y+34)]:c.boxes[id+who+suf]=(x-1,yy-1,2,2);c.cell(id+who+suf,'',(x-1,yy-1,2,2),'opacity=0;strokeOpacity=0;fillOpacity=0;')
+   for suf,yy in [('',y),('r',y+34)]:c.boxes[id+who+suf]=(x-1,yy*c.ky-1,2,2);c.cell(id+who+suf,'',(x-1,yy*c.ky-1,2,2),'opacity=0;strokeOpacity=0;fillOpacity=0;')
   c.edge(id,id+'a',id+'s',[(225,y),(875,y)]);c.text(id+'_label',id+' '+call,240,y-27,620,25)
-  c.edge(id+'r',id+'sr',id+'ar',[(875,y+34),(225,y+34)],dash=True);c.text(id+'_return',ret,245,y+36,610,26,18,False,BLUE)
- c.text('notes',notes,20,795,1060,48,18)
+  c.edge(id+'r',id+'sr',id+'ar',[(875,y+34),(225,y+34)],dash=True);c.text(id+'_return',ret,245,y+36,610,26,FS,False,BLUE)
+ c.text('notes',notes,20,795,1060,48,FS)
  p=ROOT/f'models/UC-{uc}/ssd_uc{uc}'+Path('') if False else ROOT/f'models/UC-{uc}/ssd_uc{uc}{"_Part"+part if part else ""}'
  return c.save(p,{'type':'ssd','rows':[{'message_id':id,'call':call,'return':ret} for id,y,call,ret in rows],'fragments':frames,'notes':notes})
 
@@ -125,7 +151,7 @@ def main():
  qa.append(activity('04','B','workload now','Manager','A01: workloadReport()','Active MANAGER?','A01: Hubs incl. archived\nCooking load = PLACED +\nCONFIRMED + PREPARING\nLoad / capacity; READY;\nOUT_FOR_DELIVERY — PC01\nLabel now + as-of time','5: Read current snapshot\nEnd or new request','No date / hub parameter.\nWorkload is not historical.\nEmpty hub set allowed.\n0 persistent writes MG01.\nNon-manager denied MG02.\nNo Report lifecycle exists.'))
  qa.append(activity('04','C','delivery performance','Manager','A02: deliveryReport(\nstartDateVN, endDateVN,\nhubId?)','Active MANAGER;\nvalid ordered dates;\nexisting optional hub?','A02: VN interval → UTC\nFinished DELIVERED + FAILED\nMean READY→pickup; Nwait\nMean pickup→success; Nride\nfailed / finished; Nfinished\nArchive included — PC01','5 / A03: Read metrics + N\nEmpty denominator → n/a\nPC02; end / new request','Wait: finished valid pairs.\nRide: successes only.\nShow each sample size N.\nMissing pair: no sample.\n0 writes MG01; deny MG02.\nNo scientific result claimed.'))
  qa.append(ssd('02','A','queries and atomic pickup','Shipper',[
- ('M01',230,'viewReadyDeliveries()','readyAndOwnAssignedDeliveries | refusal'),
+ ('M01',250,'viewReadyDeliveries()','readyAndOwnAssignedDeliveries | refusal'),
  ('M02',365,'viewDelivery(orderId)','deliveryContactSnapshotAndCashDue | refusal'),
  ('M03',555,'takeDelivery(orderId)','assignedDelivery [valid winner] | refusal [otherwise]')],[(50,185,1000,265,'loop [browse / inspect again while needed; active SHIPPER]'),(50,485,1000,150,'opt [select unassigned READY order; bypass for own PICKED_UP]')], 'M03 result alt [winner] PC01 / [invalid, lost race, repeat, failure] MG01.\nQueries expose contact/address snapshot only; no passport; session identity is implicit.'))
  qa.append(ssd('02','B','exclusive finish outcomes','Shipper',[

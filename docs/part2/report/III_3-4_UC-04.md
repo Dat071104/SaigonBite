@@ -152,7 +152,7 @@ Each request independently rechecks active Manager access. Calls use the real vi
 
 ### salesReport — startDateVN, endDateVN, hubId?
 
-OP-26 salesReport(startDateVN, endDateVN, hubId?) — models/UC-04/ssd_uc04.drawio#M01
+OP-26 salesReport(startDateVN, endDateVN, hubId?): models/UC-04/ssd_uc04.drawio#M01
 
 ![UC-04 design sequence: salesReport](../../../models/UC-04/seq_uc04_salesReport.png)
 
@@ -162,7 +162,7 @@ Figure 3.4.4.1. UC-04 design sequence: salesReport — Author: 722I0004 · AI-as
 
 ### workloadReport — no parameters
 
-OP-27 workloadReport() — models/UC-04/ssd_uc04.drawio#M02
+OP-27 workloadReport(): models/UC-04/ssd_uc04.drawio#M02
 
 ![UC-04 design sequence: workloadReport](../../../models/UC-04/seq_uc04_workloadReport.png)
 
@@ -172,7 +172,7 @@ Figure 3.4.4.2. UC-04 design sequence: workloadReport — Author: 722I0004 · AI
 
 ### deliveryReport — startDateVN, endDateVN, hubId?
 
-OP-28 deliveryReport(startDateVN, endDateVN, hubId?) — models/UC-04/ssd_uc04.drawio#M03
+OP-28 deliveryReport(startDateVN, endDateVN, hubId?): models/UC-04/ssd_uc04.drawio#M03
 
 ![UC-04 design sequence: deliveryReport](../../../models/UC-04/seq_uc04_deliveryReport.png)
 
@@ -183,16 +183,24 @@ Figure 3.4.4.3. UC-04 design sequence: deliveryReport — Author: 722I0004 · AI
 ## 3.4.5 Final Design Class Diagram
 Author: 722I0004 · AI-assisted (Claude)
 
-The final design class diagram refines the layer views of 3.4.2 with what the sequence diagrams in 3.4.4 and the implementation settled:
+The final design class diagram refines the layer views of 3.4.2 with what the sequence diagrams in 3.4.4 and the implementation settled. Figure 3.4.5A is an overview of all classes; the detail sheets after it give the members of one controller at a time.
 
-- **One diagram, four layers.** View (Flask blueprint functions with their routes), controller, domain and data access are drawn together, so every message in the sequence diagrams can be followed from the screen to the table.
+- **Overview first, then detail sheets.** Figure 3.4.5A shows every class of the four layers by name, with the calls, the «persists» and «loads» links and the domain associations, drawn as plain lines; their multiplicities and navigability are in the domain views of 3.4.2 and the domain model (2.1.7), because the labels pile up at the small name boxes. The detail sheets leave the associations out. The members are too many to print readably on the same page, so the detail sheets take one controller at a time and show the view functions that call it and the DAOs and domain classes it uses, with member signatures. A controller that needs more than one sheet has them numbered (A1, A2 and so on); each caption says what the sheet shows. Each figure is laid out for its page so that the estimated smallest text is 9 pt or more.
 - **Only the members this use case calls.** The sequence diagrams fixed which operations each class must offer; the complete member lists stay in the 3.4.1 tables and 3.4.2 views.
-- **Signatures from the code.** Parameter names and types are read from the source at the release commit by `models/shared/final_dcd.py`, so the diagram and the program cannot differ.
-- **Navigability and persistence.** Dashed arrows show which layer calls which; each DAO has a «persists» link to the entity it stores; domain associations keep their multiplicities from the domain model (2.1.7).
+- **Signatures read from the code.** Parameter names and types are read from the source by `models/shared/final_dcd.py` when the figures are generated, and each member is matched with the operation rows of the design model. This is a cross-check at generation time, not a guarantee: the figures must be regenerated after a code change.
+- **Navigability and persistence.** Layers run top to bottom (view, controller, data access, domain) and the dashed arrows run the same way: view to controller, controller to the DAOs and domain classes it uses, and DAO to the entity it maps. «persists» marks a DAO that writes the entity's table in this use case (an INSERT, UPDATE or DELETE in a method the use case calls); «loads» marks one that only reads it. The arrow points from the DAO to the entity, so the domain layer does not depend on data access. Domain associations keep their multiplicities from the domain model (2.1.7).
 
-![UC-04 final design class diagram](../../../models/UC-04/dcd_uc04_final_overview.png)
+![UC-04 final design class diagram, overview (class names only)](../../../models/UC-04/dcd_uc04_final_overview.png)
 
-Figure 3.4.5. UC-04 final design class diagram — Author: 722I0004 · AI-assisted (Claude).
+Figure 3.4.5A. UC-04 final design class diagram, overview (class names only) — Author: 722I0004 · AI-assisted (Claude).
+
+![UC-04 final design class diagram, detail sheet A1 (ReportController, view, controller and domain)](../../../models/UC-04/dcd_uc04_final_detail_A1.png)
+
+Figure 3.4.5B. UC-04 final design class diagram, detail sheet A1 (ReportController, view, controller and domain) — Author: 722I0004 · AI-assisted (Claude).
+
+![UC-04 final design class diagram, detail sheet A2 (ReportController, data access)](../../../models/UC-04/dcd_uc04_final_detail_A2.png)
+
+Figure 3.4.5C. UC-04 final design class diagram, detail sheet A2 (ReportController, data access) — Author: 722I0004 · AI-assisted (Claude).
 
 Behaviour refined between the first design and the final design (each refinement is covered by the tests in 5.1). Every state-changing operation runs in one `BEGIN IMMEDIATE` transaction and checks the row count of each guarded UPDATE, so a stale page, a guessed ID or a competing user changes nothing.
 
@@ -201,7 +209,7 @@ Behaviour refined between the first design and the final design (each refinement
 | `salesReport` | Sales no longer subtract a refund twice, and top items are grouped by item ID instead of name. |
 | `workloadReport` | Workload is a current snapshot: it ignores the date filter and keeps archived hubs that still have orders. |
 
-Editable sources: `models/UC-04/dcd_uc04_final_overview.dot` (Graphviz), with SVG exports beside them.
+Editable sources: `models/UC-04/dcd_uc04_final_overview.dot`, `models/UC-04/dcd_uc04_final_detail_A1.dot` and `models/UC-04/dcd_uc04_final_detail_A2.dot` (Graphviz, generated by `models/shared/final_dcd.py`), with SVG exports beside them.
 
 ## Integration repair evidence
 

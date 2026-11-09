@@ -1,0 +1,4003 @@
+{
+ "meta": {
+  "date": "09/11/2026",
+  "started": "2026-11-09T10:53:15",
+  "commit": "7670e8b",
+  "browser": "Chromium 149.0.7827.55 (driven by Playwright 1.64.1, headless)",
+  "viewport": "360x800, deviceScaleFactor 2, isMobile true, hasTouch true",
+  "min_target_px": 44,
+  "server": "flask run on 127.0.0.1:5109, debug off, throwaway DB from init_db.py (demo seed)",
+  "orders_created": {
+   "order_a": 9,
+   "order_b": 10
+  },
+  "confirm_dialogs_accepted": []
+ },
+ "pages": [
+  {
+   "id": "L01_login",
+   "role": "anonymous",
+   "page": "Login",
+   "url": "/login",
+   "http_status": 200,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 5,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "L01_login.png"
+  },
+  {
+   "id": "L02_register",
+   "role": "anonymous",
+   "page": "Register",
+   "url": "/register",
+   "http_status": 200,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 10,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "L02_register.png"
+  },
+  {
+   "id": "L03_home_anon",
+   "role": "anonymous",
+   "page": "Home (logged out)",
+   "url": "/",
+   "http_status": 200,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 4,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "L03_home_anon.png"
+  },
+  {
+   "id": "L04_login_error",
+   "role": "anonymous",
+   "page": "Login, wrong password (error banner)",
+   "url": "/login",
+   "http_status": 401,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 5,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "L04_login_error.png"
+  },
+  {
+   "id": "C01_home",
+   "role": "customer",
+   "page": "Home",
+   "url": "/",
+   "http_status": 200,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 8,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "C01_home.png"
+  },
+  {
+   "id": "C02_hubs",
+   "role": "customer",
+   "page": "Choose a kitchen hub",
+   "url": "/order/hubs",
+   "http_status": 200,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 7,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "C02_hubs.png"
+  },
+  {
+   "id": "C03_menu",
+   "role": "customer",
+   "page": "Menu of District 1 hub",
+   "url": "/order/hubs/1",
+   "http_status": 200,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 31,
+   "small_targets_total": 1,
+   "small_targets_non_inline": 1,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [
+    {
+     "el": "a",
+     "type": "a",
+     "text": "Add an address",
+     "w": 95.9,
+     "h": 19,
+     "inline": false,
+     "via": "",
+     "in_table": false
+    }
+   ],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "C03_menu.png"
+  },
+  {
+   "id": "C03b_menu_filled",
+   "role": "customer",
+   "page": "Menu with quantities typed (summary bar)",
+   "url": "/order/hubs/1",
+   "http_status": null,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 31,
+   "small_targets_total": 1,
+   "small_targets_non_inline": 1,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [
+    {
+     "el": "a",
+     "type": "a",
+     "text": "Add an address",
+     "w": 95.9,
+     "h": 19,
+     "inline": false,
+     "via": "",
+     "in_table": false
+    }
+   ],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "C03b_menu_filled.png"
+  },
+  {
+   "id": "C04_quote",
+   "role": "customer",
+   "page": "Quote / cart",
+   "url": "/order/quote",
+   "http_status": 200,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 10,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "C04_quote.png"
+  },
+  {
+   "id": "C05_confirmation",
+   "role": "customer",
+   "page": "Order confirmation (COD)",
+   "url": "/order/9/confirmation",
+   "http_status": 200,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 7,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "C05_confirmation.png"
+  },
+  {
+   "id": "C06_detail",
+   "role": "customer",
+   "page": "Order detail (Placed)",
+   "url": "/order/9",
+   "http_status": 200,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 8,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "C06_detail.png"
+  },
+  {
+   "id": "C07_quote_online",
+   "role": "customer",
+   "page": "Quote with online payment chosen",
+   "url": "/order/quote",
+   "http_status": 200,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 10,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "C07_quote_online.png"
+  },
+  {
+   "id": "C08_payment_sim",
+   "role": "customer",
+   "page": "Payment simulator",
+   "url": "/order/confirm",
+   "http_status": 200,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 7,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "C08_payment_sim.png"
+  },
+  {
+   "id": "C09_confirmation_online",
+   "role": "customer",
+   "page": "Order confirmation (online)",
+   "url": "/order/10/confirmation",
+   "http_status": 200,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 7,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "C09_confirmation_online.png"
+  },
+  {
+   "id": "K01_board",
+   "role": "kitchen",
+   "page": "Order board",
+   "url": "/kitchen/",
+   "http_status": 200,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 14,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "K01_board.png"
+  },
+  {
+   "id": "K02_order_placed",
+   "role": "kitchen",
+   "page": "Order detail (Placed, confirm/reject/offer forms)",
+   "url": "/kitchen/orders/9",
+   "http_status": 200,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 10,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "K02_order_placed.png"
+  },
+  {
+   "id": "K03_availability",
+   "role": "kitchen",
+   "page": "Availability list",
+   "url": "/kitchen/availability",
+   "http_status": 200,
+   "scrollWidth": 388,
+   "clientWidth": 360,
+   "bodyScrollWidth": 388,
+   "innerWidth": 388,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "FAIL",
+   "elements_wider_than_viewport": [
+    {
+     "el": "table.data",
+     "left": 16,
+     "right": 387.7,
+     "width": 371.7,
+     "text": "Dish Brand Status Pho bo tai Pho Saigon "
+    },
+    {
+     "el": "thead",
+     "left": 16,
+     "right": 387.7,
+     "width": 371.7,
+     "text": "Dish Brand Status"
+    },
+    {
+     "el": "tr",
+     "left": 16,
+     "right": 387.7,
+     "width": 371.7,
+     "text": "Dish Brand Status"
+    },
+    {
+     "el": "th",
+     "left": 227.8,
+     "right": 387.7,
+     "width": 159.9,
+     "text": ""
+    },
+    {
+     "el": "tbody",
+     "left": 16,
+     "right": 387.7,
+     "width": 371.7,
+     "text": "Pho bo tai Pho Saigon Kitchen Available "
+    },
+    {
+     "el": "tr#item-1",
+     "left": 16,
+     "right": 387.7,
+     "width": 371.7,
+     "text": "Pho bo tai Pho Saigon Kitchen Available "
+    },
+    {
+     "el": "td.row-actions",
+     "left": 227.8,
+     "right": 387.7,
+     "width": 159.9,
+     "text": "Mark sold out"
+    },
+    {
+     "el": "form.inline",
+     "left": 244.5,
+     "right": 387.7,
+     "width": 143.2,
+     "text": "Mark sold out"
+    },
+    {
+     "el": "button.secondary",
+     "left": 244.5,
+     "right": 387.7,
+     "width": 143.2,
+     "text": "Mark sold out"
+    },
+    {
+     "el": "tr#item-2",
+     "left": 16,
+     "right": 387.7,
+     "width": 371.7,
+     "text": "Pho ga Pho Saigon Kitchen Available Mark"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 227.8,
+     "right": 387.7,
+     "width": 159.9,
+     "text": "Mark sold out"
+    },
+    {
+     "el": "form.inline",
+     "left": 244.5,
+     "right": 387.7,
+     "width": 143.2,
+     "text": "Mark sold out"
+    },
+    {
+     "el": "button.secondary",
+     "left": 244.5,
+     "right": 387.7,
+     "width": 143.2,
+     "text": "Mark sold out"
+    },
+    {
+     "el": "tr#item-3",
+     "left": 16,
+     "right": 387.7,
+     "width": 371.7,
+     "text": "Goi cuon Pho Saigon Kitchen Available Ma"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 227.8,
+     "right": 387.7,
+     "width": 159.9,
+     "text": "Mark sold out"
+    },
+    {
+     "el": "form.inline",
+     "left": 244.5,
+     "right": 387.7,
+     "width": 143.2,
+     "text": "Mark sold out"
+    },
+    {
+     "el": "button.secondary",
+     "left": 244.5,
+     "right": 387.7,
+     "width": 143.2,
+     "text": "Mark sold out"
+    },
+    {
+     "el": "tr#item-4",
+     "left": 16,
+     "right": 387.7,
+     "width": 371.7,
+     "text": "Com tam suon bi cha Com Tam Corner Avail"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 227.8,
+     "right": 387.7,
+     "width": 159.9,
+     "text": "Mark sold out"
+    },
+    {
+     "el": "form.inline",
+     "left": 244.5,
+     "right": 387.7,
+     "width": 143.2,
+     "text": "Mark sold out"
+    },
+    {
+     "el": "button.secondary",
+     "left": 244.5,
+     "right": 387.7,
+     "width": 143.2,
+     "text": "Mark sold out"
+    },
+    {
+     "el": "tr#item-5",
+     "left": 16,
+     "right": 387.7,
+     "width": 371.7,
+     "text": "Com tam ga nuong Com Tam Corner Sold out"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 227.8,
+     "right": 387.7,
+     "width": 159.9,
+     "text": "Available again"
+    },
+    {
+     "el": "form.inline",
+     "left": 235.8,
+     "right": 387.7,
+     "width": 151.9,
+     "text": "Available again"
+    },
+    {
+     "el": "button.secondary",
+     "left": 235.8,
+     "right": 387.7,
+     "width": 151.9,
+     "text": "Available again"
+    },
+    {
+     "el": "tr#item-6",
+     "left": 16,
+     "right": 387.7,
+     "width": 371.7,
+     "text": "Tra da Com Tam Corner Available Mark sol"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 227.8,
+     "right": 387.7,
+     "width": 159.9,
+     "text": "Mark sold out"
+    },
+    {
+     "el": "form.inline",
+     "left": 244.5,
+     "right": 387.7,
+     "width": 143.2,
+     "text": "Mark sold out"
+    },
+    {
+     "el": "button.secondary",
+     "left": 244.5,
+     "right": 387.7,
+     "width": 143.2,
+     "text": "Mark sold out"
+    },
+    {
+     "el": "tr#item-7",
+     "left": 16,
+     "right": 387.7,
+     "width": 371.7,
+     "text": "Banh mi thit nuong Banh Mi Express Avail"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 227.8,
+     "right": 387.7,
+     "width": 159.9,
+     "text": "Mark sold out"
+    },
+    {
+     "el": "form.inline",
+     "left": 244.5,
+     "right": 387.7,
+     "width": 143.2,
+     "text": "Mark sold out"
+    },
+    {
+     "el": "button.secondary",
+     "left": 244.5,
+     "right": 387.7,
+     "width": 143.2,
+     "text": "Mark sold out"
+    },
+    {
+     "el": "tr#item-8",
+     "left": 16,
+     "right": 387.7,
+     "width": 371.7,
+     "text": "Banh mi op la Banh Mi Express Available "
+    },
+    {
+     "el": "td.row-actions",
+     "left": 227.8,
+     "right": 387.7,
+     "width": 159.9,
+     "text": "Mark sold out"
+    },
+    {
+     "el": "form.inline",
+     "left": 244.5,
+     "right": 387.7,
+     "width": 143.2,
+     "text": "Mark sold out"
+    },
+    {
+     "el": "button.secondary",
+     "left": 244.5,
+     "right": 387.7,
+     "width": 143.2,
+     "text": "Mark sold out"
+    }
+   ],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 12,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "K03_availability.png"
+  },
+  {
+   "id": "K04_order_offered",
+   "role": "kitchen",
+   "page": "Order detail after replacement offered",
+   "url": "/kitchen/orders/9",
+   "http_status": 200,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 7,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "K04_order_offered.png"
+  },
+  {
+   "id": "C10_detail_offer",
+   "role": "customer",
+   "page": "Order detail with replacement offer (Accept / Decline)",
+   "url": "/order/9",
+   "http_status": 200,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 10,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "C10_detail_offer.png"
+  },
+  {
+   "id": "K05_order_ready",
+   "role": "kitchen",
+   "page": "Order detail (Ready)",
+   "url": "/kitchen/orders/9",
+   "http_status": 200,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 5,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "K05_order_ready.png"
+  },
+  {
+   "id": "K06_board_busy",
+   "role": "kitchen",
+   "page": "Order board with orders in several columns",
+   "url": "/kitchen/",
+   "http_status": 200,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 12,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "K06_board_busy.png"
+  },
+  {
+   "id": "S01_board",
+   "role": "shipper",
+   "page": "Delivery board",
+   "url": "/delivery/",
+   "http_status": 200,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 7,
+   "small_targets_total": 2,
+   "small_targets_non_inline": 2,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [
+    {
+     "el": "a",
+     "type": "a",
+     "text": "Order 3",
+     "w": 54,
+     "h": 21,
+     "inline": false,
+     "via": "",
+     "in_table": true
+    },
+    {
+     "el": "a",
+     "type": "a",
+     "text": "Order 1",
+     "w": 54,
+     "h": 21,
+     "inline": false,
+     "via": "",
+     "in_table": true
+    }
+   ],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "S01_board.png"
+  },
+  {
+   "id": "S02_detail",
+   "role": "shipper",
+   "page": "Delivery detail (awaiting pickup)",
+   "url": "/delivery/orders/9",
+   "http_status": 404,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 4,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "S02_detail.png"
+  },
+  {
+   "id": "S03_detail_picked",
+   "role": "shipper",
+   "page": "Delivery detail (picked up: Delivered / Could not deliver)",
+   "url": "/delivery/orders/9",
+   "http_status": 200,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 4,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "S03_detail_picked.png"
+  },
+  {
+   "id": "S04_board_active",
+   "role": "shipper",
+   "page": "Delivery board with an active delivery",
+   "url": "/delivery/",
+   "http_status": 200,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 7,
+   "small_targets_total": 2,
+   "small_targets_non_inline": 2,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [
+    {
+     "el": "a",
+     "type": "a",
+     "text": "Order 3",
+     "w": 54,
+     "h": 21,
+     "inline": false,
+     "via": "",
+     "in_table": true
+    },
+    {
+     "el": "a",
+     "type": "a",
+     "text": "Order 1",
+     "w": 54,
+     "h": 21,
+     "inline": false,
+     "via": "",
+     "in_table": true
+    }
+   ],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "S04_board_active.png"
+  },
+  {
+   "id": "C11_detail_progress",
+   "role": "customer",
+   "page": "Order detail (delivery in progress)",
+   "url": "/order/9",
+   "http_status": 200,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 8,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "C11_detail_progress.png"
+  },
+  {
+   "id": "C12_receipt",
+   "role": "customer",
+   "page": "Receipt",
+   "url": "/order/9/receipt",
+   "http_status": 200,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 5,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "C12_receipt.png"
+  },
+  {
+   "id": "C13_my_orders",
+   "role": "customer",
+   "page": "My orders",
+   "url": "/order/mine",
+   "http_status": 200,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 12,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "C13_my_orders.png"
+  },
+  {
+   "id": "C14_account",
+   "role": "customer",
+   "page": "Account / profile",
+   "url": "/account",
+   "http_status": 200,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 13,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "C14_account.png"
+  },
+  {
+   "id": "C15_address_new",
+   "role": "customer",
+   "page": "New address form",
+   "url": "/account/addresses/new",
+   "http_status": 200,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 10,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "C15_address_new.png"
+  },
+  {
+   "id": "A01_hubs",
+   "role": "admin",
+   "page": "Hubs and capacity",
+   "url": "/admin/hubs",
+   "http_status": 200,
+   "scrollWidth": 701,
+   "clientWidth": 360,
+   "bodyScrollWidth": 701,
+   "innerWidth": 701,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "FAIL",
+   "elements_wider_than_viewport": [
+    {
+     "el": "table#hub-table.data",
+     "left": 16,
+     "right": 701,
+     "width": 685,
+     "text": "Code Hub Load / capacity Now Base fee Op"
+    },
+    {
+     "el": "thead",
+     "left": 16,
+     "right": 701,
+     "width": 685,
+     "text": "Code Hub Load / capacity Now Base fee Op"
+    },
+    {
+     "el": "tr",
+     "left": 16,
+     "right": 701,
+     "width": 685,
+     "text": "Code Hub Load / capacity Now Base fee Op"
+    },
+    {
+     "el": "th.num",
+     "left": 347.7,
+     "right": 447.8,
+     "width": 100.1,
+     "text": "Base fee"
+    },
+    {
+     "el": "th",
+     "left": 447.8,
+     "right": 510.2,
+     "width": 62.4,
+     "text": "Open orders"
+    },
+    {
+     "el": "th",
+     "left": 510.2,
+     "right": 701,
+     "width": 190.8,
+     "text": ""
+    },
+    {
+     "el": "tbody",
+     "left": 16,
+     "right": 701,
+     "width": 685,
+     "text": "HUB-D1 SaigonBite District 1 Hub 3 / 12 "
+    },
+    {
+     "el": "tr#hub-1",
+     "left": 16,
+     "right": 701,
+     "width": 685,
+     "text": "HUB-D1 SaigonBite District 1 Hub 3 / 12 "
+    },
+    {
+     "el": "td.num",
+     "left": 347.7,
+     "right": 447.8,
+     "width": 100.1,
+     "text": "12,000 VND"
+    },
+    {
+     "el": "td",
+     "left": 447.8,
+     "right": 510.2,
+     "width": 62.4,
+     "text": "4"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 510.2,
+     "right": 701,
+     "width": 190.8,
+     "text": "Edit Menu"
+    },
+    {
+     "el": "a",
+     "left": 596.7,
+     "right": 640.7,
+     "width": 44,
+     "text": "Edit"
+    },
+    {
+     "el": "a",
+     "left": 657,
+     "right": 701,
+     "width": 44,
+     "text": "Menu"
+    },
+    {
+     "el": "tr#hub-2",
+     "left": 16,
+     "right": 701,
+     "width": 685,
+     "text": "HUB-BT SaigonBite Binh Thanh Hub 0 / 8 Q"
+    },
+    {
+     "el": "td.num",
+     "left": 347.7,
+     "right": 447.8,
+     "width": 100.1,
+     "text": "10,000 VND"
+    },
+    {
+     "el": "td",
+     "left": 447.8,
+     "right": 510.2,
+     "width": 62.4,
+     "text": "0"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 510.2,
+     "right": 701,
+     "width": 190.8,
+     "text": "Edit Menu Archive"
+    },
+    {
+     "el": "a",
+     "left": 518.2,
+     "right": 562.2,
+     "width": 44,
+     "text": "Edit"
+    },
+    {
+     "el": "a",
+     "left": 578.6,
+     "right": 622.6,
+     "width": 44,
+     "text": "Menu"
+    },
+    {
+     "el": "form.inline",
+     "left": 639,
+     "right": 701,
+     "width": 62,
+     "text": "Archive"
+    },
+    {
+     "el": "button.link",
+     "left": 639,
+     "right": 701,
+     "width": 62,
+     "text": "Archive"
+    }
+   ],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 13,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "A01_hubs.png"
+  },
+  {
+   "id": "A02_hub_form",
+   "role": "admin",
+   "page": "Edit hub form",
+   "url": "/admin/hubs/1",
+   "http_status": 200,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 16,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "A02_hub_form.png"
+  },
+  {
+   "id": "A03_hub_menu",
+   "role": "admin",
+   "page": "Hub menu",
+   "url": "/admin/hubs/1/menu",
+   "http_status": 200,
+   "scrollWidth": 577,
+   "clientWidth": 360,
+   "bodyScrollWidth": 577,
+   "innerWidth": 577,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "FAIL",
+   "elements_wider_than_viewport": [
+    {
+     "el": "table#listing-table.data",
+     "left": 16,
+     "right": 577.4,
+     "width": 561.4,
+     "text": "Dish Brand Price Status Pho bo tai Pho S"
+    },
+    {
+     "el": "thead",
+     "left": 16,
+     "right": 577.4,
+     "width": 561.4,
+     "text": "Dish Brand Price Status"
+    },
+    {
+     "el": "tr",
+     "left": 16,
+     "right": 577.4,
+     "width": 561.4,
+     "text": "Dish Brand Price Status"
+    },
+    {
+     "el": "th",
+     "left": 328,
+     "right": 577.4,
+     "width": 249.5,
+     "text": ""
+    },
+    {
+     "el": "tbody",
+     "left": 16,
+     "right": 577.4,
+     "width": 561.4,
+     "text": "Pho bo tai Pho Saigon Kitchen 55,000 VND"
+    },
+    {
+     "el": "tr#listed-1",
+     "left": 16,
+     "right": 577.4,
+     "width": 561.4,
+     "text": "Pho bo tai Pho Saigon Kitchen 55,000 VND"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 328,
+     "right": 577.4,
+     "width": 249.5,
+     "text": "Sold out Remove from menu"
+    },
+    {
+     "el": "form.inline",
+     "left": 340.4,
+     "right": 414,
+     "width": 73.5,
+     "text": "Sold out"
+    },
+    {
+     "el": "button.link",
+     "left": 340.4,
+     "right": 409.6,
+     "width": 69.2,
+     "text": "Sold out"
+    },
+    {
+     "el": "form.inline",
+     "left": 426,
+     "right": 577.4,
+     "width": 151.4,
+     "text": "Remove from menu"
+    },
+    {
+     "el": "button.link",
+     "left": 426,
+     "right": 577.4,
+     "width": 151.4,
+     "text": "Remove from menu"
+    },
+    {
+     "el": "tr#listed-2",
+     "left": 16,
+     "right": 577.4,
+     "width": 561.4,
+     "text": "Pho ga Pho Saigon Kitchen 50,000 VND Sol"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 328,
+     "right": 577.4,
+     "width": 249.5,
+     "text": "Available Remove from menu"
+    },
+    {
+     "el": "form.inline",
+     "left": 336,
+     "right": 414,
+     "width": 78,
+     "text": "Available"
+    },
+    {
+     "el": "button.link",
+     "left": 336,
+     "right": 409.6,
+     "width": 73.6,
+     "text": "Available"
+    },
+    {
+     "el": "form.inline",
+     "left": 426,
+     "right": 577.4,
+     "width": 151.4,
+     "text": "Remove from menu"
+    },
+    {
+     "el": "button.link",
+     "left": 426,
+     "right": 577.4,
+     "width": 151.4,
+     "text": "Remove from menu"
+    },
+    {
+     "el": "tr#listed-3",
+     "left": 16,
+     "right": 577.4,
+     "width": 561.4,
+     "text": "Goi cuon Pho Saigon Kitchen 35,000 VND A"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 328,
+     "right": 577.4,
+     "width": 249.5,
+     "text": "Sold out Remove from menu"
+    },
+    {
+     "el": "form.inline",
+     "left": 340.4,
+     "right": 414,
+     "width": 73.5,
+     "text": "Sold out"
+    },
+    {
+     "el": "button.link",
+     "left": 340.4,
+     "right": 409.6,
+     "width": 69.2,
+     "text": "Sold out"
+    },
+    {
+     "el": "form.inline",
+     "left": 426,
+     "right": 577.4,
+     "width": 151.4,
+     "text": "Remove from menu"
+    },
+    {
+     "el": "button.link",
+     "left": 426,
+     "right": 577.4,
+     "width": 151.4,
+     "text": "Remove from menu"
+    },
+    {
+     "el": "tr#listed-4",
+     "left": 16,
+     "right": 577.4,
+     "width": 561.4,
+     "text": "Com tam suon bi cha Com Tam Corner 60,00"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 328,
+     "right": 577.4,
+     "width": 249.5,
+     "text": "Sold out Remove from menu"
+    },
+    {
+     "el": "form.inline",
+     "left": 340.4,
+     "right": 414,
+     "width": 73.5,
+     "text": "Sold out"
+    },
+    {
+     "el": "button.link",
+     "left": 340.4,
+     "right": 409.6,
+     "width": 69.2,
+     "text": "Sold out"
+    },
+    {
+     "el": "form.inline",
+     "left": 426,
+     "right": 577.4,
+     "width": 151.4,
+     "text": "Remove from menu"
+    },
+    {
+     "el": "button.link",
+     "left": 426,
+     "right": 577.4,
+     "width": 151.4,
+     "text": "Remove from menu"
+    },
+    {
+     "el": "tr#listed-5",
+     "left": 16,
+     "right": 577.4,
+     "width": 561.4,
+     "text": "Com tam ga nuong Com Tam Corner 55,000 V"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 328,
+     "right": 577.4,
+     "width": 249.5,
+     "text": "Available Remove from menu"
+    },
+    {
+     "el": "form.inline",
+     "left": 336,
+     "right": 414,
+     "width": 78,
+     "text": "Available"
+    },
+    {
+     "el": "button.link",
+     "left": 336,
+     "right": 409.6,
+     "width": 73.6,
+     "text": "Available"
+    },
+    {
+     "el": "form.inline",
+     "left": 426,
+     "right": 577.4,
+     "width": 151.4,
+     "text": "Remove from menu"
+    },
+    {
+     "el": "button.link",
+     "left": 426,
+     "right": 577.4,
+     "width": 151.4,
+     "text": "Remove from menu"
+    },
+    {
+     "el": "tr#listed-6",
+     "left": 16,
+     "right": 577.4,
+     "width": 561.4,
+     "text": "Tra da Com Tam Corner 10,000 VND Availab"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 328,
+     "right": 577.4,
+     "width": 249.5,
+     "text": "Sold out Remove from menu"
+    },
+    {
+     "el": "form.inline",
+     "left": 340.4,
+     "right": 414,
+     "width": 73.5,
+     "text": "Sold out"
+    },
+    {
+     "el": "button.link",
+     "left": 340.4,
+     "right": 409.6,
+     "width": 69.2,
+     "text": "Sold out"
+    },
+    {
+     "el": "form.inline",
+     "left": 426,
+     "right": 577.4,
+     "width": 151.4,
+     "text": "Remove from menu"
+    },
+    {
+     "el": "button.link",
+     "left": 426,
+     "right": 577.4,
+     "width": 151.4,
+     "text": "Remove from menu"
+    },
+    {
+     "el": "tr#listed-7",
+     "left": 16,
+     "right": 577.4,
+     "width": 561.4,
+     "text": "Banh mi thit nuong Banh Mi Express 30,00"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 328,
+     "right": 577.4,
+     "width": 249.5,
+     "text": "Sold out Remove from menu"
+    },
+    {
+     "el": "form.inline",
+     "left": 340.4,
+     "right": 414,
+     "width": 73.5,
+     "text": "Sold out"
+    },
+    {
+     "el": "button.link",
+     "left": 340.4,
+     "right": 409.6,
+     "width": 69.2,
+     "text": "Sold out"
+    },
+    {
+     "el": "form.inline",
+     "left": 426,
+     "right": 577.4,
+     "width": 151.4,
+     "text": "Remove from menu"
+    },
+    {
+     "el": "button.link",
+     "left": 426,
+     "right": 577.4,
+     "width": 151.4,
+     "text": "Remove from menu"
+    },
+    {
+     "el": "tr#listed-8",
+     "left": 16,
+     "right": 577.4,
+     "width": 561.4,
+     "text": "Banh mi op la Banh Mi Express 25,000 VND"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 328,
+     "right": 577.4,
+     "width": 249.5,
+     "text": "Sold out Remove from menu"
+    },
+    {
+     "el": "form.inline",
+     "left": 340.4,
+     "right": 414,
+     "width": 73.5,
+     "text": "Sold out"
+    },
+    {
+     "el": "button.link",
+     "left": 340.4,
+     "right": 409.6,
+     "width": 69.2,
+     "text": "Sold out"
+    },
+    {
+     "el": "form.inline",
+     "left": 426,
+     "right": 577.4,
+     "width": 151.4,
+     "text": "Remove from menu"
+    },
+    {
+     "el": "button.link",
+     "left": 426,
+     "right": 577.4,
+     "width": 151.4,
+     "text": "Remove from menu"
+    },
+    {
+     "el": "select#item_id",
+     "left": 16,
+     "right": 362,
+     "width": 346,
+     "text": "Sweet Che House: Che thai (30,000 VND) S"
+    }
+   ],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 28,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "A03_hub_menu.png"
+  },
+  {
+   "id": "A04_catalogue",
+   "role": "admin",
+   "page": "Catalogue (brands and dishes)",
+   "url": "/admin/menu",
+   "http_status": 200,
+   "scrollWidth": 389,
+   "clientWidth": 360,
+   "bodyScrollWidth": 389,
+   "innerWidth": 389,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "FAIL",
+   "elements_wider_than_viewport": [
+    {
+     "el": "table#brand-table.data",
+     "left": 16,
+     "right": 369.5,
+     "width": 353.5,
+     "text": "Brand Rename Pho Saigon Kitchen Rename A"
+    },
+    {
+     "el": "thead",
+     "left": 16,
+     "right": 369.5,
+     "width": 353.5,
+     "text": "Brand Rename"
+    },
+    {
+     "el": "tr",
+     "left": 16,
+     "right": 369.5,
+     "width": 353.5,
+     "text": "Brand Rename"
+    },
+    {
+     "el": "th",
+     "left": 299.4,
+     "right": 369.5,
+     "width": 70,
+     "text": ""
+    },
+    {
+     "el": "tbody",
+     "left": 16,
+     "right": 369.5,
+     "width": 353.5,
+     "text": "Pho Saigon Kitchen Rename Archive Com Ta"
+    },
+    {
+     "el": "tr#brand-1",
+     "left": 16,
+     "right": 369.5,
+     "width": 353.5,
+     "text": "Pho Saigon Kitchen Rename Archive"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 299.4,
+     "right": 369.5,
+     "width": 70,
+     "text": "Archive"
+    },
+    {
+     "el": "form.inline",
+     "left": 307.4,
+     "right": 369.5,
+     "width": 62,
+     "text": "Archive"
+    },
+    {
+     "el": "button.link",
+     "left": 307.4,
+     "right": 369.5,
+     "width": 62,
+     "text": "Archive"
+    },
+    {
+     "el": "tr#brand-2",
+     "left": 16,
+     "right": 369.5,
+     "width": 353.5,
+     "text": "Com Tam Corner Rename Archive"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 299.4,
+     "right": 369.5,
+     "width": 70,
+     "text": "Archive"
+    },
+    {
+     "el": "form.inline",
+     "left": 307.4,
+     "right": 369.5,
+     "width": 62,
+     "text": "Archive"
+    },
+    {
+     "el": "button.link",
+     "left": 307.4,
+     "right": 369.5,
+     "width": 62,
+     "text": "Archive"
+    },
+    {
+     "el": "tr#brand-3",
+     "left": 16,
+     "right": 369.5,
+     "width": 353.5,
+     "text": "Banh Mi Express Rename Archive"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 299.4,
+     "right": 369.5,
+     "width": 70,
+     "text": "Archive"
+    },
+    {
+     "el": "form.inline",
+     "left": 307.4,
+     "right": 369.5,
+     "width": 62,
+     "text": "Archive"
+    },
+    {
+     "el": "button.link",
+     "left": 307.4,
+     "right": 369.5,
+     "width": 62,
+     "text": "Archive"
+    },
+    {
+     "el": "tr#brand-4",
+     "left": 16,
+     "right": 369.5,
+     "width": 353.5,
+     "text": "Sweet Che House Rename Archive"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 299.4,
+     "right": 369.5,
+     "width": 70,
+     "text": "Archive"
+    },
+    {
+     "el": "form.inline",
+     "left": 307.4,
+     "right": 369.5,
+     "width": 62,
+     "text": "Archive"
+    },
+    {
+     "el": "button.link",
+     "left": 307.4,
+     "right": 369.5,
+     "width": 62,
+     "text": "Archive"
+    },
+    {
+     "el": "table#item-table.data",
+     "left": 16,
+     "right": 389.4,
+     "width": 373.4,
+     "text": "Dish Brand Price Pho bo tai Beef noodle "
+    },
+    {
+     "el": "thead",
+     "left": 16,
+     "right": 389.4,
+     "width": 373.4,
+     "text": "Dish Brand Price"
+    },
+    {
+     "el": "tr",
+     "left": 16,
+     "right": 389.4,
+     "width": 373.4,
+     "text": "Dish Brand Price"
+    },
+    {
+     "el": "th",
+     "left": 259,
+     "right": 389.4,
+     "width": 130.4,
+     "text": ""
+    },
+    {
+     "el": "tbody",
+     "left": 16,
+     "right": 389.4,
+     "width": 373.4,
+     "text": "Pho bo tai Beef noodle soup with rare be"
+    },
+    {
+     "el": "tr#item-1",
+     "left": 16,
+     "right": 389.4,
+     "width": 373.4,
+     "text": "Pho bo tai Beef noodle soup with rare be"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 259,
+     "right": 389.4,
+     "width": 130.4,
+     "text": "Edit Archive"
+    },
+    {
+     "el": "form.inline",
+     "left": 327.3,
+     "right": 389.4,
+     "width": 62,
+     "text": "Archive"
+    },
+    {
+     "el": "button.link",
+     "left": 327.3,
+     "right": 389.4,
+     "width": 62,
+     "text": "Archive"
+    },
+    {
+     "el": "tr#item-2",
+     "left": 16,
+     "right": 389.4,
+     "width": 373.4,
+     "text": "Pho ga Chicken noodle soup Pho Saigon Ki"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 259,
+     "right": 389.4,
+     "width": 130.4,
+     "text": "Edit Archive"
+    },
+    {
+     "el": "form.inline",
+     "left": 327.3,
+     "right": 389.4,
+     "width": 62,
+     "text": "Archive"
+    },
+    {
+     "el": "button.link",
+     "left": 327.3,
+     "right": 389.4,
+     "width": 62,
+     "text": "Archive"
+    },
+    {
+     "el": "tr#item-3",
+     "left": 16,
+     "right": 389.4,
+     "width": 373.4,
+     "text": "Goi cuon Fresh spring rolls, 2 pieces Ph"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 259,
+     "right": 389.4,
+     "width": 130.4,
+     "text": "Edit Archive"
+    },
+    {
+     "el": "form.inline",
+     "left": 327.3,
+     "right": 389.4,
+     "width": 62,
+     "text": "Archive"
+    },
+    {
+     "el": "button.link",
+     "left": 327.3,
+     "right": 389.4,
+     "width": 62,
+     "text": "Archive"
+    },
+    {
+     "el": "tr#item-4",
+     "left": 16,
+     "right": 389.4,
+     "width": 373.4,
+     "text": "Com tam suon bi cha Broken rice, grilled"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 259,
+     "right": 389.4,
+     "width": 130.4,
+     "text": "Edit Archive"
+    },
+    {
+     "el": "form.inline",
+     "left": 327.3,
+     "right": 389.4,
+     "width": 62,
+     "text": "Archive"
+    },
+    {
+     "el": "button.link",
+     "left": 327.3,
+     "right": 389.4,
+     "width": 62,
+     "text": "Archive"
+    },
+    {
+     "el": "tr#item-5",
+     "left": 16,
+     "right": 389.4,
+     "width": 373.4,
+     "text": "Com tam ga nuong Broken rice with grille"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 259,
+     "right": 389.4,
+     "width": 130.4,
+     "text": "Edit Archive"
+    },
+    {
+     "el": "form.inline",
+     "left": 327.3,
+     "right": 389.4,
+     "width": 62,
+     "text": "Archive"
+    },
+    {
+     "el": "button.link",
+     "left": 327.3,
+     "right": 389.4,
+     "width": 62,
+     "text": "Archive"
+    },
+    {
+     "el": "tr#item-6",
+     "left": 16,
+     "right": 389.4,
+     "width": 373.4,
+     "text": "Tra da Iced tea Com Tam Corner 10,000 VN"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 259,
+     "right": 389.4,
+     "width": 130.4,
+     "text": "Edit Archive"
+    },
+    {
+     "el": "form.inline",
+     "left": 327.3,
+     "right": 389.4,
+     "width": 62,
+     "text": "Archive"
+    },
+    {
+     "el": "button.link",
+     "left": 327.3,
+     "right": 389.4,
+     "width": 62,
+     "text": "Archive"
+    },
+    {
+     "el": "tr#item-7",
+     "left": 16,
+     "right": 389.4,
+     "width": 373.4,
+     "text": "Banh mi thit nuong Baguette with grilled"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 259,
+     "right": 389.4,
+     "width": 130.4,
+     "text": "Edit Archive"
+    },
+    {
+     "el": "form.inline",
+     "left": 327.3,
+     "right": 389.4,
+     "width": 62,
+     "text": "Archive"
+    },
+    {
+     "el": "button.link",
+     "left": 327.3,
+     "right": 389.4,
+     "width": 62,
+     "text": "Archive"
+    },
+    {
+     "el": "tr#item-8",
+     "left": 16,
+     "right": 389.4,
+     "width": 373.4,
+     "text": "Banh mi op la Baguette with fried eggs B"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 259,
+     "right": 389.4,
+     "width": 130.4,
+     "text": "Edit Archive"
+    },
+    {
+     "el": "form.inline",
+     "left": 327.3,
+     "right": 389.4,
+     "width": 62,
+     "text": "Archive"
+    },
+    {
+     "el": "button.link",
+     "left": 327.3,
+     "right": 389.4,
+     "width": 62,
+     "text": "Archive"
+    },
+    {
+     "el": "tr#item-9",
+     "left": 16,
+     "right": 389.4,
+     "width": 373.4,
+     "text": "Che thai Thai-style sweet dessert soup S"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 259,
+     "right": 389.4,
+     "width": 130.4,
+     "text": "Edit Archive"
+    },
+    {
+     "el": "form.inline",
+     "left": 327.3,
+     "right": 389.4,
+     "width": 62,
+     "text": "Archive"
+    },
+    {
+     "el": "button.link",
+     "left": 327.3,
+     "right": 389.4,
+     "width": 62,
+     "text": "Archive"
+    },
+    {
+     "el": "tr#item-10",
+     "left": 16,
+     "right": 389.4,
+     "width": 373.4,
+     "text": "Che chuoi Banana in coconut milk Sweet C"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 259,
+     "right": 389.4,
+     "width": 130.4,
+     "text": "Edit Archive"
+    },
+    {
+     "el": "form.inline",
+     "left": 327.3,
+     "right": 389.4,
+     "width": 62,
+     "text": "Archive"
+    },
+    {
+     "el": "button.link",
+     "left": 327.3,
+     "right": 389.4,
+     "width": 62,
+     "text": "Archive"
+    }
+   ],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 44,
+   "small_targets_total": 2,
+   "small_targets_non_inline": 2,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [
+    {
+     "el": "a",
+     "type": "a",
+     "text": "SaigonBite District 1 Hub",
+     "w": 176.4,
+     "h": 21,
+     "inline": false,
+     "via": "",
+     "in_table": false
+    },
+    {
+     "el": "a",
+     "type": "a",
+     "text": "SaigonBite Binh Thanh Hub",
+     "w": 193,
+     "h": 21,
+     "inline": false,
+     "via": "",
+     "in_table": false
+    }
+   ],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "A04_catalogue.png"
+  },
+  {
+   "id": "A05_item_form",
+   "role": "admin",
+   "page": "Edit dish form",
+   "url": "/admin/items/1",
+   "http_status": 200,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 12,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "A05_item_form.png"
+  },
+  {
+   "id": "A06_item_new",
+   "role": "admin",
+   "page": "New dish form",
+   "url": "/admin/items/new",
+   "http_status": 200,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 13,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "A06_item_new.png"
+  },
+  {
+   "id": "A07_vouchers",
+   "role": "admin",
+   "page": "Vouchers",
+   "url": "/admin/vouchers",
+   "http_status": 200,
+   "scrollWidth": 501,
+   "clientWidth": 360,
+   "bodyScrollWidth": 501,
+   "innerWidth": 501,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "FAIL",
+   "elements_wider_than_viewport": [
+    {
+     "el": "table#voucher-table.data",
+     "left": 16,
+     "right": 500.7,
+     "width": 484.7,
+     "text": "Code Discount Minimum Valid LUNCH10 10% "
+    },
+    {
+     "el": "thead",
+     "left": 16,
+     "right": 500.7,
+     "width": 484.7,
+     "text": "Code Discount Minimum Valid"
+    },
+    {
+     "el": "tr",
+     "left": 16,
+     "right": 500.7,
+     "width": 484.7,
+     "text": "Code Discount Minimum Valid"
+    },
+    {
+     "el": "th",
+     "left": 313.4,
+     "right": 370.3,
+     "width": 56.9,
+     "text": "Valid"
+    },
+    {
+     "el": "th",
+     "left": 370.3,
+     "right": 500.7,
+     "width": 130.4,
+     "text": ""
+    },
+    {
+     "el": "tbody",
+     "left": 16,
+     "right": 500.7,
+     "width": 484.7,
+     "text": "LUNCH10 10% off dishes from 100,000 VND,"
+    },
+    {
+     "el": "tr#voucher-1",
+     "left": 16,
+     "right": 500.7,
+     "width": 484.7,
+     "text": "LUNCH10 10% off dishes from 100,000 VND,"
+    },
+    {
+     "el": "td",
+     "left": 313.4,
+     "right": 370.3,
+     "width": 56.9,
+     "text": "2026-10-01 to 2027-12-31"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 370.3,
+     "right": 500.7,
+     "width": 130.4,
+     "text": "Edit Archive"
+    },
+    {
+     "el": "a",
+     "left": 378.3,
+     "right": 422.3,
+     "width": 44,
+     "text": "Edit"
+    },
+    {
+     "el": "form.inline",
+     "left": 438.7,
+     "right": 500.7,
+     "width": 62,
+     "text": "Archive"
+    },
+    {
+     "el": "button.link",
+     "left": 438.7,
+     "right": 500.7,
+     "width": 62,
+     "text": "Archive"
+    },
+    {
+     "el": "tr#voucher-2",
+     "left": 16,
+     "right": 500.7,
+     "width": 484.7,
+     "text": "WELCOME20K 20,000 VND off dishes from 80"
+    },
+    {
+     "el": "td",
+     "left": 313.4,
+     "right": 370.3,
+     "width": 56.9,
+     "text": "2026-10-01 to 2027-12-31"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 370.3,
+     "right": 500.7,
+     "width": 130.4,
+     "text": "Edit Archive"
+    },
+    {
+     "el": "a",
+     "left": 378.3,
+     "right": 422.3,
+     "width": 44,
+     "text": "Edit"
+    },
+    {
+     "el": "form.inline",
+     "left": 438.7,
+     "right": 500.7,
+     "width": 62,
+     "text": "Archive"
+    },
+    {
+     "el": "button.link",
+     "left": 438.7,
+     "right": 500.7,
+     "width": 62,
+     "text": "Archive"
+    },
+    {
+     "el": "tr#voucher-3",
+     "left": 16,
+     "right": 500.7,
+     "width": 484.7,
+     "text": "SUMMER15 15% off, summer 2026 (expired) "
+    },
+    {
+     "el": "td",
+     "left": 313.4,
+     "right": 370.3,
+     "width": 56.9,
+     "text": "2026-06-01 to 2026-08-31"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 370.3,
+     "right": 500.7,
+     "width": 130.4,
+     "text": "Edit Archive"
+    },
+    {
+     "el": "a",
+     "left": 378.3,
+     "right": 422.3,
+     "width": 44,
+     "text": "Edit"
+    },
+    {
+     "el": "form.inline",
+     "left": 438.7,
+     "right": 500.7,
+     "width": 62,
+     "text": "Archive"
+    },
+    {
+     "el": "button.link",
+     "left": 438.7,
+     "right": 500.7,
+     "width": 62,
+     "text": "Archive"
+    }
+   ],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 14,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "A07_vouchers.png"
+  },
+  {
+   "id": "A08_voucher_form",
+   "role": "admin",
+   "page": "Edit voucher form",
+   "url": "/admin/vouchers/1",
+   "http_status": 200,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 17,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "A08_voucher_form.png"
+  },
+  {
+   "id": "A09_users",
+   "role": "admin",
+   "page": "Accounts",
+   "url": "/admin/users",
+   "http_status": 200,
+   "scrollWidth": 520,
+   "clientWidth": 360,
+   "bodyScrollWidth": 520,
+   "innerWidth": 520,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "FAIL",
+   "elements_wider_than_viewport": [
+    {
+     "el": "table#user-table.data",
+     "left": 16,
+     "right": 520,
+     "width": 504,
+     "text": "Username Name Role Hub Status admin Admi"
+    },
+    {
+     "el": "thead",
+     "left": 16,
+     "right": 520,
+     "width": 504,
+     "text": "Username Name Role Hub Status"
+    },
+    {
+     "el": "tr",
+     "left": 16,
+     "right": 520,
+     "width": 504,
+     "text": "Username Name Role Hub Status"
+    },
+    {
+     "el": "th",
+     "left": 307,
+     "right": 367.4,
+     "width": 60.4,
+     "text": "Status"
+    },
+    {
+     "el": "th",
+     "left": 367.4,
+     "right": 520,
+     "width": 152.6,
+     "text": ""
+    },
+    {
+     "el": "tbody",
+     "left": 16,
+     "right": 520,
+     "width": 504,
+     "text": "admin Admin Admin Active Edit customer T"
+    },
+    {
+     "el": "tr#user-4",
+     "left": 16,
+     "right": 520,
+     "width": 504,
+     "text": "admin Admin Admin Active Edit"
+    },
+    {
+     "el": "td",
+     "left": 307,
+     "right": 367.4,
+     "width": 60.4,
+     "text": "Active"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 367.4,
+     "right": 520,
+     "width": 152.6,
+     "text": "Edit"
+    },
+    {
+     "el": "a",
+     "left": 476,
+     "right": 520,
+     "width": 44,
+     "text": "Edit"
+    },
+    {
+     "el": "tr#user-1",
+     "left": 16,
+     "right": 520,
+     "width": 504,
+     "text": "customer Tran Thi Mai Customer Active De"
+    },
+    {
+     "el": "td",
+     "left": 307,
+     "right": 367.4,
+     "width": 60.4,
+     "text": "Active"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 367.4,
+     "right": 520,
+     "width": 152.6,
+     "text": "Deactivate"
+    },
+    {
+     "el": "form.inline",
+     "left": 435.8,
+     "right": 520,
+     "width": 84.2,
+     "text": "Deactivate"
+    },
+    {
+     "el": "button.link",
+     "left": 435.8,
+     "right": 520,
+     "width": 84.2,
+     "text": "Deactivate"
+    },
+    {
+     "el": "tr#user-6",
+     "left": 16,
+     "right": 520,
+     "width": 504,
+     "text": "tourist Emma Wilson Customer Active Deac"
+    },
+    {
+     "el": "td",
+     "left": 307,
+     "right": 367.4,
+     "width": 60.4,
+     "text": "Active"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 367.4,
+     "right": 520,
+     "width": 152.6,
+     "text": "Deactivate"
+    },
+    {
+     "el": "form.inline",
+     "left": 435.8,
+     "right": 520,
+     "width": 84.2,
+     "text": "Deactivate"
+    },
+    {
+     "el": "button.link",
+     "left": 435.8,
+     "right": 520,
+     "width": 84.2,
+     "text": "Deactivate"
+    },
+    {
+     "el": "tr#user-2",
+     "left": 16,
+     "right": 520,
+     "width": 504,
+     "text": "kitchen Kitchen Staff D1 Kitchen staff 1"
+    },
+    {
+     "el": "td",
+     "left": 307,
+     "right": 367.4,
+     "width": 60.4,
+     "text": "Active"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 367.4,
+     "right": 520,
+     "width": 152.6,
+     "text": "Edit Deactivate"
+    },
+    {
+     "el": "a",
+     "left": 375.4,
+     "right": 419.4,
+     "width": 44,
+     "text": "Edit"
+    },
+    {
+     "el": "form.inline",
+     "left": 435.8,
+     "right": 520,
+     "width": 84.2,
+     "text": "Deactivate"
+    },
+    {
+     "el": "button.link",
+     "left": 435.8,
+     "right": 520,
+     "width": 84.2,
+     "text": "Deactivate"
+    },
+    {
+     "el": "tr#user-7",
+     "left": 16,
+     "right": 520,
+     "width": 504,
+     "text": "kitchen_bt Kitchen Staff BT Kitchen staf"
+    },
+    {
+     "el": "td",
+     "left": 307,
+     "right": 367.4,
+     "width": 60.4,
+     "text": "Active"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 367.4,
+     "right": 520,
+     "width": 152.6,
+     "text": "Edit Deactivate"
+    },
+    {
+     "el": "a",
+     "left": 375.4,
+     "right": 419.4,
+     "width": 44,
+     "text": "Edit"
+    },
+    {
+     "el": "form.inline",
+     "left": 435.8,
+     "right": 520,
+     "width": 84.2,
+     "text": "Deactivate"
+    },
+    {
+     "el": "button.link",
+     "left": 435.8,
+     "right": 520,
+     "width": 84.2,
+     "text": "Deactivate"
+    },
+    {
+     "el": "tr#user-5",
+     "left": 16,
+     "right": 520,
+     "width": 504,
+     "text": "manager Manager Manager Active Edit Deac"
+    },
+    {
+     "el": "td",
+     "left": 307,
+     "right": 367.4,
+     "width": 60.4,
+     "text": "Active"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 367.4,
+     "right": 520,
+     "width": 152.6,
+     "text": "Edit Deactivate"
+    },
+    {
+     "el": "a",
+     "left": 375.4,
+     "right": 419.4,
+     "width": 44,
+     "text": "Edit"
+    },
+    {
+     "el": "form.inline",
+     "left": 435.8,
+     "right": 520,
+     "width": 84.2,
+     "text": "Deactivate"
+    },
+    {
+     "el": "button.link",
+     "left": 435.8,
+     "right": 520,
+     "width": 84.2,
+     "text": "Deactivate"
+    },
+    {
+     "el": "tr#user-3",
+     "left": 16,
+     "right": 520,
+     "width": 504,
+     "text": "shipper Shipper One Shipper Active Edit "
+    },
+    {
+     "el": "td",
+     "left": 307,
+     "right": 367.4,
+     "width": 60.4,
+     "text": "Active"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 367.4,
+     "right": 520,
+     "width": 152.6,
+     "text": "Edit Deactivate"
+    },
+    {
+     "el": "a",
+     "left": 375.4,
+     "right": 419.4,
+     "width": 44,
+     "text": "Edit"
+    },
+    {
+     "el": "form.inline",
+     "left": 435.8,
+     "right": 520,
+     "width": 84.2,
+     "text": "Deactivate"
+    },
+    {
+     "el": "button.link",
+     "left": 435.8,
+     "right": 520,
+     "width": 84.2,
+     "text": "Deactivate"
+    },
+    {
+     "el": "tr#user-8",
+     "left": 16,
+     "right": 520,
+     "width": 504,
+     "text": "shipper2 Shipper Two Shipper Active Edit"
+    },
+    {
+     "el": "td",
+     "left": 307,
+     "right": 367.4,
+     "width": 60.4,
+     "text": "Active"
+    },
+    {
+     "el": "td.row-actions",
+     "left": 367.4,
+     "right": 520,
+     "width": 152.6,
+     "text": "Edit Deactivate"
+    },
+    {
+     "el": "a",
+     "left": 375.4,
+     "right": 419.4,
+     "width": 44,
+     "text": "Edit"
+    },
+    {
+     "el": "form.inline",
+     "left": 435.8,
+     "right": 520,
+     "width": 84.2,
+     "text": "Deactivate"
+    },
+    {
+     "el": "button.link",
+     "left": 435.8,
+     "right": 520,
+     "width": 84.2,
+     "text": "Deactivate"
+    }
+   ],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 21,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "A09_users.png"
+  },
+  {
+   "id": "A10_user_form",
+   "role": "admin",
+   "page": "Edit account form",
+   "url": "/admin/users/1",
+   "http_status": 200,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 7,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "A10_user_form.png"
+  },
+  {
+   "id": "A11_archive",
+   "role": "admin",
+   "page": "Archive of old orders",
+   "url": "/admin/archive",
+   "http_status": 200,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 11,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "A11_archive.png"
+  },
+  {
+   "id": "M01_reports",
+   "role": "manager",
+   "page": "Reports index",
+   "url": "/reports/",
+   "http_status": 200,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [
+    {
+     "el": "table#sales-table.data",
+     "left": 16,
+     "right": 667.7,
+     "width": 651.7,
+     "text": "Hub Orders Dishes Vouchers Delivery fees",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "thead",
+     "left": 16,
+     "right": 667.7,
+     "width": 651.7,
+     "text": "Hub Orders Dishes Vouchers Delivery fees",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "tr",
+     "left": 16,
+     "right": 667.7,
+     "width": 651.7,
+     "text": "Hub Orders Dishes Vouchers Delivery fees",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "th.num",
+     "left": 293.6,
+     "right": 402.9,
+     "width": 109.3,
+     "text": "Delivery fees",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "th.num",
+     "left": 402.9,
+     "right": 479.9,
+     "width": 76.9,
+     "text": "Total",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "th.num",
+     "left": 479.9,
+     "right": 598.8,
+     "width": 118.9,
+     "text": "Refunds owed",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "th.num",
+     "left": 598.8,
+     "right": 667.7,
+     "width": 68.9,
+     "text": "Net",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "tbody",
+     "left": 16,
+     "right": 667.7,
+     "width": 651.7,
+     "text": "No delivered orders in this period. All ",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "tr",
+     "left": 16,
+     "right": 667.7,
+     "width": 651.7,
+     "text": "No delivered orders in this period.",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "td",
+     "left": 16,
+     "right": 667.7,
+     "width": 651.7,
+     "text": "No delivered orders in this period.",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "tr#sales-total.total-row",
+     "left": 16,
+     "right": 667.7,
+     "width": 651.7,
+     "text": "All hubs 0 0 VND 0 VND 0 VND 0 VND 0 VND",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "td.num",
+     "left": 293.6,
+     "right": 402.9,
+     "width": 109.3,
+     "text": "0 VND",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "td.num",
+     "left": 402.9,
+     "right": 479.9,
+     "width": 76.9,
+     "text": "0 VND",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "td.num",
+     "left": 479.9,
+     "right": 598.8,
+     "width": 118.9,
+     "text": "0 VND",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "td.num",
+     "left": 598.8,
+     "right": 667.7,
+     "width": 68.9,
+     "text": "0 VND",
+     "wrapper": "div.table-scroll"
+    }
+   ],
+   "interactive_visible": 9,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "M01_reports.png"
+  },
+  {
+   "id": "M02_sales",
+   "role": "manager",
+   "page": "Sales report (2026)",
+   "url": "/reports/sales?from=2026-01-01&to=2026-12-31",
+   "http_status": 200,
+   "scrollWidth": 360,
+   "clientWidth": 360,
+   "bodyScrollWidth": 360,
+   "innerWidth": 360,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "PASS",
+   "elements_wider_than_viewport": [],
+   "elements_clipped_by_scroll_wrapper": [
+    {
+     "el": "table#sales-table.data",
+     "left": 16,
+     "right": 959.4,
+     "width": 943.4,
+     "text": "Hub Orders Dishes Vouchers Delivery fees",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "thead",
+     "left": 16,
+     "right": 959.4,
+     "width": 943.4,
+     "text": "Hub Orders Dishes Vouchers Delivery fees",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "tr",
+     "left": 16,
+     "right": 959.4,
+     "width": 943.4,
+     "text": "Hub Orders Dishes Vouchers Delivery fees",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "th.num",
+     "left": 304,
+     "right": 440.4,
+     "width": 136.4,
+     "text": "Vouchers",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "th.num",
+     "left": 440.4,
+     "right": 568.8,
+     "width": 128.3,
+     "text": "Delivery fees",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "th.num",
+     "left": 568.8,
+     "right": 708.6,
+     "width": 139.9,
+     "text": "Total",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "th.num",
+     "left": 708.6,
+     "right": 827.5,
+     "width": 118.9,
+     "text": "Refunds owed",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "th.num",
+     "left": 827.5,
+     "right": 959.4,
+     "width": 131.9,
+     "text": "Net",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "tbody",
+     "left": 16,
+     "right": 959.4,
+     "width": 943.4,
+     "text": "SaigonBite District 1 Hub 2 250,000 VND ",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "tr",
+     "left": 16,
+     "right": 959.4,
+     "width": 943.4,
+     "text": "SaigonBite District 1 Hub 2 250,000 VND ",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "td.num",
+     "left": 304,
+     "right": 440.4,
+     "width": 136.4,
+     "text": "-13,000 VND",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "td.num",
+     "left": 440.4,
+     "right": 568.8,
+     "width": 128.3,
+     "text": "25,000 VND",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "td.num",
+     "left": 568.8,
+     "right": 708.6,
+     "width": 139.9,
+     "text": "262,000 VND",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "td.num",
+     "left": 708.6,
+     "right": 827.5,
+     "width": 118.9,
+     "text": "0 VND",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "td.num",
+     "left": 827.5,
+     "right": 959.4,
+     "width": 131.9,
+     "text": "262,000 VND",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "tr",
+     "left": 16,
+     "right": 959.4,
+     "width": 943.4,
+     "text": "SaigonBite Binh Thanh Hub 1 80,000 VND -",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "td.num",
+     "left": 304,
+     "right": 440.4,
+     "width": 136.4,
+     "text": "-20,000 VND",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "td.num",
+     "left": 440.4,
+     "right": 568.8,
+     "width": 128.3,
+     "text": "17,000 VND",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "td.num",
+     "left": 568.8,
+     "right": 708.6,
+     "width": 139.9,
+     "text": "77,000 VND",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "td.num",
+     "left": 708.6,
+     "right": 827.5,
+     "width": 118.9,
+     "text": "0 VND",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "td.num",
+     "left": 827.5,
+     "right": 959.4,
+     "width": 131.9,
+     "text": "77,000 VND",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "tr#sales-total.total-row",
+     "left": 16,
+     "right": 959.4,
+     "width": 943.4,
+     "text": "All hubs 3 330,000 VND -33,000 VND 42,00",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "td.num",
+     "left": 304,
+     "right": 440.4,
+     "width": 136.4,
+     "text": "-33,000 VND",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "td.num",
+     "left": 440.4,
+     "right": 568.8,
+     "width": 128.3,
+     "text": "42,000 VND",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "td.num",
+     "left": 568.8,
+     "right": 708.6,
+     "width": 139.9,
+     "text": "339,000 VND",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "td.num",
+     "left": 708.6,
+     "right": 827.5,
+     "width": 118.9,
+     "text": "0 VND",
+     "wrapper": "div.table-scroll"
+    },
+    {
+     "el": "td.num",
+     "left": 827.5,
+     "right": 959.4,
+     "width": 131.9,
+     "text": "339,000 VND",
+     "wrapper": "div.table-scroll"
+    }
+   ],
+   "interactive_visible": 9,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "M02_sales.png"
+  },
+  {
+   "id": "M03_workload",
+   "role": "manager",
+   "page": "Workload report (2026)",
+   "url": "/reports/workload?from=2026-01-01&to=2026-12-31",
+   "http_status": 200,
+   "scrollWidth": 743,
+   "clientWidth": 360,
+   "bodyScrollWidth": 742,
+   "innerWidth": 743,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "FAIL",
+   "elements_wider_than_viewport": [
+    {
+     "el": "table#workload-table.data",
+     "left": 16,
+     "right": 741.6,
+     "width": 725.6,
+     "text": "Hub New Confirmed Preparing Load / capac"
+    },
+    {
+     "el": "thead",
+     "left": 16,
+     "right": 741.6,
+     "width": 725.6,
+     "text": "Hub New Confirmed Preparing Load / capac"
+    },
+    {
+     "el": "tr",
+     "left": 16,
+     "right": 741.6,
+     "width": 725.6,
+     "text": "Hub New Confirmed Preparing Load / capac"
+    },
+    {
+     "el": "th.num",
+     "left": 327.4,
+     "right": 453.3,
+     "width": 125.9,
+     "text": "Load / capacity"
+    },
+    {
+     "el": "th.num",
+     "left": 453.3,
+     "right": 522.3,
+     "width": 69,
+     "text": "Load %"
+    },
+    {
+     "el": "th",
+     "left": 522.3,
+     "right": 591,
+     "width": 68.7,
+     "text": "Status"
+    },
+    {
+     "el": "th.num",
+     "left": 591,
+     "right": 651.2,
+     "width": 60.2,
+     "text": "Ready"
+    },
+    {
+     "el": "th.num",
+     "left": 651.2,
+     "right": 741.6,
+     "width": 90.4,
+     "text": "On the way"
+    },
+    {
+     "el": "tbody",
+     "left": 16,
+     "right": 741.6,
+     "width": 725.6,
+     "text": "SaigonBite District 1 Hub 1 2 0 3 / 12 2"
+    },
+    {
+     "el": "tr#workload-1",
+     "left": 16,
+     "right": 741.6,
+     "width": 725.6,
+     "text": "SaigonBite District 1 Hub 1 2 0 3 / 12 2"
+    },
+    {
+     "el": "td.num",
+     "left": 327.4,
+     "right": 453.3,
+     "width": 125.9,
+     "text": "3 / 12"
+    },
+    {
+     "el": "td.num",
+     "left": 453.3,
+     "right": 522.3,
+     "width": 69,
+     "text": "25%"
+    },
+    {
+     "el": "td",
+     "left": 522.3,
+     "right": 591,
+     "width": 68.7,
+     "text": "Normal"
+    },
+    {
+     "el": "td.num",
+     "left": 591,
+     "right": 651.2,
+     "width": 60.2,
+     "text": "1"
+    },
+    {
+     "el": "td.num",
+     "left": 651.2,
+     "right": 741.6,
+     "width": 90.4,
+     "text": "0"
+    },
+    {
+     "el": "tr#workload-2",
+     "left": 16,
+     "right": 741.6,
+     "width": 725.6,
+     "text": "SaigonBite Binh Thanh Hub 0 0 0 0 / 8 0%"
+    },
+    {
+     "el": "td.num",
+     "left": 327.4,
+     "right": 453.3,
+     "width": 125.9,
+     "text": "0 / 8"
+    },
+    {
+     "el": "td.num",
+     "left": 453.3,
+     "right": 522.3,
+     "width": 69,
+     "text": "0%"
+    },
+    {
+     "el": "td",
+     "left": 522.3,
+     "right": 591,
+     "width": 68.7,
+     "text": "Quiet"
+    },
+    {
+     "el": "span.badge.good",
+     "left": 530.3,
+     "right": 581.2,
+     "width": 50.9,
+     "text": "Quiet"
+    },
+    {
+     "el": "td.num",
+     "left": 591,
+     "right": 651.2,
+     "width": 60.2,
+     "text": "0"
+    },
+    {
+     "el": "td.num",
+     "left": 651.2,
+     "right": 741.6,
+     "width": 90.4,
+     "text": "0"
+    }
+   ],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 5,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "M03_workload.png"
+  },
+  {
+   "id": "M04_delivery",
+   "role": "manager",
+   "page": "Delivery report (2026)",
+   "url": "/reports/delivery?from=2026-01-01&to=2026-12-31",
+   "http_status": 200,
+   "scrollWidth": 656,
+   "clientWidth": 360,
+   "bodyScrollWidth": 656,
+   "innerWidth": 656,
+   "scrollXAfterScrollTo": 0,
+   "htmlOverflowX": "visible",
+   "bodyOverflowX": "visible",
+   "viewportMeta": "width=device-width, initial-scale=1",
+   "result": "FAIL",
+   "elements_wider_than_viewport": [
+    {
+     "el": "table#delivery-by-hub.data",
+     "left": 16,
+     "right": 656.4,
+     "width": 640.4,
+     "text": "Delivered Failed Failure rate Avg wait A"
+    },
+    {
+     "el": "thead",
+     "left": 16,
+     "right": 656.4,
+     "width": 640.4,
+     "text": "Delivered Failed Failure rate Avg wait A"
+    },
+    {
+     "el": "tr",
+     "left": 16,
+     "right": 656.4,
+     "width": 640.4,
+     "text": "Delivered Failed Failure rate Avg wait A"
+    },
+    {
+     "el": "th.num",
+     "left": 353.2,
+     "right": 508.8,
+     "width": 155.6,
+     "text": "Avg wait"
+    },
+    {
+     "el": "th.num",
+     "left": 508.8,
+     "right": 656.4,
+     "width": 147.6,
+     "text": "Avg ride"
+    },
+    {
+     "el": "tbody",
+     "left": 16,
+     "right": 656.4,
+     "width": 640.4,
+     "text": "SaigonBite District 1 Hub 2 0 0.0% 7.5 m"
+    },
+    {
+     "el": "tr",
+     "left": 16,
+     "right": 656.4,
+     "width": 640.4,
+     "text": "SaigonBite District 1 Hub 2 0 0.0% 7.5 m"
+    },
+    {
+     "el": "td.num",
+     "left": 353.2,
+     "right": 508.8,
+     "width": 155.6,
+     "text": "7.5 min (n=2)"
+    },
+    {
+     "el": "td.num",
+     "left": 508.8,
+     "right": 656.4,
+     "width": 147.6,
+     "text": "20.0 min (n=2)"
+    },
+    {
+     "el": "tr",
+     "left": 16,
+     "right": 656.4,
+     "width": 640.4,
+     "text": "SaigonBite Binh Thanh Hub 1 1 50.0% 12.5"
+    },
+    {
+     "el": "td.num",
+     "left": 353.2,
+     "right": 508.8,
+     "width": 155.6,
+     "text": "12.5 min (n=2)"
+    },
+    {
+     "el": "td.num",
+     "left": 508.8,
+     "right": 656.4,
+     "width": 147.6,
+     "text": "30.0 min (n=1)"
+    },
+    {
+     "el": "tbody#delivery-overall.total-row",
+     "left": 16,
+     "right": 656.4,
+     "width": 640.4,
+     "text": "All deliveries 3 1 25.0% 10.0 min (n=4) "
+    },
+    {
+     "el": "tr",
+     "left": 16,
+     "right": 656.4,
+     "width": 640.4,
+     "text": "All deliveries 3 1 25.0% 10.0 min (n=4) "
+    },
+    {
+     "el": "td.num",
+     "left": 353.2,
+     "right": 508.8,
+     "width": 155.6,
+     "text": "10.0 min (n=4)"
+    },
+    {
+     "el": "td.num",
+     "left": 508.8,
+     "right": 656.4,
+     "width": 147.6,
+     "text": "23.3 min (n=3)"
+    },
+    {
+     "el": "table#delivery-by-shipper.data",
+     "left": 16,
+     "right": 548.2,
+     "width": 532.2,
+     "text": "Delivered Failed Failure rate Avg wait A"
+    },
+    {
+     "el": "thead",
+     "left": 16,
+     "right": 548.2,
+     "width": 532.2,
+     "text": "Delivered Failed Failure rate Avg wait A"
+    },
+    {
+     "el": "tr",
+     "left": 16,
+     "right": 548.2,
+     "width": 532.2,
+     "text": "Delivered Failed Failure rate Avg wait A"
+    },
+    {
+     "el": "th.num",
+     "left": 318,
+     "right": 437.1,
+     "width": 119.1,
+     "text": "Avg wait"
+    },
+    {
+     "el": "th.num",
+     "left": 437.1,
+     "right": 548.2,
+     "width": 111.1,
+     "text": "Avg ride"
+    },
+    {
+     "el": "tbody",
+     "left": 16,
+     "right": 548.2,
+     "width": 532.2,
+     "text": "Shipper One 1 1 50.0% 10.0 min (n=2) 25."
+    },
+    {
+     "el": "tr",
+     "left": 16,
+     "right": 548.2,
+     "width": 532.2,
+     "text": "Shipper One 1 1 50.0% 10.0 min (n=2) 25."
+    },
+    {
+     "el": "td.num",
+     "left": 318,
+     "right": 437.1,
+     "width": 119.1,
+     "text": "10.0 min (n=2)"
+    },
+    {
+     "el": "td.num",
+     "left": 437.1,
+     "right": 548.2,
+     "width": 111.1,
+     "text": "25.0 min (n=1)"
+    },
+    {
+     "el": "tr",
+     "left": 16,
+     "right": 548.2,
+     "width": 532.2,
+     "text": "Shipper Two 2 0 0.0% 10.0 min (n=2) 22.5"
+    },
+    {
+     "el": "td.num",
+     "left": 318,
+     "right": 437.1,
+     "width": 119.1,
+     "text": "10.0 min (n=2)"
+    },
+    {
+     "el": "td.num",
+     "left": 437.1,
+     "right": 548.2,
+     "width": 111.1,
+     "text": "22.5 min (n=2)"
+    }
+   ],
+   "elements_clipped_by_scroll_wrapper": [],
+   "interactive_visible": 9,
+   "small_targets_total": 0,
+   "small_targets_non_inline": 0,
+   "small_targets_inline_text_links": 0,
+   "small_targets": [],
+   "offscreen_until_focus": [
+    {
+     "el": "a.skip",
+     "text": "Skip to content",
+     "w": 131.4,
+     "h": 40
+    }
+   ],
+   "screenshot": "M04_delivery.png"
+  }
+ ]
+}

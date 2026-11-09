@@ -1,0 +1,16 @@
+digraph G {
+graph [rankdir=TB, nodesep=0.2, ranksep=0.34, fontname="Arial", fontsize=14, pad=0.08, dpi=200, newrank=true];
+node [shape=plain, fontname="Arial", fontsize=14];
+edge [fontname="Arial", fontsize=14, arrowsize=0.9, penwidth=1.1];
+labelloc="t"; labeljust="l"; label=<<B><FONT POINT-SIZE="16">UC-01 Place an order</FONT></B><BR ALIGN="LEFT"/><B><FONT POINT-SIZE="14">Final design class diagram, detail sheet B1: OrderTrackingController, view and controller</FONT></B><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">Owner 722I0004 · Author 722I0004 · AI-assisted (Claude)</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14" COLOR="#4A5663">grey dashed: calls or uses</FONT>    <BR ALIGN="LEFT"/><FONT POINT-SIZE="14" COLOR="#7A4FA0">purple dashed: «persists» (DAO writes the entity)</FONT>    <BR ALIGN="LEFT"/><FONT POINT-SIZE="14" COLOR="#00796B">teal dotted: «loads» (DAO only reads it)</FONT>    <BR ALIGN="LEFT"/>>;
+subgraph cluster_view { label=<<B>View layer (Flask blueprint functions)</B>>; labeljust="l"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=14; margin=5;
+  { rank=same; "bp_order"; }
+  "bp_order" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="0" BGCOLOR="white"><TR><TD BGCOLOR="#E8F1FA" CELLPADDING="3"><FONT POINT-SIZE="14">«boundary»</FONT><BR/><FONT POINT-SIZE="14"><B>order views</B></FONT></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT" CELLPADDING="3"><FONT POINT-SIZE="14">+ cancel() POST /order/&lt;int:order_id&gt;/cancel</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">+ detail() GET /order/&lt;int:order_id&gt;</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">+ my_orders() GET /order/mine</FONT><BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+}
+subgraph cluster_controller { label=<<B>Controller layer</B>>; labeljust="l"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#9AA7B4"; fontsize=14; margin=5;
+  { rank=same; "OrderTrackingController"; }
+  "OrderTrackingController" [label=<<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="0" BGCOLOR="white"><TR><TD BGCOLOR="#EAF5EA" CELLPADDING="3"><FONT POINT-SIZE="14">«control»</FONT><BR/><FONT POINT-SIZE="14"><B>OrderTrackingController</B></FONT></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT" CELLPADDING="3"><FONT POINT-SIZE="14">+ cancel_order(user_id: int, order_id: int): OrderDetail</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">+ get_order(user_id: int, order_id: int): OrderDetail</FONT><BR ALIGN="LEFT"/><FONT POINT-SIZE="14">+ list_my_orders(user_id: int): list[OrderSummary]</FONT><BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+}
+"bp_order" -> "OrderTrackingController" [style=invis];
+"bp_order" -> "OrderTrackingController" [style=dashed, arrowhead=vee, color="#4A5663"];
+}

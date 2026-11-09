@@ -16,7 +16,7 @@ Author: 722I0004 \ensuremath{\cdot} AI-assisted (Codex, Claude)
 
 \item \emph{Small-scale operation.} One VM and one SQLite file serve the demonstration. This is enough for the measured load (200 requests from 20 clients, all under 1.2 s), but it is not a high-availability setup, and rollback to a previous release has not been rehearsed.
 
-\item \emph{Phone layout.} It is verified at 390 px on every screen but at 360 px on one screen only (NFR-09).
+\item \emph{Phone layout.} All 45 pages pass at 360 px (NFR-09), but on a phone the wide admin and report tables scroll inside their own box, so their row actions are off-screen until the table is scrolled.
 
 \item \emph{Team contribution.} All Part 2 work was authored by one member (Appendix 4). Ownership of UC-02, UC-04, UC-05 and UC-06 remains with the proposal owners, who will present their use cases in Part 3.
 

@@ -1,7 +1,7 @@
 P7 DOCX structural check: no PDF or visual rendering
 
 PASS | heading style and text | 94 DOCX headings compared in template order to independently checked LaTeX
-PASS | figure IDs | 552/552 manifest IDs in DOCX and LaTeX
+PASS | figure IDs | 574/574 manifest IDs in DOCX and LaTeX
 PASS | table count | LaTeX 444; DOCX 444, including two front tables
 PASS | 5.1 test table rows | LaTeX 30; DOCX 30; diff=[] / []
 PASS | ES, 5.1 and Conclusions numeric equivalence | digit-token multiset compared per section; differences=[]

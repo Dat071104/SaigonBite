@@ -2,7 +2,7 @@
 
 Author: 722I0004 · AI-assisted (Codex, Claude)
 
-Each of the 13 persistent domain classes of 2.1.7 is stored in one table of `db/schema.sql`. The delivered schema has **13 tables, 111 columns, 18 foreign keys, 7 indexes and 3 triggers** (`PRAGMA user_version = 2`). The diagrams below are generated from that file by `models/shared/erd_final.py`, so they show the schema exactly as it runs.
+Each of the 13 persistent domain classes of 2.1.7 is stored in one table of `db/schema.sql`. The delivered schema has **13 tables, 111 columns, 18 foreign keys, 7 indexes and 3 triggers** (`PRAGMA user_version = 2`). The diagrams below are generated from that file by `models/shared/erd_final.py`, so they show the schema exactly as it runs. Each relationship end shows its multiplicity, derived from the foreign-key column: a NOT NULL foreign key gives exactly one parent (1), a nullable one gives zero or one (0..1, for example `orders.voucher_id` and `delivery.shipper_id`, which stays empty until pickup); a UNIQUE foreign key limits the child side to zero or one (0..1, for example one `customer` row per `user_account`, and staff accounts have none), otherwise zero or many (0..*). Two rules are stronger than the schema can state and are kept by the controllers instead: `confirmCheckout` writes the order, at least one order line and its payment in one transaction, so a stored order always has exactly one payment and one or more lines.
 
 ![Schema part A](../../../models/shared/erd_final_PartA.png)
 

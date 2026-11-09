@@ -1,92 +1,100 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1360" viewBox="0 0 1800 1360">
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1788" viewBox="0 0 1800 1788">
 <rect width="100%" height="100%" fill="white"/>
-<polyline points="900,300 900,410" fill="none" stroke="#52616F" stroke-width="3"/>
-<polyline points="890.0,390.0 900,410 910.0,390.0" fill="none" stroke="#52616F" stroke-width="3"/>
-<polyline points="600,620 600,690 425,690 425,760" fill="none" stroke="#52616F" stroke-width="3"/>
-<polyline points="415.0,740.0 425,760 435.0,740.0" fill="none" stroke="#52616F" stroke-width="3"/>
-<polyline points="1200,620 1200,690 1375,690 1375,760" fill="none" stroke="#52616F" stroke-width="3"/>
-<polyline points="1365.0,740.0 1375,760 1385.0,740.0" fill="none" stroke="#52616F" stroke-width="3"/>
-<polyline points="1375,980 1375,1050 425,1050 425,980" fill="none" stroke="#52616F" stroke-width="3" stroke-dasharray="10 7"/>
-<polyline points="435.0,1000.0 425,980 415.0,1000.0" fill="none" stroke="#52616F" stroke-width="3"/>
-<rect x="450" y="90" width="900" height="210" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
-<rect x="450" y="410" width="900" height="210" fill="#E9F4EF" stroke="#004387" stroke-width="3"/>
-<rect x="60" y="760" width="730" height="220" fill="#F2EFF9" stroke="#004387" stroke-width="3"/>
-<rect x="1010" y="760" width="730" height="220" fill="#FFF2E6" stroke="#004387" stroke-width="3"/>
-<rect x="60" y="1080" width="1680" height="190" fill="#FFF8E8" stroke="#004387" stroke-width="3"/>
-<text x="30" y="18" fill="#202B36" font-family="Arial, sans-serif" font-size="34" font-weight="700" dominant-baseline="hanging">
+<polyline points="900,375.0 900,512.5" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="890.0,492.5 900,512.5 910.0,492.5" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="600,775.0 600,862.5 425,862.5 425,950.0" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="415.0,930.0 425,950.0 435.0,930.0" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="1200,775.0 1200,862.5 1375,862.5 1375,950.0" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="1365.0,930.0 1375,950.0 1385.0,930.0" fill="none" stroke="#52616F" stroke-width="3"/>
+<polyline points="1375,1225.0 1375,1312.5 425,1312.5 425,1225.0" fill="none" stroke="#52616F" stroke-width="3" stroke-dasharray="10 7"/>
+<polyline points="435.0,1245.0 425,1225.0 415.0,1245.0" fill="none" stroke="#52616F" stroke-width="3"/>
+<rect x="450" y="112.5" width="900" height="262.5" fill="#E7F0F6" stroke="#004387" stroke-width="3"/>
+<rect x="450" y="512.5" width="900" height="262.5" fill="#E9F4EF" stroke="#004387" stroke-width="3"/>
+<rect x="60" y="950.0" width="730" height="275.0" fill="#F2EFF9" stroke="#004387" stroke-width="3"/>
+<rect x="1010" y="950.0" width="730" height="275.0" fill="#FFF2E6" stroke="#004387" stroke-width="3"/>
+<rect x="60" y="1350.0" width="1680" height="310.0" fill="#FFF8E8" stroke="#004387" stroke-width="3"/>
+<text x="30" y="18" fill="#202B36" font-family="Arial, sans-serif" font-size="44" font-weight="700" dominant-baseline="hanging">
 <tspan x="30" dy="0">Current P4 package amendment | SB-P4-B02-20261026</tspan>
 </text>
-<text x="30" y="1294" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<text x="30" y="1704" fill="#202B36" font-family="Arial, sans-serif" font-size="34" font-weight="400" dominant-baseline="hanging">
 <tspan x="30" dy="0">Figure 4.2A · Author: 722I0004 · AI-assisted (Codex)</tspan>
 </text>
-<text x="30" y="1325" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<text x="30" y="1744" fill="#202B36" font-family="Arial, sans-serif" font-size="34" font-weight="400" dominant-baseline="hanging">
 <tspan x="30" dy="0">Current P4 dependency projection · team decision; no lecturer/client approval</tspan>
 </text>
-<text x="920" y="340" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<text x="920" y="425.0" fill="#004387" font-family="Arial, sans-serif" font-size="34" font-weight="400" dominant-baseline="hanging">
 <tspan x="920" dy="0">runtime request</tspan>
 </text>
-<text x="65" y="655" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<text x="65" y="818.75" fill="#004387" font-family="Arial, sans-serif" font-size="34" font-weight="400" dominant-baseline="hanging">
 <tspan x="65" dy="0">runtime domain calls</tspan>
 </text>
-<text x="1250" y="655" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<text x="1250" y="818.75" fill="#004387" font-family="Arial, sans-serif" font-size="34" font-weight="400" dominant-baseline="hanging">
 <tspan x="1250" dy="0">runtime persistence calls</tspan>
 </text>
-<text x="530" y="1010" fill="#004387" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<text x="530" y="1262.5" fill="#004387" font-family="Arial, sans-serif" font-size="34" font-weight="400" dominant-baseline="hanging">
 <tspan x="530" dy="0">source dependency: exact policy + use ledger only</tspan>
 </text>
-<text x="761.28125" y="133.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
-<tspan x="761.28125" dy="0">«package» presentation</tspan>
+<text x="718.5390625" y="163.75" fill="#202B36" font-family="Arial, sans-serif" font-size="34" font-weight="400" dominant-baseline="hanging">
+<tspan x="718.5390625" dy="0">«package» presentation</tspan>
 </text>
-<text x="699.9140625" y="164.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
-<tspan x="699.9140625" dy="0">Routes, forms and result rendering</tspan>
+<text x="638.25" y="203.75" fill="#202B36" font-family="Arial, sans-serif" font-size="34" font-weight="400" dominant-baseline="hanging">
+<tspan x="638.25" dy="0">Routes, forms and result rendering</tspan>
 </text>
-<text x="629.8359375" y="195.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
-<tspan x="629.8359375" dy="0">Use the named controller presentation contract</tspan>
+<text x="546.578125" y="243.75" fill="#202B36" font-family="Arial, sans-serif" font-size="34" font-weight="400" dominant-baseline="hanging">
+<tspan x="546.578125" dy="0">Use the named controller presentation contract</tspan>
 </text>
-<text x="638.5390625" y="226.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
-<tspan x="638.5390625" dy="0">No direct DAO / domain / root imports or SQL</tspan>
+<text x="557.9609375" y="283.75" fill="#202B36" font-family="Arial, sans-serif" font-size="34" font-weight="400" dominant-baseline="hanging">
+<tspan x="557.9609375" dy="0">No direct DAO / domain / root imports or SQL</tspan>
 </text>
-<text x="717.9453125" y="453.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
-<tspan x="717.9453125" dy="0">«package» business.controllers</tspan>
+<text x="661.875" y="543.75" fill="#202B36" font-family="Arial, sans-serif" font-size="34" font-weight="400" dominant-baseline="hanging">
+<tspan x="661.875" dy="0">«package» business.controllers</tspan>
 </text>
-<text x="581.4296875" y="484.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
-<tspan x="581.4296875" dy="0">Authorisation, current-state validation and orchestration</tspan>
+<text x="586.265625" y="583.75" fill="#202B36" font-family="Arial, sans-serif" font-size="34" font-weight="400" dominant-baseline="hanging">
+<tspan x="586.265625" dy="0">Authorisation, current-state validation and</tspan>
 </text>
-<text x="607.453125" y="515.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
-<tspan x="607.453125" dy="0">Owns write transactions via immediate_transaction</tspan>
+<text x="801.7265625" y="623.75" fill="#202B36" font-family="Arial, sans-serif" font-size="34" font-weight="400" dominant-baseline="hanging">
+<tspan x="801.7265625" dy="0">orchestration</tspan>
 </text>
-<text x="628.375" y="546.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
-<tspan x="628.375" dy="0">Invokes domain behavior and DAO persistence</tspan>
+<text x="517.34375" y="663.75" fill="#202B36" font-family="Arial, sans-serif" font-size="34" font-weight="400" dominant-baseline="hanging">
+<tspan x="517.34375" dy="0">Owns write transactions via immediate_transaction</tspan>
 </text>
-<text x="260.2734375" y="808.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
-<tspan x="260.2734375" dy="0">«package» business.domain</tspan>
+<text x="544.703125" y="703.75" fill="#202B36" font-family="Arial, sans-serif" font-size="34" font-weight="400" dominant-baseline="hanging">
+<tspan x="544.703125" dy="0">Invokes domain behavior and DAO persistence</tspan>
 </text>
-<text x="214.8046875" y="839.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
-<tspan x="214.8046875" dy="0">Entities, enums, factories, pure rules</tspan>
+<text x="209.5390625" y="1007.5" fill="#202B36" font-family="Arial, sans-serif" font-size="34" font-weight="400" dominant-baseline="hanging">
+<tspan x="209.5390625" dy="0">«package» business.domain</tspan>
 </text>
-<text x="218.3671875" y="870.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
-<tspan x="218.3671875" dy="0">No outward application dependency</tspan>
+<text x="150.03125" y="1047.5" fill="#202B36" font-family="Arial, sans-serif" font-size="34" font-weight="400" dominant-baseline="hanging">
+<tspan x="150.03125" dy="0">Entities, enums, factories, pure rules</tspan>
 </text>
-<text x="237.2109375" y="901.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
-<tspan x="237.2109375" dy="0">No persistence / network / UI I/O</tspan>
+<text x="154.7265625" y="1087.5" fill="#202B36" font-family="Arial, sans-serif" font-size="34" font-weight="400" dominant-baseline="hanging">
+<tspan x="154.7265625" dy="0">No outward application dependency</tspan>
 </text>
-<text x="1234.8359375" y="808.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
-<tspan x="1234.8359375" dy="0">«package» data_access</tspan>
+<text x="179.328125" y="1127.5" fill="#202B36" font-family="Arial, sans-serif" font-size="34" font-weight="400" dominant-baseline="hanging">
+<tspan x="179.328125" dy="0">No persistence / network / UI I/O</tspan>
 </text>
-<text x="1149.359375" y="839.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
-<tspan x="1149.359375" dy="0">SQL mapping and guarded persistence</tspan>
+<text x="1191.65625" y="987.5" fill="#202B36" font-family="Arial, sans-serif" font-size="34" font-weight="400" dominant-baseline="hanging">
+<tspan x="1191.65625" dy="0">«package» data_access</tspan>
 </text>
-<text x="1107.71875" y="870.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
-<tspan x="1107.71875" dy="0">Database helper implements caller transaction</tspan>
+<text x="1079.8359375" y="1027.5" fill="#202B36" font-family="Arial, sans-serif" font-size="34" font-weight="400" dominant-baseline="hanging">
+<tspan x="1079.8359375" dy="0">SQL mapping and guarded persistence</tspan>
 </text>
-<text x="1135.8984375" y="901.0" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
-<tspan x="1135.8984375" dy="0">Existing payment simulator enum adapter</tspan>
+<text x="1113.2734375" y="1067.5" fill="#202B36" font-family="Arial, sans-serif" font-size="34" font-weight="400" dominant-baseline="hanging">
+<tspan x="1113.2734375" dy="0">Database helper implements caller</tspan>
 </text>
-<text x="72" y="1092" fill="#202B36" font-family="Arial, sans-serif" font-size="26" font-weight="400" dominant-baseline="hanging">
+<text x="1291.84375" y="1107.5" fill="#202B36" font-family="Arial, sans-serif" font-size="34" font-weight="400" dominant-baseline="hanging">
+<tspan x="1291.84375" dy="0">transaction</tspan>
+</text>
+<text x="1062.234375" y="1147.5" fill="#202B36" font-family="Arial, sans-serif" font-size="34" font-weight="400" dominant-baseline="hanging">
+<tspan x="1062.234375" dy="0">Existing payment simulator enum adapter</tspan>
+</text>
+<text x="72" y="1365.0" fill="#202B36" font-family="Arial, sans-serif" font-size="34" font-weight="400" dominant-baseline="hanging">
 <tspan x="72" dy="0">Narrow permission: 12 directed pairs / 28 imported symbols, recomputed from the application.</tspan>
-<tspan x="72" dy="30.939999999999998">Mapper constructors/factory, stored-value properties and enum serialization; terminal/active SQL constants.</tspan>
-<tspan x="72" dy="30.939999999999998">Simulator: OnlineOption contract and .value logging. No workflow, pricing, refund or transaction decision in DAOs.</tspan>
-<tspan x="72" dy="30.939999999999998">Solid open arrow = runtime responsibility; dashed open arrow = admitted source dependency.</tspan>
-<tspan x="72" dy="30.939999999999998">Projection only: exact module/symbol/use details are in policy.json + symbol_use_review.json + dependency_overlay.json.</tspan>
+<tspan x="72" dy="40.46">Mapper constructors/factory, stored-value properties and enum serialization; terminal/active SQL constants.</tspan>
+<tspan x="72" dy="40.46">Simulator: OnlineOption contract and .value logging. No workflow, pricing, refund or transaction decision in</tspan>
+<tspan x="72" dy="40.46">DAOs.</tspan>
+<tspan x="72" dy="40.46">Solid open arrow = runtime responsibility; dashed open arrow = admitted source dependency.</tspan>
+<tspan x="72" dy="40.46">Projection only: exact module/symbol/use details are in policy.json + symbol_use_review.json +</tspan>
+<tspan x="72" dy="40.46">dependency_overlay.json.</tspan>
 </text>
 </svg>

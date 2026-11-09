@@ -10,7 +10,7 @@ Author: 722I0004 · AI-assisted (Codex, Claude)
 2. *Unconfirmed business figures.* The busy and quiet thresholds, the 8 km radius, the fee per kilometre and the report date basis are team defaults; Q1–Q5 have not been answered.
 3. *Approximate distance.* Distance is measured to the centre of the delivery district, not along roads.
 4. *Small-scale operation.* One VM and one SQLite file serve the demonstration. This is enough for the measured load (200 requests from 20 clients, all under 1.2 s), but it is not a high-availability setup, and rollback to a previous release has not been rehearsed.
-5. *Phone layout.* It is verified at 390 px on every screen but at 360 px on one screen only (NFR-09).
+5. *Phone layout.* All 45 pages pass at 360 px (NFR-09), but on a phone the wide admin and report tables scroll inside their own box, so their row actions are off-screen until the table is scrolled.
 6. *Team contribution.* All Part 2 work was authored by one member (Appendix 4). Ownership of UC-02, UC-04, UC-05 and UC-06 remains with the proposal owners, who will present their use cases in Part 3.
 
 **Recommendations.**
